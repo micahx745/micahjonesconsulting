@@ -233,15 +233,116 @@ Explicit exclusions. Documented to prevent scope creep. All have anchoring reaso
 
 ## Traceability
 
-Empty initially. Populated by roadmapper during ROADMAP.md creation.
+Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly one phase in `.planning/ROADMAP.md`.
 
 | Requirement | Phase | Status |
 |---|---|---|
-| (Populated by gsd-roadmapper) | | |
+| SCAFF-01 | Phase 1 | Pending |
+| SCAFF-02 | Phase 1 | Pending |
+| SCAFF-03 | Phase 1 | Pending |
+| SCAFF-04 | Phase 1 | Pending |
+| SCAFF-05 | Phase 1 | Pending |
+| SCAFF-06 | Phase 1 | Pending |
+| SCAFF-07 | Phase 1 | Pending |
+| SCAFF-08 | Phase 1 | Pending |
+| TOKEN-01 | Phase 1 | Pending |
+| TOKEN-02 | Phase 1 | Pending |
+| TOKEN-03 | Phase 1 | Pending |
+| TOKEN-04 | Phase 1 | Pending |
+| TOKEN-05 | Phase 1 | Pending |
+| TOKEN-06 | Phase 1 | Pending |
+| FOYER-01 | Phase 4 | Pending |
+| FOYER-02 | Phase 6 | Pending |
+| FOYER-03 | Phase 6 | Pending |
+| FOYER-04 | Phase 6 | Pending |
+| FOYER-05 | Phase 6 | Pending |
+| FOYER-06 | Phase 6 | Pending |
+| FOYER-07 | Phase 6 | Pending |
+| FOYER-08 | Phase 6 | Pending |
+| FOYER-09 | Phase 3 | Pending |
+| FOYER-10 | Phase 3 | Pending |
+| THEATER-01 | Phase 4 | Pending |
+| THEATER-02 | Phase 4 | Pending |
+| THEATER-03 | Phase 4 | Pending |
+| THEATER-04 | Phase 7 | Pending |
+| THEATER-05 | Phase 7 | Pending |
+| TRANS-01 | Phase 2 | Pending |
+| TRANS-02 | Phase 2 | Pending |
+| TRANS-03 | Phase 2 | Pending |
+| TRANS-04 | Phase 2 | Pending |
+| TRANS-05 | Phase 2 | Pending |
+| MOT-01 | Phase 5 | Pending |
+| MOT-02 | Phase 5 | Pending |
+| MOT-03 | Phase 5 | Pending |
+| MOT-04 | Phase 5 | Pending |
+| MOT-05 | Phase 5 | Pending |
+| MOT-06 | Phase 5 | Pending |
+| MOT-07 | Phase 5 | Pending |
+| LENIS-01 | Phase 2 | Pending |
+| LENIS-02 | Phase 2 | Pending |
+| LENIS-03 | Phase 2 | Pending |
+| LENIS-04 | Phase 2 | Pending |
+| LENIS-05 | Phase 2 | Pending |
+| CASE-01 | Phase 7 | Pending |
+| CASE-02 | Phase 7 | Pending |
+| CASE-03 | Phase 8 | Pending |
+| CASE-04 | Phase 8 | Pending |
+| CASE-05 | Phase 8 | Pending |
+| CASE-06 | Phase 8 | Pending |
+| CASE-07 | Phase 7 | Pending |
+| CASE-08 | Phase 7 | Pending |
+| CASE-09 | Phase 7 | Pending |
+| CASE-10 | Phase 7 | Pending |
+| COPY-01 | Phase 2 | Pending |
+| COPY-02 | Phase 2 | Pending |
+| COPY-03 | Phase 2 | Pending |
+| COPY-04 | Phase 2 | Pending |
+| COPY-05 | Phase 2 | Pending |
+| PERF-01 | Phase 10 | Pending |
+| PERF-02 | Phase 10 | Pending |
+| PERF-03 | Phase 10 | Pending |
+| PERF-04 | Phase 10 | Pending |
+| PERF-05 | Phase 10 | Pending |
+| PERF-06 | Phase 10 | Pending |
+| PERF-07 | Phase 10 | Pending |
+| PERF-08 | Phase 10 | Pending |
+| PERF-09 | Phase 10 | Pending |
+| A11Y-01 | Phase 10 | Pending |
+| A11Y-02 | Phase 10 | Pending |
+| A11Y-03 | Phase 10 | Pending |
+| A11Y-04 | Phase 10 | Pending |
+| A11Y-05 | Phase 2 | Pending |
+| A11Y-06 | Phase 10 | Pending |
+| A11Y-07 | Phase 10 | Pending |
+| RESP-01 | Phase 10 | Pending |
+| RESP-02 | Phase 10 | Pending |
+| RESP-03 | Phase 10 | Pending |
+| RESP-04 | Phase 10 | Pending |
+| OG-01 | Phase 10 | Pending |
+| OG-02 | Phase 10 | Pending |
+| OG-03 | Phase 10 | Pending |
+| OG-04 | Phase 10 | Pending |
+| ANALY-01 | Phase 2 | Pending |
+| ANALY-02 | Phase 10 | Pending |
+| ANALY-03 | Phase 10 | Pending |
+| DEPLOY-01 | Phase 10 | Pending |
+| DEPLOY-02 | Phase 1 | Pending |
+| DEPLOY-03 | Phase 10 | Pending |
+| DEPLOY-04 | Phase 10 | Pending |
+| DEPLOY-05 | Phase 10 | Pending |
+| DEPLOY-06 | Phase 10 | Pending |
+| HARN-01 | Phase 1 | Pending |
+| HARN-02 | Phase 1 | Pending |
+| HARN-03 | Phase 1 | Pending |
+| PHOTO-01 | Phase 1 | Pending |
+| PHOTO-02 | Phase 9 | Pending |
+| PHOTO-03 | Phase 9 | Pending |
 
-**Coverage target:** 100% of v1 requirements mapped to exactly one phase.
+**Coverage:** 100/100 v1 requirements mapped to exactly one phase. ✓
+
+**Note on prompt-stated count:** the orchestrator prompt cited "49 total" requirements but the actual REQUIREMENTS.md contains 100 v1 REQ-IDs across 17 categories. All 100 are mapped above.
 
 ---
 
 *Requirements defined: 2026-05-14*
-*Last updated: 2026-05-14 after initial definition*
+*Last updated: 2026-05-14 — Traceability table populated by gsd-roadmapper*
