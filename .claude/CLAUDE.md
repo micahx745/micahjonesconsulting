@@ -64,6 +64,27 @@ The `design-tokens.sh` hook warns on any other hex literal.
 - Em-dashes capped at one per page (em-dashes are an AI tell).
 - 30-word banned list in `.claude/brand.json.voice.banned`. The `copy-lint.sh` hook (write boundary) + `lib/copy-lint.ts` build-time scanner (in `instrumentation.ts`) both reject these. Build fails with `file:line:column` on any finding.
 
+### Enforcement (Phase 2)
+
+The voice rules above are enforced in two layers:
+
+**Automated (Phase 2 — `lib/copy-lint-runner.ts` + `instrumentation.ts`):**
+- 30 banned words rejected at `pnpm build` with `file:line:column` reporting.
+- Scope: `content/**/*.{mdx,md,ts}` and `app/**/*.{tsx,ts}`.
+- Gated to `NEXT_PHASE === 'phase-production-build'` — does NOT run on `next dev`.
+- Plus the write-boundary `copy-lint.sh` harness hook catches violations on save.
+
+**Manual subagent (every prose-touching PR — `copy-editor` subagent):**
+- **COPY-04** Sentence length cap: average ≤25 words. Sentences over 35 words rewritten.
+- **COPY-04** First person locked: `I`, `me`, `my`. The word `we` rejected unless plural truly applies (rare — Micah is solo).
+- **COPY-04** Active voice required. Passive constructions ("was built", "is being shipped") rewritten unless documenting outcomes ("Acquired by Salesforce for $27.7 billion" stays passive — that's a fact, not voice).
+- **COPY-04** Named numbers required. `$150K`, `14 practices`, `91% intake completion` — never "significant impact", "meaningful results", "growth metrics."
+- **COPY-05** Em-dashes capped at ONE per page. Em-dashes (—) are an AI tell. The copy-editor subagent counts `—` occurrences per file; >1 triggers a rewrite request unless the writer can defend each one.
+
+The `copy-editor` subagent runs on every PR that touches `content/**/*.mdx`, `app/**/*.tsx` containing visible prose, or `.claude/CLAUDE.md`. It does not run on code-only PRs (component logic, config, types).
+
+**Subagent invocation:** `/premium audit` triggers the copy-editor pass alongside the design-director, motion-engineer, perf-auditor, a11y-reviewer, case-study-writer, and visual-qa subagents. The audit gate blocks production deploy on copy-editor failure.
+
 ## Definition of done
 A page is done when:
 1. The signature interactions hold per blueprint §4f (TitleCard pin ~600ms, foyer↔theater dim 600ms ease-in-out).
