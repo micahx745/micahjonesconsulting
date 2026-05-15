@@ -28,9 +28,12 @@
   --color-theater-ink:        #EAE6DD;
   --color-theater-ink-soft:   #9C988F;
 
-  /* Single accent across both modes. See PITFALL B1 above for rule. */
-  --color-accent-copper:      #C8542B;
-  --color-accent-copper-deep: #8E3A1E;
+  /* Single accent across both modes. See PITFALL B1 above for rule.
+   * Tier H: shifted from #C8542B (digital orange) -> #BD5A2D (leathered
+   * amber). Less saturated, slightly more red-warm, reads as oxidized
+   * metal or saddle leather rather than RGB orange. */
+  --color-accent-copper:      #BD5A2D;
+  --color-accent-copper-deep: #8A3D24;
 
   /* ORDANI-only — permitted via design-tokens.sh allowlist for /work/ordani only (Phase 8). */
   --color-ordani-sage:        #5E7158;
@@ -133,49 +136,94 @@ body {
 }
 
 [data-mode="foyer"]::before {
-  /* Paper grain — warm noise, multiply blend on cream.
-   * Intensity bumped from 0.08 -> 0.14 after retina screenshot showed
-   * the original was nearly invisible. 0.14 sits at "obviously uncoated
-   * stock" without becoming distracting. */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.9 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
-  background-size: 120px 120px;
-  opacity: 0.14;
+  /* Tier H — Two grain layers stacked: coarse paper grain (multiply)
+   * + fine secondary grain (also multiply). Together they create depth
+   * the way real uncoated stock has multiple frequencies of texture.
+   * Background-image accepts multiple stacked images. */
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.9 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='2.1' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15 0 0 0 0 0.13 0 0 0 0 0.10 0 0 0 0.7 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  background-size: 120px 120px, 200px 200px;
+  opacity: 0.16;
   mix-blend-mode: multiply;
 }
 
 [data-mode="foyer"]::after {
-  /* Warm corner vignette — barely-there matte-print feel */
+  /* Tier H — Ambient gallery lighting.
+   * A slow-drifting radial gradient that mimics overhead gallery
+   * spotlights. The center of the light moves across the page over
+   * 28 seconds in a slow Lissajous-like arc. Replaces the static
+   * vignette. The page now feels LIT, not just colored. */
   content: '';
   position: fixed;
   inset: 0;
   z-index: 9998;
   pointer-events: none;
   background: radial-gradient(
-    ellipse at center,
-    transparent 35%,
-    rgba(74, 66, 59, 0.05) 75%,
-    rgba(74, 66, 59, 0.10) 100%
+    ellipse 80vw 60vh at var(--ambient-x, 50%) var(--ambient-y, 35%),
+    rgba(255, 247, 230, 0.35) 0%,
+    rgba(255, 247, 230, 0.18) 25%,
+    transparent 55%
   );
+  animation: foyer-ambient-drift 28s ease-in-out infinite alternate;
+}
+
+@keyframes foyer-ambient-drift {
+  0%   { background-position: 30% 25%; }
+  25%  { background-position: 55% 40%; }
+  50%  { background-position: 70% 30%; }
+  75%  { background-position: 45% 50%; }
+  100% { background-position: 35% 35%; }
 }
 
 [data-mode="theater"]::before {
-  /* Film grain — cool noise, screen blend on obsidian.
-   * Intensity bumped from 0.06 -> 0.12 to match the foyer grain pass.
-   * Theater is darker and the grain reads more naturally at higher
-   * opacity (closer to actual cinema-projection feel). */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
-  background-size: 120px 120px;
-  opacity: 0.12;
+  /* Tier H — Two-layer film grain on theater (coarse + fine).
+   * Plus a slow-drifting warm spotlight on ::after below. The result
+   * is "cinema projection" not "flat black." */
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='2.4' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0 0.78 0 0 0 0.6 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  background-size: 120px 120px, 180px 180px;
+  opacity: 0.14;
   mix-blend-mode: screen;
 }
 
+[data-mode="theater"]::after {
+  /* Tier H — Theater spotlight.
+   * Warm radial pool of light that drifts slowly, mimics a projection
+   * source. Stays subtle so the page-content type still reads clean,
+   * but the obsidian is no longer flat. */
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 90vw 70vh at 50% 30%,
+    rgba(255, 220, 180, 0.06) 0%,
+    rgba(255, 220, 180, 0.03) 30%,
+    transparent 65%
+  );
+  animation: theater-ambient-drift 34s ease-in-out infinite alternate;
+}
+
+@keyframes theater-ambient-drift {
+  0%   { background-position: 40% 20%; }
+  25%  { background-position: 60% 35%; }
+  50%  { background-position: 50% 25%; }
+  75%  { background-position: 55% 40%; }
+  100% { background-position: 45% 30%; }
+}
+
 /* Reduced-motion users: grain layers stay (they're static), but the
- * blend intensity drops to keep visual fidelity for users with
- * vestibular or visual sensitivities who may find textured backgrounds
- * uncomfortable at full intensity. */
+ * blend intensity drops AND the ambient drift animations freeze. */
 @media (prefers-reduced-motion: reduce) {
-  [data-mode="foyer"]::before { opacity: 0.07; }
-  [data-mode="theater"]::before { opacity: 0.06; }
+  [data-mode="foyer"]::before { opacity: 0.09; }
+  [data-mode="theater"]::before { opacity: 0.07; }
+  [data-mode="foyer"]::after,
+  [data-mode="theater"]::after {
+    animation: none;
+  }
 }
 
 /* ============================================================
@@ -196,7 +244,11 @@ body {
  * from the snapshots themselves having different backgrounds.
  * ============================================================ */
 :root {
-  --duration-mode-fade: 600ms;
+  /* Tier H: extended 600 -> 900ms for cinematic page transition pacing.
+   * The foyer↔theater cross-fade now reads as deliberate rather than
+   * functional. Reduced-motion users still get the 0.001ms override
+   * below. */
+  --duration-mode-fade: 900ms;
 }
 
 ::view-transition-old(root) {
@@ -852,6 +904,144 @@ body {
 }
 
 /* ============================================================
+ * TIER H — Editorial timestamp anchor
+ *
+ * Fixed bottom-right specimen mark: "Oakland ¶ Month Year ¶ Issue 01".
+ * Mode-aware via :has() selectors so it reads correctly on both
+ * cream foyer and obsidian theater. Decorative only —
+ * pointer-events:none, aria-hidden.
+ * ============================================================ */
+.editorial-timestamp {
+  position: fixed;
+  bottom: 18px;
+  right: 22px;
+  z-index: 9000;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  user-select: none;
+  /* Default: a copper that works on both modes */
+  color: color-mix(in srgb, var(--color-accent-copper-deep) 70%, transparent);
+}
+
+body:has([data-mode="foyer"]) .editorial-timestamp {
+  color: color-mix(in srgb, var(--color-foyer-ink-soft) 65%, transparent);
+}
+
+body:has([data-mode="theater"]) .editorial-timestamp {
+  color: color-mix(in srgb, var(--color-theater-ink-soft) 70%, transparent);
+}
+
+.editorial-timestamp__sep {
+  font-style: normal;
+  opacity: 0.65;
+}
+
+@media (max-width: 640px) {
+  .editorial-timestamp {
+    /* On narrow mobile, hide the issue marker and the second separator
+     * so the anchor doesn't crowd the footer area. */
+    font-size: 0.58rem;
+    bottom: 12px;
+    right: 12px;
+  }
+  .editorial-timestamp__sep:last-of-type,
+  .editorial-timestamp__issue {
+    display: none;
+  }
+}
+
+/* ============================================================
+ * TIER H — Scroll-triggered section reveal (global)
+ *
+ * Any element with [data-reveal] AND class .scroll-reveal starts in
+ * a "before reveal" state (opacity 0, translated down 24px). The
+ * RevealMount client component adds .scroll-reveal--shown when the
+ * element enters the viewport, transitioning to its natural state
+ * over 1.2 seconds.
+ *
+ * This is the single source of reveal motion outside the hero word
+ * reveal and the MJ monogram breath. Sections inherit editorial
+ * pacing — content arrives in waves as you scroll.
+ * ============================================================ */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 1.2s cubic-bezier(0.22, 0.8, 0.28, 1),
+    transform 1.2s cubic-bezier(0.22, 0.8, 0.28, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal--shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ============================================================
+ * TIER H — Hero word-by-word reveal on first paint
+ *
+ * The h1 splits into spans, each with --word-i set via inline style.
+ * Stagger = 80ms per word. Per-word duration = 700ms. Last word
+ * (#13 "on.") starts at 13 * 80ms = 1040ms, completes at ~1.74s.
+ * Subline and tail follow on indices 15 and 17 respectively.
+ *
+ * The h1 carries an aria-label of the full sentence so screen readers
+ * read the whole sentence at once; the per-word spans are aria-hidden.
+ * Reduced-motion users skip the animation entirely.
+ * ============================================================ */
+[data-mode="foyer"] .foyer-hero__word,
+[data-mode="foyer"] .foyer-hero-subline--reveal,
+[data-mode="foyer"] .foyer-hero-tail--reveal {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: hero-word-in 0.7s cubic-bezier(0.22, 0.8, 0.28, 1) forwards;
+  animation-delay: calc(var(--word-i, 0) * 80ms);
+  will-change: opacity, transform;
+}
+
+[data-mode="foyer"] .foyer-hero-subline--reveal,
+[data-mode="foyer"] .foyer-hero-tail--reveal {
+  display: flex;
+  align-items: center;
+}
+
+[data-mode="foyer"] .foyer-hero-subline--reveal {
+  display: block;
+}
+
+@keyframes hero-word-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="foyer"] .foyer-hero__word,
+  [data-mode="foyer"] .foyer-hero-subline--reveal,
+  [data-mode="foyer"] .foyer-hero-tail--reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ============================================================
  * TIER F — Hero tail
  *
  * Editorial-style terminator below the foyer hero subline.
@@ -962,6 +1152,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Tier H — Inset shadow so the dark poster sits IN the page,
+   * not on it. Soft warm inner shadow at the top edge + cooler
+   * shadow at the bottom edge creates dimensional depth. */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 240, 220, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 24px 48px -24px rgba(13, 13, 15, 0.25);
 }
 
 [data-mode="foyer"] .portrait-poster__grain {
@@ -1029,6 +1226,22 @@ body {
   letter-spacing: -0.04em;
   line-height: 0.85;
   color: var(--color-theater-ink);
+  /* Tier H — slow ambient breath. The monogram subtly scales over 8s,
+   * infinite. Reads as "living" rather than static. Disabled for
+   * reduced-motion users below. */
+  animation: monogram-breath 8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes monogram-breath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.018); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="foyer"] .portrait-poster__monogram {
+    animation: none;
+  }
 }
 
 [data-mode="foyer"] .portrait-poster--column .portrait-poster__monogram {
@@ -1087,14 +1300,116 @@ body {
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 32px;
+  gap: 48px;
 }
 
 @media (min-width: 768px) {
   [data-mode="foyer"] .selected-work-strip {
+    /* Tier H: shift from 3-equal-columns to a wider 3-up grid with
+     * more breathing space between cards. Wide-row layout reads as
+     * "specimen sheet" rather than "three thumbnails." */
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 56px;
   }
+}
+
+@media (min-width: 1200px) {
+  [data-mode="foyer"] .selected-work-strip {
+    gap: 72px;
+  }
+}
+
+/* Tier H — Hover sub-tag reveal.
+ *
+ * Sub-tag is hidden by default on hoverable devices, revealed on
+ * card hover/focus. On touch (no-hover) devices it shows always at
+ * reduced opacity so the metadata is still discoverable.
+ * Per-case accent colors the year/role/status text and the dots. */
+[data-mode="foyer"] .selected-work-card__hover-tag {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 18px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--case-accent, var(--color-accent-copper-deep));
+  opacity: 0.6;
+}
+
+[data-mode="foyer"] .selected-work-card__hover-dot {
+  color: color-mix(in srgb, var(--case-accent, var(--color-accent-copper)) 45%, transparent);
+}
+
+@media (hover: hover) {
+  [data-mode="foyer"] .selected-work-card__hover-tag {
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 600ms cubic-bezier(0.22, 0.8, 0.28, 1),
+      transform 600ms cubic-bezier(0.22, 0.8, 0.28, 1);
+  }
+  [data-mode="foyer"] .selected-work-card:hover .selected-work-card__hover-tag,
+  [data-mode="foyer"] .selected-work-card:focus-within .selected-work-card__hover-tag {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="foyer"] .selected-work-card__hover-tag {
+    transition: none;
+  }
+}
+
+/* Tier H — Now Building specimen.
+ *
+ * Single-line statement replacing the longer about-teaser paragraph.
+ * Editorial composition: small all-caps "CURRENTLY" copper label
+ * left-aligned + serif italic statement to its right. The em inside
+ * (ORDANI) gets roman style so it pops against the italic. */
+[data-mode="foyer"] .foyer-section--now-building {
+  padding-top: clamp(48px, 8vw, 96px);
+  padding-bottom: clamp(48px, 8vw, 96px);
+}
+
+[data-mode="foyer"] .now-building-specimen {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 2vw, 28px);
+  margin: 0;
+  max-width: 60ch;
+  flex-wrap: wrap;
+}
+
+[data-mode="foyer"] .now-building-specimen__eyebrow {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-copper-deep);
+  position: relative;
+  top: -3px;
+  flex-shrink: 0;
+}
+
+[data-mode="foyer"] .now-building-specimen__statement {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.5;
+  color: var(--color-foyer-ink);
+}
+
+[data-mode="foyer"] .now-building-specimen__statement em {
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-accent-copper-deep);
 }
 
 [data-mode="foyer"] .selected-work-card {
@@ -1676,7 +1991,40 @@ body {
   line-height: 1.2;
   letter-spacing: -0.015em;
   color: var(--color-theater-ink);
-  margin: 80px 0 24px;
+  /* Tier H: expanded section spacing — chapter breaks in case studies
+   * should breathe like book chapters, not run-together blog headers. */
+  margin: clamp(96px, 12vw, 144px) 0 32px;
+  position: relative;
+}
+
+/* Tier H — Chapter mark above each h2.
+ * Small copper hairline + numeric specimen, gives each section a
+ * "chapter card" feel without resorting to literal chapter headings. */
+[data-mode="theater"] .case-study__body h2::before {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 1px;
+  background-color: var(--case-accent, var(--color-accent-copper));
+  margin-bottom: 28px;
+}
+
+[data-mode="theater"] .case-study__body h2:first-child::before {
+  margin-top: 0;
+}
+
+/* Tier H — Drop cap on first paragraph after each h2.
+ * Source Serif 4 italic, sized to ~3 lines. Subtle copper tint.
+ * Only on first paragraph after a heading. */
+[data-mode="theater"] .case-study__body h2 + p::first-letter {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 3.2em;
+  font-weight: 400;
+  float: left;
+  line-height: 0.92;
+  margin: 0.05em 0.08em 0 0;
+  color: var(--case-accent, var(--color-accent-copper-deep));
 }
 
 [data-mode="theater"] .case-study__body h2:first-child {
@@ -1796,20 +2144,27 @@ body {
 
 /* PullQuote — Source Serif 4 italic + copper underline-grow */
 [data-mode="theater"] .case-study-pull-quote {
-  margin: 80px 0;
-  max-width: 56ch;
+  /* Tier H — Cinematic pull-quote treatment.
+   * Quote becomes a full-bleed-width moment with deep vertical space
+   * around it (a "chapter card" moment between Outcome and the
+   * footer nav). Larger type, dramatic line-height, surrounding silence. */
+  margin: clamp(120px, 16vw, 200px) 0;
+  max-width: 70ch;
+  padding: clamp(32px, 4vw, 64px) 0;
+  border-top: 1px solid var(--case-accent, var(--color-rule-theater));
+  border-bottom: 1px solid var(--case-accent, var(--color-rule-theater));
 }
 
 [data-mode="theater"] .case-study-pull-quote__quote {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(24px, 3.4vw, 32px);
-  line-height: 1.35;
-  letter-spacing: -0.01em;
+  font-size: clamp(28px, 4.2vw, 44px);
+  line-height: 1.3;
+  letter-spacing: -0.012em;
   color: var(--color-theater-ink);
   margin: 0;
   position: relative;
-  padding-bottom: 16px;
+  padding-bottom: 20px;
 }
 
 /* The underline-grow — a copper bar that scales from 0 → full width over

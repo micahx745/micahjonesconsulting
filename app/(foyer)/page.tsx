@@ -58,16 +58,51 @@ export default async function FoyerHomePage() {
   return (
     <div className="foyer-page">
       {/* HERO — FOYER-03 verbatim per blueprint §8.
-          Tier F adds the hero tail: copper rule + scroll affordance.
-          The blueprint's hero opened on cream and dumped into empty space;
-          the tail gives the hero a terminator and signals "selected work below"
-          without resorting to a generic "scroll" indicator. */}
+          Tier H: hero text reveals word-by-word on first paint (1.4s total
+          with 80ms stagger). Subline and tail follow on calculated delays.
+          The word reveal is pure CSS via per-word animation-delay set with
+          a CSS custom property (--word-i). Server-rendered. No client JS.
+          Reduced-motion users see all words at final state immediately. */}
       <section className="foyer-section foyer-section--hero">
-        <h1 className="foyer-hero">
-          I help operators ship the work the rest of their org keeps stalling on.
+        <h1 className="foyer-hero foyer-hero--reveal" aria-label="I help operators ship the work the rest of their org keeps stalling on.">
+          {[
+            "I",
+            "help",
+            "operators",
+            "ship",
+            "the",
+            "work",
+            "the",
+            "rest",
+            "of",
+            "their",
+            "org",
+            "keeps",
+            "stalling",
+            "on.",
+          ].map((word, i, arr) => (
+            <span
+              key={`${word}-${i}`}
+              className="foyer-hero__word"
+              style={{ ["--word-i" as string]: i } as React.CSSProperties}
+              aria-hidden
+            >
+              {word}
+              {i < arr.length - 1 ? " " : ""}
+            </span>
+          ))}
         </h1>
-        <p className="foyer-hero-subline">product · growth · consulting. Oakland, CA.</p>
-        <div className="foyer-hero-tail" aria-hidden>
+        <p
+          className="foyer-hero-subline foyer-hero-subline--reveal"
+          style={{ ["--word-i" as string]: 15 } as React.CSSProperties}
+        >
+          product · growth · consulting. Oakland, CA.
+        </p>
+        <div
+          className="foyer-hero-tail foyer-hero-tail--reveal"
+          style={{ ["--word-i" as string]: 17 } as React.CSSProperties}
+          aria-hidden
+        >
           <span className="foyer-hero-tail__rule" />
           <span className="foyer-hero-tail__hint">selected work below</span>
           <span className="foyer-hero-tail__arrow">↘</span>
@@ -82,8 +117,29 @@ export default async function FoyerHomePage() {
         <hr className="copper-rule" aria-hidden />
       </section>
 
-      {/* SELECTED WORK STRIP — three TitleCardComposition thumbnails */}
-      <section className="foyer-section foyer-section--selected-work">
+      {/* CURRENTLY BUILDING — specimen line that replaces the longer
+          about-teaser. Single sentence, serif italic, anchored under
+          the portrait poster. Tier H: the page commits to less copy
+          + more cinematic rhythm. The full About lives at /about. */}
+      <section
+        className="foyer-section foyer-section--now-building scroll-reveal"
+        data-reveal
+      >
+        <p className="now-building-specimen">
+          <span className="now-building-specimen__eyebrow">currently</span>
+          <span className="now-building-specimen__statement">
+            building <em>ORDANI</em> — a HIPAA-compliant CRM for birth workers.
+            Q3 2026 paid beta.
+          </span>
+        </p>
+      </section>
+
+      {/* SELECTED WORK STRIP — three TitleCardComposition thumbnails.
+          Tier H: bigger cards with hover-reveal sub-tags. */}
+      <section
+        className="foyer-section foyer-section--selected-work scroll-reveal"
+        data-reveal
+      >
         <h2 className="foyer-eyebrow">
           <span className="foyer-eyebrow__num">01</span>
           <span className="foyer-eyebrow__sep" aria-hidden>/</span>
@@ -105,6 +161,15 @@ export default async function FoyerHomePage() {
                   caption={study.dek || study.title}
                   phase="stacked"
                 />
+                {/* Tier H — hover sub-tag emerges on card hover. Year + role +
+                    status, serif italic, in the case's accent color. */}
+                <span className="selected-work-card__hover-tag" aria-hidden>
+                  <span className="selected-work-card__hover-year">{study.year}</span>
+                  <span className="selected-work-card__hover-dot">·</span>
+                  <span className="selected-work-card__hover-role">{study.role}</span>
+                  <span className="selected-work-card__hover-dot">·</span>
+                  <span className="selected-work-card__hover-status">{study.status}</span>
+                </span>
               </ViewTransitionLink>
             </li>
           ))}
@@ -116,31 +181,13 @@ export default async function FoyerHomePage() {
         </p>
       </section>
 
-      {/* ABOUT TEASER — 100-word excerpt */}
-      <section className="foyer-section foyer-section--about-teaser">
+      {/* WORK WITH ME TEASER — three one-liners */}
+      <section
+        className="foyer-section foyer-section--work-with-me-teaser scroll-reveal"
+        data-reveal
+      >
         <h2 className="foyer-eyebrow">
           <span className="foyer-eyebrow__num">02</span>
-          <span className="foyer-eyebrow__sep" aria-hidden>/</span>
-          <span className="foyer-eyebrow__label">about</span>
-        </h2>
-        <p className="foyer-teaser-body">
-          I started as a positioning researcher at Guardicore (acquired by Akamai), where the
-          work I did on a single message moved the average deal size up by $150K. Now I run my
-          own shop in Oakland. Half consulting, half product. The product half means ORDANI,
-          a HIPAA-compliant CRM I built solo for the people who keep Black women alive in
-          childbirth.
-        </p>
-        <p className="foyer-section__cta">
-          <ViewTransitionLink href="/about" className="foyer-link">
-            → about
-          </ViewTransitionLink>
-        </p>
-      </section>
-
-      {/* WORK WITH ME TEASER — three one-liners */}
-      <section className="foyer-section foyer-section--work-with-me-teaser">
-        <h2 className="foyer-eyebrow">
-          <span className="foyer-eyebrow__num">03</span>
           <span className="foyer-eyebrow__sep" aria-hidden>/</span>
           <span className="foyer-eyebrow__label">work with me</span>
         </h2>
@@ -166,7 +213,10 @@ export default async function FoyerHomePage() {
       </section>
 
       {/* CONTACT CTA — single line */}
-      <section className="foyer-section foyer-section--contact-cta">
+      <section
+        className="foyer-section foyer-section--contact-cta scroll-reveal"
+        data-reveal
+      >
         <p className="foyer-contact-cta">
           Have something that needs shipping? Write to me.
         </p>
