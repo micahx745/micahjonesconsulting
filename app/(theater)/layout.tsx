@@ -28,8 +28,12 @@ export default function TheaterLayout({
 }>) {
   return (
     <div data-mode="theater">
+      {/* Phase 10 — A11Y-06. Skip-to-content link. Visible only on focus. */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to content
+      </a>
       <Nav variant="theater" />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
     </div>
   );

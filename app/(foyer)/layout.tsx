@@ -27,8 +27,12 @@ export default function FoyerLayout({
 }>) {
   return (
     <div data-mode="foyer">
+      {/* Phase 10 — A11Y-06. Skip-to-content link. Visible only on focus. */}
+      <a href="#main-content" className="skip-to-content">
+        Skip to content
+      </a>
       <Nav variant="foyer" />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <Footer />
     </div>
   );

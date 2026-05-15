@@ -62,7 +62,6 @@ export default async function WorkIndexPage() {
                 <ViewTransitionLink
                   href={`/work/${study.slug}`}
                   className="work-index-card__link"
-                  aria-label={`${study.title} — ${study.dek || "case study"}`}
                 >
                   <TitleCardComposition
                     words={study.titleCardWords}

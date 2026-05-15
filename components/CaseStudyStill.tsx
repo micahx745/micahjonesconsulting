@@ -91,6 +91,7 @@ export function CaseStudyStill({
         ) : (
           <div
             className="case-study-still__placeholder"
+            role="img"
             aria-label={`Placeholder for ${alt}`}
           />
         )}

@@ -1,0 +1,31 @@
+{
+  "tool": "axe-core 4.10.2 (CDN, injected via Chrome DevTools MCP evaluate_script)",
+  "ruleset": "wcag2a + wcag2aa",
+  "date": "2026-05-14",
+  "results": [
+    { "route": "/", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/about", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/work-with-me", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/contact", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/work", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/work/ordani", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/work/hr-equity-author", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/work/passioneer", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 },
+    { "route": "/work/akamai", "serious": 0, "critical": 0, "moderate": 0, "minor": 0 }
+  ],
+  "fixes_applied_during_audit": [
+    {
+      "rule": "aria-prohibited-attr",
+      "fix": "Added role='img' to <div className='case-study-still__placeholder'> in components/CaseStudyStill.tsx"
+    },
+    {
+      "rule": "color-contrast",
+      "fix": "Theater nav-brand, nav-back-to-foyer, case-study__role, case-study__nav-link changed from --color-accent-copper to --color-theater-ink (16.5:1 on obsidian instead of 4.39:1)"
+    },
+    {
+      "rule": "color-contrast",
+      "fix": "Theater skip-to-content removed inverted variant; both modes now use --color-accent-copper-deep bg + --color-foyer-paper fg (5.4:1)"
+    }
+  ],
+  "note": "Visual baselines for all 9 routes captured at 390/768/1440 — see .planning/phases/10-hardening-deploy/baselines/ (copied from C:\\Users\\micah\\AppData\\Local\\Temp\\mjc-baselines\\)"
+}

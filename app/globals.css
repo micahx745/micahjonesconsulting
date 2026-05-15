@@ -260,9 +260,14 @@ body {
 [data-mode="theater"] [data-nav-root] {
   color: var(--color-accent-copper);
 }
+/* Theater nav text uses bone ink (16.5:1 on obsidian, AAA pass) per
+   Phase 10 a11y fix. The copper underline on .nav-back-to-foyer remains
+   per blueprint §4d — copper as accent on the line, not on the text.
+   Source: WCAG 2.1 AA contrast (Phase 10 axe audit found copper #C8542B
+   on theater ground #0D0D0F = 4.39:1, below the 4.5:1 floor for normal text). */
 [data-mode="theater"] [data-nav-root] .nav-brand,
 [data-mode="theater"] [data-nav-root] .nav-back-to-foyer {
-  color: var(--color-accent-copper);
+  color: var(--color-theater-ink);
 }
 
 /* ----- Reduced motion: kill the hover transform; keep the affordance ----- */
@@ -1195,7 +1200,7 @@ body {
 }
 
 [data-mode="theater"] .case-study__role {
-  color: var(--color-accent-copper);
+  color: var(--color-theater-ink);
   font-weight: 500;
 }
 
@@ -1399,7 +1404,7 @@ body {
   font-size: 0.95rem;
   letter-spacing: 0.06em;
   text-transform: lowercase;
-  color: var(--color-accent-copper);
+  color: var(--color-theater-ink);
   text-decoration: none;
   position: relative;
   padding-bottom: 2px;
@@ -1428,4 +1433,65 @@ body {
   [data-mode="theater"] .case-study__nav-link:hover::after {
     transform: none !important;
   }
+}
+
+/* ============================================================
+ * Phase 10 — A11Y-06. Skip-to-content link.
+ *
+ * Visible only when focused via keyboard. Tab from page top
+ * focuses this first, before the nav. Pressing Enter jumps
+ * focus to <main id="main-content">.
+ * ============================================================ */
+.skip-to-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px 20px;
+  background: var(--color-accent-copper-deep);
+  color: var(--color-foyer-paper);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0 0 6px 0;
+  transform: translateY(-100%);
+  transition: transform 150ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 100;
+}
+
+.skip-to-content:focus,
+.skip-to-content:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-foyer-paper);
+  outline-offset: 2px;
+}
+
+/* Theater skip link uses the same copper-deep + paper combo as foyer
+   (5.4:1, AA pass). The earlier draft used copper #C8542B + ground = 4.39:1
+   which failed WCAG AA for normal text (Phase 10 axe audit).
+   Source: WCAG 2.1 AA contrast. */
+[data-mode="theater"] .skip-to-content:focus,
+[data-mode="theater"] .skip-to-content:focus-visible {
+  outline: 2px solid var(--color-theater-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-to-content {
+    transition: none !important;
+  }
+}
+
+/* ============================================================
+ * Phase 10 — A11Y-02. Contact form focus rings.
+ *
+ * The form inputs already have border + bg styling per Phase 6.
+ * We add an explicit copper :focus-visible outline so keyboard
+ * users see where the focus is.
+ * ============================================================ */
+[data-mode="foyer"] .contact-form__input:focus-visible,
+[data-mode="foyer"] .contact-form__submit:focus-visible {
+  outline: 2px solid var(--color-accent-copper);
+  outline-offset: 2px;
 }
