@@ -363,6 +363,10 @@ body {
   position: relative;
   padding-bottom: 2px;
   color: inherit;
+  /* Prevent mid-link wrap on narrow viewports ("work with | me" effect).
+   * Individual links stay intact; the flex container may still wrap
+   * whole links onto new lines if space runs out. */
+  white-space: nowrap;
 }
 
 /* Copper underline that lifts 4px on hover (blueprint §4d) */
