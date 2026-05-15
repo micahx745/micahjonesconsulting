@@ -23,7 +23,10 @@ export const metadata: Metadata = {
   },
   description:
     "Micah Jones is an Oakland-based operator who builds the systems other people promise to build, and ships them.",
-  metadataBase: new URL("https://micahjonesconsulting.com"),
+  // Temporary: production domain not yet wired to Vercel. Using the .vercel.app
+  // alias so og:image URLs resolve on social link unfurls until DNS lands.
+  // Flip back to "https://micahjonesconsulting.com" once the apex resolves.
+  metadataBase: new URL("https://micahjonesconsulting.vercel.app"),
 };
 
 export default function RootLayout({

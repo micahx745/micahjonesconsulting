@@ -56,8 +56,11 @@ const REAL_ALT: Record<Variant, string> = {
   context: "Micah Jones at his Oakland workspace",
 };
 
-const PLACEHOLDER_ALT =
-  "Portrait of Micah Jones (placeholder, final shoot Day 7-14)";
+// Alt text is the same whether the real image is mounted or the placeholder
+// is. The visible __strap below tells operators which state they're in;
+// the alt is what screen readers and social scrapers consume, and it should
+// describe the subject (Micah Jones) not the file's provisional state.
+const PLACEHOLDER_ALT = "Portrait of Micah Jones";
 
 // Source dimensions are the placeholder dimensions; next/image resamples
 // for every breakpoint via the `sizes` attribute below.

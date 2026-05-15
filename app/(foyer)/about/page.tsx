@@ -89,7 +89,7 @@ export default function AboutPage() {
       <section className="foyer-section foyer-section--family">
         <p className="foyer-prose foyer-prose--narrow">
           Lives in Oakland with his family. Father of two. Builds at night, after the house
-          goes quiet. Owns more receipts than slides.
+          goes quiet.
         </p>
       </section>
 
