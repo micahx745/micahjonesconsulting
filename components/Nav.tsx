@@ -22,6 +22,7 @@
 //         ARCHITECTURE.md §4.2 + §6.2.3 (viewTransitionName "site-nav"),
 //         REQUIREMENTS.md FOYER-09 + ROADMAP Phase 3 success criteria.
 import { ViewTransitionLink } from "@/components/view-transition-link";
+import { Mark } from "@/components/Mark";
 
 type NavVariant = "foyer" | "theater";
 
@@ -40,15 +41,13 @@ export function Nav({ variant }: { variant: NavVariant }) {
       style={{ viewTransitionName: "site-nav" }}
       aria-label="Primary"
     >
-      {/* Tier G — Wordmark.
-       * Replaces the all-caps "MICAH JONES" sans wordmark with a custom mark:
-       *   - "mj" serif italic, copper-deep, the signature monogram
-       *   - The "MICAH JONES" sans-caps name beside it, smaller, ink color
-       * Reads as a publication masthead, not a SaaS app brand. Matches the
-       * portrait poster's MJ monogram so the wordmark and the page hero
-       * speak the same visual language. */}
+      {/* Tier X — Custom geometric mark.
+       * Two-rectangle architectural section drawing (cream foyer + obsidian
+       * theater with copper hairline between). Replaces the "mj" typographic
+       * wordmark. Draws itself on first paint (~1.1s). The name reads beside
+       * it on desktop, hidden on mobile (nav fits better). */}
       <ViewTransitionLink href="/" className="nav-brand" aria-label="Micah Jones — home">
-        <span className="nav-brand__monogram" aria-hidden>mj</span>
+        <Mark height={22} />
         <span className="nav-brand__divider" aria-hidden />
         <span className="nav-brand__name">Micah Jones</span>
       </ViewTransitionLink>

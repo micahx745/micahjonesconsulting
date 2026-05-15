@@ -1,35 +1,32 @@
 // app/(foyer)/page.tsx
 //
-// Phase 6 — FOYER-02 + FOYER-03. Replaces the Phase 4 stub.
+// Tier X — "Three rooms" home.
 //
-// Renders, in order per blueprint §7:
-//   1. Hero positioning sentence + subline (FOYER-03 verbatim)
-//   2. Full-bleed portrait slot with copper rule below (Phase 9 fills image)
-//   3. Selected-work strip — three TitleCardComposition thumbnails reading
-//      content/work/*.mdx via lib/case-studies.ts (FOYER-08 supporting data)
-//   4. About teaser — 100-word excerpt + → about link
-//   5. Work With Me teaser — three-line summary + → work with me link
-//   6. Contact CTA — single → contact line
+// Restructure from 7 polite sections to 3 dramatic rooms:
 //
-// Server Component. No client state. The Home does NOT consume <TitleCard>
-// (the client/GSAP version) — that would fire the signature motion three
-// times on the Home, turning the move into noise. Selected-work thumbnails
-// render via the static <TitleCardComposition phase="stacked">.
+//   ROOM 1 — Foyer (Hero, paper background)
+//     Editorial top-strip + mark drawing + word-by-word hero reveal +
+//     subline + currently-building specimen + tail affordance.
 //
-// Subline copy note: the blueprint §8 subline ends in a noun on the banned
-// list (lib/banned.ts line 41 — the s-word for "answers to problems"). The
-// minimal safe substitution is "consulting" — same operator-voice register,
-// fits the half-consulting / half-product framing already in the About
-// paragraph.
+//   ROOM 2 — Library (Selected Work, bone background)
+//     Section eyebrow + tagline + 4 massive case-study cards stacked
+//     vertically, each with index, title, dek, meta, and per-case
+//     accent rule. Hover transforms each card (scale + dek slide).
 //
-// Source: blueprint §7 (Home wireframe), §8 (hero copy verbatim, subline
-//         adjusted for copy-lint compliance); REQUIREMENTS.md FOYER-02,
-//         FOYER-03, FOYER-08; Phase 5 RESEARCH §2.1 (composition reusable
-//         as static thumbnail).
+//   ROOM 3 — Viewing booth (Contact, obsidian background — theater color)
+//     Single massive question, single email link, reply commitment.
+//     Foreshadows the theater mode you enter on a case-study click.
+//
+// Cut from previous: portrait poster section, currently-building
+// stand-alone section, work-with-me teaser, contact CTA. Their content
+// either moves to the relevant /page or is absorbed into a room above.
+//
+// Source: blueprint §6, §7, §8; aggressive aesthetic rework per user
+// direction (Apple / Anthropic / Cav Empt level of confidence).
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { ViewTransitionLink } from "@/components/view-transition-link";
-import { TitleCardComposition } from "@/components/TitleCardComposition";
-import { PortraitImage } from "@/components/PortraitImage";
+import { EditorialStrip } from "@/components/EditorialStrip";
 import { getSelectedWork } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
@@ -52,177 +49,168 @@ export const metadata: Metadata = {
   },
 };
 
+const HERO_WORDS = [
+  "I",
+  "help",
+  "operators",
+  "ship",
+  "the",
+  "work",
+  "the",
+  "rest",
+  "of",
+  "their",
+  "org",
+  "keeps",
+  "stalling",
+  "on.",
+];
+
 export default async function FoyerHomePage() {
-  const selected = await getSelectedWork(3);
+  const selected = await getSelectedWork(4);
 
   return (
-    <div className="foyer-page">
-      {/* HERO — FOYER-03 verbatim per blueprint §8.
-          Tier H: hero text reveals word-by-word on first paint (1.4s total
-          with 80ms stagger). Subline and tail follow on calculated delays.
-          The word reveal is pure CSS via per-word animation-delay set with
-          a CSS custom property (--word-i). Server-rendered. No client JS.
-          Reduced-motion users see all words at final state immediately. */}
-      <section className="foyer-section foyer-section--hero">
-        <h1 className="foyer-hero foyer-hero--reveal" aria-label="I help operators ship the work the rest of their org keeps stalling on.">
-          {[
-            "I",
-            "help",
-            "operators",
-            "ship",
-            "the",
-            "work",
-            "the",
-            "rest",
-            "of",
-            "their",
-            "org",
-            "keeps",
-            "stalling",
-            "on.",
-          ].map((word, i) => (
+    <div className="home-rooms">
+      {/* ====== ROOM 1 — FOYER (HERO) ============================== */}
+      <section className="home-room home-room--hero" data-room="foyer">
+        <EditorialStrip lot="LOT 001" items={["2026", "Oakland", "Issue 01"]} />
+
+        <h1
+          className="home-hero"
+          aria-label="I help operators ship the work the rest of their org keeps stalling on."
+        >
+          {HERO_WORDS.map((word, i) => (
             <span
               key={`${word}-${i}`}
-              className="foyer-hero__word"
-              style={{ ["--word-i" as string]: i } as React.CSSProperties}
+              className="home-hero__word"
+              style={{ ["--word-i"]: i } as CSSProperties}
               aria-hidden
             >
               {word}
             </span>
           ))}
         </h1>
+
         <p
-          className="foyer-hero-subline foyer-hero-subline--reveal"
-          style={{ ["--word-i" as string]: 15 } as React.CSSProperties}
+          className="home-hero-subline"
+          style={{ ["--word-i"]: 15 } as CSSProperties}
         >
           product · growth · consulting. Oakland, CA.
         </p>
+
+        <p
+          className="home-hero-currently"
+          style={{ ["--word-i"]: 17 } as CSSProperties}
+        >
+          <span className="home-hero-currently__eyebrow">currently</span>
+          <span className="home-hero-currently__statement">
+            building <em>ORDANI</em> — a HIPAA-compliant CRM. Q3 2026 paid beta.
+          </span>
+        </p>
+
         <div
-          className="foyer-hero-tail foyer-hero-tail--reveal"
-          style={{ ["--word-i" as string]: 17 } as React.CSSProperties}
+          className="home-hero-tail"
+          style={{ ["--word-i"]: 19 } as CSSProperties}
           aria-hidden
         >
-          <span className="foyer-hero-tail__rule" />
-          <span className="foyer-hero-tail__hint">selected work below</span>
-          <span className="foyer-hero-tail__arrow">↘</span>
+          <span className="home-hero-tail__rule" />
+          <span className="home-hero-tail__hint">selected work below</span>
+          <span className="home-hero-tail__arrow">↓</span>
         </div>
       </section>
 
-      {/* PORTRAIT (Phase 9). Renders public/portrait-main.jpg when present,
-          placeholder PNG otherwise. See .claude/CLAUDE.md "Portrait swap"
-          for the operator's swap flow. */}
-      <section className="foyer-section foyer-section--portrait">
-        <PortraitImage variant="main" priority />
-        <hr className="copper-rule" aria-hidden />
-      </section>
-
-      {/* CURRENTLY BUILDING — specimen line that replaces the longer
-          about-teaser. Single sentence, serif italic, anchored under
-          the portrait poster. Tier H: the page commits to less copy
-          + more cinematic rhythm. The full About lives at /about. */}
+      {/* ====== ROOM 2 — LIBRARY (WORK) ============================ */}
       <section
-        className="foyer-section foyer-section--now-building scroll-reveal"
+        className="home-room home-room--library scroll-reveal"
+        data-room="library"
         data-reveal
       >
-        <p className="now-building-specimen">
-          <span className="now-building-specimen__eyebrow">currently</span>
-          <span className="now-building-specimen__statement">
-            building <em>ORDANI</em> — a HIPAA-compliant CRM for birth workers.
-            Q3 2026 paid beta.
-          </span>
-        </p>
-      </section>
+        <header className="library-heading">
+          <EditorialStrip lot="LOT 002" items={["Selected Work", "Four ships"]} />
+          <h2 className="library-pillar">Selected work.</h2>
+        </header>
 
-      {/* SELECTED WORK STRIP — three TitleCardComposition thumbnails.
-          Tier H: bigger cards with hover-reveal sub-tags. */}
-      <section
-        className="foyer-section foyer-section--selected-work scroll-reveal"
-        data-reveal
-      >
-        <h2 className="foyer-eyebrow">
-          <span className="foyer-eyebrow__num">01</span>
-          <span className="foyer-eyebrow__sep" aria-hidden>/</span>
-          <span className="foyer-eyebrow__label">selected work</span>
-        </h2>
-        <ul className="selected-work-strip">
+        <ul className="library-shelf">
           {selected.map((study, i) => (
-            <li key={study.slug} className="selected-work-card" data-case={study.slug}>
+            <li
+              key={study.slug}
+              className="library-shelf-card"
+              data-case={study.slug}
+            >
               <ViewTransitionLink
                 href={`/work/${study.slug}`}
-                className="selected-work-card__link"
+                className="library-shelf-card__link"
               >
-                <span className="selected-work-card__rule" aria-hidden />
-                <span className="selected-work-card__index">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <TitleCardComposition
-                  words={study.titleCardWords}
-                  caption={study.dek || study.title}
-                  phase="stacked"
-                />
-                {/* Tier H — hover sub-tag emerges on card hover. Year + role +
-                    status, serif italic, in the case's accent color. */}
-                <span className="selected-work-card__hover-tag" aria-hidden>
-                  <span className="selected-work-card__hover-year">{study.year}</span>
-                  <span className="selected-work-card__hover-dot">·</span>
-                  <span className="selected-work-card__hover-role">{study.role}</span>
-                  <span className="selected-work-card__hover-dot">·</span>
-                  <span className="selected-work-card__hover-status">{study.status}</span>
-                </span>
+                <div className="library-shelf-card__main">
+                  <span className="library-shelf-card__index">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="library-shelf-card__body">
+                    <h3 className="library-shelf-card__title">{study.title}</h3>
+                    <p className="library-shelf-card__dek">{study.dek}</p>
+                  </div>
+                </div>
+                <div className="library-shelf-card__meta">
+                  <span className="library-shelf-card__meta-item">
+                    {study.year}
+                  </span>
+                  <span className="library-shelf-card__meta-dot">·</span>
+                  <span className="library-shelf-card__meta-item">
+                    {study.role}
+                  </span>
+                  <span className="library-shelf-card__meta-dot">·</span>
+                  <span className="library-shelf-card__meta-item">
+                    {study.status}
+                  </span>
+                  <span className="library-shelf-card__arrow" aria-hidden>
+                    ↗
+                  </span>
+                </div>
               </ViewTransitionLink>
             </li>
           ))}
         </ul>
-        <p className="foyer-section__cta">
+
+        <p className="library-cta">
           <ViewTransitionLink href="/work" className="foyer-link">
             → all work
           </ViewTransitionLink>
         </p>
       </section>
 
-      {/* WORK WITH ME TEASER — three one-liners */}
+      {/* ====== ROOM 3 — VIEWING BOOTH (CONTACT) =================== */}
       <section
-        className="foyer-section foyer-section--work-with-me-teaser scroll-reveal"
+        className="home-room home-room--booth scroll-reveal"
+        data-room="booth"
         data-reveal
       >
-        <h2 className="foyer-eyebrow">
-          <span className="foyer-eyebrow__num">02</span>
-          <span className="foyer-eyebrow__sep" aria-hidden>/</span>
-          <span className="foyer-eyebrow__label">work with me</span>
-        </h2>
-        <ul className="engagement-summary">
-          <li>
-            <span className="engagement-summary__name">Strategy Sprint</span> — 2 to 4 weeks,
-            one deliverable.
-          </li>
-          <li>
-            <span className="engagement-summary__name">Embed</span> — 8 to 12 weeks,
-            fractional PM or growth partner.
-          </li>
-          <li>
-            <span className="engagement-summary__name">Build</span> — custom Next.js +
-            Supabase work.
-          </li>
-        </ul>
-        <p className="foyer-section__cta">
-          <ViewTransitionLink href="/work-with-me" className="foyer-link">
-            → work with me
-          </ViewTransitionLink>
-        </p>
-      </section>
+        <EditorialStrip
+          lot="LOT 003"
+          items={["Contact", "Two-day reply"]}
+        />
 
-      {/* CONTACT CTA — single line */}
-      <section
-        className="foyer-section foyer-section--contact-cta scroll-reveal"
-        data-reveal
-      >
-        <p className="foyer-contact-cta">
-          Have something that needs shipping? Write to me.
-        </p>
-        <p className="foyer-section__cta">
-          <ViewTransitionLink href="/contact" className="foyer-link foyer-link--bold">
-            → contact
+        <h2 className="booth-question">
+          Have something that needs shipping?
+        </h2>
+
+        <p className="booth-answer">
+          <ViewTransitionLink href="/contact" className="booth-link">
+            Write to me
           </ViewTransitionLink>
+          <span className="booth-arrow" aria-hidden>
+            ↗
+          </span>
+        </p>
+
+        <p className="booth-commitment">
+          I read every message and reply inside two business days. Or write
+          directly:{" "}
+          <a
+            href="mailto:hello@micahjonesconsulting.com"
+            className="booth-mailto"
+          >
+            hello@micahjonesconsulting.com
+          </a>
         </p>
       </section>
     </div>
