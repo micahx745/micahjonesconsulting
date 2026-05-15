@@ -38,7 +38,17 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   4. `.claude/brand.json` and `.claude/CLAUDE.md` exist with House-Lights-specific overrides; the harness blocks any test PR that imports a monospace font, a Klim foundry without license, or a banned word in a string literal.
   5. Resend domain verification DNS TXT record is submitted at the registrar Day 1 (verification can lag 24-72h — start clock now, not Day 14).
   6. Oakland portrait photographer outreach is initiated (booking request sent or shortlist contacted); session targeted within 7 days; budget envelope confirmed at $500-$1,200.
-**Plans**: TBD
+**Plans:** 10 plans
+- [ ] 01-A-scaffold-install-PLAN.md — Scaffold Next.js 16.2 + lock dependency stack + tsconfig strict + .gitignore + cleanup placeholders (SCAFF-01, SCAFF-08)
+- [ ] 01-B-build-configs-PLAN.md — Write next.config.ts (viewTransition + withMDX) + postcss.config.mjs (@tailwindcss/postcss) (SCAFF-02, SCAFF-03)
+- [ ] 01-C-design-tokens-PLAN.md — Write app/globals.css @theme block with 11 colors + font vars + spacing + mode-driven defaults (TOKEN-01..06)
+- [ ] 01-D-font-cascade-PLAN.md — Write lib/fonts.ts with Inter Display + Inter + Source Serif 4 (opsz axis) (SCAFF-04)
+- [ ] 01-E-root-layout-PLAN.md — Write app/layout.tsx single root with fonts attached + metadata (SCAFF-05)
+- [ ] 01-F-copy-lint-scaffold-PLAN.md — Write lib/banned.ts (30 words) + lib/copy-lint.ts + instrumentation.ts (no-op register) (SCAFF-06)
+- [ ] 01-G-harness-claude-PLAN.md — Write .claude/brand.json + .claude/CLAUDE.md with House Lights overrides (SCAFF-07, HARN-01..03)
+- [ ] 01-H-resend-dns-runbook-PLAN.md — Operator runbook docs/RESEND-DNS-SETUP.md for Resend DNS verification Day 1 (DEPLOY-02)
+- [ ] 01-I-portrait-outreach-PLAN.md — Operator runbook docs/PORTRAIT-OUTREACH.md with 5-name shortlist + inquiry email template (PHOTO-01)
+- [ ] 01-J-verify-scaffold-PLAN.md — Integration test: pnpm install + typecheck + build + cross-checks; produces 01-VERIFY-OUTPUT.md
 
 ### Phase 2: Root Layout, Lenis, View Transitions, Copy Discipline
 **Goal**: The single root `app/layout.tsx` ships with the View Transition wrapper, Lenis smooth scroll (`syncTouch: false`), the build-time copy-lint scanner, reduced-motion CSS kill-switches, and Vercel Analytics — the cross-cutting infrastructure that every page inherits.
@@ -154,7 +164,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Scaffold, Tokens, DNS | 0/TBD | Not started | - |
+| 1. Scaffold, Tokens, DNS | 0/10 | Not started | - |
 | 2. Root Layout, Lenis, View Transitions, Copy Discipline | 0/TBD | Not started | - |
 | 3. Shared Chrome (Nav + Footer) | 0/TBD | Not started | - |
 | 4. Route-Group Skeletons | 0/TBD | Not started | - |
