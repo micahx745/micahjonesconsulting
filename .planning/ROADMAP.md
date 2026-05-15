@@ -15,7 +15,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED) — none yet
 
 - [x] **Phase 1: Scaffold, Tokens, DNS** ✓ 2026-05-14 - Day-1 foundation: Next.js + Tailwind v4 + fonts + design tokens + harness wiring + Resend DNS verification kickoff + portrait shoot booking
-- [ ] **Phase 2: Root Layout, Lenis, View Transitions, Copy Discipline** - `app/layout.tsx`, ViewTransition wrapper, Lenis at root, copy-lint module, reduced-motion CSS, Vercel Analytics
+- [x] **Phase 2: Root Layout, Lenis, View Transitions, Copy Discipline** ✓ 2026-05-14 - `app/layout.tsx`, ViewTransition wrapper, Lenis at root, copy-lint module, reduced-motion CSS, Vercel Analytics
 - [ ] **Phase 3: Shared Chrome (Nav + Footer)** - Foyer + theater nav and footer variants with `viewTransitionName: "site-nav"` spatial anchor
 - [ ] **Phase 4: Route-Group Skeletons** - `(foyer)/layout.tsx` and `(theater)/layout.tsx` stamping `data-mode`; verifiable 600ms cross-fade in DevTools on empty pages
 - [ ] **Phase 5: TitleCard Signature Motion [BLOCKER]** - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition
@@ -61,13 +61,13 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   4. The feature-detect View Transitions wrapper falls through to instant navigation on browsers without `document.startViewTransition` (verified in Safari 17 + Firefox 143 fallback path).
   5. Vercel Analytics + Speed Insights are mounted at root and reporting in the Vercel dashboard within 5 minutes of a deploy ping.
 **Plans**: 7 plans
-- [ ] 02-A-globals-css-view-transitions-PLAN.md — Add ::view-transition-old/new(root) keyframes + reduced-motion kill-switch to app/globals.css (TRANS-02, TRANS-03)
-- [ ] 02-B-lenis-provider-PLAN.md — Create components/LenisProvider.tsx with lerp 0.08, syncTouch:false, reduced-motion short-circuit, useLenis re-export (LENIS-01..03, LENIS-05, A11Y-05; LENIS-04 deferred activation)
-- [ ] 02-C-view-transition-link-PLAN.md — Create components/view-transition-link.tsx with startViewTransition feature-detect + router.push fallback (TRANS-04)
-- [ ] 02-D-copy-lint-runner-PLAN.md — Create lib/copy-lint-runner.ts and wire instrumentation.ts gated to NEXT_PHASE=phase-production-build (COPY-01..03)
-- [ ] 02-E-copy-discipline-policy-PLAN.md — Augment .claude/CLAUDE.md Voice section with copy-editor subagent enforcement contract (COPY-04, COPY-05)
-- [ ] 02-F-root-layout-integration-PLAN.md — Wire ViewTransition + LenisProvider + Analytics + SpeedInsights into app/layout.tsx (TRANS-01, LENIS-01, ANALY-01)
-- [ ] 02-G-verify-phase-PLAN.md — Run pnpm build + negative banned-word test, produce 02-VERIFY-OUTPUT.md (TRANS-05 deferred to Phase 4)
+- [x] 02-A-globals-css-view-transitions-PLAN.md — Add ::view-transition-old/new(root) keyframes + reduced-motion kill-switch to app/globals.css (TRANS-02, TRANS-03)
+- [x] 02-B-lenis-provider-PLAN.md — Create components/LenisProvider.tsx with lerp 0.08, syncTouch:false, reduced-motion short-circuit, useLenis re-export (LENIS-01..03, LENIS-05, A11Y-05; LENIS-04 deferred activation)
+- [x] 02-C-view-transition-link-PLAN.md — Create components/view-transition-link.tsx with startViewTransition feature-detect + router.push fallback (TRANS-04)
+- [x] 02-D-copy-lint-runner-PLAN.md — Create lib/copy-lint-runner.ts and wire build-time scanner (COPY-01..03) — deviation: scanner runs from package.json build pre-step (lib/copy-lint-cli.ts) rather than instrumentation.ts (Next.js 16 instrumentation doesn't fire during `next build`)
+- [x] 02-E-copy-discipline-policy-PLAN.md — Augment .claude/CLAUDE.md Voice section with copy-editor subagent enforcement contract (COPY-04, COPY-05)
+- [x] 02-F-root-layout-integration-PLAN.md — Wire ViewTransition + LenisProvider + Analytics + SpeedInsights into app/layout.tsx (TRANS-01, LENIS-01, ANALY-01)
+- [x] 02-G-verify-phase-PLAN.md — Run pnpm build + negative banned-word test, produce 02-VERIFY-OUTPUT.md (TRANS-05 deferred to Phase 4)
 
 ### Phase 3: Shared Chrome (Nav + Footer)
 **Goal**: Foyer nav (copper underline lift on hover) and theater nav (inverted, copper-on-obsidian, `[BACK TO FOYER ↗]` affordance) render correctly per mode; footer carries the two-business-day reply promise on every page.
@@ -172,7 +172,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Scaffold, Tokens, DNS | 10/10 | Complete | 2026-05-14 |
-| 2. Root Layout, Lenis, View Transitions, Copy Discipline | 0/7 | Not started | - |
+| 2. Root Layout, Lenis, View Transitions, Copy Discipline | 7/7 | Complete | 2026-05-14 |
 | 3. Shared Chrome (Nav + Footer) | 0/TBD | Not started | - |
 | 4. Route-Group Skeletons | 0/TBD | Not started | - |
 | 5. TitleCard Signature Motion [BLOCKER] | 0/TBD | Not started | - |
