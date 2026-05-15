@@ -1,24 +1,32 @@
 // app/(theater)/work/[slug]/page.tsx
 //
-// Phase 4 — THEATER-02 (route resolves) + stub render.
+// Phase 4 stub + Phase 5 TitleCard integration.
 //
-// Phase 4 ships only the route handler skeleton — the dynamic segment
-// resolves, the theater chrome paints, and a ViewTransitionLink takes the
-// visitor back to foyer so the reverse cross-fade is also recordable in
-// DevTools.
+// Phase 5 replaces the stub paragraph with a real <TitleCard /> render so
+// the signature motion is verifiable end-to-end on /work/test-slug. The
+// route still uses the stub frontmatter from content/work/test-slug.mdx
+// in Phase 7 — for Phase 5 we hard-code the props here as a stand-in.
 //
-// Phase 7 (MDX Infrastructure) will replace this with the canonical reader
-// that does `await import('@/content/work/${slug}.mdx')` and renders the MDX
-// body. Phase 8 (Case Studies) adds `generateStaticParams` to prerender all
-// four real case-study slugs at build.
+// Phase 7 (MDX Infrastructure) will replace the hard-coded props with a
+// frontmatter read of `titleCardWords` + `dek` from the MDX file. Phase 8
+// fills in real case studies.
 //
-// React 19.2 / Next.js 15.2+ moved `params` to a Promise per the App Router
-// API contract — `await params` is the canonical access pattern.
-//
-// Source: ARCHITECTURE.md §7.2 Pattern A; REQUIREMENTS.md THEATER-02;
-//         ROADMAP Phase 4 success criterion #5 (route resolves, theater
-//         chrome paints — full render deferred to Phase 8).
+// Source: REQUIREMENTS.md MOT-03 (component composes correctly on a real
+//         route); ROADMAP Phase 5 success criterion #1 (standalone test
+//         route renders <TitleCard words={...} />).
+import { TitleCard } from "@/components/TitleCard";
 import { ViewTransitionLink } from "@/components/view-transition-link";
+
+// Stub data for Phase 5. Phase 7 replaces this with frontmatter from
+// content/work/[slug].mdx; Phase 8 fills in real case studies.
+type StubEntry = { words: string[]; caption: string };
+
+const STUB_DATA: Record<string, StubEntry> = {
+  "test-slug": {
+    words: ["ORDANI", "INTAKE.", "SECURE.", "SHIPPED."],
+    caption: "A HIPAA-compliant CRM for birth workers.",
+  },
+};
 
 export default async function TheaterCaseStudyPage({
   params,
@@ -27,12 +35,22 @@ export default async function TheaterCaseStudyPage({
 }) {
   const { slug } = await params;
 
+  const data: StubEntry = STUB_DATA[slug] ?? {
+    words: ["TEST", "ROUTE", "STUB"],
+    caption: `Slug: ${slug}`,
+  };
+
   return (
     <article>
-      <p>Theater /work/{slug} (Phase 8 will replace).</p>
-      <p>
-        <ViewTransitionLink href="/">← back to foyer</ViewTransitionLink>
-      </p>
+      <TitleCard words={data.words} caption={data.caption} />
+
+      {/* Trailing content for scroll runway — needed so the user can scroll
+          past the pin and see the resolve. Phase 8 replaces with MDX. */}
+      <section style={{ minHeight: "100vh", padding: "128px 32px" }}>
+        <p>
+          <ViewTransitionLink href="/">back to foyer</ViewTransitionLink>
+        </p>
+      </section>
     </article>
   );
 }
