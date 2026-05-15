@@ -276,3 +276,75 @@ body {
     transform: none !important;
   }
 }
+
+/* ============================================================
+ * Footer — Phase 3 (FOYER-10)
+ *
+ * Mode-aware top rule + body type. Foyer uses --rule-foyer warm taupe;
+ * theater uses --rule-theater near-obsidian. Email link uses
+ * --accent-copper-deep on foyer (passes WCAG AA 5.4:1) and --theater-ink
+ * on theater (16.5:1 AAA) with a copper underline as the accent affordance.
+ * ============================================================ */
+
+[data-footer-root] {
+  padding: 64px var(--spacing-page-x-mobile);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border-top: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  [data-footer-root] {
+    padding: 96px var(--spacing-page-x-desktop) 64px;
+  }
+}
+
+[data-footer-root] .footer-promise {
+  margin: 0;
+  font-weight: 500;
+}
+
+[data-footer-root] .footer-email {
+  margin: 0;
+  opacity: 0.85;
+}
+
+[data-footer-root] .footer-email-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-thickness var(--duration-hover) var(--ease-hover);
+}
+
+[data-footer-root] .footer-email-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Foyer mode: warm taupe rule, soft ink body, copper-deep link */
+[data-mode="foyer"] [data-footer-root] {
+  border-top-color: var(--color-rule-foyer);
+  color: var(--color-foyer-ink-soft);
+}
+[data-mode="foyer"] [data-footer-root] .footer-email-link {
+  color: var(--color-accent-copper-deep);
+}
+
+/* Theater mode: near-obsidian rule, soft bone body, bone link with copper underline */
+[data-mode="theater"] [data-footer-root] {
+  border-top-color: var(--color-rule-theater);
+  color: var(--color-theater-ink-soft);
+}
+[data-mode="theater"] [data-footer-root] .footer-email-link {
+  color: var(--color-theater-ink);
+  text-decoration-color: var(--color-accent-copper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-footer-root] .footer-email-link {
+    transition: none !important;
+  }
+}
