@@ -11,23 +11,23 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 
 ### Scaffold & Infrastructure
 
-- [ ] **SCAFF-01**: Next.js 16.2 App Router project initialized with TypeScript strict mode
-- [ ] **SCAFF-02**: Tailwind v4 with `@theme` block in `app/globals.css` (no `tailwind.config.ts`); PostCSS plugin via separate `@tailwindcss/postcss` package
-- [ ] **SCAFF-03**: `next.config.ts` enables `experimental.viewTransition: true` and wraps with `withMDX()`
-- [ ] **SCAFF-04**: `next/font/google` loads Inter Display, Inter, Source Serif 4 (with `axes: ['opsz']`); CSS variables re-declared inside `@theme` block
-- [ ] **SCAFF-05**: `mdx-components.tsx` at repo root (not inside `app/`)
-- [ ] **SCAFF-06**: `instrumentation.ts` hook runs build-time copy-lint scan across all MDX + component string literals + frontmatter + metadata exports
-- [ ] **SCAFF-07**: Project CLAUDE.md captures stack rules, single-accent rule, single-motion rule, mode-by-route rule, banned-words discipline
-- [ ] **SCAFF-08**: `.gitignore` excludes `.next/`, `node_modules/`, `.env.local`, `.vercel/`, `qa/current/` (visual-qa diffs)
+- [x] **SCAFF-01**: Next.js 16.2 App Router project initialized with TypeScript strict mode
+- [x] **SCAFF-02**: Tailwind v4 with `@theme` block in `app/globals.css` (no `tailwind.config.ts`); PostCSS plugin via separate `@tailwindcss/postcss` package
+- [x] **SCAFF-03**: `next.config.ts` enables `experimental.viewTransition: true` and wraps with `withMDX()`
+- [x] **SCAFF-04**: `next/font/google` loads Inter Display, Inter, Source Serif 4 (with `axes: ['opsz']`); CSS variables re-declared inside `@theme` block
+- [x] **SCAFF-05**: `mdx-components.tsx` at repo root (not inside `app/`)
+- [x] **SCAFF-06**: `instrumentation.ts` hook runs build-time copy-lint scan across all MDX + component string literals + frontmatter + metadata exports
+- [x] **SCAFF-07**: Project CLAUDE.md captures stack rules, single-accent rule, single-motion rule, mode-by-route rule, banned-words discipline
+- [x] **SCAFF-08**: `.gitignore` excludes `.next/`, `node_modules/`, `.env.local`, `.vercel/`, `qa/current/` (visual-qa diffs)
 
 ### Design Tokens (Foyer + Theater)
 
-- [ ] **TOKEN-01**: All 11 color tokens from blueprint §4b defined as CSS custom properties in `@theme` block: `--foyer-paper #F5EFE4`, `--foyer-ink #1A1816`, `--foyer-ink-soft #3A3631`, `--theater-ground #0D0D0F`, `--theater-surface #16161A`, `--theater-ink #EAE6DD`, `--theater-ink-soft #9C988F`, `--accent-copper #C8542B`, `--accent-copper-deep #8E3A1E`, `--ordani-sage #5E7158`, `--rule-foyer #D9D2C4`, `--rule-theater #2A2A30`
-- [ ] **TOKEN-02**: Group layouts stamp `data-mode="foyer"` / `data-mode="theater"` attributes (no `ThemeProvider`, no `useTheme()` hook)
-- [ ] **TOKEN-03**: Tailwind theme reads mode via `[data-mode="foyer"]` / `[data-mode="theater"]` attribute selectors
-- [ ] **TOKEN-04**: Body text emphasis uses `--accent-copper-deep` (5.4:1 vs paper, passes WCAG AA); plain `--accent-copper` only for large text (≥24px) and non-text UI per pitfall B1
-- [ ] **TOKEN-05**: `--ordani-sage` permitted only inside `content/work/ordani.mdx` and its `<PullQuote>` consumer; enforced via `design-tokens.sh` allowlist extension
-- [ ] **TOKEN-06**: 12-column grid, 80px gutter desktop / 16px mobile; 4px base spacing rhythm; 68ch body measure, 28ch sidenotes; 128px / 64px page padding per blueprint §4e
+- [x] **TOKEN-01**: All 11 color tokens from blueprint §4b defined as CSS custom properties in `@theme` block: `--foyer-paper #F5EFE4`, `--foyer-ink #1A1816`, `--foyer-ink-soft #3A3631`, `--theater-ground #0D0D0F`, `--theater-surface #16161A`, `--theater-ink #EAE6DD`, `--theater-ink-soft #9C988F`, `--accent-copper #C8542B`, `--accent-copper-deep #8E3A1E`, `--ordani-sage #5E7158`, `--rule-foyer #D9D2C4`, `--rule-theater #2A2A30`
+- [x] **TOKEN-02**: Group layouts stamp `data-mode="foyer"` / `data-mode="theater"` attributes (no `ThemeProvider`, no `useTheme()` hook)
+- [x] **TOKEN-03**: Tailwind theme reads mode via `[data-mode="foyer"]` / `[data-mode="theater"]` attribute selectors
+- [x] **TOKEN-04**: Body text emphasis uses `--accent-copper-deep` (5.4:1 vs paper, passes WCAG AA); plain `--accent-copper` only for large text (≥24px) and non-text UI per pitfall B1
+- [x] **TOKEN-05**: `--ordani-sage` permitted only inside `content/work/ordani.mdx` and its `<PullQuote>` consumer; enforced via `design-tokens.sh` allowlist extension
+- [x] **TOKEN-06**: 12-column grid, 80px gutter desktop / 16px mobile; 4px base spacing rhythm; 68ch body measure, 28ch sidenotes; 128px / 64px page padding per blueprint §4e
 
 ### Foyer Mode (Public Rooms)
 
@@ -142,7 +142,7 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 ### Deployment
 
 - [ ] **DEPLOY-01**: Vercel project linked; production domain `micahjonesconsulting.com` configured with DNS
-- [ ] **DEPLOY-02**: Resend domain verification (DNS TXT) completed Day 1 of build per pitfall research (not Day 14)
+- [x] **DEPLOY-02**: Resend domain verification (DNS TXT) completed Day 1 of build per pitfall research (not Day 14)
 - [ ] **DEPLOY-03**: Supabase project linked with `contact_messages` table + RLS policies + service-role key in Vercel env
 - [ ] **DEPLOY-04**: Environment variables in Vercel: `RESEND_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
 - [ ] **DEPLOY-05**: Preview deploys gated by `/premium audit` (harness) + GitHub Actions checks (typecheck, lint, build)
@@ -150,13 +150,13 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 
 ### Harness Integration
 
-- [ ] **HARN-01**: Project `.claude/brand.json` exists; populated from `~/Code/premium-web-harness/plugins/vertical-plugins/premium-web/templates/.claude/brand.json` and edited for House Lights (palette, typography foundry=system, motion signature=title-card, voice banned, performance budgets)
-- [ ] **HARN-02**: Project `.claude/CLAUDE.md` exists; populated from harness template + project-specific overrides (Next.js 16, route group structure, copper-deep-for-body rule, Lenis syncTouch:false)
-- [ ] **HARN-03**: Project depends on the locally-installed `premium-web` plugin marketplace (already at `~/Code/premium-web-harness`); all 8 plugins enabled and 5 plugin MCPs registered
+- [x] **HARN-01**: Project `.claude/brand.json` exists; populated from `~/Code/premium-web-harness/plugins/vertical-plugins/premium-web/templates/.claude/brand.json` and edited for House Lights (palette, typography foundry=system, motion signature=title-card, voice banned, performance budgets)
+- [x] **HARN-02**: Project `.claude/CLAUDE.md` exists; populated from harness template + project-specific overrides (Next.js 16, route group structure, copper-deep-for-body rule, Lenis syncTouch:false)
+- [x] **HARN-03**: Project depends on the locally-installed `premium-web` plugin marketplace (already at `~/Code/premium-web-harness`); all 8 plugins enabled and 5 plugin MCPs registered
 
 ### Portrait Shoot (Out-of-Band of Dev)
 
-- [ ] **PHOTO-01**: Oakland portrait photographer booked within 7 days; 2-hour session targeted; budget $500-$1,200
+- [x] **PHOTO-01**: Oakland portrait photographer booked within 7 days; 2-hour session targeted; budget $500-$1,200
 - [ ] **PHOTO-02**: One vertical portrait shot (for Home full-bleed + About column) and one secondary shot (desk/workspace, for About context); warm-grade color or B&W with natural light per blueprint §4c
 - [ ] **PHOTO-03**: Final image deliverables: 2x retina for `public/portrait-main.jpg` and `public/portrait-context.jpg`, each ≤500KB after AVIF conversion
 
