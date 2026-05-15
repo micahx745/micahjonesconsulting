@@ -22,9 +22,17 @@ const nextConfig: NextConfig = {
 };
 
 const withMDX = createMDX({
-  // MDX plugins are silent for Phase 1 — Phase 7 enables remark-gfm for case-study tables.
+  // Phase 7 — MDX plugins for case-study rendering. Turbopack requires
+  // plugins to be passed as strings (or [string, options] tuples) so they're
+  // serializable across the worker boundary — direct module references fail
+  // with "does not have serializable options".
+  //   - remark-frontmatter: parses YAML frontmatter as a metadata node so it
+  //     does NOT render as content. lib/case-studies.ts still reads the
+  //     frontmatter separately via gray-matter (CASE-10).
+  //   - remark-gfm: GitHub Flavored Markdown (tables, strikethrough, task
+  //     lists) for Phase 8 case-study tables.
   options: {
-    remarkPlugins: [],
+    remarkPlugins: [["remark-frontmatter", ["yaml"]], "remark-gfm"],
     rehypePlugins: [],
   },
 });

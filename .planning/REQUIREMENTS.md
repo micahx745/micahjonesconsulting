@@ -47,8 +47,8 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 - [x] **THEATER-01**: Route group `(theater)` with shared `layout.tsx` stamping `data-mode="theater"`
 - [x] **THEATER-02**: Dynamic case-study route `(theater)/work/[slug]/page.tsx` reads MDX from `content/work/`
 - [x] **THEATER-03**: Theater nav: inverted (copper on theater ground), [BACK TO FOYER ↗] link
-- [ ] **THEATER-04**: Case-study render order: TitleCard → Dek (Source Serif 4) → Hero still → Problem → Why it matters → Approach (4 numbered subsections) → What it became (stills) → Outcome → PullQuote → [NEXT WORK ↘] / [BACK TO FOYER ↗]
-- [ ] **THEATER-05**: Captioned stills component renders dashboard screenshots with 2px warm off-white inner border + 4% film-grain overlay; caption format "name — date" per blueprint §4c
+- [x] **THEATER-04**: Case-study render order: TitleCard → Dek (Source Serif 4) → Hero still → Problem → Why it matters → Approach (4 numbered subsections) → What it became (stills) → Outcome → PullQuote → [NEXT WORK ↘] / [BACK TO FOYER ↗]
+- [x] **THEATER-05**: Captioned stills component renders dashboard screenshots with 2px warm off-white inner border + 4% film-grain overlay; caption format "name — date" per blueprint §4c
 
 ### Foyer ↔ Theater View Transition
 
@@ -78,16 +78,16 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 
 ### Case Studies (Content)
 
-- [ ] **CASE-01**: MDX frontmatter Zod schema in `lib/case-study-schema.ts`: required fields `title`, `dek`, `role`, `tools[]`, `year`, `status`, `hero?`, `client?`
-- [ ] **CASE-02**: Build-time frontmatter validation via `instrumentation.ts` (fails build with line numbers on missing fields); harness `mdx-frontmatter.sh` validates at write boundary
+- [x] **CASE-01**: MDX frontmatter Zod schema in `lib/case-study-schema.ts`: required fields `title`, `dek`, `role`, `tools[]`, `year`, `status`, `hero?`, `client?`
+- [x] **CASE-02**: Build-time frontmatter validation via `instrumentation.ts` (fails build with line numbers on missing fields); harness `mdx-frontmatter.sh` validates at write boundary — *Phase 2 deviation: scanner runs from package.json build pre-step (lib/copy-lint-runner.ts) since Next.js 16 instrumentation does NOT fire during `next build`. Negative test confirms the gate fails the build with file path + Zod issue.*
 - [ ] **CASE-03**: `content/work/ordani.mdx` written **verbatim** per blueprint §9 — CDC stats (44.8 per 100,000, ~3.15x rate vs 14.2), beta-user quote ("It is the first piece of software..."), 22 birth workers, 91% intake completion, 14 active practices — all attested numbers, no edits
 - [ ] **CASE-04**: `content/work/hr-equity-author.mdx` written per blueprint §10 — anonymized HR consultant + author, 25-page playbook, two platforms 4x third, RFP wins
 - [ ] **CASE-05**: `content/work/passioneer.mdx` written — AI content platform, short-form (problem / approach / outcome only)
 - [ ] **CASE-06**: `content/work/akamai.mdx` written — Guardicore/Akamai positioning research, $150K avg deal-size move
-- [ ] **CASE-07**: MDX components: `<TitleCard>`, `<Dek>`, `<CaseStudyStill>`, `<PullQuote>`, `<CopperRule>` — all registered in `mdx-components.tsx`
-- [ ] **CASE-08**: PullQuote in Source Serif 4 italic with copper underline-grow animation on scroll-into-view (2s ease)
-- [ ] **CASE-09**: Case-study stills server with `next/image` AVIF/WebP, max 500KB enforced by harness `image-budget.sh`
-- [ ] **CASE-10**: `lib/case-studies.ts` reads frontmatter via `gray-matter` for index/OG (Pattern hybrid per architecture research)
+- [x] **CASE-07**: MDX components: `<TitleCard>`, `<Dek>`, `<CaseStudyStill>`, `<PullQuote>`, `<CopperRule>` — all registered in `mdx-components.tsx`
+- [x] **CASE-08**: PullQuote in Source Serif 4 italic with copper underline-grow animation on scroll-into-view (2s ease)
+- [x] **CASE-09**: Case-study stills server with `next/image` AVIF/WebP, max 500KB enforced by harness `image-budget.sh`
+- [x] **CASE-10**: `lib/case-studies.ts` reads frontmatter via `gray-matter` for index/OG (Pattern hybrid per architecture research)
 
 ### Voice & Copy
 
@@ -264,8 +264,8 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | THEATER-01 | Phase 4 | Complete |
 | THEATER-02 | Phase 4 | Complete |
 | THEATER-03 | Phase 4 | Complete |
-| THEATER-04 | Phase 7 | Pending |
-| THEATER-05 | Phase 7 | Pending |
+| THEATER-04 | Phase 7 | Complete |
+| THEATER-05 | Phase 7 | Complete |
 | TRANS-01 | Phase 2 | Pending |
 | TRANS-02 | Phase 2 | Pending |
 | TRANS-03 | Phase 2 | Pending |
@@ -283,16 +283,16 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | LENIS-03 | Phase 2 | Pending |
 | LENIS-04 | Phase 2 (closed Phase 5) | Complete |
 | LENIS-05 | Phase 2 | Pending |
-| CASE-01 | Phase 7 | Pending |
-| CASE-02 | Phase 7 | Pending |
+| CASE-01 | Phase 7 | Complete |
+| CASE-02 | Phase 7 | Complete |
 | CASE-03 | Phase 8 | Pending |
 | CASE-04 | Phase 8 | Pending |
 | CASE-05 | Phase 8 | Pending |
 | CASE-06 | Phase 8 | Pending |
-| CASE-07 | Phase 7 | Pending |
-| CASE-08 | Phase 7 | Pending |
-| CASE-09 | Phase 7 | Pending |
-| CASE-10 | Phase 7 | Pending |
+| CASE-07 | Phase 7 | Complete |
+| CASE-08 | Phase 7 | Complete |
+| CASE-09 | Phase 7 | Complete |
+| CASE-10 | Phase 7 | Complete |
 | COPY-01 | Phase 2 | Pending |
 | COPY-02 | Phase 2 | Pending |
 | COPY-03 | Phase 2 | Pending |

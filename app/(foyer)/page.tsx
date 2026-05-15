@@ -72,7 +72,7 @@ export default async function FoyerHomePage() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <TitleCardComposition
-                  words={study.words}
+                  words={study.titleCardWords}
                   caption={study.dek || study.title}
                   phase="stacked"
                 />

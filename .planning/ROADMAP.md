@@ -20,7 +20,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - [x] **Phase 4: Route-Group Skeletons** ✓ 2026-05-14 - `(foyer)/layout.tsx` and `(theater)/layout.tsx` stamping `data-mode`; foyer↔theater 600ms cross-fade MCP-verified via two Chrome DevTools performance traces (both directions)
 - [x] **Phase 5: TitleCard Signature Motion [BLOCKER]** ✓ 2026-05-14 - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition; LENIS-04 deferred bridge wired
 - [x] **Phase 6: Foyer Pages** ✓ 2026-05-14 - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
-- [ ] **Phase 7: MDX Infrastructure** - `mdx-components.tsx`, case-study Zod schema, `lib/case-studies.ts`, theater page template, captioned stills, pull quotes
+- [x] **Phase 7: MDX Infrastructure** ✓ 2026-05-14 - `mdx-components.tsx` at repo root, case-study Zod schema, `lib/case-studies.ts` schema-validated, theater page template with full render order, CaseStudyStill + PullQuote + CopperRule + Dek components; negative-frontmatter test confirms CASE-02 Zod gate works at build-time
 - [ ] **Phase 8: Case Studies (Theater Content)** - ORDANI (verbatim), HR Equity Author (anonymized), Passioneer, Akamai
 - [ ] **Phase 9: Portrait Integration** - Receive Oakland portrait deliverables; integrate `portrait-main.jpg` (Home full-bleed) + `portrait-context.jpg` (About column) at <500KB AVIF
 - [ ] **Phase 10: Hardening, OG/SEO, Production Deploy** - Perf budget, a11y zero-critical, responsive baselines, OG images, sitemap/robots.txt, Vercel deploy, Supabase + Resend env, custom domain
@@ -144,7 +144,14 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   3. `(theater)/work/[slug]/page.tsx` reads frontmatter via `lib/case-studies.ts` (gray-matter hybrid) for index/OG, then renders the MDX body via dynamic `import()`; the render order is verifiable: TitleCard → Dek → Hero still → Problem → Why it matters → Approach (4 numbered) → What it became → Outcome → PullQuote → [NEXT WORK ↘] / [BACK TO FOYER ↗].
   4. `<CaseStudyStill>` renders next/image with the 2px warm off-white inner border + 4% film-grain CSS overlay and the "name — date" caption per blueprint §4c; `image-budget.sh` blocks any added still > 500KB.
   5. `<PullQuote>` renders in Source Serif 4 italic with a copper underline-grow animation on scroll-into-view (2s ease), honoring reduced-motion.
-**Plans**: TBD
+**Plans**: 7 plans
+- [x] 07-A-schema-and-lib-PLAN.md — lib/case-study-schema.ts (Zod) + lib/case-studies.ts hardening + lib/copy-lint-runner.ts frontmatter Zod gate + foyer call-site rename `cs.words → cs.titleCardWords` (CASE-01, CASE-02, CASE-10)
+- [x] 07-B-dek-and-copperrule-PLAN.md — components/Dek.tsx + components/CopperRule.tsx (server) + globals.css Dek/rule rules (THEATER-04 partial)
+- [x] 07-C-casestudystill-PLAN.md — components/CaseStudyStill.tsx (server, next/image + placeholder fallback, 2px bone border, 4% film-grain data URI, "Mon YYYY" date formatter) + globals.css still block (CASE-09, THEATER-05)
+- [x] 07-D-pullquote-PLAN.md — components/PullQuote.tsx (client, IntersectionObserver + CSS keyframes, reduced-motion safe, NO GSAP) + globals.css underline-grow block (CASE-08)
+- [x] 07-E-mdx-components-PLAN.md — mdx-components.tsx at REPO ROOT maps TitleCard/Dek/CaseStudyStill/PullQuote/CopperRule (CASE-07)
+- [x] 07-F-dynamic-page-PLAN.md — app/(theater)/work/[slug]/page.tsx full render (TitleCard → Dek → meta → optional hero → MDX body → footer nav) via gray-matter+dynamic-import hybrid; next.config.ts wires remark-frontmatter+remark-gfm (THEATER-04)
+- [x] 07-G-test-mdx-and-verify-PLAN.md — content/work/test-slug.mdx richer body exercising every component; full verification matrix; negative-frontmatter test confirms CASE-02 gate; produced 07-VERIFY-OUTPUT.md (verdict: PASS)
 
 ### Phase 8: Case Studies (Theater Content)
 **Goal**: All four case studies ship as MDX files: ORDANI verbatim per blueprint §9 (including the locked CDC maternal-mortality citations), HR Equity Author anonymized per §10, Passioneer short-form, Akamai/Guardicore short-form. Every case study passes the Zod schema, copy-lint, and image-budget hooks.
@@ -195,7 +202,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 4. Route-Group Skeletons | 3/3 | Complete | 2026-05-14 |
 | 5. TitleCard Signature Motion [BLOCKER] | 5/5 | Complete | 2026-05-14 |
 | 6. Foyer Pages | 7/7 | Complete | 2026-05-14 |
-| 7. MDX Infrastructure | 0/TBD | Not started | - |
+| 7. MDX Infrastructure | 7/7 | Complete | 2026-05-14 |
 | 8. Case Studies (Theater Content) | 0/TBD | Not started | - |
 | 9. Portrait Integration | 0/TBD | Not started | - |
 | 10. Hardening, OG/SEO, Production Deploy | 0/TBD | Not started | - |

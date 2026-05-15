@@ -51,7 +51,7 @@ export default async function WorkIndexPage() {
                   aria-label={`${study.title} — ${study.dek || "case study"}`}
                 >
                   <TitleCardComposition
-                    words={study.words}
+                    words={study.titleCardWords}
                     caption={study.dek || study.title}
                     phase="stacked"
                   />

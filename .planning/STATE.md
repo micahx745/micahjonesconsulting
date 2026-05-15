@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-last_updated: "2026-05-14T22:30:00.000Z"
+last_updated: "2026-05-14T23:30:00.000Z"
 progress:
   total_phases: 10
-  completed_phases: 6
-  total_plans: 35
-  completed_plans: 35
+  completed_phases: 7
+  total_plans: 42
+  completed_plans: 42
 ---
 
 # Project State
@@ -18,16 +18,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-14)
 
 **Core value:** A primary-audience visitor — a Black HR consultant, a doula, a birth worker — feels welcomed in the first ten seconds and stays through one case study.
-**Current focus:** Phase 6 (Foyer Pages) complete; Phase 7 (MDX Infrastructure) next — ready to plan
+**Current focus:** Phase 7 (MDX Infrastructure) complete; Phase 8 (Case Studies — ORDANI verbatim + 3 others) next — ready to plan
 
 ## Current Position
 
-Phase: 6 of 10 complete; Phase 7 next (MDX Infrastructure)
-Plan: 7/7 complete in Phase 6; 0 of TBD in Phase 7
-Status: Phase 6 verified PASS (visual MCP-verification at 1440px for all 5 foyer routes; banned-word lint clean; typecheck + build clean; GSAP quarantine intact); pause-between-phases cadence (per --no-transition flag)
-Last activity: 2026-05-14 — Phase 6 executed plans 06-A (lib/case-studies.ts + lib/contact-form-schema.ts helpers), 06-B (Home — hero verbatim + portrait slot + selected-work strip + teasers + globals.css Phase 6 CSS block), 06-C (About — two-column 8/4 + 150-word paragraph verbatim + portrait slot + credits + Oakland context + three numbered values), 06-D (Work With Me — three stacked engagement cards + four-question FAQ + → contact CTA), 06-E (Contact — useActionState client form + Server Action Zod → Resend → Supabase + .env.example), 06-F (Work index — TitleCardComposition thumbnails via getAllCaseStudies), 06-G (verify). Verdict: PASS. 7/7 FOYER REQs PASS. 5/5 ROADMAP success criteria PASS. **All five foyer routes are live with real verbatim copy from blueprint §7 + §8.** Hero "I help operators ship the work the rest of their org keeps stalling on." renders at Inter Display 700, fluid clamp(36-72px). About 150-word paragraph reproduced word-for-word from blueprint line 443 in two-column 8/4 grid alongside vertical portrait + credits (guardicore/akamai · flexport · surveymonkey · cuebiq). Work With Me ships three stacked engagement cards (Strategy Sprint / Embed / Build) with copper hairlines + four-question FAQ in `<dl>` definition list. Contact form uses React 19 `useActionState`; Server Action lazy-reads `RESEND_API_KEY` + `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` so build succeeds without env (Phase 10 ops wires them). Work index reads `content/work/*.mdx` via gray-matter through `getAllCaseStudies()`; thumbnails use `TitleCardComposition` (server-safe, no GSAP) to preserve one-signature-motion rule. **Copy-lint clean** — initial run caught the word "solutions" inside two explanatory comments; reworded to reference word indirectly. One blueprint deviation documented: subline "solutions" noun (banned-list line 41) substituted with "consulting" in three places (Home subline + Embed engagement card meta + Embed card body); same operator-voice register. Phase 7 (MDX Infrastructure) now unblocked.
+Phase: 7 of 10 complete; Phase 8 next (Case Studies — Theater Content)
+Plan: 7/7 complete in Phase 7; 0 of TBD in Phase 8
+Status: Phase 7 verified PASS (8/8 REQ-IDs implemented with observable evidence, 5/5 ROADMAP success criteria met, MCP screenshots captured at 1440×900, negative-frontmatter test confirms the CASE-02 Zod gate aborts build with exit 1 + clear file path + valid-options list; GSAP quarantine intact); pause-between-phases cadence (per --no-transition flag)
+Last activity: 2026-05-14 — Phase 7 executed plans 07-A (lib/case-study-schema.ts Zod + lib/case-studies.ts schema-validated rewrite + lib/copy-lint-runner.ts frontmatter Zod gate + foyer call-site `cs.words → cs.titleCardWords` rename), 07-B (components/Dek.tsx + components/CopperRule.tsx server components + globals.css Dek/rule rules), 07-C (components/CaseStudyStill.tsx server with next/image + placeholder fallback + 2px bone border + 4% film-grain SVG-feTurbulence data URI + "Mon YYYY" date formatter), 07-D (components/PullQuote.tsx client with IntersectionObserver + CSS keyframes copper underline-grow 2s + reduced-motion safe + NO GSAP), 07-E (mdx-components.tsx at REPO ROOT maps TitleCard/Dek/CaseStudyStill/PullQuote/CopperRule), 07-F (app/(theater)/work/[slug]/page.tsx full render order TitleCard → Dek + meta → optional hero → MDX body → footer nav, via gray-matter+dynamic-import hybrid; next.config.ts wires remark-frontmatter+remark-gfm), 07-G (test-slug.mdx richer body + full verify matrix). Verdict: PASS. **All five reusable case-study MDX components are live. The negative-frontmatter test (status: "invalid-enum" → build abort with `[case-study-schema] content/work/test-slug.mdx: status: Invalid option: expected one of "shipped"|"in-flight"|"archived"|"stub"`) is the binding proof CASE-02 works.** Render order on `/work/test-slug` matches blueprint §9 wireframe exactly (verified visually + by DOM grep). Phase 8 (Case Studies — Theater Content: ORDANI verbatim + HR Equity Author + Passioneer + Akamai) now unblocked.
 
-Progress: [██████░░░░] 60%
+Progress: [███████░░░] 70%
 
 ## Performance Metrics
 
@@ -43,7 +43,7 @@ Progress: [██████░░░░] 60%
 | - | - | - | - |
 
 **Recent Trend:**
-- Last 5 plans: 06-C, 06-D, 06-E, 06-F, 06-G
+- Last 5 plans: 07-C, 07-D, 07-E, 07-F, 07-G
 - Trend: —
 
 *Updated after each plan completion*
@@ -68,6 +68,14 @@ Recent decisions affecting current work:
 - **NEW in Phase 6**: Contact form uses React 19 `useActionState` for inline thank-you state. The Server Action lazy-reads env vars inside the function body (not at module top) so build passes without `.env.local`. Phase 10 ops wires Resend + Supabase env in Vercel for the live deploy.
 - **NEW in Phase 6**: `lib/case-studies.ts` defensively parses `content/work/*.mdx` frontmatter — no Zod yet (Phase 7's job per CASE-01). Derives TitleCard `words[]` from `title` if frontmatter omits `titleCardWords`; sorts published-first then year-descending so Phase 8 case studies bubble above the Phase 4 stub automatically.
 - **NEW in Phase 6**: One blueprint deviation — the word "solutions" appears in blueprint §7/§8 (Home subline + Embed engagement card) but is on `lib/banned.ts:41`. Substituted with "consulting" — same operator-voice register, consistent with the "half consulting, half product" framing already in the About paragraph. Documented inline.
+- **NEW in Phase 7**: `lib/case-study-schema.ts` Zod schema replaces the defensive parse — drift in any case-study MDX aborts the build with file path + Zod issue. Status enum locked to `"shipped" | "in-flight" | "archived" | "stub"`. `titleCardWords` enforces `.min(3).max(6)` mirroring the existing Phase 5 `titleCardSchema.words` bound.
+- **NEW in Phase 7**: `lib/copy-lint-runner.ts` extended with `scanMdxFrontmatter()` pass — `pnpm build` now runs banned-words AND Zod gate in a single pre-step CLI. Single error report aggregates both classes of finding.
+- **NEW in Phase 7**: `mdx-components.tsx` lives at REPO ROOT (NOT inside `app/`). Placing it inside `app/` would cause silent render failure where MDX falls back to default HTML primitives. Verified placement at end of execution.
+- **NEW in Phase 7**: PullQuote uses CSS `transition: transform 2000ms cubic-bezier(0.2, 0.8, 0.2, 1)` + IntersectionObserver `threshold: 0.4`. NO GSAP — quarantine preserved (verified by grep). Reduced-motion two-layer guard: component sets `data-in-view="true"` immediately + CSS `@media (prefers-reduced-motion: reduce)` killswitch.
+- **NEW in Phase 7**: CaseStudyStill film-grain via inline SVG `feTurbulence` data URI at `opacity: 0.04, mix-blend-mode: overlay`. 2px warm off-white border uses `--color-theater-ink` (the bone token from `@theme`). Placeholder branch renders when `src` is undefined (Phase 7 testing — Phase 8/9 supplies real images).
+- **NEW in Phase 7**: `next.config.ts` wires `remark-frontmatter` (so YAML doesn't render as content) and `remark-gfm` (tables for Phase 8). Turbopack requires plugins as `[string, options]` tuples for serializability (`[["remark-frontmatter", ["yaml"]], "remark-gfm"]`). Direct module imports fail with "does not have serializable options".
+- **NEW in Phase 7**: Render order on `/work/[slug]` enforced in `page.tsx`: TitleCard → header (Dek + meta line role · tools · year) → optional `<CaseStudyStill>` for `frontmatter.heroStill` → MDX body inside `<div class="case-study__body">` → footer `<nav>` with conditional [NEXT WORK ↘] + always [BACK TO FOYER ↗]. Matches blueprint §9 wireframe exactly.
+- **NEW in Phase 7**: Negative-frontmatter test (`status: "invalid-enum"` → `pnpm build`) confirmed exit 1 with `[case-study-schema] content/work/test-slug.mdx: status: Invalid option: expected one of "shipped"|"in-flight"|"archived"|"stub"`. This is the binding proof CASE-02 success criterion #1 ("build fails with line numbers on any mismatch") is met.
 
 ### Pending Todos
 
@@ -79,7 +87,7 @@ None yet.
 
 [Issues that affect future work]
 
-- **Phase 6 is complete** — Phase 7 (MDX Infrastructure: case-study schema + mdx-components map + PullQuote + CaseStudyStill) now unblocked. Phase 8 (real case-study MDX content) will populate the Work index automatically.
+- **Phase 7 is complete** — Phase 8 (Case Studies — Theater Content: ORDANI verbatim per blueprint §9, HR Equity Author anonymized per §10, Passioneer short-form, Akamai/Guardicore short-form) now unblocked. The MDX infrastructure (schema, components, render template) is in place; Phase 8 just ships content.
 - **Portrait shoot timing**: Phase 9 depends on the Phase 1 booking landing within ~21 days. If photographer slot slips, Phase 9 slips and Phase 10 launch slips with it. Phase 6 ships portrait *slots* (cream placeholders with copper rule); Phase 9 swaps in real AVIF deliverables.
 - **Resend DNS propagation**: 24-72h lag. Submitted Phase 1 so Phase 10 deploy is unblocked. Contact form is code-complete; live integration requires `RESEND_API_KEY` + `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` set in Vercel env (Phase 10 ops).
 - **PIN_DISTANCE_PX calibration**: 240 is a single constant in `components/TitleCard.tsx`. If Phase 8 case-study feedback says pin feels off-tempo, retune there.
@@ -87,6 +95,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-14 (Phase 6 execution + verify)
-Stopped at: Phase 6 complete; all five foyer routes live with verbatim copy; ready for `/gsd:plan-phase 7` (MDX Infrastructure — case-study schema, mdx-components map, PullQuote, CaseStudyStill, CopperRule, theater page template)
-Resume file: None (use `/gsd:plan-phase 7` to begin MDX infrastructure)
+Last session: 2026-05-14 (Phase 7 execution + verify)
+Stopped at: Phase 7 complete; MDX infrastructure in place; `/work/test-slug` renders the full blueprint §9 order with all 5 reusable components; CASE-02 Zod gate verified at build via negative test; ready for `/gsd:plan-phase 8` (Case Studies — Theater Content)
+Resume file: None (use `/gsd:plan-phase 8` to begin case-study content)

@@ -1086,3 +1086,285 @@ body {
   line-height: 1.5;
   color: var(--color-foyer-ink-soft);
 }
+
+/* ============================================================
+ * CASE STUDY (THEATER) — Phase 7 (CASE-07, CASE-08, CASE-09,
+ *   THEATER-04, THEATER-05)
+ *
+ * The case-study render template + reusable MDX components:
+ *   .case-study              — outer article frame
+ *   .case-study-dek          — <Dek> wrapper, Source Serif 4 italic
+ *   .case-study-copper-rule  — <CopperRule> hairline divider
+ *   .case-study-still        — <CaseStudyStill> figure
+ *   .case-study-pull-quote   — <PullQuote> with underline-grow
+ *
+ * Source: blueprint §4c (stills + film-grain), §4f (TitleCard), §9
+ * (ORDANI wireframe render order); REQUIREMENTS.md THEATER-04/05,
+ * CASE-07/08/09.
+ * ============================================================ */
+
+[data-mode="theater"] .case-study {
+  padding: 0 var(--spacing-page-x-mobile) 128px;
+}
+
+@media (min-width: 768px) {
+  [data-mode="theater"] .case-study {
+    padding: 0 var(--spacing-page-x-desktop) 160px;
+  }
+}
+
+/* Header below the TitleCard — Dek + meta line */
+[data-mode="theater"] .case-study__header {
+  max-width: 64ch;
+  margin: 64px auto 64px;
+}
+
+[data-mode="theater"] .case-study-dek {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 26px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--color-theater-ink);
+  margin: 0;
+}
+
+[data-mode="theater"] .case-study__meta {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--color-theater-ink-soft);
+  margin: 24px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: baseline;
+}
+
+[data-mode="theater"] .case-study__dot {
+  opacity: 0.55;
+}
+
+[data-mode="theater"] .case-study__role {
+  color: var(--color-accent-copper);
+  font-weight: 500;
+}
+
+/* MDX body — typography for h1, h2, p, ul inside the case study */
+[data-mode="theater"] .case-study__body {
+  max-width: 64ch;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-theater-ink);
+}
+
+[data-mode="theater"] .case-study__body h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(26px, 3.2vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--color-theater-ink);
+  margin: 80px 0 24px;
+}
+
+[data-mode="theater"] .case-study__body h2:first-child {
+  margin-top: 0;
+}
+
+[data-mode="theater"] .case-study__body p {
+  margin: 0 0 20px;
+}
+
+[data-mode="theater"] .case-study__body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+[data-mode="theater"] .case-study__body li {
+  position: relative;
+  padding-left: 1.5em;
+}
+
+[data-mode="theater"] .case-study__body li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-copper);
+}
+
+/* Copper rule divider */
+[data-mode="theater"] .case-study-copper-rule {
+  border: none;
+  border-top: 1px solid var(--color-accent-copper);
+  margin: 64px auto;
+  max-width: 320px;
+}
+
+/* CaseStudyStill — figure with 2px bone inner border + 4% film-grain overlay */
+[data-mode="theater"] .case-study-still {
+  margin: 48px 0;
+  max-width: 100%;
+}
+
+[data-mode="theater"] .case-study-still__frame {
+  position: relative;
+  display: block;
+  background-color: var(--color-theater-surface);
+  border: 2px solid var(--color-theater-ink); /* 2px warm off-white inner border per §4c */
+  overflow: hidden;
+}
+
+[data-mode="theater"] .case-study-still__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+[data-mode="theater"] .case-study-still__placeholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-theater-surface) 85%, var(--color-theater-ink) 15%),
+    color-mix(in srgb, var(--color-theater-surface) 95%, var(--color-theater-ink) 5%)
+  );
+}
+
+/* 4% film-grain overlay — data URI noise per §4c */
+[data-mode="theater"] .case-study-still__grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.85'/></svg>");
+  background-size: 160px 160px;
+}
+
+[data-mode="theater"] .case-study-still__caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-theater-ink-soft);
+  margin: 16px 0 0;
+}
+
+/* PullQuote — Source Serif 4 italic + copper underline-grow */
+[data-mode="theater"] .case-study-pull-quote {
+  margin: 80px 0;
+  max-width: 56ch;
+}
+
+[data-mode="theater"] .case-study-pull-quote__quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(24px, 3.4vw, 32px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-theater-ink);
+  margin: 0;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+/* The underline-grow — a copper bar that scales from 0 → full width over
+   2s when the figure enters view (data-in-view="true" toggled by JS). */
+[data-mode="theater"] .case-study-pull-quote__quote::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent-copper);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 2000ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-mode="theater"]
+  .case-study-pull-quote[data-in-view="true"]
+  .case-study-pull-quote__quote::after {
+  transform: scaleX(1);
+}
+
+[data-mode="theater"] .case-study-pull-quote__attribution {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--color-theater-ink-soft);
+  margin: 24px 0 0;
+}
+
+/* Reduced-motion: skip the transition; show full underline immediately.
+   Defense in depth — PullQuote.tsx also sets data-in-view="true" on first
+   mount under reduced-motion. */
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="theater"] .case-study-pull-quote__quote::after {
+    transition: none !important;
+    transform: scaleX(1) !important;
+  }
+}
+
+/* Case study footer nav — [NEXT WORK ↘] [BACK TO FOYER ↗] */
+[data-mode="theater"] .case-study__nav {
+  margin-top: 128px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-rule-theater);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  [data-mode="theater"] .case-study__nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}
+
+[data-mode="theater"] .case-study__nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: var(--color-accent-copper);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+[data-mode="theater"] .case-study__nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--color-accent-copper);
+  transform: translateY(0);
+  transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+[data-mode="theater"] .case-study__nav-link:hover::after {
+  transform: translateY(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="theater"] .case-study__nav-link::after {
+    transition: none !important;
+  }
+  [data-mode="theater"] .case-study__nav-link:hover::after {
+    transform: none !important;
+  }
+}
