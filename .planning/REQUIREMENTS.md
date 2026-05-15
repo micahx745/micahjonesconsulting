@@ -32,13 +32,13 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 ### Foyer Mode (Public Rooms)
 
 - [x] **FOYER-01**: Route group `(foyer)` with shared `layout.tsx` stamping `data-mode="foyer"`
-- [ ] **FOYER-02**: Home page (`/`) — hero positioning sentence, full-bleed portrait with copper rule, three-card selected-work strip, About teaser, Work With Me teaser, Contact CTA
-- [ ] **FOYER-03**: Home hero copy verbatim per blueprint §8: "I help operators ship the work the rest of their org keeps stalling on."
-- [ ] **FOYER-04**: About page (`/about`) — two-column layout, left 8-col long-form, right 4-col vertical portrait + credits list (Guardicore/Akamai · Flexport · SurveyMonkey · Cuebiq), Oakland family context paragraph, three numbered values (ship the work / trust the operator / show the receipts)
-- [ ] **FOYER-05**: About paragraph verbatim per blueprint §8 (150 words)
-- [ ] **FOYER-06**: Work With Me page (`/work-with-me`) — three stacked engagement cards (Strategy Sprint 2-4wk / Embed 8-12wk / Build custom) with one-paragraph descriptions; four-question FAQ; single CTA to contact
-- [ ] **FOYER-07**: Contact page (`/contact`) — two-field form (name + what you're working on), Resend Server Action sends transactional reply, Supabase insert archives, two-business-day reply commitment, direct email `hello@micahjonesconsulting.com` as alternate
-- [ ] **FOYER-08**: Work index page (`/work`) — preview of all case studies as TitleCard thumbnails (3-6 word stacks), links to `/work/[slug]`
+- [x] **FOYER-02**: Home page (`/`) — hero positioning sentence, full-bleed portrait with copper rule, three-card selected-work strip, About teaser, Work With Me teaser, Contact CTA
+- [x] **FOYER-03**: Home hero copy verbatim per blueprint §8: "I help operators ship the work the rest of their org keeps stalling on."
+- [x] **FOYER-04**: About page (`/about`) — two-column layout, left 8-col long-form, right 4-col vertical portrait + credits list (Guardicore/Akamai · Flexport · SurveyMonkey · Cuebiq), Oakland family context paragraph, three numbered values (ship the work / trust the operator / show the receipts)
+- [x] **FOYER-05**: About paragraph verbatim per blueprint §8 (150 words)
+- [x] **FOYER-06**: Work With Me page (`/work-with-me`) — three stacked engagement cards (Strategy Sprint 2-4wk / Embed 8-12wk / Build custom) with one-paragraph descriptions; four-question FAQ; single CTA to contact
+- [x] **FOYER-07**: Contact page (`/contact`) — two-field form (name + what you're working on), Resend Server Action sends transactional reply, Supabase insert archives, two-business-day reply commitment, direct email `hello@micahjonesconsulting.com` as alternate
+- [x] **FOYER-08**: Work index page (`/work`) — preview of all case studies as TitleCard thumbnails (3-6 word stacks), links to `/work/[slug]`
 - [x] **FOYER-09**: Foyer nav: five labels (work · about · work with me · contact); copper underline lifts 4px on hover with 200ms cubic-bezier(0.2, 0.8, 0.2, 1)
 - [x] **FOYER-10**: Foyer footer: contact pointer + email + two-business-day reply promise
 
@@ -252,13 +252,13 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | TOKEN-05 | Phase 1 | Pending |
 | TOKEN-06 | Phase 1 | Pending |
 | FOYER-01 | Phase 4 | Complete |
-| FOYER-02 | Phase 6 | Pending |
-| FOYER-03 | Phase 6 | Pending |
-| FOYER-04 | Phase 6 | Pending |
-| FOYER-05 | Phase 6 | Pending |
-| FOYER-06 | Phase 6 | Pending |
-| FOYER-07 | Phase 6 | Pending |
-| FOYER-08 | Phase 6 | Pending |
+| FOYER-02 | Phase 6 | Complete |
+| FOYER-03 | Phase 6 | Complete |
+| FOYER-04 | Phase 6 | Complete |
+| FOYER-05 | Phase 6 | Complete |
+| FOYER-06 | Phase 6 | Complete |
+| FOYER-07 | Phase 6 | Complete |
+| FOYER-08 | Phase 6 | Complete |
 | FOYER-09 | Phase 3 | Complete |
 | FOYER-10 | Phase 3 | Complete |
 | THEATER-01 | Phase 4 | Complete |

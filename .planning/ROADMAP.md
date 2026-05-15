@@ -19,7 +19,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - [x] **Phase 3: Shared Chrome (Nav + Footer)** ✓ 2026-05-14 - Foyer + theater nav and footer variants with `viewTransitionName: "site-nav"` spatial anchor
 - [x] **Phase 4: Route-Group Skeletons** ✓ 2026-05-14 - `(foyer)/layout.tsx` and `(theater)/layout.tsx` stamping `data-mode`; foyer↔theater 600ms cross-fade MCP-verified via two Chrome DevTools performance traces (both directions)
 - [x] **Phase 5: TitleCard Signature Motion [BLOCKER]** ✓ 2026-05-14 - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition; LENIS-04 deferred bridge wired
-- [ ] **Phase 6: Foyer Pages** - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
+- [x] **Phase 6: Foyer Pages** ✓ 2026-05-14 - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
 - [ ] **Phase 7: MDX Infrastructure** - `mdx-components.tsx`, case-study Zod schema, `lib/case-studies.ts`, theater page template, captioned stills, pull quotes
 - [ ] **Phase 8: Case Studies (Theater Content)** - ORDANI (verbatim), HR Equity Author (anonymized), Passioneer, Akamai
 - [ ] **Phase 9: Portrait Integration** - Receive Oakland portrait deliverables; integrate `portrait-main.jpg` (Home full-bleed) + `portrait-context.jpg` (About column) at <500KB AVIF
@@ -125,7 +125,14 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   3. Work With Me (`/work-with-me`) renders the three engagement cards stacked (not gridded) with one-paragraph descriptions (Strategy Sprint 2-4wk / Embed 8-12wk / Build custom), the four-question FAQ, and a single CTA to `/contact`.
   4. Contact (`/contact`) renders the two-field form (name + what you're working on); submitting the form invokes a Server Action that validates with Zod, calls `resend.emails.send()`, inserts a row into Supabase `contact_messages`, and renders an inline thank-you state — verified end-to-end with a test submission landing in Micah's inbox.
   5. Work index (`/work`) renders a TitleCard thumbnail for each case study (using the Phase 5 component with frontmatter-supplied words), linking to `/work/[slug]`.
-**Plans**: TBD
+**Plans**: 7 plans
+- [x] 06-A-helpers-PLAN.md — lib/case-studies.ts (gray-matter frontmatter reader) + lib/contact-form-schema.ts (shared Zod schema) (FOYER-07, FOYER-08 helpers)
+- [x] 06-B-home-PLAN.md — app/(foyer)/page.tsx (hero verbatim + portrait slot + 3 TitleCardComposition cards + teasers) + app/globals.css Phase 6 CSS block (FOYER-02, FOYER-03)
+- [x] 06-C-about-PLAN.md — app/(foyer)/about/page.tsx (two-column 8/4 grid + 150-word paragraph verbatim + portrait slot + credits + Oakland + values) (FOYER-04, FOYER-05)
+- [x] 06-D-work-with-me-PLAN.md — app/(foyer)/work-with-me/page.tsx (3 stacked engagement cards + 4-question FAQ + → contact CTA) (FOYER-06)
+- [x] 06-E-contact-PLAN.md — app/(foyer)/contact/page.tsx (useActionState client form) + app/actions/contact.ts (Zod → Resend → Supabase Server Action) + .env.example (FOYER-07)
+- [x] 06-F-work-index-PLAN.md — app/(foyer)/work/page.tsx (TitleCardComposition thumbnails reading getAllCaseStudies) (FOYER-08)
+- [x] 06-G-verify-PLAN.md — pnpm typecheck + pnpm lint:copy + pnpm build clean; Chrome DevTools MCP screenshots @ 1440px for all 5 foyer routes; GSAP quarantine intact; produced 06-VERIFY-OUTPUT.md (verdict: PASS)
 
 ### Phase 7: MDX Infrastructure
 **Goal**: The case-study render template, MDX component map, frontmatter Zod schema, and reusable case-study components (PullQuote, CaseStudyStill, CopperRule, Dek) are in place — ready to receive content. Build-time validation fails the build on any frontmatter drift.
@@ -187,7 +194,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 3. Shared Chrome (Nav + Footer) | 3/3 | Complete | 2026-05-14 |
 | 4. Route-Group Skeletons | 3/3 | Complete | 2026-05-14 |
 | 5. TitleCard Signature Motion [BLOCKER] | 5/5 | Complete | 2026-05-14 |
-| 6. Foyer Pages | 0/TBD | Not started | - |
+| 6. Foyer Pages | 7/7 | Complete | 2026-05-14 |
 | 7. MDX Infrastructure | 0/TBD | Not started | - |
 | 8. Case Studies (Theater Content) | 0/TBD | Not started | - |
 | 9. Portrait Integration | 0/TBD | Not started | - |
