@@ -20,7 +20,7 @@
 //
 // Phase 5 ships ONE working OG route, parameterized by [slug], that uses a
 // stub words/caption when slug is unknown. Phase 7 (MDX infra) and Phase 8
-// (case studies) will read frontmatter to drive the words/caption per slug.
+// (case studies) will read frontmatter to populate the words/caption per slug.
 // Phase 10 fans out via export configuration if needed.
 //
 // Source: REQUIREMENTS.md MOT-07; Next.js App Router opengraph-image docs;
