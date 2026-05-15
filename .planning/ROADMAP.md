@@ -16,7 +16,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 
 - [x] **Phase 1: Scaffold, Tokens, DNS** ✓ 2026-05-14 - Day-1 foundation: Next.js + Tailwind v4 + fonts + design tokens + harness wiring + Resend DNS verification kickoff + portrait shoot booking
 - [x] **Phase 2: Root Layout, Lenis, View Transitions, Copy Discipline** ✓ 2026-05-14 - `app/layout.tsx`, ViewTransition wrapper, Lenis at root, copy-lint module, reduced-motion CSS, Vercel Analytics
-- [ ] **Phase 3: Shared Chrome (Nav + Footer)** - Foyer + theater nav and footer variants with `viewTransitionName: "site-nav"` spatial anchor
+- [x] **Phase 3: Shared Chrome (Nav + Footer)** ✓ 2026-05-14 - Foyer + theater nav and footer variants with `viewTransitionName: "site-nav"` spatial anchor
 - [ ] **Phase 4: Route-Group Skeletons** - `(foyer)/layout.tsx` and `(theater)/layout.tsx` stamping `data-mode`; verifiable 600ms cross-fade in DevTools on empty pages
 - [ ] **Phase 5: TitleCard Signature Motion [BLOCKER]** - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition
 - [ ] **Phase 6: Foyer Pages** - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
@@ -78,7 +78,10 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   2. Theater nav renders inverted (copper on `--theater-ground`) with `[BACK TO FOYER ↗]` link.
   3. Both nav variants carry `viewTransitionName: "site-nav"` so the nav remains visually anchored through the foyer↔theater cross-fade (anchored, not faded).
   4. The footer carries `hello@micahjonesconsulting.com` and the two-business-day reply promise; footer is mode-aware (foyer uses `--rule-foyer`, theater uses `--rule-theater`).
-**Plans**: TBD
+**Plans**: 3 plans
+- [x] 03-A-nav-component-PLAN.md — components/Nav.tsx (foyer + theater variants) + globals.css shared chrome CSS with view-transition anchor + 4px hover lift (FOYER-09, success criteria #1, #2, #3)
+- [x] 03-B-footer-component-PLAN.md — components/Footer.tsx (mode-aware) + globals.css footer block with foyer/theater rule colors (FOYER-10, success criterion #4)
+- [x] 03-C-verify-phase-PLAN.md — pnpm typecheck + pnpm build clean; produces 03-VERIFY-OUTPUT.md (verdict: PASS)
 
 ### Phase 4: Route-Group Skeletons
 **Goal**: `(foyer)` and `(theater)` route groups exist with empty layout stubs that stamp `data-mode` correctly; navigating between them visibly produces the 600ms cross-fade in DevTools Performance panel — the metaphor IS the gesture, verified before any content is built.
@@ -173,7 +176,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Scaffold, Tokens, DNS | 10/10 | Complete | 2026-05-14 |
 | 2. Root Layout, Lenis, View Transitions, Copy Discipline | 7/7 | Complete | 2026-05-14 |
-| 3. Shared Chrome (Nav + Footer) | 0/TBD | Not started | - |
+| 3. Shared Chrome (Nav + Footer) | 3/3 | Complete | 2026-05-14 |
 | 4. Route-Group Skeletons | 0/TBD | Not started | - |
 | 5. TitleCard Signature Motion [BLOCKER] | 0/TBD | Not started | - |
 | 6. Foyer Pages | 0/TBD | Not started | - |

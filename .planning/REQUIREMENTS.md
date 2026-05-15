@@ -39,8 +39,8 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 - [ ] **FOYER-06**: Work With Me page (`/work-with-me`) — three stacked engagement cards (Strategy Sprint 2-4wk / Embed 8-12wk / Build custom) with one-paragraph descriptions; four-question FAQ; single CTA to contact
 - [ ] **FOYER-07**: Contact page (`/contact`) — two-field form (name + what you're working on), Resend Server Action sends transactional reply, Supabase insert archives, two-business-day reply commitment, direct email `hello@micahjonesconsulting.com` as alternate
 - [ ] **FOYER-08**: Work index page (`/work`) — preview of all case studies as TitleCard thumbnails (3-6 word stacks), links to `/work/[slug]`
-- [ ] **FOYER-09**: Foyer nav: five labels (work · about · work with me · contact); copper underline lifts 4px on hover with 200ms cubic-bezier(0.2, 0.8, 0.2, 1)
-- [ ] **FOYER-10**: Foyer footer: contact pointer + email + two-business-day reply promise
+- [x] **FOYER-09**: Foyer nav: five labels (work · about · work with me · contact); copper underline lifts 4px on hover with 200ms cubic-bezier(0.2, 0.8, 0.2, 1)
+- [x] **FOYER-10**: Foyer footer: contact pointer + email + two-business-day reply promise
 
 ### Theater Mode (Case Studies)
 
@@ -259,8 +259,8 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | FOYER-06 | Phase 6 | Pending |
 | FOYER-07 | Phase 6 | Pending |
 | FOYER-08 | Phase 6 | Pending |
-| FOYER-09 | Phase 3 | Pending |
-| FOYER-10 | Phase 3 | Pending |
+| FOYER-09 | Phase 3 | Complete |
+| FOYER-10 | Phase 3 | Complete |
 | THEATER-01 | Phase 4 | Pending |
 | THEATER-02 | Phase 4 | Pending |
 | THEATER-03 | Phase 4 | Pending |
