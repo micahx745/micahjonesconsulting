@@ -1,26 +1,105 @@
+/* ============================================================
+ * House Lights — global tokens and base typography
+ *
+ * Tokens follow blueprint §4b. Mode is route-determined via
+ * [data-mode] attribute selectors set by group layouts (Phase 4).
+ *
+ * ACCESSIBILITY NOTE (PITFALL B1):
+ * --accent-copper (#C8542B) is 3.85:1 on cream paper.
+ *   Safe for: large text >=24px, non-text UI (buttons, focus rings, dividers)
+ *   NOT safe for: body-paragraph link color (axe will flag)
+ * --accent-copper-deep (#8E3A1E) is 5.4:1 on cream paper.
+ *   Use for: body-text emphasis, foyer body link color
+ *
+ * GSAP NOTE: Phase 2 will add ::view-transition-old/new(root) keyframes
+ *           and @media (prefers-reduced-motion: reduce) kill-switch.
+ *           Phase 1 leaves those slots empty.
+ * ============================================================ */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ---- Colors (blueprint §4b — all 11 tokens) ---- */
+  --color-foyer-paper:        #F5EFE4;
+  --color-foyer-ink:          #1A1816;
+  --color-foyer-ink-soft:     #3A3631;
+
+  --color-theater-ground:     #0D0D0F;
+  --color-theater-surface:    #16161A;
+  --color-theater-ink:        #EAE6DD;
+  --color-theater-ink-soft:   #9C988F;
+
+  /* Single accent across both modes. See PITFALL B1 above for rule. */
+  --color-accent-copper:      #C8542B;
+  --color-accent-copper-deep: #8E3A1E;
+
+  /* ORDANI-only — permitted via design-tokens.sh allowlist for /work/ordani only (Phase 8). */
+  --color-ordani-sage:        #5E7158;
+
+  /* Hairline rules per mode */
+  --color-rule-foyer:         #D9D2C4;
+  --color-rule-theater:       #2A2A30;
+
+  /* ---- Font cascade (Phase 1 wires next/font CSS variables here) ---- *
+   *
+   * The next/font/google imports in lib/fonts.ts expose:
+   *   --font-inter-display
+   *   --font-inter
+   *   --font-source-serif
+   * via the className on <html> in app/layout.tsx.
+   *
+   * Tailwind v4 does NOT auto-discover those variables — they must be
+   * re-declared inside this @theme block so `font-display` utility resolves.
+   * Reference: Next.js Discussion #77337.
+   */
+  --font-display: var(--font-inter-display), system-ui, sans-serif;
+  --font-sans:    var(--font-inter), system-ui, sans-serif;
+  --font-serif:   var(--font-source-serif), Georgia, serif;
+
+  /* ---- Spacing (TOKEN-06: 4px base, 12-col, 68ch body, 28ch sidenotes) ---- */
+  --spacing-page-x-desktop: 128px;
+  --spacing-page-x-mobile:  64px;
+  --spacing-gutter-desktop: 80px;
+  --spacing-gutter-mobile:  16px;
+
+  --measure-body:           68ch;
+  --measure-sidenote:       28ch;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---- Mode-driven defaults — applied by [data-mode] on group layout <div> ----
+ * Phase 4 stamps these attributes. Phase 1 only writes the CSS contract.
+ */
+[data-mode="foyer"] {
+  background-color: var(--color-foyer-paper);
+  color: var(--color-foyer-ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-mode="theater"] {
+  background-color: var(--color-theater-ground);
+  color: var(--color-theater-ink);
+}
+
+/* ---- Base typography ---- */
+html {
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "ss02";
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100dvh;
 }
+
+/* ============================================================
+ * VIEW TRANSITIONS — Phase 2 owns the keyframes and reduced-motion guard.
+ *
+ * Phase 2 will add to this file:
+ *   ::view-transition-old(root) { animation: ... fade-out; }
+ *   ::view-transition-new(root) { animation: ... fade-in; }
+ *   ::view-transition-group(site-nav) { animation: none; }
+ *   @media (prefers-reduced-motion: reduce) {
+ *     ::view-transition-*(*) { animation: none !important; }
+ *   }
+ * ============================================================ */
