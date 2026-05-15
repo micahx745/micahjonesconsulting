@@ -348,3 +348,133 @@ body {
     transition: none !important;
   }
 }
+
+/* ============================================================
+ * TITLE CARD — Phase 5 (MOT-03 visual structure + MOT-06 mobile reflow)
+ *
+ * The vertical word stack is the signature element. Inter Display 700
+ * (weight imported in lib/fonts.ts), 96px desktop / 64px mobile,
+ * negative letter-spacing for tight stack rhythm.
+ *
+ * The caption uses Source Serif 4 italic at 22px (foyer caption rhythm
+ * carried into theater). The hero slot is a responsive box.
+ *
+ * Initial visibility is controlled by inline `style={{opacity: ...}}` in
+ * TitleCardComposition; GSAP overrides on mount in TitleCard. This file
+ * only carries TYPOGRAPHY + LAYOUT, not motion state.
+ *
+ * The data-title-card scope ensures multiple TitleCards on the same page
+ * (Phase 6 Work index) don't share state.
+ *
+ * Source: blueprint §4f; REQUIREMENTS.md MOT-03, MOT-06.
+ * ============================================================ */
+
+[data-title-card] {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100dvh;          /* fills the viewport so pin has room */
+  padding: 64px var(--spacing-page-x-mobile);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  [data-title-card] {
+    padding: 128px var(--spacing-page-x-desktop);
+  }
+}
+
+/* The vertical word stack — pinned during the GSAP reveal */
+.title-card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.title-card-word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 64px;             /* MOT-06 — mobile reflow */
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: inherit;              /* foyer ink or theater bone, set by [data-mode] ancestor */
+}
+
+@media (min-width: 768px) {
+  .title-card-word {
+    font-size: 96px;           /* blueprint §4f */
+  }
+}
+
+/* The resolved state — caption + hero, layered on top of the (faded) stack */
+.title-card-resolved {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  padding: inherit;
+  pointer-events: none;        /* GSAP toggles via inline style; layout pre-positioned */
+}
+
+.title-card-caption {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  max-width: 64ch;
+  color: inherit;
+}
+
+@media (min-width: 768px) {
+  .title-card-caption {
+    font-size: 22px;
+  }
+}
+
+.title-card-hero {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-theater-surface);
+  border: 2px solid var(--color-theater-ink);
+  overflow: hidden;
+}
+
+.title-card-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.title-card-hero--placeholder {
+  background-color: var(--color-theater-surface);
+}
+
+/* MOT-05 reduced-motion safety net.
+ * The TitleCard component itself reads matchMedia and short-circuits, but
+ * if the JS fails to mount (network blip, JS disabled, hydration error),
+ * the CSS here ensures the user STILL sees the resolved state — never
+ * a frozen pin or a flash of stacked-only content. */
+@media (prefers-reduced-motion: reduce) {
+  [data-title-card] [data-tc-stack] {
+    opacity: 0 !important;
+  }
+  [data-title-card] [data-tc-resolved] {
+    opacity: 1 !important;
+  }
+  [data-title-card] [data-tc-caption] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-title-card] [data-tc-hero] {
+    opacity: 1 !important;
+  }
+}
