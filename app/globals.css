@@ -11,9 +11,9 @@
  * --accent-copper-deep (#8E3A1E) is 5.4:1 on cream paper.
  *   Use for: body-text emphasis, foyer body link color
  *
- * GSAP NOTE: Phase 2 will add ::view-transition-old/new(root) keyframes
- *           and @media (prefers-reduced-motion: reduce) kill-switch.
- *           Phase 1 leaves those slots empty.
+ * Phase 2 added ::view-transition-old/new(root) keyframes
+ *           and @media (prefers-reduced-motion: reduce) kill-switch
+ *           at the bottom of this file.
  * ============================================================ */
 @import "tailwindcss";
 
@@ -93,13 +93,61 @@ body {
 }
 
 /* ============================================================
- * VIEW TRANSITIONS — Phase 2 owns the keyframes and reduced-motion guard.
+ * VIEW TRANSITIONS — Phase 2 (TRANS-02, TRANS-03)
  *
- * Phase 2 will add to this file:
- *   ::view-transition-old(root) { animation: ... fade-out; }
- *   ::view-transition-new(root) { animation: ... fade-in; }
- *   ::view-transition-group(site-nav) { animation: none; }
- *   @media (prefers-reduced-motion: reduce) {
- *     ::view-transition-*(*) { animation: none !important; }
- *   }
+ * The foyer↔theater route navigation triggers a 600ms cross-fade.
+ * Foyer routes use cream paper background; theater routes use obsidian
+ * ground. The browser captures the outgoing root as ::view-transition-old(root)
+ * and the incoming root as ::view-transition-new(root), then applies the
+ * animations below.
+ *
+ * Source: blueprint §4d "600ms ease-in-out"; ARCHITECTURE.md §4.1 File 3;
+ *         PITFALLS.md B2 (reduced-motion kill-switch).
+ *
+ * NOTE: The actual background color of each snapshot comes from the
+ * route group's data-mode attribute (Phase 4). Phase 2 only animates
+ * opacity — the perceived "cream recedes / theater rises" effect comes
+ * from the snapshots themselves having different backgrounds.
  * ============================================================ */
+:root {
+  --duration-mode-fade: 600ms;
+}
+
+::view-transition-old(root) {
+  animation: var(--duration-mode-fade) ease-in-out both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: var(--duration-mode-fade) ease-in-out both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ----------------------------------------------------------------
+ * Reduced-motion kill-switch (TRANS-03, A11Y-05).
+ *
+ * View Transitions API does NOT auto-honor prefers-reduced-motion
+ * (verified PITFALLS.md B2). We explicitly neutralize all
+ * ::view-transition-* pseudo-elements when the user opts in.
+ *
+ * The 0.001ms duration (vs `animation: none`) preserves the keyframe
+ * trajectory but makes it imperceptible — avoids any visible "jump"
+ * from start state to end state at the snapshot boundary.
+ * Reference: WAI Animation-from-Interactions guidance.
+ * ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  ::view-transition-group(*) {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
