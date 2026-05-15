@@ -1,7 +1,26 @@
+// Source: https://nextjs.org/docs/app/api-reference/config/next-config-js/viewTransition (2026-05-13)
+//         + https://nextjs.org/docs/app/guides/mdx
+//         + https://nextjs.org/docs/app/api-reference/config/next-config-js/pageExtensions
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Allow .mdx and .md files to be treated as page modules
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
+
+  // Enable React's <ViewTransition> primitive for foyer↔theater route navigation.
+  // The component itself is imported from 'react' (not 'next') in app/layout.tsx (wired in Phase 2).
+  experimental: {
+    viewTransition: true,
+  },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // MDX plugins are silent for Phase 1 — Phase 7 enables remark-gfm for case-study tables.
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(nextConfig);
