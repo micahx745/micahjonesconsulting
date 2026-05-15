@@ -969,24 +969,36 @@ body:has([data-mode="theater"]) .editorial-timestamp {
  * reveal and the MJ monogram breath. Sections inherit editorial
  * pacing — content arrives in waves as you scroll.
  * ============================================================ */
+/* Progressive enhancement: default state is visible (opacity 1) so users
+ * without JS or with a slow-firing observer never see invisible sections.
+ * Only when RevealMount adds .js-reveal-ready to <body> does the
+ * scroll-reveal initial-hidden state kick in. The .scroll-reveal--shown
+ * class then transitions back to visible. */
 .scroll-reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: none;
   transition:
     opacity 1.2s cubic-bezier(0.22, 0.8, 0.28, 1),
     transform 1.2s cubic-bezier(0.22, 0.8, 0.28, 1);
   will-change: opacity, transform;
 }
 
-.scroll-reveal--shown {
+body.js-reveal-ready .scroll-reveal:not(.scroll-reveal--shown) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scroll-reveal {
+  body.js-reveal-ready .scroll-reveal:not(.scroll-reveal--shown) {
     opacity: 1;
     transform: none;
+  }
+  .scroll-reveal {
     transition: none;
   }
 }
@@ -1003,10 +1015,11 @@ body:has([data-mode="theater"]) .editorial-timestamp {
  * read the whole sentence at once; the per-word spans are aria-hidden.
  * Reduced-motion users skip the animation entirely.
  * ============================================================ */
-[data-mode="foyer"] .foyer-hero__word,
-[data-mode="foyer"] .foyer-hero-subline--reveal,
-[data-mode="foyer"] .foyer-hero-tail--reveal {
+[data-mode="foyer"] .foyer-hero__word {
+  /* inline-block strips inter-element whitespace, so we use margin-right
+   * for word separation rather than relying on text-node spaces. */
   display: inline-block;
+  margin-right: 0.28em;
   opacity: 0;
   transform: translateY(10px);
   animation: hero-word-in 0.7s cubic-bezier(0.22, 0.8, 0.28, 1) forwards;
@@ -1014,14 +1027,17 @@ body:has([data-mode="theater"]) .editorial-timestamp {
   will-change: opacity, transform;
 }
 
-[data-mode="foyer"] .foyer-hero-subline--reveal,
-[data-mode="foyer"] .foyer-hero-tail--reveal {
-  display: flex;
-  align-items: center;
+[data-mode="foyer"] .foyer-hero__word:last-child {
+  margin-right: 0;
 }
 
-[data-mode="foyer"] .foyer-hero-subline--reveal {
-  display: block;
+[data-mode="foyer"] .foyer-hero-subline--reveal,
+[data-mode="foyer"] .foyer-hero-tail--reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: hero-word-in 0.7s cubic-bezier(0.22, 0.8, 0.28, 1) forwards;
+  animation-delay: calc(var(--word-i, 0) * 80ms);
+  will-change: opacity, transform;
 }
 
 @keyframes hero-word-in {

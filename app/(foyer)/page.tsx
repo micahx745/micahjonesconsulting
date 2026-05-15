@@ -80,7 +80,7 @@ export default async function FoyerHomePage() {
             "keeps",
             "stalling",
             "on.",
-          ].map((word, i, arr) => (
+          ].map((word, i) => (
             <span
               key={`${word}-${i}`}
               className="foyer-hero__word"
@@ -88,7 +88,6 @@ export default async function FoyerHomePage() {
               aria-hidden
             >
               {word}
-              {i < arr.length - 1 ? " " : ""}
             </span>
           ))}
         </h1>

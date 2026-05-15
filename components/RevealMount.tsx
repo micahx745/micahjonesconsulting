@@ -29,6 +29,10 @@ export function RevealMount() {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Stamp body so CSS knows JS is alive. Without this class, scroll-
+    // reveal elements default to visible (progressive enhancement).
+    document.body.classList.add("js-reveal-ready");
+
     const reduced =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -49,14 +53,23 @@ export function RevealMount() {
           }
         });
       },
-      { rootMargin: "-12% 0px -8% 0px", threshold: 0.05 },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
     );
 
+    // Reveal anything already in initial viewport on mount.
+    const viewportH = window.innerHeight;
     document
       .querySelectorAll<HTMLElement>(
         "[data-reveal]:not(.scroll-reveal--shown)",
       )
-      .forEach((el) => observer.observe(el));
+      .forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < viewportH * 0.9) {
+          el.classList.add("scroll-reveal--shown");
+        } else {
+          observer.observe(el);
+        }
+      });
 
     return () => observer.disconnect();
   }, [pathname]);
