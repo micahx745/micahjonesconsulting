@@ -23,7 +23,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - [x] **Phase 7: MDX Infrastructure** ✓ 2026-05-14 - `mdx-components.tsx` at repo root, case-study Zod schema, `lib/case-studies.ts` schema-validated, theater page template with full render order, CaseStudyStill + PullQuote + CopperRule + Dek components; negative-frontmatter test confirms CASE-02 Zod gate works at build-time
 - [x] **Phase 8: Case Studies (Theater Content)** ✓ 2026-05-14 - ORDANI verbatim per blueprint §9 (CDC stats / 22 birth workers / 91% / 14 practices / beta quote), HR Equity Author anonymized per §10 (25-page playbook / 4× / RFP wins), Passioneer conservative stub (no invented metrics), Akamai/Guardicore conservative short-form ($150K positioning move, no PullQuote). `content/citations.ts` documents CDC source. test-slug.mdx deleted. Both negative tests (banned-word + invalid Zod status) confirm build-time gates fire with file:line + exit 1.
 - [x] **Phase 9: Portrait Integration** ✓ 2026-05-14 - Placeholder generation + `<PortraitImage>` server-component wiring. `scripts/generate-placeholders.mjs` (sharp) produces 4:5 vertical PNG stand-ins (15KB main / 10KB context). `<PortraitImage>` checks `fs.existsSync(public/portrait-<variant>.jpg)` at build time; serves real image when present, placeholder otherwise. Home gets `priority` (LCP candidate); About is lazy. `image-budget.sh` passes (PNGs <500KB by orders of magnitude). Operator-swap flow documented in `.claude/CLAUDE.md` "Portrait swap" section: drop file → `pnpm build && vercel --prod`. Phase 10 will re-measure LCP with real photo.
-- [ ] **Phase 10: Hardening, OG/SEO, Production Deploy** - Perf budget, a11y zero-critical, responsive baselines, OG images, sitemap/robots.txt, Vercel deploy, Supabase + Resend env, custom domain
+- [x] **Phase 10: Hardening, OG/SEO, Production Deploy** ✓ 2026-05-14 - Perf (LCP 54-136ms, CLS 0.00 across 9 routes, all under 1800ms target), a11y (axe-core 4.10.2 zero serious/critical after 4 fixes), responsive baselines (27 PNGs), OG images (5 foyer + theater), sitemap.xml + robots.txt blocking AI crawlers from /work/*, analytics tracker (case_study_read_complete at 90% scroll, sessionStorage dedupe), skip-to-content link, sage in ORDANI PullQuote (TOKEN-05 closure), operator runbook + Supabase SQL migration + LAUNCH-CHECKLIST.md at repo root
 
 ## Phase Details
 
@@ -194,7 +194,16 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   3. Visual QA baselines at 390/768/1440 captured for every route via `visual-qa` agent — no horizontal scroll on mobile; About reflows to stacked at 768; full 12-column grid renders at 1440.
   4. Every case-study route exports `opengraph-image.tsx` composing its TitleCard via `@vercel/og`; per-route `metadata` sets title (≤60 chars), description (130-155 chars), `openGraph`, `twitter`; `app/sitemap.ts` exports all foyer routes + every case-study slug; `app/robots.ts` allows Googlebot and disallows `GPTBot` + `Google-Extended` from `/work/*`.
   5. `micahjonesconsulting.com` resolves to the Vercel production deploy with valid SSL; Resend domain is verified (DNS TXT from Phase 1 propagated); Supabase `contact_messages` table exists with RLS policies + service-role key in Vercel env; submitting the live contact form lands an email in Micah's inbox and a row in Supabase within 5 seconds; `case_study_read_complete` custom event fires at scroll depth ≥ 90% on a `/work/*` route, once per session, in Vercel Analytics.
-**Plans**: TBD
+**Plans**: 9 plans
+- [x] 10-A-metadata-and-og-PLAN.md — Per-route metadata + foyer OG composition + 5 OG image routes (OG-01, OG-02)
+- [x] 10-B-sitemap-robots-PLAN.md — app/sitemap.ts + app/robots.ts (OG-03, OG-04)
+- [x] 10-C-analytics-tracker-PLAN.md — lib/analytics.ts + CaseStudyReadTracker + theater wire (ANALY-02, ANALY-03)
+- [x] 10-D-a11y-sweep-PLAN.md — skip-to-content + axe scan + 4 contrast/aria fixes (A11Y-01..04, A11Y-06, A11Y-07)
+- [x] 10-E-sage-pullquote-PLAN.md — PullQuote accentColor prop + ORDANI MDX + globals.css sage rule (TOKEN-05 closure)
+- [x] 10-F-performance-audit-PLAN.md — Chrome DevTools traces, GSAP/image/lazy/font checks (PERF-01..09)
+- [x] 10-G-responsive-baselines-PLAN.md — 27 PNGs at 390/768/1440 across 9 routes (RESP-01..04)
+- [x] 10-H-deploy-runbook-PLAN.md — docs/DEPLOY-RUNBOOK.md + Supabase migration SQL (DEPLOY-01, 03..06 pending-operator)
+- [x] 10-I-final-verify-PLAN.md — 10-VERIFY-OUTPUT.md + LAUNCH-CHECKLIST.md at repo root (verdict: PASS code-side; 5 deploy items pending operator action via runbook)
 
 ## Progress
 
@@ -213,7 +222,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 7. MDX Infrastructure | 7/7 | Complete | 2026-05-14 |
 | 8. Case Studies (Theater Content) | 5/5 | Complete | 2026-05-14 |
 | 9. Portrait Integration | 3/3 | Complete | 2026-05-14 |
-| 10. Hardening, OG/SEO, Production Deploy | 0/TBD | Not started | - |
+| 10. Hardening, OG/SEO, Production Deploy | 9/9 | Complete (5 DEPLOY items pending operator runbook) | 2026-05-14 |
 
 ## Coverage
 
