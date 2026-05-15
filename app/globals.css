@@ -151,3 +151,128 @@ body {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ============================================================
+ * SHARED CHROME — Phase 3 (FOYER-09, anchor)
+ *
+ * Mode is driven by ancestor [data-mode="foyer" | "theater"] set by Phase 4
+ * group layouts. Component itself carries data-nav-root.
+ *
+ * The copper underline lift hover transition uses 200ms cubic-bezier(0.2, 0.8, 0.2, 1)
+ * per blueprint §4d. Active state (current page) leaves the underline at rest
+ * with double thickness per FOYER-09.
+ *
+ * The view-transition-group(site-nav) rule keeps the nav anchored through
+ * the 600ms foyer↔theater dim — without this, the browser would cross-fade
+ * the nav too, breaking the spatial anchor the brand wordmark provides.
+ * ============================================================ */
+
+:root {
+  --duration-hover: 200ms;
+  --ease-hover: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Anchor: keep <nav> visually fixed through the foyer↔theater cross-fade */
+::view-transition-group(site-nav) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-nav) { display: none; }
+::view-transition-new(site-nav) { animation: none; }
+
+/* ----- Nav: shared layout ----- */
+[data-nav-root] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px var(--spacing-page-x-mobile);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+}
+
+@media (min-width: 768px) {
+  [data-nav-root] {
+    padding: 32px var(--spacing-page-x-desktop);
+  }
+}
+
+[data-nav-root] .nav-brand {
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-nav-root] .nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+[data-nav-root] .nav-link,
+[data-nav-root] .nav-back-to-foyer {
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+  color: inherit;
+}
+
+/* Copper underline that lifts 4px on hover (blueprint §4d) */
+[data-nav-root] .nav-link::after,
+[data-nav-root] .nav-back-to-foyer::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: var(--color-accent-copper);
+  transform: translateY(0);
+  transition: transform var(--duration-hover) var(--ease-hover);
+}
+
+[data-nav-root] .nav-link:hover::after,
+[data-nav-root] .nav-back-to-foyer:hover::after {
+  transform: translateY(-4px);
+}
+
+/* Active state: copper underline solid, no lift (FOYER-09 explicit) */
+[data-nav-root] .nav-link[aria-current="page"]::after {
+  transform: translateY(0);
+  height: 2px;
+}
+
+/* ----- Nav: foyer mode (cream paper, ink labels) ----- */
+[data-mode="foyer"] [data-nav-root] {
+  color: var(--color-foyer-ink);
+}
+[data-mode="foyer"] [data-nav-root] .nav-brand,
+[data-mode="foyer"] [data-nav-root] .nav-link {
+  color: var(--color-foyer-ink);
+}
+
+/* ----- Nav: theater mode (obsidian ground, copper brand + CTA) ----- */
+[data-mode="theater"] [data-nav-root] {
+  color: var(--color-accent-copper);
+}
+[data-mode="theater"] [data-nav-root] .nav-brand,
+[data-mode="theater"] [data-nav-root] .nav-back-to-foyer {
+  color: var(--color-accent-copper);
+}
+
+/* ----- Reduced motion: kill the hover transform; keep the affordance ----- */
+@media (prefers-reduced-motion: reduce) {
+  [data-nav-root] .nav-link::after,
+  [data-nav-root] .nav-back-to-foyer::after {
+    transition: none !important;
+  }
+  [data-nav-root] .nav-link:hover::after,
+  [data-nav-root] .nav-back-to-foyer:hover::after {
+    transform: none !important;
+  }
+}
