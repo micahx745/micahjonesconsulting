@@ -89,11 +89,34 @@ export function CaseStudyStill({
             loading="lazy"
           />
         ) : (
+          /* Tier D — Intentional locked-still treatment.
+           * Replaces the empty placeholder rectangle with a typeset card that
+           * names what the screenshot IS, marked with a small lock indicator
+           * and an explicit "RELEASED AFTER PUBLIC BETA" eyebrow. The absence
+           * is now intentional content — protected by NDA or staged for a
+           * future release — rather than a missing-asset notice. */
           <div
             className="case-study-still__placeholder"
             role="img"
-            aria-label={`Placeholder for ${alt}`}
-          />
+            aria-label={`Locked still: ${alt}`}
+          >
+            <span className="case-study-still__lock-eyebrow">
+              <svg
+                viewBox="0 0 16 16"
+                width="11"
+                height="11"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.4"
+              >
+                <rect x="3" y="7" width="10" height="7" rx="0.5" />
+                <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
+              </svg>
+              <span>Released after public beta</span>
+            </span>
+            <span className="case-study-still__lock-label">{alt}</span>
+          </div>
         )}
         {/* Film-grain overlay — 4% opacity (CSS) */}
         <div className="case-study-still__grain" aria-hidden="true" />

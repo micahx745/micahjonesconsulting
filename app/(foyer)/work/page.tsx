@@ -57,12 +57,16 @@ export default async function WorkIndexPage() {
           <p className="foyer-prose">Case studies arriving shortly.</p>
         ) : (
           <ul className="work-index-grid">
-            {studies.map((study) => (
-              <li key={study.slug} className="work-index-card">
+            {studies.map((study, i) => (
+              <li key={study.slug} className="work-index-card" data-case={study.slug}>
                 <ViewTransitionLink
                   href={`/work/${study.slug}`}
                   className="work-index-card__link"
                 >
+                  <span className="work-index-card__rule" aria-hidden />
+                  <span className="work-index-card__index">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   <TitleCardComposition
                     words={study.titleCardWords}
                     caption={study.dek || study.title}

@@ -35,6 +35,14 @@
   /* ORDANI-only — permitted via design-tokens.sh allowlist for /work/ordani only (Phase 8). */
   --color-ordani-sage:        #5E7158;
 
+  /* Tier C — per-case secondary accents (Work index + per-case scope only).
+   * Each accent is analogous to copper (warm/desaturated) to avoid a rainbow
+   * effect. Used via --case-accent CSS variable scoped to [data-case=<slug>].
+   * Each tested ≥4.5:1 against foyer-paper for AA on small text. */
+  --color-case-forest:        #2D5045;  /* HR-equity-author */
+  --color-case-wine:          #6A2D33;  /* Akamai (cinema-seat burgundy) */
+  --color-case-slate:         #3D4C5C;  /* Passioneer (steel) */
+
   /* Hairline rules per mode */
   --color-rule-foyer:         #D9D2C4;
   --color-rule-theater:       #2A2A30;
@@ -90,6 +98,78 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
+}
+
+/* ============================================================
+ * TIER A — Texture / atmosphere (post-launch elevation pass)
+ *
+ * Goal: replace flat-RGB cream / flat-RGB obsidian with the paper-
+ * and-film-grain feel the blueprint §4 specified. Both layers are
+ * fixed-position pseudo-elements on the [data-mode] div, blend-mode
+ * driven so they never block interaction, never affect layout, and
+ * cost roughly 6KB of inline SVG total.
+ *
+ * Foyer: warm paper grain at multiply blend ~6% intensity. Reads as
+ *   slight tonal variation across the cream, like uncoated stock.
+ *   Plus a barely-perceptible warm corner vignette so the page edges
+ *   feel "matte print" rather than "screen-white-cream."
+ * Theater: cool film grain at screen blend ~4% intensity. Reads as
+ *   subtle speckle across the obsidian, like cinema projection.
+ *
+ * Both grains are tiled 120×120 SVG feTurbulence patterns. Tiling
+ * means no full-page bitmap. Both pseudo-elements honor
+ * prefers-reduced-motion by NOT animating (grain is static).
+ *
+ * Source: blueprint §4c (4% film-grain on stills extended to whole
+ *         theater ground); design-critique elevation pass tier A.
+ * ============================================================ */
+[data-mode="foyer"]::before,
+[data-mode="theater"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+[data-mode="foyer"]::before {
+  /* Paper grain — warm noise, multiply blend on cream */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.9 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+  background-size: 120px 120px;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+}
+
+[data-mode="foyer"]::after {
+  /* Warm corner vignette — barely-there matte-print feel */
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgba(74, 66, 59, 0.05) 75%,
+    rgba(74, 66, 59, 0.10) 100%
+  );
+}
+
+[data-mode="theater"]::before {
+  /* Film grain — cool noise, screen blend on obsidian */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+  background-size: 120px 120px;
+  opacity: 0.06;
+  mix-blend-mode: screen;
+}
+
+/* Reduced-motion users: grain layers stay (they're static), but the
+ * blend intensity drops to keep visual fidelity for users with
+ * vestibular or visual sensitivities who may find textured backgrounds
+ * uncomfortable at full intensity. */
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="foyer"]::before { opacity: 0.04; }
+  [data-mode="theater"]::before { opacity: 0.03; }
 }
 
 /* ============================================================
@@ -199,10 +279,51 @@ body {
 }
 
 [data-nav-root] .nav-brand {
+  /* Tier G — Custom wordmark layout.
+   * Two-element lockup: serif italic "mj" monogram + sans-caps name,
+   * separated by a thin copper divider. Reads as a publication masthead. */
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
   text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+}
+
+[data-nav-root] .nav-brand__monogram {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-accent-copper-deep);
+  position: relative;
+  top: 2px;
+}
+
+[data-nav-root] .nav-brand__divider {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  background-color: var(--color-rule-foyer);
+  align-self: center;
+}
+
+[data-nav-root] .nav-brand__name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+}
+
+/* Theater-mode divider uses the theater rule color */
+[data-mode="theater"] [data-nav-root] .nav-brand__divider {
+  background-color: var(--color-rule-theater);
+}
+
+/* Theater-mode monogram stays copper-deep for visual continuity */
+[data-mode="theater"] [data-nav-root] .nav-brand__monogram {
+  color: var(--color-accent-copper);
 }
 
 [data-nav-root] .nav-links {
@@ -541,13 +662,48 @@ body {
 }
 
 [data-mode="foyer"] .foyer-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-foyer-ink-soft);
-  margin: 0 0 32px;
+  color: var(--color-foyer-ink);
+  margin: 0 0 56px;
+}
+
+/* Tier B — Editorial scaffolding.
+ * Specimen-style section numbers replace the timid "selected work"
+ * eyebrow. Number is large, copper, serif italic; separator is
+ * faint hairline rule; label is the existing sans-caps. The result
+ * reads like an editorial section break in a publication, not a
+ * functional label on a SaaS marketing page. */
+[data-mode="foyer"] .foyer-eyebrow__num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-accent-copper-deep);
+}
+
+[data-mode="foyer"] .foyer-eyebrow__sep {
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  background-color: var(--color-rule-foyer);
+  position: relative;
+  top: -3px;
+  font-size: 0;
+}
+
+[data-mode="foyer"] .foyer-eyebrow__label {
+  color: var(--color-foyer-ink);
+  font-weight: 600;
 }
 
 [data-mode="foyer"] .foyer-prose {
@@ -652,6 +808,43 @@ body {
   max-width: 320px;
 }
 
+/* ============================================================
+ * TIER F — Hero tail
+ *
+ * Editorial-style terminator below the foyer hero subline.
+ * Copper hairline + small-caps "SELECTED WORK BELOW" + arrow.
+ * Signals downward scroll without resorting to a generic "scroll" ring.
+ * ============================================================ */
+[data-mode="foyer"] .foyer-hero-tail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: clamp(40px, 6vw, 80px);
+}
+
+[data-mode="foyer"] .foyer-hero-tail__rule {
+  display: block;
+  width: clamp(48px, 6vw, 96px);
+  height: 1px;
+  background-color: var(--color-accent-copper);
+}
+
+[data-mode="foyer"] .foyer-hero-tail__hint {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-foyer-ink-soft);
+  font-weight: 500;
+}
+
+[data-mode="foyer"] .foyer-hero-tail__arrow {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-accent-copper-deep);
+  line-height: 1;
+}
+
 /* PORTRAIT-SLOT image variants (Phase 9).
    The base .portrait-slot block above provides aspect-ratio + cream
    gradient + dashed border for the Phase 6 empty-slot affordance; the
@@ -701,6 +894,123 @@ body {
   pointer-events: none;
 }
 
+/* ============================================================
+ * TIER E — Portrait poster substitute
+ *
+ * When the real Oakland portrait at public/portrait-<variant>.jpg
+ * doesn't exist yet, PortraitImage renders this typographic poster
+ * instead of an empty cream rectangle + "placeholder" strap.
+ *
+ * Field is theater-ground (foreshadows the theater mode that
+ * activates on case-study click — the portrait is the bridge,
+ * not a missing-asset notice). Type is cream. Single copper
+ * hairline. Subtle film grain matches the theater grain layer
+ * from Tier A.
+ *
+ * Replaced by the <Image> branch in PortraitImage when the real
+ * photo lands. No code change required at swap time.
+ * ============================================================ */
+[data-mode="foyer"] .portrait-poster {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-theater-ground);
+  color: var(--color-theater-ink);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[data-mode="foyer"] .portrait-poster__grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+  background-size: 120px 120px;
+  opacity: 0.10;
+  mix-blend-mode: screen;
+}
+
+[data-mode="foyer"] .portrait-poster--wide {
+  aspect-ratio: 16 / 9;
+  flex-direction: row;
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(32px, 5vw, 80px);
+}
+
+@media (min-width: 768px) {
+  [data-mode="foyer"] .portrait-poster--wide {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+[data-mode="foyer"] .portrait-poster--column {
+  aspect-ratio: 4 / 5;
+  max-width: 360px;
+  flex-direction: column;
+  gap: 20px;
+  padding: clamp(20px, 4vw, 36px);
+}
+
+[data-mode="foyer"] .portrait-poster__monogram {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(120px, 18vw, 240px);
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  color: var(--color-theater-ink);
+}
+
+[data-mode="foyer"] .portrait-poster--column .portrait-poster__monogram {
+  font-size: clamp(96px, 22vw, 144px);
+}
+
+[data-mode="foyer"] .portrait-poster__rule {
+  display: block;
+  height: 1px;
+  background: var(--color-accent-copper);
+}
+
+[data-mode="foyer"] .portrait-poster--wide .portrait-poster__rule {
+  width: 1px;
+  height: 64px;
+  background: var(--color-accent-copper);
+}
+
+[data-mode="foyer"] .portrait-poster--column .portrait-poster__rule {
+  width: 80px;
+}
+
+[data-mode="foyer"] .portrait-poster__meta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+[data-mode="foyer"] .portrait-poster--column .portrait-poster__meta {
+  align-items: center;
+  text-align: center;
+}
+
+[data-mode="foyer"] .portrait-poster__name {
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-theater-ink);
+}
+
+[data-mode="foyer"] .portrait-poster__tag {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 400;
+  color: color-mix(in srgb, var(--color-theater-ink) 75%, transparent);
+}
+
 /* SELECTED WORK STRIP (Home) */
 [data-mode="foyer"] .selected-work-strip {
   list-style: none;
@@ -743,11 +1053,44 @@ body {
 
 [data-mode="foyer"] .selected-work-card__index {
   display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  color: var(--color-accent-copper-deep);
-  margin-bottom: 16px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  color: var(--case-accent, var(--color-accent-copper-deep));
+  margin: 12px 0 18px;
+}
+
+[data-mode="foyer"] .selected-work-card__rule {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background-color: var(--case-accent, var(--color-accent-copper));
+  margin: 0;
+}
+
+/* Tier C — per-case visual identity.
+ *
+ * Each case study scope sets --case-accent inside its data-case wrapper.
+ * The accent flows down to the card's rule, index number, and (on case
+ * study pages) the dek typography. Accents stay within an analogous
+ * warm/desaturated palette so the Work index reads as a series, not a
+ * rainbow. Each accent is ≥4.5:1 against foyer-paper for AA on small text.
+ * Outside a [data-case] scope, --case-accent falls back to copper. */
+[data-case="ordani"] {
+  --case-accent: var(--color-ordani-sage);
+}
+
+[data-case="hr-equity-author"] {
+  --case-accent: var(--color-case-forest);
+}
+
+[data-case="akamai"] {
+  --case-accent: var(--color-case-wine);
+}
+
+[data-case="passioneer"] {
+  --case-accent: var(--color-case-slate);
 }
 
 /* Scope down the TitleCardComposition inside selected-work cards: thumbnails
@@ -816,19 +1159,41 @@ body {
   margin: 0;
 }
 
+/* Tier B — Marginalia treatment.
+ * Credit list reads as editorial marginalia rather than a sans-caps
+ * functional list. Serif italic, lighter weight, copper hairline
+ * leader on the first item, asymmetric indentation. */
 [data-mode="foyer"] .credits-list {
   list-style: none;
-  margin: 24px 0 0;
-  padding: 0;
-  font-family: var(--font-sans);
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  margin: 32px 0 0;
+  padding: 20px 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   color: var(--color-foyer-ink-soft);
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  border-top: 1px solid var(--color-rule-foyer);
-  padding-top: 16px;
+  gap: 2px;
+  border-top: 1px solid var(--color-accent-copper);
+  position: relative;
+}
+
+[data-mode="foyer"] .credits-list::before {
+  content: "PRIOR";
+  position: absolute;
+  top: -8px;
+  left: 0;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-copper-deep);
+  background-color: var(--color-foyer-paper);
+  padding-right: 8px;
 }
 
 /* VALUES list (About) */
@@ -1073,8 +1438,29 @@ body {
 }
 
 [data-mode="foyer"] .work-index-card {
-  border-top: 1px solid var(--color-rule-foyer);
-  padding-top: 32px;
+  /* Tier C — the border-top becomes the per-case accent rule, replacing
+   * the generic foyer hairline. Each card now reads as its own object. */
+  border-top: 2px solid var(--case-accent, var(--color-accent-copper));
+  padding-top: 24px;
+  position: relative;
+}
+
+[data-mode="foyer"] .work-index-card__rule {
+  /* Reserved for symmetry with selected-work-card. The border-top above
+   * already provides the visible accent rule, so this is hidden — but
+   * kept in markup so a future redesign can swap the border for the span
+   * without re-introducing the inline span elsewhere. */
+  display: none;
+}
+
+[data-mode="foyer"] .work-index-card__index {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  color: var(--case-accent, var(--color-accent-copper-deep));
+  margin: 0 0 4px;
 }
 
 [data-mode="foyer"] .work-index-card__link {
@@ -1282,14 +1668,41 @@ body {
 }
 
 [data-mode="theater"] .case-study-still__placeholder {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 12px;
   width: 100%;
   aspect-ratio: 16 / 10;
+  padding: clamp(20px, 3vw, 36px);
   background: linear-gradient(
     135deg,
     color-mix(in srgb, var(--color-theater-surface) 85%, var(--color-theater-ink) 15%),
     color-mix(in srgb, var(--color-theater-surface) 95%, var(--color-theater-ink) 5%)
   );
+  border-left: 2px solid var(--case-accent, var(--color-accent-copper));
+}
+
+[data-mode="theater"] .case-study-still__lock-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--case-accent, var(--color-accent-copper));
+}
+
+[data-mode="theater"] .case-study-still__lock-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.5vw, 19px);
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--color-theater-ink) 85%, transparent);
+  max-width: 30ch;
 }
 
 /* 4% film-grain overlay — data URI noise per §4c */

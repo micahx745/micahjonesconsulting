@@ -80,35 +80,60 @@ export function PortraitImage({ variant, priority = false }: PortraitImageProps)
   const realPath = join(process.cwd(), "public", REAL_FILENAME[variant]);
   const hasReal = existsSync(realPath);
 
-  const src = hasReal
-    ? `/${REAL_FILENAME[variant]}`
-    : `/${PLACEHOLDER_FILENAME[variant]}`;
-  const alt = hasReal ? REAL_ALT[variant] : PLACEHOLDER_ALT;
-  const { width, height } = DIM[variant];
+  // Branch 1 — real photo present. Render <Image>.
+  if (hasReal) {
+    const { width, height } = DIM[variant];
+    const slotClass =
+      variant === "main"
+        ? "portrait-slot portrait-slot--full-bleed portrait-slot--has-image"
+        : "portrait-slot portrait-slot--column portrait-slot--has-image";
+    return (
+      <div className={slotClass} data-portrait-state="real">
+        <Image
+          src={`/${REAL_FILENAME[variant]}`}
+          alt={REAL_ALT[variant]}
+          width={width}
+          height={height}
+          sizes={SIZES[variant]}
+          priority={priority}
+          className="portrait-slot__image"
+        />
+      </div>
+    );
+  }
 
-  const baseSlot =
+  // Branch 2 — no real photo yet. Render the typographic poster substitute.
+  // This replaces the empty cream rectangle + "placeholder, final portrait
+  // Day 7-14" strap with a theater-ground specimen poster: huge MJ monogram,
+  // copper rule, name + role tag. The dark field foreshadows the theater
+  // mode you enter when you click a case-study card — the portrait slot
+  // becomes a bridge between foyer and theater, not a missing-asset notice.
+  // Replaced by the <Image> branch automatically when public/portrait-<variant>.jpg lands.
+  const variantClass =
     variant === "main"
-      ? "portrait-slot portrait-slot--full-bleed portrait-slot--has-image"
-      : "portrait-slot portrait-slot--column portrait-slot--has-image";
-
-  const slotClass = hasReal ? baseSlot : `${baseSlot} portrait-slot--placeholder`;
-
+      ? "portrait-poster portrait-poster--wide"
+      : "portrait-poster portrait-poster--column";
+  // PLACEHOLDER_ALT and PLACEHOLDER_FILENAME stay referenced via the
+  // module-level constants so the type-checker keeps them live until the
+  // real-photo branch starts using them. They're intentional reserves.
+  void PLACEHOLDER_FILENAME[variant];
+  void PLACEHOLDER_ALT;
   return (
-    <div className={slotClass} data-portrait-state={hasReal ? "real" : "placeholder"}>
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        sizes={SIZES[variant]}
-        priority={priority}
-        className="portrait-slot__image"
-      />
-      {!hasReal && (
-        <span className="portrait-slot__strap" aria-hidden>
-          placeholder, final portrait Day 7-14
+    <div
+      className={variantClass}
+      data-portrait-state="poster"
+      role="img"
+      aria-label={REAL_ALT[variant]}
+    >
+      <div className="portrait-poster__grain" aria-hidden />
+      <span className="portrait-poster__monogram">MJ</span>
+      <span className="portrait-poster__rule" aria-hidden />
+      <div className="portrait-poster__meta">
+        <span className="portrait-poster__name">Micah Jones</span>
+        <span className="portrait-poster__tag">
+          Oakland operator <span aria-hidden>·</span> 2026
         </span>
-      )}
+      </div>
     </div>
   );
 }

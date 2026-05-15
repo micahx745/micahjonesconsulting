@@ -36,3 +36,5 @@ Desktop.ini
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts.bak
+
+.vercel

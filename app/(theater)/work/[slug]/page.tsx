@@ -94,7 +94,11 @@ export default async function TheaterCaseStudyPage({
   const next = await getNextCaseStudy(slug);
 
   return (
-    <article className="case-study">
+    <article className="case-study" data-case={slug}>
+      {/* Tier C — data-case attribute scopes --case-accent to this case
+          study's secondary color. The accent flows into the dek meta line,
+          locked-still rules, pull quote, and any other element that reads
+          var(--case-accent). Outside this scope it falls back to copper. */}
       {/* Phase 10 — ANALY-02. Tracks 90% scroll depth and fires
           case_study_read_complete once per session. */}
       <CaseStudyReadTracker slug={slug} />

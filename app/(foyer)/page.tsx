@@ -57,12 +57,21 @@ export default async function FoyerHomePage() {
 
   return (
     <div className="foyer-page">
-      {/* HERO — FOYER-03 verbatim per blueprint §8 */}
+      {/* HERO — FOYER-03 verbatim per blueprint §8.
+          Tier F adds the hero tail: copper rule + scroll affordance.
+          The blueprint's hero opened on cream and dumped into empty space;
+          the tail gives the hero a terminator and signals "selected work below"
+          without resorting to a generic "scroll" indicator. */}
       <section className="foyer-section foyer-section--hero">
         <h1 className="foyer-hero">
           I help operators ship the work the rest of their org keeps stalling on.
         </h1>
         <p className="foyer-hero-subline">product · growth · consulting. Oakland, CA.</p>
+        <div className="foyer-hero-tail" aria-hidden>
+          <span className="foyer-hero-tail__rule" />
+          <span className="foyer-hero-tail__hint">selected work below</span>
+          <span className="foyer-hero-tail__arrow">↘</span>
+        </div>
       </section>
 
       {/* PORTRAIT (Phase 9). Renders public/portrait-main.jpg when present,
@@ -75,14 +84,19 @@ export default async function FoyerHomePage() {
 
       {/* SELECTED WORK STRIP — three TitleCardComposition thumbnails */}
       <section className="foyer-section foyer-section--selected-work">
-        <h2 className="foyer-eyebrow">selected work</h2>
+        <h2 className="foyer-eyebrow">
+          <span className="foyer-eyebrow__num">01</span>
+          <span className="foyer-eyebrow__sep" aria-hidden>/</span>
+          <span className="foyer-eyebrow__label">selected work</span>
+        </h2>
         <ul className="selected-work-strip">
           {selected.map((study, i) => (
-            <li key={study.slug} className="selected-work-card">
+            <li key={study.slug} className="selected-work-card" data-case={study.slug}>
               <ViewTransitionLink
                 href={`/work/${study.slug}`}
                 className="selected-work-card__link"
               >
+                <span className="selected-work-card__rule" aria-hidden />
                 <span className="selected-work-card__index">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -104,7 +118,11 @@ export default async function FoyerHomePage() {
 
       {/* ABOUT TEASER — 100-word excerpt */}
       <section className="foyer-section foyer-section--about-teaser">
-        <h2 className="foyer-eyebrow">about</h2>
+        <h2 className="foyer-eyebrow">
+          <span className="foyer-eyebrow__num">02</span>
+          <span className="foyer-eyebrow__sep" aria-hidden>/</span>
+          <span className="foyer-eyebrow__label">about</span>
+        </h2>
         <p className="foyer-teaser-body">
           I started as a positioning researcher at Guardicore (acquired by Akamai), where the
           work I did on a single message moved the average deal size up by $150K. Now I run my
@@ -121,7 +139,11 @@ export default async function FoyerHomePage() {
 
       {/* WORK WITH ME TEASER — three one-liners */}
       <section className="foyer-section foyer-section--work-with-me-teaser">
-        <h2 className="foyer-eyebrow">work with me</h2>
+        <h2 className="foyer-eyebrow">
+          <span className="foyer-eyebrow__num">03</span>
+          <span className="foyer-eyebrow__sep" aria-hidden>/</span>
+          <span className="foyer-eyebrow__label">work with me</span>
+        </h2>
         <ul className="engagement-summary">
           <li>
             <span className="engagement-summary__name">Strategy Sprint</span> — 2 to 4 weeks,

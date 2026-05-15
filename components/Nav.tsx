@@ -40,8 +40,17 @@ export function Nav({ variant }: { variant: NavVariant }) {
       style={{ viewTransitionName: "site-nav" }}
       aria-label="Primary"
     >
-      <ViewTransitionLink href="/" className="nav-brand">
-        MICAH JONES
+      {/* Tier G — Wordmark.
+       * Replaces the all-caps "MICAH JONES" sans wordmark with a custom mark:
+       *   - "mj" serif italic, copper-deep, the signature monogram
+       *   - The "MICAH JONES" sans-caps name beside it, smaller, ink color
+       * Reads as a publication masthead, not a SaaS app brand. Matches the
+       * portrait poster's MJ monogram so the wordmark and the page hero
+       * speak the same visual language. */}
+      <ViewTransitionLink href="/" className="nav-brand" aria-label="Micah Jones — home">
+        <span className="nav-brand__monogram" aria-hidden>mj</span>
+        <span className="nav-brand__divider" aria-hidden />
+        <span className="nav-brand__name">Micah Jones</span>
       </ViewTransitionLink>
 
       {variant === "foyer" ? (
