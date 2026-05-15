@@ -34,10 +34,15 @@ export const inter = Inter({
 // axes: ['opsz'] is the most-missed integration detail in 2026; without it the
 // pull quotes at 32px look mechanically thin.
 // preload: false because serif is below the fold on most foyer pages.
+//
+// NOTE: Next.js 16 (Turbopack) requires `weight: "variable"` when `axes` is set.
+// Discrete weights ["400","500"] + axes are incompatible — only variable-font
+// weight is allowed. The variable font interpolates 400-700 internally; the
+// `opsz` axis provides optical-size compensation at 32px pull-quote scale.
 export const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   axes: ["opsz"],
-  weight: ["400", "500"],
+  weight: "variable",
   style: ["normal", "italic"],
   variable: "--font-source-serif",
   display: "swap",

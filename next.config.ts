@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
   // Allow .mdx and .md files to be treated as page modules
   pageExtensions: ["ts", "tsx", "md", "mdx"],
 
+  // Pin Turbopack's workspace root to this project so it ignores a stray
+  // ~/package-lock.json that exists upstream on the dev machine.
+  turbopack: {
+    root: __dirname,
+  },
+
   // Enable React's <ViewTransition> primitive for foyer↔theater route navigation.
   // The component itself is imported from 'react' (not 'next') in app/layout.tsx (wired in Phase 2).
   experimental: {
