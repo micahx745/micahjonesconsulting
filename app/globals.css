@@ -356,6 +356,18 @@ body {
   padding: 0;
 }
 
+/* Mobile (<768px): tighten gap so 4 nowrap links + wordmark fit in
+ * a 390 viewport. 32 -> 14 saves ~54px across 3 gaps. Padding on the
+ * nav itself also drops from 24 -> 16 to claw back another 16px. */
+@media (max-width: 767px) {
+  [data-nav-root] {
+    padding: 24px 16px;
+  }
+  [data-nav-root] .nav-links {
+    gap: 14px;
+  }
+}
+
 [data-nav-root] .nav-link,
 [data-nav-root] .nav-back-to-foyer {
   display: inline-block;
