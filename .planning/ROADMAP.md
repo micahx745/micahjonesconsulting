@@ -17,7 +17,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - [x] **Phase 1: Scaffold, Tokens, DNS** ✓ 2026-05-14 - Day-1 foundation: Next.js + Tailwind v4 + fonts + design tokens + harness wiring + Resend DNS verification kickoff + portrait shoot booking
 - [x] **Phase 2: Root Layout, Lenis, View Transitions, Copy Discipline** ✓ 2026-05-14 - `app/layout.tsx`, ViewTransition wrapper, Lenis at root, copy-lint module, reduced-motion CSS, Vercel Analytics
 - [x] **Phase 3: Shared Chrome (Nav + Footer)** ✓ 2026-05-14 - Foyer + theater nav and footer variants with `viewTransitionName: "site-nav"` spatial anchor
-- [ ] **Phase 4: Route-Group Skeletons** - `(foyer)/layout.tsx` and `(theater)/layout.tsx` stamping `data-mode`; verifiable 600ms cross-fade in DevTools on empty pages
+- [x] **Phase 4: Route-Group Skeletons** ✓ 2026-05-14 - `(foyer)/layout.tsx` and `(theater)/layout.tsx` stamping `data-mode`; foyer↔theater 600ms cross-fade MCP-verified via two Chrome DevTools performance traces (both directions)
 - [ ] **Phase 5: TitleCard Signature Motion [BLOCKER]** - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition
 - [ ] **Phase 6: Foyer Pages** - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
 - [ ] **Phase 7: MDX Infrastructure** - `mdx-components.tsx`, case-study Zod schema, `lib/case-studies.ts`, theater page template, captioned stills, pull quotes
@@ -93,7 +93,10 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   3. The reverse navigation (theater → foyer) also produces the cross-fade (paper rises, theater recedes).
   4. The `<Nav>` element remains visually anchored across the transition (does not fade with the page body) because of `viewTransitionName: "site-nav"`.
   5. `(theater)/work/[slug]/page.tsx` reads a stub MDX file successfully (full case-study render deferred to Phase 8 — at this point the route resolves and the theater chrome paints).
-**Plans**: TBD
+**Plans**: 3 plans
+- [x] 04-A-foyer-group-PLAN.md — app/(foyer)/layout.tsx + stub home page with ViewTransitionLink to /work/test-slug (FOYER-01)
+- [x] 04-B-theater-group-PLAN.md — app/(theater)/layout.tsx + (theater)/work/[slug]/page.tsx stub + content/work/test-slug.mdx stub (THEATER-01, THEATER-02, THEATER-03)
+- [x] 04-C-verify-phase-PLAN.md — pnpm typecheck + pnpm build clean; foyer↔theater cross-fade MCP-VERIFIED via two Chrome DevTools performance traces (675ms span, fade-out/fade-in keyframes on ::view-transition-old/new(root)); nav anchor verified via runtime getComputedStyle.viewTransitionName === "site-nav"; produces 04-VERIFY-OUTPUT.md (verdict: PASS)
 
 ### Phase 5: TitleCard Signature Motion [BLOCKER]
 **Goal**: `components/TitleCard.tsx` is built and tested in isolation as the single signature interaction. GSAP imports are quarantined to this file. The component is verified at 96px desktop, 64px mobile, with reduced-motion fallback, before any consumer (Home, Work index, case studies, OG images) is built.
@@ -177,7 +180,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 1. Scaffold, Tokens, DNS | 10/10 | Complete | 2026-05-14 |
 | 2. Root Layout, Lenis, View Transitions, Copy Discipline | 7/7 | Complete | 2026-05-14 |
 | 3. Shared Chrome (Nav + Footer) | 3/3 | Complete | 2026-05-14 |
-| 4. Route-Group Skeletons | 0/TBD | Not started | - |
+| 4. Route-Group Skeletons | 3/3 | Complete | 2026-05-14 |
 | 5. TitleCard Signature Motion [BLOCKER] | 0/TBD | Not started | - |
 | 6. Foyer Pages | 0/TBD | Not started | - |
 | 7. MDX Infrastructure | 0/TBD | Not started | - |

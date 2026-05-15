@@ -31,7 +31,7 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 
 ### Foyer Mode (Public Rooms)
 
-- [ ] **FOYER-01**: Route group `(foyer)` with shared `layout.tsx` stamping `data-mode="foyer"`
+- [x] **FOYER-01**: Route group `(foyer)` with shared `layout.tsx` stamping `data-mode="foyer"`
 - [ ] **FOYER-02**: Home page (`/`) — hero positioning sentence, full-bleed portrait with copper rule, three-card selected-work strip, About teaser, Work With Me teaser, Contact CTA
 - [ ] **FOYER-03**: Home hero copy verbatim per blueprint §8: "I help operators ship the work the rest of their org keeps stalling on."
 - [ ] **FOYER-04**: About page (`/about`) — two-column layout, left 8-col long-form, right 4-col vertical portrait + credits list (Guardicore/Akamai · Flexport · SurveyMonkey · Cuebiq), Oakland family context paragraph, three numbered values (ship the work / trust the operator / show the receipts)
@@ -44,9 +44,9 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 
 ### Theater Mode (Case Studies)
 
-- [ ] **THEATER-01**: Route group `(theater)` with shared `layout.tsx` stamping `data-mode="theater"`
-- [ ] **THEATER-02**: Dynamic case-study route `(theater)/work/[slug]/page.tsx` reads MDX from `content/work/`
-- [ ] **THEATER-03**: Theater nav: inverted (copper on theater ground), [BACK TO FOYER ↗] link
+- [x] **THEATER-01**: Route group `(theater)` with shared `layout.tsx` stamping `data-mode="theater"`
+- [x] **THEATER-02**: Dynamic case-study route `(theater)/work/[slug]/page.tsx` reads MDX from `content/work/`
+- [x] **THEATER-03**: Theater nav: inverted (copper on theater ground), [BACK TO FOYER ↗] link
 - [ ] **THEATER-04**: Case-study render order: TitleCard → Dek (Source Serif 4) → Hero still → Problem → Why it matters → Approach (4 numbered subsections) → What it became (stills) → Outcome → PullQuote → [NEXT WORK ↘] / [BACK TO FOYER ↗]
 - [ ] **THEATER-05**: Captioned stills component renders dashboard screenshots with 2px warm off-white inner border + 4% film-grain overlay; caption format "name — date" per blueprint §4c
 
@@ -251,7 +251,7 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | TOKEN-04 | Phase 1 | Pending |
 | TOKEN-05 | Phase 1 | Pending |
 | TOKEN-06 | Phase 1 | Pending |
-| FOYER-01 | Phase 4 | Pending |
+| FOYER-01 | Phase 4 | Complete |
 | FOYER-02 | Phase 6 | Pending |
 | FOYER-03 | Phase 6 | Pending |
 | FOYER-04 | Phase 6 | Pending |
@@ -261,9 +261,9 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | FOYER-08 | Phase 6 | Pending |
 | FOYER-09 | Phase 3 | Complete |
 | FOYER-10 | Phase 3 | Complete |
-| THEATER-01 | Phase 4 | Pending |
-| THEATER-02 | Phase 4 | Pending |
-| THEATER-03 | Phase 4 | Pending |
+| THEATER-01 | Phase 4 | Complete |
+| THEATER-02 | Phase 4 | Complete |
+| THEATER-03 | Phase 4 | Complete |
 | THEATER-04 | Phase 7 | Pending |
 | THEATER-05 | Phase 7 | Pending |
 | TRANS-01 | Phase 2 | Pending |

@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-05-15T02:15:15.139Z"
+status: in_progress
+last_updated: "2026-05-14T20:00:00.000Z"
 progress:
-  total_phases: 2
-  completed_phases: 2
-  total_plans: 17
-  completed_plans: 17
+  total_phases: 10
+  completed_phases: 4
+  total_plans: 23
+  completed_plans: 23
 ---
 
 # Project State
@@ -18,16 +18,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-14)
 
 **Core value:** A primary-audience visitor — a Black HR consultant, a doula, a birth worker — feels welcomed in the first ten seconds and stays through one case study.
-**Current focus:** Phase 3 (Shared Chrome — Nav + Footer) — ready to plan
+**Current focus:** Phase 4 (Route-Group Skeletons) complete; Phase 5 (TitleCard Signature Motion [BLOCKER]) next — ready to plan
 
 ## Current Position
 
-Phase: 2 of 10 complete; Phase 3 next (Shared Chrome — Nav + Footer)
-Plan: 7/7 complete in Phase 2; 0 of TBD in Phase 3
-Status: Phase 2 verified PASS; pause-between-phases cadence (per --no-transition flag)
-Last activity: 2026-05-14 — Phase 2 executed in 3 waves: Wave 1 (5 parallel plans A-E), Wave 2 (F integration), Wave 3 (G verification). Verdict: PASS. 17/17 REQs covered (15 PASS + TRANS-05 deferred to Phase 4 + LENIS-04 deferred-activation to Phase 5). Substantive deviation in 02-D documented: copy-lint runner moved from instrumentation.ts to package.json build pre-step (Next.js 16 instrumentation.ts doesn't run during `next build`).
+Phase: 4 of 10 complete; Phase 5 next (TitleCard Signature Motion [BLOCKER])
+Plan: 3/3 complete in Phase 4; 0 of TBD in Phase 5
+Status: Phase 4 verified PASS (MCP-VERIFIED visual cross-fade); pause-between-phases cadence (per --no-transition flag)
+Last activity: 2026-05-14 — Phase 4 executed plans 04-A (foyer route group + stub home) + 04-B (theater route group + stub case-study + stub MDX) in parallel, then 04-C verification. Verdict: PASS. 4/4 REQs PASS (FOYER-01, THEATER-01, THEATER-02, THEATER-03). 5/5 ROADMAP success criteria PASS. Foyer↔theater 600ms cross-fade MCP-VERIFIED in both directions: Chrome DevTools performance traces showed `::view-transition-old(root)` + `::view-transition-new(root)` running `fade-out`/`fade-in` keyframes; total Animation event span 675.5ms (matches the 600ms CSS duration plus trace overhead); CLS=0.00 on both transitions; nav anchor confirmed via runtime `getComputedStyle().viewTransitionName === "site-nav"`. First phase where the blueprint's signature gesture is observed in motion.
 
-Progress: [██░░░░░░░░] 20%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
@@ -78,6 +78,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-05-14 (roadmap creation)
-Stopped at: Roadmap committed; ready for `/gsd:plan-phase 1`
-Resume file: None (use `/gsd:plan-phase 1` to begin)
+Last session: 2026-05-14 (Phase 4 execution)
+Stopped at: Phase 4 complete (route-group skeletons + visible cross-fade); ready for `/gsd:plan-phase 5`
+Resume file: None (use `/gsd:plan-phase 5` to begin TitleCard — the BLOCKER for Phases 6, 8, and OG image generation in Phase 10)
