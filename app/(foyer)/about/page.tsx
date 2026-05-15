@@ -60,14 +60,12 @@ export default function AboutPage() {
               I&apos;m Micah. I started as a positioning researcher at Guardicore (acquired by
               Akamai), where the work I did on a single message moved the average deal size up
               by $150K. I&apos;ve worked at Flexport, SurveyMonkey, and Cuebiq. Now I run my
-              own shop in Oakland — half consulting, half product. The consulting half means
+              own shop in Oakland. Half consulting, half product. The consulting half means
               a small number of operators every quarter: HR consultants, nonprofit leaders,
               birth workers, creators. The product half means ORDANI, a HIPAA-compliant CRM I
               built solo for the people who keep Black women alive in childbirth. I&apos;m a
-              Black founder, a father, and someone who would rather show you a working thing
-              than a slide about a working thing. Most of my best work happens at night, after
-              the house goes quiet. If you have something that needs shipping and you&apos;re
-              tired of the meeting tax, write to me.
+              Black founder and a father. If you have something that needs shipping and
+              you&apos;re tired of the meeting tax, write to me.
             </p>
           </div>
 
@@ -93,20 +91,12 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* VALUES — three numbered lines, no header */}
-      <section className="foyer-section foyer-section--values">
-        <ol className="values-list">
-          <li>
-            <span className="values-list__num">01</span> ship the work
-          </li>
-          <li>
-            <span className="values-list__num">02</span> trust the operator
-          </li>
-          <li>
-            <span className="values-list__num">03</span> show the receipts
-          </li>
-        </ol>
-      </section>
+      {/* VALUES BLOCK REMOVED in adversarial-review pass.
+          Margaret Iverson called the 01 ship the work / 02 trust the operator
+          / 03 show the receipts triad "a LinkedIn carousel sitting at the
+          bottom doing nothing." The three values are implicit in the about
+          paragraph and the case studies. Better to remove than to load-bear
+          a separate component that reads as performance. */}
     </div>
   );
 }

@@ -62,7 +62,7 @@ export default async function FoyerHomePage() {
         <h1 className="foyer-hero">
           I help operators ship the work the rest of their org keeps stalling on.
         </h1>
-        <p className="foyer-hero-subline">— product · growth · consulting. Oakland, CA.</p>
+        <p className="foyer-hero-subline">product · growth · consulting. Oakland, CA.</p>
       </section>
 
       {/* PORTRAIT (Phase 9). Renders public/portrait-main.jpg when present,
@@ -108,7 +108,7 @@ export default async function FoyerHomePage() {
         <p className="foyer-teaser-body">
           I started as a positioning researcher at Guardicore (acquired by Akamai), where the
           work I did on a single message moved the average deal size up by $150K. Now I run my
-          own shop in Oakland — half consulting, half product. The product half means ORDANI,
+          own shop in Oakland. Half consulting, half product. The product half means ORDANI,
           a HIPAA-compliant CRM I built solo for the people who keep Black women alive in
           childbirth.
         </p>
