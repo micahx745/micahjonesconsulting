@@ -1,13 +1,19 @@
-// Phase 1 scope: <html> + <body>, fonts attached, default metadata.
+// app/layout.tsx
 //
-// PHASE 2 will add to this file (TRANS-01..05, LENIS-01..05, ANALY-01):
-//   - <ViewTransition name="root"> wrapping {children} (import from 'react')
-//   - <LenisProvider> client component wrapping the ViewTransition
-//   - <Analytics /> + <SpeedInsights /> from @vercel/analytics/next and /speed-insights/next
+// Phase 2 adds: <ViewTransition> from 'react', <LenisProvider>, <Analytics />, <SpeedInsights />.
+// Phase 1 contributions retained: fonts, default metadata, suppressHydrationWarning.
 //
-// Phase 1 leaves slots empty so Phase 2 can drop them in without restructuring.
+// Source: ARCHITECTURE.md §4.1 File 2; STACK.md §1 integration note 1.
+// Order matters: LenisProvider is outermost (intercepts scroll for the whole doc);
+// ViewTransition wraps {children} so cross-fade activates on route navigation.
+// Analytics + SpeedInsights mount as siblings of the transition tree (not inside it)
+// so they don't get caught in the cross-fade snapshot.
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { interDisplay, inter, sourceSerif } from "@/lib/fonts";
+import { LenisProvider } from "@/components/LenisProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,7 +37,13 @@ export default function RootLayout({
       className={`${interDisplay.variable} ${inter.variable} ${sourceSerif.variable}`}
       suppressHydrationWarning
     >
-      <body>{children}</body>
+      <body>
+        <LenisProvider>
+          <ViewTransition>{children}</ViewTransition>
+        </LenisProvider>
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
