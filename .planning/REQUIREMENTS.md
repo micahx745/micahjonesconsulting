@@ -80,10 +80,10 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 
 - [x] **CASE-01**: MDX frontmatter Zod schema in `lib/case-study-schema.ts`: required fields `title`, `dek`, `role`, `tools[]`, `year`, `status`, `hero?`, `client?`
 - [x] **CASE-02**: Build-time frontmatter validation via `instrumentation.ts` (fails build with line numbers on missing fields); harness `mdx-frontmatter.sh` validates at write boundary — *Phase 2 deviation: scanner runs from package.json build pre-step (lib/copy-lint-runner.ts) since Next.js 16 instrumentation does NOT fire during `next build`. Negative test confirms the gate fails the build with file path + Zod issue.*
-- [ ] **CASE-03**: `content/work/ordani.mdx` written **verbatim** per blueprint §9 — CDC stats (44.8 per 100,000, ~3.15x rate vs 14.2), beta-user quote ("It is the first piece of software..."), 22 birth workers, 91% intake completion, 14 active practices — all attested numbers, no edits
-- [ ] **CASE-04**: `content/work/hr-equity-author.mdx` written per blueprint §10 — anonymized HR consultant + author, 25-page playbook, two platforms 4x third, RFP wins
-- [ ] **CASE-05**: `content/work/passioneer.mdx` written — AI content platform, short-form (problem / approach / outcome only)
-- [ ] **CASE-06**: `content/work/akamai.mdx` written — Guardicore/Akamai positioning research, $150K avg deal-size move
+- [x] **CASE-03**: `content/work/ordani.mdx` written **verbatim** per blueprint §9 — CDC stats (44.8 per 100,000, ~3.15x rate vs 14.2), beta-user quote ("It is the first piece of software..."), 22 birth workers, 91% intake completion, 14 active practices — all attested numbers, no edits
+- [x] **CASE-04**: `content/work/hr-equity-author.mdx` written per blueprint §10 — anonymized HR consultant + author, 25-page playbook, two platforms 4x third, RFP wins
+- [x] **CASE-05**: `content/work/passioneer.mdx` written — conservative stub status, no invented metrics, 2-paragraph "draft pending" body
+- [x] **CASE-06**: `content/work/akamai.mdx` written — Guardicore/Akamai positioning research, $150K avg deal-size move (attested only, no PullQuote)
 - [x] **CASE-07**: MDX components: `<TitleCard>`, `<Dek>`, `<CaseStudyStill>`, `<PullQuote>`, `<CopperRule>` — all registered in `mdx-components.tsx`
 - [x] **CASE-08**: PullQuote in Source Serif 4 italic with copper underline-grow animation on scroll-into-view (2s ease)
 - [x] **CASE-09**: Case-study stills server with `next/image` AVIF/WebP, max 500KB enforced by harness `image-budget.sh`
@@ -285,10 +285,10 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | LENIS-05 | Phase 2 | Pending |
 | CASE-01 | Phase 7 | Complete |
 | CASE-02 | Phase 7 | Complete |
-| CASE-03 | Phase 8 | Pending |
-| CASE-04 | Phase 8 | Pending |
-| CASE-05 | Phase 8 | Pending |
-| CASE-06 | Phase 8 | Pending |
+| CASE-03 | Phase 8 | Complete |
+| CASE-04 | Phase 8 | Complete |
+| CASE-05 | Phase 8 | Complete |
+| CASE-06 | Phase 8 | Complete |
 | CASE-07 | Phase 7 | Complete |
 | CASE-08 | Phase 7 | Complete |
 | CASE-09 | Phase 7 | Complete |

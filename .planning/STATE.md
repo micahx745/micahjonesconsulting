@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-last_updated: "2026-05-14T23:30:00.000Z"
+last_updated: "2026-05-14T23:55:00.000Z"
 progress:
   total_phases: 10
-  completed_phases: 7
-  total_plans: 42
-  completed_plans: 42
+  completed_phases: 8
+  total_plans: 47
+  completed_plans: 47
 ---
 
 # Project State
@@ -18,16 +18,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-14)
 
 **Core value:** A primary-audience visitor — a Black HR consultant, a doula, a birth worker — feels welcomed in the first ten seconds and stays through one case study.
-**Current focus:** Phase 7 (MDX Infrastructure) complete; Phase 8 (Case Studies — ORDANI verbatim + 3 others) next — ready to plan
+**Current focus:** Phase 8 (Case Studies — Theater Content) complete; Phase 9 (Portrait Integration) next — paused per --no-transition flag
 
 ## Current Position
 
-Phase: 7 of 10 complete; Phase 8 next (Case Studies — Theater Content)
-Plan: 7/7 complete in Phase 7; 0 of TBD in Phase 8
-Status: Phase 7 verified PASS (8/8 REQ-IDs implemented with observable evidence, 5/5 ROADMAP success criteria met, MCP screenshots captured at 1440×900, negative-frontmatter test confirms the CASE-02 Zod gate aborts build with exit 1 + clear file path + valid-options list; GSAP quarantine intact); pause-between-phases cadence (per --no-transition flag)
-Last activity: 2026-05-14 — Phase 7 executed plans 07-A (lib/case-study-schema.ts Zod + lib/case-studies.ts schema-validated rewrite + lib/copy-lint-runner.ts frontmatter Zod gate + foyer call-site `cs.words → cs.titleCardWords` rename), 07-B (components/Dek.tsx + components/CopperRule.tsx server components + globals.css Dek/rule rules), 07-C (components/CaseStudyStill.tsx server with next/image + placeholder fallback + 2px bone border + 4% film-grain SVG-feTurbulence data URI + "Mon YYYY" date formatter), 07-D (components/PullQuote.tsx client with IntersectionObserver + CSS keyframes copper underline-grow 2s + reduced-motion safe + NO GSAP), 07-E (mdx-components.tsx at REPO ROOT maps TitleCard/Dek/CaseStudyStill/PullQuote/CopperRule), 07-F (app/(theater)/work/[slug]/page.tsx full render order TitleCard → Dek + meta → optional hero → MDX body → footer nav, via gray-matter+dynamic-import hybrid; next.config.ts wires remark-frontmatter+remark-gfm), 07-G (test-slug.mdx richer body + full verify matrix). Verdict: PASS. **All five reusable case-study MDX components are live. The negative-frontmatter test (status: "invalid-enum" → build abort with `[case-study-schema] content/work/test-slug.mdx: status: Invalid option: expected one of "shipped"|"in-flight"|"archived"|"stub"`) is the binding proof CASE-02 works.** Render order on `/work/test-slug` matches blueprint §9 wireframe exactly (verified visually + by DOM grep). Phase 8 (Case Studies — Theater Content: ORDANI verbatim + HR Equity Author + Passioneer + Akamai) now unblocked.
+Phase: 8 of 10 complete; Phase 9 next (Portrait Integration)
+Plan: 5/5 complete in Phase 8; 0 of TBD in Phase 9
+Status: Phase 8 verified PASS (4/4 REQ-IDs implemented, 5/5 ROADMAP success criteria met, both negative tests confirm build-time gates fire with exit 1, 5 MCP screenshots captured at 1440×900); pause-between-phases cadence (per --no-transition flag)
+Last activity: 2026-05-14 — Phase 8 executed plans 08-A (content/work/ordani.mdx VERBATIM per blueprint §9: CDC stats 44.8 per 100,000 + 3.15× rate + 14.2 for non-Hispanic white, 22 birth workers, 91% intake completion, 14 active practices, 8 of 14 still active after 6 months + 6 referred a peer + zero churned, $200/month dentist software anchor, 3 CaseStudyStills, PullQuote attributed "beta user, name withheld" with quote "It is the first piece of software that treats my practice the way I treat my clients."; CASE-03), 08-B (content/work/hr-equity-author.mdx anonymized per §10: 25+ page playbook, two named platforms 4x third, RFP wins, PullQuote attributed "client" with "Micah does the work that most strategy decks promise and never deliver."; CASE-04), 08-C (content/work/passioneer.mdx CONSERVATIVE STUB: status=stub, titleCardWords=[PASSIONEER, PROOF, PENDING], 2-paragraph "draft pending" body, NO invented metrics; CASE-05), 08-D (content/work/akamai.mdx CONSERVATIVE SHORT-FORM: Problem+Approach+Outcome only, $150K from blueprint §8 line 443, NO PullQuote no CaseStudyStill since no attested artifacts; CASE-06), 08-E (content/citations.ts CDC source documentation + deleted content/work/test-slug.mdx + full verify matrix). Verdict: PASS. **Verbatim ORDANI shipped. Two negative tests confirmed: banned-word "unlock" injection aborts with `content/work/ordani.mdx:21:99 — "unlock"` exit 1; Zod `status: invalid-status` aborts with `content/work/hr-equity-author.mdx: status: Invalid option: expected one of "shipped"|"in-flight"|"archived"|"stub"` exit 1.** Sage `#5E7158` stays reserved as a token (zero runtime consumers per audit). GSAP quarantine intact (only components/TitleCard.tsx). 5 screenshots in .planning/phases/08-case-studies/verification-artifacts/. Phase 9 (Portrait Integration — receive Oakland portrait, integrate `portrait-main.jpg` + `portrait-context.jpg` at ≤500KB AVIF) now unblocked but paused per --no-transition.
 
-Progress: [███████░░░] 70%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
@@ -43,7 +43,7 @@ Progress: [███████░░░] 70%
 | - | - | - | - |
 
 **Recent Trend:**
-- Last 5 plans: 07-C, 07-D, 07-E, 07-F, 07-G
+- Last 5 plans: 08-A, 08-B, 08-C, 08-D, 08-E
 - Trend: —
 
 *Updated after each plan completion*

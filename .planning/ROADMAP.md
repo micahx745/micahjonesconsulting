@@ -21,7 +21,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - [x] **Phase 5: TitleCard Signature Motion [BLOCKER]** ✓ 2026-05-14 - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition; LENIS-04 deferred bridge wired
 - [x] **Phase 6: Foyer Pages** ✓ 2026-05-14 - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
 - [x] **Phase 7: MDX Infrastructure** ✓ 2026-05-14 - `mdx-components.tsx` at repo root, case-study Zod schema, `lib/case-studies.ts` schema-validated, theater page template with full render order, CaseStudyStill + PullQuote + CopperRule + Dek components; negative-frontmatter test confirms CASE-02 Zod gate works at build-time
-- [ ] **Phase 8: Case Studies (Theater Content)** - ORDANI (verbatim), HR Equity Author (anonymized), Passioneer, Akamai
+- [x] **Phase 8: Case Studies (Theater Content)** ✓ 2026-05-14 - ORDANI verbatim per blueprint §9 (CDC stats / 22 birth workers / 91% / 14 practices / beta quote), HR Equity Author anonymized per §10 (25-page playbook / 4× / RFP wins), Passioneer conservative stub (no invented metrics), Akamai/Guardicore conservative short-form ($150K positioning move, no PullQuote). `content/citations.ts` documents CDC source. test-slug.mdx deleted. Both negative tests (banned-word + invalid Zod status) confirm build-time gates fire with file:line + exit 1.
 - [ ] **Phase 9: Portrait Integration** - Receive Oakland portrait deliverables; integrate `portrait-main.jpg` (Home full-bleed) + `portrait-context.jpg` (About column) at <500KB AVIF
 - [ ] **Phase 10: Hardening, OG/SEO, Production Deploy** - Perf budget, a11y zero-critical, responsive baselines, OG images, sitemap/robots.txt, Vercel deploy, Supabase + Resend env, custom domain
 
@@ -163,7 +163,12 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   3. `/work/passioneer` renders the AI content platform short-form case study (problem / approach / outcome only).
   4. `/work/akamai` renders the Guardicore/Akamai positioning research short-form, including the $150K average deal-size move attributed correctly.
   5. `pnpm build` produces static prerenders for all four case-study slugs (via `generateStaticParams`) with zero copy-lint or frontmatter violations; each case study's RSC payload is < 200KB per pitfall A5.
-**Plans**: TBD
+**Plans**: 5 plans
+- [x] 08-A-ordani-mdx-PLAN.md — content/work/ordani.mdx verbatim per blueprint §9 (CASE-03)
+- [x] 08-B-hr-equity-author-mdx-PLAN.md — content/work/hr-equity-author.mdx anonymized per §10 (CASE-04)
+- [x] 08-C-passioneer-mdx-PLAN.md — content/work/passioneer.mdx conservative stub (CASE-05)
+- [x] 08-D-akamai-mdx-PLAN.md — content/work/akamai.mdx conservative short-form (CASE-06)
+- [x] 08-E-citations-cleanup-verify-PLAN.md — content/citations.ts + test-slug deletion + full phase verify; produced 08-VERIFY-OUTPUT.md (verdict: PASS)
 
 ### Phase 9: Portrait Integration
 **Goal**: Receive the Oakland portrait deliverables from Phase 1's booking workstream; integrate `portrait-main.jpg` (Home full-bleed) and `portrait-context.jpg` (About column) at ≤500KB each after AVIF conversion via next/image.
@@ -203,7 +208,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 5. TitleCard Signature Motion [BLOCKER] | 5/5 | Complete | 2026-05-14 |
 | 6. Foyer Pages | 7/7 | Complete | 2026-05-14 |
 | 7. MDX Infrastructure | 7/7 | Complete | 2026-05-14 |
-| 8. Case Studies (Theater Content) | 0/TBD | Not started | - |
+| 8. Case Studies (Theater Content) | 5/5 | Complete | 2026-05-14 |
 | 9. Portrait Integration | 0/TBD | Not started | - |
 | 10. Hardening, OG/SEO, Production Deploy | 0/TBD | Not started | - |
 
