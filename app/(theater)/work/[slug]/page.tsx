@@ -17,10 +17,12 @@
 //
 // Source: REQUIREMENTS.md THEATER-04; blueprint §9 wireframe; ARCHITECTURE
 // §7.1 + §7.2.
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TitleCard } from "@/components/TitleCard";
 import { Dek } from "@/components/Dek";
 import { CaseStudyStill } from "@/components/CaseStudyStill";
+import { CaseStudyReadTracker } from "@/components/CaseStudyReadTracker";
 import { ViewTransitionLink } from "@/components/view-transition-link";
 import {
   getAllCaseStudies,
@@ -36,6 +38,42 @@ export async function generateStaticParams() {
 // Allow dynamic params during dev for the Phase 7 test slug. Phase 8 case
 // studies will be statically generated via the params above.
 export const dynamicParams = true;
+
+// Phase 10 — OG-02. Per-route metadata for /work/[slug]. Title is truncated
+// to 60 chars and description to 155 chars (with ellipsis when needed).
+// OG image route already exists at /work/[slug]/opengraph-image (Phase 5).
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const cs = await getCaseStudyBySlug(slug);
+  if (!cs) return { title: "Not found — Micah Jones" };
+
+  const rawTitle = `${cs.title} — Micah Jones`;
+  const title = rawTitle.length <= 60 ? rawTitle : `${rawTitle.slice(0, 57)}...`;
+  const description =
+    cs.dek.length <= 155 ? cs.dek : `${cs.dek.slice(0, 152).trimEnd()}...`;
+  const url = `https://micahjonesconsulting.com/work/${slug}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      url,
+      siteName: "Micah Jones",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
 
 export default async function TheaterCaseStudyPage({
   params,
@@ -57,6 +95,10 @@ export default async function TheaterCaseStudyPage({
 
   return (
     <article className="case-study">
+      {/* Phase 10 — ANALY-02. Tracks 90% scroll depth and fires
+          case_study_read_complete once per session. */}
+      <CaseStudyReadTracker slug={slug} />
+
       {/* 1. TitleCard — the signature motion (Phase 5 client wrapper) */}
       <TitleCard
         words={cs.titleCardWords}

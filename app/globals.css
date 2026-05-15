@@ -1346,6 +1346,18 @@ body {
   transform: scaleX(1);
 }
 
+/* Phase 10 — TOKEN-05 closure. Sage accent on the PullQuote underline-grow
+   bar. Permitted ONLY inside /work/ordani per blueprint §4b + the design-
+   tokens hook allowlist (sage is in brand.json.palette but scoped to ORDANI).
+   The MDX call site passes accentColor="sage"; PullQuote.tsx forwards via
+   data-accent="sage". Other case studies leave the prop unset and inherit
+   copper (the rule above). */
+[data-mode="theater"]
+  .case-study-pull-quote[data-accent="sage"]
+  .case-study-pull-quote__quote::after {
+  background: var(--color-ordani-sage);
+}
+
 [data-mode="theater"] .case-study-pull-quote__attribution {
   font-family: var(--font-sans);
   font-size: 0.85rem;

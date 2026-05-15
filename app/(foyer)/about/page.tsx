@@ -26,7 +26,21 @@ import { PortraitImage } from "@/components/PortraitImage";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Black operator in Oakland. Half consulting, half product. Built ORDANI solo for the doula market. Worked at Akamai, Flexport, SurveyMonkey, and Cuebiq.",
+    "Oakland-based operator. Guardicore positioning research moved deals up by $150K. Now runs his own shop: half consulting, half product.",
+  openGraph: {
+    title: "About — Micah Jones",
+    description:
+      "Oakland-based operator. Guardicore positioning research moved deals up by $150K. Now runs his own shop: half consulting, half product.",
+    type: "profile",
+    url: "https://micahjonesconsulting.com/about",
+    siteName: "Micah Jones",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About — Micah Jones",
+    description:
+      "Oakland-based operator. Guardicore positioning research moved deals up by $150K. Now runs his own shop: half consulting, half product.",
+  },
 };
 
 export default function AboutPage() {

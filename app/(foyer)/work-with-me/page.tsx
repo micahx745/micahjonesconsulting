@@ -25,7 +25,21 @@ import { ViewTransitionLink } from "@/components/view-transition-link";
 export const metadata: Metadata = {
   title: "Work with me",
   description:
-    "Three ways to work with Micah Jones: a 2–4 week Strategy Sprint, an 8–12 week Embed, or a custom Build on Next.js and Supabase.",
+    "Three engagement shapes for shipping work: Strategy Sprint (two to four weeks), Embed (eight to twelve weeks), Build (custom Next.js).",
+  openGraph: {
+    title: "Work with me — Micah Jones",
+    description:
+      "Three engagement shapes for shipping work: Strategy Sprint (two to four weeks), Embed (eight to twelve weeks), Build (custom Next.js).",
+    type: "website",
+    url: "https://micahjonesconsulting.com/work-with-me",
+    siteName: "Micah Jones",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Work with me — Micah Jones",
+    description:
+      "Three engagement shapes for shipping work: Strategy Sprint (two to four weeks), Embed (eight to twelve weeks), Build (custom Next.js).",
+  },
 };
 
 export default function WorkWithMePage() {

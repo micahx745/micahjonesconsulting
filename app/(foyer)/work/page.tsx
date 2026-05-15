@@ -22,7 +22,21 @@ import { getAllCaseStudies } from "@/lib/case-studies";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Selected case studies from Micah Jones — solo product work, growth research, and consulting engagements for founders and birth-worker practices.",
+    "Case studies from Micah Jones: ORDANI HIPAA-compliant CRM for birth workers, HR equity playbook, Passioneer, Akamai positioning research.",
+  openGraph: {
+    title: "Work — Micah Jones",
+    description:
+      "Case studies from Micah Jones: ORDANI HIPAA-compliant CRM for birth workers, HR equity playbook, Passioneer, Akamai positioning research.",
+    type: "website",
+    url: "https://micahjonesconsulting.com/work",
+    siteName: "Micah Jones",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Work — Micah Jones",
+    description:
+      "Case studies from Micah Jones: ORDANI HIPAA-compliant CRM for birth workers, HR equity playbook, Passioneer, Akamai positioning research.",
+  },
 };
 
 export default async function WorkIndexPage() {

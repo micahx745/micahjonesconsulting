@@ -35,7 +35,21 @@ import { getSelectedWork } from "@/lib/case-studies";
 export const metadata: Metadata = {
   title: "Micah Jones — Oakland operator",
   description:
-    "Oakland operator who builds the systems other people promise to build, and ships them. Product, growth, and consulting work for founders and birth-worker practices.",
+    "Premium two-mode portfolio for Micah Jones, Oakland-based operator. Product, growth, consulting for founders and birth-worker practices.",
+  openGraph: {
+    title: "Micah Jones — Oakland operator",
+    description:
+      "Premium two-mode portfolio for Micah Jones, Oakland-based operator. Product, growth, consulting for founders and birth-worker practices.",
+    type: "website",
+    url: "https://micahjonesconsulting.com",
+    siteName: "Micah Jones",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Micah Jones — Oakland operator",
+    description:
+      "Premium two-mode portfolio for Micah Jones, Oakland-based operator. Product, growth, consulting for founders and birth-worker practices.",
+  },
 };
 
 export default async function FoyerHomePage() {

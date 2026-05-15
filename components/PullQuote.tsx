@@ -19,9 +19,19 @@ export interface PullQuoteProps {
   children: ReactNode;
   /** Attribution line (e.g., "beta user, name withheld"). Optional. */
   attribution?: string;
+  /**
+   * Accent for the underline-grow bar. Defaults to copper.
+   * Sage is permitted ONLY inside /work/ordani (per blueprint §4b + TOKEN-05).
+   * Other case studies should leave this unset.
+   */
+  accentColor?: "copper" | "sage";
 }
 
-export function PullQuote({ children, attribution }: PullQuoteProps) {
+export function PullQuote({
+  children,
+  attribution,
+  accentColor = "copper",
+}: PullQuoteProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
 
@@ -61,6 +71,7 @@ export function PullQuote({ children, attribution }: PullQuoteProps) {
       ref={ref}
       className="case-study-pull-quote"
       data-in-view={inView ? "true" : "false"}
+      data-accent={accentColor}
     >
       <blockquote className="case-study-pull-quote__quote">{children}</blockquote>
       {attribution ? (
