@@ -1,0 +1,71 @@
+{
+  "name": "house-lights",
+  "domain": "micahjonesconsulting.com",
+  "audience": {
+    "primary":   "Founders of $5-50M companies who care about how their brand actually looks; and Black HR consultants, doulas, birth workers, and equity practitioners — the people Micah's work serves.",
+    "secondary": "Design-engineering peers and potential collaborators."
+  },
+  "palette": [
+    { "id": "foyer-paper",        "value": "#F5EFE4" },
+    { "id": "foyer-ink",          "value": "#1A1816" },
+    { "id": "foyer-ink-soft",     "value": "#3A3631" },
+    { "id": "theater-ground",     "value": "#0D0D0F" },
+    { "id": "theater-surface",    "value": "#16161A" },
+    { "id": "theater-ink",        "value": "#EAE6DD" },
+    { "id": "theater-ink-soft",   "value": "#9C988F" },
+    { "id": "accent-copper",      "value": "#C8542B" },
+    { "id": "accent-copper-deep", "value": "#8E3A1E" },
+    { "id": "ordani-sage",        "value": "#5E7158", "scope": "/work/ordani only" },
+    { "id": "rule-foyer",         "value": "#D9D2C4" },
+    { "id": "rule-theater",       "value": "#2A2A30" }
+  ],
+  "typography": {
+    "display": { "family": "Inter Display (Inter weight 700-800)", "foundry": "system", "weights": [600, 700, 800], "license": null },
+    "body":    { "family": "Inter",                                  "foundry": "system", "weights": [400, 500, 600], "license": null },
+    "serif":   { "family": "Source Serif 4",                         "foundry": "system", "weights": [400, 500], "axes": ["opsz"], "license": null },
+    "mono":    null
+  },
+  "voice": {
+    "person": "first-singular",
+    "sentence_max": 25,
+    "banned": [
+      "unlock", "drive", "leverage", "elevate", "synergy", "transformative", "game-changing", "best-in-class", "at the intersection of",
+      "seamless", "seamlessly", "cutting-edge", "revolutionary", "world-class", "next-generation",
+      "holistic", "robust", "innovative", "dive deep", "circle back", "low-hanging fruit",
+      "move the needle", "make an impact", "delight users", "craft experiences",
+      "passionate about", "obsessed with", "journey", "solutions", "empower"
+    ],
+    "preferred_verbs": ["build", "ship", "rewrite", "cut", "tune", "bet", "show"]
+  },
+  "motion": {
+    "signature": {
+      "id": "title-card",
+      "description": "Case-study hero title: 96px Inter Display 700+ pinned vertical word stack, GSAP scroll-resolve to caption + first still cross-fade. ~600ms hold.",
+      "files": ["components/TitleCard.tsx", "app/globals.css"]
+    },
+    "view_transition": {
+      "id": "foyer-theater-dim",
+      "description": "600ms ease-in-out cross-fade between cream paper and theater ground on foyer↔theater navigation. Reduced-motion kill-switch in app/globals.css.",
+      "files": ["app/layout.tsx", "app/globals.css"]
+    },
+    "banned": [
+      "cursor.*follow|MouseFollower",
+      "scroll-snap-type:\\s*y\\s+mandatory",
+      "marquee|<Marquee",
+      "font-mono|font-family:\\s*ui-monospace",
+      "syncTouch:\\s*true"
+    ]
+  },
+  "performance": {
+    "lcp_ms": 1800,
+    "inp_ms": 200,
+    "cls": 0.05,
+    "lighthouse_min": 95,
+    "max_image_kb": 500,
+    "audit_url": "http://localhost:3000"
+  },
+  "pages": ["/", "/work", "/work/[slug]", "/about", "/work-with-me", "/contact"],
+  "content": {
+    "case_study_framework": ["title-card", "dek", "problem", "why-it-matters", "approach×4", "what-it-became", "outcome", "pull-quote"]
+  }
+}
