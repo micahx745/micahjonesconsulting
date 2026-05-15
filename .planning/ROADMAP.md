@@ -18,7 +18,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - [x] **Phase 2: Root Layout, Lenis, View Transitions, Copy Discipline** ✓ 2026-05-14 - `app/layout.tsx`, ViewTransition wrapper, Lenis at root, copy-lint module, reduced-motion CSS, Vercel Analytics
 - [x] **Phase 3: Shared Chrome (Nav + Footer)** ✓ 2026-05-14 - Foyer + theater nav and footer variants with `viewTransitionName: "site-nav"` spatial anchor
 - [x] **Phase 4: Route-Group Skeletons** ✓ 2026-05-14 - `(foyer)/layout.tsx` and `(theater)/layout.tsx` stamping `data-mode`; foyer↔theater 600ms cross-fade MCP-verified via two Chrome DevTools performance traces (both directions)
-- [ ] **Phase 5: TitleCard Signature Motion [BLOCKER]** - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition
+- [x] **Phase 5: TitleCard Signature Motion [BLOCKER]** ✓ 2026-05-14 - `components/TitleCard.tsx` built in isolation with GSAP pin + resolve, mobile reflow, reduced-motion branch, Vercel OG composition; LENIS-04 deferred bridge wired
 - [ ] **Phase 6: Foyer Pages** - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
 - [ ] **Phase 7: MDX Infrastructure** - `mdx-components.tsx`, case-study Zod schema, `lib/case-studies.ts`, theater page template, captioned stills, pull quotes
 - [ ] **Phase 8: Case Studies (Theater Content)** - ORDANI (verbatim), HR Equity Author (anonymized), Passioneer, Akamai
@@ -108,7 +108,12 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   3. With OS reduced-motion enabled, the TitleCard renders the resolved (final) state immediately — no pin, no scrub.
   4. `pnpm build` succeeds; bundle analyzer shows GSAP imports present only in the route bundles that consume TitleCard, never in the Contact or About bundle (first-load JS ≤ 90KB on TitleCard-free foyer routes).
   5. A test case-study route exports `opengraph-image.tsx` that composes the TitleCard via `@vercel/og` and renders a valid 1200×630 OG image at `/work/test-slug/opengraph-image`.
-**Plans**: TBD
+**Plans**: 5 plans
+- [x] 05-A-schema-and-styles-PLAN.md — Zod schema (lib/title-card-schema.ts) + globals.css TitleCard typography block + reduced-motion CSS safety net (MOT-02, MOT-03 typography, MOT-06)
+- [x] 05-B-composition-PLAN.md — components/TitleCardComposition.tsx server-safe presentational shell (MOT-03 visual structure)
+- [x] 05-C-titlecard-client-PLAN.md — components/TitleCard.tsx client wrapper with GSAP + useGSAP + ScrollTrigger pin/resolve + reduced-motion branch + Lenis↔ScrollTrigger bridge (MOT-01, MOT-03 motion, MOT-04 quarantine, MOT-05, closes deferred LENIS-04)
+- [x] 05-D-opengraph-image-PLAN.md — app/(theater)/work/[slug]/opengraph-image.tsx via next/og ImageResponse (MOT-07)
+- [x] 05-E-integrate-and-verify-PLAN.md — Wire TitleCard into theater stub page; run full verification matrix (typecheck, build, GSAP quarantine grep, runtime MCP checks, OG PNG check); produced 05-VERIFY-OUTPUT.md (verdict: PASS)
 
 ### Phase 6: Foyer Pages
 **Goal**: Five foyer routes ship with verbatim copy from blueprint §8: Home (positioning sentence + portrait slot + selected-work strip), About (two-column long-form + Oakland context + three numbered values), Work With Me (three stacked engagement shapes + four-question FAQ), Contact (two-field form posting to Resend Server Action + Supabase archive), Work index (TitleCard thumbnails of all case studies).
@@ -181,7 +186,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 2. Root Layout, Lenis, View Transitions, Copy Discipline | 7/7 | Complete | 2026-05-14 |
 | 3. Shared Chrome (Nav + Footer) | 3/3 | Complete | 2026-05-14 |
 | 4. Route-Group Skeletons | 3/3 | Complete | 2026-05-14 |
-| 5. TitleCard Signature Motion [BLOCKER] | 0/TBD | Not started | - |
+| 5. TitleCard Signature Motion [BLOCKER] | 5/5 | Complete | 2026-05-14 |
 | 6. Foyer Pages | 0/TBD | Not started | - |
 | 7. MDX Infrastructure | 0/TBD | Not started | - |
 | 8. Case Studies (Theater Content) | 0/TBD | Not started | - |

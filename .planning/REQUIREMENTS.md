@@ -60,20 +60,20 @@ Derived from `.planning/blueprint.md` (verbatim source-of-truth) + the 4 researc
 
 ### Signature Motion: TitleCard
 
-- [ ] **MOT-01**: `components/TitleCard.tsx` is a `'use client'` component using `@gsap/react`'s `useGSAP()` hook with `scope: ref`
-- [ ] **MOT-02**: TitleCard accepts a 3-6 word array prop (validated via Zod or runtime check)
-- [ ] **MOT-03**: TitleCard renders vertical word stack at 96px Inter Display 700+; pins for ~600ms on scroll-enter; resolves into smaller caption + first still cross-fade
-- [ ] **MOT-04**: GSAP ScrollTrigger registered at module level inside TitleCard file only — no GSAP imports anywhere else
-- [ ] **MOT-05**: TitleCard reduced-motion branch: if `prefers-reduced-motion: reduce`, render the resolved (final) state immediately with no pin, no scrub
-- [ ] **MOT-06**: TitleCard mobile reflow: 64px word stack, same pin-resolve behavior, verified on iOS Safari with Lenis active
-- [ ] **MOT-07**: TitleCard usable as OG image source via Vercel OG (`@vercel/og`) — each case-study route exports `opengraph-image.tsx` composing the TitleCard
+- [x] **MOT-01**: `components/TitleCard.tsx` is a `'use client'` component using `@gsap/react`'s `useGSAP()` hook with `scope: ref`
+- [x] **MOT-02**: TitleCard accepts a 3-6 word array prop (validated via Zod or runtime check)
+- [x] **MOT-03**: TitleCard renders vertical word stack at 96px Inter Display 700+; pins for ~600ms on scroll-enter; resolves into smaller caption + first still cross-fade
+- [x] **MOT-04**: GSAP ScrollTrigger registered at module level inside TitleCard file only — no GSAP imports anywhere else
+- [x] **MOT-05**: TitleCard reduced-motion branch: if `prefers-reduced-motion: reduce`, render the resolved (final) state immediately with no pin, no scrub
+- [x] **MOT-06**: TitleCard mobile reflow: 64px word stack, same pin-resolve behavior, verified on iOS Safari with Lenis active
+- [x] **MOT-07**: TitleCard usable as OG image source via Vercel OG (`@vercel/og`) — each case-study route exports `opengraph-image.tsx` composing the TitleCard
 
 ### Smooth Scroll: Lenis
 
 - [ ] **LENIS-01**: `components/LenisProvider.tsx` mounts `<ReactLenis root>` in root `app/layout.tsx` (not in any group layout — group layouts unmount across cross-group navigation)
 - [ ] **LENIS-02**: Lenis configured with damping ~0.08 ("light, not buttery" per blueprint §4d)
 - [ ] **LENIS-03**: Lenis `syncTouch: false` per pitfall D2 — iOS gets native momentum; CLAUDE.md documents this to prevent future "fix" attempts
-- [ ] **LENIS-04**: Lenis ↔ ScrollTrigger bridge: `lenis.on('scroll', ScrollTrigger.update)` so TitleCard pin stays accurate
+- [x] **LENIS-04**: Lenis ↔ ScrollTrigger bridge: `lenis.on('scroll', ScrollTrigger.update)` so TitleCard pin stays accurate (wired inside `components/TitleCard.tsx` via `useLenis(() => ScrollTrigger.update())`; closed in Phase 5)
 - [ ] **LENIS-05**: Lenis disabled for users with `prefers-reduced-motion: reduce`
 
 ### Case Studies (Content)
@@ -271,17 +271,17 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | TRANS-03 | Phase 2 | Pending |
 | TRANS-04 | Phase 2 | Pending |
 | TRANS-05 | Phase 2 | Pending |
-| MOT-01 | Phase 5 | Pending |
-| MOT-02 | Phase 5 | Pending |
-| MOT-03 | Phase 5 | Pending |
-| MOT-04 | Phase 5 | Pending |
-| MOT-05 | Phase 5 | Pending |
-| MOT-06 | Phase 5 | Pending |
-| MOT-07 | Phase 5 | Pending |
+| MOT-01 | Phase 5 | Complete |
+| MOT-02 | Phase 5 | Complete |
+| MOT-03 | Phase 5 | Complete |
+| MOT-04 | Phase 5 | Complete |
+| MOT-05 | Phase 5 | Complete |
+| MOT-06 | Phase 5 | Complete |
+| MOT-07 | Phase 5 | Complete |
 | LENIS-01 | Phase 2 | Pending |
 | LENIS-02 | Phase 2 | Pending |
 | LENIS-03 | Phase 2 | Pending |
-| LENIS-04 | Phase 2 | Pending |
+| LENIS-04 | Phase 2 (closed Phase 5) | Complete |
 | LENIS-05 | Phase 2 | Pending |
 | CASE-01 | Phase 7 | Pending |
 | CASE-02 | Phase 7 | Pending |
