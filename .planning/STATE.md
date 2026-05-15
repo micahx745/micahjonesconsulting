@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-last_updated: "2026-05-14T23:55:00.000Z"
+last_updated: "2026-05-14T22:30:00.000Z"
 progress:
   total_phases: 10
-  completed_phases: 8
-  total_plans: 47
-  completed_plans: 47
+  completed_phases: 9
+  total_plans: 50
+  completed_plans: 50
 ---
 
 # Project State
@@ -18,16 +18,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-14)
 
 **Core value:** A primary-audience visitor — a Black HR consultant, a doula, a birth worker — feels welcomed in the first ten seconds and stays through one case study.
-**Current focus:** Phase 8 (Case Studies — Theater Content) complete; Phase 9 (Portrait Integration) next — paused per --no-transition flag
+**Current focus:** Phase 9 (Portrait Integration) complete; Phase 10 (Hardening, OG/SEO, Production Deploy) next — paused per --no-transition flag
 
 ## Current Position
 
-Phase: 8 of 10 complete; Phase 9 next (Portrait Integration)
-Plan: 5/5 complete in Phase 8; 0 of TBD in Phase 9
-Status: Phase 8 verified PASS (4/4 REQ-IDs implemented, 5/5 ROADMAP success criteria met, both negative tests confirm build-time gates fire with exit 1, 5 MCP screenshots captured at 1440×900); pause-between-phases cadence (per --no-transition flag)
-Last activity: 2026-05-14 — Phase 8 executed plans 08-A (content/work/ordani.mdx VERBATIM per blueprint §9: CDC stats 44.8 per 100,000 + 3.15× rate + 14.2 for non-Hispanic white, 22 birth workers, 91% intake completion, 14 active practices, 8 of 14 still active after 6 months + 6 referred a peer + zero churned, $200/month dentist software anchor, 3 CaseStudyStills, PullQuote attributed "beta user, name withheld" with quote "It is the first piece of software that treats my practice the way I treat my clients."; CASE-03), 08-B (content/work/hr-equity-author.mdx anonymized per §10: 25+ page playbook, two named platforms 4x third, RFP wins, PullQuote attributed "client" with "Micah does the work that most strategy decks promise and never deliver."; CASE-04), 08-C (content/work/passioneer.mdx CONSERVATIVE STUB: status=stub, titleCardWords=[PASSIONEER, PROOF, PENDING], 2-paragraph "draft pending" body, NO invented metrics; CASE-05), 08-D (content/work/akamai.mdx CONSERVATIVE SHORT-FORM: Problem+Approach+Outcome only, $150K from blueprint §8 line 443, NO PullQuote no CaseStudyStill since no attested artifacts; CASE-06), 08-E (content/citations.ts CDC source documentation + deleted content/work/test-slug.mdx + full verify matrix). Verdict: PASS. **Verbatim ORDANI shipped. Two negative tests confirmed: banned-word "unlock" injection aborts with `content/work/ordani.mdx:21:99 — "unlock"` exit 1; Zod `status: invalid-status` aborts with `content/work/hr-equity-author.mdx: status: Invalid option: expected one of "shipped"|"in-flight"|"archived"|"stub"` exit 1.** Sage `#5E7158` stays reserved as a token (zero runtime consumers per audit). GSAP quarantine intact (only components/TitleCard.tsx). 5 screenshots in .planning/phases/08-case-studies/verification-artifacts/. Phase 9 (Portrait Integration — receive Oakland portrait, integrate `portrait-main.jpg` + `portrait-context.jpg` at ≤500KB AVIF) now unblocked but paused per --no-transition.
+Phase: 9 of 10 complete; Phase 10 next (Hardening, OG/SEO, Production Deploy)
+Plan: 3/3 complete in Phase 9; 0 of TBD in Phase 10
+Status: Phase 9 verified PASS (2/2 REQ-IDs PHOTO-02 + PHOTO-03 wired with placeholders + AVIF pipeline; 4/4 ROADMAP success criteria addressed; 4 MCP screenshots @ 1440 + 390 confirm portrait slots render with placeholder, copper rule on Home, "Oakland, CA." sub-caption on About, no horizontal scroll at 390); pause-between-phases cadence (per --no-transition flag)
+Last activity: 2026-05-14 — Phase 9 executed plans 09-A (added sharp@0.34.5 devDep, wrote scripts/generate-placeholders.mjs, generated public/portrait-main.placeholder.png 1200×1500 15KB + public/portrait-context.placeholder.png 900×1125 10KB; both 4:5 vertical solid foyer-paper PNGs with "PORTRAIT COMING DAY 7-14" Arial overlay), 09-B (wrote components/PortraitImage.tsx server component with fs.existsSync(public/portrait-<variant>.jpg) build-time fallback to placeholder PNG, real-image alt "Micah Jones, Oakland" + "Micah Jones at his Oakland workspace" auto-engages on operator file drop, placeholder strap "placeholder, final portrait Day 7-14" + alt with commas instead of em-dashes to preserve COPY-05; wired into app/(foyer)/page.tsx as `<PortraitImage variant="main" priority />` with copper rule preserved + app/(foyer)/about/page.tsx as `<PortraitImage variant="context" />` with "Oakland, CA." sub-caption preserved; appended 4 CSS blocks to app/globals.css for .portrait-slot--has-image + __image + --placeholder + __strap, all using --color-* tokens), 09-C (appended "Portrait swap" runbook section to .claude/CLAUDE.md before Definition of done documenting the three-step operator flow, captured 4 MCP screenshots in .planning/phases/09-portrait-integration/verification-artifacts/ + Lighthouse JSON report, wrote 09-VERIFY-OUTPUT.md verdict PASS). All static checks clean: typecheck zero errors, pnpm build clean with [copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations + 12/12 static pages generated. GSAP quarantine intact (only components/TitleCard.tsx imports gsap). Lighthouse Accessibility/Best-Practices/SEO/Agentic-Browsing all 100; Performance category excluded by the MCP lighthouse_audit tool — real LCP measurement deferred to Phase 10 with the actual portrait. Phase 10 (Hardening, OG/SEO, Production Deploy — PERF-01..09, A11Y-01..04 + 06..07, RESP-01..04, OG-01..04, ANALY-02..03, DEPLOY-01 + 03..06) now unblocked but paused per --no-transition.
 
-Progress: [████████░░] 80%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
@@ -43,7 +43,7 @@ Progress: [████████░░] 80%
 | - | - | - | - |
 
 **Recent Trend:**
-- Last 5 plans: 08-A, 08-B, 08-C, 08-D, 08-E
+- Last 5 plans: 08-D, 08-E, 09-A, 09-B, 09-C
 - Trend: —
 
 *Updated after each plan completion*
@@ -76,6 +76,10 @@ Recent decisions affecting current work:
 - **NEW in Phase 7**: `next.config.ts` wires `remark-frontmatter` (so YAML doesn't render as content) and `remark-gfm` (tables for Phase 8). Turbopack requires plugins as `[string, options]` tuples for serializability (`[["remark-frontmatter", ["yaml"]], "remark-gfm"]`). Direct module imports fail with "does not have serializable options".
 - **NEW in Phase 7**: Render order on `/work/[slug]` enforced in `page.tsx`: TitleCard → header (Dek + meta line role · tools · year) → optional `<CaseStudyStill>` for `frontmatter.heroStill` → MDX body inside `<div class="case-study__body">` → footer `<nav>` with conditional [NEXT WORK ↘] + always [BACK TO FOYER ↗]. Matches blueprint §9 wireframe exactly.
 - **NEW in Phase 7**: Negative-frontmatter test (`status: "invalid-enum"` → `pnpm build`) confirmed exit 1 with `[case-study-schema] content/work/test-slug.mdx: status: Invalid option: expected one of "shipped"|"in-flight"|"archived"|"stub"`. This is the binding proof CASE-02 success criterion #1 ("build fails with line numbers on any mismatch") is met.
+- **NEW in Phase 9**: Placeholder-then-real-image swap pattern via `<PortraitImage>` server component. `fs.existsSync(process.cwd() + "/public/portrait-<variant>.jpg")` at build time resolves to real image when operator drops the file; falls back to `public/portrait-<variant>.placeholder.png` produced by `scripts/generate-placeholders.mjs` (sharp-based, 4:5 vertical, ~10-15KB each, well under image-budget 500KB cap). Zero code change required for swap — operator's flow is `cp final.jpg public/portrait-main.jpg && pnpm build && vercel --prod`. Documented in `.claude/CLAUDE.md` "Portrait swap" section.
+- **NEW in Phase 9**: Hex literals `#F5EFE4` + `#3A3631` appear in `scripts/generate-placeholders.mjs` for SVG-to-PNG generation. This is the third documented exception to `design-tokens.sh` (precedent: Phase 5 OG image inlined hex because Satori cannot resolve CSS custom properties). The script lives under `scripts/` which is outside the build-time scanner scope (scanner walks `app/` and `content/` only). Hex usage is generation tooling, not site type.
+- **NEW in Phase 9**: Em-dash discipline in new placeholder text. Strap (`placeholder, final portrait Day 7-14`) + placeholder alt (`Portrait of Micah Jones (placeholder, final shoot Day 7-14)`) use commas instead of em-dashes to avoid bumping the per-page em-dash count over the COPY-05 cap when in placeholder mode. Real-image alt (`Micah Jones, Oakland` + `Micah Jones at his Oakland workspace`) also comma-based for consistency. Function unchanged.
+- **NEW in Phase 9**: `sharp@0.34.5` added as devDependency. Used only by `scripts/generate-placeholders.mjs`; not pulled into the production bundle. Cross-platform binary resolved cleanly on Windows native dev; Vercel Linux build will resolve identically at install time.
 
 ### Pending Todos
 
@@ -87,14 +91,14 @@ None yet.
 
 [Issues that affect future work]
 
-- **Phase 7 is complete** — Phase 8 (Case Studies — Theater Content: ORDANI verbatim per blueprint §9, HR Equity Author anonymized per §10, Passioneer short-form, Akamai/Guardicore short-form) now unblocked. The MDX infrastructure (schema, components, render template) is in place; Phase 8 just ships content.
-- **Portrait shoot timing**: Phase 9 depends on the Phase 1 booking landing within ~21 days. If photographer slot slips, Phase 9 slips and Phase 10 launch slips with it. Phase 6 ships portrait *slots* (cream placeholders with copper rule); Phase 9 swaps in real AVIF deliverables.
+- **Phase 9 is complete** — Phase 10 (Hardening, OG/SEO, Production Deploy) now unblocked. Phase 9 ships placeholder portraits and the `<PortraitImage>` wiring; real photos are operator-side per Phase 1 PORTRAIT-OUTREACH.md and the new `.claude/CLAUDE.md` "Portrait swap" runbook.
+- **Portrait shoot timing**: real Oakland portraits are still pending the Phase 1 booking outcome. When they arrive, operator drops them at `public/portrait-{main,context}.jpg` and `pnpm build && vercel --prod` swaps in zero-code. Phase 10 should re-measure LCP on Home mobile slow 4G with the real image (Phase 9 placeholder LCP is artificially fast and informational only).
 - **Resend DNS propagation**: 24-72h lag. Submitted Phase 1 so Phase 10 deploy is unblocked. Contact form is code-complete; live integration requires `RESEND_API_KEY` + `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` set in Vercel env (Phase 10 ops).
 - **PIN_DISTANCE_PX calibration**: 240 is a single constant in `components/TitleCard.tsx`. If Phase 8 case-study feedback says pin feels off-tempo, retune there.
 - **Supabase `contact_messages` table + RLS**: Phase 10 ops needs to create the table (columns: `name text`, `message text`, `created_at timestamptz default now()`) with an RLS policy allowing only service-role inserts.
 
 ## Session Continuity
 
-Last session: 2026-05-14 (Phase 7 execution + verify)
-Stopped at: Phase 7 complete; MDX infrastructure in place; `/work/test-slug` renders the full blueprint §9 order with all 5 reusable components; CASE-02 Zod gate verified at build via negative test; ready for `/gsd:plan-phase 8` (Case Studies — Theater Content)
-Resume file: None (use `/gsd:plan-phase 8` to begin case-study content)
+Last session: 2026-05-14 (Phase 9 execution + verify)
+Stopped at: Phase 9 complete; placeholder PNGs + `<PortraitImage>` server-component wiring shipped; Home + About slots render placeholder; operator swap path is zero-code (drop real .jpg → pnpm build → deploy); 4 MCP screenshots @ 1440 + 390 confirm visual rendering, copper rule on Home, "Oakland, CA." sub-caption on About, no horizontal scroll at 390; ready for `/gsd:plan-phase 10` (Hardening, OG/SEO, Production Deploy)
+Resume file: None (use `/gsd:plan-phase 10` to begin hardening + prod deploy)

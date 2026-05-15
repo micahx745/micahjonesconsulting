@@ -85,6 +85,39 @@ The `copy-editor` subagent runs on every PR that touches `content/**/*.mdx`, `ap
 
 **Subagent invocation:** `/premium audit` triggers the copy-editor pass alongside the design-director, motion-engineer, perf-auditor, a11y-reviewer, case-study-writer, and visual-qa subagents. The audit gate blocks production deploy on copy-editor failure.
 
+## Portrait swap (when real photos arrive)
+
+The site ships with two placeholder PNGs at `public/portrait-main.placeholder.png` and
+`public/portrait-context.placeholder.png` (produced by `scripts/generate-placeholders.mjs`).
+When the real Oakland portraits land from the Phase 1 booking
+(see `docs/PORTRAIT-OUTREACH.md`), the swap is three steps:
+
+1. **Save the main vertical portrait as** `public/portrait-main.jpg` — 2x retina source,
+   1200×1500 ideal aspect ratio 4:5, JPEG or PNG (`next/image` AVIF-converts at request
+   time, ≤500KB enforced by harness `image-budget.sh`).
+2. **Save the secondary workspace shot as** `public/portrait-context.jpg` — same constraints.
+3. **Build and deploy:** `pnpm build && vercel --prod`.
+
+The `<PortraitImage>` server component (`components/PortraitImage.tsx`) checks for
+`public/portrait-<variant>.jpg` at build time. If present, it serves the real image with
+the real-image alt text (`Micah Jones, Oakland` on Home; `Micah Jones at his Oakland workspace`
+on About). If absent, it serves the placeholder PNG with a `placeholder, final portrait
+Day 7-14` strap.
+
+**No code changes are required.** The operator flow is purely file drop + build.
+
+Constraints:
+- 2x retina source. JPEG or PNG (`next/image` converts to AVIF/WebP automatically).
+- ≤500KB after AVIF conversion (harness `image-budget.sh` enforces at write boundary).
+- 4:5 vertical aspect ratio recommended (matches `.portrait-slot--column` exactly and
+  crops gracefully in `.portrait-slot--full-bleed` via `object-fit: cover`).
+
+To regenerate placeholders (if ever lost or re-tuned), run:
+
+```bash
+node scripts/generate-placeholders.mjs
+```
+
 ## Definition of done
 A page is done when:
 1. The signature interactions hold per blueprint §4f (TitleCard pin ~600ms, foyer↔theater dim 600ms ease-in-out).

@@ -21,6 +21,7 @@
 //         values: ship the work / trust the operator / show the receipts);
 //         REQUIREMENTS.md FOYER-04, FOYER-05.
 import type { Metadata } from "next";
+import { PortraitImage } from "@/components/PortraitImage";
 
 export const metadata: Metadata = {
   title: "About",
@@ -56,11 +57,9 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* RIGHT 4 col — vertical portrait + credits */}
+          {/* RIGHT 4 col — vertical portrait + credits (Phase 9 wired) */}
           <aside className="about-grid__column">
-            <div className="portrait-slot portrait-slot--column" aria-hidden>
-              <span className="portrait-slot__label">portrait — coming Day 7–14</span>
-            </div>
+            <PortraitImage variant="context" />
             <p className="about-grid__sub-caption">Oakland, CA.</p>
             <ul className="credits-list">
               <li>guardicore / akamai</li>

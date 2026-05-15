@@ -29,6 +29,7 @@
 import type { Metadata } from "next";
 import { ViewTransitionLink } from "@/components/view-transition-link";
 import { TitleCardComposition } from "@/components/TitleCardComposition";
+import { PortraitImage } from "@/components/PortraitImage";
 import { getSelectedWork } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
@@ -50,11 +51,11 @@ export default async function FoyerHomePage() {
         <p className="foyer-hero-subline">— product · growth · consulting. Oakland, CA.</p>
       </section>
 
-      {/* PORTRAIT SLOT — Phase 9 fills with portrait-main.jpg */}
+      {/* PORTRAIT (Phase 9). Renders public/portrait-main.jpg when present,
+          placeholder PNG otherwise. See .claude/CLAUDE.md "Portrait swap"
+          for the operator's swap flow. */}
       <section className="foyer-section foyer-section--portrait">
-        <div className="portrait-slot portrait-slot--full-bleed" aria-hidden>
-          <span className="portrait-slot__label">portrait — Oakland — coming Day 7–14</span>
-        </div>
+        <PortraitImage variant="main" priority />
         <hr className="copper-rule" aria-hidden />
       </section>
 

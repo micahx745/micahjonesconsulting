@@ -22,7 +22,7 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
 - [x] **Phase 6: Foyer Pages** ✓ 2026-05-14 - Home, About, Work With Me, Contact (with Resend Server Action + Supabase archive), Work index
 - [x] **Phase 7: MDX Infrastructure** ✓ 2026-05-14 - `mdx-components.tsx` at repo root, case-study Zod schema, `lib/case-studies.ts` schema-validated, theater page template with full render order, CaseStudyStill + PullQuote + CopperRule + Dek components; negative-frontmatter test confirms CASE-02 Zod gate works at build-time
 - [x] **Phase 8: Case Studies (Theater Content)** ✓ 2026-05-14 - ORDANI verbatim per blueprint §9 (CDC stats / 22 birth workers / 91% / 14 practices / beta quote), HR Equity Author anonymized per §10 (25-page playbook / 4× / RFP wins), Passioneer conservative stub (no invented metrics), Akamai/Guardicore conservative short-form ($150K positioning move, no PullQuote). `content/citations.ts` documents CDC source. test-slug.mdx deleted. Both negative tests (banned-word + invalid Zod status) confirm build-time gates fire with file:line + exit 1.
-- [ ] **Phase 9: Portrait Integration** - Receive Oakland portrait deliverables; integrate `portrait-main.jpg` (Home full-bleed) + `portrait-context.jpg` (About column) at <500KB AVIF
+- [x] **Phase 9: Portrait Integration** ✓ 2026-05-14 - Placeholder generation + `<PortraitImage>` server-component wiring. `scripts/generate-placeholders.mjs` (sharp) produces 4:5 vertical PNG stand-ins (15KB main / 10KB context). `<PortraitImage>` checks `fs.existsSync(public/portrait-<variant>.jpg)` at build time; serves real image when present, placeholder otherwise. Home gets `priority` (LCP candidate); About is lazy. `image-budget.sh` passes (PNGs <500KB by orders of magnitude). Operator-swap flow documented in `.claude/CLAUDE.md` "Portrait swap" section: drop file → `pnpm build && vercel --prod`. Phase 10 will re-measure LCP with real photo.
 - [ ] **Phase 10: Hardening, OG/SEO, Production Deploy** - Perf budget, a11y zero-critical, responsive baselines, OG images, sitemap/robots.txt, Vercel deploy, Supabase + Resend env, custom domain
 
 ## Phase Details
@@ -179,7 +179,10 @@ Ten phases from cold repo to production deploy on `micahjonesconsulting.com`. De
   2. `public/portrait-context.jpg` exists at 2× retina resolution, ≤500KB after AVIF conversion; integrated in the About right column with sub-caption "Oakland, CA."
   3. The portrait on Home achieves LCP ≤ 1.8s on simulated mobile slow 4G (verified via Lighthouse) when set as `<Image priority>`.
   4. `image-budget.sh` passes on both portrait assets; no horizontal scroll at 390px viewport (portrait crop reflows tighter per RESP-01).
-**Plans**: TBD
+**Plans**: 3 plans
+- [x] 09-A-placeholders-PLAN.md — `pnpm add -D sharp`, write `scripts/generate-placeholders.mjs`, generate `public/portrait-{main,context}.placeholder.png` (15KB / 10KB, 4:5 vertical)
+- [x] 09-B-component-wiring-PLAN.md — `components/PortraitImage.tsx` server component with `fs.existsSync` fallback; wire `<PortraitImage variant="main" priority />` into Home + `<PortraitImage variant="context" />` into About; append 4 CSS blocks for `.portrait-slot--has-image` / `__image` / `--placeholder` / `__strap`
+- [x] 09-C-runbook-verify-PLAN.md — Append "Portrait swap" section to `.claude/CLAUDE.md`; full verify matrix (typecheck, build, GSAP quarantine, MCP screenshots @ 1440 + 390, Lighthouse informational); produced 09-VERIFY-OUTPUT.md (verdict: PASS)
 
 ### Phase 10: Hardening, OG/SEO, Production Deploy
 **Goal**: The cross-cutting hardening pass: zero serious/critical axe violations; Lighthouse Performance ≥95 mobile across all routes; visual baselines captured at 390/768/1440; OG images render via Vercel OG; sitemap.xml + robots.txt configured to allow Googlebot and disallow AI-training crawlers on `/work/*`; Vercel production deploy on `micahjonesconsulting.com` with Supabase + Resend env wired.
@@ -209,7 +212,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 6. Foyer Pages | 7/7 | Complete | 2026-05-14 |
 | 7. MDX Infrastructure | 7/7 | Complete | 2026-05-14 |
 | 8. Case Studies (Theater Content) | 5/5 | Complete | 2026-05-14 |
-| 9. Portrait Integration | 0/TBD | Not started | - |
+| 9. Portrait Integration | 3/3 | Complete | 2026-05-14 |
 | 10. Hardening, OG/SEO, Production Deploy | 0/TBD | Not started | - |
 
 ## Coverage

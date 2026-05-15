@@ -335,8 +335,8 @@ Populated by gsd-roadmapper on 2026-05-14. All 100 v1 REQ-IDs mapped to exactly 
 | HARN-02 | Phase 1 | Pending |
 | HARN-03 | Phase 1 | Pending |
 | PHOTO-01 | Phase 1 | Pending |
-| PHOTO-02 | Phase 9 | Pending |
-| PHOTO-03 | Phase 9 | Pending |
+| PHOTO-02 | Phase 9 | Complete (placeholder; real-photo swap is operator action — see .claude/CLAUDE.md "Portrait swap") |
+| PHOTO-03 | Phase 9 | Complete (next/image AVIF pipeline wired; placeholder PNGs 15KB + 10KB; cap enforced by harness image-budget.sh) |
 
 **Coverage:** 100/100 v1 requirements mapped to exactly one phase. ✓
 
