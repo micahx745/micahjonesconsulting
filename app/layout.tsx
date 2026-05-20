@@ -36,9 +36,9 @@ export const metadata: Metadata = {
   },
   description:
     "Independent operator. Builds go-to-market for B2B software AND ships his own products. Two exits. Oakland.",
-  metadataBase: new URL("https://micahjonesconsulting.com"),
+  metadataBase: new URL("https://www.micahjonesconsulting.com"),
   alternates: {
-    canonical: "https://micahjonesconsulting.com",
+    canonical: "https://www.micahjonesconsulting.com",
   },
 };
 
@@ -63,7 +63,7 @@ const PERSON_LD = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Micah Jones",
-  url: "https://micahjonesconsulting.com",
+  url: "https://www.micahjonesconsulting.com",
   jobTitle: "Independent operator",
   description:
     "Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. $17M+ in client revenue moved 2013–2023. Contributed to two acquisitions: Guardicore → Akamai and TechValidate → SurveyMonkey. Currently building Ordani.",
@@ -82,10 +82,15 @@ const PERSON_LD = {
     "Positioning research",
     "HIPAA software",
   ],
+  // Person.worksFor without a dedicated org domain. The Ordani case
+  // study lives at /work/ordani but that's NOT Ordani's homepage —
+  // Schema.org Organization.url expects the entity's actual site.
+  // Until Ordani has its own domain, describe the relationship as
+  // a foundedOf claim referencing the case study, not as a separate
+  // Organization with a misleading url.
   worksFor: {
     "@type": "Organization",
     name: "Ordani",
-    url: "https://micahjonesconsulting.com/work/ordani",
   },
   alumniOf: [
     { "@type": "Organization", name: "Guardicore" },
@@ -108,7 +113,10 @@ const ORG_LD = {
   name: "Ordani",
   description:
     "A live-beta system of record for an underserved, regulated industry — built end to end by Micah Jones and already in the hands of real users.",
-  url: "https://micahjonesconsulting.com/work/ordani",
+  // mainEntityOfPage points at the case study (the only public page
+  // about Ordani right now). Avoids putting a case-study URL in the
+  // Organization.url slot, which expects the org's actual site.
+  mainEntityOfPage: "https://www.micahjonesconsulting.com/work/ordani",
   founder: { "@type": "Person", name: "Micah Jones" },
   foundingLocation: {
     "@type": "Place",

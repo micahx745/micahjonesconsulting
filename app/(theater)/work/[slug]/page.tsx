@@ -39,9 +39,13 @@ export async function generateStaticParams() {
 // studies will be statically generated via the params above.
 export const dynamicParams = true;
 
-// Phase 10 — OG-02. Per-route metadata for /work/[slug]. Title is truncated
-// to 60 chars and description to 155 chars (with ellipsis when needed).
-// OG image route already exists at /work/[slug]/opengraph-image (Phase 5).
+// Per-route metadata for /work/[slug]. The root layout's title template
+// ("%s — Micah Jones") supplies the brand suffix — we just pass the
+// case study title here. Description clamped to ~155 chars with ellipsis.
+//
+// Don't manually append " — Micah Jones" to the title; that's what the
+// template does. The previous version did both, producing the bug
+// "title — Micah Jones — Micah Jones" on every case study page.
 export async function generateMetadata({
   params,
 }: {
@@ -49,19 +53,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const cs = await getCaseStudyBySlug(slug);
-  if (!cs) return { title: "Not found — Micah Jones" };
+  if (!cs) return { title: "Not found" };
 
-  const rawTitle = `${cs.title} — Micah Jones`;
-  const title = rawTitle.length <= 60 ? rawTitle : `${rawTitle.slice(0, 57)}...`;
+  // Case study titles should be ≤45 chars so they survive template +
+  // SERP truncation. If a title is longer, it was authored too long —
+  // fix in MDX frontmatter, not by clamping at runtime.
+  const title = cs.title;
   const description =
     cs.dek.length <= 155 ? cs.dek : `${cs.dek.slice(0, 152).trimEnd()}...`;
-  const url = `https://micahjonesconsulting.com/work/${slug}`;
+  const url = `https://www.micahjonesconsulting.com/work/${slug}`;
 
   return {
     title,
     description,
+    alternates: { canonical: url },
     openGraph: {
-      title,
+      title: `${cs.title} — Micah Jones`,
       description,
       type: "article",
       url,
@@ -69,7 +76,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: `${cs.title} — Micah Jones`,
       description,
     },
   };

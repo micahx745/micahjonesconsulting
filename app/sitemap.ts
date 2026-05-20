@@ -23,7 +23,7 @@
 import type { MetadataRoute } from "next";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
-const BASE_URL = "https://micahjonesconsulting.com";
+const BASE_URL = "https://www.micahjonesconsulting.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();

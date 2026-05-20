@@ -69,39 +69,56 @@ export function WorldSwitcher() {
       document.querySelectorAll<HTMLElement>("[data-world]"),
     );
 
-    // Initial world — find the section currently closest to viewport
-    // center and apply its world IMMEDIATELY, before the observer fires.
-    // Without this, a hard refresh deep into the page leaves the bg as
-    // the CSS default (terracotta) until the user scrolls — the exact
-    // class of contrast-failure-on-deeplink bug the review flagged.
-    const center = window.innerHeight / 2;
-    let closest: HTMLElement | null = null;
-    let closestDist = Infinity;
-    for (const s of sections) {
-      const r = s.getBoundingClientRect();
-      // Skip sections fully out of viewport.
-      if (r.bottom < 0 || r.top > window.innerHeight) continue;
-      const sectionCenter = r.top + r.height / 2;
-      const dist = Math.abs(sectionCenter - center);
-      if (dist < closestDist) {
-        closestDist = dist;
-        closest = s;
+    // Shared picker — given a list of sections, pick the one whose
+    // center is closest to viewport center. Skips fully off-screen
+    // sections. Used both for the initial-state resolution and for
+    // the live observer (so fast scrolls that cross multiple sections
+    // in one callback always select the centered one, not last-in-DOM).
+    function pickCentered(candidates: HTMLElement[]): HTMLElement | null {
+      const viewportCenter = window.innerHeight / 2;
+      let closest: HTMLElement | null = null;
+      let closestDist = Infinity;
+      for (const s of candidates) {
+        const r = s.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) continue;
+        const sectionCenter = r.top + r.height / 2;
+        const dist = Math.abs(sectionCenter - viewportCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = s;
+        }
       }
+      return closest;
     }
-    if (closest) {
-      const initial = resolveWorld(closest.getAttribute("data-world"));
-      if (initial !== null) setWorld(initial);
+
+    // Initial world — apply before attaching observer. Without this,
+    // a hard refresh deep into the page leaves the bg as the CSS
+    // default until the user scrolls.
+    const initial = pickCentered(sections);
+    if (initial) {
+      const name = resolveWorld(initial.getAttribute("data-world"));
+      if (name !== null) setWorld(name);
     }
 
     const observer = new IntersectionObserver(
       (entries) => {
+        // Collect every section that's currently intersecting the
+        // center band. On a fast mobile flick two sections can be in
+        // the band at once — pick the one actually closest to center,
+        // not the last in iteration order (which was the bug).
+        const intersecting: HTMLElement[] = [];
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const name = resolveWorld(
-            (entry.target as HTMLElement).getAttribute("data-world"),
-          );
-          if (name !== null) setWorld(name);
+          if (entry.isIntersecting) {
+            intersecting.push(entry.target as HTMLElement);
+          }
         });
+        if (intersecting.length === 0) return;
+        const target =
+          intersecting.length === 1
+            ? intersecting[0]!
+            : pickCentered(intersecting) ?? intersecting[0]!;
+        const name = resolveWorld(target.getAttribute("data-world"));
+        if (name !== null) setWorld(name);
       },
       {
         // Section is "active" when it crosses viewport center.

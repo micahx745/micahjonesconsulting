@@ -33,31 +33,38 @@ export function Nav() {
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
 
-  // Body scroll lock + focus management when overlay opens/closes.
+  // Body scroll lock + focus management + inert sibling content on
+  // open. Without `inert` on the rest of the document, AT virtual
+  // cursors (NVDA browse mode, JAWS) can arrow-navigate INTO the
+  // siblings behind aria-modal=true. inert makes the modal-ness real.
   useEffect(() => {
     if (typeof document === "undefined") return;
 
+    const main = document.getElementById("main-content");
+    const siteNav = document.querySelector<HTMLElement>("nav.cw-nav");
+
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      // Move focus to the close button after the transition starts.
-      // requestAnimationFrame gives the dialog a moment to become
-      // tabbable before we move focus into it.
+      if (main) main.inert = true;
+      if (siteNav) siteNav.inert = true;
       const raf = requestAnimationFrame(() => {
         closeBtnRef.current?.focus();
       });
       return () => {
         cancelAnimationFrame(raf);
         document.body.style.overflow = "";
+        if (main) main.inert = false;
+        if (siteNav) siteNav.inert = false;
       };
     }
 
     document.body.style.overflow = "";
-    // Return focus to the menu trigger when closing — only if we
-    // were just open. (On first paint isOpen is false so we don't
-    // steal focus.)
-    if (menuBtnRef.current === document.activeElement) return;
+    if (main) main.inert = false;
+    if (siteNav) siteNav.inert = false;
     return () => {
       document.body.style.overflow = "";
+      if (main) main.inert = false;
+      if (siteNav) siteNav.inert = false;
     };
   }, [isOpen]);
 

@@ -9,16 +9,17 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About — Micah Jones",
+  // Short title; root template appends " — Micah Jones" once.
+  title: "About",
   description:
-    "Independent operator in Oakland. $17M+ in client revenue. Two exits — Guardicore → Akamai, TechValidate → SurveyMonkey. Now building Ordani.",
-  alternates: { canonical: "https://micahjonesconsulting.com/about" },
+    "Independent operator in Oakland. $17M+ in client revenue (2013–2023). Two exits at companies I helped build: Guardicore → Akamai, TechValidate → SurveyMonkey. Now building Ordani.",
+  alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
     title: "About — Micah Jones",
     description:
-      "Independent operator in Oakland. $17M+ in client revenue. Two exits. Building Ordani.",
+      "Independent operator in Oakland. $17M+ in client revenue (2013–2023). Two exits. Building Ordani.",
     type: "profile",
-    url: "https://micahjonesconsulting.com/about",
+    url: "https://www.micahjonesconsulting.com/about",
   },
 };
 
@@ -47,13 +48,12 @@ export default function AboutPage() {
         <h2 className="cw-about__h">Receipts</h2>
         <ul className="cw-about__list">
           <li>
-            <strong>$17M+</strong> in attributable client revenue across
-            engagements 2013&ndash;2023.
+            <strong>$17M+</strong> in client revenue (2013&ndash;2023).
           </li>
           <li>
-            Contributed to <strong>two acquisitions</strong>: Guardicore
-            (acquired by Akamai, 2021) and TechValidate (acquired by
-            SurveyMonkey, 2015).
+            <strong>Two exits</strong> at companies I helped build:
+            Guardicore (acquired by Akamai, 2021) and TechValidate
+            (acquired by SurveyMonkey, 2015).
           </li>
           <li>
             Engagements with <strong>Guardicore, TechValidate, Flexport,
@@ -88,6 +88,9 @@ export default function AboutPage() {
           limited number of advisory engagements with founders at the
           product-and-GTM seam — the ones where the sales team and product
           team have stopped talking to each other.
+        </p>
+        <p>
+          <a href="/work">See the case studies →</a>
         </p>
 
         <h2 className="cw-about__h">Where to find me</h2>

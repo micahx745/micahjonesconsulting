@@ -14,10 +14,19 @@ const nextConfig: NextConfig = {
     root: __dirname,
   },
 
-  // Enable React's <ViewTransition> primitive for foyer↔theater route navigation.
-  // The component itself is imported from 'react' (not 'next') in app/layout.tsx (wired in Phase 2).
   experimental: {
     viewTransition: true,
+  },
+
+  // 301 redirects for slug renames.
+  async redirects() {
+    return [
+      {
+        source: "/work/akamai",
+        destination: "/work/guardicore",
+        permanent: true,
+      },
+    ];
   },
 };
 

@@ -162,7 +162,11 @@ export function Hero() {
       }
     }
     function apply() {
-      h1!.style.transform = `translate(${tx * 6}px, ${ty * 4}px)`;
+      // Scale the parallax range with viewport so a 4K display doesn't
+      // get 19px of drift (which reads as instability, not depth).
+      // Caps at the 1920px baseline; sub-1920 scales down proportionally.
+      const scale = Math.min(window.innerWidth / 1920, 1);
+      h1!.style.transform = `translate(${tx * 6 * scale}px, ${ty * 4 * scale}px)`;
       pending = false;
     }
     window.addEventListener("pointermove", onMove);
@@ -193,7 +197,7 @@ export function Hero() {
           <span ref={captureLine}>
             {/* Screen-reader fallback: the rolling stack is decorative
                 motion; the SR-only static label is read once. */}
-            <span className="cw-sr-only">system.</span>
+            <span className="cw-sr-only">go-to-market and product.</span>
             <span className="cw-roll" aria-hidden>
               <span className="cw-stack" ref={rollRef}>
                 {ROLLING_WORDS.map((w) => (

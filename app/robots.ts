@@ -30,7 +30,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/v1/", "/v2/", "/v3/", "/v4/"],
       },
     ],
-    sitemap: "https://micahjonesconsulting.com/sitemap.xml",
-    host: "https://micahjonesconsulting.com",
+    sitemap: "https://www.micahjonesconsulting.com/sitemap.xml",
+    host: "https://www.micahjonesconsulting.com",
   };
 }

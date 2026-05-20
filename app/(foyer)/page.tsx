@@ -4,14 +4,14 @@
 // themselves; WorldSwitcher observes them and cross-fades the page
 // palette as each crosses viewport center.
 //
-// Section order matches the brief:
-//   Hero       → tangerine
-//   Marquee    → tangerine
-//   Clients    → cream
-//   Ordani     → cobalt   (live beta + email signup)
-//   Products   → ink
-//   Companies  → ink
-//   Footer     → tangerine
+// Section order + worlds (Terracotta Workshop palette):
+//   Hero       → terracotta
+//   Marquee    → terracotta
+//   Clients    → bone
+//   Ordani     → petrol   (live beta + email signup)
+//   Products   → espresso
+//   Companies  → espresso
+//   Footer     → terracotta
 //
 // Copy in the mockup is placeholder per the brief — Micah will finalize.
 // "No 3D printing, no hardware, no maker content" — workshop bench is
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
   },
   description:
     "Independent operator. $17M+ in client revenue. Two exits: Guardicore → Akamai, TechValidate → SurveyMonkey. Now building Ordani in Oakland.",
-  alternates: { canonical: "https://micahjonesconsulting.com" },
+  alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
       "Independent operator. $17M+ in client revenue. Two exits. Now building Ordani in Oakland.",
     type: "website",
-    url: "https://micahjonesconsulting.com",
+    url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
   },
   twitter: {
@@ -51,26 +51,33 @@ export const metadata: Metadata = {
   },
 };
 
+// Each offering links to a case study that demonstrates it — keeps
+// the home as the front of a real nav surface instead of "interactive
+// theater" (per review pass #4 B5).
 const CLIENT_OFFERS = [
   {
     n: "01",
     title: "Go-to-market",
     desc: "Positioning, motion, and the plan to win the market.",
+    href: "/work/guardicore",
   },
   {
     n: "02",
     title: "Product building",
     desc: "From idea to working software — designed and shipped.",
+    href: "/work/ordani",
   },
   {
     n: "03",
     title: "Launches",
     desc: "Demand, narrative, and the cascade that follows a launch.",
+    href: "/work/hr-equity-author",
   },
   {
     n: "04",
     title: "Growth systems",
     desc: "The repeatable engine underneath the numbers.",
+    href: "/work",
   },
 ] as const;
 
@@ -135,11 +142,13 @@ export default function ColorWorldsHome() {
 
         <ul className="cw-worklist cw-reveal">
           {CLIENT_OFFERS.map((row) => (
-            <li key={row.n} className="cw-workrow" data-cursor>
-              <span className="cw-fill" aria-hidden />
-              <span className="cw-num">{row.n}</span>
-              <span className="cw-title">{row.title}</span>
-              <span className="cw-desc">{row.desc}</span>
+            <li key={row.n} className="cw-workrow">
+              <a href={row.href} className="cw-workrow__link">
+                <span className="cw-fill" aria-hidden />
+                <span className="cw-num">{row.n}</span>
+                <span className="cw-title">{row.title}</span>
+                <span className="cw-desc">{row.desc}</span>
+              </a>
             </li>
           ))}
         </ul>
@@ -196,14 +205,16 @@ export default function ColorWorldsHome() {
         </SplitReveal>
 
         <ul className="cw-cards">
-          <li className="cw-card cw-reveal" data-cursor>
-            <span className="cw-tag">AI content platform</span>
-            <h3>Passioneer</h3>
-            <p>
-              An AI-native platform for creators — streaming chat, generation,
-              and a publishing pipeline in one place.
-            </p>
-            <span className="cw-open">See more →</span>
+          <li className="cw-card cw-reveal">
+            <a href="/work/passioneer" className="cw-card__link">
+              <span className="cw-tag">AI content platform</span>
+              <h3>Passioneer</h3>
+              <p>
+                An AI-native platform for creators — streaming chat,
+                generation, and a publishing pipeline in one place.
+              </p>
+              <span className="cw-open">See more →</span>
+            </a>
           </li>
         </ul>
       </section>
@@ -249,7 +260,7 @@ export default function ColorWorldsHome() {
                                 >
             Book a call ↗
           </a>
-          <a href="mailto:hello@micahjonesconsulting.com" data-cursor>
+          <a href="mailto:hello@micahjonesconsulting.com">
             hello@micahjonesconsulting.com
           </a>
           <span style={{ opacity: 0.5, border: "none" }}>

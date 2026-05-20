@@ -9,16 +9,17 @@ import type { Metadata } from "next";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
-  title: "Work — Micah Jones",
+  // Short title; root template appends " — Micah Jones" once.
+  title: "Work",
   description:
     "Case studies from a decade of GTM, product, and platform engagements. Guardicore, TechValidate, HR equity author, and Ordani.",
-  alternates: { canonical: "https://micahjonesconsulting.com/work" },
+  alternates: { canonical: "https://www.micahjonesconsulting.com/work" },
   openGraph: {
     title: "Work — Micah Jones",
     description:
       "Case studies from a decade of GTM, product, and platform engagements.",
     type: "website",
-    url: "https://micahjonesconsulting.com/work",
+    url: "https://www.micahjonesconsulting.com/work",
   },
 };
 
@@ -56,7 +57,9 @@ export default async function WorkIndexPage() {
       </ul>
 
       <p className="cw-about__back">
-        <a href="/">&larr; Back to home</a>
+        <a href="/about">&larr; More about how I work</a>
+        <span aria-hidden> &middot; </span>
+        <a href="/">Back to home</a>
       </p>
     </section>
   );

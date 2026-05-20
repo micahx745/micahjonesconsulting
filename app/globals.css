@@ -5779,20 +5779,28 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   list-style: none;
   padding: 0;
 }
+/* Workrow is now a real <li> wrapping an <a> — the link carries the
+ * click affordance + hover-fill animation. Previous version was
+ * "interactive theater" (cursor:pointer + hover-fill on a non-link).
+ * The whole row is clickable; the inner spans render the fill + text. */
 [data-mode="cw"] .cw-workrow {
   border-bottom: 1.5px solid currentColor;
-  padding: 30px 8px;
+  position: relative;
+  overflow: hidden;
+}
+[data-mode="cw"] .cw-workrow__link {
   display: flex;
   align-items: baseline;
   gap: 28px;
+  padding: 30px 8px;
+  color: inherit;
+  text-decoration: none;
   position: relative;
-  overflow: hidden;
-  cursor: pointer;
 }
 [data-mode="cw"] .cw-workrow .cw-num {
   font-family: var(--font-cw-mono);
   font-size: 13px;
-  opacity: 0.6;
+  opacity: 0.7;
   min-width: 34px;
   z-index: 2;
 }
@@ -5809,7 +5817,7 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin-left: auto;
   font-size: 15px;
   max-width: 300px;
-  opacity: 0.7;
+  opacity: 0.78;
   text-align: right;
   z-index: 2;
 }
@@ -5822,20 +5830,24 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
 }
-[data-mode="cw"] .cw-workrow:hover .cw-fill {
+[data-mode="cw"] .cw-workrow__link:hover .cw-fill,
+[data-mode="cw"] .cw-workrow__link:focus-visible .cw-fill {
   transform: scaleY(1);
 }
-[data-mode="cw"] .cw-workrow:hover .cw-title {
+[data-mode="cw"] .cw-workrow__link:hover .cw-title,
+[data-mode="cw"] .cw-workrow__link:focus-visible .cw-title {
   transform: translateX(18px);
   color: var(--color-cw-bone);
 }
-[data-mode="cw"] .cw-workrow:hover .cw-num,
-[data-mode="cw"] .cw-workrow:hover .cw-desc {
+[data-mode="cw"] .cw-workrow__link:hover .cw-num,
+[data-mode="cw"] .cw-workrow__link:hover .cw-desc,
+[data-mode="cw"] .cw-workrow__link:focus-visible .cw-num,
+[data-mode="cw"] .cw-workrow__link:focus-visible .cw-desc {
   color: var(--color-cw-bone);
   opacity: 1;
 }
 @media (max-width: 760px) {
-  [data-mode="cw"] .cw-workrow {
+  [data-mode="cw"] .cw-workrow__link {
     flex-wrap: wrap;
   }
   [data-mode="cw"] .cw-workrow .cw-desc {
@@ -6016,34 +6028,37 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin-top: 4px;
 }
 
-/* Product cards */
+/* Product cards.
+ * Grid uses auto-fit/minmax so a single card fills full width without
+ * an empty right column (was reading as a missing card). The card
+ * itself wraps a real <a class="cw-card__link"> — the link is the
+ * click affordance, no more "interactive theater" promises. */
 [data-mode="cw"] .cw-cards {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 24px;
   margin-top: 64px;
   list-style: none;
   padding: 0;
 }
-@media (min-width: 900px) {
-  [data-mode="cw"] .cw-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 [data-mode="cw"] .cw-card {
   border: 1.5px solid currentColor;
   border-radius: 6px;
-  padding: 36px;
   min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
   transition:
     background-color 0.3s,
     color 0.3s;
+}
+[data-mode="cw"] .cw-card__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 36px;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
 }
 [data-mode="cw"] .cw-card .cw-tag {
   font-family: var(--font-cw-mono);
@@ -6078,18 +6093,31 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   gap: 8px;
   align-items: center;
 }
-[data-mode="cw"] .cw-card:hover {
+[data-mode="cw"] .cw-card:has(.cw-card__link:hover),
+[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) {
   background: currentColor;
 }
-[data-mode="cw"] .cw-card:hover .cw-tag,
-[data-mode="cw"] .cw-card:hover h3,
-[data-mode="cw"] .cw-card:hover p,
-[data-mode="cw"] .cw-card:hover .cw-open {
+[data-mode="cw"] .cw-card:has(.cw-card__link:hover) .cw-tag,
+[data-mode="cw"] .cw-card:has(.cw-card__link:hover) h3,
+[data-mode="cw"] .cw-card:has(.cw-card__link:hover) p,
+[data-mode="cw"] .cw-card:has(.cw-card__link:hover) .cw-open,
+[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-tag,
+[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) h3,
+[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) p,
+[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-open {
   color: var(--cw-bg);
 }
 [data-mode="cw"] .cw-card:hover .cw-tag,
 [data-mode="cw"] .cw-card:hover p {
   opacity: 0.9;
+}
+
+/* Marquee hover-pause — applies to both the service marquee and the
+ * companies marquee. WCAG 2.2.2 (Pause, Stop, Hide) mitigation:
+ * users can hover to read; reduced-motion CSS still halts entirely. */
+[data-mode="cw"] .cw-marquee:hover .cw-track,
+[data-mode="cw"] .cw-companies:hover .cw-track {
+  animation-play-state: paused;
 }
 
 /* Companies */

@@ -22,12 +22,16 @@ export function OrdaniBetaForm() {
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [isPending, startTransition] = useTransition();
 
+  // Same regex on client + server so the UX never gets stuck submitting
+  // an email the server will reject.
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = String(form.get("email") ?? "").trim();
-    if (!email || !email.includes("@")) {
-      setStatus({ kind: "error", message: "Real email, please." });
+    if (!EMAIL_RE.test(email)) {
+      setStatus({ kind: "error", message: "That email doesn't look valid." });
       return;
     }
     startTransition(async () => {

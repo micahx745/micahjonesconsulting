@@ -109,7 +109,7 @@ export function CWOGComposition({
             letterSpacing: "0.02em",
           }}
         >
-          micahjonesconsulting.com
+          www.micahjonesconsulting.com
         </span>
       </div>
     </div>

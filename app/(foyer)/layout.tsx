@@ -43,7 +43,12 @@ export default function ColorWorldsLayout({
       <Nav />
       <WorldSwitcher />
       <ScrollReveal />
-      <main id="main-content">{children}</main>
+      {/* tabIndex={-1} so the skip link can programmatic-focus the
+        * <main> without making it a tab stop in regular nav flow.
+        * Stops SR from re-announcing the whole region on focus. */}
+      <main id="main-content" tabIndex={-1}>
+        {children}
+      </main>
     </div>
   );
 }
