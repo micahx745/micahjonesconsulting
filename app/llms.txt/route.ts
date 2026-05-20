@@ -27,7 +27,7 @@ Strategy and software, shipped by the same pair of hands. Four offerings:
 ## Background
 
 - 2013–2023: Growth, GTM, and platform strategy roles at Guardicore, TechValidate, Flexport, Cuebiq, Postmates
-- Currently solo since 2024; building Ordani in private beta
+- Currently building Ordani in private beta
 - Based in Oakland, CA
 
 ## Pages worth reading
@@ -40,7 +40,7 @@ Strategy and software, shipped by the same pair of hands. Four offerings:
 
 ## Contact
 - Email: hello@micahjonesconsulting.com
-- LinkedIn: https://www.linkedin.com/in/micahjones/
+- LinkedIn: https://www.linkedin.com/in/micah-j/
 `;
 
   return new Response(body, {

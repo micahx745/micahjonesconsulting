@@ -151,7 +151,7 @@ export default async function TheaterCaseStudyPage({
         <MDXContent />
       </div>
 
-      {/* 5. Footer nav — [NEXT WORK ↘] [BACK TO FOYER ↗] */}
+      {/* 5. Footer nav — [NEXT WORK ↘] [← BACK TO HOME] */}
       <nav className="case-study__nav" aria-label="case study navigation">
         {next ? (
           <ViewTransitionLink
@@ -162,7 +162,7 @@ export default async function TheaterCaseStudyPage({
           </ViewTransitionLink>
         ) : null}
         <ViewTransitionLink href="/" className="case-study__nav-link">
-          back to foyer ↗
+          ← back to home
         </ViewTransitionLink>
       </nav>
     </article>

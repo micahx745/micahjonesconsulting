@@ -5138,11 +5138,14 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
  * vertical center of the viewport.
  * ================================================================ */
 [data-mode="cw"] {
-  /* Initial world = tangerine (hero). Vars get mutated by
-   * WorldSwitcher.tsx as sections cross viewport center. */
+  /* Initial world = terracotta (hero). Mirror of WorldSwitcher's
+   * `terracotta` map entry exactly so no-JS and pre-hydration paints
+   * use the same legible bg/fg pair (bone on terracotta clears AA).
+   * The previous default had espresso on terracotta = ~2.3:1 which
+   * failed AA for body text and AA-large for the 196px headline. */
   --cw-bg: var(--color-cw-terracotta);
-  --cw-fg: var(--color-cw-espresso);
-  --cw-accent: var(--color-cw-petrol);
+  --cw-fg: var(--color-cw-bone);
+  --cw-accent: var(--color-cw-espresso);
 
   background-color: var(--cw-bg);
   color: var(--cw-fg);
@@ -5414,9 +5417,7 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   }
 }
 
-/* Custom cursor styles removed — Cursor.tsx is deleted, system cursor
- * is the source of truth. (data-cursor / data-magnetic attributes on
- * markup are intentional no-ops in case the effect comes back.) */
+/* Custom cursor removed — system cursor is the source of truth. */
 
 /* Nav. mix-blend-mode: difference keeps text legible against any
  * world bg. White text is the source; difference inverts to whatever

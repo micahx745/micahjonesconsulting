@@ -22,6 +22,11 @@
 
 import { useEffect } from "react";
 
+// Worlds (Terracotta Workshop palette):
+//   terracotta — hero / service marquee / footer (loud, declarative)
+//   bone       — clients / about / work (calm, editorial)
+//   petrol     — ordani (saturated, product-band feel)
+//   espresso   — engagements at scale / companies marquee (depth, archive)
 type WorldName = "terracotta" | "bone" | "petrol" | "espresso";
 
 interface World {

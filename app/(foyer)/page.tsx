@@ -104,7 +104,7 @@ const SERVICE_MARQUEE = [
 export default function ColorWorldsHome() {
   return (
     <>
-      {/* HERO + MARQUEE — tangerine */}
+      {/* HERO + MARQUEE — terracotta */}
       <Hero />
 
       <div className="cw-marquee" data-section data-world="terracotta">
@@ -123,7 +123,7 @@ export default function ColorWorldsHome() {
         </div>
       </div>
 
-      {/* CLIENTS — cream */}
+      {/* CLIENTS — bone */}
       <section
         className="cw-block"
         id="clients"
@@ -156,7 +156,7 @@ export default function ColorWorldsHome() {
         <RevenueTick />
       </section>
 
-      {/* ORDANI — federal blue — live product, NOT a side project.
+      {/* ORDANI — petrol — live product, NOT a side project.
           The h2 carries .cw-bleed — the one ink-bleed display headline
           per page, per the texture research. Giant Ordani word reads
           as pulp-ink, not pixel-text. */}
@@ -206,14 +206,29 @@ export default function ColorWorldsHome() {
 
         <ul className="cw-cards">
           <li className="cw-card cw-reveal">
-            <a href="/work/passioneer" className="cw-card__link">
-              <span className="cw-tag">AI content platform</span>
-              <h3>Passioneer</h3>
+            <a href="/work/hr-equity-author" className="cw-card__link">
+              <span className="cw-tag">Author platform</span>
+              <h3>Algorithm + content for an author</h3>
               <p>
-                An AI-native platform for creators — streaming chat,
-                generation, and a publishing pipeline in one place.
+                Multi-platform algorithm and content strategy for an author
+                working in HR and organizational change. Inbound proposal
+                wins. A 25+ page playbook. Two of three named platforms
+                outperformed the third by 4&times;.
               </p>
-              <span className="cw-open">See more →</span>
+              <span className="cw-open">See the engagement →</span>
+            </a>
+          </li>
+          <li className="cw-card cw-reveal">
+            <a href="/about" className="cw-card__link">
+              <span className="cw-tag">Enterprise software · 2013–2023</span>
+              <h3>GTM at scale</h3>
+              <p>
+                Growth, GTM, and platform strategy at companies acquired
+                by Akamai and SurveyMonkey, plus engagements across
+                Flexport, Cuebiq, and Postmates. A decade of moving the
+                numbers in B2B software.
+              </p>
+              <span className="cw-open">See the receipts →</span>
             </a>
           </li>
         </ul>
@@ -241,7 +256,7 @@ export default function ColorWorldsHome() {
         </div>
       </section>
 
-      {/* FOOTER — tangerine */}
+      {/* FOOTER — terracotta */}
       <footer
         className="cw-foot"
         id="contact"
@@ -256,8 +271,10 @@ export default function ColorWorldsHome() {
         </h2>
         <div className="cw-footrow cw-reveal">
           <a
-            href="mailto:hello@micahjonesconsulting.com?subject=Intro call"
-                                >
+            href="https://calendly.com/micahmccoyjones/introduction"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Book a call ↗
           </a>
           <a href="mailto:hello@micahjonesconsulting.com">

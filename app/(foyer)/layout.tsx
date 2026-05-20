@@ -25,10 +25,7 @@ import { Nav } from "@/components/color-worlds/Nav";
 import { WorldSwitcher } from "@/components/color-worlds/WorldSwitcher";
 import { ScrollReveal } from "@/components/color-worlds/ScrollReveal";
 
-// Custom magnetic cursor removed per user feedback — system cursor only.
-// Cursor.tsx was deleted; data-cursor / data-magnetic attributes on
-// nav/CTA elements are now harmless no-ops (kept so any future re-add
-// doesn't require touching markup).
+// Custom magnetic cursor removed; system cursor everywhere.
 export default function ColorWorldsLayout({
   children,
 }: Readonly<{

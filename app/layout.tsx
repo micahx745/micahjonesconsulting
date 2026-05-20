@@ -66,7 +66,7 @@ const PERSON_LD = {
   url: "https://www.micahjonesconsulting.com",
   jobTitle: "Independent operator",
   description:
-    "Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. $17M+ in client revenue moved 2013–2023. Contributed to two acquisitions: Guardicore → Akamai and TechValidate → SurveyMonkey. Currently building Ordani.",
+    "Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. $17M+ in client revenue (2013–2023). Two exits at companies he helped build: Guardicore → Akamai (2021) and TechValidate → SurveyMonkey (2015). Currently building Ordani.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Oakland",
@@ -92,19 +92,18 @@ const PERSON_LD = {
     "@type": "Organization",
     name: "Ordani",
   },
+  // alumniOf lists companies where the operator was actually employed
+  // (including by acquisition). Akamai and SurveyMonkey are referenced
+  // in the description as deal context, not as alumni — listing them
+  // here would imply a separate tenure that wasn't the work claim.
   alumniOf: [
     { "@type": "Organization", name: "Guardicore" },
-    { "@type": "Organization", name: "Akamai" },
     { "@type": "Organization", name: "TechValidate" },
-    { "@type": "Organization", name: "SurveyMonkey" },
     { "@type": "Organization", name: "Flexport" },
     { "@type": "Organization", name: "Cuebiq" },
     { "@type": "Organization", name: "Postmates" },
   ],
-  sameAs: [
-    // TODO — verify exact LinkedIn handle.
-    "https://www.linkedin.com/in/micahjones/",
-  ],
+  sameAs: ["https://www.linkedin.com/in/micah-j/"],
 };
 
 const ORG_LD = {

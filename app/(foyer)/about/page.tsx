@@ -103,7 +103,7 @@ export default function AboutPage() {
           </li>
           <li>
             <a
-              href="https://www.linkedin.com/in/micahjones/"
+              href="https://www.linkedin.com/in/micah-j/"
               rel="me noopener noreferrer"
               target="_blank"
             >
