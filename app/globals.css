@@ -113,6 +113,18 @@
 
   --v2-container: 1280px;
   --v2-column:    640px;
+
+  /* ============================================================
+   * v3 — Typesetter's workshop (specimen-page direction)
+   *
+   * The site is a numbered series of plates. Cream paper, ink, copper.
+   * Plus parchment (one tonal step darker than paper) for specimen cards.
+   * Plus a faint baseline grid as background atmosphere.
+   * ============================================================ */
+  --color-parchment:        #EFE6D2;
+  --color-parchment-soft:   #DCD3BE;
+  --color-plate-mark:       rgba(74, 66, 59, 0.55);
+  --color-grid:             rgba(74, 66, 59, 0.05);
 }
 
 /* ---- Mode-driven defaults — applied by [data-mode] on group layout <div> ----
@@ -136,6 +148,512 @@
   background-color: var(--color-surface-0);
   color: var(--color-text-primary);
   font-family: var(--font-v2-body);
+}
+
+/* v3 — typesetter's workshop route mode (scoped under /v3/*).
+ * Cream paper ground (like the foyer) but the design is now type-as-product.
+ * Every section is a numbered plate; every typographic choice exposes its
+ * own technical specification as marginalia. */
+[data-mode="v3"] {
+  background-color: var(--color-foyer-paper);
+  color: var(--color-foyer-ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  position: relative;
+}
+
+/* v3 faint baseline grid — 4px increments at 3% opacity. Always visible
+ * as page atmosphere, like the visible grid in a type specimen book.
+ * Positioned absolute behind content so it doesn't interfere with layout. */
+[data-mode="v3"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      var(--color-grid) 31px,
+      var(--color-grid) 32px
+    );
+}
+
+[data-mode="v3"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+ * v3 — SpecimenNav (plate-numbered top index)
+ * ============================================================ */
+[data-mode="v3"] .v3-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 20px clamp(20px, 4vw, 56px);
+  border-bottom: 1px solid var(--color-rule-foyer);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+@media (min-width: 1024px) {
+  [data-mode="v3"] .v3-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+}
+
+[data-mode="v3"] .v3-nav__masthead {
+  font-family: var(--font-source-serif), Georgia, serif;
+  text-decoration: none;
+  color: var(--color-foyer-ink);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 1024px) {
+  [data-mode="v3"] .v3-nav__masthead {
+    margin-bottom: 0;
+  }
+}
+
+[data-mode="v3"] .v3-nav__masthead-name {
+  font-style: italic;
+  font-weight: 400;
+}
+
+[data-mode="v3"] .v3-nav__masthead-detail {
+  font-style: italic;
+  color: var(--color-plate-mark);
+  margin-left: 6px;
+}
+
+[data-mode="v3"] .v3-nav__plates {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 24px;
+  font-size: 0.7rem;
+}
+
+@media (min-width: 768px) {
+  [data-mode="v3"] .v3-nav__plates {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-mode="v3"] .v3-nav__plates {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+}
+
+[data-mode="v3"] .v3-nav__plate {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--color-foyer-ink);
+  letter-spacing: 0.04em;
+}
+
+[data-mode="v3"] .v3-nav__plate-num {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--color-accent-copper-deep);
+}
+
+[data-mode="v3"] .v3-nav__plate-label {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 500;
+  font-size: 0.66rem;
+}
+
+[data-mode="v3"] .v3-nav__plate-sub {
+  font-family: var(--font-source-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-plate-mark);
+  margin-left: 4px;
+}
+
+/* ============================================================
+ * v3 — Plate (numbered section)
+ * ============================================================ */
+[data-mode="v3"] .v3-plate {
+  padding: clamp(48px, 8vh, 96px) clamp(20px, 4vw, 56px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+[data-mode="v3"] .v3-plate__header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-foyer-ink);
+  margin: 0 0 48px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-rule-foyer);
+}
+
+[data-mode="v3"] .v3-plate__number {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-accent-copper-deep);
+}
+
+[data-mode="v3"] .v3-plate__sep {
+  color: var(--color-plate-mark);
+  font-style: normal;
+}
+
+[data-mode="v3"] .v3-plate__name {
+  font-weight: 600;
+}
+
+[data-mode="v3"] .v3-plate__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 1024px) {
+  [data-mode="v3"] .v3-plate__grid {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    gap: 64px;
+  }
+}
+
+/* ============================================================
+ * v3 — TypeMetadata (right-rail spec card)
+ * ============================================================ */
+[data-mode="v3"] .v3-type-metadata {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--color-plate-mark);
+  border-left: 1px solid var(--color-rule-foyer);
+  padding-left: 20px;
+  margin: 8px 0 0;
+}
+
+@media (min-width: 1024px) {
+  [data-mode="v3"] .v3-type-metadata {
+    margin-top: 16px;
+  }
+}
+
+[data-mode="v3"] .v3-type-metadata__plate {
+  display: block;
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  color: var(--color-accent-copper-deep);
+  margin-bottom: 8px;
+}
+
+[data-mode="v3"] .v3-type-metadata__list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 16px;
+  margin: 0 0 16px;
+}
+
+[data-mode="v3"] .v3-type-metadata__list dt {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.62rem;
+  color: var(--color-plate-mark);
+  align-self: center;
+}
+
+[data-mode="v3"] .v3-type-metadata__list dd {
+  margin: 0;
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  letter-spacing: 0;
+  color: var(--color-foyer-ink);
+}
+
+[data-mode="v3"] .v3-type-metadata__note {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-foyer-ink-soft);
+  margin: 0;
+  max-width: 36ch;
+}
+
+/* ============================================================
+ * v3 — Multi-size specimen
+ * ============================================================ */
+[data-mode="v3"] .v3-multi-size {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+[data-mode="v3"] .v3-multi-size__row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  border-bottom: 1px dotted var(--color-rule-foyer);
+  padding-bottom: 12px;
+}
+
+[data-mode="v3"] .v3-multi-size__label {
+  flex-shrink: 0;
+  width: 56px;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-plate-mark);
+}
+
+[data-mode="v3"] .v3-multi-size__text {
+  font-family: var(--font-inter-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-foyer-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+ * v3 — Hero / setting (Plate 0001)
+ * ============================================================ */
+[data-mode="v3"] .v3-hero-text {
+  font-family: var(--font-inter-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(40px, 6.4vw, 92px);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  color: var(--color-foyer-ink);
+  margin: 0 0 32px;
+  max-width: 22ch;
+}
+
+[data-mode="v3"] .v3-hero-subline {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--color-foyer-ink-soft);
+  margin: 0 0 48px;
+}
+
+[data-mode="v3"] .v3-hero-currently {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-foyer-ink);
+  margin: 24px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-accent-copper);
+  max-width: 60ch;
+}
+
+[data-mode="v3"] .v3-hero-currently strong {
+  font-style: normal;
+  font-weight: 600;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  letter-spacing: 0.02em;
+  color: var(--color-accent-copper-deep);
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  margin-right: 12px;
+}
+
+[data-mode="v3"] .v3-hero-currently em {
+  font-style: normal;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--color-accent-copper-deep);
+}
+
+/* ============================================================
+ * v3 — Specimen card (case study preview on home)
+ * ============================================================ */
+[data-mode="v3"] .v3-specimen-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--color-rule-foyer);
+  transition: padding-left 400ms cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+[data-mode="v3"] .v3-specimen-card:first-of-type {
+  border-top: 1px solid var(--color-rule-foyer);
+}
+
+[data-mode="v3"] .v3-specimen-card:hover {
+  padding-left: 12px;
+}
+
+[data-mode="v3"] .v3-specimen-card__plate {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--color-accent-copper-deep);
+  margin: 0 0 12px;
+}
+
+[data-mode="v3"] .v3-specimen-card__title {
+  font-family: var(--font-inter-display), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--color-foyer-ink);
+  margin: 0 0 12px;
+  transition: color 400ms cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+[data-mode="v3"] .v3-specimen-card:hover .v3-specimen-card__title {
+  color: var(--color-accent-copper-deep);
+}
+
+[data-mode="v3"] .v3-specimen-card__dek {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--color-foyer-ink-soft);
+  margin: 0 0 16px;
+  max-width: 50ch;
+}
+
+[data-mode="v3"] .v3-specimen-card__meta {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-plate-mark);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+[data-mode="v3"] .v3-specimen-card__meta-sep {
+  color: var(--color-rule-foyer);
+}
+
+/* ============================================================
+ * v3 — Colophon (foot of page)
+ * ============================================================ */
+[data-mode="v3"] .v3-colophon {
+  margin-top: clamp(64px, 10vh, 144px);
+  padding: clamp(48px, 8vh, 96px) clamp(20px, 4vw, 56px);
+  border-top: 1px solid var(--color-rule-foyer);
+  background-color: var(--color-parchment);
+  position: relative;
+}
+
+[data-mode="v3"] .v3-colophon__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+[data-mode="v3"] .v3-colophon__lede {
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.4;
+  color: var(--color-foyer-ink);
+  margin: 0 0 48px;
+  max-width: 36ch;
+}
+
+[data-mode="v3"] .v3-colophon__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px 32px;
+  margin: 0 0 48px;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+@media (min-width: 640px) {
+  [data-mode="v3"] .v3-colophon__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-mode="v3"] .v3-colophon__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+[data-mode="v3"] .v3-colophon__pair {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px dotted var(--color-rule-foyer);
+}
+
+[data-mode="v3"] .v3-colophon__pair dt {
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-plate-mark);
+  width: 72px;
+}
+
+[data-mode="v3"] .v3-colophon__pair dd {
+  margin: 0;
+  font-family: var(--font-source-serif), Georgia, serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--color-foyer-ink);
+}
+
+[data-mode="v3"] .v3-colophon__mailto {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: var(--color-foyer-ink-soft);
+  margin: 0;
+}
+
+[data-mode="v3"] .v3-colophon__mailto a {
+  color: var(--color-accent-copper-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-copper);
+  text-underline-offset: 4px;
 }
 
 /* ============================================================
