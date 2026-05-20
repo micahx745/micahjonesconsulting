@@ -176,14 +176,15 @@ export default function ColorWorldsHome() {
         <OrdaniSticky />
         <p className="cw-tagrow cw-reveal">
           <span className="cw-live">Live beta</span> —{" "}
-          <span>system of record for a regulated market</span>
+          <span>HIPAA-grade software for birth workers</span>
         </p>
         <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
           Ordani
         </h2>
         <p className="cw-lede cw-reveal">
-          A new system of record for an underserved, regulated industry — built
-          end to end and already in the hands of real users. Join the beta and
+          A HIPAA-grade system of record built end to end for the doulas,
+          midwives, and perinatal counselors keeping Black mothers alive in
+          childbirth. Fourteen practices already using it. Join the beta and
           help shape what ships next.
         </p>
 

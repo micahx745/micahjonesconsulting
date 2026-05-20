@@ -111,7 +111,7 @@ const ORG_LD = {
   "@type": "Organization",
   name: "Ordani",
   description:
-    "A live-beta system of record for an underserved, regulated industry — built end to end by Micah Jones and already in the hands of real users.",
+    "A HIPAA-grade system of record for birth workers — built end to end by Micah Jones. In live beta with 14 doula practices keeping Black mothers alive in childbirth.",
   // mainEntityOfPage points at the case study (the only public page
   // about Ordani right now). Avoids putting a case-study URL in the
   // Organization.url slot, which expects the org's actual site.

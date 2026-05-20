@@ -39,6 +39,13 @@ export function Hero() {
   }
 
   // Load reveal — fires once after mount.
+  //
+  // Pass-6 fix: switched from inline transform writes to a class toggle.
+  // Previous approach set `el.style.transform = "translateY(0)"` from rAF;
+  // some interaction (View Transitions snapshot, Lenis raf, or React 19
+  // strict-mode double-mount) was re-applying the CSS default after the
+  // inline write, leaving the H1 invisible. Class-based reveal wins on
+  // specificity and isn't affected by snapshot capture.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
@@ -48,18 +55,17 @@ export function Hero() {
 
     const eyebrow = eyebrowRef.current;
     if (eyebrow) {
-      eyebrow.style.transition =
-        "transform .8s .15s cubic-bezier(.16,1,.3,1)";
       requestAnimationFrame(() => {
-        eyebrow.style.transform = "translateY(0)";
+        eyebrow.classList.add("is-revealed");
       });
     }
 
     lineRefs.current.forEach((el, i) => {
-      el.style.transition = `transform .9s cubic-bezier(.16,1,.3,1)`;
-      el.style.transitionDelay = `${0.25 + i * 0.12}s`;
+      // Inline CSS var carries the stagger index; CSS rule computes
+      // the per-line delay from it.
+      el.style.setProperty("--reveal-i", String(i));
       requestAnimationFrame(() => {
-        el.style.transform = "translateY(0)";
+        el.classList.add("is-revealed");
       });
     });
 

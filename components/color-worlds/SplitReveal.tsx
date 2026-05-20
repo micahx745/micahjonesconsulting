@@ -38,7 +38,9 @@ interface SplitRevealProps {
   /** Content — should be plain text (gets split into chars). */
   children: ReactNode;
   className?: string;
-  /** Stagger per char in seconds. Default 0.018. */
+  /** Stagger per char in seconds. Default 0.012 — tightened from
+   *  0.018 per Pass-6 review; longer staggers showed a visible
+   *  half-revealed mid-state on fast scrolls. */
   stagger?: number;
   /** Delay from scroll-trigger fire, in seconds. Default 0. */
   delay?: number;
@@ -51,7 +53,7 @@ export function SplitReveal({
   id,
   children,
   className,
-  stagger = 0.018,
+  stagger = 0.012,
   delay = 0,
   start = "top 75%",
 }: SplitRevealProps) {
@@ -80,7 +82,9 @@ export function SplitReveal({
         gsap.to(split.chars, {
           yPercent: 0,
           opacity: 1,
-          duration: 0.85,
+          // Shortened from 0.85s to 0.65s per Pass-6 review — fast
+          // scrollers were catching a multi-second half-revealed window.
+          duration: 0.65,
           stagger,
           delay,
           ease: "expo.out",

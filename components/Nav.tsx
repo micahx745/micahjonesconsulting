@@ -66,7 +66,7 @@ export function Nav({ variant }: { variant: NavVariant }) {
         </ul>
       ) : (
         <ViewTransitionLink href="/" className="nav-back-to-foyer">
-          BACK TO FOYER ↗
+          ← BACK TO HOME
         </ViewTransitionLink>
       )}
     </nav>

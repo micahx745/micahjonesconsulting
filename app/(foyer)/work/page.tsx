@@ -24,7 +24,12 @@ export const metadata: Metadata = {
 };
 
 export default async function WorkIndexPage() {
-  const studies = await getAllCaseStudies();
+  // Hide stubs from the public index — Pass-6 review caught readers
+  // clicking into Passioneer expecting a case study and finding
+  // "check back Q3 2026." Stubs live in MDX until they're real.
+  const studies = (await getAllCaseStudies()).filter(
+    (cs) => cs.status !== "stub",
+  );
 
   return (
     <section

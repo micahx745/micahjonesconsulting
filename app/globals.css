@@ -5614,9 +5614,16 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
  * clients (and pre-hydration paints) see the eyebrow at rest. */
 [data-mode="cw"] .cw-eyebrow > span {
   display: inline-block;
+  transition: transform 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 [data-mode="cw"].cw-js-reveals .cw-eyebrow > span {
   transform: translateY(110%);
+}
+/* Pass-6 fix: class-based revealed state. Higher specificity than
+ * the hidden rule so it deterministically wins regardless of inline-
+ * style stomping from View Transitions / Lenis / React 19 strict mode. */
+[data-mode="cw"].cw-js-reveals .cw-eyebrow > span.is-revealed {
+  transform: translateY(0);
 }
 
 [data-mode="cw"] .cw-h1 {
@@ -5636,9 +5643,17 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
  * JS-ready. The whole hero is fully readable without JS. */
 [data-mode="cw"] .cw-h1 .cw-line > span {
   display: block;
+  /* Per-line stagger via custom property set by Hero.tsx. */
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(0.25s + var(--reveal-i, 0) * 0.12s);
 }
 [data-mode="cw"].cw-js-reveals .cw-h1 .cw-line > span {
   transform: translateY(110%);
+}
+/* Pass-6 fix: class-based revealed state. Higher specificity beats
+ * inline-style snapshot stomping. */
+[data-mode="cw"].cw-js-reveals .cw-h1 .cw-line > span.is-revealed {
+  transform: translateY(0);
 }
 
 /* Rolling word — bone color + italic. Distinction from the rest of
