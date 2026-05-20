@@ -1,39 +1,49 @@
 // app/(foyer)/layout.tsx
 //
-// Phase 4 — FOYER-01.
+// "Color Worlds" direction (current).
 //
-// Foyer route group shared layout. Wraps every foyer route ('/', '/about',
-// '/work-with-me', '/contact', '/work') in a single <div data-mode="foyer">
-// which Phase 1's app/globals.css picks up via the
-// [data-mode="foyer"] { background-color: var(--color-foyer-paper); color: var(--color-foyer-ink); }
-// attribute selector. That cream-paper body color is one half of the
-// foyer↔theater 600ms cross-fade — the browser snapshots ::view-transition-old(root)
-// against this color when navigating into a theater route.
+// Direction history:
+//   /v1 — Tier Z+ foyer with hand-drawn marks (cream + copper)
+//   /v2 — Dark luxury graphite + champagne
+//   /v3 — Typesetter's workshop (numbered plates)
+//   /v4 — "Two Hands" warm paper + workshop orange + Fraunces
+//   /    — "Color Worlds" (this) — rotating saturated worlds, Bricolage display
 //
-// Server Component. No 'use client'. <Nav> and <Footer> (Phase 3) are also
-// Server Components; <ViewTransitionLink> nested inside <Nav> is the only
-// client island in the foyer chrome.
+// The route group is still named (foyer) for path-mapping; the design
+// language has been swapped end-to-end. See globals.css [data-mode="cw"]
+// and components/color-worlds/* for the implementation.
 //
-// Source: ARCHITECTURE.md §3.1 + §3.3 (single root, group sets data-mode);
-//         REQUIREMENTS.md FOYER-01; CLAUDE.md "Two modes" + "What not to do"
-//         (no useTheme, no ThemeProvider).
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
+// Persistent chrome:
+//   - <Grain> — full-viewport noise overlay
+//   - <Cursor> — magnetic custom cursor (hidden on touch)
+//   - <Nav> — fixed top nav + mobile overlay menu (mix-blend-mode: difference)
+//   - <WorldSwitcher> — IntersectionObserver swap of --cw-* CSS vars
+//   - <ScrollReveal> — observes .cw-reveal elements
+import type { ReactNode } from "react";
+import { Grain } from "@/components/color-worlds/Grain";
+import { Nav } from "@/components/color-worlds/Nav";
+import { WorldSwitcher } from "@/components/color-worlds/WorldSwitcher";
+import { ScrollReveal } from "@/components/color-worlds/ScrollReveal";
 
-export default function FoyerLayout({
+// Custom magnetic cursor removed per user feedback — system cursor only.
+// Cursor.tsx was deleted; data-cursor / data-magnetic attributes on
+// nav/CTA elements are now harmless no-ops (kept so any future re-add
+// doesn't require touching markup).
+export default function ColorWorldsLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <div data-mode="foyer">
-      {/* Phase 10 — A11Y-06. Skip-to-content link. Visible only on focus. */}
+    <div data-mode="cw">
       <a href="#main-content" className="skip-to-content">
         Skip to content
       </a>
-      <Nav variant="foyer" />
+      <Grain />
+      <Nav />
+      <WorldSwitcher />
+      <ScrollReveal />
       <main id="main-content">{children}</main>
-      <Footer />
     </div>
   );
 }

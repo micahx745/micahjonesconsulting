@@ -131,6 +131,67 @@
   --color-parchment-soft:   #DCD3BE;
   --color-plate-mark:       rgba(74, 66, 59, 0.55);
   --color-grid:             rgba(74, 66, 59, 0.05);
+
+  /* ============================================================
+   * "Two Hands" — warm utilitarian workshop (the new home direction)
+   *
+   * Reference register: paco.me + teenage.engineering + panic.com.
+   * NOT luxury. NOT magazine. NOT typesetter's specimen.
+   * The register is: a craftsman's notebook. Field Notes inside-cover.
+   *
+   * From the research brief:
+   *   - Background: warm off-white (paper/bone).
+   *   - Ink: near-black, never pure #000.
+   *   - Accent: workshop orange — used sparingly (link underlines, primary
+   *     CTA, one mark per artifact card). Never a full UI surface.
+   *   - Subdued: warm gray for meta labels.
+   *
+   * Single signature motion across the whole site: useSpring image-on-hover
+   * in the Clients list. Everything else is static.
+   * ============================================================ */
+  --color-th-paper:         #F4F1EA;
+  --color-th-paper-soft:    #ECE7DC;
+  --color-th-ink:           #15130F;
+  --color-th-ink-soft:      #3A3631;
+  --color-th-orange:        #D2521C;
+  --color-th-orange-deep:   #A33D2A;
+  --color-th-warm-gray:     #8B847A;
+  --color-th-rule:          #DDD6C8;
+
+  /* Two Hands type stack — Fraunces display, Inter body, Geist Mono labels. */
+  --font-th-display: var(--font-fraunces), Georgia, serif;
+  --font-th-body:    var(--font-inter), system-ui, sans-serif;
+  --font-th-mono:    var(--font-geist-mono), ui-monospace, monospace;
+
+  /* ============================================================
+   * "Color Worlds" — current direction (v3 — "Terracotta Workshop")
+   *
+   * Sophisticated upgrade from fluorescent orange + Federal Blue.
+   * Lead is now Terracotta (clay pigment, Italian Mediterranean) —
+   * same warmth as orange but reads as earth-pigment, not screen-RGB.
+   * Cool foil is Petrol Blue (deep teal, ink-like). Ground is Bone
+   * (warm cream, Pantone 2026-adjacent). Dark is Espresso (warm
+   * brown-black, not neutral black). Accent is Saffron (the warm
+   * yellow-orange, replacing fluorescent sunflower).
+   *
+   * Material associations the palette references:
+   *   Terracotta = clay (Tuscan roof, fired earthenware)
+   *   Petrol    = oxidized copper, lacquer, old leather chair
+   *   Bone      = uncoated paper, plaster
+   *   Espresso  = espresso bean, dark wood
+   *   Saffron   = the spice, the dye
+   *
+   * Bricolage Grotesque display, Hanken Grotesk body, JetBrains Mono labels.
+   * ============================================================ */
+  --color-cw-terracotta: #9E3C25;  /* oxidized brick — darkened for AA */
+  --color-cw-petrol:     #1A4548;  /* deep teal, ink-like */
+  --color-cw-bone:       #ECE3D0;  /* warm cream paper */
+  --color-cw-espresso:   #2A1F18;  /* warm brown-black */
+  --color-cw-saffron:    #C9982F;  /* warm yellow-orange spice */
+
+  --font-cw-display: var(--font-bricolage), "Bricolage Grotesque", sans-serif;
+  --font-cw-body:    var(--font-hanken), "Hanken Grotesk", system-ui, sans-serif;
+  --font-cw-mono:    var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
 }
 
 /* ---- Mode-driven defaults — applied by [data-mode] on group layout <div> ----
@@ -139,6 +200,570 @@
 [data-mode="foyer"] {
   background-color: var(--color-foyer-paper);
   color: var(--color-foyer-ink);
+}
+
+/* "Two Hands" mode — applied by (foyer)/layout.tsx after the direction switch.
+ * Inherits the foyer route group; reframes the palette to the workshop tokens. */
+[data-mode="th"] {
+  background-color: var(--color-th-paper);
+  color: var(--color-th-ink);
+  font-family: var(--font-th-body);
+}
+
+/* ============================================================
+ * Two Hands — typographic primitives
+ *
+ * Each class is scoped to the [data-mode="th"] tree so it can't bleed
+ * into /v1, /v2, /v3 or the theater case studies.
+ *
+ * No motion utilities here — the only motion on the site lives inside
+ * the ClientList component (useSpring image-follow). Everything else
+ * is static by design.
+ * ============================================================ */
+[data-mode="th"] .th-page {
+  min-height: 100vh;
+  padding: 0 var(--spacing-page-x-desktop);
+  /* Lenis handles smooth scroll on the body; nothing else needed. */
+}
+@media (max-width: 768px) {
+  [data-mode="th"] .th-page {
+    padding: 0 var(--spacing-page-x-mobile);
+  }
+}
+
+/* The hero. Single declarative sentence — no animation, no images, no
+ * decorative ornament. First paint is finished. This is the Rauno /
+ * paco.me move: the entire above-the-fold is a paragraph. Read at body+
+ * scale; visual interest comes from the italic "and" and the list below,
+ * NOT from headline size. */
+[data-mode="th"] .th-hero {
+  padding: 16vh 0 14vh;
+  max-width: 30em;
+}
+[data-mode="th"] .th-hero__line {
+  font-family: var(--font-th-display);
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 32px);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  /* Optical size in the "text" zone (not display) so glyphs feel
+   * paragraph-like rather than headline-like. */
+  font-variation-settings: "opsz" 24, "SOFT" 40, "WONK" 0;
+  color: var(--color-th-ink);
+  margin: 0;
+}
+/* The "and" word — the entire visualization concept in three characters.
+ * Italic, ink color (NOT orange — orange is for functional UI only).
+ * The italic IS the move. */
+[data-mode="th"] .th-hero__and {
+  font-style: italic;
+  font-variation-settings: "opsz" 24, "SOFT" 100, "WONK" 1;
+}
+[data-mode="th"] .th-hero__meta {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-th-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] .th-hero__meta-line {
+  display: flex;
+  gap: 14px;
+}
+[data-mode="th"] .th-hero__meta-key {
+  color: var(--color-th-ink-soft);
+  min-width: 64px;
+}
+[data-mode="th"] .th-hero__meta-val {
+  color: var(--color-th-warm-gray);
+}
+
+/* Section header. Plainspoken declarative. Panic style.
+ * "What I build for clients." — exactly that. No clever taglines. */
+[data-mode="th"] .th-section {
+  padding: 12vh 0 14vh;
+  border-top: 1px solid var(--color-th-rule);
+}
+[data-mode="th"] .th-section--no-rule {
+  border-top: none;
+}
+[data-mode="th"] .th-section__head {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 6vh;
+}
+[data-mode="th"] .th-section__num {
+  font-family: var(--font-th-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] .th-section__title {
+  font-family: var(--font-th-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+  color: var(--color-th-ink);
+  margin: 0;
+}
+
+/* Body prose inside a section. Generous left-rail, narrow measure. */
+[data-mode="th"] .th-prose {
+  max-width: 56ch;
+  margin-left: 104px;
+  font-family: var(--font-th-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--color-th-ink-soft);
+}
+@media (max-width: 768px) {
+  [data-mode="th"] .th-section__head {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+  }
+  [data-mode="th"] .th-prose {
+    margin-left: 0;
+  }
+}
+
+/* ============================================================
+ * ClientList — the single signature interaction.
+ * Numbered hover-reveal list. Spring-physics image follow.
+ * Anchor: #clients.
+ * ============================================================ */
+[data-mode="th"] .th-client-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+[data-mode="th"] .th-client-row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: baseline;
+  gap: 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--color-th-rule);
+  cursor: pointer;
+  transition: opacity 240ms ease;
+}
+[data-mode="th"] .th-client-list:hover .th-client-row {
+  opacity: 0.35;
+}
+[data-mode="th"] .th-client-list .th-client-row:hover {
+  opacity: 1;
+}
+[data-mode="th"] .th-client-row__index {
+  font-family: var(--font-th-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] .th-client-row__title {
+  font-family: var(--font-th-display);
+  font-weight: 400;
+  font-size: clamp(28px, 3.6vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 96, "SOFT" 40, "WONK" 0;
+  color: var(--color-th-ink);
+}
+[data-mode="th"] .th-client-row__title em {
+  font-style: italic;
+  font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 1;
+}
+[data-mode="th"] .th-client-row__meta {
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+  white-space: nowrap;
+}
+
+/* The follower image. Absolute-positioned inside ClientList; the component
+ * moves it with useSpring on pointer move. */
+[data-mode="th"] .th-client-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 420px;
+  pointer-events: none;
+  z-index: 50;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--color-th-paper-soft);
+  box-shadow: 0 30px 60px -20px rgba(21, 19, 15, 0.18);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+[data-mode="th"] .th-client-follower[data-visible="true"] {
+  opacity: 1;
+}
+[data-mode="th"] .th-client-follower__inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+  background: linear-gradient(
+    135deg,
+    var(--color-th-paper-soft) 0%,
+    var(--color-th-paper) 100%
+  );
+}
+
+@media (max-width: 768px) {
+  [data-mode="th"] .th-client-row {
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+  }
+  [data-mode="th"] .th-client-row__meta {
+    grid-column: 2 / -1;
+    white-space: normal;
+    margin-top: 8px;
+  }
+  /* Mobile has no hover; hide the follower entirely. */
+  [data-mode="th"] .th-client-follower {
+    display: none;
+  }
+}
+
+/* ============================================================
+ * WorkshopGrid — 2-up artifact cards. Anchor: #workshop.
+ * ============================================================ */
+[data-mode="th"] .th-workshop-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 64px 48px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+[data-mode="th"] .th-artifact {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+[data-mode="th"] .th-artifact__plate {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--color-th-paper-soft);
+  border: 1px solid var(--color-th-rule);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+[data-mode="th"] .th-artifact__placeholder {
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] .th-artifact__status {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: var(--font-th-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-th-orange);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+[data-mode="th"] .th-artifact__status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-th-orange);
+}
+[data-mode="th"] .th-artifact__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+[data-mode="th"] .th-artifact__title {
+  font-family: var(--font-th-display);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 60, "SOFT" 30, "WONK" 0;
+  color: var(--color-th-ink);
+  margin: 0;
+}
+[data-mode="th"] .th-artifact__category {
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] .th-artifact__desc {
+  font-family: var(--font-th-body);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-th-ink-soft);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  [data-mode="th"] .th-workshop-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* ============================================================
+ * Companies strip — 2013-2023 logo bundle (text, not images).
+ * Anchor: #companies.
+ * ============================================================ */
+[data-mode="th"] .th-companies {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  align-items: baseline;
+}
+[data-mode="th"] .th-companies__years {
+  font-family: var(--font-th-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] .th-companies__list {
+  font-family: var(--font-th-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  font-variation-settings: "opsz" 60, "SOFT" 100, "WONK" 0;
+  color: var(--color-th-ink);
+  margin: 0 0 24px;
+}
+[data-mode="th"] .th-companies__list strong {
+  font-style: normal;
+  font-weight: 500;
+  font-variation-settings: "opsz" 60, "SOFT" 30, "WONK" 0;
+}
+[data-mode="th"] .th-companies__footnote {
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+  max-width: 60ch;
+}
+
+@media (max-width: 768px) {
+  [data-mode="th"] .th-companies {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ============================================================
+ * Book section — about + intro-call CTA. Anchor: #book.
+ * ============================================================ */
+[data-mode="th"] .th-book {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+[data-mode="th"] .th-book__body {
+  max-width: 56ch;
+}
+[data-mode="th"] .th-book__lede {
+  font-family: var(--font-th-display);
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 24px);
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+  font-variation-settings: "opsz" 60, "SOFT" 40, "WONK" 0;
+  color: var(--color-th-ink);
+  margin: 0 0 24px;
+}
+[data-mode="th"] .th-book__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 14px 20px;
+  font-family: var(--font-th-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-th-paper);
+  background: var(--color-th-ink);
+  border: 1px solid var(--color-th-ink);
+  text-decoration: none;
+  transition: background 200ms ease, color 200ms ease;
+}
+[data-mode="th"] .th-book__cta:hover {
+  background: var(--color-th-orange);
+  border-color: var(--color-th-orange);
+}
+[data-mode="th"] .th-book__cta-arrow {
+  font-family: var(--font-th-display);
+  font-size: 14px;
+  letter-spacing: 0;
+}
+[data-mode="th"] .th-book__alt {
+  margin-top: 18px;
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] .th-book__alt a {
+  color: var(--color-th-ink-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--color-th-orange);
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+  [data-mode="th"] .th-book {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Two Hands link convention — orange underline, never orange text body.
+ * Per the brief: "Accent used sparingly — link underlines, primary CTA,
+ * one mark per artifact card." */
+[data-mode="th"] a:not(.th-book__cta):not(.nav-link):not(.nav-brand) {
+  color: var(--color-th-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-th-orange);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  transition: text-decoration-color 200ms ease;
+}
+[data-mode="th"] a:not(.th-book__cta):not(.nav-link):not(.nav-brand):hover {
+  text-decoration-color: var(--color-th-ink);
+}
+
+/* Nav — Two Hands variant. Smaller scale, monospace labels, no underline-lift. */
+[data-mode="th"] [data-nav-root] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px var(--spacing-page-x-desktop);
+  border-bottom: 1px solid var(--color-th-rule);
+}
+@media (max-width: 768px) {
+  [data-mode="th"] [data-nav-root] {
+    padding: 20px var(--spacing-page-x-mobile);
+  }
+}
+[data-mode="th"] .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--color-th-ink);
+  text-decoration: none;
+  font-family: var(--font-th-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+[data-mode="th"] .nav-brand__divider {
+  display: none; /* Two Hands nav has no divider between mark and name. */
+}
+[data-mode="th"] .nav-brand__name {
+  font-family: var(--font-th-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-th-ink);
+}
+[data-mode="th"] .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+[data-mode="th"] .nav-link {
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-th-ink-soft);
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 2px;
+}
+[data-mode="th"] .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-th-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+[data-mode="th"] .nav-link:hover::after {
+  transform: scaleX(1);
+}
+@media (max-width: 540px) {
+  [data-mode="th"] .nav-links {
+    gap: 16px;
+  }
+  [data-mode="th"] .nav-brand__name {
+    display: none;
+  }
+}
+
+/* Footer — Two Hands. Address + named human + email. Denim Tears move. */
+[data-mode="th"] footer {
+  padding: 80px var(--spacing-page-x-desktop) 40px;
+  border-top: 1px solid var(--color-th-rule);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  font-family: var(--font-th-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-th-warm-gray);
+}
+[data-mode="th"] footer a {
+  color: var(--color-th-ink-soft);
+  text-decoration: none;
+}
+@media (max-width: 768px) {
+  [data-mode="th"] footer {
+    padding: 48px var(--spacing-page-x-mobile) 24px;
+    grid-template-columns: 1fr;
+  }
 }
 
 [data-mode="theater"] {
@@ -4499,4 +5124,1036 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 [data-mode="foyer"] .contact-form__submit:focus-visible {
   outline: 2px solid var(--color-accent-copper);
   outline-offset: 2px;
+}
+
+/* ================================================================
+ * "Color Worlds" — third / approved direction. Mockup is the source
+ * of truth (mjc-direction-color-worlds.html). Everything below is
+ * scoped to [data-mode="cw"] so it cannot leak into the foyer / v1
+ * / v2 / v3 / v4 / theater route groups.
+ *
+ * Lives at: app/(foyer)/* under the (foyer) route group.
+ * The WorldSwitcher component sets --cw-bg / --cw-fg / --cw-accent
+ * on the [data-mode="cw"] root element as sections cross the
+ * vertical center of the viewport.
+ * ================================================================ */
+[data-mode="cw"] {
+  /* Initial world = tangerine (hero). Vars get mutated by
+   * WorldSwitcher.tsx as sections cross viewport center. */
+  --cw-bg: var(--color-cw-terracotta);
+  --cw-fg: var(--color-cw-espresso);
+  --cw-accent: var(--color-cw-petrol);
+
+  background-color: var(--cw-bg);
+  color: var(--cw-fg);
+  font-family: var(--font-cw-body);
+  overflow-x: hidden;
+  transition:
+    background-color 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Custom cursor removed — system cursor everywhere. */
+}
+
+/* Focus-visible — single rule for all interactive elements in cw mode.
+ * Uses the accent color so it picks up the current world's identity.
+ * WCAG 2.4.7 — visible focus indicator is non-negotiable. */
+[data-mode="cw"] a:focus-visible,
+[data-mode="cw"] button:focus-visible,
+[data-mode="cw"] input:focus-visible {
+  outline: 2px solid var(--cw-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+[data-mode="cw"] * {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+ * Texture stack — three layers + vignette + chromatic aberration.
+ *
+ * The "tactile + sophisticated" texture is a stack of decoupled
+ * effects, not one big noise. Each layer references a real material
+ * or printing process:
+ *
+ *   Layer 1 — paper fiber (cold-press watercolor sheet feel)
+ *     SVG feTurbulence, baseFrequency 0.04, octaves 5
+ *     overlay blend, opacity 0.16 (up from 0.12)
+ *
+ *   Layer 2 — ink grain (laid down ink, not pixel)
+ *     SVG feTurbulence, baseFrequency 0.9, octaves 2
+ *     multiply blend, opacity 0.42 (up from 0.30)
+ *
+ *   Layer 3 — halftone dots (CMYK print, subtle)
+ *     CSS radial-gradient pattern at ~3px grid
+ *     multiply blend, opacity 0.07
+ *
+ *   Vignette — paper edge darkening at corners
+ *     CSS radial-gradient on root, multiply blend
+ *     opacity 0.18 — "well-thumbed magazine" feel
+ *
+ *   Chromatic aberration — for display headlines (.cw-shift class)
+ *     text-shadow with cyan + magenta offsets at ±1px
+ *     Sells "print misregistration"
+ *
+ *   Ink bleed — for ONE display headline per page (.cw-bleed)
+ *     SVG feGaussianBlur + feComponentTransfer alpha threshold
+ *     Letters look ink-soaked and blobby
+ *
+ * All layers sized 100%/100% to avoid the 300x150 corner bug.
+ * ============================================================ */
+
+[data-mode="cw"] .cw-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  pointer-events: none;
+}
+[data-mode="cw"] .cw-grain svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Layer 1 — coarse paper fiber */
+[data-mode="cw"] .cw-grain__coarse {
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+}
+
+/* Layer 2 — fine ink grain */
+[data-mode="cw"] .cw-grain__fine {
+  opacity: 0.42;
+  mix-blend-mode: multiply;
+}
+
+/* Layer 3 — halftone dot pattern. Pure CSS via radial-gradient.
+ * At ~3px grid, the dots are small enough to read as ink stipple
+ * rather than as a pattern. Multiply blend keeps it from washing
+ * the bg. */
+[data-mode="cw"] .cw-grain__halftone {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.55) 0,
+    rgba(0, 0, 0, 0.55) 0.5px,
+    transparent 0.8px
+  );
+  background-size: 3px 3px;
+  background-position: 0 0;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+
+/* Vignette — paper edge darkening. Pseudo-element on the data-mode
+ * root so it covers the entire scroll region (not just the viewport
+ * like .cw-grain). The radial-gradient darkens corners ~18%; sells
+ * "this is a magazine that's been handled." */
+[data-mode="cw"]::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgba(42, 31, 24, 0.18) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Chromatic aberration — applied to display headlines. Tiny RGB-split
+ * text-shadow that reads as print misregistration. The offsets are
+ * subpixel-ish so the type stays legible at scale; the effect only
+ * shows up on the heaviest display weights. */
+[data-mode="cw"] .cw-shift {
+  /* Bumped from ±0.6px → ±1.6px so it actually reads (per review).
+   * The 0.6px offsets were imperceptible on standard displays and a
+   * faint smear on Retina — worst-of-both. */
+  text-shadow:
+    -1.6px 0 0 rgba(202, 35, 35, 0.42),
+    1.6px 0 0 rgba(40, 180, 200, 0.42);
+}
+
+/* Ink-bleed display treatment. Applied to ONE display headline per
+ * page (over-use kills legibility). Blurs the text then thresholds
+ * the alpha channel via feComponentTransfer — soft edges become crisp,
+ * blobby, ink-soaked outlines. Reads as "letters that sat too long on
+ * absorbent paper." */
+[data-mode="cw"] .cw-bleed {
+  filter: url(#cw-ink-bleed);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] .cw-bleed {
+    filter: none;
+  }
+  [data-mode="cw"] .cw-shift {
+    text-shadow: none;
+  }
+}
+
+/* Custom cursor. Mix-blend-mode: difference for legibility across
+ * any world. Hidden on touch via the body cursor:auto media query
+ * AND .cw-cursor display:none below. */
+[data-mode="cw"] .cw-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--cw-accent);
+  z-index: 9999;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.25s ease,
+    height 0.25s ease,
+    background-color 0.7s ease,
+    opacity 0.3s ease;
+  mix-blend-mode: difference;
+}
+[data-mode="cw"] .cw-cursor.is-big {
+  width: 84px;
+  height: 84px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-cursor {
+    display: none;
+  }
+}
+
+/* Nav. mix-blend-mode: difference keeps text legible against any
+ * world bg. White text is the source; difference inverts to whatever
+ * contrasts the current world. */
+[data-mode="cw"] .cw-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
+  mix-blend-mode: difference;
+  color: #fff;
+}
+[data-mode="cw"] .cw-nav .cw-wordmark,
+[data-mode="cw"] .cw-nav .cw-navlinks a,
+[data-mode="cw"] .cw-nav .cw-menubtn {
+  color: #fff;
+}
+[data-mode="cw"] .cw-wordmark {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+[data-mode="cw"] .cw-navlinks {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+[data-mode="cw"] .cw-navlinks a {
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+[data-mode="cw"] .cw-navlinks a:hover {
+  opacity: 1;
+}
+[data-mode="cw"] .cw-menubtn {
+  display: none;
+  background: none;
+  border: none;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  align-items: center;
+  gap: 8px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-nav {
+    padding: 18px 20px;
+  }
+  [data-mode="cw"] .cw-navlinks {
+    display: none;
+  }
+  [data-mode="cw"] .cw-menubtn {
+    display: flex;
+  }
+}
+
+/* Full-screen overlay menu (mobile). */
+[data-mode="cw"] .cw-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: var(--color-cw-espresso);
+  color: var(--color-cw-bone);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  transform: translateY(-100%);
+  transition: transform 0.6s cubic-bezier(0.7, 0, 0.2, 1);
+}
+[data-mode="cw"] .cw-overlay.is-open {
+  transform: translateY(0);
+}
+[data-mode="cw"] .cw-overlay .cw-overlay-close {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: var(--color-cw-bone);
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+}
+[data-mode="cw"] .cw-overlay a {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(44px, 11vw, 90px);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-cw-bone);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  transition:
+    color 0.2s,
+    padding-left 0.3s;
+}
+[data-mode="cw"] .cw-overlay a:hover {
+  color: var(--color-cw-saffron);
+  padding-left: 18px;
+}
+[data-mode="cw"] .cw-overlay-meta {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 50px;
+}
+
+/* Hero */
+[data-mode="cw"] .cw-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px;
+  position: relative;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-hero {
+    padding: 0 20px;
+  }
+  [data-mode="cw"] .cw-block,
+  [data-mode="cw"] .cw-foot {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+[data-mode="cw"] .cw-eyebrow {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+[data-mode="cw"] .cw-eyebrow > span {
+  display: inline-block;
+  transform: translateY(110%);
+}
+
+[data-mode="cw"] .cw-h1 {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  font-size: clamp(52px, 12.5vw, 196px);
+  text-transform: uppercase;
+  margin: 0;
+}
+[data-mode="cw"] .cw-h1 .cw-line {
+  overflow: hidden;
+  display: block;
+}
+[data-mode="cw"] .cw-h1 .cw-line > span {
+  display: block;
+  transform: translateY(110%);
+}
+
+/* Rolling word */
+[data-mode="cw"] .cw-roll {
+  color: var(--cw-accent);
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+[data-mode="cw"] .cw-roll .cw-stack {
+  display: block;
+}
+[data-mode="cw"] .cw-roll .cw-stack span {
+  display: block;
+  height: 1em;
+}
+
+[data-mode="cw"] .cw-sub {
+  max-width: 620px;
+  margin: 38px 0 0;
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(20px);
+  /* Delay tightened from .9s → .15s — sub paragraph is the LCP element
+   * and the original delay was self-inflicting LCP ~2s (per review). */
+  transition:
+    opacity 0.6s 0.15s,
+    transform 0.6s 0.15s;
+}
+[data-mode="cw"] .cw-sub.is-in {
+  opacity: 0.92;
+  transform: none;
+}
+[data-mode="cw"] .cw-sub em {
+  /* Was var(--cw-accent) — review found it invisible on terracotta.
+   * Italic + bold weight does the emphasis without color. */
+  font-style: italic;
+  font-weight: 700;
+  color: inherit;
+}
+
+[data-mode="cw"] .cw-cta-row {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  opacity: 0;
+  transform: translateY(20px);
+  /* Was 1.05s — tightened to .35s to follow the sub without lagging. */
+  transition:
+    opacity 0.6s 0.35s,
+    transform 0.6s 0.35s;
+  flex-wrap: wrap;
+}
+[data-mode="cw"] .cw-cta-row.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+[data-mode="cw"] .cw-cta {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: 19px;
+  background: var(--cw-accent);
+  color: var(--color-cw-bone);
+  border: none;
+  border-radius: 46px;
+  padding: 18px 32px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.15s ease;
+  will-change: transform;
+}
+[data-mode="cw"] .cw-cta .cw-arr {
+  transition: transform 0.25s;
+}
+[data-mode="cw"] .cw-cta:hover .cw-arr {
+  transform: translateX(6px);
+}
+[data-mode="cw"] .cw-scrollhint {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+/* Marquee — services + companies */
+[data-mode="cw"] .cw-marquee {
+  border-top: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 18px 0;
+}
+[data-mode="cw"] .cw-marquee .cw-track {
+  display: inline-block;
+  animation: cw-scroll 22s linear infinite;
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+[data-mode="cw"] .cw-marquee .cw-track span {
+  margin: 0 26px;
+}
+[data-mode="cw"] .cw-marquee .cw-track .cw-dot {
+  color: var(--cw-accent);
+}
+@keyframes cw-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Section blocks (Clients, Products) */
+[data-mode="cw"] .cw-block {
+  padding: 130px 40px;
+  position: relative;
+}
+
+[data-mode="cw"] .cw-kicker {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 46px;
+}
+[data-mode="cw"] .cw-kicker::before {
+  content: "";
+  width: 38px;
+  height: 1.5px;
+  background: currentColor;
+  display: inline-block;
+}
+
+[data-mode="cw"] .cw-secttitle {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  font-size: clamp(38px, 6.5vw, 92px);
+  text-transform: uppercase;
+  max-width: 15ch;
+  margin: 0;
+}
+
+/* Clients hover-reveal list */
+[data-mode="cw"] .cw-worklist {
+  margin-top: 64px;
+  border-top: 1.5px solid currentColor;
+  list-style: none;
+  padding: 0;
+}
+[data-mode="cw"] .cw-workrow {
+  border-bottom: 1.5px solid currentColor;
+  padding: 30px 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+[data-mode="cw"] .cw-workrow .cw-num {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  opacity: 0.6;
+  min-width: 34px;
+  z-index: 2;
+}
+[data-mode="cw"] .cw-workrow .cw-title {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(26px, 4vw, 52px);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+[data-mode="cw"] .cw-workrow .cw-desc {
+  margin-left: auto;
+  font-size: 15px;
+  max-width: 300px;
+  opacity: 0.7;
+  text-align: right;
+  z-index: 2;
+}
+[data-mode="cw"] .cw-workrow .cw-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--cw-accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+[data-mode="cw"] .cw-workrow:hover .cw-fill {
+  transform: scaleY(1);
+}
+[data-mode="cw"] .cw-workrow:hover .cw-title {
+  transform: translateX(18px);
+  color: var(--color-cw-bone);
+}
+[data-mode="cw"] .cw-workrow:hover .cw-num,
+[data-mode="cw"] .cw-workrow:hover .cw-desc {
+  color: var(--color-cw-bone);
+  opacity: 1;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-workrow {
+    flex-wrap: wrap;
+  }
+  [data-mode="cw"] .cw-workrow .cw-desc {
+    margin-left: 0;
+    text-align: left;
+    max-width: 100%;
+    flex-basis: 100%;
+    margin-top: 8px;
+  }
+}
+
+/* Revenue tick + exits — Clients section closer. Animated count-up
+ * lands on $17M+; exits line carries the acquisitions credibility. */
+[data-mode="cw"] .cw-rev {
+  margin-top: 84px;
+}
+[data-mode="cw"] .cw-revline {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(30px, 5vw, 68px);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin: 0;
+}
+[data-mode="cw"] .cw-rev-tick {
+  color: var(--cw-accent);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  min-width: 5ch;
+}
+[data-mode="cw"] .cw-rev-trail {
+  color: inherit;
+}
+[data-mode="cw"] .cw-rev-exits {
+  margin: 20px 0 0;
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(18px, 1.9vw, 26px);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+[data-mode="cw"] .cw-rev-exits strong {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--cw-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+[data-mode="cw"] .cw-rev-exits-sep {
+  opacity: 0.45;
+  margin: 0 6px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-rev-exits {
+    font-size: 18px;
+  }
+  [data-mode="cw"] .cw-rev-exits-sep {
+    display: block;
+    margin: 6px 0;
+    text-align: center;
+  }
+}
+
+/* ORDANI band */
+[data-mode="cw"] .cw-ordani {
+  padding: 130px 40px;
+  position: relative;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-ordani {
+    padding: 90px 20px;
+  }
+}
+[data-mode="cw"] .cw-ordani .cw-tagrow {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+[data-mode="cw"] .cw-ordani .cw-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+[data-mode="cw"] .cw-ordani .cw-live::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cw-accent);
+  box-shadow: 0 0 0 0 var(--cw-accent);
+  animation: cw-pulse 2s infinite;
+}
+@keyframes cw-pulse {
+  0% {
+    /* Sunflower pulse — was lime rgba(203,255,53). */
+    box-shadow: 0 0 0 0 rgba(255, 181, 17, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(255, 181, 17, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 181, 17, 0);
+  }
+}
+[data-mode="cw"] .cw-ordani h2 {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(64px, 16vw, 230px);
+  line-height: 0.84;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  margin: 0;
+}
+[data-mode="cw"] .cw-ordani .cw-lede {
+  max-width: 560px;
+  margin: 34px 0 0;
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.45;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-ordani .cw-signup {
+  margin-top: 40px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 520px;
+}
+[data-mode="cw"] .cw-ordani .cw-signup input {
+  flex: 1;
+  min-width: 220px;
+  background: transparent;
+  border: 1.5px solid currentColor;
+  border-radius: 46px;
+  padding: 16px 22px;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  color: inherit;
+}
+[data-mode="cw"] .cw-ordani .cw-signup input::placeholder {
+  color: inherit;
+  opacity: 0.55;
+}
+[data-mode="cw"] .cw-ordani .cw-signup button {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: 17px;
+  background: var(--cw-accent);
+  color: var(--color-cw-petrol);
+  border: none;
+  border-radius: 46px;
+  padding: 16px 30px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-ordani .cw-note {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 16px;
+}
+[data-mode="cw"] .cw-ordani .cw-signup .cw-msg {
+  flex-basis: 100%;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* Product cards */
+[data-mode="cw"] .cw-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 64px;
+  list-style: none;
+  padding: 0;
+}
+@media (min-width: 900px) {
+  [data-mode="cw"] .cw-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+[data-mode="cw"] .cw-card {
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  padding: 36px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+[data-mode="cw"] .cw-card .cw-tag {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+[data-mode="cw"] .cw-card h3 {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(34px, 5vw, 58px);
+  text-transform: uppercase;
+  letter-spacing: -0.025em;
+  line-height: 0.9;
+  margin: 16px 0;
+}
+[data-mode="cw"] .cw-card p {
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.85;
+  max-width: 52ch;
+  margin: 0;
+}
+[data-mode="cw"] .cw-card .cw-open {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 22px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+[data-mode="cw"] .cw-card:hover {
+  background: currentColor;
+}
+[data-mode="cw"] .cw-card:hover .cw-tag,
+[data-mode="cw"] .cw-card:hover h3,
+[data-mode="cw"] .cw-card:hover p,
+[data-mode="cw"] .cw-card:hover .cw-open {
+  color: var(--cw-bg);
+}
+[data-mode="cw"] .cw-card:hover .cw-tag,
+[data-mode="cw"] .cw-card:hover p {
+  opacity: 0.9;
+}
+
+/* Companies */
+[data-mode="cw"] .cw-companies {
+  border-top: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 30px 0;
+}
+[data-mode="cw"] .cw-companies .cw-track {
+  display: inline-block;
+  animation: cw-scroll 28s linear infinite;
+}
+[data-mode="cw"] .cw-companies .cw-track span {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: 34px;
+  text-transform: uppercase;
+  margin: 0 38px;
+  /* Bumped from 0.55 → 0.85 — review caught these were invisible
+   * (1.53:1 ratio). This is the credibility list; it has to land. */
+  opacity: 0.85;
+  letter-spacing: -0.01em;
+}
+[data-mode="cw"] .cw-companies-meta {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding: 0 40px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-companies-meta {
+    padding: 0 20px;
+  }
+}
+
+/* Footer */
+[data-mode="cw"] .cw-foot {
+  padding: 130px 40px 70px;
+}
+[data-mode="cw"] .cw-foot .cw-big {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(60px, 16vw, 230px);
+  text-transform: uppercase;
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+}
+[data-mode="cw"] .cw-foot .cw-big .cw-arr {
+  color: var(--cw-accent);
+}
+[data-mode="cw"] .cw-footrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 60px;
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-footrow a {
+  color: var(--cw-fg);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--cw-accent);
+  padding-bottom: 2px;
+}
+
+/* GSAP SplitText output — each char/word becomes an inline-block span.
+ * Container needs overflow hidden so chars sliding from yPercent 110
+ * are clipped beneath the baseline until they animate up. */
+[data-mode="cw"] .cw-split__word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+[data-mode="cw"] .cw-split__char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Native CSS scroll-driven reveals — modern progressive enhancement.
+ *
+ * Baseline: Safari 26 (shipped Sept 15, 2025), Chrome/Edge 115+,
+ * Opera 101+. Firefox is still behind a flag. We feature-detect
+ * with @supports and gracefully fall back to the IntersectionObserver-
+ * driven .cw-reveal class (ScrollReveal component) on unsupported
+ * browsers — no flash, no breakage.
+ *
+ * The native path runs on the compositor; nothing the main thread does
+ * (long task, big paint) can stutter it. It's strictly faster than the
+ * JS equivalent.
+ *
+ * The .cw-reveal class is still added in markup; we override its
+ * baseline only when scroll-driven is supported. */
+@supports (animation-timeline: view()) {
+  [data-mode="cw"].cw-js-reveals .cw-reveal:not(.is-in) {
+    /* Override the IO-driven hidden state — native path takes over. */
+    opacity: 1;
+    transform: none;
+    animation-name: cw-scroll-reveal;
+    animation-duration: 1ms; /* dummy — driven by timeline, not time */
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 50%;
+  }
+  @keyframes cw-scroll-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Generic reveal — observed by ScrollReveal client component.
+ *
+ * Progressive enhancement: baseline is VISIBLE so no-JS clients and
+ * fullPage screenshots see the content. ScrollReveal adds the
+ * .cw-js-reveals class to [data-mode="cw"] on mount; only then do
+ * the hidden state and the transition apply. This avoids the
+ * "blank fullPage screenshot" bug we hit on the foyer routes. */
+[data-mode="cw"] .cw-reveal {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-mode="cw"].cw-js-reveals .cw-reveal:not(.is-in) {
+  opacity: 0;
+  transform: translateY(40px);
+}
+[data-mode="cw"] .cw-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reduced motion — disable transforms/animations, keep content visible. */
+/* Hide legacy global decorations on Color Worlds — EditorialTimestamp
+ * belongs to /v1 / /v3 / /v4 only. It mounts in the root layout outside
+ * [data-mode="cw"], so we hide it via body:has() (matching the existing
+ * .editorial-timestamp foyer/theater rules' selector pattern). */
+body:has([data-mode="cw"]) .editorial-timestamp {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] *,
+  [data-mode="cw"] *::before,
+  [data-mode="cw"] *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  [data-mode="cw"] .cw-h1 .cw-line > span,
+  [data-mode="cw"] .cw-eyebrow > span {
+    transform: none !important;
+  }
+  [data-mode="cw"] .cw-sub,
+  [data-mode="cw"] .cw-cta-row,
+  [data-mode="cw"] .cw-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-mode="cw"] .cw-cursor {
+    display: none;
+  }
 }

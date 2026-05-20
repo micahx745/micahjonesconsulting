@@ -1,304 +1,257 @@
 // app/(foyer)/page.tsx
 //
-// Tier X — "Three rooms" home.
+// Color Worlds home — single long-scroll. Sections set data-world on
+// themselves; WorldSwitcher observes them and cross-fades the page
+// palette as each crosses viewport center.
 //
-// Restructure from 7 polite sections to 3 dramatic rooms:
+// Section order matches the brief:
+//   Hero       → tangerine
+//   Marquee    → tangerine
+//   Clients    → cream
+//   Ordani     → cobalt   (live beta + email signup)
+//   Products   → ink
+//   Companies  → ink
+//   Footer     → tangerine
 //
-//   ROOM 1 — Foyer (Hero, paper background)
-//     Editorial top-strip + mark drawing + word-by-word hero reveal +
-//     subline + currently-building specimen + tail affordance.
-//
-//   ROOM 2 — Library (Selected Work, bone background)
-//     Section eyebrow + tagline + 4 massive case-study cards stacked
-//     vertically, each with index, title, dek, meta, and per-case
-//     accent rule. Hover transforms each card (scale + dek slide).
-//
-//   ROOM 3 — Viewing booth (Contact, obsidian background — theater color)
-//     Single massive question, single email link, reply commitment.
-//     Foreshadows the theater mode you enter on a case-study click.
-//
-// Cut from previous: portrait poster section, currently-building
-// stand-alone section, work-with-me teaser, contact CTA. Their content
-// either moves to the relevant /page or is absorbed into a room above.
-//
-// Source: blueprint §6, §7, §8; aggressive aesthetic rework per user
-// direction (Apple / Anthropic / Cav Empt level of confidence).
+// Copy in the mockup is placeholder per the brief — Micah will finalize.
+// "No 3D printing, no hardware, no maker content" — workshop bench is
+// intentionally absent. "Don't frame Ordani as a side project" — it's
+// presented as a live product with beta signup.
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
-import { ViewTransitionLink } from "@/components/view-transition-link";
-import { EditorialStrip } from "@/components/EditorialStrip";
-import { getSelectedWork } from "@/lib/case-studies";
-import { HandUnderline } from "@/components/hand/HandUnderline";
-import { HandCircle } from "@/components/hand/HandCircle";
-import { HandArrow } from "@/components/hand/HandArrow";
-import { Signature } from "@/components/hand/Signature";
+import { Hero } from "@/components/color-worlds/Hero";
+import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
+import { SplitReveal } from "@/components/color-worlds/SplitReveal";
+import { RevenueTick } from "@/components/color-worlds/RevenueTick";
 
 export const metadata: Metadata = {
-  title: "Micah Jones — Oakland operator",
+  title: "Micah Jones — Strategy and software, shipped by the same pair of hands",
   description:
-    "Premium two-mode portfolio for Micah Jones, Oakland-based operator. Product, growth, consulting for founders and birth-worker practices.",
+    "I build go-to-market for clients — and products with real users. Oakland.",
   openGraph: {
-    title: "Micah Jones — Oakland operator",
+    title:
+      "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "Premium two-mode portfolio for Micah Jones, Oakland-based operator. Product, growth, consulting for founders and birth-worker practices.",
+      "I build go-to-market for clients — and products with real users. Oakland.",
     type: "website",
     url: "https://micahjonesconsulting.com",
     siteName: "Micah Jones",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Micah Jones — Oakland operator",
+    title:
+      "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "Premium two-mode portfolio for Micah Jones, Oakland-based operator. Product, growth, consulting for founders and birth-worker practices.",
+      "I build go-to-market for clients — and products with real users. Oakland.",
   },
 };
 
-// Hero rewrite: contrast + punchline. Line 1 sets the buyer's actual
-// pain (sales vs product split). Line 2 owns it. Two-sentence hit at
-// 5-second scan velocity.
-const HERO_WORDS = [
-  "Sales",
-  "and",
-  "product",
-  "disagree",
-  "about",
-  "everything.",
-  "I",
-  "do",
-  "both",
-  "halves.",
-];
-const HERO_BREAK_AT = 6; // index where line 1 ends and indented line 2 begins
+const CLIENT_OFFERS = [
+  {
+    n: "01",
+    title: "Go-to-market",
+    desc: "Positioning, motion, and the plan to win the market.",
+  },
+  {
+    n: "02",
+    title: "Product building",
+    desc: "From idea to working software — designed and shipped.",
+  },
+  {
+    n: "03",
+    title: "Launches",
+    desc: "Demand, narrative, and the cascade that follows a launch.",
+  },
+  {
+    n: "04",
+    title: "Growth systems",
+    desc: "The repeatable engine underneath the numbers.",
+  },
+] as const;
 
-export default async function FoyerHomePage() {
-  const selected = await getSelectedWork(4);
+const COMPANIES = [
+  "Guardicore",
+  "Akamai",
+  "TheValidate",
+  "SurveyMonkey",
+  "Flexport",
+  "Cuebiq",
+  "Postmates",
+] as const;
 
+const SERVICE_MARQUEE = [
+  "Go-to-market",
+  "Product",
+  "Launches",
+  "Growth",
+  "Strategy",
+] as const;
+
+export default function ColorWorldsHome() {
   return (
-    <div className="home-rooms">
-      {/* ====== ROOM 1 — FOYER (HERO) ============================== */}
-      <section className="home-room home-room--hero" data-room="foyer">
-        {/* Tier Z+ — Asymmetric hero composition. Setup on top, punchline
-            indented. Editorial strip removed per user feedback (was
-            small-font noise above the hero, not earning its presence). */}
-        <h1
-          className="home-hero"
-          aria-label="Sales and product disagree about everything. I do both halves."
-        >
-          <span className="home-hero__line">
-            {HERO_WORDS.slice(0, HERO_BREAK_AT).map((word, i) => (
-              <span
-                key={`${word}-${i}`}
-                className="home-hero__word"
-                style={{ ["--word-i"]: i } as CSSProperties}
-                aria-hidden
-              >
-                {word}
-              </span>
-            ))}
-          </span>
-          <span className="home-hero__line home-hero__line--indent">
-            {HERO_WORDS.slice(HERO_BREAK_AT).map((word, i) => (
-              <span
-                key={`${word}-${i + HERO_BREAK_AT}`}
-                className="home-hero__word"
-                style={{ ["--word-i"]: i + HERO_BREAK_AT } as CSSProperties}
-                aria-hidden
-              >
-                {word}
-              </span>
-            ))}
-          </span>
-        </h1>
+    <>
+      {/* HERO + MARQUEE — tangerine */}
+      <Hero />
 
-        <p
-          className="home-hero-subline"
-          style={{ ["--word-i"]: 12 } as CSSProperties}
-        >
-          Operator-for-hire. Solo since 2024. Oakland.
-        </p>
-
-        <p
-          className="home-hero-currently"
-          style={{ ["--word-i"]: 14 } as CSSProperties}
-        >
-          <span className="home-hero-currently__eyebrow">Now</span>
-          <span className="home-hero-currently__statement">
-            building <em>ORDANI</em> — HIPAA-grade software for the doulas keeping
-            Black women alive in childbirth.
-          </span>
-        </p>
-
-        <div
-          className="home-hero-tail"
-          style={{ ["--word-i"]: 17 } as CSSProperties}
-          aria-hidden
-        >
-          <span className="home-hero-tail__rule" />
-          <span className="home-hero-tail__hint">proof below</span>
-          <span className="home-hero-tail__arrow">↓</span>
-        </div>
-
-        {/* Tier Final — Hand-signed signature at end of foyer hero.
-            Draws itself in 1.6s after page load. Replaces "made by a
-            template" with "made by a person." */}
-        <div
-          className="home-hero-signature"
-          style={{ ["--word-i"]: 19 } as CSSProperties}
-        >
-          <Signature height={42} delay={1.6} />
-          <span className="home-hero-signature__caption">
-            Hand-set 2026, Oakland CA
-          </span>
-        </div>
-      </section>
-
-      {/* ====== ROOM 2 — PLATE OF PROOF ============================ */}
-      <section
-        className="home-room home-room--proof scroll-reveal"
-        data-room="proof"
-        data-reveal
-      >
-        <div className="proof-plate">
-          <p className="proof-plate__eyebrow">
-            <span className="proof-plate__eyebrow-num">01</span>
-            <span className="proof-plate__eyebrow-sep" aria-hidden />
-            <span>Recent proof</span>
-          </p>
-
-          {/* Tier Final — Hand-drawn circle around $150K + hand-arrow
-              from a margin note. The stat container is positioned
-              relative so the absolute-circle sits over the number. */}
-          <div className="proof-plate__stat-container">
-            <p
-              className="proof-plate__stat"
-              data-shadow="$150K"
-              aria-label="$150K — average deal-size move at Guardicore"
-            >
-              $150K
-            </p>
-            <HandCircle delay={0.4} variant={1} />
-            <span className="proof-plate__marginalia" aria-hidden>
-              <HandArrow direction="down-right" delay={1.0} />
-              <em>actual rev impact</em>
+      <div className="cw-marquee" data-section data-world="terracotta">
+        <div className="cw-track">
+          {/* Track is duplicated; linear translateX(-50%) loops cleanly. */}
+          {[0, 1].map((dupe) => (
+            <span key={dupe}>
+              {SERVICE_MARQUEE.map((s) => (
+                <span key={`${dupe}-${s}`}>
+                  {s}
+                  <span className="cw-dot"> ✦ </span>
+                </span>
+              ))}
             </span>
-          </div>
-
-          <p className="proof-plate__caption">
-            I rewrote <strong>one sentence</strong> at Guardicore. Average deal
-            size moved $150K. Akamai bought us shortly after.
-          </p>
-          <p className="proof-plate__provenance">
-            Guardicore / Akamai · 2020 · Positioning research
-          </p>
+          ))}
         </div>
-      </section>
+      </div>
 
-      {/* ====== ROOM 3 — LIBRARY (WORK) ============================ */}
+      {/* CLIENTS — cream */}
       <section
-        className="home-room home-room--library scroll-reveal"
-        data-room="library"
-        data-reveal
+        className="cw-block"
+        id="clients"
+        data-section
+        data-world="bone"
+        aria-labelledby="cw-clients-title"
       >
-        <header className="library-heading">
-          <EditorialStrip lot="LOT 002" items={["Selected Work", "Four ships"]} />
-          <h2 className="library-pillar">
-            Selected work.
-            <span className="library-pillar__underline" aria-hidden>
-              <HandUnderline variant={2} delay={0.3} />
-            </span>
-          </h2>
-        </header>
+        <p className="cw-kicker cw-reveal">What I build for clients</p>
+        <SplitReveal
+          as="h2"
+          id="cw-clients-title"
+          className="cw-secttitle"
+        >
+          Strategy that ships, not slides.
+        </SplitReveal>
 
-        <ul className="library-shelf">
-          {selected.map((study, i) => (
-            <li
-              key={study.slug}
-              className="library-shelf-card"
-              data-case={study.slug}
-            >
-              <ViewTransitionLink
-                href={`/work/${study.slug}`}
-                className="library-shelf-card__link"
-              >
-                <div className="library-shelf-card__main">
-                  <span className="library-shelf-card__index">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="library-shelf-card__body">
-                    <h3 className="library-shelf-card__title">{study.title}</h3>
-                    <p className="library-shelf-card__dek">{study.dek}</p>
-                  </div>
-                </div>
-                <div className="library-shelf-card__meta">
-                  <span className="library-shelf-card__meta-item">
-                    {study.year}
-                  </span>
-                  <span className="library-shelf-card__meta-dot">·</span>
-                  <span className="library-shelf-card__meta-item">
-                    {study.role}
-                  </span>
-                  <span className="library-shelf-card__meta-dot">·</span>
-                  <span className="library-shelf-card__meta-item">
-                    {study.status}
-                  </span>
-                  <span className="library-shelf-card__arrow" aria-hidden>
-                    ↗
-                  </span>
-                </div>
-              </ViewTransitionLink>
+        <ul className="cw-worklist cw-reveal">
+          {CLIENT_OFFERS.map((row) => (
+            <li key={row.n} className="cw-workrow" data-cursor>
+              <span className="cw-fill" aria-hidden />
+              <span className="cw-num">{row.n}</span>
+              <span className="cw-title">{row.title}</span>
+              <span className="cw-desc">{row.desc}</span>
             </li>
           ))}
         </ul>
 
-        <p className="library-cta">
-          <ViewTransitionLink href="/work" className="foyer-link">
-            → all work
-          </ViewTransitionLink>
+        <RevenueTick />
+      </section>
+
+      {/* ORDANI — federal blue — live product, NOT a side project.
+          The h2 carries .cw-bleed — the one ink-bleed display headline
+          per page, per the texture research. Giant Ordani word reads
+          as pulp-ink, not pixel-text. */}
+      <section
+        className="cw-ordani"
+        id="ordani"
+        data-section
+        data-world="petrol"
+        aria-labelledby="cw-ordani-title"
+      >
+        <p className="cw-tagrow cw-reveal">
+          <span className="cw-live">Live beta</span> —{" "}
+          <span>system of record for a regulated market</span>
+        </p>
+        <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
+          Ordani
+        </h2>
+        <p className="cw-lede cw-reveal">
+          A new system of record for an underserved, regulated industry — built
+          end to end and already in the hands of real users. Join the beta and
+          help shape what ships next.
+        </p>
+
+        <OrdaniBetaForm />
+
+        <p className="cw-note cw-reveal">
+          Private beta · onboarding new users weekly
         </p>
       </section>
 
-      {/* ====== ROOM 4 — VIEWING BOOTH (CONTACT) =================== */}
+      {/* PRODUCTS — ink */}
       <section
-        className="home-room home-room--booth scroll-reveal"
-        data-room="booth"
-        data-reveal
+        className="cw-block"
+        id="products"
+        data-section
+        data-world="espresso"
+        aria-labelledby="cw-products-title"
       >
-        <EditorialStrip
-          lot="LOT 003"
-          items={["Contact", "Two-day reply"]}
-        />
+        <p className="cw-kicker cw-reveal">More things I&rsquo;ve built</p>
+        <SplitReveal
+          as="h2"
+          id="cw-products-title"
+          className="cw-secttitle"
+        >
+          Products, not pitches.
+        </SplitReveal>
 
-        <h2 className="booth-question">Something stuck in your funnel?</h2>
+        <ul className="cw-cards">
+          <li className="cw-card cw-reveal" data-cursor>
+            <span className="cw-tag">AI content platform</span>
+            <h3>Passioneer</h3>
+            <p>
+              An AI-native platform for creators — streaming chat, generation,
+              and a publishing pipeline in one place.
+            </p>
+            <span className="cw-open">See more →</span>
+          </li>
+        </ul>
+      </section>
 
-        <p className="booth-answer">
-          <span className="booth-link-wrap">
-            <ViewTransitionLink href="/contact" className="booth-link">
-              Write to me
-            </ViewTransitionLink>
-            <span className="booth-link__hand-underline" aria-hidden>
-              <HandUnderline
-                variant={3}
-                color="var(--color-indigo)"
-                delay={0.4}
-              />
-            </span>
-          </span>
-          <span className="booth-arrow" aria-hidden>
-            ↗
-          </span>
+      {/* COMPANIES marquee — espresso */}
+      <section
+        data-section
+        data-world="espresso"
+        style={{ paddingBottom: 40 }}
+      >
+        <p className="cw-companies-meta cw-reveal">
+          2013 — 2023 · Growth, GTM &amp; platform strategy · Attributions under
+          NDA
         </p>
+        <div className="cw-companies" style={{ marginTop: 22 }}>
+          <div className="cw-track">
+            {[0, 1].map((dupe) => (
+              <span key={dupe}>
+                {COMPANIES.map((c) => (
+                  <span key={`${dupe}-${c}`}>{c}</span>
+                ))}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <p className="booth-commitment">
-          I read every message and reply inside two business days. Or write
-          directly:{" "}
+      {/* FOOTER — tangerine */}
+      <footer
+        className="cw-foot"
+        id="contact"
+        data-section
+        data-world="terracotta"
+        aria-labelledby="cw-build-title"
+      >
+        <h2 id="cw-build-title" className="cw-big cw-reveal cw-shift">
+          LET&rsquo;S
+          <br />
+          BUILD <span className="cw-arr">→</span>
+        </h2>
+        <div className="cw-footrow cw-reveal">
           <a
-            href="mailto:hello@micahjonesconsulting.com"
-            className="booth-mailto"
+            href="mailto:hello@micahjonesconsulting.com?subject=Intro call"
+            data-cursor
+            data-magnetic
           >
+            Book a call ↗
+          </a>
+          <a href="mailto:hello@micahjonesconsulting.com" data-cursor>
             hello@micahjonesconsulting.com
           </a>
-        </p>
-      </section>
-    </div>
+          <span style={{ opacity: 0.5, border: "none" }}>
+            © 2026 — Micah Jones
+          </span>
+        </div>
+      </footer>
+    </>
   );
 }

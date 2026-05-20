@@ -18,6 +18,10 @@ import {
   sourceSerif,
   instrumentSerif,
   bricolage,
+  fraunces,
+  geistMono,
+  hankenGrotesk,
+  jetbrainsMono,
 } from "@/lib/fonts";
 import { LenisProvider } from "@/components/LenisProvider";
 import { RevealMount } from "@/components/RevealMount";
@@ -45,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${interDisplay.variable} ${inter.variable} ${sourceSerif.variable} ${instrumentSerif.variable} ${bricolage.variable}`}
+      className={`${interDisplay.variable} ${inter.variable} ${sourceSerif.variable} ${instrumentSerif.variable} ${bricolage.variable} ${fraunces.variable} ${geistMono.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body>

@@ -12,6 +12,10 @@ import {
   Source_Serif_4,
   Instrument_Serif,
   Bricolage_Grotesque,
+  Fraunces,
+  Geist_Mono,
+  Hanken_Grotesk,
+  JetBrains_Mono,
 } from "next/font/google";
 
 // Tier Z — Bricolage Grotesque replaces Inter Display for cinematographer-
@@ -83,6 +87,64 @@ export const sourceSerif = Source_Serif_4({
   weight: "variable",
   style: ["normal", "italic"],
   variable: "--font-source-serif",
+  display: "swap",
+  adjustFontFallback: true,
+  preload: false,
+});
+
+// "Two Hands" — display face. Variable serif with optical-sizing.
+// Per the research brief: "Fraunces + Inter + Geist Mono is a fully free pairing
+// that hits the same register" as the commercial GT America Mono direction.
+// Used for the hero "and" line, section headers ("What I build for clients"),
+// and the numbered editorial list of client projects.
+//
+// preload: true — Fraunces carries the LCP headline on the new home.
+export const fraunces = Fraunces({
+  subsets: ["latin"],
+  axes: ["opsz", "SOFT", "WONK"],
+  weight: "variable",
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+  adjustFontFallback: true,
+  preload: true,
+});
+
+// "Two Hands" — mono labels. Per the brief: Geist Mono "as a structural device —
+// labels, section numbers, button text, footer details. Mono pulls the whole
+// site into the 'design engineer' register without doing anything else."
+// Never used for body copy.
+//
+// preload: false — labels are tertiary; not LCP-critical.
+export const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-geist-mono",
+  display: "swap",
+  adjustFontFallback: true,
+  preload: false,
+});
+
+// "Color Worlds" — body face. Hanken Grotesk per the approved mockup. Used
+// for hero subline, body prose, and the form input on the Ordani band.
+// Bricolage handles display (already present); JetBrains Mono handles
+// labels/nav/eyebrows.
+export const hankenGrotesk = Hanken_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-hanken",
+  display: "swap",
+  adjustFontFallback: true,
+  preload: true,
+});
+
+// "Color Worlds" — mono labels. JetBrains Mono per the approved mockup.
+// Used ONLY for: nav links, eyebrows, kickers, meta text, footnotes,
+// status pills, scroll hints. Never body. Never decorative.
+export const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
   display: "swap",
   adjustFontFallback: true,
   preload: false,

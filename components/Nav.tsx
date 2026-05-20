@@ -26,11 +26,13 @@ import { Mark } from "@/components/Mark";
 
 type NavVariant = "foyer" | "theater";
 
+// Two Hands IA — single long-scroll home; nav links are anchor jumps.
+// /v1, /v2, /v3 retain their old IA. /work/[slug] case study deep-dives
+// still navigate from ClientList row clicks but aren't surfaced in nav.
 const FOYER_LINKS = [
-  { href: "/work", label: "work" },
-  { href: "/about", label: "about" },
-  { href: "/work-with-me", label: "work with me" },
-  { href: "/contact", label: "contact" },
+  { href: "/#clients", label: "clients" },
+  { href: "/#workshop", label: "workshop" },
+  { href: "/#book", label: "book" },
 ] as const;
 
 export function Nav({ variant }: { variant: NavVariant }) {

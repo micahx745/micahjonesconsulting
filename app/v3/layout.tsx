@@ -6,8 +6,14 @@
 //
 // Lenis + ViewTransition inherited from root.
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { SpecimenNav } from "@/components/v3/specimen/SpecimenNav";
 import { Colophon } from "@/components/v3/specimen/Colophon";
+
+// Legacy direction — preserved for reference, not indexed.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function V3Layout({ children }: { children: ReactNode }) {
   return (

@@ -9,8 +9,14 @@
 // no need to re-mount. Lenis lerp 0.08 is close enough to the spec's 0.1
 // (~2% difference, imperceptible).
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { V2Nav } from "@/components/v2/nav/Nav";
 import { V2Footer } from "@/components/v2/footer/Footer";
+
+// Legacy direction — preserved for reference, not indexed.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function V2Layout({ children }: { children: ReactNode }) {
   return (
