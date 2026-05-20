@@ -1,12 +1,11 @@
 // app/(foyer)/opengraph-image.tsx
 //
-// Phase 10 — OG-01. Foyer OG image for the Home route (/).
-// Renders at /opengraph-image. Per Next.js App Router conventions, this file
-// co-located with the foyer group root becomes the OG image for the Home page.
+// Home OG image — Color Worlds palette + credibility punchline. This
+// is what unfurls when the home URL is shared on Twitter/LinkedIn/etc.
 //
-// Source: REQUIREMENTS.md OG-01; Next.js App Router opengraph-image docs.
+// Renders at /opengraph-image (Next.js App Router convention).
 import { ImageResponse } from "next/og";
-import { FoyerOGComposition } from "@/components/og/foyer-og-composition";
+import { CWOGComposition } from "@/components/og/cw-og-composition";
 
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
@@ -15,9 +14,9 @@ export const contentType = "image/png";
 export default async function Image() {
   return new ImageResponse(
     (
-      <FoyerOGComposition
-        eyebrow="OAKLAND OPERATOR"
-        description="Premium two-mode portfolio for Micah Jones, Oakland-based operator. Product, growth, consulting for founders and birth-worker practices."
+      <CWOGComposition
+        headline="MICAH JONES"
+        punch="$17M+ in client revenue. Two exits. Now building Ordani."
       />
     ),
     size,
