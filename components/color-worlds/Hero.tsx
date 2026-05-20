@@ -21,6 +21,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { MagneticArea } from "@/components/motion/MagneticArea";
 
 const ROLLING_WORDS = ["product.", "pipeline.", "launch.", "system."] as const;
 
@@ -216,9 +217,11 @@ export function Hero() {
       </p>
 
       <div className="cw-cta-row" ref={ctaRowRef}>
-        <a href="#clients" className="cw-cta">
-          See how I work <span className="cw-arr">↓</span>
-        </a>
+        <MagneticArea>
+          <a href="#clients" className="cw-cta">
+            See how I work <span className="cw-arr">↓</span>
+          </a>
+        </MagneticArea>
         <span className="cw-scrollhint">↓ Scroll</span>
       </div>
     </header>

@@ -192,6 +192,39 @@
   --font-cw-display: var(--font-bricolage), "Bricolage Grotesque", sans-serif;
   --font-cw-body:    var(--font-hanken), "Hanken Grotesk", system-ui, sans-serif;
   --font-cw-mono:    var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  /* ============================================================
+   * Motion tokens — single source of truth for every animation.
+   * Mirrors lib/motion/tokens.ts; that file is for JS consumers,
+   * this is for CSS. The values MUST match.
+   *
+   * Durations:
+   *   micro 120ms — keyboard-triggered (focus, escape)
+   *   fast  180ms — hover, tap, small toggles
+   *   base  240ms — default UI transition
+   *   slow  360ms — modal, drawer, page section
+   *   scene 600ms — hero reveal, storytelling beat
+   *
+   * Easings (cubic-bezier):
+   *   out       — default entrance (starts fast, settles)
+   *   out-quart — softer ease-out for large moves
+   *   out-back  — slight overshoot, playful
+   *   in        — exit (content leaving)
+   *   in-out    — modals, drawers (stays on screen)
+   *
+   * NEVER ease-in-out for entrances — makes UI feel sluggish.
+   * ============================================================ */
+  --duration-micro: 120ms;
+  --duration-fast:  180ms;
+  --duration-base:  240ms;
+  --duration-slow:  360ms;
+  --duration-scene: 600ms;
+
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);     /* ease-out-expo */
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-back:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in:        cubic-bezier(0.7, 0, 0.84, 0);     /* ease-in-quart */
+  --ease-in-out:    cubic-bezier(0.77, 0, 0.175, 1);   /* ease-in-out-quart */
 }
 
 /* ---- Mode-driven defaults — applied by [data-mode] on group layout <div> ----

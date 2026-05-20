@@ -22,6 +22,7 @@ import { Hero } from "@/components/color-worlds/Hero";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { RevenueTick } from "@/components/color-worlds/RevenueTick";
+import { MagneticArea } from "@/components/motion/MagneticArea";
 
 export const metadata: Metadata = {
   // Absolute title prevents the root template ("%s — Micah Jones") from
@@ -140,9 +141,13 @@ export default function ColorWorldsHome() {
           Strategy that ships, not slides.
         </SplitReveal>
 
-        <ul className="cw-worklist cw-reveal">
-          {CLIENT_OFFERS.map((row) => (
-            <li key={row.n} className="cw-workrow">
+        <ul className="cw-worklist">
+          {CLIENT_OFFERS.map((row, i) => (
+            <li
+              key={row.n}
+              className="cw-workrow cw-reveal"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
               <a href={row.href} className="cw-workrow__link">
                 <span className="cw-fill" aria-hidden />
                 <span className="cw-num">{row.n}</span>
@@ -205,7 +210,10 @@ export default function ColorWorldsHome() {
         </SplitReveal>
 
         <ul className="cw-cards">
-          <li className="cw-card cw-reveal">
+          <li
+            className="cw-card cw-reveal"
+            style={{ transitionDelay: "0ms" }}
+          >
             <a href="/work/hr-equity-author" className="cw-card__link">
               <span className="cw-tag">Author platform</span>
               <h3>Algorithm + content for an author</h3>
@@ -218,7 +226,10 @@ export default function ColorWorldsHome() {
               <span className="cw-open">See the engagement →</span>
             </a>
           </li>
-          <li className="cw-card cw-reveal">
+          <li
+            className="cw-card cw-reveal"
+            style={{ transitionDelay: "120ms" }}
+          >
             <a href="/about" className="cw-card__link">
               <span className="cw-tag">Enterprise software · 2013–2023</span>
               <h3>GTM at scale</h3>
@@ -264,19 +275,27 @@ export default function ColorWorldsHome() {
         data-world="terracotta"
         aria-labelledby="cw-build-title"
       >
-        <h2 id="cw-build-title" className="cw-big cw-reveal cw-shift">
+        <SplitReveal
+          as="h2"
+          id="cw-build-title"
+          className="cw-big cw-shift"
+          stagger={0.04}
+          start="top 85%"
+        >
           LET&rsquo;S
           <br />
-          BUILD <span className="cw-arr">→</span>
-        </h2>
+          BUILD →
+        </SplitReveal>
         <div className="cw-footrow cw-reveal">
-          <a
-            href="https://calendly.com/micahmccoyjones/introduction"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Book a call ↗
-          </a>
+          <MagneticArea>
+            <a
+              href="https://calendly.com/micahmccoyjones/introduction"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book a call ↗
+            </a>
+          </MagneticArea>
           <a href="mailto:hello@micahjonesconsulting.com">
             hello@micahjonesconsulting.com
           </a>
