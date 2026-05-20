@@ -28,6 +28,10 @@ import type { CSSProperties } from "react";
 import { ViewTransitionLink } from "@/components/view-transition-link";
 import { EditorialStrip } from "@/components/EditorialStrip";
 import { getSelectedWork } from "@/lib/case-studies";
+import { HandUnderline } from "@/components/hand/HandUnderline";
+import { HandCircle } from "@/components/hand/HandCircle";
+import { HandArrow } from "@/components/hand/HandArrow";
+import { Signature } from "@/components/hand/Signature";
 
 export const metadata: Metadata = {
   title: "Micah Jones — Oakland operator",
@@ -133,6 +137,19 @@ export default async function FoyerHomePage() {
           <span className="home-hero-tail__hint">proof below</span>
           <span className="home-hero-tail__arrow">↓</span>
         </div>
+
+        {/* Tier Final — Hand-signed signature at end of foyer hero.
+            Draws itself in 1.6s after page load. Replaces "made by a
+            template" with "made by a person." */}
+        <div
+          className="home-hero-signature"
+          style={{ ["--word-i"]: 22 } as CSSProperties}
+        >
+          <Signature height={42} delay={1.8} />
+          <span className="home-hero-signature__caption">
+            Hand-set 2026, Oakland CA
+          </span>
+        </div>
       </section>
 
       {/* ====== ROOM 2 — PLATE OF PROOF ============================ */}
@@ -147,13 +164,25 @@ export default async function FoyerHomePage() {
             <span className="proof-plate__eyebrow-sep" aria-hidden />
             <span>Recent proof</span>
           </p>
-          <p
-            className="proof-plate__stat"
-            data-shadow="$150K"
-            aria-label="$150K — average deal-size move at Guardicore"
-          >
-            $150K
-          </p>
+
+          {/* Tier Final — Hand-drawn circle around $150K + hand-arrow
+              from a margin note. The stat container is positioned
+              relative so the absolute-circle sits over the number. */}
+          <div className="proof-plate__stat-container">
+            <p
+              className="proof-plate__stat"
+              data-shadow="$150K"
+              aria-label="$150K — average deal-size move at Guardicore"
+            >
+              $150K
+            </p>
+            <HandCircle delay={0.4} variant={1} />
+            <span className="proof-plate__marginalia" aria-hidden>
+              <HandArrow direction="down-right" delay={1.0} />
+              <em>actual rev impact</em>
+            </span>
+          </div>
+
           <p className="proof-plate__caption">
             Average <strong>deal-size move</strong> at Guardicore, where I
             rewrote the single message at the top of the funnel — and the
@@ -173,7 +202,12 @@ export default async function FoyerHomePage() {
       >
         <header className="library-heading">
           <EditorialStrip lot="LOT 002" items={["Selected Work", "Four ships"]} />
-          <h2 className="library-pillar">Selected work.</h2>
+          <h2 className="library-pillar">
+            Selected work.
+            <span className="library-pillar__underline" aria-hidden>
+              <HandUnderline variant={2} delay={0.3} />
+            </span>
+          </h2>
         </header>
 
         <ul className="library-shelf">
@@ -240,9 +274,18 @@ export default async function FoyerHomePage() {
         </h2>
 
         <p className="booth-answer">
-          <ViewTransitionLink href="/contact" className="booth-link">
-            Write to me
-          </ViewTransitionLink>
+          <span className="booth-link-wrap">
+            <ViewTransitionLink href="/contact" className="booth-link">
+              Write to me
+            </ViewTransitionLink>
+            <span className="booth-link__hand-underline" aria-hidden>
+              <HandUnderline
+                variant={3}
+                color="var(--color-indigo)"
+                delay={0.4}
+              />
+            </span>
+          </span>
           <span className="booth-arrow" aria-hidden>
             ↗
           </span>
