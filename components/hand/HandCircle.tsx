@@ -23,10 +23,14 @@ interface HandCircleProps {
 
 // Each path is roughly an ellipse but drawn with hand-feeling curves.
 // Starts/ends slightly past the visual close — the way a person draws
-// a circle in a single stroke and overshoots.
+// a circle in a single stroke and overshoots. The viewBox is the SVG's
+// 100×60 coordinate space; we use preserveAspectRatio="none" below so
+// the circle stretches to whatever aspect the container actually is.
+// That keeps the visual centering correct regardless of $150K's
+// rendered width.
 const PATHS = {
-  1: "M 480 50 C 280 50, 90 80, 60 175 C 30 270, 220 320, 460 320 C 700 320, 920 290, 940 195 C 960 100, 770 50, 520 50 C 460 50, 440 55, 460 56",
-  2: "M 490 45 C 250 50, 70 90, 55 180 C 40 280, 240 330, 480 325 C 740 320, 935 280, 945 185 C 955 90, 740 45, 510 48 C 470 49, 450 52, 480 53",
+  1: "M 50 4 C 28 5, 8 12, 5 30 C 3 48, 22 56, 50 56 C 78 56, 96 50, 96 30 C 96 12, 78 4, 52 4 C 46 4, 44 5, 48 6",
+  2: "M 52 3 C 26 5, 6 14, 5 32 C 5 50, 26 57, 50 56 C 76 56, 95 50, 96 30 C 96 12, 76 3, 52 3 C 46 3, 44 4, 48 5",
 };
 
 export function HandCircle({
@@ -71,14 +75,14 @@ export function HandCircle({
   return (
     <svg
       className={`hand-circle ${className}`.trim()}
-      viewBox="0 0 1000 380"
+      viewBox="0 0 100 60"
       preserveAspectRatio="none"
       aria-hidden
       style={{
         position: "absolute",
-        inset: "-18% -8%",
-        width: "116%",
-        height: "136%",
+        inset: "-12% -6%",
+        width: "112%",
+        height: "124%",
         overflow: "visible",
         pointerEvents: "none",
       }}

@@ -53,22 +53,22 @@ export const metadata: Metadata = {
   },
 };
 
+// Hero rewrite: contrast + punchline. Line 1 sets the buyer's actual
+// pain (sales vs product split). Line 2 owns it. Two-sentence hit at
+// 5-second scan velocity.
 const HERO_WORDS = [
+  "Sales",
+  "and",
+  "product",
+  "disagree",
+  "about",
+  "everything.",
   "I",
-  "help",
-  "operators",
-  "ship",
-  "the",
-  "work",
-  "the",
-  "rest",
-  "of",
-  "their",
-  "org",
-  "keeps",
-  "stalling",
-  "on.",
+  "do",
+  "both",
+  "halves.",
 ];
+const HERO_BREAK_AT = 6; // index where line 1 ends and indented line 2 begins
 
 export default async function FoyerHomePage() {
   const selected = await getSelectedWork(4);
@@ -77,16 +77,15 @@ export default async function FoyerHomePage() {
     <div className="home-rooms">
       {/* ====== ROOM 1 — FOYER (HERO) ============================== */}
       <section className="home-room home-room--hero" data-room="foyer">
-        <EditorialStrip lot="LOT 001" items={["2026", "Oakland", "Issue 01"]} />
-
-        {/* Tier Z — Asymmetric hero composition. Top line anchored left,
-            bottom line indented. Reads as composed, not flowed. */}
+        {/* Tier Z+ — Asymmetric hero composition. Setup on top, punchline
+            indented. Editorial strip removed per user feedback (was
+            small-font noise above the hero, not earning its presence). */}
         <h1
           className="home-hero"
-          aria-label="I help operators ship the work the rest of their org keeps stalling on."
+          aria-label="Sales and product disagree about everything. I do both halves."
         >
           <span className="home-hero__line">
-            {HERO_WORDS.slice(0, 4).map((word, i) => (
+            {HERO_WORDS.slice(0, HERO_BREAK_AT).map((word, i) => (
               <span
                 key={`${word}-${i}`}
                 className="home-hero__word"
@@ -98,11 +97,11 @@ export default async function FoyerHomePage() {
             ))}
           </span>
           <span className="home-hero__line home-hero__line--indent">
-            {HERO_WORDS.slice(4).map((word, i) => (
+            {HERO_WORDS.slice(HERO_BREAK_AT).map((word, i) => (
               <span
-                key={`${word}-${i + 4}`}
+                key={`${word}-${i + HERO_BREAK_AT}`}
                 className="home-hero__word"
-                style={{ ["--word-i"]: i + 4 } as CSSProperties}
+                style={{ ["--word-i"]: i + HERO_BREAK_AT } as CSSProperties}
                 aria-hidden
               >
                 {word}
@@ -113,24 +112,25 @@ export default async function FoyerHomePage() {
 
         <p
           className="home-hero-subline"
-          style={{ ["--word-i"]: 15 } as CSSProperties}
+          style={{ ["--word-i"]: 12 } as CSSProperties}
         >
-          product · growth · consulting. Oakland, CA.
+          Operator-for-hire. Solo since 2024. Oakland.
         </p>
 
         <p
           className="home-hero-currently"
-          style={{ ["--word-i"]: 17 } as CSSProperties}
+          style={{ ["--word-i"]: 14 } as CSSProperties}
         >
-          <span className="home-hero-currently__eyebrow">currently</span>
+          <span className="home-hero-currently__eyebrow">Now</span>
           <span className="home-hero-currently__statement">
-            building <em>ORDANI</em> — a HIPAA-compliant CRM. Q3 2026 paid beta.
+            building <em>ORDANI</em> — HIPAA-grade software for the doulas keeping
+            Black women alive in childbirth.
           </span>
         </p>
 
         <div
           className="home-hero-tail"
-          style={{ ["--word-i"]: 19 } as CSSProperties}
+          style={{ ["--word-i"]: 17 } as CSSProperties}
           aria-hidden
         >
           <span className="home-hero-tail__rule" />
@@ -143,9 +143,9 @@ export default async function FoyerHomePage() {
             template" with "made by a person." */}
         <div
           className="home-hero-signature"
-          style={{ ["--word-i"]: 22 } as CSSProperties}
+          style={{ ["--word-i"]: 19 } as CSSProperties}
         >
-          <Signature height={42} delay={1.8} />
+          <Signature height={42} delay={1.6} />
           <span className="home-hero-signature__caption">
             Hand-set 2026, Oakland CA
           </span>
@@ -184,9 +184,8 @@ export default async function FoyerHomePage() {
           </div>
 
           <p className="proof-plate__caption">
-            Average <strong>deal-size move</strong> at Guardicore, where I
-            rewrote the single message at the top of the funnel — and the
-            company was acquired by Akamai shortly after.
+            I rewrote <strong>one sentence</strong> at Guardicore. Average deal
+            size moved $150K. Akamai bought us shortly after.
           </p>
           <p className="proof-plate__provenance">
             Guardicore / Akamai · 2020 · Positioning research
@@ -269,9 +268,7 @@ export default async function FoyerHomePage() {
           items={["Contact", "Two-day reply"]}
         />
 
-        <h2 className="booth-question">
-          Have something that needs shipping?
-        </h2>
+        <h2 className="booth-question">Something stuck in your funnel?</h2>
 
         <p className="booth-answer">
           <span className="booth-link-wrap">

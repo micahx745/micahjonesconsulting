@@ -22,10 +22,15 @@ interface HandUnderlineProps {
   className?: string;
 }
 
+// Tier Final fix — flattened curves. Original variants had y-range
+// 4–13 which got vertically compressed when the SVG stretched to the
+// thin underline strip — the up-curves crossed into the type bottom.
+// New range is y 7–11 (max 4 units variance) for a subtle pen-line
+// feel without intersecting the baseline.
 const PATHS = {
-  1: "M 3 8 C 80 4, 200 11, 320 7 S 540 6, 720 9 S 920 4, 997 7",
-  2: "M 4 7 C 50 11, 110 4, 180 8 C 260 12, 340 5, 420 9 C 510 13, 600 6, 690 8 C 800 10, 900 5, 997 9",
-  3: "M 2 6 Q 120 13 250 7 T 510 9 T 770 6 T 997 8",
+  1: "M 3 9 C 80 8, 200 10, 320 9 S 540 10, 720 9 S 920 8, 997 9",
+  2: "M 4 9 C 50 10, 110 8, 180 9 C 260 10, 340 9, 420 9 C 510 10, 600 8, 690 9 C 800 10, 900 8, 997 10",
+  3: "M 2 9 Q 120 11 250 9 T 510 9 T 770 8 T 997 9",
 };
 
 export function HandUnderline({
@@ -77,8 +82,8 @@ export function HandUnderline({
       style={{
         display: "block",
         width: "100%",
-        height: "0.6em",
-        marginTop: "0.05em",
+        height: "0.35em",
+        marginTop: "0.04em",
         overflow: "visible",
       }}
     >

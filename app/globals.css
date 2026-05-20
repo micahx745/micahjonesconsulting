@@ -1853,31 +1853,45 @@
   display: inline-block;
 }
 
+/* Tier Final fix — marginalia repositioned to upper-RIGHT outside the
+ * stat, with arrow pointing DOWN-LEFT toward the circled number. The
+ * note ("actual rev impact") sits above the arrow; the arrow points
+ * from the note to the stat. */
 .proof-plate__marginalia {
   position: absolute;
-  top: -8%;
-  right: -18%;
-  width: clamp(120px, 14vw, 180px);
+  top: -12%;
+  left: calc(100% + 16px);
+  width: clamp(140px, 18vw, 220px);
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   pointer-events: none;
+  gap: 4px;
 }
 
 .proof-plate__marginalia em {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(11px, 1vw, 14px);
-  letter-spacing: 0.04em;
+  font-size: clamp(13px, 1.2vw, 17px);
+  letter-spacing: 0.02em;
   color: var(--color-accent-copper-deep);
-  margin-bottom: 4px;
   white-space: nowrap;
+  padding-left: 14px;
 }
 
 .proof-plate__marginalia .hand-arrow {
-  width: clamp(80px, 10vw, 140px);
+  width: clamp(70px, 9vw, 110px);
   height: auto;
+  /* Flip horizontally so the arrowhead (originally at lower-right) ends
+   * up at lower-LEFT — pointing back at the $150K stat. */
   transform: scaleX(-1);
+  margin-left: -4px;
+}
+
+@media (max-width: 1023px) {
+  .proof-plate__marginalia {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {
@@ -1913,7 +1927,7 @@
 .library-pillar__underline {
   display: block;
   width: 100%;
-  margin-top: -0.12em;
+  margin-top: 8px;
 }
 
 .booth-link-wrap {
