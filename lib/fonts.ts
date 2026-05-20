@@ -7,7 +7,7 @@
 //   metrics into the generated @font-face rule, which neutralizes CLS on first paint.
 //   Known intermittent Next.js issue #74134 in 15.x — verify .next/static/css/*.css
 //   contains size-adjust rules after first `pnpm build`.
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { Inter, Source_Serif_4, Instrument_Serif } from "next/font/google";
 
 // Inter at display weights — used for headlines, TitleCard 96px stack, hero copy.
 // Inter at 700/800 scores ~90% Söhne Halbfett similarity per Typewolf 2025 index.
@@ -39,6 +39,19 @@ export const inter = Inter({
 // Discrete weights ["400","500"] + axes are incompatible — only variable-font
 // weight is allowed. The variable font interpolates 400-700 internally; the
 // `opsz` axis provides optical-size compensation at 32px pull-quote scale.
+// v2 (dark-mode luxury) — Instrument Serif as the free PP-Editorial-New
+// fallback. Used for hero, project titles, pull quotes on /v2 routes only.
+// Italic is the primary face for editorial display use.
+export const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+  adjustFontFallback: true,
+  preload: false,
+});
+
 export const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   axes: ["opsz"],
