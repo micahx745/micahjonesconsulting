@@ -20,6 +20,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/color-worlds/Hero";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
+import { OrdaniSticky } from "@/components/color-worlds/OrdaniSticky";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { RevenueTick } from "@/components/color-worlds/RevenueTick";
 import { MagneticArea } from "@/components/motion/MagneticArea";
@@ -172,6 +173,7 @@ export default function ColorWorldsHome() {
         data-world="petrol"
         aria-labelledby="cw-ordani-title"
       >
+        <OrdaniSticky />
         <p className="cw-tagrow cw-reveal">
           <span className="cw-live">Live beta</span> —{" "}
           <span>system of record for a regulated market</span>
