@@ -1,18 +1,21 @@
 // app/robots.ts
 //
-// Phase 10 — OG-04. Next.js App Router file convention: this file becomes
-// /robots.txt automatically.
+// /robots.txt — Next.js App Router file convention.
 //
-// Per pitfall E3:
-//   - Googlebot is explicitly allowed everywhere (do NOT noindex ORDANI).
-//   - AI-training crawlers (GPTBot, Google-Extended, CCBot, ClaudeBot,
-//     anthropic-ai) are disallowed from /work/* — Micah's case-study
-//     content is not training data without explicit opt-in.
-//   - Everything else gets the permissive default.
+// 2026 SEO + AI-discoverability policy: ALLOW all crawlers including
+// the LLM training/search bots (GPTBot, ClaudeBot, Perplexity-style
+// bots, etc.). For a personal site whose discoverability comes
+// largely from AI search engines recommending the operator, blocking
+// these is a losing trade — the upside (your case studies show up
+// when someone asks "Black operators in Oakland" in ChatGPT/Perplexity)
+// outweighs the marginal downside (content potentially in training).
 //
-// Sitemap is referenced so Googlebot picks up new case studies promptly.
+// Public content is public. The legacy direction snapshots (/v1-/v4)
+// are noindexed via per-layout metadata, not via robots.txt — that's
+// the right tool for "crawl but don't index" semantics.
 //
-// Source: REQUIREMENTS.md OG-04; PITFALLS.md E3; Next.js robots.ts docs.
+// Reference: llms.txt spec (https://llmstxt.org/) is also implemented
+// at /llms.txt for explicit LLM tooling.
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -21,26 +24,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-      },
-      {
-        userAgent: "GPTBot",
-        disallow: "/work/",
-      },
-      {
-        userAgent: "Google-Extended",
-        disallow: "/work/",
-      },
-      {
-        userAgent: "CCBot",
-        disallow: "/work/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        disallow: "/work/",
-      },
-      {
-        userAgent: "anthropic-ai",
-        disallow: "/work/",
+        // Legacy direction snapshots are noindex-only at the page level,
+        // but block crawling too — saves crawler budget and prevents the
+        // snapshots showing up in any cached search results.
+        disallow: ["/v1/", "/v2/", "/v3/", "/v4/"],
       },
     ],
     sitemap: "https://micahjonesconsulting.com/sitemap.xml",

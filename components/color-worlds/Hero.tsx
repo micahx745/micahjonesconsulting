@@ -1,16 +1,23 @@
 // components/color-worlds/Hero.tsx
 //
-// Hero — the only client-heavy section. Owns:
-//   1. Load reveal: eyebrow + headline lines translateY(110% → 0),
-//      sub + CTA row fade up. Staggered, kicked off after mount.
-//   2. Rolling word: product → pipeline → launch → system, cycling
-//      every 1.9s. Matches the mockup's translate-by-step approach
-//      with a snap-reset on cycle completion.
-//   3. Parallax: small mousemove transform on the h1.
+// Hero — load reveal + rolling word + parallax.
 //
-// All motion is short-circuited by prefers-reduced-motion via CSS.
-// The component still mounts on those clients but the visible effect
-// is identical to a static page.
+// PROGRESSIVE ENHANCEMENT: baseline HTML is fully visible. The
+// initial-hidden state (translateY 110%, opacity 0) only applies when
+// the root has `.cw-js-reveals` — added by ScrollReveal on mount.
+// No-JS clients see the full hero. Pre-hydration users see the full
+// hero. This is identical to the .cw-reveal pattern used elsewhere.
+//
+// ROLLING WORD A11Y: the cycling stack is aria-hidden; a visually-
+// hidden static sibling provides the SR-only fallback "I build the
+// system." — read once, not on every cycle.
+//
+// PARALLAX: rAF-batched + tightened range. Was dx*20/dy*12 — too
+// aggressive on display-scale type; cut to dx*6/dy*4. Pointer-fine
+// only (excludes touch-laptop users from the unnecessary handler).
+//
+// ROLLING WORD PAUSE: setInterval pauses when the hero leaves the
+// viewport or the tab is hidden.
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -24,6 +31,7 @@ export function Hero() {
   const lineRefs = useRef<HTMLSpanElement[]>([]);
   const rollRef = useRef<HTMLSpanElement | null>(null);
   const h1Ref = useRef<HTMLHeadingElement | null>(null);
+  const heroRef = useRef<HTMLElement | null>(null);
 
   function captureLine(el: HTMLSpanElement | null) {
     if (el && !lineRefs.current.includes(el)) lineRefs.current.push(el);
@@ -35,8 +43,8 @@ export function Hero() {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
+    if (reduced) return; // CSS handles the static visible state.
 
-    // Reveal eyebrow
     const eyebrow = eyebrowRef.current;
     if (eyebrow) {
       eyebrow.style.transition =
@@ -46,7 +54,6 @@ export function Hero() {
       });
     }
 
-    // Reveal headline lines, staggered
     lineRefs.current.forEach((el, i) => {
       el.style.transition = `transform .9s cubic-bezier(.16,1,.3,1)`;
       el.style.transitionDelay = `${0.25 + i * 0.12}s`;
@@ -55,15 +62,11 @@ export function Hero() {
       });
     });
 
-    // Reveal sub + cta-row via class toggle (CSS handles the easing).
     subRef.current?.classList.add("is-in");
     ctaRowRef.current?.classList.add("is-in");
-
-    // No further return needed — this is a one-shot reveal.
-    void reduced;
   }, []);
 
-  // Rolling word cycle. Matches the mockup's setInterval loop.
+  // Rolling word cycle — pauses when hero out of viewport or tab hidden.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
@@ -72,52 +75,106 @@ export function Hero() {
     if (reduced) return;
 
     const roll = rollRef.current;
-    if (!roll) return;
+    const hero = heroRef.current;
+    if (!roll || !hero) return;
 
     let step = 0;
-    const interval = window.setInterval(() => {
-      step = (step + 1) % ROLLING_WORDS.length;
-      roll.style.transition = "transform .6s cubic-bezier(.7,0,.2,1)";
-      roll.style.transform = `translateY(-${step}em)`;
+    let interval: number | null = null;
+    let inView = true;
+    let tabVisible = !document.hidden;
 
-      // When step rolls back to 0, snap-reset so the next cycle doesn't
-      // visibly scroll backwards through the whole list. Snap happens
-      // after the animation completes (~620ms).
-      if (step === 0) {
-        window.setTimeout(() => {
-          roll.style.transition = "none";
-          roll.style.transform = "translateY(0)";
-        }, 620);
+    function shouldRun() {
+      return inView && tabVisible;
+    }
+
+    function start() {
+      if (interval !== null) return;
+      interval = window.setInterval(() => {
+        step = (step + 1) % ROLLING_WORDS.length;
+        roll!.style.transition = "transform .6s cubic-bezier(.7,0,.2,1)";
+        roll!.style.transform = `translateY(-${step}em)`;
+        if (step === 0) {
+          window.setTimeout(() => {
+            if (!roll) return;
+            roll.style.transition = "none";
+            roll.style.transform = "translateY(0)";
+          }, 620);
+        }
+      }, 1900);
+    }
+    function stop() {
+      if (interval !== null) {
+        window.clearInterval(interval);
+        interval = null;
       }
-    }, 1900);
+    }
 
-    return () => window.clearInterval(interval);
+    const io = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        inView = entry.isIntersecting;
+        shouldRun() ? start() : stop();
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(hero);
+
+    function onVisibility() {
+      tabVisible = !document.hidden;
+      shouldRun() ? start() : stop();
+    }
+    document.addEventListener("visibilitychange", onVisibility);
+
+    if (shouldRun()) start();
+
+    return () => {
+      stop();
+      io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+    };
   }, []);
 
-  // Parallax — mousemove on the h1.
+  // Parallax — pointer-fine devices only; rAF-batched; tightened range.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (reduced) return;
-    const isTouch = "ontouchstart" in window;
-    if (isTouch) return;
+    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!fine) return;
 
     const h1 = h1Ref.current;
     if (!h1) return;
 
+    let tx = 0;
+    let ty = 0;
+    let raf = 0;
+    let pending = false;
+
     function onMove(e: PointerEvent) {
-      const dx = e.clientX / window.innerWidth - 0.5;
-      const dy = e.clientY / window.innerHeight - 0.5;
-      h1!.style.transform = `translate(${dx * 20}px, ${dy * 12}px)`;
+      tx = e.clientX / window.innerWidth - 0.5;
+      ty = e.clientY / window.innerHeight - 0.5;
+      if (!pending) {
+        pending = true;
+        raf = requestAnimationFrame(apply);
+      }
+    }
+    function apply() {
+      h1!.style.transform = `translate(${tx * 6}px, ${ty * 4}px)`;
+      pending = false;
     }
     window.addEventListener("pointermove", onMove);
-    return () => window.removeEventListener("pointermove", onMove);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (
     <header
+      ref={heroRef}
       className="cw-hero"
       data-section
       data-world="terracotta"
@@ -125,9 +182,7 @@ export function Hero() {
       aria-label="Hero"
     >
       <div className="cw-eyebrow">
-        <span ref={eyebrowRef}>
-          Independent builder — Oakland, CA — Available now
-        </span>
+        <span ref={eyebrowRef}>Independent builder — Oakland, CA</span>
       </div>
 
       <h1 className="cw-h1 cw-shift" ref={h1Ref}>
@@ -136,14 +191,14 @@ export function Hero() {
         </span>
         <span className="cw-line">
           <span ref={captureLine}>
-            <span className="cw-roll">
+            {/* Screen-reader fallback: the rolling stack is decorative
+                motion; the SR-only static label is read once. */}
+            <span className="cw-sr-only">system.</span>
+            <span className="cw-roll" aria-hidden>
               <span className="cw-stack" ref={rollRef}>
                 {ROLLING_WORDS.map((w) => (
                   <span key={w}>{w}</span>
                 ))}
-                {/* Duplicate first word so the snap-reset is invisible
-                    in the brief window between -3em transition end and
-                    the JS-driven snap back to 0em. */}
                 <span>{ROLLING_WORDS[0]}</span>
               </span>
             </span>
@@ -157,8 +212,8 @@ export function Hero() {
       </p>
 
       <div className="cw-cta-row" ref={ctaRowRef}>
-        <a href="#contact" className="cw-cta" data-cursor data-magnetic>
-          Book a call <span className="cw-arr">→</span>
+        <a href="#clients" className="cw-cta">
+          See how I work <span className="cw-arr">↓</span>
         </a>
         <span className="cw-scrollhint">↓ Scroll</span>
       </div>

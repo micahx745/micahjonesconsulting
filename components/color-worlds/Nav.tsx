@@ -39,13 +39,13 @@ export function Nav() {
   return (
     <>
       <nav className="cw-nav" aria-label="Primary">
-        <a href="#top" className="cw-wordmark" data-cursor>
+        <a href="#top" className="cw-wordmark">
           MICAH/JONES
         </a>
         <ul className="cw-navlinks">
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
-              <a href={l.href} data-cursor>
+              <a href={l.href}>
                 {l.label}
               </a>
             </li>

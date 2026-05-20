@@ -7,8 +7,15 @@
 //
 // Inherits data-mode="th" to restore the Two Hands tokens / nav styling.
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { EditorialTimestamp } from "@/components/EditorialTimestamp";
+
+// Legacy direction — preserved for reference, not indexed.
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default function V4Layout({ children }: { children: ReactNode }) {
   return (
@@ -19,6 +26,7 @@ export default function V4Layout({ children }: { children: ReactNode }) {
       <Nav variant="foyer" />
       <main id="main-content">{children}</main>
       <Footer />
+      <EditorialTimestamp />
     </div>
   );
 }

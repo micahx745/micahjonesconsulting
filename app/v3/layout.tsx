@@ -9,6 +9,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { SpecimenNav } from "@/components/v3/specimen/SpecimenNav";
 import { Colophon } from "@/components/v3/specimen/Colophon";
+import { EditorialTimestamp } from "@/components/EditorialTimestamp";
 
 // Legacy direction — preserved for reference, not indexed.
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function V3Layout({ children }: { children: ReactNode }) {
       <SpecimenNav />
       <main>{children}</main>
       <Colophon />
+      <EditorialTimestamp />
     </div>
   );
 }

@@ -64,7 +64,7 @@ export function OrdaniBetaForm() {
         required
         disabled={isPending}
       />
-      <button type="submit" data-cursor data-magnetic disabled={isPending}>
+      <button type="submit" disabled={isPending}>
         {isPending ? "Joining…" : "Join the beta →"}
       </button>
       {status.kind === "error" ? (

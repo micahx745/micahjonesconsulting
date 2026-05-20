@@ -12,6 +12,7 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { V2Nav } from "@/components/v2/nav/Nav";
 import { V2Footer } from "@/components/v2/footer/Footer";
+import { EditorialTimestamp } from "@/components/EditorialTimestamp";
 
 // Legacy direction — preserved for reference, not indexed.
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function V2Layout({ children }: { children: ReactNode }) {
       <V2Nav />
       <main>{children}</main>
       <V2Footer />
+      <EditorialTimestamp />
     </div>
   );
 }

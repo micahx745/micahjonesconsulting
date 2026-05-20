@@ -24,14 +24,20 @@ import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { RevenueTick } from "@/components/color-worlds/RevenueTick";
 
 export const metadata: Metadata = {
-  title: "Micah Jones — Strategy and software, shipped by the same pair of hands",
+  // Absolute title prevents the root template ("%s — Micah Jones") from
+  // double-suffixing on the home page. Other routes still get the suffix.
+  title: {
+    absolute:
+      "Micah Jones — Strategy and software, shipped by the same pair of hands",
+  },
   description:
-    "I build go-to-market for clients — and products with real users. Oakland.",
+    "Independent operator. $17M+ in client revenue. Two exits: Guardicore → Akamai, TechValidate → SurveyMonkey. Now building Ordani in Oakland.",
+  alternates: { canonical: "https://micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "I build go-to-market for clients — and products with real users. Oakland.",
+      "Independent operator. $17M+ in client revenue. Two exits. Now building Ordani in Oakland.",
     type: "website",
     url: "https://micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -41,7 +47,7 @@ export const metadata: Metadata = {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "I build go-to-market for clients — and products with real users. Oakland.",
+      "Independent operator. $17M+ in client revenue. Two exits. Now building Ordani in Oakland.",
   },
 };
 
@@ -68,11 +74,13 @@ const CLIENT_OFFERS = [
   },
 ] as const;
 
+// Marquee shows companies Micah BUILT AT — not the companies that
+// acquired them. Akamai and SurveyMonkey are the acquirers and they
+// already appear in the exits credibility line; including them here
+// would double-bill the same achievement.
 const COMPANIES = [
   "Guardicore",
-  "Akamai",
-  "TheValidate",
-  "SurveyMonkey",
+  "TechValidate",
   "Flexport",
   "Cuebiq",
   "Postmates",
@@ -207,8 +215,7 @@ export default function ColorWorldsHome() {
         style={{ paddingBottom: 40 }}
       >
         <p className="cw-companies-meta cw-reveal">
-          2013 — 2023 · Growth, GTM &amp; platform strategy · Attributions under
-          NDA
+          2013 — 2023 · Growth, GTM &amp; platform strategy
         </p>
         <div className="cw-companies" style={{ marginTop: 22 }}>
           <div className="cw-track">
@@ -239,9 +246,7 @@ export default function ColorWorldsHome() {
         <div className="cw-footrow cw-reveal">
           <a
             href="mailto:hello@micahjonesconsulting.com?subject=Intro call"
-            data-cursor
-            data-magnetic
-          >
+                                >
             Book a call ↗
           </a>
           <a href="mailto:hello@micahjonesconsulting.com" data-cursor>

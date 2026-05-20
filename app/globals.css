@@ -5165,6 +5165,126 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   border-radius: 2px;
 }
 
+/* Skip-to-content link — cw-mode visibility. Defaults use the foyer
+ * copper which disappears against terracotta. Use espresso/bone for
+ * cw so the focused state pops against every world. */
+[data-mode="cw"] .skip-to-content:focus {
+  background: var(--color-cw-espresso);
+  color: var(--color-cw-bone);
+  outline: 2px solid var(--color-cw-saffron);
+}
+
+/* /about + /work prose pages — quiet bone world, restrained typography. */
+[data-mode="cw"] .cw-about,
+[data-mode="cw"] .cw-work-list {
+  max-width: 68ch;
+  margin-top: 48px;
+  font-family: var(--font-cw-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+[data-mode="cw"] .cw-about__lede {
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.5;
+  margin: 0 0 40px;
+}
+[data-mode="cw"] .cw-about__h {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 30px);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 48px 0 16px;
+}
+[data-mode="cw"] .cw-about__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+[data-mode="cw"] .cw-about__list li {
+  padding: 12px 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+[data-mode="cw"] .cw-about__list li:last-child {
+  border-bottom: none;
+}
+[data-mode="cw"] .cw-about__back {
+  margin-top: 64px;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-about a,
+[data-mode="cw"] .cw-work-list a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--cw-accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+/* /work case study index */
+[data-mode="cw"] .cw-work-list {
+  list-style: none;
+  padding: 0;
+  max-width: 1100px;
+}
+[data-mode="cw"] .cw-work-item {
+  border-top: 1.5px solid currentColor;
+  padding: 32px 0;
+}
+[data-mode="cw"] .cw-work-item:last-child {
+  border-bottom: 1.5px solid currentColor;
+}
+[data-mode="cw"] .cw-work-item__link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+[data-mode="cw"] .cw-work-item__title {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 40px);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+[data-mode="cw"] .cw-work-item__dek {
+  font-family: var(--font-cw-body);
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  max-width: 68ch;
+}
+[data-mode="cw"] .cw-work-item__meta {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0;
+}
+[data-mode="cw"] .cw-work-item:hover .cw-work-item__title {
+  color: var(--cw-accent);
+  transition: color 200ms ease;
+}
+
+/* SR-only — screen-reader-visible, visually-hidden. Used by Hero for
+ * the static rolling-word fallback so AT users hear "system." once,
+ * not the cycling stack. */
+[data-mode="cw"] .cw-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 [data-mode="cw"] * {
   box-sizing: border-box;
 }
@@ -5294,36 +5414,9 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   }
 }
 
-/* Custom cursor. Mix-blend-mode: difference for legibility across
- * any world. Hidden on touch via the body cursor:auto media query
- * AND .cw-cursor display:none below. */
-[data-mode="cw"] .cw-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--cw-accent);
-  z-index: 9999;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.25s ease,
-    height 0.25s ease,
-    background-color 0.7s ease,
-    opacity 0.3s ease;
-  mix-blend-mode: difference;
-}
-[data-mode="cw"] .cw-cursor.is-big {
-  width: 84px;
-  height: 84px;
-}
-@media (max-width: 760px) {
-  [data-mode="cw"] .cw-cursor {
-    display: none;
-  }
-}
+/* Custom cursor styles removed — Cursor.tsx is deleted, system cursor
+ * is the source of truth. (data-cursor / data-magnetic attributes on
+ * markup are intentional no-ops in case the effect comes back.) */
 
 /* Nav. mix-blend-mode: difference keeps text legible against any
  * world bg. White text is the source; difference inverts to whatever
@@ -5482,8 +5575,13 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin-bottom: 32px;
   overflow: hidden;
 }
+/* Progressive enhancement — span starts visible; only hidden when JS
+ * has signaled readiness via the .cw-js-reveals root class. No-JS
+ * clients (and pre-hydration paints) see the eyebrow at rest. */
 [data-mode="cw"] .cw-eyebrow > span {
   display: inline-block;
+}
+[data-mode="cw"].cw-js-reveals .cw-eyebrow > span {
   transform: translateY(110%);
 }
 
@@ -5500,14 +5598,21 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   overflow: hidden;
   display: block;
 }
+/* Progressive enhancement — line spans start visible; only hidden when
+ * JS-ready. The whole hero is fully readable without JS. */
 [data-mode="cw"] .cw-h1 .cw-line > span {
   display: block;
+}
+[data-mode="cw"].cw-js-reveals .cw-h1 .cw-line > span {
   transform: translateY(110%);
 }
 
-/* Rolling word */
+/* Rolling word — bone color + italic. Distinction from the rest of
+ * the headline comes from italic + motion, not from color contrast.
+ * Reviewer's recommendation: operator > designer. */
 [data-mode="cw"] .cw-roll {
-  color: var(--cw-accent);
+  color: inherit;
+  font-style: italic;
   position: relative;
   display: inline-block;
   height: 1em;
@@ -5527,15 +5632,18 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin: 38px 0 0;
   font-size: clamp(17px, 1.7vw, 21px);
   line-height: 1.45;
+  opacity: 0.92;
+}
+/* Progressive enhancement — sub starts visible; only hidden when JS-ready
+ * (so it can animate up). LCP element is no longer artificially delayed. */
+[data-mode="cw"].cw-js-reveals .cw-sub {
   opacity: 0;
   transform: translateY(20px);
-  /* Delay tightened from .9s → .15s — sub paragraph is the LCP element
-   * and the original delay was self-inflicting LCP ~2s (per review). */
   transition:
     opacity 0.6s 0.15s,
     transform 0.6s 0.15s;
 }
-[data-mode="cw"] .cw-sub.is-in {
+[data-mode="cw"].cw-js-reveals .cw-sub.is-in {
   opacity: 0.92;
   transform: none;
 }
@@ -5552,15 +5660,16 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   display: flex;
   align-items: center;
   gap: 22px;
+  flex-wrap: wrap;
+}
+[data-mode="cw"].cw-js-reveals .cw-cta-row {
   opacity: 0;
   transform: translateY(20px);
-  /* Was 1.05s — tightened to .35s to follow the sub without lagging. */
   transition:
     opacity 0.6s 0.35s,
     transform 0.6s 0.35s;
-  flex-wrap: wrap;
 }
-[data-mode="cw"] .cw-cta-row.is-in {
+[data-mode="cw"].cw-js-reveals .cw-cta-row.is-in {
   opacity: 1;
   transform: none;
 }
@@ -5784,10 +5893,11 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   [data-mode="cw"] .cw-rev-exits {
     font-size: 18px;
   }
+  /* On mobile, hide the · separator entirely; the second exit takes
+   * its own visual line and reads as a complementary clause, not as
+   * a denominator of a fraction. */
   [data-mode="cw"] .cw-rev-exits-sep {
-    display: block;
-    margin: 6px 0;
-    text-align: center;
+    display: none;
   }
 }
 
@@ -6152,8 +6262,5 @@ body:has([data-mode="cw"]) .editorial-timestamp {
   [data-mode="cw"] .cw-reveal {
     opacity: 1 !important;
     transform: none !important;
-  }
-  [data-mode="cw"] .cw-cursor {
-    display: none;
   }
 }

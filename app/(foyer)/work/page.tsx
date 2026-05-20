@@ -1,41 +1,24 @@
 // app/(foyer)/work/page.tsx
 //
-// Phase 6 — FOYER-08.
+// /work — case study index for SEO + internal linking.
 //
-// Lists every case study from content/work/*.mdx as a TitleCardComposition
-// thumbnail with a ViewTransitionLink wrapper. Uses lib/case-studies.ts —
-// which Phase 7 will extend with a Zod schema and Phase 8 will populate
-// with real case studies. For Phase 6, only test-slug.mdx is present, so
-// the Work index renders a single thumbnail.
-//
-// Thumbnails use TitleCardComposition (static, server-safe) NOT TitleCard
-// (client + GSAP). The pin animation fires on the case-study page itself,
-// not here. This preserves the one-signature-motion rule.
-//
-// Source: blueprint §6 (Work index page type), §7 (TitleCard thumbnails
-//         hinted via §4f); REQUIREMENTS.md FOYER-08; Phase 5 RESEARCH §2.1.
+// Lists every case study with its title, dek, and meta. Each link goes
+// to /work/[slug] (existing theater route). Server-rendered. No client
+// JS needed — this is a pure SEO + navigation page.
 import type { Metadata } from "next";
-import { ViewTransitionLink } from "@/components/view-transition-link";
-import { TitleCardComposition } from "@/components/TitleCardComposition";
 import { getAllCaseStudies } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Work — Micah Jones",
   description:
-    "Case studies from Micah Jones: ORDANI HIPAA-compliant CRM for birth workers, HR equity playbook, Passioneer, Akamai positioning research.",
+    "Case studies from a decade of GTM, product, and platform engagements. Guardicore, TechValidate, HR equity author, and Ordani.",
+  alternates: { canonical: "https://micahjonesconsulting.com/work" },
   openGraph: {
     title: "Work — Micah Jones",
     description:
-      "Case studies from Micah Jones: ORDANI HIPAA-compliant CRM for birth workers, HR equity playbook, Passioneer, Akamai positioning research.",
+      "Case studies from a decade of GTM, product, and platform engagements.",
     type: "website",
     url: "https://micahjonesconsulting.com/work",
-    siteName: "Micah Jones",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Work — Micah Jones",
-    description:
-      "Case studies from Micah Jones: ORDANI HIPAA-compliant CRM for birth workers, HR equity playbook, Passioneer, Akamai positioning research.",
   },
 };
 
@@ -43,47 +26,38 @@ export default async function WorkIndexPage() {
   const studies = await getAllCaseStudies();
 
   return (
-    <div className="foyer-page">
-      <section className="foyer-section foyer-section--work-hero">
-        <h1 className="foyer-hero foyer-hero--secondary">Work</h1>
-        <p className="foyer-prose">
-          Case studies of shipped work. Each one names what was built, for whom, and what
-          changed.
-        </p>
-      </section>
+    <section
+      className="cw-block"
+      data-section
+      data-world="bone"
+      aria-labelledby="cw-work-title"
+    >
+      <p className="cw-kicker">Work</p>
+      <h1 id="cw-work-title" className="cw-secttitle">
+        Selected case studies.
+      </h1>
 
-      <section className="foyer-section foyer-section--work-grid">
-        {studies.length === 0 ? (
-          <p className="foyer-prose">Case studies arriving shortly.</p>
-        ) : (
-          <ul className="work-index-grid">
-            {studies.map((study, i) => (
-              <li key={study.slug} className="work-index-card" data-case={study.slug}>
-                <ViewTransitionLink
-                  href={`/work/${study.slug}`}
-                  className="work-index-card__link"
-                >
-                  <span className="work-index-card__rule" aria-hidden />
-                  <span className="work-index-card__index">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <TitleCardComposition
-                    words={study.titleCardWords}
-                    caption={study.dek || study.title}
-                    phase="stacked"
-                  />
-                  <div className="work-index-card__meta">
-                    <span className="work-index-card__title">{study.title}</span>
-                    {study.dek ? (
-                      <span className="work-index-card__dek">{study.dek}</span>
-                    ) : null}
-                  </div>
-                </ViewTransitionLink>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-    </div>
+      <ul className="cw-work-list">
+        {studies.map((s) => (
+          <li key={s.slug} className="cw-work-item">
+            <a href={`/work/${s.slug}`} className="cw-work-item__link">
+              <h2 className="cw-work-item__title">{s.title}</h2>
+              <p className="cw-work-item__dek">{s.dek}</p>
+              <p className="cw-work-item__meta">
+                <span>{s.year}</span>
+                <span aria-hidden> &middot; </span>
+                <span>{s.role}</span>
+                <span aria-hidden> &middot; </span>
+                <span>{s.status}</span>
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p className="cw-about__back">
+        <a href="/">&larr; Back to home</a>
+      </p>
+    </section>
   );
 }

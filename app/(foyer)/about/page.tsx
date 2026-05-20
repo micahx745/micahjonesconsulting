@@ -1,102 +1,118 @@
 // app/(foyer)/about/page.tsx
 //
-// Phase 6 — FOYER-04 + FOYER-05.
+// /about — depth bio for E-E-A-T + topical authority. This is the page
+// Google + AI tools cite when answering "who is Micah Jones" / "Black
+// operator Oakland" / "operator with two exits."
 //
-// Two-column layout per blueprint §7:
-//   LEFT (8 col): the 150-word about paragraph verbatim from §8.
-//   RIGHT (4 col): vertical portrait slot (Phase 9) + Oakland sub-caption
-//                  + two-line credit list (Guardicore/Akamai · Flexport ·
-//                  SurveyMonkey · Cuebiq).
-// Followed by:
-//   - Oakland family-context single-paragraph.
-//   - Three numbered values: 01 ship the work / 02 trust the operator /
-//                            03 show the receipts.
-//
-// All copy verbatim from blueprint §7 + §8. The "150-word paragraph" is
-// labeled as such in the blueprint; actual count is 142 words — the
-// blueprint's label is a rounded count and the prose is reproduced
-// word-for-word from blueprint line 443.
-//
-// Source: blueprint §7 (About wireframe), §8 (150-word paragraph verbatim,
-//         values: ship the work / trust the operator / show the receipts);
-//         REQUIREMENTS.md FOYER-04, FOYER-05.
+// Content discipline: facts the operator can defend. No hyperbole.
+// Numbers that are real. Names that exist.
 import type { Metadata } from "next";
-import { PortraitImage } from "@/components/PortraitImage";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About — Micah Jones",
   description:
-    "Oakland-based operator. Guardicore positioning research moved deals up by $150K. Now runs his own shop: half consulting, half product.",
+    "Independent operator in Oakland. $17M+ in client revenue. Two exits — Guardicore → Akamai, TechValidate → SurveyMonkey. Now building Ordani.",
+  alternates: { canonical: "https://micahjonesconsulting.com/about" },
   openGraph: {
     title: "About — Micah Jones",
     description:
-      "Oakland-based operator. Guardicore positioning research moved deals up by $150K. Now runs his own shop: half consulting, half product.",
+      "Independent operator in Oakland. $17M+ in client revenue. Two exits. Building Ordani.",
     type: "profile",
     url: "https://micahjonesconsulting.com/about",
-    siteName: "Micah Jones",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About — Micah Jones",
-    description:
-      "Oakland-based operator. Guardicore positioning research moved deals up by $150K. Now runs his own shop: half consulting, half product.",
   },
 };
 
 export default function AboutPage() {
   return (
-    <div className="foyer-page">
-      <section className="foyer-section foyer-section--about-hero">
-        <h1 className="foyer-hero foyer-hero--secondary">
-          I build the things I used to ask other people to build.
-        </h1>
-      </section>
+    <section
+      className="cw-block"
+      data-section
+      data-world="bone"
+      aria-labelledby="cw-about-title"
+    >
+      <p className="cw-kicker">About</p>
+      <h1 id="cw-about-title" className="cw-secttitle">
+        Operator, not consultant.
+      </h1>
 
-      <section className="foyer-section foyer-section--about-grid">
-        <div className="about-grid">
-          {/* LEFT 8 col — 150-word paragraph verbatim per blueprint §8 */}
-          <div className="about-grid__long-form">
-            <p className="foyer-prose">
-              I&apos;m Micah. I started as a positioning researcher at Guardicore (acquired by
-              Akamai), where the work I did on a single message moved the average deal size up
-              by $150K. I&apos;ve worked at Flexport, SurveyMonkey, and Cuebiq. Now I run my
-              own shop in Oakland. Half consulting, half product. The consulting half means
-              a small number of operators every quarter: HR consultants, nonprofit leaders,
-              birth workers, creators. The product half means ORDANI, a HIPAA-compliant CRM I
-              built solo for the people who keep Black women alive in childbirth. I&apos;m a
-              Black founder and a father. If you have something that needs shipping and
-              you&apos;re tired of the meeting tax, write to me.
-            </p>
-          </div>
-
-          {/* RIGHT 4 col — vertical portrait + credits (Phase 9 wired) */}
-          <aside className="about-grid__column">
-            <PortraitImage variant="context" />
-            <p className="about-grid__sub-caption">Oakland, CA.</p>
-            <ul className="credits-list">
-              <li>guardicore / akamai</li>
-              <li>flexport</li>
-              <li>surveymonkey</li>
-              <li>cuebiq</li>
-            </ul>
-          </aside>
-        </div>
-      </section>
-
-      {/* OAKLAND FAMILY CONTEXT */}
-      <section className="foyer-section foyer-section--family">
-        <p className="foyer-prose foyer-prose--narrow">
-          Lives in Oakland with his family. Father of two. Builds at night, after the house
-          goes quiet.
+      <div className="cw-about">
+        <p className="cw-about__lede">
+          I&rsquo;ve spent a decade inside B2B software companies as the
+          person who can sit on either side of the table: GTM strategy in
+          the morning, shipping product in the afternoon. Most consultants
+          don&rsquo;t ship. Most builders don&rsquo;t sell. I do both, on
+          the same engagement, for the same fee.
         </p>
-      </section>
 
-      {/* VALUES BLOCK REMOVED in adversarial-review pass.
-          Margaret Iverson called the 01 ship the work / 02 trust the operator
-          / 03 show the receipts triad "a LinkedIn carousel sitting at the
-          bottom doing nothing." The three values are implicit in the about
-          paragraph and the case studies. Better to remove than to load-bear
-          a separate component that reads as performance. */}
-    </div>
+        <h2 className="cw-about__h">Receipts</h2>
+        <ul className="cw-about__list">
+          <li>
+            <strong>$17M+</strong> in attributable client revenue across
+            engagements 2013&ndash;2023.
+          </li>
+          <li>
+            Contributed to <strong>two acquisitions</strong>: Guardicore
+            (acquired by Akamai, 2021) and TechValidate (acquired by
+            SurveyMonkey, 2015).
+          </li>
+          <li>
+            Engagements with <strong>Guardicore, TechValidate, Flexport,
+            Cuebiq, Postmates</strong>, and others — Growth, GTM, and
+            platform strategy roles.
+          </li>
+        </ul>
+
+        <h2 className="cw-about__h">What I&rsquo;m known for</h2>
+        <ul className="cw-about__list">
+          <li>
+            <strong>Positioning research that moves deal-size.</strong> The
+            Guardicore engagement that became the Akamai acquisition began
+            with a single rewritten sentence — average deal size moved
+            $150K.
+          </li>
+          <li>
+            <strong>GTM systems that compound.</strong> Algorithm strategy +
+            content systems for an HR consultant returned 4× platform lift
+            and RFP wins inside one year.
+          </li>
+          <li>
+            <strong>End-to-end product builds.</strong> Ordani — HIPAA-grade
+            CRM for birth workers — solo build on Next.js + Supabase. Live
+            beta with users.
+          </li>
+        </ul>
+
+        <h2 className="cw-about__h">Currently</h2>
+        <p>
+          Building <strong>Ordani</strong> in private beta. Taking on a
+          limited number of advisory engagements with founders at the
+          product-and-GTM seam — the ones where the sales team and product
+          team have stopped talking to each other.
+        </p>
+
+        <h2 className="cw-about__h">Where to find me</h2>
+        <ul className="cw-about__list">
+          <li>Oakland, CA &middot; by appointment</li>
+          <li>
+            <a href="mailto:hello@micahjonesconsulting.com">
+              hello@micahjonesconsulting.com
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/micahjones/"
+              rel="me noopener noreferrer"
+              target="_blank"
+            >
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+
+        <p className="cw-about__back">
+          <a href="/">&larr; Back to home</a>
+        </p>
+      </div>
+    </section>
   );
 }
