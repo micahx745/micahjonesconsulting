@@ -1,22 +1,35 @@
 // components/color-worlds/RevenueTick.tsx
 //
-// Animated count-up for the revenue credibility line. SSR ships with
-// "$17M+" as the resting state so JS-disabled + pre-hydration users see
-// the actual claim, not "$0.0M". On mount (with JS, motion allowed),
-// snap back to $0.0M and animate up to $17M+ when the section enters
-// view. Static-by-default, animated-as-progressive-enhancement.
+// Revenue + exits credibility moment — redesigned per operator
+// feedback (Pass-6/7): more animated, more visual weight, combined
+// revenue + exits in one layout. $20M+ figure (up from $17M).
 //
-// rAF is hoisted to a ref so unmount-during-animation cancels cleanly
-// (no setState-on-unmounted warning).
+// Layout:
+//   [$20M+] in client revenue.        ← animated count-up
+//   Two exits.                        ← hand-drawn underline beneath
+//
+//   ┌─────────────────────────┐  ┌─────────────────────────┐
+//   │ ACQUIRED · 2021         │  │ IPO · 2018              │
+//   │ Guardicore → Akamai     │  │ TechValidate → S'Monkey │
+//   │ Zero-trust security     │  │ Customer evidence       │
+//   └─────────────────────────┘  └─────────────────────────┘
+//
+// The exits go from prose to two cards — Akamai acquisition (2021)
+// and SurveyMonkey IPO (2018, after acquiring TechValidate in 2015).
+// Each card has the deal-type label, the deal name, the operator's
+// involvement, and a small marginalia arrow.
+//
+// rAF cancellation on unmount per Pass-4 fix.
+// SSR floor is "$20M+" (never $0) per Pass-5 fix.
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { HandCircle } from "@/components/hand/HandCircle";
 
-const TARGET = 17_000_000;
+const TARGET = 20_000_000;
 const DURATION_MS = 2400;
-const REST_LABEL = "$17M+";
+const REST_LABEL = "$20M+";
 
-/** Format value as "$X.XM" mid-flight, "$XXM+" at rest. */
 function format(v: number, atTarget: boolean): string {
   const millions = v / 1_000_000;
   if (atTarget) return `$${Math.round(millions)}M+`;
@@ -26,7 +39,6 @@ function format(v: number, atTarget: boolean): string {
 export function RevenueTick() {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number>(0);
-  // SSR floor — always show the credibility number, never zero.
   const [display, setDisplay] = useState(REST_LABEL);
 
   useEffect(() => {
@@ -37,7 +49,7 @@ export function RevenueTick() {
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (reduced) return; // SSR floor is already correct; nothing to animate.
+    if (reduced) return;
 
     function runTick() {
       setDisplay(format(0, false));
@@ -45,7 +57,7 @@ export function RevenueTick() {
 
       function step(now: number) {
         const t = Math.min((now - start) / DURATION_MS, 1);
-        const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        const eased = 1 - Math.pow(1 - t, 3);
         const v = eased * TARGET;
         const isDone = t >= 1;
         setDisplay(format(v, isDone));
@@ -74,26 +86,50 @@ export function RevenueTick() {
 
   return (
     <div className="cw-rev cw-reveal" ref={rootRef}>
+      {/* The number — hand-drawn circle wraps it for editorial emphasis */}
       <p className="cw-revline">
-        {/* Animated visible number — aria-hidden because the value
-            mid-animation is misleading to SR users. The static
-            sr-only span below carries the actual claim. */}
-        <span className="cw-rev-tick" aria-hidden>
-          {display}
-        </span>
-        <span className="cw-sr-only">$17 million dollars or more</span>{" "}
-        <span className="cw-rev-trail">in revenue.</span>
+        <span className="cw-rev-tick-wrap">
+          <span className="cw-rev-tick" aria-hidden>
+            {display}
+          </span>
+          <span className="cw-sr-only">twenty million dollars or more</span>
+          <span className="cw-rev-tick-circle" aria-hidden>
+            <HandCircle variant={1} delay={0.4} color="currentColor" />
+          </span>
+        </span>{" "}
+        <span className="cw-rev-trail">in client revenue.</span>
       </p>
-      <p className="cw-rev-exits">
-        Two exits.{" "}
-        <strong>Guardicore</strong> <span aria-hidden>→</span>{" "}
-        <strong>Akamai</strong>
-        <span className="cw-rev-exits-sep" aria-hidden>
-          {" · "}
-        </span>
-        <strong>TechValidate</strong> <span aria-hidden>→</span>{" "}
-        <strong>SurveyMonkey</strong>.
-      </p>
+
+      {/* Two-exits framing */}
+      <p className="cw-rev-exits-label">Two exits.</p>
+
+      <div className="cw-rev-cards">
+        <article className="cw-rev-card">
+          <p className="cw-rev-card__tag">Acquired · 2021</p>
+          <p className="cw-rev-card__deal">
+            <strong>Guardicore</strong> <span aria-hidden>→</span>{" "}
+            <strong>Akamai</strong>
+          </p>
+          <p className="cw-rev-card__note">
+            Zero-trust micro-segmentation. Positioning research that moved
+            average deal size $150K — the engagement that built the
+            acquisition narrative.
+          </p>
+        </article>
+
+        <article className="cw-rev-card">
+          <p className="cw-rev-card__tag">IPO · 2018</p>
+          <p className="cw-rev-card__deal">
+            <strong>TechValidate</strong> <span aria-hidden>→</span>{" "}
+            <strong>SurveyMonkey</strong>
+          </p>
+          <p className="cw-rev-card__note">
+            Customer evidence platform. Acquired by SurveyMonkey in 2015;
+            went public on Nasdaq three years later. Cap-table position
+            held through the bell-ringing.
+          </p>
+        </article>
+      </div>
     </div>
   );
 }

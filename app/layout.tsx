@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s — Micah Jones",
   },
   description:
-    "Independent operator. Builds go-to-market for B2B software AND ships his own products. Two exits. Oakland.",
+    "Independent operator in Oakland. $20M+ in client revenue. Two exits (Akamai acquisition, SurveyMonkey IPO). Now building Ordani — HIPAA-grade practice management for birth workers.",
   metadataBase: new URL("https://www.micahjonesconsulting.com"),
   alternates: {
     canonical: "https://www.micahjonesconsulting.com",
@@ -110,8 +110,9 @@ const ORG_LD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Ordani",
+  url: "https://ordani.com",
   description:
-    "A HIPAA-grade system of record for birth workers — built end to end by Micah Jones. In live beta with 14 doula practices keeping Black mothers alive in childbirth.",
+    "Ordani is HIPAA-grade practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. In live beta with fourteen practices.",
   // mainEntityOfPage points at the case study (the only public page
   // about Ordani right now). Avoids putting a case-study URL in the
   // Organization.url slot, which expects the org's actual site.

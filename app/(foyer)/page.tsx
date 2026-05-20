@@ -176,16 +176,26 @@ export default function ColorWorldsHome() {
         <OrdaniSticky />
         <p className="cw-tagrow cw-reveal">
           <span className="cw-live">Live beta</span> —{" "}
-          <span>HIPAA-grade software for birth workers</span>
+          <span>practice management for birth workers</span>
         </p>
         <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
           Ordani
         </h2>
         <p className="cw-lede cw-reveal">
-          A HIPAA-grade system of record built end to end for the doulas,
-          midwives, and perinatal counselors keeping Black mothers alive in
-          childbirth. Fourteen practices already using it. Join the beta and
-          help shape what ships next.
+          The practice management software doulas have been hand-rolling in
+          Google Docs and group chats for a decade — finally HIPAA-grade,
+          built end to end, in the hands of fourteen practices. Join the
+          beta and help shape what ships next.
+        </p>
+        <p className="cw-lede-sub cw-reveal">
+          <a
+            href="https://ordani.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cw-lede-link"
+          >
+            Visit ordani.com →
+          </a>
         </p>
 
         <OrdaniBetaForm />
@@ -195,7 +205,8 @@ export default function ColorWorldsHome() {
         </p>
       </section>
 
-      {/* PRODUCTS — ink */}
+      {/* SHIPPED — espresso. Section rewritten per research: single-word
+          header + 3-sentence dek that doubles as proof. */}
       <section
         className="cw-block"
         id="products"
@@ -203,14 +214,19 @@ export default function ColorWorldsHome() {
         data-world="espresso"
         aria-labelledby="cw-products-title"
       >
-        <p className="cw-kicker cw-reveal">More things I&rsquo;ve built</p>
+        <p className="cw-kicker cw-reveal">Engagements</p>
         <SplitReveal
           as="h2"
           id="cw-products-title"
           className="cw-secttitle"
         >
-          Products, not pitches.
+          Shipped.
         </SplitReveal>
+        <p className="cw-sect-dek cw-reveal">
+          Real software in real users&rsquo; hands. Acquired by Akamai. Cap-table
+          position held through the SurveyMonkey IPO. A platform in beta with
+          fourteen doula practices today.
+        </p>
 
         <ul className="cw-cards">
           <li
@@ -278,17 +294,25 @@ export default function ColorWorldsHome() {
         data-world="terracotta"
         aria-labelledby="cw-build-title"
       >
-        <SplitReveal
-          as="h2"
-          id="cw-build-title"
-          className="cw-big cw-shift"
-          stagger={0.04}
-          start="top 85%"
+        <a
+          href="https://calendly.com/micahmccoyjones/introduction"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cw-big-link"
+          aria-label="Let's build — book a call"
         >
-          LET&rsquo;S
-          <br />
-          BUILD →
-        </SplitReveal>
+          <SplitReveal
+            as="h2"
+            id="cw-build-title"
+            className="cw-big cw-shift"
+            stagger={0.04}
+            start="top 85%"
+          >
+            LET&rsquo;S
+            <br />
+            BUILD →
+          </SplitReveal>
+        </a>
         <div className="cw-footrow cw-reveal">
           <MagneticArea>
             <a

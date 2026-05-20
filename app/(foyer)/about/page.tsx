@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "About",
   description:
-    "Independent operator in Oakland. $17M+ in client revenue (2013–2023). Two exits at companies I helped build: Guardicore → Akamai, TechValidate → SurveyMonkey. Now building Ordani.",
+    "Independent operator in Oakland. $20M+ in client revenue (2013–2023). Two exits at companies I helped build: Guardicore → Akamai, TechValidate → SurveyMonkey IPO. Now building Ordani — HIPAA-grade practice management software for fourteen doula practices.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
     title: "About — Micah Jones",
     description:
-      "Independent operator in Oakland. $17M+ in client revenue (2013–2023). Two exits. Building Ordani.",
+      "Independent operator in Oakland. $20M+ in client revenue. Two exits. Building Ordani — HIPAA-grade practice management for fourteen doula practices.",
     type: "profile",
     url: "https://www.micahjonesconsulting.com/about",
   },
@@ -48,12 +48,13 @@ export default function AboutPage() {
         <h2 className="cw-about__h">Receipts</h2>
         <ul className="cw-about__list">
           <li>
-            <strong>$17M+</strong> in client revenue (2013&ndash;2023).
+            <strong>$20M+</strong> in client revenue (2013&ndash;2023).
           </li>
           <li>
             <strong>Two exits</strong> at companies I helped build:
             Guardicore (acquired by Akamai, 2021) and TechValidate
-            (acquired by SurveyMonkey, 2015).
+            (acquired by SurveyMonkey, 2015 &mdash; cap-table position
+            held through the 2018 SurveyMonkey IPO).
           </li>
           <li>
             Engagements with <strong>Guardicore, TechValidate, Flexport,
@@ -76,9 +77,9 @@ export default function AboutPage() {
             and RFP wins inside one year.
           </li>
           <li>
-            <strong>End-to-end product builds.</strong> Ordani — HIPAA-grade
-            CRM for birth workers — solo build on Next.js + Supabase. Live
-            beta with users.
+            <strong>End-to-end product builds.</strong> Ordani &mdash; HIPAA-grade
+            practice management software for fourteen doula practices. Solo
+            build on Next.js + Supabase. Live beta.
           </li>
         </ul>
 

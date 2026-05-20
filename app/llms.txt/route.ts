@@ -14,7 +14,7 @@
 export function GET() {
   const body = `# Micah Jones
 
-> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$17M+ in client revenue (2013–2023). Two exits at companies he helped build: Guardicore (acquired by Akamai, 2021) and TechValidate (acquired by SurveyMonkey, 2015). Now building Ordani — a live-beta system of record for an underserved regulated market.
+> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$20M+ in client revenue across 2013–2023. Two exits at companies he helped build: Guardicore (acquired by Akamai, 2021) and TechValidate (acquired by SurveyMonkey 2015; cap-table position held through the SurveyMonkey IPO, 2018). Now building Ordani — HIPAA-grade practice management software for birth workers, in live beta with fourteen doula practices.
 
 ## What I do
 
@@ -34,7 +34,7 @@ Strategy and software, shipped by the same pair of hands. Four offerings:
 - [Home](https://www.micahjonesconsulting.com/): single-page narrative with offerings, exits, products, and contact
 - [About](https://www.micahjonesconsulting.com/about): bio, expertise areas, LinkedIn
 - [Work](https://www.micahjonesconsulting.com/work): case study index
-- [Ordani case study](https://www.micahjonesconsulting.com/work/ordani): HIPAA-grade CRM for birth workers
+- [Ordani case study](https://www.micahjonesconsulting.com/work/ordani): HIPAA-grade practice management software for birth workers (14 doula practices in private beta)
 - [Guardicore case study](https://www.micahjonesconsulting.com/work/guardicore): positioning research that moved deal-size \$150K; led to the Akamai acquisition
 - [HR equity author case study](https://www.micahjonesconsulting.com/work/hr-equity-author): algorithm strategy + multi-platform content system
 
