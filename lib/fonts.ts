@@ -7,7 +7,32 @@
 //   metrics into the generated @font-face rule, which neutralizes CLS on first paint.
 //   Known intermittent Next.js issue #74134 in 15.x — verify .next/static/css/*.css
 //   contains size-adjust rules after first `pnpm build`.
-import { Inter, Source_Serif_4, Instrument_Serif } from "next/font/google";
+import {
+  Inter,
+  Source_Serif_4,
+  Instrument_Serif,
+  Bricolage_Grotesque,
+} from "next/font/google";
+
+// Tier Z — Bricolage Grotesque replaces Inter Display for cinematographer-
+// slow's display use. Variable opsz + wdth axes give the typeface character
+// that Inter cannot match — and importantly, it's NOT the same face every
+// other 2026 portfolio uses. Designed by Mathieu Triay for Atelier National
+// de Recherche Typographique; FOSS via Google Fonts.
+//
+// axes: ['opsz', 'wdth'] = optical-size + width-axis access. Hero pulls
+// 96pt+ with opsz tuned to display, body uses 18pt with opsz tuned to text.
+//
+// preload: true because this is now the LCP font for the foyer hero.
+export const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  axes: ["opsz", "wdth"],
+  weight: "variable",
+  variable: "--font-bricolage",
+  display: "swap",
+  adjustFontFallback: true,
+  preload: true,
+});
 
 // Inter at display weights — used for headlines, TitleCard 96px stack, hero copy.
 // Inter at 700/800 scores ~90% Söhne Halbfett similarity per Typewolf 2025 index.

@@ -46,6 +46,12 @@
   /* ORDANI-only — permitted via design-tokens.sh allowlist for /work/ordani only (Phase 8). */
   --color-ordani-sage:        #5E7158;
 
+  /* Tier Z — tertiary accent. Used ONLY in the booth (contact room) on
+   * the "Write to me" link underline. Adds depth without breaking the
+   * single-accent rule (copper remains the dominant accent). */
+  --color-indigo:             #1F2D5C;
+  --color-indigo-deep:        #0F1A3E;
+
   /* Tier C — per-case secondary accents (Work index + per-case scope only).
    * Each accent is analogous to copper (warm/desaturated) to avoid a rainbow
    * effect. Used via --case-accent CSS variable scoped to [data-case=<slug>].
@@ -70,7 +76,7 @@
    * re-declared inside this @theme block so `font-display` utility resolves.
    * Reference: Next.js Discussion #77337.
    */
-  --font-display: var(--font-inter-display), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter-display), system-ui, sans-serif;
   --font-sans:    var(--font-inter), system-ui, sans-serif;
   --font-serif:   var(--font-source-serif), Georgia, serif;
 
@@ -1458,16 +1464,145 @@
 .home-room[data-room="foyer"] {
   background-color: var(--color-foyer-paper);
   color: var(--color-foyer-ink);
+  /* Tier Z — Foyer key light. Warm radial drifting slowly from upper-center.
+   * Mimics a gallery overhead spotlight. The room feels lit, not flat. */
+  position: relative;
+  overflow: hidden;
+}
+
+.home-room[data-room="foyer"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 70vw 60vh at 45% 25%,
+    rgba(255, 240, 215, 0.55) 0%,
+    rgba(255, 240, 215, 0.22) 30%,
+    transparent 60%
+  );
+  animation: foyer-key-light 32s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+  z-index: 0;
+}
+
+.home-room[data-room="foyer"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes foyer-key-light {
+  0%   { background-position: 30% 20%; opacity: 0.85; }
+  50%  { background-position: 60% 35%; opacity: 1; }
+  100% { background-position: 40% 25%; opacity: 0.9; }
+}
+
+.home-room[data-room="proof"] {
+  background-color: var(--color-bone);
+  color: var(--color-foyer-ink);
+  position: relative;
+  overflow: hidden;
+  /* Tier Z — Proof room sits between hero and library. Massive key stat.
+   * Lit like a museum plate display — single soft light from upper left,
+   * shadow falls toward lower right. */
+}
+
+.home-room[data-room="proof"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60vw 50vh at 25% 30%,
+    rgba(245, 235, 215, 0.45) 0%,
+    rgba(245, 235, 215, 0.15) 35%,
+    transparent 65%
+  );
+  z-index: 0;
+}
+
+.home-room[data-room="proof"] > * {
+  position: relative;
+  z-index: 1;
 }
 
 .home-room[data-room="library"] {
   background-color: var(--color-bone);
   color: var(--color-foyer-ink);
+  /* Tier Z — Library is even, ambient. Gallery lighting. No single light
+   * source — the room feels OPEN and bright like the inside of a gallery
+   * during business hours. Subtle warm haze top, cool haze bottom. */
+  position: relative;
+  overflow: hidden;
+}
+
+.home-room[data-room="library"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(255, 245, 220, 0.25) 0%,
+      transparent 25%,
+      transparent 75%,
+      rgba(230, 220, 200, 0.20) 100%);
+  z-index: 0;
+}
+
+.home-room[data-room="library"] > * {
+  position: relative;
+  z-index: 1;
 }
 
 .home-room[data-room="booth"] {
   background-color: var(--color-theater-ground);
   color: var(--color-theater-ink);
+  /* Tier Z — Booth is the cinema/private screening room. Single warm
+   * tungsten spotlight from upper-left; corners fall to obsidian. The
+   * chiaroscuro is the point — this is the room where conversations
+   * happen, not where work is displayed. */
+  position: relative;
+  overflow: hidden;
+}
+
+.home-room[data-room="booth"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 80vw 70vh at 25% 30%,
+      rgba(255, 200, 130, 0.10) 0%,
+      rgba(255, 200, 130, 0.04) 25%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 100vw 100vh at 50% 100%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  animation: booth-tungsten 38s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+.home-room[data-room="booth"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes booth-tungsten {
+  0%   { background-position: 20% 25%, 50% 100%; }
+  50%  { background-position: 35% 32%, 55% 100%; }
+  100% { background-position: 25% 28%, 50% 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-room[data-room="foyer"]::before,
+  .home-room[data-room="booth"]::before {
+    animation: none;
+  }
 }
 
 /* ============================================================
@@ -1481,12 +1616,27 @@
 .home-hero {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(40px, 6vw, 96px);
-  line-height: 1.02;
-  letter-spacing: -0.024em;
+  font-size: clamp(40px, 6.4vw, 104px);
+  line-height: 0.96;
+  letter-spacing: -0.028em;
   color: var(--color-foyer-ink);
   margin: 0 0 clamp(32px, 4vw, 64px);
-  max-width: 18ch;
+  max-width: 22ch;
+  /* Bricolage Grotesque variable axes — pulled toward display (opsz 96)
+   * and slightly compressed (wdth 95) for distinctive proportions vs
+   * standard Inter Display rendering. */
+  font-variation-settings: "opsz" 96, "wdth" 95;
+}
+
+/* Tier Z — Asymmetric hero composition. Top line anchored left, bottom
+ * line indented. Reads as a deliberate type composition rather than
+ * wrapped paragraph. */
+.home-hero__line {
+  display: block;
+}
+
+.home-hero__line--indent {
+  padding-left: clamp(24px, 6vw, 96px);
 }
 
 .home-hero__word {
@@ -1602,6 +1752,110 @@
     transform: none;
     animation: none;
   }
+}
+
+/* ============================================================
+ * TIER Z — ROOM 2: Plate of Proof
+ *
+ * Single massive key-stat moment between hero and library. Replaces
+ * the MJ poster pattern. The $150K is the proof; the caption is the
+ * provenance; nothing else. Reads as a museum plate with the artwork
+ * being the number itself.
+ * ============================================================ */
+.proof-plate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(28px, 4vw, 56px);
+  max-width: 24ch;
+}
+
+.proof-plate__eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-foyer-ink);
+  margin: 0;
+}
+
+.proof-plate__eyebrow-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.35rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-accent-copper-deep);
+}
+
+.proof-plate__eyebrow-sep {
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  background-color: var(--color-rule-foyer);
+  position: relative;
+  top: -3px;
+}
+
+.proof-plate__stat {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(80px, 16vw, 200px);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: var(--color-foyer-ink);
+  margin: 0;
+  font-variation-settings: "opsz" 144, "wdth" 100;
+  position: relative;
+}
+
+/* Subtle indigo shadow on the proof stat — adds depth without breaking
+ * the single-accent rule. Indigo lives in the booth too. */
+.proof-plate__stat::after {
+  content: attr(data-shadow);
+  position: absolute;
+  inset: 0;
+  color: var(--color-indigo);
+  opacity: 0.08;
+  transform: translate(4px, 4px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.proof-plate__caption {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.5;
+  color: var(--color-foyer-ink-soft);
+  margin: 0;
+  max-width: 44ch;
+}
+
+.proof-plate__caption strong {
+  font-style: normal;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  letter-spacing: 0.04em;
+  font-size: 0.85em;
+  color: var(--color-foyer-ink);
+  text-transform: uppercase;
+}
+
+.proof-plate__provenance {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-foyer-ink) 50%, transparent);
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid color-mix(in srgb, var(--color-foyer-ink) 20%, transparent);
 }
 
 /* ============================================================
@@ -1804,10 +2058,14 @@
   color: var(--color-accent-copper);
   text-decoration: none;
   position: relative;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   transition: color 300ms cubic-bezier(0.22, 0.8, 0.28, 1);
+  font-variation-settings: "opsz" 96, "wdth" 100;
 }
 
+/* Tier Z — Two-layer underline. Copper sits beneath; indigo grows over
+ * it on hover. The indigo is the only place the tertiary accent appears
+ * — used to mark the booth as a different lighting state from the rest. */
 .booth-link::after {
   content: '';
   position: absolute;
@@ -1821,8 +2079,26 @@
   transition: transform 500ms cubic-bezier(0.22, 0.8, 0.28, 1);
 }
 
+.booth-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--color-indigo);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(0.22, 0.8, 0.28, 1);
+  z-index: 1;
+}
+
 .booth-link:hover {
   color: color-mix(in srgb, var(--color-accent-copper) 80%, white 20%);
+}
+
+.booth-link:hover::before {
+  transform: scaleX(1);
 }
 
 .booth-arrow {

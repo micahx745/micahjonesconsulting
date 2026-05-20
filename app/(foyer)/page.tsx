@@ -75,20 +75,36 @@ export default async function FoyerHomePage() {
       <section className="home-room home-room--hero" data-room="foyer">
         <EditorialStrip lot="LOT 001" items={["2026", "Oakland", "Issue 01"]} />
 
+        {/* Tier Z — Asymmetric hero composition. Top line anchored left,
+            bottom line indented. Reads as composed, not flowed. */}
         <h1
           className="home-hero"
           aria-label="I help operators ship the work the rest of their org keeps stalling on."
         >
-          {HERO_WORDS.map((word, i) => (
-            <span
-              key={`${word}-${i}`}
-              className="home-hero__word"
-              style={{ ["--word-i"]: i } as CSSProperties}
-              aria-hidden
-            >
-              {word}
-            </span>
-          ))}
+          <span className="home-hero__line">
+            {HERO_WORDS.slice(0, 4).map((word, i) => (
+              <span
+                key={`${word}-${i}`}
+                className="home-hero__word"
+                style={{ ["--word-i"]: i } as CSSProperties}
+                aria-hidden
+              >
+                {word}
+              </span>
+            ))}
+          </span>
+          <span className="home-hero__line home-hero__line--indent">
+            {HERO_WORDS.slice(4).map((word, i) => (
+              <span
+                key={`${word}-${i + 4}`}
+                className="home-hero__word"
+                style={{ ["--word-i"]: i + 4 } as CSSProperties}
+                aria-hidden
+              >
+                {word}
+              </span>
+            ))}
+          </span>
         </h1>
 
         <p
@@ -114,12 +130,42 @@ export default async function FoyerHomePage() {
           aria-hidden
         >
           <span className="home-hero-tail__rule" />
-          <span className="home-hero-tail__hint">selected work below</span>
+          <span className="home-hero-tail__hint">proof below</span>
           <span className="home-hero-tail__arrow">↓</span>
         </div>
       </section>
 
-      {/* ====== ROOM 2 — LIBRARY (WORK) ============================ */}
+      {/* ====== ROOM 2 — PLATE OF PROOF ============================ */}
+      <section
+        className="home-room home-room--proof scroll-reveal"
+        data-room="proof"
+        data-reveal
+      >
+        <div className="proof-plate">
+          <p className="proof-plate__eyebrow">
+            <span className="proof-plate__eyebrow-num">01</span>
+            <span className="proof-plate__eyebrow-sep" aria-hidden />
+            <span>Recent proof</span>
+          </p>
+          <p
+            className="proof-plate__stat"
+            data-shadow="$150K"
+            aria-label="$150K — average deal-size move at Guardicore"
+          >
+            $150K
+          </p>
+          <p className="proof-plate__caption">
+            Average <strong>deal-size move</strong> at Guardicore, where I
+            rewrote the single message at the top of the funnel — and the
+            company was acquired by Akamai shortly after.
+          </p>
+          <p className="proof-plate__provenance">
+            Guardicore / Akamai · 2020 · Positioning research
+          </p>
+        </div>
+      </section>
+
+      {/* ====== ROOM 3 — LIBRARY (WORK) ============================ */}
       <section
         className="home-room home-room--library scroll-reveal"
         data-room="library"
@@ -178,7 +224,7 @@ export default async function FoyerHomePage() {
         </p>
       </section>
 
-      {/* ====== ROOM 3 — VIEWING BOOTH (CONTACT) =================== */}
+      {/* ====== ROOM 4 — VIEWING BOOTH (CONTACT) =================== */}
       <section
         className="home-room home-room--booth scroll-reveal"
         data-room="booth"

@@ -12,7 +12,13 @@ import type { Metadata } from "next";
 import { ViewTransition } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { interDisplay, inter, sourceSerif, instrumentSerif } from "@/lib/fonts";
+import {
+  interDisplay,
+  inter,
+  sourceSerif,
+  instrumentSerif,
+  bricolage,
+} from "@/lib/fonts";
 import { LenisProvider } from "@/components/LenisProvider";
 import { RevealMount } from "@/components/RevealMount";
 import { EditorialTimestamp } from "@/components/EditorialTimestamp";
@@ -39,7 +45,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${interDisplay.variable} ${inter.variable} ${sourceSerif.variable} ${instrumentSerif.variable}`}
+      className={`${interDisplay.variable} ${inter.variable} ${sourceSerif.variable} ${instrumentSerif.variable} ${bricolage.variable}`}
       suppressHydrationWarning
     >
       <body>
