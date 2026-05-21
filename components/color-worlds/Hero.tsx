@@ -53,7 +53,18 @@ export function Hero() {
     if (el && !lineRefs.current.includes(el)) lineRefs.current.push(el);
   }
 
-  // Load reveal — class-based per Pass-6 fix.
+  // Load reveal — Pass-8 fix: pure-CSS keyframe animation. The
+  // JS class-toggle approach (Pass-6) was racing with View Transitions
+  // snapshot capture; on Pass A the `is-revealed` class was queued but
+  // never landed, so all four lines arrived simultaneously instead of
+  // staggered. CSS keyframes with `animation-delay: calc(...)` driven
+  // by the `--reveal-i` custom prop sidestep the race entirely — no
+  // class toggle, no rAF, no snapshot interference.
+  //
+  // useEffect still runs to (a) set the --reveal-i custom prop on
+  // each line so CSS can compute the per-line delay, and (b) add the
+  // .is-in class on sub/cta-row (those use transition not keyframes
+  // so the snapshot stomping doesn't affect them).
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
@@ -61,18 +72,8 @@ export function Hero() {
     ).matches;
     if (reduced) return;
 
-    const eyebrow = eyebrowRef.current;
-    if (eyebrow) {
-      requestAnimationFrame(() => {
-        eyebrow.classList.add("is-revealed");
-      });
-    }
-
     lineRefs.current.forEach((el, i) => {
       el.style.setProperty("--reveal-i", String(i));
-      requestAnimationFrame(() => {
-        el.classList.add("is-revealed");
-      });
     });
 
     subRef.current?.classList.add("is-in");

@@ -66,7 +66,7 @@ const PERSON_LD = {
   url: "https://www.micahjonesconsulting.com",
   jobTitle: "Independent operator",
   description:
-    "Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. $17M+ in client revenue (2013–2023). Two exits at companies he helped build: Guardicore → Akamai (2021) and TechValidate → SurveyMonkey (2015). Currently building Ordani.",
+    "Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. $20M+ in client revenue (2013–2023). Two exits at companies he helped build: Guardicore (acquired by Akamai, 2021) and TechValidate (acquired by SurveyMonkey, 2015; cap-table position held through the 2018 SurveyMonkey IPO). Currently building Ordani — HIPAA-grade practice management software for fourteen doula practices.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Oakland",
@@ -110,7 +110,10 @@ const ORG_LD = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Ordani",
-  url: "https://ordani.com",
+  // url intentionally omitted — ordani.com is currently a domain-sale
+  // parking page; pointing schema at it would mislead Knowledge Graph
+  // + LLM crawlers. mainEntityOfPage (below) carries the canonical
+  // reference to the case study until Ordani has its own production site.
   description:
     "Ordani is HIPAA-grade practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. In live beta with fourteen practices.",
   // mainEntityOfPage points at the case study (the only public page

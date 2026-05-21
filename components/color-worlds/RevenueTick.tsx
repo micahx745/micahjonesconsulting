@@ -125,8 +125,8 @@ export function RevenueTick() {
           </p>
           <p className="cw-rev-card__note">
             Customer evidence platform. Acquired by SurveyMonkey in 2015;
-            went public on Nasdaq three years later. Cap-table position
-            held through the bell-ringing.
+            went public on Nasdaq three years later. Held equity through
+            the IPO.
           </p>
         </article>
       </div>

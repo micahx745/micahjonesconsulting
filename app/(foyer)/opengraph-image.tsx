@@ -16,7 +16,7 @@ export default async function Image() {
     (
       <CWOGComposition
         headline="MICAH JONES"
-        punch="$17M+ in client revenue. Two exits. Now building Ordani."
+        punch="$20M+ in client revenue. Two exits — Akamai + SurveyMonkey IPO. Now building Ordani."
       />
     ),
     size,

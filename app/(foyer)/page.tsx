@@ -33,13 +33,13 @@ export const metadata: Metadata = {
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
   },
   description:
-    "Independent operator. $17M+ in client revenue. Two exits: Guardicore → Akamai, TechValidate → SurveyMonkey. Now building Ordani in Oakland.",
+    "Independent operator in Oakland. $20M+ in client revenue. Two exits — Akamai acquisition, SurveyMonkey IPO. Now building Ordani — HIPAA-grade practice management software for fourteen doula practices.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "Independent operator. $17M+ in client revenue. Two exits. Now building Ordani in Oakland.",
+      "$20M+ in client revenue. Two exits — Akamai acquisition, SurveyMonkey IPO. Now building Ordani — HIPAA-grade practice management for fourteen doula practices.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "Independent operator. $17M+ in client revenue. Two exits. Now building Ordani in Oakland.",
+      "$20M+ in client revenue. Two exits — Akamai acquisition, SurveyMonkey IPO. Now building Ordani.",
   },
 };
 
@@ -188,13 +188,8 @@ export default function ColorWorldsHome() {
           beta and help shape what ships next.
         </p>
         <p className="cw-lede-sub cw-reveal">
-          <a
-            href="https://ordani.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cw-lede-link"
-          >
-            Visit ordani.com →
+          <a href="/work/ordani" className="cw-lede-link">
+            Read the case study →
           </a>
         </p>
 
@@ -223,9 +218,9 @@ export default function ColorWorldsHome() {
           Shipped.
         </SplitReveal>
         <p className="cw-sect-dek cw-reveal">
-          Real software in real users&rsquo; hands. Acquired by Akamai. Cap-table
-          position held through the SurveyMonkey IPO. A platform in beta with
-          fourteen doula practices today.
+          Real software in real users&rsquo; hands. Acquired by Akamai.
+          Public via SurveyMonkey. A platform in beta with fourteen
+          doula practices today.
         </p>
 
         <ul className="cw-cards">

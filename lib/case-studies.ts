@@ -97,11 +97,16 @@ export async function getSelectedWork(limit = 3): Promise<CaseStudyMeta[]> {
 
 /**
  * Load one case study by slug (used by the dynamic theater page).
- * Returns null if the slug is unknown — caller (page.tsx) calls notFound().
+ * Returns null if the slug is unknown OR if status is "stub" — stubs
+ * shouldn't be public-discoverable (Pass-8 M2). Caller (page.tsx)
+ * calls notFound() when this returns null.
  */
 export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyMeta | null> {
   const all = await getAllCaseStudies();
-  return all.find((cs) => cs.slug === slug) ?? null;
+  const cs = all.find((cs) => cs.slug === slug);
+  if (!cs) return null;
+  if (cs.status === "stub") return null;
+  return cs;
 }
 
 /**
