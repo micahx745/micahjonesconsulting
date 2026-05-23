@@ -1,23 +1,25 @@
 // components/color-worlds/RevenueTick.tsx
 //
-// Revenue + exits credibility moment — redesigned per operator
-// feedback (Pass-6/7): more animated, more visual weight, combined
-// revenue + exits in one layout. $20M+ figure (up from $17M).
+// Revenue + exits — Editorial Index (Pass-9).
+//
+// Replaces the Pass-8 figure + two-card layout (which lived in two
+// different design registers). New pattern: contents-page index —
+// figure → dek → numbered exits as editorial entries with right-
+// aligned date column. One type vocabulary; the hand-circle around
+// the figure is the section's only mark.
 //
 // Layout:
-//   [$20M+] in client revenue.        ← animated count-up
-//   Two exits.                        ← hand-drawn underline beneath
-//
-//   ┌─────────────────────────┐  ┌─────────────────────────┐
-//   │ ACQUIRED · 2021         │  │ IPO · 2018              │
-//   │ Guardicore → Akamai     │  │ TechValidate → S'Monkey │
-//   │ Zero-trust security     │  │ Customer evidence       │
-//   └─────────────────────────┘  └─────────────────────────┘
-//
-// The exits go from prose to two cards — Akamai acquisition (2021)
-// and SurveyMonkey IPO (2018, after acquiring TechValidate in 2015).
-// Each card has the deal-type label, the deal name, the operator's
-// involvement, and a small marginalia arrow.
+//   $20M+         in client revenue across a decade.
+//                 Two exits at companies I helped build.
+//   ──────────────────────────────────────────────────────
+//   01.  GUARDICORE → AKAMAI               Acquired · Oct 2021
+//        Zero-trust micro-segmentation. Positioning research that
+//        moved average deal size $150K — the engagement that built
+//        the acquisition narrative.
+//   ──────────────────────────────────────────────────────
+//   02.  TECHVALIDATE → SURVEYMONKEY       IPO · Sep 2018
+//        Customer evidence platform. Acquired by SurveyMonkey 2015;
+//        public on Nasdaq 2018. Held equity through the IPO.
 //
 // rAF cancellation on unmount per Pass-4 fix.
 // SSR floor is "$20M+" (never $0) per Pass-5 fix.
@@ -86,50 +88,68 @@ export function RevenueTick() {
 
   return (
     <div className="cw-rev cw-reveal" ref={rootRef}>
-      {/* The number — hand-drawn circle wraps it for editorial emphasis */}
-      <p className="cw-revline">
-        <span className="cw-rev-tick-wrap">
-          <span className="cw-rev-tick" aria-hidden>
-            {display}
+      {/* Figure — hand-drawn circle wraps the numeric for editorial weight */}
+      <header className="cw-rev__head">
+        <p className="cw-rev__figure">
+          <span className="cw-rev__tick-wrap">
+            <span className="cw-rev__tick" aria-hidden>
+              {display}
+            </span>
+            <span className="cw-sr-only">twenty million dollars or more</span>
+            <span className="cw-rev__tick-circle" aria-hidden>
+              <HandCircle variant={1} delay={0.4} color="currentColor" />
+            </span>
           </span>
-          <span className="cw-sr-only">twenty million dollars or more</span>
-          <span className="cw-rev-tick-circle" aria-hidden>
-            <HandCircle variant={1} delay={0.4} color="currentColor" />
-          </span>
-        </span>{" "}
-        <span className="cw-rev-trail">in client revenue.</span>
-      </p>
+        </p>
+        <p className="cw-rev__dek">
+          in client revenue across a decade.
+          <br />
+          Two exits at companies I helped build.
+        </p>
+      </header>
 
-      {/* Two-exits framing */}
-      <p className="cw-rev-exits-label">Two exits.</p>
+      <ol className="cw-rev__index" aria-label="Two exits">
+        <li className="cw-rev__entry">
+          <p className="cw-rev__num" aria-hidden>01.</p>
+          <div className="cw-rev__entry-main">
+            <p className="cw-rev__deal">
+              <strong>Guardicore</strong>
+              <span className="cw-rev__arrow" aria-hidden>→</span>
+              <strong>Akamai</strong>
+            </p>
+            <p className="cw-rev__note">
+              Zero-trust micro-segmentation. Positioning research that moved
+              average deal size $150K — the engagement that built the
+              acquisition narrative.
+            </p>
+          </div>
+          <p className="cw-rev__when">
+            <span className="cw-rev__when-kind">Acquired</span>
+            <span className="cw-rev__when-sep" aria-hidden>·</span>
+            <span className="cw-rev__when-date">Oct 2021</span>
+          </p>
+        </li>
 
-      <div className="cw-rev-cards">
-        <article className="cw-rev-card">
-          <p className="cw-rev-card__tag">Acquired · 2021</p>
-          <p className="cw-rev-card__deal">
-            <strong>Guardicore</strong> <span aria-hidden>→</span>{" "}
-            <strong>Akamai</strong>
+        <li className="cw-rev__entry">
+          <p className="cw-rev__num" aria-hidden>02.</p>
+          <div className="cw-rev__entry-main">
+            <p className="cw-rev__deal">
+              <strong>TechValidate</strong>
+              <span className="cw-rev__arrow" aria-hidden>→</span>
+              <strong>SurveyMonkey</strong>
+            </p>
+            <p className="cw-rev__note">
+              Customer evidence platform. Acquired by SurveyMonkey 2015;
+              public on Nasdaq 2018. Held equity through the IPO.
+            </p>
+          </div>
+          <p className="cw-rev__when">
+            <span className="cw-rev__when-kind">IPO</span>
+            <span className="cw-rev__when-sep" aria-hidden>·</span>
+            <span className="cw-rev__when-date">Sep 2018</span>
           </p>
-          <p className="cw-rev-card__note">
-            Zero-trust micro-segmentation. Positioning research that moved
-            average deal size $150K — the engagement that built the
-            acquisition narrative.
-          </p>
-        </article>
-
-        <article className="cw-rev-card">
-          <p className="cw-rev-card__tag">IPO · 2018</p>
-          <p className="cw-rev-card__deal">
-            <strong>TechValidate</strong> <span aria-hidden>→</span>{" "}
-            <strong>SurveyMonkey</strong>
-          </p>
-          <p className="cw-rev-card__note">
-            Customer evidence platform. Acquired by SurveyMonkey in 2015;
-            went public on Nasdaq three years later. Held equity through
-            the IPO.
-          </p>
-        </article>
-      </div>
+        </li>
+      </ol>
     </div>
   );
 }

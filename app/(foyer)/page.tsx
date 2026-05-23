@@ -5,13 +5,14 @@
 // palette as each crosses viewport center.
 //
 // Section order + worlds (Terracotta Workshop palette):
-//   Hero       → terracotta
-//   Marquee    → terracotta
-//   Clients    → bone
-//   Ordani     → petrol   (live beta + email signup)
-//   Products   → espresso
-//   Companies  → espresso
-//   Footer     → terracotta
+//   Hero         → terracotta
+//   Marquee      → terracotta
+//   Clients      → bone
+//   Ordani       → petrol   (live beta + email signup)
+//   Products     → espresso
+//   Engagements  → espresso (Pass-9: replaced wordmark marquee with
+//                            editorial credit line — inline deal context)
+//   Footer       → terracotta
 //
 // Copy in the mockup is placeholder per the brief — Micah will finalize.
 // "No 3D printing, no hardware, no maker content" — workshop bench is
@@ -81,18 +82,6 @@ const CLIENT_OFFERS = [
     desc: "The repeatable engine underneath the numbers.",
     href: "/work",
   },
-] as const;
-
-// Marquee shows companies Micah BUILT AT — not the companies that
-// acquired them. Akamai and SurveyMonkey are the acquirers and they
-// already appear in the exits credibility line; including them here
-// would double-bill the same achievement.
-const COMPANIES = [
-  "Guardicore",
-  "TechValidate",
-  "Flexport",
-  "Cuebiq",
-  "Postmates",
 ] as const;
 
 const SERVICE_MARQUEE = [
@@ -259,26 +248,30 @@ export default function ColorWorldsHome() {
         </ul>
       </section>
 
-      {/* COMPANIES marquee — espresso */}
+      {/* ENGAGEMENTS — editorial credit line (Pass-9, was COMPANIES marquee).
+          Kills the marquee. Five 700-weight wordmarks sliding past were
+          filler — no logos, no context. A magazine-credit paragraph that
+          names each engagement with its deal context inline reads as the
+          closing credit on a long-form profile. Same espresso world. */}
       <section
+        className="cw-credits"
         data-section
         data-world="espresso"
-        style={{ paddingBottom: 40 }}
+        aria-labelledby="cw-credits-title"
       >
-        <p className="cw-companies-meta cw-reveal">
-          2013 — 2023 · Growth, GTM &amp; platform strategy
+        <p className="cw-credits__eyebrow">2013 — 2023</p>
+        <h2 id="cw-credits-title" className="cw-credits__line">
+          Engagements at{" "}
+          <strong>Guardicore</strong>{" "}
+          <span className="cw-credits__meta">→ Akamai, 2021</span>,{" "}
+          <strong>TechValidate</strong>{" "}
+          <span className="cw-credits__meta">→ SurveyMonkey IPO, 2018</span>,{" "}
+          <strong>Flexport</strong>, <strong>Cuebiq</strong>,{" "}
+          and <strong>Postmates</strong>.
+        </h2>
+        <p className="cw-credits__role">
+          Growth, GTM &amp; platform strategy.
         </p>
-        <div className="cw-companies" style={{ marginTop: 22 }}>
-          <div className="cw-track">
-            {[0, 1].map((dupe) => (
-              <span key={dupe}>
-                {COMPANIES.map((c) => (
-                  <span key={`${dupe}-${c}`}>{c}</span>
-                ))}
-              </span>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* FOOTER — terracotta */}

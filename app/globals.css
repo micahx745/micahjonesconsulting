@@ -5624,35 +5624,63 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   animation: cw-hero-line-up 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Hero — editorial lede (Pass-9).
+ * Two-sentence declarative H1 replacing the Pass-8 manifesto stack.
+ * Type-scale dropped from clamp(52px, 12.5vw, 196px) to
+ * clamp(36px, 5.5vw, 88px) — longer line measure than four 4-word
+ * imperatives, so the size compresses to keep ~50-65ch line measure.
+ * Weight 600 (was 800) — editorial register, not display shout. */
 [data-mode="cw"] .cw-h1 {
   font-family: var(--font-cw-display);
-  font-weight: 800;
-  line-height: 0.86;
-  letter-spacing: -0.03em;
-  font-size: clamp(52px, 12.5vw, 196px);
-  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  font-size: clamp(36px, 5.5vw, 88px);
+  text-transform: none;
   margin: 0;
+  /* Pass-11 (Block 4): 22ch was forcing 2-3 wraps per sentence on
+   * desktop — the longest sentence ("I stay until users have the
+   * product in hand.") is 45ch, so the 22ch cap turned the two-beat
+   * lede into a four-visual-line block. 48ch is wider than either
+   * sentence; the browser's natural wrap kicks in at viewport width
+   * instead of being forced too tight. Each sentence now flows 1-2
+   * lines depending on viewport; the per-sentence stagger reads as
+   * two real beats. */
+  max-width: 48ch;
 }
-[data-mode="cw"] .cw-h1 .cw-line {
+[data-mode="cw"] .cw-h1--lede .cw-h1-line {
+  display: block;
   overflow: hidden;
+}
+[data-mode="cw"] .cw-h1--lede .cw-h1-line > span {
   display: block;
 }
-/* Progressive enhancement — line spans start visible; only animated
- * when JS-ready. The whole hero is fully readable without JS.
- *
- * Pass-8 fix: pure-CSS keyframe animation with per-line delay driven
- * by the --reveal-i custom prop (set by Hero.tsx on mount). Replaces
- * the JS class-toggle that was racing with View Transitions and
- * leaving all four lines arriving simultaneously instead of staggered.
- *
- * The keyframe owns both the from-translateY(110%) and to-translateY(0)
- * states — no separate hidden rule to fight specificity with. */
-[data-mode="cw"] .cw-h1 .cw-line > span {
-  display: block;
+[data-mode="cw"].cw-js-reveals .cw-h1--lede .cw-h1-line > span {
+  animation: cw-hero-line-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Pass-11 (Block 4): stagger bumped from 0.18s → 0.35s per
+   * --reveal-i. With duration 0.85s and old delta 0.18s the second
+   * sentence started while the first still had 0.67s of animation
+   * left — the two beats overlapped into one visual block. 0.35s
+   * leaves ~0.5s of overlap but a real perceptible gap between
+   * sentence-1's first paint and sentence-2's start. */
+  animation-delay: calc(0.20s + var(--reveal-i, 0) * 0.35s);
 }
-[data-mode="cw"].cw-js-reveals .cw-h1 .cw-line > span {
-  animation: cw-hero-line-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: calc(0.25s + var(--reveal-i, 0) * 0.12s);
+
+/* Sub stays compact; pulls up under the lede headline. */
+[data-mode="cw"] .cw-hero--lede .cw-sub {
+  max-width: 48ch;
+  margin: 28px 0 0;
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.45;
+  opacity: 0.85;
+}
+
+/* CTA row — drop the magnetic-spring weight, keep dual CTA tight.
+ * Primary is solid accent; ghost is border-only. Both same visual
+ * height; the difference is fill-vs-outline, not size. */
+[data-mode="cw"] .cw-hero--lede .cw-cta-row {
+  margin-top: 36px;
+  gap: 14px;
 }
 
 @keyframes cw-hero-line-up {
@@ -5769,18 +5797,11 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   transform: translateY(3px);
 }
 
-/* Hero hand-drawn underline beneath the final "Ship." line.
- * Pass-8 M6: width was scaling to the parent line-box (529px) instead
- * of matching the word. Set to roughly "Ship." width — 4 chars at the
- * H1 font-size. The SVG itself scales via preserveAspectRatio. */
-[data-mode="cw"] .cw-hero-underline {
-  display: block;
-  width: 3ch;
-  margin-top: -0.08em;
-  margin-left: 0.02em;
-  height: 0.35em;
-  opacity: 0.9;
-}
+/* Hero hand-underline removed in Pass-9 — editorial lede H1 doesn't
+ * carry a mark; the hand-circle migrates to the revenue figure where
+ * the "marks land where the work is" rule applies (the number IS the
+ * work). The .cw-hero-underline class is no longer used; safe to
+ * delete entirely if HandUnderline import in Hero.tsx is also dropped. */
 [data-mode="cw"] .cw-scrollhint {
   font-family: var(--font-cw-mono);
   font-size: 11px;
@@ -5975,99 +5996,166 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   }
 }
 
-/* Revenue + exits credibility moment — redesigned for $20M+ animated
- * count-up + two-card exit feature (Pass-A). Hand-drawn circle wraps
- * the figure. */
+/* ================================================================
+ * Revenue + exits — Editorial Index (Pass-9).
+ * Replaces the Pass-8 figure + two-card layout (which lived in two
+ * different design registers). New pattern: contents-page index —
+ * figure at top, numbered exit entries with right-aligned date
+ * column, hairline rule between. One type vocabulary; the hand-
+ * circle around the figure is the section's only mark.
+ * ================================================================ */
+
 [data-mode="cw"] .cw-rev {
   margin-top: 84px;
 }
-[data-mode="cw"] .cw-revline {
+
+/* Figure block — hand-circled numeric + supporting dek beneath.
+ * Pass-11 (B9): align-items was `end` (cell-bottom alignment) which
+ * fought the line-height mismatch between the figure (0.86) and the
+ * dek (1.25) — the dek floated visibly below the figure's optical
+ * baseline. `last baseline` aligns the figure's single baseline with
+ * the dek's last-line baseline (two-line dek → line 2). Older
+ * browsers ignore the unrecognized `last baseline` keyword and use
+ * the preceding `end` declaration as fallback. */
+[data-mode="cw"] .cw-rev__head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: end;
+  align-items: last baseline;
+  padding-bottom: 56px;
+  border-bottom: 1px solid currentColor;
+}
+@media (min-width: 720px) {
+  [data-mode="cw"] .cw-rev__head {
+    grid-template-columns: auto 1fr;
+    gap: 56px;
+  }
+}
+
+[data-mode="cw"] .cw-rev__figure {
   font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(30px, 5vw, 68px);
+  font-weight: 700;
+  font-size: clamp(64px, 9vw, 132px);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
   margin: 0;
 }
-[data-mode="cw"] .cw-rev-tick-wrap {
+[data-mode="cw"] .cw-rev__tick-wrap {
   position: relative;
   display: inline-block;
 }
-[data-mode="cw"] .cw-rev-tick {
+[data-mode="cw"] .cw-rev__tick {
   color: var(--cw-accent);
   font-variant-numeric: tabular-nums;
   display: inline-block;
   min-width: 5ch;
 }
-[data-mode="cw"] .cw-rev-tick-circle {
+[data-mode="cw"] .cw-rev__tick-circle {
   position: absolute;
-  inset: -18% -8%;
+  inset: -14% -6%;
   pointer-events: none;
   color: var(--cw-accent);
 }
-[data-mode="cw"] .cw-rev-trail {
-  color: inherit;
-}
 
-/* "Two exits." — bold standalone label between the figure and the cards. */
-[data-mode="cw"] .cw-rev-exits-label {
-  margin: 56px 0 24px;
+[data-mode="cw"] .cw-rev__dek {
   font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: clamp(22px, 2.4vw, 32px);
-  letter-spacing: -0.015em;
-  text-transform: uppercase;
-  line-height: 1;
+  font-weight: 500;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+  margin: 0;
+  padding-bottom: 6px;
+  opacity: 0.92;
 }
 
-/* Two-card exit feature — Akamai acquisition + SurveyMonkey IPO. */
-[data-mode="cw"] .cw-rev-cards {
+/* Index list — numbered entries, hairline rules between. */
+[data-mode="cw"] .cw-rev__index {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+[data-mode="cw"] .cw-rev__entry {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
-  margin: 0;
+  gap: 8px 28px;
+  padding: 36px 0 32px;
+  border-bottom: 1px solid currentColor;
+}
+[data-mode="cw"] .cw-rev__entry:last-child {
+  border-bottom: 0;
 }
 @media (min-width: 720px) {
-  [data-mode="cw"] .cw-rev-cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+  [data-mode="cw"] .cw-rev__entry {
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
   }
 }
-[data-mode="cw"] .cw-rev-card {
-  border: 1.5px solid currentColor;
-  border-radius: 8px;
-  padding: 28px 28px 32px;
-  background: transparent;
-  position: relative;
-}
-[data-mode="cw"] .cw-rev-card__tag {
+
+[data-mode="cw"] .cw-rev__num {
   font-family: var(--font-cw-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.7;
-  margin: 0 0 14px;
+  opacity: 0.6;
+  margin: 0;
+  padding-top: 0.6em;
 }
-[data-mode="cw"] .cw-rev-card__deal {
+
+[data-mode="cw"] .cw-rev__entry-main {
+  min-width: 0;
+}
+[data-mode="cw"] .cw-rev__deal {
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(22px, 2.6vw, 34px);
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.08;
   letter-spacing: -0.018em;
-  line-height: 1.05;
-  margin: 0 0 14px;
   text-transform: uppercase;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+  align-items: baseline;
 }
-[data-mode="cw"] .cw-rev-card__deal strong {
+[data-mode="cw"] .cw-rev__deal strong {
   font-weight: 700;
 }
-[data-mode="cw"] .cw-rev-card__note {
+[data-mode="cw"] .cw-rev__arrow {
+  font-weight: 400;
+  opacity: 0.6;
+  font-size: 0.78em;
+}
+[data-mode="cw"] .cw-rev__note {
   font-family: var(--font-cw-body);
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
+  margin: 14px 0 0;
+  max-width: 56ch;
   opacity: 0.85;
+}
+
+/* Right-aligned date column — reads as the "page number" of the
+ * contents-page index. Mono + small caps matches the .cw-rev__num. */
+[data-mode="cw"] .cw-rev__when {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.7;
   margin: 0;
-  max-width: 48ch;
+  padding-top: 0.6em;
+  white-space: nowrap;
+}
+@media (min-width: 720px) {
+  [data-mode="cw"] .cw-rev__when {
+    text-align: right;
+  }
+}
+[data-mode="cw"] .cw-rev__when-sep {
+  margin: 0 0.5em;
+  opacity: 0.5;
 }
 
 /* ORDANI band */
@@ -6269,58 +6357,85 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   opacity: 0.9;
 }
 
-/* Marquee hover-pause — applies to both the service marquee and the
- * companies marquee. WCAG 2.2.2 (Pause, Stop, Hide) mitigation:
- * users can hover to read; reduced-motion CSS still halts entirely. */
-[data-mode="cw"] .cw-marquee:hover .cw-track,
-[data-mode="cw"] .cw-companies:hover .cw-track {
+/* Service-marquee hover-pause. WCAG 2.2.2 (Pause, Stop, Hide)
+ * mitigation: users can hover to read; reduced-motion CSS still
+ * halts entirely. The Pass-9 companies marquee is gone — this
+ * rule now applies only to .cw-marquee (services) at the top of
+ * the page. The original combined selector also targeted
+ * .cw-companies:hover .cw-track which is now a dead reference. */
+[data-mode="cw"] .cw-marquee:hover .cw-track {
   animation-play-state: paused;
 }
 
-/* Companies */
-[data-mode="cw"] .cw-companies {
-  border-top: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 30px 0;
+/* ================================================================
+ * Engagements credit line (Pass-9).
+ * Replaces the Pass-8 wordmark marquee. Single editorial paragraph;
+ * inline deal context per name. Same espresso world. The marquee
+ * was filler precisely because it stripped context — the credit
+ * line returns context inline; each name carries its deal.
+ * ================================================================ */
+
+[data-mode="cw"] .cw-credits {
+  padding: 96px 40px 56px;
+  max-width: 1080px;
+  margin: 0 auto;
 }
-[data-mode="cw"] .cw-companies .cw-track {
-  display: inline-block;
-  animation: cw-scroll 28s linear infinite;
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-credits {
+    padding: 64px 20px 40px;
+  }
 }
-[data-mode="cw"] .cw-companies .cw-track span {
+
+[data-mode="cw"] .cw-credits__eyebrow {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin: 0 0 24px;
+}
+
+[data-mode="cw"] .cw-credits__line {
   font-family: var(--font-cw-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.32;
+  letter-spacing: -0.014em;
+  margin: 0;
+  max-width: 36ch;
+  text-transform: none;
+}
+[data-mode="cw"] .cw-credits__line strong {
   font-weight: 700;
-  font-size: 38px;
-  /* No uppercase — preserve each company's real wordmark casing
-   * (TechValidate, SurveyMonkey, etc.). Reads as a logo strip,
-   * not a marquee shout. */
-  margin: 0 44px;
-  opacity: 0.92;
-  letter-spacing: -0.02em;
 }
-[data-mode="cw"] .cw-companies .cw-track span::after {
-  /* Hairline divider between wordmarks for the logo-strip feel. */
-  content: "·";
-  margin-left: 44px;
-  opacity: 0.4;
+/* Inline-mono metadata next to each strong name — small-caps mono
+ * at 0.5em of the display line keeps "→ Akamai, 2021" reading as
+ * inline marginalia. Same height as the body x-height of the display
+ * text; mono case + letter-spacing tells the reader "this is meta,
+ * not headline." Pattern borrowed from contents-page editorial
+ * typesetting (small-caps mono next to a display name). */
+[data-mode="cw"] .cw-credits__meta {
+  font-family: var(--font-cw-mono);
+  font-size: 0.5em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  white-space: nowrap;
+  margin-left: 0.25em;
+  /* Pass-11 (B10): vertical-align: 0.15em was creating a footnote-
+   * style baseline shift that made "Akamai, 2021," read as a double-
+   * comma artifact (mono "1" stacking next to the next punct comma).
+   * Inline at baseline; letter-spacing + opacity carry the marginalia
+   * tone without the baseline shift. */
 }
-[data-mode="cw"] .cw-companies .cw-track > span:last-child::after {
-  display: none;
-}
-[data-mode="cw"] .cw-companies-meta {
+
+[data-mode="cw"] .cw-credits__role {
   font-family: var(--font-cw-mono);
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.6;
-  padding: 0 40px;
-}
-@media (max-width: 760px) {
-  [data-mode="cw"] .cw-companies-meta {
-    padding: 0 20px;
-  }
+  opacity: 0.55;
+  margin: 24px 0 0;
 }
 
 /* Footer */
@@ -6456,7 +6571,14 @@ body:has([data-mode="cw"]) .editorial-timestamp {
     animation: none !important;
     transition: none !important;
   }
-  [data-mode="cw"] .cw-h1 .cw-line > span,
+  /* Pass-11 (B5): selector updated from `.cw-h1 .cw-line > span`
+   * (Pass-8 manifesto markup, no longer in DOM) to the Pass-9
+   * `.cw-h1--lede .cw-h1-line > span` pattern. The general universal
+   * `*` rule above already suppresses animation/transition; this
+   * specific rule also pins transform to identity so the keyframe's
+   * `from { translateY(110%) }` initial state doesn't leak if a
+   * browser quirks the universal-rule precedence. */
+  [data-mode="cw"] .cw-h1--lede .cw-h1-line > span,
   [data-mode="cw"] .cw-eyebrow > span {
     transform: none !important;
   }
@@ -6540,11 +6662,15 @@ body:has([data-mode="cw"]) .editorial-timestamp {
   [data-mode="cw"] .cw-bleed {
     filter: none !important;
   }
-  [data-mode="cw"] .cw-marquee,
-  [data-mode="cw"] .cw-companies {
+  /* Pass-11 (B5/B6): dropped `.cw-companies` from the hide-list
+   * (marquee removed in Pass-9, class no longer exists in DOM) and
+   * updated the H1 reveal-state override selector from the old
+   * `.cw-h1 .cw-line > span` markup pattern (Pass-8 manifesto) to
+   * the Pass-9 `.cw-h1--lede .cw-h1-line > span` pattern. */
+  [data-mode="cw"] .cw-marquee {
     display: none !important;
   }
-  [data-mode="cw"] .cw-h1 .cw-line > span,
+  [data-mode="cw"] .cw-h1--lede .cw-h1-line > span,
   [data-mode="cw"] .cw-eyebrow > span {
     transform: none !important;
     opacity: 1 !important;

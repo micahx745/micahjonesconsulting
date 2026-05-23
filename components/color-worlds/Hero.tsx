@@ -1,48 +1,37 @@
 // components/color-worlds/Hero.tsx
 //
-// Hero — manifesto stack. Replaces the prior rotating-noun carousel
-// ("I build the [pipeline./launch./product./system.]") which the
-// operator + reviewers both flagged as: words didn't cohere as a
-// sequence, no escalation, gimmicky.
+// Hero — Editorial Lede (Pass-9).
 //
-// New pattern (per research — Rauno Freiberg's manifesto stack on
-// rauno.me + the operator's actual selling point):
+// Replaces the Pass-8 manifesto stack ("Ship the strategy. Ship the
+// product. Ship the launch. Ship.") which read flat/didactic and a
+// little Rauno-cosplay. Replaces also the hand-underline beneath
+// "Ship." which asked for too much attention bookmarking a 4-letter
+// word.
 //
-//     Ship the strategy.
-//     Ship the product.
-//     Ship the launch.
-//     Ship.
+// New pattern: promote the operator's already-strongest line to the
+// H1. The sentence-pair "Most consultants leave the PDF and move on.
+// I stay until users have the product in hand." was the sub since
+// Pass-8; it's the load-bearing sentence on the whole site. Run it
+// as the headline.
 //
-// Four stacked imperatives, each line earning the next. The final
-// "Ship." stands alone — that's the moment of conviction. A hand-
-// drawn underline appears beneath the final Ship (HandUnderline
-// component) — the one defensible hand-drawn mark in the hero per
-// the research's "marks land where the work is" rule.
+// Hand-mark migrates to RevenueTick — marks land where the work is.
 //
-// Choreographed reveal — each line slides up from translateY(110%)
-// to 0 in sequence; the underline draws in last. All progressive-
-// enhancement gated on .cw-js-reveals (no-JS clients see the full
-// stack immediately). Class-based per Pass-6 fix (inline transforms
-// lost to View-Transitions snapshot capture).
-//
-// Parallax + magnetic CTA preserved from prior version. Two CTAs
-// now (per operator feedback): primary "Book a call →" + secondary
-// "See how I work ↓" anchor link.
+// Reveal: pure-CSS keyframes per Pass-8 lesson (no inline-transform
+// writes; View-Transitions snapshot capture won't fight us). Two
+// sentence-lines stagger via the same --reveal-i custom prop pattern
+// already used for the manifesto. Sub + CTA-row use class-toggle
+// transitions which are snapshot-safe because they don't start from
+// a CSS-rule-defined hidden state.
 "use client";
 
 import { useEffect, useRef } from "react";
-import { MagneticArea } from "@/components/motion/MagneticArea";
-import { HandUnderline } from "@/components/hand/HandUnderline";
 
-const MANIFEST_LINES = [
-  "Ship the strategy.",
-  "Ship the product.",
-  "Ship the launch.",
-  "Ship.",
+const HEADLINE_LINES = [
+  "Most consultants leave the PDF and move on.",
+  "I stay until users have the product in hand.",
 ] as const;
 
 export function Hero() {
-  const eyebrowRef = useRef<HTMLSpanElement | null>(null);
   const subRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRowRef = useRef<HTMLDivElement | null>(null);
   const lineRefs = useRef<HTMLSpanElement[]>([]);
@@ -53,18 +42,6 @@ export function Hero() {
     if (el && !lineRefs.current.includes(el)) lineRefs.current.push(el);
   }
 
-  // Load reveal — Pass-8 fix: pure-CSS keyframe animation. The
-  // JS class-toggle approach (Pass-6) was racing with View Transitions
-  // snapshot capture; on Pass A the `is-revealed` class was queued but
-  // never landed, so all four lines arrived simultaneously instead of
-  // staggered. CSS keyframes with `animation-delay: calc(...)` driven
-  // by the `--reveal-i` custom prop sidestep the race entirely — no
-  // class toggle, no rAF, no snapshot interference.
-  //
-  // useEffect still runs to (a) set the --reveal-i custom prop on
-  // each line so CSS can compute the per-line delay, and (b) add the
-  // .is-in class on sub/cta-row (those use transition not keyframes
-  // so the snapshot stomping doesn't affect them).
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
@@ -81,6 +58,8 @@ export function Hero() {
   }, []);
 
   // Parallax on h1 — pointer-fine devices only, rAF-batched, viewport-capped.
+  // Reduced amplitude (was 6,4 — now 4,2) for the editorial register; a
+  // calmer headline doesn't want as much drift as the all-caps display H1.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
@@ -110,7 +89,7 @@ export function Hero() {
     }
     function apply() {
       const scale = Math.min(window.innerWidth / 1920, 1);
-      h1!.style.transform = `translate(${tx * 6 * scale}px, ${ty * 4 * scale}px)`;
+      h1!.style.transform = `translate(${tx * 4 * scale}px, ${ty * 2 * scale}px)`;
       pending = false;
     }
     window.addEventListener("pointermove", onMove);
@@ -123,52 +102,43 @@ export function Hero() {
   return (
     <header
       ref={heroRef}
-      className="cw-hero"
+      className="cw-hero cw-hero--lede"
       data-section
       data-world="terracotta"
       id="top"
       aria-label="Hero"
     >
       <div className="cw-eyebrow">
-        <span ref={eyebrowRef}>Independent operator — Oakland, CA</span>
+        <span>Independent operator · Oakland, CA</span>
       </div>
 
-      <h1 className="cw-h1 cw-shift" ref={h1Ref} aria-label="Ship the strategy. Ship the product. Ship the launch. Ship.">
-        {MANIFEST_LINES.map((line, i) => (
-          <span key={i} className="cw-line">
+      <h1
+        className="cw-h1 cw-h1--lede"
+        ref={h1Ref}
+        aria-label="Most consultants leave the PDF and move on. I stay until users have the product in hand."
+      >
+        {HEADLINE_LINES.map((line, i) => (
+          <span key={i} className="cw-h1-line">
             <span ref={captureLine}>{line}</span>
           </span>
         ))}
-        {/* Hand-drawn underline beneath the final "Ship." — the one
-            defensible mark in the hero per research's "marks land
-            where the work is" rule. */}
-        <span className="cw-hero-underline" aria-hidden>
-          <HandUnderline
-            variant={1}
-            delay={1.4}
-            color="var(--color-cw-bone)"
-          />
-        </span>
       </h1>
 
       <p className="cw-sub" ref={subRef}>
-        Most consultants leave the PDF and move on. I stay until users have
-        the product in hand.
+        Strategy and software, shipped by the same pair of hands.
       </p>
 
       <div className="cw-cta-row" ref={ctaRowRef}>
-        <MagneticArea>
-          <a
-            href="https://calendly.com/micahmccoyjones/introduction"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cw-cta"
-          >
-            Book a call <span className="cw-arr">→</span>
-          </a>
-        </MagneticArea>
+        <a
+          href="https://calendly.com/micahmccoyjones/introduction"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cw-cta"
+        >
+          Book a call <span className="cw-arr" aria-hidden>→</span>
+        </a>
         <a href="#clients" className="cw-cta cw-cta--ghost">
-          See how I work <span className="cw-arr">↓</span>
+          See how I work <span className="cw-arr" aria-hidden>↓</span>
         </a>
       </div>
     </header>
