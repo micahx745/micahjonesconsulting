@@ -6274,6 +6274,17 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   list-style: none;
   padding: 0;
 }
+/* Pass-14 (CW-20): at tablet (720-1023), the auto-fit minmax(360px)
+ * can't fit 2 columns in ~688px content width, so the layout collapsed
+ * to 1-column with each card stretched to full width — three tall
+ * single-column cards instead of a 2+1 arrangement. Force 2-across at
+ * tablet; Card 3 becomes the orphan on row 2 stretched to full width,
+ * which is the brief-expected behavior. */
+@media (min-width: 720px) and (max-width: 1023px) {
+  [data-mode="cw"] .cw-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 [data-mode="cw"] .cw-card {
   border: 1.5px solid currentColor;
   border-radius: 6px;

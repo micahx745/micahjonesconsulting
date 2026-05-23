@@ -307,11 +307,15 @@ export default function ColorWorldsHome() {
       >
         <p className="cw-credits__eyebrow">2013 — 2023</p>
         <h2 id="cw-credits-title" className="cw-credits__line">
+          {/* Pass-14 (CW-19): TechValidate dropped from credit line so
+              the line is consistent with the upper credibility moments
+              (revenue index + Shipped Card 2) which both also dropped
+              the TechValidate name in Pass-12. The IPO/SurveyMonkey
+              narrative lives in the revenue section now; this line is
+              the secondary-engagement credit. */}
           Engagements at{" "}
           <strong>Guardicore</strong>{" "}
           <span className="cw-credits__meta">→ Akamai, 2021</span>,{" "}
-          <strong>TechValidate</strong>{" "}
-          <span className="cw-credits__meta">→ SurveyMonkey IPO, 2018</span>,{" "}
           <strong>Flexport</strong>, <strong>Cuebiq</strong>,{" "}
           and <strong>Postmates</strong>.
         </h2>

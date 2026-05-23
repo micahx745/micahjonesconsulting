@@ -79,10 +79,18 @@ export function OrdaniSticky() {
       mm.add(
         "(prefers-reduced-motion: no-preference) and (min-width: 760px)",
         () => {
-          // Set initial states. Everything except the title starts
-          // off-screen + invisible. Title scales DOWN to 0.85 and
-          // fades to 0 — it'll grow + appear at the peak of the scrub.
-          gsap.set([tag, lede, form, note], {
+          // Pass-14 (CW-21): tag is INTENTIONALLY left out of the
+          // hidden-init array. The 3-pill tagrow ("Live beta · 14
+          // doula practices · Hundreds of users active") is the
+          // section's strongest social-proof signal and must be
+          // visible the moment the section pins — rather than
+          // buried at phase 1 of the scrub-timeline behind the
+          // giant ORDANI title's scale-in. The tag stays at full
+          // opacity from rest. Cowork Pass-13 Block 7 recommendation.
+          //
+          // Title scales DOWN to 0.85 and fades to 0 — it'll grow +
+          // appear at the peak of the scrub.
+          gsap.set([lede, form, note], {
             opacity: 0,
             y: 28,
             willChange: "transform, opacity",
