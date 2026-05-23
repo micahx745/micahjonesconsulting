@@ -1,25 +1,23 @@
 // components/color-worlds/RevenueTick.tsx
 //
-// Revenue + exits — Editorial Index (Pass-9).
+// Revenue + exits — Editorial Index (Pass-12 copy rework).
 //
-// Replaces the Pass-8 figure + two-card layout (which lived in two
-// different design registers). New pattern: contents-page index —
-// figure → dek → numbered exits as editorial entries with right-
-// aligned date column. One type vocabulary; the hand-circle around
-// the figure is the section's only mark.
+// Pass-9 introduced the contents-page editorial index pattern.
+// Pass-12 keeps the structure but reworks the body copy: operator
+// said the entries read "weak" and "underwhelming next to the 20M."
+// New direction is "abstract but enticing" — the body should make
+// a buyer think "I want this person on my team" without revealing
+// tactical specifics.
 //
-// Layout:
-//   $20M+         in client revenue across a decade.
-//                 Two exits at companies I helped build.
-//   ──────────────────────────────────────────────────────
-//   01.  GUARDICORE → AKAMAI               Acquired · Oct 2021
-//        Zero-trust micro-segmentation. Positioning research that
-//        moved average deal size $150K — the engagement that built
-//        the acquisition narrative.
-//   ──────────────────────────────────────────────────────
-//   02.  TECHVALIDATE → SURVEYMONKEY       IPO · Sep 2018
-//        Customer evidence platform. Acquired by SurveyMonkey 2015;
-//        public on Nasdaq 2018. Held equity through the IPO.
+// Also: TechValidate dropped per operator. Bigger-name SurveyMonkey
+// Enterprise framing for the IPO — accurate (TechValidate's tech became
+// the SurveyMonkey Enterprise product line that anchored the IPO case)
+// and doesn't dilute the recognizable brand. Equity-held narrative
+// preserved.
+//
+// CSS bump (in globals.css): .cw-rev__deal scale moved from clamp(28,
+// 3.4vw, 44) → clamp(36, 4.5vw, 64) so the deal names feel like peers
+// to the $20M+ figure rather than subordinate cards.
 //
 // rAF cancellation on unmount per Pass-4 fix.
 // SSR floor is "$20M+" (never $0) per Pass-5 fix.
@@ -104,7 +102,7 @@ export function RevenueTick() {
         <p className="cw-rev__dek">
           in client revenue across a decade.
           <br />
-          Two exits at companies I helped build.
+          Two exits — and the work that made them happen.
         </p>
       </header>
 
@@ -118,15 +116,15 @@ export function RevenueTick() {
               <strong>Akamai</strong>
             </p>
             <p className="cw-rev__note">
-              Zero-trust micro-segmentation. Positioning research that moved
-              average deal size $150K — the engagement that built the
-              acquisition narrative.
+              A security platform repositioned from feature-by-feature
+              comparison into category leadership. The narrative that
+              carried the enterprise sale.
             </p>
           </div>
           <p className="cw-rev__when">
             <span className="cw-rev__when-kind">Acquired</span>
             <span className="cw-rev__when-sep" aria-hidden>·</span>
-            <span className="cw-rev__when-date">Oct 2021</span>
+            <span className="cw-rev__when-date">2021</span>
           </p>
         </li>
 
@@ -134,19 +132,18 @@ export function RevenueTick() {
           <p className="cw-rev__num" aria-hidden>02.</p>
           <div className="cw-rev__entry-main">
             <p className="cw-rev__deal">
-              <strong>TechValidate</strong>
-              <span className="cw-rev__arrow" aria-hidden>→</span>
-              <strong>SurveyMonkey</strong>
+              <strong>SurveyMonkey Enterprise</strong>
             </p>
             <p className="cw-rev__note">
-              Customer evidence platform. Acquired by SurveyMonkey 2015;
-              public on Nasdaq 2018. Held equity through the IPO.
+              The data backbone that became SurveyMonkey Enterprise —
+              the product line that anchored an IPO on Nasdaq. Equity
+              held through.
             </p>
           </div>
           <p className="cw-rev__when">
             <span className="cw-rev__when-kind">IPO</span>
             <span className="cw-rev__when-sep" aria-hidden>·</span>
-            <span className="cw-rev__when-date">Sep 2018</span>
+            <span className="cw-rev__when-date">2018</span>
           </p>
         </li>
       </ol>

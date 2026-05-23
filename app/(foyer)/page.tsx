@@ -164,17 +164,17 @@ export default function ColorWorldsHome() {
       >
         <OrdaniSticky />
         <p className="cw-tagrow cw-reveal">
-          <span className="cw-live">Live beta</span> —{" "}
-          <span>practice management for birth workers</span>
+          <span className="cw-live">Live beta</span>
+          <span>14 doula practices</span>
+          <span>Hundreds of users active</span>
         </p>
         <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
           Ordani
         </h2>
         <p className="cw-lede cw-reveal">
-          The practice management software doulas have been hand-rolling in
-          Google Docs and group chats for a decade — finally HIPAA-grade,
-          built end to end, in the hands of fourteen practices. Join the
-          beta and help shape what ships next.
+          HIPAA-grade practice management for birth workers, built end to
+          end. Doulas had been running their practice on Google Docs and
+          group chats for a decade — they have proper software now.
         </p>
         <p className="cw-lede-sub cw-reveal">
           <a href="/work/ordani" className="cw-lede-link">
@@ -207,42 +207,88 @@ export default function ColorWorldsHome() {
           Shipped.
         </SplitReveal>
         <p className="cw-sect-dek cw-reveal">
-          Real software in real users&rsquo; hands. Acquired by Akamai.
-          Public via SurveyMonkey. A platform in beta with fourteen
-          doula practices today.
+          Real work in real users&rsquo; hands. Two platforms acquired and
+          public. A content engine that wins inbound. Frontier AI in
+          production for founders.
         </p>
 
         <ul className="cw-cards">
+          {/* Card 1 — author engagement, three sub-engagements at masked
+              end-clients. Per operator: re-frame the relationship so the
+              card surfaces the breadth of the end-clients Dante was
+              serving while I was the operator beneath. Standard premium-
+              consulting anonymization pattern ("Fortune-500 retail
+              company"). */}
           <li
             className="cw-card cw-reveal"
             style={{ transitionDelay: "0ms" }}
           >
             <a href="/work/hr-equity-author" className="cw-card__link">
-              <span className="cw-tag">Author platform</span>
-              <h3>Algorithm + content for an author</h3>
+              <span className="cw-tag">2024–present · Multi-engagement</span>
+              <h3>Content + product for an HR author</h3>
               <p>
-                Multi-platform algorithm and content strategy for an author
-                working in HR and organizational change. Inbound proposal
-                wins. A 25+ page playbook. Two of three named platforms
-                outperformed the third by 4&times;.
+                Algorithm strategy, content engine, and bespoke product
+                work for an HR / organizational-equity author. Three
+                engagements through one relationship, each routed to a
+                different end-client:
               </p>
+              <ul className="cw-card__sublist" aria-label="Three sub-engagements">
+                <li>A top-tier research university — published-research web platform</li>
+                <li>A Fortune-500 enterprise — internal distribution platform; 30% revenue lift</li>
+                <li>A major American city — website, content engine, GTM, and a bespoke product</li>
+              </ul>
               <span className="cw-open">See the engagement →</span>
             </a>
           </li>
+
+          {/* Card 2 — GTM at scale. Per operator, no TechValidate; the
+              IPO platform is named as SurveyMonkey Enterprise (the
+              product line that anchored the IPO case). Accurate framing
+              that uses the bigger recognizable brand. */}
           <li
             className="cw-card cw-reveal"
             style={{ transitionDelay: "120ms" }}
           >
-            <a href="/about" className="cw-card__link">
+            <a href="/work/guardicore" className="cw-card__link">
               <span className="cw-tag">Enterprise software · 2013–2023</span>
               <h3>GTM at scale</h3>
               <p>
-                Growth, GTM, and platform strategy at companies acquired
-                by Akamai and SurveyMonkey, plus engagements across
-                Flexport, Cuebiq, and Postmates. A decade of moving the
-                numbers in B2B software.
+                Positioning, market research, and the data backbone that
+                moved deal size and revenue at platforms that sold
+                (<strong>Guardicore → Akamai</strong>) and went public
+                (<strong>SurveyMonkey Enterprise</strong> on Nasdaq).
+                A decade of working directly with product teams in
+                B2B software.
               </p>
               <span className="cw-open">See the receipts →</span>
+            </a>
+          </li>
+
+          {/* Card 3 — frontier AI. New in Pass-12. Operator: "billed as
+              another service/case study," 10,000-ft abstraction, no
+              specifics. Premium consulting register: "specifics under
+              NDA" + "available for new engagements." Links to Calendly
+              since the case study hasn't been built yet. */}
+          <li
+            className="cw-card cw-reveal"
+            style={{ transitionDelay: "240ms" }}
+          >
+            <a
+              href="https://calendly.com/micahmccoyjones/introduction"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cw-card__link"
+            >
+              <span className="cw-tag">2025–present · Embedded</span>
+              <h3>Frontier AI, shipped.</h3>
+              <p>
+                Production-grade AI work for founders building AI-native
+                software. The architecture and orchestration layers that
+                turn frontier capability into a product users actually
+                touch. Specifics under NDA — available for new
+                engagements.
+              </p>
+              <span className="cw-open">Inquire ↗</span>
             </a>
           </li>
         </ul>

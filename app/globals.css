@@ -5624,63 +5624,38 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   animation: cw-hero-line-up 0.8s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Hero — editorial lede (Pass-9).
- * Two-sentence declarative H1 replacing the Pass-8 manifesto stack.
- * Type-scale dropped from clamp(52px, 12.5vw, 196px) to
- * clamp(36px, 5.5vw, 88px) — longer line measure than four 4-word
- * imperatives, so the size compresses to keep ~50-65ch line measure.
- * Weight 600 (was 800) — editorial register, not display shout. */
+/* Hero — restored display H1 (Pass-12).
+ * Pass-9 had dropped this to a Bricolage 600 mixed-case editorial
+ * register at clamp(36, 5.5vw, 88) — operator called the result
+ * "cheap." Restoring the original display authority: weight 800,
+ * ALL CAPS, clamp(52, 12.5vw, 196). The rotating italic word lives
+ * inside .cw-roll on the second line ("I build the [PRODUCT.]" etc.)
+ * — see .cw-roll rules below.
+ *
+ * Per-line stagger driven by --reveal-i custom prop set in Hero.tsx
+ * useEffect on mount. CSS owns the from/to states via the
+ * cw-hero-line-up keyframe — survives View-Transitions snapshot
+ * capture (Pass-8 lesson). The .cw-h1--lede / .cw-hero--lede class
+ * variants from Pass-9 are gone with this restore. */
 [data-mode="cw"] .cw-h1 {
   font-family: var(--font-cw-display);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.022em;
-  font-size: clamp(36px, 5.5vw, 88px);
-  text-transform: none;
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.03em;
+  font-size: clamp(52px, 12.5vw, 196px);
+  text-transform: uppercase;
   margin: 0;
-  /* Pass-11 (Block 4): 22ch was forcing 2-3 wraps per sentence on
-   * desktop — the longest sentence ("I stay until users have the
-   * product in hand.") is 45ch, so the 22ch cap turned the two-beat
-   * lede into a four-visual-line block. 48ch is wider than either
-   * sentence; the browser's natural wrap kicks in at viewport width
-   * instead of being forced too tight. Each sentence now flows 1-2
-   * lines depending on viewport; the per-sentence stagger reads as
-   * two real beats. */
-  max-width: 48ch;
 }
-[data-mode="cw"] .cw-h1--lede .cw-h1-line {
-  display: block;
+[data-mode="cw"] .cw-h1 .cw-line {
   overflow: hidden;
-}
-[data-mode="cw"] .cw-h1--lede .cw-h1-line > span {
   display: block;
 }
-[data-mode="cw"].cw-js-reveals .cw-h1--lede .cw-h1-line > span {
+[data-mode="cw"] .cw-h1 .cw-line > span {
+  display: block;
+}
+[data-mode="cw"].cw-js-reveals .cw-h1 .cw-line > span {
   animation: cw-hero-line-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
-  /* Pass-11 (Block 4): stagger bumped from 0.18s → 0.35s per
-   * --reveal-i. With duration 0.85s and old delta 0.18s the second
-   * sentence started while the first still had 0.67s of animation
-   * left — the two beats overlapped into one visual block. 0.35s
-   * leaves ~0.5s of overlap but a real perceptible gap between
-   * sentence-1's first paint and sentence-2's start. */
-  animation-delay: calc(0.20s + var(--reveal-i, 0) * 0.35s);
-}
-
-/* Sub stays compact; pulls up under the lede headline. */
-[data-mode="cw"] .cw-hero--lede .cw-sub {
-  max-width: 48ch;
-  margin: 28px 0 0;
-  font-size: clamp(17px, 1.7vw, 21px);
-  line-height: 1.45;
-  opacity: 0.85;
-}
-
-/* CTA row — drop the magnetic-spring weight, keep dual CTA tight.
- * Primary is solid accent; ghost is border-only. Both same visual
- * height; the difference is fill-vs-outline, not size. */
-[data-mode="cw"] .cw-hero--lede .cw-cta-row {
-  margin-top: 36px;
-  gap: 14px;
+  animation-delay: calc(0.20s + var(--reveal-i, 0) * 0.20s);
 }
 
 @keyframes cw-hero-line-up {
@@ -6106,10 +6081,14 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 [data-mode="cw"] .cw-rev__entry-main {
   min-width: 0;
 }
+/* Pass-12: deal-name scale bumped from clamp(28, 3.4vw, 44) to
+ * clamp(36, 4.5vw, 64) so the deal names feel like peers to the
+ * $20M+ figure (clamp 64-132) rather than subordinate. Operator:
+ * the entries were reading "underwhelming next to the 20 mil." */
 [data-mode="cw"] .cw-rev__deal {
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(36px, 4.5vw, 64px);
   line-height: 1.08;
   letter-spacing: -0.018em;
   text-transform: uppercase;
@@ -6178,6 +6157,15 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   align-items: center;
   margin-bottom: 30px;
   flex-wrap: wrap;
+}
+/* Pass-12: middle-dot separators between tagrow stat pills. The
+ * tagrow now carries three traction signals (Live beta · 14
+ * practices · Hundreds of users). The `span + span` pattern skips
+ * the first span so the row reads as "A · B · C", not "· A · B · C". */
+[data-mode="cw"] .cw-ordani .cw-tagrow > span + span::before {
+  content: "·";
+  margin-right: 2px;
+  opacity: 0.45;
 }
 [data-mode="cw"] .cw-ordani .cw-live {
   display: inline-flex;
@@ -6338,6 +6326,29 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   gap: 8px;
   align-items: center;
 }
+/* Pass-12: sub-list inside the Dante card. Three sub-engagements at
+ * masked end-clients (top university / Fortune-500 / major city).
+ * Body type one notch smaller than the card's main p; hyphen prefix
+ * marker indicates editorial-list register; tighter line-height. */
+[data-mode="cw"] .cw-card__sublist {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+[data-mode="cw"] .cw-card__sublist li {
+  position: relative;
+  padding-left: 18px;
+  margin: 6px 0;
+}
+[data-mode="cw"] .cw-card__sublist li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  opacity: 0.55;
+}
 [data-mode="cw"] .cw-card:has(.cw-card__link:hover),
 [data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) {
   background: currentColor;
@@ -6349,7 +6360,12 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 [data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-tag,
 [data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) h3,
 [data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) p,
-[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-open {
+[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-open,
+/* Pass-12: include the sub-list in the hover/focus color flip so
+ * its text doesn't disappear when the card inverts (currentColor
+ * → bg, which is invisible against the now-currentColor background). */
+[data-mode="cw"] .cw-card:has(.cw-card__link:hover) .cw-card__sublist,
+[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-card__sublist {
   color: var(--cw-bg);
 }
 [data-mode="cw"] .cw-card:hover .cw-tag,
@@ -6571,14 +6587,13 @@ body:has([data-mode="cw"]) .editorial-timestamp {
     animation: none !important;
     transition: none !important;
   }
-  /* Pass-11 (B5): selector updated from `.cw-h1 .cw-line > span`
-   * (Pass-8 manifesto markup, no longer in DOM) to the Pass-9
-   * `.cw-h1--lede .cw-h1-line > span` pattern. The general universal
-   * `*` rule above already suppresses animation/transition; this
-   * specific rule also pins transform to identity so the keyframe's
+  /* Pass-12: selector restored to `.cw-h1 .cw-line > span` to match
+   * the rotating-word hero markup. The general universal `*` rule
+   * above already suppresses animation/transition; this specific
+   * rule also pins transform to identity so the keyframe's
    * `from { translateY(110%) }` initial state doesn't leak if a
    * browser quirks the universal-rule precedence. */
-  [data-mode="cw"] .cw-h1--lede .cw-h1-line > span,
+  [data-mode="cw"] .cw-h1 .cw-line > span,
   [data-mode="cw"] .cw-eyebrow > span {
     transform: none !important;
   }
@@ -6662,15 +6677,14 @@ body:has([data-mode="cw"]) .editorial-timestamp {
   [data-mode="cw"] .cw-bleed {
     filter: none !important;
   }
-  /* Pass-11 (B5/B6): dropped `.cw-companies` from the hide-list
-   * (marquee removed in Pass-9, class no longer exists in DOM) and
-   * updated the H1 reveal-state override selector from the old
-   * `.cw-h1 .cw-line > span` markup pattern (Pass-8 manifesto) to
-   * the Pass-9 `.cw-h1--lede .cw-h1-line > span` pattern. */
+  /* Pass-11 (B6): dropped `.cw-companies` from the hide-list (marquee
+   * removed in Pass-9, class no longer exists in DOM).
+   * Pass-12: H1 reveal-state override selector restored to
+   * `.cw-h1 .cw-line > span` for the rotating-word hero markup. */
   [data-mode="cw"] .cw-marquee {
     display: none !important;
   }
-  [data-mode="cw"] .cw-h1--lede .cw-h1-line > span,
+  [data-mode="cw"] .cw-h1 .cw-line > span,
   [data-mode="cw"] .cw-eyebrow > span {
     transform: none !important;
     opacity: 1 !important;
