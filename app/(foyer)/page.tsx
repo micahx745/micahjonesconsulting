@@ -7,11 +7,11 @@
 // Section order + worlds (Terracotta Workshop palette):
 //   Hero         → terracotta
 //   Marquee      → terracotta
-//   Clients      → bone
-//   Ordani       → petrol   (live beta + email signup)
-//   Products     → espresso
-//   Engagements  → espresso (Pass-9: replaced wordmark marquee with
-//                            editorial credit line — inline deal context)
+//   Clients      → bone   (services + per-row case-study proof)
+//   Ordani       → petrol (live beta + email signup)
+//   Shipped      → espresso (3 cards + merged "Also at" sub-credit;
+//                            Pass-16: former standalone Engagements
+//                            credit line was merged into Shipped band)
 //   Footer       → terracotta
 //
 // Copy in the mockup is placeholder per the brief — Micah will finalize.
@@ -54,33 +54,39 @@ export const metadata: Metadata = {
   },
 };
 
-// Each offering links to a case study that demonstrates it — keeps
-// the home as the front of a real nav surface instead of "interactive
-// theater" (per review pass #4 B5).
+// Pass-16: reframed as SERVICE OFFERINGS with case-study proof per row.
+// Each row reads as "01. SERVICE → description → Proven at [client]"
+// so the home leads with what the operator does (services), not with
+// case studies as the lede. Case studies become evidence beneath each
+// service line.
 const CLIENT_OFFERS = [
   {
     n: "01",
     title: "Go-to-market",
-    desc: "Positioning, motion, and the plan to win the market.",
+    desc: "Positioning, market research, and the narrative that closes enterprise deals.",
     href: "/work/guardicore",
+    proof: "Guardicore → Akamai",
   },
   {
     n: "02",
     title: "Product building",
-    desc: "From idea to working software — designed and shipped.",
+    desc: "From strategy to working software, shipped end to end.",
     href: "/work/ordani",
+    proof: "Ordani · live beta",
   },
   {
     n: "03",
     title: "Launches",
     desc: "Demand, narrative, and the cascade that follows a launch.",
     href: "/work/hr-equity-author",
+    proof: "HR / equity author engagement",
   },
   {
     n: "04",
     title: "Growth systems",
-    desc: "The repeatable engine underneath the numbers.",
+    desc: "The repeatable engine underneath the numbers — partnership with product teams.",
     href: "/work",
+    proof: "Decade across enterprise software",
   },
 ] as const;
 
@@ -122,7 +128,7 @@ export default function ColorWorldsHome() {
         data-world="bone"
         aria-labelledby="cw-clients-title"
       >
-        <p className="cw-kicker cw-reveal">What I build for clients</p>
+        <p className="cw-kicker cw-reveal">Services</p>
         <SplitReveal
           as="h2"
           id="cw-clients-title"
@@ -143,6 +149,14 @@ export default function ColorWorldsHome() {
                 <span className="cw-num">{row.n}</span>
                 <span className="cw-title">{row.title}</span>
                 <span className="cw-desc">{row.desc}</span>
+                {/* Pass-16: per-row case-study proof. Each service
+                    surfaces the engagement that demonstrates it, so
+                    the row reads as "service + receipt" not just
+                    "click here for a case study." */}
+                <span className="cw-workrow__proof" aria-hidden>
+                  Proven at <strong>{row.proof}</strong>{" "}
+                  <span className="cw-workrow__proof-arr">→</span>
+                </span>
               </a>
             </li>
           ))}
@@ -177,8 +191,12 @@ export default function ColorWorldsHome() {
           group chats for a decade — they have proper software now.
         </p>
         <p className="cw-lede-sub cw-reveal">
-          <a href="/work/ordani" className="cw-lede-link">
-            Read the case study →
+          {/* TODO(operator): Ordani product website is under
+              construction. When the public URL ships, replace href="#"
+              with the live product URL. Until then the link is inert
+              and the OrdaniBetaForm below remains the primary CTA. */}
+          <a href="#" className="cw-lede-link">
+            Visit Ordani →
           </a>
         </p>
 
@@ -292,36 +310,23 @@ export default function ColorWorldsHome() {
             </a>
           </li>
         </ul>
-      </section>
 
-      {/* ENGAGEMENTS — editorial credit line (Pass-9, was COMPANIES marquee).
-          Kills the marquee. Five 700-weight wordmarks sliding past were
-          filler — no logos, no context. A magazine-credit paragraph that
-          names each engagement with its deal context inline reads as the
-          closing credit on a long-form profile. Same espresso world. */}
-      <section
-        className="cw-credits"
-        data-section
-        data-world="espresso"
-        aria-labelledby="cw-credits-title"
-      >
-        <p className="cw-credits__eyebrow">2013 — 2023</p>
-        <h2 id="cw-credits-title" className="cw-credits__line">
-          {/* Pass-14 (CW-19): TechValidate dropped from credit line so
-              the line is consistent with the upper credibility moments
-              (revenue index + Shipped Card 2) which both also dropped
-              the TechValidate name in Pass-12. The IPO/SurveyMonkey
-              narrative lives in the revenue section now; this line is
-              the secondary-engagement credit. */}
-          Engagements at{" "}
-          <strong>Guardicore</strong>{" "}
-          <span className="cw-credits__meta">→ Akamai, 2021</span>,{" "}
-          <strong>Flexport</strong>, <strong>Cuebiq</strong>,{" "}
-          and <strong>Postmates</strong>.
-        </h2>
-        <p className="cw-credits__role">
-          Growth, GTM &amp; platform strategy.
-        </p>
+        {/* Pass-16: former standalone <section.cw-credits> merged into
+            Shipped as an "Also at" sub-credit. The operator flagged
+            the standalone section read as an orphan — separate from
+            Shipped but not really its own thing. Now it lives inside
+            Shipped's espresso world, after the cards, as the secondary-
+            engagement line. Guardicore and SurveyMonkey are NOT listed
+            here (both already named prominently in the cards above);
+            this lists the other named engagements. */}
+        <div className="cw-shipped-also cw-reveal">
+          <p className="cw-shipped-also__eyebrow">2013 — 2023</p>
+          <p className="cw-shipped-also__line">
+            Also at <strong>Flexport</strong>, <strong>Cuebiq</strong>,
+            and <strong>Postmates</strong> — growth, GTM, and platform
+            strategy across a decade of enterprise software.
+          </p>
+        </div>
       </section>
 
       {/* FOOTER — terracotta */}

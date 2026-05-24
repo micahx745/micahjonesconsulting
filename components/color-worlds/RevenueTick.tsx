@@ -102,7 +102,9 @@ export function RevenueTick() {
         <p className="cw-rev__dek">
           in client revenue across a decade.
           <br />
-          Two exits — and the work that made them happen.
+          Two enterprise exits. Named institutional customers.
+          <br />
+          <strong>Trillions in digital assets secured.</strong>
         </p>
       </header>
 
@@ -116,9 +118,19 @@ export function RevenueTick() {
               <strong>Akamai</strong>
             </p>
             <p className="cw-rev__note">
-              A security platform repositioned from feature-by-feature
-              comparison into category leadership. The narrative that
-              carried the enterprise sale.
+              A category saturated with honeypots and no real visibility
+              into the network. Repositioned the platform from
+              honeypot-lead to <strong>visibility + east-west
+              microsegmentation</strong> — letting enterprise security
+              teams see and defend lateral traffic, not just the
+              perimeter. The narrative that carried the enterprise sale
+              and the Akamai acquisition.
+            </p>
+            <p className="cw-rev__customers">
+              Customers: <strong>TD Bank</strong>,{" "}
+              <strong>Deutsche Bank</strong>,{" "}
+              <strong>NIH</strong>,{" "}
+              <strong>Peoples Natural Gas</strong>.
             </p>
           </div>
           <p className="cw-rev__when">
@@ -135,9 +147,13 @@ export function RevenueTick() {
               <strong>SurveyMonkey Enterprise</strong>
             </p>
             <p className="cw-rev__note">
-              The data backbone that became SurveyMonkey Enterprise —
-              the product line that anchored an IPO on Nasdaq. Equity
-              held through.
+              The customer-evidence engine inside SurveyMonkey
+              Enterprise. The pain point: customers had survey results
+              but no way to act on them. Built the positioning and
+              tooling that turned survey data into{" "}
+              <strong>actionable customer evidence</strong> — moving
+              average enterprise deal size up and anchoring the
+              Nasdaq IPO case. Equity held through.
             </p>
           </div>
           <p className="cw-rev__when">

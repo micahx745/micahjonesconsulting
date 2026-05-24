@@ -5958,9 +5958,45 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   color: var(--color-cw-bone);
   opacity: 1;
 }
+/* Pass-16: per-row case-study proof line — "Proven at [Client] →".
+ * Sits beneath the description, mono small + uppercase + reduced
+ * opacity, right-aligned at desktop (matches .cw-desc alignment).
+ * Forced to its own visual row inside the flex container via
+ * flex-basis: 100%. Inverts on hover with the rest of the row. */
+[data-mode="cw"] .cw-workrow .cw-workrow__proof {
+  flex-basis: 100%;
+  margin-top: 6px;
+  text-align: right;
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  z-index: 2;
+}
+[data-mode="cw"] .cw-workrow .cw-workrow__proof strong {
+  font-weight: 600;
+}
+[data-mode="cw"] .cw-workrow .cw-workrow__proof-arr {
+  margin-left: 4px;
+  display: inline-block;
+  transition: transform 0.25s;
+}
+[data-mode="cw"] .cw-workrow__link:hover .cw-workrow__proof,
+[data-mode="cw"] .cw-workrow__link:focus-visible .cw-workrow__proof {
+  color: var(--color-cw-bone);
+  opacity: 1;
+}
+[data-mode="cw"] .cw-workrow__link:hover .cw-workrow__proof-arr {
+  transform: translateX(4px);
+}
+
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-workrow__link {
     flex-wrap: wrap;
+  }
+  [data-mode="cw"] .cw-workrow .cw-workrow__proof {
+    text-align: left;
   }
   [data-mode="cw"] .cw-workrow .cw-desc {
     margin-left: 0;
@@ -6008,10 +6044,15 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   }
 }
 
+/* Pass-16: figure scale bumped clamp(64-132) -> clamp(80-168) for
+ * more dominant visual weight. The operator flagged the revenue +
+ * exits as still underwhelming at the previous scale; the figure
+ * now leads the credibility moment unambiguously and the exits
+ * index reads as supporting evidence beneath. */
 [data-mode="cw"] .cw-rev__figure {
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(64px, 9vw, 132px);
+  font-size: clamp(80px, 11vw, 168px);
   line-height: 0.86;
   letter-spacing: -0.04em;
   text-transform: uppercase;
@@ -6113,6 +6154,25 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin: 14px 0 0;
   max-width: 56ch;
   opacity: 0.85;
+}
+
+/* Pass-16: marginalia line for named institutional customers per
+ * entry (e.g., "Customers: TD Bank, Deutsche Bank, NIH, Peoples
+ * Natural Gas."). Smaller body type, italicized to read as caption-
+ * register text below the main body. The strong names inside stay
+ * weight 700 + non-italic for scannable proof. */
+[data-mode="cw"] .cw-rev__customers {
+  font-family: var(--font-cw-body);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 10px 0 0;
+  max-width: 56ch;
+  opacity: 0.7;
+  font-style: italic;
+}
+[data-mode="cw"] .cw-rev__customers strong {
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* Right-aligned date column — reads as the "page number" of the
@@ -6382,6 +6442,44 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 [data-mode="cw"] .cw-card:hover .cw-tag,
 [data-mode="cw"] .cw-card:hover p {
   opacity: 0.9;
+}
+
+/* Pass-16: "Also at" sub-credit — merged from the former standalone
+ * .cw-credits section into the Shipped band. The operator flagged
+ * the standalone credit-line section as reading like an orphan
+ * (visually disconnected from the Shipped cards above it). Now it
+ * lives inside the same espresso world, beneath the cards, as a
+ * secondary-engagement sub-credit. Type register sits between the
+ * card body and the section dek. */
+[data-mode="cw"] .cw-shipped-also {
+  margin-top: 80px;
+  max-width: 720px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-shipped-also {
+    margin-top: 56px;
+  }
+}
+[data-mode="cw"] .cw-shipped-also__eyebrow {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin: 0 0 16px;
+}
+[data-mode="cw"] .cw-shipped-also__line {
+  font-family: var(--font-cw-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+  margin: 0;
+  opacity: 0.9;
+  text-transform: none;
+}
+[data-mode="cw"] .cw-shipped-also__line strong {
+  font-weight: 700;
 }
 
 /* Service-marquee hover-pause. WCAG 2.2.2 (Pause, Stop, Hide)
