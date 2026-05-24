@@ -2,29 +2,33 @@
 //
 // Phase 7 — CASE-09, THEATER-05. Captioned dashboard still with the
 // signature 2px warm off-white inner border + 4% film-grain overlay.
-// Caption format: "alt — date" or "caption — date" (e.g., "Doula intake
-// flow — Mar 2026") per blueprint §4c.
+// Caption format: "alt — date" or "caption — date".
 //
-// Server component. Renders next/image with WebP/AVIF when src is present;
-// renders a graceful placeholder div if src is missing (Phase 7 testing —
-// real images land in Phase 8/9). Caption always renders.
+// Server component. Renders next/image with WebP/AVIF when src is
+// present; renders an editorial specimen card when src is missing.
+// Caption always renders.
+//
+// Pass-17: placeholder branch redesigned. The previous branch rendered
+// a lock-icon card with a hardcoded "Released after public beta"
+// eyebrow — wrong for acquired engagements (Guardicore) or ongoing
+// ones (HR-author), and read as a missing-asset notice. The new branch
+// renders an editorial specimen — small mono eyebrow (configurable via
+// the new placeholderEyebrow prop, default "Protected by NDA"), then
+// the alt text in display weight, then the date as a small caption.
+// Reads as designed editorial restraint, not as a missing image.
 //
 // Image budget (CASE-09): 500KB max — enforced by harness image-budget.sh
-// at the write boundary. Phase 7 does not check at runtime; we trust the
-// hook.
+// at the write boundary.
 //
-// Source: REQUIREMENTS.md CASE-09, THEATER-05; blueprint §4c
-// ("ORDANI product stills: dashboard screenshots placed on the dark theater
-// ground with 2px warm off-white inner border and a subtle 4% film-grain
-// overlay. Each one is captioned like a film still ('Doula intake flow,
-// March 2026')").
+// Source: REQUIREMENTS.md CASE-09, THEATER-05; blueprint §4c.
 import Image from "next/image";
 
 export interface CaseStudyStillProps {
-  /** Path to the still image. Optional during Phase 7 (placeholder shown). */
+  /** Path to the still image. Optional — placeholder renders if omitted. */
   src?: string;
 
-  /** Alt text — also used as caption-prefix when caption is omitted. */
+  /** Alt text — also used as caption-prefix when caption is omitted,
+   *  and as the display-weight title of the placeholder specimen. */
   alt: string;
 
   /** Optional caption — defaults to alt if omitted. */
@@ -36,6 +40,13 @@ export interface CaseStudyStillProps {
   /** Image dimensions (next/image needs them for non-fill mode). */
   width?: number;
   height?: number;
+
+  /** Pass-17: mono uppercase eyebrow for the placeholder specimen card.
+   *  Defaults to "Protected by NDA" — works for both acquired and
+   *  ongoing engagements. Examples of overrides: "Released after public
+   *  beta" (legacy default; still valid for staged-release cases),
+   *  "Under NDA · 2020", "Protected · Q3 2020". */
+  placeholderEyebrow?: string;
 }
 
 /**
@@ -72,6 +83,7 @@ export function CaseStudyStill({
   date,
   width = 1440,
   height = 900,
+  placeholderEyebrow = "Protected by NDA",
 }: CaseStudyStillProps) {
   const captionText = caption ?? alt;
   const formattedDate = formatDate(date);
@@ -89,33 +101,26 @@ export function CaseStudyStill({
             loading="lazy"
           />
         ) : (
-          /* Tier D — Intentional locked-still treatment.
-           * Replaces the empty placeholder rectangle with a typeset card that
-           * names what the screenshot IS, marked with a small lock indicator
-           * and an explicit "RELEASED AFTER PUBLIC BETA" eyebrow. The absence
-           * is now intentional content — protected by NDA or staged for a
-           * future release — rather than a missing-asset notice. */
+          /* Pass-17 — editorial specimen card.
+           * Replaces the lock-icon "missing image" placeholder with a
+           * designed editorial moment: small mono eyebrow (configurable),
+           * display-weight alt text, small caption with the date. The
+           * card reads as deliberate restraint, not as missing-asset
+           * notice. The eyebrow is the only line that asserts WHY there
+           * is no image — defaults to "Protected by NDA" which fits
+           * acquired, IPO'd, and ongoing engagements alike. */
           <div
             className="case-study-still__placeholder"
             role="img"
-            aria-label={`Locked still: ${alt}`}
+            aria-label={`${placeholderEyebrow}: ${alt}`}
           >
-            <span className="case-study-still__lock-eyebrow">
-              <svg
-                viewBox="0 0 16 16"
-                width="11"
-                height="11"
-                aria-hidden="true"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.4"
-              >
-                <rect x="3" y="7" width="10" height="7" rx="0.5" />
-                <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" />
-              </svg>
-              <span>Released after public beta</span>
+            <span className="case-study-still__spec-eyebrow">
+              {placeholderEyebrow}
             </span>
-            <span className="case-study-still__lock-label">{alt}</span>
+            <span className="case-study-still__spec-title">{alt}</span>
+            <span className="case-study-still__spec-date">
+              {formattedDate}
+            </span>
           </div>
         )}
         {/* Film-grain overlay — 4% opacity (CSS) */}

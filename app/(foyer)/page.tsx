@@ -7,7 +7,14 @@
 // Section order + worlds (Terracotta Workshop palette):
 //   Hero         → terracotta
 //   Marquee      → terracotta
-//   Clients      → bone   (services + per-row case-study proof)
+//   Revenue+exits→ terracotta (Pass-17: moved up from inside CLIENTS;
+//                              now sits between marquee + services as
+//                              the credibility hook that follows the
+//                              hero rotation, before the operator
+//                              names their services)
+//   Clients      → bone   (services + per-row case-study proof;
+//                          Pass-17: row container is a div, only the
+//                          "Proven at X →" element is the anchor)
 //   Ordani       → petrol (live beta + email signup)
 //   Shipped      → espresso (3 cards + merged "Also at" sub-credit;
 //                            Pass-16: former standalone Engagements
@@ -120,6 +127,24 @@ export default function ColorWorldsHome() {
         </div>
       </div>
 
+      {/* REVENUE + EXITS — terracotta. Pass-17: moved up from inside the
+          CLIENTS section. The $20M+ / two exits / trillions claim is the
+          credibility hook that earns the reader's attention BEFORE the
+          services pitch. Terracotta world continues the hero band
+          (hero → marquee → revenue all share terracotta) so the
+          credibility moment reads as the closing beat of the hero. */}
+      <section
+        className="cw-rev-band"
+        data-section
+        data-world="terracotta"
+        aria-labelledby="cw-rev-title"
+      >
+        <h2 id="cw-rev-title" className="cw-sr-only">
+          Revenue and exits
+        </h2>
+        <RevenueTick />
+      </section>
+
       {/* CLIENTS — bone */}
       <section
         className="cw-block"
@@ -144,25 +169,28 @@ export default function ColorWorldsHome() {
               className="cw-workrow cw-reveal"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <a href={row.href} className="cw-workrow__link">
+              {/* Pass-17: row container is a div, not an anchor. The
+                  service title/desc are informational; only the
+                  "Proven at [Client] →" element below is the click
+                  target. The whole-row hover affordance still fires
+                  on .cw-workrow:hover / :focus-within via CSS
+                  delegation — so the row visually responds to any
+                  hover anywhere on it, but only the proof navigates. */}
+              <div className="cw-workrow__link">
                 <span className="cw-fill" aria-hidden />
                 <span className="cw-num">{row.n}</span>
                 <span className="cw-title">{row.title}</span>
                 <span className="cw-desc">{row.desc}</span>
-                {/* Pass-16: per-row case-study proof. Each service
-                    surfaces the engagement that demonstrates it, so
-                    the row reads as "service + receipt" not just
-                    "click here for a case study." */}
-                <span className="cw-workrow__proof" aria-hidden>
+                <a href={row.href} className="cw-workrow__proof">
                   Proven at <strong>{row.proof}</strong>{" "}
-                  <span className="cw-workrow__proof-arr">→</span>
-                </span>
-              </a>
+                  <span className="cw-workrow__proof-arr" aria-hidden>
+                    →
+                  </span>
+                </a>
+              </div>
             </li>
           ))}
         </ul>
-
-        <RevenueTick />
       </section>
 
       {/* ORDANI — petrol — live product, NOT a side project.

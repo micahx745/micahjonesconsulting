@@ -1,23 +1,26 @@
 // components/color-worlds/RevenueTick.tsx
 //
-// Revenue + exits — Editorial Index (Pass-12 copy rework).
+// Revenue + exits — Editorial Index (Pass-17 story-form rework).
 //
-// Pass-9 introduced the contents-page editorial index pattern.
-// Pass-12 keeps the structure but reworks the body copy: operator
-// said the entries read "weak" and "underwhelming next to the 20M."
-// New direction is "abstract but enticing" — the body should make
-// a buyer think "I want this person on my team" without revealing
-// tactical specifics.
+// Pass-9 introduced the contents-page editorial index pattern. Pass-12
+// reworked copy abstract-but-enticing. Pass-16 added the named
+// institutional customer list and bumped the figure scale.
 //
-// Also: TechValidate dropped per operator. Bigger-name SurveyMonkey
-// Enterprise framing for the IPO — accurate (TechValidate's tech became
-// the SurveyMonkey Enterprise product line that anchored the IPO case)
-// and doesn't dilute the recognizable brand. Equity-held narrative
-// preserved.
+// Pass-17 problem (operator review): the customers were surfaced as a
+// flat list — "Customers: TD Bank, Deutsche Bank, NIH, Peoples Natural
+// Gas." — which reads as a name-drop and doesn't entice the reader to
+// click through to the case study.
 //
-// CSS bump (in globals.css): .cw-rev__deal scale moved from clamp(28,
-// 3.4vw, 44) → clamp(36, 4.5vw, 64) so the deal names feel like peers
-// to the $20M+ figure rather than subordinate cards.
+// Pass-17 fix: customers are embedded as STORY texture inside the body
+// prose. Each customer name carries what it protects (TD Bank's trading
+// systems, Deutsche Bank's clearing infrastructure, etc.) so the
+// list-feel becomes a narrative-feel. The body now reads as the
+// abridged version of the case study — designed to pull the reader
+// in, not to summarize.
+//
+// .cw-rev__customers element is removed; both customer + outcome
+// content lives inside .cw-rev__note as two paragraphs separated by a
+// css margin.
 //
 // rAF cancellation on unmount per Pass-4 fix.
 // SSR floor is "$20M+" (never $0) per Pass-5 fix.
@@ -117,21 +120,26 @@ export function RevenueTick() {
               <span className="cw-rev__arrow" aria-hidden>→</span>
               <strong>Akamai</strong>
             </p>
-            <p className="cw-rev__note">
-              A category saturated with honeypots and no real visibility
-              into the network. Repositioned the platform from
-              honeypot-lead to <strong>visibility + east-west
-              microsegmentation</strong> — letting enterprise security
-              teams see and defend lateral traffic, not just the
-              perimeter. The narrative that carried the enterprise sale
-              and the Akamai acquisition.
-            </p>
-            <p className="cw-rev__customers">
-              Customers: <strong>TD Bank</strong>,{" "}
-              <strong>Deutsche Bank</strong>,{" "}
-              <strong>NIH</strong>,{" "}
-              <strong>Peoples Natural Gas</strong>.
-            </p>
+            <div className="cw-rev__note">
+              <p>
+                A category saturated with honeypots and no real
+                visibility into the network. Repositioned the platform
+                from honeypot-lead to{" "}
+                <strong>visibility + east-west microsegmentation</strong>{" "}
+                — letting enterprise security teams see and defend
+                lateral traffic, not just the perimeter.
+              </p>
+              <p>
+                The repositioned platform reached the procurement
+                committees that actually write the security checks:{" "}
+                <strong>TD Bank</strong>'s trading systems,{" "}
+                <strong>Deutsche Bank</strong>'s clearing infrastructure,{" "}
+                <strong>NIH</strong> research environments,{" "}
+                <strong>Peoples Natural Gas</strong>'s operational tech.
+                Trillions in digital assets sat behind the deployments.
+                Akamai acquired shortly after.
+              </p>
+            </div>
           </div>
           <p className="cw-rev__when">
             <span className="cw-rev__when-kind">Acquired</span>
@@ -146,15 +154,20 @@ export function RevenueTick() {
             <p className="cw-rev__deal">
               <strong>SurveyMonkey Enterprise</strong>
             </p>
-            <p className="cw-rev__note">
-              The customer-evidence engine inside SurveyMonkey
-              Enterprise. The pain point: customers had survey results
-              but no way to act on them. Built the positioning and
-              tooling that turned survey data into{" "}
-              <strong>actionable customer evidence</strong> — moving
-              average enterprise deal size up and anchoring the
-              Nasdaq IPO case. Equity held through.
-            </p>
+            <div className="cw-rev__note">
+              <p>
+                SurveyMonkey customers had survey results but no way to
+                act on them. Built the{" "}
+                <strong>customer-evidence engine</strong> that turned
+                raw survey data into the asset enterprise procurement
+                actually pays for — visible proof of customer outcomes,
+                queryable by sales and CS teams.
+              </p>
+              <p>
+                Moved average enterprise deal size up. Anchored the
+                Nasdaq IPO. Equity held through.
+              </p>
+            </div>
           </div>
           <p className="cw-rev__when">
             <span className="cw-rev__when-kind">IPO</span>
