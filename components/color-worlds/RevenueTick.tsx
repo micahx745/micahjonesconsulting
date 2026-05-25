@@ -103,11 +103,14 @@ export function RevenueTick() {
           </span>
         </p>
         <p className="cw-rev__dek">
+          {/* Pass-21 (Claude Chat audit): cut "Named institutional
+              customers" — claim-without-evidence sentence; the
+              actual customer names (TD Bank, Deutsche, NIH, PNG)
+              appear two inches below in the Guardicore entry body. */}
           in client revenue across a decade.
           <br />
-          Two enterprise exits. Named institutional customers.
-          <br />
-          <strong>Trillions in digital assets secured.</strong>
+          Two enterprise exits.{" "}
+          <strong>Trillions in digital assets behind the deployments.</strong>
         </p>
       </header>
 

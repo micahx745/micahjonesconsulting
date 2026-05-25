@@ -20,10 +20,15 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// Pass-21 (Claude Chat audit): "Products" was undefined on the site —
+// the Shipped section actually contains engagements (Dante, GTM at
+// scale, Frontier AI), not products. Renamed to "Work" for accuracy.
+// Anchor href stays #products (the section id) so existing deep
+// links don't break.
 const NAV_LINKS = [
   { href: "#clients", label: "Clients" },
   { href: "#ordani", label: "Ordani" },
-  { href: "#products", label: "Products" },
+  { href: "#products", label: "Work" },
   { href: "#contact", label: "Contact" },
 ] as const;
 

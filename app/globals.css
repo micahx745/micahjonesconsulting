@@ -6073,6 +6073,65 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 }
 
 /* ================================================================
+ * Operating Principles section — Pass-21 (Claude Chat audit).
+ * NEW surface added per the missing-surface gap call. Sits between
+ * Services and Ordani on the home page (bone world). Four short
+ * statements about how the work happens, numbered for editorial
+ * scan. Display-weight body type with mono-numbered prefix.
+ * ================================================================ */
+[data-mode="cw"] .cw-principles {
+  list-style: none;
+  padding: 0;
+  margin: 64px 0 0;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-principles {
+    margin-top: 48px;
+  }
+}
+[data-mode="cw"] .cw-principle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 28px;
+  padding: 28px 0;
+  border-bottom: 1px solid currentColor;
+  align-items: baseline;
+}
+[data-mode="cw"] .cw-principle:last-child {
+  border-bottom: 0;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-principle {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 22px 0;
+  }
+}
+[data-mode="cw"] .cw-principle__num {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0;
+  padding-top: 0.6em;
+}
+[data-mode="cw"] .cw-principle__text {
+  font-family: var(--font-cw-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.4vw, 30px);
+  line-height: 1.3;
+  letter-spacing: -0.012em;
+  margin: 0;
+  max-width: 52ch;
+  text-transform: none;
+}
+[data-mode="cw"] .cw-principle__text em {
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* ================================================================
  * /services page — Pass-20.
  * Built per Lena's Pass-19 recommendation (boutique register: surface
  * engagement shapes without prices). Three services × four tiers each.

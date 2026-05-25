@@ -65,8 +65,13 @@ const PERSON_LD = {
   name: "Micah Jones",
   url: "https://www.micahjonesconsulting.com",
   jobTitle: "Independent operator",
+  // Pass-21 (Claude Chat audit): compressed from 60+ words to 38.
+  // AI crawlers (Perplexity, ChatGPT search, Claude search) cite the
+  // first 40-50 words of a description field — the most important
+  // facts now land first. "AND" in all-caps was a formatting artifact
+  // that shouldn't appear in machine-readable metadata.
   description:
-    "Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. $20M+ in client revenue (2013–2023). Two exits at companies he helped build: Guardicore (acquired by Akamai, 2021) and TechValidate (acquired by SurveyMonkey, 2015; cap-table position held through the 2018 SurveyMonkey IPO). Currently building Ordani — HIPAA-grade practice management software for fourteen doula practices.",
+    "Oakland-based independent operator. $20M+ in client revenue (2013–2023). Exits at Guardicore (Akamai, 2021) and SurveyMonkey Enterprise (IPO, 2018). Building Ordani: HIPAA-grade practice management for doulas and midwives.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Oakland",

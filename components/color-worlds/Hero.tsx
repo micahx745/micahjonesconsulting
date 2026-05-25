@@ -43,7 +43,12 @@
 import { useEffect, useRef } from "react";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
-const ROLLING_WORDS = ["product.", "pipeline.", "launch.", "system."] as const;
+// Pass-21 (Claude Chat audit): "pipeline" and "system" were abstract
+// nouns belonging to any consultant's site — replaced with "position"
+// (the Guardicore work, named directly) and "engine" (the content/
+// evidence systems, named directly). Now 4-for-4 specific artifacts
+// a $200K buyer can picture, not 2-for-4.
+const ROLLING_WORDS = ["product.", "position.", "launch.", "engine."] as const;
 
 export function Hero() {
   const eyebrowRef = useRef<HTMLSpanElement | null>(null);
@@ -231,8 +236,9 @@ export function Hero() {
       </h1>
 
       <p className="cw-sub" ref={subRef}>
-        Strategy and software, shipped by the same pair of hands. I build
-        go-to-market for clients — <em>and products with real users.</em>
+        Strategy and software, shipped by the same pair of hands.
+        Enterprise GTM and{" "}
+        <em>a product in private beta with fourteen practices.</em>
       </p>
 
       <div className="cw-cta-row" ref={ctaRowRef}>

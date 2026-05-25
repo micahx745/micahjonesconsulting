@@ -5,22 +5,30 @@
 // palette as each crosses viewport center.
 //
 // Section order + worlds (Terracotta Workshop palette):
-//   Hero         → terracotta
-//   Marquee      → terracotta (Pass-20: dot spacing fixed; ✦ now reads
-//                              as inline punctuation, not a floating
-//                              element)
-//   Revenue+exits→ terracotta (Pass-17: moved up from inside CLIENTS;
-//                              Pass-20: hand-circle refined per Marcus)
-//   Clients      → bone   (Pass-20: services TEASER — 3 services per
-//                          Lena's consolidation; rows link to /services
-//                          rather than per-row case studies; section-
-//                          level "See full services →" CTA reinforces)
-//   Ordani       → petrol (Pass-20: lede rewritten with technical
-//                          posture surfaced per David)
-//   Shipped      → espresso (3 cards + merged "Also at" sub-credit;
-//                            Pass-20: Frontier AI card now links to
-//                            /services/ai-engineering, not Calendly)
-//   Footer       → terracotta
+//   Hero         → terracotta (Pass-21: rotating words pipeline→position
+//                              + system→engine; sub names 14 practices)
+//   Marquee      → terracotta (Pass-21: verb-forward phrases — was
+//                              category nouns reading as a tag cloud)
+//   Revenue+exits→ terracotta (Pass-21: dek cut "Named institutional
+//                              customers" — claim-without-evidence
+//                              since names follow in entry bodies)
+//   Clients      → bone   (Pass-20: 3-service teaser; Pass-21: still
+//                          links to /services)
+//   How I work   → bone   (Pass-21: NEW Operating Principles section
+//                          per Claude Chat audit — missing-surface gap.
+//                          Four short statements about how the work
+//                          happens; gives buyers language to repeat
+//                          internally when selling Micah to their CEO.)
+//   Ordani       → petrol (Pass-21: lede rewritten problem-first per
+//                          Claude Chat audit)
+//   Shipped      → espresso (Pass-21: "Shipped." → "Work that shipped."
+//                            for scanner clarity; dek cut "Real work
+//                            in real users' hands" opener; Frontier
+//                            AI card body sharpened to "the engineering
+//                            between the model and the user")
+//   Footer       → terracotta (Pass-21: "LET'S BUILD →" → "NAME THE
+//                              PROBLEM →" — the operator-listening
+//                              voice, not operator-pitching)
 //
 // Copy in the mockup is placeholder per the brief — Micah will finalize.
 // "No 3D printing, no hardware, no maker content" — workshop bench is
@@ -91,12 +99,17 @@ const CLIENT_OFFERS = [
   },
 ] as const;
 
+// Pass-21 (Claude Chat audit): category nouns ("Go-to-market", "Product",
+// "Growth", "Strategy") read as a tag cloud. Verb-forward phrases name
+// specific artifacts a scrolling marquee can carry with energy. Each
+// phrase now maps to a buyer-recognizable thing: research, products,
+// GTM, AI work, repositioning outcomes.
 const SERVICE_MARQUEE = [
-  "Go-to-market",
-  "Product",
-  "Launches",
-  "Growth",
-  "Strategy",
+  "Positioning research",
+  "Shipped products",
+  "Enterprise GTM",
+  "AI in production",
+  "Category shifts",
 ] as const;
 
 export default function ColorWorldsHome() {
@@ -191,6 +204,72 @@ export default function ColorWorldsHome() {
         </div>
       </section>
 
+      {/* OPERATING PRINCIPLES — bone. Pass-21 (Claude Chat audit):
+          new surface added per the missing-surface gap call. Sits
+          between Services (what I do) and Ordani (proof I can ship),
+          explaining HOW the work happens. Premium boutique pattern:
+          short statements that give buyers language to repeat
+          internally when they're selling the operator to their CEO. */}
+      <section
+        className="cw-block"
+        id="how-i-work"
+        data-section
+        data-world="bone"
+        aria-labelledby="cw-howiwork-title"
+      >
+        <p className="cw-kicker cw-reveal">Operating principles</p>
+        <SplitReveal
+          as="h2"
+          id="cw-howiwork-title"
+          className="cw-secttitle"
+        >
+          How I work.
+        </SplitReveal>
+        <ol className="cw-principles">
+          <li
+            className="cw-principle cw-reveal"
+            style={{ transitionDelay: "0ms" }}
+          >
+            <p className="cw-principle__num">01</p>
+            <p className="cw-principle__text">
+              I don&rsquo;t present options. I present a recommendation
+              and the evidence behind it.
+            </p>
+          </li>
+          <li
+            className="cw-principle cw-reveal"
+            style={{ transitionDelay: "80ms" }}
+          >
+            <p className="cw-principle__num">02</p>
+            <p className="cw-principle__text">
+              Every engagement has a named artifact in the first month.
+              If it doesn&rsquo;t ship, the engagement isn&rsquo;t
+              working.
+            </p>
+          </li>
+          <li
+            className="cw-principle cw-reveal"
+            style={{ transitionDelay: "160ms" }}
+          >
+            <p className="cw-principle__num">03</p>
+            <p className="cw-principle__text">
+              I work in first person. The work carries one signature,
+              not a team&rsquo;s.
+            </p>
+          </li>
+          <li
+            className="cw-principle cw-reveal"
+            style={{ transitionDelay: "240ms" }}
+          >
+            <p className="cw-principle__num">04</p>
+            <p className="cw-principle__text">
+              Discovery calls are the first chapter of the engagement,
+              not a sales pitch.
+            </p>
+          </li>
+        </ol>
+      </section>
+
       {/* ORDANI — petrol — live product, NOT a side project.
           The h2 carries .cw-bleed — the one ink-bleed display headline
           per page, per the texture research. Giant Ordani word reads
@@ -212,18 +291,18 @@ export default function ColorWorldsHome() {
           Ordani
         </h2>
         <p className="cw-lede cw-reveal">
-          {/* Pass-20: David (Black healthtech founder persona, Pass-19)
-              rewrote this lede with the technical posture surfaced
-              (RLS encryption, outside security reviews, audit log) +
-              the retention specificity (8/14 active at six months,
-              zero churn). A founder reading this knows whether to
-              take the call; the previous lede sold the contrast
-              frame, not the operator's competence. */}
-          HIPAA-grade practice management for birth workers — built
-          end-to-end by one operator. Row-level encryption inside
-          Supabase RLS, two outside security reviews, every read
-          logged. 14 practices, hundreds of users; eight active after
-          six months. Zero churn.
+          {/* Pass-21 (Claude Chat audit): rewritten to lead with the
+              PROBLEM, not the build. The Pass-20 lede was a technical
+              spec with metrics attached — it described what Ordani is
+              but not why anyone should care. Now: problem-first
+              ("Birth workers run their practices on group chats"),
+              then the operator move ("I built it."), then the
+              technical posture as evidence, closing on retention. */}
+          Birth workers run their practices on group chats and paper
+          intakes. HIPAA is the law; compliance is impossible without
+          real infrastructure. <em>I built it.</em> Row-level encryption,
+          two outside security reviews, fourteen practices in private
+          beta. Zero churn.
         </p>
         <p className="cw-lede-sub cw-reveal">
           {/* TODO(operator): Ordani product website is under
@@ -257,12 +336,15 @@ export default function ColorWorldsHome() {
           id="cw-products-title"
           className="cw-secttitle"
         >
-          Shipped.
+          Work that shipped.
         </SplitReveal>
         <p className="cw-sect-dek cw-reveal">
-          Real work in real users&rsquo; hands. Two platforms acquired and
-          public. A content engine that wins inbound. Frontier AI in
-          production for founders.
+          {/* Pass-21 (Claude Chat audit): cut "Real work in real users'
+              hands" — claim-without-evidence opener that told the reader
+              you were about to show real work instead of just showing
+              it. The remaining three sentences carry the evidence. */}
+          Two platforms acquired and public. A content engine that wins
+          inbound. Frontier AI in production for founders.
         </p>
 
         <ul className="cw-cards">
@@ -338,10 +420,14 @@ export default function ColorWorldsHome() {
               <span className="cw-tag">2025–present · Embedded</span>
               <h3>Frontier AI, shipped.</h3>
               <p>
-                Production-grade AI work for founders building AI-native
-                software. The architecture and orchestration layers that
-                turn frontier capability into a product users actually
-                touch. Specifics under NDA — available for new
+                {/* Pass-21 (Claude Chat audit): "production architecture
+                    and orchestration" was category-level, not point-of-
+                    view. "The engineering between the model and the
+                    user" names the gap founders feel. Stack named
+                    inline gives evidence the NDA framing can lean on. */}
+                The engineering between the model and the user — eval
+                infrastructure, RAG, agent orchestration, prompt-deployment
+                pipelines. Specifics under NDA. Available for new
                 engagements.
               </p>
               <span className="cw-open">See the engagement →</span>
@@ -382,6 +468,13 @@ export default function ColorWorldsHome() {
           className="cw-big-link"
           aria-label="Let's build — book a call"
         >
+          {/* Pass-21 (Claude Chat audit): "LET'S BUILD" was the single
+              weakest line of copy on the site — a startup-culture
+              trope that didn't earn its display-scale treatment. A
+              $200K buyer doesn't want to "build" with you; they want
+              to hire you to own a problem. "Name the problem" reframes
+              the CTA as the buyer's action, not yours — implies
+              listening, not pitching. */}
           <SplitReveal
             as="h2"
             id="cw-build-title"
@@ -389,9 +482,9 @@ export default function ColorWorldsHome() {
             stagger={0.04}
             start="top 85%"
           >
-            LET&rsquo;S
+            NAME THE
             <br />
-            BUILD →
+            PROBLEM →
           </SplitReveal>
         </a>
         <div className="cw-footrow cw-reveal">

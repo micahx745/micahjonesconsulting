@@ -60,8 +60,12 @@ const SERVICES: Service[] = [
     tiers: [
       {
         name: "Advisory",
+        // Pass-21 (Claude Chat audit): killed "sounding board" — soft
+        // language that appeared on every fractional CMO's site. The
+        // Advisory tier across all three services now uses "pressure-
+        // test" as the sharper operator-verb.
         scope:
-          "Strategic review of current positioning + monthly sounding board for sales narrative + go-to-market decisions.",
+          "Monthly positioning review + narrative pressure-test against live deals + go-to-market decisions.",
         duration: "4-6 hrs/month, ongoing.",
         deliverable:
           "Positioning audit memo (8-10 pages) — your current state vs. the buyer's actual question, with the gap named.",
@@ -104,8 +108,9 @@ const SERVICES: Service[] = [
     tiers: [
       {
         name: "Advisory",
+        // Pass-21 (Claude Chat audit): "sounding board" → "pressure-test"
         scope:
-          "Product strategy review + technical architecture sounding board. Periodic working sessions on roadmap, build-vs-buy, and security posture.",
+          "Monthly product strategy review + technical architecture pressure-test. Roadmap, build-vs-buy, and security posture.",
         duration: "4-6 hrs/month, ongoing.",
         deliverable:
           "Product audit + technical-architecture recommendations memo. Roadmap critique with named tradeoffs.",
@@ -140,7 +145,11 @@ const SERVICES: Service[] = [
     slug: "ai-engineering",
     n: "03",
     title: "Frontier AI engineering",
-    desc: "Production architecture and orchestration for founders shipping AI-native software. The layers that turn frontier capability into a product real users touch — eval infrastructure, continuous deployment of prompts, the failure modes that matter.",
+    // Pass-21 (Claude Chat audit): "Production architecture and
+    // orchestration" was category-level, not point-of-view — every
+    // AI consultancy says this. "The engineering between the model
+    // and the user" names the gap founders actually feel.
+    desc: "The engineering between the model and the user. Eval, orchestration, retrieval, deployment — the layers that turn frontier capability into a product real users touch.",
     anchorLabel: "Inquire about an engagement",
     anchorHref: "https://calendly.com/micahmccoyjones/introduction",
     anchorNote:
@@ -148,8 +157,9 @@ const SERVICES: Service[] = [
     tiers: [
       {
         name: "Advisory",
+        // Pass-21 (Claude Chat audit): "Sounding board" → pressure-test
         scope:
-          "AI architecture review + monthly LLM strategy sessions. Sounding board for model choice, eval design, failure-mode mitigation.",
+          "Monthly AI architecture review + LLM strategy pressure-test. Model choice, eval design, failure-mode mitigation.",
         duration: "4-6 hrs/month, ongoing.",
         deliverable:
           "AI stack audit + production-readiness assessment. Named gaps with prioritized fix sequence.",
@@ -190,12 +200,15 @@ export default function ServicesPage() {
         <h1 className="cw-services__title">
           Three engagements. Four shapes each.
         </h1>
+        {/* Pass-21 (Claude Chat audit): cut "No published day rates"
+            clause. Defensive — the buyer hadn't asked about day rates
+            yet, and mentioning the absence drew attention to it. */}
         <p className="cw-services__intro">
           Three services — positioning &amp; GTM, end-to-end product
           building, frontier AI engineering. Each carries four engagement
-          shapes: advisory, project, retainer, embedded. No published day
-          rates; the shapes below are explicit about scope, duration, and
-          what lands in the first month.
+          shapes: advisory, project, retainer, embedded. The shapes below
+          are explicit about scope, duration, and what lands in the
+          first month.
         </p>
       </header>
 
