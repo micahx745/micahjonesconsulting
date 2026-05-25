@@ -1,0 +1,178 @@
+// app/(foyer)/services/ai-engineering/page.tsx
+//
+// Frontier AI engineering subpage — Pass-20. The home's Frontier AI
+// card (third card in the Shipped grid) used to link to Calendly; per
+// Lena's Pass-19 review, that routed AI engagement intake to the
+// generic discovery call without segmentation. This subpage is the
+// contextualized destination — AI engagement shape, then a routed
+// inquiry.
+//
+// Focused single-service deep dive: the same 4-tier structure as the
+// /services index, but only Frontier AI engineering. Includes the
+// process notes and the failure modes the operator considers part of
+// "production-grade AI" — the things David (Black healthtech founder
+// persona, Pass-19) asked about as technical-credibility checks.
+import type { Metadata } from "next";
+import { MagneticArea } from "@/components/motion/MagneticArea";
+
+export const metadata: Metadata = {
+  title: "Frontier AI engineering — Services",
+  description:
+    "Production AI architecture and orchestration for founders shipping AI-native software. Four engagement shapes — advisory, project, retainer, embedded. Eval infrastructure, prompt-deployment pipelines, and the failure modes that matter.",
+  alternates: {
+    canonical:
+      "https://www.micahjonesconsulting.com/services/ai-engineering",
+  },
+};
+
+interface Tier {
+  name: string;
+  scope: string;
+  duration: string;
+  deliverable: string;
+}
+
+const TIERS: Tier[] = [
+  {
+    name: "Advisory",
+    scope:
+      "AI architecture review + monthly LLM strategy sessions. Sounding board for model choice, eval design, failure-mode mitigation.",
+    duration: "4-6 hrs/month, ongoing.",
+    deliverable:
+      "AI stack audit + production-readiness assessment. Named gaps with prioritized fix sequence.",
+  },
+  {
+    name: "Project",
+    scope:
+      "Production AI feature build — RAG, agent, eval pipeline, orchestration layer. Defined-scope shipped artifact.",
+    duration: "6-12 weeks, defined scope.",
+    deliverable:
+      "Technical design + eval infrastructure + first production deployment by close. Documentation handed to your team.",
+  },
+  {
+    name: "Retainer",
+    scope:
+      "Embedded AI engineering partnership. Continuous integration of new model capabilities, ongoing eval work, prompt iteration.",
+    duration: "Month-to-month, 6-month minimum.",
+    deliverable:
+      "Continuous integration of AI work + first iteration of eval framework + prompt-deployment pipeline live in month one.",
+  },
+  {
+    name: "Embedded",
+    scope:
+      "Acting head of AI engineering for the engagement window. Owns architecture, deployment, and the bar for production AI quality.",
+    duration: "3-6 months, 3-4 days/week.",
+    deliverable:
+      "Full AI architecture + production deployment + eval infrastructure + team trained by end of month one.",
+  },
+];
+
+export default function AIEngineeringPage() {
+  return (
+    <main className="cw-services" data-section data-world="bone">
+      <header className="cw-services__header">
+        <p className="cw-services__kicker">Service · 03</p>
+        <h1 className="cw-services__title">Frontier AI engineering.</h1>
+        <p className="cw-services__intro">
+          Production architecture and orchestration for founders
+          shipping AI-native software. The layers that turn frontier
+          capability into a product real users touch — eval
+          infrastructure, continuous deployment of prompts, the failure
+          modes that matter. Engagements are ongoing; specifics live
+          under NDA.
+        </p>
+      </header>
+
+      <section
+        id="ai-engineering"
+        className="cw-service"
+        aria-labelledby="cw-ai-tiers-title"
+      >
+        <header className="cw-service__head">
+          <p className="cw-service__num">A</p>
+          <h2
+            id="cw-ai-tiers-title"
+            className="cw-service__title"
+          >
+            Engagement shapes
+          </h2>
+          <p className="cw-service__desc">
+            Four shapes, increasing in commitment. The right shape
+            depends on whether you need a second brain on call, a
+            shipped artifact, an ongoing partner, or full ownership of
+            the AI surface.
+          </p>
+        </header>
+
+        <div className="cw-tiers" role="list">
+          {TIERS.map((tier) => (
+            <article
+              key={tier.name}
+              className="cw-tier"
+              role="listitem"
+            >
+              <h3 className="cw-tier__name">{tier.name}</h3>
+              <dl className="cw-tier__detail">
+                <dt>Scope</dt>
+                <dd>{tier.scope}</dd>
+                <dt>Duration</dt>
+                <dd>{tier.duration}</dd>
+                <dt>First-month deliverable</dt>
+                <dd>{tier.deliverable}</dd>
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section
+        id="what-production-means"
+        className="cw-service"
+        aria-labelledby="cw-ai-prod-title"
+      >
+        <header className="cw-service__head">
+          <p className="cw-service__num">B</p>
+          <h2 id="cw-ai-prod-title" className="cw-service__title">
+            What &ldquo;production-grade&rdquo; means here
+          </h2>
+          <p className="cw-service__desc">
+            The phrase carries a specific stack: eval infrastructure
+            that fires on every change, continuous deployment of
+            prompts (not just model versions), confidence thresholds
+            and refusal patterns on the retrieval layer, and a
+            documented bar for what ships vs. what waits. Frontier
+            capability that lives in a notebook is not production. The
+            engagement bar is &ldquo;deployed, observed, iterated.&rdquo;
+          </p>
+        </header>
+      </section>
+
+      <footer className="cw-services__foot">
+        <p className="cw-services__foot-kicker">Next step</p>
+        <h2 className="cw-services__foot-title">
+          Discovery call for AI engagements.
+        </h2>
+        <p className="cw-services__foot-intro">
+          The call covers your current stack, the failure modes that
+          worry you, and whether the engagement shape on this page
+          matches what you actually need.
+        </p>
+        <div className="cw-services__foot-cta-row">
+          <MagneticArea>
+            <a
+              href="https://calendly.com/micahmccoyjones/introduction"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cw-cta"
+            >
+              Book a call <span className="cw-arr" aria-hidden>→</span>
+            </a>
+          </MagneticArea>
+          <a href="/services" className="cw-cta cw-cta--ghost">
+            <span className="cw-arr" aria-hidden>←</span> All services
+          </a>
+        </div>
+      </footer>
+    </main>
+  );
+}

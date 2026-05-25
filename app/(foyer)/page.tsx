@@ -6,19 +6,20 @@
 //
 // Section order + worlds (Terracotta Workshop palette):
 //   Hero         → terracotta
-//   Marquee      → terracotta
+//   Marquee      → terracotta (Pass-20: dot spacing fixed; ✦ now reads
+//                              as inline punctuation, not a floating
+//                              element)
 //   Revenue+exits→ terracotta (Pass-17: moved up from inside CLIENTS;
-//                              now sits between marquee + services as
-//                              the credibility hook that follows the
-//                              hero rotation, before the operator
-//                              names their services)
-//   Clients      → bone   (services + per-row case-study proof;
-//                          Pass-17: row container is a div, only the
-//                          "Proven at X →" element is the anchor)
-//   Ordani       → petrol (live beta + email signup)
+//                              Pass-20: hand-circle refined per Marcus)
+//   Clients      → bone   (Pass-20: services TEASER — 3 services per
+//                          Lena's consolidation; rows link to /services
+//                          rather than per-row case studies; section-
+//                          level "See full services →" CTA reinforces)
+//   Ordani       → petrol (Pass-20: lede rewritten with technical
+//                          posture surfaced per David)
 //   Shipped      → espresso (3 cards + merged "Also at" sub-credit;
-//                            Pass-16: former standalone Engagements
-//                            credit line was merged into Shipped band)
+//                            Pass-20: Frontier AI card now links to
+//                            /services/ai-engineering, not Calendly)
 //   Footer       → terracotta
 //
 // Copy in the mockup is placeholder per the brief — Micah will finalize.
@@ -61,39 +62,32 @@ export const metadata: Metadata = {
   },
 };
 
-// Pass-16: reframed as SERVICE OFFERINGS with case-study proof per row.
-// Each row reads as "01. SERVICE → description → Proven at [client]"
-// so the home leads with what the operator does (services), not with
-// case studies as the lede. Case studies become evidence beneath each
-// service line.
+// Pass-20 (per Lena, Pass-19 review): consolidated 4 services → 3.
+// Dropped "Launches" (70% overlap with Go-to-market — demand + narrative
+// + cascade is a SUBSET of GTM, not a peer). Dropped "Growth systems"
+// (wrong register — reads as YC-stage performance-marketing, not as
+// $200K boutique operator). Added "Frontier AI engineering" as a first-
+// class service (was previously only surfaced as a Shipped card).
+//
+// Per-row href + proof fields dropped — the home CLIENTS section is now
+// a teaser. Every row links to /services where the full scope/process/
+// proof per service lives. Single section-level "See full services →"
+// CTA below the row list reinforces the destination.
 const CLIENT_OFFERS = [
   {
     n: "01",
-    title: "Go-to-market",
-    desc: "Positioning, market research, and the narrative that closes enterprise deals.",
-    href: "/work/guardicore",
-    proof: "Guardicore → Akamai",
+    title: "Positioning & GTM",
+    desc: "Category-shift research and the narrative that carries the enterprise sale.",
   },
   {
     n: "02",
-    title: "Product building",
-    desc: "From strategy to working software, shipped end to end.",
-    href: "/work/ordani",
-    proof: "Ordani · live beta",
+    title: "End-to-end product building",
+    desc: "Concept through shipped product, by the same operator. Strategy, design, code, security, launch.",
   },
   {
     n: "03",
-    title: "Launches",
-    desc: "Demand, narrative, and the cascade that follows a launch.",
-    href: "/work/hr-equity-author",
-    proof: "HR / equity author engagement",
-  },
-  {
-    n: "04",
-    title: "Growth systems",
-    desc: "The repeatable engine underneath the numbers — partnership with product teams.",
-    href: "/work",
-    proof: "Decade across enterprise software",
+    title: "Frontier AI engineering",
+    desc: "Production architecture and orchestration for founders shipping AI-native software.",
   },
 ] as const;
 
@@ -119,7 +113,7 @@ export default function ColorWorldsHome() {
               {SERVICE_MARQUEE.map((s) => (
                 <span key={`${dupe}-${s}`}>
                   {s}
-                  <span className="cw-dot"> ✦ </span>
+                  <span className="cw-dot" aria-hidden>✦</span>
                 </span>
               ))}
             </span>
@@ -169,28 +163,32 @@ export default function ColorWorldsHome() {
               className="cw-workrow cw-reveal"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
-              {/* Pass-17: row container is a div, not an anchor. The
-                  service title/desc are informational; only the
-                  "Proven at [Client] →" element below is the click
-                  target. The whole-row hover affordance still fires
-                  on .cw-workrow:hover / :focus-within via CSS
-                  delegation — so the row visually responds to any
-                  hover anywhere on it, but only the proof navigates. */}
-              <div className="cw-workrow__link">
+              {/* Pass-20 (per Lena, Pass-19 review): whole row wraps
+                  in a single anchor to /services. The per-row case-
+                  study "Proven at" links are dead — they pushed
+                  buyers to case studies when this section is supposed
+                  to read services-led. Now: hover any row, click any
+                  row → /services. Section CTA below reinforces. */}
+              <a href="/services" className="cw-workrow__link">
                 <span className="cw-fill" aria-hidden />
                 <span className="cw-num">{row.n}</span>
                 <span className="cw-title">{row.title}</span>
                 <span className="cw-desc">{row.desc}</span>
-                <a href={row.href} className="cw-workrow__proof">
-                  Proven at <strong>{row.proof}</strong>{" "}
-                  <span className="cw-workrow__proof-arr" aria-hidden>
-                    →
-                  </span>
-                </a>
-              </div>
+              </a>
             </li>
           ))}
         </ul>
+
+        {/* Pass-20: section-level CTA — single destination, "See full
+            services →" reads as the next step into the services pitch
+            rather than into a case study. The arrow nudges right on
+            hover. */}
+        <div className="cw-section-cta-wrap cw-reveal">
+          <a href="/services" className="cw-section-cta">
+            See full services{" "}
+            <span className="cw-section-cta__arr" aria-hidden>→</span>
+          </a>
+        </div>
       </section>
 
       {/* ORDANI — petrol — live product, NOT a side project.
@@ -214,9 +212,18 @@ export default function ColorWorldsHome() {
           Ordani
         </h2>
         <p className="cw-lede cw-reveal">
-          HIPAA-grade practice management for birth workers, built end to
-          end. Doulas had been running their practice on Google Docs and
-          group chats for a decade — they have proper software now.
+          {/* Pass-20: David (Black healthtech founder persona, Pass-19)
+              rewrote this lede with the technical posture surfaced
+              (RLS encryption, outside security reviews, audit log) +
+              the retention specificity (8/14 active at six months,
+              zero churn). A founder reading this knows whether to
+              take the call; the previous lede sold the contrast
+              frame, not the operator's competence. */}
+          HIPAA-grade practice management for birth workers — built
+          end-to-end by one operator. Row-level encryption inside
+          Supabase RLS, two outside security reviews, every read
+          logged. 14 practices, hundreds of users; eight active after
+          six months. Zero churn.
         </p>
         <p className="cw-lede-sub cw-reveal">
           {/* TODO(operator): Ordani product website is under
@@ -315,14 +322,17 @@ export default function ColorWorldsHome() {
               specifics. Premium consulting register: "specifics under
               NDA" + "available for new engagements." Links to Calendly
               since the case study hasn't been built yet. */}
+          {/* Pass-20 (per Lena, Pass-19 review): card now links to the
+              dedicated /services/ai-engineering subpage instead of
+              routing AI-engagement intake to the generic Calendly. The
+              subpage carries the engagement shapes (4 tiers); Calendly
+              becomes the CTA from there, not from this card. */}
           <li
             className="cw-card cw-reveal"
             style={{ transitionDelay: "240ms" }}
           >
             <a
-              href="https://calendly.com/micahmccoyjones/introduction"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/services/ai-engineering"
               className="cw-card__link"
             >
               <span className="cw-tag">2025–present · Embedded</span>
@@ -334,7 +344,7 @@ export default function ColorWorldsHome() {
                 touch. Specifics under NDA — available for new
                 engagements.
               </p>
-              <span className="cw-open">Inquire ↗</span>
+              <span className="cw-open">See the engagement →</span>
             </a>
           </li>
         </ul>

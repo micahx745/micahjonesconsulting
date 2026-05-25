@@ -4910,28 +4910,25 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   height: auto;
 }
 
-/* Pass-17: editorial specimen card replaces the previous lock-icon
- * placeholder. When a case study has no image (most engagements are
- * protected by NDA), this card renders with a small mono eyebrow
- * (configurable via the placeholderEyebrow prop, default "Protected
- * by NDA"), the alt text in display weight as the specimen title,
- * and a small mono date caption. The 16:10 aspect-ratio is dropped —
- * the card sizes to its content, not to a phantom image frame. Reads
- * as designed editorial restraint, not as a missing-asset notice. */
+/* Pass-20 (per Marcus, Pass-19 review): bordered-rectangle placeholder
+ * was still reading as "missing image" rather than as deliberate
+ * editorial restraint. Redesigned as a typeset block — no outer
+ * border, no background gradient (drops the rectangle entirely), a
+ * THICK left rule (like a magazine pull-quote) carrying the case-study
+ * accent. Eyebrow + display-italic title + date stacked vertically.
+ * Reads as deliberate typography, not as a frame waiting for content. */
 [data-mode="theater"] .case-study-still__placeholder {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 14px;
+  gap: 18px;
   width: 100%;
-  padding: clamp(28px, 4vw, 48px) clamp(24px, 3vw, 40px);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--color-theater-surface) 85%, var(--color-theater-ink) 15%),
-    color-mix(in srgb, var(--color-theater-surface) 95%, var(--color-theater-ink) 5%)
-  );
-  border-left: 2px solid var(--case-accent, var(--color-accent-copper));
+  padding: clamp(20px, 3vw, 36px) 0 clamp(20px, 3vw, 36px)
+    clamp(20px, 2.4vw, 32px);
+  background: transparent;
+  border-left: 4px solid
+    var(--case-accent, var(--color-accent-copper));
 }
 
 [data-mode="theater"] .case-study-still__spec-eyebrow {
@@ -5815,10 +5812,28 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }
-[data-mode="cw"] .cw-marquee .cw-track span {
-  margin: 0 26px;
+/* Pass-20 fix (per Marcus): the prior descendant selector applied
+ * 26px margin to ALL spans in the tree — block wrappers, word
+ * wrappers, AND the inner .cw-dot spans. Compound margins inflated
+ * inter-word gap to ~104px with ✦ floating in oversized empty space.
+ * Scope to the word-wrapper level only; let the dot sit snug to its
+ * trailing word with small padding. Result: ~42-50px between words,
+ * ✦ visually attached to the word it follows. Reads as deliberate
+ * typesetting, not as a tracking accident. */
+[data-mode="cw"] .cw-marquee .cw-track > span {
+  /* Outer block wrappers (the duplicated [0,1] for infinite loop).
+   * Structural only; children carry spacing. */
+  margin: 0;
+}
+[data-mode="cw"] .cw-marquee .cw-track > span > span {
+  /* Word wrappers — one per service. Carries inter-word margin. */
+  margin: 0 14px;
 }
 [data-mode="cw"] .cw-marquee .cw-track .cw-dot {
+  /* The ✦ sits at the END of each word wrapper. Tight padding
+   * so it reads as inline punctuation, not a floating element. */
+  margin: 0;
+  padding: 0 4px 0 12px;
   color: var(--cw-accent);
 }
 @keyframes cw-scroll {
@@ -6009,17 +6024,299 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   display: inline-block;
   transition: transform 0.25s;
 }
-/* Pass-17: hover/focus delegated to .cw-workrow parent. The proof
- * link is also the focus target (when keyboard-navigating, focus
- * lands on the proof anchor) so :focus-within on the row catches it. */
-[data-mode="cw"] .cw-workrow:hover .cw-workrow__proof,
-[data-mode="cw"] .cw-workrow:focus-within .cw-workrow__proof {
-  color: var(--color-cw-bone);
-  opacity: 1;
+/* Pass-20: .cw-workrow__proof element is removed — per-row anchors
+ * killed in favor of a single section-level CTA. The proof-specific
+ * rules above are dead selectors (no matching DOM); harmless to
+ * leave but flagging for a cleanup pass. Section CTA rules follow. */
+
+/* Pass-20: section-level CTA at the bottom of the CLIENTS section.
+ * Mono uppercase, right-aligned via flex wrapper, hairline underline,
+ * arrow nudges on hover. Replaces the per-row case-study anchors that
+ * undermined the services-led framing. */
+[data-mode="cw"] .cw-section-cta-wrap {
+  margin-top: 48px;
+  display: flex;
+  justify-content: flex-end;
 }
-[data-mode="cw"] .cw-workrow:hover .cw-workrow__proof-arr,
-[data-mode="cw"] .cw-workrow:focus-within .cw-workrow__proof-arr {
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-section-cta-wrap {
+    margin-top: 36px;
+    justify-content: flex-start;
+  }
+}
+[data-mode="cw"] .cw-section-cta {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid currentColor;
+  transition: color 0.2s, border-color 0.2s;
+}
+[data-mode="cw"] .cw-section-cta:hover,
+[data-mode="cw"] .cw-section-cta:focus-visible {
+  color: var(--cw-accent);
+  border-bottom-color: var(--cw-accent);
+}
+[data-mode="cw"] .cw-section-cta__arr {
+  display: inline-block;
+  transition: transform 0.25s;
+}
+[data-mode="cw"] .cw-section-cta:hover .cw-section-cta__arr,
+[data-mode="cw"] .cw-section-cta:focus-visible .cw-section-cta__arr {
   transform: translateX(4px);
+}
+
+/* ================================================================
+ * /services page — Pass-20.
+ * Built per Lena's Pass-19 recommendation (boutique register: surface
+ * engagement shapes without prices). Three services × four tiers each.
+ * Bone world matches the home's CLIENTS section.
+ * ================================================================ */
+[data-mode="cw"] .cw-services {
+  padding: 96px 40px 120px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-services {
+    padding: 64px 20px 80px;
+  }
+}
+
+[data-mode="cw"] .cw-services__header {
+  margin-bottom: 96px;
+  max-width: 760px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-services__header {
+    margin-bottom: 64px;
+  }
+}
+[data-mode="cw"] .cw-services__kicker {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 28px;
+}
+[data-mode="cw"] .cw-services__title {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(40px, 7vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin: 0 0 28px;
+}
+[data-mode="cw"] .cw-services__intro {
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* Per-service section */
+[data-mode="cw"] .cw-service {
+  margin-bottom: 120px;
+  padding-top: 56px;
+  border-top: 1px solid currentColor;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-service {
+    margin-bottom: 80px;
+    padding-top: 40px;
+  }
+}
+[data-mode="cw"] .cw-service__head {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 32px;
+  row-gap: 16px;
+  align-items: baseline;
+  margin-bottom: 48px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-service__head {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+  }
+}
+[data-mode="cw"] .cw-service__num {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0;
+  padding-top: 0.4em;
+}
+[data-mode="cw"] .cw-service__title {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0;
+}
+[data-mode="cw"] .cw-service__desc {
+  grid-column: 2 / -1;
+  font-family: var(--font-cw-body);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.5;
+  opacity: 0.88;
+  margin: 0;
+  max-width: 60ch;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-service__desc {
+    grid-column: 1 / -1;
+  }
+}
+[data-mode="cw"] .cw-service__anchor-note {
+  grid-column: 2 / -1;
+  font-family: var(--font-cw-body);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.7;
+  margin: 6px 0 0;
+  max-width: 56ch;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-service__anchor-note {
+    grid-column: 1 / -1;
+  }
+}
+[data-mode="cw"] .cw-service__anchor {
+  grid-column: 2 / -1;
+  margin: 14px 0 0;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-service__anchor {
+    grid-column: 1 / -1;
+  }
+}
+[data-mode="cw"] .cw-service__anchor-link {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid currentColor;
+  transition: color 0.2s, border-color 0.2s, transform 0.25s;
+}
+[data-mode="cw"] .cw-service__anchor-link:hover,
+[data-mode="cw"] .cw-service__anchor-link:focus-visible {
+  color: var(--cw-accent);
+  border-bottom-color: var(--cw-accent);
+}
+
+/* Tier grid — 4 cards per service. Responsive: 4 → 2 → 1 cols. */
+[data-mode="cw"] .cw-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+[data-mode="cw"] .cw-tier {
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  padding: 24px 22px 28px;
+  background: transparent;
+  position: relative;
+}
+[data-mode="cw"] .cw-tier__name {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.014em;
+  text-transform: uppercase;
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid currentColor;
+}
+[data-mode="cw"] .cw-tier__detail {
+  font-family: var(--font-cw-body);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+[data-mode="cw"] .cw-tier__detail dt {
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin: 0 0 4px;
+}
+[data-mode="cw"] .cw-tier__detail dt:not(:first-of-type) {
+  margin-top: 14px;
+}
+[data-mode="cw"] .cw-tier__detail dd {
+  margin: 0;
+  opacity: 0.88;
+}
+
+/* Page footer — discovery-call CTA */
+[data-mode="cw"] .cw-services__foot {
+  margin-top: 96px;
+  padding-top: 72px;
+  border-top: 1px solid currentColor;
+  max-width: 760px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-services__foot {
+    margin-top: 64px;
+    padding-top: 48px;
+  }
+}
+[data-mode="cw"] .cw-services__foot-kicker {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 20px;
+}
+[data-mode="cw"] .cw-services__foot-title {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 24px;
+}
+[data-mode="cw"] .cw-services__foot-intro {
+  font-family: var(--font-cw-body);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0 0 36px;
+  max-width: 56ch;
+}
+[data-mode="cw"] .cw-services__foot-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 760px) {

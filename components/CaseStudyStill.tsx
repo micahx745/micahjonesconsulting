@@ -109,6 +109,13 @@ export function CaseStudyStill({
            * notice. The eyebrow is the only line that asserts WHY there
            * is no image — defaults to "Protected by NDA" which fits
            * acquired, IPO'd, and ongoing engagements alike. */
+          /* Pass-20 (per Marcus, Pass-19 review): the bordered-rectangle
+             placeholder still read as "missing image" rather than as
+             deliberate restraint. Replaced with a typeset block — no
+             outer border, a THICK left rule (like a magazine pull-quote),
+             eyebrow + display-italic title + date stamped beneath.
+             Reads as deliberate editorial typography, not as a frame
+             waiting for content. */
           <div
             className="case-study-still__placeholder"
             role="img"
