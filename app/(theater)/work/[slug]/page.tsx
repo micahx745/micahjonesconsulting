@@ -109,7 +109,11 @@ export default async function TheaterCaseStudyPage({
   // Jones (Person) to match the home Person LD pattern.
   const yearStr =
     typeof cs.year === "string" ? cs.year : String(cs.year);
-  const startYear = yearStr.split("-")[0].trim();
+  // Extract the first YYYY token — handles ranges ("2024-2025"), bare
+  // years ("2025"), and degrades to the raw string if no digits match.
+  // `.split("-")[0]` is `string | undefined` under strict TS, so we use
+  // a regex with a fallback instead.
+  const startYear = yearStr.match(/\d{4}/)?.[0] ?? yearStr;
   const ARTICLE_LD = {
     "@context": "https://schema.org",
     "@type": "Article",
