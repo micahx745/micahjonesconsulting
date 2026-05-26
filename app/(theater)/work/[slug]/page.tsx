@@ -23,6 +23,7 @@ import { TitleCard } from "@/components/TitleCard";
 import { Dek } from "@/components/Dek";
 import { CaseStudyStill } from "@/components/CaseStudyStill";
 import { CaseStudyReadTracker } from "@/components/CaseStudyReadTracker";
+import { CaseStudySidebar } from "@/components/CaseStudySidebar";
 import { ViewTransitionLink } from "@/components/view-transition-link";
 import {
   getAllCaseStudies,
@@ -118,37 +119,54 @@ export default async function TheaterCaseStudyPage({
         heroAlt={cs.title}
       />
 
-      {/* 2. Dek — Source Serif 4 italic subtitle (a second beat under the
-          TitleCard's own resolved caption per blueprint §9 wireframe) */}
-      <header className="case-study__header">
-        <Dek>{cs.dek}</Dek>
-        <p className="case-study__meta">
-          <span className="case-study__role">{cs.role}</span>
-          <span className="case-study__dot" aria-hidden="true">
-            ·
-          </span>
-          <span className="case-study__tools">{cs.tools.join(", ")}</span>
-          <span className="case-study__dot" aria-hidden="true">
-            ·
-          </span>
-          <span className="case-study__year">{cs.year}</span>
-        </p>
-      </header>
+      {/* Pass-22 (CW-18 Slice 1): asymmetric two-column grid wrapping
+          the header, hero still, body, AND a sticky sidebar. At
+          >=1024px: column 2 carries the editorial content (Dek + still
+          + body) at the 64ch measure; column 3 carries the sidebar
+          (TOC + reading progress + meta). At <1024px: single column;
+          sidebar hides via CSS; the header's meta-fallback element
+          shows below the Dek. Closes Marcus's Pass-19 "40% void"
+          complaint by giving the empty right column designed content. */}
+      <div className="case-study__layout">
+        <header className="case-study__header">
+          <Dek>{cs.dek}</Dek>
+          {/* Mobile + no-JS fallback. Hidden at >=1024px when JS
+              confirms the sidebar is wired (toggled by globals.css
+              against the .cw-js-reveals root class). Reuses the
+              existing .case-study__meta layout. */}
+          <p className="case-study__header-meta-fallback case-study__meta">
+            <span className="case-study__role">{cs.role}</span>
+            <span className="case-study__dot" aria-hidden="true">
+              ·
+            </span>
+            <span className="case-study__tools">{cs.tools.join(", ")}</span>
+            <span className="case-study__dot" aria-hidden="true">
+              ·
+            </span>
+            <span className="case-study__year">{cs.year}</span>
+          </p>
+        </header>
 
-      {/* 3. Hero still (optional — frontmatter.heroStill) */}
-      {cs.heroStill ? (
-        <CaseStudyStill
-          src={cs.heroStill}
-          alt={`${cs.title} — hero still`}
-          date={typeof cs.year === "string" ? cs.year : String(cs.year)}
-        />
-      ) : null}
+        {/* 3. Hero still (optional — frontmatter.heroStill) */}
+        {cs.heroStill ? (
+          <CaseStudyStill
+            src={cs.heroStill}
+            alt={`${cs.title} — hero still`}
+            date={typeof cs.year === "string" ? cs.year : String(cs.year)}
+          />
+        ) : null}
 
-      {/* 4. MDX body — Problem → Why → Approach → Outcome → PullQuote.
-          Components like <CaseStudyStill> and <PullQuote> are wired via
-          mdx-components.tsx at repo root (CASE-07). */}
-      <div className="case-study__body">
-        <MDXContent />
+        {/* 4. MDX body — Problem → Why → Approach → Outcome → PullQuote.
+            Components like <CaseStudyStill> and <PullQuote> are wired
+            via mdx-components.tsx at repo root (CASE-07). */}
+        <div className="case-study__body">
+          <MDXContent />
+        </div>
+
+        {/* Sidebar — column 3 at desktop, hidden at mobile.
+            Sticky-positioned at top: 88px (clears the site nav).
+            Builds its TOC client-side from .case-study__body h2s. */}
+        <CaseStudySidebar role={cs.role} tools={cs.tools} year={cs.year} />
       </div>
 
       {/* 5. Footer nav — [NEXT WORK ↘] [← BACK TO HOME] */}

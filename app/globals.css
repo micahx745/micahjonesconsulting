@@ -4763,10 +4763,66 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   }
 }
 
-/* Header below the TitleCard — Dek + meta line */
+/* Pass-22 (CW-18 Slice 1): asymmetric grid layout — replaces the
+ * previous centered single-column body (max-width: 64ch; margin: 0
+ * auto) that left empty space on both sides of the column at wider
+ * viewports. Marcus (Pass-19) called this the "40% void" / "designed
+ * for a column tighter than the viewport." The new grid: column 2
+ * carries the editorial column at 64ch; column 3 carries the sticky
+ * sidebar (TOC + reading progress + meta) at 240px; outer columns
+ * are flexible spacers that keep the editorial column centered-ish
+ * but allow the sidebar to occupy real estate that was previously
+ * void. At <1024px, single column; sidebar hides; header's meta
+ * fallback element re-shows. */
+[data-mode="theater"] .case-study__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1024px) {
+  [data-mode="theater"] .case-study__layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 64ch)
+      240px
+      minmax(0, 1fr);
+    column-gap: clamp(40px, 5vw, 72px);
+  }
+  /* Direct grid children default to column 2 (the editorial measure). */
+  [data-mode="theater"] .case-study__layout > .case-study__header,
+  [data-mode="theater"] .case-study__layout > .case-study-still,
+  [data-mode="theater"] .case-study__layout > .case-study__body {
+    grid-column: 2;
+  }
+  /* Sidebar takes column 3 and spans all rows; sticky positioning keeps
+   * it in view as the user scrolls through the body. align-self: start
+   * pins it to the top of its grid cell (not stretched to row height). */
+  [data-mode="theater"] .case-study__layout > .case-study__sidebar {
+    grid-column: 3;
+    grid-row: 1 / -1;
+    position: sticky;
+    top: 88px;
+    align-self: start;
+  }
+}
+
+/* Header below the TitleCard — Dek + meta-fallback line (at mobile
+ * or when JS hasn't wired the sidebar). Max-width removed in Pass-22;
+ * the grid layout provides the column width now. */
 [data-mode="theater"] .case-study__header {
-  max-width: 64ch;
-  margin: 64px auto 64px;
+  margin: 64px 0 64px;
+}
+
+/* Pass-22: mobile + no-JS meta fallback. Default visible; hidden at
+ * >=1024px when the .cw-js-reveals root class is set (signalling the
+ * sidebar is wired and shows the meta there instead). */
+[data-mode="theater"] .case-study__header-meta-fallback {
+  display: block;
+}
+@media (min-width: 1024px) {
+  [data-mode="theater"].cw-js-reveals .case-study__header-meta-fallback,
+  [data-mode="theater"] .cw-js-reveals .case-study__header-meta-fallback {
+    display: none;
+  }
 }
 
 [data-mode="theater"] .case-study-dek {
@@ -4800,10 +4856,11 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   font-weight: 500;
 }
 
-/* MDX body — typography for h1, h2, p, ul inside the case study */
+/* MDX body — typography for h1, h2, p, ul inside the case study.
+ * Pass-22 (CW-18 Slice 1): max-width + margin: 0 auto removed; the
+ * parent .case-study__layout grid provides column width and
+ * positioning. Typography rules preserved. */
 [data-mode="theater"] .case-study__body {
-  max-width: 64ch;
-  margin: 0 auto;
   font-family: var(--font-sans);
   font-size: 18px;
   line-height: 1.7;
@@ -5052,6 +5109,132 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
     transition: none !important;
     transform: scaleX(1) !important;
   }
+}
+
+/* ============================================================
+ * Pass-22 (CW-18 Slice 1): case-study sticky sidebar.
+ * Lives in column 3 of .case-study__layout at >=1024px; hidden
+ * at <1024px (mobile gets the .case-study__header-meta-fallback
+ * instead). Carries: TOC built from body h2s, a reading-progress
+ * bar that scales as the user scrolls through the body, and the
+ * engagement meta (role / tools / year). Section-level labels
+ * use the existing mono register.
+ * ============================================================ */
+[data-mode="theater"] .case-study__sidebar {
+  /* CSS variable updated from the client component on every
+   * Lenis scroll tick. Defaults to 0 so the progress bar starts
+   * collapsed before any scroll has happened. */
+  --read-progress: 0;
+  display: none;
+}
+@media (min-width: 1024px) {
+  [data-mode="theater"] .case-study__sidebar {
+    display: block;
+  }
+}
+
+[data-mode="theater"] .case-study__sidebar-section {
+  margin-bottom: 56px;
+}
+[data-mode="theater"] .case-study__sidebar-section:last-child {
+  margin-bottom: 0;
+}
+
+[data-mode="theater"] .case-study__sidebar-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--case-accent, var(--color-accent-copper));
+  margin: 0 0 16px;
+}
+
+/* TOC frame — a 2-column flex with the reading-progress bar on
+ * the left and the ol of links on the right. */
+[data-mode="theater"] .case-study__sidebar-toc-frame {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Reading-progress bar. Vertical 2px line that scales from 0
+ * (top) to var(--read-progress) (driven by the sidebar's client
+ * component). transform-origin: top so the fill grows down as
+ * the user reads. */
+[data-mode="theater"] .case-study__sidebar-progress {
+  position: relative;
+  width: 2px;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--color-theater-ink-soft) 25%, transparent);
+  border-radius: 1px;
+  overflow: hidden;
+}
+[data-mode="theater"] .case-study__sidebar-progress::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--case-accent, var(--color-accent-copper));
+  transform: scaleY(var(--read-progress));
+  transform-origin: top;
+}
+
+/* TOC list — minimal, no markers. Each link is a typeset row with
+ * an inactive (soft ink) and active (copper, slightly stronger
+ * weight) state. */
+[data-mode="theater"] .case-study__sidebar-toc {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+[data-mode="theater"] .case-study__sidebar-toc-link {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-theater-ink-soft);
+  text-decoration: none;
+  padding: 2px 0;
+  transition: color 0.2s ease;
+}
+[data-mode="theater"] .case-study__sidebar-toc-link:hover,
+[data-mode="theater"] .case-study__sidebar-toc-link:focus-visible {
+  color: var(--color-theater-ink);
+}
+[data-mode="theater"] .case-study__sidebar-toc-link[data-active="true"] {
+  color: var(--case-accent, var(--color-accent-copper));
+  font-weight: 500;
+}
+
+/* Meta dl — role / tools / year. Source Serif for the values,
+ * mono for the labels. Tight rows, hairline separators between
+ * entries for editorial feel. */
+[data-mode="theater"] .case-study__sidebar-meta {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+[data-mode="theater"] .case-study__sidebar-meta dt {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--color-theater-ink-soft) 80%, transparent);
+  margin: 0 0 4px;
+}
+[data-mode="theater"] .case-study__sidebar-meta dd {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-theater-ink);
+  margin: 0;
 }
 
 /* Case study footer nav — [NEXT WORK ↘] [BACK TO FOYER ↗] */
