@@ -101,8 +101,44 @@ export default async function TheaterCaseStudyPage({
 
   const next = await getNextCaseStudy(slug);
 
+  // Pass-23 (SEO): Article JSON-LD for AI-search citation + Google
+  // article-rich-result eligibility. Headline + author + description
+  // + datePublished extracted from frontmatter. frontmatter.year may
+  // be a range ("2024-2025"); we take the start year, which is valid
+  // ISO 8601 (YYYY) for datePublished. Author + publisher both Micah
+  // Jones (Person) to match the home Person LD pattern.
+  const yearStr =
+    typeof cs.year === "string" ? cs.year : String(cs.year);
+  const startYear = yearStr.split("-")[0].trim();
+  const ARTICLE_LD = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: cs.title,
+    description: cs.dek,
+    datePublished: startYear,
+    author: {
+      "@type": "Person",
+      name: "Micah Jones",
+      url: "https://www.micahjonesconsulting.com",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Micah Jones",
+      url: "https://www.micahjonesconsulting.com",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://www.micahjonesconsulting.com/work/${slug}`,
+    },
+  };
+
   return (
     <article className="case-study" data-case={slug}>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ARTICLE_LD) }}
+      />
       {/* Tier C — data-case attribute scopes --case-accent to this case
           study's secondary color. The accent flows into the dek meta line,
           locked-still rules, pull quote, and any other element that reads

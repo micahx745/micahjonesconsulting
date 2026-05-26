@@ -47,6 +47,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    // Pass-23: /services page + /services/ai-engineering subpage
+    // added in Pass-20. Previously missing from the sitemap — now
+    // crawler-discoverable for AI-search citation (Perplexity,
+    // ChatGPT search, Claude search, Google AI Overviews).
+    {
+      url: `${BASE_URL}/services`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/services/ai-engineering`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
   ];
 
   // Skip stub case studies — they shouldn't be public-discoverable

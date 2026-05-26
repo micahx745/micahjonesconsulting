@@ -52,7 +52,10 @@ const SERVICES: Service[] = [
     slug: "positioning-gtm",
     n: "01",
     title: "Positioning & GTM",
-    desc: "Category-shift research and the narrative that carries the enterprise sale. The work that takes a platform from feature-by-feature comparison into category leadership.",
+    // Pass-23: pain-led rewrite. Lead with the buyer's failure mode
+    // ("you built it; enterprise teams aren't buying"), then surface
+    // the operator's specific work that closes that gap.
+    desc: "You built it. Enterprise teams still aren't buying. I run the positioning research, customer interviews, and sales-call analysis that turn a feature-comparison platform into the category buyers actually want.",
     anchorLabel: "See the engagement",
     anchorHref: "/work/guardicore",
     anchorNote:
@@ -100,7 +103,10 @@ const SERVICES: Service[] = [
     slug: "product-building",
     n: "02",
     title: "End-to-end product building",
-    desc: "Concept through shipped product, by the same operator. Strategy, design, code, security, launch — by one pair of hands rather than a relay race across vendors.",
+    // Pass-23: pain-led rewrite. The "AI demo dies in production" pain
+    // is the most-cited 2026 founder complaint (per market research:
+    // Anthropic's Fractional AI acquisition framed this exact gap).
+    desc: "Most AI ideas die in the gap between demo and production. I close that gap end to end — strategy, design, code, security, launch — by the same pair of hands rather than a relay race across vendors.",
     anchorLabel: "See the engagement",
     anchorHref: "/work/ordani",
     anchorNote:
@@ -145,11 +151,10 @@ const SERVICES: Service[] = [
     slug: "ai-engineering",
     n: "03",
     title: "Frontier AI engineering",
-    // Pass-21 (Claude Chat audit): "Production architecture and
-    // orchestration" was category-level, not point-of-view — every
-    // AI consultancy says this. "The engineering between the model
-    // and the user" names the gap founders actually feel.
-    desc: "The engineering between the model and the user. Eval, orchestration, retrieval, deployment — the layers that turn frontier capability into a product real users touch.",
+    // Pass-23: sharper pain-first opener ("your AI works in the
+    // notebook" = the canonical AI-prototype-to-production failure
+    // mode). Stack named as before; value-prop closes the pitch.
+    desc: "Your AI works in the notebook. Production is a different stack — eval infrastructure, orchestration, retrieval, deployment. I run that stack as the shipping discipline most AI founders skip.",
     anchorLabel: "Inquire about an engagement",
     anchorHref: "https://calendly.com/micahmccoyjones/introduction",
     anchorNote:
@@ -192,9 +197,72 @@ const SERVICES: Service[] = [
   },
 ];
 
+// Pass-23 (SEO): JSON-LD for AI-crawler citation (Perplexity, ChatGPT
+// search, Claude search, Google AI Overviews). 2026 SEO research
+// confirms structured data is the primary AI-visibility lever. Three
+// Service entries + a BreadcrumbList, wrapped in @graph so they
+// share the @context. Provider is the Person (Micah Jones) defined
+// in the root layout's Person LD. Service IDs use the page anchor
+// fragments so AI agents can resolve them back to specific sections.
+const BASE_URL = "https://www.micahjonesconsulting.com";
+const SERVICES_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    ...SERVICES.map((service) => ({
+      "@type": "Service",
+      "@id": `${BASE_URL}/services#${service.slug}`,
+      name: service.title,
+      description: service.desc,
+      serviceType:
+        service.slug === "ai-engineering"
+          ? "AI Engineering Consulting"
+          : service.slug === "product-building"
+            ? "Product Development Consulting"
+            : "Go-to-Market Strategy Consulting",
+      provider: {
+        "@type": "Person",
+        name: "Micah Jones",
+        url: BASE_URL,
+      },
+      areaServed: "Global",
+      audience: {
+        "@type": "BusinessAudience",
+        audienceType:
+          "Series A–C founders building AI-native software; B2B SaaS operators preparing for enterprise sales or acquisition.",
+      },
+    })),
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: BASE_URL,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Services",
+          item: `${BASE_URL}/services`,
+        },
+      ],
+    },
+  ],
+};
+
 export default function ServicesPage() {
   return (
     <main className="cw-services" data-section data-world="bone">
+      {/* Pass-23: Service + BreadcrumbList JSON-LD for AI-search +
+          Google rich-result eligibility. Inline rather than via
+          metadata.other because Next.js metadata API doesn't ship
+          a clean way to inject script tags at SSR time. */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_LD) }}
+      />
       <header className="cw-services__header">
         <p className="cw-services__kicker">Services</p>
         <h1 className="cw-services__title">

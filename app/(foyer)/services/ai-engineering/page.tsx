@@ -67,19 +67,49 @@ const TIERS: Tier[] = [
   },
 ];
 
+// Pass-23 (SEO): BreadcrumbList JSON-LD for AI-search citation +
+// Google breadcrumb-rich-result eligibility.
+const BASE_URL_AI = "https://www.micahjonesconsulting.com";
+const AI_PAGE_LD = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL_AI },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Services",
+      item: `${BASE_URL_AI}/services`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Frontier AI Engineering",
+      item: `${BASE_URL_AI}/services/ai-engineering`,
+    },
+  ],
+};
+
 export default function AIEngineeringPage() {
   return (
     <main className="cw-services" data-section data-world="bone">
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(AI_PAGE_LD) }}
+      />
       <header className="cw-services__header">
         <p className="cw-services__kicker">Service · 03</p>
         <h1 className="cw-services__title">Frontier AI engineering.</h1>
+        {/* Pass-23: pain-led intro rewrite. Was descriptive; now leads
+            with the canonical "AI works in the notebook" failure mode
+            and surfaces the operator's specific shipping discipline. */}
         <p className="cw-services__intro">
-          Production architecture and orchestration for founders
-          shipping AI-native software. The layers that turn frontier
-          capability into a product real users touch — eval
-          infrastructure, continuous deployment of prompts, the failure
-          modes that matter. Engagements are ongoing; specifics live
-          under NDA.
+          Your AI works in the notebook. Production is a different stack.
+          I run eval infrastructure, prompt-deployment pipelines, and the
+          orchestration that turns frontier capability into a product
+          real users touch. Engagements are ongoing; specifics live under
+          NDA.
         </p>
       </header>
 

@@ -81,21 +81,26 @@ export const metadata: Metadata = {
 // a teaser. Every row links to /services where the full scope/process/
 // proof per service lives. Single section-level "See full services →"
 // CTA below the row list reinforces the destination.
+// Pass-23 (Claude Chat copy audit + operator review): rewrote each
+// row description to lead with the buyer's pain instead of describing
+// what the service IS. Target buyer: founders building with AI who
+// lack the enterprise / IPO / acquisition muscle to ship at the
+// procurement level. One sentence each.
 const CLIENT_OFFERS = [
   {
     n: "01",
     title: "Positioning & GTM",
-    desc: "Category-shift research and the narrative that carries the enterprise sale.",
+    desc: "You built it. Enterprise teams still aren't buying. The gap is positioning, not features.",
   },
   {
     n: "02",
     title: "End-to-end product building",
-    desc: "Concept through shipped product, by the same operator. Strategy, design, code, security, launch.",
+    desc: "Most AI ideas die in the gap between demo and production. I work in that gap.",
   },
   {
     n: "03",
     title: "Frontier AI engineering",
-    desc: "Production architecture and orchestration for founders shipping AI-native software.",
+    desc: "Eval, orchestration, deployment — the shipping discipline most AI founders skip.",
   },
 ] as const;
 
@@ -225,6 +230,12 @@ export default function ColorWorldsHome() {
         >
           How I work.
         </SplitReveal>
+        {/* Pass-23: rewrote the 4 principles to surface specific pain
+            + specific receipts. Pass-21's version was operator
+            philosophy (abstract); the target buyer wanted enticement
+            tied to concrete differentiators. Each new principle either
+            names the production-gap pain or names the operator's
+            unique credential (enterprise customers, two exits). */}
         <ol className="cw-principles">
           <li
             className="cw-principle cw-reveal"
@@ -232,8 +243,9 @@ export default function ColorWorldsHome() {
           >
             <p className="cw-principle__num">01</p>
             <p className="cw-principle__text">
-              I don&rsquo;t present options. I present a recommendation
-              and the evidence behind it.
+              I work where AI prototypes die: the production gap. Eval,
+              orchestration, the failure modes you haven&rsquo;t named
+              yet.
             </p>
           </li>
           <li
@@ -242,9 +254,8 @@ export default function ColorWorldsHome() {
           >
             <p className="cw-principle__num">02</p>
             <p className="cw-principle__text">
-              Every engagement has a named artifact in the first month.
-              If it doesn&rsquo;t ship, the engagement isn&rsquo;t
-              working.
+              Every engagement ships a named artifact in month one. No
+              decks. No discovery debt.
             </p>
           </li>
           <li
@@ -253,8 +264,9 @@ export default function ColorWorldsHome() {
           >
             <p className="cw-principle__num">03</p>
             <p className="cw-principle__text">
-              I work in first person. The work carries one signature,
-              not a team&rsquo;s.
+              I&rsquo;ve shipped product deployed at TD Bank, Deutsche
+              Bank, NIH, Peoples Natural Gas. I know what enterprise
+              procurement actually pays for.
             </p>
           </li>
           <li
@@ -263,8 +275,9 @@ export default function ColorWorldsHome() {
           >
             <p className="cw-principle__num">04</p>
             <p className="cw-principle__text">
-              Discovery calls are the first chapter of the engagement,
-              not a sales pitch.
+              I&rsquo;ve been on the inside of two exits — one
+              acquisition, one IPO. I know what acquisition-ready looks
+              like.
             </p>
           </li>
         </ol>
@@ -360,12 +373,17 @@ export default function ColorWorldsHome() {
           >
             <a href="/work/hr-equity-author" className="cw-card__link">
               <span className="cw-tag">2024–present · Multi-engagement</span>
-              <h3>Content + product for an HR author</h3>
+              {/* Pass-23: broadened from "HR author" to "industry author"
+                  to match the rewritten case-study title. The sub-list
+                  below still names specific end-clients; the H3 is now
+                  vertical-agnostic (the case study applies to any
+                  high-stakes industry-authority expert). */}
+              <h3>Content + product for an industry author</h3>
               <p>
                 Algorithm strategy, content engine, and bespoke product
-                work for an HR / organizational-equity author. Three
-                engagements through one relationship, each routed to a
-                different end-client:
+                work for an industry-authority author. Three engagements
+                through one relationship, each routed to a different
+                end-client:
               </p>
               <ul className="cw-card__sublist" aria-label="Three sub-engagements">
                 <li>A top-tier research university — published-research web platform</li>
