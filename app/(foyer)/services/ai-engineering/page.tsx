@@ -36,7 +36,7 @@ const TIERS: Tier[] = [
   {
     name: "Advisory",
     scope:
-      "AI architecture review + monthly LLM strategy sessions. Sounding board for model choice, eval design, failure-mode mitigation.",
+      "AI architecture review + monthly LLM strategy pressure-test. Model choice, eval design, failure-mode mitigation.",
     duration: "4-6 hrs/month, ongoing.",
     deliverable:
       "AI stack audit + production-readiness assessment. Named gaps with prioritized fix sequence.",
@@ -55,7 +55,7 @@ const TIERS: Tier[] = [
       "Embedded AI engineering partnership. Continuous integration of new model capabilities, ongoing eval work, prompt iteration.",
     duration: "Month-to-month, 6-month minimum.",
     deliverable:
-      "Continuous integration of AI work + first iteration of eval framework + prompt-deployment pipeline live in month one.",
+      "First eval framework iteration shipped + prompt-deployment pipeline live + documented failure-mode inventory in month one.",
   },
   {
     name: "Embedded",
@@ -63,7 +63,7 @@ const TIERS: Tier[] = [
       "Acting head of AI engineering for the engagement window. Owns architecture, deployment, and the bar for production AI quality.",
     duration: "3-6 months, 3-4 days/week.",
     deliverable:
-      "Full AI architecture + production deployment + eval infrastructure + team trained by end of month one.",
+      "AI architecture documented + first production deployment shipped + eval infrastructure foundations live + team onboarded by end of month one.",
   },
 ];
 
@@ -107,9 +107,8 @@ export default function AIEngineeringPage() {
         <p className="cw-services__intro">
           Your AI works in the notebook. Production is a different stack.
           I run eval infrastructure, prompt-deployment pipelines, and the
-          orchestration that turns frontier capability into a product
-          real users touch. Engagements are ongoing; specifics live under
-          NDA.
+          orchestration between model and user. Engagements are ongoing;
+          specifics live under NDA.
         </p>
       </header>
 
@@ -128,9 +127,9 @@ export default function AIEngineeringPage() {
           </h2>
           <p className="cw-service__desc">
             Four shapes, increasing in commitment. The right shape
-            depends on whether you need a second brain on call, a
+            depends on whether you need an architecture review, a
             shipped artifact, an ongoing partner, or full ownership of
-            the AI surface.
+            the AI stack.
           </p>
         </header>
 

@@ -236,9 +236,11 @@ export function Hero() {
       </h1>
 
       <p className="cw-sub" ref={subRef}>
-        Strategy and software, shipped by the same pair of hands.
-        Enterprise GTM and{" "}
-        <em>a product in private beta with fourteen practices.</em>
+        Strategy and software, shipped by the same pair of hands.{" "}
+        <em>
+          Enterprise GTM for founders who built the product but
+          can&rsquo;t close the enterprise sale.
+        </em>
       </p>
 
       <div className="cw-cta-row" ref={ctaRowRef}>

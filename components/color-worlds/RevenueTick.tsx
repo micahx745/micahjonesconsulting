@@ -107,9 +107,7 @@ export function RevenueTick() {
               customers" — claim-without-evidence sentence; the
               actual customer names (TD Bank, Deutsche, NIH, PNG)
               appear two inches below in the Guardicore entry body. */}
-          in client revenue across a decade.
-          <br />
-          Two enterprise exits.{" "}
+          in client revenue across a decade.{" "}
           <strong>Trillions in digital assets behind the deployments.</strong>
         </p>
       </header>

@@ -244,8 +244,8 @@ export default function ColorWorldsHome() {
             <p className="cw-principle__num">01</p>
             <p className="cw-principle__text">
               I work where AI prototypes die: the production gap. Eval,
-              orchestration, the failure modes you haven&rsquo;t named
-              yet.
+              orchestration, the failure modes between demo and
+              deployment.
             </p>
           </li>
           <li
@@ -265,8 +265,7 @@ export default function ColorWorldsHome() {
             <p className="cw-principle__num">03</p>
             <p className="cw-principle__text">
               I&rsquo;ve shipped product deployed at TD Bank, Deutsche
-              Bank, NIH, Peoples Natural Gas. I know what enterprise
-              procurement actually pays for.
+              Bank, NIH, Peoples Natural Gas.
             </p>
           </li>
           <li
@@ -276,8 +275,7 @@ export default function ColorWorldsHome() {
             <p className="cw-principle__num">04</p>
             <p className="cw-principle__text">
               I&rsquo;ve been on the inside of two exits — one
-              acquisition, one IPO. I know what acquisition-ready looks
-              like.
+              acquisition, one IPO.
             </p>
           </li>
         </ol>
@@ -380,10 +378,10 @@ export default function ColorWorldsHome() {
                   high-stakes industry-authority expert). */}
               <h3>Content + product for an industry author</h3>
               <p>
-                Algorithm strategy, content engine, and bespoke product
-                work for an industry-authority author. Three engagements
-                through one relationship, each routed to a different
-                end-client:
+                Algorithm strategy and content engine for an industry
+                author. Monthly reach: 8K → 290K. RFP-to-close rate
+                doubled. Three engagements through one relationship,
+                each routed to a different end-client:
               </p>
               <ul className="cw-card__sublist" aria-label="Three sub-engagements">
                 <li>A top-tier research university — published-research web platform</li>
@@ -445,8 +443,7 @@ export default function ColorWorldsHome() {
                     inline gives evidence the NDA framing can lean on. */}
                 The engineering between the model and the user — eval
                 infrastructure, RAG, agent orchestration, prompt-deployment
-                pipelines. Specifics under NDA. Available for new
-                engagements.
+                pipelines. Specifics under NDA.
               </p>
               <span className="cw-open">See the engagement →</span>
             </a>

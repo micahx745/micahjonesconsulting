@@ -25,7 +25,7 @@ import { MagneticArea } from "@/components/motion/MagneticArea";
 export const metadata: Metadata = {
   title: "Services — Three engagement types, four shapes each",
   description:
-    "Three services — Positioning & GTM, end-to-end product building, frontier AI engineering. Four engagement shapes per service: advisory, project, retainer, embedded. No published day rates; engagement shapes are explicit.",
+    "Three services — Positioning & GTM, end-to-end product building, frontier AI engineering. Four engagement shapes per service: advisory, project, retainer, embedded.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/services" },
 };
 
@@ -106,7 +106,7 @@ const SERVICES: Service[] = [
     // Pass-23: pain-led rewrite. The "AI demo dies in production" pain
     // is the most-cited 2026 founder complaint (per market research:
     // Anthropic's Fractional AI acquisition framed this exact gap).
-    desc: "Most AI ideas die in the gap between demo and production. I close that gap end to end — strategy, design, code, security, launch — by the same pair of hands rather than a relay race across vendors.",
+    desc: "Most AI ideas die in the gap between demo and production. Strategy, design, code, security, launch — one operator, one signature, no relay race.",
     anchorLabel: "See the engagement",
     anchorHref: "/work/ordani",
     anchorNote:
@@ -154,7 +154,7 @@ const SERVICES: Service[] = [
     // Pass-23: sharper pain-first opener ("your AI works in the
     // notebook" = the canonical AI-prototype-to-production failure
     // mode). Stack named as before; value-prop closes the pitch.
-    desc: "Your AI works in the notebook. Production is a different stack — eval infrastructure, orchestration, retrieval, deployment. I run that stack as the shipping discipline most AI founders skip.",
+    desc: "Your AI works in the notebook. Production is a different stack — eval infrastructure, orchestration, retrieval, deployment. I run that stack.",
     anchorLabel: "Inquire about an engagement",
     anchorHref: "https://calendly.com/micahmccoyjones/introduction",
     anchorNote:
@@ -183,7 +183,7 @@ const SERVICES: Service[] = [
           "Embedded AI engineering partnership. Continuous integration of new model capabilities, ongoing eval work, prompt iteration.",
         duration: "Month-to-month, 6-month minimum.",
         deliverable:
-          "Continuous integration of AI work + first iteration of eval framework + prompt-deployment pipeline live in month one.",
+          "First eval framework iteration shipped + prompt-deployment pipeline live + documented failure-mode inventory in month one.",
       },
       {
         name: "Embedded",
@@ -191,7 +191,7 @@ const SERVICES: Service[] = [
           "Acting head of AI engineering for the engagement window. Owns architecture, deployment, and the bar for production AI quality.",
         duration: "3-6 months, 3-4 days/week.",
         deliverable:
-          "Full AI architecture + production deployment + eval infrastructure + team trained by end of month one.",
+          "AI architecture documented + first production deployment shipped + eval infrastructure foundations live + team onboarded by end of month one.",
       },
     ],
   },
