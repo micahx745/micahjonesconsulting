@@ -171,7 +171,7 @@ export default function ColorWorldsHome() {
           id="cw-clients-title"
           className="cw-secttitle"
         >
-          Strategy that ships, not slides.
+          Three engagements. Built for companies, founders, and operators who need outcomes shipped — not slides.
         </SplitReveal>
 
         <ul className="cw-worklist">
@@ -274,8 +274,9 @@ export default function ColorWorldsHome() {
           >
             <p className="cw-principle__num">04</p>
             <p className="cw-principle__text">
-              I&rsquo;ve been on the inside of two exits — one
-              acquisition, one IPO.
+              I&rsquo;ve been on the cap table for two exits — Guardicore
+              to Akamai in 2021, TechValidate to SurveyMonkey, IPO&rsquo;d
+              in 2018.
             </p>
           </li>
         </ol>
@@ -347,7 +348,7 @@ export default function ColorWorldsHome() {
           id="cw-products-title"
           className="cw-secttitle"
         >
-          Work that shipped.
+          Shipped, not pitched.
         </SplitReveal>
         <p className="cw-sect-dek cw-reveal">
           {/* Pass-21 (Claude Chat audit): cut "Real work in real users'

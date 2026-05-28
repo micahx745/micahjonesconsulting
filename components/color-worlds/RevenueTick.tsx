@@ -124,14 +124,15 @@ export function RevenueTick() {
             <div className="cw-rev__note">
               <p>
                 A category saturated with honeypots and no real
-                visibility into the network. Repositioned the platform
-                from honeypot-lead to{" "}
-                <strong>visibility + east-west microsegmentation</strong>{" "}
-                — letting enterprise security teams see and defend
-                lateral traffic, not just the perimeter.
+                visibility into the network. I ran sales there as a
+                multi-hat manager for three years. The work: roughly
+                $15M in pipeline, the MSSP and reseller channel,
+                sales-team training, positioning research. The
+                repositioning landed the platform on{" "}
+                <strong>visibility + east-west microsegmentation</strong>.
               </p>
               <p>
-                The repositioned platform reached the procurement
+                The repositioned narrative reached the procurement
                 committees that actually write the security checks:{" "}
                 <strong>TD Bank</strong>'s trading systems,{" "}
                 <strong>Deutsche Bank</strong>'s clearing infrastructure,{" "}
