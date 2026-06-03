@@ -103,12 +103,11 @@ export function RevenueTick() {
           </span>
         </p>
         <p className="cw-rev__dek">
-          {/* Pass-21 (Claude Chat audit): cut "Named institutional
-              customers" — claim-without-evidence sentence; the
-              actual customer names (TD Bank, Deutsche, NIH, PNG)
-              appear two inches below in the Guardicore entry body. */}
-          in client revenue across a decade.{" "}
-          <strong>Trillions in digital assets behind the deployments.</strong>
+          {/* Pass-26 (operator cowork review): elevated the dek register
+              and reworked the trillions line to first-person ownership
+              ("protected behind my work") per operator direction. */}
+          in client revenue. A decade of it.{" "}
+          <strong>Trillions in assets protected behind my work.</strong>
         </p>
       </header>
 
@@ -123,23 +122,19 @@ export function RevenueTick() {
             </p>
             <div className="cw-rev__note">
               <p>
-                A category saturated with honeypots and no real
-                visibility into the network. I ran sales there as a
-                multi-hat manager for three years. The work: roughly
-                $15M in pipeline, the MSSP and reseller channel,
-                sales-team training, positioning research. The
-                repositioning landed the platform on{" "}
+                Sales manager in a category saturated with honeypots. I
+                generated <strong>$80M in pipeline</strong> and{" "}
+                <strong>$14M in revenue</strong>, and ran the market
+                research that repositioned the platform around{" "}
                 <strong>visibility + east-west microsegmentation</strong>.
               </p>
               <p>
-                The repositioned narrative reached the procurement
-                committees that actually write the security checks:{" "}
-                <strong>TD Bank</strong>'s trading systems,{" "}
-                <strong>Deutsche Bank</strong>'s clearing infrastructure,{" "}
-                <strong>NIH</strong> research environments,{" "}
-                <strong>Peoples Natural Gas</strong>'s operational tech.
-                Trillions in digital assets sat behind the deployments.
-                Akamai acquired shortly after.
+                From those findings I ran a microsegmentation pilot with
+                a top-10 North American bank. The repositioned platform
+                reached a global systemically important bank, the
+                world&rsquo;s largest public biomedical-research funder,
+                and a white-shoe Wall Street law firm. Akamai acquired
+                shortly after.
               </p>
             </div>
           </div>
@@ -158,16 +153,14 @@ export function RevenueTick() {
             </p>
             <div className="cw-rev__note">
               <p>
-                SurveyMonkey customers had survey results but no way to
-                act on them. Built the{" "}
-                <strong>customer-evidence engine</strong> that turned
-                raw survey data into the asset enterprise procurement
-                actually pays for — visible proof of customer outcomes,
-                queryable by sales and CS teams.
+                Enterprise sales on the team that took SurveyMonkey
+                public. I contributed{" "}
+                <strong>over $1M in revenue</strong> toward the IPO.
               </p>
               <p>
-                Moved average enterprise deal size up. Anchored the
-                Nasdaq IPO. Equity held through.
+                I worked the field and brought what I learned back to the
+                product team and founders. Field signal from the
+                enterprise deals, straight to the people building it.
               </p>
             </div>
           </div>
