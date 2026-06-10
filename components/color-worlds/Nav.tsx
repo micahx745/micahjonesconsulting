@@ -25,11 +25,18 @@ import { useEffect, useRef, useState } from "react";
 // scale, Frontier AI), not products. Renamed to "Work" for accuracy.
 // Anchor href stays #products (the section id) so existing deep
 // links don't break.
+//
+// Pass-26 (operator cowork review): hrefs are root-relative ("/#x",
+// not "#x"). This nav renders on every (foyer) page — on /services
+// a bare "#clients" just mutated the URL hash on a page with no such
+// id, stranding the visitor. From home, "/#x" is still a same-
+// document fragment scroll (path unchanged); from subpages it
+// navigates home first.
 const NAV_LINKS = [
-  { href: "#clients", label: "Clients" },
-  { href: "#ordani", label: "Ordani" },
-  { href: "#products", label: "Work" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#clients", label: "Clients" },
+  { href: "/#ordani", label: "Ordani" },
+  { href: "/#products", label: "Work" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
 
 export function Nav() {
@@ -121,7 +128,7 @@ export function Nav() {
   return (
     <>
       <nav className="cw-nav" aria-label="Primary">
-        <a href="#top" className="cw-wordmark">
+        <a href="/#top" className="cw-wordmark">
           MICAH/JONES
         </a>
         <ul className="cw-navlinks">

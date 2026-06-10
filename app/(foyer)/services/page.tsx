@@ -59,7 +59,7 @@ const SERVICES: Service[] = [
     anchorLabel: "See the engagement",
     anchorHref: "/work/guardicore",
     anchorNote:
-      "Anchor: Guardicore → Akamai (visibility + east-west microsegmentation repositioning); SurveyMonkey Enterprise (customer-evidence engine, anchored the Nasdaq IPO).",
+      "Anchor: Guardicore → Akamai ($80M pipeline; repositioned from honeypot-lead to visibility + east-west microsegmentation); SurveyMonkey Enterprise ($1M+ contributed toward the Nasdaq IPO).",
     tiers: [
       {
         name: "Advisory",
