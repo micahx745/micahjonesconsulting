@@ -5965,6 +5965,50 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   transform: translateY(3px);
 }
 
+/* ================================================================
+ * Pass-27 (operator cowork review): hero editorial colophon.
+ * Vertical credential strip at the hero's right edge. Mirrors
+ * .cw-eyebrow typography (mono, 12px, 0.18em, uppercase) exactly.
+ * Positioned absolute so it never displaces the left-aligned hero
+ * column. H1 parallax drifts ±6px max at 1920px; colophon at
+ * right: 32px clears the right viewport edge by ≥26px at 1280px
+ * with no risk of collision with the H1 text which extends leftward.
+ * Hidden ≤760px. Reveals last in the hero load sequence via the
+ * same is-in class-toggle used by .cw-sub and .cw-cta-row.
+ * ================================================================ */
+[data-mode="cw"] .cw-hero__colophon {
+  position: absolute;
+  right: 32px;
+  bottom: 40px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  opacity: 0.5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+[data-mode="cw"].cw-js-reveals .cw-hero__colophon {
+  opacity: 0;
+  transition: opacity 0.6s 0.55s;
+}
+[data-mode="cw"].cw-js-reveals .cw-hero__colophon.is-in {
+  opacity: 0.5;
+}
+[data-mode="cw"] .cw-hero__colophon-sep {
+  opacity: 0.5;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-hero__colophon {
+    display: none;
+  }
+}
+
 /* Hero hand-underline removed in Pass-9 — editorial lede H1 doesn't
  * carry a mark; the hand-circle migrates to the revenue figure where
  * the "marks land where the work is" rule applies (the number IS the
@@ -6312,6 +6356,29 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 [data-mode="cw"] .cw-principle__text em {
   font-style: italic;
   font-weight: 600;
+}
+
+/* Pass-27 (operator cowork review): operating loop stage name and
+ * artifact line. .cw-principle__name uses display family (same as
+ * .cw-secttitle) at display scale. .cw-principle__artifact mirrors
+ * the .cw-principle__num type treatment (mono, same size/tracking/
+ * uppercase) with opacity 0.6 — reads as a deliverable label. */
+[data-mode="cw"] .cw-principle__name {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 44px);
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0 0 10px;
+}
+[data-mode="cw"] .cw-principle__artifact {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
 /* ================================================================
@@ -6670,6 +6737,42 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin: 0;
   padding-bottom: 6px;
   opacity: 0.92;
+}
+
+/* Pass-27 (operator cowork review): exits confirmation line — sits in
+ * .cw-rev__head after the dek. Same font family as .cw-rev__dek (display).
+ * Transition-delay 2500ms: HandCircle delay=0.4s + draw=1100ms (primary
+ * completes at 1.5s); overshoot fires at 1.35s, completes at 2.45s.
+ * 2500ms lets the overshoot settle before the exits text arrives.
+ * The .cw-reveal → .is-in system already handles reduced-motion
+ * (universal `transition: none !important` + `opacity: 1 !important`
+ * from the reduce block above makes it statically visible). */
+[data-mode="cw"] .cw-rev__exits-line {
+  font-family: var(--font-cw-display);
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 500;
+  margin: 12px 0 0;
+  /* Opacity at rest (before .is-in) handled by .cw-reveal rule.
+   * Revealed opacity: 0.75 applied via the override below. */
+}
+[data-mode="cw"] .cw-rev__exits-line.is-in {
+  opacity: 0.75;
+  transition-delay: 2500ms;
+}
+
+/* Pass-27 (operator cowork review): stamp treatment on .cw-rev__when.
+ * Font-size 12px→13px, opacity 0.7→0.92 — stamps read as exits, not
+ * marginalia. The .cw-rev__when-kind label (Acquired / IPO) gets
+ * font-weight: 600. Contrast check: terracotta world bg=#9E3C25,
+ * accent copper=#C8542B. Both are orange-red; contrast ratio ~1.4:1 —
+ * below the 3:1 minimum for non-text UI. Decision: weight-only,
+ * currentColor kept. The separator "·" retains its existing opacity. */
+[data-mode="cw"] .cw-rev__when {
+  font-size: 13px;
+  opacity: 0.92;
+}
+[data-mode="cw"] .cw-rev__when .cw-rev__when-kind {
+  font-weight: 600;
 }
 
 /* Index list — numbered entries, hairline rules between. */
@@ -7290,6 +7393,13 @@ body:has([data-mode="cw"]) .editorial-timestamp {
   [data-mode="cw"] .cw-reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+  /* Pass-27 (operator cowork review): colophon is decorative opacity 0.5
+   * at rest — pin it visible (not 1, its natural state is 0.5). The
+   * universal `transition: none !important` above already kills the fade;
+   * this rule ensures it isn't invisible when JS hasn't toggled is-in. */
+  [data-mode="cw"] .cw-hero__colophon {
+    opacity: 0.5 !important;
   }
 }
 

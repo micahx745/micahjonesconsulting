@@ -230,54 +230,57 @@ export default function ColorWorldsHome() {
         >
           How I work.
         </SplitReveal>
-        {/* Pass-23: rewrote the 4 principles to surface specific pain
-            + specific receipts. Pass-21's version was operator
-            philosophy (abstract); the target buyer wanted enticement
-            tied to concrete differentiators. Each new principle either
-            names the production-gap pain or names the operator's
-            unique credential (enterprise customers, two exits). */}
+        {/* Pass-27 (operator cowork review): four principles → three named
+            operating loop stages (Diagnose / Build / Position). Each
+            principle gets a stage name (.cw-principle__name) and a
+            deliverable line (.cw-principle__artifact) in addition to
+            the existing .cw-principle__text. The 1fr text column in the
+            .cw-principle grid stacks the three children naturally — the
+            grid rule (auto 1fr) is unchanged. Stagger stays 0/80/160ms. */}
         <ol className="cw-principles">
           <li
             className="cw-principle cw-reveal"
             style={{ transitionDelay: "0ms" }}
           >
             <p className="cw-principle__num">01</p>
-            <p className="cw-principle__text">
-              I work where AI prototypes die: the production gap. Eval,
-              orchestration, the failure modes between demo and
-              deployment.
-            </p>
+            <div>
+              <p className="cw-principle__name">Diagnose</p>
+              <p className="cw-principle__text">
+                I find the gap between what you built and what buyers
+                actually pay for. Customer interviews, sales-call
+                analysis, market research.
+              </p>
+              <p className="cw-principle__artifact">&#8594; Positioning audit memo</p>
+            </div>
           </li>
           <li
             className="cw-principle cw-reveal"
             style={{ transitionDelay: "80ms" }}
           >
             <p className="cw-principle__num">02</p>
-            <p className="cw-principle__text">
-              Every engagement ships a named artifact in month one. No
-              decks. No discovery debt.
-            </p>
+            <div>
+              <p className="cw-principle__name">Build</p>
+              <p className="cw-principle__text">
+                Every engagement ships a named artifact in month one. No
+                decks. No discovery debt.
+              </p>
+              <p className="cw-principle__artifact">&#8594; Shipped artifact, month one</p>
+            </div>
           </li>
           <li
             className="cw-principle cw-reveal"
             style={{ transitionDelay: "160ms" }}
           >
             <p className="cw-principle__num">03</p>
-            <p className="cw-principle__text">
-              I&rsquo;ve shipped product deployed at TD Bank, Deutsche
-              Bank, NIH, Peoples Natural Gas.
-            </p>
-          </li>
-          <li
-            className="cw-principle cw-reveal"
-            style={{ transitionDelay: "240ms" }}
-          >
-            <p className="cw-principle__num">04</p>
-            <p className="cw-principle__text">
-              I&rsquo;ve been on the cap table for two exits — Guardicore
-              to Akamai in 2021, TechValidate to SurveyMonkey, IPO&rsquo;d
-              in 2018.
-            </p>
+            <div>
+              <p className="cw-principle__name">Position</p>
+              <p className="cw-principle__text">
+                I stay until the narrative sells without me &mdash; the
+                Guardicore repositioning carried into the Akamai
+                acquisition.
+              </p>
+              <p className="cw-principle__artifact">&#8594; The story the market repeats</p>
+            </div>
           </li>
         </ol>
       </section>

@@ -54,6 +54,8 @@ export function Hero() {
   const eyebrowRef = useRef<HTMLSpanElement | null>(null);
   const subRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRowRef = useRef<HTMLDivElement | null>(null);
+  // Pass-27 (operator cowork review): colophon ref for load-reveal stagger
+  const colophonRef = useRef<HTMLDivElement | null>(null);
   const lineRefs = useRef<HTMLSpanElement[]>([]);
   const rollRef = useRef<HTMLSpanElement | null>(null);
   const h1Ref = useRef<HTMLHeadingElement | null>(null);
@@ -81,6 +83,10 @@ export function Hero() {
 
     subRef.current?.classList.add("is-in");
     ctaRowRef.current?.classList.add("is-in");
+    // Pass-27 (operator cowork review): colophon reveals last in the hero
+    // load sequence — after the CTA row (0.35s base delay). The colophon
+    // CSS adds an additional 0.20s offset for a net entry at ~0.55s.
+    colophonRef.current?.classList.add("is-in");
   }, []);
 
   // Rolling word cycle — pauses when hero out of viewport or tab hidden.
@@ -257,6 +263,29 @@ export function Hero() {
         <a href="#clients" className="cw-cta cw-cta--ghost">
           See how I work <span className="cw-arr" aria-hidden>↓</span>
         </a>
+      </div>
+
+      {/* Pass-27 (operator cowork review): vertical editorial colophon —
+          three credential stamps stacked in one rotated vertical line.
+          aria-hidden: purely decorative credential texture, not content.
+          Positioned absolute so it never displaces the left-aligned hero
+          column. Hidden below 760px where it would overlap the H1. */}
+      <div
+        className="cw-hero__colophon"
+        ref={colophonRef}
+        aria-hidden
+      >
+        <span>Akamai</span>
+        <span className="cw-hero__colophon-sep" aria-hidden>·</span>
+        <span>2021</span>
+        <span className="cw-hero__colophon-sep" aria-hidden>·</span>
+        <span>SurveyMonkey IPO</span>
+        <span className="cw-hero__colophon-sep" aria-hidden>·</span>
+        <span>2018</span>
+        <span className="cw-hero__colophon-sep" aria-hidden>·</span>
+        <span>Ordani</span>
+        <span className="cw-hero__colophon-sep" aria-hidden>·</span>
+        <span>Live beta</span>
       </div>
     </header>
   );

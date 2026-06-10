@@ -109,6 +109,16 @@ export function RevenueTick() {
           in client revenue. A decade of it.{" "}
           <strong>Trillions in assets protected behind my work.</strong>
         </p>
+        {/* Pass-27 (operator cowork review): exits line — lands after the
+            HandCircle finishes its full draw arc. HandCircle delay=0.4s,
+            draw=1100ms (primary completes at 1.5s); overshoot fires at
+            0.4+0.95=1.35s and completes at 1.35+1.1=2.45s. Transition-
+            delay 2500ms lets the overshoot settle before the text arrives.
+            The existing .cw-reveal → .is-in system handles reduced-motion
+            (opacity is 1, transition: none at the reduced rule). */}
+        <p className="cw-rev__exits-line cw-reveal">
+          Two exits. Both on the cap table.
+        </p>
       </header>
 
       <ol className="cw-rev__index" aria-label="Two exits">
@@ -138,7 +148,9 @@ export function RevenueTick() {
               </p>
             </div>
           </div>
-          <p className="cw-rev__when">
+          {/* Pass-27 (operator cowork review): data-kind attribute added
+              so CSS can target the kind label for elevated weight. */}
+          <p className="cw-rev__when" data-kind="acquired">
             <span className="cw-rev__when-kind">Acquired</span>
             <span className="cw-rev__when-sep" aria-hidden>·</span>
             <span className="cw-rev__when-date">2021</span>
@@ -164,7 +176,9 @@ export function RevenueTick() {
               </p>
             </div>
           </div>
-          <p className="cw-rev__when">
+          {/* Pass-27 (operator cowork review): data-kind attribute added
+              so CSS can target the kind label for elevated weight. */}
+          <p className="cw-rev__when" data-kind="ipo">
             <span className="cw-rev__when-kind">IPO</span>
             <span className="cw-rev__when-sep" aria-hidden>·</span>
             <span className="cw-rev__when-date">2018</span>
