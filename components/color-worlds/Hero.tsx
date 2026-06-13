@@ -242,25 +242,29 @@ export function Hero() {
       </h1>
 
       <p className="cw-sub" ref={subRef}>
-        Strategy and software, shipped by the same pair of hands.{" "}
+        Two enterprise exits. A HIPAA-grade SaaS I built solo, on the
+        same AI tools you&rsquo;re using.{" "}
         <em>
-          Enterprise GTM for founders who built the product but
-          can&rsquo;t close the enterprise sale.
+          Hire me for the work — or take the playbook and ship it
+          yourself.
         </em>
       </p>
 
+      {/* Pass-28 (two-buyer pivot): dual front-door CTAs. Primary routes
+          Buyer B to the playbook; ghost routes Buyer A to /hire-me;
+          tertiary keeps the in-page "how I work" jump. Calendly is no
+          longer a hero CTA — it lives on /hire-me + the footer. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
         <MagneticArea>
-          <a
-            href="https://calendly.com/micahmccoyjones/introduction"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cw-cta"
-          >
-            Book a call <span className="cw-arr" aria-hidden>→</span>
+          <a href="/playbook" className="cw-cta">
+            Get the playbook — $149{" "}
+            <span className="cw-arr" aria-hidden>→</span>
           </a>
         </MagneticArea>
-        <a href="#clients" className="cw-cta cw-cta--ghost">
+        <a href="/hire-me" className="cw-cta cw-cta--ghost">
+          Hire me <span className="cw-arr" aria-hidden>→</span>
+        </a>
+        <a href="#how-i-work" className="cw-cta cw-cta--ghost">
           See how I work <span className="cw-arr" aria-hidden>↓</span>
         </a>
       </div>

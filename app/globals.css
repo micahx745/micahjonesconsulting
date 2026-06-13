@@ -7504,3 +7504,267 @@ body:has([data-mode="cw"]) .editorial-timestamp {
     color: #555;
   }
 }
+
+/* ================================================================
+ * Pass-25 two-buyer pivot — /playbook (Buyer B) + /hire-me (Buyer A).
+ * Reuse the cw-services page shell; these classes carry the page-
+ * specific pieces. Bone world; currentColor hairlines; cw type vars;
+ * the single accent only on rules + list markers.
+ * ================================================================ */
+
+/* Shared section heading + eyebrow (both pages) */
+[data-mode="cw"] .cw-pb-h2 {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 32px;
+}
+[data-mode="cw"] .cw-pb-eyebrow {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0 0 20px;
+}
+[data-mode="cw"] .cw-pb-sect,
+[data-mode="cw"] .cw-hm-sect {
+  margin-bottom: 96px;
+  max-width: 820px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-pb-sect,
+  [data-mode="cw"] .cw-hm-sect {
+    margin-bottom: 64px;
+  }
+}
+
+/* Pain opener — three lines of the buyer's monologue, large + spare */
+[data-mode="cw"] .cw-pb-pain {
+  margin: 0 0 96px;
+  max-width: 800px;
+  border-left: 2px solid var(--cw-accent);
+  padding-left: 28px;
+}
+[data-mode="cw"] .cw-pb-pain p {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 18px;
+}
+[data-mode="cw"] .cw-pb-pain p:last-child {
+  margin-bottom: 0;
+  opacity: 0.7;
+}
+
+/* Why this author */
+[data-mode="cw"] .cw-pb-author {
+  margin: 0 0 96px;
+  max-width: 760px;
+}
+[data-mode="cw"] .cw-pb-author__body {
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.8vw, 22px);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* TOC — numbered editorial index, hairline between rows */
+[data-mode="cw"] .cw-pb-toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1.5px solid currentColor;
+}
+[data-mode="cw"] .cw-pb-toc__row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  padding: 24px 4px;
+  border-bottom: 1px solid currentColor;
+  align-items: baseline;
+}
+[data-mode="cw"] .cw-pb-toc__num {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  opacity: 0.5;
+}
+[data-mode="cw"] .cw-pb-toc__title {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(19px, 2vw, 26px);
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+[data-mode="cw"] .cw-pb-toc__blurb {
+  display: block;
+  font-family: var(--font-cw-body);
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.78;
+  max-width: 64ch;
+}
+[data-mode="cw"] .cw-pb-appendix {
+  font-family: var(--font-cw-body);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.72;
+  margin: 24px 0 0;
+  max-width: 64ch;
+}
+
+/* Section ledes (zip + sampler) */
+[data-mode="cw"] .cw-pb-sect__lede,
+[data-mode="cw"] .cw-pb-sampler__lede {
+  font-family: var(--font-cw-body);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0 0 28px;
+  max-width: 60ch;
+}
+
+/* Sampler block */
+[data-mode="cw"] .cw-pb-sampler {
+  margin: 0 0 96px;
+  max-width: 640px;
+}
+
+/* What ships with it — the companion files */
+[data-mode="cw"] .cw-pb-zip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+[data-mode="cw"] .cw-pb-zip li {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.4;
+  padding-left: 26px;
+  position: relative;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-pb-zip li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--cw-accent);
+}
+
+/* Pricing card */
+[data-mode="cw"] .cw-pb-price {
+  margin: 0 0 96px;
+  max-width: 640px;
+  border: 1.5px solid currentColor;
+  border-radius: 8px;
+  padding: 40px 36px;
+}
+[data-mode="cw"] .cw-pb-price__fig {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(56px, 9vw, 104px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+[data-mode="cw"] .cw-pb-price__body {
+  font-family: var(--font-cw-body);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.5;
+  margin: 0 0 16px;
+  max-width: 48ch;
+}
+[data-mode="cw"] .cw-pb-price__note {
+  font-family: var(--font-cw-body);
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.72;
+  margin: 0;
+  max-width: 52ch;
+}
+
+/* FAQ */
+[data-mode="cw"] .cw-pb-faq {
+  margin: 0;
+}
+[data-mode="cw"] .cw-pb-faq__item {
+  padding: 24px 0;
+  border-bottom: 1px solid currentColor;
+}
+[data-mode="cw"] .cw-pb-faq__item:first-child {
+  border-top: 1.5px solid currentColor;
+}
+[data-mode="cw"] .cw-pb-faq dt {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(17px, 1.8vw, 22px);
+  margin: 0 0 10px;
+}
+[data-mode="cw"] .cw-pb-faq dd {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.55;
+  opacity: 0.85;
+  margin: 0;
+  max-width: 64ch;
+}
+
+/* ---- /hire-me — receipts row + tag rows (shapes reuse cw-tiers) ---- */
+[data-mode="cw"] .cw-hm-receipts {
+  margin: 0 0 96px;
+}
+[data-mode="cw"] .cw-hm-receipts__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1.5px solid currentColor;
+}
+[data-mode="cw"] .cw-hm-receipt {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  padding: 24px 4px;
+  border-bottom: 1px solid currentColor;
+  align-items: baseline;
+}
+[data-mode="cw"] .cw-hm-receipt__num {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  opacity: 0.5;
+}
+[data-mode="cw"] .cw-hm-receipt__text {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(18px, 2vw, 27px);
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+[data-mode="cw"] .cw-hm-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+[data-mode="cw"] .cw-hm-tags li {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 100px;
+  padding: 8px 18px;
+  opacity: 0.85;
+}

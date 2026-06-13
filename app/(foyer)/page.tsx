@@ -334,6 +334,15 @@ export default function ColorWorldsHome() {
         <p className="cw-note cw-reveal">
           Private beta · onboarding new users weekly
         </p>
+        {/* Pass-28 (two-buyer pivot): bridge from the credibility anchor
+            to the product. Ordani is the proof; the playbook is what I
+            learned building it, for sale. */}
+        <p className="cw-note cw-reveal">
+          Built solo on Next.js, Supabase, and Vercel — the same stack
+          the{" "}
+          <a href="/playbook" className="cw-lede-link">playbook</a>{" "}
+          teaches.
+        </p>
       </section>
 
       {/* SHIPPED — espresso. Section rewritten per research: single-word
@@ -506,14 +515,19 @@ export default function ColorWorldsHome() {
             PROBLEM →
           </SplitReveal>
         </a>
+        {/* Pass-28 (two-buyer pivot): the footrow now forks. Buyer B
+            (stuck on a build) gets the playbook; Buyer A (hiring) books
+            a call. The big "NAME THE PROBLEM" statement stays as the
+            capstone above. */}
         <div className="cw-footrow cw-reveal">
+          <a href="/playbook">Stuck on a build → get the playbook</a>
           <MagneticArea>
             <a
               href="https://calendly.com/micahmccoyjones/introduction"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Book a call ↗
+              Hiring an operator → book a call ↗
             </a>
           </MagneticArea>
           <a href="mailto:hello@micahjonesconsulting.com">

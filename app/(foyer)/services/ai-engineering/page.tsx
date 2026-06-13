@@ -173,6 +173,18 @@ export default function AIEngineeringPage() {
             capability that lives in a notebook is not production. The
             engagement bar is &ldquo;deployed, observed, iterated.&rdquo;
           </p>
+          {/* Pass-28 (two-buyer pivot): reverse bridge — point the
+              solo / sub-$50K buyer to the playbook as the right first
+              step, not a downgrade. Filters in serious advisory buyers. */}
+          <p
+            className="cw-service__desc"
+            style={{ marginTop: "16px", fontStyle: "italic", opacity: 0.8 }}
+          >
+            If your stack is pre-production and you&rsquo;re solo, the{" "}
+            <a href="/playbook" className="cw-lede-link">playbook</a>{" "}
+            covers most of what the advisory shape does — for $149, not
+            $5K a month.
+          </p>
         </header>
       </section>
 

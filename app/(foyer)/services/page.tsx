@@ -278,6 +278,18 @@ export default function ServicesPage() {
           are explicit about scope, duration, and what lands in the
           first month.
         </p>
+        {/* Pass-28 (two-buyer pivot): self-selection line. Routes the
+            solo / sub-$50K builder to the playbook so this page stays
+            the engagement surface for Buyer A. */}
+        <p
+          className="cw-services__intro"
+          style={{ marginTop: "20px", fontSize: "15px", opacity: 0.72 }}
+        >
+          This page is for companies hiring an operator on a defined
+          engagement. Solo and stuck on an AI build? The{" "}
+          <a href="/playbook" className="cw-lede-link">playbook</a>{" "}
+          is a better first step.
+        </p>
       </header>
 
       {SERVICES.map((service) => (
