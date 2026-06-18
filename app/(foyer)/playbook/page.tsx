@@ -153,9 +153,9 @@ export default function PlaybookPage() {
           I&rsquo;m not writing this from the sidelines. I built Ordani
           solo — a HIPAA-grade SaaS for birth workers, on Next.js,
           Supabase, and Vercel, with Claude Code and Cursor. Fourteen
-          practices in private beta. Two outside security reviews. Zero
-          churn at six months. Same stack you&rsquo;re using. Same wall
-          I hit.
+          practices in private beta. Two outside security reviews. None
+          lost to a competitor at six months. Same stack you&rsquo;re
+          using. Same wall I hit.
         </p>
       </section>
 

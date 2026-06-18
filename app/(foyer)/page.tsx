@@ -334,14 +334,10 @@ export default function ColorWorldsHome() {
         <p className="cw-note cw-reveal">
           Private beta · onboarding new users weekly
         </p>
-        {/* Pass-28 (two-buyer pivot): bridge from the credibility anchor
-            to the product. Ordani is the proof; the playbook is what I
-            learned building it, for sale. */}
+        {/* Pass-30 (Cowork review): playbook plug removed from the
+            enterprise front door; the solo-build stack stays as proof. */}
         <p className="cw-note cw-reveal">
-          Built solo on Next.js, Supabase, and Vercel — the same stack
-          the{" "}
-          <a href="/playbook" className="cw-lede-link">playbook</a>{" "}
-          teaches.
+          Built solo on Next.js, Supabase, and Vercel.
         </p>
       </section>
 
@@ -515,19 +511,17 @@ export default function ColorWorldsHome() {
             PROBLEM →
           </SplitReveal>
         </a>
-        {/* Pass-28 (two-buyer pivot): the footrow now forks. Buyer B
-            (stuck on a build) gets the playbook; Buyer A (hiring) books
-            a call. The big "NAME THE PROBLEM" statement stays as the
-            capstone above. */}
+        {/* Pass-30 (Cowork review): playbook removed from the footer —
+            the enterprise front door no longer routes to a $149 product.
+            The playbook is reached from the /services self-select line. */}
         <div className="cw-footrow cw-reveal">
-          <a href="/playbook">Stuck on a build → get the playbook</a>
           <MagneticArea>
             <a
               href="https://calendly.com/micahmccoyjones/introduction"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Hiring an operator → book a call ↗
+              Book a call ↗
             </a>
           </MagneticArea>
           <a href="mailto:hello@micahjonesconsulting.com">

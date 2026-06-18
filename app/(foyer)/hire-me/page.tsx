@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 };
 
 const RECEIPTS = [
-  "Two cap-table exits — Guardicore to Akamai (2021), TechValidate to SurveyMonkey (IPO, 2018).",
+  "Three companies I helped build reached an exit — two on the cap table (Guardicore, TechValidate→SurveyMonkey), one I helped launch (Neuton.AI→Nordic Semiconductor).",
   "$20M+ in client revenue across a decade of enterprise software.",
   "Product deployed behind a top-10 North American bank, a global systemically important bank, and the world's largest public biomedical-research funder.",
 ] as const;
@@ -68,6 +68,7 @@ const SHAPES = [
 ] as const;
 
 const VERTICALS = [
+  "Financial services",
   "Security",
   "Survey & martech",
   "Healthcare",

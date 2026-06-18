@@ -250,10 +250,11 @@ export function Hero() {
         </em>
       </p>
 
-      {/* Pass-29 (enterprise/FIS re-rank): lead with the work, proof-
-          first. The $149 playbook is demoted to the tertiary slot so an
-          enterprise buyer never reads a consumer price first. Calendly
-          lives in the footer; /hire-me carries the FTE/fractional path. */}
+      {/* Pass-30 (Cowork review): the $149 playbook is OFF the enterprise
+          front door entirely — it leaked onto an FIS buyer's first screen.
+          It stays reachable from the /services self-select routing line.
+          Hero CTAs are now one enterprise ladder: see the proof, hire me,
+          talk. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
         <MagneticArea>
           <a href="#products" className="cw-cta">
@@ -263,9 +264,13 @@ export function Hero() {
         <a href="/hire-me" className="cw-cta cw-cta--ghost">
           Hire me <span className="cw-arr" aria-hidden>→</span>
         </a>
-        <a href="/playbook" className="cw-cta cw-cta--ghost">
-          Stuck on a build? Get the playbook{" "}
-          <span className="cw-arr" aria-hidden>→</span>
+        <a
+          href="https://calendly.com/micahmccoyjones/introduction"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cw-cta cw-cta--ghost"
+        >
+          Book a call <span className="cw-arr" aria-hidden>↗</span>
         </a>
       </div>
 
