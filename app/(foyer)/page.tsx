@@ -300,7 +300,7 @@ export default function ColorWorldsHome() {
         <p className="cw-tagrow cw-reveal">
           <span className="cw-live">Live beta</span>
           <span>14 doula practices</span>
-          <span>Hundreds of users active</span>
+          <span>Six months in</span>
         </p>
         <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
           Ordani
@@ -317,7 +317,7 @@ export default function ColorWorldsHome() {
           intakes. HIPAA is the law; compliance is impossible without
           real infrastructure. <em>I built it.</em> Row-level encryption,
           two outside security reviews, fourteen practices in private
-          beta. Zero churn.
+          beta. None lost to a competitor.
         </p>
         <p className="cw-lede-sub cw-reveal">
           {/* TODO(operator): Ordani product website is under

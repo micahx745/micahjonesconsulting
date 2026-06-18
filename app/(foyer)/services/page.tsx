@@ -55,7 +55,7 @@ const SERVICES: Service[] = [
     // Pass-23: pain-led rewrite. Lead with the buyer's failure mode
     // ("you built it; enterprise teams aren't buying"), then surface
     // the operator's specific work that closes that gap.
-    desc: "You built it. Enterprise teams still aren't buying. I run the positioning research, customer interviews, and sales-call analysis that turn a feature-comparison platform into the category buyers actually want.",
+    desc: "You built it. Enterprise teams still aren't buying. I run the positioning research, customer interviews, and sales-call analysis that turn a feature-comparison platform into the category buyers actually want. Specialty: selling data and security into financial institutions — banks, insurers, the procurement committees that don't move fast.",
     anchorLabel: "See the engagement",
     anchorHref: "/work/guardicore",
     anchorNote:

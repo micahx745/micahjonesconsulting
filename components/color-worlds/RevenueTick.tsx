@@ -117,11 +117,11 @@ export function RevenueTick() {
             The existing .cw-reveal → .is-in system handles reduced-motion
             (opacity is 1, transition: none at the reduced rule). */}
         <p className="cw-rev__exits-line cw-reveal">
-          Two exits. Both on the cap table.
+          Three companies I helped build. An IPO and two acquisitions.
         </p>
       </header>
 
-      <ol className="cw-rev__index" aria-label="Two exits">
+      <ol className="cw-rev__index" aria-label="Three exits">
         <li className="cw-rev__entry">
           <p className="cw-rev__num" aria-hidden>01.</p>
           <div className="cw-rev__entry-main">
@@ -182,6 +182,36 @@ export function RevenueTick() {
             <span className="cw-rev__when-kind">IPO</span>
             <span className="cw-rev__when-sep" aria-hidden>·</span>
             <span className="cw-rev__when-date">2018</span>
+          </p>
+        </li>
+
+        {/* Pass-29 (operator: third exit confirmed): Neuton.AI -> Nordic
+            Semiconductor, June 2025 (nordicsemi.com press release). Framed
+            "helped launch" — no cap-table claim, unlike Guardicore/SM. */}
+        <li className="cw-rev__entry">
+          <p className="cw-rev__num" aria-hidden>03.</p>
+          <div className="cw-rev__entry-main">
+            <p className="cw-rev__deal">
+              <strong>Neuton.AI</strong>
+              <span className="cw-rev__arrow" aria-hidden>→</span>
+              <strong>Nordic Semiconductor</strong>
+            </p>
+            <div className="cw-rev__note">
+              <p>
+                I helped launch Neuton.AI — automated machine learning
+                that builds models small enough to run on a
+                microcontroller.
+              </p>
+              <p>
+                Nordic Semiconductor, a public semiconductor company,
+                acquired the technology in 2025.
+              </p>
+            </div>
+          </div>
+          <p className="cw-rev__when" data-kind="acquired">
+            <span className="cw-rev__when-kind">Acquired</span>
+            <span className="cw-rev__when-sep" aria-hidden>·</span>
+            <span className="cw-rev__when-date">2025</span>
           </p>
         </li>
       </ol>

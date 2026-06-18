@@ -242,30 +242,30 @@ export function Hero() {
       </h1>
 
       <p className="cw-sub" ref={subRef}>
-        Two enterprise exits. A HIPAA-grade SaaS I built solo, on the
-        same AI tools you&rsquo;re using.{" "}
+        Three companies I helped build reached an exit — an IPO and two
+        acquisitions.{" "}
         <em>
-          Hire me for the work — or take the playbook and ship it
-          yourself.
+          I sell and position data and security into banks, insurers,
+          and regulated buyers.
         </em>
       </p>
 
-      {/* Pass-28 (two-buyer pivot): dual front-door CTAs. Primary routes
-          Buyer B to the playbook; ghost routes Buyer A to /hire-me;
-          tertiary keeps the in-page "how I work" jump. Calendly is no
-          longer a hero CTA — it lives on /hire-me + the footer. */}
+      {/* Pass-29 (enterprise/FIS re-rank): lead with the work, proof-
+          first. The $149 playbook is demoted to the tertiary slot so an
+          enterprise buyer never reads a consumer price first. Calendly
+          lives in the footer; /hire-me carries the FTE/fractional path. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
         <MagneticArea>
-          <a href="/playbook" className="cw-cta">
-            Get the playbook — $149{" "}
-            <span className="cw-arr" aria-hidden>→</span>
+          <a href="#products" className="cw-cta">
+            See the work <span className="cw-arr" aria-hidden>↓</span>
           </a>
         </MagneticArea>
         <a href="/hire-me" className="cw-cta cw-cta--ghost">
           Hire me <span className="cw-arr" aria-hidden>→</span>
         </a>
-        <a href="#how-i-work" className="cw-cta cw-cta--ghost">
-          See how I work <span className="cw-arr" aria-hidden>↓</span>
+        <a href="/playbook" className="cw-cta cw-cta--ghost">
+          Stuck on a build? Get the playbook{" "}
+          <span className="cw-arr" aria-hidden>→</span>
         </a>
       </div>
 
@@ -286,6 +286,10 @@ export function Hero() {
         <span>SurveyMonkey IPO</span>
         <span className="cw-hero__colophon-sep" aria-hidden>·</span>
         <span>2018</span>
+        <span className="cw-hero__colophon-sep" aria-hidden>·</span>
+        <span>Nordic Semiconductor</span>
+        <span className="cw-hero__colophon-sep" aria-hidden>·</span>
+        <span>2025</span>
         <span className="cw-hero__colophon-sep" aria-hidden>·</span>
         <span>Ordani</span>
         <span className="cw-hero__colophon-sep" aria-hidden>·</span>
