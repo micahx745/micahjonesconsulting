@@ -43,12 +43,18 @@
 import { useEffect, useRef } from "react";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
-// Pass-21 (Claude Chat audit): "pipeline" and "system" were abstract
-// nouns belonging to any consultant's site — replaced with "position"
-// (the Guardicore work, named directly) and "engine" (the content/
-// evidence systems, named directly). Now 4-for-4 specific artifacts
-// a $200K buyer can picture, not 2-for-4.
-const ROLLING_WORDS = ["product.", "position.", "launch.", "engine."] as const;
+// Pass-31 (Cowork round 2): every word now reads as a clean sentence
+// after the fixed stem "I build the ___". Dropped "position." / "launch."
+// (awkward after "the"). Added "data platform." + "RFP engine." — they
+// name the real RAG RFP-scanning software and signal data/fintech +
+// procurement range, pulling the enterprise-data category by general
+// credibility, never naming a buyer, never presuming a problem.
+const ROLLING_WORDS = [
+  "go-to-market.",
+  "product.",
+  "data platform.",
+  "RFP engine.",
+] as const;
 
 export function Hero() {
   const eyebrowRef = useRef<HTMLSpanElement | null>(null);
@@ -226,7 +232,7 @@ export function Hero() {
           <span ref={captureLine}>
             {/* Screen-reader fallback: the rolling stack is decorative
                 motion; the SR-only static label is read once. */}
-            <span className="cw-sr-only">go-to-market and product.</span>
+            <span className="cw-sr-only">go-to-market, product, and data platforms.</span>
             <span className="cw-roll" aria-hidden>
               <span className="cw-stack" ref={rollRef}>
                 {ROLLING_WORDS.map((w) => (

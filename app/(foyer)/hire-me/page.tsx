@@ -18,12 +18,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Hire me — full-time, fractional, or contract",
   description:
-    "Two enterprise exits. $20M+ in client revenue. Product deployed behind a top-10 North American bank and a global systemically important bank. Now building Ordani solo. Available in four shapes.",
+    "Three companies I helped build reached an exit. $20M+ in client revenue. Product deployed behind a top-10 North American bank and a global systemically important bank. Now building Ordani solo. Available in four shapes.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/hire-me" },
   openGraph: {
     title: "Hire me — full-time, fractional, or contract",
     description:
-      "Two enterprise exits, $20M+ in client revenue, product deployed behind global financial institutions. An operator who has owned outcomes, available in four shapes.",
+      "Three companies I helped build reached an exit, $20M+ in client revenue, product deployed behind global financial institutions. An operator who has owned outcomes, available in four shapes.",
     type: "website",
     url: "https://www.micahjonesconsulting.com/hire-me",
     siteName: "Micah Jones",
@@ -34,6 +34,8 @@ const RECEIPTS = [
   "Three companies I helped build reached an exit — two on the cap table (Guardicore, TechValidate→SurveyMonkey), one I helped launch (Neuton.AI→Nordic Semiconductor).",
   "$20M+ in client revenue across a decade of enterprise software.",
   "Product deployed behind a top-10 North American bank, a global systemically important bank, and the world's largest public biomedical-research funder.",
+  "Earlier, I ran multi-million-dollar cybersecurity procurements from the inside. I know the security questionnaire, the risk review, and the committee that signs.",
+  "Built and shipped: a retrieval system that turns an organization's own data into drafted RFP responses, daily.",
 ] as const;
 
 const SHAPES = [
@@ -70,6 +72,7 @@ const SHAPES = [
 const VERTICALS = [
   "Financial services",
   "Security",
+  "Applied AI & data",
   "Survey & martech",
   "Healthcare",
   "Logistics",
@@ -96,7 +99,7 @@ export default function HireMePage() {
           Full-time, fractional, or contract.
         </h1>
         <p className="cw-services__intro">
-          Two enterprise exits. A HIPAA-grade SaaS I built solo. I&rsquo;ve
+          Three companies I helped build reached an exit. A HIPAA-grade SaaS I built solo. I&rsquo;ve
           owned outcomes, not just advised on them. Here&rsquo;s the
           shape that fits your seat.
         </p>

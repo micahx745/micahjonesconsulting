@@ -50,13 +50,13 @@ export const metadata: Metadata = {
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
   },
   description:
-    "Independent operator in Oakland. $20M+ in client revenue. Two exits — Akamai acquisition, SurveyMonkey IPO. Now building Ordani — HIPAA-grade practice management software for fourteen doula practices.",
+    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management software for fourteen doula practices.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "$20M+ in client revenue. Two exits — Akamai acquisition, SurveyMonkey IPO. Now building Ordani — HIPAA-grade practice management for fourteen doula practices.",
+      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management for fourteen doula practices.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "$20M+ in client revenue. Two exits — Akamai acquisition, SurveyMonkey IPO. Now building Ordani.",
+      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani.",
   },
 };
 
@@ -368,35 +368,28 @@ export default function ColorWorldsHome() {
         </p>
 
         <ul className="cw-cards">
-          {/* Card 1 — author engagement, three sub-engagements at masked
-              end-clients. Per operator: re-frame the relationship so the
-              card surfaces the breadth of the end-clients Dante was
-              serving while I was the operator beneath. Standard premium-
-              consulting anonymization pattern ("Fortune-500 retail
-              company"). */}
+          {/* Card 1 — industry-authority author engagement. The three
+              fabricated end-clients (research university / Fortune-500
+              "30% revenue lift" / "major American city" + bespoke product)
+              are DELETED — operator confirms that story is false. The true
+              engagement is one industry-authority author: reach 8K→290K, a
+              real custom RFP-scanning platform, two six-figure retainers.
+              "product" in the H3 now names the RAG RFP software I built. */}
           <li
             className="cw-card cw-reveal"
             style={{ transitionDelay: "0ms" }}
           >
             <a href="/work/hr-equity-author" className="cw-card__link">
-              <span className="cw-tag">2024–present · Multi-engagement</span>
-              {/* Pass-23: broadened from "HR author" to "industry author"
-                  to match the rewritten case-study title. The sub-list
-                  below still names specific end-clients; the H3 is now
-                  vertical-agnostic (the case study applies to any
-                  high-stakes industry-authority expert). */}
+              <span className="cw-tag">2024–present · Content + software</span>
               <h3>Content + product for an industry author</h3>
               <p>
-                Algorithm strategy and content engine for an industry
-                author. Monthly reach: 8K → 290K. RFP-to-close rate
-                doubled. Three engagements through one relationship,
-                each routed to a different end-client:
+                One industry-authority author. I built the content engine
+                and the software beneath it. Monthly reach grew from 8K to
+                290K. RFP-to-close rate doubled. The software scans new
+                RFPs, weighs each against the author&apos;s own work, and
+                drafts a partial response every morning. Two six-figure
+                retainers closed in the window.
               </p>
-              <ul className="cw-card__sublist" aria-label="Three sub-engagements">
-                <li>A top-tier research university — published-research web platform</li>
-                <li>A Fortune-500 enterprise — internal distribution platform; 30% revenue lift</li>
-                <li>A major American city — website, content engine, GTM, and a bespoke product</li>
-              </ul>
               <span className="cw-open">See the engagement →</span>
             </a>
           </li>
