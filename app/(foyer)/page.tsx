@@ -157,6 +157,37 @@ export default function ColorWorldsHome() {
         <RevenueTick />
       </section>
 
+      {/* ABOUT (brief) — bone. Pass-32: short operator grounding (the
+          removed hero eyebrow's identity, relocated here); full bio /about. */}
+      <section
+        className="cw-block"
+        id="about-brief"
+        data-section
+        data-world="bone"
+        aria-labelledby="cw-about-brief-title"
+      >
+        <p className="cw-kicker cw-reveal">About</p>
+        <SplitReveal
+          as="h2"
+          id="cw-about-brief-title"
+          className="cw-secttitle"
+        >
+          Operator, not consultant.
+        </SplitReveal>
+        <p className="cw-sect-dek cw-reveal">
+          I&rsquo;ve spent a decade inside B2B software, on either side of
+          the table — GTM strategy in the morning, shipping product in the
+          afternoon. Most consultants don&rsquo;t ship. Most builders
+          don&rsquo;t sell. I do both.
+        </p>
+        <div className="cw-section-cta-wrap cw-reveal">
+          <a href="/about" className="cw-section-cta">
+            More about how I work{" "}
+            <span className="cw-section-cta__arr" aria-hidden>→</span>
+          </a>
+        </div>
+      </section>
+
       {/* CLIENTS — bone */}
       <section
         className="cw-block"
@@ -314,10 +345,10 @@ export default function ColorWorldsHome() {
               then the operator move ("I built it."), then the
               technical posture as evidence, closing on retention. */}
           Birth workers run their practices on group chats and paper
-          intakes. HIPAA is the law; compliance is impossible without
-          real infrastructure. <em>I built it.</em> Row-level encryption,
-          two outside security reviews, fourteen practices in private
-          beta. None lost to a competitor.
+          intakes. HIPAA is the law, and real compliance needs real
+          infrastructure. <em>So I built Ordani — a company, in private
+          beta.</em> Row-level encryption, two outside security reviews,
+          fourteen practices, none lost to a competitor.
         </p>
         <p className="cw-lede-sub cw-reveal">
           {/* TODO(operator): Ordani product website is under
@@ -334,10 +365,11 @@ export default function ColorWorldsHome() {
         <p className="cw-note cw-reveal">
           Private beta · onboarding new users weekly
         </p>
-        {/* Pass-30 (Cowork review): playbook plug removed from the
-            enterprise front door; the solo-build stack stays as proof. */}
+        {/* Pass-32 (operator: frame Ordani as a real company, not a solo
+            side project). The stack stays as proof; "solo" framing dropped. */}
         <p className="cw-note cw-reveal">
-          Built solo on Next.js, Supabase, and Vercel.
+          A real company in private beta — Next.js, Supabase, Vercel,
+          HIPAA-grade.
         </p>
       </section>
 
