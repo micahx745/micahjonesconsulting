@@ -23,10 +23,15 @@
   --color-foyer-ink:          #1A1816;
   --color-foyer-ink-soft:     #3A3631;
 
-  --color-theater-ground:     #0D0D0F;
-  --color-theater-surface:    #16161A;
-  --color-theater-ink:        #EAE6DD;
-  --color-theater-ink-soft:   #9C988F;
+  /* W1 re-port (D3, 2026-08-11): theater ground recolored into the
+   * Color Worlds family — warm espresso-black instead of blue-black,
+   * bone ink instead of the old off-white. Contrast (computed):
+   * bone on ground 14.88:1; ink-soft 6.94:1; cw-saffron 7.25:1 (labels);
+   * copper 4.3:1 (decorative/large-text only — NEVER small text). */
+  --color-theater-ground:     #12100E;
+  --color-theater-surface:    #1A1713;
+  --color-theater-ink:        #ECE3D0;
+  --color-theater-ink-soft:   #A69B8A;
 
   /* Tier X — Library room intermediate tone.
    * Bone is the warm white-tan that sits between cream (foyer) and
@@ -52,17 +57,14 @@
   --color-indigo:             #1F2D5C;
   --color-indigo-deep:        #0F1A3E;
 
-  /* Tier C — per-case secondary accents (Work index + per-case scope only).
-   * Each accent is analogous to copper (warm/desaturated) to avoid a rainbow
-   * effect. Used via --case-accent CSS variable scoped to [data-case=<slug>].
-   * Each tested ≥4.5:1 against foyer-paper for AA on small text. */
-  --color-case-forest:        #2D5045;  /* HR-equity-author */
-  --color-case-wine:          #6A2D33;  /* Akamai (cinema-seat burgundy) */
-  --color-case-slate:         #3D4C5C;  /* Passioneer (steel) */
+  /* W1 re-port (D3, 2026-08-11): per-case accents (forest/wine/slate)
+   * DELETED — case pages run ONE accent family (rust + saffron from the
+   * Color Worlds system). The review's 2.01–2.17:1 label failures were
+   * these per-case greens on the dark ground. */
 
   /* Hairline rules per mode */
   --color-rule-foyer:         #D9D2C4;
-  --color-rule-theater:       #2A2A30;
+  --color-rule-theater:       #3A332B;
 
   /* ---- Font cascade (Phase 1 wires next/font CSS variables here) ---- *
    *
@@ -3400,13 +3402,18 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 100dvh;          /* fills the viewport so pin has room */
+  /* W1 (review guardicore #7): a full 100dvh hero at mobile left a
+   * viewport-height of empty black before any content. 72dvh at
+   * mobile; the desktop hero keeps the full-viewport moment. The
+   * GSAP pin distance is fixed (240px) and independent of this. */
+  min-height: 72dvh;
   padding: 64px var(--spacing-page-x-mobile);
   width: 100%;
 }
 
 @media (min-width: 768px) {
   [data-title-card] {
+    min-height: 100dvh;          /* fills the viewport so pin has room */
     padding: 128px var(--spacing-page-x-desktop);
   }
 }
@@ -3426,7 +3433,10 @@ body {
    * case-study padding) characters worth of advance width. clamp scales
    * smoothly between 44px at 320px wide and 64px at ~492px wide. The
    * desktop hard size below still kicks in at 768+. */
-  font-size: clamp(44px, 13vw, 64px);
+  /* W1 (P1-4): 13vw → 12vw so the longest word corpus ("NARRATIVE.")
+   * fits the padded hero box at 390 (262px available, ~252px needed
+   * at 46.8px). The 44px floor and 64px ceiling are unchanged. */
+  font-size: clamp(44px, 12vw, 64px);
   line-height: 0.95;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -3435,7 +3445,7 @@ body {
 
 @media (min-width: 768px) {
   .title-card-word {
-    font-size: 96px;           /* blueprint §4f */
+    font-size: 92px;           /* W1: snapped to the D13 display-92 step */
   }
 }
 
@@ -3451,21 +3461,18 @@ body {
   pointer-events: none;        /* GSAP toggles via inline style; layout pre-positioned */
 }
 
+/* W1 re-port (D3): caption leaves Source Serif italic for the system
+ * body face at the lede-22 step (D13). It is THE one lede — the header
+ * <Dek> that duplicated it is gone. */
 .title-card-caption {
   margin: 0;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 20px;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: clamp(19px, 2.2vw, 22px);
   line-height: 1.5;
   letter-spacing: -0.005em;
-  max-width: 64ch;
+  max-width: 58ch;
   color: inherit;
-}
-
-@media (min-width: 768px) {
-  .title-card-caption {
-    font-size: 22px;
-  }
 }
 
 .title-card-hero {
@@ -4279,29 +4286,11 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin: 0;
 }
 
-/* Tier C — per-case visual identity.
- *
- * Each case study scope sets --case-accent inside its data-case wrapper.
- * The accent flows down to the card's rule, index number, and (on case
- * study pages) the dek typography. Accents stay within an analogous
- * warm/desaturated palette so the Work index reads as a series, not a
- * rainbow. Each accent is ≥4.5:1 against foyer-paper for AA on small text.
- * Outside a [data-case] scope, --case-accent falls back to copper. */
-[data-case="ordani"] {
-  --case-accent: var(--color-ordani-sage);
-}
-
-[data-case="hr-equity-author"] {
-  --case-accent: var(--color-case-forest);
-}
-
-[data-case="akamai"] {
-  --case-accent: var(--color-case-wine);
-}
-
-[data-case="passioneer"] {
-  --case-accent: var(--color-case-slate);
-}
+/* W1 re-port (D3, 2026-08-11): per-case accent identity DELETED.
+ * Case pages run ONE accent family — cw-saffron for text labels
+ * (7.25:1 on the theater ground), copper for decorative rules.
+ * --case-accent is no longer set anywhere; every var(--case-accent, X)
+ * fallback below now resolves to its explicit system color. */
 
 /* Scope down the TitleCardComposition inside selected-work cards: thumbnails
    should not occupy 100dvh — they live inside a card. */
@@ -4763,6 +4752,25 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   }
 }
 
+/* W1 (P1-4 root cause, 2026-08-11): the TitleCard hero was DOUBLE-padded —
+ * .case-study pads 64px/128px AND [data-title-card] pads the same again,
+ * squeezing the word stack to 134px at a 390 viewport while "NARRATIVE."
+ * needs ~273px at its clamp size. The invisible text overflow pushed the
+ * page canvas to exactly 401px (the Cowork review's horizontal-scroll
+ * finding). Pull the hero back to full bleed; it supplies its own
+ * page-x padding. */
+[data-mode="theater"] .case-study .title-card-root {
+  margin-left: calc(-1 * var(--spacing-page-x-mobile));
+  margin-right: calc(-1 * var(--spacing-page-x-mobile));
+}
+
+@media (min-width: 768px) {
+  [data-mode="theater"] .case-study .title-card-root {
+    margin-left: calc(-1 * var(--spacing-page-x-desktop));
+    margin-right: calc(-1 * var(--spacing-page-x-desktop));
+  }
+}
+
 /* Pass-22 (CW-18 Slice 1): asymmetric grid layout — replaces the
  * previous centered single-column body (max-width: 64ch; margin: 0
  * auto) that left empty space on both sides of the column at wider
@@ -4811,34 +4819,49 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 [data-mode="theater"] .case-study__header {
   margin: 64px 0 64px;
 }
+/* W1: at desktop the header holds only the (hidden) meta fallback —
+ * collapse its margins so the empty element adds no dead vertical gap. */
+@media (min-width: 1024px) {
+  [data-mode="theater"] .case-study__header {
+    margin: 0;
+  }
+}
 
-/* Pass-22: mobile + no-JS meta fallback. Default visible; hidden at
- * >=1024px when the .cw-js-reveals root class is set (signalling the
- * sidebar is wired and shows the meta there instead). */
+/* Pass-22: mobile + no-JS meta fallback. W1 re-port fix: the old rule
+ * gated the desktop hide on a .cw-js-reveals class that nothing on
+ * theater routes ever set — so role/tools/year rendered TWICE at
+ * >=1024px (header + sidebar rail; the Cowork review's duplicate-meta
+ * finding). The sidebar server-renders its meta dl, so the hide is
+ * safe unconditionally at desktop widths. */
 [data-mode="theater"] .case-study__header-meta-fallback {
   display: block;
 }
 @media (min-width: 1024px) {
-  [data-mode="theater"].cw-js-reveals .case-study__header-meta-fallback,
-  [data-mode="theater"] .cw-js-reveals .case-study__header-meta-fallback {
+  /* Double-class selector so this outranks .case-study__meta's
+   * display:flex, which appears later in the file at equal
+   * specificity otherwise. */
+  [data-mode="theater"] .case-study__header-meta-fallback.case-study__meta {
     display: none;
   }
 }
 
+/* W1 re-port (D3): the dek/lede moves from Source Serif italic to the
+ * system body face at the lede-22 scale step (D13). */
 [data-mode="theater"] .case-study-dek {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(20px, 2.4vw, 26px);
-  line-height: 1.45;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: clamp(19px, 2.2vw, 22px);
+  line-height: 1.5;
   letter-spacing: -0.005em;
   color: var(--color-theater-ink);
   margin: 0;
 }
 
 [data-mode="theater"] .case-study__meta {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-theater-ink-soft);
   margin: 24px 0 0;
   display: flex;
@@ -4861,16 +4884,16 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
  * parent .case-study__layout grid provides column width and
  * positioning. Typography rules preserved. */
 [data-mode="theater"] .case-study__body {
-  font-family: var(--font-sans);
-  font-size: 18px;
+  font-family: var(--font-cw-body);
+  font-size: 17px;
   line-height: 1.7;
   color: var(--color-theater-ink);
 }
 
 [data-mode="theater"] .case-study__body h2 {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(26px, 3.2vw, 36px);
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 40px);
   line-height: 1.2;
   letter-spacing: -0.015em;
   color: var(--color-theater-ink);
@@ -4896,19 +4919,8 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin-top: 0;
 }
 
-/* Tier H — Drop cap on first paragraph after each h2.
- * Source Serif 4 italic, sized to ~3 lines. Subtle copper tint.
- * Only on first paragraph after a heading. */
-[data-mode="theater"] .case-study__body h2 + p::first-letter {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 3.2em;
-  font-weight: 400;
-  float: left;
-  line-height: 0.92;
-  margin: 0.05em 0.08em 0 0;
-  color: var(--case-accent, var(--color-accent-copper-deep));
-}
+/* W1 re-port (D3): serif drop caps DELETED — they were the second
+ * design system's voice (operator-locked decision, 2026-08-11). */
 
 [data-mode="theater"] .case-study__body h2:first-child {
   margin-top: 0;
@@ -4974,6 +4986,10 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
  * THICK left rule (like a magazine pull-quote) carrying the case-study
  * accent. Eyebrow + display-italic title + date stacked vertically.
  * Reads as deliberate typography, not as a frame waiting for content. */
+/* W1 re-port (D3 + R5): the one-side accent border — the exact card
+ * pattern R5 bans — becomes a full hairline frame, matching the framed
+ * treatment real artifacts get. Labels move to the mono register at
+ * 12px in cw-saffron (7.25:1 on the ground). */
 [data-mode="theater"] .case-study-still__placeholder {
   display: flex;
   flex-direction: column;
@@ -4981,38 +4997,35 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   justify-content: center;
   gap: 18px;
   width: 100%;
-  padding: clamp(20px, 3vw, 36px) 0 clamp(20px, 3vw, 36px)
-    clamp(20px, 2.4vw, 32px);
+  padding: clamp(24px, 3vw, 40px) clamp(20px, 2.4vw, 32px);
   background: transparent;
-  border-left: 4px solid
-    var(--case-accent, var(--color-accent-copper));
+  border: 1px solid var(--color-rule-theater);
 }
 
 [data-mode="theater"] .case-study-still__spec-eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 600;
-  color: var(--case-accent, var(--color-accent-copper));
+  font-weight: 500;
+  color: var(--color-cw-saffron);
 }
 
 [data-mode="theater"] .case-study-still__spec-title {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 500;
-  font-size: clamp(22px, 2.4vw, 32px);
-  line-height: 1.25;
-  color: color-mix(in srgb, var(--color-theater-ink) 92%, transparent);
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(24px, 2.4vw, 28px);
+  line-height: 1.2;
+  color: var(--color-theater-ink);
   max-width: 36ch;
 }
 
 [data-mode="theater"] .case-study-still__spec-date {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-theater-ink-soft) 80%, transparent);
+  color: var(--color-theater-ink-soft);
 }
 
 /* 4% film-grain overlay — data URI noise per §4c */
@@ -5027,15 +5040,17 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 }
 
 [data-mode="theater"] .case-study-still__caption {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 15px;
-  line-height: 1.5;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
   color: var(--color-theater-ink-soft);
   margin: 16px 0 0;
 }
 
-/* PullQuote — Source Serif 4 italic + copper underline-grow */
+/* PullQuote — W1 re-port (D3): Bricolage display + copper underline-grow.
+ * The serif italic voice is gone; the quote now speaks in the system's
+ * display face, snapped to the h2 scale step (D13). */
 [data-mode="theater"] .case-study-pull-quote {
   /* Tier H — Cinematic pull-quote treatment.
    * Quote becomes a full-bleed-width moment with deep vertical space
@@ -5044,16 +5059,16 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   margin: clamp(120px, 16vw, 200px) 0;
   max-width: 70ch;
   padding: clamp(32px, 4vw, 64px) 0;
-  border-top: 1px solid var(--case-accent, var(--color-rule-theater));
-  border-bottom: 1px solid var(--case-accent, var(--color-rule-theater));
+  border-top: 1px solid var(--color-rule-theater);
+  border-bottom: 1px solid var(--color-rule-theater);
 }
 
 [data-mode="theater"] .case-study-pull-quote__quote {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(28px, 4.2vw, 44px);
-  line-height: 1.3;
-  letter-spacing: -0.012em;
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
   color: var(--color-theater-ink);
   margin: 0;
   position: relative;
@@ -5081,22 +5096,15 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   transform: scaleX(1);
 }
 
-/* Phase 10 — TOKEN-05 closure. Sage accent on the PullQuote underline-grow
-   bar. Permitted ONLY inside /work/ordani per blueprint §4b + the design-
-   tokens hook allowlist (sage is in brand.json.palette but scoped to ORDANI).
-   The MDX call site passes accentColor="sage"; PullQuote.tsx forwards via
-   data-accent="sage". Other case studies leave the prop unset and inherit
-   copper (the rule above). */
-[data-mode="theater"]
-  .case-study-pull-quote[data-accent="sage"]
-  .case-study-pull-quote__quote::after {
-  background: var(--color-ordani-sage);
-}
+/* W1 re-port (D3): the sage PullQuote variant is retired — one accent
+ * family on case pages (operator-locked, 2026-08-11). data-accent="sage"
+ * now falls through to the copper rule above. */
 
 [data-mode="theater"] .case-study-pull-quote__attribution {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-theater-ink-soft);
   margin: 24px 0 0;
 }
@@ -5141,12 +5149,12 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 }
 
 [data-mode="theater"] .case-study__sidebar-label {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 600;
-  color: var(--case-accent, var(--color-accent-copper));
+  font-weight: 500;
+  color: var(--color-cw-saffron);
   margin: 0 0 16px;
 }
 
@@ -5174,7 +5182,7 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--case-accent, var(--color-accent-copper));
+  background: var(--color-accent-copper);
   transform: scaleY(var(--read-progress));
   transform-origin: top;
 }
@@ -5193,9 +5201,9 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 }
 [data-mode="theater"] .case-study__sidebar-toc-link {
   display: block;
-  font-family: var(--font-sans);
-  font-size: 13px;
-  line-height: 1.4;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  line-height: 1.5;
   color: var(--color-theater-ink-soft);
   text-decoration: none;
   padding: 2px 0;
@@ -5206,13 +5214,12 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   color: var(--color-theater-ink);
 }
 [data-mode="theater"] .case-study__sidebar-toc-link[data-active="true"] {
-  color: var(--case-accent, var(--color-accent-copper));
+  color: var(--color-cw-saffron);
   font-weight: 500;
 }
 
-/* Meta dl — role / tools / year. Source Serif for the values,
- * mono for the labels. Tight rows, hairline separators between
- * entries for editorial feel. */
+/* Meta dl — role / tools / year. W1 re-port (D3): mono labels at the
+ * 12px step, body face for values — the serif is gone. */
 [data-mode="theater"] .case-study__sidebar-meta {
   margin: 0;
   display: flex;
@@ -5220,19 +5227,18 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   gap: 18px;
 }
 [data-mode="theater"] .case-study__sidebar-meta dt {
-  font-family: var(--font-sans);
-  font-size: 10px;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-weight: 600;
-  color: color-mix(in srgb, var(--color-theater-ink-soft) 80%, transparent);
+  font-weight: 500;
+  color: var(--color-theater-ink-soft);
   margin: 0 0 4px;
 }
 [data-mode="theater"] .case-study__sidebar-meta dd {
-  font-family: var(--font-serif);
-  font-style: italic;
+  font-family: var(--font-cw-body);
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
   color: var(--color-theater-ink);
   margin: 0;
 }
@@ -5256,10 +5262,10 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 }
 
 [data-mode="theater"] .case-study__nav-link {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  letter-spacing: 0.06em;
-  text-transform: lowercase;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--color-theater-ink);
   text-decoration: none;
   position: relative;
@@ -5645,10 +5651,14 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 
 /* Custom cursor removed — system cursor is the source of truth. */
 
+/* W1 re-port (D3): nav + overlay selectors extended to the theater
+ * mode so case pages run the SAME chrome as the rest of the site
+ * (one wordmark, one nav). mix-blend-mode: difference self-adapts on
+ * the dark ground. */
 /* Nav. mix-blend-mode: difference keeps text legible against any
  * world bg. White text is the source; difference inverts to whatever
  * contrasts the current world. */
-[data-mode="cw"] .cw-nav {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -5661,19 +5671,19 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   mix-blend-mode: difference;
   color: #fff;
 }
-[data-mode="cw"] .cw-nav .cw-wordmark,
-[data-mode="cw"] .cw-nav .cw-navlinks a,
-[data-mode="cw"] .cw-nav .cw-menubtn {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-wordmark,
+:is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-navlinks a,
+:is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-menubtn {
   color: #fff;
 }
-[data-mode="cw"] .cw-wordmark {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-wordmark {
   font-family: var(--font-cw-display);
   font-weight: 800;
   font-size: 21px;
   letter-spacing: -0.02em;
   text-decoration: none;
 }
-[data-mode="cw"] .cw-navlinks {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-navlinks {
   display: flex;
   gap: 30px;
   align-items: center;
@@ -5685,15 +5695,15 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   padding: 0;
   margin: 0;
 }
-[data-mode="cw"] .cw-navlinks a {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-navlinks a {
   text-decoration: none;
   opacity: 0.8;
   transition: opacity 0.2s;
 }
-[data-mode="cw"] .cw-navlinks a:hover {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-navlinks a:hover {
   opacity: 1;
 }
-[data-mode="cw"] .cw-menubtn {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-menubtn {
   display: none;
   background: none;
   border: none;
@@ -5706,19 +5716,19 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   gap: 8px;
 }
 @media (max-width: 760px) {
-  [data-mode="cw"] .cw-nav {
+  :is([data-mode="cw"], [data-mode="theater"]) .cw-nav {
     padding: 18px 20px;
   }
-  [data-mode="cw"] .cw-navlinks {
+  :is([data-mode="cw"], [data-mode="theater"]) .cw-navlinks {
     display: none;
   }
-  [data-mode="cw"] .cw-menubtn {
+  :is([data-mode="cw"], [data-mode="theater"]) .cw-menubtn {
     display: flex;
   }
 }
 
 /* Full-screen overlay menu (mobile). */
-[data-mode="cw"] .cw-overlay {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-overlay {
   position: fixed;
   inset: 0;
   z-index: 300;
@@ -5731,10 +5741,10 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   transform: translateY(-100%);
   transition: transform 0.6s cubic-bezier(0.7, 0, 0.2, 1);
 }
-[data-mode="cw"] .cw-overlay.is-open {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-overlay.is-open {
   transform: translateY(0);
 }
-[data-mode="cw"] .cw-overlay .cw-overlay-close {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-overlay .cw-overlay-close {
   position: absolute;
   top: 22px;
   right: 24px;
@@ -5747,7 +5757,7 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   letter-spacing: 0.12em;
   cursor: pointer;
 }
-[data-mode="cw"] .cw-overlay a {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-overlay a {
   font-family: var(--font-cw-display);
   font-weight: 800;
   font-size: clamp(44px, 11vw, 90px);
@@ -5760,11 +5770,11 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
     color 0.2s,
     padding-left 0.3s;
 }
-[data-mode="cw"] .cw-overlay a:hover {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-overlay a:hover {
   color: var(--color-cw-saffron);
   padding-left: 18px;
 }
-[data-mode="cw"] .cw-overlay-meta {
+:is([data-mode="cw"], [data-mode="theater"]) .cw-overlay-meta {
   font-family: var(--font-cw-mono);
   font-size: 12px;
   letter-spacing: 0.14em;

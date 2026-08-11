@@ -96,9 +96,13 @@ export function TitleCardComposition({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={heroSrc} alt={heroAlt ?? ""} loading="eager" />
           </div>
-        ) : (
-          <div data-tc-hero className="title-card-hero title-card-hero--placeholder" aria-hidden />
-        )}
+        ) : null
+        /* W1 (2026-08-11): the empty bordered placeholder frame is gone —
+           an empty rectangle in the hero read as a missing image, not
+           restraint. When a real still lands (P2-1 artifact drops), the
+           heroSrc branch renders it. TitleCard.tsx already null-checks
+           [data-tc-hero], so the GSAP timeline skips the hero tween. */
+        }
       </div>
     </section>
   );

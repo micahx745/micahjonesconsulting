@@ -88,6 +88,13 @@ export function CaseStudyStill({
   const captionText = caption ?? alt;
   const formattedDate = formatDate(date);
 
+  // W1 re-port (D3, 2026-08-11): when the placeholder specimen renders
+  // (no src) and no distinct caption was authored, the figcaption would
+  // repeat the alt text verbatim below the specimen — the Cowork
+  // review's duplicate-caption finding. The specimen already carries
+  // the title + date; the figcaption only renders when it adds words.
+  const showCaption = Boolean(src) || (caption !== undefined && caption !== alt);
+
   return (
     <figure className="case-study-still">
       <div className="case-study-still__frame">
@@ -133,9 +140,11 @@ export function CaseStudyStill({
         {/* Film-grain overlay — 4% opacity (CSS) */}
         <div className="case-study-still__grain" aria-hidden="true" />
       </div>
-      <figcaption className="case-study-still__caption">
-        {captionText} — {formattedDate}
-      </figcaption>
+      {showCaption ? (
+        <figcaption className="case-study-still__caption">
+          {captionText} — {formattedDate}
+        </figcaption>
+      ) : null}
     </figure>
   );
 }

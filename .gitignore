@@ -38,3 +38,4 @@ Desktop.ini
 next-env.d.ts.bak
 
 .vercel
+.playwright-mcp/

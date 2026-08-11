@@ -20,7 +20,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TitleCard } from "@/components/TitleCard";
-import { Dek } from "@/components/Dek";
 import { CaseStudyStill } from "@/components/CaseStudyStill";
 import { CaseStudyReadTracker } from "@/components/CaseStudyReadTracker";
 import { CaseStudySidebar } from "@/components/CaseStudySidebar";
@@ -151,7 +150,11 @@ export default async function TheaterCaseStudyPage({
           case_study_read_complete once per session. */}
       <CaseStudyReadTracker slug={slug} />
 
-      {/* 1. TitleCard — the signature motion (Phase 5 client wrapper) */}
+      {/* 1. TitleCard — the signature motion (Phase 5 client wrapper).
+          W1 re-port (D3, 2026-08-11): the caption IS the one lede. The
+          dek previously rendered twice — here AND as a header <Dek>
+          below the hero (the Cowork review's duplicate-lede finding).
+          The header copy is gone; the resolved hero state carries it. */}
       <TitleCard
         words={cs.titleCardWords}
         caption={cs.dek}
@@ -169,11 +172,11 @@ export default async function TheaterCaseStudyPage({
           complaint by giving the empty right column designed content. */}
       <div className="case-study__layout">
         <header className="case-study__header">
-          <Dek>{cs.dek}</Dek>
-          {/* Mobile + no-JS fallback. Hidden at >=1024px when JS
-              confirms the sidebar is wired (toggled by globals.css
-              against the .cw-js-reveals root class). Reuses the
-              existing .case-study__meta layout. */}
+          {/* W1 (D3): the <Dek> that duplicated the TitleCard caption is
+              gone — one lede element (the caption above). The header now
+              carries only the mobile meta fallback. */}
+          {/* Mobile + no-JS fallback. Hidden at >=1024px — the sidebar
+              rail carries the meta there (see globals.css). */}
           <p className="case-study__header-meta-fallback case-study__meta">
             <span className="case-study__role">{cs.role}</span>
             <span className="case-study__dot" aria-hidden="true">

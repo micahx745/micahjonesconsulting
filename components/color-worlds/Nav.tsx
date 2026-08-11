@@ -20,22 +20,22 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// Pass-21 (Claude Chat audit): "Products" was undefined on the site —
-// the Shipped section actually contains engagements (Dante, GTM at
-// scale, Frontier AI), not products. Renamed to "Work" for accuracy.
-// Anchor href stays #products (the section id) so existing deep
-// links don't break.
-//
 // Pass-26 (operator cowork review): hrefs are root-relative ("/#x",
 // not "#x"). This nav renders on every (foyer) page — on /services
 // a bare "#clients" just mutated the URL hash on a page with no such
 // id, stranding the visitor. From home, "/#x" is still a same-
 // document fragment scroll (path unchanged); from subpages it
 // navigates home first.
+//
+// W1 (D11, operator-locked 2026-08-11): WORK now points at the real
+// /work index (it previously anchored to /#products — a dead end from
+// subpages), and SERVICES earns the fifth slot. /about, /hire-me,
+// /playbook stay inline-reachable by design (curation posture).
 const NAV_LINKS = [
   { href: "/#clients", label: "Clients" },
   { href: "/#ordani", label: "Ordani" },
-  { href: "/#products", label: "Work" },
+  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
   { href: "/#contact", label: "Contact" },
 ] as const;
 
