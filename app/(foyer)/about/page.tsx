@@ -26,89 +26,109 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <section
-      className="cw-block"
-      data-section
-      data-world="bone"
-      aria-labelledby="cw-about-title"
-    >
-      <p className="cw-kicker">About</p>
-      <h1 id="cw-about-title" className="cw-secttitle">
-        Operator, not consultant.
-      </h1>
+    <>
+      {/* INTRO — bone. Calm editorial opening; mirrors the home's
+          about-brief register. */}
+      <section
+        className="cw-block"
+        data-section
+        data-world="bone"
+        aria-labelledby="cw-about-title"
+      >
+        <p className="cw-kicker">About</p>
+        <h1 id="cw-about-title" className="cw-secttitle">
+          Operator, not consultant.
+        </h1>
 
-      <div className="cw-about">
-        <p className="cw-about__lede">
-          I&rsquo;ve spent a decade inside B2B software companies as the
-          person who can sit on either side of the table: GTM strategy in
-          the morning, shipping product in the afternoon. Most consultants
-          don&rsquo;t ship. Most builders don&rsquo;t sell. I do both, on
-          the same engagement, for the same fee.
-        </p>
+        <div className="cw-about">
+          <p className="cw-about__lede">
+            I&rsquo;ve spent a decade inside B2B software companies as the
+            person who can sit on either side of the table: GTM strategy in
+            the morning, shipping product in the afternoon. Most consultants
+            don&rsquo;t ship. Most builders don&rsquo;t sell. I do both, on
+            the same engagement, for the same fee.
+          </p>
+        </div>
+      </section>
 
-        <h2 className="cw-about__h">Receipts</h2>
-        <ul className="cw-about__list">
-          <li>
-            {/* Explicit {" "} join: Next 16's RSC serializer drops the
-                leading space of a text node that follows an inline
-                element WHEN the text contains an HTML entity (verified
-                against the built output — the review's "$20M+in" catch). */}
-            <strong>$20M+</strong>{" "}in client revenue (2013&ndash;2023).
-          </li>
-          <li>
-            <strong>Three companies I helped build reached an exit.</strong>{" "}
-            Two were mine on the cap table &mdash; Guardicore (Akamai,
-            2021) and TechValidate (SurveyMonkey, held through the 2018
-            IPO). The third I helped launch &mdash; Neuton.AI, whose
-            technology Nordic Semiconductor acquired in 2025.
-          </li>
-          <li>
-            {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
-                cut — named companies carried no figure. Guardicore and
-                TechValidate stay named in the exits bullet above, where
-                their figures live. */}
-            Growth, GTM, and platform strategy roles across a decade of
-            enterprise software.
-          </li>
-        </ul>
+      {/* RECEIPTS onward — espresso. D10 (operator-locked 2026-08):
+          the site's one signature gesture (palette-shift, R9) now has an
+          instance on /about — the lights dim as the page moves from
+          intro into proof, matching the home's Shipped section which
+          uses the same espresso world for its evidence beat. */}
+      <section
+        className="cw-block"
+        data-section
+        data-world="espresso"
+        aria-labelledby="cw-about-receipts-title"
+      >
+        <div className="cw-about">
+          <h2 id="cw-about-receipts-title" className="cw-about__h">
+            Receipts
+          </h2>
+          <ul className="cw-about__list">
+            <li>
+              {/* Explicit {" "} join: Next 16's RSC serializer drops the
+                  leading space of a text node that follows an inline
+                  element WHEN the text contains an HTML entity (verified
+                  against the built output — the review's "$20M+in" catch). */}
+              <strong>$20M+</strong>{" "}in client revenue (2013&ndash;2023).
+            </li>
+            <li>
+              <strong>Three companies I helped build reached an exit.</strong>{" "}
+              Two were mine on the cap table &mdash; Guardicore (Akamai,
+              2021) and TechValidate (SurveyMonkey, held through the 2018
+              IPO). The third I helped launch &mdash; Neuton.AI, whose
+              technology Nordic Semiconductor acquired in 2025.
+            </li>
+            <li>
+              {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
+                  cut — named companies carried no figure. Guardicore and
+                  TechValidate stay named in the exits bullet above, where
+                  their figures live. */}
+              Growth, GTM, and platform strategy roles across a decade of
+              enterprise software.
+            </li>
+          </ul>
 
-        <h2 className="cw-about__h">What I&rsquo;m known for</h2>
-        <ul className="cw-about__list">
-          <li>
-            <strong>Positioning research that moves deal-size.</strong> The
-            Guardicore engagement that became the Akamai acquisition began
-            with a single rewritten sentence — average deal size moved
-            $150K.
-          </li>
-          <li>
-            <strong>GTM systems that compound.</strong> Algorithm strategy +
-            content systems for an HR consultant returned 4× platform lift
-            and RFP wins inside one year.
-          </li>
-          <li>
-            <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-grade
-            practice management software for fourteen doula practices. Solo
-            build on Next.js + Supabase. Live beta.
-          </li>
-        </ul>
+          <h2 className="cw-about__h">What I&rsquo;m known for</h2>
+          <ul className="cw-about__list">
+            <li>
+              <strong>Positioning research that moves deal-size.</strong> The
+              Guardicore engagement that became the Akamai acquisition began
+              with a single rewritten sentence — average deal size moved
+              $150K.
+            </li>
+            <li>
+              <strong>GTM systems that compound.</strong> Algorithm strategy +
+              content systems for an HR consultant returned 4× platform lift
+              and RFP wins inside one year.
+            </li>
+            <li>
+              <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-grade
+              practice management software for fourteen doula practices. Solo
+              build on Next.js + Supabase. Live beta.
+            </li>
+          </ul>
 
-        <h2 className="cw-about__h">Currently</h2>
-        <p>
-          Building <strong>Ordani</strong> in private beta. Taking on a
-          limited number of advisory engagements with teams at the
-          product-and-GTM seam — where the sales team and the product
-          team have stopped talking to each other.
-        </p>
-        <p>
-          <a href="/work">See the case studies →</a>
-        </p>
+          <h2 className="cw-about__h">Currently</h2>
+          <p>
+            Building <strong>Ordani</strong> in private beta. Taking on a
+            limited number of advisory engagements with teams at the
+            product-and-GTM seam — where the sales team and the product
+            team have stopped talking to each other.
+          </p>
+          <p>
+            <a href="/work">See the case studies →</a>
+          </p>
 
-        {/* "Where to find me" list removed — the logistics footer below
-            carries email/LinkedIn/location now (no duplication). */}
-        {/* W3 (P1-7/R18): the bare back-link page-ending is replaced by
-            the standard logistics footer. Home stays one nav-click away. */}
-        <PageFooter />
-      </div>
-    </section>
+          {/* "Where to find me" list removed — the logistics footer below
+              carries email/LinkedIn/location now (no duplication). */}
+          {/* W3 (P1-7/R18): the bare back-link page-ending is replaced by
+              the standard logistics footer. Home stays one nav-click away. */}
+          <PageFooter />
+        </div>
+      </section>
+    </>
   );
 }

@@ -255,7 +255,7 @@ const SERVICES_LD = {
 
 export default function ServicesPage() {
   return (
-    <main className="cw-services" data-section data-world="bone">
+    <main className="cw-services">
       {/* Pass-23: Service + BreadcrumbList JSON-LD for AI-search +
           Google rich-result eligibility. Inline rather than via
           metadata.other because Next.js metadata API doesn't ship
@@ -265,9 +265,22 @@ export default function ServicesPage() {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_LD) }}
       />
+      {/* D10 (operator-locked 2026-08): the site's one signature gesture
+          (palette-shift, R9) needs an instance here. Header + all three
+          numbered services stay in one bone section — busy pages read
+          worse with a mid-list shift — and the closing CTA (below) is
+          the ONE quiet shift on this page, into espresso. Mirrors the
+          home's WorldSwitcher pattern: two direct data-world siblings,
+          not a data-world on <main> itself. */}
+      <section
+        className="cw-services__body"
+        data-section
+        data-world="bone"
+        aria-labelledby="cw-services-title"
+      >
       <header className="cw-services__header">
         <p className="cw-services__kicker">Services</p>
-        <h1 className="cw-services__title">
+        <h1 id="cw-services-title" className="cw-services__title">
           Three engagements. Four shapes each.
         </h1>
         {/* Pass-21 (Claude Chat audit): cut "No published day rates"
@@ -339,11 +352,21 @@ export default function ServicesPage() {
           />
         </section>
       ))}
+      </section>
 
       {/* W3 (P1-7/R18): the closing CTA moves OUT of <footer> into a
           section; the real footer below is logistics only. D7: one
-          filled pill (Book a call); the back-link demotes to mono. */}
-      <section className="cw-services__foot" aria-label="Next step">
+          filled pill (Book a call); the back-link demotes to mono.
+          D10: this is the ONE palette shift on /services — espresso,
+          matching the home's Shipped/proof register and the same
+          world used for the /about receipts shift, so "closing/proof"
+          reads consistently across the site. */}
+      <section
+        className="cw-services__foot"
+        data-section
+        data-world="espresso"
+        aria-label="Next step"
+      >
         <p className="cw-services__foot-kicker">Next step</p>
         <h2 className="cw-services__foot-title">
           Discovery call before any engagement.

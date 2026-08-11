@@ -5075,25 +5075,32 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   padding-bottom: 20px;
 }
 
-/* The underline-grow — a copper bar that scales from 0 → full width over
-   2s when the figure enters view (data-in-view="true" toggled by JS). */
-[data-mode="theater"] .case-study-pull-quote__quote::after {
-  content: "";
+/* The underline-grow — D10 (operator-locked 2026-08, R9 remediation):
+ * re-voiced from a flat scaleX bar to a hand-drawn pen-line stroke, in
+ * the same family as components/hand/HandUnderline / HandCircle. The
+ * <path> ships with pathLength="1" (see PullQuote.tsx), so a constant
+ * stroke-dasharray + a CSS-driven stroke-dashoffset draws it on with no
+ * JS length measurement — the draw is keyed off the SAME data-in-view
+ * attribute the component already sets (no second observer). */
+[data-mode="theater"] .case-study-pull-quote__underline {
   position: absolute;
   left: 0;
   bottom: 0;
+  display: block;
   width: 100%;
-  height: 2px;
-  background-color: var(--color-accent-copper);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 2000ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  height: 14px;
+  overflow: visible;
+  pointer-events: none;
 }
-
+[data-mode="theater"] .case-study-pull-quote__underline path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1000ms cubic-bezier(0.22, 0.8, 0.28, 1); /* motion-ok: re-voicing the PRE-EXISTING PullQuote underline-grow (was a 2000ms scaleX bar) into the hand-drawn family's draw-on duration (HandUnderline/HandCircle use 850-1100ms) — same element re-skinned per D10, not a new interaction */
+}
 [data-mode="theater"]
   .case-study-pull-quote[data-in-view="true"]
-  .case-study-pull-quote__quote::after {
-  transform: scaleX(1);
+  .case-study-pull-quote__underline path {
+  stroke-dashoffset: 0;
 }
 
 /* W1 re-port (D3): the sage PullQuote variant is retired — one accent
@@ -5113,9 +5120,9 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
    Defense in depth — PullQuote.tsx also sets data-in-view="true" on first
    mount under reduced-motion. */
 @media (prefers-reduced-motion: reduce) {
-  [data-mode="theater"] .case-study-pull-quote__quote::after {
+  [data-mode="theater"] .case-study-pull-quote__underline path {
     transition: none !important;
-    transform: scaleX(1) !important;
+    stroke-dashoffset: 0 !important;
   }
 }
 
@@ -7082,14 +7089,21 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   line-height: 1.45;
   opacity: 0.9;
 }
-[data-mode="cw"] .cw-ordani .cw-signup {
+/* W4 (P2-7): form container de-scoped from .cw-ordani (see input note
+ * below) so the playbook signup gets the same flex layout. */
+[data-mode="cw"] .cw-signup {
   margin-top: 40px;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   max-width: 520px;
 }
-[data-mode="cw"] .cw-ordani .cw-signup input {
+/* W4 (P2-7): input + placeholder rules de-scoped from .cw-ordani — the
+ * playbook signup uses the same .cw-signup form but sat outside the
+ * Ordani zone, so its ONLY conversion control rendered with no visible
+ * border (the review's affordance finding). Both forms now share the
+ * bordered treatment the review praised on the Ordani band. */
+[data-mode="cw"] .cw-signup input {
   flex: 1;
   min-width: 220px;
   background: transparent;
@@ -7100,9 +7114,22 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   font-size: 16px;
   color: inherit;
 }
-[data-mode="cw"] .cw-ordani .cw-signup input::placeholder {
+[data-mode="cw"] .cw-signup input::placeholder {
   color: inherit;
   opacity: 0.55;
+}
+/* Generic submit — world accent fill; the Ordani zone's gold/petrol
+ * override below still wins inside .cw-ordani. */
+[data-mode="cw"] .cw-signup button {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: 17px;
+  background: var(--cw-accent);
+  color: var(--color-cw-bone);
+  border: none;
+  border-radius: 46px;
+  padding: 16px 30px;
+  cursor: pointer;
 }
 [data-mode="cw"] .cw-ordani .cw-signup button {
   font-family: var(--font-cw-display);
@@ -7927,4 +7954,48 @@ body:has([data-mode="cw"]) .editorial-timestamp {
   border-radius: 100px;
   padding: 8px 18px;
   opacity: 0.85;
+}
+
+/* ================================================================
+ * W4 (P2-6, 2026-08-11): branded 404 — app/not-found.tsx.
+ * Renders in the root layout with its own data-mode="cw" wrapper
+ * (no route-group chrome, no WorldSwitcher — the terracotta ground
+ * is set statically here). One line, mono links, logistics footer.
+ * ================================================================ */
+[data-mode="cw"].cw-notfound-root,
+[data-mode="cw"] .cw-notfound {
+  background: var(--color-cw-terracotta);
+  color: var(--color-cw-bone);
+}
+[data-mode="cw"] .cw-notfound {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px clamp(20px, 5vw, 96px);
+}
+[data-mode="cw"] .cw-notfound__code {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  opacity: 0.7;
+  margin: 0 0 18px;
+}
+[data-mode="cw"] .cw-notfound__line {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(40px, 7vw, 92px);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin: 0 0 32px;
+}
+[data-mode="cw"] .cw-notfound__links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+[data-mode="cw"] .cw-notfound .cw-pagefoot {
+  margin-top: 72px;
 }

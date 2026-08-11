@@ -555,8 +555,10 @@ export default function ColorWorldsHome() {
           <a href="mailto:hello@micahjonesconsulting.com">
             hello@micahjonesconsulting.com
           </a>
+          {/* W4: date-range © per the bar (§3.6 — time-depth as
+              specific numbers; matches PageFooter). */}
           <span style={{ opacity: 0.5, border: "none" }}>
-            © 2026 — Micah Jones
+            © 2013–2026 Micah Jones
           </span>
         </div>
       </footer>
