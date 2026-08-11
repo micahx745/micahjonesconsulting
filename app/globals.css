@@ -3455,14 +3455,28 @@ body {
 }
 
 /* The resolved state — caption + hero, layered on top of the (faded) stack */
+/* Visual-QA fix (audit 2026-08-11): the resolved state was an
+ * absolute inset-0 overlay — when the caption (now the full dek)
+ * grows taller than the hero box at narrow/short viewports, an
+ * absolutely-positioned centered overlay overflows ABOVE the box,
+ * colliding with the fixed nav (measured: caption top at -211px in
+ * a 390×720 viewport). The stack and resolved states now share one
+ * grid cell: same visual overlay, but the hero box sizes to the
+ * TALLER of the two, so nothing can overflow. GSAP is unaffected —
+ * it only tweens opacity/translate on these nodes. */
+[data-title-card] {
+  display: grid;
+  align-content: center;
+}
+.title-card-stack {
+  grid-area: 1 / 1;
+}
 .title-card-resolved {
-  position: absolute;
-  inset: 0;
+  grid-area: 1 / 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 32px;
-  padding: inherit;
   pointer-events: none;        /* GSAP toggles via inline style; layout pre-positioned */
 }
 
@@ -5901,6 +5915,23 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   font-size: clamp(52px, 12.5vw, 196px);
   text-transform: uppercase;
   margin: 0;
+}
+/* Visual-QA fix (audit 2026-08-11): the 52px clamp FLOOR forces
+ * 52px at ≤416px viewports, where "go-to-market." / "data platform."
+ * exceed the available line and wrap into the roll mask's clipped
+ * second line (the Cowork review's clip finding — real after all;
+ * it sat exactly at the wrap boundary). Mobile-only size override:
+ * 11.5vw with a 34px floor keeps every rotation word on one line
+ * down to 320px. Desktop is untouched. */
+@media (max-width: 519px) {
+  [data-mode="cw"] .cw-h1 {
+    /* Sized from the measured constraint: the longest rotation word
+     * ("data platform.") renders at ~7.73× the font-size, inside a
+     * line that is (100vw − 55px) wide. (100vw − 56px)/7.8 keeps it
+     * one-line with ~1% margin at every width (verified 320/375/390/
+     * 414: max fs 34.3 at 320, 43.3 at 390). */
+    font-size: clamp(28px, calc((100vw - 56px) / 7.8), 50px);
+  }
 }
 [data-mode="cw"] .cw-h1 .cw-line {
   overflow: hidden;
