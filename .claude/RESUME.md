@@ -3,14 +3,16 @@
 ## Now
 - DESIGN-ELEVATION arc. Discussion CLOSED — 13 decisions locked in
   .planning/reviews/DESIGN-DECISIONS-2026-08.md (D1-D13).
-- W1 DONE (60bc53a Pass-33): case template re-ported (fonts/ground/nav/dedups/401px
-  canvas fix/hero void). W2 DONE (d76276d Pass-34): SpecTable replaces all four card
-  grids (Embedded weighted, 16px cells); home engagements weighted — Guardicore 2×
-  with $80M/$14M saffron display metric; /services mobile 6,889→4,751px. Both verified
-  on prod build 390/768/1440, page canvas clean, ban-grep clean.
-- NEXT: W3 P1 batch (rotator one-cycle D1 · marquee scroll-linked D2 · CTA grammar D7 ·
-  playbook pricing D8 · cut names D9 · type scale D13 · index curation · footers ·
-  sticky-nav collision). NOT deployed yet — operator visual sign-off first.
+- W1 DONE (60bc53a Pass-33): case template re-port. W2 DONE (d76276d Pass-34): spec
+  tables + weighted home engagements. W3 DONE (a55e29e Pass-35): rotator one-cycle,
+  marquee scroll-linked (verified live via matchMedia shim — OS forces reduced-motion
+  in both local browsers), entrance 350ms, nav is-scrolled chip, CTA grammar (1 filled
+  pill/page + .cw-mlink mono), playbook plain pricing, names cut, /work curated
+  (indexLine frontmatter), PageFooter on 6 routes, $20M+ bone, scale snapped.
+  LESSONS #6 added (RSC entity-space bug + gate grep). All builds green, ban-grep clean.
+- NEXT: W4 P2 polish (D10 gesture via motion-engineer · /about layout+D12 slots · 404 ·
+  playbook email affordance · P2-8 teal/gold accent discipline · OG re-brand P2-4).
+  NOT deployed — operator visual sign-off first.
 
 ## Queue
 - OPERATOR: eyeball W1 screenshots (sent in chat) → approve deploy or request changes.
