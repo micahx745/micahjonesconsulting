@@ -8,23 +8,15 @@
 // actually belongs. Keeping it in the root + hiding via CSS leaked the
 // "Oakland · May 2026 · Issue 01" text into Color Worlds SSR HTML.
 //
-// Lenis + 9 fonts are scoped to root because the legacy directions
-// still depend on them. Future cleanup: scope per route-group.
+// Pass-37 (operator: "delete"): the /v1-/v4 legacy directions are gone,
+// and with them the six fonts only they used. The root now loads the
+// THREE system faces — Bricolage (display), Hanken (body), JetBrains
+// Mono (labels) — which is the full R1 clear: nothing else ships.
 import type { Metadata, Viewport } from "next";
 import { ViewTransition } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import {
-  interDisplay,
-  inter,
-  sourceSerif,
-  instrumentSerif,
-  bricolage,
-  fraunces,
-  geistMono,
-  hankenGrotesk,
-  jetbrainsMono,
-} from "@/lib/fonts";
+import { bricolage, hankenGrotesk, jetbrainsMono } from "@/lib/fonts";
 import { LenisProvider } from "@/components/LenisProvider";
 import { RevealMount } from "@/components/RevealMount";
 import "./globals.css";
@@ -145,7 +137,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${interDisplay.variable} ${inter.variable} ${sourceSerif.variable} ${instrumentSerif.variable} ${bricolage.variable} ${fraunces.variable} ${geistMono.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${bricolage.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body>

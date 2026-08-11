@@ -78,9 +78,14 @@
    * re-declared inside this @theme block so `font-display` utility resolves.
    * Reference: Next.js Discussion #77337.
    */
-  --font-display: var(--font-bricolage), var(--font-inter-display), system-ui, sans-serif;
-  --font-sans:    var(--font-inter), system-ui, sans-serif;
-  --font-serif:   var(--font-source-serif), Georgia, serif;
+  /* Pass-37: the legacy chains re-point at the three system faces —
+   * Inter / Source Serif / Instrument / Fraunces / Geist no longer
+   * load (their next/font vars are undefined). Anything still reading
+   * these tokens (theater Footer, skip link, dormant legacy CSS)
+   * renders in the system family. */
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-sans:    var(--font-hanken), system-ui, sans-serif;
+  --font-serif:   var(--font-hanken), Georgia, serif;
 
   /* ---- Spacing (TOKEN-06: 4px base, 12-col, 68ch body, 28ch sidenotes) ---- */
   --spacing-page-x-desktop: 128px;

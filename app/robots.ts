@@ -10,9 +10,9 @@
 // when someone asks "Black operators in Oakland" in ChatGPT/Perplexity)
 // outweighs the marginal downside (content potentially in training).
 //
-// Public content is public. The legacy direction snapshots (/v1-/v4)
-// are noindexed via per-layout metadata, not via robots.txt — that's
-// the right tool for "crawl but don't index" semantics.
+// Pass-37 (operator: "delete"): the /v1-/v4 legacy direction snapshots
+// are DELETED from the codebase — the routes now 404 and the disallow
+// entries are gone.
 //
 // Reference: llms.txt spec (https://llmstxt.org/) is also implemented
 // at /llms.txt for explicit LLM tooling.
@@ -24,10 +24,6 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        // Legacy direction snapshots are noindex-only at the page level,
-        // but block crawling too — saves crawler budget and prevents the
-        // snapshots showing up in any cached search results.
-        disallow: ["/v1/", "/v2/", "/v3/", "/v4/"],
       },
     ],
     sitemap: "https://www.micahjonesconsulting.com/sitemap.xml",
