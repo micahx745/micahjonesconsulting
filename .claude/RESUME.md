@@ -3,13 +3,14 @@
 ## Now
 - DESIGN-ELEVATION arc. Discussion CLOSED — 13 decisions locked in
   .planning/reviews/DESIGN-DECISIONS-2026-08.md (D1-D13).
-- W1 DONE (commit 60bc53a, Pass-33): case template re-ported — espresso/bone/saffron
-  ground, Bricolage+Hanken+JetBrains, CW nav on theater (+SERVICES, WORK→/work per D11),
-  drop caps + dup lede/meta/captions dead, R5 border fixed, 401px mobile canvas fixed
-  (TitleCard double-padding root cause), hero void halved. Verified: prod build at
-  390/768/1440, zero horiz overflow, fonts/colors probed, console clean (only local
-  Vercel-script 404s). NOT yet deployed — operator visual sign-off first (queue).
-- NEXT: W2 grids (spec tables, Embedded weighted, Guardicore card 2× on home).
+- W1 DONE (60bc53a Pass-33): case template re-ported (fonts/ground/nav/dedups/401px
+  canvas fix/hero void). W2 DONE (d76276d Pass-34): SpecTable replaces all four card
+  grids (Embedded weighted, 16px cells); home engagements weighted — Guardicore 2×
+  with $80M/$14M saffron display metric; /services mobile 6,889→4,751px. Both verified
+  on prod build 390/768/1440, page canvas clean, ban-grep clean.
+- NEXT: W3 P1 batch (rotator one-cycle D1 · marquee scroll-linked D2 · CTA grammar D7 ·
+  playbook pricing D8 · cut names D9 · type scale D13 · index curation · footers ·
+  sticky-nav collision). NOT deployed yet — operator visual sign-off first.
 
 ## Queue
 - OPERATOR: eyeball W1 screenshots (sent in chat) → approve deploy or request changes.
