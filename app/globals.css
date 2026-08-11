@@ -6545,52 +6545,85 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   border-bottom-color: var(--cw-accent);
 }
 
-/* Tier grid — 4 cards per service. Responsive: 4 → 2 → 1 cols. */
-[data-mode="cw"] .cw-tiers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* W2 (P0-2/D4, 2026-08-11): the uniform four-up .cw-tiers card grid is
+ * DEAD — replaced by the comparative spec table (SpecTable.tsx).
+ * Shapes as columns, spec rows aligned, ONE weighted column (D5:
+ * Embedded). Data cells 16px (fixes the R3 13px-body fail), row
+ * labels mono-12. The table scrolls inside its own container on
+ * narrow viewports — the page never scrolls horizontally. */
+[data-mode="cw"] .cw-spec-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
-[data-mode="cw"] .cw-tier {
-  border: 1.5px solid currentColor;
-  border-radius: 6px;
-  padding: 24px 22px 28px;
-  background: transparent;
-  position: relative;
+[data-mode="cw"] .cw-spec-scroll:focus-visible {
+  outline: 2px solid var(--cw-accent);
+  outline-offset: 2px;
 }
-[data-mode="cw"] .cw-tier__name {
+[data-mode="cw"] .cw-spec {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+[data-mode="cw"] .cw-spec__col-label {
+  width: 132px;
+}
+[data-mode="cw"] .cw-spec col.cw-spec__col--lead {
+  width: 26%;
+}
+[data-mode="cw"] .cw-spec__head {
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(20px, 2vw, 26px);
-  letter-spacing: -0.014em;
+  font-size: clamp(18px, 1.8vw, 22px);
+  letter-spacing: -0.01em;
   text-transform: uppercase;
-  margin: 0 0 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid currentColor;
+  text-align: left;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  vertical-align: bottom;
 }
-[data-mode="cw"] .cw-tier__detail {
-  font-family: var(--font-cw-body);
-  font-size: 13px;
-  line-height: 1.5;
-  margin: 0;
+[data-mode="cw"] .cw-spec__head--lead {
+  background: var(--color-cw-terracotta);
+  color: var(--color-cw-bone);
+  border-color: var(--color-cw-terracotta);
 }
-[data-mode="cw"] .cw-tier__detail dt {
+[data-mode="cw"] .cw-spec__lead-tag {
+  display: block;
   font-family: var(--font-cw-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  margin-top: 6px;
+  opacity: 0.85;
+}
+[data-mode="cw"] .cw-spec__rowlabel {
+  font-family: var(--font-cw-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.55;
-  margin: 0 0 4px;
+  text-align: left;
+  vertical-align: top;
+  opacity: 0.65;
+  padding: 18px 14px 18px 0;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  border-left: none;
 }
-[data-mode="cw"] .cw-tier__detail dt:not(:first-of-type) {
-  margin-top: 14px;
+[data-mode="cw"] .cw-spec__cell {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.55;
+  vertical-align: top;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
 }
-[data-mode="cw"] .cw-tier__detail dd {
-  margin: 0;
-  opacity: 0.88;
+[data-mode="cw"] .cw-spec__cell--lead {
+  background: color-mix(in srgb, var(--color-cw-terracotta) 7%, transparent);
+  border-left-color: color-mix(in srgb, var(--color-cw-terracotta) 45%, transparent);
+  border-right-color: color-mix(in srgb, var(--color-cw-terracotta) 45%, transparent);
+}
+[data-mode="cw"] .cw-spec tbody tr:last-child .cw-spec__cell--lead {
+  border-bottom-color: color-mix(in srgb, var(--color-cw-terracotta) 45%, transparent);
 }
 
 /* Page footer — discovery-call CTA */
@@ -7036,6 +7069,38 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   [data-mode="cw"] .cw-cards {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+/* W2 (P0-2/D6): weighted engagements grid — the lead card takes a 2fr
+ * column and spans both rows; the two minor cards stack beside it.
+ * Single column below 720px (the lead metric scales down with it). */
+@media (min-width: 720px) {
+  [data-mode="cw"] .cw-cards--weighted {
+    grid-template-columns: 2fr 1fr;
+  }
+  [data-mode="cw"] .cw-cards--weighted .cw-card--lead {
+    grid-row: span 2;
+  }
+  /* Minor cards step their display h3 down so the lead card's
+   * metric + title own the row's hierarchy. */
+  [data-mode="cw"] .cw-cards--weighted .cw-card:not(.cw-card--lead) h3 {
+    font-size: clamp(24px, 2.4vw, 34px);
+  }
+}
+[data-mode="cw"] .cw-card p.cw-card__metric {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(34px, 3.9vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  /* saffron, NOT var(--cw-accent): the engagements section lives in the
+   * espresso world where the accent is terracotta at 2.39:1 — fails
+   * even AA-large. Saffron is 6.13:1 on espresso. */
+  color: var(--color-cw-saffron);
+  margin: 18px 0 20px;
+  max-width: none;
+  opacity: 1;
 }
 [data-mode="cw"] .cw-card {
   border: 1.5px solid currentColor;

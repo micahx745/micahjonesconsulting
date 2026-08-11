@@ -21,6 +21,7 @@
 // Bone world — continues the CLIENTS section's palette from the home.
 import type { Metadata } from "next";
 import { MagneticArea } from "@/components/motion/MagneticArea";
+import { SpecTable } from "@/components/color-worlds/SpecTable";
 
 export const metadata: Metadata = {
   title: "Services — Three engagement types, four shapes each",
@@ -323,25 +324,18 @@ export default function ServicesPage() {
             </p>
           </header>
 
-          <div className="cw-tiers" role="list">
-            {service.tiers.map((tier) => (
-              <article
-                key={tier.name}
-                className="cw-tier"
-                role="listitem"
-              >
-                <h3 className="cw-tier__name">{tier.name}</h3>
-                <dl className="cw-tier__detail">
-                  <dt>Scope</dt>
-                  <dd>{tier.scope}</dd>
-                  <dt>Duration</dt>
-                  <dd>{tier.duration}</dd>
-                  <dt>First-month deliverable</dt>
-                  <dd>{tier.deliverable}</dd>
-                </dl>
-              </article>
-            ))}
-          </div>
+          {/* W2 (P0-2/D4-D5): comparative spec table replaces the
+              four-up card grid. Embedded is the operator-locked
+              weighted shape. */}
+          <SpecTable
+            caption={`${service.title} — four engagement shapes compared by scope, duration, and first-month deliverable`}
+            rowLabels={["Scope", "Duration", "First-month deliverable"]}
+            weighted="Embedded"
+            columns={service.tiers.map((tier) => ({
+              name: tier.name,
+              cells: [tier.scope, tier.duration, tier.deliverable],
+            }))}
+          />
         </section>
       ))}
 

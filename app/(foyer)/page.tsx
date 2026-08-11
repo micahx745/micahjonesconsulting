@@ -399,17 +399,41 @@ export default function ColorWorldsHome() {
           inbound. Frontier AI in production for founders.
         </p>
 
-        <ul className="cw-cards">
-          {/* Card 1 — industry-authority author engagement. The three
+        {/* W2 (P0-2/D6, operator-locked 2026-08-11): weighted grid —
+            the Guardicore card leads at 2× width with its metric at
+            display size; the author + AI cards stack as minors. Kills
+            the uniform three-up (review R6, home #5). */}
+        <ul className="cw-cards cw-cards--weighted">
+          {/* Lead card — GTM at scale (Guardicore). Per operator, no
+              TechValidate; the IPO platform is named as SurveyMonkey
+              Enterprise (the product line that anchored the IPO case). */}
+          <li
+            className="cw-card cw-card--lead cw-reveal"
+            style={{ transitionDelay: "0ms" }}
+          >
+            <a href="/work/guardicore" className="cw-card__link">
+              <span className="cw-tag">Enterprise software · 2013–2023</span>
+              <h3>GTM at scale</h3>
+              <p className="cw-card__metric" aria-label="80 million dollars in pipeline, 14 million dollars in revenue">
+                $80M pipeline<br />$14M revenue
+              </p>
+              <p>
+                Positioning, market research, and the data backbone that
+                moved deal size and revenue at platforms that sold
+                (<strong>Guardicore → Akamai</strong>) and went public
+                (<strong>SurveyMonkey Enterprise</strong> on Nasdaq).
+              </p>
+              <span className="cw-open">See the receipts →</span>
+            </a>
+          </li>
+
+          {/* Minor card — industry-authority author engagement. The three
               fabricated end-clients (research university / Fortune-500
               "30% revenue lift" / "major American city" + bespoke product)
-              are DELETED — operator confirms that story is false. The true
-              engagement is one industry-authority author: reach 8K→290K, a
-              real custom RFP-scanning platform, two six-figure retainers.
-              "product" in the H3 now names the RAG RFP software I built. */}
+              are DELETED — operator confirms that story is false. */}
           <li
             className="cw-card cw-reveal"
-            style={{ transitionDelay: "0ms" }}
+            style={{ transitionDelay: "120ms" }}
           >
             <a href="/work/hr-equity-author" className="cw-card__link">
               <span className="cw-tag">2024–present · Content + software</span>
@@ -417,35 +441,9 @@ export default function ColorWorldsHome() {
               <p>
                 One industry-authority author. I built the content engine
                 and the software beneath it. Monthly reach grew from 8K to
-                290K. RFP-to-close rate doubled. The software scans new
-                RFPs, weighs each against the author&apos;s own work, and
-                drafts a partial response every morning. Two six-figure
-                retainers closed in the window.
+                290K. RFP-to-close rate doubled.
               </p>
               <span className="cw-open">See the engagement →</span>
-            </a>
-          </li>
-
-          {/* Card 2 — GTM at scale. Per operator, no TechValidate; the
-              IPO platform is named as SurveyMonkey Enterprise (the
-              product line that anchored the IPO case). Accurate framing
-              that uses the bigger recognizable brand. */}
-          <li
-            className="cw-card cw-reveal"
-            style={{ transitionDelay: "120ms" }}
-          >
-            <a href="/work/guardicore" className="cw-card__link">
-              <span className="cw-tag">Enterprise software · 2013–2023</span>
-              <h3>GTM at scale</h3>
-              <p>
-                Positioning, market research, and the data backbone that
-                moved deal size and revenue at platforms that sold
-                (<strong>Guardicore → Akamai</strong>) and went public
-                (<strong>SurveyMonkey Enterprise</strong> on Nasdaq).
-                A decade of working directly with product teams in
-                B2B software.
-              </p>
-              <span className="cw-open">See the receipts →</span>
             </a>
           </li>
 

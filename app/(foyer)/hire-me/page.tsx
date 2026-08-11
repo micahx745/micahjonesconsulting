@@ -14,6 +14,7 @@
 // four shapes; cw-hm-* (globals.css) carries the receipts row,
 // verticals, and the title-translation row.
 import type { Metadata } from "next";
+import { SpecTable } from "@/components/color-worlds/SpecTable";
 
 export const metadata: Metadata = {
   title: "Hire me — full-time, fractional, or contract",
@@ -119,24 +120,20 @@ export default function HireMePage() {
         </ol>
       </section>
 
-      {/* Four shapes — reuse the services tier grid. */}
+      {/* Four shapes — W2 (P0-2/D4-D5): comparative spec table replaces
+          the 3+1 orphan card grid; Embedded weighted per the operator
+          lock. */}
       <section className="cw-hm-sect" aria-labelledby="hm-shapes-title">
         <h2 id="hm-shapes-title" className="cw-pb-h2">Four shapes</h2>
-        <div className="cw-tiers" role="list">
-          {SHAPES.map((s) => (
-            <article key={s.name} className="cw-tier" role="listitem">
-              <h3 className="cw-tier__name">{s.name}</h3>
-              <dl className="cw-tier__detail">
-                <dt>Scope</dt>
-                <dd>{s.scope}</dd>
-                <dt>Fit</dt>
-                <dd>{s.fit}</dd>
-                <dt>Best for</dt>
-                <dd>{s.best}</dd>
-              </dl>
-            </article>
-          ))}
-        </div>
+        <SpecTable
+          caption="Four hiring shapes compared by scope, fit, and best-for"
+          rowLabels={["Scope", "Fit", "Best for"]}
+          weighted="Embedded"
+          columns={SHAPES.map((s) => ({
+            name: s.name,
+            cells: [s.scope, s.fit, s.best],
+          }))}
+        />
       </section>
 
       {/* Verticals — so a non-tech hiring manager doesn't bounce. */}
