@@ -555,9 +555,9 @@ export default function ColorWorldsHome() {
           <a href="mailto:hello@micahjonesconsulting.com">
             hello@micahjonesconsulting.com
           </a>
-          {/* W4: date-range © per the bar (§3.6 — time-depth as
-              specific numbers; matches PageFooter). */}
-          <span style={{ opacity: 0.5, border: "none" }}>
+          {/* W4: date-range © per the bar (§3.6). a11y: opacity 0.5
+              measured 2.48:1 on terracotta; 0.9 holds ≥4.5:1. */}
+          <span style={{ opacity: 0.9, border: "none" }}>
             © 2013–2026 Micah Jones
           </span>
         </div>

@@ -5670,6 +5670,13 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 /* Nav. mix-blend-mode: difference keeps text legible against any
  * world bg. White text is the source; difference inverts to whatever
  * contrasts the current world. */
+/* a11y (audit 2026-08-11): mix-blend-mode: difference moved from the
+ * whole nav to the WORDMARK ONLY. Blended white over terracotta lands
+ * at 3.30:1 — fine for the 22px-bold wordmark (AA-large needs 3:1)
+ * but a fail for the 12px links (need 4.5:1). Links + menu button now
+ * render solid in the world's foreground color, which is an AA pair
+ * in every world by construction (bone/terracotta 5.27, espresso/bone
+ * 12.6, bone/petrol 8.28, bone/espresso 12.6). */
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav {
   position: fixed;
   top: 0;
@@ -5680,13 +5687,15 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   justify-content: space-between;
   align-items: center;
   padding: 24px 40px;
+  color: var(--cw-fg, var(--color-theater-ink));
+}
+:is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-wordmark {
   mix-blend-mode: difference;
   color: #fff;
 }
-:is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-wordmark,
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-navlinks a,
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-menubtn {
-  color: #fff;
+  color: var(--cw-fg, var(--color-theater-ink));
 }
 :is([data-mode="cw"], [data-mode="theater"]) .cw-wordmark {
   font-family: var(--font-cw-display);
@@ -5709,7 +5718,8 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 }
 :is([data-mode="cw"], [data-mode="theater"]) .cw-navlinks a {
   text-decoration: none;
-  opacity: 0.8;
+  /* a11y: 0.8 blended bone below 4.5:1 on terracotta; 0.92 holds it. */
+  opacity: 0.92;
   transition: opacity 0.2s;
 }
 :is([data-mode="cw"], [data-mode="theater"]) .cw-navlinks a:hover {
@@ -5756,6 +5766,9 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav.is-scrolled .cw-wordmark,
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav.is-scrolled .cw-navlinks a,
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav.is-scrolled .cw-menubtn {
+  /* Wordmark's difference-blend must also flatten on the chip —
+   * inherit color blended over the chip bg would invert weirdly. */
+  mix-blend-mode: normal;
   color: inherit;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -6148,6 +6161,12 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   padding-bottom: 2px;
   transition: opacity 0.2s ease;
 }
+/* a11y: in the petrol Ordani zone the accent resolves to saffron at
+ * 3.79:1 — below the 4.5:1 text bar at 12px. Bone is 8.28:1 there
+ * (the underline stays accent — decorative). */
+[data-mode="cw"] .cw-ordani .cw-lede-link {
+  color: var(--color-cw-bone);
+}
 [data-mode="cw"] .cw-lede-link:hover {
   opacity: 0.75;
 }
@@ -6382,7 +6401,7 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.7; /* a11y: 0.6 fell to ~3.8:1 on cream; 0.7 holds >=4.5:1 */
   margin: 0;
   padding-top: 0.6em;
 }
@@ -6419,7 +6438,7 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.7; /* a11y: 0.6 fell to ~3.8:1 on cream; 0.7 holds >=4.5:1 */
   margin-top: 10px;
   margin-bottom: 0;
 }
@@ -6946,7 +6965,7 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.9; /* a11y: 0.6 blended bone-on-terracotta to 2.88:1; 0.9 holds >=4.5:1 */
   margin: 0;
   padding-top: 0.6em;
 }
@@ -7141,7 +7160,8 @@ body.js-reveal-ready .scroll-reveal.scroll-reveal--shown {
   font-weight: 600;
   font-size: 17px;
   background: var(--cw-accent);
-  color: var(--color-cw-petrol);
+  /* a11y: petrol-on-saffron measured 4.03:1; espresso is 6.13:1 */
+  color: var(--color-cw-espresso);
   border: none;
   border-radius: 46px;
   padding: 16px 30px;

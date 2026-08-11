@@ -150,6 +150,11 @@ export default async function TheaterCaseStudyPage({
           case_study_read_complete once per session. */}
       <CaseStudyReadTracker slug={slug} />
 
+      {/* a11y (audit 2026-08-11): the page had no h1 — the TitleCard
+          words are decorative spans. Visually-hidden h1 carries the
+          document outline. */}
+      <h1 className="sr-only">{cs.title}</h1>
+
       {/* 1. TitleCard — the signature motion (Phase 5 client wrapper).
           W1 re-port (D3, 2026-08-11): the caption IS the one lede. The
           dek previously rendered twice — here AND as a header <Dek>
