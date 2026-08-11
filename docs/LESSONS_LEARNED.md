@@ -84,3 +84,20 @@ alias pins to ONE deployment; a later `git push` (auto prod deploy) will NOT mov
 **Gate:** The ship flow (STANDING_TECHNIQUES) re-aliases BOTH `micahjonesconsulting.vercel.app`
 AND `www.micahjonesconsulting.com` on every deploy, until the operator adds www as a project
 domain in the Vercel dashboard (Settings → Domains), which makes production auto-serve it.
+
+## #6 — Next 16 RSC drops the space after an inline element when the following text contains an HTML entity (2026-08-11)
+
+**What happened:** The Cowork design review caught "$20M+in client revenue" and "product
+builds.Ordani" on /about. The JSX source had correct same-line spaces (`</strong> in`), but
+the built output dropped them. Only text nodes containing HTML entities (`&ndash;`,
+`&mdash;`) after an inline element lost their leading space — sibling lines without
+entities rendered correctly. Verified against the local production build, both broken
+instances and four correct controls.
+
+**Root cause:** Next 16 / SWC's JSX transform splits entity-containing text segments
+differently during RSC serialization and strips the segment's leading whitespace.
+
+**Gate:** Any space between an inline element (`</strong>`, `</em>`, `</a>`) and following
+text that contains an `&…;` entity must be an explicit `{" "}` join. Check on any copy
+edit: `grep -rE '</(strong|em|a|b)> [^<{]*&[a-z]+;' app components --include='*.tsx'` —
+zero hits allowed. Candidate for a write-boundary hook if it recurs.

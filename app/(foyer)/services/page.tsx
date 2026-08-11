@@ -22,6 +22,7 @@
 import type { Metadata } from "next";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 import { SpecTable } from "@/components/color-worlds/SpecTable";
+import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   title: "Services — Three engagement types, four shapes each",
@@ -339,7 +340,10 @@ export default function ServicesPage() {
         </section>
       ))}
 
-      <footer className="cw-services__foot">
+      {/* W3 (P1-7/R18): the closing CTA moves OUT of <footer> into a
+          section; the real footer below is logistics only. D7: one
+          filled pill (Book a call); the back-link demotes to mono. */}
+      <section className="cw-services__foot" aria-label="Next step">
         <p className="cw-services__foot-kicker">Next step</p>
         <h2 className="cw-services__foot-title">
           Discovery call before any engagement.
@@ -360,11 +364,13 @@ export default function ServicesPage() {
               Book a call <span className="cw-arr" aria-hidden>→</span>
             </a>
           </MagneticArea>
-          <a href="/" className="cw-cta cw-cta--ghost">
-            <span className="cw-arr" aria-hidden>←</span> Back to home
+          <a href="/" className="cw-mlink">
+            <span aria-hidden>←</span> Back to home
           </a>
         </div>
-      </footer>
+      </section>
+
+      <PageFooter />
     </main>
   );
 }

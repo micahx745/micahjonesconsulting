@@ -59,6 +59,12 @@ export const caseStudyFrontmatterSchema = z.object({
 
   /** Optional client name. Omit if solo. */
   client: z.string().optional(),
+
+  /** W3 (P1-5/R11): the ONE figure-bearing line for index surfaces.
+   *  Every number in it must also appear in this case study's body
+   *  (LESSONS #2 — the card is a compression of the study, never a
+   *  second story). Falls back to the dek's first sentence. */
+  indexLine: z.string().optional(),
 });
 
 export type CaseStudyFrontmatter = z.infer<typeof caseStudyFrontmatterSchema>;

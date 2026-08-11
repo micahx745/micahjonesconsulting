@@ -7,6 +7,7 @@
 // JS needed — this is a pure SEO + navigation page.
 import type { Metadata } from "next";
 import { getAllCaseStudies } from "@/lib/case-studies";
+import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
@@ -43,29 +44,30 @@ export default async function WorkIndexPage() {
         Selected case studies.
       </h1>
 
+      {/* W3 (P1-5/R11): entries curated to ≤4 data points — title, ONE
+          figure-bearing line (frontmatter indexLine, falling back to the
+          dek's first sentence), year, role. Depth defers to the case
+          page. Only the title carries the underline (CSS) — the full
+          five-line underlined paragraph is gone. */}
       <ul className="cw-work-list">
         {studies.map((s) => (
           <li key={s.slug} className="cw-work-item">
             <a href={`/work/${s.slug}`} className="cw-work-item__link">
               <h2 className="cw-work-item__title">{s.title}</h2>
-              <p className="cw-work-item__dek">{s.dek}</p>
+              <p className="cw-work-item__dek">
+                {s.indexLine ?? `${s.dek.split(". ")[0]}.`}
+              </p>
               <p className="cw-work-item__meta">
                 <span>{s.year}</span>
                 <span aria-hidden> &middot; </span>
                 <span>{s.role}</span>
-                <span aria-hidden> &middot; </span>
-                <span>{s.status}</span>
               </p>
             </a>
           </li>
         ))}
       </ul>
 
-      <p className="cw-about__back">
-        <a href="/about">&larr; More about how I work</a>
-        <span aria-hidden> &middot; </span>
-        <a href="/">Back to home</a>
-      </p>
+      <PageFooter />
     </section>
   );
 }

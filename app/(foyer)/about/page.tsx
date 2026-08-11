@@ -7,6 +7,7 @@
 // Content discipline: facts the operator can defend. No hyperbole.
 // Numbers that are real. Names that exist.
 import type { Metadata } from "next";
+import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
@@ -48,7 +49,11 @@ export default function AboutPage() {
         <h2 className="cw-about__h">Receipts</h2>
         <ul className="cw-about__list">
           <li>
-            <strong>$20M+</strong> in client revenue (2013&ndash;2023).
+            {/* Explicit {" "} join: Next 16's RSC serializer drops the
+                leading space of a text node that follows an inline
+                element WHEN the text contains an HTML entity (verified
+                against the built output — the review's "$20M+in" catch). */}
+            <strong>$20M+</strong>{" "}in client revenue (2013&ndash;2023).
           </li>
           <li>
             <strong>Three companies I helped build reached an exit.</strong>{" "}
@@ -58,9 +63,12 @@ export default function AboutPage() {
             technology Nordic Semiconductor acquired in 2025.
           </li>
           <li>
-            Engagements with <strong>Guardicore, TechValidate, Flexport,
-            Cuebiq, Postmates</strong>, and others — Growth, GTM, and
-            platform strategy roles.
+            {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
+                cut — named companies carried no figure. Guardicore and
+                TechValidate stay named in the exits bullet above, where
+                their figures live. */}
+            Growth, GTM, and platform strategy roles across a decade of
+            enterprise software.
           </li>
         </ul>
 
@@ -78,7 +86,7 @@ export default function AboutPage() {
             and RFP wins inside one year.
           </li>
           <li>
-            <strong>End-to-end product builds.</strong> Ordani &mdash; HIPAA-grade
+            <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-grade
             practice management software for fourteen doula practices. Solo
             build on Next.js + Supabase. Live beta.
           </li>
@@ -95,28 +103,11 @@ export default function AboutPage() {
           <a href="/work">See the case studies →</a>
         </p>
 
-        <h2 className="cw-about__h">Where to find me</h2>
-        <ul className="cw-about__list">
-          <li>Oakland, CA &middot; by appointment</li>
-          <li>
-            <a href="mailto:hello@micahjonesconsulting.com">
-              hello@micahjonesconsulting.com
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.linkedin.com/in/micah-j/"
-              rel="me noopener noreferrer"
-              target="_blank"
-            >
-              LinkedIn
-            </a>
-          </li>
-        </ul>
-
-        <p className="cw-about__back">
-          <a href="/">&larr; Back to home</a>
-        </p>
+        {/* "Where to find me" list removed — the logistics footer below
+            carries email/LinkedIn/location now (no duplication). */}
+        {/* W3 (P1-7/R18): the bare back-link page-ending is replaced by
+            the standard logistics footer. Home stays one nav-click away. */}
+        <PageFooter />
       </div>
     </section>
   );

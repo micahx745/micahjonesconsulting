@@ -15,6 +15,7 @@
 import type { Metadata } from "next";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 import { SpecTable } from "@/components/color-worlds/SpecTable";
+import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   title: "Frontier AI engineering — Services",
@@ -181,7 +182,9 @@ export default function AIEngineeringPage() {
         </header>
       </section>
 
-      <footer className="cw-services__foot">
+      {/* W3 (P1-7/R18 + D7): CTA out of <footer>; one filled pill;
+          logistics footer appended. */}
+      <section className="cw-services__foot" aria-label="Next step">
         <p className="cw-services__foot-kicker">Next step</p>
         <h2 className="cw-services__foot-title">
           Discovery call for AI engagements.
@@ -202,11 +205,13 @@ export default function AIEngineeringPage() {
               Book a call <span className="cw-arr" aria-hidden>→</span>
             </a>
           </MagneticArea>
-          <a href="/services" className="cw-cta cw-cta--ghost">
-            <span className="cw-arr" aria-hidden>←</span> All services
+          <a href="/services" className="cw-mlink">
+            <span aria-hidden>←</span> All services
           </a>
         </div>
-      </footer>
+      </section>
+
+      <PageFooter />
     </main>
   );
 }

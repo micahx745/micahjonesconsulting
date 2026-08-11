@@ -15,6 +15,7 @@
 // pieces. Bone world (proven readable for long-form, matches /services).
 import type { Metadata } from "next";
 import { PlaybookSignupForm } from "@/components/color-worlds/PlaybookSignupForm";
+import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   title: "The 80% Wall — a field manual for solo builders",
@@ -213,8 +214,10 @@ export default function PlaybookPage() {
           retainer.
         </p>
         <p className="cw-pb-price__note">
-          Launching soon. The first hundred buyers get it at $99. Get
-          Chapter 1 free now, and I&rsquo;ll tell you the day it ships.
+          {/* W3 (D8/R17, operator-locked): "first hundred buyers" was a
+              scarcity device. Same fact, stated as pricing. */}
+          Launch price $99; $149 after release. Get Chapter 1 free now,
+          and I&rsquo;ll tell you the day it ships.
         </p>
       </section>
 
@@ -243,15 +246,19 @@ export default function PlaybookPage() {
           need someone in the work, the engagement shapes are on the
           services page.
         </p>
+        {/* W3 (D7): this page's one filled pill is the Chapter-1 form
+            submit above; the cross-links demote to the mono grammar. */}
         <div className="cw-services__foot-cta-row">
-          <a href="/services" className="cw-cta">
-            See the engagements <span className="cw-arr" aria-hidden>→</span>
+          <a href="/services" className="cw-mlink">
+            See the engagements <span aria-hidden>→</span>
           </a>
-          <a href="/hire-me" className="cw-cta cw-cta--ghost">
-            Hiring an operator <span className="cw-arr" aria-hidden>→</span>
+          <a href="/hire-me" className="cw-mlink">
+            Hiring an operator <span aria-hidden>→</span>
           </a>
         </div>
       </section>
+
+      <PageFooter />
     </main>
   );
 }

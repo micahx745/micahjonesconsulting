@@ -24,12 +24,18 @@
 // hidden static sibling provides the SR-only fallback "go-to-market
 // and product." — read once, not on every cycle.
 //
-// ROLLING WORD MOTION: setInterval drives an inline transform on the
-// stack. Pass-6+ avoided inline-style writes for reveal STATIC states
-// (View-Transitions snapshot stomping was the bug). The rotating word
-// isn't a static reveal — it's a perpetual loop with no "is-revealed"
-// terminal state to fight, so the snapshot captures one instant of the
-// cycle and that's fine. IO + visibilitychange pause when offscreen.
+// ROLLING WORD MOTION (D1, operator-locked 2026-08): one-shot, not a
+// perpetual loop. setTimeout chain drives an inline transform on the
+// stack, stepping through ROLLING_WORDS once and landing on the
+// duplicated first word at the end of the stack ("go-to-market.") —
+// that duplicate exists so the terminal frame never has to scrub
+// backwards to close a loop. Pass-6+ avoided inline-style writes for
+// reveal STATIC states (View-Transitions snapshot stomping was the
+// bug); this now DOES have a terminal "is-revealed" state (the final
+// translateY), so a snapshot mid-sequence or post-sequence both land
+// on a stable frame — fine either way. IO starts the sequence once,
+// the first time the hero is >=20% visible, then disconnects (no
+// pause/resume machinery — there's nothing left to loop).
 //
 // PARALLAX: rAF-batched + viewport-scaled. dx*6/dy*4 on the H1.
 // Pointer-fine only (excludes touch-laptop users from the unnecessary
@@ -88,7 +94,10 @@ export function Hero() {
     ctaRowRef.current?.classList.add("is-in");
   }, []);
 
-  // Rolling word cycle — pauses when hero out of viewport or tab hidden.
+  // Rolling word — one-shot on first view (D1). Starts the first time
+  // the hero crosses 20% visible, steps through the stack once at the
+  // original 1900ms cadence, and stops on the duplicated first word
+  // at the end (no loop, nothing left to pause/resume).
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
@@ -100,64 +109,40 @@ export function Hero() {
     const hero = heroRef.current;
     if (!roll || !hero) return;
 
-    let step = 0;
-    let interval: number | null = null;
-    let inView = true;
-    let tabVisible = !document.hidden;
+    let started = false;
+    const timeouts: number[] = [];
 
-    function shouldRun() {
-      return inView && tabVisible;
-    }
-
-    function start() {
-      if (interval !== null) return;
-      interval = window.setInterval(() => {
-        step = (step + 1) % ROLLING_WORDS.length;
-        roll!.style.transition = "transform .6s cubic-bezier(.7,0,.2,1)";
-        roll!.style.transform = `translateY(-${step}em)`;
-        if (step === 0) {
-          // Snap back to top with no transition so the loop closes
-          // without visibly scrubbing backwards through the words.
-          window.setTimeout(() => {
-            if (!roll) return;
-            roll.style.transition = "none";
-            roll.style.transform = "translateY(0)";
-          }, 620);
-        }
-      }, 1900);
-    }
-    function stop() {
-      if (interval !== null) {
-        window.clearInterval(interval);
-        interval = null;
+    function runSequence() {
+      if (started) return;
+      started = true;
+      // Stack is ROLLING_WORDS plus a duplicated first word at the end
+      // (see JSX below) — the final step lands on that duplicate so
+      // the sequence closes on "go-to-market." without scrubbing back.
+      for (let step = 1; step <= ROLLING_WORDS.length; step++) {
+        const t = window.setTimeout(() => {
+          if (!roll) return;
+          roll.style.transition = "transform .6s cubic-bezier(.7,0,.2,1)"; // motion-ok: pre-existing rolling-word duration, unchanged by D1 (D1 only turns the loop into a one-shot)
+          roll.style.transform = `translateY(-${step}em)`;
+        }, step * 1900);
+        timeouts.push(t);
       }
     }
 
     const io = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
-        if (!entry) return;
-        inView = entry.isIntersecting;
-        if (shouldRun()) start();
-        else stop();
+        if (entry?.isIntersecting) {
+          runSequence();
+          io.disconnect();
+        }
       },
       { threshold: 0.2 },
     );
     io.observe(hero);
 
-    function onVisibility() {
-      tabVisible = !document.hidden;
-      if (shouldRun()) start();
-      else stop();
-    }
-    document.addEventListener("visibilitychange", onVisibility);
-
-    if (shouldRun()) start();
-
     return () => {
-      stop();
       io.disconnect();
-      document.removeEventListener("visibilitychange", onVisibility);
+      timeouts.forEach((t) => window.clearTimeout(t));
     };
   }, []);
 
@@ -200,6 +185,60 @@ export function Hero() {
     window.addEventListener("pointermove", onMove);
     return () => {
       window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Service scroll-strip link (D2, operator-locked 2026-08). The
+  // scrolling service strip (app/(foyer)/page.tsx, [data-scroll-track])
+  // is a sibling section, not a Hero child — wiring its motion here
+  // (instead of a new client component) keeps this pass's file-touch
+  // surface to the four files it's scoped to. Same document.querySelector-
+  // for-a-sibling idiom Nav.tsx already uses for #main-content/nav.cw-nav.
+  // No idle loop: progress is derived from the strip's own
+  // getBoundingClientRect() every scroll frame (rAF-batched, no cached
+  // offsetTop, so layout shifts can't desync it) and written to
+  // --strip-x, which the CSS transform in globals.css reads. No JS /
+  // reduced-motion => --strip-x is never set => the track renders at
+  // translateX(0), the same static start state the old keyframe held.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduced) return;
+
+    const strip = document.querySelector<HTMLElement>("[data-scroll-track]");
+    const track = strip?.querySelector<HTMLElement>(".cw-track");
+    if (!strip || !track) return;
+
+    let raf = 0;
+    let pending = false;
+
+    function apply() {
+      const rect = strip!.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // Range: strip top entering the bottom of the viewport (rect.top
+      // === vh, progress 0) to it having scrolled a full viewport past
+      // the top (rect.top === -vh, progress 1) — two viewport-heights
+      // of scroll straddling the strip's position.
+      const progress = Math.min(Math.max((vh - rect.top) / (vh * 2), 0), 1);
+      track!.style.setProperty("--strip-x", `${progress * -50}%`);
+      pending = false;
+    }
+    function onScroll() {
+      if (!pending) {
+        pending = true;
+        raf = requestAnimationFrame(apply);
+      }
+    }
+
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -250,22 +289,25 @@ export function Hero() {
           It stays reachable from the /services self-select routing line.
           Hero CTAs are now one enterprise ladder: see the proof, hire me,
           talk. */}
+      {/* W3 (D7, operator-locked 2026-08-11): ONE filled pill per page —
+          "See the work" is home's primary (receipts-first posture).
+          Hire-me and Book-a-call demote to the underlined-mono grammar. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
         <MagneticArea>
           <a href="#products" className="cw-cta">
             See the work <span className="cw-arr" aria-hidden>↓</span>
           </a>
         </MagneticArea>
-        <a href="/hire-me" className="cw-cta cw-cta--ghost">
-          Hire me <span className="cw-arr" aria-hidden>→</span>
+        <a href="/hire-me" className="cw-mlink">
+          Hire me <span aria-hidden>→</span>
         </a>
         <a
           href="https://calendly.com/micahmccoyjones/introduction"
           target="_blank"
           rel="noopener noreferrer"
-          className="cw-cta cw-cta--ghost"
+          className="cw-mlink"
         >
-          Book a call <span className="cw-arr" aria-hidden>↗</span>
+          Book a call <span aria-hidden>↗</span>
         </a>
       </div>
 

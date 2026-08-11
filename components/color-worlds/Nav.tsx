@@ -41,9 +41,52 @@ const NAV_LINKS = [
 
 export function Nav() {
   const [isOpen, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const menuBtnRef = useRef<HTMLButtonElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const scrolledRef = useRef(false);
+
+  // is-scrolled state (P1-8, review): the fixed nav's mix-blend-mode:
+  // difference overprints content low on long pages (verified: the
+  // wordmark over the footer credits line). Past ~90% of the first
+  // viewport, swap the blend trick for a solid chip so the wordmark
+  // never blends against arbitrary page content again. This is a
+  // legibility fix, not decoration — it runs (and applies) the same
+  // whether or not the user has reduced motion; only the CSS transition
+  // that eases the swap is gated off under reduced motion (globals.css).
+  // rAF-batched like the other scroll/pointer handlers in Hero.tsx;
+  // state is only set on an actual threshold crossing so this doesn't
+  // re-render on every scroll pixel.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    let raf = 0;
+    let pending = false;
+
+    function apply() {
+      const next = window.scrollY > window.innerHeight * 0.9;
+      if (next !== scrolledRef.current) {
+        scrolledRef.current = next;
+        setIsScrolled(next);
+      }
+      pending = false;
+    }
+    function onScroll() {
+      if (!pending) {
+        pending = true;
+        raf = requestAnimationFrame(apply);
+      }
+    }
+
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
 
   // Body scroll lock + focus management + inert sibling content on
   // open. Without `inert` on the rest of the document, AT virtual
@@ -127,7 +170,10 @@ export function Nav() {
 
   return (
     <>
-      <nav className="cw-nav" aria-label="Primary">
+      <nav
+        className={`cw-nav${isScrolled ? " is-scrolled" : ""}`}
+        aria-label="Primary"
+      >
         <a href="/#top" className="cw-wordmark">
           MICAH/JONES
         </a>

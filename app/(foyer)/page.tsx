@@ -123,9 +123,12 @@ export default function ColorWorldsHome() {
       {/* HERO + MARQUEE — terracotta */}
       <Hero />
 
-      <div className="cw-marquee" data-section data-world="terracotta">
+      <div className="cw-marquee" data-section data-world="terracotta" data-scroll-track>
         <div className="cw-track">
-          {/* Track is duplicated; linear translateX(-50%) loops cleanly. */}
+          {/* Track duplicated; scroll-linked translateX(0 to -50%) reveals
+              the second half cleanly (D2, operator-locked 2026-08 — no
+              idle loop; see Hero.tsx's scroll-link effect for the
+              [data-scroll-track] progress calc). */}
           {[0, 1].map((dupe) => (
             <span key={dupe}>
               {SERVICE_MARQUEE.map((s) => (
@@ -490,12 +493,14 @@ export default function ColorWorldsHome() {
             engagement line. Guardicore and SurveyMonkey are NOT listed
             here (both already named prominently in the cards above);
             this lists the other named engagements. */}
+        {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates cut —
+            named companies carried no figure-bearing result. The decade
+            claim stays; the named-with-figures work is in the cards. */}
         <div className="cw-shipped-also cw-reveal">
           <p className="cw-shipped-also__eyebrow">2013 — 2023</p>
           <p className="cw-shipped-also__line">
-            Also at <strong>Flexport</strong>, <strong>Cuebiq</strong>,
-            and <strong>Postmates</strong> — growth, GTM, and platform
-            strategy across a decade of enterprise software.
+            Growth, GTM, and platform strategy across a decade of
+            enterprise software.
           </p>
         </div>
       </section>

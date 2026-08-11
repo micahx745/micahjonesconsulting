@@ -15,6 +15,7 @@
 // verticals, and the title-translation row.
 import type { Metadata } from "next";
 import { SpecTable } from "@/components/color-worlds/SpecTable";
+import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   title: "Hire me — full-time, fractional, or contract",
@@ -171,6 +172,9 @@ export default function HireMePage() {
           with a full CV and the closest fit. A call comes after the
           paper, not before.
         </p>
+        {/* W3 (D7): one filled pill per page — Email me is the primary
+            (paper before the call, per the page's own copy). Book-a-call
+            demotes to the mono grammar. */}
         <div className="cw-services__foot-cta-row">
           <a href="mailto:hello@micahjonesconsulting.com" className="cw-cta">
             Email me <span className="cw-arr" aria-hidden>→</span>
@@ -179,12 +183,14 @@ export default function HireMePage() {
             href="https://calendly.com/micahmccoyjones/introduction"
             target="_blank"
             rel="noopener noreferrer"
-            className="cw-cta cw-cta--ghost"
+            className="cw-mlink"
           >
-            Book a call <span className="cw-arr" aria-hidden>↗</span>
+            Book a call <span aria-hidden>↗</span>
           </a>
         </div>
       </section>
+
+      <PageFooter />
     </main>
   );
 }
