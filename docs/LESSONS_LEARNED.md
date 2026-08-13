@@ -101,3 +101,26 @@ differently during RSC serialization and strips the segment's leading whitespace
 text that contains an `&…;` entity must be an explicit `{" "}` join. Check on any copy
 edit: `grep -rE '</(strong|em|a|b)> [^<{]*&[a-z]+;' app components --include='*.tsx'` —
 zero hits allowed. Candidate for a write-boundary hook if it recurs.
+
+## #7 — mix-blend-mode only blends inside its nearest stacking context (2026-08-13)
+
+**What happened:** Pass-38 moved `mix-blend-mode: difference` off `.cw-nav` and onto
+`.cw-wordmark` alone, to fix an AA failure on the 12px nav links. The wordmark then rendered
+flat white on cream (1.28:1, effectively invisible) on five routes and shipped that way through
+two more passes.
+
+**Root cause:** `.cw-nav` is `position: fixed` + `z-index: 200`, which establishes a stacking
+context. A blended child blends against *that* context's backdrop — transparent — not the page
+behind it. The blend silently became a no-op.
+
+**Why it survived review:** `getComputedStyle` reports `color: #fff` whether the blend resolves
+or not, so both a contrast probe and an axe scan report the same number for working and broken
+states. An earlier audit leg had dismissed the axe finding as a false positive on the strength
+of a screenshot taken BEFORE the Pass-38 change.
+
+**Gates:** (a) Any element with `mix-blend-mode` must be verified by SCREENSHOT, never by
+computed style — the property is invisible to the CSSOM. (b) Before adding `mix-blend-mode`,
+check every ancestor up to `<body>` for a stacking context (`position` + `z-index`, `transform`,
+`filter`, `opacity < 1`, `will-change`, `isolation`). (c) Prefer a solid `var(--cw-fg)` over a
+blend for anything carrying text: it is AA by construction in every palette world, and this
+site's world tokens already guarantee that pair.
