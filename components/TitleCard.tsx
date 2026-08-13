@@ -29,7 +29,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLenis } from "@/components/LenisProvider";
-import { titleCardSchema, type TitleCardProps } from "@/lib/title-card-schema";
+// TYPE-ONLY import. Importing titleCardSchema as a value here dragged Zod into
+// the client bundle on every case-study route (~65KB transferred, measured).
+// The MOT-02 runtime contract is unchanged — validation moved to the server
+// component that renders this (app/(theater)/work/[slug]/page.tsx), so a bad
+// frontmatter shape still throws, just earlier and without shipping a
+// validator to the browser. Frontmatter is additionally validated at build
+// time by lib/case-study-schema.ts via the copy-lint gate.
+import type { TitleCardProps } from "@/lib/title-card-schema";
 import { TitleCardComposition } from "@/components/TitleCardComposition";
 
 // Module-level plugin registration. MUST be outside the component function
@@ -41,11 +48,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 // Tunable — increase to slow the pin, decrease to speed.
 const PIN_DISTANCE_PX = 240;
 
-export function TitleCard(props: TitleCardProps) {
-  // Validate at runtime. Throws on misuse (e.g., 7 words, 2 words,
-  // missing caption). MOT-02 contract.
-  const parsed = titleCardSchema.parse(props);
-
+export function TitleCard(parsed: TitleCardProps) {
+  // Props arrive pre-validated by the server component (see the type-only
+  // import note above). MOT-02 contract still holds.
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   // Bridge Lenis lerp into ScrollTrigger's measurement loop so the pin

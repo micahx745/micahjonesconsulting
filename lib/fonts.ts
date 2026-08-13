@@ -16,9 +16,19 @@ import {
 } from "next/font/google";
 
 // preload: true because this is now the LCP font for the foyer hero.
+// Perf (2026-08-13): the `wdth` axis is DROPPED. Nothing in the site's CSS
+// sets font-stretch or font-variation-settings 'wdth', so the axis was pure
+// payload: the latin file goes 128.5KB -> 75.1KB, a 41.6% cut to the largest
+// asset on every route. Advance widths measured identical to 3 significant
+// figures across all six real size/weight combinations.
+//
+// `opsz` STAYS. It is tempting to drop it too (a further 34.7KB) but browsers
+// default to font-optical-sizing: auto, so the axis is applied from font-size
+// even though no CSS mentions it — removing it would pin every glyph to one
+// optical size and visibly change the display type.
 export const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  axes: ["opsz", "wdth"],
+  axes: ["opsz"],
   weight: "variable",
   variable: "--font-bricolage",
   display: "swap",

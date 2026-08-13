@@ -54,6 +54,7 @@ async function loadChromium() {
 }
 
 const BASE = process.env.BASE_URL ?? "http://localhost:3000";
+const REDUCED = process.argv.includes("--reduced");
 
 const ROUTES = [
   "/",
@@ -81,10 +82,15 @@ async function capture(outDir) {
   const results = [];
 
   for (const width of WIDTHS) {
+    // --reduced makes captures DETERMINISTIC: the hero word rotator, scroll
+    // reveals and palette drifts all settle to a fixed state, so a diff shows
+    // real regressions instead of "the animation was 200ms further along".
+    // Use it for before/after refactor comparisons; omit it to capture what a
+    // default visitor actually sees.
     const context = await browser.newContext({
       viewport: { width, height: 900 },
       deviceScaleFactor: 1,
-      reducedMotion: "no-preference",
+      reducedMotion: REDUCED ? "reduce" : "no-preference",
     });
     const page = await context.newPage();
 
@@ -117,14 +123,17 @@ async function capture(outDir) {
   return results;
 }
 
-// Byte-identical check first (fast), then a coarse dimension check so a
-// changed-but-same-size image is still reported. Pixel-level diffing is
-// deliberately not implemented — anti-aliasing noise across runs produces
-// false positives, and the real gate is a human looking at what changed.
+// Byte comparison first (fast path — identical files short-circuit), then a
+// real pixel diff for anything that differs. Byte size alone is useless here:
+// a 20KB PNG delta can be one animation frame or a broken layout, and only
+// per-pixel comparison with a bounding box tells them apart. Decoding runs in
+// the browser via canvas so this needs no image-decoding dependency.
 async function diff(dirA, dirB) {
   const files = (await readdir(dirA)).filter((f) => f.endsWith(".png"));
   const changed = [];
+  const identical = [];
   const missing = [];
+  const suspects = [];
 
   for (const f of files) {
     const a = join(dirA, f);
@@ -134,12 +143,86 @@ async function diff(dirA, dirB) {
       continue;
     }
     const [bufA, bufB] = await Promise.all([readFile(a), readFile(b)]);
-    if (!bufA.equals(bufB)) {
-      changed.push({ file: f, bytesA: bufA.length, bytesB: bufB.length });
-    }
+    if (bufA.equals(bufB)) identical.push(f);
+    else suspects.push({ f, a, b, bytesA: bufA.length, bytesB: bufB.length });
   }
 
-  return { changed, missing, total: files.length };
+  if (suspects.length) {
+    const chromium = await loadChromium();
+    const browser = await chromium.launch();
+    const page = await browser.newPage();
+
+    for (const s of suspects) {
+      const [bufA, bufB] = await Promise.all([readFile(s.a), readFile(s.b)]);
+      const result = await page.evaluate(
+        async ([dataA, dataB]) => {
+          const load = (d) =>
+            new Promise((res, rej) => {
+              const img = new Image();
+              img.onload = () => res(img);
+              img.onerror = rej;
+              img.src = d;
+            });
+          const [ia, ib] = await Promise.all([load(dataA), load(dataB)]);
+          if (ia.width !== ib.width || ia.height !== ib.height) {
+            return {
+              sizeMismatch: true,
+              a: `${ia.width}x${ia.height}`,
+              b: `${ib.width}x${ib.height}`,
+            };
+          }
+          const draw = (img) => {
+            const c = document.createElement("canvas");
+            c.width = img.width;
+            c.height = img.height;
+            c.getContext("2d").drawImage(img, 0, 0);
+            return c.getContext("2d").getImageData(0, 0, img.width, img.height).data;
+          };
+          const da = draw(ia);
+          const db = draw(ib);
+          // Tolerance absorbs sub-pixel AA and JPEG-free PNG rounding; only
+          // channel deltas a human could see count as a differing pixel.
+          const TOL = 12;
+          let diffPx = 0;
+          let minX = ia.width, minY = ia.height, maxX = -1, maxY = -1;
+          for (let i = 0; i < da.length; i += 4) {
+            if (
+              Math.abs(da[i] - db[i]) > TOL ||
+              Math.abs(da[i + 1] - db[i + 1]) > TOL ||
+              Math.abs(da[i + 2] - db[i + 2]) > TOL
+            ) {
+              diffPx++;
+              const px = (i / 4) % ia.width;
+              const py = Math.floor(i / 4 / ia.width);
+              if (px < minX) minX = px;
+              if (px > maxX) maxX = px;
+              if (py < minY) minY = py;
+              if (py > maxY) maxY = py;
+            }
+          }
+          const totalPx = ia.width * ia.height;
+          return {
+            sizeMismatch: false,
+            diffPx,
+            totalPx,
+            pct: +((diffPx / totalPx) * 100).toFixed(4),
+            box: maxX < 0 ? null : { x: minX, y: minY, w: maxX - minX + 1, h: maxY - minY + 1 },
+            dims: `${ia.width}x${ia.height}`,
+          };
+        },
+        [
+          `data:image/png;base64,${bufA.toString("base64")}`,
+          `data:image/png;base64,${bufB.toString("base64")}`,
+        ],
+      );
+      if (result.sizeMismatch || result.diffPx > 0) changed.push({ file: s.f, ...result });
+      else identical.push(s.f);
+    }
+
+    await browser.close();
+  }
+
+  return { changed, identical, missing, total: files.length };
 }
 
 const args = process.argv.slice(2);
@@ -148,11 +231,17 @@ if (args[0] === "--diff") {
   const [, dirA, dirB] = args;
   const report = await diff(dirA, dirB);
   console.log(`\nCompared ${report.total} captures: ${dirA} -> ${dirB}`);
-  console.log(`  identical: ${report.total - report.changed.length - report.missing.length}`);
-  console.log(`  CHANGED:   ${report.changed.length}`);
+  console.log(`  pixel-identical: ${report.identical.length}`);
+  console.log(`  CHANGED:         ${report.changed.length}`);
   for (const c of report.changed) {
-    const delta = c.bytesB - c.bytesA;
-    console.log(`    ${c.file}  (${delta > 0 ? "+" : ""}${delta} bytes)`);
+    if (c.sizeMismatch) {
+      console.log(`    ${c.file}  DIMENSIONS ${c.a} -> ${c.b}`);
+    } else {
+      const b = c.box;
+      console.log(
+        `    ${c.file}  ${c.pct}% of pixels (${c.diffPx}) | region x${b.x} y${b.y} ${b.w}x${b.h} of ${c.dims}`,
+      );
+    }
   }
   if (report.missing.length) console.log(`  MISSING in ${dirB}: ${report.missing.join(", ")}`);
   await writeFile(

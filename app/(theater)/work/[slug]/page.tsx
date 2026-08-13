@@ -20,6 +20,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TitleCard } from "@/components/TitleCard";
+import { titleCardSchema } from "@/lib/title-card-schema";
 import { CaseStudyStill } from "@/components/CaseStudyStill";
 import { CaseStudyReadTracker } from "@/components/CaseStudyReadTracker";
 import { CaseStudySidebar } from "@/components/CaseStudySidebar";
@@ -160,11 +161,16 @@ export default async function TheaterCaseStudyPage({
           dek previously rendered twice — here AND as a header <Dek>
           below the hero (the Cowork review's duplicate-lede finding).
           The header copy is gone; the resolved hero state carries it. */}
+      {/* Perf (2026-08-13): MOT-02 validation runs HERE, on the server, so
+          Zod stays out of the client bundle (~65KB per case route). Same
+          contract — a malformed word stack still throws the build/render. */}
       <TitleCard
-        words={cs.titleCardWords}
-        caption={cs.dek}
-        heroSrc={cs.heroStill}
-        heroAlt={cs.title}
+        {...titleCardSchema.parse({
+          words: cs.titleCardWords,
+          caption: cs.dek,
+          heroSrc: cs.heroStill,
+          heroAlt: cs.title,
+        })}
       />
 
       {/* Pass-22 (CW-18 Slice 1): asymmetric two-column grid wrapping
