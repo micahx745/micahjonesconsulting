@@ -64,7 +64,14 @@ export function Nav() {
     let pending = false;
 
     function apply() {
-      const next = window.scrollY > window.innerHeight * 0.9;
+      // Threshold was innerHeight * 0.9 — calibrated to the home page, where
+      // a full-bleed hero fills the first viewport. On short-hero routes
+      // (/hire-me, /playbook, /work) body copy reaches the fixed nav well
+      // before that, so the transparent state overprinted text — the exact
+      // collision P1-8 was meant to end. A small constant gives every route
+      // the chip as soon as anything scrolls under the nav, while keeping the
+      // transparent treatment at rest on the hero.
+      const next = window.scrollY > 40;
       if (next !== scrolledRef.current) {
         scrolledRef.current = next;
         setIsScrolled(next);

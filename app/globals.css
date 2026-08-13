@@ -1343,7 +1343,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.7;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0;
 }
 [data-mode="cw"] .cw-work-item:hover .cw-work-item__title {
@@ -1523,9 +1523,25 @@ body {
   padding: 24px 40px;
   color: var(--cw-fg, var(--color-theater-ink));
 }
+/* The wordmark runs SOLID, not blended (a11y audit, 2026-08-13).
+ *
+ * History worth keeping: the whole nav used to carry
+ * mix-blend-mode: difference with color:#fff, which self-inverted against
+ * whatever world was behind it. That failed AA for the 12px links, so
+ * Pass-38 moved the blend onto the wordmark alone — and silently broke it.
+ * .cw-nav is position:fixed + z-index:200, which establishes a stacking
+ * context, and mix-blend-mode only blends within its nearest stacking
+ * context. The wordmark was therefore blending against the nav's own
+ * transparent backdrop rather than the page, so it rendered flat #fff:
+ * white-on-cream, 1.28:1, effectively invisible on every light-world route.
+ * Verified by screenshot, not by computed style, which reports #fff either way.
+ *
+ * Solid var(--cw-fg) is the world's own foreground — an AA pair in every
+ * world by construction (bone/terracotta 5.27, espresso/bone 12.6,
+ * bone/petrol 8.28) — and it also retires the teal-tinted wordmark the
+ * design review flagged as an accent doing no work. */
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-wordmark {
-  mix-blend-mode: difference;
-  color: #fff;
+  color: var(--cw-fg, var(--color-theater-ink));
 }
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-navlinks a,
 :is([data-mode="cw"], [data-mode="theater"]) .cw-nav .cw-menubtn {
@@ -1665,7 +1681,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin-top: 50px;
 }
 
@@ -1694,7 +1710,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.7;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin-bottom: 32px;
   overflow: hidden;
 }
@@ -1903,7 +1919,7 @@ body {
   font-family: var(--font-cw-mono);
   font-size: 11px;
   letter-spacing: 0.18em;
-  opacity: 0.5;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -1935,7 +1951,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 
 /* Marquee — services + companies */
@@ -2027,7 +2043,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.7;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   display: flex;
   align-items: center;
   gap: 14px;
@@ -2080,7 +2096,7 @@ body {
 [data-mode="cw"] .cw-workrow .cw-num {
   font-family: var(--font-cw-mono);
   font-size: 12px;
-  opacity: 0.7;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   min-width: 34px;
   z-index: 2;
 }
@@ -2216,7 +2232,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.7; /* a11y: 0.6 fell to ~3.8:1 on cream; 0.7 holds >=4.5:1 */
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */ /* a11y: 0.6 fell to ~3.8:1 on cream; 0.7 holds >=4.5:1 */
   margin: 0;
   padding-top: 0.6em;
 }
@@ -2253,7 +2269,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.7; /* a11y: 0.6 fell to ~3.8:1 on cream; 0.7 holds >=4.5:1 */
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */ /* a11y: 0.6 fell to ~3.8:1 on cream; 0.7 holds >=4.5:1 */
   margin-top: 10px;
   margin-bottom: 0;
 }
@@ -2289,7 +2305,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0 0 28px;
 }
 [data-mode="cw"] .cw-services__title {
@@ -2341,7 +2357,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0;
   padding-top: 0.4em;
 }
@@ -2374,7 +2390,7 @@ body {
   font-style: italic;
   font-size: 14px;
   line-height: 1.5;
-  opacity: 0.7;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 6px 0 0;
   max-width: 56ch;
 }
@@ -2461,7 +2477,7 @@ body {
   gap: 12px;
   align-items: baseline;
   margin: 0;
-  opacity: 0.8;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 [data-mode="cw"] .cw-pagefoot__row a {
   color: inherit;
@@ -2523,7 +2539,9 @@ body {
   font-size: 12px;
   letter-spacing: 0.16em;
   margin-top: 6px;
-  opacity: 0.85;
+  /* a11y: this one sits on the FILLED terracotta header, where bone tops
+   * out at 5.27:1 — any transparency drops it under 4.5, so it runs solid. */
+  opacity: 1;
 }
 [data-mode="cw"] .cw-spec__rowlabel {
   font-family: var(--font-cw-mono);
@@ -2533,7 +2551,7 @@ body {
   text-transform: uppercase;
   text-align: left;
   vertical-align: top;
-  opacity: 0.65;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   padding: 18px 14px 18px 0;
   border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
   border-left: none;
@@ -2573,7 +2591,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0 0 20px;
 }
 [data-mode="cw"] .cw-services__foot-title {
@@ -2841,7 +2859,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.7;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0;
   padding-top: 0.6em;
   white-space: nowrap;
@@ -2988,7 +3006,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin-top: 16px;
 }
 [data-mode="cw"] .cw-ordani .cw-signup .cw-msg {
@@ -2997,7 +3015,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin-top: 4px;
 }
 
@@ -3081,7 +3099,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  opacity: 0.65;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 [data-mode="cw"] .cw-card h3 {
   font-family: var(--font-cw-display);
@@ -3119,7 +3137,7 @@ body {
   margin: 14px 0 0;
   font-size: 12px;
   line-height: 1.5;
-  opacity: 0.78;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 [data-mode="cw"] .cw-card__sublist li {
   position: relative;
@@ -3177,7 +3195,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.55;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0 0 16px;
 }
 [data-mode="cw"] .cw-shipped-also__line {
@@ -3477,7 +3495,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0 0 20px;
 }
 [data-mode="cw"] .cw-pb-sect,
@@ -3543,7 +3561,7 @@ body {
   font-family: var(--font-cw-mono);
   font-size: 12px;
   letter-spacing: 0.14em;
-  opacity: 0.5;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 [data-mode="cw"] .cw-pb-toc__title {
   display: block;
@@ -3638,7 +3656,7 @@ body {
   font-family: var(--font-cw-body);
   font-size: 14px;
   line-height: 1.5;
-  opacity: 0.72;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0;
   max-width: 52ch;
 }
@@ -3691,7 +3709,7 @@ body {
   font-family: var(--font-cw-mono);
   font-size: 12px;
   letter-spacing: 0.14em;
-  opacity: 0.5;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 [data-mode="cw"] .cw-hm-receipt__text {
   font-family: var(--font-cw-display);
@@ -3716,7 +3734,7 @@ body {
   border: 1px solid currentColor;
   border-radius: 100px;
   padding: 8px 18px;
-  opacity: 0.85;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 
 /* ================================================================
@@ -3741,7 +3759,7 @@ body {
   font-family: var(--font-cw-mono);
   font-size: 12px;
   letter-spacing: 0.22em;
-  opacity: 0.7;
+  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0 0 18px;
 }
 [data-mode="cw"] .cw-notfound__line {
