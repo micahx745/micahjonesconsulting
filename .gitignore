@@ -39,3 +39,7 @@ next-env.d.ts.bak
 
 .vercel
 .playwright-mcp/
+
+# Visual-regression captures — local safety net, regenerate with scripts/visual-baseline.mjs
+qa/baselines/
+qa/after/
