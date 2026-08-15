@@ -57,3 +57,36 @@ NOTE: the live home diverged from the foyer/theater description in `.claude/CLAU
 home + top-level pages run the "Color Worlds" system (`data-mode="cw"`, terracotta/bone/
 petrol/espresso, Bricolage display); (theater) case-study routes keep the obsidian theater.
 Live code wins over stale doc prose.
+
+## CARD 6 — Cross-model review (ported from the Ordani harness, 2026-08-15)
+
+Three EXTERNAL lineages review a plan or a diff, breaking the
+Claude-verifies-Claude monoculture:
+
+```
+python scripts/cross-review/run_cross_review.py --mode diff \
+  --input qa/xr/xr_input.txt --out qa/xr/xr_out.txt
+```
+
+Protocol: `.claude/skills/cross-review/SKILL.md` (procedure + the disposition
+protocol) and `.claude/cross-review-prompt.md` (reconciliation, rounds, stop
+rule). Command: `/cross-review plan|diff`. Escape hatch: `SKIP_CROSS_REVIEW=1`.
+
+- **Where it sits in the ship flow:** `pnpm build` -> `/premium audit` ->
+  **`/cross-review diff origin/main`** -> CARD 1. A CONFIRMED block-class
+  finding blocks CARD 1, not the build — the build already passed, which is
+  exactly how LESSONS #7 shipped through two passes.
+- **`<base>` is `origin/main`,** because Pass-N commits sit behind an operator
+  deploy gate. NEVER bare `git diff` — the tree is clean at this checkpoint.
+- **Keys live at `~/.claude/.gemini-key` and `~/.claude/.zai-key`** — outside
+  every repo, so one rotation site serves all projects and no working tree can
+  stage a secret. `.gitignore` also blocks the in-repo paths as a backstop.
+- **Model pins live ONLY in the script.** Never restate a pin in prose; a
+  restated pin is what rotted upstream. Codex is pinned to `gpt-5.6-sol` and is
+  the DEEP leg — give it latency, never truncation. Never bump the pin without
+  smoke-testing THROUGH the harness: a direct-CLI OK does not imply the `llm`
+  plugin can route it (`gpt-5.6-luna` answers directly but 404s through the
+  plugin).
+- **Cost:** zero ambient; per-round pennies on operator-owned accounts (Codex on
+  the ChatGPT plan, Gemini on AI Studio, GLM pay-go). Invoke deliberately.
+- Python 3.14 on PATH; the script is 100% stdlib — nothing to install.

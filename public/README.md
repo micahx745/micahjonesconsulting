@@ -18,8 +18,12 @@ build, ship.
 Constraints:
 
 - **2x retina source.** 900x1125 or larger for `context`; 1200x1500 for `main`.
-- **JPEG or PNG.** `next/image` converts to AVIF/WebP per browser at request time.
-- **500KB max** — enforced by the harness `image-budget.sh` at the write boundary.
+- **JPEG or PNG** — `portrait-context.jpg`, `.jpeg` or `.png` all work.
+  `next/image` converts to AVIF/WebP per browser at request time.
+- **Keep the SOURCE file under 500KB.** This is a convention, not an enforced
+  gate: the `image-budget.sh` hook ships with the premium-web plugin, but this
+  repo has no `.claude/settings.json` wiring it, so nothing fails a build if you
+  exceed it. Check it yourself: `ls -la public/portrait-*`.
 - 4:5 vertical is what the layout expects. Off-ratio files are cropped
   (`object-fit: cover`), never distorted.
 
@@ -29,8 +33,16 @@ After dropping a file in, verify it actually rendered rather than assuming:
 pnpm build && pnpm start -p 3000
 ```
 
-then check the page serves the image (not nothing):
+then prove the IMAGE ITSELF is servable — not merely that the markup appeared.
+`existsSync` emits the `cw-portrait` markup for any file at that path, including
+a corrupt or zero-byte one, so grepping for the class is a false green:
 
 ```bash
-curl -s http://localhost:3000/about | grep -c "cw-portrait"
+curl -s http://localhost:3000/about | grep -o '/_next/image?url=[^"&]*' | head -1
+```
+
+Take that path and confirm it returns 200 with an image content-type:
+
+```bash
+curl -s -o /dev/null -w "%{http_code} %{content_type}\n" "http://localhost:3000/_next/image?url=%2Fportrait-context.jpg&w=640&q=75"
 ```

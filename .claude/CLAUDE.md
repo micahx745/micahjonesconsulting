@@ -90,8 +90,10 @@ The `copy-editor` subagent runs on every PR that touches `content/**/*.mdx`, `ap
 `components/PortraitImage.tsx` is mounted on `/about` and renders NOTHING until a
 real file exists. The operator flow is a file drop plus a build:
 
-1. Save the portrait as `public/portrait-context.jpg` (2x retina, 4:5 vertical,
-   ~900x1125 or larger, <=500KB after conversion).
+1. Save the portrait as `public/portrait-context.jpg` (or `.jpeg`/`.png` — all
+   three are checked). 2x retina, 4:5 vertical, ~900x1125 or larger. Keep the
+   source under 500KB by convention; nothing enforces it in this repo (the
+   `image-budget.sh` hook is unwired — there is no `.claude/settings.json`).
 2. `pnpm build` — the two-column `/about` intro activates automatically (the CSS
    uses `:has(.cw-portrait)`, so no portrait means no layout change).
 3. Ship per STANDING_TECHNIQUES CARD 1.

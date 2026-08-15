@@ -32,18 +32,33 @@ type Variant = "main" | "context";
 
 interface PortraitImageProps {
   variant: Variant;
-  /** Set on an above-the-fold portrait so it is treated as an LCP candidate. */
+  /**
+   * Defaults TRUE. The /about portrait sits in the intro — above the fold at
+   * >=1100px, and the largest element on screen once it exists — so lazy
+   * loading it would make the page's own LCP candidate wait on the lazy
+   * queue. Pass `priority={false}` if you mount a variant below the fold.
+   * (Cross-review finding, 2026-08-15.)
+   */
   priority?: boolean;
 }
 
-const REAL_FILENAME: Record<Variant, string> = {
-  main: "portrait-main.jpg",
-  context: "portrait-context.jpg",
+// Both extensions are accepted because the operator docs say "JPEG or PNG" —
+// checking only .jpg made a dropped-in .png render silently nothing.
+// (Cross-review finding, 2026-08-15.)
+const EXTENSIONS = ["jpg", "jpeg", "png"] as const;
+
+const BASENAME: Record<Variant, string> = {
+  main: "portrait-main",
+  context: "portrait-context",
 };
 
+// Alt text has to stay TRUE for whatever photograph actually arrives. The
+// previous "at his Oakland workspace" asserted a setting the photo brief never
+// guaranteed — if the portrait is shot anywhere else the alt text lies to every
+// screen-reader user. (Cross-review finding, 2026-08-15.)
 const REAL_ALT: Record<Variant, string> = {
-  main: "Micah Jones, Oakland",
-  context: "Micah Jones at his Oakland workspace",
+  main: "Micah Jones",
+  context: "Micah Jones",
 };
 
 // Source dimensions; next/image resamples per breakpoint via `sizes`.
@@ -58,15 +73,17 @@ const SIZES: Record<Variant, string> = {
   context: "(min-width: 1100px) 380px, 100vw",
 };
 
-export function PortraitImage({ variant, priority = false }: PortraitImageProps) {
-  const hasReal = existsSync(join(process.cwd(), "public", REAL_FILENAME[variant]));
-  if (!hasReal) return null;
+export function PortraitImage({ variant, priority = true }: PortraitImageProps) {
+  const file = EXTENSIONS.map((ext) => `${BASENAME[variant]}.${ext}`).find((name) =>
+    existsSync(join(process.cwd(), "public", name)),
+  );
+  if (!file) return null;
 
   const { width, height } = DIM[variant];
   return (
     <figure className={`cw-portrait cw-portrait--${variant}`}>
       <Image
-        src={`/${REAL_FILENAME[variant]}`}
+        src={`/${file}`}
         alt={REAL_ALT[variant]}
         width={width}
         height={height}
