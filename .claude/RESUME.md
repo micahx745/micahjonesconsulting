@@ -15,7 +15,7 @@
   visible in a screenshot); 28 small-text opacities 0.5-0.85 -> 0.9; nav chip
   threshold 0.9*vh -> 40px so short-hero routes stop overprinting.
 
-## The 95 question — ANSWERED with a measurement
+## The 95 question — ANSWERED and DECIDED (D14: keep faces, ship at 92)
 Built once with custom fonts disabled: **97, LCP 2651ms, 245KB** vs today's
 92 / 3407ms / 390KB. The three brand faces (144KB) ARE the 5-point gap.
 `display: optional` tested and reverted — 92/3412ms, identical to swap, because
@@ -23,7 +23,8 @@ the bytes still travel. So >=95 costs a typeface; that is an operator brand
 call, not an engineering one. /work already scores 93 carrying zero project JS.
 
 ## Queue (operator-owned)
-1. DECIDE: ship (18 commits) or trade a typeface for >=95.
+1. SHIP — operator chose option A (keep all three faces, ship at 92; D14). Say the
+   word; CARD 1 flow: build -> deploy -> alias BOTH domains -> push 21 commits.
 2. Vercel dashboard: add www as project domain (kills per-deploy re-alias, #5).
 3. Artifacts (D12): Ordani screenshots (#1), /about portrait, redacted RFP report.
 4. Wordmark question is now MOOT — the blend was broken and is gone (Pass-42).

@@ -80,3 +80,13 @@ Left-aligned one-sentence hero · scroll palette shifts · hand-drawn marks · c
 ("Operator, not consultant." / "Send the role. I'll send the receipts.") · full
 reduced-motion stop · /hire-me numbered receipts block · "trillions in assets" line
 (operator-locked from before).
+
+## Round 5 — locked 2026-08-13 (post-perf pass)
+
+**D14 · Performance vs. typefaces:** KEEP ALL THREE FACES (Bricolage, Hanken, JetBrains
+Mono); SHIP AT 92. Measured: the three faces are exactly the gap to the ≥95 target
+(97 / LCP 2651ms with system fonts vs 92 / 3407ms with them; `display: optional`
+tested and reverted — identical to swap). Every other lever is pulled: /work scores 93
+carrying zero project JS. The ≥95 line in `.claude/CLAUDE.md` predates this measurement;
+92 on mobile is accepted as the site's floor while it loads three custom faces. Revisit
+only if the operator later chooses to drop a face.
