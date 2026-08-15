@@ -87,36 +87,25 @@ The `copy-editor` subagent runs on every PR that touches `content/**/*.mdx`, `ap
 
 ## Portrait swap (when real photos arrive)
 
-The site ships with two placeholder PNGs at `public/portrait-main.placeholder.png` and
-`public/portrait-context.placeholder.png` (produced by `scripts/generate-placeholders.mjs`).
-When the real Oakland portraits land from the Phase 1 booking
-(see `docs/PORTRAIT-OUTREACH.md`), the swap is three steps:
+`components/PortraitImage.tsx` is mounted on `/about` and renders NOTHING until a
+real file exists. The operator flow is a file drop plus a build:
 
-1. **Save the main vertical portrait as** `public/portrait-main.jpg` — 2x retina source,
-   1200×1500 ideal aspect ratio 4:5, JPEG or PNG (`next/image` AVIF-converts at request
-   time, ≤500KB enforced by harness `image-budget.sh`).
-2. **Save the secondary workspace shot as** `public/portrait-context.jpg` — same constraints.
-3. **Build and deploy:** `pnpm build && vercel --prod`.
+1. Save the portrait as `public/portrait-context.jpg` (2x retina, 4:5 vertical,
+   ~900x1125 or larger, <=500KB after conversion).
+2. `pnpm build` — the two-column `/about` intro activates automatically (the CSS
+   uses `:has(.cw-portrait)`, so no portrait means no layout change).
+3. Ship per STANDING_TECHNIQUES CARD 1.
 
-The `<PortraitImage>` server component (`components/PortraitImage.tsx`) checks for
-`public/portrait-<variant>.jpg` at build time. If present, it serves the real image with
-the real-image alt text (`Micah Jones, Oakland` on Home; `Micah Jones at his Oakland workspace`
-on About). If absent, it serves the placeholder PNG with a `placeholder, final portrait
-Day 7-14` strap.
+`portrait-main.jpg` is a reserved second variant that is NOT mounted on any page
+yet — mount it somewhere before dropping that file in. See `public/README.md`.
 
-**No code changes are required.** The operator flow is purely file drop + build.
-
-Constraints:
-- 2x retina source. JPEG or PNG (`next/image` converts to AVIF/WebP automatically).
-- ≤500KB after AVIF conversion (harness `image-budget.sh` enforces at write boundary).
-- 4:5 vertical aspect ratio recommended (matches `.portrait-slot--column` exactly and
-  crops gracefully in `.portrait-slot--full-bleed` via `object-fit: cover`).
-
-To regenerate placeholders (if ever lost or re-tuned), run:
-
-```bash
-node scripts/generate-placeholders.mjs
-```
+Rewritten 2026-08-15. What changed and why:
+- The component previously had NO importer at all, so the documented drop-in flow
+  would have done nothing. It is now actually wired.
+- The placeholder branch (a large "MJ" monogram poster standing in for a face) was
+  deleted along with `scripts/generate-placeholders.mjs` and the two placeholder
+  PNGs. A stand-in for a human face on the page where a buyer looks for the human
+  reads as unfinished; an empty column is the more honest interim state.
 
 ## Definition of done
 A page is done when:

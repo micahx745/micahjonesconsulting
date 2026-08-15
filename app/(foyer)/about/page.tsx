@@ -8,6 +8,7 @@
 // Numbers that are real. Names that exist.
 import type { Metadata } from "next";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
+import { PortraitImage } from "@/components/PortraitImage";
 
 export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
@@ -40,14 +41,22 @@ export default function AboutPage() {
           Operator, not consultant.
         </h1>
 
-        <div className="cw-about">
-          <p className="cw-about__lede">
-            I&rsquo;ve spent a decade inside B2B software companies as the
-            person who can sit on either side of the table: GTM strategy in
-            the morning, shipping product in the afternoon. Most consultants
-            don&rsquo;t ship. Most builders don&rsquo;t sell. I do both, on
-            the same engagement, for the same fee.
-          </p>
+        {/* Two-column intro: lede left, portrait right — the design review's
+            "/about spends half a 1440px canvas on nothing" note. The portrait
+            renders only once public/portrait-context.jpg exists; until then
+            PortraitImage returns null and .cw-about-intro collapses to the
+            single column it is today (see globals.css :has() rule). */}
+        <div className="cw-about-intro">
+          <div className="cw-about">
+            <p className="cw-about__lede">
+              I&rsquo;ve spent a decade inside B2B software companies as the
+              person who can sit on either side of the table: GTM strategy in
+              the morning, shipping product in the afternoon. Most consultants
+              don&rsquo;t ship. Most builders don&rsquo;t sell. I do both, on
+              the same engagement, for the same fee.
+            </p>
+          </div>
+          <PortraitImage variant="context" />
         </div>
       </section>
 

@@ -1,35 +1,29 @@
 // components/PortraitImage.tsx
 //
-// Phase 9 (PHOTO-02 + PHOTO-03). Renders the Oakland portrait when the
-// real file exists at public/portrait-<variant>.jpg, otherwise falls back
-// to the placeholder PNG produced by scripts/generate-placeholders.mjs.
-// The check happens server-side at module load so the operator's swap flow
-// is purely:
+// Renders the Oakland portrait when a real file exists at
+// public/portrait-<variant>.jpg — and renders NOTHING until then.
 //
-//   1. Save real photo as public/portrait-<variant>.jpg
-//   2. pnpm build && vercel --prod
+// The operator swap flow is unchanged and now actually works:
 //
-// No code changes required. See .claude/CLAUDE.md "Portrait swap" section
-// for the full operator runbook.
+//   1. Save the photo as public/portrait-context.jpg (or -main.jpg)
+//   2. pnpm build && ship
 //
-// Variants:
-//   main    Home full-bleed below hero. priority=true (LCP candidate).
-//           Alt: "Micah Jones, Oakland" (real) or placeholder alt.
-//   context About right column. priority=false (below fold).
-//           Alt: "Micah Jones at his Oakland workspace" (real) or
-//           placeholder alt.
+// 2026-08-15 rewrite, two changes worth the note:
 //
-// CSS: relies on existing .portrait-slot / --full-bleed / --column blocks
-// in app/globals.css. The new --has-image / --placeholder / __image /
-// __strap variants (also in globals.css) handle the image-filled state.
+// 1. WIRED. This component previously had no importer at all — it was
+//    unreachable from every route root, so the documented "drop the file and
+//    build" flow would have done nothing. It is now mounted on /about.
 //
-// Image budget (PHOTO-03): 500KB max enforced by harness image-budget.sh.
-// next/image at request time delivers AVIF/WebP to capable browsers
-// automatically.
+// 2. NO PLACEHOLDER BRANCH. It used to fall back to a typographic poster (a
+//    huge "MJ" monogram on a dark field) when the photo was missing. That
+//    shipped a stand-in for a human face on the one page where a buyer goes
+//    looking for the human — it reads as unfinished, not as restraint. An
+//    empty column is the more honest state, and the design review's note about
+//    /about's empty right half is answered by a real photograph or not at all.
+//    Returning null also means mounting this today changes zero pixels.
 //
-// Source: REQUIREMENTS.md PHOTO-02, PHOTO-03; blueprint section 4c
-// (photography direction) + section 7 (Home + About wireframes);
-// docs/PORTRAIT-OUTREACH.md (Phase 1 runbook for the actual shoot).
+// Image budget: 500KB max (harness image-budget.sh). next/image serves
+// AVIF/WebP at request time.
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import Image from "next/image";
@@ -38,6 +32,7 @@ type Variant = "main" | "context";
 
 interface PortraitImageProps {
   variant: Variant;
+  /** Set on an above-the-fold portrait so it is treated as an LCP candidate. */
   priority?: boolean;
 }
 
@@ -46,94 +41,42 @@ const REAL_FILENAME: Record<Variant, string> = {
   context: "portrait-context.jpg",
 };
 
-const PLACEHOLDER_FILENAME: Record<Variant, string> = {
-  main: "portrait-main.placeholder.png",
-  context: "portrait-context.placeholder.png",
-};
-
 const REAL_ALT: Record<Variant, string> = {
   main: "Micah Jones, Oakland",
   context: "Micah Jones at his Oakland workspace",
 };
 
-// Alt text is the same whether the real image is mounted or the placeholder
-// is. The visible __strap below tells operators which state they're in;
-// the alt is what screen readers and social scrapers consume, and it should
-// describe the subject (Micah Jones) not the file's provisional state.
-const PLACEHOLDER_ALT = "Portrait of Micah Jones";
-
-// Source dimensions are the placeholder dimensions; next/image resamples
-// for every breakpoint via the `sizes` attribute below.
+// Source dimensions; next/image resamples per breakpoint via `sizes`.
 const DIM: Record<Variant, { width: number; height: number }> = {
   main: { width: 1200, height: 1500 },
   context: { width: 900, height: 1125 },
 };
 
 const SIZES: Record<Variant, string> = {
-  // Full-bleed Home: ~100vw on mobile, 100vw on desktop (no max-width).
   main: "(min-width: 1440px) 1200px, 100vw",
-  // About right column: 4-col of 12 at 1440 is roughly 360px.
-  context: "(min-width: 1440px) 360px, (min-width: 960px) 33vw, 100vw",
+  // /about right column: ~380px at desktop, full width once it stacks.
+  context: "(min-width: 1100px) 380px, 100vw",
 };
 
 export function PortraitImage({ variant, priority = false }: PortraitImageProps) {
-  const realPath = join(process.cwd(), "public", REAL_FILENAME[variant]);
-  const hasReal = existsSync(realPath);
+  const hasReal = existsSync(join(process.cwd(), "public", REAL_FILENAME[variant]));
+  if (!hasReal) return null;
 
-  // Branch 1 — real photo present. Render <Image>.
-  if (hasReal) {
-    const { width, height } = DIM[variant];
-    const slotClass =
-      variant === "main"
-        ? "portrait-slot portrait-slot--full-bleed portrait-slot--has-image"
-        : "portrait-slot portrait-slot--column portrait-slot--has-image";
-    return (
-      <div className={slotClass} data-portrait-state="real">
-        <Image
-          src={`/${REAL_FILENAME[variant]}`}
-          alt={REAL_ALT[variant]}
-          width={width}
-          height={height}
-          sizes={SIZES[variant]}
-          priority={priority}
-          className="portrait-slot__image"
-        />
-      </div>
-    );
-  }
-
-  // Branch 2 — no real photo yet. Render the typographic poster substitute.
-  // This replaces the empty cream rectangle + "placeholder, final portrait
-  // Day 7-14" strap with a theater-ground specimen poster: huge MJ monogram,
-  // copper rule, name + role tag. The dark field foreshadows the theater
-  // mode you enter when you click a case-study card — the portrait slot
-  // becomes a bridge between foyer and theater, not a missing-asset notice.
-  // Replaced by the <Image> branch automatically when public/portrait-<variant>.jpg lands.
-  const variantClass =
-    variant === "main"
-      ? "portrait-poster portrait-poster--wide"
-      : "portrait-poster portrait-poster--column";
-  // PLACEHOLDER_ALT and PLACEHOLDER_FILENAME stay referenced via the
-  // module-level constants so the type-checker keeps them live until the
-  // real-photo branch starts using them. They're intentional reserves.
-  void PLACEHOLDER_FILENAME[variant];
-  void PLACEHOLDER_ALT;
+  const { width, height } = DIM[variant];
   return (
-    <div
-      className={variantClass}
-      data-portrait-state="poster"
-      role="img"
-      aria-label={REAL_ALT[variant]}
-    >
-      <div className="portrait-poster__grain" aria-hidden />
-      <span className="portrait-poster__monogram">MJ</span>
-      <span className="portrait-poster__rule" aria-hidden />
-      <div className="portrait-poster__meta">
-        <span className="portrait-poster__name">Micah Jones</span>
-        <span className="portrait-poster__tag">
-          Oakland operator <span aria-hidden>·</span> 2026
-        </span>
-      </div>
-    </div>
+    <figure className={`cw-portrait cw-portrait--${variant}`}>
+      <Image
+        src={`/${REAL_FILENAME[variant]}`}
+        alt={REAL_ALT[variant]}
+        width={width}
+        height={height}
+        sizes={SIZES[variant]}
+        priority={priority}
+        className="cw-portrait__img"
+      />
+      <figcaption className="cw-portrait__cap">
+        Oakland <span aria-hidden>·</span> 2026
+      </figcaption>
+    </figure>
   );
 }

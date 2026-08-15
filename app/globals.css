@@ -3780,3 +3780,49 @@ body {
 [data-mode="cw"] .cw-notfound .cw-pagefoot {
   margin-top: 72px;
 }
+
+/* ================================================================
+ * /about intro — portrait column (2026-08-15).
+ *
+ * Answers the design review's "/about is one ~680px column; the right
+ * half of a 1440 canvas is empty grain" note — but only once a real
+ * photograph exists. components/PortraitImage.tsx returns null until
+ * public/portrait-context.jpg lands, so `:has()` is what makes this
+ * layout self-activating: no portrait -> no .cw-portrait child -> the
+ * grid rule never matches -> the page renders exactly as it does now.
+ * Dropping the file in is the whole operator flow; no code change.
+ * ================================================================ */
+[data-mode="cw"] .cw-about-intro:has(.cw-portrait) {
+  display: grid;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+@media (min-width: 1100px) {
+  [data-mode="cw"] .cw-about-intro:has(.cw-portrait) {
+    grid-template-columns: minmax(0, 1fr) 380px;
+  }
+}
+
+[data-mode="cw"] .cw-portrait {
+  margin: 0;
+  position: relative;
+}
+[data-mode="cw"] .cw-portrait__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* 4:5 vertical is the documented shoot ratio; cover keeps a slightly
+   * off-ratio file from distorting rather than cropping. */
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+[data-mode="cw"] .cw-portrait__cap {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 12px;
+  display: block;
+}

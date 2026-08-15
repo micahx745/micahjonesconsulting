@@ -40,9 +40,14 @@ export const bricolage = Bricolage_Grotesque({
 // for hero subline, body prose, and the form input on the Ordani band.
 // Bricolage handles display (already present); JetBrains Mono handles
 // labels/nav/eyebrows.
+// 700 added 2026-08-15: the CSS renders Hanken at 700 in 17 places across the
+// live routes with no 700 face declared, so browsers were synthesizing a fake
+// bold (smeared stems, wrong sidebearings). Costs 0 bytes — Google serves the
+// same variable 100..900 file regardless of which weights are listed, measured
+// identical at 33.9KB before and after.
 export const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-hanken",
   display: "swap",
   adjustFontFallback: true,
@@ -52,9 +57,11 @@ export const hankenGrotesk = Hanken_Grotesk({
 // "Color Worlds" — mono labels. JetBrains Mono per the approved mockup.
 // Used ONLY for: nav links, eyebrows, kickers, meta text, footnotes,
 // status pills, scroll hints. Never body. Never decorative.
+// 600 added 2026-08-15: same synthesized-weight fix as Hanken above — three
+// labels render at 600 with no matching face. Also 0 bytes (30.7KB either way).
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   variable: "--font-jetbrains",
   display: "swap",
   adjustFontFallback: true,
