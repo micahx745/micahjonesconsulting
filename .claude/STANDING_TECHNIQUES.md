@@ -11,9 +11,18 @@ git add <files> && git commit    # "Pass-N: <what>" subject; never --amend
 npx vercel deploy --yes          # team scope passioneer
 npx vercel alias set <deploy-url> micahjonesconsulting.vercel.app
 npx vercel alias set <deploy-url> www.micahjonesconsulting.com    # LESSONS #5 — until dashboard add
-git push origin main
+git push origin main             # NOTE: this fires Vercel's GitHub auto-deploy
+npx vercel ls --prod             # grab the NEWEST deployment (the auto one)
+npx vercel alias set <newest> micahjonesconsulting.vercel.app
+npx vercel alias set <newest> www.micahjonesconsulting.com
 curl spot-check BOTH domains     # marker-grep the changed copy (CARD 3)
+curl both + compare data-dpl-id  # MUST match, else the domains serve two builds
 ```
+ORDERING RULE (learned 2026-08-15): alias AFTER pushing, not before. The push
+triggers an auto-deploy that takes the .vercel.app production domain while www
+stays on the manually-aliased deployment — the two domains then serve different
+builds from the same commit. Always re-alias both to the newest deployment last,
+and prove it by diffing `data-dpl-id` across the two domains.
 Run as ONE chained command where possible — interrupted turns have stranded
 committed-but-undeployed states twice.
 

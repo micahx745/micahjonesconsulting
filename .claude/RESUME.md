@@ -1,26 +1,18 @@
 # RESUME — REWRITE whole-file every task. Never append. Last rewrite: 2026-08-13
 
 ## Now
-- PERF + A11Y pass COMPLETE. 18 commits local, nothing pushed/deployed.
-- Final: home 92 / work 93 / guardicore 92 (was 87/90/86). a11y 96/100/100,
-  BP 96, SEO 100, CLS 0.0003/0/0. Contrast failures in true scroll state: 0.
-- Pass-40 (37e5307): purged 4,291 dead CSS lines (52%), Bricolage `wdth` axis
-  dropped (131K->77K), Zod off the client, favicon 26K->5.8K.
-- Pass-41 (c042d8a): Framer Motion removed — MagneticArea reimplemented as a rAF
-  spring on the same ODE/constants; deleted its last two dead importers
-  (components/two-hands, lib/v2-motion.ts); `motion` out of package.json.
-  Closes a standing CLAUDE.md violation. -39,891 B on 3 routes.
-- Pass-42 (9f82101): wordmark regression fixed (Pass-38 put mix-blend-mode
-  inside the nav's own stacking context -> flat white on cream, 1.28:1, only
-  visible in a screenshot); 28 small-text opacities 0.5-0.85 -> 0.9; nav chip
-  threshold 0.9*vh -> 40px so short-hero routes stop overprinting.
-
-## The 95 question — ANSWERED and DECIDED (D14: keep faces, ship at 92)
-Built once with custom fonts disabled: **97, LCP 2651ms, 245KB** vs today's
-92 / 3407ms / 390KB. The three brand faces (144KB) ARE the 5-point gap.
-`display: optional` tested and reverted — 92/3412ms, identical to swap, because
-the bytes still travel. So >=95 costs a typeface; that is an operator brand
-call, not an engineering one. /work already scores 93 carrying zero project JS.
+- SHIPPED 2026-08-15. Live on BOTH domains, both on dpl_G8qMQNerYSbnF2VQDmmkAzpikxfh.
+  19 commits pushed (origin/main == local, db28290). Working tree clean (qa/ ignored).
+- LIVE measured on www: perf 93 · a11y 96 · best-practices 100 · SEO 100 ·
+  LCP 3017ms · CLS 0.0000 · TBT 10ms. All 7 routes 200 on both domains; branded
+  404 confirmed; case pages carry no Source Serif; spec tables, weighted home
+  card, logistics footers and sr-only h1 all verified live.
+  (Was 80 / LCP 5115ms / CLS 0.068 before this arc.)
+- SHIP-FLOW GOTCHA LEARNED: `git push` triggers Vercel's GitHub auto-deploy, which
+  claims the .vercel.app production domain while www stays pinned to the manually
+  aliased one -> the two domains served DIFFERENT builds. Fix: alias BOTH to the
+  NEWEST deployment AFTER pushing, then confirm identical data-dpl-id on both.
+  Folded into LESSONS #5 / CARD 1 as the push-then-realias ordering rule.
 
 ## Queue (operator-owned)
 1. SHIP — operator chose option A (keep all three faces, ship at 92; D14). Say the
