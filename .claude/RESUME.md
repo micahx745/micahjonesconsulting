@@ -1,8 +1,8 @@
-# RESUME — REWRITE whole-file every task. Never append. Last rewrite: 2026-08-13
+# RESUME — REWRITE whole-file every task. Never append. Last rewrite: 2026-08-15
 
 ## Now
-- SHIPPED 2026-08-15. Live on BOTH domains, both on dpl_G8qMQNerYSbnF2VQDmmkAzpikxfh.
-  19 commits pushed (origin/main == local, db28290). Working tree clean (qa/ ignored).
+- SHIPPED 2026-08-15. Live on BOTH domains, both on dpl_cdbtjq5k32Sj5cESDMRNpQJ9TMAw.
+  All commits pushed (origin/main == local, 8fef8d9). Working tree clean (qa/ ignored).
 - LIVE measured on www: perf 93 · a11y 96 · best-practices 100 · SEO 100 ·
   LCP 3017ms · CLS 0.0000 · TBT 10ms. All 7 routes 200 on both domains; branded
   404 confirmed; case pages carry no Source Serif; spec tables, weighted home
@@ -15,14 +15,12 @@
   Folded into LESSONS #5 / CARD 1 as the push-then-realias ordering rule.
 
 ## Queue (operator-owned)
-1. SHIP — operator chose option A (keep all three faces, ship at 92; D14). Say the
-   word; CARD 1 flow: build -> deploy -> alias BOTH domains -> push 21 commits.
-2. Vercel dashboard: add www as project domain (kills per-deploy re-alias, #5).
-3. Artifacts (D12): Ordani screenshots (#1), /about portrait, redacted RFP report.
-4. Wordmark question is now MOOT — the blend was broken and is gone (Pass-42).
-5. Deferred, 0 bytes, small visual change: add Hanken 700 + JetBrains 600 —
+1. Vercel dashboard: add www as project domain (kills per-deploy re-alias, #5).
+2. Artifacts (D12): Ordani screenshots (#1), /about portrait, redacted RFP report.
+3. Wordmark question is now MOOT — the blend was broken and is gone (Pass-42).
+4. Deferred, 0 bytes, small visual change: add Hanken 700 + JetBrains 600 —
    both are requested by CSS today with no matching face and get synthesized.
-6. NOTE: components/PortraitImage.tsx is unreachable from every route AND its
+5. NOTE: components/PortraitImage.tsx is unreachable from every route AND its
    .portrait-slot CSS was purged. The documented portrait-drop flow in
    .claude/CLAUDE.md was already broken before the purge (nothing imports it) —
    when the portrait lands, /about needs the component wired AND styles added.
