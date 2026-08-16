@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s — Micah Jones",
   },
   description:
-    "Independent operator in Oakland. $20M+ in client revenue. Two exits (Akamai acquisition, SurveyMonkey IPO). Now building Ordani — HIPAA-grade practice management for birth workers.",
+    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit (Akamai, SurveyMonkey IPO, Nordic Semiconductor). Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
   metadataBase: new URL("https://www.micahjonesconsulting.com"),
   alternates: {
     canonical: "https://www.micahjonesconsulting.com",
@@ -112,7 +112,7 @@ const ORG_LD = {
   // + LLM crawlers. mainEntityOfPage (below) carries the canonical
   // reference to the case study until Ordani has its own production site.
   description:
-    "Ordani is HIPAA-grade practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. Used by hundreds of birth workers.",
+    "Ordani is HIPAA-grade practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. Used by 200 birth workers.",
   // mainEntityOfPage points at the case study (the only public page
   // about Ordani right now). Avoids putting a case-study URL in the
   // Organization.url slot, which expects the org's actual site.

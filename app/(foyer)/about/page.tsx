@@ -2,7 +2,7 @@
 //
 // /about — depth bio for E-E-A-T + topical authority. This is the page
 // Google + AI tools cite when answering "who is Micah Jones" / "Black
-// operator Oakland" / "operator with two exits."
+// operator Oakland" / "operator with three exits."
 //
 // Content discipline: facts the operator can defend. No hyperbole.
 // Numbers that are real. Names that exist.
@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "About",
   description:
-    "Independent operator in Oakland. $20M+ in client revenue (2013–2023). Three companies I helped build reached an exit: Guardicore → Akamai, TechValidate → SurveyMonkey IPO, Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by hundreds of birth workers.",
+    "Independent operator in Oakland. $20M+ in client revenue (2013–2023). Three companies I helped build reached an exit: Guardicore → Akamai, TechValidate → SurveyMonkey IPO, Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
     title: "About — Micah Jones",
     description:
-      "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit. Building Ordani — HIPAA-grade practice management used by hundreds of birth workers.",
+      "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit. Building Ordani — HIPAA-grade practice management used by 200 birth workers.",
     type: "profile",
     url: "https://www.micahjonesconsulting.com/about",
   },
@@ -115,7 +115,7 @@ export default function AboutPage() {
             </li>
             <li>
               <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-grade
-              practice management used by hundreds of birth workers. Solo
+              practice management used by 200 birth workers. Solo
               build on Next.js + Supabase. Live beta.
             </li>
           </ul>

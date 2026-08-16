@@ -7,13 +7,13 @@
 // institutional customer list and bumped the figure scale.
 //
 // Pass-17 problem (operator review): the customers were surfaced as a
-// flat list — "Customers: TD Bank, Deutsche Bank, NIH, Peoples Natural
+// flat list of named institutions (LESSONS #3 bans naming them; the
 // Gas." — which reads as a name-drop and doesn't entice the reader to
 // click through to the case study.
 //
 // Pass-17 fix: customers are embedded as STORY texture inside the body
-// prose. Each customer name carries what it protects (TD Bank's trading
-// systems, Deutsche Bank's clearing infrastructure, etc.) so the
+// prose. Each customer is an ANONYMIZED descriptor carrying what it
+// protects (a G-SIB's clearing infrastructure, etc.) so the
 // list-feel becomes a narrative-feel. The body now reads as the
 // abridged version of the case study — designed to pull the reader
 // in, not to summarize.

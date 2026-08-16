@@ -47,7 +47,7 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
 - Exits: **THREE companies he helped build reached an exit** — TechValidate→SurveyMonkey
   (IPO 2018, cap table), Guardicore→Akamai (2021, cap table), Neuton.AI→Nordic Semiconductor
   (June 2025, "helped launch", NOT cap table — never claim Neuton equity). NEVER: "Two exits".
-- Ordani: **used by hundreds of birth workers, none lost to a competitor**
+- Ordani: **used by 200 birth workers, none lost to a competitor**
   (operator update 2026-08-15 — SUPERSEDES the earlier "fourteen practices / eight
   active weekly at six months" entry, which described the closed beta and had gone
   stale on the live site). The earlier ledger line BANNED "Hundreds of users active";
@@ -57,8 +57,9 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   the case study; do not restate it as current usage. Framed as a real company ("a
   company I founded and built"), not a solo side project — except /playbook, where
   "built solo with AI tools" is the intended proof for that audience.
-  OPEN: "hundreds" is vague, and this site's own voice rule demands specific named
-  numbers. Get the exact figure from the operator and replace it.
+  Operator gave the exact figure 2026-08-15: **200**. The interim "hundreds"
+  wording is retired — the voice rule wants named numbers, and "200 birth
+  workers" is both truer and harder-hitting than "hundreds".
 - Customers: anonymized descriptors only (top-10 North American bank, global systemically
   important bank, world's largest public biomedical-research funder, white-shoe Wall Street
   law firm). NEVER name TD Bank / Deutsche Bank / NIH / Davis Polk / Peoples Natural Gas.
@@ -66,8 +67,29 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   six-figure retainers; the RAG RFP-scanning platform (real custom software). NEVER: the
   three fabricated end-clients (see #2).
 
-**Gate:** Grep the diff for the NEVER-phrases before every commit touching copy. Candidate
-for a pre-commit hook if it recurs.
+**Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
+not just the diff.
+
+Why the change (2026-08-15): the diff-only version was scoped too narrowly and let
+violations survive indefinitely. On this date a diff-grep caught "Two exits" in
+`app/llms.txt/route.ts` only because an unrelated edit happened to touch that line. A
+full-tree sweep then found the same banned claim in THREE more live surfaces that no
+diff had touched in months: both OG images (what renders on every social share) and the
+root `metadata.description` (what renders in search results). The site had been
+under-claiming — two exits instead of three — everywhere a machine or a stranger looked.
+
+Sweep, and expect zero:
+
+```bash
+for p in "Two exits" "\$15M pipeline" "trained the sales team" "built the channel"          "customer-evidence engine" "anchored the Nasdaq" "Zero churn"          "Hundreds of users active" "TD Bank" "Deutsche Bank" "NIH" "Davis Polk"          "Peoples Natural Gas"; do
+  grep -rin "$p" app content lib components --include="*.ts*" --include="*.mdx"
+done
+```
+
+Also applies to COMMENTS, not just rendered copy. Four banned strings were sitting in
+code comments as historical narration; they render nowhere, but they are exactly the
+vector this lesson exists to stop — stale prose is how a corrected claim comes back.
+They are now written so the banned string does not appear verbatim.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 

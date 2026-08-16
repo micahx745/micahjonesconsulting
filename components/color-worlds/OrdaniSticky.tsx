@@ -81,7 +81,7 @@ export function OrdaniSticky() {
         () => {
           // Pass-14 (CW-21): tag is INTENTIONALLY left out of the
           // hidden-init array. The 3-pill tagrow ("Live beta · 14
-          // doula practices · Hundreds of users active") is the
+          // doula practices · <vague usage claim>") is the
           // section's strongest social-proof signal and must be
           // visible the moment the section pins — rather than
           // buried at phase 1 of the scrub-timeline behind the

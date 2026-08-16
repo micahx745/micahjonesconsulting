@@ -50,13 +50,13 @@ export const metadata: Metadata = {
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
   },
   description:
-    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by hundreds of birth workers.",
+    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by hundreds of birth workers.",
+      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -143,7 +143,7 @@ export default function ColorWorldsHome() {
       </div>
 
       {/* REVENUE + EXITS — terracotta. Pass-17: moved up from inside the
-          CLIENTS section. The $20M+ / two exits / trillions claim is the
+          CLIENTS section. The $20M+ / three exits / trillions claim is the
           credibility hook that earns the reader's attention BEFORE the
           services pitch. Terracotta world continues the hero band
           (hero → marquee → revenue all share terracotta) so the
@@ -336,7 +336,7 @@ export default function ColorWorldsHome() {
             pilot. See LESSONS #3; the ledger entry was updated with it. */}
         <p className="cw-tagrow cw-reveal">
           <span className="cw-live">Live</span>
-          <span>Hundreds of birth workers</span>
+          <span>200 birth workers</span>
         </p>
         <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
           Ordani
@@ -346,8 +346,8 @@ export default function ColorWorldsHome() {
             phone and spent two of them on infrastructure nouns. */}
         <p className="cw-lede cw-reveal">
           Birth workers run their practices on group chats and paper
-          intakes. HIPAA is the law. <em>So I built Ordani.</em> Hundreds
-          of birth workers use it, and none have left for a competitor.
+          intakes. HIPAA is the law. <em>So I built Ordani.</em> 200 birth
+          workers use it, and none have left for a competitor.
         </p>
         <p className="cw-lede-sub cw-reveal">
           {/* TODO(operator): Ordani product website is under
