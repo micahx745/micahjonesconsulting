@@ -112,7 +112,7 @@ const ORG_LD = {
   // + LLM crawlers. mainEntityOfPage (below) carries the canonical
   // reference to the case study until Ordani has its own production site.
   description:
-    "Ordani is HIPAA-grade practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. In live beta with fourteen practices.",
+    "Ordani is HIPAA-grade practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. Used by hundreds of birth workers.",
   // mainEntityOfPage points at the case study (the only public page
   // about Ordani right now). Avoids putting a case-study URL in the
   // Organization.url slot, which expects the org's actual site.

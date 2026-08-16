@@ -454,8 +454,12 @@ body {
    * viewport-height of empty black before any content. 72dvh at
    * mobile; the desktop hero keeps the full-viewport moment. The
    * GSAP pin distance is fixed (240px) and independent of this. */
-  min-height: 72dvh;
-  padding: 64px var(--spacing-page-x-mobile);
+  /* 2026-08-15: 72dvh was sized for the old hero, whose caption was the
+   * full dek and filled the box. The caption is now one short line, so the
+   * same height left ~400px of dead air under it on a phone. 52dvh still
+   * clears the four-word title stack (~200px) plus padding. */
+  min-height: 52dvh;
+  padding: 56px var(--spacing-page-x-mobile);
   width: 100%;
 }
 
@@ -3825,4 +3829,66 @@ body {
   opacity: 0.9;
   margin-top: 12px;
   display: block;
+}
+
+/* ================================================================
+ * Mobile vertical rhythm (2026-08-15, operator review on an
+ * iPhone 15 Plus: "too much spacing when scrolling the home page").
+ *
+ * The section paddings were tuned on desktop and never given a mobile
+ * step-down — only the horizontal padding was overridden. At 430px the
+ * home page ran 9,005px (9.7 screens), of which ~1,040px was nothing
+ * but .cw-block's 130px top+bottom repeated four times: more than a
+ * full screen of pure padding. Generous vertical rhythm is the house
+ * style and stays on desktop; on a phone the same numbers read as dead
+ * air because the viewport is a third the height.
+ * ================================================================ */
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-block {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  [data-mode="cw"] .cw-ordani {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  [data-mode="cw"] .cw-foot {
+    padding-top: 72px;
+    padding-bottom: 48px;
+  }
+  /* The revenue band is the tallest single section on mobile; its
+   * internal rhythm was also desktop-tuned. */
+  [data-mode="cw"] .cw-rev {
+    margin-top: 48px;
+  }
+  [data-mode="cw"] .cw-rev__entry {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+  [data-mode="cw"] .cw-cards {
+    margin-top: 40px;
+    gap: 16px;
+  }
+  [data-mode="cw"] .cw-card__link {
+    padding: 26px 22px;
+  }
+  [data-mode="cw"] .cw-secttitle {
+    margin-bottom: 18px;
+  }
+  [data-mode="cw"] .cw-kicker {
+    margin-bottom: 28px;
+  }
+}
+
+/* Case-study pages on mobile — same complaint, same cause. */
+@media (max-width: 760px) {
+  [data-mode="theater"] .case-study__layout {
+    margin-top: 40px;
+  }
+  [data-mode="theater"] .case-study__body h2 {
+    margin-top: 56px;
+  }
+  [data-mode="theater"] .case-study__nav {
+    margin-top: 64px;
+  }
 }

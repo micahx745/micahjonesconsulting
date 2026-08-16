@@ -50,13 +50,13 @@ export const metadata: Metadata = {
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
   },
   description:
-    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management software for fourteen doula practices.",
+    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by hundreds of birth workers.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management for fourteen doula practices.",
+      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by hundreds of birth workers.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -331,27 +331,23 @@ export default function ColorWorldsHome() {
         aria-labelledby="cw-ordani-title"
       >
         <OrdaniSticky />
+        {/* Operator correction 2026-08-15: the usage claim is birth workers,
+            not practices — "14 doula practices" undersold it and read as a
+            pilot. See LESSONS #3; the ledger entry was updated with it. */}
         <p className="cw-tagrow cw-reveal">
-          <span className="cw-live">Live beta</span>
-          <span>14 doula practices</span>
-          <span>Six months in</span>
+          <span className="cw-live">Live</span>
+          <span>Hundreds of birth workers</span>
         </p>
         <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
           Ordani
         </h2>
+        {/* Problem first, then the move, then the proof. Tightened
+            2026-08-15 (mobile read): the old version ran six lines on a
+            phone and spent two of them on infrastructure nouns. */}
         <p className="cw-lede cw-reveal">
-          {/* Pass-21 (Claude Chat audit): rewritten to lead with the
-              PROBLEM, not the build. The Pass-20 lede was a technical
-              spec with metrics attached — it described what Ordani is
-              but not why anyone should care. Now: problem-first
-              ("Birth workers run their practices on group chats"),
-              then the operator move ("I built it."), then the
-              technical posture as evidence, closing on retention. */}
           Birth workers run their practices on group chats and paper
-          intakes. HIPAA is the law, and real compliance needs real
-          infrastructure. <em>So I built Ordani — a company, in private
-          beta.</em> Row-level encryption, two outside security reviews,
-          fourteen practices, none lost to a competitor.
+          intakes. HIPAA is the law. <em>So I built Ordani.</em> Hundreds
+          of birth workers use it, and none have left for a competitor.
         </p>
         <p className="cw-lede-sub cw-reveal">
           {/* TODO(operator): Ordani product website is under
@@ -365,14 +361,14 @@ export default function ColorWorldsHome() {
 
         <OrdaniBetaForm />
 
+        {/* Operator 2026-08-15: the stack line ("Next.js, Supabase,
+            Vercel, HIPAA-grade") is cut. Naming the stack is a builder's
+            flex, not a buyer's proof — nobody evaluating Micah or Ordani
+            is choosing on the framework, and it read as dev-Twitter on a
+            page selling outcomes. What survives is the claim a buyer
+            actually weighs: it is real, it is compliant, people use it. */}
         <p className="cw-note cw-reveal">
-          Private beta · onboarding new users weekly
-        </p>
-        {/* Pass-32 (operator: frame Ordani as a real company, not a solo
-            side project). The stack stays as proof; "solo" framing dropped. */}
-        <p className="cw-note cw-reveal">
-          A real company in private beta — Next.js, Supabase, Vercel,
-          HIPAA-grade.
+          Onboarding new practices weekly · HIPAA-grade
         </p>
       </section>
 
@@ -393,13 +389,11 @@ export default function ColorWorldsHome() {
         >
           Shipped, not pitched.
         </SplitReveal>
+        {/* Trimmed 2026-08-15 (operator, mobile read: "the examples of the
+            engagements is too wordy"). The dek was previewing all three
+            cards in prose directly above the cards themselves. */}
         <p className="cw-sect-dek cw-reveal">
-          {/* Pass-21 (Claude Chat audit): cut "Real work in real users'
-              hands" — claim-without-evidence opener that told the reader
-              you were about to show real work instead of just showing
-              it. The remaining three sentences carry the evidence. */}
-          Two platforms acquired and public. A content engine that wins
-          inbound. Frontier AI in production for founders.
+          Two platforms acquired and public. One built solo.
         </p>
 
         {/* W2 (P0-2/D6, operator-locked 2026-08-11): weighted grid —
@@ -420,11 +414,12 @@ export default function ColorWorldsHome() {
               <p className="cw-card__metric" aria-label="80 million dollars in pipeline, 14 million dollars in revenue">
                 $80M pipeline<br />$14M revenue
               </p>
+              {/* Trimmed 2026-08-15: the card is an index entry, not the
+                  case study. Two named outcomes beat a full sentence of
+                  method — the page it links to carries the how. */}
               <p>
-                Positioning, market research, and the data backbone that
-                moved deal size and revenue at platforms that sold
-                (<strong>Guardicore → Akamai</strong>) and went public
-                (<strong>SurveyMonkey Enterprise</strong> on Nasdaq).
+                <strong>Guardicore → Akamai.</strong>{" "}
+                <strong>SurveyMonkey Enterprise → Nasdaq.</strong>
               </p>
               <span className="cw-open">See the receipts →</span>
             </a>
@@ -442,8 +437,7 @@ export default function ColorWorldsHome() {
               <span className="cw-tag">2024–present · Content + software</span>
               <h3>Content + product for an industry author</h3>
               <p>
-                One industry-authority author. I built the content engine
-                and the software beneath it. Monthly reach grew from 8K to
+                Content engine plus the software beneath it. Reach 8K →
                 290K. RFP-to-close rate doubled.
               </p>
               <span className="cw-open">See the engagement →</span>

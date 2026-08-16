@@ -164,10 +164,18 @@ export default async function TheaterCaseStudyPage({
       {/* Perf (2026-08-13): MOT-02 validation runs HERE, on the server, so
           Zod stays out of the client bundle (~65KB per case route). Same
           contract — a malformed word stack still throws the build/render. */}
+      {/* 2026-08-15 (operator, mobile read: case pages "are wordy and look
+          off"). The hero caption WAS the full dek — 55 words on guardicore,
+          which renders as an eleven-line wall of text before the reader has
+          seen anything else. `indexLine` is the one figure-bearing sentence
+          already authored for the /work index; it is the right size for a
+          hero. The full dek still carries metadata, OG and the SEO
+          description, so nothing is lost — it just stops being the first
+          thing a phone shows. */}
       <TitleCard
         {...titleCardSchema.parse({
           words: cs.titleCardWords,
-          caption: cs.dek,
+          caption: cs.indexLine ?? `${cs.dek.split(". ")[0]}.`,
           heroSrc: cs.heroStill,
           heroAlt: cs.title,
         })}

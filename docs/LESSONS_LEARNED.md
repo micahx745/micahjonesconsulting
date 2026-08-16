@@ -47,10 +47,18 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
 - Exits: **THREE companies he helped build reached an exit** — TechValidate→SurveyMonkey
   (IPO 2018, cap table), Guardicore→Akamai (2021, cap table), Neuton.AI→Nordic Semiconductor
   (June 2025, "helped launch", NOT cap table — never claim Neuton equity). NEVER: "Two exits".
-- Ordani: fourteen practices, **eight active weekly at six months, none lost to a
-  competitor**. NEVER: "Zero churn", "Hundreds of users active". Framed as a real company
-  ("a company I founded and built"), not a solo side project — except /playbook, where
+- Ordani: **used by hundreds of birth workers, none lost to a competitor**
+  (operator update 2026-08-15 — SUPERSEDES the earlier "fourteen practices / eight
+  active weekly at six months" entry, which described the closed beta and had gone
+  stale on the live site). The earlier ledger line BANNED "Hundreds of users active";
+  that ban is lifted by the same operator instruction that set the new number, and is
+  recorded here rather than silently dropped. Still NEVER: "Zero churn". The closed-beta
+  history (shipped to fourteen practitioners at launch) remains true AS HISTORY inside
+  the case study; do not restate it as current usage. Framed as a real company ("a
+  company I founded and built"), not a solo side project — except /playbook, where
   "built solo with AI tools" is the intended proof for that audience.
+  OPEN: "hundreds" is vague, and this site's own voice rule demands specific named
+  numbers. Get the exact figure from the operator and replace it.
 - Customers: anonymized descriptors only (top-10 North American bank, global systemically
   important bank, world's largest public biomedical-research funder, white-shoe Wall Street
   law firm). NEVER name TD Bank / Deutsche Bank / NIH / Davis Polk / Peoples Natural Gas.
