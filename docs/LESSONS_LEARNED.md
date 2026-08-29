@@ -154,3 +154,37 @@ check every ancestor up to `<body>` for a stacking context (`position` + `z-inde
 `filter`, `opacity < 1`, `will-change`, `isolation`). (c) Prefer a solid `var(--cw-fg)` over a
 blend for anything carrying text: it is AA by construction in every palette world, and this
 site's world tokens already guarantee that pair.
+
+## #8 — A published address is not a working address; MX is the only proof (2026-08-29)
+
+**What happened:** `hello@micahjonesconsulting.com` was printed on six live surfaces —
+both footers, the home CTA, the `/hire-me` CTA, and `llms.txt` (what AI crawlers cite) —
+while the domain carried **zero MX records**. Every message any buyer sent to it bounced,
+for the entire life of the site. The same gap made the two live lead forms
+(`playbook-signup`, `beta-signup`) silently useless: they send a notification to `hello@`
+via Resend, but with no SPF/DKIM/DMARC anywhere the domain was unverified, so Resend
+rejected the send and the lead survived only in a Vercel server log.
+
+**Root cause:** the address was treated as copy. Copy gates (`copy-lint`, the banned-word
+sweep, the design review) all check that a string is *correct*, never that the thing it
+names *functions*. Nothing in the build, the audit, or the ship runbook resolves DNS.
+The contact server action was also dead code (no importer), which hid the fact that
+nothing on the site had ever exercised the mail path.
+
+**Why it survived every review:** the site is verified through HTTP — status codes,
+rendered markup, Lighthouse, axe. An email address renders perfectly at 200 whether or
+not a mail server exists behind it. This is the same class as #7: the probe reported
+the same result for the working and the broken state.
+
+**Gate:** every domain appearing in a `mailto:` on the site must answer MX before ship.
+Run as part of CARD 1, and expect a non-empty answer for each:
+
+```bash
+grep -rhoE 'mailto:[^"'"'"' ]+' app components content | sed 's/.*@//' | sort -u | while read -r d; do
+  echo "== $d"; nslookup -type=MX "$d" 8.8.8.8 | grep -i "mail exchanger" || echo "   !! NO MX — address bounces"
+done
+```
+
+Corollary: any address used as a Resend `from:` also needs the sending domain verified
+(DKIM at `resend._domainkey.<domain>`). A `from:` on an unverified domain is rejected at
+the API, and the code paths here swallow that error by design.

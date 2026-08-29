@@ -1,62 +1,50 @@
-# RESUME — REWRITE whole-file every task. Never append. Last rewrite: 2026-08-15
+# RESUME — REWRITE whole-file every task. Never append. Last rewrite: 2026-08-29
 
-## Now
-- SHIPPED 2026-08-15, live on BOTH domains (perf 93 · a11y 96 · BP 100 · SEO 100
-  · LCP 3017ms · CLS 0.0000; was 80 / 5115ms / 0.068 before this arc).
-- Pass-43: portrait WIRED into /about — it had zero importers, so the drop-in
-  flow documented in CLAUDE.md could never have worked. Placeholder "MJ" poster
-  + its generator retired. Hanken 700 + JetBrains 600 added (browsers were
-  synthesizing them; 0 bytes).
-- Pass-44: cross-model review harness ported and PROVEN — all three legs
-  returned live verdicts from this repo. Fixed a real honesty bug in it:
-  glm-in-legs-without-a-key emitted NO banner, so a two-leg round read as three.
-- The harness's FIRST run caught 5 real defects in Pass-43, all verified and
-  adopted: lazy-loaded LCP image · .png silently unsupported · a false-green
-  verify command I had written · a size budget claimed "enforced" that nothing
-  enforces here · alt text asserting a setting the photo brief never promised.
-- UNPUSHED: Pass-43, Pass-44, this RESUME. Pushing fires an auto-deploy, so per
-  CARD 1 re-alias BOTH domains afterward and prove parity via data-dpl-id.
+## Now — EMAIL. Half done; two operator steps remain.
+Found while setting up the alias: `hello@micahjonesconsulting.com` had **zero MX**
+and has bounced every message since launch, while printed on 6 live surfaces (both
+footers, home CTA, /hire-me CTA, llms.txt). No SPF/DKIM/DMARC either, so the Resend
+domain is unverified and the two LIVE lead forms (playbook-signup, beta-signup) have
+their `hello@` notification rejected at the API — those leads exist only in Vercel
+server logs. Recorded as LESSONS #8 with an MX gate.
 
-## Cross-review harness (CARD 6)
-`/cross-review plan|diff`, or directly:
-`python scripts/cross-review/run_cross_review.py --mode diff --input qa/xr/xr_input.txt --out qa/xr/xr_out.txt`
-Legs: Gemini REST + Codex CLI (`gpt-5.6-sol`, the DEEP leg) + GLM REST. Keys at
-`~/.claude/.gemini-key` / `.zai-key` — outside every repo, one rotation site.
-Sits between `/premium audit` and CARD 1: a CONFIRMED block-class finding blocks
-the SHIP, not the build (LESSONS #7 shipped through two passes precisely because
-it cleared every static gate).
+DONE (me, `vercel dns add`; all four verified live via 8.8.8.8):
+  MX 10 mx1.improvmx.com · MX 20 mx2.improvmx.com
+  TXT @ `v=spf1 include:spf.improvmx.com ~all` · TXT _dmarc `v=DMARC1; p=none;`
+  Website A 76.76.21.21 untouched. Revert: `vercel dns rm <id>` (`vercel dns ls`).
 
-## The 95 question — ANSWERED and DECIDED (D14: keep faces)
-Built once with fonts disabled: 97 / LCP 2651ms / 245KB, vs 92-93 / ~3.0-3.4s /
-390KB with them. The three brand faces (144KB) ARE the gap. `display: optional`
-tested and reverted — identical, because the bytes still travel. >=95 costs a
-typeface; operator chose to keep all three.
+STEP 1 (operator, 2 min, free) — RECEIVING. improvmx.com signup, add domain, create
+`hello@` + `micah@` + catch-all → micahmccoyjones@gmail.com. DNS is already green so
+it verifies instantly. This alone gets mail flowing.
 
-## Queue (operator-owned)
-1. Vercel dashboard: add www as a project domain — retires the per-deploy
-   re-alias AND the auto-deploy domain-split trap (LESSONS #5).
-2. Artifacts (D12): Ordani screenshots (#1, biggest remaining visual win),
-   /about portrait (drop into public/ — see public/README.md), redacted RFP report.
-3. Optional next arc: re-run the Cowork design review against the LIVE site. The
-   existing one (2026-08-10) graded a site that no longer exists; both of its
-   load-bearing failures (R1 three typefaces, R6 uniform grids) are now closed.
-4. Spend note: the harness bills real pennies per round on operator accounts
-   (Codex via ChatGPT plan, Gemini via AI Studio, GLM pay-go). Zero ambient.
+STEP 2 (operator, ~10 min, free) — SENDING AS the address. Do AFTER step 1: the Gmail
+confirmation code needs forwarding live. Resend dashboard → add domain
+`micahjonesconsulting.com` (ROOT, not a subdomain — keeps DKIM aligned so Gmail shows
+no "via" label) → paste me the 3 records, I add them. Then Gmail → Settings → Accounts
+→ Send mail as: smtp.resend.com : 587 : user `resend` : password = a Resend API key.
+Fixes the two dead lead forms in the same move. Never paste that key into a session.
 
-## Verification harness
-`node scripts/visual-baseline.mjs [--out DIR] [--reduced]` — 33 shots (11 routes
-x 390/768/1440); `--diff A B` is a real per-pixel compare with a bounding box;
-`--reduced` makes captures deterministic. Captures gitignored.
-Scratchpad `axe-verify.mjs` re-measures every axe hit AFTER scrolling it into
-view — the only way to separate real failures from this site's palette-shift
-false positives.
+Registrar + DNS are Vercel (NS ns1/ns2.vercel-dns.com, expires 2026-12-02). Vercel
+offers NO email — a third party is required for both halves.
+
+## Queue (operator-owned, unchanged)
+1. Vercel dashboard: add www as a project domain — retires the per-deploy re-alias
+   AND the auto-deploy domain-split trap (LESSONS #5).
+2. Artifacts (D12): Ordani screenshots (#1 visual win), /about portrait
+   (public/README.md), redacted RFP report.
+3. Optional: run `.planning/prompts/cowork-review-2026-08-premium-tier.md`.
+
+## Site state
+SHIPPED, all three addresses on one deployment (perf 93 · a11y 96 · SEO 100 · LCP
+3017ms · CLS 0). Latest commit 91b7bd6. D14 = keep all three typefaces.
+
+## Harnesses
+`/cross-review plan|diff` (CARD 6) · `node scripts/visual-baseline.mjs [--reduced]`
 
 ## LIVE / MUST-RECONCILE
-- [2026-06-18] www is a PER-DEPLOY ALIAS — every deploy re-aliases BOTH (CARD 1),
-  and the alias step comes AFTER the push.
+- [2026-06-18] www is a PER-DEPLOY ALIAS — re-alias BOTH after every push (CARD 1).
+- [2026-08-29] Any new `mailto:` must answer MX before ship (LESSONS #8 has the cmd).
 
 ## Pointers
-- Decisions: `.planning/reviews/DESIGN-DECISIONS-2026-08.md` (D1-D14)
-- Lessons: `docs/LESSONS_LEARNED.md` (#3 facts ledger, #6 RSC entity-space,
-  #7 mix-blend-mode/stacking-context)
-- Techniques: `.claude/STANDING_TECHNIQUES.md` (CARD 1 ship, CARD 6 cross-review)
+Decisions `.planning/reviews/DESIGN-DECISIONS-2026-08.md` (D1-D14) · Lessons
+`docs/LESSONS_LEARNED.md` (#3 facts ledger, #5 www alias, #8 email MX)
