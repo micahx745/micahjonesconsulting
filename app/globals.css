@@ -3023,197 +3023,119 @@ body {
   margin-top: 4px;
 }
 
-/* Product cards.
- * Grid uses auto-fit/minmax so a single card fills full width without
- * an empty right column (was reading as a missing card). The card
- * itself wraps a real <a class="cw-card__link"> — the link is the
- * click affordance, no more "interactive theater" promises. */
-[data-mode="cw"] .cw-cards {
+/* THE LEDGER (Pass-2, redesign). Replaces the product-card grid and the
+ * shipped-also credit line — the entire cw-card/cw-cards/cw-shipped-also
+ * family had zero remaining users after the espresso section converted,
+ * so those blocks are deleted here rather than left as dead weight.
+ *
+ * The form is a financial-statement register: hairline rules in the
+ * site's own color-mix idiom, engagement name in the display face,
+ * outcomes in mono with tabular figures, a heavier double rule closing
+ * the total row. Rows that have a case-study page are whole-row links;
+ * the SurveyMonkey row deliberately is not (no page exists — an unlinked
+ * row in a ledger is honesty, not absence). */
+[data-mode="cw"] .cw-ledger {
+  margin-top: 26px;
+  border-top: 2px solid currentColor;
+  max-width: 980px;
+}
+[data-mode="cw"] .cw-lrow {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 24px;
-  margin-top: 64px;
-  list-style: none;
-  padding: 0;
-}
-/* Pass-14 (CW-20): at tablet (720-1023), the auto-fit minmax(360px)
- * can't fit 2 columns in ~688px content width, so the layout collapsed
- * to 1-column with each card stretched to full width — three tall
- * single-column cards instead of a 2+1 arrangement. Force 2-across at
- * tablet; Card 3 becomes the orphan on row 2 stretched to full width,
- * which is the brief-expected behavior. */
-@media (min-width: 720px) and (max-width: 1023px) {
-  [data-mode="cw"] .cw-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* W2 (P0-2/D6): weighted engagements grid — the lead card takes a 2fr
- * column and spans both rows; the two minor cards stack beside it.
- * Single column below 720px (the lead metric scales down with it). */
-@media (min-width: 720px) {
-  [data-mode="cw"] .cw-cards--weighted {
-    grid-template-columns: 2fr 1fr;
-  }
-  [data-mode="cw"] .cw-cards--weighted .cw-card--lead {
-    grid-row: span 2;
-  }
-  /* Minor cards step their display h3 down so the lead card's
-   * metric + title own the row's hierarchy. */
-  [data-mode="cw"] .cw-cards--weighted .cw-card:not(.cw-card--lead) h3 {
-    font-size: clamp(24px, 2.4vw, 34px);
-  }
-}
-[data-mode="cw"] .cw-card p.cw-card__metric {
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(34px, 3.9vw, 56px);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  /* saffron, NOT var(--cw-accent): the engagements section lives in the
-   * espresso world where the accent is terracotta at 2.39:1 — fails
-   * even AA-large. Saffron is 6.13:1 on espresso. */
-  color: var(--color-cw-saffron);
-  margin: 18px 0 20px;
-  max-width: none;
-  opacity: 1;
-}
-[data-mode="cw"] .cw-card {
-  border: 1.5px solid currentColor;
-  border-radius: 6px;
-  min-height: 240px;
-  position: relative;
-  overflow: hidden;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
-}
-[data-mode="cw"] .cw-card__link {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 36px;
-  height: 100%;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr) 28px;
+  gap: 6px 32px;
+  align-items: baseline;
+  padding: 24px 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
   color: inherit;
   text-decoration: none;
 }
-[data-mode="cw"] .cw-card .cw-tag {
+[data-mode="cw"] .cw-lrow__co {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(18px, 1.8vw, 22px);
+  letter-spacing: -0.012em;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+[data-mode="cw"] .cw-lrow__tag {
   font-family: var(--font-cw-mono);
+  font-weight: 400;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
-[data-mode="cw"] .cw-card h3 {
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(34px, 5vw, 58px);
-  text-transform: uppercase;
-  letter-spacing: -0.025em;
-  line-height: 0.9;
-  margin: 16px 0;
-}
-[data-mode="cw"] .cw-card p {
-  font-size: 16px;
-  line-height: 1.5;
-  opacity: 0.85;
-  max-width: 52ch;
-  margin: 0;
-}
-[data-mode="cw"] .cw-card .cw-open {
+[data-mode="cw"] .cw-lrow__out {
   font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-top: 22px;
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-}
-/* Pass-12: sub-list inside the Dante card. Three sub-engagements at
- * masked end-clients (top university / Fortune-500 / major city).
- * Body type one notch smaller than the card's main p; hyphen prefix
- * marker indicates editorial-list register; tighter line-height. */
-[data-mode="cw"] .cw-card__sublist {
-  list-style: none;
-  padding: 0;
-  margin: 14px 0 0;
-  font-size: 12px;
-  line-height: 1.5;
-  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
-}
-[data-mode="cw"] .cw-card__sublist li {
-  position: relative;
-  padding-left: 18px;
-  margin: 6px 0;
-}
-[data-mode="cw"] .cw-card__sublist li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  opacity: 0.55;
-}
-[data-mode="cw"] .cw-card:has(.cw-card__link:hover),
-[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) {
-  background: currentColor;
-}
-[data-mode="cw"] .cw-card:has(.cw-card__link:hover) .cw-tag,
-[data-mode="cw"] .cw-card:has(.cw-card__link:hover) h3,
-[data-mode="cw"] .cw-card:has(.cw-card__link:hover) p,
-[data-mode="cw"] .cw-card:has(.cw-card__link:hover) .cw-open,
-[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-tag,
-[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) h3,
-[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) p,
-[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-open,
-/* Pass-12: include the sub-list in the hover/focus color flip so
- * its text doesn't disappear when the card inverts (currentColor
- * → bg, which is invisible against the now-currentColor background). */
-[data-mode="cw"] .cw-card:has(.cw-card__link:hover) .cw-card__sublist,
-[data-mode="cw"] .cw-card:has(.cw-card__link:focus-visible) .cw-card__sublist {
-  color: var(--cw-bg);
-}
-[data-mode="cw"] .cw-card:hover .cw-tag,
-[data-mode="cw"] .cw-card:hover p {
+  font-size: 13.5px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
   opacity: 0.9;
 }
-
-/* Pass-16: "Also at" sub-credit — merged from the former standalone
- * .cw-credits section into the Shipped band. The operator flagged
- * the standalone credit-line section as reading like an orphan
- * (visually disconnected from the Shipped cards above it). Now it
- * lives inside the same espresso world, beneath the cards, as a
- * secondary-engagement sub-credit. Type register sits between the
- * card body and the section dek. */
-[data-mode="cw"] .cw-shipped-also {
-  margin-top: 80px;
-  max-width: 720px;
+[data-mode="cw"] .cw-lrow__out strong {
+  font-weight: 600;
+  opacity: 1;
+}
+[data-mode="cw"] .cw-lrow__go {
+  font-family: var(--font-cw-mono);
+  font-size: 15px;
+  justify-self: end;
+  opacity: 0.55;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+/* Crafted microstate: the whole row is the affordance. Name underlines,
+ * arrow slides, hairline brightens — nothing moves more than 4px. */
+[data-mode="cw"] .cw-lrow--link:hover,
+[data-mode="cw"] .cw-lrow--link:focus-visible {
+  border-bottom-color: color-mix(in srgb, currentColor 60%, transparent);
+}
+[data-mode="cw"] .cw-lrow--link:hover .cw-lrow__co,
+[data-mode="cw"] .cw-lrow--link:focus-visible .cw-lrow__co {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 5px;
+}
+[data-mode="cw"] .cw-lrow--link:hover .cw-lrow__go,
+[data-mode="cw"] .cw-lrow--link:focus-visible .cw-lrow__go {
+  opacity: 1;
+  transform: translateX(4px);
+}
+[data-mode="cw"] .cw-lrow--tot {
+  border-top: 1px solid currentColor;
+  border-bottom: 2px solid currentColor;
+}
+[data-mode="cw"] .cw-lrow--tot .cw-lrow__out {
+  font-size: 15px;
+  opacity: 1;
 }
 @media (max-width: 760px) {
-  [data-mode="cw"] .cw-shipped-also {
-    margin-top: 56px;
+  [data-mode="cw"] .cw-lrow {
+    grid-template-columns: minmax(0, 1fr) 28px;
+    gap: 8px 16px;
+    padding: 20px 0;
+  }
+  /* Outcome drops under the name, full width. The arrow needs EXPLICIT
+     placement (row 1, col 2): source order is co → out → go, so with
+     auto-placement the spanning outcome takes row 2 and the arrow
+     orphans onto its own row 3 (caught in the 390 screenshot). */
+  [data-mode="cw"] .cw-lrow__out {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  [data-mode="cw"] .cw-lrow__go {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: center;
   }
 }
-[data-mode="cw"] .cw-shipped-also__eyebrow {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
-  margin: 0 0 16px;
-}
-[data-mode="cw"] .cw-shipped-also__line {
-  font-family: var(--font-cw-display);
-  font-weight: 500;
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1.35;
-  letter-spacing: -0.012em;
-  margin: 0;
-  opacity: 0.9;
-  text-transform: none;
-}
-[data-mode="cw"] .cw-shipped-also__line strong {
-  font-weight: 700;
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] .cw-lrow__go {
+    transition: none;
+  }
 }
 
 /* Service-strip hover-pause rule removed (D2, operator-locked 2026-08):

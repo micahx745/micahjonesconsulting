@@ -381,121 +381,135 @@ export default function ColorWorldsHome() {
         data-world="espresso"
         aria-labelledby="cw-products-title"
       >
-        <p className="cw-kicker cw-reveal">Engagements</p>
+        {/* Pass-2 (redesign D-R14 synthesis): the card grid becomes THE
+            LEDGER — the direction the operator picked across four style
+            rounds. A record table reads as an audited document: the most
+            credible register available to an enterprise buyer, and the
+            format a procurement team forwards. Title breaks the
+            abstract-noun+period drumbeat (attack plan §6 item 5) with a
+            full assertion no competitor can copy. */}
+        <p className="cw-kicker cw-reveal">The record</p>
         <SplitReveal
           as="h2"
           id="cw-products-title"
           className="cw-secttitle"
         >
-          Shipped, not pitched.
+          Every figure is defensible on request.
         </SplitReveal>
-        {/* Trimmed 2026-08-15 (operator, mobile read: "the examples of the
-            engagements is too wordy"). The dek was previewing all three
-            cards in prose directly above the cards themselves. */}
         <p className="cw-sect-dek cw-reveal">
-          Two platforms acquired and public. One built solo.
+          Ask for the cap table, the pipeline report, or a reference.
         </p>
 
-        {/* W2 (P0-2/D6, operator-locked 2026-08-11): weighted grid —
-            the Guardicore card leads at 2× width with its metric at
-            display size; the author + AI cards stack as minors. Kills
-            the uniform three-up (review R6, home #5). */}
-        <ul className="cw-cards cw-cards--weighted">
-          {/* Lead card — GTM at scale (Guardicore). Per operator, no
-              TechValidate; the IPO platform is named as SurveyMonkey
-              Enterprise (the product line that anchored the IPO case). */}
-          <li
-            className="cw-card cw-card--lead cw-reveal"
-            style={{ transitionDelay: "0ms" }}
+        {/* THE LEDGER. Replaces the W2 weighted card grid AND absorbs the
+            cw-shipped-also credit line (its 2013–2023 / $20M+ claim is now
+            the total row). Trace rule (LESSONS #2) checked: $80M/$14M in
+            guardicore.mdx, 8K→290K + doubled in hr-equity-author.mdx,
+            200 birth workers in ordani.mdx. The SurveyMonkey row has no
+            case-study page, so it carries no link — an unlinked row in a
+            ledger reads as honesty, not absence. Per the W2 operator lock,
+            the home surface says "SurveyMonkey Enterprise", never
+            TechValidate. Rows keep .cw-reveal + stagger — the reveal
+            system works as of Pass-1, so the rows arrive in sequence. */}
+        <div className="cw-ledger cw-reveal" role="list">
+          <a
+            href="/work/guardicore"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "60ms" }}
           >
-            <a href="/work/guardicore" className="cw-card__link">
-              <span className="cw-tag">Enterprise software · 2013–2023</span>
-              <h3>GTM at scale</h3>
-              <p className="cw-card__metric" aria-label="80 million dollars in pipeline, 14 million dollars in revenue">
-                $80M pipeline<br />$14M revenue
-              </p>
-              {/* Trimmed 2026-08-15: the card is an index entry, not the
-                  case study. Two named outcomes beat a full sentence of
-                  method — the page it links to carries the how. */}
-              <p>
-                <strong>Guardicore → Akamai.</strong>{" "}
-                <strong>SurveyMonkey Enterprise → Nasdaq.</strong>
-              </p>
-              <span className="cw-open">See the receipts →</span>
-            </a>
-          </li>
+            <span className="cw-lrow__co">
+              Guardicore
+              <span className="cw-lrow__tag">Enterprise sales · 2021</span>
+            </span>
+            <span
+              className="cw-lrow__out"
+              aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"
+            >
+              <strong>$80M pipeline</strong> on $14M revenue ·{" "}
+              <strong>acquired by Akamai</strong>
+            </span>
+            <span className="cw-lrow__go" aria-hidden>→</span>
+          </a>
 
-          {/* Minor card — industry-authority author engagement. The three
-              fabricated end-clients (research university / Fortune-500
-              "30% revenue lift" / "major American city" + bespoke product)
-              are DELETED — operator confirms that story is false. */}
-          <li
-            className="cw-card cw-reveal"
+          <div
+            className="cw-lrow cw-reveal"
+            role="listitem"
             style={{ transitionDelay: "120ms" }}
           >
-            <a href="/work/hr-equity-author" className="cw-card__link">
-              <span className="cw-tag">2024–present · Content + software</span>
-              <h3>Content + product for an industry author</h3>
-              <p>
-                Content engine plus the software beneath it. Reach 8K →
-                290K. RFP-to-close rate doubled.
-              </p>
-              <span className="cw-open">See the engagement →</span>
-            </a>
-          </li>
+            <span className="cw-lrow__co">
+              SurveyMonkey Enterprise
+              <span className="cw-lrow__tag">Enterprise sales · 2018</span>
+            </span>
+            <span className="cw-lrow__out">
+              <strong>$1M+</strong> toward the IPO · held through the
+              Nasdaq listing
+            </span>
+          </div>
 
-          {/* Card 3 — frontier AI. New in Pass-12. Operator: "billed as
-              another service/case study," 10,000-ft abstraction, no
-              specifics. Premium consulting register: "specifics under
-              NDA" + "available for new engagements." Links to Calendly
-              since the case study hasn't been built yet. */}
-          {/* Pass-20 (per Lena, Pass-19 review): card now links to the
-              dedicated /services/ai-engineering subpage instead of
-              routing AI-engagement intake to the generic Calendly. The
-              subpage carries the engagement shapes (4 tiers); Calendly
-              becomes the CTA from there, not from this card. */}
-          <li
-            className="cw-card cw-reveal"
+          <a
+            href="/work/hr-equity-author"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "180ms" }}
+          >
+            <span className="cw-lrow__co">
+              Industry author
+              <span className="cw-lrow__tag">GTM + software · 2024–</span>
+            </span>
+            <span className="cw-lrow__out">
+              Reach <strong>8K → 290K</strong> · RFP-to-close{" "}
+              <strong>doubled</strong>
+            </span>
+            <span className="cw-lrow__go" aria-hidden>→</span>
+          </a>
+
+          <a
+            href="/services/ai-engineering"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
             style={{ transitionDelay: "240ms" }}
           >
-            <a
-              href="/services/ai-engineering"
-              className="cw-card__link"
-            >
-              <span className="cw-tag">2025–present · Embedded</span>
-              <h3>Frontier AI, shipped.</h3>
-              <p>
-                {/* Pass-21 (Claude Chat audit): "production architecture
-                    and orchestration" was category-level, not point-of-
-                    view. "The engineering between the model and the
-                    user" names the gap founders feel. Stack named
-                    inline gives evidence the NDA framing can lean on. */}
-                The engineering between the model and the user — eval
-                infrastructure, RAG, agent orchestration, prompt-deployment
-                pipelines. Specifics under NDA.
-              </p>
-              <span className="cw-open">See the engagement →</span>
-            </a>
-          </li>
-        </ul>
+            <span className="cw-lrow__co">
+              Frontier AI
+              <span className="cw-lrow__tag">Embedded · 2025–</span>
+            </span>
+            <span className="cw-lrow__out">
+              Eval infrastructure, RAG, agent orchestration ·{" "}
+              <strong>specifics under NDA</strong>
+            </span>
+            <span className="cw-lrow__go" aria-hidden>→</span>
+          </a>
 
-        {/* Pass-16: former standalone <section.cw-credits> merged into
-            Shipped as an "Also at" sub-credit. The operator flagged
-            the standalone section read as an orphan — separate from
-            Shipped but not really its own thing. Now it lives inside
-            Shipped's espresso world, after the cards, as the secondary-
-            engagement line. Guardicore and SurveyMonkey are NOT listed
-            here (both already named prominently in the cards above);
-            this lists the other named engagements. */}
-        {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates cut —
-            named companies carried no figure-bearing result. The decade
-            claim stays; the named-with-figures work is in the cards. */}
-        <div className="cw-shipped-also cw-reveal">
-          <p className="cw-shipped-also__eyebrow">2013 — 2023</p>
-          <p className="cw-shipped-also__line">
-            Growth, GTM, and platform strategy across a decade of
-            enterprise software.
-          </p>
+          <a
+            href="/work/ordani"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "300ms" }}
+          >
+            <span className="cw-lrow__co">
+              Ordani
+              <span className="cw-lrow__tag">Founder, sole engineer · 2026</span>
+            </span>
+            <span className="cw-lrow__out">
+              <strong>200 birth workers</strong> · none lost to a
+              competitor
+            </span>
+            <span className="cw-lrow__go" aria-hidden>→</span>
+          </a>
+
+          <div
+            className="cw-lrow cw-lrow--tot cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "360ms" }}
+          >
+            <span className="cw-lrow__co">
+              Total
+              <span className="cw-lrow__tag">2013–2023</span>
+            </span>
+            <span className="cw-lrow__out">
+              <strong>$20M+ in client revenue</strong>
+            </span>
+          </div>
         </div>
       </section>
 
