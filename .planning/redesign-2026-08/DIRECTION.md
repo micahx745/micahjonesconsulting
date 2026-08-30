@@ -141,3 +141,31 @@ What it proposes, all three conflicts resolved in one artifact:
 
 GATE: operator I-Like / I-Wish / What-If, ending in ship / revise / refuse on the AESTHETIC
 before any page is built. Refusing costs one build and nothing shipped.
+
+## GATE RESULT — STYLE TILE 01: **REFUSED** (operator, 2026-08-30)
+
+> "hate it - looks like a major qualityu downgrade from current website"
+
+Cost: one build, nothing deployed. This is the aesthetic gate working exactly as designed.
+
+**Self-critique — what went wrong, recorded so the next tile does not repeat it:**
+
+1. **Craft gap in the hero image.** Locomotive's background is a photographed/rendered 3D
+   object with real lighting and texture. Mine was flat vector text with `ctx.filter=blur()`,
+   which reads as a muddy smear. Blurred flat type is NOT the same medium and does not carry
+   the same production value. Do not attempt that substitution again.
+2. **Traded a rare asset for a common one.** Color Worlds — a scroll-driven multi-world
+   palette — is genuinely unusual, verified working, and on the protect list. I proposed
+   replacing it with near-black + an orange accent, which is one of the most common looks on
+   the web. That is a downgrade in distinctiveness no matter how well executed.
+3. **Designed toward AGENCIES.** Koto, Locomotive and Basement sell being an agency; their
+   chrome IS their product. This operator sells outcomes. Agency styling on an operator site
+   produces a worse version of both. The reference triangle was read too literally — the
+   lesson from marketing.md's UI-006 rule, repeated in miniature.
+4. **Confused "less is more" with "dark and moody."** The brief said less-is-more but SUPER
+   POWERFUL. Powerful, for this site, was already partly present; the job is subtraction of
+   noise from a distinctive system, not substitution of the system.
+
+**Standing correction for the rest of this arc:** the current design is the baseline to REFINE,
+and the operator rates it above the proposed replacement. Reference sites inform detail
+decisions (scale, spacing, restraint, motion technique) — they do NOT supply the identity.
