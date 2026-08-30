@@ -15,7 +15,7 @@ export default async function Image() {
       <CWOGComposition
         eyebrow="ABOUT · MICAH JONES"
         headline="OPERATOR"
-        punch="A decade of B2B GTM + product. Three exits. Receipts that hold up."
+        punch="A decade of B2B GTM + product. Four exits, $5B+ combined. Receipts that hold up."
       />
     ),
     size,

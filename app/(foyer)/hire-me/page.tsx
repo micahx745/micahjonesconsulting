@@ -20,12 +20,12 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "Hire me — full-time, fractional, or contract",
   description:
-    "Three companies I helped build reached an exit. $20M+ in client revenue. Product deployed behind a top-10 North American bank and a global systemically important bank. Now building Ordani solo. Available in four shapes.",
+    "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Product deployed behind a top-10 North American bank and a global systemically important bank. Now building Ordani solo. Available in four shapes.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/hire-me" },
   openGraph: {
     title: "Hire me — full-time, fractional, or contract",
     description:
-      "Three companies I helped build reached an exit, $20M+ in client revenue, product deployed behind global financial institutions. An operator who has owned outcomes, available in four shapes.",
+      "Four exits behind my work, $5B+ combined. $20M+ in client revenue, product deployed behind global financial institutions. An operator who has owned outcomes, available in four shapes.",
     type: "website",
     url: "https://www.micahjonesconsulting.com/hire-me",
     siteName: "Micah Jones",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 const RECEIPTS = [
-  "Three companies I helped build reached an exit — two on the cap table (Guardicore, TechValidate→SurveyMonkey), one I helped launch (Neuton.AI→Nordic Semiconductor).",
+  "Four exits behind my work: Postmates→Uber, TechValidate→SurveyMonkey IPO, Guardicore→Akamai, Neuton.AI→Nordic Semiconductor. Two carried my name on the cap table.",
   "$20M+ in client revenue across a decade of enterprise software.",
   "Product deployed behind a top-10 North American bank, a global systemically important bank, and the world's largest public biomedical-research funder.",
   "Earlier, I ran multi-million-dollar cybersecurity procurements from the inside. I know the security questionnaire, the risk review, and the committee that signs.",
@@ -101,7 +101,7 @@ export default function HireMePage() {
           Full-time, fractional, or contract.
         </h1>
         <p className="cw-services__intro">
-          Three companies I helped build reached an exit. A HIPAA-grade SaaS I built solo. I&rsquo;ve
+          Four exits behind my work, $5B+ combined. A HIPAA-grade SaaS I built solo. I&rsquo;ve
           owned outcomes, not just advised on them. Here&rsquo;s the
           shape that fits your seat.
         </p>

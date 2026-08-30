@@ -16,7 +16,7 @@ export default async function Image() {
     (
       <CWOGComposition
         headline="MICAH JONES"
-        punch="$20M+ in client revenue. Three exits — Akamai, SurveyMonkey IPO, Nordic Semiconductor. Now building Ordani."
+        punch="Four exits: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani."
       />
     ),
     size,

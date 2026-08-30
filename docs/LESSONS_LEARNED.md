@@ -44,9 +44,18 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   led). NEVER: "$15M pipeline", "trained the sales team", "built the channel".
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
-- Exits: **THREE companies he helped build reached an exit** — TechValidate→SurveyMonkey
+- Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:
+  "considering i was apart of four exits - postmates, surveymonkey, guardicore, neuton ai" —
+  SUPERSEDES the three-exit entry below). Role split stays honest: TechValidate→SurveyMonkey
   (IPO 2018, cap table), Guardicore→Akamai (2021, cap table), Neuton.AI→Nordic Semiconductor
-  (June 2025, "helped launch", NOT cap table — never claim Neuton equity). NEVER: "Two exits".
+  (2025, "helped launch", NOT cap table — never claim Neuton equity), Postmates→Uber (2020,
+  employed there; role/years NOT yet supplied — the ledger table row is HELD until he gives
+  them; never invent a role). Umbrella phrasing: "worked inside" or "behind my work", never
+  "helped build" for the four-count (Postmates was employment, not a build claim).
+  **$5B+ combined** = DISCLOSED deals only: Uber–Postmates $2.65B + SVMK first-day IPO value
+  $2.33B + Akamai–Guardicore $600M = $5.58B; Neuton undisclosed, contributes $0. Sources
+  pinned in content/citations.ts (EXITS_COMBINED_VALUE). NEVER: "Two exits". RETIRED (swept
+  to zero rendered instances 2026-08-30): "Three companies I helped build reached an exit".
 - Ordani: **used by 200 birth workers, none lost to a competitor**
   (operator update 2026-08-15 — SUPERSEDES the earlier "fourteen practices / eight
   active weekly at six months" entry, which described the closed beta and had gone

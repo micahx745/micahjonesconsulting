@@ -371,37 +371,44 @@ export function Hero() {
         </a>
       </div>
 
-      {/* Pass-4: the proof chips — the reference language's floating
-          stats ("5K+ customers" / "24K+ members"), carrying what the
-          RevenueTick band carried before this pass absorbed it. Each
-          chip drifts a few px against scroll via --hero-scroll (set by
-          the scroll effect below; user-driven, no idle loop, dead under
-          reduced motion). Desktop: positioned over the photo. Mobile:
-          in-flow row under the CTAs. */}
+      {/* Pass-5: the proof chips as STAT OBJECTS (operator: v1 chips
+          "look weak"). Figure at display scale in the display face,
+          label in mono beneath — the SyncDepth/PeakHealth object
+          grammar, not a text pill. The four-exit story leads
+          (operator instruction 2026-08-30; $5B+ = disclosed deals
+          only, sources in content/citations.ts). Scroll counter-drift
+          unchanged: user-driven, dead under reduced motion. */}
       <ul className="cw-chips" aria-label="Track record at a glance">
         <li
-          className="cw-chip cw-reveal"
+          className="cw-chip cw-chip--lead cw-reveal"
           style={{ "--drift": "-22px", transitionDelay: "500ms" } as React.CSSProperties}
         >
-          <strong>$20M+</strong> client revenue
+          <strong className="cw-chip__fig">$5B+</strong>
+          <span className="cw-chip__lbl">combined value of four exits</span>
+          <span className="cw-chip__sub">
+            Postmates · SurveyMonkey · Guardicore · Neuton.AI
+          </span>
         </li>
         <li
           className="cw-chip cw-reveal"
           style={{ "--drift": "30px", transitionDelay: "620ms" } as React.CSSProperties}
         >
-          <strong>3</strong> exits helped build
+          <strong className="cw-chip__fig">$20M+</strong>
+          <span className="cw-chip__lbl">client revenue</span>
         </li>
         <li
           className="cw-chip cw-reveal"
           style={{ "--drift": "-34px", transitionDelay: "740ms" } as React.CSSProperties}
         >
-          <strong>Trillions</strong> in assets behind my work
+          <strong className="cw-chip__fig">Trillions</strong>
+          <span className="cw-chip__lbl">in assets behind my work</span>
         </li>
         <li
           className="cw-chip cw-reveal"
           style={{ "--drift": "18px", transitionDelay: "860ms" } as React.CSSProperties}
         >
-          <strong>200</strong> birth workers on Ordani
+          <strong className="cw-chip__fig">200</strong>
+          <span className="cw-chip__lbl">birth workers on Ordani</span>
         </li>
       </ul>
 

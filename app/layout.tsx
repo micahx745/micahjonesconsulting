@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s — Micah Jones",
   },
   description:
-    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit (Akamai, SurveyMonkey IPO, Nordic Semiconductor). Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, HIPAA-grade practice management used by 200 birth workers.",
   metadataBase: new URL("https://www.micahjonesconsulting.com"),
   alternates: {
     canonical: "https://www.micahjonesconsulting.com",
@@ -62,7 +62,7 @@ const PERSON_LD = {
   // facts now land first. "AND" in all-caps was a formatting artifact
   // that shouldn't appear in machine-readable metadata.
   description:
-    "Oakland-based independent operator. $20M+ in client revenue (2013–2023). Exits at Guardicore (Akamai, 2021) and SurveyMonkey Enterprise (IPO, 2018). Building Ordani: HIPAA-grade practice management for doulas and midwives.",
+    "Oakland-based independent operator. Four exits behind his work: Postmates (Uber, 2020), SurveyMonkey (IPO, 2018), Guardicore (Akamai, 2021), Neuton.AI (Nordic Semiconductor, 2025). $20M+ in client revenue (2013–2023). Building Ordani: HIPAA-grade practice management for doulas and midwives.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Oakland",

@@ -49,13 +49,13 @@ export const metadata: Metadata = {
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
   },
   description:
-    "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by 200 birth workers.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
+      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-grade practice management used by 200 birth workers.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "$20M+ in client revenue. Three companies I helped build reached an exit — Akamai, SurveyMonkey IPO, and Neuton.AI → Nordic Semiconductor. Now building Ordani.",
+      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani.",
   },
 };
 
@@ -480,6 +480,54 @@ export default function ColorWorldsHome() {
               <strong>$20M+ in client revenue</strong>
             </span>
           </div>
+        </div>
+      </section>
+
+      {/* THE TWO DOORS (Pass-5, operator ask: "something to preach to the
+          vibe coders and something to preach to small businesses"). Two
+          register-matched doorways at the bottom of the page — audience B
+          got the whole page above; A and C each get one door in their own
+          voice. NOTE: the playbook door touches the Pass-30 lock (playbook
+          off the enterprise front door) — that lock was about the FIRST
+          screen; this sits five screens down. Flagged to the operator
+          either way. */}
+      <section
+        className="cw-block"
+        id="doors"
+        data-section
+        data-world="bone"
+        aria-label="Which door fits"
+      >
+        <div className="cw-doors">
+          <a href="/playbook" className="cw-door cw-reveal">
+            <p className="cw-door__kicker">Building solo, with AI</p>
+            <h2 className="cw-door__title">
+              The demo took a weekend. The last 20% is eating your month.
+            </h2>
+            <p className="cw-door__body">
+              That gap is my daily work. I wrote the field manual for it.
+            </p>
+            <span className="cw-door__cta">
+              Read the playbook <span aria-hidden>→</span>
+            </span>
+          </a>
+          <a
+            href="/services"
+            className="cw-door cw-reveal"
+            style={{ transitionDelay: "100ms" }}
+          >
+            <p className="cw-door__kicker">Running a growing business</p>
+            <h2 className="cw-door__title">
+              Too big for duct tape. Not ready for an agency retainer.
+            </h2>
+            <p className="cw-door__body">
+              You get me directly. Diagnosis, a shipped artifact in month
+              one, and a system your team runs without me.
+            </p>
+            <span className="cw-door__cta">
+              See the three engagements <span aria-hidden>→</span>
+            </span>
+          </a>
         </div>
       </section>
 

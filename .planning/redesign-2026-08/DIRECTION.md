@@ -309,3 +309,21 @@ From his own set: IMG_2748 (cap, finger to temple, eyes at camera, 2320x3088) cr
 the production build: :has() two-column intro activates at 1440, stacks at 390, image
 serves via /_next/image, no overflow. IMG_0462 (whiteboard + laptop) noted as the best
 "at work" alternative — the most on-thesis photo of the seven.
+
+## PASS-4 GATE: **"love it"** (operator, 2026-08-30) — first outright SHIP verdict of the arc
+With refinements ordered: chips "look weak and can be better" → Pass-5 stat objects.
+
+## D-R16 — FOUR EXITS (operator fact update, verbatim): "considering i was apart of four
+exits - postmates, surveymonkey, guardicore, neuton ai - is there some value i can showcase"
+Answer built: $5B+ combined disclosed value (Uber $2.65B + SVMK IPO $2.33B + Akamai $600M,
+Neuton undisclosed; sources in citations.ts). Full-tree sweep 3→4 executed across 12
+surfaces incl. both OG images + llms.txt + JSON-LD; rendered three-exit instances verified
+ZERO on every route. Phrasing: "worked inside"/"behind my work" (Postmates = employment).
+HELD: ledger-table Postmates row awaits role + years from the operator.
+
+## D-R17 — Audience doors (operator: "something to preach to the vibe coders and... small
+businesses"). Two doorway cards precede the footer: A-door ("The demo took a weekend. The
+last 20% is eating your month.") → /playbook; C-door ("Too big for duct tape. Not ready
+for an agency retainer.") → /services. NOTE: A-door touches the Pass-30 lock (playbook off
+the enterprise front door) — that lock addressed the FIRST screen; the door sits five
+screens down. Operator to confirm or veto.

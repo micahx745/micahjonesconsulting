@@ -1741,21 +1741,51 @@ body {
   margin: 0;
   padding: 0;
 }
+/* Pass-5 chip anatomy — a stat OBJECT, not a text pill: display-face
+ * figure over a mono label, espresso ground so it holds against both the
+ * whiteboard whites and the terracotta field, saffron rule as the spine. */
 [data-mode="cw"] .cw-chip {
-  font-family: var(--font-cw-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.04em;
-  color: var(--color-cw-espresso);
-  background: color-mix(in srgb, var(--color-cw-bone) 92%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-espresso) 25%, transparent);
+  color: var(--color-cw-bone);
+  background: color-mix(in srgb, var(--color-cw-espresso) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 18%, transparent);
+  border-left: 3px solid var(--color-cw-saffron);
   border-radius: 3px;
-  padding: 10px 14px;
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--color-cw-espresso) 30%, transparent);
+  padding: 14px 18px 13px;
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
   white-space: nowrap;
 }
-[data-mode="cw"] .cw-chip strong {
-  font-weight: 600;
-  color: var(--color-cw-terracotta);
+[data-mode="cw"] .cw-chip__fig {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-cw-bone);
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-chip__lbl {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-cw-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-cw-bone) 78%, transparent);
+}
+[data-mode="cw"] .cw-chip__sub {
+  display: block;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid color-mix(in srgb, var(--color-cw-bone) 16%, transparent);
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: color-mix(in srgb, var(--color-cw-bone) 70%, transparent);
+}
+[data-mode="cw"] .cw-chip--lead .cw-chip__fig {
+  font-size: clamp(30px, 2.9vw, 42px);
+  color: var(--color-cw-saffron);
 }
 @media (min-width: 861px) {
   /* Desktop: a loose right-side cluster over the photo. The UL must span
@@ -1787,23 +1817,119 @@ body {
   [data-mode="cw"] .cw-chip:nth-child(4) { right: 18%; top: 64%; }
 }
 @media (max-width: 860px) {
-  /* Mobile: in-flow row under the CTAs — overlaying chips on a 390px
-   * photo crowds the face. */
+  /* Mobile: 2-up grid under the CTAs, lead chip full width — overlaying
+   * stat objects on a 390px photo crowds the face. */
   [data-mode="cw"] .cw-chips {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 8px;
     margin-top: 28px;
   }
   [data-mode="cw"] .cw-chip {
-    font-size: 11.5px;
-    padding: 8px 11px;
+    white-space: normal;
+    padding: 12px 14px;
     box-shadow: none;
+  }
+  [data-mode="cw"] .cw-chip--lead {
+    grid-column: 1 / -1;
+  }
+  [data-mode="cw"] .cw-chip__fig {
+    font-size: 21px;
+  }
+  [data-mode="cw"] .cw-chip--lead .cw-chip__fig {
+    font-size: 27px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   [data-mode="cw"] .cw-chip {
     transform: none !important;
+  }
+}
+
+/* THE TWO DOORS (Pass-5) — audience A and C doorways. Whole-card links
+ * in the ledger's register: hairline borders, saffron spine on hover,
+ * no imagery. Each door speaks its audience's language; the shared
+ * anatomy says both doors lead into the same house. Entrance stagger
+ * lives in the JSX (door 2 carries transitionDelay 100ms via the
+ * .cw-reveal system); the transforms below are hover microstates. */
+[data-mode="cw"] .cw-doors {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  max-width: 1040px;
+}
+@media (min-width: 800px) {
+  [data-mode="cw"] .cw-doors {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+[data-mode="cw"] .cw-door {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 3px;
+  color: inherit;
+  text-decoration: none;
+  transition: /* motion-ok: hover microstate, not a reveal — entrance stagger is inline in Hero JSX (transitionDelay 100ms on door 2) */
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+[data-mode="cw"] .cw-door:hover,
+[data-mode="cw"] .cw-door:focus-visible {
+  border-color: var(--color-cw-saffron);
+  transform: translateY(-3px); /* motion-ok: hover lift microstate, not a group reveal */
+}
+[data-mode="cw"] .cw-door__kicker {
+  font-family: var(--font-cw-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0;
+}
+[data-mode="cw"] .cw-door__title {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(19px, 2vw, 25px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0;
+  text-transform: none;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+[data-mode="cw"] .cw-door__body {
+  font-size: 15.5px;
+  line-height: 1.55;
+  opacity: 0.85;
+  margin: 0;
+  max-width: 40ch;
+}
+[data-mode="cw"] .cw-door__cta {
+  margin-top: auto;
+  padding-top: 10px;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-door__cta span {
+  display: inline-block;
+  transition: transform 0.25s ease; /* motion-ok: hover arrow nudge, matches existing cw-section-cta idiom */
+}
+[data-mode="cw"] .cw-door:hover .cw-door__cta span,
+[data-mode="cw"] .cw-door:focus-visible .cw-door__cta span {
+  transform: translateX(4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] .cw-door,
+  [data-mode="cw"] .cw-door__cta span {
+    transition: none;
+  }
+  [data-mode="cw"] .cw-door:hover {
+    transform: none;
   }
 }
 @media (max-width: 760px) {

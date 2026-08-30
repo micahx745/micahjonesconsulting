@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "About",
   description:
-    "Independent operator in Oakland. $20M+ in client revenue (2013–2023). Three companies I helped build reached an exit: Guardicore → Akamai, TechValidate → SurveyMonkey IPO, Neuton.AI → Nordic Semiconductor. Now building Ordani — HIPAA-grade practice management used by 200 birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates → Uber, TechValidate → SurveyMonkey IPO, Guardicore → Akamai, Neuton.AI → Nordic Semiconductor. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by 200 birth workers.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
     title: "About — Micah Jones",
     description:
-      "Independent operator in Oakland. $20M+ in client revenue. Three companies I helped build reached an exit. Building Ordani — HIPAA-grade practice management used by 200 birth workers.",
+      "Independent operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue. Building Ordani, used by 200 birth workers.",
     type: "profile",
     url: "https://www.micahjonesconsulting.com/about",
   },
@@ -84,11 +84,17 @@ export default function AboutPage() {
               <strong>$20M+</strong>{" "}in client revenue (2013&ndash;2023).
             </li>
             <li>
-              <strong>Three companies I helped build reached an exit.</strong>{" "}
-              Two were mine on the cap table &mdash; Guardicore (Akamai,
-              2021) and TechValidate (SurveyMonkey, held through the 2018
-              IPO). The third I helped launch &mdash; Neuton.AI, whose
-              technology Nordic Semiconductor acquired in 2025.
+              {/* Four-exit update (operator, 2026-08-30): Postmates joins.
+                  Role split stays honest: two cap-table, one helped launch,
+                  one worked inside. $5B+ = disclosed deal values only
+                  (Uber $2.65B + SVMK IPO $2.33B + Akamai $600M; Neuton
+                  undisclosed) — sources in content/citations.ts. */}
+              <strong>Four companies I worked inside reached an exit.</strong>{" "}
+              Postmates (Uber, 2020). TechValidate (held through the
+              SurveyMonkey IPO, 2018). Guardicore (Akamai, 2021).
+              Neuton.AI (technology acquired by Nordic Semiconductor,
+              2025). Two carried my name on the cap table; the disclosed
+              deals total <strong>$5B+</strong>.
             </li>
             <li>
               {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
