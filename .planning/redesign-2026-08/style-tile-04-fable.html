@@ -1,0 +1,528 @@
+<title>Signed by Hand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Nanum+Pen+Script&display=swap">
+<style>
+/* ============================================================
+   TILE 04 — SIGNED BY HAND (Fable)
+   Tile 03 found the person; this tile gives him craft.
+   A real signature, a stitched seam, a taped portrait mount,
+   an annotated ledger, one orchestrated entrance.
+   ============================================================ */
+:root{
+  --paper:#F7F0E3; --paper-lift:#FBF5EA; --paper-deep:#EFE6D2;
+  --ink:#211B14; --ink-soft:#5C5245;
+  --terracotta:#9E3C25; --terracotta-deep:#7E2F1B;
+  --petrol:#1A4548; --saffron:#C9982F; --espresso:#2A1F18;
+  --hair:#D9CEB7; --hand:#8F4D12; --hand-soft:#B0641F;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --pen:"Nanum Pen Script","Segoe Print",cursive;
+  --ez:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html,body{overflow-x:clip}
+body{margin:0;color:var(--ink);font-family:var(--sans);font-weight:400;font-size:17px;
+  line-height:1.62;-webkit-font-smoothing:antialiased;
+  background:var(--paper);
+  /* paper, not noise: a top light and two warm washes */
+  background-image:
+    linear-gradient(180deg, rgba(255,251,240,.85) 0%, rgba(255,251,240,0) 260px),
+    radial-gradient(1100px 620px at 12% -8%, rgba(201,152,47,.10), transparent 60%),
+    radial-gradient(900px 560px at 96% 4%, rgba(158,60,37,.07), transparent 62%),
+    linear-gradient(0deg, rgba(42,31,24,.04) 0%, rgba(42,31,24,0) 340px)}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0}
+a{color:var(--terracotta-deep)}
+:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+
+/* ---------- bookbinder's ribbon: sell | same person | build ---------- */
+.ribbon{display:flex;height:5px}
+.ribbon i{display:block}
+.ribbon i:nth-child(1){flex:5;background:var(--terracotta)}
+.ribbon i:nth-child(2){flex:2;background:var(--saffron)}
+.ribbon i:nth-child(3){flex:5;background:var(--petrol)}
+
+/* ---------- the hand ---------- */
+.hand{font-family:var(--pen);color:var(--hand);font-size:clamp(19px,2.1vw,24px);
+  line-height:1.12;display:inline-block}
+.note{position:relative;font-family:var(--pen);color:var(--hand);
+  font-size:clamp(18px,1.9vw,22px);line-height:1.12;display:block}
+.note--rot{transform:rotate(-1.6deg)}
+.note--todo{color:#8A7C63;border-bottom:1.5px dashed #B9A987;padding-bottom:2px}
+.note--todo::before{content:"YOUR LINE:";font-family:var(--mono);font-size:9px;
+  letter-spacing:.14em;color:#9A8B70;display:block;margin-bottom:2px}
+.drawn-p{fill:none;stroke:var(--hand);stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:var(--l,300);stroke-dashoffset:var(--l,300)}
+
+/* ---------- top bar ---------- */
+.hero{padding:clamp(26px,4.6vw,52px) 0 clamp(44px,7vw,84px)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding-bottom:18px;border-bottom:1px solid var(--hair);margin-bottom:clamp(38px,6.5vw,74px)}
+.bar__wm{font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.bar__wm span{color:var(--terracotta)}
+.bar__r{display:flex;align-items:center;gap:26px}
+.bar__nav{display:none;gap:26px;font-size:14.5px}
+@media(min-width:760px){.bar__nav{display:flex}}
+.bar__nav a{position:relative;color:var(--ink-soft);text-decoration:none;padding-bottom:3px;
+  transition:color .18s}
+.bar__nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:var(--saffron);border-radius:2px;transform:scaleX(0);transform-origin:left;
+  transition:transform .25s var(--ez)}
+.bar__nav a:hover,.bar__nav a:focus-visible{color:var(--ink)}
+.bar__nav a:hover::after,.bar__nav a:focus-visible::after{transform:scaleX(1)}
+.btnHire{background:var(--terracotta);color:#FBF0E7;text-decoration:none;font-weight:600;
+  font-size:14.5px;padding:9px 19px;border-radius:999px;
+  transition:transform .18s var(--ez),background .18s}
+.btnHire:hover,.btnHire:focus-visible{background:#8A3320;transform:translateY(-1px)}
+
+/* ---------- hero ---------- */
+.heroGrid{display:grid;grid-template-columns:1fr;gap:clamp(30px,4.5vw,60px);align-items:center}
+@media(min-width:940px){.heroGrid{grid-template-columns:minmax(0,1fr) 288px}}
+h1{font-family:var(--disp);font-weight:640;font-variation-settings:"opsz" 96;margin:0;
+  font-size:clamp(33px,5.3vw,61px);line-height:1.05;letter-spacing:-.028em;
+  max-width:16.5ch;text-wrap:balance}
+h1 .em{position:relative;white-space:nowrap;color:var(--terracotta)}
+.scribble{position:absolute;left:-1.5%;right:-1.5%;bottom:-.22em;width:103%;height:.38em;
+  overflow:visible}
+.scribble path{fill:none;stroke:var(--saffron);stroke-linecap:round;
+  stroke-dasharray:var(--l,600);stroke-dashoffset:var(--l,600)}
+.scribble .p1{stroke-width:6.5}
+.scribble .p2{stroke-width:3;opacity:.6}
+.hero__say{margin:28px 0 0;font-size:clamp(16.5px,1.9vw,19px);max-width:47ch;color:var(--ink-soft)}
+.hero__say b{color:var(--ink);font-weight:500}
+.uline{position:relative;white-space:nowrap}
+.uline svg{position:absolute;left:-2px;right:-2px;bottom:-5px;width:calc(100% + 4px);height:8px;
+  overflow:visible}
+
+/* signature: one continuous stroke, drawn twice for ink weight */
+.sig{margin:30px 0 0;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.sig svg{width:196px;height:86px;overflow:visible}
+.sig path{fill:none;stroke:var(--ink);stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:var(--l,900);stroke-dashoffset:var(--l,900)}
+.sig .s-main{stroke-width:2.5}
+.sig .s-ghost{stroke-width:1.1;opacity:.45}
+.sig .s-dot{stroke-width:2.8}
+.sig__cap{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);padding-bottom:14px}
+
+/* the portrait: an empty mount, taped down, waiting for a face */
+.portWrap{position:relative}
+.port{position:relative;background:var(--paper-deep);border:1px solid var(--hair);
+  border-radius:2px;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:18px;min-height:190px;transform:rotate(1.4deg);
+  box-shadow:0 2px 3px rgba(42,31,24,.06),0 14px 34px rgba(42,31,24,.10)}
+@media(min-width:940px){.port{aspect-ratio:4/5;min-height:0}}
+.port::before{content:"";position:absolute;inset:10px;border:1.5px dashed #CBBFA4;
+  border-radius:2px;pointer-events:none}
+.tape{position:absolute;width:74px;height:24px;background:rgba(201,152,47,.42);
+  border:1px solid rgba(201,152,47,.30);box-shadow:0 1px 2px rgba(42,31,24,.08)}
+.tape--tl{top:-11px;left:-24px;transform:rotate(-40deg)}
+.tape--br{bottom:-11px;right:-24px;transform:rotate(-40deg)}
+@media(max-width:939px){
+  .tape--tl{left:-8px}
+  .tape--br{right:-8px}
+}
+.port .arrow{display:block;width:56px;height:30px;overflow:visible;margin:0 0 2px 2px}
+.port .arrow path{stroke-width:2}
+.port .note{margin:0 0 4px 4px}
+
+/* hero choreography (still-first: everything below is final-state by default) */
+.go .h-a,.go .h-b,.go .h-c,.go .h-d{opacity:0;transform:translateY(16px)}
+.go .h-d{transform:translateY(16px) rotate(3.4deg)}
+.go.play .h-a{animation:rise .8s var(--ez) .08s forwards}
+.go.play .h-b{animation:rise .8s var(--ez) .55s forwards}
+.go.play .h-c{animation:rise .8s var(--ez) .85s forwards}
+.go.play .h-d{animation:riseR .9s var(--ez) 1.15s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes riseR{to{opacity:1;transform:translateY(0) rotate(1.4deg)}}
+.play .scribble .p1{animation:ink .55s var(--ez) .7s forwards}
+.play .scribble .p2{animation:ink .4s var(--ez) 1.3s forwards}
+.play .sig .s-main{animation:ink 1.5s cubic-bezier(.35,.75,.45,1) 1.15s forwards}
+.play .sig .s-ghost{animation:ink 1.5s cubic-bezier(.35,.75,.45,1) 1.23s forwards}
+.play .sig .s-dot{animation:ink .25s ease-out 2.7s forwards}
+.play .uline path{animation:ink .5s var(--ez) 2.9s forwards}
+.play .port .arrow path{animation:ink .7s var(--ez) 2.0s forwards}
+@keyframes ink{to{stroke-dashoffset:0}}
+
+/* ---------- the stitched seam ---------- */
+.seam{position:relative;display:grid;grid-template-columns:1fr;border-radius:4px;
+  overflow:hidden;margin:0 0 clamp(46px,6vw,74px);
+  box-shadow:0 18px 44px rgba(42,31,24,.10)}
+@media(min-width:880px){.seam{grid-template-columns:1fr 1fr}}
+.pane{padding:clamp(30px,4.2vw,56px)}
+.pane--sell{background:var(--terracotta);color:#FBF0E7}
+.pane--build{background:var(--petrol);color:#E9F2F0}
+@media(min-width:880px){
+  .pane--sell{padding-right:clamp(88px,9vw,132px)}
+  .pane--build{padding-left:clamp(88px,9vw,132px)}
+}
+@media(max-width:879px){
+  .pane--build{border-top:2px dashed rgba(247,240,227,.5)}
+}
+.pane .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  opacity:.72;margin:0}
+.pane h3{font-family:var(--disp);font-weight:600;font-variation-settings:"opsz" 48;
+  font-size:clamp(22px,2.8vw,33px);line-height:1.13;
+  letter-spacing:-.018em;margin:15px 0 0;max-width:15ch;text-wrap:balance}
+.pane p{margin:13px 0 0;max-width:33ch;font-size:16px;line-height:1.55;opacity:.88}
+.pane ul{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:15px}
+.pane li{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;opacity:.92}
+.pane li b{font-weight:500;font-size:16px;display:inline-block;min-width:5.2em;
+  font-variant-numeric:tabular-nums}
+.pane .hand{color:#F7DFB8;font-size:clamp(17px,1.8vw,20px);display:block;margin-top:4px;
+  padding-left:5.2em;opacity:.95}
+.pane--build .hand{color:#AEDCCF}
+.pane--build .hand.todo{opacity:.7;border-bottom:1.5px dashed rgba(174,220,207,.5);
+  padding-bottom:2px;width:fit-content}
+/* double-needle stitch down the join */
+.stitch{position:absolute;left:50%;top:0;bottom:0;width:12px;transform:translateX(-50%);
+  display:none;justify-content:space-between;pointer-events:none;z-index:2}
+@media(min-width:880px){.stitch{display:flex}}
+.stitch i{display:block;width:0;border-left:2px dashed rgba(247,240,227,.55)}
+.sew{transform:scaleY(0);transform-origin:top;transition:transform 1.2s var(--ez) .35s}
+.in .sew{transform:scaleY(1)}
+/* the sewn-on patch */
+.cross{position:absolute;left:50%;top:50%;z-index:4;display:none;
+  background:var(--saffron);color:var(--espresso);padding:16px 28px;border-radius:3px;
+  text-align:center;box-shadow:0 3px 6px rgba(33,27,20,.18),0 16px 38px rgba(33,27,20,.28);
+  transform:translate(-50%,-50%) rotate(-2.5deg);
+  transition:transform .3s var(--ez)}
+.cross::before{content:"";position:absolute;inset:5px;border:1.5px dashed rgba(42,31,24,.4);
+  border-radius:2px;pointer-events:none}
+@media(min-width:880px){.cross{display:block}}
+.cross:hover{transform:translate(-50%,-50%) rotate(0deg) scale(1.02)}
+.cross .k{opacity:.74;margin:0 0 2px;color:var(--espresso)}
+.cross .v{font-family:var(--disp);font-weight:700;font-size:clamp(16px,1.8vw,21px);
+  letter-spacing:-.015em;display:block}
+.seam:not(.in) .cross{opacity:0;transform:translate(-50%,-50%) rotate(-9deg) scale(.7)}
+.seam.in .cross{opacity:1;
+  transition:opacity .4s var(--ez) 1.15s,transform .5s cubic-bezier(.3,1.3,.5,1) 1.15s}
+/* mobile: the patch bridges the horizontal seam */
+.crossM{display:block;position:relative;z-index:4;width:fit-content;margin:-26px auto -26px;
+  background:var(--saffron);color:var(--espresso);padding:12px 24px;border-radius:3px;
+  font-family:var(--disp);font-weight:700;font-size:18px;transform:rotate(-2deg);
+  box-shadow:0 3px 6px rgba(33,27,20,.18),0 12px 28px rgba(33,27,20,.26)}
+.crossM::before{content:"";position:absolute;inset:4px;border:1.5px dashed rgba(42,31,24,.4);
+  border-radius:2px}
+@media(min-width:880px){.crossM{display:none}}
+
+/* ---------- ledger with margins ---------- */
+.sec{padding:0 0 clamp(46px,6.5vw,84px)}
+.sec__h{display:flex;flex-direction:column;gap:9px;margin-bottom:clamp(22px,3vw,34px)}
+h2{font-family:var(--disp);font-weight:600;font-variation-settings:"opsz" 64;
+  font-size:clamp(23px,3.1vw,37px);line-height:1.12;
+  letter-spacing:-.02em;margin:0;max-width:20ch;text-wrap:balance}
+.sec__h p{color:var(--ink-soft);max-width:56ch;margin:0;font-size:16.5px}
+.rows{display:flex;flex-direction:column;border-top:1.5px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr;gap:6px 26px;padding:20px 14px;margin:0 -14px;
+  border-bottom:1px solid var(--hair);transition:background .25s}
+@media(hover:hover){.row:hover{background:rgba(239,230,210,.55)}}
+@media(min-width:820px){.row{grid-template-columns:180px minmax(0,1fr) 268px;align-items:baseline}}
+.row__co{font-family:var(--disp);font-weight:500;font-size:20px;letter-spacing:-.012em}
+.row__co small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-soft);margin-top:5px;font-weight:400}
+.row__fig{font-family:var(--mono);font-size:14.5px;font-weight:500;color:var(--petrol);
+  font-variant-numeric:tabular-nums}
+.row__fig em{font-style:normal;color:var(--terracotta-deep)}
+.row__fig .ast{color:var(--hand-soft);font-weight:500}
+.hl{position:relative;z-index:0;display:inline-block}
+.hl::after{content:"";position:absolute;inset:-1px -5px -2px;background:var(--saffron);
+  opacity:.24;border-radius:2px;z-index:-1;transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--ez) .45s}
+.in .hl::after{transform:scaleX(1)}
+.row__margin{padding-left:14px;border-left:2px solid rgba(143,77,18,.30)}
+@media(min-width:820px){.row__margin{border-left:1px solid var(--hair);padding-left:22px}}
+.row .note{opacity:0;transform:translateY(6px) rotate(0deg);
+  transition:opacity .6s var(--ez) .35s,transform .6s var(--ez) .35s}
+.row.in .note{opacity:1;transform:translateY(0) rotate(-1.2deg)}
+.row.in .note--todo{transform:none}
+.row.tot{border-bottom:2px solid var(--ink);border-top:1px solid var(--ink)}
+.row.tot .row__fig{font-size:18px;color:var(--terracotta-deep)}
+.circ{position:relative;display:inline-block}
+.circ svg{position:absolute;inset:-9px -12px -10px;width:calc(100% + 24px);
+  height:calc(100% + 19px);overflow:visible;pointer-events:none}
+.circ path{stroke-width:2.4;stroke:var(--hand-soft)}
+.in .circ path{animation:ink .8s var(--ez) .55s forwards}
+
+/* ---------- close ---------- */
+.close{position:relative;background:var(--espresso);color:#EFE7D9;border-radius:4px;
+  padding:clamp(28px,4vw,50px);margin-bottom:clamp(38px,5vw,70px);overflow:hidden;
+  box-shadow:0 18px 44px rgba(42,31,24,.16)}
+.close h2{color:#EFE7D9;max-width:21ch}
+.sig2{position:absolute;right:clamp(28px,7vw,96px);top:54%;width:212px;height:94px;
+  overflow:visible;transform:rotate(-3deg);display:none}
+@media(min-width:880px){.sig2{display:block}}
+.sig2 path{fill:none;stroke:#D9AE4B;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:var(--l,900);stroke-dashoffset:var(--l,900)}
+.sig2 .a{stroke-width:2.4}
+.sig2 .d2{stroke-width:2.7}
+.close.in .sig2 path{animation:ink 1.4s cubic-bezier(.35,.75,.45,1) .5s forwards}
+.close p{color:#C6BBA7;max-width:50ch;margin:14px 0 0;font-size:16.5px}
+.close .hand{color:#E0B95C;margin-top:20px;display:block}
+.close a.cta{display:inline-flex;align-items:center;gap:10px;margin-top:24px;
+  background:var(--saffron);color:var(--espresso);text-decoration:none;font-weight:600;
+  padding:13px 24px;border-radius:3px;font-family:var(--disp);font-size:16px;
+  transition:transform .18s var(--ez)}
+.close a.cta .ar{transition:transform .18s var(--ez)}
+.close a.cta:hover,.close a.cta:focus-visible{transform:translateY(-2px)}
+.close a.cta:hover .ar{transform:translateX(4px)}
+.stamp{position:absolute;right:clamp(18px,4vw,52px);top:clamp(22px,4vw,48px);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:#D9AE4B;border:2px solid #D9AE4B;border-radius:4px;padding:8px 12px;line-height:1.5;
+  transform:rotate(4deg);opacity:.9;text-align:center}
+.stamp::before{content:"";position:absolute;inset:3px;border:1px solid rgba(217,174,75,.5);
+  border-radius:2px}
+.close:not(.in) .stamp{opacity:0;transform:rotate(4deg) scale(1.3)}
+.close.in .stamp{opacity:.9;transform:rotate(4deg) scale(1);
+  transition:opacity .28s ease-out .7s,transform .28s ease-out .7s}
+@media(max-width:719px){.stamp{position:static;display:inline-block;margin:2px 0 22px;
+  transform:rotate(-2deg)}
+  .close:not(.in) .stamp{transform:rotate(-2deg) scale(1.3)}
+  .close.in .stamp{transform:rotate(-2deg) scale(1)}}
+.foot{padding:0 0 84px}
+.foot p{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:0;line-height:1.8}
+
+/* ---------- reveals ---------- */
+.rv{opacity:0;transform:translateY(20px);
+  transition:opacity .7s var(--ez),transform .7s var(--ez)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- reduced motion: the still page is the page ---------- */
+@media (prefers-reduced-motion:reduce){
+  .rv,.go .h-a,.go .h-b,.go .h-c,.go .h-d{opacity:1;transform:none;transition:none;animation:none}
+  .go .h-d{transform:rotate(1.4deg)}
+  .scribble path,.sig path,.sig2 path,.arrow path,.drawn-p,.circ path,.uline path{
+    stroke-dashoffset:0!important;animation:none!important}
+  .sew{transform:scaleY(1);transition:none}
+  .seam:not(.in) .cross,.seam .cross{opacity:1;transform:translate(-50%,-50%) rotate(-2.5deg);
+    transition:none}
+  .close:not(.in) .stamp,.close .stamp{opacity:.9;transition:none}
+  .row .note{opacity:1;transform:rotate(-1.2deg);transition:none}
+  .row .note--todo{transform:none}
+  .hl::after{transform:scaleX(1);transition:none}
+  .close a.cta:hover,.btnHire:hover,.cross:hover{transform:translate(0,0)}
+  .cross:hover{transform:translate(-50%,-50%) rotate(-2.5deg)}
+}
+</style>
+
+<div class="ribbon" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="w">
+  <header class="hero go" id="hero">
+    <div class="bar">
+      <div class="bar__wm">Micah Jones<span>.</span></div>
+      <div class="bar__r">
+        <nav class="bar__nav" aria-label="Primary">
+          <a href="#work">Work</a><a href="#about">About</a><a href="#playbook">Playbook</a>
+        </nav>
+        <a class="btnHire" href="#hire">Hire me</a>
+      </div>
+    </div>
+
+    <div class="heroGrid">
+      <div>
+        <h1 class="h-a">Strategy and software, shipped by the <span class="em">same pair of hands<svg
+          class="scribble" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true">
+          <path class="p1 dr" d="M3 8 C 42 3.4, 108 10.6, 164 6 S 258 3.6, 297 7.4"/>
+          <path class="p2 dr" d="M8 11 C 62 7.2, 140 12.4, 202 8.2 S 272 7, 293 10"/>
+        </svg></span>.</h1>
+
+        <p class="hero__say h-b">I&rsquo;m Micah. I&rsquo;m in Oakland, and for ten years I&rsquo;ve
+        been the person who can sell the roadmap in the morning and go build it in the afternoon.
+        <b class="uline">I answer my own email.<svg viewBox="0 0 180 10"
+          preserveAspectRatio="none" aria-hidden="true"><path class="drawn-p dr"
+          d="M3 6 C 45 3.2, 118 8, 177 4.4"/></svg></b></p>
+
+        <div class="sig h-c">
+          <svg viewBox="0 0 220 96" role="img" aria-label="Signature: Micah">
+            <path class="s-main dr" d="M10 76 C 14 62, 20 38, 27 22 C 30 14, 34 18, 34 30
+              C 34 44, 33 58, 35 66 C 37 58, 40 40, 45 26 C 48 18, 52 16, 53 24
+              C 54 34, 53 52, 55 64 C 56 70, 60 72, 64 68 C 68 64, 72 58, 74 52
+              C 75 58, 74 66, 78 69 C 80 70, 82 68, 84 66 C 88 60, 95 52, 99 50
+              C 93 49, 88 54, 88 60 C 88 67, 95 70, 101 66 C 104 64, 106 62, 108 58
+              C 110 54, 114 51, 117 51 C 110 49, 105 55, 106 61 C 107 68, 114 70, 118 64
+              C 119 58, 119 53, 120 51 C 120 57, 119 65, 123 68 C 125 70, 128 68, 130 65
+              C 134 56, 138 34, 141 20 C 142 14, 145 14, 145 21 C 145 34, 143 52, 143 63
+              C 146 55, 151 50, 155 52 C 159 54, 158 62, 160 67 C 164 71, 172 68, 181 61
+              C 194 51, 205 50, 208 56 C 210 62, 200 68, 184 72 C 160 78, 120 80, 96 76"/>
+            <path class="s-ghost dr" transform="translate(1.1 .7)" d="M10 76 C 14 62, 20 38, 27 22
+              C 30 14, 34 18, 34 30 C 34 44, 33 58, 35 66 C 37 58, 40 40, 45 26
+              C 48 18, 52 16, 53 24 C 54 34, 53 52, 55 64 C 56 70, 60 72, 64 68
+              C 68 64, 72 58, 74 52 C 75 58, 74 66, 78 69 C 80 70, 82 68, 84 66
+              C 88 60, 95 52, 99 50 C 93 49, 88 54, 88 60 C 88 67, 95 70, 101 66
+              C 104 64, 106 62, 108 58 C 110 54, 114 51, 117 51 C 110 49, 105 55, 106 61
+              C 107 68, 114 70, 118 64 C 119 58, 119 53, 120 51 C 120 57, 119 65, 123 68
+              C 125 70, 128 68, 130 65 C 134 56, 138 34, 141 20 C 142 14, 145 14, 145 21
+              C 145 34, 143 52, 143 63 C 146 55, 151 50, 155 52 C 159 54, 158 62, 160 67
+              C 164 71, 172 68, 181 61 C 194 51, 205 50, 208 56 C 210 62, 200 68, 184 72
+              C 160 78, 120 80, 96 76"/>
+            <path class="s-dot dr" d="M75 37 C 76 35.6, 78 36.4, 77.4 38.2 C 77 39.5, 75.4 39, 75 37.6"/>
+          </svg>
+          <span class="sig__cap">Micah Jones &middot; Oakland, CA</span>
+        </div>
+      </div>
+
+      <div class="portWrap h-d">
+        <div class="port">
+          <span class="tape tape--tl" aria-hidden="true"></span>
+          <span class="tape tape--br" aria-hidden="true"></span>
+          <svg class="arrow" viewBox="0 0 56 30" aria-hidden="true"><path class="drawn-p dr"
+            d="M3 4 C 16 3, 33 8, 44 19 M44 19 L 34 17 M44 19 L 42 9"/></svg>
+          <span class="note note--rot">my face goes here.<br>you should see who
+          you&rsquo;re hiring</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ---------- the stitched seam ---------- -->
+  <div class="seam rv" id="seam">
+    <div class="pane pane--sell">
+      <p class="k">Sell side</p>
+      <h3>I make the number happen.</h3>
+      <p>Positioning, GTM and enterprise sales, mostly into banks and their security teams.</p>
+      <ul>
+        <li><b class="ct" data-n="20" data-p="$" data-s="M+">$20M+</b> client revenue<span class="hand">2013 to 2023, all of it traceable</span></li>
+        <li><b class="ct" data-n="80" data-p="$" data-s="M">$80M</b> pipeline<span class="hand">at Guardicore, on $14M of revenue</span></li>
+        <li><b class="ct" data-n="150" data-p="+$" data-s="K">+$150K</b> deal size<span class="hand">from one rewritten sentence. that&rsquo;s the whole trick</span></li>
+      </ul>
+    </div>
+    <div class="crossM" aria-hidden="true">Same person.</div>
+    <div class="pane pane--build">
+      <p class="k">Build side</p>
+      <h3>Then I go and build it.</h3>
+      <p>Ordani is HIPAA-grade practice management for doulas and midwives.</p>
+      <ul>
+        <li><b class="ct" data-n="200" data-p="" data-s="">200</b> birth workers<span class="hand todo">your line: what support actually looks like</span></li>
+        <li><b>0</b> lost to a rival<span class="hand">none. not one.</span></li>
+        <li><b>1</b> pair of hands<span class="hand">design, code, support. no team</span></li>
+      </ul>
+    </div>
+    <div class="stitch" aria-hidden="true"><span class="sew" style="display:flex;justify-content:space-between;width:100%"><i></i><i></i></span></div>
+    <div class="cross"><p class="k">The rare bit</p><span class="v">Same person.</span></div>
+  </div>
+
+  <!-- ---------- ledger + margins ---------- -->
+  <section class="sec" id="work">
+    <div class="sec__h rv">
+      <p class="lbl">The record</p>
+      <h2>Every figure, and the story behind it.</h2>
+      <p>Ask for the cap table, the pipeline report or a reference and you get it.</p>
+    </div>
+    <div class="rows">
+      <div class="row rv">
+        <div class="row__co">Guardicore<small>Enterprise sales &middot; 2021</small></div>
+        <div class="row__fig"><span class="hl">$80M pipeline</span> &middot; <em>acquired by Akamai</em></div>
+        <div class="row__margin"><span class="note">started with one rewritten sentence. average deal moved $150K</span></div>
+      </div>
+      <div class="row rv">
+        <div class="row__co">TechValidate<small>Enterprise sales &middot; 2018</small></div>
+        <div class="row__fig"><span class="hl">$1M+</span> toward the <em>SurveyMonkey IPO</em></div>
+        <div class="row__margin"><span class="note">on the cap table when SurveyMonkey went public</span></div>
+      </div>
+      <div class="row rv">
+        <div class="row__co">Neuton.AI<small>Helped launch &middot; 2025</small></div>
+        <div class="row__fig"><em>Acquired by Nordic Semiconductor</em><span class="ast">&thinsp;*</span></div>
+        <div class="row__margin"><span class="note"><span class="ast" style="color:var(--hand)">*</span>&thinsp;not my cap table, so I won&rsquo;t claim it as one</span></div>
+      </div>
+      <div class="row rv">
+        <div class="row__co">Ordani<small>Founder, sole engineer &middot; 2026</small></div>
+        <div class="row__fig"><span class="hl">200 birth workers</span> &middot; <em>none lost</em></div>
+        <div class="row__margin"><span class="note note--todo">why you built Ordani. one sentence, in your words</span></div>
+      </div>
+      <div class="row tot rv">
+        <div class="row__co">Total<small>2013&ndash;2023</small></div>
+        <div class="row__fig"><span class="circ">$20M+<svg viewBox="0 0 206 60"
+          preserveAspectRatio="none" aria-hidden="true"><path class="drawn-p dr"
+          d="M104 8 C 156 4, 196 14, 195 30 C 194 47, 152 55, 100 53 C 48 51, 10 44, 11 27
+          C 12 12, 60 5, 130 9"/></svg></span> in client revenue</div>
+        <div class="row__margin"><span class="note">no agency. no team. just me</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- close ---------- -->
+  <section class="close rv" id="hire">
+    <div class="stamp" aria-hidden="true">Replies inside<br>2 business days</div>
+    <svg class="sig2" viewBox="0 0 220 96" aria-hidden="true">
+      <path class="a dr" d="M10 76 C 14 62, 20 38, 27 22 C 30 14, 34 18, 34 30
+        C 34 44, 33 58, 35 66 C 37 58, 40 40, 45 26 C 48 18, 52 16, 53 24
+        C 54 34, 53 52, 55 64 C 56 70, 60 72, 64 68 C 68 64, 72 58, 74 52
+        C 75 58, 74 66, 78 69 C 80 70, 82 68, 84 66 C 88 60, 95 52, 99 50
+        C 93 49, 88 54, 88 60 C 88 67, 95 70, 101 66 C 104 64, 106 62, 108 58
+        C 110 54, 114 51, 117 51 C 110 49, 105 55, 106 61 C 107 68, 114 70, 118 64
+        C 119 58, 119 53, 120 51 C 120 57, 119 65, 123 68 C 125 70, 128 68, 130 65
+        C 134 56, 138 34, 141 20 C 142 14, 145 14, 145 21 C 145 34, 143 52, 143 63
+        C 146 55, 151 50, 155 52 C 159 54, 158 62, 160 67 C 164 71, 172 68, 181 61
+        C 194 51, 205 50, 208 56 C 210 62, 200 68, 184 72 C 160 78, 120 80, 96 76"/>
+      <path class="d2 dr" d="M75 37 C 76 35.6, 78 36.4, 77.4 38.2 C 77 39.5, 75.4 39, 75 37.6"/>
+    </svg>
+    <h2>If your product team and your sales team have stopped talking, that&rsquo;s my job.</h2>
+    <p>Send me the role, the problem, or the half-finished thing you can&rsquo;t get over the
+    line. I read every message and reply inside two business days.</p>
+    <span class="hand">no discovery call needed to say hello</span>
+    <br><a class="cta" href="#hire">Tell me what&rsquo;s stuck <span class="ar">&rarr;</span></a>
+  </section>
+
+  <div class="foot"><p>Tile 04 &middot; Signed by hand &middot; nothing deployed &middot;
+  dashed notes are OPERATOR-OWNED slots. I will not write your biography for you.</p></div>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // prime every drawn path with its true length so dash animation is exact
+  document.querySelectorAll('.dr').forEach(function(p){
+    try{
+      var L = Math.ceil(p.getTotalLength()) + 2;
+      p.style.setProperty('--l', L);
+      p.style.strokeDasharray = L;
+      p.style.strokeDashoffset = reduce ? 0 : L;
+    }catch(e){}
+  });
+
+  // hero choreography: one sequence, or nothing at all
+  var hero = document.getElementById('hero');
+  if (!reduce) requestAnimationFrame(function(){ hero.classList.add('play'); });
+  else hero.classList.remove('go');
+
+  // counters: a quick tally, once, then still forever
+  function tally(el){
+    var n = +el.getAttribute('data-n'), p = el.getAttribute('data-p')||'',
+        s = el.getAttribute('data-s')||'', t0 = null, D = 850;
+    function step(t){
+      if(!t0) t0 = t;
+      var k = Math.min((t - t0)/D, 1), e = 1 - Math.pow(1-k, 3);
+      el.textContent = p + Math.round(n*e) + s;
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var tallied = false;
+  function onSeamIn(){
+    if (tallied || reduce) return; tallied = true;
+    document.querySelectorAll('.ct').forEach(tally);
+  }
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if (e.target.id === 'seam') onSeamIn();
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:0.14, rootMargin:'0px 0px -6% 0px' });
+
+  document.querySelectorAll('.rv').forEach(function(el){
+    if (el.getBoundingClientRect().top < innerHeight*0.88){
+      el.classList.add('in');
+      if (el.id === 'seam') onSeamIn();
+    } else io.observe(el);
+  });
+})();
+</script>

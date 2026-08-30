@@ -245,3 +245,15 @@ marketing.md rule 2 (mask, never fabricate; operator-owned slots are loud placeh
 Dispatched with: full taste journey, locked headline, palette+faces as hard constraints,
 facts ledger + no-invented-biography rule, the screenshot harness, and orders to iterate
 against its own screenshots. Output: scratchpad `tile-04-fable.html`, pending.
+
+## TILE 04 — "Signed by Hand" (Fable, design lead) — awaiting gate
+Artifact: https://claude.ai/code/artifact/97d61e06-c0b2-414e-be1c-ebeaa311eeec
+Source: `style-tile-04-fable.html`. Fable's elevation of tile 03, independently verified by me:
+fabrication sweep clean · both YOUR-LINE slots intact · locked headline present · banned-claim
+sweep clean · 1 em-dash total (CSS comment) · console clean, zero overflow at 1440/390/reduce.
+What Fable changed: signature that actually reads "Micah" (double-stroke ink weight) · seam
+literally STITCHED, "Same person." as a sewn patch bridging the junction · portrait slot as a
+washi-taped photo mount · highlighter swipes + circled total + asterisk footnote in the ledger ·
+close signs the letter again on espresso under a "replies inside 2 business days" stamp ·
+Caveat -> Nanum Pen Script (darker ink #8F4D12, fixes tile 03's AA fail on notes) · one
+orchestrated entrance; reduced-motion arrives fully drawn.
