@@ -334,7 +334,9 @@ export default function ColorWorldsHome() {
             phone and spent two of them on infrastructure nouns. */}
         <p className="cw-lede cw-reveal">
           Birth workers run their practices on group chats and paper
-          intakes. HIPAA is the law. <em>So I built Ordani.</em> 200 birth
+          intakes. HIPAA is the law. <em>So I built Ordani.</em> It runs
+          invoicing without the 17&ndash;20% cut other platforms take, and
+          folds $200&ndash;500 of software into one login. 200 birth
           workers use it, and none have left for a competitor.
         </p>
         <p className="cw-lede-sub cw-reveal">

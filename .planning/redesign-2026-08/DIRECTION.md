@@ -336,3 +336,20 @@ in real time (labor timer ticking each second, a visit confirming on a cycle, an
 toast feed). Rules that survive inside the zone: no person names in the demo content, only
 app vocabulary; aria-hidden (illustrative UI, not claims); everything freezes under
 prefers-reduced-motion (verified: timer frozen at 3:12:44 across a 2.6s reduce probe).
+
+## D-R19 — ORDANI VALUE PROPS (operator-supplied, verbatim, 2026-08-30)
+> "the main value props of the app is the fact we can process invoicing that doesnt charge
+> 17-20% saving doulas thousands of dollars a year. 200-500$ worth of software bundled
+> together to make the managing side of the business easy for them to focus on mothers and
+> infants."
+On-surface phrasing: "invoicing without the 17–20% cut other platforms take" and "$200–500 of
+software, one login". No specific competitor named; no invented dollar-savings figure beyond
+his "thousands." These are product claims on his own product, operator-supplied.
+
+## D-R20 — Component grammar LOCKED: the Halo Lab cluster (operator's three picks: Wingly,
+SyncDepth, Auxon — "this is best"). Rounded-2xl cards, big numerals, mini data-viz (bars),
+pill chips, organic offsets, crisp double shadows, FULL-COLOR photo ("its okay not to shade
+fade the pic. and let it live"). Pass-10 implements it: 0% fee card with 17–20% vs 0%
+comparison bars (terracotta vs petrol), bundle checklist ticking through five tools with the
+saffron $200–500 pill, the active-birth timer as a compact dark pill. Photo veil reduced to
+one left gradient for copy legibility only.

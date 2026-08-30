@@ -1872,125 +1872,187 @@ body {
 [data-mode="cw"] .cw-ordani__shot {
   object-fit: cover;
   object-position: 50% 32%;
-  filter: grayscale(1) brightness(0.9) contrast(1.05);
+  /* Pass-10 (operator): full color, no shade-fade — "let it live". */
 }
 [data-mode="cw"] .cw-ordani__veil {
   position: absolute;
   inset: 0;
-  /* Lighter than the retired dashboard veil: this is a photograph of
-     people — warmth should read. Left stays darker for the section copy;
-     right holds the demo panel. */
-  background:
-    linear-gradient(
-      90deg,
-      color-mix(in srgb, var(--color-cw-petrol) 92%, black) 0%,
-      color-mix(in srgb, var(--color-cw-petrol) 72%, transparent) 44%,
-      color-mix(in srgb, var(--color-cw-petrol) 64%, transparent) 100%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-cw-petrol) 55%, transparent) 0%,
-      transparent 30%,
-      color-mix(in srgb, var(--color-cw-petrol) 72%, black) 100%
-    );
+  /* Pass-10: no duotone, no fade. One left gradient keeps the section
+     copy AA on the photo; the rest of the image lives. */
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--color-cw-petrol) 82%, black) 0%,
+    color-mix(in srgb, var(--color-cw-petrol) 40%, transparent) 34%,
+    transparent 55%
+  );
 }
 [data-mode="cw"] .cw-ordani--photo > *:not(.cw-ordani__ground) {
   position: relative;
   z-index: 2;
 }
 
-/* ORDANI DEMO PANEL (Pass-9, D-R18) --- the Stripe/Linear product-demo
- * grammar: one large rebuilt piece of app UI performing a usage story
- * (intake signs itself -> visit confirms -> invoice flips to Paid),
- * labor timer ticking in the header. Solid cream, crisp on the petrol
- * photo ground. Reduced motion renders the completed story, static. */
-/* Matches the content-lift blanket rule's specificity ((0,3,0)) and sits
- * later in the cascade — the bare .cw-odemo selector LOST to it and the
- * panel rendered relative, half off the left edge (the exact cw-chips
- * cascade bug, repeated; caught by screenshot again). */
+/* ORDANI VALUE CLUSTER (Pass-10, D-R18) — the Auxon/Wingly component
+ * grammar the operator picked: rounded cards, big numerals, mini
+ * data-viz, pill chips, organic offsets, crisp shadows on a FULL-COLOR
+ * photo. Content = his stated value props: 0% invoicing vs the 17-20%
+ * other platforms take, and the $200-500 bundle. */
 [data-mode="cw"] .cw-ordani--photo > .cw-odemo {
-  position: absolute; z-index: 2; right: clamp(24px, 4.5vw, 76px); top: 50%;
-  transform: translateY(-50%);
-  display: none; flex-direction: column; gap: 12px;
-  width: clamp(360px, 30vw, 440px); pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  right: clamp(24px, 4.5vw, 80px);
+  top: 50%;
+  transform: translateY(-50%); /* motion-ok: static vertical centering, not a reveal */
+  display: none;
+  width: clamp(380px, 31vw, 460px);
+  pointer-events: none;
 }
-@media (min-width: 980px) { [data-mode="cw"] .cw-ordani--photo > .cw-odemo { display: flex; } }
-[data-mode="cw"] .cw-odemo__bar {
-  display: flex; justify-content: space-between; align-items: center; gap: 14px;
-  padding: 12px 16px; border-radius: 10px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 88%, transparent);
-  color: var(--color-cw-bone);
-  box-shadow: 0 14px 40px color-mix(in srgb, black 32%, transparent);
-}
-[data-mode="cw"] .cw-odemo__brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-cw-display); font-weight: 600; font-size: 15px; }
-[data-mode="cw"] .cw-odemo__mark { width: 9px; height: 9px; border-radius: 50%; background: var(--color-cw-saffron); }
-[data-mode="cw"] .cw-odemo__timer { display: flex; align-items: center; gap: 7px; font-family: var(--font-cw-mono); font-size: 10.5px; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; opacity: 0.92; }
-[data-mode="cw"] .cw-odemo__pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--color-cw-saffron); animation: cw-odemo-pulse 2s ease-in-out infinite; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */ }
-@keyframes cw-odemo-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@media (min-width: 980px) { [data-mode="cw"] .cw-ordani--photo > .cw-odemo { display: block; } }
 [data-mode="cw"] .cw-odemo__card {
-  position: relative; display: flex; flex-direction: column; gap: 9px;
-  padding: 16px 18px; border-radius: 10px;
-  background: var(--color-cw-bone); color: var(--color-cw-espresso);
-  box-shadow: 0 18px 48px color-mix(in srgb, black 30%, transparent);
-  transition: opacity 0.28s ease, transform 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+  position: relative;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--color-cw-bone) 97%, white);
+  color: var(--color-cw-espresso);
+  box-shadow: 0 24px 60px color-mix(in srgb, black 34%, transparent), 0 2px 8px color-mix(in srgb, black 12%, transparent);
+  padding: 20px 22px;
 }
-[data-mode="cw"] .cw-odemo__card.is-live { transform: scale(1.025); box-shadow: 0 26px 60px color-mix(in srgb, black 42%, transparent); }
-[data-mode="cw"] .cw-odemo__card.is-waiting { opacity: 0.55; transform: scale(0.985); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */ }
-[data-mode="cw"] .cw-odemo__k { font-family: var(--font-cw-mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in srgb, var(--color-cw-espresso) 60%, transparent); margin: 0; }
-[data-mode="cw"] .cw-odemo__field {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-  padding: 8px 10px; border-radius: 6px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 5%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-espresso) 10%, transparent);
-  opacity: 0; transform: translateY(6px); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition: opacity 0.28s ease, transform 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition-delay: calc(var(--i, 0) * 0.55s); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+/* Organic cluster: fee card leads, bundle overlaps from the right, the
+ * live chip tucks under — Auxon's unaligned-but-clean read. */
+[data-mode="cw"] .cw-odemo__card--fee { width: 78%; }
+[data-mode="cw"] .cw-odemo__card--bundle {
+  width: 62%;
+  margin: -34px 0 0 auto;
 }
-[data-mode="cw"] .cw-odemo__card.is-live .cw-odemo__field,
-[data-mode="cw"] .is-frozen .cw-odemo__field,
-[data-mode="cw"] .cw-odemo--beat1 .cw-odemo__field,
-[data-mode="cw"] .cw-odemo--beat2 .cw-odemo__field { opacity: 1; transform: none; }
-[data-mode="cw"] .cw-odemo__lbl { font-family: var(--font-cw-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--color-cw-espresso) 55%, transparent); }
-[data-mode="cw"] .cw-odemo__val { font-family: var(--font-cw-body); font-weight: 600; font-size: 13.5px; }
-[data-mode="cw"] .cw-odemo__tick { color: var(--color-cw-petrol); }
-[data-mode="cw"] .cw-odemo__stamp {
-  position: absolute; right: 14px; bottom: 12px;
-  font-family: var(--font-cw-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--color-cw-petrol); border: 1.5px solid var(--color-cw-petrol); border-radius: 3px; padding: 3px 8px;
-  transform: rotate(-6deg) scale(0); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition: transform 0.28s cubic-bezier(0.2, 1.4, 0.4, 1); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition-delay: 2.1s; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+[data-mode="cw"] .cw-odemo__card--live {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  width: auto;
+  margin: 14px 0 0 6%;
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-cw-espresso) 94%, transparent);
+  color: var(--color-cw-bone);
 }
-[data-mode="cw"] .cw-odemo__card.is-live .cw-odemo__stamp,
-[data-mode="cw"] .is-frozen .cw-odemo__stamp,
-[data-mode="cw"] .cw-odemo--beat1 .cw-odemo__stamp,
-[data-mode="cw"] .cw-odemo--beat2 .cw-odemo__stamp { transform: rotate(-6deg) scale(1); }
-[data-mode="cw"] .cw-odemo__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-family: var(--font-cw-body); font-size: 13.5px; font-weight: 500; }
-[data-mode="cw"] .cw-odemo__row--new {
-  opacity: 0; transform: translateX(-8px); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition: opacity 0.28s ease, transform 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition-delay: 0.5s; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+[data-mode="cw"] .cw-odemo__k {
+  font-family: var(--font-cw-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
+  margin: 0 0 6px;
 }
-[data-mode="cw"] .cw-odemo__row--new.is-in { opacity: 1; transform: none; }
-[data-mode="cw"] .cw-odemo__time { font-family: var(--font-cw-mono); font-size: 10.5px; color: color-mix(in srgb, var(--color-cw-espresso) 60%, transparent); }
-[data-mode="cw"] .cw-odemo__badge {
-  align-self: flex-start; font-family: var(--font-cw-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+[data-mode="cw"] .cw-odemo__big {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0 0 14px;
   color: var(--color-cw-petrol);
-  opacity: 0; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition: opacity 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition-delay: 1.4s; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
 }
-[data-mode="cw"] .cw-odemo__badge.is-on { opacity: 1; }
-[data-mode="cw"] .cw-odemo__amt { font-family: var(--font-cw-display); font-weight: 700; font-size: 16px; }
-[data-mode="cw"] .cw-odemo__chip {
-  align-self: flex-start; font-family: var(--font-cw-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
-  padding: 4px 9px; border-radius: 20px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 9%, transparent);
-  color: color-mix(in srgb, var(--color-cw-espresso) 65%, transparent);
+[data-mode="cw"] .cw-odemo__pct { font-size: 30px; font-weight: 600; }
+[data-mode="cw"] .cw-odemo__bars { display: flex; flex-direction: column; gap: 9px; }
+[data-mode="cw"] .cw-odemo__barrow {
+  display: grid;
+  grid-template-columns: 92px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-cw-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+}
+[data-mode="cw"] .cw-odemo__barlbl { color: color-mix(in srgb, var(--color-cw-espresso) 60%, transparent); text-transform: uppercase; }
+[data-mode="cw"] .cw-odemo__bartrack {
+  height: 10px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-cw-espresso) 8%, transparent);
+  overflow: hidden;
+}
+[data-mode="cw"] .cw-odemo__barfill {
+  display: block;
+  height: 100%;
+  border-radius: 6px;
+  width: 0;
+  transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+}
+[data-mode="cw"] .cw-odemo__barfill--them { background: var(--color-cw-terracotta); }
+[data-mode="cw"] .cw-odemo__barfill--them.is-grown { width: 86%; }
+[data-mode="cw"] .cw-odemo__barfill--us { background: var(--color-cw-petrol); }
+[data-mode="cw"] .cw-odemo__barfill--us.is-grown { width: 3%; }
+[data-mode="cw"] .cw-odemo__barval { text-align: right; font-weight: 500; }
+[data-mode="cw"] .cw-odemo__barval--us { color: var(--color-cw-petrol); font-weight: 700; }
+[data-mode="cw"] .cw-odemo__foot {
+  margin: 14px 0 0;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 13px;
+  color: color-mix(in srgb, var(--color-cw-espresso) 80%, transparent);
+  /* The bundle card overlaps this card's bottom-right corner (organic
+     cluster); cap the line's width so it never runs under it. */
+  max-width: 62%;
+}
+[data-mode="cw"] .cw-odemo__list { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+[data-mode="cw"] .cw-odemo__item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-cw-body);
+  font-weight: 500;
+  font-size: 13.5px;
+  color: color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
+  transition: color 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+}
+[data-mode="cw"] .cw-odemo__item.is-on { color: var(--color-cw-espresso); }
+[data-mode="cw"] .cw-odemo__box {
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 5px;
+  font-size: 10px;
+  color: transparent;
+  background: color-mix(in srgb, var(--color-cw-espresso) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-espresso) 18%, transparent);
   transition: background 0.28s ease, color 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-  transition-delay: 0.9s; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
 }
-[data-mode="cw"] .cw-odemo__chip.is-paid { background: var(--color-cw-petrol); color: var(--color-cw-bone); }
+[data-mode="cw"] .cw-odemo__item.is-on .cw-odemo__box {
+  background: var(--color-cw-petrol);
+  border-color: var(--color-cw-petrol);
+  color: var(--color-cw-bone);
+}
+[data-mode="cw"] .cw-odemo__chip {
+  display: inline-block;
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-cw-saffron) 22%, transparent);
+  color: color-mix(in srgb, var(--color-cw-espresso) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-saffron) 55%, transparent);
+}
+[data-mode="cw"] .cw-odemo__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-cw-saffron);
+  animation: cw-odemo-pulse 2s ease-in-out infinite; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+}
+@keyframes cw-odemo-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+[data-mode="cw"] .cw-odemo__livek {
+  font-family: var(--font-cw-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+[data-mode="cw"] .cw-odemo__timer {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
 @media (prefers-reduced-motion: reduce) {
   [data-mode="cw"] .cw-odemo__pulse { animation: none; }
   [data-mode="cw"] .cw-odemo *, [data-mode="cw"] .cw-odemo__card { transition: none !important; }
