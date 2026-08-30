@@ -8,21 +8,27 @@ domain is unverified and the two LIVE lead forms (playbook-signup, beta-signup) 
 their `hello@` notification rejected at the API — those leads exist only in Vercel
 server logs. Recorded as LESSONS #8 with an MX gate.
 
-DONE (me, `vercel dns add`; all four verified live via 8.8.8.8):
-  MX 10 mx1.improvmx.com · MX 20 mx2.improvmx.com
-  TXT @ `v=spf1 include:spf.improvmx.com ~all` · TXT _dmarc `v=DMARC1; p=none;`
-  Website A 76.76.21.21 untouched. Revert: `vercel dns rm <id>` (`vercel dns ls`).
+DONE — ALL 6 DNS RECORDS LIVE, verified via 8.8.8.8 (2026-08-29):
+  root  MX 10 mx1.improvmx.com · MX 20 mx2.improvmx.com  (receiving, added by me)
+  root  TXT `v=spf1 include:spf.improvmx.com ~all` · TXT _dmarc `v=DMARC1; p=none;`
+  send. MX 10 feedback-smtp.us-east-1.amazonses.com · TXT `v=spf1 include:amazonses.com ~all`
+  resend._domainkey TXT p=MIGfMA0GC... (218 chars)   (Resend, via the Vercel integration)
+  No collision: ImprovMX owns root, Resend owns `send.`. DKIM is on ROOT, so
+  From: micah@... is DKIM-aligned and Gmail shows no "via" label. Website A
+  76.76.21.21 untouched. Revert: `vercel dns rm <id>` (`vercel dns ls`).
 
-STEP 1 (operator, 2 min, free) — RECEIVING. improvmx.com signup, add domain, create
-`hello@` + `micah@` + catch-all → micahmccoyjones@gmail.com. DNS is already green so
-it verifies instantly. This alone gets mail flowing.
-
-STEP 2 (operator, ~10 min, free) — SENDING AS the address. Do AFTER step 1: the Gmail
-confirmation code needs forwarding live. Resend dashboard → add domain
-`micahjonesconsulting.com` (ROOT, not a subdomain — keeps DKIM aligned so Gmail shows
-no "via" label) → paste me the 3 records, I add them. Then Gmail → Settings → Accounts
-→ Send mail as: smtp.resend.com : 587 : user `resend` : password = a Resend API key.
-Fixes the two dead lead forms in the same move. Never paste that key into a session.
+REMAINING (operator):
+  a. ImprovMX aliases `hello` + `micah` + `*` -> micahmccoyjones@gmail.com.
+     UNVERIFIED from here — ISP blocks outbound :25 so the RCPT probe cannot run.
+     The Gmail confirmation code in (b) is the real proof.
+  b. Gmail -> Settings -> Accounts -> Send mail as -> Add another email address:
+     `micah@micahjonesconsulting.com`, Treat as alias CHECKED. SMTP
+     smtp.resend.com : 587 : user `resend` : password = a NEW Resend API key
+     labeled gmail-smtp (do not reuse the Vercel one; separate revocation).
+     TLS. Then: do NOT set as default sender; DO set "reply from the same
+     address the message was sent to". Never paste that key into a session.
+  c. Confirm Resend dashboard shows the domain Verified.
+  Once (a)+(b) land, the two dead lead forms start delivering too.
 
 Registrar + DNS are Vercel (NS ns1/ns2.vercel-dns.com, expires 2026-12-02). Vercel
 offers NO email — a third party is required for both halves.
