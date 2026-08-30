@@ -169,3 +169,36 @@ Cost: one build, nothing deployed. This is the aesthetic gate working exactly as
 **Standing correction for the rest of this arc:** the current design is the baseline to REFINE,
 and the operator rates it above the proposed replacement. Reference sites inform detail
 decisions (scale, spacing, restraint, motion technique) — they do NOT supply the identity.
+
+## GATE RESULT — THREE DIRECTIONS (2026-08-30): Ledger + Seam HYBRID, with conditions
+
+> "like a mixture of the ledger and the seam. more animations - more color maybe? needs more
+> soul." / "the words still sound weak to me but love the idea tho" / "the current website has
+> many good things about it fyi" / "the two i like still read AI slop slightly and do not give
+> luxury (quiet luxury meaning access for all since i want to attract many typer of potential
+> clients)"
+
+**D-R10 — "QUIET LUXURY" IS DEFINED, AND I HAD IT BACKWARDS.** Operator's definition:
+*access for all*. Welcoming, not exclusive. Every direction I have produced so far solved the
+opposite problem — austere, cold, grey, gatekeeping minimalism. That is EXCLUSIVE luxury and it
+repels three of his audiences. Correct target: warm, alive, colourful, confident, and legible
+to a solo builder and a bank alike. This supersedes any earlier reading of "lowkey luxury".
+
+**D-R11 — The current site's WARMTH AND COLOUR are assets, not problems.** Operator flagged
+that the current site has many good things. Cross-reference D-R10: the cream ground, the
+Color Worlds palette and the hand-drawn marks are the ACCESS-FOR-ALL qualities already present.
+The failures are execution — 180px uppercase triad hero, 624 words, header drumbeat, dead
+reveals. Bring the palette back; keep his three typefaces. Stop proposing replacements for the
+identity.
+
+**D-R12 — The hero copy is REJECTED and the reason is diagnosable.**
+"Most consultants can't build. Most builders can't sell. I do both." is a **symmetric sentence
+pair** — the first item on the AI-slop ledger in `.planning/prompts/cowork-review-2026-08-
+premium-tier.md`, which I wrote. I generated the exact tell I documented. Symmetry reads as
+clever and carries no information. Replacement copy must be ASYMMETRIC and specific, and it
+should be offered as options for the operator to pick — he diagnoses copy faster than he
+specifies it.
+
+**Synthesis for the next build:** Ledger's document credibility (rules, tabular figures,
+defensible register) + Seam's structural duality (sell side / build side, he is the crossing)
++ the current site's warm colourful palette + MORE motion + hand-drawn human marks.
