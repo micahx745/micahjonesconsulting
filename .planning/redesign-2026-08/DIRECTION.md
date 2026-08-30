@@ -276,3 +276,36 @@ site as baseline. What survives from the tile arc, implemented natively: locked 
 Color Worlds (terracotta/petrol worlds already exist) · word-count cuts per the attack plan ·
 reveal-system fix (Wave 0) · more motion via the site's own idiom, nothing bolted on.
 NEVER push the branch to main without operator approval — push fires auto-deploy (LESSONS #5).
+
+## D-R15 — THE SOUL INGREDIENT IS PHOTOGRAPHY (2026-08-30, from the operator's own picks)
+Operator sent three more references (Dribbble shots: SyncDepth naturetech, Nixtio meat shop,
+PeakHealth healthcare) saying "have some animations in the some way but these are the
+inspiration". Viewed all three in a real browser. The common denominators:
+1. **Full-bleed PHOTOGRAPHY as the section ground** — not an image in a column.
+2. **Display type laid over / interleaved WITH the photo** (the meat shop's cleaver
+   overlapping the letters; PeakHealth's headline over sky).
+3. **Floating proof chips on the imagery** — "5K+ customers", "24K+ members", live data
+   cards. Stats as objects, not paragraphs.
+4. Warm saturated grounds (the meat shop red is nearly his terracotta).
+
+Pattern across the WHOLE arc: Koto (photography), Locomotive (full-bleed image), now all
+three of these — every reference he picks is photo-grounded, and his site has ZERO
+photographs. That is the actual soul gap; four tiles failed trying to fake it with
+decoration. The project rule permits exactly this: "type and photographs/screenshots only."
+
+Buildable consequences:
+- Portrait STAGED on the branch (first photograph on the site) — see below.
+- Ordani product screenshots (operator queue #1) become the petrol section's ground.
+- Floating-chip treatment is a candidate for RevenueTick's stats — in the site's idiom,
+  gated like everything else.
+- The photo shopping list is now the highest-leverage operator ask (see RESUME queue).
+
+## PORTRAIT — beach photo REFUSED (my call, operator asked), cap photo STAGED
+Operator: beach photo "the winner... but my eyes are closed - is that okay?" Answer: no —
+eyes closed undercuts the trust the /about portrait exists to build, and the file is
+960x720 (below the 900x1125 spec) and landscape. Two strikes beyond the eyes.
+From his own set: IMG_2748 (cap, finger to temple, eyes at camera, 2320x3088) cropped to
+4:5 1000x1250 @ 97KB and staged as public/portrait-context.jpg on the branch. Verified on
+the production build: :has() two-column intro activates at 1440, stacks at 390, image
+serves via /_next/image, no overflow. IMG_0462 (whiteboard + laptop) noted as the best
+"at work" alternative — the most on-thesis photo of the seven.
