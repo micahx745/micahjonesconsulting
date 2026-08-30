@@ -302,15 +302,14 @@ export default function ColorWorldsHome() {
         data-world="petrol"
         aria-labelledby="cw-ordani-title"
       >
-        {/* Pass-7 (D-R15): the REAL product as the section ground — the
-            Ordani dashboard under a petrol duotone veil, same grammar as
-            the hero. The veil intentionally renders the capture's test
-            data illegible; structure and craft read, text does not.
-            Swap public/ordani-dashboard.jpg for a clean-data capture
-            whenever the operator makes one. */}
+        {/* Pass-9 (operator): ground is now the HUMAN — a birth worker
+            taking a paper intake with her client (operator-supplied stock,
+            LEM_4194), petrol duotone. The demo panel in front shows Ordani
+            doing that same intake digitally: ground and component tell one
+            story. The dashboard-capture ground is retired. */}
         <div className="cw-ordani__ground" aria-hidden>
           <Image
-            src="/ordani-dashboard.jpg"
+            src="/ordani-context.jpg"
             alt=""
             fill
             sizes="100vw"
