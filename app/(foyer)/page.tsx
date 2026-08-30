@@ -37,9 +37,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Hero } from "@/components/color-worlds/Hero";
-import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
 import { OrdaniLive } from "@/components/color-worlds/OrdaniLive";
-import { OrdaniSticky } from "@/components/color-worlds/OrdaniSticky";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
@@ -295,71 +293,53 @@ export default function ColorWorldsHome() {
           The h2 carries .cw-bleed — the one ink-bleed display headline
           per page, per the texture research. Giant Ordani word reads
           as pulp-ink, not pixel-text. */}
+      {/* ORDANI — "Ember Dusk" (Pass-12). Built to the research workflow's
+          synthesized spec: matted photo canvas (lone expectant mother at a
+          boardwalk railing under an ember sky — the operator's stock,
+          flipped at the asset so she gazes toward the cards), three-layer
+          photographic grade, Apple-class glass, one saffron accent at
+          three tiny marks, ~60% of the photograph left uncovered.
+          data-world="bone": this section's mood comes from the photo, and
+          D-R3 retired petrol as a page world. OrdaniSticky + the beta
+          form + the giant bleed headline are retired with the old
+          section; /work/ordani carries signup. */}
       <section
-        className="cw-ordani cw-ordani--photo"
+        className="cw-ember"
         id="ordani"
         data-section
-        data-world="petrol"
+        data-world="bone"
         aria-labelledby="cw-ordani-title"
       >
-        {/* Pass-9 (operator): ground is now the HUMAN — a birth worker
-            taking a paper intake with her client (operator-supplied stock,
-            LEM_4194), petrol duotone. The demo panel in front shows Ordani
-            doing that same intake digitally: ground and component tell one
-            story. The dashboard-capture ground is retired. */}
-        <div className="cw-ordani__ground" aria-hidden>
-          <Image
-            src="/ordani-context.jpg"
-            alt=""
-            fill
-            sizes="100vw"
-            className="cw-ordani__shot"
-          />
-          <div className="cw-ordani__veil" />
+        <div className="cw-ember__canvas">
+          <div className="cw-ember__photo">
+            <Image
+              src="/ordani-ember.jpg"
+              alt="A pregnant woman in white lace stands at a boardwalk railing at dusk, one hand on her belly, watching the ember sky over the water."
+              fill
+              sizes="(min-width: 1440px) 1360px, 100vw"
+              className="cw-ember__img"
+            />
+            <div className="cw-ember__unify" aria-hidden />
+            <div className="cw-ember__deepen" aria-hidden />
+          </div>
+
+          {/* Copy block flows (eyebrow -> headline -> sub) inside one
+              positioned wrapper — fixed absolute tops collided when the
+              headline wrapped to three lines (caught by screenshot). */}
+          <div className="cw-ember__copy">
+            <p className="cw-ember__eyebrow">Ordani</p>
+            <h2 id="cw-ordani-title" className="cw-ember__h">
+              Built for the people who show up for mothers.
+            </h2>
+            <p className="cw-ember__sub">
+              HIPAA-grade practice management I designed, built, and
+              support alone. 200 birth workers run on it, and none have
+              left for a competitor.
+            </p>
+          </div>
+
+          <OrdaniLive />
         </div>
-        <OrdaniSticky />
-        <OrdaniLive />
-        {/* Operator correction 2026-08-15: the usage claim is birth workers,
-            not practices — "14 doula practices" undersold it and read as a
-            pilot. See LESSONS #3; the ledger entry was updated with it. */}
-        <p className="cw-tagrow cw-reveal">
-          <span className="cw-live">Live</span>
-          <span>200 birth workers</span>
-        </p>
-        <h2 id="cw-ordani-title" className="cw-reveal cw-bleed">
-          Ordani
-        </h2>
-        {/* Problem first, then the move, then the proof. Tightened
-            2026-08-15 (mobile read): the old version ran six lines on a
-            phone and spent two of them on infrastructure nouns. */}
-        <p className="cw-lede cw-reveal">
-          Birth workers run their practices on group chats and paper
-          intakes. HIPAA is the law. <em>So I built Ordani.</em> It runs
-          invoicing without the 17&ndash;20% cut other platforms take, and
-          folds $200&ndash;500 of software into one login. 200 birth
-          workers use it, and none have left for a competitor.
-        </p>
-        <p className="cw-lede-sub cw-reveal">
-          {/* TODO(operator): Ordani product website is under
-              construction. When the public URL ships, replace href="#"
-              with the live product URL. Until then the link is inert
-              and the OrdaniBetaForm below remains the primary CTA. */}
-          <a href="#" className="cw-lede-link">
-            Visit Ordani →
-          </a>
-        </p>
-
-        <OrdaniBetaForm />
-
-        {/* Operator 2026-08-15: the stack line ("Next.js, Supabase,
-            Vercel, HIPAA-grade") is cut. Naming the stack is a builder's
-            flex, not a buyer's proof — nobody evaluating Micah or Ordani
-            is choosing on the framework, and it read as dev-Twitter on a
-            page selling outcomes. What survives is the claim a buyer
-            actually weighs: it is real, it is compliant, people use it. */}
-        <p className="cw-note cw-reveal">
-          Onboarding new practices weekly · HIPAA-grade
-        </p>
       </section>
 
       {/* SHIPPED — espresso. Section rewritten per research: single-word

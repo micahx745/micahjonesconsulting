@@ -1,17 +1,16 @@
 // components/color-worlds/OrdaniLive.tsx
 //
-// Pass-11 — the ACTUAL Auxon grammar (full shot finally studied):
-//   • frosted-glass panels the photo bleeds through (backdrop blur,
-//     low-alpha tint, 1px light border, 20px radius) — never solid cards
-//   • big stat numerals + small labels + delta-style chips
-//   • dashed leader-line ANNOTATIONS pointing into the scene itself —
-//     Auxon labels the cyclist; we label the paper intake on the couch
-//   • a REC-style timer pill in the panel's top corner
+// Pass-12 — "Ember Dusk", built to the workflow's synthesized spec
+// (reference dissection of the full Auxon/SyncDepth/Wingly shots +
+// live-probed glass recipes: Apple saturate(180%) blur(20), fill alpha
+// >= 0.45 over photography, one accent rationed to <= 3 tiny marks).
 //
-// Content stays the operator's value props (D-R19): 0% invoicing vs the
-// 17–20% cut, and the $200–500 bundle. D-R18 live zone: bars grow,
-// checklist ticks, timer ticks, leader lines draw. Reduced motion =
-// complete story, static. aria-hidden; no person names.
+// This component renders the glass column + the raw timer annotation.
+// The eyebrow/headline/sub are server markup in page.tsx; the photo is
+// the section ground. D-R18 live zone: timer ticks, competitor bar
+// grows once on entry, bundle rows stagger in once. Reduced motion:
+// entrances land at final state instantly; the timer keeps ticking
+// (content, not decoration). aria-hidden on illustrative parts only.
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -20,9 +19,9 @@ const TIMER_START = 3 * 3600 + 12 * 60 + 44;
 const BUNDLE = [
   "Invoicing",
   "Scheduling",
-  "HIPAA forms",
-  "Client records",
+  "Client intake",
   "Birth tracking",
+  "Secure messaging",
 ] as const;
 
 function fmt(total: number): string {
@@ -34,96 +33,120 @@ function fmt(total: number): string {
 
 export function OrdaniLive() {
   const [seconds, setSeconds] = useState(TIMER_START);
-  const [ticked, setTicked] = useState(0);
-  const [grown, setGrown] = useState(false);
-  const [frozen, setFrozen] = useState(false);
-  const tickedRef = useRef(0);
+  const [entered, setEntered] = useState(false);
+  const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setFrozen(true);
-      setGrown(true);
-      setTicked(BUNDLE.length);
-      return;
-    }
+    // Timer ticks regardless of motion preference — it is content.
     const t = window.setInterval(() => setSeconds((s) => s + 1), 1000);
-    const g = window.setTimeout(() => setGrown(true), 800);
-    const c = window.setInterval(() => {
-      tickedRef.current =
-        tickedRef.current >= BUNDLE.length ? 0 : tickedRef.current + 1;
-      setTicked(tickedRef.current);
-    }, 1100);
+
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduced) {
+      setEntered(true);
+      return () => window.clearInterval(t);
+    }
+    const el = rootRef.current;
+    if (!el) {
+      setEntered(true);
+      return () => window.clearInterval(t);
+    }
+    const io = new IntersectionObserver(
+      (es) => {
+        if (es[0]?.isIntersecting) {
+          setEntered(true);
+          io.disconnect();
+        }
+      },
+      // 0.4 never fired on mobile where this wrapper spans photo +
+      // cards (caught by screenshot: cards held at opacity 0). 0.12 of a
+      // tall element is still an intentional scroll-into-view.
+      { threshold: 0.12 },
+    );
+    io.observe(el);
     return () => {
       window.clearInterval(t);
-      window.clearTimeout(g);
-      window.clearInterval(c);
+      io.disconnect();
     };
   }, []);
 
   return (
-    <div className={`cw-odemo${frozen ? " is-frozen" : ""}`} aria-hidden>
-      {/* REC-style timer pill — Auxon's ● 00:18:24, ours is a birth. */}
-      <div className="cw-odemo__rec">
-        <span className="cw-odemo__pulse" />
-        Active birth · <span className="cw-odemo__rectime">{fmt(seconds)}</span>
-      </div>
+    <div
+      ref={rootRef}
+      className={`cw-ember__ui${entered ? " is-in" : ""}`}
+    >
+      {/* Timer annotation — raw on the water, dashed leader toward her
+          hands. The section's second saffron mark. */}
+      <p className="cw-ember__timer" aria-label="Live activity: an active birth is being tracked">
+        <span className="cw-ember__dot" aria-hidden />
+        <span className="cw-ember__timerlbl">Active birth</span>
+        <span className="cw-ember__digits">{fmt(seconds)}</span>
+      </p>
 
-      {/* SCENE ANNOTATIONS — dashed leaders into the photograph. */}
-      <div className="cw-odemo__note cw-odemo__note--paper">
-        <span className="cw-odemo__notelbl">
-          The old way: <strong>paper intake</strong>
-        </span>
-        <span className="cw-odemo__leader" />
-      </div>
-      <div className="cw-odemo__note cw-odemo__note--client">
-        <span className="cw-odemo__leader cw-odemo__leader--left" />
-        <span className="cw-odemo__notelbl">
-          Week 32 · <strong>full-spectrum care</strong>
-        </span>
-      </div>
-
-      {/* GLASS STACK — right rail, photo bleeding through. */}
-      <div className="cw-odemo__stack">
-        {/* Fee card: big numeral + label + delta chip, Auxon-style. */}
-        <div className="cw-odemo__glass cw-odemo__glass--fee">
-          <div className="cw-odemo__stat">
-            <span className="cw-odemo__big">0%</span>
-            <span className="cw-odemo__statlbl">
-              invoicing fee
-              <span className="cw-odemo__delta">Ordani</span>
-            </span>
-          </div>
-          <div className="cw-odemo__bars">
-            <div className="cw-odemo__barrow">
-              <span className="cw-odemo__barlbl">Other platforms</span>
-              <span className="cw-odemo__bartrack">
-                <span
-                  className={`cw-odemo__barfill cw-odemo__barfill--them${grown ? " is-grown" : ""}`}
-                />
+      {/* GLASS COLUMN */}
+      <div className="cw-ember__col" aria-hidden>
+        {/* Card A — the 0% panel */}
+        <div className="cw-ember__glass cw-ember__card" style={{ "--card-i": 0 } as React.CSSProperties}>
+          <p className="cw-ember__cardtitle">What the platform takes</p>
+          <p className="cw-ember__stat">
+            <span className="cw-ember__num">0%</span>
+            <span className="cw-ember__numlbl">invoicing fee</span>
+          </p>
+          <div className="cw-ember__bars">
+            <div className="cw-ember__barrow">
+              <span className="cw-ember__barlbl">Other platforms</span>
+              <span className="cw-ember__track">
+                <span className="cw-ember__fill" />
               </span>
-              <span className="cw-odemo__barval">17–20%</span>
+              <span className="cw-ember__barval">17–20%</span>
+            </div>
+            <div className="cw-ember__barrow">
+              <span className="cw-ember__barlbl">Ordani</span>
+              <span className="cw-ember__track">
+                <span className="cw-ember__origin" />
+              </span>
+              <span className="cw-ember__barval cw-ember__barval--strong">0%</span>
             </div>
           </div>
-          <p className="cw-odemo__foot">Doulas keep thousands more a year.</p>
+          <p className="cw-ember__caption">Doulas keep thousands more a year.</p>
         </div>
 
-        {/* Bundle card: ticking checklist + value chip. */}
-        <div className="cw-odemo__glass cw-odemo__glass--bundle">
-          <p className="cw-odemo__k">One login replaces</p>
-          <ul className="cw-odemo__list">
+        {/* Card B — the bundle panel */}
+        <div className="cw-ember__glass cw-ember__card" style={{ "--card-i": 1 } as React.CSSProperties}>
+          <div className="cw-ember__cardhead">
+            <p className="cw-ember__cardtitle">One login</p>
+            <span className="cw-ember__chip">HIPAA</span>
+          </div>
+          <p className="cw-ember__stat">
+            <span className="cw-ember__num cw-ember__num--sm">$200–500</span>
+            <span className="cw-ember__numlbl">of software, bundled</span>
+          </p>
+          <ul className="cw-ember__list">
             {BUNDLE.map((item, i) => (
               <li
                 key={item}
-                className={`cw-odemo__item${i < ticked ? " is-on" : ""}`}
+                className="cw-ember__row"
+                style={{ "--row-i": i } as React.CSSProperties}
               >
-                <span className="cw-odemo__box">✓</span>
+                <span className="cw-ember__marker" />
                 {item}
               </li>
             ))}
           </ul>
-          <span className="cw-odemo__chip">$200–500 of software</span>
         </div>
+
+        {/* Card C — opaque bone, the conversion point, overhangs the
+            canvas bottom (the one sanctioned frame-break). */}
+        <a
+          href="/work/ordani"
+          className="cw-ember__card cw-ember__cta"
+          style={{ "--card-i": 2 } as React.CSSProperties}
+        >
+          See how it was built
+          <span className="cw-ember__arr" aria-hidden>→</span>
+        </a>
       </div>
     </div>
   );

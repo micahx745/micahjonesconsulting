@@ -1859,284 +1859,375 @@ body {
  * duotone veil, same stacking grammar as the hero (no blend modes,
  * LESSONS #7). Veil density is deliberately high: the capture carries
  * test data, so structure must read while text must not. */
-[data-mode="cw"] .cw-ordani--photo {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-[data-mode="cw"] .cw-ordani__ground {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-[data-mode="cw"] .cw-ordani__shot {
-  object-fit: cover;
-  object-position: 50% 32%;
-  /* Pass-10 (operator): full color, no shade-fade — "let it live". */
-}
-[data-mode="cw"] .cw-ordani__veil {
-  position: absolute;
-  inset: 0;
-  /* Pass-10: no duotone, no fade. One left gradient keeps the section
-     copy AA on the photo; the rest of the image lives. */
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--color-cw-petrol) 82%, black) 0%,
-    color-mix(in srgb, var(--color-cw-petrol) 40%, transparent) 34%,
-    transparent 55%
-  );
-}
-[data-mode="cw"] .cw-ordani--photo > *:not(.cw-ordani__ground) {
-  position: relative;
-  z-index: 2;
-}
+/* .cw-ordani--photo ground/veil family retired (Pass-12 — Ember Dusk
+ * owns the section; see .cw-ember). */
 
-/* ORDANI GLASS CLUSTER (Pass-11, D-R18) — the actual Auxon grammar,
- * studied from the full shot: frosted-glass panels the photograph bleeds
- * through, big stat numerals with small labels and delta chips, a
- * REC-style timer pill, and dashed leader-line annotations pointing
- * into the scene itself. Content = the operator's value props (D-R19). */
-[data-mode="cw"] .cw-ordani--photo > .cw-odemo {
+
+/* EMBER DUSK (Pass-12) — the Ordani section rebuilt to the workflow's
+ * synthesized spec: matted photo canvas, three-layer photographic grade
+ * (never a flat scrim), Apple-class glass (fill alpha 0.46 + blur 28 +
+ * saturate 150 — the saturate is what stops mud), sentence-case type,
+ * ONE accent (saffron) at three tiny marks, ~60% of the photograph
+ * left completely uncovered. */
+[data-mode="cw"] .cw-ember {
+  padding: 96px 40px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-ember { padding: 56px 0 0; }
+}
+[data-mode="cw"] .cw-ember__canvas {
+  position: relative;
+  max-width: 1360px;
+  margin-inline: auto;
+  height: clamp(680px, 92vh, 1000px);
+  border-radius: 28px;
+}
+[data-mode="cw"] .cw-ember__photo {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  display: none;
+  border-radius: 28px;
+  overflow: hidden;
+}
+[data-mode="cw"] .cw-ember__img {
+  object-fit: cover;
+  object-position: 50% 62%;
+  filter: saturate(0.88) contrast(1.05) brightness(0.9);
+}
+/* Grade layer 2 — multiply unify into the espresso world. This is a
+ * photographic grade on the isolated photo wrapper, not a text scrim;
+ * the wrapper's own stacking context bounds the blend (LESSONS #7
+ * verified by the screenshot gate below). */
+[data-mode="cw"] .cw-ember__unify {
+  position: absolute;
+  inset: 0;
+  background: var(--color-cw-espresso);
+  mix-blend-mode: multiply;
+  opacity: 0.3;
+}
+/* Grade layer 3 — headline-corner deepen only. */
+[data-mode="cw"] .cw-ember__deepen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(26, 17, 12, 0.45) 0%, transparent 45%);
+}
+[data-mode="cw"] .cw-ember__copy {
+  position: absolute;
+  left: 48px;
+  top: 64px;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+[data-mode="cw"] .cw-ember__eyebrow {
+  margin: 0;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-cw-bone);
+}
+[data-mode="cw"] .cw-ember__h {
+  margin: 0;
+  font-family: var(--font-cw-display);
+  font-weight: 500;
+  font-size: clamp(38px, 3.9vw, 56px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--color-cw-bone);
+  text-transform: none;
+  text-wrap: balance;
+}
+[data-mode="cw"] .cw-ember__sub {
+  margin: 0;
+  max-width: 44ch;
+  font-family: var(--font-cw-body);
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(236, 227, 208, 0.82);
+}
+/* ---- the client component's layer ---- */
+[data-mode="cw"] .cw-ember__ui {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
 }
-@media (min-width: 980px) { [data-mode="cw"] .cw-ordani--photo > .cw-odemo { display: block; } }
-
-/* Shared glass recipe — espresso-tinted so bone text holds over both the
- * bright window and the dark sofa; the photo reads through the blur. */
-[data-mode="cw"] .cw-odemo__glass {
-  border-radius: 20px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 34%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 26%, transparent);
-  backdrop-filter: blur(18px) saturate(1.1);
-  -webkit-backdrop-filter: blur(18px) saturate(1.1);
-  box-shadow: 0 20px 50px color-mix(in srgb, black 26%, transparent);
-  color: var(--color-cw-bone);
-  padding: 20px 22px;
-}
-[data-mode="cw"] .cw-odemo__stack {
+[data-mode="cw"] .cw-ember__col {
   position: absolute;
-  right: clamp(24px, 4.5vw, 80px);
-  top: 50%;
-  transform: translateY(-50%); /* motion-ok: static vertical centering, not a reveal */
+  right: 48px;
+  top: 128px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  width: clamp(340px, 27vw, 400px);
+  gap: 24px;
+  width: 340px;
+  pointer-events: auto;
 }
-
-/* REC pill — top right, Auxon's recording indicator. */
-[data-mode="cw"] .cw-odemo__rec {
-  position: absolute;
-  top: clamp(96px, 13vh, 130px);
-  right: clamp(24px, 4.5vw, 80px);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 42%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 24%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+@media (max-width: 979px) {
+  [data-mode="cw"] .cw-ember__col {
+    position: static;
+    width: auto;
+    margin: 0;
+    padding: 24px 20px 0;
+  }
+}
+[data-mode="cw"] .cw-ember__glass {
+  background:
+    linear-gradient(180deg, rgba(236, 227, 208, 0.07), rgba(236, 227, 208, 0) 32%),
+    color-mix(in srgb, #241a14 46%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(150%);
+  backdrop-filter: blur(28px) saturate(150%);
+  border: 1px solid rgba(236, 227, 208, 0.14);
+  border-top-color: rgba(236, 227, 208, 0.26);
+  border-radius: 24px;
+  padding: 28px;
   color: var(--color-cw-bone);
-  font-family: var(--font-cw-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  box-shadow: none;
 }
-[data-mode="cw"] .cw-odemo__rectime {
-  font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0;
-  font-variant-numeric: tabular-nums;
+@supports not (backdrop-filter: blur(1px)) {
+  [data-mode="cw"] .cw-ember__glass { background: rgba(30, 21, 16, 0.9); }
 }
-[data-mode="cw"] .cw-odemo__pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-cw-saffron);
-  animation: cw-odemo-pulse 2s ease-in-out infinite; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+@media (max-width: 979px) {
+  /* Glass exists only over photography — below the photo the cards go
+   * solid espresso on the page ground, per spec. */
+  [data-mode="cw"] .cw-ember__glass {
+    background: #241a14;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
-@keyframes cw-odemo-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-
-/* Scene annotations — Auxon's "Position: 11/130" device: a small glass
- * label with a dashed leader line pointing into the photograph. */
-[data-mode="cw"] .cw-odemo__note {
-  position: absolute;
+/* Entrance: once, staggered, IO-driven from the client component. */
+[data-mode="cw"] .cw-ember__card {
+  opacity: 0;
+  transform: translateY(12px); /* motion-ok: IO one-shot entrance, staggered via --card-i below; reduced motion lands final instantly */
+  transition:
+    opacity 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1); /* motion-ok: IO one-shot entrance; reduced motion lands final instantly */
+  transition-delay: calc(var(--card-i, 0) * 90ms); /* motion-ok: entrance stagger per spec */
+}
+[data-mode="cw"] .cw-ember__ui.is-in .cw-ember__card {
+  opacity: 1;
+  transform: none;
+}
+[data-mode="cw"] .cw-ember__cardhead {
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
-[data-mode="cw"] .cw-odemo__note--paper {
-  left: 26%;
-  bottom: 30%;
+[data-mode="cw"] .cw-ember__cardtitle {
+  margin: 0 0 14px;
+  font-family: var(--font-cw-body);
+  font-weight: 500;
+  font-size: 17px;
+  text-transform: none;
+  letter-spacing: 0;
 }
-[data-mode="cw"] .cw-odemo__note--client {
-  left: 12%;
-  top: 24%;
-}
-[data-mode="cw"] .cw-odemo__notelbl {
-  padding: 8px 13px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 40%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 24%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--color-cw-bone);
-  font-family: var(--font-cw-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-[data-mode="cw"] .cw-odemo__notelbl strong { color: var(--color-cw-saffron); font-weight: 600; }
-[data-mode="cw"] .cw-odemo__leader {
-  width: clamp(60px, 7vw, 130px);
-  height: 0;
-  border-top: 1.5px dashed color-mix(in srgb, var(--color-cw-bone) 55%, transparent);
-  position: relative;
-}
-[data-mode="cw"] .cw-odemo__leader::after {
-  content: "";
-  position: absolute;
-  right: -3px;
-  top: -4px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--color-cw-saffron);
-}
-[data-mode="cw"] .cw-odemo__leader--left::after {
-  right: auto;
-  left: -3px;
-}
-
-/* Fee card — big numeral + label + delta chip. */
-[data-mode="cw"] .cw-odemo__stat {
+[data-mode="cw"] .cw-ember__cardhead .cw-ember__cardtitle { margin-bottom: 0; }
+[data-mode="cw"] .cw-ember__stat {
   display: flex;
   align-items: baseline;
-  gap: 12px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin: 0 0 16px;
 }
-[data-mode="cw"] .cw-odemo__big {
+[data-mode="cw"] .cw-ember__cardhead + .cw-ember__stat { margin-top: 14px; }
+[data-mode="cw"] .cw-ember__num {
   font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: 54px;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  color: var(--color-cw-bone);
+  font-weight: 300;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
-[data-mode="cw"] .cw-odemo__statlbl {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+[data-mode="cw"] .cw-ember__num--sm { font-size: 34px; }
+[data-mode="cw"] .cw-ember__numlbl {
   font-family: var(--font-cw-body);
-  font-weight: 500;
-  font-size: 13.5px;
-  color: color-mix(in srgb, var(--color-cw-bone) 85%, transparent);
+  font-weight: 400;
+  font-size: 15px;
+  color: rgba(236, 227, 208, 0.68);
 }
-[data-mode="cw"] .cw-odemo__delta {
-  align-self: flex-start;
-  font-family: var(--font-cw-mono);
-  font-size: 9px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 2px 7px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-cw-saffron) 28%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-saffron) 60%, transparent);
-  color: var(--color-cw-saffron);
-}
-[data-mode="cw"] .cw-odemo__bars { display: flex; flex-direction: column; gap: 8px; }
-[data-mode="cw"] .cw-odemo__barrow {
+[data-mode="cw"] .cw-ember__bars { display: flex; flex-direction: column; gap: 10px; }
+[data-mode="cw"] .cw-ember__barrow {
   display: grid;
-  grid-template-columns: 96px 1fr 44px;
+  grid-template-columns: 104px 1fr 52px;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-cw-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-}
-[data-mode="cw"] .cw-odemo__barlbl { color: color-mix(in srgb, var(--color-cw-bone) 70%, transparent); text-transform: uppercase; }
-[data-mode="cw"] .cw-odemo__bartrack {
-  height: 9px;
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--color-cw-bone) 14%, transparent);
-  overflow: hidden;
-}
-[data-mode="cw"] .cw-odemo__barfill {
-  display: block;
-  height: 100%;
-  border-radius: 6px;
-  width: 0;
-  transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1); /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-}
-[data-mode="cw"] .cw-odemo__barfill--them { background: var(--color-cw-terracotta); }
-[data-mode="cw"] .cw-odemo__barfill--them.is-grown { width: 86%; }
-[data-mode="cw"] .cw-odemo__barval { text-align: right; font-weight: 500; color: color-mix(in srgb, var(--color-cw-bone) 85%, transparent); }
-[data-mode="cw"] .cw-odemo__foot {
-  margin: 12px 0 0;
   font-family: var(--font-cw-body);
-  font-weight: 500;
-  font-size: 12.5px;
-  color: color-mix(in srgb, var(--color-cw-bone) 78%, transparent);
+  font-size: 13px;
 }
-[data-mode="cw"] .cw-odemo__k {
-  font-family: var(--font-cw-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-cw-bone) 65%, transparent);
-  margin: 0 0 10px;
+[data-mode="cw"] .cw-ember__barlbl { color: rgba(236, 227, 208, 0.68); }
+[data-mode="cw"] .cw-ember__track {
+  position: relative;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(236, 227, 208, 0.12);
 }
-[data-mode="cw"] .cw-odemo__list { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 7px; }
-[data-mode="cw"] .cw-odemo__item {
+[data-mode="cw"] .cw-ember__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  border-radius: 4px;
+  background: rgba(158, 60, 37, 0.55);
+  transition: width 0.28s cubic-bezier(0.22, 1, 0.36, 1); /* motion-ok: one-shot bar growth on entry; reduced motion lands final instantly */
+  transition-delay: 150ms; /* motion-ok: entrance choreography per spec */
+}
+[data-mode="cw"] .cw-ember__ui.is-in .cw-ember__fill { width: 88%; }
+[data-mode="cw"] .cw-ember__origin {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-cw-saffron);
+  transform: scale(0); /* motion-ok: one-shot pop after the bar lands; reduced motion lands final instantly */
+  transition: transform 0.25s cubic-bezier(0.2, 1.4, 0.4, 1); /* motion-ok: one-shot pop per spec */
+  transition-delay: 1.05s; /* motion-ok: entrance choreography per spec */
+}
+[data-mode="cw"] .cw-ember__ui.is-in .cw-ember__origin { transform: scale(1); }
+[data-mode="cw"] .cw-ember__barval {
+  text-align: right;
+  color: rgba(236, 227, 208, 0.85);
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-ember__barval--strong { color: var(--color-cw-bone); font-weight: 600; }
+[data-mode="cw"] .cw-ember__caption {
+  margin: 16px 0 0;
+  font-family: var(--font-cw-body);
+  font-size: 14px;
+  color: rgba(236, 227, 208, 0.68);
+}
+[data-mode="cw"] .cw-ember__chip {
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(236, 227, 208, 0.1);
+  border: 1px solid rgba(236, 227, 208, 0.14);
+}
+[data-mode="cw"] .cw-ember__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+[data-mode="cw"] .cw-ember__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-cw-body);
+  font-size: 14px;
+  color: rgba(236, 227, 208, 0.85);
+  opacity: 0;
+  transform: translateY(6px); /* motion-ok: IO one-shot row stagger; reduced motion lands final instantly */
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease; /* motion-ok: IO one-shot row stagger per spec */
+  transition-delay: calc(200ms + var(--row-i, 0) * 60ms); /* motion-ok: entrance stagger per spec */
+}
+[data-mode="cw"] .cw-ember__ui.is-in .cw-ember__row {
+  opacity: 1;
+  transform: none;
+}
+[data-mode="cw"] .cw-ember__marker {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(236, 227, 208, 0.45);
+  flex: 0 0 auto;
+}
+[data-mode="cw"] .cw-ember__cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-cw-bone);
+  color: var(--color-cw-espresso);
+  border-radius: 24px;
+  padding: 22px 28px;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  /* The one sanctioned frame-break: overhang the canvas bottom. */
+  margin-bottom: -24px;
+}
+[data-mode="cw"] .cw-ember__arr {
+  transition: transform 0.2s ease-out; /* motion-ok: the spec's only hover motion */
+}
+[data-mode="cw"] .cw-ember__cta:hover .cw-ember__arr,
+[data-mode="cw"] .cw-ember__cta:focus-visible .cw-ember__arr {
+  transform: translateX(4px);
+}
+/* Timer — raw on the water, no fill, dashed leader toward her hands. */
+[data-mode="cw"] .cw-ember__timer {
+  position: absolute;
+  left: 57%;
+  top: 62%;
+  margin: 0;
   display: flex;
   align-items: center;
   gap: 9px;
-  font-family: var(--font-cw-body);
-  font-weight: 500;
-  font-size: 13px;
-  color: color-mix(in srgb, var(--color-cw-bone) 55%, transparent);
-  transition: color 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+  padding-bottom: 10px;
+  border-bottom: 1.5px dashed rgba(236, 227, 208, 0.45);
+  min-width: 110px;
+  color: var(--color-cw-bone);
+  pointer-events: auto;
 }
-[data-mode="cw"] .cw-odemo__item.is-on { color: var(--color-cw-bone); }
-[data-mode="cw"] .cw-odemo__box {
-  display: grid;
-  place-items: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 5px;
-  font-size: 9px;
-  color: transparent;
-  background: color-mix(in srgb, var(--color-cw-bone) 10%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 30%, transparent);
-  transition: background 0.28s ease, color 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+@media (max-width: 979px) {
+  [data-mode="cw"] .cw-ember__timer { left: 40px; top: 476px; }
 }
-[data-mode="cw"] .cw-odemo__item.is-on .cw-odemo__box {
+[data-mode="cw"] .cw-ember__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
   background: var(--color-cw-saffron);
-  border-color: var(--color-cw-saffron);
-  color: var(--color-cw-espresso);
+  animation: cw-ember-pulse 2s ease-in-out infinite; /* motion-ok: D-R18 live marker; static under reduced motion */
 }
-[data-mode="cw"] .cw-odemo__chip {
-  display: inline-block;
+@keyframes cw-ember-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.7; }
+}
+[data-mode="cw"] .cw-ember__timerlbl {
+  font-family: var(--font-cw-body);
+  font-size: 14px;
+  color: rgba(236, 227, 208, 0.75);
+}
+[data-mode="cw"] .cw-ember__digits {
   font-family: var(--font-cw-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 6px 11px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--color-cw-saffron) 24%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-saffron) 55%, transparent);
-  color: var(--color-cw-saffron);
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+/* ---- mobile canvas ---- */
+@media (max-width: 979px) {
+  [data-mode="cw"] .cw-ember__canvas { height: auto; border-radius: 0; }
+  [data-mode="cw"] .cw-ember__photo {
+    position: relative;
+    height: 560px;
+    border-radius: 20px;
+    margin: 0 20px;
+  }
+  [data-mode="cw"] .cw-ember__img { object-position: 50% 34%; }
+  [data-mode="cw"] .cw-ember__copy { left: 40px; top: 40px; right: 40px; gap: 16px; }
+  [data-mode="cw"] .cw-ember__h { font-size: clamp(30px, 7.6vw, 38px); }
+  [data-mode="cw"] .cw-ember__sub { font-size: 15px; }
+  [data-mode="cw"] .cw-ember__ui { position: static; }
+  [data-mode="cw"] .cw-ember__timer { position: absolute; }
+  /* On the bone page ground the bone CTA card needs an edge. */
+  [data-mode="cw"] .cw-ember__cta {
+    margin-bottom: 0;
+    border: 1.5px solid var(--color-cw-espresso);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-mode="cw"] .cw-odemo__pulse { animation: none; }
-  [data-mode="cw"] .cw-odemo *, [data-mode="cw"] .cw-odemo__glass { transition: none !important; }
+  [data-mode="cw"] .cw-ember__card,
+  [data-mode="cw"] .cw-ember__row,
+  [data-mode="cw"] .cw-ember__fill,
+  [data-mode="cw"] .cw-ember__origin,
+  [data-mode="cw"] .cw-ember__arr {
+    transition: none !important;
+  }
+  [data-mode="cw"] .cw-ember__dot { animation: none; }
 }
 
 /* THE TWO DOORS (Pass-6 — operator refused the card version: "they look
