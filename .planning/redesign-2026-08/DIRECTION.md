@@ -34,15 +34,36 @@ Wave 0 therefore REPAIRS rather than removes: delete only the genuinely dead cod
 restores the working IntersectionObserver path so the reveals can be SEEN and judged for
 the first time. Nothing is deleted for design reasons before Wave 2.
 
+
+**D-R8 — Taste signal (operator, 2026-08-30, verbatim).**
+> "i would like a mix of koto and stripe press - clean abstract unique lowkey luxury
+> professional tho dash of linear."
+> "love animations - needs to look equally as amazing on mobile too"
+
+Reading: Koto's confidence + abstraction (abstract graphic marks, not photography),
+Stripe Press's editorial quiet (few faces, bookish restraint), Linear's tightness
+(precision, dark discipline). "Lowkey luxury" = expensive by restraint, never by
+ornament. Motion is WANTED, not tolerated. Mobile is a first-class surface, graded
+equally — not a desktop design that survives a narrow viewport.
+
+Consequences to carry forward:
+- Reference hunting must weight MOBILE quality equally; most award-site studios fail there.
+- Motion is now a requirement, so the reduced-motion still state must be designed as its
+  own composition (his machines run MinAnimate = 0). Both states get built at the tile.
+- REOPENS D-R3 for re-test at the style tile: bone/terracotta/espresso is a warm, light,
+  paper-led palette. "Lowkey luxury" with Koto/Stripe-Press/Linear as anchors leans
+  darker and more neutral. Not overturned here — tested side by side at Wave 2.
+- Abstract graphic system (marks, shapes, type-as-image) becomes a live design question;
+  the site currently has hand-drawn marks on the protect list.
+
 ## OPEN — blocking Wave 2 and later
 
-**Q1 — References the operator USES.** Up to three products/sites he personally uses and
-admires, each with the one trait to borrow. NOT Dribbble. UNANSWERED.
-Fallback path (agreed in the plan): the research program brings six live side-by-sides
-and he reacts to those instead of naming cold.
+**Q1 — References.** PARTIALLY ANSWERED via round 1 (see D-R8): Koto + Stripe Press +
+a dash of Linear. Round 2 in progress — a wider candidate set inside that triangle,
+graded on mobile and motion, for a final lock of exactly 3.
 
-**Q2 — Anti-patterns.** Two sites, or two specific design moves, that make him close the
-tab. The most diagnostic signal available. UNANSWERED.
+**Q2 — Anti-patterns.** STILL UNANSWERED and still the most diagnostic signal available.
+Ask again against round 2, where a wider spread makes rejection easier than naming cold.
 
 **Q3 — Motion vocabulary.** Deferred to Wave 2 style tile per D-R4. Must be presented in
 BOTH states, motionless first (his own machines run `MinAnimate = 0`, so the still page
