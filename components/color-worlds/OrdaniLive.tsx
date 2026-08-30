@@ -1,20 +1,17 @@
 // components/color-worlds/OrdaniLive.tsx
 //
-// Pass-10 — the Auxon/Wingly component grammar (operator's picks):
-// rounded cards, big numerals, mini data-viz, pill chips, organic
-// cluster offsets, on a FULL-COLOR photo ("its okay not to shade fade
-// the pic. and let it live").
+// Pass-11 — the ACTUAL Auxon grammar (full shot finally studied):
+//   • frosted-glass panels the photo bleeds through (backdrop blur,
+//     low-alpha tint, 1px light border, 20px radius) — never solid cards
+//   • big stat numerals + small labels + delta-style chips
+//   • dashed leader-line ANNOTATIONS pointing into the scene itself —
+//     Auxon labels the cyclist; we label the paper intake on the couch
+//   • a REC-style timer pill in the panel's top corner
 //
-// Content = the operator's stated value props (2026-08-30):
-//   1. Invoicing without the 17-20% cut other platforms take —
-//      "saving doulas thousands of dollars a year."
-//   2. $200-500 of software bundled into one place.
-// Plus the active-birth timer, compact (the one piece that survived
-// every round).
-//
-// D-R18 live zone: fee bars grow, the bundle checklist ticks through,
-// the timer ticks. Reduced motion renders everything complete, static.
-// aria-hidden illustrative UI; no person names anywhere.
+// Content stays the operator's value props (D-R19): 0% invoicing vs the
+// 17–20% cut, and the $200–500 bundle. D-R18 live zone: bars grow,
+// checklist ticks, timer ticks, leader lines draw. Reduced motion =
+// complete story, static. aria-hidden; no person names.
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -37,8 +34,8 @@ function fmt(total: number): string {
 
 export function OrdaniLive() {
   const [seconds, setSeconds] = useState(TIMER_START);
-  const [ticked, setTicked] = useState(0); // bundle items ticked so far
-  const [grown, setGrown] = useState(false); // fee bars grown
+  const [ticked, setTicked] = useState(0);
+  const [grown, setGrown] = useState(false);
   const [frozen, setFrozen] = useState(false);
   const tickedRef = useRef(0);
 
@@ -51,8 +48,7 @@ export function OrdaniLive() {
       return;
     }
     const t = window.setInterval(() => setSeconds((s) => s + 1), 1000);
-    const g = window.setTimeout(() => setGrown(true), 700);
-    // Checklist ticks one item at a time, then holds, then restarts.
+    const g = window.setTimeout(() => setGrown(true), 800);
     const c = window.setInterval(() => {
       tickedRef.current =
         tickedRef.current >= BUNDLE.length ? 0 : tickedRef.current + 1;
@@ -67,59 +63,67 @@ export function OrdaniLive() {
 
   return (
     <div className={`cw-odemo${frozen ? " is-frozen" : ""}`} aria-hidden>
-      {/* CARD 1 — the fee story. Big numeral + comparison bars. */}
-      <div className="cw-odemo__card cw-odemo__card--fee">
-        <p className="cw-odemo__k">Invoicing fee</p>
-        <p className="cw-odemo__big">
-          0<span className="cw-odemo__pct">%</span>
-        </p>
-        <div className="cw-odemo__bars">
-          <div className="cw-odemo__barrow">
-            <span className="cw-odemo__barlbl">Other platforms</span>
-            <span className="cw-odemo__bartrack">
-              <span
-                className={`cw-odemo__barfill cw-odemo__barfill--them${grown ? " is-grown" : ""}`}
-              />
-            </span>
-            <span className="cw-odemo__barval">17–20%</span>
-          </div>
-          <div className="cw-odemo__barrow">
-            <span className="cw-odemo__barlbl">Ordani</span>
-            <span className="cw-odemo__bartrack">
-              <span
-                className={`cw-odemo__barfill cw-odemo__barfill--us${grown ? " is-grown" : ""}`}
-              />
-            </span>
-            <span className="cw-odemo__barval cw-odemo__barval--us">0%</span>
-          </div>
-        </div>
-        <p className="cw-odemo__foot">
-          Doulas keep thousands more a year.
-        </p>
-      </div>
-
-      {/* CARD 2 — the bundle. Checklist ticks; value chip. */}
-      <div className="cw-odemo__card cw-odemo__card--bundle">
-        <p className="cw-odemo__k">One login replaces</p>
-        <ul className="cw-odemo__list">
-          {BUNDLE.map((item, i) => (
-            <li
-              key={item}
-              className={`cw-odemo__item${i < ticked ? " is-on" : ""}`}
-            >
-              <span className="cw-odemo__box">✓</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-        <span className="cw-odemo__chip">$200–500 of software</span>
-      </div>
-
-      {/* CARD 3 — the live timer, compact. */}
-      <div className="cw-odemo__card cw-odemo__card--live">
+      {/* REC-style timer pill — Auxon's ● 00:18:24, ours is a birth. */}
+      <div className="cw-odemo__rec">
         <span className="cw-odemo__pulse" />
-        <span className="cw-odemo__livek">Active birth</span>
-        <span className="cw-odemo__timer">{fmt(seconds)}</span>
+        Active birth · <span className="cw-odemo__rectime">{fmt(seconds)}</span>
+      </div>
+
+      {/* SCENE ANNOTATIONS — dashed leaders into the photograph. */}
+      <div className="cw-odemo__note cw-odemo__note--paper">
+        <span className="cw-odemo__notelbl">
+          The old way: <strong>paper intake</strong>
+        </span>
+        <span className="cw-odemo__leader" />
+      </div>
+      <div className="cw-odemo__note cw-odemo__note--client">
+        <span className="cw-odemo__leader cw-odemo__leader--left" />
+        <span className="cw-odemo__notelbl">
+          Week 32 · <strong>full-spectrum care</strong>
+        </span>
+      </div>
+
+      {/* GLASS STACK — right rail, photo bleeding through. */}
+      <div className="cw-odemo__stack">
+        {/* Fee card: big numeral + label + delta chip, Auxon-style. */}
+        <div className="cw-odemo__glass cw-odemo__glass--fee">
+          <div className="cw-odemo__stat">
+            <span className="cw-odemo__big">0%</span>
+            <span className="cw-odemo__statlbl">
+              invoicing fee
+              <span className="cw-odemo__delta">Ordani</span>
+            </span>
+          </div>
+          <div className="cw-odemo__bars">
+            <div className="cw-odemo__barrow">
+              <span className="cw-odemo__barlbl">Other platforms</span>
+              <span className="cw-odemo__bartrack">
+                <span
+                  className={`cw-odemo__barfill cw-odemo__barfill--them${grown ? " is-grown" : ""}`}
+                />
+              </span>
+              <span className="cw-odemo__barval">17–20%</span>
+            </div>
+          </div>
+          <p className="cw-odemo__foot">Doulas keep thousands more a year.</p>
+        </div>
+
+        {/* Bundle card: ticking checklist + value chip. */}
+        <div className="cw-odemo__glass cw-odemo__glass--bundle">
+          <p className="cw-odemo__k">One login replaces</p>
+          <ul className="cw-odemo__list">
+            {BUNDLE.map((item, i) => (
+              <li
+                key={item}
+                className={`cw-odemo__item${i < ticked ? " is-on" : ""}`}
+              >
+                <span className="cw-odemo__box">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <span className="cw-odemo__chip">$200–500 of software</span>
+        </div>
       </div>
     </div>
   );

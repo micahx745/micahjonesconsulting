@@ -1891,81 +1891,181 @@ body {
   z-index: 2;
 }
 
-/* ORDANI VALUE CLUSTER (Pass-10, D-R18) — the Auxon/Wingly component
- * grammar the operator picked: rounded cards, big numerals, mini
- * data-viz, pill chips, organic offsets, crisp shadows on a FULL-COLOR
- * photo. Content = his stated value props: 0% invoicing vs the 17-20%
- * other platforms take, and the $200-500 bundle. */
+/* ORDANI GLASS CLUSTER (Pass-11, D-R18) — the actual Auxon grammar,
+ * studied from the full shot: frosted-glass panels the photograph bleeds
+ * through, big stat numerals with small labels and delta chips, a
+ * REC-style timer pill, and dashed leader-line annotations pointing
+ * into the scene itself. Content = the operator's value props (D-R19). */
 [data-mode="cw"] .cw-ordani--photo > .cw-odemo {
   position: absolute;
+  inset: 0;
   z-index: 2;
-  right: clamp(24px, 4.5vw, 80px);
-  top: 50%;
-  transform: translateY(-50%); /* motion-ok: static vertical centering, not a reveal */
   display: none;
-  width: clamp(380px, 31vw, 460px);
   pointer-events: none;
 }
 @media (min-width: 980px) { [data-mode="cw"] .cw-ordani--photo > .cw-odemo { display: block; } }
-[data-mode="cw"] .cw-odemo__card {
-  position: relative;
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--color-cw-bone) 97%, white);
-  color: var(--color-cw-espresso);
-  box-shadow: 0 24px 60px color-mix(in srgb, black 34%, transparent), 0 2px 8px color-mix(in srgb, black 12%, transparent);
+
+/* Shared glass recipe — espresso-tinted so bone text holds over both the
+ * bright window and the dark sofa; the photo reads through the blur. */
+[data-mode="cw"] .cw-odemo__glass {
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--color-cw-espresso) 34%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 26%, transparent);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  box-shadow: 0 20px 50px color-mix(in srgb, black 26%, transparent);
+  color: var(--color-cw-bone);
   padding: 20px 22px;
 }
-/* Organic cluster: fee card leads, bundle overlaps from the right, the
- * live chip tucks under — Auxon's unaligned-but-clean read. */
-[data-mode="cw"] .cw-odemo__card--fee { width: 78%; }
-[data-mode="cw"] .cw-odemo__card--bundle {
-  width: 62%;
-  margin: -34px 0 0 auto;
+[data-mode="cw"] .cw-odemo__stack {
+  position: absolute;
+  right: clamp(24px, 4.5vw, 80px);
+  top: 50%;
+  transform: translateY(-50%); /* motion-ok: static vertical centering, not a reveal */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: clamp(340px, 27vw, 400px);
 }
-[data-mode="cw"] .cw-odemo__card--live {
+
+/* REC pill — top right, Auxon's recording indicator. */
+[data-mode="cw"] .cw-odemo__rec {
+  position: absolute;
+  top: clamp(96px, 13vh, 130px);
+  right: clamp(24px, 4.5vw, 80px);
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  width: auto;
-  margin: 14px 0 0 6%;
-  padding: 11px 16px;
+  gap: 8px;
+  padding: 10px 16px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 94%, transparent);
+  background: color-mix(in srgb, var(--color-cw-espresso) 42%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 24%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--color-cw-bone);
-}
-[data-mode="cw"] .cw-odemo__k {
   font-family: var(--font-cw-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
-  margin: 0 0 6px;
+}
+[data-mode="cw"] .cw-odemo__rectime {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-odemo__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-cw-saffron);
+  animation: cw-odemo-pulse 2s ease-in-out infinite; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
+}
+@keyframes cw-odemo-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* Scene annotations — Auxon's "Position: 11/130" device: a small glass
+ * label with a dashed leader line pointing into the photograph. */
+[data-mode="cw"] .cw-odemo__note {
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+[data-mode="cw"] .cw-odemo__note--paper {
+  left: 26%;
+  bottom: 30%;
+}
+[data-mode="cw"] .cw-odemo__note--client {
+  left: 12%;
+  top: 24%;
+}
+[data-mode="cw"] .cw-odemo__notelbl {
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-cw-espresso) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 24%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--color-cw-bone);
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-odemo__notelbl strong { color: var(--color-cw-saffron); font-weight: 600; }
+[data-mode="cw"] .cw-odemo__leader {
+  width: clamp(60px, 7vw, 130px);
+  height: 0;
+  border-top: 1.5px dashed color-mix(in srgb, var(--color-cw-bone) 55%, transparent);
+  position: relative;
+}
+[data-mode="cw"] .cw-odemo__leader::after {
+  content: "";
+  position: absolute;
+  right: -3px;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-cw-saffron);
+}
+[data-mode="cw"] .cw-odemo__leader--left::after {
+  right: auto;
+  left: -3px;
+}
+
+/* Fee card — big numeral + label + delta chip. */
+[data-mode="cw"] .cw-odemo__stat {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 [data-mode="cw"] .cw-odemo__big {
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: 56px;
+  font-size: 54px;
   line-height: 0.95;
   letter-spacing: -0.03em;
-  margin: 0 0 14px;
-  color: var(--color-cw-petrol);
+  color: var(--color-cw-bone);
 }
-[data-mode="cw"] .cw-odemo__pct { font-size: 30px; font-weight: 600; }
-[data-mode="cw"] .cw-odemo__bars { display: flex; flex-direction: column; gap: 9px; }
+[data-mode="cw"] .cw-odemo__statlbl {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: var(--font-cw-body);
+  font-weight: 500;
+  font-size: 13.5px;
+  color: color-mix(in srgb, var(--color-cw-bone) 85%, transparent);
+}
+[data-mode="cw"] .cw-odemo__delta {
+  align-self: flex-start;
+  font-family: var(--font-cw-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-cw-saffron) 28%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-saffron) 60%, transparent);
+  color: var(--color-cw-saffron);
+}
+[data-mode="cw"] .cw-odemo__bars { display: flex; flex-direction: column; gap: 8px; }
 [data-mode="cw"] .cw-odemo__barrow {
   display: grid;
-  grid-template-columns: 92px 1fr 44px;
+  grid-template-columns: 96px 1fr 44px;
   align-items: center;
   gap: 10px;
   font-family: var(--font-cw-mono);
   font-size: 9.5px;
   letter-spacing: 0.06em;
 }
-[data-mode="cw"] .cw-odemo__barlbl { color: color-mix(in srgb, var(--color-cw-espresso) 60%, transparent); text-transform: uppercase; }
+[data-mode="cw"] .cw-odemo__barlbl { color: color-mix(in srgb, var(--color-cw-bone) 70%, transparent); text-transform: uppercase; }
 [data-mode="cw"] .cw-odemo__bartrack {
-  height: 10px;
+  height: 9px;
   border-radius: 6px;
-  background: color-mix(in srgb, var(--color-cw-espresso) 8%, transparent);
+  background: color-mix(in srgb, var(--color-cw-bone) 14%, transparent);
   overflow: hidden;
 }
 [data-mode="cw"] .cw-odemo__barfill {
@@ -1977,48 +2077,50 @@ body {
 }
 [data-mode="cw"] .cw-odemo__barfill--them { background: var(--color-cw-terracotta); }
 [data-mode="cw"] .cw-odemo__barfill--them.is-grown { width: 86%; }
-[data-mode="cw"] .cw-odemo__barfill--us { background: var(--color-cw-petrol); }
-[data-mode="cw"] .cw-odemo__barfill--us.is-grown { width: 3%; }
-[data-mode="cw"] .cw-odemo__barval { text-align: right; font-weight: 500; }
-[data-mode="cw"] .cw-odemo__barval--us { color: var(--color-cw-petrol); font-weight: 700; }
+[data-mode="cw"] .cw-odemo__barval { text-align: right; font-weight: 500; color: color-mix(in srgb, var(--color-cw-bone) 85%, transparent); }
 [data-mode="cw"] .cw-odemo__foot {
-  margin: 14px 0 0;
+  margin: 12px 0 0;
   font-family: var(--font-cw-body);
-  font-weight: 600;
-  font-size: 13px;
-  color: color-mix(in srgb, var(--color-cw-espresso) 80%, transparent);
-  /* The bundle card overlaps this card's bottom-right corner (organic
-     cluster); cap the line's width so it never runs under it. */
-  max-width: 62%;
+  font-weight: 500;
+  font-size: 12.5px;
+  color: color-mix(in srgb, var(--color-cw-bone) 78%, transparent);
 }
-[data-mode="cw"] .cw-odemo__list { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+[data-mode="cw"] .cw-odemo__k {
+  font-family: var(--font-cw-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-cw-bone) 65%, transparent);
+  margin: 0 0 10px;
+}
+[data-mode="cw"] .cw-odemo__list { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-direction: column; gap: 7px; }
 [data-mode="cw"] .cw-odemo__item {
   display: flex;
   align-items: center;
   gap: 9px;
   font-family: var(--font-cw-body);
   font-weight: 500;
-  font-size: 13.5px;
-  color: color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
+  font-size: 13px;
+  color: color-mix(in srgb, var(--color-cw-bone) 55%, transparent);
   transition: color 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
 }
-[data-mode="cw"] .cw-odemo__item.is-on { color: var(--color-cw-espresso); }
+[data-mode="cw"] .cw-odemo__item.is-on { color: var(--color-cw-bone); }
 [data-mode="cw"] .cw-odemo__box {
   display: grid;
   place-items: center;
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 9px;
   color: transparent;
-  background: color-mix(in srgb, var(--color-cw-espresso) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-espresso) 18%, transparent);
+  background: color-mix(in srgb, var(--color-cw-bone) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 30%, transparent);
   transition: background 0.28s ease, color 0.28s ease; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
 }
 [data-mode="cw"] .cw-odemo__item.is-on .cw-odemo__box {
-  background: var(--color-cw-petrol);
-  border-color: var(--color-cw-petrol);
-  color: var(--color-cw-bone);
+  background: var(--color-cw-saffron);
+  border-color: var(--color-cw-saffron);
+  color: var(--color-cw-espresso);
 }
 [data-mode="cw"] .cw-odemo__chip {
   display: inline-block;
@@ -2028,34 +2130,13 @@ body {
   text-transform: uppercase;
   padding: 6px 11px;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-cw-saffron) 22%, transparent);
-  color: color-mix(in srgb, var(--color-cw-espresso) 88%, transparent);
+  background: color-mix(in srgb, var(--color-cw-saffron) 24%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-cw-saffron) 55%, transparent);
-}
-[data-mode="cw"] .cw-odemo__pulse {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--color-cw-saffron);
-  animation: cw-odemo-pulse 2s ease-in-out infinite; /* motion-ok: D-R18 sanctioned live-zone choreography; static under reduced motion */
-}
-@keyframes cw-odemo-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-[data-mode="cw"] .cw-odemo__livek {
-  font-family: var(--font-cw-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-[data-mode="cw"] .cw-odemo__timer {
-  font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: 16px;
-  font-variant-numeric: tabular-nums;
+  color: var(--color-cw-saffron);
 }
 @media (prefers-reduced-motion: reduce) {
   [data-mode="cw"] .cw-odemo__pulse { animation: none; }
-  [data-mode="cw"] .cw-odemo *, [data-mode="cw"] .cw-odemo__card { transition: none !important; }
+  [data-mode="cw"] .cw-odemo *, [data-mode="cw"] .cw-odemo__glass { transition: none !important; }
 }
 
 /* THE TWO DOORS (Pass-6 — operator refused the card version: "they look
