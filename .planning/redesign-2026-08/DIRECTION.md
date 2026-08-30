@@ -257,3 +257,22 @@ washi-taped photo mount · highlighter swipes + circled total + asterisk footnot
 close signs the letter again on espresso under a "replies inside 2 business days" stamp ·
 Caveat -> Nanum Pen Script (darker ink #8F4D12, fixes tile 03's AA fail on notes) · one
 orchestrated entrance; reduced-motion arrives fully drawn.
+
+## TILE 04 GATE: **REFUSED** (operator, 2026-08-30) — AND THE WHOLE MOCKUP METHOD WITH IT
+> "still horrible - the current site still looks way more profressional and better. the soul
+> part is not the pic - the entire site looks like AI"
+
+**D-R14 — STANDALONE MOCKUPS ARE DEAD. Four consecutive refusals = the method failed, not
+four individual designs.** The live site embeds a refined system (type scale, palette engine,
+spacing tokens, months of polish); a from-scratch single-file tile cannot beat it and will
+always read "AI mockup" beside it. Twice now the operator has rated the CURRENT SITE above
+every proposal. Handwriting fonts / tape / stitches were craft-cosplay — fake human marks are
+themselves an AI tell.
+
+**New method (only method):** surgical changes INSIDE the production codebase, on a branch,
+judged as real rendered pages (production build screenshots at 1440/390) against the live
+site as baseline. What survives from the tile arc, implemented natively: locked headline
+(D-R13) · Ledger as a real section in the site's own table styling · Seam via the existing
+Color Worlds (terracotta/petrol worlds already exist) · word-count cuts per the attack plan ·
+reveal-system fix (Wave 0) · more motion via the site's own idiom, nothing bolted on.
+NEVER push the branch to main without operator approval — push fires auto-deploy (LESSONS #5).
