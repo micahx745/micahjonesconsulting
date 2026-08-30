@@ -39,7 +39,6 @@ import { Hero } from "@/components/color-worlds/Hero";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
 import { OrdaniSticky } from "@/components/color-worlds/OrdaniSticky";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
-import { RevenueTick } from "@/components/color-worlds/RevenueTick";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
 export const metadata: Metadata = {
@@ -142,23 +141,13 @@ export default function ColorWorldsHome() {
         </div>
       </div>
 
-      {/* REVENUE + EXITS — terracotta. Pass-17: moved up from inside the
-          CLIENTS section. The $20M+ / three exits / trillions claim is the
-          credibility hook that earns the reader's attention BEFORE the
-          services pitch. Terracotta world continues the hero band
-          (hero → marquee → revenue all share terracotta) so the
-          credibility moment reads as the closing beat of the hero. */}
-      <section
-        className="cw-rev-band"
-        data-section
-        data-world="terracotta"
-        aria-labelledby="cw-rev-title"
-      >
-        <h2 id="cw-rev-title" className="cw-sr-only">
-          Revenue and exits
-        </h2>
-        <RevenueTick />
-      </section>
+      {/* REVENUE BAND DELETED (Pass-4). Its three claims ($20M+, three
+          exits, trillions) moved ONTO the hero photo as proof chips —
+          the reference language (D-R15) puts stats on the image, not in
+          a band below it. The per-exit detail (Guardicore→Akamai etc.)
+          lives in THE LEDGER with figures and links, so the band's
+          three-entry index was already a duplicate. ~90 rendered words
+          leave the page with it. */}
 
       {/* ABOUT (brief) — bone. Pass-32: short operator grounding (the
           removed hero eyebrow's identity, relocated here); full bio /about. */}

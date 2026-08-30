@@ -47,6 +47,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
 // Pass-31 (Cowork round 2): every word now reads as a clean sentence
@@ -143,6 +144,47 @@ export function Hero() {
     return () => {
       io.disconnect();
       timeouts.forEach((t) => window.clearTimeout(t));
+    };
+  }, []);
+
+  // Chip drift (Pass-4) — scroll-linked, same philosophy as the service
+  // strip (D2): progress derives from the hero's own rect every scroll
+  // frame, written to --hero-scroll on the hero root; each chip's CSS
+  // multiplies it by its own --drift. User-driven, no idle loop; the
+  // reduced-motion guard means the var is never set and chips sit still.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduced) return;
+
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    let raf = 0;
+    let pending = false;
+    function apply() {
+      const rect = hero!.getBoundingClientRect();
+      // 0 at load, 1 when the hero has fully scrolled past.
+      const progress = Math.min(
+        Math.max(-rect.top / Math.max(rect.height, 1), 0),
+        1,
+      );
+      hero!.style.setProperty("--hero-scroll", progress.toFixed(4));
+      pending = false;
+    }
+    function onScroll() {
+      if (!pending) {
+        pending = true;
+        raf = requestAnimationFrame(apply);
+      }
+    }
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
@@ -246,12 +288,32 @@ export function Hero() {
   return (
     <header
       ref={heroRef}
-      className="cw-hero"
+      className="cw-hero cw-hero--photo"
       data-section
       data-world="terracotta"
       id="top"
       aria-label="Hero"
     >
+      {/* Pass-4 (D-R15): the photographic ground — the operator at his
+          laptop in front of a whiteboard of real system diagrams. The
+          reference language he picked (SyncDepth / Nixtio / PeakHealth):
+          full-bleed photo, display type OVER it, proof chips floating on
+          it. Duotone comes from CSS (grayscale + terracotta→espresso
+          veil), NOT mix-blend-mode — LESSONS #7. The photo is treated as
+          ground; the H1/sub carry the message, so the image is decorative
+          to assistive tech. */}
+      <div className="cw-hero__ground" aria-hidden>
+        <Image
+          src="/hero-context.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="cw-hero__photo"
+        />
+        <div className="cw-hero__veil" />
+      </div>
+
       <h1 className="cw-h1 cw-shift" ref={h1Ref}>
         <span className="cw-line">
           <span ref={captureLine}>I build the</span>
@@ -276,11 +338,8 @@ export function Hero() {
       </h1>
 
       {/* Wave 1 (D-R13): the operator-locked positioning line IS the sub,
-          alone. Pass-3 cut the exits sentence that briefly followed it —
-          the RevenueTick band one screen below opens with the same claim
-          ("Three companies I helped build. An IPO and two acquisitions."),
-          so the hero carrying it too was straight duplication. Hero =
-          thesis; the band = proof deck. */}
+          alone. Pass-4: the proof deck is now the chip cluster on the
+          photo (the band it once deferred to is gone). */}
       <p className="cw-sub" ref={subRef}>
         <em>Strategy and software, shipped by the same pair of hands.</em>
       </p>
@@ -311,6 +370,40 @@ export function Hero() {
           Book a call <span aria-hidden>↗</span>
         </a>
       </div>
+
+      {/* Pass-4: the proof chips — the reference language's floating
+          stats ("5K+ customers" / "24K+ members"), carrying what the
+          RevenueTick band carried before this pass absorbed it. Each
+          chip drifts a few px against scroll via --hero-scroll (set by
+          the scroll effect below; user-driven, no idle loop, dead under
+          reduced motion). Desktop: positioned over the photo. Mobile:
+          in-flow row under the CTAs. */}
+      <ul className="cw-chips" aria-label="Track record at a glance">
+        <li
+          className="cw-chip cw-reveal"
+          style={{ "--drift": "-22px", transitionDelay: "500ms" } as React.CSSProperties}
+        >
+          <strong>$20M+</strong> client revenue
+        </li>
+        <li
+          className="cw-chip cw-reveal"
+          style={{ "--drift": "30px", transitionDelay: "620ms" } as React.CSSProperties}
+        >
+          <strong>3</strong> exits helped build
+        </li>
+        <li
+          className="cw-chip cw-reveal"
+          style={{ "--drift": "-34px", transitionDelay: "740ms" } as React.CSSProperties}
+        >
+          <strong>Trillions</strong> in assets behind my work
+        </li>
+        <li
+          className="cw-chip cw-reveal"
+          style={{ "--drift": "18px", transitionDelay: "860ms" } as React.CSSProperties}
+        >
+          <strong>200</strong> birth workers on Ordani
+        </li>
+      </ul>
 
     </header>
   );
