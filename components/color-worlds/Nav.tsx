@@ -234,7 +234,7 @@ export function Nav() {
           </a>
         ))}
         <div className="cw-overlay-meta">
-          Micah Jones — Independent operator — Oakland, CA
+          Micah Jones · Independent operator · Oakland, CA
         </div>
       </div>
     </>

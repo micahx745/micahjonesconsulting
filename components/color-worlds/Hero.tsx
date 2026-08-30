@@ -275,15 +275,14 @@ export function Hero() {
         </span>
       </h1>
 
-      {/* Wave 1 (D-R13): the operator-locked positioning line leads the
-          sub — it was already the site's <title>; now it's visible in the
-          first two seconds. The regulated-buyers category signal moves to
-          the clients section (which carries it via the named-bank
-          descriptors); the hero sheds a sentence. */}
+      {/* Wave 1 (D-R13): the operator-locked positioning line IS the sub,
+          alone. Pass-3 cut the exits sentence that briefly followed it —
+          the RevenueTick band one screen below opens with the same claim
+          ("Three companies I helped build. An IPO and two acquisitions."),
+          so the hero carrying it too was straight duplication. Hero =
+          thesis; the band = proof deck. */}
       <p className="cw-sub" ref={subRef}>
-        <em>Strategy and software, shipped by the same pair of hands.</em>{" "}
-        Three companies I helped build reached an exit: an IPO and two
-        acquisitions.
+        <em>Strategy and software, shipped by the same pair of hands.</em>
       </p>
 
       {/* Pass-30 (Cowork review): the $149 playbook is OFF the enterprise

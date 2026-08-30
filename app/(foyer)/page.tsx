@@ -100,7 +100,7 @@ const CLIENT_OFFERS = [
   {
     n: "03",
     title: "Frontier AI engineering",
-    desc: "Eval, orchestration, deployment — the shipping discipline most AI founders skip.",
+    desc: "Eval, orchestration, deployment. The shipping discipline most AI founders skip.",
   },
 ] as const;
 
@@ -162,34 +162,13 @@ export default function ColorWorldsHome() {
 
       {/* ABOUT (brief) — bone. Pass-32: short operator grounding (the
           removed hero eyebrow's identity, relocated here); full bio /about. */}
-      <section
-        className="cw-block"
-        id="about-brief"
-        data-section
-        data-world="bone"
-        aria-labelledby="cw-about-brief-title"
-      >
-        <p className="cw-kicker cw-reveal">About</p>
-        <SplitReveal
-          as="h2"
-          id="cw-about-brief-title"
-          className="cw-secttitle"
-        >
-          Operator, not consultant.
-        </SplitReveal>
-        <p className="cw-sect-dek cw-reveal">
-          I&rsquo;ve spent a decade inside B2B software, on either side of
-          the table — GTM strategy in the morning, shipping product in the
-          afternoon. Most consultants don&rsquo;t ship. Most builders
-          don&rsquo;t sell. I do both.
-        </p>
-        <div className="cw-section-cta-wrap cw-reveal">
-          <a href="/about" className="cw-section-cta">
-            More about how I work{" "}
-            <span className="cw-section-cta__arr" aria-hidden>→</span>
-          </a>
-        </div>
-      </section>
+      {/* ABOUT-BRIEF section DELETED (Pass-3, attack plan §6 item 7).
+          Its dek duplicated the hero thesis one screen later — and in
+          the exact symmetric-pair shape D-R12 rejects ("Most consultants
+          don't ship. Most builders don't sell."). /about carries the
+          depth; the nav carries the route. Nothing external linked to
+          #about-brief (grepped). One fewer bone section also makes each
+          remaining world transition rarer and bigger, per D-R3. */}
 
       {/* CLIENTS — bone */}
       <section
@@ -200,12 +179,15 @@ export default function ColorWorldsHome() {
         aria-labelledby="cw-clients-title"
       >
         <p className="cw-kicker cw-reveal">Services</p>
+        {/* Pass-3: title cut from 16 words + an em-dash to three. The
+            rows below name the engagements; a title that previews them
+            is the section explaining itself twice (attack plan §7). */}
         <SplitReveal
           as="h2"
           id="cw-clients-title"
           className="cw-secttitle"
         >
-          Three engagements. Built for companies, founders, and operators who need outcomes shipped — not slides.
+          Three engagements.
         </SplitReveal>
 
         <ul className="cw-worklist">
@@ -281,8 +263,7 @@ export default function ColorWorldsHome() {
               <p className="cw-principle__name">Diagnose</p>
               <p className="cw-principle__text">
                 I find the gap between what you built and what buyers
-                actually pay for. Customer interviews, sales-call
-                analysis, market research.
+                actually pay for.
               </p>
               <p className="cw-principle__artifact">&#8594; Positioning audit memo</p>
             </div>
@@ -309,7 +290,7 @@ export default function ColorWorldsHome() {
             <div>
               <p className="cw-principle__name">Position</p>
               <p className="cw-principle__text">
-                I stay until the narrative sells without me &mdash; the
+                I stay until the narrative sells without me. The
                 Guardicore repositioning carried into the Akamai
                 acquisition.
               </p>

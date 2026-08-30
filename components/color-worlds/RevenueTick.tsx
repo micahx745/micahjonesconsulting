@@ -198,7 +198,7 @@ export function RevenueTick() {
             </p>
             <div className="cw-rev__note">
               <p>
-                I helped launch Neuton.AI — automated machine learning
+                I helped launch Neuton.AI: automated machine learning
                 that builds models small enough to run on a
                 microcontroller.
               </p>
