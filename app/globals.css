@@ -3278,43 +3278,15 @@ body {
   will-change: transform, opacity;
 }
 
-/* Native CSS scroll-driven reveals — modern progressive enhancement.
- *
- * Baseline: Safari 26 (shipped Sept 15, 2025), Chrome/Edge 115+,
- * Opera 101+. Firefox is still behind a flag. We feature-detect
- * with @supports and gracefully fall back to the IntersectionObserver-
- * driven .cw-reveal class (ScrollReveal component) on unsupported
- * browsers — no flash, no breakage.
- *
- * The native path runs on the compositor; nothing the main thread does
- * (long task, big paint) can stutter it. It's strictly faster than the
- * JS equivalent.
- *
- * The .cw-reveal class is still added in markup; we override its
- * baseline only when scroll-driven is supported. */
-@supports (animation-timeline: view()) {
-  [data-mode="cw"].cw-js-reveals .cw-reveal:not(.is-in) {
-    /* Override the IO-driven hidden state — native path takes over. */
-    opacity: 1;
-    transform: none;
-    animation-name: cw-scroll-reveal;
-    animation-duration: 1ms; /* dummy — driven by timeline, not time */
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    animation-fill-mode: both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 50%;
-  }
-  @keyframes cw-scroll-reveal {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
+/* Native scroll-driven reveal path DELETED (redesign Wave 0, 2026-08-30).
+ * The @supports (animation-timeline: view()) block that lived here won in
+ * every modern browser and permanently resolved all 24 .cw-reveal elements
+ * to their END state — the reveal never played for anyone, ever (verified
+ * on production with Playwright at reduce AND no-preference; see
+ * .planning/DEFECT-reveal-system-2026-08-29.md). The IntersectionObserver
+ * path below is now the ONE reveal system. If the native path returns, it
+ * must ship with a measured probe of the overridden state in a real
+ * browser, per the DEFECT doc's gate. */
 
 /* Generic reveal — observed by ScrollReveal client component.
  *
@@ -3327,8 +3299,11 @@ body {
   opacity: 1;
   transform: none;
   transition:
-    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Wave 0: 0.9s -> 0.55s. Now that the reveal actually RUNS (the dead
+       native path above is deleted), 0.9s reads as syrup at scroll speed;
+       0.55s with the same ease finishes inside one scroll gesture. */
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 [data-mode="cw"].cw-js-reveals .cw-reveal:not(.is-in) {
   opacity: 0;

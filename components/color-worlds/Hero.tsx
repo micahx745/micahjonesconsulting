@@ -275,13 +275,15 @@ export function Hero() {
         </span>
       </h1>
 
+      {/* Wave 1 (D-R13): the operator-locked positioning line leads the
+          sub — it was already the site's <title>; now it's visible in the
+          first two seconds. The regulated-buyers category signal moves to
+          the clients section (which carries it via the named-bank
+          descriptors); the hero sheds a sentence. */}
       <p className="cw-sub" ref={subRef}>
-        Three companies I helped build reached an exit — an IPO and two
-        acquisitions.{" "}
-        <em>
-          I sell and position data and security into banks, insurers,
-          and regulated buyers.
-        </em>
+        <em>Strategy and software, shipped by the same pair of hands.</em>{" "}
+        Three companies I helped build reached an exit: an IPO and two
+        acquisitions.
       </p>
 
       {/* Pass-30 (Cowork review): the $149 playbook is OFF the enterprise

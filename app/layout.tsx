@@ -18,7 +18,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { bricolage, hankenGrotesk, jetbrainsMono } from "@/lib/fonts";
 import { LenisProvider } from "@/components/LenisProvider";
-import { RevealMount } from "@/components/RevealMount";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -144,7 +143,10 @@ export default function RootLayout({
         <LenisProvider>
           <ViewTransition>{children}</ViewTransition>
         </LenisProvider>
-        <RevealMount />
+        {/* RevealMount DELETED (Wave 0): it observed [data-reveal], an
+            attribute that exists nowhere in the tree — dead code since
+            the Color Worlds migration. ScrollReveal (per-page, .cw-reveal
+            -> .is-in) is the one reveal system. */}
         <Analytics />
         <SpeedInsights />
         {/* JSON-LD — Person + Organization. SEO + AI entity recognition. */}
