@@ -8,25 +8,30 @@ as surgical edits in the production codebase on branch `redesign-wave4`, judged 
 production-build screenshots against the live site. NEVER push this branch or main
 without operator approval — push fires auto-deploy (LESSONS #5).
 
-## Branch redesign-wave4 — Pass-1 COMMITTED (1511768), shown to operator, awaiting verdict
-- Reveal system FIXED on the real site: dead @supports block deleted, RevealMount
-  deleted, IO path live. Gate proof: 24/24 below-fold reveals hidden pre-scroll at
-  no-preference (production serves 0/24), arrive on entry; reduce = full stop.
-  Timing 0.9s -> 0.55s.
-- Hero: rotating-word H1 UNTOUCHED (operator loves it, D1 + Pass-9 history: he
-  called a smaller mixed-case hero "cheap" once already). Locked line (D-R13)
-  "Strategy and software, shipped by the same pair of hands." now leads cw-sub.
-- pnpm build + copy-lint clean; 1440/390 no overflow; localhost 404s are just
-  Vercel insights scripts (expected off-Vercel).
-- `next start` may still be running on :3000 — RESTART after any rebuild before
-  measuring (stale-server burn, see prior arc).
+## Branch redesign-wave4 — Pass-1..3 COMMITTED, awaiting operator verdict
+Pass-1 (1511768): reveal system FIXED (dead @supports + RevealMount deleted, IO
+path live, 24/24 below-fold hidden pre-scroll vs production's 0/24; timing
+0.9s->0.55s). Hero rotating-word H1 untouched; locked thesis line in cw-sub.
+Pass-2 (6799fe1): THE LEDGER replaces the espresso card grid — display names,
+mono tabular outcomes, hairline color-mix rules, double-rule $20M+ total row.
+4 rows link to case pages; SurveyMonkey row deliberately unlinked. Dead
+cw-card/cw-cards/cw-shipped-also CSS excised (~180 lines). Title: "Every
+figure is defensible on request." Caught by screenshot: mobile arrow orphaned
+to its own grid row — explicit grid placement fixed it.
+Pass-3 (13e08d5): home 615->559 rendered words. about-brief section DELETED
+(duplicated hero thesis in the rejected symmetric-pair shape). Clients title
+16 words -> "Three engagements." Rendered em-dashes 4-5 -> 0 prose (nav
+overlay -> interpuncts, Neuton -> colon, AI desc -> period).
+All gates per pass: pnpm build + copy-lint clean, production-server probe,
+1440/390 no overflow, console clean. Server on :3000 STOPPED after last gate.
+Operator is running Claude Design against the PUBLIC repo (main) in parallel —
+main does NOT have these passes (14+ commits local-only, unpushed by design).
 
 ## Queued next passes (operator gates each)
-2. Ledger section: convert the espresso "shipped" card grid into the record table
-   (he picked Ledger); seam duality via existing terracotta/petrol worlds.
-3. Word cuts: home 624 -> ~350 per attack plan (`.planning/REDESIGN-ATTACK-PLAN-2026-08.md` §7).
-4. Motion: more animation IN THE SITE'S IDIOM (reveals now actually run; consider
-   RevenueTick counter polish). Nothing bolted on.
+4. Deeper cuts toward ~350: RevenueTick entry notes + Ordani lede are the
+   remaining mass — both operator-reviewed copy, need his eyes before cutting.
+5. Motion polish in the site's idiom (reveals now run; SplitReveal/counters).
+6. Inner pages (/services merge D-R5, /about, /hire-me) per attack plan Wave 5.
 
 ## Taste ledger (do NOT re-violate)
 D-R10 quiet luxury = ACCESS FOR ALL (warm, never austere). D-R11 his palette +
