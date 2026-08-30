@@ -1846,90 +1846,94 @@ body {
   }
 }
 
-/* THE TWO DOORS (Pass-5) — audience A and C doorways. Whole-card links
- * in the ledger's register: hairline borders, saffron spine on hover,
- * no imagery. Each door speaks its audience's language; the shared
- * anatomy says both doors lead into the same house. Entrance stagger
- * lives in the JSX (door 2 carries transitionDelay 100ms via the
- * .cw-reveal system); the transforms below are hover microstates. */
-[data-mode="cw"] .cw-doors {
+/* THE TWO DOORS (Pass-6 — operator refused the card version: "they look
+ * weak"). No cards, no borders: the SEAM as doorways. Two full-bleed
+ * color panels — petrol for the build-side door (solo builders),
+ * terracotta for the sell-side door (growing businesses) — big display
+ * type, mono kickers, saffron arrows. Entrance stagger lives in the JSX
+ * (door 2 carries transitionDelay 100ms via .cw-reveal); the transforms
+ * below are hover microstates. */
+[data-mode="cw"] .cw-doors-band {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 18px;
-  max-width: 1040px;
 }
 @media (min-width: 800px) {
-  [data-mode="cw"] .cw-doors {
+  [data-mode="cw"] .cw-doors-band {
     grid-template-columns: 1fr 1fr;
   }
 }
 [data-mode="cw"] .cw-door {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: clamp(22px, 3vw, 34px);
-  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-  border-radius: 3px;
-  color: inherit;
+  gap: 14px;
+  min-height: clamp(320px, 42vh, 460px);
+  padding: clamp(36px, 5vw, 72px) clamp(24px, 4vw, 64px);
   text-decoration: none;
-  transition: /* motion-ok: hover microstate, not a reveal — entrance stagger is inline in Hero JSX (transitionDelay 100ms on door 2) */
-    border-color 0.25s ease,
-    transform 0.25s ease;
 }
-[data-mode="cw"] .cw-door:hover,
-[data-mode="cw"] .cw-door:focus-visible {
-  border-color: var(--color-cw-saffron);
-  transform: translateY(-3px); /* motion-ok: hover lift microstate, not a group reveal */
+[data-mode="cw"] .cw-door--build {
+  background: var(--color-cw-petrol);
+  color: #E9F2F0;
+}
+[data-mode="cw"] .cw-door--sell {
+  background: var(--color-cw-terracotta);
+  color: #FBF0E7;
 }
 [data-mode="cw"] .cw-door__kicker {
   font-family: var(--font-cw-mono);
   font-size: 10.5px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.9;
+  opacity: 0.85;
   margin: 0;
 }
 [data-mode="cw"] .cw-door__title {
   font-family: var(--font-cw-display);
-  font-weight: 600;
-  font-size: clamp(19px, 2vw, 25px);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  margin: 0;
+  font-weight: 650;
+  font-size: clamp(24px, 2.6vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 6px 0 0;
   text-transform: none;
-  max-width: 24ch;
+  max-width: 19ch;
   text-wrap: balance;
 }
 [data-mode="cw"] .cw-door__body {
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.55;
-  opacity: 0.85;
+  opacity: 0.88;
   margin: 0;
-  max-width: 40ch;
+  max-width: 38ch;
 }
 [data-mode="cw"] .cw-door__cta {
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 18px;
   font-family: var(--font-cw-mono);
   font-size: 12px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--color-cw-saffron);
 }
 [data-mode="cw"] .cw-door__cta span {
   display: inline-block;
   transition: transform 0.25s ease; /* motion-ok: hover arrow nudge, matches existing cw-section-cta idiom */
 }
+/* Hover: the panel's ground deepens a step and the arrow leads — the
+ * whole panel is the affordance, no lift, no border. */
+[data-mode="cw"] .cw-door {
+  transition: filter 0.3s ease; /* motion-ok: hover microstate, not a reveal — entrance stagger is inline in the JSX */
+}
+[data-mode="cw"] .cw-door:hover,
+[data-mode="cw"] .cw-door:focus-visible {
+  filter: brightness(1.08);
+}
 [data-mode="cw"] .cw-door:hover .cw-door__cta span,
 [data-mode="cw"] .cw-door:focus-visible .cw-door__cta span {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 @media (prefers-reduced-motion: reduce) {
   [data-mode="cw"] .cw-door,
   [data-mode="cw"] .cw-door__cta span {
     transition: none;
-  }
-  [data-mode="cw"] .cw-door:hover {
-    transform: none;
   }
 }
 @media (max-width: 760px) {

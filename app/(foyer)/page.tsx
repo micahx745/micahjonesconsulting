@@ -491,44 +491,48 @@ export default function ColorWorldsHome() {
           off the enterprise front door) — that lock was about the FIRST
           screen; this sits five screens down. Flagged to the operator
           either way. */}
+      {/* Pass-6 (operator: "the cards look weak"): doors are no longer
+          cards. They are the SEAM — two full-bleed color panels, edge to
+          edge, no borders. Builders get the petrol (build-side) panel,
+          growing businesses get terracotta (sell-side). The section
+          keeps data-world="bone" for the page-palette rhythm; the panels
+          paint themselves. */}
       <section
-        className="cw-block"
+        className="cw-doors-band"
         id="doors"
         data-section
         data-world="bone"
         aria-label="Which door fits"
       >
-        <div className="cw-doors">
-          <a href="/playbook" className="cw-door cw-reveal">
-            <p className="cw-door__kicker">Building solo, with AI</p>
-            <h2 className="cw-door__title">
-              The demo took a weekend. The last 20% is eating your month.
-            </h2>
-            <p className="cw-door__body">
-              That gap is my daily work. I wrote the field manual for it.
-            </p>
-            <span className="cw-door__cta">
-              Read the playbook <span aria-hidden>→</span>
-            </span>
-          </a>
-          <a
-            href="/services"
-            className="cw-door cw-reveal"
-            style={{ transitionDelay: "100ms" }}
-          >
-            <p className="cw-door__kicker">Running a growing business</p>
-            <h2 className="cw-door__title">
-              Too big for duct tape. Not ready for an agency retainer.
-            </h2>
-            <p className="cw-door__body">
-              You get me directly. Diagnosis, a shipped artifact in month
-              one, and a system your team runs without me.
-            </p>
-            <span className="cw-door__cta">
-              See the three engagements <span aria-hidden>→</span>
-            </span>
-          </a>
-        </div>
+        <a href="/playbook" className="cw-door cw-door--build cw-reveal">
+          <p className="cw-door__kicker">Building solo, with AI</p>
+          <h2 className="cw-door__title">
+            The demo took a weekend. The last 20% is eating your month.
+          </h2>
+          <p className="cw-door__body">
+            That gap is my daily work. I wrote the field manual for it.
+          </p>
+          <span className="cw-door__cta">
+            Read the playbook <span aria-hidden>→</span>
+          </span>
+        </a>
+        <a
+          href="/services"
+          className="cw-door cw-door--sell cw-reveal"
+          style={{ transitionDelay: "100ms" }}
+        >
+          <p className="cw-door__kicker">Running a growing business</p>
+          <h2 className="cw-door__title">
+            Too big for duct tape. Not ready for an agency retainer.
+          </h2>
+          <p className="cw-door__body">
+            You get me directly. Diagnosis, a shipped artifact in month
+            one, and a system your team runs without me.
+          </p>
+          <span className="cw-door__cta">
+            See the three engagements <span aria-hidden>→</span>
+          </span>
+        </a>
       </section>
 
       {/* FOOTER — terracotta */}
