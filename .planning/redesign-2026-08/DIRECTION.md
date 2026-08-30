@@ -202,3 +202,27 @@ specifies it.
 **Synthesis for the next build:** Ledger's document credibility (rules, tabular figures,
 defensible register) + Seam's structural duality (sell side / build side, he is the crossing)
 + the current site's warm colourful palette + MORE motion + hand-drawn human marks.
+
+## STYLE TILE 02 — "Same Pair of Hands" (Ledger x Seam) — awaiting gate
+Artifact: https://claude.ai/code/artifact/5dff62ba-e838-4eb9-ad76-24227d72f7e3
+Source: `.planning/redesign-2026-08/style-tile-02-hybrid.html` (NOT deployed)
+
+Answers D-R10/11/12 directly:
+- **Warm, not austere** — his own Color Worlds are back: paper #F6EFE2, terracotta #9E3C25
+  (sell pane), petrol #1A4548 (build pane), saffron #C9982F (the crossing + the mark),
+  espresso #2A1F18 (notes). Access-for-all, not gatekeeping minimalism.
+- **His three typefaces kept** — Bricolage / Hanken / JetBrains Mono. No swap proposed.
+- **Ledger x Seam** — the seam argues the positioning in colour, the ledger proves it in
+  tabular figures. Seam is what a builder remembers; the table is what procurement forwards.
+- **More motion** — hand-drawn saffron mark draws itself under the headline; counters tick up
+  on entry; panels arrive. Nothing loops, follows the cursor, or hijacks scroll.
+- **Words** — three ASYMMETRIC headline options, switchable in the hero, so the operator picks
+  rather than grades a single guess. A: "Strategy and software, shipped by the same pair of
+  hands." (his own existing title tag) · B: "I have helped build three companies to an exit.
+  I also wrote the code." · C: "I close the deal, then I build the thing I sold."
+
+Verified before delivery (Playwright, standards-mode shim, 3 passes, zero console errors):
+1440 motion · 390 mobile · 1440 reduced. No horizontal overflow at either width. Bricolage
+resolves. Under reduce, the mark is drawn and counters show final values immediately.
+Fixed during the build: stacked vertical margins creating dead space between seam/counters/
+ledger; and the ledger's outcome separator stranding itself on its own line at 390.

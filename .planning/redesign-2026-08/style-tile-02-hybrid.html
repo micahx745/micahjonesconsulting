@@ -1,0 +1,359 @@
+<title>Same Pair of Hands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* ============================================================
+   SAME PAIR OF HANDS — Ledger x Seam, in his own Color Worlds.
+   Quiet luxury read as ACCESS FOR ALL: warm, coloured, legible
+   to a solo builder and a bank. Committed single world.
+   His three faces kept: Bricolage / Hanken / JetBrains Mono.
+   ============================================================ */
+:root{
+  --paper:#F6EFE2; --paper-deep:#ECE3D0; --ink:#211B14; --ink-soft:#5C5245;
+  --terracotta:#9E3C25; --terracotta-lt:#C1502A;
+  --petrol:#1A4548; --petrol-lt:#2A6A6E;
+  --saffron:#C9982F; --espresso:#2A1F18;
+  --hair:#D6CBB4;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-weight:400;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.w{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0}
+
+/* ---------------- HERO ---------------- */
+.hero{padding:clamp(30px,6vw,64px) 0 clamp(52px,8vw,96px)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding-bottom:18px;border-bottom:1px solid var(--hair);margin-bottom:clamp(44px,8vw,96px)}
+.bar__wm{font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.bar__wm span{color:var(--terracotta)}
+.bar__nav{display:none;gap:26px;font-size:14.5px}
+@media(min-width:760px){.bar__nav{display:flex}}
+.bar__nav a{color:var(--ink-soft);text-decoration:none;padding-bottom:2px;
+  border-bottom:1.5px solid transparent;transition:color .18s,border-color .18s}
+.bar__nav a:hover,.bar__nav a:focus-visible{color:var(--ink);border-bottom-color:var(--terracotta)}
+
+h1{font-family:var(--disp);font-weight:600;margin:0;
+  font-size:clamp(30px,5.2vw,60px);line-height:1.07;letter-spacing:-.025em;
+  max-width:18ch;text-wrap:balance;min-height:2.2em}
+h1 .em{position:relative;white-space:nowrap;color:var(--terracotta)}
+/* the hand-drawn mark — soul, and the first animation you meet */
+.scribble{position:absolute;left:-2%;right:-2%;bottom:-.16em;width:104%;height:.34em;
+  overflow:visible;pointer-events:none}
+.scribble path{fill:none;stroke:var(--saffron);stroke-width:7;stroke-linecap:round;
+  stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600)}
+.drawn .scribble path{animation:draw .9s cubic-bezier(.22,1,.36,1) .45s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+.swap{display:flex;flex-wrap:wrap;gap:8px;margin:clamp(26px,4vw,40px) 0 0}
+.swap button{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  background:transparent;color:var(--ink-soft);border:1px solid var(--hair);border-radius:2px;
+  padding:8px 12px;cursor:pointer;transition:all .18s}
+.swap button:hover{border-color:var(--terracotta);color:var(--ink)}
+.swap button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+/* ---------------- THE SEAM ---------------- */
+.seam{position:relative;display:grid;grid-template-columns:1fr;
+  border-radius:4px;overflow:hidden;margin:0 0 clamp(38px,5.5vw,66px)}
+@media(min-width:860px){.seam{grid-template-columns:1fr 1fr}}
+.pane{padding:clamp(30px,4.4vw,60px)}
+.pane--sell{background:var(--terracotta);color:#FBF0E7}
+.pane--build{background:var(--petrol);color:#E9F2F0}
+@media(min-width:860px){
+  .pane--sell{padding-right:clamp(92px,10vw,140px)}
+  .pane--build{padding-left:clamp(92px,10vw,140px)}
+}
+.pane .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  opacity:.72;margin:0}
+.pane h3{font-family:var(--disp);font-weight:600;font-size:clamp(22px,2.9vw,34px);
+  line-height:1.13;letter-spacing:-.018em;margin:16px 0 0;max-width:15ch;text-wrap:balance}
+.pane p{margin:14px 0 0;max-width:34ch;font-size:16px;line-height:1.55;opacity:.86}
+.pane ul{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.pane li{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;opacity:.9;
+  display:flex;gap:11px;align-items:baseline}
+.pane li b{font-weight:500;font-size:15px;opacity:1;min-width:5.4em}
+.cross{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-2.5deg);
+  z-index:4;display:none;background:var(--saffron);color:var(--espresso);
+  padding:15px 28px;border-radius:3px;text-align:center;
+  box-shadow:0 14px 42px rgba(33,27,20,.30)}
+@media(min-width:860px){.cross{display:block}}
+.cross .k{opacity:.72;margin:0 0 3px;color:var(--espresso)}
+.cross .v{font-family:var(--disp);font-weight:700;font-size:clamp(16px,1.9vw,22px);
+  letter-spacing:-.015em;display:block}
+.cross--mob{display:block;background:var(--saffron);color:var(--espresso);
+  padding:16px clamp(30px,4.4vw,60px);font-family:var(--disp);font-weight:700;font-size:19px}
+@media(min-width:860px){.cross--mob{display:none}}
+
+/* ---------------- THE LEDGER ---------------- */
+.sec{padding:0 0 clamp(44px,6.5vw,80px)}
+.sec__h{display:flex;flex-direction:column;gap:10px;margin-bottom:clamp(22px,3vw,34px)}
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3.2vw,38px);line-height:1.12;
+  letter-spacing:-.02em;margin:0;max-width:20ch;text-wrap:balance}
+.sec__h p{color:var(--ink-soft);max-width:56ch;margin:0;font-size:16.5px}
+.led{width:100%;border-collapse:collapse;font-family:var(--mono)}
+.led th{text-align:left;font-weight:400;font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-soft);padding:0 14px 10px 0;border-bottom:1.5px solid var(--ink)}
+.led th.r,.led td.r{text-align:right;padding-right:0}
+.led td{padding:17px 14px 17px 0;border-bottom:1px solid var(--hair);font-size:13px;
+  color:var(--ink-soft);vertical-align:baseline;font-variant-numeric:tabular-nums}
+.led .co{font-family:var(--disp);font-weight:500;font-size:19px;color:var(--ink);letter-spacing:-.01em}
+.led .fig{font-size:14.5px;font-weight:500;color:var(--petrol)}
+.led .fig em{font-style:normal;color:var(--terracotta)}
+.led tr.tot td{border-bottom:2px solid var(--ink);border-top:1.5px solid var(--ink);
+  color:var(--ink);font-weight:500}
+.led tr.tot .fig{font-size:17px;color:var(--terracotta)}
+@media(max-width:739px){
+  .led thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .led tr{display:block;padding:18px 0;border-bottom:1px solid var(--hair)}
+  .led td{display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+    padding:4px 0;border:0;text-align:left}
+  .led td.r{text-align:right}
+  .led td::before{content:attr(data-l);font-family:var(--mono);font-size:9px;letter-spacing:.13em;
+    text-transform:uppercase;color:#948872;flex:0 0 auto;padding-top:4px}
+  .led .fig{text-align:right}
+  .led .sep{display:none}
+  .led .fig em{display:block}
+  .led td.r.fig{flex-direction:column;align-items:flex-end;gap:4px}
+  .led td.r.fig::before{align-self:flex-start}
+  .led tr.tot{border:0;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+  .led tr.tot td{border:0}
+}
+
+/* ---------------- counters strip ---------------- */
+.count{display:grid;grid-template-columns:repeat(auto-fit,minmax(146px,1fr));
+  gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:4px;overflow:hidden}
+.count>div{background:var(--paper-deep);padding:24px clamp(16px,2.4vw,26px)}
+.count dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0 0 8px}
+.count dd{margin:0;font-family:var(--disp);font-weight:700;letter-spacing:-.03em;
+  font-size:clamp(28px,4vw,44px);line-height:1;color:var(--terracotta);font-variant-numeric:tabular-nums}
+.count small{display:block;font-family:var(--sans);font-weight:400;font-size:12.5px;
+  color:var(--ink-soft);margin-top:9px;line-height:1.42;letter-spacing:0}
+
+/* ---------------- reveal ---------------- */
+.rv{opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------------- notes ---------------- */
+.notes{background:var(--espresso);color:#EDE5D7;border-radius:4px;
+  padding:clamp(24px,4vw,44px);margin-bottom:clamp(40px,6vw,80px)}
+.notes h2{color:#EDE5D7;margin-bottom:20px}
+.notes .grid{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:780px){.notes .grid{grid-template-columns:1fr 1fr}}
+.notes h4{font-family:var(--sans);font-weight:600;font-size:15px;margin:0 0 8px;color:var(--saffron)}
+.notes p{margin:0 0 10px;font-size:15px;color:#C4B9A6;line-height:1.55}
+.notes p:last-child{margin:0}
+.notes b{color:#EDE5D7;font-weight:500}
+.foot{padding:0 0 90px}
+.foot p{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:0}
+a{color:var(--terracotta)}
+:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .scribble path{stroke-dashoffset:0;animation:none}
+}
+</style>
+
+<div class="w">
+  <header class="hero">
+    <div class="bar">
+      <div class="bar__wm">Micah Jones<span>.</span></div>
+      <nav class="bar__nav" aria-label="Primary">
+        <a href="#work">Work</a><a href="#about">About</a><a href="#playbook">Playbook</a>
+        <a href="#hire">Hire me</a>
+      </nav>
+      <span class="lbl" style="display:none">&nbsp;</span>
+    </div>
+
+    <h1 id="hl"></h1>
+
+    <div class="swap" role="group" aria-label="Headline options">
+      <button type="button" data-i="0" aria-pressed="true">Option A</button>
+      <button type="button" data-i="1" aria-pressed="false">Option B</button>
+      <button type="button" data-i="2" aria-pressed="false">Option C</button>
+    </div>
+  </header>
+
+  <!-- ============ THE SEAM, in colour ============ -->
+  <div class="seam rv">
+    <div class="pane pane--sell">
+      <p class="k">Sell side</p>
+      <h3>I make the number happen.</h3>
+      <p>Positioning, GTM and enterprise sales. One rewritten sentence at Guardicore moved
+      average deal size by $150K.</p>
+      <ul>
+        <li><b>$20M+</b> client revenue, 2013&ndash;2023</li>
+        <li><b>$80M</b> pipeline generated</li>
+        <li><b>3&times;</b> companies to an exit</li>
+      </ul>
+    </div>
+    <div class="pane pane--build">
+      <p class="k">Build side</p>
+      <h3>Then I go and build it.</h3>
+      <p>Ordani is HIPAA-grade practice management. I designed it, wrote it, shipped it and
+      support it. On my own.</p>
+      <ul>
+        <li><b>200</b> birth workers using it daily</li>
+        <li><b>0</b> lost to a competitor</li>
+        <li><b>1</b> pair of hands</li>
+      </ul>
+    </div>
+    <div class="cross"><p class="k">Rare bit</p><span class="v">Same person.</span></div>
+  </div>
+  <div class="cross--mob">Same person.</div>
+
+  <!-- ============ COUNTERS ============ -->
+  <section class="sec">
+    <dl class="count rv">
+      <div><dt>Client revenue</dt><dd data-to="20" data-pre="$" data-post="M+">$0M+</dd>
+        <small>Across a decade of engagements</small></div>
+      <div><dt>Exits helped build</dt><dd data-to="3">0</dd>
+        <small>Akamai &middot; SurveyMonkey &middot; Nordic</small></div>
+      <div><dt>Pipeline generated</dt><dd data-to="80" data-pre="$" data-post="M">$0M</dd>
+        <small>At Guardicore, on $14M revenue</small></div>
+      <div><dt>People on Ordani</dt><dd data-to="200">0</dd>
+        <small>Birth workers, every week</small></div>
+    </dl>
+  </section>
+
+  <!-- ============ THE LEDGER ============ -->
+  <section class="sec">
+    <div class="sec__h rv">
+      <p class="lbl">The record</p>
+      <h2>Every figure here is defensible on request.</h2>
+      <p>No adjectives. If you want the cap table, the pipeline report or a reference, ask and
+      you get it.</p>
+    </div>
+    <div class="rv">
+      <table class="led">
+        <thead><tr><th>Engagement</th><th>What I did</th><th class="r">Outcome</th><th class="r">Year</th></tr></thead>
+        <tbody>
+          <tr><td class="co" data-l="Engagement">Guardicore</td><td data-l="Role">Enterprise sales</td>
+            <td class="r fig" data-l="Outcome">$80M pipeline <span class="sep">&middot;</span> <em>acquired by Akamai</em></td>
+            <td class="r" data-l="Year">2021</td></tr>
+          <tr><td class="co" data-l="Engagement">TechValidate</td><td data-l="Role">Enterprise sales</td>
+            <td class="r fig" data-l="Outcome">$1M+ toward the <em>SurveyMonkey IPO</em></td>
+            <td class="r" data-l="Year">2018</td></tr>
+          <tr><td class="co" data-l="Engagement">Neuton.AI</td><td data-l="Role">Helped launch</td>
+            <td class="r fig" data-l="Outcome"><em>Acquired by Nordic Semiconductor</em></td>
+            <td class="r" data-l="Year">2025</td></tr>
+          <tr><td class="co" data-l="Engagement">Industry author</td><td data-l="Role">GTM systems</td>
+            <td class="r fig" data-l="Outcome">Reach 8K&rarr;290K <span class="sep">&middot;</span> <em>two six-figure retainers</em></td>
+            <td class="r" data-l="Year">2024</td></tr>
+          <tr><td class="co" data-l="Engagement">Ordani</td><td data-l="Role">Founder, sole engineer</td>
+            <td class="r fig" data-l="Outcome">200 birth workers <span class="sep">&middot;</span> <em>none lost</em></td>
+            <td class="r" data-l="Year">2026</td></tr>
+          <tr class="tot"><td class="co" data-l="">Total</td><td data-l="Period">2013&ndash;2023</td>
+            <td class="r fig" data-l="Client revenue">$20M+ in client revenue</td>
+            <td class="r" data-l="Year">&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ notes ============ -->
+  <section class="notes rv">
+    <h2>What changed, and why</h2>
+    <div class="grid">
+      <div>
+        <h4>Quiet luxury, read as access</h4>
+        <p>You defined it as <b>access for all</b>, so this is warm rather than austere. Your own
+        Color Worlds palette is back &mdash; terracotta, petrol, saffron, espresso on cream. Your
+        three typefaces stay. A bank and a solo builder can both read this without either feeling
+        it was written for someone else.</p>
+      </div>
+      <div>
+        <h4>Where the soul lives</h4>
+        <p>The hand-drawn saffron mark under the headline draws itself on load. The counters tick
+        up when they reach you. The colour panels arrive rather than appear. Nothing loops,
+        nothing follows the cursor, nothing hijacks your scroll.</p>
+      </div>
+      <div>
+        <h4>The words</h4>
+        <p>You were right that they were weak. <b>"Most consultants can't build. Most builders
+        can't sell."</b> is a symmetric sentence pair &mdash; the first item on the AI-slop list in
+        your own review rubric. Clever shape, no information. All three options above are
+        asymmetric and carry a real number or a real verb.</p>
+      </div>
+      <div>
+        <h4>Ledger meets seam</h4>
+        <p>The seam argues the positioning in colour; the ledger proves it in figures. The seam is
+        what a builder remembers. The table is what a procurement team forwards. Same page, two
+        jobs, no section explaining itself twice.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot"><p>Composition, not a finished page &middot; nothing deployed &middot; refuse it and it costs one build</p></div>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- headline options: asymmetric, specific, each carrying a number or a real verb --- */
+  var LINES = [
+    ['Strategy and software, shipped by the ', 'same pair of hands', '.'],
+    ['I have helped build three companies to an exit. ', 'I also wrote the code', '.'],
+    ['I close the deal, then I ', 'build the thing I sold', '.']
+  ];
+  var hl = document.getElementById('hl');
+  function paint(i){
+    var L = LINES[i];
+    hl.innerHTML = L[0] + '<span class="em">' + L[1] +
+      '<svg class="scribble" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true">' +
+      '<path d="M3 8.4 C 52 3.1, 104 10.2, 152 5.6 S 250 2.4, 297 7.1"/></svg></span>' + L[2];
+    var path = hl.querySelector('.scribble path');
+    if (path) {
+      var len = path.getTotalLength();
+      path.style.setProperty('--len', len);
+      if (reduce) { path.style.strokeDashoffset = 0; }
+      else { hl.classList.remove('drawn'); void hl.offsetWidth; hl.classList.add('drawn'); }
+    }
+  }
+  document.querySelectorAll('.swap button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.swap button').forEach(function(x){ x.setAttribute('aria-pressed','false'); });
+      b.setAttribute('aria-pressed','true');
+      paint(+b.dataset.i);
+    });
+  });
+  paint(0);
+
+  /* --- reveals + counters, one observer --- */
+  function countUp(el){
+    var to = +el.dataset.to, pre = el.dataset.pre || '', post = el.dataset.post || '';
+    if (reduce) { el.textContent = pre + to + post; return; }
+    var t0 = null, dur = 1150;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(to * e) + post;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = pre + to + post;
+    }
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-to]').forEach(countUp);
+      io.unobserve(e.target);
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.rv').forEach(function(el){
+    if (el.getBoundingClientRect().top < innerHeight * 0.85) {
+      el.classList.add('in');
+      el.querySelectorAll('[data-to]').forEach(countUp);
+    } else io.observe(el);
+  });
+})();
+</script>
