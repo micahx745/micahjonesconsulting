@@ -1,0 +1,302 @@
+<title>Marginalia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap">
+<style>
+/* ============================================================
+   MARGINALIA — tile 02 plus the missing person.
+   The figures were already credible. What they lacked was a
+   human standing next to them. So: handwriting in the margins,
+   a signature, and the story attached to every number.
+   ============================================================ */
+:root{
+  --paper:#F7F0E3; --paper-deep:#EFE6D4; --ink:#211B14; --ink-soft:#5C5245;
+  --terracotta:#9E3C25; --petrol:#1A4548; --saffron:#C9982F; --espresso:#2A1F18;
+  --hair:#D9CEB7; --hand:#B0641F;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --pen:"Caveat","Segoe Script",cursive;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);font-family:var(--sans);font-weight:400;font-size:17px;
+  line-height:1.62;-webkit-font-smoothing:antialiased;
+  background:var(--paper);
+  /* paper, not noise: two barely-there warm washes */
+  background-image:
+    radial-gradient(1100px 620px at 12% -8%, rgba(201,152,47,.10), transparent 60%),
+    radial-gradient(900px 560px at 96% 4%, rgba(158,60,37,.07), transparent 62%);
+  background-attachment:fixed}
+.w{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+.lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);margin:0}
+
+/* ---------- the hand ---------- */
+.hand{font-family:var(--pen);color:var(--hand);font-size:clamp(17px,2vw,22px);
+  line-height:1.25;font-weight:600;display:inline-block}
+.note{position:relative;font-family:var(--pen);color:var(--hand);font-weight:600;
+  font-size:clamp(15.5px,1.7vw,19px);line-height:1.2;display:block}
+.note--rot{transform:rotate(-1.6deg)}
+.note--todo{color:#8A7C63;border-bottom:1.5px dashed #B9A987;padding-bottom:2px}
+.note--todo::before{content:"YOUR LINE — ";font-family:var(--mono);font-size:9px;
+  letter-spacing:.14em;color:#9A8B70;display:block;margin-bottom:2px}
+.arrow{display:block;width:52px;height:26px;overflow:visible;margin:2px 0 0 -4px}
+.arrow path{fill:none;stroke:var(--hand);stroke-width:1.9;stroke-linecap:round;
+  stroke-linejoin:round;stroke-dasharray:var(--l,90);stroke-dashoffset:var(--l,90)}
+.in .arrow path{animation:ink .7s cubic-bezier(.22,1,.36,1) .25s forwards}
+@keyframes ink{to{stroke-dashoffset:0}}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(28px,5vw,56px) 0 clamp(44px,7vw,84px)}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding-bottom:18px;border-bottom:1px solid var(--hair);margin-bottom:clamp(38px,6.5vw,78px)}
+.bar__wm{font-family:var(--disp);font-weight:600;font-size:19px;letter-spacing:-.01em}
+.bar__wm span{color:var(--terracotta)}
+.bar__nav{display:none;gap:26px;font-size:14.5px}
+@media(min-width:760px){.bar__nav{display:flex}}
+.bar__nav a{color:var(--ink-soft);text-decoration:none;padding-bottom:2px;
+  border-bottom:1.5px solid transparent;transition:color .18s,border-color .18s}
+.bar__nav a:hover,.bar__nav a:focus-visible{color:var(--ink);border-bottom-color:var(--terracotta)}
+
+.heroGrid{display:grid;grid-template-columns:1fr;gap:clamp(28px,4vw,52px);align-items:end}
+@media(min-width:940px){.heroGrid{grid-template-columns:minmax(0,1fr) 268px}}
+h1{font-family:var(--disp);font-weight:600;margin:0;
+  font-size:clamp(31px,5.1vw,58px);line-height:1.07;letter-spacing:-.025em;
+  max-width:17ch;text-wrap:balance}
+h1 .em{position:relative;white-space:nowrap;color:var(--terracotta)}
+.scribble{position:absolute;left:-2%;right:-2%;bottom:-.17em;width:104%;height:.34em;overflow:visible}
+.scribble path{fill:none;stroke:var(--saffron);stroke-width:7;stroke-linecap:round;
+  stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600)}
+.drawn .scribble path{animation:draw .95s cubic-bezier(.22,1,.36,1) .35s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero__say{margin:26px 0 0;font-size:clamp(16.5px,1.9vw,19px);max-width:46ch;color:var(--ink-soft)}
+.hero__say b{color:var(--ink);font-weight:500}
+.sig{margin:26px 0 0;display:flex;align-items:center;gap:14px}
+.sig svg{width:150px;height:52px;overflow:visible}
+.sig path{fill:none;stroke:var(--ink);stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:var(--l,700);stroke-dashoffset:var(--l,700)}
+.drawn .sig path{animation:ink 1.5s cubic-bezier(.3,.9,.4,1) .9s forwards}
+.sig span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-soft)}
+/* the portrait slot, designed rather than left empty */
+.port{border:1.5px dashed var(--hair);border-radius:3px;display:flex;
+  flex-direction:column;justify-content:flex-end;padding:20px;background:rgba(236,227,208,.5);
+  min-height:150px}
+@media(min-width:940px){.port{aspect-ratio:4/5;min-height:0}}
+.port .note{margin-bottom:4px}
+
+/* ---------- seam ---------- */
+.seam{position:relative;display:grid;grid-template-columns:1fr;border-radius:4px;
+  overflow:hidden;margin:0 0 clamp(46px,6vw,74px)}
+@media(min-width:880px){.seam{grid-template-columns:1fr 1fr}}
+.pane{padding:clamp(30px,4.2vw,56px)}
+.pane--sell{background:var(--terracotta);color:#FBF0E7}
+.pane--build{background:var(--petrol);color:#E9F2F0}
+@media(min-width:880px){
+  .pane--sell{padding-right:clamp(88px,9vw,132px)}
+  .pane--build{padding-left:clamp(88px,9vw,132px)}
+}
+.pane .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  opacity:.72;margin:0}
+.pane h3{font-family:var(--disp);font-weight:600;font-size:clamp(22px,2.8vw,33px);line-height:1.13;
+  letter-spacing:-.018em;margin:15px 0 0;max-width:15ch;text-wrap:balance}
+.pane p{margin:13px 0 0;max-width:33ch;font-size:16px;line-height:1.55;opacity:.88}
+.pane ul{list-style:none;margin:24px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.pane li{font-family:var(--mono);font-size:12.5px;font-variant-numeric:tabular-nums;opacity:.92}
+.pane li b{font-weight:500;font-size:16px;display:inline-block;min-width:5.2em}
+.pane .hand{color:#F3D9A6;font-size:clamp(15px,1.6vw,17.5px);display:block;margin-top:3px;
+  padding-left:5.2em;opacity:.95}
+.pane--build .hand{color:#9FD4C6}
+.cross{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-2.2deg);
+  z-index:4;display:none;background:var(--saffron);color:var(--espresso);padding:14px 26px;
+  border-radius:3px;text-align:center;box-shadow:0 14px 42px rgba(33,27,20,.30)}
+@media(min-width:880px){.cross{display:block}}
+.cross .k{opacity:.74;margin:0 0 2px;color:var(--espresso)}
+.cross .v{font-family:var(--disp);font-weight:700;font-size:clamp(16px,1.8vw,21px);
+  letter-spacing:-.015em;display:block}
+.cross--mob{display:block;background:var(--saffron);color:var(--espresso);
+  padding:15px clamp(30px,4.2vw,56px);font-family:var(--disp);font-weight:700;font-size:19px}
+@media(min-width:880px){.cross--mob{display:none}}
+
+/* ---------- ledger with margins ---------- */
+.sec{padding:0 0 clamp(46px,6.5vw,84px)}
+.sec__h{display:flex;flex-direction:column;gap:9px;margin-bottom:clamp(22px,3vw,34px)}
+h2{font-family:var(--disp);font-weight:600;font-size:clamp(23px,3.1vw,37px);line-height:1.12;
+  letter-spacing:-.02em;margin:0;max-width:20ch;text-wrap:balance}
+.sec__h p{color:var(--ink-soft);max-width:56ch;margin:0;font-size:16.5px}
+.rows{display:flex;flex-direction:column;border-top:1.5px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr;gap:6px 26px;padding:20px 0;
+  border-bottom:1px solid var(--hair)}
+@media(min-width:820px){.row{grid-template-columns:172px minmax(0,1fr) 260px;align-items:baseline}}
+.row__co{font-family:var(--disp);font-weight:500;font-size:20px;letter-spacing:-.012em}
+.row__co small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-soft);margin-top:5px;font-weight:400}
+.row__fig{font-family:var(--mono);font-size:14.5px;font-weight:500;color:var(--petrol);
+  font-variant-numeric:tabular-nums}
+.row__fig em{font-style:normal;color:var(--terracotta)}
+.row__margin{padding-left:0}
+@media(min-width:820px){.row__margin{border-left:1px solid var(--hair);padding-left:22px}}
+.row.tot{border-bottom:2px solid var(--ink);border-top:1px solid var(--ink)}
+.row.tot .row__fig{font-size:18px;color:var(--terracotta)}
+
+/* ---------- close ---------- */
+.close{background:var(--espresso);color:#EFE7D9;border-radius:4px;
+  padding:clamp(26px,4vw,48px);margin-bottom:clamp(38px,5vw,70px)}
+.close h2{color:#EFE7D9;max-width:18ch}
+.close p{color:#C6BBA7;max-width:52ch;margin:14px 0 0;font-size:16.5px}
+.close .hand{color:var(--saffron);margin-top:20px;display:block}
+.close a{display:inline-block;margin-top:22px;background:var(--saffron);color:var(--espresso);
+  text-decoration:none;font-weight:600;padding:13px 24px;border-radius:3px;
+  font-family:var(--disp);font-size:16px;transition:transform .18s}
+.close a:hover{transform:translateY(-2px)}
+.foot{padding:0 0 84px}
+.foot p{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin:0}
+
+.rv{opacity:0;transform:translateY(20px);
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.rv.in{opacity:1;transform:none}
+a{color:var(--terracotta)}
+:focus-visible{outline:2px solid var(--terracotta);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .scribble path,.sig path,.arrow path{stroke-dashoffset:0;animation:none}
+  .close a:hover{transform:none}
+}
+</style>
+
+<div class="w">
+  <header class="hero">
+    <div class="bar">
+      <div class="bar__wm">Micah Jones<span>.</span></div>
+      <nav class="bar__nav" aria-label="Primary">
+        <a href="#work">Work</a><a href="#about">About</a><a href="#playbook">Playbook</a>
+        <a href="#hire">Hire me</a>
+      </nav>
+    </div>
+
+    <div class="heroGrid">
+      <div id="hw">
+        <h1>Strategy and software, shipped by the <span class="em">same pair of hands<svg
+          class="scribble" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true"><path
+          d="M3 8.4 C 52 3.1, 104 10.2, 152 5.6 S 250 2.4, 297 7.1"/></svg></span>.</h1>
+
+        <p class="hero__say">I&rsquo;m Micah. I&rsquo;m in Oakland, and for ten years I&rsquo;ve
+        been the person who can sell the roadmap in the morning and go build it in the afternoon.
+        <b>I answer my own email.</b></p>
+
+        <div class="sig">
+          <svg viewBox="0 0 200 62" aria-label="Signature"><path d="M10 46 C 18 20, 24 12, 30 14
+            S 34 40, 40 44 C 46 48, 52 30, 58 20 C 62 13, 66 16, 66 24 C 66 34, 62 44, 68 46
+            C 76 48, 84 26, 92 20 C 97 16, 100 20, 99 28 C 98 38, 94 44, 100 46 C 108 48, 118 30, 126 22
+            C 132 16, 136 20, 134 30 C 132 40, 128 46, 136 47 C 148 48, 162 34, 176 22"/></svg>
+          <span>Oakland, CA</span>
+        </div>
+      </div>
+
+      <div class="port rv">
+        <svg class="arrow" viewBox="0 0 52 26" aria-hidden="true"><path
+          d="M2 3 C 14 2, 30 6, 40 16 M40 16 L 31 14 M40 16 L 38 7"/></svg>
+        <span class="note note--rot">my face goes here &mdash;<br>you should see who
+        you&rsquo;re hiring</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ---------- seam ---------- -->
+  <div class="seam rv">
+    <div class="pane pane--sell">
+      <p class="k">Sell side</p>
+      <h3>I make the number happen.</h3>
+      <p>Positioning, GTM and enterprise sales, mostly into banks and their security teams.</p>
+      <ul>
+        <li><b>$20M+</b> client revenue<span class="hand">2013 to 2023, all of it traceable</span></li>
+        <li><b>$80M</b> pipeline<span class="hand">at Guardicore, on $14M of revenue</span></li>
+        <li><b>+$150K</b> deal size<span class="hand">from one rewritten sentence. that&rsquo;s the whole trick</span></li>
+      </ul>
+    </div>
+    <div class="pane pane--build">
+      <p class="k">Build side</p>
+      <h3>Then I go and build it.</h3>
+      <p>Ordani is HIPAA-grade practice management for doulas and midwives.</p>
+      <ul>
+        <li><b>200</b> birth workers<span class="hand" style="opacity:.75;border-bottom:1.5px dashed rgba(159,212,198,.5)">your line &mdash; what support actually looks like</span></li>
+        <li><b>0</b> lost to a rival<span class="hand">none. not one.</span></li>
+        <li><b>1</b> pair of hands<span class="hand">design, code, support. no team</span></li>
+      </ul>
+    </div>
+    <div class="cross"><p class="k">The rare bit</p><span class="v">Same person.</span></div>
+  </div>
+  <div class="cross--mob">Same person.</div>
+
+  <!-- ---------- ledger + margins ---------- -->
+  <section class="sec">
+    <div class="sec__h rv">
+      <p class="lbl">The record</p>
+      <h2>Every figure, and the story behind it.</h2>
+      <p>Ask for the cap table, the pipeline report or a reference and you get it.</p>
+    </div>
+    <div class="rows rv">
+      <div class="row">
+        <div class="row__co">Guardicore<small>Enterprise sales &middot; 2021</small></div>
+        <div class="row__fig">$80M pipeline &middot; <em>acquired by Akamai</em></div>
+        <div class="row__margin"><span class="note">It started with one rewritten sentence. Average deal size moved $150K.</span></div>
+      </div>
+      <div class="row">
+        <div class="row__co">TechValidate<small>Enterprise sales &middot; 2018</small></div>
+        <div class="row__fig">$1M+ toward the <em>SurveyMonkey IPO</em></div>
+        <div class="row__margin"><span class="note">Held it through the IPO.</span></div>
+      </div>
+      <div class="row">
+        <div class="row__co">Neuton.AI<small>Helped launch &middot; 2025</small></div>
+        <div class="row__fig"><em>Acquired by Nordic Semiconductor</em></div>
+        <div class="row__margin"><span class="note">Not my cap table, so I won&rsquo;t claim
+        it as one.</span></div>
+      </div>
+      <div class="row">
+        <div class="row__co">Ordani<small>Founder, sole engineer &middot; 2026</small></div>
+        <div class="row__fig">200 birth workers &middot; <em>none lost</em></div>
+        <div class="row__margin"><span class="note note--todo">why you actually built Ordani &mdash; one sentence, in your words</span></div>
+      </div>
+      <div class="row tot">
+        <div class="row__co">Total<small>2013&ndash;2023</small></div>
+        <div class="row__fig">$20M+ in client revenue</div>
+        <div class="row__margin"><span class="note note--rot">No agency. No team. Just me.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- close ---------- -->
+  <section class="close rv">
+    <h2>If your product team and your sales team have stopped talking, that&rsquo;s my job.</h2>
+    <p>Send me the role, the problem, or the half-finished thing you can&rsquo;t get over the
+    line. I read every message and reply inside two business days.</p>
+    <span class="hand">No discovery call needed to say hello.</span>
+    <a href="#hire">Tell me what&rsquo;s stuck &rarr;</a>
+  </section>
+
+  <div class="foot"><p>Tile 03 &middot; Marginalia &middot; nothing deployed &middot; dashed notes are OPERATOR-OWNED slots &mdash; I will not write your biography for you</p></div>
+</div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // prime every drawn path with its true length so the dash animation is exact
+  document.querySelectorAll('.scribble path,.sig path,.arrow path').forEach(function(p){
+    var L = p.getTotalLength();
+    p.style.setProperty('--len', L); p.style.setProperty('--l', L);
+    p.style.strokeDasharray = L;
+    p.style.strokeDashoffset = reduce ? 0 : L;
+  });
+  if (!reduce) document.getElementById('hw').classList.add('drawn');
+  else document.getElementById('hw').classList.add('drawn');
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:0.14, rootMargin:'0px 0px -6% 0px' });
+  document.querySelectorAll('.rv').forEach(function(el){
+    if (el.getBoundingClientRect().top < innerHeight*0.88) el.classList.add('in');
+    else io.observe(el);
+  });
+})();
+</script>

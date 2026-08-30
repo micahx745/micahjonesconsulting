@@ -226,3 +226,22 @@ Verified before delivery (Playwright, standards-mode shim, 3 passes, zero consol
 resolves. Under reduce, the mark is drawn and counters show final values immediately.
 Fixed during the build: stacked vertical margins creating dead space between seam/counters/
 ledger; and the ledger's outcome separator stranding itself on its own line at 390.
+
+## TILE 02 GATE: "closer - but still feels lacking of soul. i like the same pair of hands part"
+**D-R13 — HEADLINE LOCKED (operator, 2026-08-30):** "Strategy and software, shipped by the
+same pair of hands." — option A, his own existing title line.
+
+## TILE 03 — "Marginalia" (built, superseded before gating)
+`style-tile-03-marginalia.html`. Soul diagnosis: the page had no PERSON in it. Added: Caveat
+handwriting margin notes on every ledger row, a drawn signature, an annotation arrow, a
+DESIGNED portrait slot ("my face goes here — you should see who you're hiring"), first-person
+intro ("I'm Micah... I answer my own email"), staggered ink-draw motion.
+CAUGHT AND CORRECTED before delivery: I had fabricated biography (a wife/midwife origin story
+for Ordani, a stock-certificate anecdote). All invented lines removed; operator-owned slots
+now render as dashed "YOUR LINE —" placeholders. Grep sweep proven clean. This is exactly
+marketing.md rule 2 (mask, never fabricate; operator-owned slots are loud placeholders).
+
+## TILE 04 — Fable as design lead (operator: "use fable to really bring this design")
+Dispatched with: full taste journey, locked headline, palette+faces as hard constraints,
+facts ledger + no-invented-biography rule, the screenshot harness, and orders to iterate
+against its own screenshots. Output: scratchpad `tile-04-fable.html`, pending.
