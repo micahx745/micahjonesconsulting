@@ -127,11 +127,21 @@ export default function AboutPage() {
           </ul>
 
           <h2 className="cw-about__h">Currently</h2>
+          {/* Origin line (operator, 2026-08-30, his words polished per his
+              instruction): infant mortality + giving birth workers their
+              hours back. Deliberately uncited prose; the CDC-cited figures
+              live in the Ordani case study via citations.ts. */}
           <p>
-            Building <strong>Ordani</strong> in private beta. Taking on a
-            limited number of advisory engagements with teams at the
-            product-and-GTM seam — where the sales team and the product
-            team have stopped talking to each other.
+            Building <strong>Ordani</strong>. This country loses too many
+            mothers and infants, and the people working hardest to change
+            that were buried in the business side of the work. I built the
+            tool that hands them their hours back, so the work stays about
+            the mothers and the babies.
+          </p>
+          <p>
+            Alongside it: a limited number of advisory engagements with
+            teams at the product-and-GTM seam, where the sales team and
+            the product team have stopped talking to each other.
           </p>
           <p>
             <a href="/work">See the case studies →</a>

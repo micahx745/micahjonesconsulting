@@ -1723,12 +1723,19 @@ body {
 [data-mode="cw"] .cw-hero__veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    168deg,
-    color-mix(in srgb, var(--color-cw-terracotta) 90%, transparent) 0%,
-    color-mix(in srgb, var(--color-cw-terracotta) 72%, transparent) 46%,
-    color-mix(in srgb, var(--color-cw-espresso) 86%, black) 100%
-  );
+  background:
+    /* right-edge deepening: the stat rail sits on this, no boxes needed */
+    linear-gradient(
+      270deg,
+      color-mix(in srgb, var(--color-cw-espresso) 62%, transparent) 0%,
+      transparent 42%
+    ),
+    linear-gradient(
+      168deg,
+      color-mix(in srgb, var(--color-cw-terracotta) 90%, transparent) 0%,
+      color-mix(in srgb, var(--color-cw-terracotta) 72%, transparent) 46%,
+      color-mix(in srgb, var(--color-cw-espresso) 86%, black) 100%
+    );
 }
 [data-mode="cw"] .cw-hero--photo > *:not(.cw-hero__ground) {
   position: relative;
@@ -1741,109 +1748,146 @@ body {
   margin: 0;
   padding: 0;
 }
-/* Pass-5 chip anatomy — a stat OBJECT, not a text pill: display-face
- * figure over a mono label, espresso ground so it holds against both the
- * whiteboard whites and the terracotta field, saffron rule as the spine. */
+/* Pass-7 stat rail — third treatment. Card versions refused twice
+ * ("look weak", "look ai"). The high-tier grammar (PeakHealth, the
+ * Awwwards large-numbers pattern) is NAKED TYPE: display-face figures
+ * set straight on the image, hairline rules, zero chrome. Contrast
+ * comes from the hero veil's right-edge deepening, not from boxes. */
 [data-mode="cw"] .cw-chip {
   color: var(--color-cw-bone);
-  background: color-mix(in srgb, var(--color-cw-espresso) 90%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 18%, transparent);
-  border-left: 3px solid var(--color-cw-saffron);
-  border-radius: 3px;
-  padding: 14px 18px 13px;
-  box-shadow: 0 18px 44px color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
-  white-space: nowrap;
+  text-align: right;
+  padding: 0;
+  background: none;
+  border: 0;
 }
 [data-mode="cw"] .cw-chip__fig {
   display: block;
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(24px, 2.2vw, 32px);
+  font-size: clamp(30px, 3vw, 44px);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--color-cw-bone);
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 24px color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
 }
 [data-mode="cw"] .cw-chip__lbl {
   display: block;
-  margin-top: 6px;
+  margin-top: 7px;
   font-family: var(--font-cw-mono);
   font-size: 10.5px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-cw-bone) 78%, transparent);
+  color: color-mix(in srgb, var(--color-cw-bone) 85%, transparent);
 }
 [data-mode="cw"] .cw-chip__sub {
   display: block;
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px solid color-mix(in srgb, var(--color-cw-bone) 16%, transparent);
+  margin-top: 9px;
   font-family: var(--font-cw-mono);
   font-size: 10px;
-  letter-spacing: 0.06em;
-  color: color-mix(in srgb, var(--color-cw-bone) 70%, transparent);
+  letter-spacing: 0.05em;
+  color: color-mix(in srgb, var(--color-cw-bone) 72%, transparent);
 }
 [data-mode="cw"] .cw-chip--lead .cw-chip__fig {
-  font-size: clamp(30px, 2.9vw, 42px);
+  font-size: clamp(44px, 4.6vw, 68px);
   color: var(--color-cw-saffron);
 }
+
 @media (min-width: 861px) {
-  /* Desktop: a loose right-side cluster over the photo. The UL must span
-   * the hero for the percentage anchors to mean anything — as a normal-
-   * flow child it has zero height and every chip collapses onto one spot
-   * (caught in the 1440 screenshot). pointer-events gate keeps the
-   * full-bleed layer from eating clicks. Each chip counter-drifts a few
-   * px on scroll (--hero-scroll is user-driven; never set under reduce). */
-  /* Selector matches the blanket content-lift rule's specificity
-   * ((0,3,0)) so, being later in the file, it actually wins — the bare
-   * .cw-chips version lost the cascade and the ul stayed position:
-   * relative, collapsing every chip onto one spot (caught twice in the
-   * 1440 screenshot). */
+  /* One right-aligned rail, not a scatter — the scatter read as
+   * template. The rail spans the hero's right edge; each stat drifts
+   * a few px on scroll (--hero-scroll, user-driven, dead under reduce). */
   [data-mode="cw"] .cw-hero--photo > .cw-chips {
     position: absolute;
-    inset: 0;
     z-index: 2;
+    top: 50%;
+    right: clamp(40px, 5vw, 88px);
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
     pointer-events: none;
   }
   [data-mode="cw"] .cw-chip {
-    position: absolute;
     pointer-events: auto;
+    padding: 22px 0;
     transform: translateY(calc(var(--hero-scroll, 0) * var(--drift, 0px)));
     will-change: transform;
   }
-  [data-mode="cw"] .cw-chip:nth-child(1) { right: 9%;  top: 24%; }
-  [data-mode="cw"] .cw-chip:nth-child(2) { right: 23%; top: 37%; }
-  [data-mode="cw"] .cw-chip:nth-child(3) { right: 5%;  top: 50%; }
-  [data-mode="cw"] .cw-chip:nth-child(4) { right: 18%; top: 64%; }
+  [data-mode="cw"] .cw-chip + .cw-chip {
+    border-top: 1px solid color-mix(in srgb, var(--color-cw-bone) 28%, transparent);
+  }
+  [data-mode="cw"] .cw-chip:first-child {
+    padding-top: 0;
+  }
+  [data-mode="cw"] .cw-chip:last-child {
+    padding-bottom: 0;
+  }
 }
 @media (max-width: 860px) {
-  /* Mobile: 2-up grid under the CTAs, lead chip full width — overlaying
-   * stat objects on a 390px photo crowds the face. */
+  /* Mobile: naked 2-up stat grid under the CTAs, hairline top rules. */
   [data-mode="cw"] .cw-chips {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-top: 28px;
+    gap: 20px 24px;
+    margin-top: 32px;
   }
   [data-mode="cw"] .cw-chip {
+    text-align: left;
     white-space: normal;
-    padding: 12px 14px;
-    box-shadow: none;
+    border-top: 1px solid color-mix(in srgb, var(--color-cw-bone) 30%, transparent);
+    padding-top: 12px;
   }
   [data-mode="cw"] .cw-chip--lead {
     grid-column: 1 / -1;
   }
   [data-mode="cw"] .cw-chip__fig {
-    font-size: 21px;
+    font-size: 26px;
   }
   [data-mode="cw"] .cw-chip--lead .cw-chip__fig {
-    font-size: 27px;
+    font-size: 38px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
   [data-mode="cw"] .cw-chip {
     transform: none !important;
   }
+}
+
+/* ORDANI PHOTO GROUND (Pass-7, D-R15) — the real product under a petrol
+ * duotone veil, same stacking grammar as the hero (no blend modes,
+ * LESSONS #7). Veil density is deliberately high: the capture carries
+ * test data, so structure must read while text must not. */
+[data-mode="cw"] .cw-ordani--photo {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+[data-mode="cw"] .cw-ordani__ground {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+[data-mode="cw"] .cw-ordani__shot {
+  object-fit: cover;
+  object-position: 50% 12%;
+  filter: grayscale(1) brightness(0.85) contrast(1.04);
+}
+[data-mode="cw"] .cw-ordani__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    172deg,
+    color-mix(in srgb, var(--color-cw-petrol) 98%, black) 0%,
+    color-mix(in srgb, var(--color-cw-petrol) 96%, black) 14%,
+    color-mix(in srgb, var(--color-cw-petrol) 82%, transparent) 55%,
+    color-mix(in srgb, var(--color-cw-petrol) 93%, black) 100%
+  );
+}
+[data-mode="cw"] .cw-ordani--photo > *:not(.cw-ordani__ground) {
+  position: relative;
+  z-index: 2;
 }
 
 /* THE TWO DOORS (Pass-6 — operator refused the card version: "they look

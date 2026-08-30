@@ -35,6 +35,7 @@
 // intentionally absent. "Don't frame Ordani as a side project" — it's
 // presented as a live product with beta signup.
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Hero } from "@/components/color-worlds/Hero";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
 import { OrdaniSticky } from "@/components/color-worlds/OrdaniSticky";
@@ -294,12 +295,28 @@ export default function ColorWorldsHome() {
           per page, per the texture research. Giant Ordani word reads
           as pulp-ink, not pixel-text. */}
       <section
-        className="cw-ordani"
+        className="cw-ordani cw-ordani--photo"
         id="ordani"
         data-section
         data-world="petrol"
         aria-labelledby="cw-ordani-title"
       >
+        {/* Pass-7 (D-R15): the REAL product as the section ground — the
+            Ordani dashboard under a petrol duotone veil, same grammar as
+            the hero. The veil intentionally renders the capture's test
+            data illegible; structure and craft read, text does not.
+            Swap public/ordani-dashboard.jpg for a clean-data capture
+            whenever the operator makes one. */}
+        <div className="cw-ordani__ground" aria-hidden>
+          <Image
+            src="/ordani-dashboard.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="cw-ordani__shot"
+          />
+          <div className="cw-ordani__veil" />
+        </div>
         <OrdaniSticky />
         {/* Operator correction 2026-08-15: the usage claim is birth workers,
             not practices — "14 doula practices" undersold it and read as a
@@ -413,6 +430,21 @@ export default function ColorWorldsHome() {
             <span className="cw-lrow__out">
               <strong>$1M+</strong> toward the IPO · held through the
               Nasdaq listing
+            </span>
+          </div>
+
+          <div
+            className="cw-lrow cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "150ms" }}
+          >
+            <span className="cw-lrow__co">
+              Postmates
+              <span className="cw-lrow__tag">Product analyst · 2020</span>
+            </span>
+            <span className="cw-lrow__out">
+              Market and fraud analysis in the wide-open era ·{" "}
+              <strong>acquired by Uber, $2.65B</strong>
             </span>
           </div>
 
