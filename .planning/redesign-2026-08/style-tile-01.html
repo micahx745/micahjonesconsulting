@@ -1,0 +1,365 @@
+<title>House Lights Down</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Single committed visual world — this IS the proposed brand, so no theme swap.
+   Every colour is painted explicitly so it holds on any host ground. */
+:root{
+  --ground:#0E0C0B;      /* warm near-black. deeper than the repo's existing theater #12100E */
+  --ground-lift:#161311; /* raised surface */
+  --ink:#EAE6DD;         /* bone — already in the system */
+  --muted:#8B8177;       /* warm grey */
+  --faint:#3A3330;
+  --copper:#C8542B;      /* the existing accent, which finally has a ground worth sitting on */
+  --copper-hi:#E4703F;
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-weight:300;font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+
+/* ---------- HERO : image is type, type is small, both anchored low ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:flex-end;overflow:hidden;background:var(--ground)}
+#glyphs{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0}
+.hero__veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(14,12,11,.94) 0%,rgba(14,12,11,.55) 38%,rgba(14,12,11,.15) 100%)}
+.hero__top{position:absolute;top:0;left:0;right:0;z-index:3;
+  display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+  padding:clamp(18px,3vw,30px) clamp(20px,5vw,56px)}
+.mark{font-family:var(--serif);font-size:19px;letter-spacing:.01em}
+.mark em{font-style:italic;color:var(--copper)}
+/* nav written as prose — the Locomotive device */
+.hero__nav{font-size:14px;color:var(--muted);display:none}
+@media(min-width:800px){.hero__nav{display:block}}
+.hero__nav a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+.hero__nav a:hover,.hero__nav a:focus-visible{color:var(--ink);border-bottom-color:var(--copper)}
+.hero__body{position:relative;z-index:3;padding:0 clamp(20px,5vw,56px) clamp(34px,7vw,76px)}
+.badge{display:inline-flex;border:1px solid var(--faint);border-radius:2px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;margin-bottom:22px}
+.badge span{padding:5px 8px}
+.badge span+span{border-left:1px solid var(--faint)}
+.badge .on{color:var(--copper);border-color:var(--copper)}
+h1{font-family:var(--serif);font-weight:400;margin:0;
+  font-size:clamp(30px,5.4vw,62px);line-height:1.08;letter-spacing:-.012em;
+  max-width:19ch;text-wrap:balance}
+h1 .dim{color:var(--muted)}
+h1 .hit{font-style:italic;color:var(--copper-hi)}
+.proof{display:flex;flex-wrap:wrap;gap:8px 30px;margin:26px 0 0;padding:0;list-style:none}
+.proof li{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.02em}
+.proof b{color:var(--ink);font-weight:500}
+.scroll-cue{margin-top:34px;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint)}
+
+/* ---------- generic section ---------- */
+section.blk{padding:clamp(64px,11vw,140px) 0;border-top:1px solid var(--faint)}
+.blk__head{display:flex;flex-direction:column;gap:12px;margin-bottom:44px}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3.4vw,40px);
+  line-height:1.14;margin:0;letter-spacing:-.01em;max-width:22ch;text-wrap:balance}
+.blk p{max-width:60ch;color:var(--muted);margin:0 0 14px}
+.blk p:last-child{margin-bottom:0}
+.blk p b{color:var(--ink);font-weight:500}
+
+/* ---------- scale comparison ---------- */
+.vs{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:780px){.vs{grid-template-columns:1fr 1fr}}
+.vs__cell{background:var(--ground-lift);border:1px solid var(--faint);border-radius:2px;
+  padding:24px;overflow:hidden}
+.vs__cell.now{border-color:#4A2018}
+.vs__tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 18px}
+.demo-now{font-family:var(--sans);font-weight:600;text-transform:uppercase;font-size:52px;
+  line-height:.94;letter-spacing:-.02em;color:var(--ink);opacity:.5}
+.demo-new{font-family:var(--serif);font-size:26px;line-height:1.18;color:var(--ink)}
+.vs__note{font-family:var(--mono);font-size:11px;color:var(--muted);margin:18px 0 0}
+
+/* ---------- palette ---------- */
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:12px}
+.sw__c{border:1px solid var(--faint);border-radius:2px;overflow:hidden}
+.sw__chip{height:92px}
+.sw__meta{padding:11px 12px;background:var(--ground-lift)}
+.sw__meta dt{font-size:13px;margin:0 0 3px}
+.sw__meta dd{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin:0}
+
+/* ---------- type scale ---------- */
+.scale{display:flex;flex-direction:column;gap:26px}
+.scale__row{display:grid;gap:6px;grid-template-columns:1fr;align-items:baseline}
+@media(min-width:760px){.scale__row{grid-template-columns:112px 1fr}}
+.scale__k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted)}
+.s-d1{font-family:var(--serif);font-size:clamp(30px,5vw,58px);line-height:1.08;font-weight:400}
+.s-d2{font-family:var(--serif);font-size:clamp(23px,3.2vw,36px);line-height:1.16;font-weight:400}
+.s-b{font-family:var(--sans);font-size:17px;line-height:1.62;font-weight:300;max-width:58ch}
+.s-m{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted)}
+
+/* ---------- receipts ---------- */
+.rec{display:grid;gap:1px;background:var(--faint);border:1px solid var(--faint);border-radius:2px}
+.rec__r{background:var(--ground);padding:24px clamp(18px,3vw,28px);
+  display:grid;gap:6px 26px;grid-template-columns:1fr}
+@media(min-width:760px){.rec__r{grid-template-columns:190px 1fr;align-items:baseline}}
+.rec__n{font-family:var(--mono);font-size:clamp(21px,3vw,27px);color:var(--copper-hi);
+  font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.rec__t{color:var(--muted);margin:0;max-width:56ch}
+.rec__t b{color:var(--ink);font-weight:500}
+
+/* ---------- motion note ---------- */
+.two{display:grid;gap:18px;grid-template-columns:1fr}
+@media(min-width:780px){.two{grid-template-columns:1fr 1fr}}
+.note{background:var(--ground-lift);border:1px solid var(--faint);border-left:2px solid var(--copper);
+  border-radius:0 2px 2px 0;padding:22px}
+.note h3{font-family:var(--sans);font-weight:500;font-size:15px;margin:0 0 10px;color:var(--ink)}
+.note p{font-size:14.5px;margin:0 0 10px;color:var(--muted)}
+.note p:last-child{margin:0}
+.foot{padding:56px 0 90px;border-top:1px solid var(--faint)}
+.foot p{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin:0}
+
+/* ---------- the one signature: per-character decode ---------- */
+.dec{display:inline-block;white-space:pre}
+:focus-visible{outline:2px solid var(--copper-hi);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){
+  .dec{opacity:1 !important}
+}
+</style>
+
+<div class="hero">
+  <canvas id="glyphs" aria-hidden="true"></canvas>
+  <div class="hero__veil"></div>
+
+  <div class="hero__top">
+    <div class="mark">Micah Jones<em>®</em></div>
+    <nav class="hero__nav" aria-label="Primary">
+      <a href="#work">Work</a>, <a href="#about">About</a>, <a href="#playbook">Playbook</a>,
+      <a href="#hire">Hire me</a>
+    </nav>
+    <div class="mark" style="font-family:var(--sans);font-size:14px">Let&rsquo;s talk</div>
+  </div>
+
+  <div class="hero__body">
+    <div class="badge"><span>GTM</span><span>PRODUCT</span><span class="on">SHIPPED</span></div>
+    <h1><span class="dec" data-decode>Most consultants can&rsquo;t build.</span>
+      <span class="dim dec" data-decode>Most builders can&rsquo;t sell.</span>
+      <span class="hit dec" data-decode>I do both.</span></h1>
+    <ul class="proof">
+      <li><b>3</b> companies I helped build reached exits</li>
+      <li><b>$20M+</b> in client revenue</li>
+      <li><b>$80M</b> pipeline at one of them</li>
+    </ul>
+    <p class="scroll-cue">Scroll &mdash; the lights stay down</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="blk">
+    <div class="blk__head">
+      <p class="lbl">The move</p>
+      <h2>From a 180px shout to a 26px sentence.</h2>
+    </div>
+    <div class="vs">
+      <div class="vs__cell now">
+        <p class="vs__tag">Live today &mdash; 180px, uppercase, a triad</p>
+        <div class="demo-now">I BUILD THE GO&#8209;TO&#8209;MARKET, PRODUCT, AND DATA PLATFORMS</div>
+        <p class="vs__note">Three abstractions. No person in it. Shown here at 52px because 180px
+        will not fit in this box &mdash; which is the point.</p>
+      </div>
+      <div class="vs__cell">
+        <p class="vs__tag">Proposed &mdash; serif, sentence case, a claim</p>
+        <div class="demo-new">Most consultants can&rsquo;t build.<br>
+          <span style="color:var(--muted)">Most builders can&rsquo;t sell.</span><br>
+          <em style="color:var(--copper-hi)">I do both.</em></div>
+        <p class="vs__note">Same width of canvas. The confidence comes from the claim and the
+        room around it, not from the point size.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="blk__head">
+      <p class="lbl">Palette</p>
+      <h2>Three values, and the accent finally has a ground worth sitting on.</h2>
+      <p>Every site you named runs dark &mdash; Locomotive is pure black, Linear is
+      <span style="font-family:var(--mono);font-size:13px">rgb(8,9,10)</span>, Stripe Press is a
+      warm near-black. Your repo already has one: <b>theater mode</b>, live on the case studies.
+      This promotes it to the whole site rather than inventing anything.</p>
+    </div>
+    <div class="sw">
+      <div class="sw__c"><div class="sw__chip" style="background:#0E0C0B;border-bottom:1px solid #3A3330"></div>
+        <dl class="sw__meta"><dt>Ground</dt><dd>#0E0C0B</dd></dl></div>
+      <div class="sw__c"><div class="sw__chip" style="background:#161311"></div>
+        <dl class="sw__meta"><dt>Lift</dt><dd>#161311</dd></dl></div>
+      <div class="sw__c"><div class="sw__chip" style="background:#EAE6DD"></div>
+        <dl class="sw__meta"><dt>Bone ink</dt><dd>#EAE6DD &middot; 15.8:1</dd></dl></div>
+      <div class="sw__c"><div class="sw__chip" style="background:#8B8177"></div>
+        <dl class="sw__meta"><dt>Warm grey</dt><dd>#8B8177 &middot; 5.6:1</dd></dl></div>
+      <div class="sw__c"><div class="sw__chip" style="background:#C8542B"></div>
+        <dl class="sw__meta"><dt>Copper</dt><dd>#C8542B &middot; large text only</dd></dl></div>
+      <div class="sw__c"><div class="sw__chip" style="background:#E4703F"></div>
+        <dl class="sw__meta"><dt>Copper hi</dt><dd>#E4703F &middot; 6.9:1</dd></dl></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="blk__head">
+      <p class="lbl">Typography</p>
+      <h2>One face swapped. The count stays at three.</h2>
+      <p>Bricolage Grotesque goes; a high-contrast serif takes the display role. <b>Hanken
+      Grotesk</b> and <b>JetBrains Mono</b> both stay, so the performance maths behind D14 is
+      untouched. Locomotive and Stripe Press both lead with a serif &mdash; lowkey luxury reads
+      serif far more often than it reads a quirky grotesque.</p>
+    </div>
+    <div class="scale">
+      <div class="scale__row"><span class="scale__k">Display</span>
+        <div class="s-d1">Strategy and software, one pair of hands</div></div>
+      <div class="scale__row"><span class="scale__k">Section</span>
+        <div class="s-d2">Three companies. Three exits.</div></div>
+      <div class="scale__row"><span class="scale__k">Body</span>
+        <div class="s-b">I spent a decade inside B2B software as the person who can sit on either
+        side of the table: GTM in the morning, shipping product in the afternoon.</div></div>
+      <div class="scale__row"><span class="scale__k">Data</span>
+        <div class="s-m">GUARDICORE &middot; ACQUIRED BY AKAMAI &middot; 2021</div></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="blk__head">
+      <p class="lbl">A section, built</p>
+      <h2>Numbers carry it. Adjectives are the thing being removed.</h2>
+    </div>
+    <div class="rec">
+      <div class="rec__r"><div class="rec__n">$20M+</div>
+        <p class="rec__t">In client revenue between <b>2013 and 2023</b>.</p></div>
+      <div class="rec__r"><div class="rec__n">3 exits</div>
+        <p class="rec__t">Companies I helped build that reached an exit. Two were mine on the cap
+        table &mdash; <b>Guardicore</b> to Akamai, <b>TechValidate</b> held through the SurveyMonkey
+        IPO. The third I helped launch: Neuton.AI, acquired by Nordic Semiconductor.</p></div>
+      <div class="rec__r"><div class="rec__n">$80M</div>
+        <p class="rec__t">Pipeline generated at Guardicore, on <b>$14M</b> of revenue. Average deal
+        size moved <b>$150K</b> after one rewritten sentence.</p></div>
+      <div class="rec__r"><div class="rec__n">200</div>
+        <p class="rec__t">Birth workers using <b>Ordani</b>, the HIPAA-grade practice management
+        product I founded and built. None lost to a competitor.</p></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="blk__head">
+      <p class="lbl">Motion</p>
+      <h2>One gesture, and a still page that is designed rather than tolerated.</h2>
+    </div>
+    <div class="two">
+      <div class="note">
+        <h3>The signature: per-character decode</h3>
+        <p>Locomotive splits its text one span per glyph so each character animates on its own.
+        The headline above is doing it right now &mdash; reload to watch it again.</p>
+        <p>It needs no scroll, costs almost nothing, behaves identically at 390px, and the
+        background composition drifts on its own. That is the whole motion budget.</p>
+      </div>
+      <div class="note">
+        <h3>What you see, with animations off</h3>
+        <p>Your machines run <b>MinAnimate = 0</b>, so this page has already skipped every
+        animation for you &mdash; the headline was solid on arrival and the background is static.</p>
+        <p>That is the point. The still page is the design, not the fallback. If it only works
+        moving, it does not work.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <p>Style tile 01 &middot; House Lights Down &middot; not deployed &middot; refuse it and it costs one build</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- background: the image IS type. His own figures, oversized, defocused, cropped.
+         Honors the project rule "type and photographs only" — nothing licensed or drawn. ---- */
+  var cv = document.getElementById('glyphs'), cx = cv.getContext('2d');
+  var MARKS = ['$20M', '3', '200', '$80M', '$150K', '14', '®'];
+  var parts = [], raf = null;
+
+  function build() {
+    var w = cv.width = cv.offsetWidth * Math.min(devicePixelRatio || 1, 2);
+    var h = cv.height = cv.offsetHeight * Math.min(devicePixelRatio || 1, 2);
+    var base = Math.max(w, h);
+    parts = MARKS.map(function (t, i) {
+      return {
+        t: t,
+        x: (0.08 + (i * 0.37) % 0.86) * w,
+        y: (0.14 + (i * 0.53) % 0.74) * h,
+        size: base * (0.16 + ((i * 7) % 5) * 0.055),
+        rot: (((i * 47) % 90) - 45) * Math.PI / 180,
+        blur: 7 + (i % 4) * 9,
+        drift: 0.10 + (i % 3) * 0.05,
+        phase: i * 1.7
+      };
+    });
+  }
+
+  function paint(t) {
+    var w = cv.width, h = cv.height;
+    cx.clearRect(0, 0, w, h);
+    cx.fillStyle = '#0E0C0B';
+    cx.fillRect(0, 0, w, h);
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i];
+      var dx = reduce ? 0 : Math.sin(t / 5200 + p.phase) * (w * 0.012 * p.drift * 8);
+      var dy = reduce ? 0 : Math.cos(t / 6400 + p.phase) * (h * 0.010 * p.drift * 8);
+      cx.save();
+      cx.translate(p.x + dx, p.y + dy);
+      cx.rotate(p.rot);
+      cx.filter = 'blur(' + p.blur + 'px)';
+      cx.globalAlpha = 0.5;
+      cx.fillStyle = i % 3 === 0 ? '#E4703F' : '#C8542B';
+      cx.font = '600 ' + p.size + 'px "Hanken Grotesk", system-ui, sans-serif';
+      cx.textAlign = 'center';
+      cx.textBaseline = 'middle';
+      cx.fillText(p.t, 0, 0);
+      cx.restore();
+    }
+  }
+
+  function loop(t) { paint(t); raf = requestAnimationFrame(loop); }
+  function start() {
+    build();
+    if (reduce) { paint(0); }
+    else { cancelAnimationFrame(raf); raf = requestAnimationFrame(loop); }
+  }
+  var rt;
+  addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(start, 180); });
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(start); } else { start(); }
+  start();
+
+  /* ---- the signature: per-character decode, Locomotive's device ---- */
+  if (!reduce) {
+    var GLYPHS = '$#%&0123456789/\\<>*';
+    document.querySelectorAll('[data-decode]').forEach(function (el, idx) {
+      var final = el.textContent, chars = final.split('');
+      var revealed = 0;
+      el.textContent = '';
+      var span = document.createElement('span');
+      el.appendChild(span);
+      setTimeout(function () {
+        var tick = setInterval(function () {
+          revealed += 0.62;
+          var out = '';
+          for (var i = 0; i < chars.length; i++) {
+            if (i < revealed || chars[i] === ' ') out += chars[i];
+            else out += GLYPHS[(Math.floor(revealed * 7) + i * 3) % GLYPHS.length];
+          }
+          span.textContent = out;
+          if (revealed >= chars.length) { clearInterval(tick); span.textContent = final; }
+        }, 26);
+      }, 180 + idx * 320);
+    });
+  }
+})();
+</script>

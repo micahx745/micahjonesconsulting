@@ -115,3 +115,29 @@ surfaces.
 ## Lock rule
 Exactly 3 references + 2 anti-references graduate into this file with the operator's
 words attached. A reference not in this file does not exist for build purposes.
+
+## STYLE TILE 01 — "House Lights Down" (built 2026-08-30, awaiting the aesthetic gate)
+
+Artifact: https://claude.ai/code/artifact/a1072e1b-f1e2-4e88-a560-4dea36116806
+Source: `.planning/redesign-2026-08/style-tile-01.html` (NOT deployed, never aliased)
+
+Verified before delivery — Playwright, three passes, zero console errors:
+`desktop-motion 1440` · `desktop-still 1440 (reduce)` · `mobile-motion 390`
+No horizontal overflow at either width. Instrument Serif resolves. Ground paints
+`rgb(14,12,11)`. Under `reduce` the headline is solid on arrival and the canvas is static.
+
+What it proposes, all three conflicts resolved in one artifact:
+- **C1 palette** → warm near-black `#0E0C0B`, bone `#EAE6DD`, warm grey `#8B8177`,
+  copper `#C8542B` / `#E4703F`. Promotes the repo's existing theater mode sitewide.
+- **C2 imagery** → the hero image is BUILT FROM HIS OWN FIGURES ($20M, $80M, $150K, 200, 3),
+  oversized, rotated, defocused on canvas. "Type as image" — permitted by the project rule,
+  nothing licensed, drawn, or generated.
+- **C3 typeface** → display Bricolage → **Instrument Serif**. Hanken + JetBrains Mono stay.
+  Face count unchanged at three, so D14's performance maths is untouched.
+- **Motion** → one signature, Locomotive's device: per-character decode on the headline.
+  No scroll dependency, identical at 390px, degrades to plain text under reduce.
+- **Scale** → headline drops 180px → ~26-62px clamp. The confidence moves from point size
+  to the claim and the room around it.
+
+GATE: operator I-Like / I-Wish / What-If, ending in ship / revise / refuse on the AESTHETIC
+before any page is built. Refusing costs one build and nothing shipped.
