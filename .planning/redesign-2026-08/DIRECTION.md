@@ -56,6 +56,42 @@ Consequences to carry forward:
 - Abstract graphic system (marks, shapes, type-as-image) becomes a live design question;
   the site currently has hand-drawn marks on the protect list.
 
+
+**D-R9 — Reference #1 LOCKED: Locomotive (locomotive.ca).** Operator, 2026-08-30:
+*"locomotive is my fave - all them realkly are nice"* (no anti-reference named; still open).
+
+Measured, not eyeballed: ground **pure black** `rgb(0,0,0)`; UI face Helvetica Now Display
+(commercial — needs a substitute) at **26px**, white; a high-contrast serif for the identity
+line; full-bleed ABSTRACT imagery covering the fold; nav written as prose
+("Work, Agency, Careers, Store"); type anchored BOTTOM-left, not top; two-tone colour
+*within* a single line; a small boxed credential mark (OPS | DES/DEV).
+Motion signature: text is split into **one span per character** so glyphs animate
+independently — a scramble/decode. No scroll dependency, identical on mobile, and it
+degrades to plain final text under reduced motion.
+
+### What this pick OVERTURNS — operator decisions, surfaced not silently absorbed
+
+**C1 — Palette. D-R3 is now in real doubt.** D-R3 locked bone/terracotta/espresso: warm,
+light, paper-led. Every reference the operator has named is DARK — Locomotive `#000000`,
+Linear `rgb(8,9,10)`, Stripe Press `rgb(32,24,25)`, Koto dark-leaning. The light cream
+ground is the single biggest divergence between this site and the tier he is aiming at.
+Note the continuity available: the repo ALREADY has a warm near-black — theater mode,
+`#12100E`, live on case studies. Going dark is promoting an existing mode, not inventing one.
+
+**C2 — Imagery. Conflicts with a hard project rule.** `.claude/CLAUDE.md` states: "Do not use
+stock photography, illustration, icon kits, or 3D. Type and photographs/screenshots only."
+Locomotive's entire impact is a full-bleed abstract image (defocused 3D letterforms).
+PROPOSED RESOLUTION: build the image OUT OF TYPE — oversized, defocused, cropped
+compositions of his own letterforms and figures ($20M, 200, three). That is "type as image",
+explicitly permitted by the rule, delivers Locomotive's impact, and satisfies "clean abstract
+unique" from the brief. Nothing is licensed, bought, or generated.
+
+**C3 — Display typeface, on AESTHETIC grounds this time.** D14 kept three faces on a
+PERFORMANCE argument; it never asked whether Bricolage Grotesque is right. Locomotive and
+Stripe Press both lead with a serif; "lowkey luxury" reads serif far more often than it reads
+a quirky grotesque. Proposed: swap display Bricolage -> a high-contrast serif, KEEP Hanken
+(body) and JetBrains Mono (data). Face count stays at three, so D14's perf maths is untouched.
+
 ## OPEN — blocking Wave 2 and later
 
 **Q1 — References.** PARTIALLY ANSWERED via round 1 (see D-R8): Koto + Stripe Press +
