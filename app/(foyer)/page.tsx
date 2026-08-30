@@ -38,6 +38,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Hero } from "@/components/color-worlds/Hero";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
+import { OrdaniLive } from "@/components/color-worlds/OrdaniLive";
 import { OrdaniSticky } from "@/components/color-worlds/OrdaniSticky";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
@@ -318,6 +319,7 @@ export default function ColorWorldsHome() {
           <div className="cw-ordani__veil" />
         </div>
         <OrdaniSticky />
+        <OrdaniLive />
         {/* Operator correction 2026-08-15: the usage claim is birth workers,
             not practices — "14 doula practices" undersold it and read as a
             pilot. See LESSONS #3; the ledger entry was updated with it. */}

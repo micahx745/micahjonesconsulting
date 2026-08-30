@@ -327,3 +327,12 @@ last 20% is eating your month.") → /playbook; C-door ("Too big for duct tape. 
 for an agency retainer.") → /services. NOTE: A-door touches the Pass-30 lock (playbook off
 the enterprise front door) — that lock addressed the FIRST screen; the door sits five
 screens down. Operator to confirm or veto.
+
+## D-R18 — THE LIVE ZONE (operator, 2026-08-30): "i like the float components and have
+animations moving like someone is doing stuff in the app"
+Explicit operator override of the nothing-idles motion law, scoped to ONE zone: the Ordani
+section's OrdaniLive floats — glass cards over the dashboard ground where the practice runs
+in real time (labor timer ticking each second, a visit confirming on a cycle, an app-event
+toast feed). Rules that survive inside the zone: no person names in the demo content, only
+app vocabulary; aria-hidden (illustrative UI, not claims); everything freezes under
+prefers-reduced-motion (verified: timer frozen at 3:12:44 across a 2.6s reduce probe).
