@@ -210,6 +210,42 @@
   ]
 ]
 
+// The five-box architecture map (chapter 3's centerpiece).
+#let arch-box(x, y, bw, bh, label, sub: none) = {
+  place(dx: x, dy: y, box(
+    width: bw, height: bh,
+    stroke: 1.3pt + cw-petrol,
+    fill: cw-petrol.transparentize(94%),
+    align(center + horizon)[
+      #kicker(label, fill: cw-petrol, size: 7pt)
+      #if sub != none {
+        v(2pt)
+        text(font: mono-font, size: 5.5pt, fill: cw-espresso.transparentize(30%), tracking: 0.05em, sub)
+      }
+    ],
+  ))
+}
+#let arch-arrow(x, y1, y2, label, lx) = {
+  place(dx: x, dy: y1, line(angle: 90deg, length: y2 - y1, stroke: 1.2pt + cw-espresso))
+  place(dx: x - 2.6pt, dy: y2 - 4pt, text(size: 7pt, fill: cw-espresso)[▼])
+  place(dx: lx, dy: (y1 + y2) / 2 - 4pt, kicker(label, fill: cw-terracotta, size: 5.5pt))
+}
+#let arch-diagram() = block(above: 1.7em, below: 1.7em, breakable: false)[
+  #box(width: 340pt, height: 236pt)[
+    #arch-box(100pt, 0pt, 140pt, 36pt, "Client", sub: "browser · phone")
+    #arch-arrow(170pt, 36pt, 74pt, "session token", 178pt)
+    #arch-box(70pt, 74pt, 200pt, 38pt, "Server", sub: "your rules run here")
+    #arch-arrow(60pt, 112pt, 158pt, "owner filter", 0pt)
+    #arch-arrow(170pt, 112pt, 158pt, "signed access", 178pt)
+    #arch-arrow(280pt, 112pt, 158pt, "secrets", 288pt)
+    #arch-box(10pt, 158pt, 100pt, 40pt, "Data", sub: "who sees what")
+    #arch-box(120pt, 158pt, 100pt, 40pt, "Storage", sub: "files · media")
+    #arch-box(230pt, 158pt, 100pt, 40pt, "3rd parties", sub: "pay · mail · sms")
+    #arch-arrow(280pt, 198pt, 228pt, "verified webhooks", 180pt)
+    #place(dx: 20pt, dy: 224pt, kicker("back into the server, never the client", fill: cw-espresso.transparentize(35%), size: 5.5pt))
+  ]
+]
+
 // The transcript diagram: a strip of blocks, oldest falling out.
 #let window-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
   #let cell(label, dead: false) = box(
