@@ -56,7 +56,14 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   $2.33B + Akamai–Guardicore $600M = $5.58B; Neuton undisclosed, contributes $0. Sources
   pinned in content/citations.ts (EXITS_COMBINED_VALUE). NEVER: "Two exits". RETIRED (swept
   to zero rendered instances 2026-08-30): "Three companies I helped build reached an exit".
-- Ordani: **used by 200 birth workers, none lost to a competitor**
+- Ordani: **"hundreds of paying birth workers", none lost to a competitor** (operator
+  update 2026-08-31: NO public user count. The paying framing replaces the 200 figure on
+  EVERY public surface incl. metadata, JSON-LD, llms.txt, mdx dek/indexLine; 200 stays
+  internal-only. Swept to zero same day.)
+  VENDOR GATE (same date): Ordani surfaces never name infrastructure vendors — the case
+  study had named the database vendor inside a security-architecture sentence on a HIPAA
+  product. Tools list is capability nouns; body says "in the database".
+  Historical entry: **used by 200 birth workers, none lost to a competitor**
   (operator update 2026-08-15 — SUPERSEDES the earlier "fourteen practices / eight
   active weekly at six months" entry, which described the closed beta and had gone
   stale on the live site). The earlier ledger line BANNED "Hundreds of users active";
@@ -73,7 +80,9 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   important bank, world's largest public biomedical-research funder, white-shoe Wall Street
   law firm). NEVER name TD Bank / Deutsche Bank / NIH / Davis Polk / Peoples Natural Gas.
 - The HR/industry-author engagement: ONE author; reach 8K→290K; RFP-to-close doubled; two
-  six-figure retainers; the RAG RFP-scanning platform (real custom software). NEVER: the
+  six-figure retainers; **$3M in contracts won through the RFP platform, including a top
+  university and a county government** (operator-supplied 2026-08-31, anonymized per the
+  customer rule); the RAG RFP-scanning platform (real custom software). NEVER: the
   three fabricated end-clients (see #2).
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
