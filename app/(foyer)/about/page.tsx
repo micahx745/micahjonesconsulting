@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "About",
   description:
-    "Independent operator in Oakland. Four exits behind my work: Postmates → Uber, TechValidate → SurveyMonkey IPO, Guardicore → Akamai, Neuton.AI → Nordic Semiconductor. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by 200 birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates → Uber, TechValidate → SurveyMonkey IPO, Guardicore → Akamai, Neuton.AI → Nordic Semiconductor. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by hundreds of paying birth workers.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
     title: "About — Micah Jones",
     description:
-      "Independent operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue. Building Ordani, used by 200 birth workers.",
+      "Independent operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue. Building Ordani, used by hundreds of paying birth workers.",
     type: "profile",
     url: "https://www.micahjonesconsulting.com/about",
   },
@@ -121,8 +121,8 @@ export default function AboutPage() {
             </li>
             <li>
               <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-grade
-              practice management used by 200 birth workers. Solo
-              build on Next.js + Supabase. Live beta.
+              practice management used by hundreds of paying birth
+              workers. Built and shipped by one person. Live.
             </li>
           </ul>
 

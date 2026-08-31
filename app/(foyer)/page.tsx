@@ -37,6 +37,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Hero } from "@/components/color-worlds/Hero";
+import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
@@ -48,13 +49,13 @@ export const metadata: Metadata = {
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
   },
   description:
-    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by 200 birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by hundreds of paying birth workers.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-grade practice management used by 200 birth workers.",
+      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-grade practice management used by hundreds of paying birth workers.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -306,14 +307,20 @@ export default function ColorWorldsHome() {
         data-world="bone"
         aria-labelledby="cw-ordani-title"
       >
-        <p className="cw-kicker cw-reveal">Ordani</p>
+        {/* Pass-17 (operator): "Ordani needs to be bigger - the built for
+            the people is nice but i cant see ordani above it". The name
+            takes the display slot; the line he likes becomes a large
+            subtitle beneath it. */}
         <SplitReveal
           as="h2"
           id="cw-ordani-title"
           className="cw-secttitle"
         >
-          Built for the people who show up for mothers.
+          Ordani
         </SplitReveal>
+        <p className="cw-ordani-subtitle cw-reveal">
+          Built for the people who show up for mothers.
+        </p>
 
         <div className="cw-ordani-split">
           <div className="cw-ordani-split__text">
@@ -337,6 +344,14 @@ export default function ColorWorldsHome() {
                 See how it was built{" "}
                 <span className="cw-section-cta__arr" aria-hidden>→</span>
               </a>
+            </div>
+            {/* Waitlist restored (operator ask). Same OrdaniBetaForm as
+                before Pass-12 — wired to Resend + the beta flow. */}
+            <div className="cw-ordani-wait cw-reveal" id="waitlist">
+              <p className="cw-ordani-wait__lbl">
+                Know a birth worker? Join the waitlist.
+              </p>
+              <OrdaniBetaForm />
             </div>
           </div>
 
@@ -389,7 +404,7 @@ export default function ColorWorldsHome() {
             cw-shipped-also credit line (its 2013–2023 / $20M+ claim is now
             the total row). Trace rule (LESSONS #2) checked: $80M/$14M in
             guardicore.mdx, 8K→290K + doubled in hr-equity-author.mdx,
-            200 birth workers in ordani.mdx. The SurveyMonkey row has no
+            the paying-users claim in ordani.mdx. The SurveyMonkey row has no
             case-study page, so it carries no link — an unlinked row in a
             ledger reads as honesty, not absence. Per the W2 operator lock,
             the home surface says "SurveyMonkey Enterprise", never
@@ -457,8 +472,8 @@ export default function ColorWorldsHome() {
               <span className="cw-lrow__tag">GTM + software · 2024–</span>
             </span>
             <span className="cw-lrow__out">
-              Reach <strong>8K → 290K</strong> · RFP-to-close{" "}
-              <strong>doubled</strong>
+              Reach <strong>8K → 290K</strong> ·{" "}
+              <strong>$3M in contracts won</strong>
             </span>
             <span className="cw-lrow__go" aria-hidden>→</span>
           </a>
@@ -491,7 +506,7 @@ export default function ColorWorldsHome() {
               <span className="cw-lrow__tag">Founder, sole engineer · 2026</span>
             </span>
             <span className="cw-lrow__out">
-              <strong>200 birth workers</strong> · none lost to a
+              <strong>Hundreds of paying users</strong> · none lost to a
               competitor
             </span>
             <span className="cw-lrow__go" aria-hidden>→</span>

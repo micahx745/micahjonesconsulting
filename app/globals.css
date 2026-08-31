@@ -1866,6 +1866,32 @@ body {
 /* ORDANI, quiet (Pass-15). The site's own editorial grammar: text left,
  * one small bordered photograph right (the /about portrait idiom), the
  * standard reveal system, nothing else. */
+/* Ordani section title treatment (Pass-17): the name takes the display
+ * slot; the approved line becomes a large subtitle. Waitlist block sits
+ * under the CTA in the text column. */
+[data-mode="cw"] .cw-ordani-subtitle {
+  font-family: var(--font-cw-display);
+  font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  max-width: 22ch;
+  text-wrap: balance;
+  margin: -18px 0 44px;
+}
+[data-mode="cw"] .cw-ordani-wait {
+  margin-top: 40px;
+  max-width: 480px;
+}
+[data-mode="cw"] .cw-ordani-wait__lbl {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0 0 12px;
+}
+
 [data-mode="cw"] .cw-ordani-split {
   display: grid;
   grid-template-columns: 1fr;

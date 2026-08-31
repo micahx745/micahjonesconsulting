@@ -407,8 +407,8 @@ export function Hero() {
           className="cw-chip cw-reveal"
           style={{ "--drift": "18px", transitionDelay: "860ms" } as React.CSSProperties}
         >
-          <strong className="cw-chip__fig">200</strong>
-          <span className="cw-chip__lbl">birth workers on Ordani</span>
+          <strong className="cw-chip__fig">Hundreds</strong>
+          <span className="cw-chip__lbl">paying for software I built alone</span>
         </li>
       </ul>
 
