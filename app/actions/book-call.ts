@@ -13,6 +13,7 @@
 
 import { Resend } from "resend";
 import { buildInviteIcs } from "@/lib/ics";
+import { slotIsBusy } from "@/lib/busy";
 
 interface Result {
   ok: boolean;
@@ -75,6 +76,16 @@ export async function submitBooking(formData: {
     return { ok: false, error: "That date has already passed." };
   if (picked > now + 60 * 86400_000)
     return { ok: false, error: "Pick a date within the next 60 days." };
+
+  // Busy-check against the operator's Google Calendar (secret ICS URL,
+  // BOOKING_CAL_ICS_URL). Best-effort: fails open; recurring events are
+  // not expanded (v1) — the operator remains the manual backstop.
+  if (await slotIsBusy(date, time, 30)) {
+    return {
+      ok: false,
+      error: "That slot just filled. Pick another and you're in.",
+    };
+  }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
