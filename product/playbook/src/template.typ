@@ -185,6 +185,31 @@
   ]
 ]
 
+// Drift chart: intent vs repo diverging over sessions.
+#let drift-chart() = block(above: 1.6em, below: 1.6em, breakable: false)[
+  #let w = 340pt
+  #let h = 150pt
+  #box(width: w, height: h)[
+    // axes
+    #place(dx: 0pt, dy: h - 22pt, line(length: w, stroke: 1pt + cw-espresso))
+    #place(dx: 0pt, dy: 6pt, line(angle: 90deg, length: h - 28pt, stroke: 1pt + cw-espresso))
+    // intent: steady rise (petrol), (0,110) -> (330,40)
+    #place(dx: 0pt, dy: 110pt, line(end: (330pt, -70pt), stroke: 1.6pt + cw-petrol))
+    // repo: rises then plateaus (terracotta), diverging below intent
+    #place(dx: 0pt, dy: 110pt, line(end: (80pt, -14pt), stroke: 2pt + cw-terracotta))
+    #place(dx: 80pt, dy: 96pt, line(end: (80pt, -6pt), stroke: 2pt + cw-terracotta))
+    #place(dx: 160pt, dy: 90pt, line(end: (80pt, -2pt), stroke: 2pt + cw-terracotta))
+    #place(dx: 240pt, dy: 88pt, line(end: (90pt, -1pt), stroke: 2pt + cw-terracotta))
+    // the widening gap, marked at the right edge
+    #place(dx: 330pt, dy: 40pt, line(angle: 90deg, length: 47pt, stroke: (paint: cw-espresso, thickness: 1pt, dash: "dotted")))
+    #place(dx: 255pt, dy: 96pt, kicker("The gap", fill: cw-espresso, size: 7pt))
+    // labels, clear of both lines
+    #place(dx: 6pt, dy: 68pt, kicker("The app you intend", fill: cw-petrol, size: 6.5pt))
+    #place(dx: 118pt, dy: 112pt, kicker("The app the sessions build", fill: cw-terracotta, size: 6.5pt))
+    #place(dx: 0pt, dy: h - 16pt, kicker("Sessions", fill: cw-espresso.transparentize(35%), size: 6.5pt))
+  ]
+]
+
 // The transcript diagram: a strip of blocks, oldest falling out.
 #let window-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
   #let cell(label, dead: false) = box(
