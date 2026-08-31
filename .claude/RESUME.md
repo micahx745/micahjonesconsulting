@@ -38,8 +38,13 @@ project domain).
   Next: ch.2 "The spec is the moat", first SEO article (ch.1 topic), Stripe when manuscript done.
 
 ## Latest (2026-08-31 PM)
-- Ch.2 "The spec is the moat" BUILT (Pass-29, 8pp, gates green) — sent to operator, awaiting
-  review. Ch.3 "The architecture you didn't draw" is next.
+- Chapters 2, 3, 4 BUILT + delivered (Pass-29/31/32). Ch.2+3 operator-APPROVED; ch.4 awaiting
+  review. Ch.5 "The security pre-flight" next. 4 of 10 chapters done.
+- DOMAIN INCIDENT (2026-08-31): CLI `domains add www` attached www with default redirect->apex
+  while apex redirects->www = LOOP, both domains down ~2min. Reverted to alias, LESSONS #9 logged
+  w/ gate (curl both directions before/after; project-dashboard adds only). www remains a manual
+  alias — re-alias still required each deploy. Proper fix choreography: remove alias, then operator
+  adds www at PROJECT Settings->Domains choosing NO redirect, within the same minute.
 - Mobile polish SHIPPED + live-verified (Pass-30/30b): TitleCard static under 768px (no pin;
   pin-spacer inline styles had defeated CSS fixes — component-level matchMedia gate), 44px menu
   tap targets, footer link padding, spec-table swipe hint, end-matter gap 128->56. Desktop pin
