@@ -2186,145 +2186,216 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* THE FLOW (Pass-13) — one panel that executes the value props as a
- * sequence while the photo shows the birth worker working. Connector
- * line draws down as each step completes. */
-[data-mode="cw"] .cw-flow__head {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-bottom: 20px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(236, 227, 208, 0.14);
-}
-[data-mode="cw"] .cw-flow__headlbl {
-  font-family: var(--font-cw-body);
-  font-weight: 500;
-  font-size: 15px;
-  color: var(--color-cw-bone);
-}
-[data-mode="cw"] .cw-flow__digits {
-  margin-left: auto;
-  font-family: var(--font-cw-mono);
-  font-size: 14px;
-  font-variant-numeric: tabular-nums;
-  color: rgba(236, 227, 208, 0.85);
-}
-[data-mode="cw"] .cw-flow__steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-[data-mode="cw"] .cw-flow__step {
-  display: flex;
-  gap: 14px;
-  min-height: 64px;
-}
-[data-mode="cw"] .cw-flow__rail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 22px;
-  flex: 0 0 auto;
-}
-[data-mode="cw"] .cw-flow__node {
-  display: grid;
-  place-items: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(236, 227, 208, 0.3);
-  background: transparent;
-  transition: background 0.28s ease, border-color 0.28s ease; /* motion-ok: D-R18 flow-step completion; static under reduced motion */
-}
-[data-mode="cw"] .cw-flow__check {
-  font-size: 11px;
-  color: transparent;
-  transform: scale(0.4); /* motion-ok: one-shot check pop on completion; static under reduced motion */
-  transition: color 0.28s ease, transform 0.28s cubic-bezier(0.2, 1.4, 0.4, 1); /* motion-ok: D-R18 flow-step completion */
-}
-[data-mode="cw"] .cw-flow__step.is-done .cw-flow__node {
-  background: var(--color-cw-saffron);
-  border-color: var(--color-cw-saffron);
-}
-[data-mode="cw"] .cw-flow__step.is-done .cw-flow__check {
-  color: var(--color-cw-espresso);
-  transform: scale(1);
-}
-[data-mode="cw"] .cw-flow__step.is-next .cw-flow__node {
-  border-color: var(--color-cw-saffron);
-  animation: cw-flow-breathe 1.3s ease-in-out infinite; /* motion-ok: D-R18 active-step marker; static under reduced motion */
-}
-@keyframes cw-flow-breathe {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 152, 47, 0.35); }
-  50% { box-shadow: 0 0 0 6px rgba(201, 152, 47, 0); }
-}
-[data-mode="cw"] .cw-flow__line {
-  flex: 1;
-  width: 2px;
-  margin: 4px 0;
-  background: rgba(236, 227, 208, 0.16);
-  border-radius: 1px;
+/* THE TOUR (Pass-14) — separate flows + the ghost cursor. Three real
+ * flow rows; a cursor travels in, clicks "Get paid", and the payment
+ * flow runs as realistic app UI inside a solid cream mini-screen (the
+ * app's true register): Medicaid claim -> Approved -> payout breakdown
+ * with a $0.00 Ordani fee line. All timings live in the component's
+ * phase machine; CSS only renders states. D-R18 zone throughout. */
+[data-mode="cw"] .cw-tour {
   position: relative;
   overflow: hidden;
 }
-[data-mode="cw"] .cw-flow__linefill {
-  position: absolute;
-  inset: 0;
-  background: var(--color-cw-saffron);
-  transform: scaleY(0); /* motion-ok: the connector draws as the step completes; static under reduced motion */
-  transform-origin: top;
-  transition: transform 0.28s ease; /* motion-ok: D-R18 connector draw */
-  transition-delay: 120ms; /* motion-ok: draws after the check lands */
+[data-mode="cw"] .cw-tour__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
 }
-[data-mode="cw"] .cw-flow__step.is-done .cw-flow__linefill {
-  transform: scaleY(1);
+[data-mode="cw"] .cw-tour__headlbl {
+  font-family: var(--font-cw-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(236, 227, 208, 0.85);
 }
-[data-mode="cw"] .cw-flow__body {
+[data-mode="cw"] .cw-tour__digits {
+  margin-left: auto;
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(236, 227, 208, 0.85);
+}
+/* ---- the separate flows ---- */
+[data-mode="cw"] .cw-tour__flows {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding-bottom: 18px;
-  opacity: 0.45;
-  transition: opacity 0.28s ease; /* motion-ok: D-R18 step focus; static under reduced motion */
+  gap: 8px;
+  margin-bottom: 14px;
 }
-[data-mode="cw"] .cw-flow__step.is-done .cw-flow__body,
-[data-mode="cw"] .cw-flow__step.is-next .cw-flow__body {
-  opacity: 1;
+[data-mode="cw"] .cw-tour__flow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(236, 227, 208, 0.14);
+  background: rgba(236, 227, 208, 0.05);
+  transition: background 0.28s ease, border-color 0.28s ease, transform 0.28s ease; /* motion-ok: D-R18 hover/select states driven by the phase machine; static under reduced motion */
 }
-[data-mode="cw"] .cw-flow__title {
+[data-mode="cw"] .cw-tour__flow.is-hover {
+  background: rgba(236, 227, 208, 0.12);
+  border-color: rgba(236, 227, 208, 0.3);
+}
+[data-mode="cw"] .cw-tour__flow.is-active {
+  background: rgba(201, 152, 47, 0.16);
+  border-color: var(--color-cw-saffron);
+}
+[data-mode="cw"] .cw-tour__flowlbl {
   font-family: var(--font-cw-body);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--color-cw-bone);
 }
-[data-mode="cw"] .cw-flow__sub {
+[data-mode="cw"] .cw-tour__flowmeta {
   font-family: var(--font-cw-body);
-  font-size: 13px;
-  color: rgba(236, 227, 208, 0.68);
+  font-size: 12px;
+  color: rgba(236, 227, 208, 0.55);
 }
-[data-mode="cw"] .cw-flow__close {
-  margin: 6px 0 0;
-  padding-top: 14px;
-  border-top: 1px solid rgba(236, 227, 208, 0.14);
-  font-family: var(--font-cw-display);
-  font-weight: 500;
-  font-size: 17px;
-  color: var(--color-cw-bone);
+/* ---- the screen: solid cream, the app's real register ---- */
+[data-mode="cw"] .cw-tour__screen {
+  border-radius: 14px;
+  background: var(--color-cw-bone);
+  color: var(--color-cw-espresso);
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  transition: opacity 0.28s ease; /* motion-ok: D-R18 flow close line; static under reduced motion */
+  transition: grid-template-rows 0.28s ease, opacity 0.28s ease; /* motion-ok: D-R18 screen open on click; static under reduced motion */
+  overflow: hidden;
+  min-height: 0;
 }
-[data-mode="cw"] .cw-flow__close.is-on { opacity: 1; }
+[data-mode="cw"] .cw-tour__screen.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+[data-mode="cw"] .cw-tour__screen > * { min-height: 0; }
+[data-mode="cw"] .cw-tour__claim {
+  opacity: 0;
+  transform: translateY(6px); /* motion-ok: D-R18 flow beat; static under reduced motion */
+  transition: opacity 0.28s ease, transform 0.28s ease; /* motion-ok: D-R18 flow beat */
+}
+[data-mode="cw"] .cw-tour__claim.is-in { opacity: 1; transform: none; }
+[data-mode="cw"] .cw-tour__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+[data-mode="cw"] .cw-tour__rowlbl {
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 14px;
+}
+[data-mode="cw"] .cw-tour__amt {
+  font-family: var(--font-cw-mono);
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-tour__pill {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-cw-espresso) 10%, transparent);
+  color: color-mix(in srgb, var(--color-cw-espresso) 70%, transparent);
+  transition: background 0.28s ease, color 0.28s ease; /* motion-ok: D-R18 status flip; static under reduced motion */
+}
+[data-mode="cw"] .cw-tour__pill.is-approved {
+  background: var(--color-cw-petrol);
+  color: var(--color-cw-bone);
+}
+[data-mode="cw"] .cw-tour__payout {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed color-mix(in srgb, var(--color-cw-espresso) 25%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  opacity: 0;
+  transform: translateY(6px); /* motion-ok: D-R18 flow beat; static under reduced motion */
+  transition: opacity 0.28s ease, transform 0.28s ease; /* motion-ok: D-R18 flow beat */
+}
+[data-mode="cw"] .cw-tour__payout.is-in { opacity: 1; transform: none; }
+[data-mode="cw"] .cw-tour__line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-cw-body);
+  font-size: 13.5px;
+  color: color-mix(in srgb, var(--color-cw-espresso) 80%, transparent);
+}
+[data-mode="cw"] .cw-tour__line--fee .cw-tour__amt {
+  color: var(--color-cw-petrol);
+  font-weight: 700;
+}
+[data-mode="cw"] .cw-tour__line--total {
+  padding-top: 7px;
+  border-top: 1.5px solid var(--color-cw-espresso);
+  font-weight: 700;
+  color: var(--color-cw-espresso);
+}
+[data-mode="cw"] .cw-tour__line--total .cw-tour__amt { font-weight: 700; }
+[data-mode="cw"] .cw-tour__close {
+  margin: 12px 0 0;
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-cw-espresso);
+  opacity: 0;
+  transition: opacity 0.28s ease; /* motion-ok: D-R18 close line; static under reduced motion */
+}
+[data-mode="cw"] .cw-tour__close.is-on { opacity: 1; }
+/* ---- the ghost cursor ---- */
+[data-mode="cw"] .cw-tour__cursor {
+  position: absolute;
+  z-index: 3;
+  left: 86%;
+  top: 92%;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  transition: left 0.85s cubic-bezier(0.45, 0, 0.25, 1), top 0.85s cubic-bezier(0.45, 0, 0.25, 1), transform 0.15s ease; /* motion-ok: D-R18 ghost-cursor travel, the demo's entire point; hidden under reduced motion */
+}
+/* cursor waypoints per phase (the "Get paid" row sits at ~ left 46% / top 27%) */
+[data-mode="cw"] .cw-tour--p0 .cw-tour__cursor { left: 86%; top: 92%; }
+[data-mode="cw"] .cw-tour--p1 .cw-tour__cursor,
+[data-mode="cw"] .cw-tour--p2 .cw-tour__cursor,
+[data-mode="cw"] .cw-tour--p3 .cw-tour__cursor { left: 44%; top: 20%; }
+[data-mode="cw"] .cw-tour--p4 .cw-tour__cursor,
+[data-mode="cw"] .cw-tour--p5 .cw-tour__cursor { left: 62%; top: 46%; }
+[data-mode="cw"] .cw-tour--p6 .cw-tour__cursor,
+[data-mode="cw"] .cw-tour--p7 .cw-tour__cursor { left: 78%; top: 80%; }
+[data-mode="cw"] .cw-tour__cursor.is-click { transform: scale(0.82); }
+[data-mode="cw"] .cw-tour__ripple {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--color-cw-saffron);
+  opacity: 0;
+  transform: scale(0.3); /* motion-ok: click ripple origin state */
+}
+[data-mode="cw"] .cw-tour__cursor.is-click .cw-tour__ripple {
+  animation: cw-tour-ripple 0.45s ease-out forwards; /* motion-ok: D-R18 click ripple; hidden under reduced motion */
+}
+@keyframes cw-tour-ripple {
+  0% { opacity: 0.9; transform: scale(0.3); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
 @media (prefers-reduced-motion: reduce) {
-  [data-mode="cw"] .cw-flow__node,
-  [data-mode="cw"] .cw-flow__check,
-  [data-mode="cw"] .cw-flow__linefill,
-  [data-mode="cw"] .cw-flow__body,
-  [data-mode="cw"] .cw-flow__close {
+  [data-mode="cw"] .cw-tour__cursor { display: none; }
+  [data-mode="cw"] .cw-tour__flow,
+  [data-mode="cw"] .cw-tour__screen,
+  [data-mode="cw"] .cw-tour__claim,
+  [data-mode="cw"] .cw-tour__pill,
+  [data-mode="cw"] .cw-tour__payout,
+  [data-mode="cw"] .cw-tour__close {
     transition: none !important;
-    animation: none !important;
   }
 }
 
