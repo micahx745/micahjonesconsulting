@@ -1,189 +1,234 @@
-// chapter-01.typ — "Why your build broke at 80%"
+// chapter-01.typ — "Why your build broke at 80%" — v2.
 //
-// The free sample chapter promised on /playbook. Real chapter, not a
-// teaser. Every build-log story in here is true and documented in the
-// author's repos (LESSONS_LEARNED entries; the dead-forms discovery of
-// 2026-08-31). Claims about context windows are stated as 2026 ranges,
-// no vendor specifics, nothing fabricated.
+// v2 copy pass (operator: "really go over the words again... have
+// people wanting to hire me and buy the playbook"). Both build-log
+// entries are true and dated from the author's actual repos (LESSONS
+// #6, 2026-08-11; the dead-forms discovery, 2026-08-31). All author
+// claims use the verified ledger phrasings (docs/LESSONS_LEARNED.md
+// #3). Context-window figures are stated as 2026 ranges, no vendor
+// specifics.
 #import "template.typ": *
 
 #chapter-open(
   "01",
   "Why your build broke at 80%",
   "What happens in the context window when the AI starts undoing your features. The structural reason, not the vibes.",
+  spec: (
+    ("Subject", "Context windows · drift"),
+    ("Reader", "Solo builders on AI tools"),
+    ("Author", "Micah Jones"),
+    ("Status", "Free chapter of ten"),
+    ("Time", "A 15-minute read"),
+    ("Rev", "2026.08"),
+  ),
 )
 
 #show: manual.with(chapter-num: "01")
 
 == The moment it turns
 
-You asked for something small. Move a button. Fix a date format. The diff looked clean, the app compiled, and you shipped it.
+#fieldnote[
+  Everything in this manual comes from builds I shipped. Mostly
+  Ordani: a HIPAA-grade SaaS I built alone with Claude Code and
+  Cursor, that hundreds of birth workers pay for. Same stack you're
+  using. Same wall.
+]
 
-Then you clicked around and found that uploads were broken. Uploads. The feature you finished on Tuesday. The one that already worked.
+You asked for something small. Move a button. Fix a date format. The diff was four lines. It compiled. You shipped it.
 
-So you told the AI to fix uploads. It fixed uploads. Now the date format is wrong again.
+Then you clicked around. Uploads are broken. Uploads. The feature you finished Tuesday. The one that already worked.
 
-If you have been here, you know the feeling that comes next: the creeping suspicion that the tool has turned on you. It has not. It is doing exactly what it was built to do, with exactly the information it has. The problem is structural. It is knowable. And once you can see it, you can beat it.
+So you tell the AI to fix uploads. It fixes uploads. Now the date format is wrong again.
 
-That is this chapter: the mechanism, in plain terms, and the five habits that stop the bleeding tonight. The rest of the manual builds the actual cure.
+Somewhere around the third loop, everyone has the same thought: _this thing has turned on me._
+
+It has not. It is doing exactly what it was built to do, with exactly the information it has. The problem is structural, which is the good news. Structural problems can be engineered around, and engineering around this one is what separates the builds that ship from the graveyard of demos.
+
+This chapter is the mechanism, in plain terms, and then five habits that stop the bleeding tonight. The other nine chapters build the cure.
 
 == What the AI actually remembers
 
-Every AI coding tool, no matter the brand, works inside a *context window*.
+Every AI coding tool, whatever the logo, works inside a *context window*.
 
 #define("Context window")[
   The fixed span of text the model can consider at one time: your
   instructions, the files it read, the diffs it wrote, the errors it
   saw. Everything outside the window does not exist for it. Not
-  "is harder to recall." Does not exist.
+  "harder to recall." Does not exist.
 ]
 
-The window is not memory. It is closer to a transcript, and the transcript has a hard length limit. In 2026, the big models run somewhere between two hundred thousand and a million tokens, where a token is roughly three-quarters of a word. That sounds enormous. A working session burns it fast: every file the tool opens lands in the window, every diff, every stack trace, every "here's what I found."
+The window is not memory. It is a transcript with a hard length limit. In 2026 the big models hold somewhere between two hundred thousand and a million tokens, and a working session eats that fast: every file the tool opens lands in the transcript, along with every diff, every stack trace, every "here's what I found."
 
-When the transcript fills up, one of two things happens. Old content falls off the end, or the tool compresses it into a summary. The summary keeps what looked important at the time and quietly drops what looked incidental. "Looked" is the word doing all the damage.
+#side[
+  Rough math: a token is about three-quarters of a word. Two hundred
+  thousand tokens is a long novel. A session that reads files, writes
+  diffs, and chases errors gets through a novel quickly.
+]
 
-And between sessions? Nothing carries over. Close the chat, and that transcript is gone for good. Tomorrow's session starts with three things: your codebase, your prompt, and total amnesia about how the codebase got that way.
+When the transcript fills, one of two things happens. The oldest content falls off the end, or the tool compresses it into a summary that keeps what looked important and quietly drops what looked incidental. "Looked" is the word doing all the damage.
 
-== Your features are more than their code
+#window-diagram()
 
-Here is the part almost nobody tells you, and it is the crux of the whole chapter.
+And between sessions, nothing survives. Close the chat and the transcript is gone for good. Tomorrow's session starts with three things: your codebase, your prompt, and total amnesia about how the codebase got this way.
 
-A working feature is not just code. It is code plus a set of constraints that make the code correct. "Uploads must stream to storage instead of buffering, because a 500MB video crushes the serverless function." "Dates must be formatted server-side, because the client's timezone lies." The code shows *what* it does. The reason it must be done that strange way lived in one place only: the conversation where you and the AI figured it out.
+== Features are more than their code
+
+Here is the part almost nobody tells you. It is the crux of this whole manual.
+
+A working feature is not just code. It is code plus the constraints that make the code correct. "Uploads must stream to storage, never buffer, because a 500MB video crushes the serverless function." "Dates format on the server, because the client's timezone lies." The code shows _what_ it does. The reason it must be done that strange way lived in exactly one place: the conversation where you and the AI worked it out.
 
 That conversation is gone.
 
-So three weeks later, a fresh session opens the upload file while working on something unrelated. It sees an oddly complicated streaming implementation where a simple buffer would do. It has no idea about the 500MB video. Cleaning it up is the *correct move* given what it can see. It is not sabotaging your feature. It is tidying code whose reason for existing is written down nowhere.
+So weeks later, a fresh session opens your upload file while doing something unrelated. It sees an oddly complicated streaming setup where a simple buffer would do. It has never heard of the 500MB video. Simplifying that code is the _correct move_ given everything it can see. It is not sabotaging your feature. It is tidying code whose reason for existing is written down nowhere on earth.
 
-#pull[Code says what. Only the transcript said why. And the transcript is gone.]
+#pull[Code says what. Only the transcript knew why. And the transcript is gone.]
 
-Multiply that by every feature you have shipped, and you have the real shape of the problem: your app is held together by dozens of invisible rules, and your tool can only see the code.
+Now multiply by every feature you have shipped. That is the true shape of your app at 80%: held together by dozens of invisible rules, inspected by a tool that can only see the code.
 
 == Why it hits at 80% and not sooner
 
-The wall is not one failure. It is three curves crossing.
+The wall is not one failure. It is two lines crossing.
 
-=== 1. Your codebase outgrows the window
+#wall-chart()
 
-In week one, the whole project fits in context. The AI is briefly all-knowing: it holds every file at once, and it feels like magic. That magic is what got you hooked, and it is real. It is also temporary. A mid-sized app is a few hundred files and several hundred thousand tokens, and past that point the AI is no longer reading your codebase. It is sampling it.
+*Your codebase outgrows the window.* In week one the whole project fits in context. The AI is briefly all-knowing, and it feels like magic. The magic is real, and it is temporary. A mid-sized app runs a few hundred files, several hundred thousand tokens, and past that the AI is no longer reading your codebase. It is sampling it.
 
-=== 2. Your constraints pile up
+*Your unwritten rules pile up.* Every feature that works adds constraints to the pile: the auth rule, the streaming rule, the timezone rule, the webhook-ordering rule. At 20% built you carry three of these in your head. At 80% you carry sixty, they interact, and not one is written down.
 
-Every feature that works adds rules-with-reasons to the pile: the auth rule, the streaming rule, the timezone rule, the webhook-ordering rule. At 20% built you might have three of these. At 80% you have sixty, they interact, and not one of them is written down. The number of ways to break something grows with every single thing that works.
+*Your sessions multiply.* By 80% you are dozens of sessions deep. Each started amnesiac. Each rebuilt its own partial picture of the app from whatever files it happened to open. Session forty's mental model disagrees with session twelve's, and both wrote code you are still running.
 
-=== 3. Your sessions multiply
-
-By 80% you are dozens of sessions deep. Each one started amnesiac. Each rebuilt its own partial picture of your app from whatever files it happened to read. Session forty's mental model disagrees with session twelve's, and both of them wrote code you are still running.
-
-The 80% wall is the point where the invisible constraints outnumber what fits in the window. It is not a skill problem. It is arithmetic. Which is good news, because arithmetic can be engineered around.
+The wall is the point where the invisible rules outnumber what fits in the window. It is not a talent problem. It is arithmetic, and arithmetic can be beaten with a system.
 
 == The regression loop
 
-Once you cross the wall without knowing it, the same spiral catches nearly everyone:
+#fieldnote[
+  The break rarely announces itself. The first symptom is usually a
+  regression in something you had stopped watching, days after the
+  session that caused it.
+]
 
-+ You ask for change B. The AI edits, and quietly violates invariant A, which was nowhere in its view.
-+ You spot A broken and ask for a fix. The fix trips constraint C, or re-breaks B.
-+ Fixes keep compiling, so you start accepting diffs without reading them. Now drift compounds silently.
-+ Frustration peaks, and the thought arrives: "maybe I should just have it rebuild the whole thing clean."
+Cross the wall without knowing it, and the same spiral catches nearly everyone:
+
++ You ask for change B. The AI delivers it, quietly violating rule A, which was nowhere in its view.
++ You spot A broken and ask for a fix. The fix trips rule C, or re-breaks B.
++ The fixes keep compiling, so you stop reading the diffs. Drift now compounds silently.
++ Frustration peaks, and the thought arrives: _maybe I should just have it rebuild the whole thing clean._
 
 #callout[
   The rewrite is the wall wearing a costume. A rebuild trades bugs you
-  know for bugs you do not, and it resets your pile of hard-won
-  constraints to zero. The pile was the only thing you had earned.
-  Rebuilds stall at their own 60% for exactly the reasons the original
-  stalled at 80.
+  know for bugs you do not, and resets your pile of hard-won rules to
+  zero. That pile was the only thing you had earned. Rebuilds stall at
+  their own 60%, for exactly the reasons the original stalled at 80.
 ]
 
-== Two entries from my own build log
+== Two entries from my build log
 
-I hit this wall with years of engineering behind me, on my own consulting site, the month I am writing this. The wall does not care about your resume.
+I hit this wall in the same month I am writing this, on my own consulting site, with a long engineering career behind me. The wall does not care about your resume. Both entries below are real, with dates.
 
-#warstory("The same bug, twice")[
-  My site's framework had a quirk: the renderer ate the space after
-  bold text in certain conditions, so "\$20M+ in client revenue"
+#warstory("Entry · 2026-08-11", "The same bug, twice")[
+  My site's framework has a quirk: in certain conditions the renderer
+  eats the space after bold text, so "\$20M+ in client revenue"
   shipped to production as "\$20M+in client revenue." A session found
-  it, fixed it, and I wrote the lesson in the project's docs.
+  it, fixed it, and wrote the lesson in the project's docs. Case
+  closed.
 
   Weeks later, a different session reintroduced the exact same bug in
   new copy. It had never read the lesson. Writing it down was not
-  enough, because prose only works on readers, and the next session is
-  not guaranteed to be one.
+  enough, because prose only works on whoever reads it, and the next
+  session reads nothing you don't put in front of it.
 
   What finally stuck was a one-line check command in the repo that
-  fails loudly whenever the pattern appears, run before every release.
-  The bug never shipped again. Rules a machine can run beat rules a
-  reader must remember. That idea shows up in every chapter of this
-  manual.
+  fails loudly whenever the pattern appears, run before every
+  release. The bug never shipped again. Rules a machine can run beat
+  rules a reader must remember. That idea repeats through every
+  chapter of this manual.
 ]
 
-#warstory("The demo that lied for weeks")[
+#warstory("Entry · 2026-08-31", "The demo that lied for weeks")[
   That same site had three lead forms: contact, a sample-chapter
-  signup, and a beta waitlist. All three worked flawlessly in the
-  demo. In production, for weeks, every single submission fell into a
-  server log nobody reads, because one environment variable, the email
-  key, had never been installed on the live host.
+  signup, a beta waitlist. All three worked flawlessly in the demo.
+  In production, for weeks, every submission fell into a server log
+  nobody reads, because one environment variable, the email key, was
+  never installed on the live host.
 
   No error. No bounce. The page told every visitor "Got it."
 
-  I only found out because I tested a *new* feature end to end on the
-  live site, and that test failed loudly enough to make me look. Two
-  lessons, and they get their own chapter later: production is a
-  different machine than the demo, and "it works" is a claim about the
-  path you actually tested, never about the code you wrote.
+  I found out this morning, only because I tested a _new_ feature end
+  to end on the live site and that test failed loudly enough to make
+  me look. Two lessons, each with its own chapter later: production
+  is a different machine than the demo. And "it works" is a claim
+  about the path you actually tested, never about the code you wrote.
 ]
 
 == What does not fix it
 
-You will be tempted by four false exits. I have tried all four.
+Four false exits. I have paid for all four.
 
-*A smarter model.* Smarter per-glance, same amnesia. Drift is not caused by low intelligence. It is caused by what is out of view.
+*A smarter model.* Smarter per glance, same amnesia. Drift is not caused by low intelligence. It is caused by what is out of view.
 
 *A bigger window.* A million tokens digests a bigger codebase. It does not conjure the sixty reasons-why that were never written anywhere a window could hold.
 
-*Telling it to remember.* "Please always keep uploads streaming" pins the rule to one transcript. Politeness is not persistence. The next session never heard you.
+*Telling it to remember.* "Always keep uploads streaming" pins the rule to one transcript. Politeness is not persistence. The next session never heard you.
 
-*Pasting everything, every time.* Stuffing the repo into every prompt burns the window on *what* while still containing zero *why*, and it crowds out the space the model needs to think.
+*Pasting everything, every time.* Stuffing the repo into each prompt burns the window on _what_ while still holding zero _why_, and crowds out the room the model needs to think.
 
 == What works: memory the window cannot lose
 
 The move that changes everything is small: stop treating the conversation as storage.
 
-Anything that must survive the session goes in a file, in the repo, because files are the only thing every future session is guaranteed to be able to see. Your job quietly changes at the wall. You stop being the person who asks for features and start being the keeper of the memory the tool does not have.
+Anything that must survive the session goes in a file, in the repo, because files are the only thing every future session is guaranteed to see. Your role quietly changes at the wall. You stop being the person who asks for features, and become the keeper of the memory the tool does not have. That is not a demotion. It is the actual job, and the people who accept it are the ones who ship.
 
-Five habits, starting tonight:
-
-#checklist(
-  [*Write the invariant list.* One file in the repo root. One line per
+#preflight(
+  "Pre-flight · Five habits",
+  [*Write the invariant list.* One file in the repo root: CLAUDE.md or
+    AGENTS.md, the files most AI tools read on their own. One line per
     rule-with-a-reason: "Uploads stream, never buffer: 500MB videos
-    kill the function." Walk your app for thirty minutes and write
-    down every "must" you can remember. Most AI tools automatically
-    read a file named CLAUDE.md or AGENTS.md, and that is exactly
-    where this belongs.],
-  [*Open every session by pointing at that file.* Before the task,
-    not after the damage: "Read the invariants file first." Ten
-    seconds that replaces the memory of every session before this
-    one.],
-  [*Read every diff before you accept it.* The moment you stop
-    reading is the moment drift starts compounding. One rule of thumb
-    catches most of it: if the diff touches a file your change had no
-    business touching, stop and ask why.],
-  [*One change per commit, committed the moment it works.* Small
-    commits are restore points. Rolling back beats an apology prompt
-    every single time, and it protects the constraint pile you have
-    earned.],
-  [*Turn every caught bug into a written rule, same day.* When the AI
-    breaks an invariant, fixing the code is half the job. The other
-    half is adding the rule to the file, and, wherever possible,
-    turning it into a check a machine runs. That is the build-log
-    story above. No other habit in this manual pays back more per
-    minute spent.],
+    kill the function." Thirty minutes, tonight.],
+  [*Point every session at it first.* "Read the invariants file before
+    you touch anything." Ten seconds that stands in for every session
+    that came before this one.],
+  [*Read every diff before accepting.* The moment you stop reading is
+    the moment drift starts compounding. If a diff touches a file your
+    change had no business touching, stop and ask why.],
+  [*One change per commit, committed when it works.* Small commits are
+    restore points. Rolling back beats an apology prompt, every single
+    time.],
+  [*Caught the AI breaking a rule? Write the rule down, same day.* Fix
+    the code, add the rule to the file, and where you can, turn it
+    into a check a machine runs. Nothing in this manual pays back more
+    per minute.],
 )
 
-These five stop the bleeding. They are triage, not the cure. The cure is a single page the AI re-reads at the start of every session, one that carries your architecture, your constraints, and your definition of done. Building that page is the next chapter, and it is the reason this manual exists.
+These five stop the bleeding. They are triage, not the cure. The cure is a single page the AI re-reads at the start of every session, carrying your architecture, your constraints, and your definition of done. Building that page is Chapter 2, and it is the reason this manual exists.
 
-#pull[The wall is not proof you can't do this. It is the point where the tool's memory ran out, and yours has to take over: on paper, in the repo, where every future session finds it.]
+#pull[The wall is not proof you can't do this. It is the point where the tool's memory ran out and yours has to take over: on paper, in the repo, where every future session finds it.]
 
-#closing(
-  "02",
-  "The spec is the moat",
-  "The one-page spec the AI keeps re-reading. Why drift, not bugs, is the thing that kills your build. Template included.",
+#two-paths(
+  [
+    #set text(size: 9.8pt)
+    #set par(leading: 0.66em, spacing: 0.85em)
+    I'm Micah Jones. I was part of four exits (Postmates,
+    SurveyMonkey, Guardicore, Neuton.AI: \$5B+ in combined value), and
+    my consulting work has produced \$20M+ in client revenue. Ordani,
+    the app in these pages, is a HIPAA-grade SaaS I built alone on the
+    same AI tools this manual is about — hundreds of birth workers pay
+    for it today.
+  ],
+  [
+    Nine more chapters: the spec, architecture, deploy day, security,
+    Stripe, compliance, your first ten users, distribution, and when
+    to hand off. Plus the companion files: prompt files, pre-flight
+    checklists, spec templates.
+
+    #text(weight: 700, fill: cw-terracotta)[micahjonesconsulting.com/playbook]
+    #linebreak()
+    Launch price \$99, then \$149.
+  ],
+  [
+    Some builds need a second pair of hands, not another book. I take
+    a small number of engagements: the strategy and the software, from
+    one person. Thirty minutes, bring the problem.
+
+    #text(weight: 700, fill: cw-saffron)[micahjonesconsulting.com/book]
+  ],
 )
