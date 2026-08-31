@@ -38,8 +38,12 @@ project domain).
   Next: ch.2 "The spec is the moat", first SEO article (ch.1 topic), Stripe when manuscript done.
 
 ## Latest (2026-08-31 PM)
-- Chapters 2-6 BUILT + delivered (Pass-29/31/32/33/34). Ch.2/3/4 operator-APPROVED; ch.5+6
-  awaiting review. Ch.7 "Compliance, when it matters" next. 6 of 10 done.
+- MANUSCRIPT COMPLETE (Pass-38): all 10 chapters written, gate-clean (check.py: banned words,
+  em-dash cap, fieldnote-collision — added Pass-37 after 4th recurrence; first run caught 3 latent
+  defects in approved chapters; the regex fix script scrambled ch.2, repaired by hand). Ch.2-9
+  operator-approved; ch.10 awaiting review. NEXT PHASE: assembly (cover, TOC, single full PDF),
+  companion files (prompt files, checklists, spec templates), Stripe checkout wiring, launch
+  email to waitlist.
 - DOMAIN FIXED PERMANENTLY (2026-08-31 PM): after the LESSONS #9 loop incident, coordinated fix
   executed — alias dropped, operator added www at PROJECT Settings->Domains, no redirect. Verified:
   www 200 direct, apex 308->www one hop, build parity. RE-ALIAS CHORE IS DEAD — deploys move www
