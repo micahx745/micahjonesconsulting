@@ -24,9 +24,12 @@ project domain).
   robots/llms.txt/canonicals all healthy; Lighthouse deployed-mobile baseline: home 95/100/100/100,
   playbook 97/100/100/100, LCP 2.9s home = next perf lever). Remaining: GSC (operator), content
   strategy (needs audience lock), chapter-article funnel.
-- $149 playbook "The 80% Wall": landing live w/ working chapter-1 email capture; manuscript DOES NOT
-  EXIST (no chapters, no ZIP, no payment rail). Plan: Chapter 1 first (promised to signups!) via
-  Typst/PDFbuilder pipeline + wire form fulfillment; then ch.2-10; Lemon Squeezy recommended (MoR).
+- $149 playbook "The 80% Wall": DECISIONS LOCKED (operator 2026-08-31 "stripe. go with
+  recommendation") = Stripe rail + vibe-coder SEO audience + chapter drafting go. Chapter 1 BUILT
+  (Pass-23, product/playbook/: Typst CW template + 6pp PDF, ban battery clean, page walkthrough
+  done, fonts embedded). AWAITING OPERATOR REVIEW of the PDF (sent via file card) — claims to
+  confirm: dead-forms story, same-bug-twice story. On approval: wire signup-form fulfillment
+  (Resend attach), then ch.2 "The spec is the moat", then Stripe checkout when manuscript done.
 
 ## Operator queue
 1. SECRET ROTATION (was waiting on booking retest — retest PASSED, rotation now due):
