@@ -63,6 +63,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.85,
     },
+    // Pass-22 (SEO sweep): /book, /playbook, /hire-me were live with
+    // canonicals + OG but absent here — invisible to crawlers that
+    // lean on the sitemap. /playbook is a conversion target for the
+    // Buyer-B "vibe coder" query space; /book is the site-wide CTA.
+    {
+      url: `${BASE_URL}/book`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/playbook`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/hire-me`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 
   // Skip stub case studies — they shouldn't be public-discoverable
