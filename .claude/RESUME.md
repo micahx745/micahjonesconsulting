@@ -42,7 +42,9 @@ project domain).
   em-dash cap, fieldnote-collision — added Pass-37 after 4th recurrence; first run caught 3 latent
   defects in approved chapters; the regex fix script scrambled ch.2, repaired by hand). Ch.2-9
   operator-approved, ch.10 APPROVED. BOOK ASSEMBLED (Pass-39): 76pp single PDF, cover + queried
-  TOC + edition switch (sampler colophon suppressed in book). REMAINING: companion files ZIP,
+  TOC + edition switch (sampler colophon suppressed in book). VENDOR GATE now build-blocking (Pass-40: operator caught /playbook
+  leak; 3 fixes live-verified; scripts/vendor-gate.mjs negative-tested). Companion files DONE
+  (Pass-41: 26 files, zipped). REMAINING:
   Stripe checkout (operator owns account setup), launch email, /playbook page update at launch.
   (superseded: assembly (cover, TOC, single full PDF),
   companion files (prompt files, checklists, spec templates), Stripe checkout wiring, launch
