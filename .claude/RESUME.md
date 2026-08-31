@@ -26,10 +26,12 @@ project domain).
   strategy (needs audience lock), chapter-article funnel.
 - $149 playbook "The 80% Wall": DECISIONS LOCKED (operator 2026-08-31 "stripe. go with
   recommendation") = Stripe rail + vibe-coder SEO audience + chapter drafting go. Chapter 1 BUILT
-  (Pass-23, product/playbook/: Typst CW template + 6pp PDF, ban battery clean, page walkthrough
-  done, fonts embedded). AWAITING OPERATOR REVIEW of the PDF (sent via file card) — claims to
-  confirm: dead-forms story, same-bug-twice story. On approval: wire signup-form fulfillment
-  (Resend attach), then ch.2 "The spec is the moat", then Stripe checkout when manuscript done.
+  (Pass-23) then REBUILT as v2 (Pass-25) on operator direction "less AI, more special": field-manual
+  design system (62-char measure, marginalia rail, § codes, 2 line diagrams, spec cover, PRE-FLIGHT
+  card, dated build-log entries, closing page w/ manual + hire-me paths). 9pp, all gates green.
+  Persona cold-read agent dispatched; PDF goes to operator after findings. Fulfillment wiring
+  (Pass-24) built + committed, HELD from deploy until operator approves ch.1 v2.
+  Then: ch.2 "The spec is the moat", Stripe checkout when manuscript done.
 
 ## Operator queue
 1. SECRET ROTATION (was waiting on booking retest — retest PASSED, rotation now due):
