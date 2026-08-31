@@ -1,31 +1,29 @@
 # RESUME — REWRITE whole-file every task. Never append. Last rewrite: 2026-08-30
 
-## Now — redesign branch `redesign-wave4`, 15 passes, ORDANI SETTLED
-Ordani section landed in the site's own editorial idiom (Pass-15) after six
-experimental rounds + a failed Claude Design attempt: kicker · "Built for the
-people who show up for mothers." · value-prop lede · SMALL bordered doula-at-work
-photo (LEM_0476) · one CTA. All gimmicks deleted (glass/cursor/flows/timer,
-~600 lines CSS, OrdaniLive.tsx, 3 unused assets). Home: 507 rendered words.
-KEY LESSON recorded in DIRECTION.md: the site's restraint IS its premium; poster-
-fidelity (Halo Lab) unreachable in live code via screenshot loop — name it early.
-
-## Branch state (all gated, all unpushed; push = PREVIEW only, prod untouched)
-P1 reveals fixed · P2 LEDGER (+Postmates row P7) · P3 word cuts + slop kill ·
-P4 photo hero + chips → P7 naked stat rail ($5B+/4 exits lead) · P5 four-exit
-sweep 12 surfaces + citations · P6 seam doors · P15 quiet Ordani.
-Facts live: 4 exits $5B+ (Uber 2.65 + SVMK 2.33 + Akamai 0.6; Neuton undisc.),
-0%-fee + $200-500 bundle (D-R19), MEDICAID wording pending operator confirm
-(he said "medicare"; state doula benefits are Medicaid — one-word swap if real).
+## Now — 18 passes on `redesign-wave4`, preview APPROVED + punch list landed
+Operator verdict on the preview: "overall love the website." Passes 17-18 landed
+his punch list: big ORDANI title + waitlist form restored · vendor gate (Ordani
+surfaces never name infra vendors — LESSONS #3) · user counts retired everywhere
+("hundreds of paying birth workers"; hero rail: "Hundreds / paying for software I
+built alone") · $3M RFP contracts (top university + county gov, anonymized) ·
+Tel Aviv Guardicore team photo mounted (IG handle stickers cropped = privacy) ·
+receipts title softened ("The receipts.") · SELF-HOSTED BOOKING at /book replaces
+Calendly: lib/ics.ts (RFC 5545, VTIMEZONE LA, VALARM 24h+1h), book-call action
+sends both parties same-UID invite.ics via Resend from micah@; Tue-Thu 10-4
+Pacific, 30-min slots, operator resolves conflicts manually.
 
 ## Operator queue
-1. DONE — operator approved preview push 2026-08-30: "yeah go with that next
-   step" (following the standing "say push" offer). Branch pushed; preview
-   URL delivered. PRODUCTION UNTOUCHED — main not pushed, no aliases moved.
-2. Medicare-vs-Medicaid confirm (currently NOT on the page — was in the deleted
-   tour; only matters if the payment story returns to copy).
-3. Vercel dashboard: add www as project domain (LESSONS #5, standing).
-4. Postmates years (row ships with role only: "Product analyst · 2020").
-5. Cap portrait on /about — confirm or swap.
+1. TEST the booking flow on the preview (/book) — book a real slot, confirm the
+   invite + reminders land in Gmail/calendar.
+2. Calendar-source sync: operator will share WHICH calendar; then wire
+   auto-blocking of booked slots (Google Cal = OAuth or service-account share).
+3. Windows animations: Settings > Accessibility > Visual effects > Animation
+   effects ON — his OS forces reduced-motion; site obeys correctly.
+4. Ship decision: fold branch to main + CARD 1 (push, re-alias BOTH domains,
+   parity via data-dpl-id). Only on explicit go.
+5. Standing: Vercel www project domain (LESSONS #5) · Postmates years.
+Preview share links are PER-BUILD — remint after every push
+(get_access_to_vercel_url on the branch alias).
 
 ## Hygiene
 `next start` :3000 stopped after last gate. Playwright via
