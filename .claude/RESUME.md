@@ -29,9 +29,13 @@ project domain).
   (Pass-23) then REBUILT as v2 (Pass-25) on operator direction "less AI, more special": field-manual
   design system (62-char measure, marginalia rail, § codes, 2 line diagrams, spec cover, PRE-FLIGHT
   card, dated build-log entries, closing page w/ manual + hire-me paths). 9pp, all gates green.
-  Persona cold-read agent dispatched; PDF goes to operator after findings. Fulfillment wiring
-  (Pass-24) built + committed, HELD from deploy until operator approves ch.1 v2.
-  Then: ch.2 "The spec is the moat", Stripe checkout when manuscript done.
+  Persona review (buyer: maybe-leaning-yes on $99; "hire him" moment = dead-forms story) + expert
+  review (claude-code-guide vs live docs; 3 fixes applied, 2 rejected w/ reasons) both done.
+  APPROVED + SHIPPED 2026-08-31 ("approved - verified worked"): delivery live and VERIFIED end-to-end
+  (live-form self-test → "Chapter 1 is on its way"; chapter emailed to micah@).
+  HIPAA ruling: operator confirmed Ordani is HIPAA-compliant → "HIPAA-grade" swept everywhere,
+  ledger NEVER-entry added. GSC: domain verified, TXT in Vercel DNS; sitemap submission = operator.
+  Next: ch.2 "The spec is the moat", first SEO article (ch.1 topic), Stripe when manuscript done.
 
 ## Operator queue
 1. SECRET ROTATION (was waiting on booking retest — retest PASSED, rotation now due):
