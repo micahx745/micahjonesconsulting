@@ -343,6 +343,29 @@
   )
 ]
 
+// Warm-ring diagram (chapter 8): concentric trust circles with
+// leader labels. Ten users live in the inner two rings.
+#let rings-diagram() = block(above: 1.7em, below: 1.7em, breakable: false)[
+  #box(width: 340pt, height: 210pt)[
+    // rings, centered at (100, 100)
+    #place(dx: 10pt, dy: 10pt, circle(radius: 90pt, stroke: (paint: cw-espresso.transparentize(55%), thickness: 1pt, dash: "dashed")))
+    #place(dx: 40pt, dy: 40pt, circle(radius: 60pt, stroke: 1.2pt + cw-petrol))
+    #place(dx: 70pt, dy: 70pt, circle(radius: 30pt, stroke: 1.6pt + cw-terracotta, fill: cw-terracotta.transparentize(92%)))
+    #place(dx: 88pt, dy: 92pt, kicker("You", fill: cw-terracotta, size: 7pt))
+    // leader lines + labels
+    #place(dx: 130pt, dy: 96pt, line(length: 60pt, stroke: 0.7pt + cw-terracotta))
+    #place(dx: 196pt, dy: 88pt, kicker("People who know you", fill: cw-terracotta, size: 6.5pt))
+    #place(dx: 196pt, dy: 98pt, text(font: mono-font, size: 5.5pt, fill: cw-espresso.transparentize(30%), tracking: 0.05em, upper("trust: inherited. start here.")))
+    #place(dx: 148pt, dy: 58pt, line(end: (48pt, -14pt), stroke: 0.7pt + cw-petrol))
+    #place(dx: 200pt, dy: 36pt, kicker("People they vouch you to", fill: cw-petrol, size: 6.5pt))
+    #place(dx: 200pt, dy: 46pt, text(font: mono-font, size: 5.5pt, fill: cw-espresso.transparentize(30%), tracking: 0.05em, upper("one ask away. your ten live here.")))
+    #place(dx: 168pt, dy: 22pt, line(end: (36pt, -12pt), stroke: 0.7pt + cw-espresso.transparentize(45%)))
+    #place(dx: 208pt, dy: 4pt, kicker("Strangers with the problem", fill: cw-espresso.transparentize(25%), size: 6.5pt))
+    #place(dx: 208pt, dy: 14pt, text(font: mono-font, size: 5.5pt, fill: cw-espresso.transparentize(30%), tracking: 0.05em, upper("reachable one at a time, never in bulk")))
+    #place(dx: 10pt, dy: 200pt, kicker("broadcast reaches none of these rings. conversations reach all three.", fill: cw-espresso.transparentize(35%), size: 5.5pt))
+  ]
+]
+
 // The transcript diagram: a strip of blocks, oldest falling out.
 #let window-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
   #let cell(label, dead: false) = box(
