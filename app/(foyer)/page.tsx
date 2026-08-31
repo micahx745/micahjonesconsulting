@@ -634,6 +634,13 @@ export default function ColorWorldsHome() {
           <a href="mailto:hello@micahjonesconsulting.com">
             hello@micahjonesconsulting.com
           </a>
+          <a
+            href="https://www.linkedin.com/in/micah-j/"
+            rel="me noopener noreferrer"
+            target="_blank"
+          >
+            LinkedIn ↗
+          </a>
           {/* W4: date-range © per the bar (§3.6). a11y: opacity 0.5
               measured 2.48:1 on terracotta; 0.9 holds ≥4.5:1. */}
           <span style={{ opacity: 0.9, border: "none" }}>
