@@ -19,6 +19,15 @@ apex 308→www. Booking live in production (env vars present).
 REMEMBER: every future push to main needs the www re-alias (until operator adds www as
 project domain).
 
+## Active arcs (2026-08-31)
+- SEO: technical sweep DONE (Pass-22 sitemap +/book/playbook/hire-me, live-verified; heads/JSON-LD/
+  robots/llms.txt/canonicals all healthy; Lighthouse deployed-mobile baseline: home 95/100/100/100,
+  playbook 97/100/100/100, LCP 2.9s home = next perf lever). Remaining: GSC (operator), content
+  strategy (needs audience lock), chapter-article funnel.
+- $149 playbook "The 80% Wall": landing live w/ working chapter-1 email capture; manuscript DOES NOT
+  EXIST (no chapters, no ZIP, no payment rail). Plan: Chapter 1 first (promised to signups!) via
+  Typst/PDFbuilder pipeline + wire form fulfillment; then ch.2-10; Lemon Squeezy recommended (MoR).
+
 ## Operator queue
 1. SECRET ROTATION (was waiting on booking retest — retest PASSED, rotation now due):
    Resend new key + delete re_V6JggJBd…; Google Calendar Reset secret address; update 3 envs each.
