@@ -18,7 +18,9 @@ Facts live: 4 exits $5B+ (Uber 2.65 + SVMK 2.33 + Akamai 0.6; Neuton undisc.),
 (he said "medicare"; state doula benefits are Medicaid — one-word swap if real).
 
 ## Operator queue
-1. Verdict on Pass-15 Ordani + say "push" for the Vercel preview URL.
+1. DONE — operator approved preview push 2026-08-30: "yeah go with that next
+   step" (following the standing "say push" offer). Branch pushed; preview
+   URL delivered. PRODUCTION UNTOUCHED — main not pushed, no aliases moved.
 2. Medicare-vs-Medicaid confirm (currently NOT on the page — was in the deleted
    tour; only matters if the payment story returns to copy).
 3. Vercel dashboard: add www as project domain (LESSONS #5, standing).
