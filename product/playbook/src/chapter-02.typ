@@ -119,14 +119,14 @@ Everyone has the same tools now. Same models, same editors, same starter templat
 
 The spec is the one input the AI cannot generate, because it is the one thing only you know: what you actually want, and what you refuse to ship. Written down, it compounds. Every session starts aligned instead of guessing. Every proposal gets checked against NOT at the moment it's made, which is the cheap moment. Drift caught at proposal costs one sentence. Drift caught at regression costs a weekend, and chapter one showed you the weekend.
 
-#pull[Same tools in everyone's hands. The page that says what you want is the only part they can't copy.]
-
 #fieldnote[
   The tools themselves are converging on this idea: plan modes, rules
   files, project instructions. A written plan the model critiques
   before code is the same move wearing a feature name. The habit
   transfers to every tool you'll ever use.
 ]
+
+#pull[Same tools in everyone's hands. The page that says what you want is the only part they can't copy.]
 
 == Two entries from my build log
 

@@ -366,6 +366,29 @@
   ]
 ]
 
+// The distribution loop (chapter 9): four nodes in a cycle.
+#let loop-diagram() = block(above: 1.7em, below: 1.7em, breakable: false)[
+  #box(width: 340pt, height: 216pt)[
+    #arch-box(115pt, 0pt, 110pt, 34pt, "They use it", sub: "returns, unprompted")
+    #arch-box(230pt, 91pt, 110pt, 34pt, "Value moment", sub: "a win · a thanks")
+    #arch-box(115pt, 182pt, 110pt, 34pt, "Ask, or artifact", sub: "who else? · output travels")
+    #arch-box(0pt, 91pt, 110pt, 34pt, "New person", sub: "arrives vouched")
+    // clockwise arrows
+    #place(dx: 228pt, dy: 34pt, line(end: (52pt, 55pt), stroke: 1.2pt + cw-espresso))
+    #place(dx: 276pt, dy: 84pt, text(size: 7pt, fill: cw-espresso)[▼])
+    #place(dx: 280pt, dy: 128pt, line(end: (-52pt, 52pt), stroke: 1.2pt + cw-espresso))
+    #place(dx: 226pt, dy: 174pt, text(size: 7pt, fill: cw-espresso)[▼])
+    #place(dx: 112pt, dy: 180pt, line(end: (-52pt, -52pt), stroke: 1.2pt + cw-espresso))
+    #place(dx: 56pt, dy: 124pt, text(size: 7pt, fill: cw-espresso)[▲])
+    #place(dx: 60pt, dy: 88pt, line(end: (52pt, -52pt), stroke: 1.2pt + cw-petrol))
+    #place(dx: 108pt, dy: 30pt, text(size: 7pt, fill: cw-petrol)[▲])
+    #place(dx: 28pt, dy: 48pt, kicker("joins the ten", fill: cw-petrol, size: 5.5pt))
+    // center
+    #place(dx: 118pt, dy: 100pt, kicker("each lap needs", fill: cw-terracotta, size: 6pt))
+    #place(dx: 122pt, dy: 110pt, kicker("less of you", fill: cw-terracotta, size: 6pt))
+  ]
+]
+
 // The transcript diagram: a strip of blocks, oldest falling out.
 #let window-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
   #let cell(label, dead: false) = box(

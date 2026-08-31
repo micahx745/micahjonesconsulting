@@ -65,16 +65,16 @@ A webhook is Stripe calling your server: an HTTP POST to an endpoint you registe
 
 *Answer fast, work after.* Acknowledge the event, then do the slow parts. An endpoint that dawdles gets retried, and now you are back to rule two.
 
+== Test-to-live: the five silent swaps
+
+Stripe's test mode is a parallel universe: same dashboard, same API shape, fake money. The day you flip to live, five things silently do not come along, and each one fails without an error message.
+
 #fieldnote[
   Local development wrinkle: Stripe cannot call localhost. The
   Stripe CLI forwards live test events to your machine while you
   build. It also hands you a different signing secret than
   production uses, which is the next section's trap in miniature.
 ]
-
-== Test-to-live: the five silent swaps
-
-Stripe's test mode is a parallel universe: same dashboard, same API shape, fake money. The day you flip to live, five things silently do not come along, and each one fails without an error message.
 
 + *The keys.* `sk_test_` and `sk_live_` both work perfectly, each in its own universe. Live site with test keys means imaginary revenue; a test script with live keys means real charges.
 + *The webhook endpoint.* Registered separately per mode. Your test webhook does not fire for live events; live needs its own registration.

@@ -52,16 +52,16 @@ The move in this ring is not "check out my app." It is one message, one person, 
 
 *The outer ring* is strangers who verifiably have the problem: the forum where they complain about it, the professional group where they gather, the community your niche actually uses. You reach them the same way, one at a time, by being useful in their space before you ask for anything. The niche matters more than the platform: birth workers, to pick an example I know, are not on the builder feeds at all, and no launch post would ever have found them.
 
+== The message that gets a reply
+
+Cold or warm, the anatomy of outreach that works has not changed in twenty years of selling. Four parts, in order.
+
 #fieldnote[
   Ordani opened as a private beta with fourteen practices, found
   through the rings, not through a launch. Hundreds of birth workers
   pay for it today, and at the six-month mark none had been lost to
   a competitor. Retention was the plan, not the reward.
 ]
-
-== The message that gets a reply
-
-Cold or warm, the anatomy of outreach that works has not changed in twenty years of selling. Four parts, in order.
 
 *Context that is really about them.* One line proving this is not a blast: the mutual person, the post of theirs you read, the specific thing about their situation. If the first sentence could be sent to anyone, it will be answered by no one.
 
