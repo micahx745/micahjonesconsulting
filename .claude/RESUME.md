@@ -1,36 +1,34 @@
-# RESUME — REWRITE whole-file every task. Never append. Last rewrite: 2026-08-30
+# RESUME — redesign-wave4 (preview only; NEVER push main without operator approval)
 
-## Now — 18 passes on `redesign-wave4`, preview APPROVED + punch list landed
-Operator verdict on the preview: "overall love the website." Passes 17-18 landed
-his punch list: big ORDANI title + waitlist form restored · vendor gate (Ordani
-surfaces never name infra vendors — LESSONS #3) · user counts retired everywhere
-("hundreds of paying birth workers"; hero rail: "Hundreds / paying for software I
-built alone") · $3M RFP contracts (top university + county gov, anonymized) ·
-Tel Aviv Guardicore team photo mounted (IG handle stickers cropped = privacy) ·
-receipts title softened ("The receipts.") · SELF-HOSTED BOOKING at /book replaces
-Calendly: lib/ics.ts (RFC 5545, VTIMEZONE LA, VALARM 24h+1h), book-call action
-sends both parties same-UID invite.ics via Resend from micah@; Tue-Thu 10-4
-Pacific, 30-min slots, operator resolves conflicts manually.
+## State (2026-08-31)
+20 passes committed. Head: c94ed56 (Pass-20b prettier). Operator verdict on preview: "overall love the website."
+Booking system (/book, self-hosted Calendly replacement) built + unit-tested (scripts/busy-selftest.ts green).
 
-## Operator queue
-1. TEST the booking flow on the preview (/book) — book a real slot, confirm the
-   invite + reminders land in Gmail/calendar.
-2. Calendar-source sync: operator will share WHICH calendar; then wire
-   auto-blocking of booked slots (Google Cal = OAuth or service-account share).
-3. Windows animations: Settings > Accessibility > Visual effects > Animation
-   effects ON — his OS forces reduced-motion; site obeys correctly.
-4. Ship decision: fold branch to main + CARD 1 (push, re-alias BOTH domains,
-   parity via data-dpl-id). Only on explicit go.
-5. Standing: Vercel www project domain (LESSONS #5) · Postmates years.
-Preview share links are PER-BUILD — remint after every push
-(get_access_to_vercel_url on the branch alias).
+**Env vars INSTALLED in Vercel (all 3 environments; Preview is branch-scoped to redesign-wave4):**
+RESEND_API_KEY + BOOKING_CAL_ICS_URL. Preview add required branch-positional form:
+`npx vercel env add NAME preview redesign-wave4 --value "$V" --yes --scope passioneer`.
+Discovery: project had ZERO env vars before this — production contact/playbook/beta forms were silently
+log-only since launch. Now fixed for production too (next prod deploy picks them up).
 
-## Hygiene
-`next start` :3000 stopped after last gate. Playwright via
-PLAYWRIGHT_PATH="C:/Users/micah/AppData/Local/npm-cache/_npx/705bc6b22212b352/node_modules/playwright".
-Gate scripts in scratchpad (p15-gate.mjs latest). Em-dash + LESSONS-6 sweeps clean.
+**Live-feed verification:** Google secret-ICS URL serves 200 (curl + Node, 10/10 after settling); endpoint
+404s transiently after request bursts → Pass-20 added one retry in slotIsBusy (still fails open).
 
-## Pointers
-DIRECTION (full taste log, D-R1..R20+gates): `.planning/redesign-2026-08/DIRECTION.md`
-Attack plan: `.planning/REDESIGN-ATTACK-PLAN-2026-08.md` · Lessons: docs/LESSONS_LEARNED.md
-Claude-Design prompt (unused now): `.planning/prompts/claude-design-ordani-section.md`
+## In flight
+- Preview build for c94ed56 (bg poll bgmx06buw) → when READY: mint share link (get_access_to_vercel_url on
+  https://micahjonesconsulting-git-redesign-wave4-passioneer.vercel.app), hand to operator for booking retest.
+
+## Operator queue (parked, operator-owned)
+1. **SECRET ROTATION after booking retest passes** — both secrets were pasted into chat (transcript exposure):
+   Resend: create new key, delete re_V6JggJBd…; Google Calendar: Settings → integrate → "Reset" secret address.
+   Then update all 3 Vercel envs for both vars (same branch-positional CLI form for preview).
+2. Ship decision: fold redesign-wave4 → main (CARD 1: push, re-alias BOTH domains, verify data-dpl-id parity).
+3. Add www.micahjonesconsulting.com as Vercel project domain (LESSONS #5 kills the re-alias chore).
+4. Postmates years for ledger row; ordani-work.jpg interim (swap when better shot exists).
+
+## Approvals on record
+- "yeah go with that next step" (2026-08-30) = preview push approved. Main/prod: NOT approved.
+
+## Gotchas
+- Share links (_vercel_share) die on every push — remint per build.
+- Preview HTML greps: RSC chunking breaks exact-string matches; use loose greps.
+- Secrets: never inline in commands — temp file + $(cat), delete after.
