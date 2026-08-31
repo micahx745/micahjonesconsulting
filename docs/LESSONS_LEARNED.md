@@ -85,6 +85,10 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   customer rule); the RAG RFP-scanning platform (real custom software). NEVER: the
   three fabricated end-clients (see #2).
 
+- HIPAA: Ordani is **HIPAA-compliant** (operator confirmation 2026-08-31: "HIPAA compliant is
+  true", ruling on the app). "HIPAA-grade" was the pre-confirmation hedge; swept to
+  "HIPAA-compliant" everywhere (site + playbook chapter) same day. NEVER revert to "-grade".
+
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
 

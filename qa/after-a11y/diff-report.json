@@ -1,0 +1,469 @@
+{
+  "changed": [
+    {
+      "file": "about-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 3774,
+      "totalPx": 3130560,
+      "pct": 0.1206,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 493,
+        "h": 2007
+      },
+      "dims": "1440x2174"
+    },
+    {
+      "file": "about-390.png",
+      "sizeMismatch": false,
+      "diffPx": 3740,
+      "totalPx": 954330,
+      "pct": 0.3919,
+      "box": {
+        "x": 20,
+        "y": 25,
+        "w": 269,
+        "h": 2285
+      },
+      "dims": "390x2447"
+    },
+    {
+      "file": "about-768.png",
+      "sizeMismatch": false,
+      "diffPx": 3837,
+      "totalPx": 1537536,
+      "pct": 0.2496,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 493,
+        "h": 1834
+      },
+      "dims": "768x2002"
+    },
+    {
+      "file": "hire-me-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 5532,
+      "totalPx": 4731840,
+      "pct": 0.1169,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 819,
+        "h": 3135
+      },
+      "dims": "1440x3286"
+    },
+    {
+      "file": "hire-me-390.png",
+      "sizeMismatch": false,
+      "diffPx": 5169,
+      "totalPx": 1337310,
+      "pct": 0.3865,
+      "box": {
+        "x": 20,
+        "y": 25,
+        "w": 269,
+        "h": 3319
+      },
+      "dims": "390x3429"
+    },
+    {
+      "file": "hire-me-768.png",
+      "sizeMismatch": false,
+      "diffPx": 5578,
+      "totalPx": 2291712,
+      "pct": 0.2434,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 594,
+        "h": 2828
+      },
+      "dims": "768x2984"
+    },
+    {
+      "file": "home-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 9740,
+      "totalPx": 13042080,
+      "pct": 0.0747,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 1238,
+        "h": 8142
+      },
+      "dims": "1440x9057"
+    },
+    {
+      "file": "home-390.png",
+      "sizeMismatch": false,
+      "diffPx": 10114,
+      "totalPx": 3580980,
+      "pct": 0.2824,
+      "box": {
+        "x": 20,
+        "y": 25,
+        "w": 322,
+        "h": 8458
+      },
+      "dims": "390x9182"
+    },
+    {
+      "file": "home-768.png",
+      "sizeMismatch": false,
+      "diffPx": 9751,
+      "totalPx": 6362112,
+      "pct": 0.1533,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 686,
+        "h": 7567
+      },
+      "dims": "768x8284"
+    },
+    {
+      "file": "no-such-page-404-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 2051,
+      "totalPx": 1296000,
+      "pct": 0.1583,
+      "box": {
+        "x": 72,
+        "y": 277,
+        "w": 700,
+        "h": 350
+      },
+      "dims": "1440x900"
+    },
+    {
+      "file": "no-such-page-404-390.png",
+      "sizeMismatch": false,
+      "diffPx": 2079,
+      "totalPx": 351000,
+      "pct": 0.5923,
+      "box": {
+        "x": 20,
+        "y": 239,
+        "w": 269,
+        "h": 421
+      },
+      "dims": "390x900"
+    },
+    {
+      "file": "no-such-page-404-768.png",
+      "sizeMismatch": false,
+      "diffPx": 2104,
+      "totalPx": 691200,
+      "pct": 0.3044,
+      "box": {
+        "x": 38,
+        "y": 280,
+        "w": 493,
+        "h": 339
+      },
+      "dims": "768x900"
+    },
+    {
+      "file": "playbook-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 8473,
+      "totalPx": 7757280,
+      "pct": 0.1092,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 819,
+        "h": 5236
+      },
+      "dims": "1440x5387"
+    },
+    {
+      "file": "playbook-390.png",
+      "sizeMismatch": false,
+      "diffPx": 8562,
+      "totalPx": 2176590,
+      "pct": 0.3934,
+      "box": {
+        "x": 20,
+        "y": 25,
+        "w": 307,
+        "h": 5471
+      },
+      "dims": "390x5581"
+    },
+    {
+      "file": "playbook-768.png",
+      "sizeMismatch": false,
+      "diffPx": 8512,
+      "totalPx": 3755520,
+      "pct": 0.2267,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 493,
+        "h": 4734
+      },
+      "dims": "768x4890"
+    },
+    {
+      "file": "services-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 24447,
+      "totalPx": 6785280,
+      "pct": 0.3603,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 1064,
+        "h": 4561
+      },
+      "dims": "1440x4712"
+    },
+    {
+      "file": "services-390.png",
+      "sizeMismatch": false,
+      "diffPx": 23343,
+      "totalPx": 1925820,
+      "pct": 1.2121,
+      "box": {
+        "x": 20,
+        "y": 25,
+        "w": 341,
+        "h": 4828
+      },
+      "dims": "390x4938"
+    },
+    {
+      "file": "services-768.png",
+      "sizeMismatch": false,
+      "diffPx": 23188,
+      "totalPx": 3637248,
+      "pct": 0.6375,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 685,
+        "h": 4580
+      },
+      "dims": "768x4736"
+    },
+    {
+      "file": "services-ai-engineering-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 6076,
+      "totalPx": 3876480,
+      "pct": 0.1567,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 1064,
+        "h": 2541
+      },
+      "dims": "1440x2692"
+    },
+    {
+      "file": "services-ai-engineering-390.png",
+      "sizeMismatch": false,
+      "diffPx": 5734,
+      "totalPx": 1050270,
+      "pct": 0.546,
+      "box": {
+        "x": 20,
+        "y": 25,
+        "w": 269,
+        "h": 2583
+      },
+      "dims": "390x2693"
+    },
+    {
+      "file": "services-ai-engineering-768.png",
+      "sizeMismatch": false,
+      "diffPx": 5796,
+      "totalPx": 1971456,
+      "pct": 0.294,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 685,
+        "h": 2411
+      },
+      "dims": "768x2567"
+    },
+    {
+      "file": "work-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 9923,
+      "totalPx": 1942560,
+      "pct": 0.5108,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 700,
+        "h": 1188
+      },
+      "dims": "1440x1349"
+    },
+    {
+      "file": "work-390.png",
+      "sizeMismatch": false,
+      "diffPx": 9932,
+      "totalPx": 551070,
+      "pct": 1.8023,
+      "box": {
+        "x": 20,
+        "y": 25,
+        "w": 337,
+        "h": 1253
+      },
+      "dims": "390x1413"
+    },
+    {
+      "file": "work-768.png",
+      "sizeMismatch": false,
+      "diffPx": 9919,
+      "totalPx": 940800,
+      "pct": 1.0543,
+      "box": {
+        "x": 40,
+        "y": 31,
+        "w": 493,
+        "h": 1059
+      },
+      "dims": "768x1225"
+    },
+    {
+      "file": "work-guardicore-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 1548,
+      "totalPx": 5410080,
+      "pct": 0.0286,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "1440x3757"
+    },
+    {
+      "file": "work-guardicore-390.png",
+      "sizeMismatch": false,
+      "diffPx": 1549,
+      "totalPx": 1609530,
+      "pct": 0.0962,
+      "box": {
+        "x": 21,
+        "y": 25,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "390x4127"
+    },
+    {
+      "file": "work-guardicore-768.png",
+      "sizeMismatch": false,
+      "diffPx": 1550,
+      "totalPx": 2619648,
+      "pct": 0.0592,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "768x3411"
+    },
+    {
+      "file": "work-hr-equity-author-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 1548,
+      "totalPx": 8598240,
+      "pct": 0.018,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "1440x5971"
+    },
+    {
+      "file": "work-hr-equity-author-390.png",
+      "sizeMismatch": false,
+      "diffPx": 1549,
+      "totalPx": 2887170,
+      "pct": 0.0537,
+      "box": {
+        "x": 21,
+        "y": 25,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "390x7403"
+    },
+    {
+      "file": "work-hr-equity-author-768.png",
+      "sizeMismatch": false,
+      "diffPx": 1550,
+      "totalPx": 4124160,
+      "pct": 0.0376,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "768x5370"
+    },
+    {
+      "file": "work-ordani-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 1548,
+      "totalPx": 8376480,
+      "pct": 0.0185,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "1440x5817"
+    },
+    {
+      "file": "work-ordani-390.png",
+      "sizeMismatch": false,
+      "diffPx": 1549,
+      "totalPx": 2413320,
+      "pct": 0.0642,
+      "box": {
+        "x": 21,
+        "y": 25,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "390x6188"
+    },
+    {
+      "file": "work-ordani-768.png",
+      "sizeMismatch": false,
+      "diffPx": 1550,
+      "totalPx": 3812352,
+      "pct": 0.0407,
+      "box": {
+        "x": 41,
+        "y": 31,
+        "w": 144,
+        "h": 18
+      },
+      "dims": "768x4964"
+    }
+  ],
+  "identical": [],
+  "missing": [],
+  "total": 33
+}

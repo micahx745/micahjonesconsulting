@@ -112,7 +112,7 @@ const SERVICES: Service[] = [
     anchorLabel: "See the engagement",
     anchorHref: "/work/ordani",
     anchorNote:
-      "Anchor: Ordani — HIPAA-grade practice management software, solo built, used by hundreds of paying birth workers; HR-author full-stack engagement (website + content engine + GTM + bespoke product).",
+      "Anchor: Ordani — HIPAA-compliant practice management software, solo built, used by hundreds of paying birth workers; HR-author full-stack engagement (website + content engine + GTM + bespoke product).",
     tiers: [
       {
         name: "Advisory",

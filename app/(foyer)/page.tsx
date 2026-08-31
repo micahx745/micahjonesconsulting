@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-grade practice management used by hundreds of paying birth workers.",
+      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-compliant practice management used by hundreds of paying birth workers.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",

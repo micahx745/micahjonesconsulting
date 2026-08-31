@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s — Micah Jones",
   },
   description:
-    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, HIPAA-grade practice management used by hundreds of paying birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, HIPAA-compliant practice management used by hundreds of paying birth workers.",
   metadataBase: new URL("https://www.micahjonesconsulting.com"),
   alternates: {
     canonical: "https://www.micahjonesconsulting.com",
@@ -62,7 +62,7 @@ const PERSON_LD = {
   // facts now land first. "AND" in all-caps was a formatting artifact
   // that shouldn't appear in machine-readable metadata.
   description:
-    "Oakland-based independent operator. Four exits behind his work: Postmates (Uber, 2020), SurveyMonkey (IPO, 2018), Guardicore (Akamai, 2021), Neuton.AI (Nordic Semiconductor, 2025). $20M+ in client revenue (2013–2023). Building Ordani: HIPAA-grade practice management for doulas and midwives.",
+    "Oakland-based independent operator. Four exits behind his work: Postmates (Uber, 2020), SurveyMonkey (IPO, 2018), Guardicore (Akamai, 2021), Neuton.AI (Nordic Semiconductor, 2025). $20M+ in client revenue (2013–2023). Building Ordani: HIPAA-compliant practice management for doulas and midwives.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Oakland",
@@ -111,7 +111,7 @@ const ORG_LD = {
   // + LLM crawlers. mainEntityOfPage (below) carries the canonical
   // reference to the case study until Ordani has its own production site.
   description:
-    "Ordani is HIPAA-grade practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. Used by hundreds of paying birth workers.",
+    "Ordani is HIPAA-compliant practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. Used by hundreds of paying birth workers.",
   // mainEntityOfPage points at the case study (the only public page
   // about Ordani right now). Avoids putting a case-study URL in the
   // Organization.url slot, which expects the org's actual site.

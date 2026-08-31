@@ -1,0 +1,80 @@
+{
+  "changed": [
+    {
+      "file": "home-1440.png",
+      "sizeMismatch": false,
+      "diffPx": 4,
+      "totalPx": 13042080,
+      "pct": 0,
+      "box": {
+        "x": 461,
+        "y": 1319,
+        "w": 296,
+        "h": 828
+      },
+      "dims": "1440x9057"
+    },
+    {
+      "file": "home-390.png",
+      "sizeMismatch": false,
+      "diffPx": 1,
+      "totalPx": 3580980,
+      "pct": 0,
+      "box": {
+        "x": 163,
+        "y": 2436,
+        "w": 1,
+        "h": 1
+      },
+      "dims": "390x9182"
+    },
+    {
+      "file": "home-768.png",
+      "sizeMismatch": false,
+      "diffPx": 2,
+      "totalPx": 6362112,
+      "pct": 0,
+      "box": {
+        "x": 242,
+        "y": 2127,
+        "w": 2,
+        "h": 3
+      },
+      "dims": "768x8284"
+    }
+  ],
+  "identical": [
+    "about-390.png",
+    "hire-me-1440.png",
+    "hire-me-390.png",
+    "hire-me-768.png",
+    "no-such-page-404-1440.png",
+    "no-such-page-404-390.png",
+    "no-such-page-404-768.png",
+    "services-ai-engineering-1440.png",
+    "services-ai-engineering-390.png",
+    "work-1440.png",
+    "work-390.png",
+    "work-768.png",
+    "work-guardicore-1440.png",
+    "work-guardicore-390.png",
+    "work-guardicore-768.png",
+    "about-1440.png",
+    "about-768.png",
+    "playbook-1440.png",
+    "playbook-390.png",
+    "playbook-768.png",
+    "services-1440.png",
+    "services-390.png",
+    "services-768.png",
+    "services-ai-engineering-768.png",
+    "work-hr-equity-author-1440.png",
+    "work-hr-equity-author-390.png",
+    "work-hr-equity-author-768.png",
+    "work-ordani-1440.png",
+    "work-ordani-390.png",
+    "work-ordani-768.png"
+  ],
+  "missing": [],
+  "total": 33
+}

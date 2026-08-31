@@ -20,12 +20,12 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "The 80% Wall — a field manual for solo builders",
   description:
-    "A field manual for solo builders stuck between demo and production. From the operator who shipped Ordani solo — HIPAA-grade, on the same AI tools you're using.",
+    "A field manual for solo builders stuck between demo and production. From the operator who shipped Ordani solo — HIPAA-compliant, on the same AI tools you're using.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/playbook" },
   openGraph: {
     title: "The 80% Wall — a field manual for solo builders",
     description:
-      "Stuck between demo and production? The field manual from the operator who shipped a HIPAA-grade SaaS solo, on the same AI tools you're using.",
+      "Stuck between demo and production? The field manual from the operator who shipped a HIPAA-compliant SaaS solo, on the same AI tools you're using.",
     type: "website",
     url: "https://www.micahjonesconsulting.com/playbook",
     siteName: "Micah Jones",
@@ -152,7 +152,7 @@ export default function PlaybookPage() {
         <p className="cw-pb-eyebrow" id="pb-author-title">Why this one</p>
         <p className="cw-pb-author__body">
           I&rsquo;m not writing this from the sidelines. I built Ordani
-          solo — a HIPAA-grade SaaS for birth workers, on Next.js,
+          solo — a HIPAA-compliant SaaS for birth workers, on Next.js,
           Supabase, and Vercel, with Claude Code and Cursor. Fourteen
           practices in private beta. Two outside security reviews. None
           lost to a competitor at six months. Same stack you&rsquo;re

@@ -29,7 +29,7 @@
 
 #fieldnote[
   Everything in this manual comes from builds I shipped. Mostly
-  Ordani: a HIPAA-grade SaaS I built alone with Claude Code and
+  Ordani: a HIPAA-compliant SaaS I built alone with Claude Code and
   Cursor, that hundreds of birth workers pay for. Same stack you're
   using. Same wall.
 ]
@@ -234,7 +234,7 @@ These five stop the bleeding. They are triage, not the cure. The cure is a singl
     the way to its IPO, and I was inside Postmates, Guardicore, and
     Neuton.AI for their exits: \$5B+ in combined value across the
     four. My consulting work has produced \$20M+ in client revenue.
-    Ordani, the app in these pages, is a HIPAA-grade SaaS I built
+    Ordani, the app in these pages, is a HIPAA-compliant SaaS I built
     alone on the same AI tools this manual is about — hundreds of
     birth workers pay for it today.
   ],

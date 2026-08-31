@@ -101,7 +101,7 @@ export default function HireMePage() {
           Full-time, fractional, or contract.
         </h1>
         <p className="cw-services__intro">
-          Four exits behind my work, $5B+ combined. A HIPAA-grade SaaS I built solo. I&rsquo;ve
+          Four exits behind my work, $5B+ combined. A HIPAA-compliant SaaS I built solo. I&rsquo;ve
           owned outcomes, not just advised on them. Here&rsquo;s the
           shape that fits your seat.
         </p>

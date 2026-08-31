@@ -120,7 +120,7 @@ export default function AboutPage() {
               and RFP wins inside one year.
             </li>
             <li>
-              <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-grade
+              <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-compliant
               practice management used by hundreds of paying birth
               workers. Built and shipped by one person. Live.
             </li>
