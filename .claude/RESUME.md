@@ -41,9 +41,12 @@ project domain).
 - MANUSCRIPT COMPLETE (Pass-38): all 10 chapters written, gate-clean (check.py: banned words,
   em-dash cap, fieldnote-collision — added Pass-37 after 4th recurrence; first run caught 3 latent
   defects in approved chapters; the regex fix script scrambled ch.2, repaired by hand). Ch.2-9
-  operator-approved; ch.10 awaiting review. NEXT PHASE: assembly (cover, TOC, single full PDF),
+  operator-approved, ch.10 APPROVED. BOOK ASSEMBLED (Pass-39): 76pp single PDF, cover + queried
+  TOC + edition switch (sampler colophon suppressed in book). REMAINING: companion files ZIP,
+  Stripe checkout (operator owns account setup), launch email, /playbook page update at launch.
+  (superseded: assembly (cover, TOC, single full PDF),
   companion files (prompt files, checklists, spec templates), Stripe checkout wiring, launch
-  email to waitlist.
+  email to waitlist.)
 - DOMAIN FIXED PERMANENTLY (2026-08-31 PM): after the LESSONS #9 loop incident, coordinated fix
   executed — alias dropped, operator added www at PROJECT Settings->Domains, no redirect. Verified:
   www 200 direct, apex 308->www one hop, build parity. RE-ALIAS CHORE IS DEAD — deploys move www
