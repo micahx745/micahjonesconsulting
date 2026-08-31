@@ -107,10 +107,18 @@ export async function slotIsBusy(
   const url = process.env.BOOKING_CAL_ICS_URL;
   if (!url) return false; // not configured: fail open
   try {
-    const res = await fetch(url, {
+    // Google's secret-ICS endpoint 404s intermittently; one retry
+    // absorbs the flake before we give up and fail open.
+    let res = await fetch(url, {
       cache: "no-store",
       signal: AbortSignal.timeout(6000),
     });
+    if (!res.ok) {
+      res = await fetch(url, {
+        cache: "no-store",
+        signal: AbortSignal.timeout(6000),
+      });
+    }
     if (!res.ok) return false;
     const windows = parseBusyWindows(await res.text());
     const start = pacificToUtcMs(date, time);
