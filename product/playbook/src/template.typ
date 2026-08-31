@@ -277,6 +277,34 @@
   )
 ]
 
+// Money-flow diagram (chapter 6): checkout out, signed webhook back,
+// and the success page marked as not-the-truth.
+#let money-diagram() = block(above: 1.7em, below: 1.7em, breakable: false)[
+  #box(width: 340pt, height: 190pt)[
+    #arch-box(0pt, 0pt, 110pt, 38pt, "Browser", sub: "your customer")
+    #arch-box(230pt, 0pt, 110pt, 38pt, "Stripe", sub: "hosted checkout")
+    #arch-box(115pt, 118pt, 110pt, 38pt, "Your server", sub: "webhook endpoint")
+    #arch-box(0pt, 118pt, 90pt, 38pt, "Database", sub: "paid = true")
+    // browser -> stripe
+    #place(dx: 110pt, dy: 17pt, line(length: 120pt, stroke: 1.2pt + cw-espresso))
+    #place(dx: 224pt, dy: 13.5pt, text(size: 7pt, fill: cw-espresso)[▶])
+    #place(dx: 128pt, dy: 5pt, kicker("sent to pay", fill: cw-espresso.transparentize(30%), size: 5.5pt))
+    // stripe -> server (signed webhook)
+    #place(dx: 285pt, dy: 38pt, line(end: (-105pt, 80pt), stroke: 1.4pt + cw-petrol))
+    #place(dx: 176pt, dy: 112pt, text(size: 7pt, fill: cw-petrol)[▼])
+    #place(dx: 240pt, dy: 82pt, kicker("signed webhook", fill: cw-petrol, size: 5.5pt))
+    #place(dx: 240pt, dy: 92pt, kicker("= the truth", fill: cw-petrol, size: 5.5pt))
+    // server -> db
+    #place(dx: 115pt, dy: 137pt, line(length: -25pt, stroke: 1.2pt + cw-espresso))
+    #place(dx: 92pt, dy: 133.5pt, text(size: 7pt, fill: cw-espresso)[◀])
+    // browser -> success page, crossed out
+    #place(dx: 30pt, dy: 38pt, line(end: (100pt, 80pt), stroke: (paint: cw-terracotta, thickness: 1.2pt, dash: "dashed")))
+    #place(dx: 8pt, dy: 74pt, kicker("\"/success\" loaded", fill: cw-terracotta, size: 5.5pt))
+    #place(dx: 8pt, dy: 84pt, kicker("is not proof of payment", fill: cw-terracotta, size: 5.5pt))
+    #place(dx: 130pt, dy: 170pt, kicker("money state flows one way: stripe, then server, then db", fill: cw-espresso.transparentize(35%), size: 5.5pt))
+  ]
+]
+
 // The transcript diagram: a strip of blocks, oldest falling out.
 #let window-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
   #let cell(label, dead: false) = box(
