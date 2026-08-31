@@ -69,7 +69,7 @@ When the transcript fills, one of two things happens. The oldest content falls o
 
 #window-diagram()
 
-And between sessions, nothing survives. Close the chat and the transcript is gone for good. Tomorrow's session starts with three things: your codebase, your prompt, and total amnesia about how the codebase got this way.
+And between sessions, almost nothing survives. Yes, your tool has a resume flag, and maybe a memory feature. Resume restores one conversation thread. Memory keeps what the tool guessed was important. Neither is a system you control. By default, tomorrow's session starts with three things: your codebase, your prompt, and no memory of how the codebase got this way.
 
 == Features are more than their code
 
@@ -180,14 +180,14 @@ Four false exits. I have paid for all four.
 
 The move that changes everything is small: stop treating the conversation as storage.
 
-Anything that must survive the session goes in a file, in the repo, because files are the only thing every future session is guaranteed to see. Your role quietly changes at the wall. You stop being the person who asks for features, and become the keeper of the memory the tool does not have. That is not a demotion. It is the actual job, and the people who accept it are the ones who ship.
+Anything that must survive the session goes in a file, in the repo, because files are the only thing every future session is guaranteed to see. A rules file has a second advantage: when the tool compresses your conversation, the transcript gets summarized, but the rules file gets re-read, whole, every time. Your role quietly changes at the wall. You stop being the person who asks for features, and become the keeper of the memory the tool does not have. That is not a demotion. It is the actual job, and the people who accept it are the ones who ship.
 
 #preflight(
   "Pre-flight · Five habits",
-  [*Write the invariant list.* One file in the repo root: CLAUDE.md or
-    AGENTS.md, the files most AI tools read on their own. One line per
-    rule-with-a-reason: "Uploads stream, never buffer: 500MB videos
-    kill the function." Thirty minutes, tonight.],
+  [*Write the invariant list.* One file in the repo root, named
+    whatever your tool reads on its own (see the file card below).
+    One line per rule-with-a-reason: "Uploads stream, never buffer:
+    500MB videos kill the function." Thirty minutes, tonight.],
   [*Point every session at it first.* "Read the invariants file before
     you touch anything." Ten seconds that stands in for every session
     that came before this one.],
@@ -216,9 +216,10 @@ So you don't have to guess what habit one produces, here is the shape of the fil
 ]
 
 #side[
-  Tool note: Claude Code and most agents read CLAUDE.md or AGENTS.md
-  automatically. Cursor's version of the same file is .cursorrules.
-  Same idea, same payoff.
+  Tool note: Claude Code reads CLAUDE.md automatically. Cursor reads
+  rule files in .cursor/rules. Codex and several others read
+  AGENTS.md. Find the file your tool reads first. Same idea, same
+  payoff.
 ]
 
 These five stop the bleeding. They are triage, not the cure. The cure is a single page the AI re-reads at the start of every session, carrying your architecture, your constraints, and your definition of done. Building that page is Chapter 2, and it is the reason this manual exists.
