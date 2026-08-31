@@ -197,9 +197,7 @@ export default function AIEngineeringPage() {
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
             <a
-              href="https://calendly.com/micahmccoyjones/introduction"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/book"
               className="cw-cta"
             >
               Book a call <span className="cw-arr" aria-hidden>→</span>

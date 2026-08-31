@@ -158,7 +158,7 @@ const SERVICES: Service[] = [
     // mode). Stack named as before; value-prop closes the pitch.
     desc: "Your AI works in the notebook. Production is a different stack — eval infrastructure, orchestration, retrieval, deployment. I run that stack.",
     anchorLabel: "Inquire about an engagement",
-    anchorHref: "https://calendly.com/micahmccoyjones/introduction",
+    anchorHref: "/book",
     anchorNote:
       "Anchor: ongoing engagements (specifics under NDA). Production stack across frontier models with eval infrastructure, RAG and agent orchestration, prompt-deployment pipelines.",
     tiers: [
@@ -379,9 +379,7 @@ export default function ServicesPage() {
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
             <a
-              href="https://calendly.com/micahmccoyjones/introduction"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/book"
               className="cw-cta"
             >
               Book a call <span className="cw-arr" aria-hidden>→</span>

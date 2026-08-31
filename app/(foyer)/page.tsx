@@ -394,10 +394,14 @@ export default function ColorWorldsHome() {
           id="cw-products-title"
           className="cw-secttitle"
         >
-          Every figure is defensible on request.
+          The receipts.
         </SplitReveal>
+        {/* Pass-18 (operator): "every figure is defensible on request is
+            a little much" — the dare becomes an invitation, and the
+            title drops into the site's own register (the protect-listed
+            "I'll send the receipts" line). */}
         <p className="cw-sect-dek cw-reveal">
-          Ask for the cap table, the pipeline report, or a reference.
+          Every line below is real. Ask about any of them.
         </p>
 
         {/* THE LEDGER. Replaces the W2 weighted card grid AND absorbs the
@@ -589,7 +593,7 @@ export default function ColorWorldsHome() {
         aria-labelledby="cw-build-title"
       >
         <a
-          href="https://calendly.com/micahmccoyjones/introduction"
+          href="/book"
           target="_blank"
           rel="noopener noreferrer"
           className="cw-big-link"
@@ -620,7 +624,7 @@ export default function ColorWorldsHome() {
         <div className="cw-footrow cw-reveal">
           <MagneticArea>
             <a
-              href="https://calendly.com/micahmccoyjones/introduction"
+              href="/book"
               target="_blank"
               rel="noopener noreferrer"
             >

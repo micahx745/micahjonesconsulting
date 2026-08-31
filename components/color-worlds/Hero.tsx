@@ -362,9 +362,7 @@ export function Hero() {
           Hire me <span aria-hidden>→</span>
         </a>
         <a
-          href="https://calendly.com/micahmccoyjones/introduction"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/book"
           className="cw-mlink"
         >
           Book a call <span aria-hidden>↗</span>

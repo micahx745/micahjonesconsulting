@@ -1869,6 +1869,86 @@ body {
 /* Ordani section title treatment (Pass-17): the name takes the display
  * slot; the approved line becomes a large subtitle. Waitlist block sits
  * under the CTA in the text column. */
+/* /book form (Pass-18) — the self-hosted Calendly replacement. Reuses
+ * the site's input grammar: hairline borders, mono labels, terracotta
+ * button (matches the waitlist form's register). */
+[data-mode="cw"] .cw-book {
+  margin-top: 40px;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+[data-mode="cw"] .cw-book__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+@media (min-width: 700px) {
+  [data-mode="cw"] .cw-book__row { grid-template-columns: 1fr 1fr; }
+}
+[data-mode="cw"] .cw-book__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+[data-mode="cw"] .cw-book__lbl {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-book input,
+[data-mode="cw"] .cw-book select,
+[data-mode="cw"] .cw-book textarea {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  color: inherit;
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 2px;
+  padding: 12px 14px;
+}
+[data-mode="cw"] .cw-book textarea { resize: vertical; }
+[data-mode="cw"] .cw-book input:focus-visible,
+[data-mode="cw"] .cw-book select:focus-visible,
+[data-mode="cw"] .cw-book textarea:focus-visible {
+  outline: 2px solid var(--color-cw-terracotta);
+  outline-offset: 1px;
+}
+[data-mode="cw"] .cw-book__btn {
+  align-self: flex-start;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-cw-bone);
+  background: var(--color-cw-terracotta);
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 26px;
+  cursor: pointer;
+}
+[data-mode="cw"] .cw-book__btn:disabled { opacity: 0.6; cursor: default; }
+[data-mode="cw"] .cw-book__warn {
+  font-family: var(--font-cw-body);
+  font-size: 14px;
+  color: var(--color-cw-terracotta);
+  margin: 0;
+}
+[data-mode="cw"] .cw-book__done {
+  margin-top: 40px;
+  max-width: 560px;
+  border-top: 2px solid currentColor;
+  padding-top: 20px;
+}
+[data-mode="cw"] .cw-book__donehead {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
 [data-mode="cw"] .cw-ordani-subtitle {
   font-family: var(--font-cw-display);
   font-weight: 500;
