@@ -210,3 +210,18 @@ done
 Corollary: any address used as a Resend `from:` also needs the sending domain verified
 (DKIM at `resend._domainkey.<domain>`). A `from:` on an unverified domain is rejected at
 the API, and the code paths here swallow that error by design.
+
+## #9 — Adding a project domain defaulted to a redirect and looped the site (2026-08-31)
+
+**What happened:** With apex configured to 308-redirect to www, `vercel domains add
+www.micahjonesconsulting.com` attached www with a default redirect BACK to apex. Both public
+domains looped (curl: 50 redirects) for ~2-3 minutes until the domain was removed and the
+deployment alias restored.
+
+**Root cause:** Production domain mutation without auditing the redirect config the new entry
+would receive. Vercel assigns new project domains a redirect to the existing primary by default.
+
+**Gate:** Any domain/redirect mutation is verified with `curl -s -o /dev/null -w "%{http_code} ->
+%{redirect_url}"` on BOTH apex and www, BEFORE and AFTER — the two directions must never both
+redirect. Do the add via the PROJECT dashboard (Settings → Domains) where the redirect choice is
+explicit, with the alias removed seconds before. Never via bare CLI `domains add` again.
