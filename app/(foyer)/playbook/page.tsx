@@ -58,7 +58,7 @@ const CHAPTERS = [
     n: "04",
     title: "Deploy day",
     blurb:
-      "Vercel, Supabase, environment variables, SSL, domains, secrets. The pre-flight list, in the order things bite you.",
+      "Hosting, database, environment variables, SSL, domains, secrets. The pre-flight list, in the order things bite you.",
   },
   {
     n: "05",
@@ -152,8 +152,8 @@ export default function PlaybookPage() {
         <p className="cw-pb-eyebrow" id="pb-author-title">Why this one</p>
         <p className="cw-pb-author__body">
           I&rsquo;m not writing this from the sidelines. I built Ordani
-          solo — a HIPAA-compliant SaaS for birth workers, on Next.js,
-          Supabase, and Vercel, with Claude Code and Cursor. Fourteen
+          solo — a HIPAA-compliant SaaS for birth workers, written with
+          Claude Code and Cursor. Fourteen
           practices in private beta. Two outside security reviews. None
           lost to a competitor at six months. Same stack you&rsquo;re
           using. Same wall I hit.

@@ -89,6 +89,11 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   true", ruling on the app). "HIPAA-grade" was the pre-confirmation hedge; swept to
   "HIPAA-compliant" everywhere (site + playbook chapter) same day. NEVER revert to "-grade".
 
+- VENDOR GATE is now MECHANICAL (2026-08-31, second recurrence: operator caught /playbook author
+  block naming three infra vendors; sweep also found the ch.4 blurb and ordani.mdx's "specializes
+  in Postgres" reviewer line). scripts/vendor-gate.mjs blocks `pnpm build` when any rendered
+  Ordani-mentioning file names an infra vendor/engine. Dev tools (Claude Code, Cursor) permitted.
+
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
 
