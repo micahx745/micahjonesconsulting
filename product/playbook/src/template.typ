@@ -246,6 +246,37 @@
   ]
 ]
 
+// Two-machines panel: the laptop's implicit state vs production's
+// explicit-only state (chapter 4).
+#let machines-diagram() = block(above: 1.7em, below: 1.7em, breakable: false)[
+  #grid(
+    columns: (1fr, 1fr),
+    column-gutter: 12pt,
+    box(width: 100%, stroke: 1.3pt + cw-petrol, inset: 12pt, fill: cw-petrol.transparentize(94%))[
+      #kicker("Your laptop", fill: cw-petrol, size: 7pt)
+      #v(6pt)
+      #set text(font: mono-font, size: 7pt, fill: cw-espresso.transparentize(15%))
+      #set par(leading: 0.85em)
+      .env file with every key \
+      logged-in CLIs \
+      database you seeded by hand \
+      localhost URLs everywhere \
+      files from six months of work
+    ],
+    box(width: 100%, stroke: 1.3pt + cw-terracotta, inset: 12pt)[
+      #kicker("Production", fill: cw-terracotta, size: 7pt)
+      #v(6pt)
+      #set text(font: mono-font, size: 7pt, fill: cw-espresso.transparentize(15%))
+      #set par(leading: 0.85em)
+      your code \
+      \
+      ...and nothing else. \
+      Every value you didn't \
+      explicitly provide is missing.
+    ],
+  )
+]
+
 // The transcript diagram: a strip of blocks, oldest falling out.
 #let window-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
   #let cell(label, dead: false) = box(
