@@ -61,6 +61,13 @@ project domain).
   rhythm, ai-engineering intro tightness.
 - GSC: domain verified + sitemap submitted successfully (operator confirmed "it worked").
 
+## Workstream split (2026-08-31)
+BOOK WORK MOVED to a dedicated session (operator request): product/playbook/HANDOFF.md is that
+workstream's book-of-record (pipeline, gates, missions: harness research, perfection pass,
+"life"/animation concept w/ DISCUSS lock). Spawn chip issued. THIS session keeps: site,
+consulting, SEO arc, email/booking ops. Do not double-write product/playbook/ from here while
+that session is active.
+
 ## Operator queue
 1. SECRET ROTATION (was waiting on booking retest — retest PASSED, rotation now due):
    Resend new key + delete re_V6JggJBd…; Google Calendar Reset secret address; update 3 envs each.
