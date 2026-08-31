@@ -305,6 +305,44 @@
   ]
 ]
 
+// Compliance decision strip (chapter 7): three questions, three lanes.
+#let decide-row(q, verdict, lane) = grid(
+  columns: (170pt, 24pt, 1fr),
+  column-gutter: 0pt,
+  box(width: 100%, stroke: 1.2pt + cw-espresso, inset: (x: 10pt, y: 9pt))[
+    #set text(size: 8.6pt, fill: cw-espresso)
+    #set par(leading: 0.6em)
+    #q
+  ],
+  align(center + horizon, text(size: 8pt, fill: cw-espresso)[▶]),
+  box(width: 100%, fill: cw-petrol.transparentize(92%), stroke: (left: 3pt + cw-petrol), inset: (x: 10pt, y: 9pt))[
+    #kicker(verdict, fill: cw-petrol, size: 6.5pt)
+    #v(2pt)
+    #set text(size: 8pt, fill: cw-espresso.transparentize(12%))
+    #set par(leading: 0.6em)
+    #lane
+  ],
+)
+#let compliance-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
+  #decide-row(
+    [Do you store or move *identifiable health data* on behalf of providers or plans?],
+    "HIPAA · now",
+    [BAAs with every vendor touching that data, access controls, audit trail, breach plan.],
+  )
+  #v(8pt)
+  #decide-row(
+    [Can *EU or UK residents* sign up for your public app?],
+    "GDPR basics · now",
+    [Honest privacy policy, data export and deletion on request, vendor DPAs.],
+  )
+  #v(8pt)
+  #decide-row(
+    [Is an *enterprise buyer's questionnaire* blocking a real deal?],
+    "SOC 2 · when asked",
+    [An audit report you buy when revenue justifies it. Until then: a one-page security summary.],
+  )
+]
+
 // The transcript diagram: a strip of blocks, oldest falling out.
 #let window-diagram() = block(above: 1.6em, below: 1.6em, breakable: false)[
   #let cell(label, dead: false) = box(
