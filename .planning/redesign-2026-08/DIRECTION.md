@@ -353,3 +353,18 @@ fade the pic. and let it live"). Pass-10 implements it: 0% fee card with 17–20
 comparison bars (terracotta vs petrol), bundle checklist ticking through five tools with the
 saffron $200–500 pill, the active-birth timer as a compact dark pill. Photo veil reduced to
 one left gradient for copy legibility only.
+
+## ORDANI SECTION — FINAL FORM (Pass-15, operator: "make it look nicer than it was
+before but without all the cheap gimmicks - maybe a pic of a doula working (small not
+the entire page)")
+After 6 experimental rounds (glass, cursors, flows, full-bleed photo canvases) and a
+Claude Design attempt that also failed the bar, the section landed in the site's OWN
+editorial idiom: kicker · display title ("Built for the people who show up for
+mothers.") · value-prop lede (17-20%, $200-500, 200 birth workers) · one SMALL bordered
+photo of the doula working (LEM_0476, /about portrait grammar, mono caption "Labor
+support · the work the software protects") · one CTA to /work/ordani. No motion beyond
+standard reveals. Ember/tour/OrdaniLive all deleted; unused assets removed.
+LESSON (recorded for the ledger): the site's restraint IS its premium register — the
+operator rated the plain editorial form above every decorated alternative, including
+external tools' attempts. Dribbble-poster fidelity is not reachable in live responsive
+code through a screenshot loop, and chasing it burns budget; name that limit EARLY.

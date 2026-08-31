@@ -37,7 +37,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Hero } from "@/components/color-worlds/Hero";
-import { OrdaniLive } from "@/components/color-worlds/OrdaniLive";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
@@ -293,52 +292,63 @@ export default function ColorWorldsHome() {
           The h2 carries .cw-bleed — the one ink-bleed display headline
           per page, per the texture research. Giant Ordani word reads
           as pulp-ink, not pixel-text. */}
-      {/* ORDANI — "Ember Dusk" (Pass-12). Built to the research workflow's
-          synthesized spec: matted photo canvas (lone expectant mother at a
-          boardwalk railing under an ember sky — the operator's stock,
-          flipped at the asset so she gazes toward the cards), three-layer
-          photographic grade, Apple-class glass, one saffron accent at
-          three tiny marks, ~60% of the photograph left uncovered.
-          data-world="bone": this section's mood comes from the photo, and
-          D-R3 retired petrol as a page world. OrdaniSticky + the beta
-          form + the giant bleed headline are retired with the old
-          section; /work/ordani carries signup. */}
+      {/* ORDANI (Pass-15, operator: "make it look nicer than it was
+          before but without all the cheap gimmicks - maybe a pic of a
+          doula working (small not the entire page)"). Back in the
+          site's own editorial idiom: kicker, title, lede, one small
+          bordered photograph, one link. The photo is the /about
+          portrait grammar; the copy carries the value props. Nothing
+          animates beyond the standard reveals. */}
       <section
-        className="cw-ember"
+        className="cw-block"
         id="ordani"
         data-section
         data-world="bone"
         aria-labelledby="cw-ordani-title"
       >
-        <div className="cw-ember__canvas">
-          <div className="cw-ember__photo">
+        <p className="cw-kicker cw-reveal">Ordani</p>
+        <SplitReveal
+          as="h2"
+          id="cw-ordani-title"
+          className="cw-secttitle"
+        >
+          Built for the people who show up for mothers.
+        </SplitReveal>
+
+        <div className="cw-ordani-split">
+          <div className="cw-ordani-split__text">
+            <p className="cw-lede cw-reveal">
+              Birth workers run their practices on group chats and paper
+              intakes. HIPAA is the law. <em>So I built Ordani.</em>{" "}
+              {/* explicit join — LESSONS #6: RSC drops the space before
+                  entity-bearing text after an inline element */}
+              It runs invoicing without the 17&ndash;20% cut other platforms
+              take, and folds $200&ndash;500 of software into one login.
+              200 birth workers use it, and none have left for a
+              competitor.
+            </p>
+            <div className="cw-section-cta-wrap cw-reveal">
+              <a href="/work/ordani" className="cw-section-cta">
+                See how it was built{" "}
+                <span className="cw-section-cta__arr" aria-hidden>→</span>
+              </a>
+            </div>
+          </div>
+
+          <figure className="cw-ordani-split__fig cw-reveal">
             <Image
               src="/ordani-work.jpg"
               alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
-              fill
-              sizes="(min-width: 1440px) 1360px, 100vw"
-              className="cw-ember__img"
+              width={900}
+              height={698}
+              sizes="(min-width: 1100px) 420px, 100vw"
+              className="cw-ordani-split__img"
             />
-            <div className="cw-ember__unify" aria-hidden />
-            <div className="cw-ember__deepen" aria-hidden />
-          </div>
-
-          {/* Copy block flows (eyebrow -> headline -> sub) inside one
-              positioned wrapper — fixed absolute tops collided when the
-              headline wrapped to three lines (caught by screenshot). */}
-          <div className="cw-ember__copy">
-            <p className="cw-ember__eyebrow">Ordani</p>
-            <h2 id="cw-ordani-title" className="cw-ember__h">
-              Built for the people who show up for mothers.
-            </h2>
-            <p className="cw-ember__sub">
-              HIPAA-grade practice management I designed, built, and
-              support alone. 200 birth workers run on it, and none have
-              left for a competitor.
-            </p>
-          </div>
-
-          <OrdaniLive />
+            <figcaption className="cw-ordani-split__cap">
+              Labor support <span aria-hidden>·</span> the work the
+              software protects
+            </figcaption>
+          </figure>
         </div>
       </section>
 
