@@ -136,6 +136,27 @@
   ]
 ]
 
+// A file rendered as an artifact: mono header bar + contents.
+#let filecard(filename, body) = block(
+  width: 100%,
+  stroke: 1pt + cw-petrol,
+  inset: 0pt,
+  radius: 2pt,
+  breakable: false,
+  above: 1.5em,
+  below: 1.5em,
+)[
+  #block(width: 100%, fill: cw-petrol, inset: (x: 14pt, y: 8pt))[
+    // no upper(): filename case is meaningful
+    #text(font: mono-font, size: 7pt, weight: 700, tracking: 0.11em, fill: cw-bone, filename)
+  ]
+  #block(inset: (x: 14pt, y: 12pt))[
+    #set text(font: mono-font, size: 8.4pt, fill: cw-espresso)
+    #set par(leading: 0.72em, spacing: 0.72em)
+    #body
+  ]
+]
+
 // ---- Diagrams (Typst-native line drawings, petrol strokes) ----------
 
 // The three-curves chart: constraint count crosses window capacity.
@@ -274,7 +295,8 @@
 // End matter on its own closing page: author, then the two paths
 // stacked full-measure (buy the manual / hire the operator).
 #let two-paths(author-body, manual-body, operator-body) = [
-  #v(1.6em)
+  #pagebreak()
+  #v(20pt)
   #line(length: 100%, stroke: 1.2pt + cw-espresso)
   #v(14pt)
   #kicker("Who wrote this", fill: cw-terracotta)

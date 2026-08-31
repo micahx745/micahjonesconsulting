@@ -18,7 +18,7 @@
     ("Reader", "Solo builders on AI tools"),
     ("Author", "Micah Jones"),
     ("Status", "Free chapter of ten"),
-    ("Time", "A 15-minute read"),
+    ("Time", "A ten-minute read"),
     ("Rev", "2026.08"),
   ),
 )
@@ -75,7 +75,7 @@ And between sessions, nothing survives. Close the chat and the transcript is gon
 
 Here is the part almost nobody tells you. It is the crux of this whole manual.
 
-A working feature is not just code. It is code plus the constraints that make the code correct. "Uploads must stream to storage, never buffer, because a 500MB video crushes the serverless function." "Dates format on the server, because the client's timezone lies." The code shows _what_ it does. The reason it must be done that strange way lived in exactly one place: the conversation where you and the AI worked it out.
+A working feature is not just code. It is code plus the rules that make the code correct. "Uploads must stream to storage, never buffer, because a 500MB video crushes the server." "Dates format on the server, because the client's timezone lies." Engineers call a rule like this an _invariant_: something that must stay true no matter what changes around it. The code shows _what_ it does. The reason it must be done that strange way lived in exactly one place: the conversation where you and the AI worked it out.
 
 That conversation is gone.
 
@@ -137,11 +137,15 @@ I hit this wall in the same month I am writing this, on my own consulting site, 
   enough, because prose only works on whoever reads it, and the next
   session reads nothing you don't put in front of it.
 
-  What finally stuck was a one-line check command in the repo that
-  fails loudly whenever the pattern appears, run before every
-  release. The bug never shipped again. Rules a machine can run beat
-  rules a reader must remember. That idea repeats through every
-  chapter of this manual.
+  What finally stuck was a one-line check in the repo, run before
+  every release. Simplified, it looks like this:
+
+  #text(size: 8.6pt)[#raw("grep -rn \"+in client\" app/ && echo \"SPACE BUG IS BACK\" && exit 1")]
+
+  In plain English: search every file for the broken pattern, and if
+  it appears anywhere, shout and refuse to ship. The bug never
+  shipped again. Rules a machine can run beat rules a reader must
+  remember. That idea repeats through every chapter of this manual.
 ]
 
 #warstory("Entry · 2026-08-31", "The demo that lied for weeks")[
@@ -199,6 +203,24 @@ Anything that must survive the session goes in a file, in the repo, because file
     per minute.],
 )
 
+So you don't have to guess what habit one produces, here is the shape of the file, three rules in. Yours will grow past twenty.
+
+#filecard("CLAUDE.md — invariants")[
+  \# Rules that must survive every session. Read before any change.
+
+  - Uploads STREAM to storage, never buffer. 500MB videos kill the server.
+
+  - Dates format on the SERVER. The client's timezone lies.
+
+  - Never hand-edit files in /generated. Regenerate them or nothing.
+]
+
+#side[
+  Tool note: Claude Code and most agents read CLAUDE.md or AGENTS.md
+  automatically. Cursor's version of the same file is .cursorrules.
+  Same idea, same payoff.
+]
+
 These five stop the bleeding. They are triage, not the cure. The cure is a single page the AI re-reads at the start of every session, carrying your architecture, your constraints, and your definition of done. Building that page is Chapter 2, and it is the reason this manual exists.
 
 #pull[The wall is not proof you can't do this. It is the point where the tool's memory ran out and yours has to take over: on paper, in the repo, where every future session finds it.]
@@ -207,12 +229,13 @@ These five stop the bleeding. They are triage, not the cure. The cure is a singl
   [
     #set text(size: 9.8pt)
     #set par(leading: 0.66em, spacing: 0.85em)
-    I'm Micah Jones. I was part of four exits (Postmates,
-    SurveyMonkey, Guardicore, Neuton.AI: \$5B+ in combined value), and
-    my consulting work has produced \$20M+ in client revenue. Ordani,
-    the app in these pages, is a HIPAA-grade SaaS I built alone on the
-    same AI tools this manual is about — hundreds of birth workers pay
-    for it today.
+    I'm Micah Jones. I sold enterprise software inside SurveyMonkey on
+    the way to its IPO, and I was inside Postmates, Guardicore, and
+    Neuton.AI for their exits: \$5B+ in combined value across the
+    four. My consulting work has produced \$20M+ in client revenue.
+    Ordani, the app in these pages, is a HIPAA-grade SaaS I built
+    alone on the same AI tools this manual is about — hundreds of
+    birth workers pay for it today.
   ],
   [
     Nine more chapters: the spec, architecture, deploy day, security,
