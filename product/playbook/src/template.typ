@@ -416,13 +416,24 @@
 
 // ---- Pages ----------------------------------------------------------
 
+// Edition switch: the sampler (free chapter 1) renders its sales
+// colophon; the assembled book suppresses it. Default "sampler" so
+// standalone chapter compiles are unchanged; book.typ flips it.
+#let edition = state("edition", "sampler")
+#let sampler-only(body) = context { if edition.get() == "sampler" { body } }
+
 // Cover: espresso, spec-sheet block, big numeral composition.
-#let chapter-open(num, title, dek, spec: ()) = page(
+#let chapter-open(num, title, dek, spec: ()) = {
+  // Per-chapter section reset so assembled-book § numbers restart.
+  counter("sect").update(0)
+  page(
   fill: cw-espresso,
   margin: (top: 84pt, bottom: 66pt, left: 84pt, right: 84pt),
   footer: none,
   header: none,
 )[
+  // Anchor for the book TOC's page query.
+  #metadata("ch-start")#label("ch" + num)
   #grid(
     columns: (1fr, auto),
     kicker("The 80% Wall", fill: cw-bone),
@@ -452,6 +463,90 @@
         upper(v),
       )).flatten(),
     )
+  ]
+]
+}
+
+// Book cover: the assembled-manual front page.
+#let book-cover() = page(
+  fill: cw-espresso,
+  margin: (top: 84pt, bottom: 66pt, left: 84pt, right: 84pt),
+  footer: none,
+  header: none,
+)[
+  #grid(
+    columns: (1fr, auto),
+    kicker("A field manual for solo builders", fill: cw-bone),
+    kicker("First edition · 2026.08", fill: cw-bone.transparentize(45%)),
+  )
+  #v(4pt)
+  #line(length: 100%, stroke: 0.7pt + cw-bone.transparentize(70%))
+  #v(34pt)
+  #text(font: display-font, size: 76pt, weight: 800, fill: cw-bone, tracking: -0.02em)[The]
+  #v(-30pt)
+  #text(font: display-font, size: 76pt, weight: 800, fill: cw-terracotta, tracking: -0.02em)[80%]
+  #v(-30pt)
+  #text(font: display-font, size: 76pt, weight: 800, fill: cw-bone, tracking: -0.02em)[Wall.]
+  #v(18pt)
+  #box(width: 330pt)[
+    #set par(leading: 0.68em)
+    #text(font: body-font, size: 12.5pt, fill: cw-bone.transparentize(10%))[
+      Why AI-assisted builds stall between demo and production, and
+      the systems that carry them the rest of the way.
+    ]
+  ]
+  #v(1fr)
+  #block(width: 100%, stroke: 0.8pt + cw-bone.transparentize(55%), inset: (x: 16pt, y: 12pt), radius: 2pt)[
+    #set text(font: mono-font, size: 7pt, fill: cw-bone.transparentize(20%), tracking: 0.09em)
+    #grid(
+      columns: (auto, 1fr, auto, 1fr),
+      column-gutter: 14pt,
+      row-gutter: 7pt,
+      text(fill: cw-saffron, weight: 700)[AUTHOR], [MICAH JONES],
+      text(fill: cw-saffron, weight: 700)[CHAPTERS], [TEN · COMPANION FILES],
+      text(fill: cw-saffron, weight: 700)[READER], [SOLO BUILDERS ON AI TOOLS],
+      text(fill: cw-saffron, weight: 700)[REV], [2026.08],
+    )
+  ]
+]
+
+// Book TOC: queried page numbers via the ch-NN labels.
+#let toc-row(num, title) = context {
+  let hits = query(label("ch" + num))
+  let pg = if hits.len() > 0 {
+    str(counter(page).at(hits.first().location()).first())
+  } else { "?" }
+  grid(
+    columns: (44pt, 1fr, auto),
+    column-gutter: 10pt,
+    align(top)[#text(font: display-font, size: 20pt, weight: 800, fill: cw-terracotta)[#num]],
+    align(top + left)[
+      #v(4pt)
+      #text(font: display-font, size: 13pt, weight: 700, fill: cw-espresso)[#title]
+    ],
+    align(top + right)[
+      #v(6pt)
+      #kicker("p. " + pg, fill: cw-espresso.transparentize(35%), size: 7.5pt)
+    ],
+  )
+}
+#let book-toc(rows) = page(
+  fill: cw-paper,
+  margin: (top: 84pt, bottom: 66pt, left: 96pt, right: 96pt),
+  footer: none,
+  header: none,
+)[
+  #kicker("Contents", fill: cw-terracotta)
+  #v(6pt)
+  #line(length: 100%, stroke: 1.2pt + cw-espresso)
+  #v(18pt)
+  #for (num, title) in rows {
+    toc-row(num, title)
+    v(11pt)
+  }
+  #v(1fr)
+  #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
+    EVERY BUILD-LOG ENTRY IN THIS MANUAL IS TRUE AND DATED
   ]
 ]
 

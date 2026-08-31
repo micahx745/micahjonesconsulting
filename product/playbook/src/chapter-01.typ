@@ -226,7 +226,10 @@ These five stop the bleeding. They are triage, not the cure. The cure is a singl
 
 #pull[The wall is not proof you can't do this. It is the point where the tool's memory ran out and yours has to take over: on paper, in the repo, where every future session finds it.]
 
-#two-paths(
+// Sampler edition only: the free chapter's sales colophon. The
+// assembled book (book.typ flips the edition state) suppresses it —
+// nobody who bought the manual should be pitched the manual.
+#sampler-only[#two-paths(
   [
     #set text(size: 9.8pt)
     #set par(leading: 0.66em, spacing: 0.85em)
@@ -255,4 +258,4 @@ These five stop the bleeding. They are triage, not the cure. The cure is a singl
 
     #text(weight: 700, fill: cw-saffron)[micahjonesconsulting.com/book]
   ],
-)
+)]
