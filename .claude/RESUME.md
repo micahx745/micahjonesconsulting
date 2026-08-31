@@ -1,4 +1,4 @@
-# RESUME — SHIPPING redesign-wave4 → main (production)
+# RESUME — redesign SHIPPED to production (2026-08-31)
 
 ## Approval on record (verbatim)
 Operator, 2026-08-31: "also just offer the full week reproduce thing and a part to take a look at
@@ -12,11 +12,12 @@ Booking VERIFIED end-to-end by operator on preview: "booked and it worked - invi
 Env vars in all 3 Vercel environments (Preview branch-scoped; add via
 `npx vercel env add NAME preview redesign-wave4 --value "$V" --yes --scope passioneer`).
 
-## Ship flow in progress (LESSONS #5 / CARD 1)
-1. Merge redesign-wave4 → main, push (auto prod deploy). ← current step
-2. Re-alias BOTH: micahjonesconsulting.vercel.app + www.micahjonesconsulting.com to new deployment.
-3. Verify parity via data-dpl-id on both domains; smoke: /, /book, /work/ordani, favicon.ico
-   (1174 bytes), LinkedIn in footer.
+## Ship COMPLETE (LESSONS #5 / CARD 1)
+Merged db0b008 to main; prod deployment 6enhr2myp Ready; BOTH domains aliased and verified
+parity (dpl_8uDfZYYBqZuxpH2nBWpqRKyNj4oX): hero, LinkedIn, /book, favicon 1174B, icon.svg 200,
+apex 308→www. Booking live in production (env vars present).
+REMEMBER: every future push to main needs the www re-alias (until operator adds www as
+project domain).
 
 ## Operator queue
 1. SECRET ROTATION (was waiting on booking retest — retest PASSED, rotation now due):
