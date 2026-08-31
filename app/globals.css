@@ -1890,7 +1890,8 @@ body {
 }
 [data-mode="cw"] .cw-ember__img {
   object-fit: cover;
-  object-position: 50% 62%;
+  /* The embrace sits left-of-center; keep faces high in frame. */
+  object-position: 32% 20%;
   filter: saturate(0.88) contrast(1.05) brightness(0.9);
 }
 /* Grade layer 2 — multiply unify into the espresso world. This is a
@@ -2159,23 +2160,9 @@ body {
 [data-mode="cw"] .cw-ember__cta:focus-visible .cw-ember__arr {
   transform: translateX(4px);
 }
-/* Timer — raw on the water, no fill, dashed leader toward her hands. */
-[data-mode="cw"] .cw-ember__timer {
-  position: absolute;
-  left: 57%;
-  top: 62%;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding-bottom: 10px;
-  border-bottom: 1.5px dashed rgba(236, 227, 208, 0.45);
-  min-width: 110px;
-  color: var(--color-cw-bone);
-  pointer-events: auto;
-}
+/* The water annotation retired in Pass-13 — the timer lives in the
+ * flow panel's header now. */
 @media (max-width: 979px) {
-  [data-mode="cw"] .cw-ember__timer { left: 40px; top: 476px; }
 }
 [data-mode="cw"] .cw-ember__dot {
   width: 6px;
@@ -2198,6 +2185,149 @@ body {
   font-size: 16px;
   font-variant-numeric: tabular-nums;
 }
+
+/* THE FLOW (Pass-13) — one panel that executes the value props as a
+ * sequence while the photo shows the birth worker working. Connector
+ * line draws down as each step completes. */
+[data-mode="cw"] .cw-flow__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(236, 227, 208, 0.14);
+}
+[data-mode="cw"] .cw-flow__headlbl {
+  font-family: var(--font-cw-body);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--color-cw-bone);
+}
+[data-mode="cw"] .cw-flow__digits {
+  margin-left: auto;
+  font-family: var(--font-cw-mono);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  color: rgba(236, 227, 208, 0.85);
+}
+[data-mode="cw"] .cw-flow__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+[data-mode="cw"] .cw-flow__step {
+  display: flex;
+  gap: 14px;
+  min-height: 64px;
+}
+[data-mode="cw"] .cw-flow__rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22px;
+  flex: 0 0 auto;
+}
+[data-mode="cw"] .cw-flow__node {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(236, 227, 208, 0.3);
+  background: transparent;
+  transition: background 0.28s ease, border-color 0.28s ease; /* motion-ok: D-R18 flow-step completion; static under reduced motion */
+}
+[data-mode="cw"] .cw-flow__check {
+  font-size: 11px;
+  color: transparent;
+  transform: scale(0.4); /* motion-ok: one-shot check pop on completion; static under reduced motion */
+  transition: color 0.28s ease, transform 0.28s cubic-bezier(0.2, 1.4, 0.4, 1); /* motion-ok: D-R18 flow-step completion */
+}
+[data-mode="cw"] .cw-flow__step.is-done .cw-flow__node {
+  background: var(--color-cw-saffron);
+  border-color: var(--color-cw-saffron);
+}
+[data-mode="cw"] .cw-flow__step.is-done .cw-flow__check {
+  color: var(--color-cw-espresso);
+  transform: scale(1);
+}
+[data-mode="cw"] .cw-flow__step.is-next .cw-flow__node {
+  border-color: var(--color-cw-saffron);
+  animation: cw-flow-breathe 1.3s ease-in-out infinite; /* motion-ok: D-R18 active-step marker; static under reduced motion */
+}
+@keyframes cw-flow-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 152, 47, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(201, 152, 47, 0); }
+}
+[data-mode="cw"] .cw-flow__line {
+  flex: 1;
+  width: 2px;
+  margin: 4px 0;
+  background: rgba(236, 227, 208, 0.16);
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+[data-mode="cw"] .cw-flow__linefill {
+  position: absolute;
+  inset: 0;
+  background: var(--color-cw-saffron);
+  transform: scaleY(0); /* motion-ok: the connector draws as the step completes; static under reduced motion */
+  transform-origin: top;
+  transition: transform 0.28s ease; /* motion-ok: D-R18 connector draw */
+  transition-delay: 120ms; /* motion-ok: draws after the check lands */
+}
+[data-mode="cw"] .cw-flow__step.is-done .cw-flow__linefill {
+  transform: scaleY(1);
+}
+[data-mode="cw"] .cw-flow__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-bottom: 18px;
+  opacity: 0.45;
+  transition: opacity 0.28s ease; /* motion-ok: D-R18 step focus; static under reduced motion */
+}
+[data-mode="cw"] .cw-flow__step.is-done .cw-flow__body,
+[data-mode="cw"] .cw-flow__step.is-next .cw-flow__body {
+  opacity: 1;
+}
+[data-mode="cw"] .cw-flow__title {
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--color-cw-bone);
+}
+[data-mode="cw"] .cw-flow__sub {
+  font-family: var(--font-cw-body);
+  font-size: 13px;
+  color: rgba(236, 227, 208, 0.68);
+}
+[data-mode="cw"] .cw-flow__close {
+  margin: 6px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid rgba(236, 227, 208, 0.14);
+  font-family: var(--font-cw-display);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--color-cw-bone);
+  opacity: 0;
+  transition: opacity 0.28s ease; /* motion-ok: D-R18 flow close line; static under reduced motion */
+}
+[data-mode="cw"] .cw-flow__close.is-on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] .cw-flow__node,
+  [data-mode="cw"] .cw-flow__check,
+  [data-mode="cw"] .cw-flow__linefill,
+  [data-mode="cw"] .cw-flow__body,
+  [data-mode="cw"] .cw-flow__close {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
 /* ---- mobile canvas ---- */
 @media (max-width: 979px) {
   [data-mode="cw"] .cw-ember__canvas { height: auto; border-radius: 0; }
@@ -2212,7 +2342,6 @@ body {
   [data-mode="cw"] .cw-ember__h { font-size: clamp(30px, 7.6vw, 38px); }
   [data-mode="cw"] .cw-ember__sub { font-size: 15px; }
   [data-mode="cw"] .cw-ember__ui { position: static; }
-  [data-mode="cw"] .cw-ember__timer { position: absolute; }
   /* On the bone page ground the bone CTA card needs an edge. */
   [data-mode="cw"] .cw-ember__cta {
     margin-bottom: 0;

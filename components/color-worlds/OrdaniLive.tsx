@@ -1,27 +1,44 @@
 // components/color-worlds/OrdaniLive.tsx
 //
-// Pass-12 — "Ember Dusk", built to the workflow's synthesized spec
-// (reference dissection of the full Auxon/SyncDepth/Wingly shots +
-// live-probed glass recipes: Apple saturate(180%) blur(20), fill alpha
-// >= 0.45 over photography, one accent rationed to <= 3 tiny marks).
+// Pass-13 — THE FLOW (operator: "show an active flow of these value
+// props using ordani components... the pic shows something that seems
+// like a birth worker working - while we have moving animations of the
+// component doing something").
 //
-// This component renders the glass column + the raw timer annotation.
-// The eyebrow/headline/sub are server markup in page.tsx; the photo is
-// the section ground. D-R18 live zone: timer ticks, competitor bar
-// grows once on entry, bundle rows stagger in once. Reduced motion:
-// entrances land at final state instantly; the timer keeps ticking
-// (content, not decoration). aria-hidden on illustrative parts only.
+// The photo now shows the work itself: a doula supporting a laboring
+// client (rebozo over the shoulder — a real doula tool). The panel is
+// one flow that EXECUTES on a loop while she never touches a screen:
+//   header  "Right now, at a birth" + the ticking timer
+//   step 1  Contraction logged                (the scene, in the app)
+//   step 2  Invoice paid · $450 — fee $0      (the 0% prop, happening)
+//   step 3  Intake signed · chart updated     (the bundle, happening)
+//   close   "She never left the room."
+// A connector line draws downward as each step completes — the flow
+// made literal. Glass recipe unchanged from the Ember spec.
+//
+// D-R18 live zone. Reduced motion: full flow rendered complete and
+// static; the timer keeps ticking (content). aria-hidden illustrative
+// UI; no person names.
 "use client";
 
 import { useEffect, useRef, useState } from "react";
 
 const TIMER_START = 3 * 3600 + 12 * 60 + 44;
-const BUNDLE = [
-  "Invoicing",
-  "Scheduling",
-  "Client intake",
-  "Birth tracking",
-  "Secure messaging",
+const BEAT_MS = 2600;
+
+const STEPS = [
+  {
+    title: "Contraction logged",
+    sub: "9:41 pm · 4 min apart",
+  },
+  {
+    title: "Invoice paid — $450",
+    sub: "Fee taken: $0. Others take 17–20%.",
+  },
+  {
+    title: "Intake signed, chart updated",
+    sub: "One login. $200–500 of software.",
+  },
 ] as const;
 
 function fmt(total: number): string {
@@ -33,12 +50,15 @@ function fmt(total: number): string {
 
 export function OrdaniLive() {
   const [seconds, setSeconds] = useState(TIMER_START);
+  // 0..STEPS.length: how many steps have completed. STEPS.length holds
+  // the finished frame (close line visible), then the loop resets.
+  const [done, setDone] = useState(0);
   const [entered, setEntered] = useState(false);
+  const doneRef = useRef(0);
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    // Timer ticks regardless of motion preference — it is content.
     const t = window.setInterval(() => setSeconds((s) => s + 1), 1000);
 
     const reduced = window.matchMedia(
@@ -46,103 +66,86 @@ export function OrdaniLive() {
     ).matches;
     if (reduced) {
       setEntered(true);
+      setDone(STEPS.length);
       return () => window.clearInterval(t);
     }
+
+    let stepTimer: number | undefined;
     const el = rootRef.current;
-    if (!el) {
+    const start = () => {
       setEntered(true);
-      return () => window.clearInterval(t);
+      stepTimer = window.setInterval(() => {
+        // ...3 -> hold one beat -> reset to 0 -> 1 -> 2 -> 3...
+        doneRef.current =
+          doneRef.current >= STEPS.length + 1 ? 0 : doneRef.current + 1;
+        setDone(Math.min(doneRef.current, STEPS.length));
+      }, BEAT_MS);
+    };
+    if (!el) start();
+    else {
+      const io = new IntersectionObserver(
+        (es) => {
+          if (es[0]?.isIntersecting) {
+            start();
+            io.disconnect();
+          }
+        },
+        { threshold: 0.12 },
+      );
+      io.observe(el);
     }
-    const io = new IntersectionObserver(
-      (es) => {
-        if (es[0]?.isIntersecting) {
-          setEntered(true);
-          io.disconnect();
-        }
-      },
-      // 0.4 never fired on mobile where this wrapper spans photo +
-      // cards (caught by screenshot: cards held at opacity 0). 0.12 of a
-      // tall element is still an intentional scroll-into-view.
-      { threshold: 0.12 },
-    );
-    io.observe(el);
     return () => {
       window.clearInterval(t);
-      io.disconnect();
+      if (stepTimer) window.clearInterval(stepTimer);
     };
   }, []);
 
   return (
-    <div
-      ref={rootRef}
-      className={`cw-ember__ui${entered ? " is-in" : ""}`}
-    >
-      {/* Timer annotation — raw on the water, dashed leader toward her
-          hands. The section's second saffron mark. */}
-      <p className="cw-ember__timer" aria-label="Live activity: an active birth is being tracked">
-        <span className="cw-ember__dot" aria-hidden />
-        <span className="cw-ember__timerlbl">Active birth</span>
-        <span className="cw-ember__digits">{fmt(seconds)}</span>
-      </p>
-
-      {/* GLASS COLUMN */}
+    <div ref={rootRef} className={`cw-ember__ui${entered ? " is-in" : ""}`}>
       <div className="cw-ember__col" aria-hidden>
-        {/* Card A — the 0% panel */}
-        <div className="cw-ember__glass cw-ember__card" style={{ "--card-i": 0 } as React.CSSProperties}>
-          <p className="cw-ember__cardtitle">What the platform takes</p>
-          <p className="cw-ember__stat">
-            <span className="cw-ember__num">0%</span>
-            <span className="cw-ember__numlbl">invoicing fee</span>
-          </p>
-          <div className="cw-ember__bars">
-            <div className="cw-ember__barrow">
-              <span className="cw-ember__barlbl">Other platforms</span>
-              <span className="cw-ember__track">
-                <span className="cw-ember__fill" />
-              </span>
-              <span className="cw-ember__barval">17–20%</span>
-            </div>
-            <div className="cw-ember__barrow">
-              <span className="cw-ember__barlbl">Ordani</span>
-              <span className="cw-ember__track">
-                <span className="cw-ember__origin" />
-              </span>
-              <span className="cw-ember__barval cw-ember__barval--strong">0%</span>
-            </div>
+        {/* THE FLOW PANEL */}
+        <div className="cw-ember__glass cw-ember__card cw-flow" style={{ "--card-i": 0 } as React.CSSProperties}>
+          <div className="cw-flow__head">
+            <span className="cw-ember__dot" />
+            <span className="cw-flow__headlbl">Right now, at a birth</span>
+            <span className="cw-flow__digits">{fmt(seconds)}</span>
           </div>
-          <p className="cw-ember__caption">Doulas keep thousands more a year.</p>
+
+          <ol className="cw-flow__steps">
+            {STEPS.map((step, i) => {
+              const state =
+                done > i ? "is-done" : done === i ? "is-next" : "";
+              return (
+                <li key={step.title} className={`cw-flow__step ${state}`}>
+                  <span className="cw-flow__rail">
+                    <span className="cw-flow__node">
+                      <span className="cw-flow__check">✓</span>
+                    </span>
+                    {i < STEPS.length - 1 && (
+                      <span className="cw-flow__line">
+                        <span className="cw-flow__linefill" />
+                      </span>
+                    )}
+                  </span>
+                  <span className="cw-flow__body">
+                    <span className="cw-flow__title">{step.title}</span>
+                    <span className="cw-flow__sub">{step.sub}</span>
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+
+          <p className={`cw-flow__close${done >= STEPS.length ? " is-on" : ""}`}>
+            She never left the room.
+          </p>
         </div>
 
-        {/* Card B — the bundle panel */}
-        <div className="cw-ember__glass cw-ember__card" style={{ "--card-i": 1 } as React.CSSProperties}>
-          <div className="cw-ember__cardhead">
-            <p className="cw-ember__cardtitle">One login</p>
-            <span className="cw-ember__chip">HIPAA</span>
-          </div>
-          <p className="cw-ember__stat">
-            <span className="cw-ember__num cw-ember__num--sm">$200–500</span>
-            <span className="cw-ember__numlbl">of software, bundled</span>
-          </p>
-          <ul className="cw-ember__list">
-            {BUNDLE.map((item, i) => (
-              <li
-                key={item}
-                className="cw-ember__row"
-                style={{ "--row-i": i } as React.CSSProperties}
-              >
-                <span className="cw-ember__marker" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Card C — opaque bone, the conversion point, overhangs the
-            canvas bottom (the one sanctioned frame-break). */}
+        {/* Conversion point — opaque bone, unchanged. */}
         <a
           href="/work/ordani"
           className="cw-ember__card cw-ember__cta"
-          style={{ "--card-i": 2 } as React.CSSProperties}
+          style={{ "--card-i": 1 } as React.CSSProperties}
         >
           See how it was built
           <span className="cw-ember__arr" aria-hidden>→</span>

@@ -313,8 +313,8 @@ export default function ColorWorldsHome() {
         <div className="cw-ember__canvas">
           <div className="cw-ember__photo">
             <Image
-              src="/ordani-ember.jpg"
-              alt="A pregnant woman in white lace stands at a boardwalk railing at dusk, one hand on her belly, watching the ember sky over the water."
+              src="/ordani-work.jpg"
+              alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
               fill
               sizes="(min-width: 1440px) 1360px, 100vw"
               className="cw-ember__img"
