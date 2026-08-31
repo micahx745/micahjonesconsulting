@@ -20,10 +20,7 @@ interface BusyWindow {
 
 // UTC instant for a Pacific wall-clock time. Tries PDT (-7) then PST
 // (-8) and keeps the candidate whose LA rendering round-trips.
-export function pacificToUtcMs(
-  date: string,
-  time: string,
-): number {
+export function pacificToUtcMs(date: string, time: string): number {
   const [y, mo, d] = date.split("-").map(Number);
   const [h, mi] = time.split(":").map(Number);
   const fmt = new Intl.DateTimeFormat("en-US", {
@@ -47,15 +44,13 @@ export function pacificToUtcMs(
 function parseIcsDate(raw: string): number | null {
   // 20260908T173000Z
   let m = raw.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/);
-  if (m)
-    return Date.UTC(+m[1]!, +m[2]! - 1, +m[3]!, +m[4]!, +m[5]!, +m[6]!);
+  if (m) return Date.UTC(+m[1]!, +m[2]! - 1, +m[3]!, +m[4]!, +m[5]!, +m[6]!);
   // 20260908T103000 with TZID handled by caller passing tz-less locals
   // through pacificToUtcMs only when TZID is America/Los_Angeles;
   // other TZIDs are approximated as UTC (rare in a personal calendar,
   // and the check fails open by design).
   m = raw.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})$/);
-  if (m)
-    return Date.UTC(+m[1]!, +m[2]! - 1, +m[3]!, +m[4]!, +m[5]!, +m[6]!);
+  if (m) return Date.UTC(+m[1]!, +m[2]! - 1, +m[3]!, +m[4]!, +m[5]!, +m[6]!);
   // All-day: 20260908
   m = raw.match(/^(\d{4})(\d{2})(\d{2})$/);
   if (m) return Date.UTC(+m[1]!, +m[2]! - 1, +m[3]!);
@@ -80,10 +75,7 @@ export function parseBusyWindows(ics: string): BusyWindow[] {
       const s = ds[1]!.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})/);
       const e = de[1]!.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})/);
       startMs = s
-        ? pacificToUtcMs(
-            `${s[1]}-${s[2]}-${s[3]}`,
-            `${s[4]}:${s[5]}`,
-          )
+        ? pacificToUtcMs(`${s[1]}-${s[2]}-${s[3]}`, `${s[4]}:${s[5]}`)
         : null;
       endMs = e
         ? pacificToUtcMs(`${e[1]}-${e[2]}-${e[3]}`, `${e[4]}:${e[5]}`)
