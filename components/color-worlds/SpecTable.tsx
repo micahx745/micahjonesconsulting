@@ -46,63 +46,76 @@ export function SpecTable({
   caption,
 }: SpecTableProps) {
   return (
-    <div className="cw-spec-scroll" role="region" aria-label={caption} tabIndex={0}>
-      <table className="cw-spec">
-        <caption className="cw-sr-only">{caption}</caption>
-        <colgroup>
-          <col className="cw-spec__col-label" />
-          {columns.map((c) => (
-            <col
-              key={c.name}
-              className={
-                c.name === weighted ? "cw-spec__col--lead" : undefined
-              }
-            />
-          ))}
-        </colgroup>
-        <thead>
-          <tr>
-            <td aria-hidden />
+    <>
+      {/* Pass-30 (mobile audit #3): the 880px table scrolls in a 350px
+          box at phone widths with no visible affordance — iOS hides the
+          scrollbar. A mono hint (shown only under 760px via CSS). */}
+      <p className="cw-spec-swipehint" aria-hidden="true">
+        swipe for all four →
+      </p>
+      <div
+        className="cw-spec-scroll"
+        role="region"
+        aria-label={caption}
+        tabIndex={0}
+      >
+        <table className="cw-spec">
+          <caption className="cw-sr-only">{caption}</caption>
+          <colgroup>
+            <col className="cw-spec__col-label" />
             {columns.map((c) => (
-              <th
+              <col
                 key={c.name}
-                scope="col"
                 className={
-                  c.name === weighted
-                    ? "cw-spec__head cw-spec__head--lead"
-                    : "cw-spec__head"
+                  c.name === weighted ? "cw-spec__col--lead" : undefined
                 }
-              >
-                {c.name}
-                {c.name === weighted ? (
-                  <span className="cw-spec__lead-tag">Recommended</span>
-                ) : null}
-              </th>
+              />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rowLabels.map((label, rowIdx) => (
-            <tr key={label}>
-              <th scope="row" className="cw-spec__rowlabel">
-                {label}
-              </th>
+          </colgroup>
+          <thead>
+            <tr>
+              <td aria-hidden />
               {columns.map((c) => (
-                <td
+                <th
                   key={c.name}
+                  scope="col"
                   className={
                     c.name === weighted
-                      ? "cw-spec__cell cw-spec__cell--lead"
-                      : "cw-spec__cell"
+                      ? "cw-spec__head cw-spec__head--lead"
+                      : "cw-spec__head"
                   }
                 >
-                  {c.cells[rowIdx]}
-                </td>
+                  {c.name}
+                  {c.name === weighted ? (
+                    <span className="cw-spec__lead-tag">Recommended</span>
+                  ) : null}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {rowLabels.map((label, rowIdx) => (
+              <tr key={label}>
+                <th scope="row" className="cw-spec__rowlabel">
+                  {label}
+                </th>
+                {columns.map((c) => (
+                  <td
+                    key={c.name}
+                    className={
+                      c.name === weighted
+                        ? "cw-spec__cell cw-spec__cell--lead"
+                        : "cw-spec__cell"
+                    }
+                  >
+                    {c.cells[rowIdx]}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }

@@ -582,6 +582,86 @@ body {
 
 
 /* ============================================================
+ * Pass-30 — mobile polish (visual-qa mobile audit, 2026-08-31)
+ * ============================================================ */
+
+/* 1. TitleCard at phone widths: static composition. TitleCard.tsx
+ * skips the ScrollTrigger pin under 768px; here the grid overlay
+ * (stack + resolved sharing one cell) becomes a vertical flow so the
+ * title words and the caption both show, compactly. Kills the
+ * ~70%-empty first screen and the titleless resolved state. */
+@media (max-width: 767px) {
+  [data-title-card] {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 28px;
+    min-height: 0;
+    /* 96px clears the fixed nav (~64px) with breathing room. */
+    padding-top: 96px;
+    padding-bottom: 12px;
+  }
+  [data-title-card] .title-card-stack,
+  [data-title-card] .title-card-resolved {
+    opacity: 1 !important;
+    transform: none !important; /* motion-ok: static mobile fallback, clears GSAP inline state */
+  }
+  [data-title-card] .title-card-caption {
+    opacity: 1 !important;
+    transform: none !important; /* motion-ok: static mobile fallback, clears GSAP inline state */
+  }
+}
+
+/* 2. 44px tap targets for the menu controls (audit #1: 52x18px).
+ * Padding grows the hit area; negative margins / adjusted offsets
+ * keep the visual position identical. */
+:is([data-mode="cw"], [data-mode="theater"]) .cw-menubtn {
+  padding: 13px 0 13px 16px;
+  margin: -13px 0 -13px -16px;
+}
+:is([data-mode="cw"], [data-mode="theater"]) .cw-overlay .cw-overlay-close {
+  padding: 13px 16px;
+  top: 9px;
+  right: 8px;
+}
+
+/* 3. Footer text-link tap targets at phone widths (audit #5). */
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-footrow a,
+  [data-mode="cw"] .cw-pagefoot__row a {
+    display: inline-block;
+    padding: 10px 0;
+    margin: -10px 0;
+  }
+}
+
+/* 4. Case-study end matter: the 128px desktop-scale gap above the
+ * footer nav read as a rendering hole at 390px (audit #4). */
+@media (max-width: 767px) {
+  [data-mode="theater"] .case-study__nav {
+    margin-top: 56px;
+  }
+}
+
+/* 5. Spec-table swipe affordance (audit #3): iOS hides scrollbars, so
+ * the 880px comparative table needs a told-not-guessed cue. Rendered
+ * by SpecTable.tsx, shown only at phone widths. */
+[data-mode="cw"] .cw-spec-swipehint {
+  display: none;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-spec-swipehint {
+    display: block;
+    font-family: var(--font-cw-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin: 0 0 8px;
+  }
+}
+
+/* ============================================================
  * CASE STUDY (THEATER) — Phase 7 (CASE-07, CASE-08, CASE-09,
  *   THEATER-04, THEATER-05)
  *

@@ -69,7 +69,17 @@ export function TitleCard(parsed: TitleCardProps) {
     () => {
       // MOT-05 — read prefers-reduced-motion FIRST. If reduce, paint the
       // resolved state immediately and skip ScrollTrigger.
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      // Pass-30 (mobile audit 2026-08-31): at phone widths the pin's
+      // resolved state left a ~70%-empty first screen with no visible
+      // title (the stack fades out; the sr-only H1 is the only title).
+      // Under 768px the TitleCard is a STATIC composition — stack and
+      // caption both visible, in flow (globals.css flex rules), no pin,
+      // no pin-spacer. Desktop keeps the signature pin untouched.
+      const mobile = window.matchMedia("(max-width: 767px)").matches;
 
       const root = rootRef.current;
       if (!root) return;
@@ -80,6 +90,14 @@ export function TitleCard(parsed: TitleCardProps) {
       const hero = root.querySelector<HTMLElement>("[data-tc-hero]");
 
       if (!stack || !resolved || !caption) return;
+
+      if (mobile && !reduce) {
+        gsap.set(stack, { opacity: 1, y: 0 }); // motion-ok: static final state, mobile skips the pin entirely
+        gsap.set(resolved, { opacity: 1, y: 0 }); // motion-ok: static final state, no reveal
+        gsap.set(caption, { opacity: 1, y: 0 }); // motion-ok: static final state, no reveal
+        if (hero) gsap.set(hero, { opacity: 1 });
+        return;
+      }
 
       if (reduce) {
         // MOT-05 — final state, no pin, no scrub.
