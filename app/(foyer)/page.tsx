@@ -317,15 +317,20 @@ export default function ColorWorldsHome() {
 
         <div className="cw-ordani-split">
           <div className="cw-ordani-split__text">
+            {/* Investor register (operator, 2026-08-30): active use +
+                the Medicaid money mechanism + the mission. User count
+                deliberately off this surface (it stays in THE LEDGER,
+                where receipts belong). "Hundreds of dollars" and the
+                Medicaid claim are operator-supplied; the mortality line
+                is purpose-framed ("lower"), never an outcome claim. */}
             <p className="cw-lede cw-reveal">
               Birth workers run their practices on group chats and paper
               intakes. HIPAA is the law. <em>So I built Ordani.</em>{" "}
-              {/* explicit join — LESSONS #6: RSC drops the space before
-                  entity-bearing text after an inline element */}
-              It runs invoicing without the 17&ndash;20% cut other platforms
-              take, and folds $200&ndash;500 of software into one login.
-              200 birth workers use it, and none have left for a
-              competitor.
+              It&rsquo;s in active use today, processing Medicaid claims
+              fee-free and keeping hundreds of dollars in birth
+              workers&rsquo; pockets. The mission is bigger: lower infant
+              mortality, by giving the people who care for mothers and
+              babies better tools than paperwork.
             </p>
             <div className="cw-section-cta-wrap cw-reveal">
               <a href="/work/ordani" className="cw-section-cta">
