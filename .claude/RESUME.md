@@ -37,6 +37,16 @@ project domain).
   ledger NEVER-entry added. GSC: domain verified, TXT in Vercel DNS; sitemap submission = operator.
   Next: ch.2 "The spec is the moat", first SEO article (ch.1 topic), Stripe when manuscript done.
 
+## Latest (2026-08-31 PM)
+- Ch.2 "The spec is the moat" BUILT (Pass-29, 8pp, gates green) — sent to operator, awaiting
+  review. Ch.3 "The architecture you didn't draw" is next.
+- Mobile polish SHIPPED + live-verified (Pass-30/30b): TitleCard static under 768px (no pin;
+  pin-spacer inline styles had defeated CSS fixes — component-level matchMedia gate), 44px menu
+  tap targets, footer link padding, spec-table swipe hint, end-matter gap 128->56. Desktop pin
+  verified intact at 1440. Audit remnants (nitpicks, unfixed): home engagement-row numbering
+  rhythm, ai-engineering intro tightness.
+- GSC: domain verified + sitemap submitted successfully (operator confirmed "it worked").
+
 ## Operator queue
 1. SECRET ROTATION (was waiting on booking retest — retest PASSED, rotation now due):
    Resend new key + delete re_V6JggJBd…; Google Calendar Reset secret address; update 3 envs each.
