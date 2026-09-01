@@ -54,7 +54,14 @@ MANUSCRIPT COMPLETE AND ASSEMBLED. Operator approved chapters 1-10 individually.
    remotion-best-practices, scroll-experience, frontend-design, impeccable-*,
    beautiful-prose, copy-editing). Propose, then wire the winners: e.g. graduate
    check.py into a write-boundary hook for `product/playbook/src/**`.
-3. **"Life" concept — DISCUSS BEFORE BUILD** (marketing playbook rule 1): operator wants
+3. **"Life" concept — UPDATED 2026-08-31**: operator will GENERATE the assets himself in a
+   multi-model AI tool (Recraft/Krea-class); the prompt pack is DONE at
+   `product/playbook/animation/PROMPTS.md` (style block locks the book's line-drawn grammar +
+   palette; stills-first-then-image-to-video workflow; delivery specs). This workstream's
+   remaining job: when the operator delivers assets, integrate them — stills into book spreads
+   (full pipeline applies), the loop video onto /playbook (muted autoplay, poster fallback,
+   prefers-reduced-motion honored, motion-engineer constraints respected, <4MB budget).
+   Original context: operator wants
    animated energy on the PDF and/or landing page — his sketch: "animated workers
    vibe-coding factory." CONSTRAINT COLLISION to resolve with the operator first: the
    site constitution bans illustration/stock/3D ("type and photographs only") and caps
