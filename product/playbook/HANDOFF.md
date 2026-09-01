@@ -116,9 +116,9 @@ operator queue below). Integration returns to this workstream when assets land.
 - [ ] Launch email to waitlist (playbook-signup notifications hold the list)
 - [ ] Sales-page persona suggestion (from the ch.1 review): show one companion file
       on the page as proof against padded-course skepticism
-- [ ] Sales-page page-count sync (Pass-45 made the book 68pp): change "A 70–90 page
-      PDF" on /playbook to "A 68-page PDF" (named number = house voice). Page is the
-      site session's surface — coordinate; MUST land before the buy-button flip.
+- [x] Sales-page page-count sync: /playbook now says "A 68-page PDF" (Pass-48,
+      operator-directed 2026-08-31 "yes make that change"). Verified in the built
+      HTML; goes live with the next deploy (operator-gated).
 - [ ] Stripe delivery MUST attach/link the companion ZIP with the book PDF — the
       book's End page states "they arrived alongside this PDF with your purchase".
 - [ ] Whole-book persona verdict on file: YES at $99 (asterisk was companion-file

@@ -194,7 +194,7 @@ export default function PlaybookPage() {
       <section className="cw-pb-sect" aria-labelledby="pb-zip-title">
         <h2 id="pb-zip-title" className="cw-pb-h2">What ships with it</h2>
         <p className="cw-pb-sect__lede">
-          A 70&ndash;90 page PDF, plus a companion download — the
+          A 68-page PDF, plus a companion download — the
           artifacts, ready to use:
         </p>
         <ul className="cw-pb-zip">
