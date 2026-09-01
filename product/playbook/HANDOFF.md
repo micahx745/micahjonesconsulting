@@ -54,24 +54,19 @@ MANUSCRIPT COMPLETE AND ASSEMBLED. Operator approved chapters 1-10 individually.
    remotion-best-practices, scroll-experience, frontend-design, impeccable-*,
    beautiful-prose, copy-editing). Propose, then wire the winners: e.g. graduate
    check.py into a write-boundary hook for `product/playbook/src/**`.
-3. **"Life" concept — UPDATED 2026-08-31**: operator will GENERATE the assets himself in a
-   multi-model AI tool (Recraft/Krea-class); the prompt pack is DONE at
-   `product/playbook/animation/PROMPTS.md` (style block locks the book's line-drawn grammar +
-   palette; stills-first-then-image-to-video workflow; delivery specs). This workstream's
-   remaining job: when the operator delivers assets, integrate them — stills into book spreads
-   (full pipeline applies), the loop video onto /playbook (muted autoplay, poster fallback,
-   prefers-reduced-motion honored, motion-engineer constraints respected, <4MB budget).
-   Original context: operator wants
-   animated energy on the PDF and/or landing page — his sketch: "animated workers
-   vibe-coding factory." CONSTRAINT COLLISION to resolve with the operator first: the
-   site constitution bans illustration/stock/3D ("type and photographs only") and caps
-   motion (one signature interaction; motion-engineer approval required). The on-brand
-   lane: animate the book's OWN line-drawn diagram grammar (the five-box factory as a
-   living technical drawing — boxes, arrows, mono labels in Color Worlds palette) rather
-   than importing a cartoon style. Lock direction with the operator before any build;
-   consider remotion-best-practices (machine playbook remotion-video.md exists) for a
-   rendered loop vs. CSS/SVG in-page animation. PDFs themselves cannot animate — "life
-   in the PDF" means richer diagrams/spreads, or a motion companion on the web.
+3. **"Life" concept — assets and timing owned by THIS workstream.** Direction is locked:
+   the "vibe-coding factory" rendered in the book's own line-drawn field-manual grammar.
+   The paste-ready generation prompts live at `product/playbook/animation/PROMPTS.md`
+   (brand-locking style block, hero loop, 80%-wall narrative loop, poster still, five
+   chapter vignettes, texture variant, stills-first image-to-video workflow, delivery
+   specs). The operator generates in a Recraft/Krea-class multi-model tool — but THIS
+   SESSION DECIDES WHEN: schedule the generation ask at the right point in the plan
+   (sensible default: after the perfection pass, as launch polish), hand the operator
+   PROMPTS.md with which prompts to run first, then integrate what comes back —
+   stills into book spreads (full pipeline applies), the loop video onto /playbook
+   (muted autoplay, poster fallback, prefers-reduced-motion honored, <4MB, and the
+   site's one-signature-motion constitution respected — a video element is imagery,
+   not a new scroll interaction; keep it that way).
 
 ## Launch checklist (owns the finish line)
 
