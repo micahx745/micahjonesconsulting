@@ -12,6 +12,12 @@
 #      content line is a heading collides with the heading's rail
 #      section code (caught by eye in ch.2, ch.4, ch.7, ch.9 — four
 #      times is a gate).
+#   4. Ordani vendor gate, block-scoped (added Pass-45): a fieldnote/
+#      warstory/side block that mentions Ordani must not name an infra
+#      vendor/engine (LESSONS #3; scripts/vendor-gate.mjs covers only
+#      app/components/content, not these .typ sources). Whole-file
+#      scope would false-positive: the teaching examples (the trainer
+#      app) may name vendors; the Ordani blocks say "in the database".
 import json
 import re
 import sys
@@ -58,6 +64,36 @@ def main(path: str) -> int:
                             "paragraph earlier."
                         )
                     break
+
+    # Ordani vendor gate, scoped to fieldnote/warstory/side blocks.
+    VENDOR = re.compile(
+        r"\b(Supabase|Vercel|Next\.js|Postgres(?:QL)?|Twilio|Resend|Neon|Expo|"
+        r"Railway|Firebase|PlanetScale|Cloudflare|AWS|GCP|Azure)\b"
+    )
+    block_start = re.compile(r"#(fieldnote|warstory|side)[\[(]")
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        m = block_start.search(line)
+        if m and not line.strip().startswith("//"):
+            depth = line.count("[") + line.count("(") - line.count("]") - line.count(")")
+            start = i
+            block = [line]
+            while depth > 0 and i + 1 < len(lines):
+                i += 1
+                block.append(lines[i])
+                depth += lines[i].count("[") + lines[i].count("(")
+                depth -= lines[i].count("]") + lines[i].count(")")
+            text = "\n".join(l for l in block if not l.strip().startswith("//"))
+            if re.search(r"(?i)ordani", text):
+                vhits = sorted(set(VENDOR.findall(text)))
+                if vhits:
+                    failures.append(
+                        f"line {start + 1}: {m.group(1)} block mentions Ordani "
+                        f"AND names {vhits} — LESSONS #3 vendor gate. Say "
+                        '"in the database", never an engine.'
+                    )
+        i += 1
 
     if failures:
         print(f"GATE FAILED — {path}")
