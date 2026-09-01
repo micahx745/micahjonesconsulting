@@ -58,6 +58,30 @@ invent precision), "$5B+" phrasing (ledger-locked, operator-owned).
   Bricolage/Hanken/JetBrains Mono, marginalia rail, § codes, filecards, pre-flight
   cards, line-drawn diagrams). Fonts vendored in `fonts/` (OFL).
 
+## Mission status (2026-08-31 PM)
+
+1. Perfection pass: DONE (Pass-45, e7860c7). 2. Harness: DONE (Pass-46, 43a1f83) —
+check.py gained the block-scoped Ordani vendor check (negative-tested) AND now runs as a
+blocking PostToolUse hook on product/playbook/src/*.typ writes (.claude/settings.json →
+hook-gate.py; live-fire proven). Skill evaluations, rejected with reasons: beautiful-prose
+(hollow stub, verified — no actual style contract), copy-editing (superseded by the house
+copy-editor agent + copy-lint + check.py), pdf-official (forms/manipulation; Typst
+pipeline has no need), canvas-design (would fight the locked print grammar).
+Deferred to their surfaces: frontend-design/scroll-experience/impeccable-* (the /playbook
+launch flip), remotion-best-practices (only if a video render step appears).
+3. Animation: the perfection pass is done, so the generation ask is NOW OPEN (see
+operator queue below). Integration returns to this workstream when assets land.
+
+## OPERATOR QUEUE (this workstream)
+
+1. END-TO-END READ of output/the-80-percent-wall.pdf (68pp) — the last human gate.
+2. GENERATE the animation assets (animation/PROMPTS.md, in a Recraft/Krea-class tool).
+   Run order: PROMPT 3 (wide still — seeds the video, doubles as poster) → PROMPT 1
+   (hero loop) → PROMPT 4 vignettes (optional, book spreads) → 2/5 only if wanted.
+   Paste the STYLE BLOCK first and the NEGATIVE block last on every prompt.
+3. Stripe account create/confirm → this session builds checkout + webhook delivery
+   (book PDF + companion ZIP in one delivery — the book's End page promises it).
+
 ## Mission for this workstream
 
 1. **Perfection pass**: read the assembled 76pp book end to end as an editor AND as the
