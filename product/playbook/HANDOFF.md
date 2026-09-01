@@ -94,6 +94,34 @@ refund → refund echo note. Signature negatives verified (unsigned/wrong-key �
   Stripe account for the book (clean) vs. staying shared (then confirm Ordani's LIVE
   webhook safely ignores foreign events).
 
+## LANDING PAGE UPGRADE — BUILT (2026-09-01, design-director-directed)
+
+/playbook is now the premium landing page, still in waitlist phase. Shipped: asymmetric
+hero (kicker · H1 · the book's cover sentence · one mlink CTA down to the sampler) beside
+an espresso 3/2 media slot holding the REAL cover render; a proof strip (real interior
+spread p.20 five-box map + the real checklists/05-security.md rendered through the
+book's own preflight() grammar via product/playbook/marketing/companion-card.typ);
+rhythm variance (hero/pain wide, TOC→sampler→zip tight); chapter blurbs synced verbatim
+to the book's deks; ZIP list synced to the real 26 files; the stale "$149" kicker gone
+(one price artifact on the page). Verified: typecheck+build green, Playwright full-page
+at 1440 and 390 (no overflow, all reveals fire, images load). Red lines held: no 3D
+cover, no petrol/saffron in page chrome, no second CTA style, no new motion.
+- ⚠ CONCURRENT-ARC NOTE: the site session's commit bfc0363 ("Pass-47: self-serve
+  packages") swept this whole in-flight build into its commit. Correct content, wrong
+  subject line; the proof-spread caption fix landed separately (Pass-52). That session
+  is ALSO refactoring the webhook route + lib/stripe.ts into a SKU catalog for its
+  packages — the E2E-verified rail is being modified. RE-RUN the test-mode E2E before
+  go-live and confirm the metadata gate survives their refactor.
+- ANIMATION SOCKET (ready): drop the operator's loop at public/playbook/factory-loop.mp4
+  (<4MB, muted, loopable) and pass videoSrc="/playbook/factory-loop.mp4" to
+  <PlaybookHeroMedia /> in app/(foyer)/playbook/page.tsx. Same box, cover = poster,
+  reduced-motion users keep the still. Wide stills (PROMPT 3/4) can replace the cover
+  or join the proof strip through the same next/image pattern.
+- PIPELINE LESSON: page-number renders (spread-*.png) are pagination-bound — the 68pp
+  repagination silently moved "p.21" from the diagram to body text and the caption
+  would have lied. After ANY book recompile that changes pagination, re-render every
+  spread AND look at it against its caption.
+
 ## GO-LIVE RUNBOOK (the five swaps, concrete)
 
 1. ROTATE the test secret key first (it entered a chat transcript, 2026-09-01) — roll
