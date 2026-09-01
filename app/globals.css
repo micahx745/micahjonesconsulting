@@ -4836,3 +4836,350 @@ body {
   line-height: 1.6;
   opacity: 0.85;
 }
+
+/* ============================================================
+ * Pass-55 — /playbook "The manual, opened" (.cw-lp*)
+ * Operator direction 2026-09-01: "still looks bad… find unique
+ * things, no animations." The page is built from the BOOK's own print
+ * grammar: the cover as an object (Stripe Press scale), then bone
+ * paper with the marginalia rail, § codes, a spread at reading size,
+ * the dated build-log card, the book's TOC, a spec card. Zero
+ * reveals, zero transitions on this page.
+ * ============================================================ */
+
+/* Object hero */
+[data-mode="cw"] .cw-lp-object {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 24px 0 72px;
+}
+@media (min-width: 900px) {
+  [data-mode="cw"] .cw-lp-object {
+    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+    gap: 72px;
+    min-height: 78vh;
+    padding: 16px 0 88px;
+  }
+}
+[data-mode="cw"] .cw-lp-book {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  max-width: 520px;
+  box-shadow: 28px 34px 80px color-mix(in srgb, #000 55%, transparent);
+}
+[data-mode="cw"] .cw-lp-book__spine {
+  background: color-mix(in srgb, var(--color-cw-espresso) 70%, #000);
+  border-right: 1px solid
+    color-mix(in srgb, var(--color-cw-bone) 18%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+[data-mode="cw"] .cw-lp-book__spine span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg); /* motion-ok: static spine text orientation */
+  font-family: var(--font-cw-mono);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-cw-bone) 60%, transparent);
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-lp-book img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 22%, transparent);
+}
+[data-mode="cw"] .cw-lp-object__text {
+  max-width: 34rem;
+}
+[data-mode="cw"] .cw-lp-kicker {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cw-saffron);
+  margin: 0 0 22px;
+}
+[data-mode="cw"] .cw-lp-object__title {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(40px, 4.6vw, 62px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0 0 26px;
+}
+[data-mode="cw"] .cw-lp-object__sub {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 30px;
+  opacity: 0.92;
+}
+[data-mode="cw"] .cw-lp-object__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  align-items: baseline;
+}
+[data-mode="cw"] .cw-lp-object__meta {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 0;
+}
+
+/* Paper */
+[data-mode="cw"] .cw-lp-page {
+  padding: 88px 0 40px;
+}
+[data-mode="cw"] .cw-lp-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px 0;
+  margin: 0 0 84px;
+}
+@media (min-width: 1000px) {
+  [data-mode="cw"] .cw-lp-block {
+    grid-template-columns: minmax(0, 640px) 210px;
+    column-gap: 56px;
+    justify-content: start;
+  }
+}
+[data-mode="cw"] .cw-lp-block__rail {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-cw-terracotta);
+  border-left: 2px solid var(--color-cw-terracotta);
+  padding-left: 12px;
+}
+@media (min-width: 1000px) {
+  [data-mode="cw"] .cw-lp-block__rail {
+    border-left: 0;
+    padding-left: 0;
+    padding-top: 6px;
+  }
+}
+[data-mode="cw"] .cw-lp-note {
+  margin: 14px 0 0;
+  font-family: var(--font-cw-body);
+  font-size: 13px;
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: none;
+  /* book grammar: note body in ink, only the label in terracotta */
+  color: var(--color-cw-espresso);
+  opacity: 0.82;
+  max-width: 210px;
+}
+[data-mode="cw"] .cw-lp-note__lbl {
+  display: block;
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cw-terracotta);
+  margin-bottom: 6px;
+}
+[data-mode="cw"] .cw-lp-h {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(26px, 2.6vw, 32px);
+  line-height: 1.1;
+  margin: 0 0 18px;
+}
+[data-mode="cw"] .cw-lp-h::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--color-cw-terracotta);
+  margin-bottom: 14px;
+}
+[data-mode="cw"] .cw-lp-lines p {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+[data-mode="cw"] .cw-lp-body {
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 18px 0 0;
+  max-width: 60ch;
+}
+[data-mode="cw"] .cw-lp-spread img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+}
+[data-mode="cw"] .cw-lp-cap {
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin: 10px 0 0;
+}
+
+/* Build-log card (the book's warstory grammar) */
+[data-mode="cw"] .cw-lp-log {
+  background: var(--color-cw-espresso);
+  color: var(--color-cw-bone);
+  padding: 26px 28px 28px;
+  border-radius: 2px;
+}
+[data-mode="cw"] .cw-lp-log__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cw-saffron);
+  margin: 0 0 14px;
+}
+[data-mode="cw"] .cw-lp-log__head span:last-child {
+  color: color-mix(in srgb, var(--color-cw-bone) 50%, transparent);
+}
+[data-mode="cw"] .cw-lp-log__title {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: 22px;
+  margin: 0 0 12px;
+}
+[data-mode="cw"] .cw-lp-log p {
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 0 0 12px;
+  color: color-mix(in srgb, var(--color-cw-bone) 92%, transparent);
+}
+[data-mode="cw"] .cw-lp-log p:last-child {
+  margin-bottom: 0;
+}
+
+/* Contents (the book's TOC page) */
+[data-mode="cw"] .cw-lp-toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1.5px solid currentColor;
+}
+[data-mode="cw"] .cw-lp-toc li {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr) auto;
+  gap: 0 14px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+[data-mode="cw"] .cw-lp-toc__num {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--color-cw-terracotta);
+}
+[data-mode="cw"] .cw-lp-toc__title {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: 17px;
+  display: block;
+}
+[data-mode="cw"] .cw-lp-toc__tag {
+  display: block;
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 4px;
+}
+[data-mode="cw"] .cw-lp-toc__tag em {
+  font-style: normal;
+  color: var(--color-cw-terracotta);
+  opacity: 1;
+}
+[data-mode="cw"] .cw-lp-toc__page {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  opacity: 0.55;
+}
+
+/* Back cover: spec card + capture */
+[data-mode="cw"] .cw-lp-back {
+  padding: 88px 0 24px;
+}
+[data-mode="cw"] .cw-lp-back__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (min-width: 1000px) {
+  [data-mode="cw"] .cw-lp-back__grid {
+    grid-template-columns: minmax(0, 560px) minmax(0, 420px);
+    gap: 72px;
+  }
+}
+[data-mode="cw"] .cw-lp-spec {
+  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+  border-radius: 2px;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 18px;
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
+[data-mode="cw"] .cw-lp-spec dt {
+  color: var(--color-cw-saffron);
+  font-weight: 700;
+}
+[data-mode="cw"] .cw-lp-spec dd {
+  margin: 0;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-lp-spec dd strong {
+  font-family: var(--font-cw-display);
+  font-size: 18px;
+  letter-spacing: 0;
+  font-weight: 800;
+  text-transform: none;
+}
+[data-mode="cw"] .cw-lp-back__note {
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-lp-faq {
+  margin: 56px 0 0;
+  max-width: 640px;
+}
+[data-mode="cw"] .cw-lp-faq dt {
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cw-saffron);
+  margin: 0 0 6px;
+}
+[data-mode="cw"] .cw-lp-faq dd {
+  margin: 0 0 22px;
+  font-size: 15px;
+  line-height: 1.55;
+  opacity: 0.9;
+}

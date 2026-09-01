@@ -239,3 +239,13 @@ COORDINATION FACTS:
 - Typst: breakable:false blocks push whole to next page (thin-page risk); place()
   margin notes collide with § codes when anchored before a heading (check.py catches).
 - Windows: cp1252 printing (reconfigure stdout), /tmp path split between bash/python.
+
+## COORDINATION — /playbook rebuilt by the main session (Pass-55, 2026-09-01 PM)
+Operator rejected the Pass-53/54 launch page in review ("still looks bad… no inspiration… no
+animations") and instructed the main session to rebuild it in-chat. New direction, locked: the
+page is the book's own print grammar (object cover → bone paper + rail + § codes → spread at
+reading size → build-log card → TOC → spec card). Zero reveals. `PlaybookHeroMedia` is no longer
+mounted (the factory-loop video socket will be re-added at asset-integration time — mount a
+<video> beside/behind the cover object, poster = book-cover.png, muted, reduced-motion still).
+`PlaybookSignupForm` has a `plain` prop (no cw-reveal). Do not revert to the Pass-53 structure.
+Launch flip still: swap capture → $99 button (createPlaybookCheckout) after the go-live ritual.

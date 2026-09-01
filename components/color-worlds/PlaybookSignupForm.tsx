@@ -18,7 +18,11 @@ type Status =
   | { kind: "ok"; email: string }
   | { kind: "error"; message: string };
 
-export function PlaybookSignupForm() {
+// `plain` (Pass-55): the /playbook launch page runs with no reveals at
+// all, so the form must not carry the cw-reveal fade. Default keeps
+// the existing behaviour for other mounts.
+export function PlaybookSignupForm({ plain = false }: { plain?: boolean }) {
+  const revealClass = plain ? "" : " cw-reveal";
   const [status, setStatus] = useState<Status>({ kind: "idle" });
   const [isPending, startTransition] = useTransition();
 
@@ -49,7 +53,7 @@ export function PlaybookSignupForm() {
 
   if (status.kind === "ok") {
     return (
-      <div className="cw-signup cw-reveal is-in" aria-live="polite">
+      <div className={`cw-signup${revealClass} is-in`} aria-live="polite">
         <p className="cw-msg" style={{ width: "100%" }}>
           Chapter 1 is on its way. Check your inbox.
         </p>
@@ -58,7 +62,7 @@ export function PlaybookSignupForm() {
   }
 
   return (
-    <form className="cw-signup cw-reveal" onSubmit={onSubmit} noValidate>
+    <form className={`cw-signup${revealClass}`} onSubmit={onSubmit} noValidate>
       <input
         type="email"
         name="email"

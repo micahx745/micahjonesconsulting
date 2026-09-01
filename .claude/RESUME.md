@@ -1,5 +1,19 @@
 # RESUME — redesign SHIPPED to production (2026-08-31)
 
+## Pass-55 (2026-09-01 PM): /playbook rebuilt as "The manual, opened" — AWAITING OPERATOR REVIEW
+Operator on the Pass-53/54 launch page: "still looks bad. I don't see any inspiration from
+others. find unique things, no animations." Research (Stripe Press, Shape Up, Refactoring UI,
+Practical UI, Every Layout) → six named moves, operator locked ("go"). Built by the MAIN session on
+operator instruction (book session owns /playbook otherwise — noted in its HANDOFF). Page = the
+book's print grammar on the web: cover as object w/ spine (espresso) → bone paper w/ marginalia
+rail + § codes + field notes → real spread at reading size → dated build-log card → book TOC (ch.1
+marked free) → companion card → back cover spec card (price/status) + capture. ZERO reveals or
+transitions (PlaybookSignupForm gained `plain` prop). Verified on local prod build: 1440 + 390,
+no overflow, world switch bone/espresso, lazy images load, 10 spec rows. NOT PUSHED — preview +
+share link for operator; production still serves the old /playbook. Unpushed on main also:
+book session's Pass-53/54 (superseded by 55 on this page).
+
+
 ## Pass-52 (2026-09-01): package SKUs on the Stripe rail — E2E-VERIFIED test mode
 Catalog-driven rail (lib/catalog.ts): 3 package prices created (test), package-checkout action
 (Audit flavor as Stripe custom field), kickoff-email delivery (intake + /book + book/ZIP,
