@@ -25,7 +25,10 @@ export async function deliverPlaybook(
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
     // eslint-disable-next-line no-console
-    console.error("[playbook-delivery] RESEND_API_KEY not set — cannot deliver", sessionId);
+    console.error(
+      "[playbook-delivery] RESEND_API_KEY not set — cannot deliver",
+      sessionId,
+    );
     return { ok: false, error: "RESEND_API_KEY not set" };
   }
 
@@ -71,7 +74,10 @@ export async function deliverPlaybook(
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error("[playbook-delivery] send threw:", sessionId, err);
-    return { ok: false, error: err instanceof Error ? err.message : "send failed" };
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : "send failed",
+    };
   }
 
   await notifyOwner(
@@ -90,7 +96,9 @@ export async function deliverPlaybook(
   );
 
   // eslint-disable-next-line no-console
-  console.log(`[playbook-delivery] ${new Date().toISOString()} delivered ${buyerEmail} (${sessionId})`);
+  console.log(
+    `[playbook-delivery] ${new Date().toISOString()} delivered ${buyerEmail} (${sessionId})`,
+  );
   return { ok: true };
 }
 
@@ -102,20 +110,22 @@ export async function notifyRefund(
   buyerEmail: string,
   chargeId: string,
   amountRefunded: number,
+  productName = "The 80% Wall",
 ): Promise<void> {
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) return;
   const resend = new Resend(resendKey);
   await notifyOwner(
     resend,
-    `Playbook refund — ${buyerEmail}`,
+    `Refund: ${productName} — ${buyerEmail}`,
     [
       `Buyer:    ${buyerEmail}`,
+      `Product:  ${productName}`,
       `Charge:   ${chargeId}`,
       `Refunded: $${(amountRefunded / 100).toFixed(2)}`,
       `At:       ${new Date().toISOString()}`,
       "",
-      "— micahjonesconsulting.com/playbook",
+      "— micahjonesconsulting.com",
     ],
     `playbook-refund-note-${chargeId}`,
   );

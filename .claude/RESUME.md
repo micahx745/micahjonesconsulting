@@ -1,5 +1,15 @@
 # RESUME — redesign SHIPPED to production (2026-08-31)
 
+## Pass-52 (2026-09-01): package SKUs on the Stripe rail — E2E-VERIFIED test mode
+Catalog-driven rail (lib/catalog.ts): 3 package prices created (test), package-checkout action
+(Audit flavor as Stripe custom field), kickoff-email delivery (intake + /book + book/ZIP,
+idempotent), generalized refund echo, /services/thanks. VERIFIED via real test purchase:
+paid $2,500 Audit (4242, flavor=production) -> Stripe webhook -> both emails DELIVERED
+(Resend API evidence) -> refund -> echo delivered. Test rig rebuilt (old endpoint deleted,
+whsec unrecoverable; new we_1UAwdl..., stripe-test alias -> deploy 2kigmu15i). Prod is safe
+to push: no Stripe env in Production until go-live; mailto CTAs unchanged until the ritual.
+Flip checklist lives in docs/PACKAGES-RUNBOOK.md + book HANDOFF go-live runbook.
+
 ## Approval on record (verbatim)
 Operator, 2026-08-31: "also just offer the full week reproduce thing and a part to take a look at
 my website (make sure it live)" — in context of repeated ship-it prompts and his FYI that prod

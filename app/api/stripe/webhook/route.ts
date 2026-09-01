@@ -23,8 +23,10 @@
 // expose.
 import type Stripe from "stripe";
 
+import { SKUS } from "@/lib/catalog";
+import { deliverPackageKickoff } from "@/lib/package-delivery";
 import { deliverPlaybook, notifyRefund } from "@/lib/playbook-delivery";
-import { getStripe, PRICE_LOOKUP_KEY } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 
 export async function POST(req: Request): Promise<Response> {
   const stripe = getStripe();
@@ -43,7 +45,11 @@ export async function POST(req: Request): Promise<Response> {
   const payload = await req.text();
   let event: Stripe.Event;
   try {
-    event = await stripe.webhooks.constructEventAsync(payload, signature, webhookSecret);
+    event = await stripe.webhooks.constructEventAsync(
+      payload,
+      signature,
+      webhookSecret,
+    );
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error("[stripe-webhook] signature verification failed:", err);
@@ -57,27 +63,41 @@ export async function POST(req: Request): Promise<Response> {
         const sessionId = (event.data.object as Stripe.Checkout.Session).id;
         // Trust the event, not the order: re-fetch the current state.
         const session = await stripe.checkout.sessions.retrieve(sessionId);
-        // Shared Stripe account: only sessions our checkout tagged are
-        // ours. Anything else (e.g. Ordani's) is acknowledged and
-        // ignored — delivering the book against a foreign checkout is
-        // the failure this line exists to prevent.
-        if (session.metadata?.product !== PRICE_LOOKUP_KEY) {
+        // Shared Stripe account: only sessions our checkout tagged with
+        // a catalog SKU are ours (Pass-52: book + the three packages).
+        // Anything else (e.g. Ordani's) is acknowledged and ignored —
+        // delivering against a foreign checkout is the failure this
+        // line exists to prevent.
+        const sku = SKUS[session.metadata?.product ?? ""];
+        if (!sku) {
           // eslint-disable-next-line no-console
-          console.log(`[stripe-webhook] ${sessionId} is not a playbook session; ignoring`);
+          console.log(
+            `[stripe-webhook] ${sessionId} is not a catalog session; ignoring`,
+          );
           break;
         }
         if (session.payment_status !== "paid") {
           // eslint-disable-next-line no-console
-          console.log(`[stripe-webhook] ${sessionId} not paid yet (${session.payment_status}); waiting for the paid event`);
+          console.log(
+            `[stripe-webhook] ${sessionId} not paid yet (${session.payment_status}); waiting for the paid event`,
+          );
           break;
         }
         const email = session.customer_details?.email;
         if (!email) {
           // eslint-disable-next-line no-console
-          console.error(`[stripe-webhook] ${sessionId} paid but has no customer email`);
+          console.error(
+            `[stripe-webhook] ${sessionId} paid but has no customer email`,
+          );
           break;
         }
-        const delivered = await deliverPlaybook(email, sessionId);
+        const flavor =
+          session.custom_fields?.find((f) => f.key === "flavor")?.dropdown
+            ?.value ?? null;
+        const delivered =
+          sku.kind === "book"
+            ? await deliverPlaybook(email, sessionId)
+            : await deliverPackageKickoff(email, sessionId, sku, flavor);
         if (!delivered.ok) {
           // Non-2xx makes Stripe retry — the retry is the recovery
           // path for a transient email failure, and idempotency makes
@@ -101,14 +121,24 @@ export async function POST(req: Request): Promise<Response> {
           limit: 1,
         });
         const owningSession = sessions.data[0];
-        if (owningSession?.metadata?.product !== PRICE_LOOKUP_KEY) {
+        const refundedSku = SKUS[owningSession?.metadata?.product ?? ""];
+        if (!refundedSku) {
           // eslint-disable-next-line no-console
-          console.log(`[stripe-webhook] refund ${charge.id} is not a playbook charge; ignoring`);
+          console.log(
+            `[stripe-webhook] refund ${charge.id} is not a catalog charge; ignoring`,
+          );
           break;
         }
         const email =
-          charge.billing_details?.email ?? charge.receipt_email ?? "unknown buyer";
-        await notifyRefund(email, charge.id, charge.amount_refunded);
+          charge.billing_details?.email ??
+          charge.receipt_email ??
+          "unknown buyer";
+        await notifyRefund(
+          email,
+          charge.id,
+          charge.amount_refunded,
+          refundedSku.name,
+        );
         break;
       }
       default:

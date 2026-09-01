@@ -16,13 +16,23 @@ export function getStripe(): Stripe | null {
   return new Stripe(key);
 }
 
-// Resolve the playbook price by lookup key so no per-mode price id is
+// Resolve any catalog price by lookup key so no per-mode price id is
 // hardcoded (price ids differ between test and live mode).
-export async function getPlaybookPriceId(stripe: Stripe): Promise<string | null> {
+export async function getPriceId(
+  stripe: Stripe,
+  lookupKey: string,
+): Promise<string | null> {
   const prices = await stripe.prices.list({
-    lookup_keys: [PRICE_LOOKUP_KEY],
+    lookup_keys: [lookupKey],
     active: true,
     limit: 1,
   });
   return prices.data[0]?.id ?? null;
+}
+
+// Back-compat name used by the book checkout (Pass-49).
+export async function getPlaybookPriceId(
+  stripe: Stripe,
+): Promise<string | null> {
+  return getPriceId(stripe, PRICE_LOOKUP_KEY);
 }

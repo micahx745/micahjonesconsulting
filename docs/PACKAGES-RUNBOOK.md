@@ -42,11 +42,17 @@ expiry (+60 days). When they upgrade, apply as a discount on the next
 invoice/checkout and mark consumed. Credits never stack past the
 largest single prior fee.
 
-## Stripe phase (next build unit)
+## Stripe phase — BUILT + E2E-VERIFIED IN TEST MODE (Pass-52, 2026-09-01)
 
-The book workstream's rail (checkout action + verified webhook +
-idempotent delivery, E2E-tested) gains three SKUs:
-- price objects: unstick-500, audit-2500, sprint-7500 (per mode)
+Verified live on the test rig (Audit $2,500, card 4242): checkout with
+the flavor dropdown captured at purchase -> Stripe's own webhook
+delivery -> kickoff email to the buyer (intake + /book link + book/ZIP
+attached) + sale note to hello@ -> refund -> "Refund: The Audit" echo.
+What was built on the shared rail:
+- lib/catalog.ts is the SKU source of truth (4 SKUs; scripts/
+  stripe-setup.mjs mirrors it and created the three test prices)
+- app/actions/package-checkout.ts (Audit captures flavor as a Stripe
+  custom field); /services/thanks (noindex) is the success page
 - metadata.product gates each (shared-account rule)
 - webhook delivery email = kickoff email: receipt framing, intake
   questions, /book link, book + companion attached

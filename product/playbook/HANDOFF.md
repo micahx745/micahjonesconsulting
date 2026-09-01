@@ -122,6 +122,21 @@ cover, no petrol/saffron in page chrome, no second CTA style, no new motion.
   would have lied. After ANY book recompile that changes pagination, re-render every
   spread AND look at it against its caption.
 
+## RAIL EXTENDED BY THE MAIN SESSION (Pass-52, 2026-09-01) — read before touching the rail
+
+The self-serve packages (Unstick $500 / Audit $2,500 / Sprint $7,500) now ride this rail.
+lib/catalog.ts is the SKU source of truth; the webhook dispatches by catalog (book -> file
+delivery, package -> kickoff email); refund echo carries the product name. E2E-verified in
+test mode (paid Audit w/ flavor field, kickoff + sale note + refund echo all delivered).
+COORDINATION FACTS:
+- The old test webhook endpoint we_1UAvPaPJokEBk2aDzUsGSVeO was DELETED (its whsec was never
+  persisted). New endpoint: we_1UAwdlPJokEBk2aD62yaHEhs, same stripe-test URL + bypass param.
+  Its whsec lives ONLY in deploy micahjonesconsulting-2kigmu15i's env (stripe-test alias now
+  points there; that deploy runs current main, so BOOK test purchases keep working too).
+- scripts/stripe-setup.mjs now creates all FOUR prices per mode — go-live step 3 covers the
+  packages automatically. Go-live also flips /services mailto CTAs -> createPackageCheckout
+  buttons, same ritual, same deploy as the /playbook flip.
+
 ## GO-LIVE RUNBOOK (the five swaps, concrete)
 
 1. ROTATE the test secret key first (it entered a chat transcript, 2026-09-01) — roll
