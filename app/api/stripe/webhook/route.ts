@@ -24,7 +24,7 @@
 import type Stripe from "stripe";
 
 import { deliverPlaybook, notifyRefund } from "@/lib/playbook-delivery";
-import { getStripe } from "@/lib/stripe";
+import { getStripe, PRICE_LOOKUP_KEY } from "@/lib/stripe";
 
 export async function POST(req: Request): Promise<Response> {
   const stripe = getStripe();
@@ -57,6 +57,15 @@ export async function POST(req: Request): Promise<Response> {
         const sessionId = (event.data.object as Stripe.Checkout.Session).id;
         // Trust the event, not the order: re-fetch the current state.
         const session = await stripe.checkout.sessions.retrieve(sessionId);
+        // Shared Stripe account: only sessions our checkout tagged are
+        // ours. Anything else (e.g. Ordani's) is acknowledged and
+        // ignored — delivering the book against a foreign checkout is
+        // the failure this line exists to prevent.
+        if (session.metadata?.product !== PRICE_LOOKUP_KEY) {
+          // eslint-disable-next-line no-console
+          console.log(`[stripe-webhook] ${sessionId} is not a playbook session; ignoring`);
+          break;
+        }
         if (session.payment_status !== "paid") {
           // eslint-disable-next-line no-console
           console.log(`[stripe-webhook] ${sessionId} not paid yet (${session.payment_status}); waiting for the paid event`);
@@ -79,6 +88,24 @@ export async function POST(req: Request): Promise<Response> {
       }
       case "charge.refunded": {
         const charge = event.data.object as Stripe.Charge;
+        // Shared account: only echo refunds of playbook purchases.
+        // The charge itself carries no session metadata, so look up
+        // the checkout session behind its payment intent.
+        const pi =
+          typeof charge.payment_intent === "string"
+            ? charge.payment_intent
+            : charge.payment_intent?.id;
+        if (!pi) break;
+        const sessions = await stripe.checkout.sessions.list({
+          payment_intent: pi,
+          limit: 1,
+        });
+        const owningSession = sessions.data[0];
+        if (owningSession?.metadata?.product !== PRICE_LOOKUP_KEY) {
+          // eslint-disable-next-line no-console
+          console.log(`[stripe-webhook] refund ${charge.id} is not a playbook charge; ignoring`);
+          break;
+        }
         const email =
           charge.billing_details?.email ?? charge.receipt_email ?? "unknown buyer";
         await notifyRefund(email, charge.id, charge.amount_refunded);

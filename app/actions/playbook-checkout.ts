@@ -14,7 +14,7 @@
 
 import { headers } from "next/headers";
 
-import { getPlaybookPriceId, getStripe } from "@/lib/stripe";
+import { getPlaybookPriceId, getStripe, PRICE_LOOKUP_KEY } from "@/lib/stripe";
 
 type Result = { ok: true; url: string } | { ok: false; error: string };
 
@@ -52,6 +52,11 @@ export async function createPlaybookCheckout(): Promise<Result> {
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${origin}/playbook/thanks`,
       cancel_url: `${origin}/playbook`,
+      // The Stripe account is shared with other products (Ordani's
+      // webhook receives these events too, and ours receives theirs).
+      // This tag is what our webhook delivers against — without it, a
+      // foreign checkout could trigger a book delivery.
+      metadata: { product: PRICE_LOOKUP_KEY },
     });
 
     if (!session.url) {
