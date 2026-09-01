@@ -249,3 +249,11 @@ mounted (the factory-loop video socket will be re-added at asset-integration tim
 <video> beside/behind the cover object, poster = book-cover.png, muted, reduced-motion still).
 `PlaybookSignupForm` has a `plain` prop (no cw-reveal). Do not revert to the Pass-53 structure.
 Launch flip still: swap capture → $99 button (createPlaybookCheckout) after the go-live ritual.
+
+**LIVE (2026-09-01 PM, main session):** operator approved the Pass-55 page ("ok looks great") and
+then "push it" — production deploy musrbwwz4 now serves it at www.micahjonesconsulting.com/playbook
+(verified 200 + new markup; apex 308→www). Still the waitlist/capture state: no $99 button, no
+Stripe env in Production. /services also shipped simplified (Pass-56) with the packages section
+intact; its package CTAs remain mailto until the go-live ritual. Production deploys are CLI
+(`vercel deploy --prod --scope passioneer`); a git push alone does not deploy.
+

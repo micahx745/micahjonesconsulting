@@ -1,42 +1,42 @@
 # RESUME — micahjonesconsulting (2026-09-01 PM)
 
-## Now: Pass-56 /services simplified — AWAITING OPERATOR REVIEW (preview shared)
-Operator: "super busy, worded oddly… not clear or compelling to purchase… simplified."
-Plan locked ("go"): one decision per screen. Built 244705e: h1 "What I do, and how to hire
-me." + two doors (Engagements / Packages) → three compact services (pain / what lands /
-proof w/ case link, ledger phrasings only) → ONE four-shape table for all services (was
-3×4 SpecTable matrices) → Pass-47 packages (intro tightened) → espresso foot. 840 words.
-Verified: local prod build 1440 + ~500px (no overflow, table stacks, world switch, zero new
-transitions) AND deployed preview micahjonesconsulting-8i53etaqo (share link in chat).
-Catch: "Most chosen" tag = unverifiable claim → "Recommended"; popularity phrases now banned
-in copy-lint (LESSONS #10).
+## SHIPPED: Pass-53..56c LIVE in production (deploy musrbwwz4, 2026-09-01)
+Approval verbatim: operator "push it" (2026-09-01, after the Pass-56 /services preview).
+git push origin main (49cdd79) + `vercel deploy --prod` (Git integration does NOT auto-deploy;
+CLI is the ritual). VERIFIED live: www /services 200 + new markup (doors, no spec tables),
+apex 308→www one hop, www /playbook 200 + "The manual, opened" markup. Both aliases on the
+deployment; no re-alias chore (LESSONS #9 fix holds).
 
-## PUSH APPROVED — operator 2026-09-01: "push it" (after Pass-56 preview)
-Ships Pass-53..56c to production. Verify www + apex after deploy (CARD 1).
-Pass-53/54 (book session) · Pass-55 /playbook (operator: "ok looks great") · Pass-56
-/services. Production still serves the OLD /playbook and /services. Push waits for the
-operator's "push it". Domains auto-move on deploy (LESSONS #9).
+## Pass-56 /services simplified (operator: "super busy… not compelling… simplified")
+h1 "What I do, and how to hire me." + two doors (Engagements / Packages) → three compact
+services (pain / what lands / proof w/ case link, ledger phrasings only) → ONE four-shape
+table (was 3×4 SpecTable matrices) → Pass-47 packages → espresso foot. 840 words, zero new
+transitions, table stacks to cards on phones. Catch: a popularity badge on the Embedded row
+was an unverifiable frequency claim → "Recommended"; popularity phrases now banned in
+copy-lint at write + build (LESSONS #10, negative-tested). Prettier clean.
 
-## Stripe rail (Pass-52) — BUILT + E2E-verified in test mode
+## Stripe rail (Pass-52) — BUILT + E2E-verified in test mode, NOT live
 lib/catalog.ts SKUs; checkout + kickoff delivery + refund echo verified by a real test
-purchase. No Stripe env in Production. Go-live ritual (shared vs separate account, rotate
-test key, live keys via dashboard, live webhook, pay-yourself) → flip /services mailtos to
-checkout + /playbook $99 button + launch email. Runbooks: docs/PACKAGES-RUNBOOK.md,
-product/playbook/HANDOFF.md.
+purchase. No Stripe env in Production (build tolerates absence — proven by preview + prod).
+Go-live ritual (operator: shared vs separate account, rotate test key, live keys via
+dashboard, live webhook, pay-yourself) → flip /services mailtos to checkout + /playbook $99
+button + launch email. Runbooks: docs/PACKAGES-RUNBOOK.md, product/playbook/HANDOFF.md.
 
 ## Workstream split
 Book = dedicated session (HANDOFF.md; owns /playbook normally — Pass-55 built here on
-operator instruction, noted there). This session: site, consulting, SEO, email/booking.
+operator instruction; HANDOFF notes it is now LIVE). This session: site, consulting, SEO,
+email/booking ops.
 
 ## Operator queue
-1. "push it" → ship Pass-53–56 to production (deploy, verify www + apex).
-2. SECRET ROTATION overdue: Resend key (re_V6Jg…), Google Calendar secret ICS URL, Stripe
+1. SECRET ROTATION overdue: Resend key (re_V6Jg…), Google Calendar secret ICS URL, Stripe
    test key; update all 3 Vercel envs each.
-3. Stripe go-live decisions. 4. Read the 68pp book. 5. Jamie Snitker email (drafted).
-6. Postmates years for the ledger row.
+2. Stripe go-live decisions (above). 3. Read the 68pp book end to end.
+4. Jamie Snitker email (drafted). 5. Postmates years for the ledger row.
+6. Optional: apex A-record to Vercel's recommended IP (216.150.1.1).
 
 ## Gotchas
 - Pane screenshots go black after scrolling → chrome-devtools MCP pages for scrolled shots.
 - Git Bash /tmp invisible to Windows python; big heredocs break → Write script, run by path.
+- `| head` on `vercel deploy` cuts the stream; confirm with `vercel inspect <url> --wait`.
 - launch.json "prod" = pnpm start -p 3100 for prod-build previews.
 - Secrets never inline. Ordani surfaces never name vendors. HIPAA-compliant, never -grade.
