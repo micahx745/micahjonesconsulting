@@ -94,7 +94,34 @@ refund → refund echo note. Signature negatives verified (unsigned/wrong-key �
   Stripe account for the book (clean) vs. staying shared (then confirm Ordani's LIVE
   webhook safely ignores foreign events).
 
-## LANDING PAGE UPGRADE — BUILT (2026-09-01, design-director-directed)
+## LAUNCH PAGE v2 — "GO WILD" REBUILD (Pass-53/54, 2026-09-01 PM)
+
+Operator brief after seeing v1: "feels weak… I need to feel special… make them want to
+buy… too wordy… no trust signals… no restraint, go wild." Process: DISCUSS lock (his
+answers) → research leg (2026 exemplars, all fetched live: Refactoring UI, Practical UI,
+Whimsy, Devouring Details, Resend, Dia, Awwwards SOTD Aug-Sep 2026; ranked "want" moves
++ word budget hero ≤45 / page ≤900) → design-director round 2 → build → Playwright
+verification per act → buyer-persona cold read → revisions.
+- SHIPPED: three-act world arc espresso → bone → espresso (per-section data-world; the
+  site's own crossfade rearranged); THE OBJECT hero (real cover, static 7° tilt, one
+  edge-light, still the loop socket via <PlaybookHeroMedia videoSrc>); pain trio + after
+  trio; trust block (Ordani first in display type, then first-person ledger-exact exits/
+  revenue line, then the dead-forms wall line); full-bleed filmstrip of six real spreads;
+  companion card as demonstration; TOC as page-numbered index with five-word failure
+  tags; counted-from-source numbers + the 26 files defined; $99 headline / $149 anchor;
+  capture form inside the price box too. 611 words (was ~1,500).
+- PERSONA COLD READ (vibe-coder, skeptic): want 6/10 → would leave email YES, pay $99
+  "not today, leaning maybe" — top asks applied: capture in the price box, Ordani before
+  the $5B line, failure tags in the index, files defined, mechanism in after-line 3.
+- OPERATOR-OWNED ASKS from the read: a SHIP WINDOW for the price box ("ships <month>")
+  and a face/name photo in the author block. Both convert; both are facts only he has.
+- Render gotcha: full-page screenshots freeze the world at one bg — verify bone/espresso
+  sections with viewport captures after real scrolling (run_code script in session).
+- Mechanical lessons: equal-specificity overrides lose to SOURCE ORDER (mobile hero
+  collapsed to 0px twice); scroll-snap-align:start eats scroll-container padding on load
+  (removed snap). Both fixed and verified by computed values, not by eye alone.
+
+## LANDING PAGE v1 (Pass-52 — superseded by v2 above; kept for the pipeline notes)
 
 /playbook is now the premium landing page, still in waitlist phase. Shipped: asymmetric
 hero (kicker · H1 · the book's cover sentence · one mlink CTA down to the sampler) beside

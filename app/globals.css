@@ -4264,6 +4264,44 @@ body {
   opacity: 0.9;
   white-space: nowrap;
 }
+[data-mode="cw"] .cw-pb-toc__tag {
+  display: block;
+  font-family: var(--font-cw-body);
+  font-size: 15px;
+  line-height: 1.4;
+  opacity: 0.72;
+  margin-top: 4px;
+}
+[data-mode="cw"] .cw-pb-film__hint {
+  padding: 0 clamp(24px, 6vw, 96px);
+  margin: -20px 0 18px;
+}
+[data-mode="cw"] .cw-pb-counts__note {
+  font-family: var(--font-cw-body);
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.78;
+  margin: 28px 0 0;
+  max-width: 60ch;
+}
+[data-mode="cw"] .cw-pb-price__form {
+  margin-top: 24px;
+}
+
+/* Mobile collapse for the Pass-53 hero. Lives AFTER the desktop rule
+ * above on purpose: equal specificity, so source order decides — the
+ * earlier override lost and the text column collapsed to 0px. */
+@media (max-width: 900px) {
+  [data-mode="cw"] .cw-playbook .cw-pb-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 40px;
+    margin-bottom: 96px;
+  }
+  [data-mode="cw"] .cw-playbook .cw-pb-hero-media__stage {
+    height: 100%;
+  }
+}
 
 /* Counts — what ships, as numbers */
 [data-mode="cw"] .cw-pb-counts {

@@ -36,17 +36,19 @@ export const metadata: Metadata = {
 
 // The book's real table of contents. Page numbers are the queried
 // values from the assembled 68pp PDF; regenerate when pagination moves.
+// Each row carries a five-word tag naming the failure it covers, so a
+// buyer can find their own wall by name (persona cold read, Pass-54).
 const CHAPTERS = [
-  { n: "01", title: "Why your build broke at 80%", page: 3 },
-  { n: "02", title: "The spec is the moat", page: 12 },
-  { n: "03", title: "The architecture you didn't draw", page: 19 },
-  { n: "04", title: "Deploy day", page: 25 },
-  { n: "05", title: "The security pre-flight", page: 31 },
-  { n: "06", title: "Stripe in production", page: 37 },
-  { n: "07", title: "Compliance, when it matters", page: 43 },
-  { n: "08", title: "The first ten users", page: 49 },
-  { n: "09", title: "The distribution loop", page: 56 },
-  { n: "10", title: "When to hand it off", page: 62 },
+  { n: "01", title: "Why your build broke at 80%", tag: "The AI undoes your features", page: 3 },
+  { n: "02", title: "The spec is the moat", tag: "Drift, not bugs", page: 12 },
+  { n: "03", title: "The architecture you didn't draw", tag: "Auth, data, storage, the arrows", page: 19 },
+  { n: "04", title: "Deploy day", tag: "Env vars, migrations, domains", page: 25 },
+  { n: "05", title: "The security pre-flight", tag: "Row-level security, leaked keys", page: 31 },
+  { n: "06", title: "Stripe in production", tag: "Webhooks, refunds, test-to-live", page: 37 },
+  { n: "07", title: "Compliance, when it matters", tag: "HIPAA, GDPR, SOC 2, and when", page: 43 },
+  { n: "08", title: "The first ten users", tag: "Ten users from conversations", page: 49 },
+  { n: "09", title: "The distribution loop", tag: "Second-hand users, the loop", page: 56 },
+  { n: "10", title: "When to hand it off", tag: "Hire, rent, sell, keep going", page: 62 },
 ] as const;
 
 // Real interior pages, rendered from the book's Typst source
@@ -145,21 +147,25 @@ export default function PlaybookPage() {
       <section className="cw-pb-after" data-world="espresso" aria-label="After the manual">
         <p>It gets to a hundred. Every change stays fixed, because the rules live in the repo now.</p>
         <p>Production is a checklist you ran, not a machine you fear.</p>
-        <p>It shipped. Ten people came back without being asked.</p>
+        <p>It shipped. Ten people came back, one conversation at a time.</p>
       </section>
 
       {/* ACT TWO · bone. The credible human, then the evidence. Trust
           strip phrasings are ledger-locked (docs/LESSONS_LEARNED.md #3). */}
       <section className="cw-pb-trust" data-world="bone" aria-labelledby="pb-trust-title">
-        <p className="cw-pb-eyebrow" id="pb-trust-title">Who wrote it</p>
+        <p className="cw-pb-eyebrow" id="pb-trust-title">Who wrote it · Micah Jones</p>
         <p className="cw-pb-trust__line cw-reveal">
-          Inside four exits, $5B+ combined. $20M+ in client revenue.
-          The same playbook, written for AI-built software.
+          I built Ordani solo with Claude Code and Cursor. A
+          HIPAA-compliant SaaS. Hundreds of birth workers pay for it.
         </p>
         <p className="cw-pb-trust__body">
-          I built Ordani solo with Claude Code and Cursor: a
-          HIPAA-compliant SaaS that hundreds of birth workers pay for.
-          Same stack you&rsquo;re using. Same wall I hit.
+          Before that I worked inside four companies that reached an
+          exit, $5B+ combined, and my consulting work has produced $20M+
+          in client revenue. The same playbook, written for AI-built
+          software. Same stack you&rsquo;re using. Same wall I hit:
+          this August, three of my live forms said &ldquo;Got it&rdquo;
+          for weeks and delivered nothing, because one environment
+          variable never reached the host.
         </p>
       </section>
 
@@ -168,6 +174,7 @@ export default function PlaybookPage() {
           inside the renders never migrate to the page. */}
       <section className="cw-pb-film" data-world="bone" aria-labelledby="pb-film-title">
         <h2 id="pb-film-title" className="cw-pb-h2 cw-pb-film__title">Inside</h2>
+        <p className="cw-pb-eyebrow cw-pb-film__hint">Six real spreads · scroll <span aria-hidden>→</span></p>
         <ul className="cw-pb-film__strip">
           {SPREADS.map((s) => (
             <li key={s.src} className="cw-pb-film__item">
@@ -207,7 +214,10 @@ export default function PlaybookPage() {
           {CHAPTERS.map((c) => (
             <li key={c.n} className="cw-pb-toc__row cw-pb-toc__row--index">
               <span className="cw-pb-toc__num" aria-hidden>{c.n}</span>
-              <span className="cw-pb-toc__title">{c.title}</span>
+              <span className="cw-pb-toc__body">
+                <span className="cw-pb-toc__title">{c.title}</span>
+                <span className="cw-pb-toc__tag">{c.tag}</span>
+              </span>
               <span className="cw-pb-toc__page">p. {c.page}</span>
             </li>
           ))}
@@ -219,8 +229,8 @@ export default function PlaybookPage() {
       <section className="cw-pb-sampler" data-world="bone" aria-labelledby="pb-sampler-title">
         <h2 id="pb-sampler-title" className="cw-pb-h2">Read chapter 1 free</h2>
         <p className="cw-pb-sampler__lede">
-          The real chapter, not a teaser. Leave your email and
-          I&rsquo;ll send it.
+          The real chapter, nine pages, not a teaser. Leave your email
+          and I&rsquo;ll send it.
         </p>
         <PlaybookSignupForm />
       </section>
@@ -236,6 +246,11 @@ export default function PlaybookPage() {
           <li><strong>26</strong> companion files</li>
           <li><strong>6</strong> prompt files for Claude Code and Cursor</li>
         </ul>
+        <p className="cw-pb-counts__note">
+          The 26 companion files: the ten cards, the six prompt files,
+          and the templates with worked examples: SPEC.md, CLAUDE.md,
+          USERS.md, LOOP.md, .env, an architecture doc.
+        </p>
       </section>
 
       {/* ACT THREE · espresso. The commitment beat. */}
@@ -244,14 +259,19 @@ export default function PlaybookPage() {
         <p className="cw-pb-price__fig cw-reveal">$99</p>
         <p className="cw-pb-price__body">
           $149 after release. One payment: the PDF, the companion
-          files, every re-issue. Thirty-day refund, no questions.
+          files, every future edition. Thirty-day refund, no questions.
         </p>
         <p className="cw-pb-price__note">
           {/* W3 (D8/R17, operator-locked): "first hundred buyers" was a
-              scarcity device. Same fact, stated as pricing. */}
-          Not for sale yet. Get chapter 1 free above, and I&rsquo;ll
+              scarcity device. Same fact, stated as pricing. The capture
+              lives here too so the page's last action is never
+              "scroll back up" (persona cold read, Pass-54). */}
+          Not for sale yet. Leave your email for chapter 1 and I&rsquo;ll
           tell you the day it ships.
         </p>
+        <div className="cw-pb-price__form">
+          <PlaybookSignupForm />
+        </div>
       </section>
 
       <section className="cw-pb-sect" data-world="espresso" aria-labelledby="pb-faq-title">
