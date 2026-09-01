@@ -11,7 +11,8 @@ transitions) AND deployed preview micahjonesconsulting-8i53etaqo (share link in 
 Catch: "Most chosen" tag = unverifiable claim → "Recommended"; popularity phrases now banned
 in copy-lint (LESSONS #10).
 
-## Unpushed on main (6 commits ahead of origin)
+## PUSH APPROVED — operator 2026-09-01: "push it" (after Pass-56 preview)
+Ships Pass-53..56c to production. Verify www + apex after deploy (CARD 1).
 Pass-53/54 (book session) · Pass-55 /playbook (operator: "ok looks great") · Pass-56
 /services. Production still serves the OLD /playbook and /services. Push waits for the
 operator's "push it". Domains auto-move on deploy (LESSONS #9).
