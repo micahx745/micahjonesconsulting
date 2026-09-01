@@ -5,7 +5,7 @@ Approval verbatim: operator "push it" (2026-09-01, after the Pass-56 /services p
 git push origin main (49cdd79) + `vercel deploy --prod` (CLI deploy; git push alone
 does not deploy). VERIFIED live: www /services 200 + new markup (doors, no spec tables),
 apex 308→www one hop, www /playbook 200 + "The manual, opened" markup. Both aliases on the
-deployment; no re-alias chore (LESSONS #9 fix holds).
+deployment; no re-alias chore.
 
 ## Pass-56 /services simplified (operator: "super busy… not compelling… simplified")
 h1 "What I do, and how to hire me." + two doors (Engagements / Packages) → three compact
@@ -13,7 +13,7 @@ services (pain / what lands / proof w/ case link, ledger phrasings only) → ONE
 table (was 3×4 SpecTable matrices) → Pass-47 packages → espresso foot. 840 words, zero new
 transitions, table stacks to cards on phones. Catch: a popularity badge on the Embedded row
 was an unverifiable frequency claim → "Recommended"; popularity phrases now banned in
-copy-lint at write + build (LESSONS #10, negative-tested). Prettier clean.
+copy-lint at write + build (LESSONS #10, negative-tested).
 
 ## Stripe rail (Pass-52) — BUILT + E2E-verified in test mode, NOT live
 lib/catalog.ts SKUs; checkout + kickoff delivery + refund echo verified by a real test
