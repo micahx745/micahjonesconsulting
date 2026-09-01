@@ -27,6 +27,7 @@
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "resend": "^6.12.3",
+    "stripe": "^22.6.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
