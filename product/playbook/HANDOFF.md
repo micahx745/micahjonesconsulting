@@ -72,15 +72,53 @@ launch flip), remotion-best-practices (only if a video render step appears).
 3. Animation: the perfection pass is done, so the generation ask is NOW OPEN (see
 operator queue below). Integration returns to this workstream when assets land.
 
+## STRIPE RAIL — BUILT AND E2E-VERIFIED IN TEST MODE (Pass-49/50, 2026-09-01)
+
+Live-verified twice ($99 test payments, 4242): hosted checkout → Stripe's own webhook
+delivery → ONE email w/ book PDF + companion ZIP (idempotent on session id) → sale note;
+refund → refund echo note. Signature negatives verified (unsigned/wrong-key → 400).
+- Code: app/actions/playbook-checkout.ts (session + metadata tag), app/api/stripe/
+  webhook/route.ts (verify → re-fetch → metadata gate → deliver), lib/playbook-
+  delivery.ts, lib/stripe.ts, app/(foyer)/playbook/thanks (noindex), scripts/
+  stripe-setup.mjs (per-mode catalog), product/playbook/embed-book.mjs (re-run after
+  ANY book/companion change, like embed-ch1).
+- TEST infra: price_1UAux6PJokEBk2aD0E264TQj ($99, lookup playbook-99) · webhook
+  we_1UAvPaPJokEBk2aDzUsGSVeO → stripe-test.micahjonesconsulting.com (preview alias;
+  URL carries the Vercel automation-bypass query param — SSO protects previews) ·
+  deploys carry env via `vercel deploy -e K="$(cat tmpfile)"` because the project's
+  Preview env vars are branch-scoped to redesign-wave4 (main-branch previews get NONE —
+  cost an hour: delivery failed w/ RESEND_API_KEY unset until injected).
+- ⚠ SHARED STRIPE ACCOUNT: Ordani's webhook (v0-birth-worker-platform.vercel.app)
+  receives ALL events on this account, and ours receives Ordani's. Our side is gated
+  by metadata.product=playbook-99 (Pass-50). OPERATOR DECISION for go-live: separate
+  Stripe account for the book (clean) vs. staying shared (then confirm Ordani's LIVE
+  webhook safely ignores foreign events).
+
+## GO-LIVE RUNBOOK (the five swaps, concrete)
+
+1. ROTATE the test secret key first (it entered a chat transcript, 2026-09-01) — roll
+   in dashboard; live key NEVER via chat: temp file or Vercel dashboard only.
+2. Live key → Vercel env STRIPE_SECRET_KEY (Production). 3. `node scripts/
+   stripe-setup.mjs` with live key → live price. 4. Register live webhook at
+   https://www.micahjonesconsulting.com/api/stripe/webhook (production custom domain =
+   NO bypass param needed) → its NEW whsec → STRIPE_WEBHOOK_SECRET (Production).
+   5. Deploy (installed is not live). Then the ritual: pay yourself $99 live, watch
+   checkout → webhook → email → refund echo. Then flip /playbook waitlist → buy button
+   (wire createPlaybookCheckout), launch email. Cleanup after: delete test webhook
+   endpoint + stripe-test alias; rotate the Vercel automation-bypass secret.
+
 ## OPERATOR QUEUE (this workstream)
 
-1. END-TO-END READ of output/the-80-percent-wall.pdf (68pp) — the last human gate.
-2. GENERATE the animation assets (animation/PROMPTS.md, in a Recraft/Krea-class tool).
+1. Check micah@ inbox: TWO test deliveries of "The 80% Wall — your book and companion
+   files" — open both attachments, confirm the PDF and ZIP open clean (the one
+   delivery-form check this session cannot do).
+2. END-TO-END READ of output/the-80-percent-wall.pdf (68pp) — the last human gate.
+3. Decide: separate Stripe account for the book vs shared-with-Ordani (see ⚠ above).
+4. GENERATE the animation assets (animation/PROMPTS.md, in a Recraft/Krea-class tool).
    Run order: PROMPT 3 (wide still — seeds the video, doubles as poster) → PROMPT 1
    (hero loop) → PROMPT 4 vignettes (optional, book spreads) → 2/5 only if wanted.
    Paste the STYLE BLOCK first and the NEGATIVE block last on every prompt.
-3. Stripe account create/confirm → this session builds checkout + webhook delivery
-   (book PDF + companion ZIP in one delivery — the book's End page promises it).
+5. Say the word on go-live → this session runs the runbook above.
 
 ## Mission for this workstream
 
