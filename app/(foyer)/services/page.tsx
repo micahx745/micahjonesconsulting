@@ -342,7 +342,9 @@ export default function ServicesPage() {
                 <p
                   key={r.text}
                   className={
-                    i === 0 ? "cw-sv-receipt" : "cw-sv-receipt cw-sv-receipt--minor"
+                    i === 0
+                      ? "cw-sv-receipt"
+                      : "cw-sv-receipt cw-sv-receipt--minor"
                   }
                 >
                   {r.text}
@@ -428,8 +430,8 @@ export default function ServicesPage() {
             Three fixed prices. Start this week.
           </h2>
           <p className="cw-services__intro">
-            Built for solo builders and small teams. Pick one, email me, and
-            the work starts within the week. No call required.
+            Built for solo builders and small teams. Pick one, email me, and the
+            work starts within the week. No call required.
           </p>
           <div className="cw-pkgs__grid">
             <article className="cw-pkg" aria-label="The Unstick Session, $500">
@@ -523,8 +525,8 @@ export default function ServicesPage() {
           A free 30-minute call comes first.
         </h2>
         <p className="cw-services__foot-intro">
-          We name the shape and the fit. No deck, no pitch. If the work does
-          not map to what you need, I say so on the call.
+          We name the shape and the fit. No deck, no pitch. If the work does not
+          map to what you need, I say so on the call.
         </p>
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
