@@ -19,6 +19,17 @@ apex 308→www. Booking live in production (env vars present).
 REMEMBER: every future push to main needs the www re-alias (until operator adds www as
 project domain).
 
+## Self-serve arc (2026-09-01, Pass-47 SHIPPED + live-verified)
+Operator-locked: Unstick $500 / Audit $2,500 (Build|Production|Traction) / Sprint $7,500;
+credit bridge 60d; refund before-kickoff-only; book+companion included. Priced vs vibe-code
+rescue market research (audits $2-3K, sprints $10K+). LIVE on /services#packages: cards in
+spec-table grammar, mailto CTAs (honest interim; manual Stripe-dashboard invoicing),
+PACKAGES_LD offers, matrix Price row (Advisory "From $5K/month"), site-wide "Book a free
+intro call" sweep. docs/PACKAGES-RUNBOOK.md = funnel + fulfillment + bookkeeping.
+NEXT UNIT: Stripe SKUs on the book session's rail (3 prices, metadata gates, kickoff-email
+delivery w/ book+ZIP, swap mailtos->checkout after pay-yourself ritual) — coordinate with
+book session's go-live + shared-account decision (its HANDOFF).
+
 ## Active arcs (2026-08-31)
 - SEO: technical sweep DONE (Pass-22 sitemap +/book/playbook/hire-me, live-verified; heads/JSON-LD/
   robots/llms.txt/canonicals all healthy; Lighthouse deployed-mobile baseline: home 95/100/100/100,
