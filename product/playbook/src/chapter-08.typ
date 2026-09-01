@@ -131,7 +131,8 @@ Ten blocks like this outperform any CRM you would configure and abandon. And the
 
 Ten people who return without being reminded, each one known by name, each one a conversation you can quote. That is not a small start on distribution. That is distribution, working. The next chapter is about the loop that turns those ten into a hundred without ever touching broadcast.
 
-#pagebreak()
+// Sampler/standalone only; the book suppresses teasers (Pass-45).
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -146,4 +147,4 @@ Ten people who return without being reminded, each one known by name, each one a
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

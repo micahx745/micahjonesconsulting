@@ -153,6 +153,9 @@
   #block(inset: (x: 14pt, y: 12pt))[
     #set text(font: mono-font, size: 8.4pt, fill: cw-espresso)
     #set par(leading: 0.72em, spacing: 0.72em)
+    // File contents are copy-paste material: straight quotes only.
+    // (Caught in review: smart quotes rendered the ch.5 SQL unpastable.)
+    #set smartquote(enabled: false)
     #body
   ]
 ]
@@ -422,6 +425,13 @@
 #let edition = state("edition", "sampler")
 #let sampler-only(body) = context { if edition.get() == "sampler" { body } }
 
+// Edition-dependent spec-card value (pre-uppercased; the spec grid
+// leaves content values untouched). Chapter 1's Status line reads
+// "Free chapter of ten" only in the sampler.
+#let edition-status(sampler-txt, book-txt) = context {
+  upper(if edition.get() == "sampler" { sampler-txt } else { book-txt })
+}
+
 // Cover: espresso, spec-sheet block, big numeral composition.
 #let chapter-open(num, title, dek, spec: ()) = {
   // Per-chapter section reset so assembled-book § numbers restart.
@@ -460,7 +470,7 @@
       row-gutter: 7pt,
       ..spec.map(((k, v)) => (
         text(fill: cw-saffron, weight: 700, upper(k)),
-        upper(v),
+        if type(v) == str { upper(v) } else { v },
       )).flatten(),
     )
   ]

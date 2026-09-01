@@ -66,15 +66,14 @@ The habit that makes this box safe: keep a committed `.env.example`, the ledger 
 #filecard(".env.example")[
   \# Every var the code reads. No values here, ever.
 
-  \# Sends all transactional email. Sending-only key.
+  \# Sends all transactional email. Sending-only key. \
   RESEND_API_KEY=
 
-  \# Postgres connection. Prod value lives ONLY on the host.
+  \# Postgres connection. Prod value lives ONLY on the host. \
   DATABASE_URL=
 
-  \# Stripe. Webhook secret pairs with the endpoint, ch. 6.
-  STRIPE_SECRET_KEY=
-
+  \# Stripe. Webhook secret pairs with the endpoint, ch. 6. \
+  STRIPE_SECRET_KEY= \
   STRIPE_WEBHOOK_SECRET=
 ]
 
@@ -141,7 +140,10 @@ So deploy day ends with a ritual, not a feeling:
 
 The app is live, the doors all open, the machinery verified from the outside. Which is exactly when a different question arrives: now that strangers can reach it, what can the wrong stranger do? That is the next chapter.
 
-#pagebreak()
+// Sampler/standalone only; the book suppresses teasers (Pass-45).
+// Text mirrors ch.5's dek — "RLS" unexpanded was jargon the reader
+// hasn't met yet.
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -150,10 +152,10 @@ The app is live, the doors all open, the machinery verified from the outside. Wh
 #text(font: display-font, size: 19pt, weight: 800, fill: cw-espresso)[The security pre-flight]
 #v(8pt)
 #text(size: 10.2pt)[
-  RLS done right, the auth pattern that survives, and the hardcoded
-  keys you left in. The two checks that catch most of it.
+  Row-level security done right, the auth pattern that survives, and
+  the hardcoded keys you left in. Two checks catch most of it.
 ]
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

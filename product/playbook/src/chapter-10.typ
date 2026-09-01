@@ -83,11 +83,9 @@ Three of the four deserve a closer look, and one deserves a disclosure.
 *Selling* has a fact most solo builders never hear: everything this manual made you write down is your data room. The spec, the invariants, the architecture napkin, the vendor sweep, the machine-run checks, USERS.md, LOOP.md: a buyer's diligence is a walk through files you already keep, and a loop that runs without your push (chapter nine's whole point) is precisely what gets paid for. You have been building the exit packet since chapter one, whether or not you ever use it.
 
 #fieldnote[
-  I sold enterprise software inside SurveyMonkey on the way to its
-  IPO, and I was inside Postmates, Guardicore, and Neuton.AI for
-  their exits, \$5B+ combined across the four. The pattern that
-  repeats: what gets valued is what keeps working when the hero
-  takes a vacation.
+  The exits I was inside all taught the same pattern: what gets
+  valued is what keeps working when the hero takes a vacation. The
+  list is on the last page.
 ]
 
 #warstory("Entry · 2026-08-31", "Written the week I chose road one")[
@@ -151,8 +149,9 @@ That is the manual. Ten chapters, one move: past the wall, on purpose, with syst
   Thank you for reading. The companion files that ship with this
   manual, the prompt files, the pre-flight checklists, and the spec
   templates, are the working versions of everything you just read.
-  Chapter one is free to share, whole: send it to the builder you
-  know who is stuck at 80%.
+  They arrived alongside this PDF with your purchase. Chapter one is
+  free for anyone at micahjonesconsulting.com/playbook: send the
+  builder you know who is stuck at 80%.
 ]
 #v(20pt)
 #kicker("Who wrote this", fill: cw-terracotta)

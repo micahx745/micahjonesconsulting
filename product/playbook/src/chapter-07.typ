@@ -120,7 +120,9 @@ So the exam is an afternoon, not a year: take the chapter-three map, list every 
 
 The data is mapped, locked, and papered. The app deserves to exist in public. Which raises the question this book has been saving: where do the first ten people who pay for it actually come from?
 
-#pagebreak()
+// Sampler/standalone only; the book suppresses teasers (Pass-45).
+// Text mirrors ch.8's dek, which dropped the platform name.
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -130,9 +132,9 @@ The data is mapped, locked, and papered. The app deserves to exist in public. Wh
 #v(8pt)
 #text(size: 10.2pt)[
   Getting to the first ten people who keep using it. Where they come
-  from, and why posting on Product Hunt stopped working.
+  from, and why posting stopped working.
 ]
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

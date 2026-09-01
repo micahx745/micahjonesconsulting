@@ -77,6 +77,14 @@ Six sections. Each is one to six lines.
 
 The strange one is NOT, and it does the most work. Drift rarely enters as a bad idea; it enters as a good idea that belongs to a different product. The AI is an enthusiastic yes-machine, and every "while we're at it, should I add…" is a fork in the road. With a NOT section, that fork is not a judgment call at midnight. It is a lookup.
 
+// Anchored above the filecard: the rail beside the card is empty,
+// and a low anchor collided with the § code of the next heading.
+#side[
+  E.164, from the RULES line below: the international phone format.
+  A plus sign, country code, then digits: +14155551212. Store one
+  format, or search and duplicate-matching quietly break later.
+]
+
 #filecard("SPEC.md")[
   \# WHAT
 
@@ -182,7 +190,10 @@ The spec only works as a habit loop. Five moves:
 
 One page, six sections, read at every session start, guarded by a five-move ritual. That is the moat. The next chapter draws the one diagram the SHAPE section summarizes: the architecture you didn't draw, and where AI tools quietly cut corners in it.
 
-#pagebreak()
+// Sampler/standalone only: the assembled book suppresses the teaser
+// page — the next chapter's own opener follows immediately, and the
+// repeat read as padding in the buyer review (Pass-45).
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -192,9 +203,9 @@ One page, six sections, read at every session start, guarded by a five-move ritu
 #v(8pt)
 #text(size: 10.2pt)[
   The single diagram every solo build needs. Auth, data, storage,
-  edge, third parties, and where AI tools quietly cut corners.
+  third parties, and where AI tools quietly cut corners.
 ]
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

@@ -17,7 +17,7 @@
     ("Subject", "Context windows · drift"),
     ("Reader", "Solo builders on AI tools"),
     ("Author", "Micah Jones"),
-    ("Status", "Free chapter of ten"),
+    ("Status", edition-status("Free chapter of ten", "Chapter one of ten")),
     ("Time", "A ten-minute read"),
     ("Rev", "2026.08"),
   ),
@@ -217,7 +217,7 @@ So you don't have to guess what habit one produces, here is the shape of the fil
 
 #side[
   Tool note: Claude Code reads CLAUDE.md automatically. Cursor reads
-  rule files in .cursor/rules. Codex and several others read
+  the .mdc rule files in .cursor/rules. Codex and several others read
   AGENTS.md. Find the file your tool reads first. Same idea, same
   payoff.
 ]

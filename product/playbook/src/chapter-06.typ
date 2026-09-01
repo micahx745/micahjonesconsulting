@@ -63,7 +63,7 @@ A webhook is Stripe calling your server: an HTTP POST to an endpoint you registe
 
 *Trust the event, not the order.* Events can arrive out of sequence. Handle each one by asking Stripe's records what the current state is, rather than assuming the last event you saw told the whole story.
 
-*Answer fast, work after.* Acknowledge the event, then do the slow parts. An endpoint that dawdles gets retried, and now you are back to rule two.
+*Answer fast, work after.* Acknowledge the event, then do the slow parts. An endpoint that dawdles gets retried, and now you are back to rule two. "After" needs no clever machinery at solo scale: save the event to a table, answer, and let a job that runs every minute send the emails and do the slow writes.
 
 == Test-to-live: the five silent swaps
 
@@ -129,7 +129,8 @@ Stripe's test mode is a parallel universe: same dashboard, same API shape, fake 
 
 Money in, money safe, money honest. What's left is the paperwork the outside world attaches to it, and when that paperwork actually applies to you: HIPAA, SOC 2, GDPR, and the acronyms in between.
 
-#pagebreak()
+// Sampler/standalone only; the book suppresses teasers (Pass-45).
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -144,4 +145,4 @@ Money in, money safe, money honest. What's left is the paperwork the outside wor
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

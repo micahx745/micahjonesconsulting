@@ -148,7 +148,10 @@ Then verify the answer against the code, arrow by arrow, the way chapter one tau
 
 Five boxes on a napkin, one lock per arrow, drawn once and kept in the repo next to your spec. The next chapter takes this map to the place where it gets stress-tested for real: the day the app leaves your laptop.
 
-#pagebreak()
+// Sampler/standalone only; the book suppresses teasers (Pass-45).
+// Teaser text mirrors ch.4's opener dek — the earlier version named
+// two infra vendors the dek was deliberately scrubbed of.
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -157,10 +160,10 @@ Five boxes on a napkin, one lock per arrow, drawn once and kept in the repo next
 #text(font: display-font, size: 19pt, weight: 800, fill: cw-espresso)[Deploy day]
 #v(8pt)
 #text(size: 10.2pt)[
-  Vercel, Supabase, environment variables, SSL, domains, secrets.
-  The pre-flight list, in the order things bite you.
+  Environment variables, databases, domains, SSL, secrets. The
+  pre-flight list, in the order things bite you.
 ]
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

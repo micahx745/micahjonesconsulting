@@ -68,6 +68,11 @@ Every table gets an owner column. Row-level security gets switched on for every 
   on clients for all
 
   using (trainer_id = auth.uid());
+
+  // \-\- is Typst's en-dash shorthand unescaped; escape it so the
+  // SQL comment marker survives copy-paste.
+  \-\- auth.uid() = the signed-in user. The \
+  \-\- helper's name varies by database host.
 ]
 
 #fieldnote[
@@ -131,7 +136,8 @@ Check two is about secrets, and there are exactly three places they hide in an A
 
 Two questions, five checks, one evening. That is most of solo-builder security, and it is more than the scanners are betting you did. The next chapter follows the money: the payment stack, where the stakes stop being embarrassment and start being refunds.
 
-#pagebreak()
+// Sampler/standalone only; the book suppresses teasers (Pass-45).
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -146,4 +152,4 @@ Two questions, five checks, one evening. That is most of solo-builder security, 
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

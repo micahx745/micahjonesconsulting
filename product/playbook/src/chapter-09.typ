@@ -47,10 +47,9 @@ Revenue is a lagging indicator at this stage, and it will lie to you in both dir
 #pull[How many of your users came from your users? Count the second-hand users. That number is your distribution, and before MRR, it is the only growth number that isn't noise.]
 
 #fieldnote[
-  This is also the honest read on Ordani's favorite number. Hundreds
-  of birth workers pay for it, and at six months none had been lost
-  to a competitor. Retention is what makes a loop possible at all:
-  nobody refers a tool they are halfway out the door on.
+  This is also the honest read on chapter eight's Ordani numbers.
+  Retention is what makes a loop possible at all: nobody refers a
+  tool they are halfway out the door on.
 ]
 
 A second-hand user arrived because a user mentioned you, sent an artifact, or made an introduction, with no push from you. Track it weekly. If it is zero, nothing is wrong with your product, but nothing is compounding either: every user you have, you personally hauled in, and every user you ever get will cost the same labor. The rest of this chapter exists to move that number off zero.
@@ -127,7 +126,10 @@ Five lines, once a week, next to USERS.md and your spec. The week the second-han
 
 Ten became the machinery for a hundred, and the machinery runs on retention, replies, and artifacts instead of your mornings. Which surfaces the last question this book owes you, the one nobody builds alone forever without asking: when is the right time to stop being the only pair of hands?
 
-#pagebreak()
+// Sampler/standalone only; the book suppresses teasers (Pass-45).
+// Text mirrors ch.10's dek — "fractionalize" was jargon the dek
+// itself avoids.
+#sampler-only[#pagebreak()
 #v(20pt)
 #line(length: 100%, stroke: 1.2pt + cw-espresso)
 #v(14pt)
@@ -136,10 +138,10 @@ Ten became the machinery for a hundred, and the machinery runs on retention, rep
 #text(font: display-font, size: 19pt, weight: 800, fill: cw-espresso)[When to hand it off]
 #v(8pt)
 #text(size: 10.2pt)[
-  The signals you've outgrown solo. When to hire, when to
-  fractionalize, when to sell, and when to keep going.
+  The signals you've outgrown solo. When to hire, when to rent
+  senior help, when to sell, and when to keep going.
 ]
 #v(1fr)
 #text(font: mono-font, size: 6.5pt, fill: cw-espresso.transparentize(40%), tracking: 0.1em)[
   © 2026 MICAH JONES · THE 80% WALL
-]
+]]

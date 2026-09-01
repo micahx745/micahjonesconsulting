@@ -5,11 +5,26 @@ This file is the book-of-record for `product/playbook/`. The site-wide rules in
 the repo root (`CLAUDE.md`, `.claude/CLAUDE.md`, `docs/LESSONS_LEARNED.md`) still
 apply on top.
 
-## State (2026-08-31)
+## State (2026-08-31 PM — Pass-45 perfection pass DONE)
 
-MANUSCRIPT COMPLETE AND ASSEMBLED. Operator approved chapters 1-10 individually.
+PERFECTION PASS COMPLETE (buyer-persona cold-read + claude-code-guide expert review +
+full 76pp visual walkthrough + editor consistency sweep; all findings fixed or rejected
+with reasons). Book is now **68pp**: the 8 "NEXT · CHAPTER" teaser pages (ch2-9) are
+edition-suppressed in the book (kept in standalone/sampler PDFs) — buyer review read
+them as padding; their text also resurrected operator-rejected copy (Vercel/Supabase in
+ch3's, "Product Hunt" in ch7's, "fractionalize" in ch9's) — teaser text now mirrors the
+target deks. Other fixes: ch1 opener says "Chapter one of ten" in book edition
+(edition-status helper; sampler unchanged); .env.example card copyable (hard linebreaks);
+filecards smartquote-off (ch5 SQL curly quotes were unpastable) + escaped `\-\-` (Typst
+en-dash shorthand); auth.uid()/E.164/webhook-"work after" glossed; ch9+ch10 credential
+repetition trimmed (ledger-safe removals only); ch10 End page now gives companion-files
+access + /playbook as free-ch1 share path; Cursor note precision (.mdc). Rejected with
+reasons: Codex nit (audience knows the tool), month-only build-log dates (honest; never
+invent precision), "$5B+" phrasing (ledger-locked, operator-owned).
+- DELIVERY CONTRACT (End page asserts it): the purchase delivery MUST include the
+  companion ZIP alongside the book PDF. Bind this into the Stripe webhook build.
 - `src/chapter-01..10.typ` — ten chapters, Typst, one design system (`src/template.typ`)
-- `src/book.typ` — assembled book: cover, queried TOC, 76pp, `output/the-80-percent-wall.pdf`
+- `src/book.typ` — assembled book: cover, queried TOC, 68pp, `output/the-80-percent-wall.pdf`
 - Chapter 1 doubles as the free sampler (`output/the-80-percent-wall-ch1.pdf`); an
   edition state in template.typ suppresses its sales colophon inside the book.
   The sampler is EMBEDDED for delivery: `node product/playbook/embed-ch1.mjs`
@@ -77,6 +92,13 @@ MANUSCRIPT COMPLETE AND ASSEMBLED. Operator approved chapters 1-10 individually.
 - [ ] Launch email to waitlist (playbook-signup notifications hold the list)
 - [ ] Sales-page persona suggestion (from the ch.1 review): show one companion file
       on the page as proof against padded-course skepticism
+- [ ] Sales-page page-count sync (Pass-45 made the book 68pp): change "A 70–90 page
+      PDF" on /playbook to "A 68-page PDF" (named number = house voice). Page is the
+      site session's surface — coordinate; MUST land before the buy-button flip.
+- [ ] Stripe delivery MUST attach/link the companion ZIP with the book PDF — the
+      book's End page states "they arrived alongside this PDF with your purchase".
+- [ ] Whole-book persona verdict on file: YES at $99 (asterisk was companion-file
+      access, now fixed in-book). Expert review: 0 blockers.
 
 ## Gotchas that already burned this repo
 
