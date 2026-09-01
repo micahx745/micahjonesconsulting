@@ -3982,17 +3982,45 @@ body {
 [data-mode="cw"] .cw-pb-hero-media {
   position: relative;
   aspect-ratio: 3 / 2;
-  background: var(--color-cw-espresso);
-  border-radius: 8px;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* The box stays 3/2 for the future loop; on the espresso ground it
+   * is invisible, so the cover object is allowed to outgrow it. */
+  overflow: visible;
+}
+/* Pass-53 THE OBJECT: the cover as itself on the espresso world it
+ * shares — a static ≤8° tilt on the inner stage (never cursor-tracked,
+ * never idling) and one tight bone edge-light. No halo, no diffuse
+ * shadow (DESIGN_BAR R4/R5). The stage is also the video socket. */
+[data-mode="cw"] .cw-pb-hero-media__stage {
+  position: relative;
+  height: 128%;
+  aspect-ratio: 1819 / 2572;
+  transform: perspective(1400px) rotateY(-7deg);
+  transform-origin: 60% 50%;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: -1px 0 0 0 rgba(236, 227, 208, 0.42);
+}
+/* Video variant (when the loop lands): the stage becomes the box. */
+[data-mode="cw"] .cw-pb-hero-media--video {
+  overflow: hidden;
+  border-radius: 8px;
+}
+[data-mode="cw"] .cw-pb-hero-media--video .cw-pb-hero-media__stage {
+  height: 100%;
+  width: 100%;
+  aspect-ratio: auto;
+  transform: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 [data-mode="cw"] .cw-pb-hero-media__img {
-  height: 88%;
-  width: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 [data-mode="cw"] .cw-pb-hero-media__video {
   position: absolute;
@@ -4002,15 +4030,27 @@ body {
   object-fit: cover;
 }
 @media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] .cw-pb-hero-media__stage {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
   [data-mode="cw"] .cw-pb-hero-media__video {
     display: none;
   }
 }
 @media (max-width: 900px) {
-  [data-mode="cw"] .cw-pb-hero {
+  [data-mode="cw"] .cw-pb-hero,
+  [data-mode="cw"] .cw-playbook .cw-pb-hero {
     grid-template-columns: 1fr;
     gap: 40px;
     margin-bottom: 96px;
+    min-height: auto;
+  }
+  /* On a phone the object stays inside its box — no outgrow into the
+   * section below. */
+  [data-mode="cw"] .cw-pb-hero-media__stage {
+    height: 100%;
   }
 }
 
@@ -4049,6 +4089,221 @@ body {
   [data-mode="cw"] .cw-pb-proof__grid {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+}
+
+/* ================================================================
+ * Pass-53 — /playbook launch page. Three-act world arc: espresso
+ * (hero, pain, after) → bone (trust, filmstrip, demo, index, sampler,
+ * counts) → espresso (price, questions, cross-link). The crossfade is
+ * the site's signature interaction rearranged, not a second motion.
+ * In espresso sections the accent for TEXT is saffron (terracotta on
+ * espresso is ~2.2:1 and fails AA even at display size; saffron clears
+ * 5.9:1 — the same pairing the petrol world uses). Terracotta stays
+ * for rules and the artifacts.
+ * ================================================================ */
+[data-mode="cw"] .cw-playbook [data-world="espresso"] {
+  --cw-accent: var(--color-cw-saffron);
+}
+/* The pain rule stays terracotta (a decorative rule, not text) so the
+ * pain/after pair reads as wound → light. Hero column widened so the
+ * cover object carries the right half. */
+[data-mode="cw"] .cw-playbook .cw-pb-pain {
+  border-left-color: var(--color-cw-terracotta);
+}
+[data-mode="cw"] .cw-playbook .cw-pb-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  align-items: center;
+  min-height: 560px;
+}
+
+/* Hero copy on espresso */
+[data-mode="cw"] .cw-pb-hero__sub {
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0;
+  max-width: 44ch;
+}
+
+/* After — the mirror of the pain trio. Saffron rule, the fg dims less
+ * on the last line than the pain block's, so the resolution reads. */
+[data-mode="cw"] .cw-pb-after {
+  margin: 0 0 150px;
+  max-width: 800px;
+  border-left: 2px solid var(--color-cw-saffron);
+  padding-left: 28px;
+}
+[data-mode="cw"] .cw-pb-after p {
+  font-family: var(--font-cw-display);
+  font-weight: 600;
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin: 0 0 18px;
+}
+[data-mode="cw"] .cw-pb-after p:last-child {
+  margin-bottom: 0;
+}
+[data-mode="cw"] .cw-pb-pain + .cw-pb-after {
+  margin-top: -60px;
+}
+
+/* Trust strip — the single R14 proof block, at the espresso→bone seam */
+[data-mode="cw"] .cw-pb-trust {
+  margin: 0 0 96px;
+  max-width: 820px;
+}
+[data-mode="cw"] .cw-pb-trust__line {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(24px, 3.2vw, 40px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0 0 22px;
+  max-width: 26ch;
+}
+[data-mode="cw"] .cw-pb-trust__body {
+  font-family: var(--font-cw-body);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0;
+  max-width: 52ch;
+}
+
+/* Filmstrip — full-bleed, native horizontal scroll, snap-proximity.
+ * Nothing autoplays. Chrome is currentColor only. */
+[data-mode="cw"] .cw-pb-film {
+  width: 100vw;
+  margin: 0 0 120px calc(50% - 50vw);
+}
+[data-mode="cw"] .cw-pb-film__title {
+  padding: 0 clamp(24px, 6vw, 96px);
+}
+[data-mode="cw"] .cw-pb-film__strip {
+  list-style: none;
+  margin: 0;
+  padding: 4px clamp(24px, 6vw, 96px) 16px;
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+[data-mode="cw"] .cw-pb-film__item {
+  flex: 0 0 auto;
+  width: min(78vw, 440px);
+}
+[data-mode="cw"] .cw-pb-film__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+}
+[data-mode="cw"] .cw-pb-film__cap {
+  display: block;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 12px;
+}
+
+/* Demonstration — one companion card, featured */
+[data-mode="cw"] .cw-pb-demo {
+  margin: 0 0 120px;
+  max-width: 640px;
+}
+[data-mode="cw"] .cw-pb-demo__lede {
+  font-family: var(--font-cw-body);
+  font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 0 0 28px;
+  max-width: 48ch;
+}
+[data-mode="cw"] .cw-pb-demo__card {
+  margin: 0;
+}
+[data-mode="cw"] .cw-pb-demo__card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+}
+
+/* Index — titles + real page numbers, no blurbs. Specificity raised
+ * above the base row/list resets so the third column and the strip
+ * padding actually apply. */
+[data-mode="cw"] .cw-pb-toc--index .cw-pb-toc__row--index {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 24px;
+  align-items: baseline;
+  padding: 18px 4px;
+}
+[data-mode="cw"] .cw-pb-film .cw-pb-film__strip {
+  padding: 4px clamp(24px, 6vw, 96px) 16px;
+  /* Snap positions honor the padding, so the first card rests at the
+   * content edge instead of snapping to the scrollport edge. */
+  scroll-padding-inline: clamp(24px, 6vw, 96px);
+}
+[data-mode="cw"] .cw-pb-toc__row--index .cw-pb-toc__title {
+  margin-bottom: 0;
+  font-size: clamp(20px, 2.2vw, 28px);
+}
+[data-mode="cw"] .cw-pb-toc__page {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+/* Counts — what ships, as numbers */
+[data-mode="cw"] .cw-pb-counts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 22px 32px;
+  border-top: 1.5px solid currentColor;
+  padding-top: 24px;
+}
+[data-mode="cw"] .cw-pb-counts li {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-pb-counts strong {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(36px, 4.4vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-pb-after {
+    margin-bottom: 88px;
+  }
+  [data-mode="cw"] .cw-pb-pain + .cw-pb-after {
+    margin-top: -40px;
+  }
+  [data-mode="cw"] .cw-pb-film {
+    margin-bottom: 80px;
+  }
+  [data-mode="cw"] .cw-pb-demo {
+    margin-bottom: 80px;
   }
 }
 
