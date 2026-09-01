@@ -230,3 +230,19 @@ would receive. Vercel assigns new project domains a redirect to the existing pri
 %{redirect_url}"` on BOTH apex and www, BEFORE and AFTER — the two directions must never both
 redirect. Do the add via the PROJECT dashboard (Settings → Domains) where the redirect choice is
 explicit, with the alias removed seconds before. Never via bare CLI `domains add` again.
+
+## #10 — A "Most chosen" badge is a data claim, not a design choice (2026-09-01)
+
+**What happened:** The Pass-56 /services rebuild collapsed the 3×4 engagement matrix into one
+four-shape table and tagged the operator-weighted Embedded row "Most chosen". No sales data
+supports a frequency claim; the operator lock was a *preference* (weighted/recommended), not a
+count. Caught on the verification screenshot before commit; changed to "Recommended".
+
+**Root cause:** Reaching for pricing-page convention ("most popular") while restating a
+preference. Convention phrasing smuggled in a fact the ledger does not hold.
+
+**Gate:** `lib/banned.ts` + `.claude/brand.json` now ban "most chosen", "most popular",
+"best-selling", "bestseller", "fastest-growing" — build fails on any of them. Preference words
+("Recommended", "Start here") stay allowed. If real sales data ever supports a rank claim, record
+it in the ledger (#3) first, then lift the specific phrase with a dated note.
+
