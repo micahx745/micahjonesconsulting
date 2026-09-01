@@ -8,9 +8,9 @@ import { BookCallForm } from "@/components/color-worlds/BookCallForm";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
-  title: "Book a call",
+  title: "Book a free intro call",
   description:
-    "Book a 30-minute intro call with Micah Jones. Tuesday through Thursday, 10am to 4pm Pacific. A calendar invite lands in your inbox.",
+    "Book a free 30-minute intro call with Micah Jones. Tuesday through Thursday, 10am to 4pm Pacific. A calendar invite lands in your inbox.",
   alternates: {
     canonical: "https://www.micahjonesconsulting.com/book",
   },
@@ -24,14 +24,14 @@ export default function BookPage() {
       data-world="bone"
       aria-labelledby="cw-book-title"
     >
-      <p className="cw-kicker">Book a call</p>
+      <p className="cw-kicker">Free intro call</p>
       <h1 id="cw-book-title" className="cw-secttitle">
         Thirty minutes. Bring the problem.
       </h1>
       <p className="cw-sect-dek">
-        Tuesday through Thursday, 10am to 4pm Pacific. Pick a slot and a
-        calendar invite lands in your inbox, reminders included. I reply
-        with a video link before the call.
+        Free, thirty minutes, no pitch. Tuesday through Thursday, 10am to 4pm
+        Pacific. Pick a slot and a calendar invite lands in your inbox,
+        reminders included. I reply with a video link before the call.
       </p>
       <BookCallForm />
       <PageFooter />

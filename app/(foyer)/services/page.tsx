@@ -27,7 +27,7 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "Services — Three engagement types, four shapes each",
   description:
-    "Three services — Positioning & GTM, end-to-end product building, frontier AI engineering. Four engagement shapes per service: advisory, project, retainer, embedded.",
+    "Three services — Positioning & GTM, end-to-end product building, frontier AI engineering. Four engagement shapes per service, plus fixed-price packages from $500.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/services" },
 };
 
@@ -36,6 +36,10 @@ interface Tier {
   scope: string;
   duration: string;
   deliverable: string;
+  // Pass-47 (operator-locked 2026-09-01): Advisory shows its public
+  // "From $5K/month" anchor (already public via /playbook's price
+  // note); the other shapes are scoped live on the intro call.
+  price: string;
 }
 
 interface Service {
@@ -72,6 +76,7 @@ const SERVICES: Service[] = [
         scope:
           "Monthly positioning review + narrative pressure-test against live deals + go-to-market decisions.",
         duration: "4-6 hrs/month, ongoing.",
+        price: "From $5K/month",
         deliverable:
           "Positioning audit memo (8-10 pages) — your current state vs. the buyer's actual question, with the gap named.",
       },
@@ -80,6 +85,7 @@ const SERVICES: Service[] = [
         scope:
           "Full repositioning research → narrative → sales enablement. Customer interviews, sales-call analysis, category research.",
         duration: "8-12 weeks, defined scope.",
+        price: "Scoped on the intro call",
         deliverable:
           "30 customer interviews + 50-call sales-call analysis + interim category-shift memo by week 4. Final positioning playbook + sales narrative by close.",
       },
@@ -88,6 +94,7 @@ const SERVICES: Service[] = [
         scope:
           "Embedded GTM advisor + monthly narrative iteration. Continuous tuning of the message and the channels carrying it.",
         duration: "Month-to-month, 6-month minimum.",
+        price: "Scoped on the intro call",
         deliverable:
           "Initial positioning shift + 90-day GTM roadmap + first sales enablement update in month one.",
       },
@@ -96,6 +103,7 @@ const SERVICES: Service[] = [
         scope:
           "Acting head of GTM strategy for the engagement window. Owns the narrative, partners with product + sales.",
         duration: "3-6 months, 3 days/week.",
+        price: "Scoped on the intro call",
         deliverable:
           "Full positioning + GTM playbook + first sales narrative iteration shipped + sales team trained by end of month one.",
       },
@@ -120,6 +128,7 @@ const SERVICES: Service[] = [
         scope:
           "Monthly product strategy review + technical architecture pressure-test. Roadmap, build-vs-buy, and security posture.",
         duration: "4-6 hrs/month, ongoing.",
+        price: "From $5K/month",
         deliverable:
           "Product audit + technical-architecture recommendations memo. Roadmap critique with named tradeoffs.",
       },
@@ -128,6 +137,7 @@ const SERVICES: Service[] = [
         scope:
           "Concept → shipped MVP. User research, technical architecture, design system, first features in production.",
         duration: "12-20 weeks, defined scope.",
+        price: "Scoped on the intro call",
         deliverable:
           "15-25 user interviews + technical architecture document + design-system foundations + first feature shipped by week 8.",
       },
@@ -136,6 +146,7 @@ const SERVICES: Service[] = [
         scope:
           "Ongoing product partnership through launch + iteration. Sprint cadence, feature delivery, roadmap stewardship.",
         duration: "Month-to-month, 6-month minimum.",
+        price: "Scoped on the intro call",
         deliverable:
           "Sprint cadence established + first feature shipped + 6-month roadmap synced with the founder in month one.",
       },
@@ -144,6 +155,7 @@ const SERVICES: Service[] = [
         scope:
           "Acting head of product or CTO for the engagement window. Full ownership of build velocity + product quality.",
         duration: "4-8 months, full-time engagement.",
+        price: "Scoped on the intro call",
         deliverable:
           "Team setup + first major feature shipped + security and compliance posture documented in month one.",
       },
@@ -168,6 +180,7 @@ const SERVICES: Service[] = [
         scope:
           "Monthly AI architecture review + LLM strategy pressure-test. Model choice, eval design, failure-mode mitigation.",
         duration: "4-6 hrs/month, ongoing.",
+        price: "From $5K/month",
         deliverable:
           "AI stack audit + production-readiness assessment. Named gaps with prioritized fix sequence.",
       },
@@ -176,6 +189,7 @@ const SERVICES: Service[] = [
         scope:
           "Production AI feature build — RAG, agent, eval pipeline, orchestration layer. Defined-scope shipped artifact.",
         duration: "6-12 weeks, defined scope.",
+        price: "Scoped on the intro call",
         deliverable:
           "Technical design + eval infrastructure + first production deployment by close. Documentation handed to your team.",
       },
@@ -184,6 +198,7 @@ const SERVICES: Service[] = [
         scope:
           "Embedded AI engineering partnership. Continuous integration of new model capabilities, ongoing eval work, prompt iteration.",
         duration: "Month-to-month, 6-month minimum.",
+        price: "Scoped on the intro call",
         deliverable:
           "First eval framework iteration shipped + prompt-deployment pipeline live + documented failure-mode inventory in month one.",
       },
@@ -192,6 +207,7 @@ const SERVICES: Service[] = [
         scope:
           "Acting head of AI engineering for the engagement window. Owns architecture, deployment, and the bar for production AI quality.",
         duration: "3-6 months, 3-4 days/week.",
+        price: "Scoped on the intro call",
         deliverable:
           "AI architecture documented + first production deployment shipped + eval infrastructure foundations live + team onboarded by end of month one.",
       },
@@ -253,6 +269,40 @@ const SERVICES_LD = {
   ],
 };
 
+// Pass-47: OfferCatalog for the fixed-price packages — real prices,
+// eligible for rich results and AI-search citation.
+const PACKAGES_LD = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Fixed-price packages",
+  url: "https://www.micahjonesconsulting.com/services#packages",
+  itemListElement: [
+    {
+      "@type": "Offer",
+      name: "The Unstick Session",
+      price: "500",
+      priceCurrency: "USD",
+      description:
+        "90-minute working call on a stuck AI-assisted build plus a same-day written fix plan.",
+    },
+    {
+      "@type": "Offer",
+      name: "The Audit",
+      price: "2500",
+      priceCurrency: "USD",
+      description:
+        "Two-week fixed-scope audit: build, production, or traction. Written memo, prioritized fix sequence, debrief call.",
+    },
+    {
+      "@type": "Offer",
+      name: "The Sprint",
+      price: "7500",
+      priceCurrency: "USD",
+      description: "One week embedded on one outcome, shipped.",
+    },
+  ],
+};
+
 export default function ServicesPage() {
   return (
     <main className="cw-services">
@@ -264,6 +314,11 @@ export default function ServicesPage() {
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PACKAGES_LD) }}
       />
       {/* D10 (operator-locked 2026-08): the site's one signature gesture
           (palette-shift, R9) needs an instance here. Header + all three
@@ -278,80 +333,192 @@ export default function ServicesPage() {
         data-world="bone"
         aria-labelledby="cw-services-title"
       >
-      <header className="cw-services__header">
-        <p className="cw-services__kicker">Services</p>
-        <h1 id="cw-services-title" className="cw-services__title">
-          Three engagements. Four shapes each.
-        </h1>
-        {/* Pass-21 (Claude Chat audit): cut "No published day rates"
+        <header className="cw-services__header">
+          <p className="cw-services__kicker">Services</p>
+          <h1 id="cw-services-title" className="cw-services__title">
+            Three engagements. Four shapes each.
+          </h1>
+          {/* Pass-21 (Claude Chat audit): cut "No published day rates"
             clause. Defensive — the buyer hadn't asked about day rates
             yet, and mentioning the absence drew attention to it. */}
-        <p className="cw-services__intro">
-          Three services — positioning &amp; GTM, end-to-end product
-          building, frontier AI engineering. Each carries four engagement
-          shapes: advisory, project, retainer, embedded. The shapes below
-          are explicit about scope, duration, and what lands in the
-          first month.
-        </p>
-        {/* Pass-28 (two-buyer pivot): self-selection line. Routes the
+          <p className="cw-services__intro">
+            Three services — positioning &amp; GTM, end-to-end product building,
+            frontier AI engineering. Each carries four engagement shapes:
+            advisory, project, retainer, embedded. The shapes below are explicit
+            about scope, duration, and what lands in the first month.
+          </p>
+          {/* Pass-28 (two-buyer pivot): self-selection line. Routes the
             solo / sub-$50K builder to the playbook so this page stays
             the engagement surface for Buyer A. */}
-        <p
-          className="cw-services__intro"
-          style={{ marginTop: "20px", fontSize: "15px", opacity: 0.72 }}
-        >
-          This page is for companies hiring an operator on a defined
-          engagement. Solo and stuck on an AI build? The{" "}
-          <a href="/playbook" className="cw-lede-link">playbook</a>{" "}
-          is a better first step.
-        </p>
-      </header>
+          <p
+            className="cw-services__intro"
+            style={{ marginTop: "20px", fontSize: "15px", opacity: 0.72 }}
+          >
+            This page is for companies hiring an operator on a defined
+            engagement. Solo and stuck on an AI build? The{" "}
+            <a href="/playbook" className="cw-lede-link">
+              playbook
+            </a>{" "}
+            is a better first step. Or start with a{" "}
+            <a href="#packages" className="cw-lede-link">
+              fixed-price package
+            </a>{" "}
+            below.
+          </p>
+        </header>
 
-      {SERVICES.map((service) => (
-        <section
-          key={service.slug}
-          id={service.slug}
-          className="cw-service"
-          aria-labelledby={`cw-service-${service.slug}-title`}
-        >
-          <header className="cw-service__head">
-            <p className="cw-service__num">{service.n}</p>
-            <h2
-              id={`cw-service-${service.slug}-title`}
-              className="cw-service__title"
-            >
-              {service.title}
-            </h2>
-            <p className="cw-service__desc">{service.desc}</p>
-            <p className="cw-service__anchor-note">{service.anchorNote}</p>
-            <p className="cw-service__anchor">
-              <a
-                href={service.anchorHref}
-                className="cw-service__anchor-link"
-                {...(service.anchorHref.startsWith("http")
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
+        {SERVICES.map((service) => (
+          <section
+            key={service.slug}
+            id={service.slug}
+            className="cw-service"
+            aria-labelledby={`cw-service-${service.slug}-title`}
+          >
+            <header className="cw-service__head">
+              <p className="cw-service__num">{service.n}</p>
+              <h2
+                id={`cw-service-${service.slug}-title`}
+                className="cw-service__title"
               >
-                {service.anchorLabel}{" "}
-                <span aria-hidden>→</span>
-              </a>
-            </p>
-          </header>
+                {service.title}
+              </h2>
+              <p className="cw-service__desc">{service.desc}</p>
+              <p className="cw-service__anchor-note">{service.anchorNote}</p>
+              <p className="cw-service__anchor">
+                <a
+                  href={service.anchorHref}
+                  className="cw-service__anchor-link"
+                  {...(service.anchorHref.startsWith("http")
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                >
+                  {service.anchorLabel} <span aria-hidden>→</span>
+                </a>
+              </p>
+            </header>
 
-          {/* W2 (P0-2/D4-D5): comparative spec table replaces the
+            {/* W2 (P0-2/D4-D5): comparative spec table replaces the
               four-up card grid. Embedded is the operator-locked
               weighted shape. */}
-          <SpecTable
-            caption={`${service.title} — four engagement shapes compared by scope, duration, and first-month deliverable`}
-            rowLabels={["Scope", "Duration", "First-month deliverable"]}
-            weighted="Embedded"
-            columns={service.tiers.map((tier) => ({
-              name: tier.name,
-              cells: [tier.scope, tier.duration, tier.deliverable],
-            }))}
-          />
+            <SpecTable
+              caption={`${service.title} — four engagement shapes compared by scope, duration, and first-month deliverable`}
+              rowLabels={[
+                "Scope",
+                "Duration",
+                "First-month deliverable",
+                "Price",
+              ]}
+              weighted="Embedded"
+              columns={service.tiers.map((tier) => ({
+                name: tier.name,
+                cells: [
+                  tier.scope,
+                  tier.duration,
+                  tier.deliverable,
+                  tier.price,
+                ],
+              }))}
+            />
+          </section>
+        ))}
+
+        {/* Pass-47 — self-serve packages (operator-locked 2026-09-01:
+          $500 / $2,500 / $7,500; credit bridge; refund before kickoff
+          only). CTAs are honest commerce: email starts the work today,
+          fulfilled manually; Stripe checkout replaces the mailto when
+          the money path is verified end to end (the book's own
+          money-UI-ships-last rule). */}
+        <section
+          id="packages"
+          className="cw-pkgs"
+          aria-labelledby="cw-pkgs-title"
+        >
+          <p className="cw-services__kicker">Packages</p>
+          <h2 id="cw-pkgs-title" className="cw-service__title">
+            Not engagement-sized yet? Start here.
+          </h2>
+          <p className="cw-services__intro">
+            Three fixed-price packages, self-serve: pick one, email me, and the
+            work starts this week. This is the lane for solo builders and small
+            teams. The engagements above stay the lane for companies.
+          </p>
+          <div className="cw-pkgs__grid">
+            <article className="cw-pkg" aria-label="The Unstick Session, $500">
+              <h3 className="cw-pkg__name">The Unstick Session</h3>
+              <p className="cw-pkg__price">$500</p>
+              <p className="cw-pkg__meta">90 minutes + same-day memo</p>
+              <p className="cw-pkg__body">
+                Ninety minutes live on your stuck build, then a same-day written
+                fix plan: what is wrong, the order to fix it, and the prompts to
+                do it with.
+              </p>
+              <ul className="cw-pkg__list">
+                <li>90-minute working call</li>
+                <li>Same-day written fix plan</li>
+                <li>Your tools, your repo</li>
+              </ul>
+              <a
+                className="cw-pkg__cta"
+                href="mailto:micah@micahjonesconsulting.com?subject=The%20Unstick%20Session%20(%24500)&body=Tell%20me%20what%27s%20stuck%2C%20plus%20repo%20or%20host%20links%3A"
+              >
+                Start by email <span aria-hidden>&rarr;</span>
+              </a>
+            </article>
+            <article
+              className="cw-pkg cw-pkg--lead"
+              aria-label="The Audit, $2,500, recommended"
+            >
+              <span className="cw-pkg__tag">Recommended</span>
+              <h3 className="cw-pkg__name">The Audit</h3>
+              <p className="cw-pkg__price">$2,500</p>
+              <p className="cw-pkg__meta">Two weeks + debrief call</p>
+              <p className="cw-pkg__body">
+                Pick one flavor: Build (architecture and code), Production
+                (security and deploy), or Traction (positioning and
+                go-to-market). I pressure-test it and hand you the written
+                audit.
+              </p>
+              <ul className="cw-pkg__list">
+                <li>8-10 page audit memo</li>
+                <li>Prioritized fix sequence</li>
+                <li>One-hour debrief call</li>
+              </ul>
+              <a
+                className="cw-pkg__cta"
+                href="mailto:micah@micahjonesconsulting.com?subject=The%20Audit%20(%242%2C500)&body=Tell%20me%3A%201)%20which%20flavor%20(Build%20%2F%20Production%20%2F%20Traction)%202)%20your%20app%20and%20where%20it%27s%20stuck%203)%20links%3A"
+              >
+                Start by email <span aria-hidden>&rarr;</span>
+              </a>
+            </article>
+            <article className="cw-pkg" aria-label="The Sprint, $7,500">
+              <h3 className="cw-pkg__name">The Sprint</h3>
+              <p className="cw-pkg__price">$7,500</p>
+              <p className="cw-pkg__meta">One week, embedded</p>
+              <p className="cw-pkg__body">
+                One week on one outcome, shipped: the repositioning, the
+                production push, the AI feature. Not a plan. The thing, done.
+              </p>
+              <ul className="cw-pkg__list">
+                <li>One outcome, shipped</li>
+                <li>Daily progress notes</li>
+                <li>Debrief + next-step map</li>
+              </ul>
+              <a
+                className="cw-pkg__cta"
+                href="mailto:micah@micahjonesconsulting.com?subject=The%20Sprint%20(%247%2C500)&body=Tell%20me%20the%20one%20outcome%20you%20want%20shipped%3A"
+              >
+                Start by email <span aria-hidden>&rarr;</span>
+              </a>
+            </article>
+          </div>
+          <p className="cw-pkgs__fine">
+            The rules, in plain terms: every package fee credits toward the next
+            package or an engagement started within 60 days. Full refund any
+            time before kickoff, none after, because the work starts fast. All
+            three include The 80% Wall, my field manual for solo builders, with
+            its companion files.
+          </p>
         </section>
-      ))}
       </section>
 
       {/* W3 (P1-7/R18): the closing CTA moves OUT of <footer> into a
@@ -372,17 +539,17 @@ export default function ServicesPage() {
           Discovery call before any engagement.
         </h2>
         <p className="cw-services__foot-intro">
-          Every engagement starts with a 30-minute call to name the shape
-          and the fit. No deck, no sales pitch — just whether the work
-          maps to what you actually need.
+          Every engagement starts with a free 30-minute call to name the shape
+          and the fit. No deck, no sales pitch — just whether the work maps to
+          what you actually need.
         </p>
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
-            <a
-              href="/book"
-              className="cw-cta"
-            >
-              Book a call <span className="cw-arr" aria-hidden>→</span>
+            <a href="/book" className="cw-cta">
+              Book a free intro call{" "}
+              <span className="cw-arr" aria-hidden>
+                →
+              </span>
             </a>
           </MagneticArea>
           <a href="/" className="cw-mlink">

@@ -14,7 +14,10 @@
 // cw-signup; cw-pb-* classes (globals.css) carry the playbook-specific
 // pieces. Bone world (proven readable for long-form, matches /services).
 import type { Metadata } from "next";
+import Image from "next/image";
+
 import { PlaybookSignupForm } from "@/components/color-worlds/PlaybookSignupForm";
+import { PlaybookHeroMedia } from "@/components/color-worlds/PlaybookHeroMedia";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
@@ -46,25 +49,25 @@ const CHAPTERS = [
     n: "02",
     title: "The spec is the moat",
     blurb:
-      "The one-page spec the AI keeps re-reading. Why drift, not bugs, is the thing that kills your build. Template included.",
+      "The one page the AI keeps re-reading. Why drift, not bugs, is what kills your build. Template included.",
   },
   {
     n: "03",
     title: "The architecture you didn't draw",
     blurb:
-      "The single diagram every solo build needs. Auth, data, storage, edge, third-party — and where AI tools quietly cut corners.",
+      "The single diagram every solo build needs. Auth, data, storage, third parties, and where AI tools quietly cut corners.",
   },
   {
     n: "04",
     title: "Deploy day",
     blurb:
-      "Hosting, database, environment variables, SSL, domains, secrets. The pre-flight list, in the order things bite you.",
+      "Environment variables, databases, domains, SSL, secrets. The pre-flight list, in the order things bite you.",
   },
   {
     n: "05",
     title: "The security pre-flight",
     blurb:
-      "RLS done right, the auth pattern that survives, and the hardcoded keys you left in. The two checks that catch most of it.",
+      "Row-level security done right, the auth pattern that survives, and the hardcoded keys you left in. Two checks catch most of it.",
   },
   {
     n: "06",
@@ -76,13 +79,13 @@ const CHAPTERS = [
     n: "07",
     title: "Compliance, when it matters",
     blurb:
-      "HIPAA, SOC2, GDPR. When you genuinely need them, when you don't, and what compliant actually requires.",
+      "HIPAA, SOC 2, GDPR. When you genuinely need them, when you don't, and what compliant actually requires.",
   },
   {
     n: "08",
     title: "The first ten users",
     blurb:
-      "Getting to the first ten people who keep using it. Where they come from. Why posting on Product Hunt stopped working.",
+      "Getting to the first ten people who keep using it. Where they come from, and why posting stopped working.",
   },
   {
     n: "09",
@@ -94,18 +97,17 @@ const CHAPTERS = [
     n: "10",
     title: "When to hand it off",
     blurb:
-      "The signals you've outgrown solo. When to hire, when to fractionalize, when to sell, when to keep going.",
+      "The signals you've outgrown solo. When to hire, when to rent senior help, when to sell, and when to keep going.",
   },
 ] as const;
 
 const ZIP = [
-  "Prompt files for Claude Code and Cursor",
-  "A deploy-day pre-flight checklist",
-  "A security pre-flight checklist",
-  "A Stripe-in-production setup",
-  "A distribution-loop template",
-  "A sample architecture doc",
-  "Three filled-in spec examples",
+  "Ten pre-flight checklists, one per chapter",
+  "Six prompt files for Claude Code and Cursor",
+  "The SPEC.md template, plus three filled-in examples",
+  "A CLAUDE.md invariants starter",
+  "USERS.md and LOOP.md templates",
+  "A sample architecture doc and .env.example",
 ] as const;
 
 const FAQS = [
@@ -130,13 +132,25 @@ const FAQS = [
 export default function PlaybookPage() {
   return (
     <main className="cw-services cw-playbook" data-section data-world="bone">
-      <header className="cw-services__header">
-        <p className="cw-services__kicker">A field manual · $149</p>
-        <h1 className="cw-services__title">The 80% Wall</h1>
-        <p className="cw-services__intro">
-          A field manual for solo builders stuck between demo and
-          production.
-        </p>
+      {/* Pass-52 hero: asymmetric text + media slot. The slot ships
+          the real cover render and takes the factory loop later with
+          zero reflow (design-director spec). One CTA style: mlink
+          down to the sampler — the filled pill stays the form's. */}
+      <header className="cw-pb-hero">
+        <div className="cw-pb-hero__text">
+          <p className="cw-services__kicker">A field manual for solo builders</p>
+          <h1 className="cw-pb-hero__title">The 80% Wall</h1>
+          <p className="cw-services__intro">
+            Why AI-assisted builds stall between demo and production,
+            and the systems that carry them the rest of the way.
+          </p>
+          <p className="cw-pb-hero__cta">
+            <a href="#pb-sampler-title" className="cw-mlink">
+              Read Chapter 1 free <span aria-hidden>↓</span>
+            </a>
+          </p>
+        </div>
+        <PlaybookHeroMedia />
       </header>
 
       {/* Pain-led opener — the buyer's own internal monologue, plain
@@ -160,8 +174,42 @@ export default function PlaybookPage() {
         </p>
       </section>
 
+      {/* Proof strip (Pass-52): a real interior spread + a real
+          companion file, rendered through the book's own Typst
+          grammar. Evidence against padded-course skepticism — placed
+          after credibility, before the TOC asks for faith. */}
+      <section className="cw-pb-proof" aria-labelledby="pb-proof-title">
+        <h2 id="pb-proof-title" className="cw-pb-h2">What you&rsquo;re actually buying</h2>
+        <div className="cw-pb-proof__grid">
+          <figure className="cw-pb-proof__item">
+            <Image
+              src="/playbook/spread-arch.png"
+              alt="An interior page of the book: the five-box architecture map, drawn in petrol line work with a marginalia rail."
+              width={1530}
+              height={1980}
+              sizes="(max-width: 760px) 92vw, 560px"
+            />
+            <figcaption className="cw-pb-proof__cap">
+              Inside the book · § 03.2, the five-box map
+            </figcaption>
+          </figure>
+          <figure className="cw-pb-proof__item">
+            <Image
+              src="/playbook/companion-card.png"
+              alt="A companion file rendered as a pre-flight card: the five security checks, each with a checkbox."
+              width={1283}
+              height={1150}
+              sizes="(max-width: 760px) 92vw, 380px"
+            />
+            <figcaption className="cw-pb-proof__cap">
+              Companion file · checklists/05-security.md, one of ten
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       {/* Table of contents — ten chapters. */}
-      <section className="cw-pb-sect" aria-labelledby="pb-toc-title">
+      <section className="cw-pb-sect cw-pb-sect--tight" aria-labelledby="pb-toc-title">
         <h2 id="pb-toc-title" className="cw-pb-h2">Ten chapters</h2>
         <ol className="cw-pb-toc">
           {CHAPTERS.map((c) => (
@@ -191,11 +239,11 @@ export default function PlaybookPage() {
       </section>
 
       {/* What ships with it — the companion files. */}
-      <section className="cw-pb-sect" aria-labelledby="pb-zip-title">
+      <section className="cw-pb-sect cw-pb-sect--tight" aria-labelledby="pb-zip-title">
         <h2 id="pb-zip-title" className="cw-pb-h2">What ships with it</h2>
         <p className="cw-pb-sect__lede">
-          A 68-page PDF, plus a companion download — the
-          artifacts, ready to use:
+          A 68-page PDF, plus the companion download: 26 working
+          files, ready to drop into your repo.
         </p>
         <ul className="cw-pb-zip">
           {ZIP.map((item) => (

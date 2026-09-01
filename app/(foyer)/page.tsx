@@ -122,7 +122,12 @@ export default function ColorWorldsHome() {
       {/* HERO + MARQUEE — terracotta */}
       <Hero />
 
-      <div className="cw-marquee" data-section data-world="terracotta" data-scroll-track>
+      <div
+        className="cw-marquee"
+        data-section
+        data-world="terracotta"
+        data-scroll-track
+      >
         <div className="cw-track">
           {/* Track duplicated; scroll-linked translateX(0 to -50%) reveals
               the second half cleanly (D2, operator-locked 2026-08 — no
@@ -133,7 +138,9 @@ export default function ColorWorldsHome() {
               {SERVICE_MARQUEE.map((s) => (
                 <span key={`${dupe}-${s}`}>
                   {s}
-                  <span className="cw-dot" aria-hidden>✦</span>
+                  <span className="cw-dot" aria-hidden>
+                    ✦
+                  </span>
                 </span>
               ))}
             </span>
@@ -171,11 +178,7 @@ export default function ColorWorldsHome() {
         {/* Pass-3: title cut from 16 words + an em-dash to three. The
             rows below name the engagements; a title that previews them
             is the section explaining itself twice (attack plan §7). */}
-        <SplitReveal
-          as="h2"
-          id="cw-clients-title"
-          className="cw-secttitle"
-        >
+        <SplitReveal as="h2" id="cw-clients-title" className="cw-secttitle">
           Three engagements.
         </SplitReveal>
 
@@ -209,7 +212,9 @@ export default function ColorWorldsHome() {
         <div className="cw-section-cta-wrap cw-reveal">
           <a href="/services" className="cw-section-cta">
             See full services{" "}
-            <span className="cw-section-cta__arr" aria-hidden>→</span>
+            <span className="cw-section-cta__arr" aria-hidden>
+              →
+            </span>
           </a>
         </div>
       </section>
@@ -228,11 +233,7 @@ export default function ColorWorldsHome() {
         aria-labelledby="cw-howiwork-title"
       >
         <p className="cw-kicker cw-reveal">Operating principles</p>
-        <SplitReveal
-          as="h2"
-          id="cw-howiwork-title"
-          className="cw-secttitle"
-        >
+        <SplitReveal as="h2" id="cw-howiwork-title" className="cw-secttitle">
           How I work.
         </SplitReveal>
         {/* Pass-27 (operator cowork review): four principles → three named
@@ -251,10 +252,12 @@ export default function ColorWorldsHome() {
             <div>
               <p className="cw-principle__name">Diagnose</p>
               <p className="cw-principle__text">
-                I find the gap between what you built and what buyers
-                actually pay for.
+                I find the gap between what you built and what buyers actually
+                pay for.
               </p>
-              <p className="cw-principle__artifact">&#8594; Positioning audit memo</p>
+              <p className="cw-principle__artifact">
+                &#8594; Positioning audit memo
+              </p>
             </div>
           </li>
           <li
@@ -265,10 +268,12 @@ export default function ColorWorldsHome() {
             <div>
               <p className="cw-principle__name">Build</p>
               <p className="cw-principle__text">
-                Every engagement ships a named artifact in month one. No
-                decks. No discovery debt.
+                Every engagement ships a named artifact in month one. No decks.
+                No discovery debt.
               </p>
-              <p className="cw-principle__artifact">&#8594; Shipped artifact, month one</p>
+              <p className="cw-principle__artifact">
+                &#8594; Shipped artifact, month one
+              </p>
             </div>
           </li>
           <li
@@ -279,11 +284,12 @@ export default function ColorWorldsHome() {
             <div>
               <p className="cw-principle__name">Position</p>
               <p className="cw-principle__text">
-                I stay until the narrative sells without me. The
-                Guardicore repositioning carried into the Akamai
-                acquisition.
+                I stay until the narrative sells without me. The Guardicore
+                repositioning carried into the Akamai acquisition.
               </p>
-              <p className="cw-principle__artifact">&#8594; The story the market repeats</p>
+              <p className="cw-principle__artifact">
+                &#8594; The story the market repeats
+              </p>
             </div>
           </li>
         </ol>
@@ -311,11 +317,7 @@ export default function ColorWorldsHome() {
             the people is nice but i cant see ordani above it". The name
             takes the display slot; the line he likes becomes a large
             subtitle beneath it. */}
-        <SplitReveal
-          as="h2"
-          id="cw-ordani-title"
-          className="cw-secttitle"
-        >
+        <SplitReveal as="h2" id="cw-ordani-title" className="cw-secttitle">
           Ordani
         </SplitReveal>
         <p className="cw-ordani-subtitle cw-reveal">
@@ -332,17 +334,18 @@ export default function ColorWorldsHome() {
                 is purpose-framed ("lower"), never an outcome claim. */}
             <p className="cw-lede cw-reveal">
               Birth workers run their practices on group chats and paper
-              intakes. HIPAA is the law. <em>So I built Ordani.</em>{" "}
-              It&rsquo;s in active use today, processing Medicaid claims
-              fee-free and keeping hundreds of dollars in birth
-              workers&rsquo; pockets. The mission is bigger: lower infant
-              mortality, by giving the people who care for mothers and
-              babies better tools than paperwork.
+              intakes. HIPAA is the law. <em>So I built Ordani.</em> It&rsquo;s
+              in active use today, processing Medicaid claims fee-free and
+              keeping hundreds of dollars in birth workers&rsquo; pockets. The
+              mission is bigger: lower infant mortality, by giving the people
+              who care for mothers and babies better tools than paperwork.
             </p>
             <div className="cw-section-cta-wrap cw-reveal">
               <a href="/work/ordani" className="cw-section-cta">
                 See how it was built{" "}
-                <span className="cw-section-cta__arr" aria-hidden>→</span>
+                <span className="cw-section-cta__arr" aria-hidden>
+                  →
+                </span>
               </a>
             </div>
             {/* Waitlist restored (operator ask). Same OrdaniBetaForm as
@@ -365,8 +368,8 @@ export default function ColorWorldsHome() {
               className="cw-ordani-split__img"
             />
             <figcaption className="cw-ordani-split__cap">
-              Labor support <span aria-hidden>·</span> the work the
-              software protects
+              Labor support <span aria-hidden>·</span> the work the software
+              protects
             </figcaption>
           </figure>
         </div>
@@ -389,11 +392,7 @@ export default function ColorWorldsHome() {
             abstract-noun+period drumbeat (attack plan §6 item 5) with a
             full assertion no competitor can copy. */}
         <p className="cw-kicker cw-reveal">The record</p>
-        <SplitReveal
-          as="h2"
-          id="cw-products-title"
-          className="cw-secttitle"
-        >
+        <SplitReveal as="h2" id="cw-products-title" className="cw-secttitle">
           The receipts.
         </SplitReveal>
         {/* Pass-18 (operator): "every figure is defensible on request is
@@ -432,7 +431,9 @@ export default function ColorWorldsHome() {
               <strong>$80M pipeline</strong> on $14M revenue ·{" "}
               <strong>acquired by Akamai</strong>
             </span>
-            <span className="cw-lrow__go" aria-hidden>→</span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
           </a>
 
           <div
@@ -445,8 +446,8 @@ export default function ColorWorldsHome() {
               <span className="cw-lrow__tag">Enterprise sales · 2018</span>
             </span>
             <span className="cw-lrow__out">
-              <strong>$1M+</strong> toward the IPO · held through the
-              Nasdaq listing
+              <strong>$1M+</strong> toward the IPO · held through the Nasdaq
+              listing
             </span>
           </div>
 
@@ -479,7 +480,9 @@ export default function ColorWorldsHome() {
               Reach <strong>8K → 290K</strong> ·{" "}
               <strong>$3M in contracts won</strong>
             </span>
-            <span className="cw-lrow__go" aria-hidden>→</span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
           </a>
 
           <a
@@ -496,7 +499,9 @@ export default function ColorWorldsHome() {
               Eval infrastructure, RAG, agent orchestration ·{" "}
               <strong>specifics under NDA</strong>
             </span>
-            <span className="cw-lrow__go" aria-hidden>→</span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
           </a>
 
           <a
@@ -507,13 +512,17 @@ export default function ColorWorldsHome() {
           >
             <span className="cw-lrow__co">
               Ordani
-              <span className="cw-lrow__tag">Founder, sole engineer · 2026</span>
+              <span className="cw-lrow__tag">
+                Founder, sole engineer · 2026
+              </span>
             </span>
             <span className="cw-lrow__out">
               <strong>Hundreds of paying users</strong> · none lost to a
               competitor
             </span>
-            <span className="cw-lrow__go" aria-hidden>→</span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
           </a>
 
           <div
@@ -575,8 +584,8 @@ export default function ColorWorldsHome() {
             Too big for duct tape. Not ready for an agency retainer.
           </h2>
           <p className="cw-door__body">
-            You get me directly. Diagnosis, a shipped artifact in month
-            one, and a system your team runs without me.
+            You get me directly. Diagnosis, a shipped artifact in month one, and
+            a system your team runs without me.
           </p>
           <span className="cw-door__cta">
             See the three engagements <span aria-hidden>→</span>
@@ -597,7 +606,7 @@ export default function ColorWorldsHome() {
           target="_blank"
           rel="noopener noreferrer"
           className="cw-big-link"
-          aria-label="Let's build — book a call"
+          aria-label="Name the problem — book a free intro call"
         >
           {/* Pass-21 (Claude Chat audit): "LET'S BUILD" was the single
               weakest line of copy on the site — a startup-culture
@@ -623,12 +632,8 @@ export default function ColorWorldsHome() {
             The playbook is reached from the /services self-select line. */}
         <div className="cw-footrow cw-reveal">
           <MagneticArea>
-            <a
-              href="/book"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Book a call ↗
+            <a href="/book" target="_blank" rel="noopener noreferrer">
+              Book a free intro call ↗
             </a>
           </MagneticArea>
           <a href="mailto:hello@micahjonesconsulting.com">

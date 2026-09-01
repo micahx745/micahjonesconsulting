@@ -22,8 +22,7 @@ export const metadata: Metadata = {
   description:
     "Production AI architecture and orchestration for founders shipping AI-native software. Four engagement shapes — advisory, project, retainer, embedded. Eval infrastructure, prompt-deployment pipelines, and the failure modes that matter.",
   alternates: {
-    canonical:
-      "https://www.micahjonesconsulting.com/services/ai-engineering",
+    canonical: "https://www.micahjonesconsulting.com/services/ai-engineering",
   },
 };
 
@@ -107,8 +106,8 @@ export default function AIEngineeringPage() {
             with the canonical "AI works in the notebook" failure mode
             and surfaces the operator's specific shipping discipline. */}
         <p className="cw-services__intro">
-          Your AI works in the notebook. Production is a different stack.
-          I run eval infrastructure, prompt-deployment pipelines, and the
+          Your AI works in the notebook. Production is a different stack. I run
+          eval infrastructure, prompt-deployment pipelines, and the
           orchestration between model and user. Engagements are ongoing;
           specifics live under NDA.
         </p>
@@ -121,17 +120,13 @@ export default function AIEngineeringPage() {
       >
         <header className="cw-service__head">
           <p className="cw-service__num">A</p>
-          <h2
-            id="cw-ai-tiers-title"
-            className="cw-service__title"
-          >
+          <h2 id="cw-ai-tiers-title" className="cw-service__title">
             Engagement shapes
           </h2>
           <p className="cw-service__desc">
-            Four shapes, increasing in commitment. The right shape
-            depends on whether you need an architecture review, a
-            shipped artifact, an ongoing partner, or full ownership of
-            the AI stack.
+            Four shapes, increasing in commitment. The right shape depends on
+            whether you need an architecture review, a shipped artifact, an
+            ongoing partner, or full ownership of the AI stack.
           </p>
         </header>
 
@@ -159,12 +154,11 @@ export default function AIEngineeringPage() {
             What &ldquo;production-grade&rdquo; means here
           </h2>
           <p className="cw-service__desc">
-            The phrase carries a specific stack: eval infrastructure
-            that fires on every change, continuous deployment of
-            prompts (not just model versions), confidence thresholds
-            and refusal patterns on the retrieval layer, and a
-            documented bar for what ships vs. what waits. Frontier
-            capability that lives in a notebook is not production. The
+            The phrase carries a specific stack: eval infrastructure that fires
+            on every change, continuous deployment of prompts (not just model
+            versions), confidence thresholds and refusal patterns on the
+            retrieval layer, and a documented bar for what ships vs. what waits.
+            Frontier capability that lives in a notebook is not production. The
             engagement bar is &ldquo;deployed, observed, iterated.&rdquo;
           </p>
           {/* Pass-28 (two-buyer pivot): reverse bridge — point the
@@ -175,9 +169,11 @@ export default function AIEngineeringPage() {
             style={{ marginTop: "16px", fontStyle: "italic", opacity: 0.8 }}
           >
             If your stack is pre-production and you&rsquo;re solo, the{" "}
-            <a href="/playbook" className="cw-lede-link">playbook</a>{" "}
-            covers most of what the advisory shape does — for $149, not
-            $5K a month.
+            <a href="/playbook" className="cw-lede-link">
+              playbook
+            </a>{" "}
+            covers most of what the advisory shape does — for $149, not $5K a
+            month.
           </p>
         </header>
       </section>
@@ -190,17 +186,17 @@ export default function AIEngineeringPage() {
           Discovery call for AI engagements.
         </h2>
         <p className="cw-services__foot-intro">
-          The call covers your current stack, the failure modes that
-          worry you, and whether the engagement shape on this page
-          matches what you actually need.
+          The call covers your current stack, the failure modes that worry you,
+          and whether the engagement shape on this page matches what you
+          actually need.
         </p>
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
-            <a
-              href="/book"
-              className="cw-cta"
-            >
-              Book a call <span className="cw-arr" aria-hidden>→</span>
+            <a href="/book" className="cw-cta">
+              Book a free intro call{" "}
+              <span className="cw-arr" aria-hidden>
+                →
+              </span>
             </a>
           </MagneticArea>
           <a href="/services" className="cw-mlink">

@@ -50,3 +50,5 @@ qa/after/
 qa/xr/
 __pycache__/
 *.pyc
+
+.env*.local

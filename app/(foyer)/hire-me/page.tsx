@@ -101,9 +101,9 @@ export default function HireMePage() {
           Full-time, fractional, or contract.
         </h1>
         <p className="cw-services__intro">
-          Four exits behind my work, $5B+ combined. A HIPAA-compliant SaaS I built solo. I&rsquo;ve
-          owned outcomes, not just advised on them. Here&rsquo;s the
-          shape that fits your seat.
+          Four exits behind my work, $5B+ combined. A HIPAA-compliant SaaS I
+          built solo. I&rsquo;ve owned outcomes, not just advised on them.
+          Here&rsquo;s the shape that fits your seat.
         </p>
       </header>
 
@@ -125,7 +125,9 @@ export default function HireMePage() {
           the 3+1 orphan card grid; Embedded weighted per the operator
           lock. */}
       <section className="cw-hm-sect" aria-labelledby="hm-shapes-title">
-        <h2 id="hm-shapes-title" className="cw-pb-h2">Four shapes</h2>
+        <h2 id="hm-shapes-title" className="cw-pb-h2">
+          Four shapes
+        </h2>
         <SpecTable
           caption="Four hiring shapes compared by scope, fit, and best-for"
           rowLabels={["Scope", "Fit", "Best for"]}
@@ -168,22 +170,21 @@ export default function HireMePage() {
           Send the role. I&rsquo;ll send the receipts.
         </h2>
         <p className="cw-services__foot-intro">
-          Email me the seat you&rsquo;re filling and I&rsquo;ll reply
-          with a full CV and the closest fit. A call comes after the
-          paper, not before.
+          Email me the seat you&rsquo;re filling and I&rsquo;ll reply with a
+          full CV and the closest fit. A call comes after the paper, not before.
         </p>
         {/* W3 (D7): one filled pill per page — Email me is the primary
             (paper before the call, per the page's own copy). Book-a-call
             demotes to the mono grammar. */}
         <div className="cw-services__foot-cta-row">
           <a href="mailto:hello@micahjonesconsulting.com" className="cw-cta">
-            Email me <span className="cw-arr" aria-hidden>→</span>
+            Email me{" "}
+            <span className="cw-arr" aria-hidden>
+              →
+            </span>
           </a>
-          <a
-            href="/book"
-            className="cw-mlink"
-          >
-            Book a call <span aria-hidden>↗</span>
+          <a href="/book" className="cw-mlink">
+            Book a free intro call <span aria-hidden>↗</span>
           </a>
         </div>
       </section>

@@ -322,7 +322,9 @@ export function Hero() {
           <span ref={captureLine}>
             {/* Screen-reader fallback: the rolling stack is decorative
                 motion; the SR-only static label is read once. */}
-            <span className="cw-sr-only">go-to-market, product, and data platforms.</span>
+            <span className="cw-sr-only">
+              go-to-market, product, and data platforms.
+            </span>
             <span className="cw-roll" aria-hidden>
               <span className="cw-stack" ref={rollRef}>
                 {ROLLING_WORDS.map((w) => (
@@ -355,17 +357,17 @@ export function Hero() {
       <div className="cw-cta-row" ref={ctaRowRef}>
         <MagneticArea>
           <a href="#products" className="cw-cta">
-            See the work <span className="cw-arr" aria-hidden>↓</span>
+            See the work{" "}
+            <span className="cw-arr" aria-hidden>
+              ↓
+            </span>
           </a>
         </MagneticArea>
         <a href="/hire-me" className="cw-mlink">
           Hire me <span aria-hidden>→</span>
         </a>
-        <a
-          href="/book"
-          className="cw-mlink"
-        >
-          Book a call <span aria-hidden>↗</span>
+        <a href="/book" className="cw-mlink">
+          Book a free intro call <span aria-hidden>↗</span>
         </a>
       </div>
 
@@ -379,7 +381,12 @@ export function Hero() {
       <ul className="cw-chips" aria-label="Track record at a glance">
         <li
           className="cw-chip cw-chip--lead cw-reveal"
-          style={{ "--drift": "-22px", transitionDelay: "500ms" } as React.CSSProperties}
+          style={
+            {
+              "--drift": "-22px",
+              transitionDelay: "500ms",
+            } as React.CSSProperties
+          }
         >
           <strong className="cw-chip__fig">$5B+</strong>
           <span className="cw-chip__lbl">combined value of four exits</span>
@@ -389,27 +396,43 @@ export function Hero() {
         </li>
         <li
           className="cw-chip cw-reveal"
-          style={{ "--drift": "30px", transitionDelay: "620ms" } as React.CSSProperties}
+          style={
+            {
+              "--drift": "30px",
+              transitionDelay: "620ms",
+            } as React.CSSProperties
+          }
         >
           <strong className="cw-chip__fig">$20M+</strong>
           <span className="cw-chip__lbl">client revenue</span>
         </li>
         <li
           className="cw-chip cw-reveal"
-          style={{ "--drift": "-34px", transitionDelay: "740ms" } as React.CSSProperties}
+          style={
+            {
+              "--drift": "-34px",
+              transitionDelay: "740ms",
+            } as React.CSSProperties
+          }
         >
           <strong className="cw-chip__fig">Trillions</strong>
           <span className="cw-chip__lbl">in assets behind my work</span>
         </li>
         <li
           className="cw-chip cw-reveal"
-          style={{ "--drift": "18px", transitionDelay: "860ms" } as React.CSSProperties}
+          style={
+            {
+              "--drift": "18px",
+              transitionDelay: "860ms",
+            } as React.CSSProperties
+          }
         >
           <strong className="cw-chip__fig">Hundreds</strong>
-          <span className="cw-chip__lbl">paying for software I built alone</span>
+          <span className="cw-chip__lbl">
+            paying for software I built alone
+          </span>
         </li>
       </ul>
-
     </header>
   );
 }
