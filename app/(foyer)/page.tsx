@@ -45,27 +45,24 @@ export const metadata: Metadata = {
   // Absolute title prevents the root template ("%s — Micah Jones") from
   // double-suffixing on the home page. Other routes still get the suffix.
   title: {
-    absolute:
-      "Micah Jones — Strategy and software, shipped by the same pair of hands",
+    absolute: "Micah Jones — Strategy and software, shipped by one person",
   },
   description:
-    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with active paying users.",
+    "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $80M in enterprise pipeline, $20M+ in client revenue.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
-    title:
-      "Micah Jones — Strategy and software, shipped by the same pair of hands",
+    title: "Micah Jones — Strategy and software, shipped by one person",
     description:
-      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-compliant practice management in beta with active paying users.",
+      "Four exits behind my work, $5B+ combined. $80M in enterprise pipeline and $20M+ in client revenue. Now building Ordani, in beta with paying users.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Micah Jones — Strategy and software, shipped by the same pair of hands",
+    title: "Micah Jones — Strategy and software, shipped by one person",
     description:
-      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani.",
+      "Four exits behind my work, $5B+ combined. $80M in enterprise pipeline and $20M+ in client revenue. Now building Ordani.",
   },
 };
 
@@ -541,7 +538,7 @@ export default function ColorWorldsHome() {
           </a>
 
           <a
-            href="/services/ai-engineering"
+            href="/services#ai-engineering"
             className="cw-lrow cw-lrow--link cw-reveal"
             role="listitem"
             style={{ transitionDelay: "240ms" }}

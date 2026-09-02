@@ -2,7 +2,8 @@
 //
 // W2 (P0-2/D4, operator-locked 2026-08-11) — the comparative spec table
 // that replaces the uniform four-up .cw-tiers card grids on /services,
-// /services/ai-engineering, and /hire-me.
+// and /services. (/services/ai-engineering and /hire-me were retired in
+// Pass-67 and Pass-57; both 301 to /services.)
 //
 // Why a table: the buyer's actual task on these surfaces is COMPARING
 // four engagement shapes. A real <table> gives shapes-as-columns with

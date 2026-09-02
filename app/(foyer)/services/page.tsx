@@ -26,7 +26,7 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "Services — What I do, and how to hire me",
   description:
-    "Three services: positioning and go-to-market, end-to-end product building, frontier AI engineering. Hire me on an engagement scoped on a free call, or start a fixed-price package from $500 today.",
+    "Three services, two ways to buy them: an engagement from $5K a month, or a fixed-price package at $500, $2,500 or $7,500. One operator, not an agency.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/services" },
 };
 
@@ -95,10 +95,14 @@ const SERVICES: Service[] = [
     n: "03",
     title: "Frontier AI engineering",
     pain: "Your AI works in the notebook. Production is a different stack. I run that stack.",
+    // Pass-67: outcomes 2 and 3 absorb the one idea worth keeping from the
+    // retired /services/ai-engineering page — its definition of what
+    // "production-grade" actually means. Folded into the existing three rather
+    // than added as a fourth, so all three services keep the same shape.
     outcomes: [
       "Retrieval, agents, and orchestration built for real load, not the demo.",
-      "Evals that catch the failures before your customers do.",
-      "A deployment pipeline your team can run after I leave.",
+      "Evals that fire on every change and catch failures before your customers do.",
+      "Prompt deployment as its own pipeline, and a written bar for what ships. Your team runs it after I leave.",
     ],
     receipts: [
       {
@@ -431,6 +435,18 @@ export default function ServicesPage() {
             <a href="/book" className="cw-mlink">
               Book a free intro call <span aria-hidden>→</span>
             </a>
+          </p>
+          {/* Pass-67: the bridge for the pre-production solo buyer, carried
+              over from /services/ai-engineering when that page was retired.
+              Pass-56 deleted the header that used to hold it, and this page
+              had linked to the book zero times since. */}
+          <p className="cw-sv-shapes__foot">
+            Pre-production and working solo? The{" "}
+            <a href="/playbook" className="cw-lede-link">
+              playbook
+            </a>{" "}
+            covers most of what the advisory shape does, for under $150 rather
+            than $5K a month.
           </p>
         </section>
 

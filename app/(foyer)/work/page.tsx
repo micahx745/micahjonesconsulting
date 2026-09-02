@@ -39,14 +39,14 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
-  title: "Work",
+  title: "Work — pipeline, products, and exits",
   description:
-    "Four case studies with the receipts attached: an acquired security platform, a HIPAA-compliant company I founded, and the content and RFP engines I built for an industry author.",
+    "Case studies with the receipts attached: an $80M security pipeline, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/work" },
   openGraph: {
-    title: "Work — Micah Jones",
+    title: "Work — pipeline, products, and exits",
     description:
-      "Four case studies with the receipts attached: an acquired security platform, a HIPAA-compliant company I founded, and the content and RFP engines I built for an industry author.",
+      "Case studies with the receipts attached: an $80M security pipeline, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
     type: "website",
     url: "https://www.micahjonesconsulting.com/work",
   },
@@ -74,12 +74,20 @@ export default async function WorkIndexPage() {
           aria-labelledby="cw-work-title"
         >
           <div className="cw-lot__figure">
-            <h1 id="cw-work-title" className="cw-lot__fig">
-              {lead.feature?.fig ?? lead.stats?.[0]?.fig ?? lead.title}
+            {/* Pass-67: the figure and its line are ONE h1. They were an h1
+                containing only "$80M" and a separate paragraph, which gave the
+                page's most important heading no sentence and no subject: a
+                number alone reads to a crawler, and to a skimmer, as a brag
+                rather than a claim. The two spans keep the exact visual
+                (display figure over a 21px line); only the semantics changed. */}
+            <h1 id="cw-work-title" className="cw-lot__h1">
+              <span className="cw-lot__fig">
+                {lead.feature?.fig ?? lead.stats?.[0]?.fig ?? lead.title}
+              </span>{" "}
+              <span className="cw-lot__line">
+                {lead.feature?.line ?? lead.indexLine ?? lead.dek}
+              </span>
             </h1>
-            <p className="cw-lot__line">
-              {lead.feature?.line ?? lead.indexLine ?? lead.dek}
-            </p>
             <p className="cw-lot__prov">
               <span>01 of {total}</span>
               <span aria-hidden> · </span>

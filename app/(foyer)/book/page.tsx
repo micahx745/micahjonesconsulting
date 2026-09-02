@@ -29,7 +29,7 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "Book a free intro call",
   description:
-    "Book a free 30-minute intro call with Micah Jones. Tuesday through Thursday, 10am to 4pm Pacific. A calendar invite lands in your inbox.",
+    "Thirty minutes, no deck, no pitch. Bring the problem; we name the shape of the work and whether I am the right person for it. Tue to Thu, Pacific.",
   alternates: {
     canonical: "https://www.micahjonesconsulting.com/book",
   },
@@ -60,6 +60,14 @@ export default function BookPage() {
           <p className="cw-bk__dek">
             No deck and no pitch. We name the shape of the work and whether I am
             the right person for it. If I am not, I say so on the call.
+          </p>
+          {/* Pass-67: the page gave a skeptical buyer no reason to believe the
+              thirty minutes would be worth it. This says what they walk away
+              with even if they never hire me, which is the point. */}
+          <p className="cw-bk__leave">
+            <strong>What you leave with:</strong> a named diagnosis of the gap,
+            the shape of the work that closes it, and a straight answer on
+            whether you need me at all.
           </p>
           <dl className="cw-bk__terms">
             {TERMS.map((t) => (

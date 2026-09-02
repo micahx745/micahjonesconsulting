@@ -2997,7 +2997,8 @@ body {
 /* W3 (P1-7/R18): the logistics page footer — contact, LinkedIn,
  * location, © with a date range (the bar's time-depth signal). Mono
  * register, hairline top rule. Mounted on /about, /work, /playbook,
- * /hire-me, /services, /services/ai-engineering via PageFooter.tsx. */
+ * /services via PageFooter.tsx. (/hire-me and /services/ai-engineering
+ * were retired in Pass-57 and Pass-67 and now 301 to /services.) */
 [data-mode="cw"] .cw-pagefoot {
   margin-top: 96px;
   padding-top: 32px;
@@ -5956,7 +5957,14 @@ body {
 }
 
 /* The figure IS the headline — an h1 that happens to be a number. */
+/* Pass-67: figure + line are now spans inside one h1, so the h1 itself
+ * carries no type of its own and the two spans keep the visual they had. */
+[data-mode="cw"] .cw-lot__h1 {
+  margin: 0;
+  font-weight: inherit;
+}
 [data-mode="cw"] .cw-lot__fig {
+  display: block;
   font-family: var(--font-cw-display);
   font-weight: 800;
   font-size: clamp(72px, 13vw, 196px);
@@ -5966,6 +5974,8 @@ body {
   margin: 0;
 }
 [data-mode="cw"] .cw-lot__line {
+  display: block;
+  font-weight: 400;
   font-family: var(--font-cw-body);
   font-size: clamp(17px, 1.7vw, 21px);
   line-height: 1.45;
@@ -6322,4 +6332,16 @@ body {
  * "tighten that gap". Only the bottom changes; the top keeps the rhythm. */
 [data-mode="cw"] .cw-ord {
   padding-bottom: 64px;
+}
+
+/* Pass-67 — /book: what the caller leaves with, even if they never hire him. */
+[data-mode="cw"] .cw-bk__leave {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 44ch;
+  margin: 20px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  opacity: 0.92;
 }

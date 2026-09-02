@@ -45,6 +45,17 @@ const nextConfig: NextConfig = {
         destination: "/work/rfp-engine",
         permanent: true,
       },
+      // Pass-67: /services/ai-engineering retired. It was a 355-word sub-page
+      // covering the same ground as service 03 on /services, so the two split
+      // authority on a site that has none to spare. Its one distinct idea (what
+      // "production-grade" means) folded into that service's outcomes, and its
+      // bridge to the book moved onto /services, which had linked to /playbook
+      // zero times since the Pass-56 rebuild.
+      {
+        source: "/services/ai-engineering",
+        destination: "/services",
+        permanent: true,
+      },
     ];
   },
 };

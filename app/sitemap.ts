@@ -47,7 +47,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    // Pass-23: /services page + /services/ai-engineering subpage
+    // Pass-23: /services. The ai-engineering subpage was retired in Pass-67
+    // and 301s to /services; a redirect source must never sit in a sitemap.
     // added in Pass-20. Previously missing from the sitemap — now
     // crawler-discoverable for AI-search citation (Perplexity,
     // ChatGPT search, Claude search, Google AI Overviews).
@@ -56,12 +57,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/services/ai-engineering`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.85,
     },
     // Pass-22 (SEO sweep): /book, /playbook were live with
     // canonicals + OG but absent here — invisible to crawlers that
