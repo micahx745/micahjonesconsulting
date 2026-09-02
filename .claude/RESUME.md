@@ -40,10 +40,22 @@ who clicked it on a page with no packages. It RESOLVED, so no 404, no build erro
 link check ever saw it -- only the destination was wrong. Swept app/ components/ lib/
 content/: it was the only one. I took the file because the other session had closed and the
 tree was clean, so the one-writer rule had nothing left to protect.
-GATE OWED (LESSONS): nothing in this repo checks that an internal link lands somewhere that
-still contains what the anchor text promises. A moved section leaves a live, resolving,
-wrong link. Worth a build-time sweep of href="/x#y" against the ids actually rendered.
-STILL other lane: /playbook title 61 chars and description 209 -- both past truncation.
+Pass-75 (f2448c8, deploy az5v41t01): scripts/render-gate.mjs, last step of pnpm build.
+Reads the PRERENDERED HTML in .next/server/app -- the bytes a reader gets -- so it needs no
+guess about route resolution and nothing a component injects can hide. Checks every internal
+href names a real route, every fragment (same-page and cross-page) names an id that actually
+renders, and title <=60 / description <=160 entity-decoded. 301 sources are parsed out of
+next.config.ts so it cannot drift from the redirect table. Metadata checks SKIP noindex
+pages: both thanks pages and the passioneer stub inherit the 242-char site fallback and are
+noindex -- three permanent false positives is how a gate gets switched off.
+PROVED IT FAILS before trusting it: reintroduced the Pass-70 bug into the built HTML and it
+named it, plus a link to a nonexistent route. A gate that has never failed is untested.
+Also fixed: /playbook rendered a 61-char title and 204-char description. The root layout
+appends " -- Micah Jones" (14 chars), so the SOURCE string is always 14 shorter than what
+ships -- measure the rendered <title>, never the literal. Em-dash to colon bought the char
+and dropped the title to one em-dash (LESSONS #11 cap). Live title 60/60, desc 153/160,
+verified on BOTH aliases. LESSONS #13 written.
+
 STILL OPEN from the review: nine vibe-coding articles + a hub, and the funnel (email
 sequences, second lead magnet, launch sequence). Both need operator input: an email platform
 and a launch date.
