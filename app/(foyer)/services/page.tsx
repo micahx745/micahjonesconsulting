@@ -20,6 +20,7 @@
 // Zero animation on this page beyond the site's palette shift.
 import type { Metadata } from "next";
 import { MagneticArea } from "@/components/motion/MagneticArea";
+import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
@@ -233,6 +234,7 @@ const PACKAGES_LD = {
 export default function ServicesPage() {
   return (
     <main className="cw-services cw-sv">
+      <OpeningWorld name="bone" />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
@@ -252,45 +254,62 @@ export default function ServicesPage() {
         data-world="bone"
         aria-labelledby="cw-services-title"
       >
-        <header className="cw-services__header">
-          <p className="cw-services__kicker">Services</p>
-          <h1 id="cw-services-title" className="cw-services__title">
-            What I do, and how to hire me.
-          </h1>
-          <p className="cw-services__intro">
-            Three services. Two ways to buy them: an engagement scoped on a free
-            call, or a fixed-price package you can start today.
-          </p>
-        </header>
+        {/* Pass-61 opening (brief: .claude/briefs/pass-61-page-openings.md).
+            The kicker, the 88px "What I do, and how to hire me." and the intro
+            are GONE. The intro was the doors' own copy said once in prose and
+            again in boxes, and the page opened with its own name — the same
+            three elements /work, /book and /about all opened with, which is
+            what read as machine-made.
 
-        {/* The two doors — the routing decision comes before the pitch. */}
-        <nav className="cw-sv-doors" aria-label="Two ways to hire me">
-          <a href="#engagements" className="cw-sv-door">
-            <span className="cw-sv-door__kicker">For companies</span>
-            <span className="cw-sv-door__name">Engagements</span>
-            <span className="cw-sv-door__body">
+            The doors ARE the page now: two full-height columns split by ONE
+            rule, no boxes, no radius, no shadow. The form is a two-column
+            dinner menu — tasting menu on the left, a la carte on the right.
+            One card, two prices, two paths, which is the most hospitable
+            decision shape there is, and the constitution asks foyer pages for
+            hospitality. Each column ends on a receipt, so the choice is made
+            against evidence rather than adjectives.
+
+            The h1 survives as screen-reader-only text: the visible headline is
+            now the two column names, but the document still needs one h1. */}
+        <h1 id="cw-services-title" className="sr-only">
+          Services
+        </h1>
+
+        <nav className="cw-doors" aria-label="Two ways to hire me">
+          <a href="#engagements" className="cw-door">
+            <span className="cw-door__kicker">For companies</span>
+            <span className="cw-door__name">Engagements</span>
+            <span className="cw-door__body">
               Advisory, project, retainer, or embedded. Scoped together on a
               free 30-minute call.
             </span>
-            <span className="cw-sv-door__meta">
-              <span>From $5K a month</span>
-              <span>
+            <span className="cw-door__foot">
+              <span className="cw-door__price">From $5K a month</span>
+              <span className="cw-door__receipt">
+                Guardicore: $80M in pipeline, $14M in revenue. Acquired by
+                Akamai in 2021.
+              </span>
+              <span className="cw-door__go">
                 The three services <span aria-hidden>→</span>
               </span>
             </span>
           </a>
-          <a href="#packages" className="cw-sv-door">
-            <span className="cw-sv-door__kicker">
+          <a href="#packages" className="cw-door">
+            <span className="cw-door__kicker">
               For solo builders and small teams
             </span>
-            <span className="cw-sv-door__name">Packages</span>
-            <span className="cw-sv-door__body">
+            <span className="cw-door__name">Packages</span>
+            <span className="cw-door__body">
               Three fixed prices. Pick one, email me, and the work starts this
               week.
             </span>
-            <span className="cw-sv-door__meta">
-              <span>$500 to $7,500</span>
-              <span>
+            <span className="cw-door__foot">
+              <span className="cw-door__price">$500 · $2,500 · $7,500</span>
+              <span className="cw-door__receipt">
+                Ordani: a HIPAA-compliant CRM I founded and built. Active paying
+                users in beta.
+              </span>
+              <span className="cw-door__go">
                 The three packages <span aria-hidden>→</span>
               </span>
             </span>

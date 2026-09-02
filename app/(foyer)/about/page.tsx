@@ -121,7 +121,7 @@ export default function AboutPage() {
             <li>
               <strong>End-to-end product builds.</strong> Ordani,
               HIPAA-compliant practice management with active paying users in
-              beta. Built and shipped by one person. Public release coming.
+              beta. I founded it and I write the code. Public release coming.
             </li>
           </ul>
 

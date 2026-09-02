@@ -5178,74 +5178,6 @@ body {
   margin-bottom: 44px;
 }
 
-/* Two doors */
-[data-mode="cw"] .cw-sv-doors {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 128px;
-}
-@media (max-width: 760px) {
-  [data-mode="cw"] .cw-sv-doors {
-    grid-template-columns: 1fr;
-    margin-bottom: 80px;
-  }
-}
-[data-mode="cw"] .cw-sv-door {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  border: 1.5px solid currentColor;
-  border-radius: 2px;
-  padding: 28px 26px 22px;
-  color: inherit;
-  text-decoration: none;
-}
-[data-mode="cw"] .cw-sv-door:hover,
-[data-mode="cw"] .cw-sv-door:focus-visible {
-  border-color: var(--color-cw-terracotta);
-  outline: none;
-}
-[data-mode="cw"] .cw-sv-door__kicker {
-  font-family: var(--font-cw-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.8;
-}
-[data-mode="cw"] .cw-sv-door__name {
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(30px, 3.6vw, 44px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-[data-mode="cw"] .cw-sv-door__body {
-  font-family: var(--font-cw-body);
-  font-size: 16px;
-  line-height: 1.5;
-  opacity: 0.88;
-  max-width: 40ch;
-}
-[data-mode="cw"] .cw-sv-door__meta {
-  margin-top: auto;
-  padding-top: 16px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-[data-mode="cw"] .cw-sv-door:hover .cw-sv-door__meta > span:last-child,
-[data-mode="cw"] .cw-sv-door:focus-visible .cw-sv-door__meta > span:last-child {
-  color: var(--color-cw-terracotta);
-}
-
 /* Section heads (engagements / shapes) */
 [data-mode="cw"] .cw-sv-sec {
   margin-bottom: 40px;
@@ -5780,4 +5712,229 @@ body {
 }
 [data-mode="cw"] .cw-wk .cw-wk-list {
   margin-top: 24px;
+}
+
+/* ============================================================
+ * Pass-61 — /services opens on the choice (.cw-doors)
+ * Brief: .claude/briefs/pass-61-page-openings.md
+ *
+ * The header above these was deleted: a kicker reading SERVICES, the page
+ * title at 88px, and an intro sentence that was the doors' own copy said
+ * once in prose and again in boxes. The doors are the page now.
+ *
+ * Form: a two-column dinner menu. ONE 1px rule between them, no boxes, no
+ * radius, no shadow. Each column ends on a receipt so the choice is made
+ * against evidence. Zero motion beyond the existing link hover.
+ * ============================================================ */
+[data-mode="cw"] .cw-doors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70vh;
+  margin: 0 0 128px;
+  align-items: stretch;
+}
+[data-mode="cw"] .cw-door {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  padding: 8px 56px 8px 0;
+}
+/* The rule IS the divider — a border on the second column only. */
+[data-mode="cw"] .cw-door + .cw-door {
+  border-left: 1px solid color-mix(in srgb, currentColor 26%, transparent);
+  padding: 8px 0 8px 56px;
+}
+@media (max-width: 860px) {
+  [data-mode="cw"] .cw-doors {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    margin-bottom: 80px;
+  }
+  [data-mode="cw"] .cw-door {
+    padding: 0 0 36px;
+  }
+  /* Stacked, the divider becomes horizontal so PACKAGES is not pushed off
+   * a 390 screen by a full-height first column. */
+  [data-mode="cw"] .cw-door + .cw-door {
+    border-left: 0;
+    border-top: 1px solid color-mix(in srgb, currentColor 26%, transparent);
+    padding: 36px 0 0;
+  }
+}
+
+[data-mode="cw"] .cw-door__kicker {
+  display: block;
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.72;
+  margin-bottom: 20px;
+}
+[data-mode="cw"] .cw-door__name {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(44px, 7vw, 92px);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+[data-mode="cw"] .cw-door:hover .cw-door__name,
+[data-mode="cw"] .cw-door:focus-visible .cw-door__name {
+  color: var(--color-cw-terracotta);
+}
+[data-mode="cw"] .cw-door__body {
+  display: block;
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  max-width: 32ch;
+  opacity: 0.9;
+}
+
+/* The foot is pinned so both columns' receipts sit on the same baseline. */
+[data-mode="cw"] .cw-door__foot {
+  display: block;
+  margin-top: auto;
+  padding-top: 40px;
+}
+[data-mode="cw"] .cw-door__price {
+  display: block;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+[data-mode="cw"] .cw-door__receipt {
+  display: block;
+  font-family: var(--font-cw-body);
+  font-size: 15px;
+  line-height: 1.5;
+  opacity: 0.85;
+  max-width: 38ch;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+[data-mode="cw"] .cw-door__go {
+  display: inline-block;
+  margin-top: 18px;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+}
+[data-mode="cw"] .cw-door:hover .cw-door__go,
+[data-mode="cw"] .cw-door:focus-visible .cw-door__go {
+  color: var(--color-cw-terracotta);
+  border-bottom-color: var(--color-cw-terracotta);
+}
+
+/* The opening now carries the page's top padding; the old header did. */
+[data-mode="cw"] .cw-sv .cw-services__body {
+  padding-top: 0;
+}
+
+/* ============================================================
+ * Pass-61 — /book opens on espresso (.cw-bk*)
+ * Brief: .claude/briefs/pass-61-page-openings.md
+ *
+ * Was: kicker, 92px slab, dek, form — on bone, identical to three other
+ * pages. Now the closing register: the offer stated plainly on the left,
+ * the form on the right, on the dark ground the site already uses for
+ * proof and close. The title drops to the object-title scale because a
+ * 92px shout over a form is not hospitality. Zero motion.
+ * ============================================================ */
+[data-mode="cw"] .cw-bk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: 72px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 152px 40px 120px;
+  min-height: 74vh;
+}
+@media (max-width: 940px) {
+  [data-mode="cw"] .cw-bk {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 120px 20px 80px;
+    min-height: 0;
+  }
+}
+
+[data-mode="cw"] .cw-bk__title {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(34px, 4.4vw, 62px);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  margin: 0;
+  max-width: 16ch;
+}
+[data-mode="cw"] .cw-bk__dek {
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  opacity: 0.88;
+  max-width: 42ch;
+  margin: 24px 0 0;
+}
+
+/* The terms: what a person wants to know before giving up a slot. */
+[data-mode="cw"] .cw-bk__terms {
+  margin: 48px 0 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+  max-width: 46ch;
+}
+[data-mode="cw"] .cw-bk__terms > div {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+}
+[data-mode="cw"] .cw-bk__terms dt {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.66;
+  padding-top: 3px;
+}
+[data-mode="cw"] .cw-bk__terms dd {
+  margin: 0;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+/* The form sits in a bordered card so it reads as the thing to act on. */
+[data-mode="cw"] .cw-bk__form {
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 2px;
+  padding: 32px 30px 30px;
+}
+@media (max-width: 940px) {
+  [data-mode="cw"] .cw-bk__form {
+    padding: 26px 20px 24px;
+  }
+}
+[data-mode="cw"] .cw-bk__form-label {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0 0 22px;
+}
+/* The footer returns to bone so the page closes the way the others do. */
+[data-mode="cw"] .cw-bk__foot {
+  padding-top: 72px;
 }
