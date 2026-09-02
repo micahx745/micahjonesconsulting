@@ -9,6 +9,32 @@ WARNS (advisory) on unnamed Agent model; concurrent-session-guard (SessionStart)
 corrected: 31 hook events exist. TWO SESSIONS ran this tree tonight, two budgets on one 5h
 window; three collisions -> LESSONS #12.
 
+## SITE (non-playbook lane) — Pass-57..67 ALL LIVE (deploy djhfh3a43, verified on www)
+Pass-67 executed the external deep review, minus what the operator kept and what verification
+killed. LIVE + probed: /about's retired "$150K" -> $1.2M (the case study was swept the same
+morning, this page was missed); /about's "HR consultant... 4x" -> the case study's own 8,000
+to 290,000 (sector leak AND a metric that contradicted 36x); /work h1 is now a sentence, not
+the bare string "$80M"; /services/ai-engineering RETIRED 301 -> /services with its
+production-grade definition folded into service 03; /book gained "what you leave with";
+titles + descriptions rewritten on the five owned pages (every description had been 177-260
+against a ~155 limit, now 146-150); llms.txt advertised FOUR services that do not exist,
+rewritten to the real three plus both buying paths.
+GAP FOUND while consolidating: /services had linked to /playbook ZERO times since Pass-56
+removed the header. Bridge restored.
+OPERATOR KEPT (do not "fix"): "four exits" framing, and "joined early".
+REVIEW FINDINGS VERIFIED FALSE — do not re-apply: content-engine IS in the sitemap; the
+"under $150" playbook price is correct ($149 < $150); the home image alt="" is a decorative
+hero photo, which is right; and the em-dash cap is NOT broken — every page has exactly ONE
+(the nav's "Menu —"). That last one I reported as broken first: my measurement decoded curl
+output as latin-1, so ↗ and × became U+2014. Decode UTF-8 explicitly when counting glyphs.
+STILL OPEN from the review, none started: home restructure (rotating H1, marquee, dual-door
+routing above the fold), a split-out /packages page, nine vibe-coding-to-production articles,
+and the funnel (email sequences, second lead magnet, launch sequence). Operator decisions
+needed for the funnel: an email platform and a launch date.
+MEDICAID CLAIM: still live on the home page, deliberately untouched. Operator-supplied
+2026-08-30 per the code comment but never ledgered, and "processing Medicaid claims" carries
+billing-agent weight. Operator owes one sentence on the real mechanism, then ledger it.
+
 ## /playbook — Pass-61/65..69 (last: ce4949b). Builds green. 65 IS LIVE; 66-69 ARE NOT.
 Brief: `.claude/briefs/pass-61-playbook-cro.md`. Email capture 76/100; **$99 purchase 68/100
 LOW, NOT ready to flip** — purchase layout HELD in brief §8 behind 3 gates: prod
