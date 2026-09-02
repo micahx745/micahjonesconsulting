@@ -1822,10 +1822,24 @@ body {
   inset: 0;
   z-index: 0;
 }
+/* Pass-57: on wide viewports the ground box overscans 30% to the right
+ * so the (square) photo scales up and the face lands right of the H1's
+ * first line, under nothing. The hero's overflow:hidden clips the rest.
+ * The content block also drops ~60px so line two clears the chin. */
+@media (min-width: 861px) {
+  [data-mode="cw"] .cw-hero__ground {
+    right: -30%;
+  }
+}
+[data-mode="cw"] .cw-hero--photo {
+  padding-top: clamp(80px, 20vh, 180px);
+}
 [data-mode="cw"] .cw-hero__photo {
   object-fit: cover;
-  /* Keep the operator + whiteboard in frame across crops. */
-  object-position: 42% 38%;
+  /* Pass-57 (operator: "my face is cut off"): top-anchored so the head
+   * is never cropped by a 16:10 viewport. x 42% only matters on
+   * portrait crops, where it keeps the face right of the H1. */
+  object-position: 42% 0%;
   filter: grayscale(1) brightness(0.92) contrast(1.06);
 }
 [data-mode="cw"] .cw-hero__veil {
@@ -1835,7 +1849,7 @@ body {
     /* right-edge deepening: the stat rail sits on this, no boxes needed */
     linear-gradient(
       270deg,
-      color-mix(in srgb, var(--color-cw-espresso) 62%, transparent) 0%,
+      color-mix(in srgb, var(--color-cw-espresso) 48%, transparent) 0%,
       transparent 42%
     ),
     linear-gradient(
@@ -1872,7 +1886,7 @@ body {
   display: block;
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(30px, 3vw, 44px);
+  font-size: clamp(36px, 3.6vw, 52px);
   line-height: 1;
   letter-spacing: -0.025em;
   color: var(--color-cw-bone);
@@ -1898,7 +1912,7 @@ body {
   color: color-mix(in srgb, var(--color-cw-bone) 72%, transparent);
 }
 [data-mode="cw"] .cw-chip--lead .cw-chip__fig {
-  font-size: clamp(44px, 4.6vw, 68px);
+  font-size: clamp(56px, 5.6vw, 84px);
   color: var(--color-cw-saffron);
 }
 
@@ -1906,33 +1920,30 @@ body {
   /* One right-aligned rail, not a scatter — the scatter read as
    * template. The rail spans the hero's right edge; each stat drifts
    * a few px on scroll (--hero-scroll, user-driven, dead under reduce). */
+  /* Pass-57: two stats, one row, anchored bottom-right — the pair sits
+   * on the darkest part of the veil and leaves the face clear. */
   [data-mode="cw"] .cw-hero--photo > .cw-chips {
     position: absolute;
     z-index: 2;
-    top: 50%;
     right: clamp(40px, 5vw, 88px);
-    transform: translateY(-50%);
+    bottom: clamp(40px, 8vh, 80px);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-end;
     gap: 0;
     pointer-events: none;
   }
   [data-mode="cw"] .cw-chip {
     pointer-events: auto;
-    padding: 22px 0;
+    padding: 0;
     transform: translateY(calc(var(--hero-scroll, 0) * var(--drift, 0px)));
     will-change: transform;
   }
   [data-mode="cw"] .cw-chip + .cw-chip {
-    border-top: 1px solid
+    margin-left: 40px;
+    padding-left: 40px;
+    border-left: 1px solid
       color-mix(in srgb, var(--color-cw-bone) 28%, transparent);
-  }
-  [data-mode="cw"] .cw-chip:first-child {
-    padding-top: 0;
-  }
-  [data-mode="cw"] .cw-chip:last-child {
-    padding-bottom: 0;
   }
 }
 @media (max-width: 860px) {
@@ -3933,8 +3944,7 @@ body {
   opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0 0 20px;
 }
-[data-mode="cw"] .cw-pb-sect,
-[data-mode="cw"] .cw-hm-sect {
+[data-mode="cw"] .cw-pb-sect {
   margin-bottom: 96px;
   max-width: 820px;
 }
@@ -3945,8 +3955,7 @@ body {
   margin-bottom: 72px;
 }
 @media (max-width: 760px) {
-  [data-mode="cw"] .cw-pb-sect,
-  [data-mode="cw"] .cw-hm-sect {
+  [data-mode="cw"] .cw-pb-sect {
     margin-bottom: 64px;
   }
   [data-mode="cw"] .cw-pb-sect--tight {
@@ -4526,56 +4535,6 @@ body {
   opacity: 0.85;
   margin: 0;
   max-width: 64ch;
-}
-
-/* ---- /hire-me — receipts row + tag rows (shapes reuse cw-tiers) ---- */
-[data-mode="cw"] .cw-hm-receipts {
-  margin: 0 0 96px;
-}
-[data-mode="cw"] .cw-hm-receipts__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  border-top: 1.5px solid currentColor;
-}
-[data-mode="cw"] .cw-hm-receipt {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 24px;
-  padding: 24px 4px;
-  border-bottom: 1px solid currentColor;
-  align-items: baseline;
-}
-[data-mode="cw"] .cw-hm-receipt__num {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
-}
-[data-mode="cw"] .cw-hm-receipt__text {
-  font-family: var(--font-cw-display);
-  font-weight: 600;
-  font-size: clamp(18px, 2vw, 27px);
-  line-height: 1.25;
-  letter-spacing: -0.012em;
-}
-[data-mode="cw"] .cw-hm-tags {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-[data-mode="cw"] .cw-hm-tags li {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border: 1px solid currentColor;
-  border-radius: 100px;
-  padding: 8px 18px;
-  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
 }
 
 /* ================================================================
@@ -5493,4 +5452,189 @@ body {
   [data-mode="cw"] .cw-sv .cw-pkgs {
     margin-top: 80px;
   }
+}
+
+/* ============================================================
+ * Pass-58 — /work index rebuilt (.cw-wk*) + case-page glance strip
+ * Operator 2026-09-01: "work page is weird and weak… case study pages
+ * aren't that great." Each engagement carries its receipts (three
+ * stat objects) in the same proof grammar /services uses.
+ * ============================================================ */
+[data-mode="cw"] .cw-wk__lede {
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  opacity: 0.85;
+  margin: 24px 0 0;
+  max-width: 58ch;
+}
+[data-mode="cw"] .cw-wk-list {
+  list-style: none;
+  margin: 72px 0 0;
+  padding: 0;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wk-list {
+    margin-top: 48px;
+  }
+}
+[data-mode="cw"] .cw-wk-item {
+  border-top: 1px solid currentColor;
+}
+[data-mode="cw"] .cw-wk-item:last-child {
+  border-bottom: 1px solid currentColor;
+}
+[data-mode="cw"] .cw-wk-item__link {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 28px 64px;
+  padding: 44px 0 52px;
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 900px) {
+  [data-mode="cw"] .cw-wk-item__link {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 36px 0 44px;
+  }
+}
+[data-mode="cw"] .cw-wk-item__num {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0 0 14px;
+}
+[data-mode="cw"] .cw-wk-item__title {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+[data-mode="cw"] .cw-wk-item__link:hover .cw-wk-item__title,
+[data-mode="cw"] .cw-wk-item__link:focus-visible .cw-wk-item__title {
+  color: var(--color-cw-terracotta);
+}
+[data-mode="cw"] .cw-wk-item__line {
+  font-family: var(--font-cw-body);
+  font-weight: 500;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.45;
+  margin: 0 0 14px;
+  max-width: 40ch;
+}
+[data-mode="cw"] .cw-wk-item__meta {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin: 0 0 22px;
+}
+[data-mode="cw"] .cw-wk-item__cta {
+  display: inline-block;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+}
+[data-mode="cw"] .cw-wk-stats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+}
+[data-mode="cw"] .cw-wk-stats li {
+  padding: 14px 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+[data-mode="cw"] .cw-wk-stats li:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+[data-mode="cw"] .cw-wk-stats strong {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-wk-stats span {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  text-align: right;
+}
+
+/* Case page: outcome strip under the TitleCard (theater) */
+[data-mode="theater"] .case-study__glance {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0 20px;
+  margin: 0 0 56px;
+}
+@media (min-width: 1024px) {
+  [data-mode="theater"] .case-study__glance {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 64ch)
+      240px
+      minmax(0, 1fr);
+    column-gap: clamp(40px, 5vw, 72px);
+    padding: 0;
+    margin-bottom: 72px;
+  }
+  [data-mode="theater"] .case-study__glance-list {
+    grid-column: 2 / 4;
+  }
+}
+[data-mode="theater"] .case-study__glance-list {
+  list-style: none;
+  margin: 0;
+  padding: 28px 0 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 600px) {
+  [data-mode="theater"] .case-study__glance-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+[data-mode="theater"] .case-study__glance-list strong {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-theater-ink);
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="theater"] .case-study__glance-list span {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-theater-ink-soft);
 }

@@ -26,7 +26,12 @@
 //         here with status enum + client? per Phase 7 spec).
 import { z } from "zod";
 
-export const CASE_STUDY_STATUSES = ["shipped", "in-flight", "archived", "stub"] as const;
+export const CASE_STUDY_STATUSES = [
+  "shipped",
+  "in-flight",
+  "archived",
+  "stub",
+] as const;
 export type CaseStudyStatus = (typeof CASE_STUDY_STATUSES)[number];
 
 export const caseStudyFrontmatterSchema = z.object({
@@ -65,6 +70,19 @@ export const caseStudyFrontmatterSchema = z.object({
    *  (LESSONS #2 — the card is a compression of the study, never a
    *  second story). Falls back to the dek's first sentence. */
   indexLine: z.string().optional(),
+
+  /** Pass-58: up to three stat objects for the /work index and the
+   *  case page's "at a glance" strip. Same rule as indexLine — every
+   *  figure must also appear in the study body (LESSONS #2). */
+  stats: z
+    .array(
+      z.object({
+        fig: z.string().min(1),
+        lbl: z.string().min(1),
+      }),
+    )
+    .max(3)
+    .optional(),
 });
 
 export type CaseStudyFrontmatter = z.infer<typeof caseStudyFrontmatterSchema>;

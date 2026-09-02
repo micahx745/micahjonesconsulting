@@ -115,21 +115,29 @@ export function TitleCard(parsed: TitleCardProps) {
       gsap.set(caption, { opacity: 0, y: 8 });
       if (hero) gsap.set(hero, { opacity: 0 });
 
-      // The resolve timeline — paused until ScrollTrigger fires onEnter.
+      // The resolve timeline — driven by scroll progress across the pin
+      // runway (scrub, below), not by onEnter/onLeaveBack. `paused: true`
+      // is kept so the timeline never auto-plays on its own; ScrollTrigger
+      // sets its progress directly from scroll position.
       const tl = gsap.timeline({
         paused: true,
         defaults: { ease: "power2.inOut" },
       });
-      tl.to(stack, { opacity: 0, y: -16, duration: 0.5 }, 0);
-      tl.to(resolved, { opacity: 1, duration: 0.4 }, 0.05);
-      tl.to(caption, { opacity: 1, y: 0, duration: 0.55 }, 0.1);
+      tl.to(stack, { opacity: 0, y: -16, duration: 0.5 }, 0); // motion-ok: dissolve driven by scrub progress across the pin runway, not autoplay
+      tl.to(resolved, { opacity: 1, duration: 0.4 }, 0.05); // motion-ok: resolve fade tied to scrub progress
+      tl.to(caption, { opacity: 1, y: 0, duration: 0.55 }, 0.1); // motion-ok: caption reveal tied to scrub progress
       if (hero) {
-        tl.to(hero, { opacity: 1, duration: 0.65 }, 0.18);
+        tl.to(hero, { opacity: 1, duration: 0.65 }, 0.18); // motion-ok: hero reveal tied to scrub progress
       }
 
       // The pin trigger. Pin runway is PIN_DISTANCE_PX of scroll, then
-      // unpins. Timeline plays on enter; reverses if user scrolls back up
-      // through the top of the pin before the unpin.
+      // unpins. `scrub` binds the timeline's progress directly to scroll
+      // position through the runway — at scrollY 0 progress is 0, so the
+      // stack is visible at rest on load, and the dissolve tracks the
+      // scrollbar (forward and reverse) instead of firing on mount via
+      // onEnter (Pass-fix: onEnter fired immediately because "top top"
+      // was already satisfied at scrollY 0, dissolving the stack before
+      // the visitor scrolled at all).
       const trigger = ScrollTrigger.create({
         trigger: root,
         start: "top top",
@@ -137,8 +145,8 @@ export function TitleCard(parsed: TitleCardProps) {
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
-        onEnter: () => tl.play(),
-        onLeaveBack: () => tl.reverse(),
+        animation: tl,
+        scrub: 0.3,
       });
 
       // No manual cleanup needed — useGSAP wraps everything in

@@ -363,7 +363,7 @@ export function Hero() {
             </span>
           </a>
         </MagneticArea>
-        <a href="/hire-me" className="cw-mlink">
+        <a href="/services" className="cw-mlink">
           Hire me <span aria-hidden>→</span>
         </a>
         <a href="/book" className="cw-mlink">
@@ -377,7 +377,10 @@ export function Hero() {
           grammar, not a text pill. The four-exit story leads
           (operator instruction 2026-08-30; $5B+ = disclosed deals
           only, sources in content/citations.ts). Scroll counter-drift
-          unchanged: user-driven, dead under reduced motion. */}
+          unchanged: user-driven, dead under reduced motion.
+          Pass-57 (operator 2026-09-01: "cut down on the attributes…
+          keep the exits thing and the 20 mil"): TWO stats, anchored
+          bottom-right as a pair so the photo's face stays clear. */}
       <ul className="cw-chips" aria-label="Track record at a glance">
         <li
           className="cw-chip cw-chip--lead cw-reveal"
@@ -405,32 +408,6 @@ export function Hero() {
         >
           <strong className="cw-chip__fig">$20M+</strong>
           <span className="cw-chip__lbl">client revenue</span>
-        </li>
-        <li
-          className="cw-chip cw-reveal"
-          style={
-            {
-              "--drift": "-34px",
-              transitionDelay: "740ms",
-            } as React.CSSProperties
-          }
-        >
-          <strong className="cw-chip__fig">Trillions</strong>
-          <span className="cw-chip__lbl">in assets behind my work</span>
-        </li>
-        <li
-          className="cw-chip cw-reveal"
-          style={
-            {
-              "--drift": "18px",
-              transitionDelay: "860ms",
-            } as React.CSSProperties
-          }
-        >
-          <strong className="cw-chip__fig">Hundreds</strong>
-          <span className="cw-chip__lbl">
-            paying for software I built alone
-          </span>
         </li>
       </ul>
     </header>

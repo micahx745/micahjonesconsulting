@@ -107,8 +107,7 @@ export default async function TheaterCaseStudyPage({
   // be a range ("2024-2025"); we take the start year, which is valid
   // ISO 8601 (YYYY) for datePublished. Author + publisher both Micah
   // Jones (Person) to match the home Person LD pattern.
-  const yearStr =
-    typeof cs.year === "string" ? cs.year : String(cs.year);
+  const yearStr = typeof cs.year === "string" ? cs.year : String(cs.year);
   // Extract the first YYYY token — handles ranges ("2024-2025"), bare
   // years ("2025"), and degrades to the raw string if no digits match.
   // `.split("-")[0]` is `string | undefined` under strict TS, so we use
@@ -189,6 +188,26 @@ export default async function TheaterCaseStudyPage({
           sidebar hides via CSS; the header's meta-fallback element
           shows below the Dek. Closes Marcus's Pass-19 "40% void"
           complaint by giving the empty right column designed content. */}
+      {/* Pass-58 (operator: case pages "aren't that great"): the
+          outcome, stated before the story. Three stat objects from
+          frontmatter `stats` — the same figures the /work index shows,
+          every one also present in the body (LESSONS #2). */}
+      {cs.stats && cs.stats.length > 0 ? (
+        <section
+          className="case-study__glance"
+          aria-label="Outcome at a glance"
+        >
+          <ul className="case-study__glance-list">
+            {cs.stats.map((st) => (
+              <li key={st.lbl}>
+                <strong>{st.fig}</strong>
+                <span>{st.lbl}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       <div className="case-study__layout">
         <header className="case-study__header">
           {/* W1 (D3): the <Dek> that duplicated the TitleCard caption is

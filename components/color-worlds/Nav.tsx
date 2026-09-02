@@ -31,12 +31,19 @@ import { useEffect, useRef, useState } from "react";
 // /work index (it previously anchored to /#products — a dead end from
 // subpages), and SERVICES earns the fifth slot. /about, /hire-me,
 // /playbook stay inline-reachable by design (curation posture).
+//
+// Pass-57 (operator 2026-09-01: "click clients… takes me to the middle
+// of the home page? weird… contact takes me to bottom of home page…
+// instead of the booking page"): every nav item is now a real route.
+// No fragment links in the primary nav — a menu that scrolls you to
+// the middle of a page reads as broken. /about was previously
+// unreachable from any link (orphaned); it earns the fourth slot.
 const NAV_LINKS = [
-  { href: "/#clients", label: "Clients" },
-  { href: "/#ordani", label: "Ordani" },
-  { href: "/work", label: "Work" },
   { href: "/services", label: "Services" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/work", label: "Work" },
+  { href: "/playbook", label: "Playbook" },
+  { href: "/about", label: "About" },
+  { href: "/book", label: "Contact" },
 ] as const;
 
 export function Nav() {
@@ -181,7 +188,7 @@ export function Nav() {
         className={`cw-nav${isScrolled ? " is-scrolled" : ""}`}
         aria-label="Primary"
       >
-        <a href="/#top" className="cw-wordmark">
+        <a href="/" className="cw-wordmark">
           MICAH/JONES
         </a>
         <ul className="cw-navlinks">

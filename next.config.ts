@@ -26,6 +26,14 @@ const nextConfig: NextConfig = {
         destination: "/work/guardicore",
         permanent: true,
       },
+      // Pass-57 (operator 2026-09-01: "you click hire me and it takes me
+      // to this weird page — maybe go to the new services page"). The
+      // /hire-me landing is retired; /services carries the four shapes.
+      {
+        source: "/hire-me",
+        destination: "/services",
+        permanent: true,
+      },
     ];
   },
 };

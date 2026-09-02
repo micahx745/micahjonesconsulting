@@ -28,7 +28,7 @@ export const CITATIONS = {
       "components/color-worlds/Hero.tsx (proof chips)",
       "app/(foyer)/about/page.tsx (receipts)",
       "app/llms.txt/route.ts",
-      "metadata descriptions (root, home, about, hire-me)",
+      "metadata descriptions (root, home, about) — /hire-me retired Pass-57",
       "opengraph images (home, about)",
     ],
   },
