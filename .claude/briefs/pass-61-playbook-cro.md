@@ -159,3 +159,31 @@ the delivery email.` Under the back-cover pill only: `Checkout runs on Stripe. I
 your card. One email, two attachments, usually within minutes.` Above it: `Read chapter one
 first. If it does not earn the other nine, keep your $99.` Status row becomes `Available ·
 delivered by email, usually within minutes`. Gates 1, 2, 3 and 7 above block the flip.
+
+---
+
+## JUDGE return 1 — 2026-09-01, operator answers
+
+Operator supplied two of the three parked facts. Both applied, build green, verified in
+rendered HTML.
+
+- **§8.2 ship month — RESOLVED as "Coming soon".** Operator: "just coming soon for the
+  thing". Spec-card Status row now reads `Coming soon` instead of `Not for sale yet`. It is a
+  promise rather than an absence, and it commits to no date the operator has not chosen.
+- **§8.3 portrait — RESOLVED.** Operator: "use pic of me at the computer". That is
+  `public/hero-context.jpg`, already in the repo and already used on the home hero: him at a
+  laptop in front of a whiteboard of service architecture. Mounted in the § 0.1 rail as a
+  210px square with a terracotta top rule and a mono caption, matching the note column
+  exactly. Verified: 210x210, no overflow, srcSet serves the 256w file to that slot rather
+  than the 3840w fallback.
+- **§8.1 deploy — CLOSED by the other session.** Operator said "push it"; deploy 1uhmpp7nf
+  shipped Pass-57 through Pass-62. The retired "hundreds of birth workers" claim is gone from
+  production.
+
+Still open from §8: real early-reader quotes (4), the "$149 after" raise date (5), price lock
+for the list (6), and the three Stripe gates (7). Operator has said Stripe is last.
+
+**Note on verification method.** The in-app browser pane reports a 0x0 viewport on this
+machine, which makes screenshots render black and every measurement read zero. Forcing an
+explicit viewport with `resize_window` restores real geometry. Recorded here because the
+previous session lost roughly 51 turns to the same artifact.

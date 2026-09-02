@@ -4946,6 +4946,30 @@ body {
   color: var(--color-cw-terracotta);
   margin-bottom: 6px;
 }
+/* Author photo in the § 0.1 rail. The page asks a stranger to trust a solo
+   author with $99 and had no face on it. Square crop to match the rail's
+   210px note column; the terracotta rule ties it to the rail's own border. */
+[data-mode="cw"] .cw-lp-author {
+  margin: 12px 0 0;
+  max-width: 210px;
+}
+[data-mode="cw"] .cw-lp-author__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-top: 2px solid var(--color-cw-terracotta);
+}
+[data-mode="cw"] .cw-lp-author__cap {
+  margin-top: 6px;
+  font-family: var(--font-cw-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cw-espresso);
+  opacity: 0.62;
+}
 [data-mode="cw"] .cw-lp-h {
   font-family: var(--font-cw-display);
   font-weight: 800;

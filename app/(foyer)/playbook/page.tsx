@@ -198,6 +198,19 @@ export default function PlaybookPage() {
           </div>
           <aside className="cw-lp-block__rail">
             § 0.1
+            <figure className="cw-lp-author">
+              <Image
+                src="/hero-context.jpg"
+                alt="Micah Jones working at a laptop in front of a whiteboard covered in service architecture."
+                width={1800}
+                height={1800}
+                sizes="(max-width: 999px) 40vw, 210px"
+                className="cw-lp-author__img"
+              />
+              <figcaption className="cw-lp-author__cap">
+                Micah Jones · Oakland
+              </figcaption>
+            </figure>
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>I built Ordani
               alone with Claude Code and Cursor: a HIPAA-compliant SaaS for
@@ -411,7 +424,7 @@ export default function PlaybookPage() {
               <dt>Refund</dt>
               <dd>30 days, no questions</dd>
               <dt>Status</dt>
-              <dd>Not for sale yet</dd>
+              <dd>Coming soon</dd>
             </dl>
           </div>
           <div>
