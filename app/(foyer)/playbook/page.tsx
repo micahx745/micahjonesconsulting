@@ -19,8 +19,20 @@
 //      Shape Up + Every Layout.
 //   6. What ships and the price as a spec card in the cover's own
 //      AUTHOR / CHAPTERS / REV grammar.
-// Zero reveals, zero transitions on this page. Two world shifts only:
-// object (espresso) → paper (bone) → back cover (espresso).
+// Two world shifts only: object (espresso) → paper (bone) → back cover
+// (espresso).
+//
+// MOTION, REVERSED BY THE OPERATOR 2026-09-01. This header read "Zero reveals,
+// zero transitions on this page", from his Pass-55 verdict ("still looks bad. I
+// don't see any inspiration from others. find unique things, no animations").
+// He later asked for the opposite, verbatim: "ok i like the chart animation
+// make it look amazing and built by a world class team." Both are on the record
+// rather than one quietly overwriting the other.
+// What ships is <WallChart />: the book's own page-6 figure drawn once on load,
+// approved in writing by the motion-engineer as a FIGURE animation, not a second
+// signature. He first asked for an AI-generated "vibe coding factory" loop; that
+// was declined under DESIGN_BAR R12 (AI-generated imagery, named) and the
+// illustration ban in .claude/CLAUDE.md.
 //
 // Claims: ledger phrasings only (docs/LESSONS_LEARNED.md #3); the
 // build-log entry is the true 2026-08-31 dead-forms story. Vendor gate
@@ -31,6 +43,7 @@ import Image from "next/image";
 import { PlaybookSignupForm } from "@/components/color-worlds/PlaybookSignupForm";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 import { PromptDiff } from "@/components/color-worlds/PromptDiff";
+import { WallChart } from "@/components/color-worlds/WallChart";
 
 export const metadata: Metadata = {
   title: "The 80% Wall — a field manual for solo builders",
@@ -177,6 +190,7 @@ export default function PlaybookPage() {
             client revenue (2013&ndash;2023). Enterprise cybersecurity sales at
             Guardicore, acquired by Akamai in 2021.
           </p>
+          <WallChart />
           <div className="cw-lp-object__row">
             <a href="#pb-free" className="cw-mlink">
               Read chapter one free, by email <span aria-hidden>↓</span>

@@ -20,6 +20,17 @@ The `design-tokens.sh` hook warns on any other hex literal.
 ## One signature motion
 `<TitleCard />` on case-study hero (Phase 5). Foyer↔theater View Transition (Phase 2). NOTHING ELSE pins, sticks, parallax-scrolls, or follows the cursor without the `motion-engineer` agent's written approval.
 
+**One FIGURE animation exists and is not a third signature** (`motion.figure` in
+`brand.json`): `<WallChart />` in the `/playbook` hero draws the book's own page-6 diagram
+once on load. The motion-engineer approved it in writing 2026-09-01 on the reading that it is
+the artifact playing, not the site responding to the visitor: it runs once, terminates, and
+never couples to scroll, hover or focus. Granted an explicit exception to the DESIGN_BAR R15
+400ms entrance cap on that basis. Conditions: `/playbook` only, base CSS is the finished
+frame, motion layered on only at ≥900px with no reduced-motion preference. It replaced an
+AI-generated "vibe coding factory" video loop the operator asked for, which was declined under
+R12 (AI-generated imagery, named) and the illustration ban above. A second animated figure
+would be the second-signature line; the answer there is no.
+
 `motion-discipline.sh` blocks cursor followers, scroll-jacking, marquees, mono aesthetic, and (Phase 1 addition) `syncTouch: true` on Lenis.
 
 ## Model routing

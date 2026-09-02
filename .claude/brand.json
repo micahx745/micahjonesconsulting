@@ -60,33 +60,20 @@
     "display": {
       "family": "Inter Display (Inter weight 700-800)",
       "foundry": "system",
-      "weights": [
-        600,
-        700,
-        800
-      ],
+      "weights": [600, 700, 800],
       "license": null
     },
     "body": {
       "family": "Inter",
       "foundry": "system",
-      "weights": [
-        400,
-        500,
-        600
-      ],
+      "weights": [400, 500, 600],
       "license": null
     },
     "serif": {
       "family": "Source Serif 4",
       "foundry": "system",
-      "weights": [
-        400,
-        500
-      ],
-      "axes": [
-        "opsz"
-      ],
+      "weights": [400, 500],
+      "axes": ["opsz"],
       "license": null
     },
     "mono": null
@@ -145,18 +132,17 @@
     "signature": {
       "id": "title-card",
       "description": "Case-study hero title: 96px Inter Display 700+ pinned vertical word stack, GSAP scroll-resolve to caption + first still cross-fade. ~600ms hold.",
-      "files": [
-        "components/TitleCard.tsx",
-        "app/globals.css"
-      ]
+      "files": ["components/TitleCard.tsx", "app/globals.css"]
     },
     "view_transition": {
       "id": "foyer-theater-dim",
       "description": "600ms ease-in-out cross-fade between cream paper and theater ground on foyer↔theater navigation. Reduced-motion kill-switch in app/globals.css.",
-      "files": [
-        "app/layout.tsx",
-        "app/globals.css"
-      ]
+      "files": ["app/layout.tsx", "app/globals.css"]
+    },
+    "figure": {
+      "id": "wall-chart",
+      "description": "The book's page-6 figure drawn once on load in the /playbook hero: dashed context-window line wiped in, saffron unwritten-rules line climbing on an ease-in-quad, an 80ms hold at the crossing while the marker stamps, then a break-through on ease-out. ~1.26s of visible motion, CSS only, no loop, no scroll or input coupling. Approved in writing by the motion-engineer 2026-09-01 as a FIGURE animation, NOT a second signature interaction: it is the artifact playing, not the site responding to the visitor. Granted an explicit exception to the R15 400ms entrance cap on that basis. Base CSS is the finished frame; motion applies only at >=900px with no reduced-motion preference. Scoped to /playbook.",
+      "files": ["components/color-worlds/WallChart.tsx", "app/globals.css"]
     },
     "banned": [
       "cursor.*follow|MouseFollower",

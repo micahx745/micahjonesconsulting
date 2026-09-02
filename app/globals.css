@@ -4985,6 +4985,186 @@ body {
 }
 
 /* ============================================================
+ * WallChart (.cw-wallchart) — the book's page-6 figure, drawn once.
+ *
+ * motion-ok: FIGURE animation, approved in writing by motion-engineer
+ * 2026-09-01. Not a signature interaction: it is the artifact playing, not the
+ * site responding to the visitor. It runs once, terminates, and never couples
+ * to scroll, hover or focus. TitleCard remains the signature.
+ *
+ * Base state below IS the finished frame. Motion is layered on only at >=900px
+ * with no reduced-motion preference, so reduced-motion users and phones (where
+ * it sits below the fold and would play to nobody) get the static figure.
+ *
+ * Colour is not a preference here. Terracotta on espresso computes to 2.39:1,
+ * under even the 3:1 graphics floor, so the rules line uses saffron (6.13:1),
+ * the espresso world's own accent. Bone window line at 0.55 is 4.79:1, the
+ * circle is 12.59:1. Petrol is 1.52:1 and stays out.
+ * ============================================================ */
+[data-mode="cw"] .cw-wallchart {
+  --wc-delay: 400ms;
+  --wc-window: 420ms;
+  --wc-rules-start: 700ms;
+  --wc-rules: 900ms; /* climb 702 / hold 81 / break 117 */
+  --wc-cross: 1400ms; /* rules-start + 0.78 x rules: where the pen arrives */
+  --wc-wall: 1460ms;
+  margin: 22px 0 0;
+}
+[data-mode="cw"] .cw-wallchart__svg {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+[data-mode="cw"] .cw-wallchart__axes line {
+  stroke: var(--color-cw-bone);
+  stroke-width: 1;
+  opacity: 0.4;
+}
+[data-mode="cw"] .cw-wallchart__window {
+  fill: none;
+  stroke: var(--color-cw-bone);
+  stroke-width: 1.4;
+  stroke-dasharray: 6 4;
+  opacity: 0.55;
+}
+[data-mode="cw"] .cw-wallchart__wipe {
+  fill: var(--color-cw-espresso);
+  transform: translateX(338px);
+}
+[data-mode="cw"] .cw-wallchart__rules {
+  fill: none;
+  stroke: var(--color-cw-saffron);
+  stroke-width: 2;
+  /* butt caps: round ones print a dot at the origin during the delay */
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+[data-mode="cw"] .cw-wallchart__cross {
+  fill: var(--color-cw-espresso);
+  stroke: var(--color-cw-bone);
+  stroke-width: 1.6;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+[data-mode="cw"] .cw-wallchart__lbl {
+  /* display face, not the kicker: .cw-lp-kicker is mono, which is banned for
+     new surfaces. Matches the same-pass decision in .cw-diff__eyebrow. */
+  font-family: var(--font-cw-display);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--color-cw-bone);
+  opacity: 0.62;
+}
+[data-mode="cw"] .cw-wallchart__lbl--rules {
+  fill: var(--color-cw-saffron);
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-wallchart__lbl--wall {
+  opacity: 0.95;
+}
+[data-mode="cw"] .cw-wallchart__lbl--end {
+  text-anchor: end;
+}
+[data-mode="cw"] .cw-wallchart__cap {
+  margin-top: 10px;
+  font-family: var(--font-cw-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-cw-bone);
+  opacity: 0.45;
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  [data-mode="cw"] .cw-wallchart__wipe {
+    animation: wc-wipe var(--wc-window) var(--ease-out-quart) var(--wc-delay)
+      both;
+  }
+  [data-mode="cw"] .cw-wallchart__rules {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: wc-climb var(--wc-rules) linear var(--wc-rules-start) both;
+  }
+  [data-mode="cw"] .cw-wallchart__cross {
+    animation: wc-stamp 160ms var(--ease-out-quart) var(--wc-cross) both;
+  }
+  [data-mode="cw"] .cw-wallchart__lbl--window {
+    animation: wc-fade 240ms var(--ease-out-quart) var(--wc-delay) both;
+  }
+  [data-mode="cw"] .cw-wallchart__lbl--rules {
+    animation: wc-fade 240ms var(--ease-out-quart) var(--wc-rules-start) both;
+  }
+  [data-mode="cw"] .cw-wallchart__lbl--wall {
+    animation: wc-fade 200ms var(--ease-out-quart) var(--wc-wall) both;
+  }
+
+  /* Never start a scene during a dissolve. The root ViewTransition crossfades
+   * on every client-side arrival; hold the figure until it ends. Browsers
+   * without :active-view-transition drop this rule and run from paint. */
+  html:active-view-transition
+    [data-mode="cw"]
+    .cw-wallchart
+    :is(
+      .cw-wallchart__wipe,
+      .cw-wallchart__rules,
+      .cw-wallchart__cross,
+      .cw-wallchart__lbl
+    ) {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes wc-wipe {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(338px);
+  }
+}
+/* Shorthand timing is linear; each keyframe carries its own curve, so the climb
+ * compounds gently instead of sitting dead and then exploding. */
+@keyframes wc-climb {
+  0% {
+    stroke-dashoffset: 1;
+    animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
+  }
+  78% {
+    stroke-dashoffset: 0.218;
+    animation-timing-function: linear;
+  }
+  87% {
+    stroke-dashoffset: 0.218;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes wc-stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes wc-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
  * The prompt diff (.cw-diff) — two sentences from chapter two.
  * The whole design job is that the difference should be visible
  * BEFORE either sentence is read: the vague one sits grey behind a
