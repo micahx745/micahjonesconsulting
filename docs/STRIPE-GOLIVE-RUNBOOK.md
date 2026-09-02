@@ -1,9 +1,18 @@
 # Stripe go-live runbook
 
 **Audience:** Operator (Micah), with the steps Claude can run marked.
-**Written:** 2026-09-02. **Status:** not started.
-**What goes live:** four things on one rail — the ebook at $99 and the three
-packages at $500, $2,500 and $7,500.
+**Written:** 2026-09-02. **Status:** steps 0, 2 and 5 DONE (2026-09-02).
+
+> **Progress.** Business verified. Test key rotated. A live key was pasted into
+> chat once and was rotated immediately; the replacement lives only in
+> `.env.local`, which is gitignored and deny-listed so Claude cannot read it.
+> The LIVE catalog is created and verified: all four SKUs resolve by lookup key.
+> `playbook-99` $99 · `unstick-500` $500 · `audit-2500` $2,500 · `sprint-7500`
+> $7,500. Production has `RESEND_API_KEY` but NOT `STRIPE_SECRET_KEY` or
+> `STRIPE_WEBHOOK_SECRET`, so the live site still cannot take a payment.
+> **Next: step 3.**
+> **What goes live:** four things on one rail — the ebook at $99 and the three
+> packages at $500, $2,500 and $7,500.
 
 The rail is already built and was proven end to end twice in test mode: hosted
 checkout, Stripe's own webhook delivery, one email carrying the book PDF and the
