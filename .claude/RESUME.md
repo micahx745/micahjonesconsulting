@@ -9,7 +9,7 @@ WARNS (advisory) on unnamed Agent model; concurrent-session-guard (SessionStart)
 corrected: 31 hook events exist. TWO SESSIONS ran this tree tonight, two budgets on one 5h
 window; three collisions -> LESSONS #12.
 
-## /playbook — Pass-61/65/66/67 (last: 6a530f9). Builds green. 65 IS LIVE, 66+67 ARE NOT.
+## /playbook — Pass-61/65..69 (last: ce4949b). Builds green. 65 IS LIVE; 66-69 ARE NOT.
 Brief: `.claude/briefs/pass-61-playbook-cro.md`. Email capture 76/100; **$99 purchase 68/100
 LOW, NOT ready to flip** — purchase layout HELD in brief §8 behind 3 gates: prod
 RESEND_API_KEY probe, Stripe account split, one live-mode buy+refund with a real card.
@@ -24,7 +24,21 @@ Operator said **Stripe is last**.
   APPROVED in writing as a FIGURE animation, not a third signature; logged as `motion.figure`
   in brand.json + `.claude/CLAUDE.md`. Saffron not terracotta (terracotta on espresso = 2.39:1).
   Motion only ≥900px + no reduced-motion. Replaced the AI "factory loop", declined under R12.
-- **OPERATOR OWES:** "early-stage startup" is NOT in the ledger and is NOT on the page — needs
+- **68:** hero pill (`.cw-lp-object__cta`) replaces the text link — saffron on espresso 6.13:1,
+  65px. WAITLIST: it says "Get chapter one free"; at Stripe go-live it becomes "Buy the manual ·
+  $99" and the email path demotes (brief §8). It first rendered espresso-on-espresso (1.00,
+  invisible) because the saffron `--cw-accent` override is scoped to `.cw-playbook` and this page
+  is `.cw-lp`; fill+label now set explicitly.
+- **69:** hero paragraph rewritten — history moved INTO the sub (he does not read the byline as
+  "the paragraph"). 75 -> 56 words. Companies named with joining stage and NO job title anywhere,
+  which is what makes "remove the sales part" honest. Byline shrank to name + `/work` link
+  (underline saffron; `--cw-accent` is terracotta here = 2.39:1). Cut: $20M+ (still in footer +
+  /about), page/file counts (spec card has them). LEDGER updated with both operator instructions.
+- **FLAGGED, operator's call:** he said Guardicore "super early"; it ships as "very early", but
+  his own case study publishes **2018-2021** and Guardicore was founded 2015. One-word fix to
+  "early" if he wants. Also unresolved: the author name I added to the cover foot.
+- **OPERATOR OWES:** "early-stage startup" as a phrase is now MOOT (he gave per-company stage
+  2026-09-02, ledgered). Still open —
   company, stage, role, years; goes to LESSONS #3 first. Cybersecurity renders as *sales*, never
   as a technical role, because the book sells a security chapter.
 - Gotcha: the browser pane throttles animation clocks to 0 and caches images; seek via the Web
