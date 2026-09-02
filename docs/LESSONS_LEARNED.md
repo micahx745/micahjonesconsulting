@@ -42,6 +42,13 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
 **The ledger (operator-confirmed, current):**
 - Guardicore: **$80M pipeline generated, $14M revenue**, enterprise sales manager (no team
   led). NEVER: "$15M pipeline", "trained the sales team", "built the channel".
+  Operator-supplied 2026-09-01, both now live on the case study: **average enterprise deal
+  size $1.2M** (this SUPERSEDES the earlier "average deal size moved up by $150K", which was
+  cut on 2026-09-01 as unledgered and is not the same claim — one is an absolute, the other a
+  delta; never restate the $150K version), and **"Trillions in financial assets sit protected
+  behind those deployments"**. The trillions line was cut the same morning as unverifiable and
+  RESTORED hours later on operator confirmation that it describes the value of financial assets
+  protected behind the work. It is approved; do not re-cut it in a future honesty sweep.
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:
@@ -63,6 +70,12 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   VENDOR GATE (same date): Ordani surfaces never name infrastructure vendors — the case
   study had named the database vendor inside a security-architecture sentence on a HIPAA
   product. Tools list is capability nouns; body says "in the database".
+  SUPERSEDED 2026-09-01 (operator: "drop the user amounts across the website for ordani, just
+  say it has active paying users, it's in beta, we're releasing to public soon"). Every user
+  count is now OFF every public surface: no "200", no "hundreds". Approved phrasing is
+  **"active paying users"**, framed as **in beta with a public release coming**. "None lost to
+  a competitor" survives. Swept to zero rendered instances the same day across the case study,
+  home, about, services, playbook, root metadata and llms.txt. The counts stay internal only.
   Historical entry: **used by 200 birth workers, none lost to a competitor**
   (operator update 2026-08-15 — SUPERSEDES the earlier "fourteen practices / eight
   active weekly at six months" entry, which described the closed beta and had gone

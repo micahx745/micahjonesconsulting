@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "About",
   description:
-    "Independent operator in Oakland. Four exits behind my work: Postmates → Uber, TechValidate → SurveyMonkey IPO, Guardicore → Akamai, Neuton.AI → Nordic Semiconductor. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by hundreds of paying birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates → Uber, TechValidate → SurveyMonkey IPO, Guardicore → Akamai, Neuton.AI → Nordic Semiconductor. $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with active paying users.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
     title: "About — Micah Jones",
     description:
-      "Independent operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue. Building Ordani, used by hundreds of paying birth workers.",
+      "Independent operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue. Building Ordani, in beta with active paying users.",
     type: "profile",
     url: "https://www.micahjonesconsulting.com/about",
   },
@@ -81,7 +81,7 @@ export default function AboutPage() {
                   leading space of a text node that follows an inline
                   element WHEN the text contains an HTML entity (verified
                   against the built output — the review's "$20M+in" catch). */}
-              <strong>$20M+</strong>{" "}in client revenue (2013&ndash;2023).
+              <strong>$20M+</strong> in client revenue (2013&ndash;2023).
             </li>
             <li>
               {/* Four-exit update (operator, 2026-08-30): Postmates joins.
@@ -91,10 +91,10 @@ export default function AboutPage() {
                   undisclosed) — sources in content/citations.ts. */}
               <strong>Four companies I worked inside reached an exit.</strong>{" "}
               Postmates (Uber, 2020). TechValidate (held through the
-              SurveyMonkey IPO, 2018). Guardicore (Akamai, 2021).
-              Neuton.AI (technology acquired by Nordic Semiconductor,
-              2025). Two carried my name on the cap table; the disclosed
-              deals total <strong>$5B+</strong>.
+              SurveyMonkey IPO, 2018). Guardicore (Akamai, 2021). Neuton.AI
+              (technology acquired by Nordic Semiconductor, 2025). Two carried
+              my name on the cap table; the disclosed deals total{" "}
+              <strong>$5B+</strong>.
             </li>
             <li>
               {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
@@ -111,18 +111,17 @@ export default function AboutPage() {
             <li>
               <strong>Positioning research that moves deal-size.</strong> The
               Guardicore engagement that became the Akamai acquisition began
-              with a single rewritten sentence — average deal size moved
-              $150K.
+              with a single rewritten sentence — average deal size moved $150K.
             </li>
             <li>
               <strong>GTM systems that compound.</strong> Algorithm strategy +
-              content systems for an HR consultant returned 4× platform lift
-              and RFP wins inside one year.
+              content systems for an HR consultant returned 4× platform lift and
+              RFP wins inside one year.
             </li>
             <li>
-              <strong>End-to-end product builds.</strong>{" "}Ordani &mdash; HIPAA-compliant
-              practice management used by hundreds of paying birth
-              workers. Built and shipped by one person. Live.
+              <strong>End-to-end product builds.</strong> Ordani,
+              HIPAA-compliant practice management with active paying users in
+              beta. Built and shipped by one person. Public release coming.
             </li>
           </ul>
 
@@ -133,15 +132,15 @@ export default function AboutPage() {
               live in the Ordani case study via citations.ts. */}
           <p>
             Building <strong>Ordani</strong>. This country loses too many
-            mothers and infants, and the people working hardest to change
-            that were buried in the business side of the work. I built the
-            tool that hands them their hours back, so the work stays about
-            the mothers and the babies.
+            mothers and infants, and the people working hardest to change that
+            were buried in the business side of the work. I built the tool that
+            hands them their hours back, so the work stays about the mothers and
+            the babies.
           </p>
           <p>
-            Alongside it: a limited number of advisory engagements with
-            teams at the product-and-GTM seam, where the sales team and
-            the product team have stopped talking to each other.
+            Alongside it: a limited number of advisory engagements with teams at
+            the product-and-GTM seam, where the sales team and the product team
+            have stopped talking to each other.
           </p>
           <p>
             <a href="/work">See the case studies →</a>

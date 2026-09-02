@@ -34,6 +34,17 @@ const nextConfig: NextConfig = {
         destination: "/services",
         permanent: true,
       },
+      // Pass-60 (operator 2026-09-01): the single author case study is split
+      // into /work/content-engine and /work/rfp-engine. The old page is
+      // retired rather than kept, because it carried both the sector wording
+      // and the same 8,000-to-290,000 figures as the new pair — a reader
+      // could match one to the other and recover the client's sector, which
+      // is the exact de-identification the split exists to perform.
+      {
+        source: "/work/hr-equity-author",
+        destination: "/work/rfp-engine",
+        permanent: true,
+      },
     ];
   },
 };

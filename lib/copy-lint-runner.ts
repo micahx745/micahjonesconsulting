@@ -144,6 +144,14 @@ function visibleProse(source: string, isTsx: boolean): string {
     .replace(/^([ \t]*)\/\/.*$/gm, "$1");
 }
 
+/**
+ * An HTML entity renders as an em-dash and reads as one. `/about` carried `&mdash;` and sailed
+ * past the first cut of this gate, which counted only the literal character.
+ */
+function normalizeDashes(source: string): string {
+  return source.replace(/&mdash;|&#8212;|&#x2014;/gi, EM_DASH);
+}
+
 /** Count em-dashes in prose files; report any blocking file over the cap. */
 async function scanEmDashes(cwd: string): Promise<EmDashFinding[]> {
   const findings: EmDashFinding[] = [];
@@ -155,7 +163,9 @@ async function scanEmDashes(cwd: string): Promise<EmDashFinding[]> {
       if (!EM_DASH_BLOCKING_EXTS.some((ext) => relPath.endsWith(ext))) continue;
 
       const raw = await readFile(filePath, "utf-8");
-      const prose = visibleProse(raw, relPath.endsWith(".tsx"));
+      const prose = normalizeDashes(
+        visibleProse(raw, relPath.endsWith(".tsx")),
+      );
       const count = prose.split(EM_DASH).length - 1;
       if (count <= EM_DASH_CAP) continue;
 

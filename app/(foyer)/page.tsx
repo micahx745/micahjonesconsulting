@@ -49,13 +49,13 @@ export const metadata: Metadata = {
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
   },
   description:
-    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, used by hundreds of paying birth workers.",
+    "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with active paying users.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title:
       "Micah Jones — Strategy and software, shipped by the same pair of hands",
     description:
-      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-compliant practice management used by hundreds of paying birth workers.",
+      "Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani, HIPAA-compliant practice management in beta with active paying users.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -406,7 +406,7 @@ export default function ColorWorldsHome() {
         {/* THE LEDGER. Replaces the W2 weighted card grid AND absorbs the
             cw-shipped-also credit line (its 2013–2023 / $20M+ claim is now
             the total row). Trace rule (LESSONS #2) checked: $80M/$14M in
-            guardicore.mdx, 8K→290K + doubled in hr-equity-author.mdx,
+            guardicore.mdx, 8K→290K in content-engine.mdx, doubled in rfp-engine.mdx,
             the paying-users claim in ordani.mdx. The SurveyMonkey row has no
             case-study page, so it carries no link — an unlinked row in a
             ledger reads as honesty, not absence. Per the W2 operator lock,
@@ -467,7 +467,7 @@ export default function ColorWorldsHome() {
           </div>
 
           <a
-            href="/work/hr-equity-author"
+            href="/work/content-engine"
             className="cw-lrow cw-lrow--link cw-reveal"
             role="listitem"
             style={{ transitionDelay: "180ms" }}
@@ -517,8 +517,7 @@ export default function ColorWorldsHome() {
               </span>
             </span>
             <span className="cw-lrow__out">
-              <strong>Hundreds of paying users</strong> · none lost to a
-              competitor
+              <strong>Active paying users</strong> · none lost to a competitor
             </span>
             <span className="cw-lrow__go" aria-hidden>
               →

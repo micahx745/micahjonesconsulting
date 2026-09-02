@@ -14,7 +14,7 @@
 export function GET() {
   const body = `# Micah Jones
 
-> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$20M+ in client revenue across 2013–2023. Four companies he worked inside reached an exit: Postmates (acquired by Uber, 2020, $2.65B), TechValidate (acquired by SurveyMonkey 2015; cap-table position held through the SurveyMonkey IPO, 2018), Guardicore (acquired by Akamai, 2021, $600M), and Neuton.AI (technology acquired by Nordic Semiconductor, 2025; helped launch, not a cap-table position). Disclosed deal values total $5B+. Now building Ordani — HIPAA-grade practice management software used by hundreds of paying birth workers.
+> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$20M+ in client revenue across 2013–2023. Four companies he worked inside reached an exit: Postmates (acquired by Uber, 2020, $2.65B), TechValidate (acquired by SurveyMonkey 2015; cap-table position held through the SurveyMonkey IPO, 2018), Guardicore (acquired by Akamai, 2021, $600M), and Neuton.AI (technology acquired by Nordic Semiconductor, 2025; helped launch, not a cap-table position). Disclosed deal values total $5B+. Now building Ordani — HIPAA-compliant practice management software in beta with active paying users.
 
 ## What I do
 
@@ -34,9 +34,10 @@ Strategy and software, shipped by the same pair of hands. Four offerings:
 - [Home](https://www.micahjonesconsulting.com/): single-page narrative with offerings, exits, products, and contact
 - [About](https://www.micahjonesconsulting.com/about): bio, expertise areas, LinkedIn
 - [Work](https://www.micahjonesconsulting.com/work): case study index
-- [Ordani case study](https://www.micahjonesconsulting.com/work/ordani): HIPAA-grade practice management software used by hundreds of paying birth workers
-- [Guardicore case study](https://www.micahjonesconsulting.com/work/guardicore): positioning research that moved deal-size \$150K; led to the Akamai acquisition
-- [HR equity author case study](https://www.micahjonesconsulting.com/work/hr-equity-author): algorithm strategy + multi-platform content system
+- [Ordani case study](https://www.micahjonesconsulting.com/work/ordani): HIPAA-compliant practice management software in beta with active paying users
+- [Guardicore case study](https://www.micahjonesconsulting.com/work/guardicore): positioning research behind \$80M in pipeline and a \$1.2M average enterprise deal size; led to the Akamai acquisition
+- [Content engine case study](https://www.micahjonesconsulting.com/work/content-engine): an AI content engine plus algorithm strategy for an industry author; monthly reach 8,000 to 290,000 in five months
+- [RFP engine case study](https://www.micahjonesconsulting.com/work/rfp-engine): custom RFP software for an industry author; \$3M in contracts won, close rate doubled
 
 ## Contact
 - Email: hello@micahjonesconsulting.com

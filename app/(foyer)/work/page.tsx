@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "Work",
   description:
-    "Three case studies with the receipts attached: an acquired security platform, a HIPAA-compliant company I founded, and an author's RFP engine.",
+    "Four case studies with the receipts attached: an acquired security platform, a HIPAA-compliant company I founded, and the content and RFP engines I built for an industry author.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/work" },
   openGraph: {
     title: "Work — Micah Jones",
     description:
-      "Three case studies with the receipts attached: an acquired security platform, a HIPAA-compliant company I founded, and an author's RFP engine.",
+      "Four case studies with the receipts attached: an acquired security platform, a HIPAA-compliant company I founded, and the content and RFP engines I built for an industry author.",
     type: "website",
     url: "https://www.micahjonesconsulting.com/work",
   },
@@ -41,11 +41,11 @@ export default async function WorkIndexPage() {
     >
       <p className="cw-kicker">Work</p>
       <h1 id="cw-work-title" className="cw-secttitle">
-        Three engagements. Receipts attached.
+        Four engagements. Receipts attached.
       </h1>
       <p className="cw-wk__lede">
-        An acquired security platform, a company I founded, and an
-        author&rsquo;s RFP engine. Every number below comes from the study it
+        An acquired security platform, a company I founded, and two systems I
+        built for an industry author. Every number below comes from the study it
         sits next to.
       </p>
 

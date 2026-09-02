@@ -188,9 +188,9 @@ export default function PlaybookPage() {
             § 0.1
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>I built Ordani
-              alone with Claude Code and Cursor: a HIPAA-compliant SaaS that
-              hundreds of birth workers pay for. Same tools you&rsquo;re using.
-              Same wall I hit.
+              alone with Claude Code and Cursor: a HIPAA-compliant SaaS with
+              active paying users. Same tools you&rsquo;re using. Same wall I
+              hit.
             </p>
           </aside>
         </section>

@@ -79,7 +79,7 @@ const SERVICES: Service[] = [
     ],
     receipts: [
       {
-        text: "Ordani: a HIPAA-compliant CRM I founded and built. Hundreds of birth workers pay for it; none lost to a competitor.",
+        text: "Ordani: a HIPAA-compliant CRM I founded and built. Active paying users in beta, none lost to a competitor.",
         href: "/work/ordani",
         label: "Read the case study",
       },
@@ -102,7 +102,7 @@ const SERVICES: Service[] = [
     receipts: [
       {
         text: "For an industry author: software that reads every new RFP each morning and drafts the first pass at a response. RFP-to-close rate doubled; $3M in contracts won.",
-        href: "/work/hr-equity-author",
+        href: "/work/rfp-engine",
         label: "Read the case study",
       },
       { text: "Current AI engagements are under NDA." },
