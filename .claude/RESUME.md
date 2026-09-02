@@ -9,6 +9,39 @@ WARNS (advisory) on unnamed Agent model; concurrent-session-guard (SessionStart)
 corrected: 31 hook events exist. TWO SESSIONS ran this tree tonight, two budgets on one 5h
 window; three collisions -> LESSONS #12.
 
+## SITE — Pass-68/69/70 LIVE (deploy 9bzvmcf6v). Review groups A/D/E done, B/C part-done.
+Pass-68: home ticker removed (markup, const, CSS, and the [data-scroll-track] effect that drove
+it). Also a real bug the review never named: the h1's two lines are separate block spans, so
+they read as "I build thego-to-market" to every crawler. One trailing space.
+Pass-69: the rotating h1 KEPT (operator asked for it by name in Pass-9) and fixed properly.
+The stack held all four words plus a duplicate, so the h1 text was 112 chars of repetition.
+Now ONE word is server-rendered; each step appends the next below the 1em window, translates
+1em with the same 600ms easing, then drops the consumed word and resets with no transition.
+The roll's width eases alongside, or the inline-block snaps at cleanup. The sr-only line now
+CONTINUES the visible word instead of preceding it, so the heading reads as prose:
+"I build the go-to-market. Also product, data platforms, and RFP engines." (72 chars).
+Verified live: 1 child at rest, 2 only inside a step, lands back on the first word.
+The review's screen-reader claim was FALSE — the stack was always aria-hidden.
+Pass-70: /packages split out with its own opening, cards, rules, OfferCatalog + Breadcrumb LD
+and a cross-link back; /services door points at the page, sitemap gains it, Stripe cancel_url
+repointed (it would have dropped a cancelled buyer on a page with no packages). /services
+gained two objection blocks: "On the price" and "Why one person".
+
+OPERATOR HELD, do not re-litigate: rotating h1 stays · "See the work" stays the primary hero
+CTA (D7 receipts-first) · hero keeps the four-exits framing · Ordani narrative and the
+operating-principles block stay as they are (Pass-64 approved; principles were ADDED on a
+prior audit).
+NOT INVENTED: the review wanted a published "5K to 25K" engagement range. That ceiling is not
+in the ledger. /services now says WHEN the number arrives, not what it is. A real range is
+stronger and is the operator's to set.
+FLAGGED, other lane: app/(foyer)/playbook/page.tsx:622 still links to /services#packages.
+STILL OPEN from the review: nine vibe-coding articles + a hub, and the funnel (email
+sequences, second lead magnet, launch sequence). Both need operator input: an email platform
+and a launch date.
+GOTCHA EARNED: a long `git commit -m` containing literal double quotes closed the shell string
+early and git took the rest as a pathspec — the commit silently did not happen and only the
+prior pass deployed. Long messages go through `git commit -F <file>`.
+
 ## SITE (non-playbook lane) — Pass-57..67 ALL LIVE (deploy djhfh3a43, verified on www)
 Pass-67 executed the external deep review, minus what the operator kept and what verification
 killed. LIVE + probed: /about's retired "$150K" -> $1.2M (the case study was swept the same
