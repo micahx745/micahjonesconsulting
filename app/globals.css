@@ -4869,8 +4869,19 @@ body {
 [data-mode="cw"] .cw-lp-object__sub {
   font-size: 18px;
   line-height: 1.5;
-  margin: 0 0 30px;
+  margin: 0 0 18px;
   opacity: 0.92;
+}
+/* The byline. Deliberately NOT .cw-lp-object__meta: that is 11px mono at 0.6
+ * opacity, the price tag's face, and four credentials would vanish in it. It
+ * sits quieter than the sub and louder than the price, which is the order a
+ * reader should meet them in. */
+[data-mode="cw"] .cw-lp-object__by {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 30px;
+  opacity: 0.7;
+  max-width: 32rem;
 }
 [data-mode="cw"] .cw-lp-object__row {
   display: flex;
@@ -4971,6 +4982,89 @@ body {
   font-size: clamp(26px, 2.6vw, 32px);
   line-height: 1.1;
   margin: 0 0 18px;
+}
+
+/* ============================================================
+ * The prompt diff (.cw-diff) — two sentences from chapter two.
+ * The whole design job is that the difference should be visible
+ * BEFORE either sentence is read: the vague one sits grey behind a
+ * dotted rule, the specific one sits in ink behind a solid terracotta
+ * one. No monospace anywhere (banned house-wide), so the "this is a
+ * prompt" signal has to come from the rule and the measure, not a
+ * code face.
+ * ============================================================ */
+[data-mode="cw"] .cw-diff {
+  margin: 0;
+}
+[data-mode="cw"] .cw-diff__cap {
+  display: block;
+  margin-bottom: 20px;
+}
+[data-mode="cw"] .cw-diff__eyebrow {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-cw-terracotta);
+  margin-bottom: 8px;
+}
+[data-mode="cw"] .cw-diff__lede {
+  display: block;
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 34rem;
+  opacity: 0.86;
+}
+[data-mode="cw"] .cw-diff__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+@media (min-width: 760px) {
+  [data-mode="cw"] .cw-diff__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+[data-mode="cw"] .cw-diff__col {
+  padding-left: 16px;
+}
+[data-mode="cw"] .cw-diff__col--before {
+  border-left: 2px dotted
+    color-mix(in srgb, var(--color-cw-espresso) 32%, transparent);
+  opacity: 0.68;
+}
+[data-mode="cw"] .cw-diff__col--after {
+  border-left: 2px solid var(--color-cw-terracotta);
+}
+[data-mode="cw"] .cw-diff__lbl {
+  font-family: var(--font-cw-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  opacity: 0.72;
+}
+[data-mode="cw"] .cw-diff__col--after .cw-diff__lbl {
+  color: var(--color-cw-terracotta);
+  opacity: 1;
+}
+[data-mode="cw"] .cw-diff__quote {
+  margin: 0 0 10px;
+  font-family: var(--font-cw-display);
+  font-size: clamp(17px, 1.7vw, 20px);
+  font-weight: 500;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+[data-mode="cw"] .cw-diff__note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.7;
 }
 [data-mode="cw"] .cw-lp-h::before {
   content: "";

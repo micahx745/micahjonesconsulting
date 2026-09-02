@@ -30,6 +30,7 @@ import Image from "next/image";
 
 import { PlaybookSignupForm } from "@/components/color-worlds/PlaybookSignupForm";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
+import { PromptDiff } from "@/components/color-worlds/PromptDiff";
 
 export const metadata: Metadata = {
   title: "The 80% Wall — a field manual for solo builders",
@@ -166,6 +167,16 @@ export default function PlaybookPage() {
             solo, with Claude Code and Cursor. Sixty-eight pages, twenty-six
             working files, every build-log entry true and dated.
           </p>
+          {/* The byline, not a bio. Every claim is the ledger's exact approved
+              form (LESSONS #3): the four-count uses "behind my work", $5B+ is
+              disclosed deals only, and Guardicore is named as SALES, never as a
+              technical security role, because the book sells a security
+              chapter and the inference would be false. */}
+          <p className="cw-lp-object__by">
+            By Micah Jones. Four exits behind my work, $5B+ combined. $20M+ in
+            client revenue (2013&ndash;2023). Enterprise cybersecurity sales at
+            Guardicore, acquired by Akamai in 2021.
+          </p>
           <div className="cw-lp-object__row">
             <a href="#pb-free" className="cw-mlink">
               Read chapter one free, by email <span aria-hidden>↓</span>
@@ -252,6 +263,26 @@ export default function PlaybookPage() {
           </aside>
         </section>
 
+        {/* The prompt diff. Sits straight after the spread, where a reader is
+            deciding whether the writing is any good, and answers it with the
+            book's own words instead of a claim about them. */}
+        <section className="cw-lp-block" aria-labelledby="lp-diff">
+          <div className="cw-lp-block__main">
+            <h2 id="lp-diff" className="cw-lp-h">
+              One sentence, four rounds apart
+            </h2>
+            <PromptDiff />
+          </div>
+          <aside className="cw-lp-block__rail">
+            § 0.3
+            <p className="cw-lp-note">
+              <span className="cw-lp-note__lbl">Field note</span>
+              Both sentences are quoted from chapter two. The redesign they
+              describe is the one that produced this page.
+            </p>
+          </aside>
+        </section>
+
         <section className="cw-lp-block" aria-labelledby="lp-log">
           <div className="cw-lp-block__main">
             <h2 id="lp-log" className="cw-lp-h">
@@ -284,7 +315,7 @@ export default function PlaybookPage() {
             </article>
           </div>
           <aside className="cw-lp-block__rail">
-            § 0.3
+            § 0.4
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>
               Thirteen entries like this one in the manual. All true, all dated.
@@ -317,7 +348,7 @@ export default function PlaybookPage() {
             </ol>
           </div>
           <aside className="cw-lp-block__rail">
-            § 0.4
+            § 0.5
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>
               Every chapter ends in a pre-flight card you run the same night.
@@ -339,7 +370,7 @@ export default function PlaybookPage() {
             <PlaybookSignupForm plain />
           </div>
           <aside className="cw-lp-block__rail">
-            § 0.5
+            § 0.6
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>
               No sequence, no drip. One email with the PDF, and a second one the
@@ -368,7 +399,7 @@ export default function PlaybookPage() {
             </figure>
           </div>
           <aside className="cw-lp-block__rail">
-            § 0.6
+            § 0.7
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>
               Twenty-six companion files: the ten cards, six prompt files for
