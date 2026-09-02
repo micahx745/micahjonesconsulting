@@ -28,6 +28,18 @@ Ledger moves that must not be reverted: Guardicore $1.2M average deal size SUPER
 $150K delta, and the Trillions line is RESTORED on operator confirmation; Ordani is "active
 paying users", in beta, public release coming.
 
+## Pass-64 SHIPPED — Ordani section is a picture edit on petrol (deploy besnxw59v)
+Operator: "feels bare". Section now runs PETROL (already Ordani's world in the WorldSwitcher
+map, and the only mapped world the site never used) and carries four photos: lead frame is a
+doula taking notes beside a pregnant client (the paper intake the product replaces), then a
+three-up band. PHOTO PROVENANCE: operator's own licensed birth-work shoot, lemandjune frames
+ONLY. The 342 Pexels + Getty + AdobeStock _Preview files in that collection stay unused
+(constitution bans stock; a Preview is not a licensed asset). Captions describe birth work in
+general and never imply these people are Ordani customers. Verified live: petrol resolves,
+all four images 200, no overflow at 390.
+Note: WorldSwitcher uses IntersectionObserver, so a programmatic scrollIntoView does NOT
+trigger the world change; nudge the scroll or you will read a stale background.
+
 ## Pass-63 SHIPPED — all three openings live (deploy nouvaltkt)
 Brief `.claude/briefs/pass-61-page-openings.md` executed in full.
 /work = catalogue lot ($80M at hero scale, Tel Aviv crop as exhibit, provenance line, order
