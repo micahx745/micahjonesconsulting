@@ -9,6 +9,39 @@ WARNS (advisory) on unnamed Agent model; concurrent-session-guard (SessionStart)
 corrected: 31 hook events exist. TWO SESSIONS ran this tree tonight, two budgets on one 5h
 window; three collisions -> LESSONS #12.
 
+## SITE — Pass-76 + 76b COMMITTED, NOT YET PUSHED OR DEPLOYED (operator interrupted the push).
+Six operator items in one pass:
+1. /playbook title 60/60 -> 58/60. It had zero headroom; one added character would fail the gate.
+2. /services doors "not even": columns were equal-height with the foot bottom-pinned, so bottoms
+   aligned and tops did not — "For companies" is one line, "For solo builders and small teams" is
+   two, pushing PACKAGES a line below ENGAGEMENTS at up to 92px. Subgrid now shares all four row
+   tracks. A kicker min-height would have worked at exactly one viewport width.
+3. /work hero showed a hand on a tablecloth — the old crop was framed to exclude every other face.
+   New wider frame (guardicore-telaviv-session.jpg): location sticker cropped out, a second IG
+   sticker on the cloth patched with adjacent cloth. ON THE RECORD: this one DOES show part of a
+   colleague's face in profile. Cost of showing the room; operator asked for the room.
+4. /about: cap portrait -> portrait-desk.jpg, plus the Tel Aviv frame beside the Guardicore bullet.
+   PortraitImage hardcoded "Oakland - 2026" under whatever file was dropped in; neither is
+   verifiable for the shipped photo, so the caption is gone. /about also never stamped an
+   OpeningWorld — it opened on the root default colour until the scroll observer fired.
+5. /contact NEW. A complete contactAction had sat unmounted since an early phase; nav "Contact"
+   pointed at /book, so reaching Micah cost a calendar slot. TWO LIVE DEFECTS in that action:
+   no email field, and replyTo: undefined — every note would have arrived unanswerable.
+6. Booking moved behind the purchase: /services/thanks offers the kickoff call directly.
+
+76b: the door proof lines ("Guardicore: $80M in pipeline...") were inert stats above the CTA.
+Now buttons into /work/guardicore and /work/ordani. Forced the card from a single wrapping <a>
+to a div with three explicit links — a link inside a link is invalid HTML.
+
+OPERATOR DECISION STILL OPEN: home, /services and /playbook still show "Book a free intro call"
+-> /book. If booking is post-purchase only, those become notes and the engagements copy
+("begin with a free call") changes with them. NOT touched — that changes how the $5K+ lane sells.
+
+LESSONS #6 RECURRED (third time): the new /about figcaption rendered "TEL AVIV -2018-2021" with no
+space, because Next 16 RSC drops the space after an inline element when the following text holds
+an entity (&ndash;). Caught in preview, fixed with explicit {" "}. STILL NO MECHANICAL GATE — the
+render-gate reads prerendered HTML and is the natural place for one.
+
 ## SITE — Pass-68/69/70 LIVE (deploy 9bzvmcf6v). Review groups A/D/E done, B/C part-done.
 Pass-68: home ticker removed (markup, const, CSS, and the [data-scroll-track] effect that drove
 it). Also a real bug the review never named: the h1's two lines are separate block spans, so
