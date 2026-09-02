@@ -70,6 +70,17 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   VENDOR GATE (same date): Ordani surfaces never name infrastructure vendors — the case
   study had named the database vendor inside a security-architecture sentence on a HIPAA
   product. Tools list is capability nouns; body says "in the database".
+  SECURITY-DETAIL GATE (operator 2026-09-01: "dont make specific security stuff on the app -
+  hippa compliant app built by a team of birth workers and cyber security experts"). The
+  vendor gate above stopped at vendor NAMES; this extends it to MECHANISMS. Ordani surfaces
+  never describe how the protections work: no row-level policies, no encryption placement, no
+  audit-log or export-gating description. Approved framing is **HIPAA-compliant, built with
+  birth workers and cyber security experts** — the 22 practitioner interviews and the two paid
+  independent reviewers (one healthcare, one cyber security) are the team, and both are
+  already true. Swept from content/work/ordani.mdx the same day (tools list, step 03, "What it
+  became"); it was the only surface carrying mechanism detail. Publishing your control design
+  on a product holding real patient data is a gift to an attacker, and a buyer reads its
+  absence as competence.
   SUPERSEDED 2026-09-01 (operator: "drop the user amounts across the website for ordani, just
   say it has active paying users, it's in beta, we're releasing to public soon"). Every user
   count is now OFF every public surface: no "200", no "hundreds". Approved phrasing is
