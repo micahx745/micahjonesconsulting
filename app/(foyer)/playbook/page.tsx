@@ -619,7 +619,11 @@ export default function PlaybookPage() {
           If your build needs a second pair of hands.
         </h2>
         <div className="cw-services__foot-cta-row">
-          <a href="/services#packages" className="cw-mlink">
+          {/* Pass-74: was /services#packages. The packages moved to their own
+              page in Pass-70, so this dropped a reader who had just clicked
+              "Fixed-price packages" onto a page that no longer had any. The
+              link still resolved, which is why nothing caught it. */}
+          <a href="/packages" className="cw-mlink">
             Fixed-price packages <span aria-hidden>→</span>
           </a>
           <a href="/book" className="cw-mlink">
