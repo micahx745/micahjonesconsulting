@@ -9,7 +9,7 @@ apply on top.
 
 PERFECTION PASS COMPLETE (buyer-persona cold-read + claude-code-guide expert review +
 full 76pp visual walkthrough + editor consistency sweep; all findings fixed or rejected
-with reasons). Book is now **68pp**: the 8 "NEXT · CHAPTER" teaser pages (ch2-9) are
+with reasons). Book is **69pp** as of Pass-73 (was 68pp here; the chapter-6 filecard added one): the 8 "NEXT · CHAPTER" teaser pages (ch2-9) are
 edition-suppressed in the book (kept in standalone/sampler PDFs) — buyer review read
 them as padding; their text also resurrected operator-rejected copy (Vercel/Supabase in
 ch3's, "Product Hunt" in ch7's, "fractionalize" in ch9's) — teaser text now mirrors the
@@ -25,7 +25,7 @@ invent precision), "$5B+" phrasing (ledger-locked, operator-owned).
 - DELIVERY CONTRACT (End page asserts it): the purchase delivery MUST include the
   companion ZIP alongside the book PDF. Bind this into the Stripe webhook build.
 - `src/chapter-01..10.typ` — ten chapters, Typst, one design system (`src/template.typ`)
-- `src/book.typ` — assembled book: cover, queried TOC, 68pp, `output/the-80-percent-wall.pdf`
+- `src/book.typ` — assembled book: cover, queried TOC, 69pp, `output/the-80-percent-wall.pdf`
 - Chapter 1 doubles as the free sampler (`output/the-80-percent-wall-ch1.pdf`); an
   edition state in template.typ suppresses its sales colophon inside the book.
   The sampler is EMBEDDED for delivery: `node product/playbook/embed-ch1.mjs`
@@ -187,7 +187,8 @@ stripe-setup.mjs` with live key → live price. 4. Register live webhook at
 1. Check micah@ inbox: TWO test deliveries of "The 80% Wall — your book and companion
    files" — open both attachments, confirm the PDF and ZIP open clean (the one
    delivery-form check this session cannot do).
-2. END-TO-END READ of output/the-80-percent-wall.pdf (68pp) — the last human gate.
+2. END-TO-END READ of output/the-80-percent-wall.pdf (69pp as of Pass-73) — the last
+   human gate, still open. Nobody has read the assembled book cover to cover.
 3. Decide: separate Stripe account for the book vs shared-with-Ordani (see ⚠ above).
 4. ~~GENERATE the animation assets~~ **DECLINED AND CLOSED 2026-09-02.** The
    AI-generated "vibe coding factory" loop is not being built. DESIGN_BAR R12 bans
