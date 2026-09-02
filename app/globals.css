@@ -2085,7 +2085,11 @@ body {
   letter-spacing: -0.015em;
   max-width: 22ch;
   text-wrap: balance;
-  margin: -18px 0 44px;
+  /* Pass-65: was -18px, which cancelled the all-caps box slack under the
+   * 92px title exactly and left no optical gap at all. ORDANI has no
+   * descenders, so a small positive value reads as a deliberate pair
+   * rather than a collision. */
+  margin: 10px 0 44px;
 }
 [data-mode="cw"] .cw-ordani-wait {
   margin-top: 40px;
@@ -5971,4 +5975,13 @@ body {
   opacity: 0.78;
   margin-top: 10px;
   line-height: 1.6;
+}
+
+/* Pass-65 — the Ordani section closes tighter than the site's 130px rhythm.
+ * It is now the tallest section on the page (lead frame plus a three-up
+ * band), and the default bottom padding stacked with the next section's top
+ * padding left roughly 260px of empty petrol under the captions. Operator:
+ * "tighten that gap". Only the bottom changes; the top keeps the rhythm. */
+[data-mode="cw"] .cw-ord {
+  padding-bottom: 64px;
 }
