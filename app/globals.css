@@ -6301,3 +6301,60 @@ body {
   border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
   opacity: 0.92;
 }
+
+/* ============================================================
+ * Pass-70 — /packages (the fixed-price lane, split out of /services)
+ * and the two objection blocks that stayed behind on /services.
+ * ============================================================ */
+[data-mode="cw"] .cw-pkg-page .cw-pkgs {
+  margin-top: 56px;
+}
+[data-mode="cw"] .cw-pkg-page__next {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 32px 0 0;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-pkg-page__cross {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 72px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  opacity: 0.9;
+}
+
+/* The company-buyer objections: pricing, and why one person. Set as prose at
+ * the reading measure, not as cards — a card implies a feature, and these are
+ * answers to a doubt. */
+[data-mode="cw"] .cw-sv-objection {
+  margin: 0 0 128px;
+  max-width: 62ch;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-sv-objection {
+    margin-bottom: 80px;
+  }
+}
+[data-mode="cw"] .cw-sv-objection__h {
+  font-family: var(--font-cw-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin: 48px 0 14px;
+}
+[data-mode="cw"] .cw-sv-objection__h:first-child {
+  margin-top: 0;
+}
+[data-mode="cw"] .cw-sv-objection p {
+  font-family: var(--font-cw-body);
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.6;
+  margin: 0;
+}

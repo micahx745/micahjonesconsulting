@@ -56,7 +56,9 @@ export async function createPackageCheckout(skuKey: string): Promise<Result> {
       mode: "payment",
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${origin}/services/thanks`,
-      cancel_url: `${origin}/services#packages`,
+      // Pass-70: the packages moved to their own page; a cancelled checkout
+      // used to land back on /services, which no longer shows them.
+      cancel_url: `${origin}/packages`,
       // Shared Stripe account: this tag is what our webhook delivers
       // against (see app/api/stripe/webhook/route.ts).
       metadata: { product: sku.lookupKey },

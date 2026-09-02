@@ -63,6 +63,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // lean on the sitemap. /playbook is a conversion target for the
     // Buyer-B "vibe coder" query space; /book is the site-wide CTA.
     {
+      // Pass-70: the fixed-price lane split out of /services.
+      url: `${BASE_URL}/packages`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${BASE_URL}/book`,
       lastModified: now,
       changeFrequency: "yearly",

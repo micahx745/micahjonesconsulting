@@ -201,40 +201,6 @@ const SERVICES_LD = {
   ],
 };
 
-// Pass-47: OfferCatalog for the fixed-price packages — real prices,
-// eligible for rich results and AI-search citation.
-const PACKAGES_LD = {
-  "@context": "https://schema.org",
-  "@type": "OfferCatalog",
-  name: "Fixed-price packages",
-  url: "https://www.micahjonesconsulting.com/services#packages",
-  itemListElement: [
-    {
-      "@type": "Offer",
-      name: "The Unstick Session",
-      price: "500",
-      priceCurrency: "USD",
-      description:
-        "90-minute working call on a stuck AI-assisted build plus a same-day written fix plan.",
-    },
-    {
-      "@type": "Offer",
-      name: "The Audit",
-      price: "2500",
-      priceCurrency: "USD",
-      description:
-        "Two-week fixed-scope audit: build, production, or traction. Written memo, prioritized fix sequence, debrief call.",
-    },
-    {
-      "@type": "Offer",
-      name: "The Sprint",
-      price: "7500",
-      priceCurrency: "USD",
-      description: "One week embedded on one outcome, shipped.",
-    },
-  ],
-};
-
 export default function ServicesPage() {
   return (
     <main className="cw-services cw-sv">
@@ -243,11 +209,6 @@ export default function ServicesPage() {
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICES_LD) }}
-      />
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(PACKAGES_LD) }}
       />
       {/* D10 (operator-locked 2026-08): the whole pitch stays in one bone
           section; the closing CTA below is the ONE palette shift on this
@@ -298,7 +259,7 @@ export default function ServicesPage() {
               </span>
             </span>
           </a>
-          <a href="#packages" className="cw-door">
+          <a href="/packages" className="cw-door">
             <span className="cw-door__kicker">
               For solo builders and small teams
             </span>
@@ -450,101 +411,38 @@ export default function ServicesPage() {
           </p>
         </section>
 
-        {/* Pass-47 — self-serve packages (operator-locked 2026-09-01:
-          $500 / $2,500 / $7,500; credit bridge; refund before kickoff
-          only). CTAs are honest commerce: email starts the work today,
-          fulfilled manually; Stripe checkout replaces the mailto when
-          the money path is verified end to end. */}
-        <section
-          id="packages"
-          className="cw-pkgs"
-          aria-labelledby="cw-pkgs-title"
-        >
-          <p className="cw-services__kicker">Packages</p>
-          <h2 id="cw-pkgs-title" className="cw-service__title">
-            Three fixed prices. Start this week.
-          </h2>
-          <p className="cw-services__intro">
-            Built for solo builders and small teams. Pick one, email me, and the
-            work starts within the week. No call required.
+        {/* Pass-70: the two things a company buyer asks that this page did
+            not answer. The price note first, because "Scoped on the call" on
+            three of four shapes reads as evasive to someone deciding whether
+            to spend thirty minutes. NOTE: the review proposed a "$5K to $25K"
+            range. That ceiling is not in the fact ledger and I will not invent
+            a price, so this says WHEN the number arrives instead of what it
+            is. A real range would be stronger and only the operator can set
+            it. */}
+        <section className="cw-sv-objection" aria-label="How pricing works">
+          <h2 className="cw-sv-objection__h">On the price</h2>
+          <p>
+            Advisory is the only shape with a standing rate, because it is the
+            only one with a standing shape: a few hours a month, ongoing. The
+            other three are sized to one piece of work, so the number comes out
+            of the call. You get it in writing, with the scope, before anything
+            starts. No proposal theatre and no discovery fee.
           </p>
-          <div className="cw-pkgs__grid">
-            <article className="cw-pkg" aria-label="The Unstick Session, $500">
-              <h3 className="cw-pkg__name">The Unstick Session</h3>
-              <p className="cw-pkg__price">$500</p>
-              <p className="cw-pkg__meta">90 minutes + same-day memo</p>
-              <p className="cw-pkg__body">
-                Ninety minutes live on your stuck build, then a same-day written
-                fix plan: what is wrong, the order to fix it, and the prompts to
-                do it with.
-              </p>
-              <ul className="cw-pkg__list">
-                <li>90-minute working call</li>
-                <li>Same-day written fix plan</li>
-                <li>Your tools, your repo</li>
-              </ul>
-              <a
-                className="cw-pkg__cta"
-                href="mailto:micah@micahjonesconsulting.com?subject=The%20Unstick%20Session%20(%24500)&body=Tell%20me%20what%27s%20stuck%2C%20plus%20repo%20or%20host%20links%3A"
-              >
-                Start by email <span aria-hidden>&rarr;</span>
-              </a>
-            </article>
-            <article
-              className="cw-pkg cw-pkg--lead"
-              aria-label="The Audit, $2,500, recommended"
-            >
-              <span className="cw-pkg__tag">Recommended</span>
-              <h3 className="cw-pkg__name">The Audit</h3>
-              <p className="cw-pkg__price">$2,500</p>
-              <p className="cw-pkg__meta">Two weeks + debrief call</p>
-              <p className="cw-pkg__body">
-                Pick one flavor: Build (architecture and code), Production
-                (security and deploy), or Traction (positioning and
-                go-to-market). I go through it top to bottom and hand you the
-                written audit.
-              </p>
-              <ul className="cw-pkg__list">
-                <li>8-10 page audit memo</li>
-                <li>Prioritized fix sequence</li>
-                <li>One-hour debrief call</li>
-              </ul>
-              <a
-                className="cw-pkg__cta"
-                href="mailto:micah@micahjonesconsulting.com?subject=The%20Audit%20(%242%2C500)&body=Tell%20me%3A%201)%20which%20flavor%20(Build%20%2F%20Production%20%2F%20Traction)%202)%20your%20app%20and%20where%20it%27s%20stuck%203)%20links%3A"
-              >
-                Start by email <span aria-hidden>&rarr;</span>
-              </a>
-            </article>
-            <article className="cw-pkg" aria-label="The Sprint, $7,500">
-              <h3 className="cw-pkg__name">The Sprint</h3>
-              <p className="cw-pkg__price">$7,500</p>
-              <p className="cw-pkg__meta">One week, embedded</p>
-              <p className="cw-pkg__body">
-                One week on one outcome, shipped: the repositioning, the
-                production push, the AI feature. Not a plan. The thing, done.
-              </p>
-              <ul className="cw-pkg__list">
-                <li>One outcome, shipped</li>
-                <li>Daily progress notes</li>
-                <li>Debrief + next-step map</li>
-              </ul>
-              <a
-                className="cw-pkg__cta"
-                href="mailto:micah@micahjonesconsulting.com?subject=The%20Sprint%20(%247%2C500)&body=Tell%20me%20the%20one%20outcome%20you%20want%20shipped%3A"
-              >
-                Start by email <span aria-hidden>&rarr;</span>
-              </a>
-            </article>
-          </div>
-          <p className="cw-pkgs__fine">
-            The rules, in plain terms: every package fee credits toward the next
-            package or an engagement started within 60 days. Full refund any
-            time before kickoff, none after, because the work starts fast. All
-            three include The 80% Wall, my field manual for solo builders, with
-            its companion files.
+
+          <h2 className="cw-sv-objection__h">Why one person</h2>
+          <p>
+            An agency gives you a team and a relay race between them. A
+            full-time hire takes three months to find and another to ramp. I am
+            a senior operator you can start this week, on a scope with an end
+            date, and something named ships in month one. When the work is
+            bigger than one person, I say so on the call.
           </p>
         </section>
+
+        {/* Pass-70: the packages moved to their own page, /packages. A solo
+            builder after a $500 session was loading this page and scrolling
+            past enterprise advisory, four engagement shapes and three
+            case-study receipts to reach them. The door above goes there now. */}
       </section>
 
       {/* The ONE palette shift on /services — espresso, the site's
