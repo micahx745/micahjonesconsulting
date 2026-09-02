@@ -31,6 +31,15 @@ the title-card timing bug. **Opus** for a locked plan, a known repro, builds and
 (`CLAUDE_CODE_SUBAGENT_MODEL`); name `model:` on every Agent call — copy and design legs get
 `fable`, verification legs get `sonnet`.
 
+**Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
+implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
+no command could settle; the other 311 were execution. So a Fable segment ends by writing
+`.claude/briefs/<pass>-<slug>.md` and committing it, not by starting the build. See
+`.claude/briefs/README.md` for the required contents. Budget: 15 top-tier tool calls per arc,
+read-only shell free, no build/deploy/screenshot loops. Three checkpoints bring Fable back
+per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3 ledger by
+`curl -s | grep` rather than screenshot, and one buyer read at the ship gate.
+
 ## Stack
 - Next.js 16.2.6 (App Router, `experimental.viewTransition: true`, Turbopack)
 - React 19.2.6 — `ViewTransition` is imported from `react`, NOT from `next`
