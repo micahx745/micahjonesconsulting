@@ -22,6 +22,15 @@ The `design-tokens.sh` hook warns on any other hex literal.
 
 `motion-discipline.sh` blocks cursor followers, scroll-jacking, marquees, mono aesthetic, and (Phase 1 addition) `syncTouch: true` on Lenis.
 
+## Model routing
+Read `C:/Users/micah/.claude/MODEL_ROUTING.md` when the work class changes. Short form for
+this repo: **Fable** for copy, design direction, positioning, claim honesty, and any "this
+looks bad" call — that tier caught the services-page rebuild, the popularity-badge claim, and
+the title-card timing bug. **Opus** for a locked plan, a known repro, builds and deploys.
+**Sonnet/Haiku** for sweeps, formatting, probes. Subagents default to `sonnet`
+(`CLAUDE_CODE_SUBAGENT_MODEL`); name `model:` on every Agent call — copy and design legs get
+`fable`, verification legs get `sonnet`.
+
 ## Stack
 - Next.js 16.2.6 (App Router, `experimental.viewTransition: true`, Turbopack)
 - React 19.2.6 — `ViewTransition` is imported from `react`, NOT from `next`
@@ -93,7 +102,9 @@ real file exists. The operator flow is a file drop plus a build:
 1. Save the portrait as `public/portrait-context.jpg` (or `.jpeg`/`.png` — all
    three are checked). 2x retina, 4:5 vertical, ~900x1125 or larger. Keep the
    source under 500KB by convention; nothing enforces it in this repo (the
-   `image-budget.sh` hook is unwired — there is no `.claude/settings.json`).
+   `image-budget.sh` hook is unwired). Pass-59 correction: `.claude/settings.json`
+   DOES exist — it carries the playbook check.py PostToolUse hook plus this
+   project's permission rules. It just never wired image-budget.sh.
 2. `pnpm build` — the two-column `/about` intro activates automatically (the CSS
    uses `:has(.cw-portrait)`, so no portrait means no layout change).
 3. Ship per STANDING_TECHNIQUES CARD 1.

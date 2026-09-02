@@ -1,7 +1,7 @@
 ---
 title: ORDANI
-dek: A HIPAA-compliant CRM for birth workers — a company I founded and built. Hundreds of birth workers pay for it; none lost to a competitor.
-role: Founder — research, design, build, ship
+dek: A HIPAA-compliant CRM for birth workers, and a company I founded and built. Hundreds of birth workers pay for it; none lost to a competitor.
+role: Founder (research, design, build, ship)
 tools:
   - Full-stack TypeScript
   - HIPAA-compliant architecture
@@ -27,11 +27,11 @@ stats:
 
 ## The problem
 
-Birth workers — doulas, midwives, perinatal counselors — run their whole practice on group chats, paper intakes, and Google Docs. HIPAA is the law. Compliance is impossible without infrastructure that no software vendor has shipped for this market. So practitioners either break the law, pay $200 a month for software designed for dentists, or hand-roll a system that breaks the first time a client churns.
+Birth workers (doulas, midwives, perinatal counselors) run their whole practice on group chats, paper intakes, and Google Docs. HIPAA is the law. Compliance takes infrastructure, and the tools these practitioners run on were never built for it. So practitioners either break the law, pay $200 a month for software designed for dentists, or hand-roll a system that breaks the first time a client churns.
 
 ## Why it matters
 
-In the United States, non-Hispanic Black women die from maternal causes at 44.8 per 100,000 live births — roughly 3.15 times the rate of non-Hispanic white women (14.2) — per the CDC's *Maternal Mortality Rates in the United States, 2024* release. Doulas and midwives — disproportionately Black women themselves — are one of the most evidence-supported interventions against that gap. The data they collect on their clients is sensitive, high-stakes, and almost never properly protected. The market hasn't shipped for these workers because the market doesn't see them. So I shipped.
+In the United States, non-Hispanic Black women die from maternal causes at 44.8 per 100,000 live births, roughly 3.15 times the rate of non-Hispanic white women (14.2), per the CDC's *Maternal Mortality Rates in the United States, 2024* release. Doulas and midwives, disproportionately Black women themselves, are one of the most evidence-supported interventions against that gap. The data they collect on their clients is sensitive, high-stakes, and almost never properly protected. The market hasn't shipped for these workers because the market doesn't see them. That is the gap I built ORDANI to close.
 
 ## Approach
 
@@ -42,7 +42,7 @@ Across four weeks of unpaid conversations. I asked what they used now, what they
 Existing tools dump fifteen pages of medical forms on a pregnant person at 1 a.m. I built a single conversational flow that adapts to the practitioner's preferences and saves on every step. Intake completion went from a self-reported 40% in beta-zero to a measured 91% in beta-one.
 
 **03. I built encryption at the row level in the database, then I paid for two security reviews.**
-Row-level security policies are the difference between a CRM that says "HIPAA-compliant" on the homepage and one that actually is. I wrote the policies, then paid two independent security reviewers, one in healthcare and one in database security, to attack them. What they found got fixed. The final pass held.
+Row-level security policies are one control among several, sitting alongside the audit trail and the gate on exports. I wrote the policies, then paid two independent security reviewers, one in healthcare and one in database security, to attack the whole system. What they found got fixed. The final pass held.
 
 **04. I shipped to a closed beta of fourteen practitioners first.**
 Free for the first year in exchange for weekly feedback calls. Six months in, eight were active every week, six had referred a peer, and none had left for a competitor. That beta is where today's paying practitioners started.
@@ -53,7 +53,7 @@ One intake screen instead of fifteen. A Tuesday-morning view of the week's clien
 
 ## Outcome
 
-Hundreds of birth workers pay for it today, and none have left for a competitor. The first HIPAA-compliant CRM built for the doula market.
+Hundreds of birth workers pay for it today, and none have left for a competitor. A HIPAA-compliant CRM built for the doula market.
 
 <PullQuote attribution="beta user, name withheld">
 It is the first piece of software that treats my practice the way I treat my clients.

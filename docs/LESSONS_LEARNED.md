@@ -77,13 +77,26 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   wording is retired — the voice rule wants named numbers, and "200 birth
   workers" is both truer and harder-hitting than "hundreds".
 - Customers: anonymized descriptors only (top-10 North American bank, global systemically
-  important bank, world's largest public biomedical-research funder, white-shoe Wall Street
-  law firm). NEVER name TD Bank / Deutsche Bank / NIH / Davis Polk / Peoples Natural Gas.
+  important bank, white-shoe Wall Street law firm). NEVER name TD Bank / Deutsche Bank /
+  NIH / Davis Polk / Peoples Natural Gas.
+  RETIRED 2026-09-01 (operator "go", buyer-review finding): **"world's largest public
+  biomedical-research funder"** — an anonymised descriptor with exactly one possible answer
+  is not anonymised. Superseded on every surface by **"a federal research agency"**. Swept
+  to zero rendered instances the same day (guardicore.mdx dek + Outcome were the only two).
+  Do not reintroduce the old phrasing; the same test applies to any future descriptor —
+  if a reader can name the organisation from it, it is a name.
 - The HR/industry-author engagement: ONE author; reach 8K→290K; RFP-to-close doubled; two
   six-figure retainers; **$3M in contracts won through the RFP platform, including a top
   university and a county government** (operator-supplied 2026-08-31, anonymized per the
   customer rule); the RAG RFP-scanning platform (real custom software). NEVER: the
   three fabricated end-clients (see #2).
+  TRUE BUT UNPUBLISHED as of 2026-09-01 (operator "go", buyer-review finding): **"including
+  a top university and a county government"** stays in this ledger as a fact and is now CUT
+  from the rendered page. The client is described publicly as "name protected", and that
+  detail plus the sector framing narrowed them to a guessable person. "$3M in contracts won"
+  is what ships. Same call retired the two-six-figure-retainers bullet from the Outcome list
+  (the retainer fact still appears once, in the Approach section). A ledger fact being
+  confirmed is not the same as it being publishable — this row is the standing example.
 
 - HIPAA: Ordani is **HIPAA-compliant** (operator confirmation 2026-08-31: "HIPAA compliant is
   true", ruling on the app). "HIPAA-grade" was the pre-confirmation hedge; swept to
@@ -245,4 +258,27 @@ preference. Convention phrasing smuggled in a fact the ledger does not hold.
 "best-selling", "bestseller", "fastest-growing" — build fails on any of them. Preference words
 ("Recommended", "Start here") stay allowed. If real sales data ever supports a rank claim, record
 it in the ledger (#3) first, then lift the specific phrase with a dated note.
+
+## #11 — A style rule only a human counts is not a rule (2026-09-01)
+
+**What happened:** The house voice caps em-dashes at ONE per page, because a run of them reads
+as an AI tell. Enforcement lived in the copy-editor subagent's instructions, so nothing measured
+it. A buyer-persona review of the three case studies counted 5, 8 and 11 against a cap of 1, and
+a follow-up sweep found six shipped .tsx pages carrying 2 to 5 each. The rule had been in
+CLAUDE.md, unbroken on paper and broken everywhere in fact, since the site launched.
+
+**Root cause:** The rule was written where a reader would see it and not where a build would
+check it. Every other voice rule in this repo had a mechanical gate (banned words in
+lib/banned.ts, frontmatter in the Zod schema, vendor names in scripts/vendor-gate.mjs); this one
+had prose. Judgment rules decay silently between the sessions that remember them.
+
+**Gate:** lib/copy-lint-runner.ts now counts em-dashes at build time and fails on any
+content/**/*.mdx over the cap, reporting file, count and line numbers. TSX counts only prose
+outside comments, since this codebase writes long explanatory comment blocks that legitimately
+use them. Two defects were caught while building the gate itself and are worth remembering:
+counting comment-stripped text while reporting raw line numbers cites lines it never counted, so
+the stripper blanks comments while preserving newlines; and blanking a block comment to the empty
+string instead of its own whitespace shifts every line number after it. The .tsx surfaces are
+excluded from the failing set on purpose, listed in the RESUME queue instead, because sweeping
+them edits copy the operator approved hours earlier. Widening the gate is one array.
 

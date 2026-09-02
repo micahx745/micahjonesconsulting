@@ -13,5 +13,31 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(pnpm build:*)",
+      "Bash(pnpm exec tsc:*)",
+      "Bash(pnpm exec prettier:*)",
+      "Bash(pnpm exec tsx:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git rm:*)",
+      "Bash(curl -s http://localhost:*)",
+      "Bash(curl -sL http://localhost:*)",
+      "Bash(sed -n:*)",
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(python:*)"
+    ]
   }
 }

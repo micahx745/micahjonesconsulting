@@ -37,7 +37,10 @@ const FRONTMATTER_TARGET_DIR = "content/work";
  * Recursively walk a directory, yielding absolute paths of files whose
  * extensions match any of the provided list. Skips node_modules, .next, .git.
  */
-async function* walk(dir: string, extensions: string[]): AsyncGenerator<string> {
+async function* walk(
+  dir: string,
+  extensions: string[],
+): AsyncGenerator<string> {
   let entries: string[];
   try {
     entries = await readdir(dir);
@@ -46,7 +49,8 @@ async function* walk(dir: string, extensions: string[]): AsyncGenerator<string> 
   }
 
   for (const entry of entries) {
-    if (entry === "node_modules" || entry === ".next" || entry === ".git") continue;
+    if (entry === "node_modules" || entry === ".next" || entry === ".git")
+      continue;
     const full = join(dir, entry);
     const s = await stat(full);
     if (s.isDirectory()) {
@@ -97,9 +101,80 @@ async function scanMdxFrontmatter(cwd: string): Promise<SchemaFinding[]> {
 }
 
 /**
+ * LESSONS #11 (2026-09-01) — the em-dash cap, made mechanical.
+ *
+ * The house rule (blueprint §8, .claude/CLAUDE.md "Voice") caps em-dashes at ONE per page,
+ * because a run of them is an AI tell. Enforcement was a subagent's eyes, so it drifted: the
+ * three live case studies carried 5, 8 and 11, and four shipped pages carried 4 to 13. A rule
+ * a human has to count by hand is not a rule.
+ *
+ * MDX counts every em-dash, frontmatter included — all of it is rendered prose.
+ * TSX counts only em-dashes OUTSIDE comments: this codebase writes long explanatory comment
+ * blocks that legitimately use them, and the rule is about what a reader sees. Line comments
+ * are stripped only when they begin the line, so a "//" inside a URL cannot swallow real prose
+ * after it on the same line — a false negative is acceptable here, a false positive is not.
+ */
+const EM_DASH = "—";
+const EM_DASH_CAP = 1;
+
+/**
+ * Which extensions FAIL the build. MDX is long-form prose the reader consumes whole, and it is
+ * where the drift was worst (5, 8 and 11 against a cap of 1). The .tsx pages carry their own
+ * smaller debt (2-5 each, verified 2026-09-01); sweeping those touches copy the operator just
+ * approved, so it is queued as its own unit rather than smuggled in behind a lint change.
+ * Widening the gate later is this one line.
+ */
+const EM_DASH_BLOCKING_EXTS = [".mdx", ".md"];
+
+interface EmDashFinding {
+  filePath: string;
+  count: number;
+  lines: number[];
+}
+
+/**
+ * Blank out TSX comments while PRESERVING line structure, so a reported line number always
+ * points at the line a person has to edit. Replacing a block comment with "" instead of its
+ * own newlines is what made the first cut of this gate cite comment lines it had not counted.
+ */
+function visibleProse(source: string, isTsx: boolean): string {
+  if (!isTsx) return source;
+  return source
+    .replace(/\/\*[\s\S]*?\*\//g, (block) => block.replace(/[^\n]/g, " "))
+    .replace(/^([ \t]*)\/\/.*$/gm, "$1");
+}
+
+/** Count em-dashes in prose files; report any blocking file over the cap. */
+async function scanEmDashes(cwd: string): Promise<EmDashFinding[]> {
+  const findings: EmDashFinding[] = [];
+
+  for (const target of SCAN_TARGETS) {
+    const root = join(cwd, target.dir);
+    for await (const filePath of walk(root, target.extensions)) {
+      const relPath = filePath.slice(cwd.length + 1).replace(/\\/g, "/");
+      if (!EM_DASH_BLOCKING_EXTS.some((ext) => relPath.endsWith(ext))) continue;
+
+      const raw = await readFile(filePath, "utf-8");
+      const prose = visibleProse(raw, relPath.endsWith(".tsx"));
+      const count = prose.split(EM_DASH).length - 1;
+      if (count <= EM_DASH_CAP) continue;
+
+      // Line numbers come from the SAME stripped text, so count and citation agree.
+      const lines: number[] = [];
+      prose.split(/\r?\n/).forEach((line, i) => {
+        if (line.includes(EM_DASH)) lines.push(i + 1);
+      });
+      findings.push({ filePath: relPath, count, lines });
+    }
+  }
+
+  return findings;
+}
+
+/**
  * Scan every targeted file for banned words AND validate MDX frontmatter.
  * Throws on any finding. Phase 2 was banned-words-only; Phase 7 adds the
- * frontmatter pass.
+ * frontmatter pass; Pass-59 adds the em-dash cap.
  */
 export async function runCopyLint(): Promise<void> {
   const cwd = process.cwd();
@@ -121,7 +196,9 @@ export async function runCopyLint(): Promise<void> {
   if (bannedFindings.length > 0) {
     errors.push(`[copy-lint] ${bannedFindings.length} banned word finding(s):`);
     for (const f of bannedFindings) {
-      errors.push(`  ${f.filePath}:${f.line}:${f.column} — "${f.word}" in: "...${f.excerpt}..."`);
+      errors.push(
+        `  ${f.filePath}:${f.line}:${f.column} — "${f.word}" in: "...${f.excerpt}..."`,
+      );
     }
   }
 
@@ -134,6 +211,19 @@ export async function runCopyLint(): Promise<void> {
       for (const issue of f.issues) {
         errors.push(`    - ${issue}`);
       }
+    }
+  }
+
+  const emDashFindings = await scanEmDashes(cwd);
+
+  if (emDashFindings.length > 0) {
+    errors.push(
+      `[em-dash-cap] ${emDashFindings.length} file(s) over the ${EM_DASH_CAP}-per-page cap:`,
+    );
+    for (const f of emDashFindings) {
+      errors.push(
+        `  ${f.filePath}: ${f.count} em-dashes (cap ${EM_DASH_CAP}) on lines ${f.lines.join(", ")}`,
+      );
     }
   }
 
