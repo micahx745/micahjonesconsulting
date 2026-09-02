@@ -484,40 +484,30 @@
   footer: none,
   header: none,
 )[
-  #grid(
-    columns: (1fr, auto),
-    kicker("A field manual for solo builders", fill: cw-bone),
-    kicker("First edition · 2026.08", fill: cw-bone.transparentize(45%)),
-  )
+  // Operator direction 2026-09-01: everything centred; the dated edition stamp,
+  // the spine wording and the bottom spec block removed. What is left is the
+  // one thing a cover has to do, which is say what the book is.
+  #set align(center)
+  #kicker("A field manual for solo builders", fill: cw-bone)
   #v(4pt)
   #line(length: 100%, stroke: 0.7pt + cw-bone.transparentize(70%))
-  #v(34pt)
+  #v(1fr)
   #text(font: display-font, size: 76pt, weight: 800, fill: cw-bone, tracking: -0.02em)[The]
-  #v(-30pt)
+  #v(-48pt)
   #text(font: display-font, size: 76pt, weight: 800, fill: cw-terracotta, tracking: -0.02em)[80%]
-  #v(-30pt)
+  #v(-48pt)
   #text(font: display-font, size: 76pt, weight: 800, fill: cw-bone, tracking: -0.02em)[Wall.]
-  #v(18pt)
-  #box(width: 330pt)[
-    #set par(leading: 0.68em)
+  #v(22pt)
+  #box(width: 360pt)[
+    #set par(leading: 0.68em, justify: false)
+    #set align(center)
     #text(font: body-font, size: 12.5pt, fill: cw-bone.transparentize(10%))[
       Why AI-assisted builds stall between demo and production, and
-      the systems that carry them the rest of the way.
+      what it takes for one person to ship a real company.
     ]
   ]
   #v(1fr)
-  #block(width: 100%, stroke: 0.8pt + cw-bone.transparentize(55%), inset: (x: 16pt, y: 12pt), radius: 2pt)[
-    #set text(font: mono-font, size: 7pt, fill: cw-bone.transparentize(20%), tracking: 0.09em)
-    #grid(
-      columns: (auto, 1fr, auto, 1fr),
-      column-gutter: 14pt,
-      row-gutter: 7pt,
-      text(fill: cw-saffron, weight: 700)[AUTHOR], [MICAH JONES],
-      text(fill: cw-saffron, weight: 700)[CHAPTERS], [TEN · COMPANION FILES],
-      text(fill: cw-saffron, weight: 700)[READER], [SOLO BUILDERS ON AI TOOLS],
-      text(fill: cw-saffron, weight: 700)[REV], [2026.08],
-    )
-  ]
+  #kicker("Micah Jones", fill: cw-bone.transparentize(30%))
 ]
 
 // Book TOC: queried page numbers via the ch-NN labels.

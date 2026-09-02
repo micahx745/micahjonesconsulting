@@ -140,9 +140,11 @@ export default function PlaybookPage() {
       {/* 1. THE OBJECT — espresso */}
       <header className="cw-lp-object" data-world="espresso">
         <div className="cw-lp-book">
-          <div className="cw-lp-book__spine" aria-hidden>
-            <span>The 80% Wall · Micah Jones · First edition</span>
-          </div>
+          {/* The binding stays: it is what makes the cover read as an object.
+              The wording on it went (operator, 2026-09-01) — it repeated the
+              title at 8px and said nothing the cover did not already say. */}
+          <div className="cw-lp-book__spine" aria-hidden />
+
           <Image
             src="/playbook/book-cover.png"
             alt="The cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type."
@@ -155,12 +157,14 @@ export default function PlaybookPage() {
         <div className="cw-lp-object__text">
           <p className="cw-lp-kicker">A field manual for solo builders</p>
           <h1 className="cw-lp-object__title">
-            Your build got to 80%. Here is the rest of the way.
+            The AI handed you the code. Now ship the company.
           </h1>
           <p className="cw-lp-object__sub">
-            Ten chapters on the walls between demo and production, and the
-            systems that carry a solo build through them. Sixty-eight pages.
-            Twenty-six working files. Every build-log entry true and dated.
+            Ten chapters on the part the AI leaves to you: auth, deploys,
+            payments, security, compliance, and the first ten users who stay. I
+            wrote it after building a HIPAA-compliant SaaS for birth workers,
+            solo, with Claude Code and Cursor. Sixty-eight pages, twenty-six
+            working files, every build-log entry true and dated.
           </p>
           <div className="cw-lp-object__row">
             <a href="#pb-free" className="cw-mlink">
