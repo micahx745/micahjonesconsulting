@@ -38,9 +38,13 @@ Operator said **Stripe is last**.
   mentioned"), after the flag that Guardicore ships 2018-2021 against a 2015 founding. Ledger
   separates the fact from the public rendering. Sub+byline now 53 words. HANDOFF's "generate
   the animation assets" item struck: the factory loop is declined and closed, not queued.
-- **DEPLOY APPROVED 2026-09-02**, operator verbatim: **"keep the name on the cover, deploy 66
-  through 70"**. Author name STAYS at the cover foot (his ruling). CARD 1 ship flow run for
-  d6d6eb9.
+- **SHIPPED TO PRODUCTION 2026-09-02 — deploy k05cwwk29** (operator verbatim: "keep the name on
+  the cover, deploy 66 through 70"). Author name STAYS at the cover foot, his ruling. Pass-66..70
+  are LIVE. CARD 1 run in full: pushed c07c77d, both domains re-aliased to the newest
+  (push-triggered) deployment, **data-dpl-id MATCHES across both** (dpl_4qCoHbyQL2DJ6Tkm...),
+  apex 308 -> www. Markers verified live on BOTH domains: new paragraph, "early" (no "very
+  early"), /work link, wall chart, CTA pill, prompt diff, "Coming soon". New cover is
+  byte-identical on prod and disk (sha 5a1127ec, 263121 bytes).
 - **CLOSED:** "early-stage startup" is no longer owed — he gave per-company stage 2026-09-02 and
   it is ledgered. Guardicore no longer renders any job title, so the *sales* wording is retired
   from this page; the ledger records why it was there and what replaced it.
