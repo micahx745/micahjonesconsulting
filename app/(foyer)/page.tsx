@@ -306,11 +306,28 @@ export default function ColorWorldsHome() {
           bordered photograph, one link. The photo is the /about
           portrait grammar; the copy carries the value props. Nothing
           animates beyond the standard reveals. */}
+      {/* Pass-64 (operator: the Ordani part "feels bare - make it more
+          special/premium"). Two changes, no new motion.
+
+          1. The section takes PETROL. That is already Ordani's world in
+             WorldSwitcher's map and it was the only mapped world the site
+             never used, so the one product section now has a colour nothing
+             else on the page has. It costs nothing: the palette shift is the
+             site's existing signature gesture.
+          2. It becomes a picture edit rather than one photo. The lead image
+             is a doula taking notes on a pad beside a pregnant client, which
+             is the paper intake this product replaces, stated without a word.
+             Three smaller frames follow.
+
+          Photography is the operator's own licensed birth-work shoot (rights
+          confirmed 2026-09-01), the same session as the frame already on the
+          site. Captions describe birth work in general and never imply these
+          people are Ordani customers, because they are not. */}
       <section
-        className="cw-block"
+        className="cw-block cw-ord"
         id="ordani"
         data-section
-        data-world="bone"
+        data-world="petrol"
         aria-labelledby="cw-ordani-title"
       >
         {/* Pass-17 (operator): "Ordani needs to be bigger - the built for
@@ -360,17 +377,55 @@ export default function ColorWorldsHome() {
 
           <figure className="cw-ordani-split__fig cw-reveal">
             <Image
-              src="/ordani-work.jpg"
-              alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
-              width={900}
-              height={698}
+              src="/ordani-intake.jpg"
+              alt="A doula sits with a pregnant client on a couch, writing on a notepad as they talk."
+              width={1600}
+              height={1068}
               sizes="(min-width: 1100px) 420px, 100vw"
               className="cw-ordani-split__img"
             />
             <figcaption className="cw-ordani-split__cap">
+              The intake, on paper <span aria-hidden>·</span> what Ordani
+              replaces
+            </figcaption>
+          </figure>
+        </div>
+
+        <div className="cw-ord-band cw-reveal">
+          <figure>
+            <Image
+              src="/ordani-work.jpg"
+              alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
+              width={900}
+              height={698}
+              sizes="(min-width: 900px) 33vw, 100vw"
+            />
+            <figcaption>
               Labor support <span aria-hidden>·</span> the work the software
               protects
             </figcaption>
+          </figure>
+          <figure>
+            <Image
+              src="/ordani-hands.jpg"
+              alt="Two hands working along a client's lower leg on a draped table."
+              width={1100}
+              height={733}
+              sizes="(min-width: 900px) 33vw, 100vw"
+            />
+            <figcaption>
+              Bodywork <span aria-hidden>·</span> between appointments
+            </figcaption>
+          </figure>
+          <figure>
+            <Image
+              src="/ordani-newborn.jpg"
+              alt="A parent holds a newborn in a nursery chair."
+              width={1100}
+              height={734}
+              sizes="(min-width: 900px) 33vw, 100vw"
+            />
+            <figcaption>The reason the record has to be right</figcaption>
           </figure>
         </div>
       </section>

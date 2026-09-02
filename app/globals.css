@@ -4836,16 +4836,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-[data-mode="cw"] .cw-lp-book__spine span {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg); /* motion-ok: static spine text orientation */
-  font-family: var(--font-cw-mono);
-  font-size: 8px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-cw-bone) 60%, transparent);
-  white-space: nowrap;
-}
+/* Spine wording removed 2026-09-01 (operator). The strip stays as the binding. */
 [data-mode="cw"] .cw-lp-book img {
   display: block;
   width: 100%;
@@ -5937,4 +5928,47 @@ body {
 /* The footer returns to bone so the page closes the way the others do. */
 [data-mode="cw"] .cw-bk__foot {
   padding-top: 72px;
+}
+
+/* ============================================================
+ * Pass-64 — the Ordani section as a picture edit (.cw-ord*)
+ * Operator: "feels bare - make the ordani part feel more special/premium".
+ * The section now runs on PETROL (already Ordani's world in WorldSwitcher's
+ * map, and the only mapped world the page never used), and the single photo
+ * becomes a lead frame plus a three-up band. Full colour with a hairline
+ * border, matching the frame that was already here. Zero motion.
+ * ============================================================ */
+[data-mode="cw"] .cw-ord-band {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2.2vw, 28px);
+  margin-top: clamp(48px, 6vw, 80px);
+  max-width: 1100px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-ord-band {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 40px;
+  }
+}
+[data-mode="cw"] .cw-ord-band figure {
+  margin: 0;
+}
+[data-mode="cw"] .cw-ord-band img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+[data-mode="cw"] .cw-ord-band figcaption {
+  font-family: var(--font-cw-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.78;
+  margin-top: 10px;
+  line-height: 1.6;
 }
