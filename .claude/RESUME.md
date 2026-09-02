@@ -28,13 +28,20 @@ Ledger moves that must not be reverted: Guardicore $1.2M average deal size SUPER
 $150K delta, and the Trillions line is RESTORED on operator confirmation; Ordani is "active
 paying users", in beta, public release coming.
 
-## NEXT: /services + /book openings — SPECIFIED, operator said "go", not yet built
-Brief with exact copy strings, layout spec and verification: `.claude/briefs/pass-61-page-openings.md`.
-/work is DONE and live (catalogue lot: $80M at hero scale, Tel Aviv exhibit, provenance line,
-kicker+headline+lede deleted, order hand-set so Guardicore leads). Remaining: /services = cut
-the header, two full-height columns split by one rule; /book = espresso timetable slot grid
-labelled "Slots I hold open" (availability is confirmed by hand). Opening world is hoisted into
-<head> so no page paints terracotta first.
+## Pass-63 SHIPPED — all three openings live (deploy nouvaltkt)
+Brief `.claude/briefs/pass-61-page-openings.md` executed in full.
+/work = catalogue lot ($80M at hero scale, Tel Aviv crop as exhibit, provenance line, order
+hand-set so Guardicore leads). /services = the two doors ARE the page: full-height columns
+split by one rule, each ending on a receipt; header deleted, h1 now sr-only; dead
+.cw-sv-door CSS removed. /book = espresso, offer + terms left, form in a bordered card right,
+slot label "Slots I hold open". OpeningWorld puts the opening colour in <head>, so no page
+paints terracotta first. Verified live at 1440 + 390: no overflow, 52px tap target, all five
+booking fields intact.
+NOT BUILT ON PURPOSE: the brief's /book timetable grid rewrites the operator-verified booking
+path and needs calendar sync first. Its own unit.
+Ordani (Pass-62/63): no security mechanisms anywhere, and no "hired reviewers" — it says a
+small team exists and nothing about what it does. /about's "Built and shipped by one person"
+contradicted that and now reads "I founded it and I write the code".
 
 ## OPEN OPERATOR QUESTIONS
 CLOSED 2026-09-01: deploy (done), photo rights (owned; only lemandjune used, stock stays
