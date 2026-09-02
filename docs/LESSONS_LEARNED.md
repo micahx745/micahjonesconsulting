@@ -355,3 +355,43 @@ cannot be swept into your commit, and check whether a page you are about to rebu
 been rebuilt. It never blocks, because concurrent sessions are often deliberate; it only removes
 "I didn't know". Recorded alongside it in `~/.claude/MODEL_ROUTING.md` §6, which also notes that
 routing cannot see this problem at all, since routing is per-session and this is between them.
+
+## #13 — A link that resolves is not a link that works (2026-09-02)
+
+**What happened.** Pass-70 moved the fixed-price packages off `/services` onto their own
+`/packages`. One inbound link was missed: the end of `/playbook` offered
+**"Fixed-price packages →"** pointing at `/services#packages`. Pass-70's own commit message
+flagged it as "FLAGGED, NOT FIXED — other session's lane", and then it sat live for four
+passes until the operator asked about it by hand.
+
+**Why nothing caught it.** `/services#packages` returned **200**. The route still existed;
+only the anchor had gone. There is no 404, no build error, no type error, no failing test,
+and no broken-link checker that fires on this. The browser loads the page and parks at the
+top. A reader who clicked a link labelled "Fixed-price packages" landed on a page with no
+packages on it and no explanation. Every automated signal in the repo said the site was fine.
+
+**The class, stated generally.** Any time a section moves, is renamed, or loses its `id`,
+every link into it becomes live, resolving, and wrong. The failure is invisible to everything
+that checks *whether a request succeeds* and visible only to something that checks *whether
+the destination still contains what the anchor text promised*.
+
+**The gate.** `scripts/render-gate.mjs`, last step of `pnpm build`. It reads the prerendered
+HTML in `.next/server/app` — the bytes a reader actually receives, not the source, so it needs
+no guesses about route resolution and cannot miss a link a component injected. For every page
+it checks:
+
+- every internal `href` names a route that exists (301 sources are read out of
+  `next.config.ts`, so the gate cannot drift from the redirect table)
+- every `#fragment`, same-page or cross-page, names an `id` that is actually rendered
+- `<title>` ≤ 60 and `<meta description>` ≤ 160, entity-decoded first, and **skipped on
+  `noindex` pages** — those never appear in a result, and three standing false positives is
+  how a gate gets switched off
+
+**Proof it works.** The bug was reintroduced into the built HTML and the gate named it:
+`/playbook  href="/services#packages" — /services renders, but has no id="packages"`.
+A link to a nonexistent route was caught the same way. A gate that has never failed is
+untested; make it fail on purpose before trusting it.
+
+**Caught on the same run.** `/playbook` rendered a 61-char title and a 204-char description.
+The root layout appends `" — Micah Jones"`, so a page title that looks fine in the source is
+14 characters longer in the SERP. Measure the rendered `<title>`, never the literal.
