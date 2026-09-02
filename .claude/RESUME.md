@@ -37,10 +37,9 @@ Operator said **Stripe is last**.
 - **FLAGGED, operator's call:** he said Guardicore "super early"; it ships as "very early", but
   his own case study publishes **2018-2021** and Guardicore was founded 2015. One-word fix to
   "early" if he wants. Also unresolved: the author name I added to the cover foot.
-- **OPERATOR OWES:** "early-stage startup" as a phrase is now MOOT (he gave per-company stage
-  2026-09-02, ledgered). Still open —
-  company, stage, role, years; goes to LESSONS #3 first. Cybersecurity renders as *sales*, never
-  as a technical role, because the book sells a security chapter.
+- **CLOSED:** "early-stage startup" is no longer owed — he gave per-company stage 2026-09-02 and
+  it is ledgered. Guardicore no longer renders any job title, so the *sales* wording is retired
+  from this page; the ledger records why it was there and what replaced it.
 - Gotcha: the browser pane throttles animation clocks to 0 and caches images; seek via the Web
   Animations API and re-fetch to verify, never trust the pane.
 
