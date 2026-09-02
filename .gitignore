@@ -52,3 +52,10 @@ __pycache__/
 *.pyc
 
 .env*.local
+
+# Review package: the .md analysis + brief are worth keeping (small, real research).
+# The binaries under it are derived exports — screenshots, the compiled book, renders.
+product/playbook/review-package/screenshots/
+product/playbook/review-package/page-renders/
+product/playbook/review-package/the-book/
+product/playbook/review-package/*.zip
