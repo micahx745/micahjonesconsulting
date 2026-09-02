@@ -40,8 +40,10 @@ labelled "Slots I hold open" (availability is confirmed by hand). Opening world 
 CLOSED 2026-09-01: deploy (done), photo rights (owned; only lemandjune used, stock stays
 unused), Jerusalem photo (rejected), Tel Aviv sticker (cropped out, with a colleague's face),
 Ordani encryption-vs-RLS (mechanism detail removed entirely, Pass-62).
-OPEN: 1. Ship month for the spec card. 2. Portrait for § 0.1 + the share card. 3. Real
-early-reader quotes, attributed only. 4. "$149 after" needs a real raise date. 5. Price lock?
+CLOSED by operator 2026-09-01 PM, shipped in Pass-63 (922b746, NOT yet deployed): ship month
+= "Coming soon"; portrait = public/hero-context.jpg (him at a laptop) in the § 0.1 rail.
+OPEN: 3. Real early-reader quotes, attributed only. 4. "$149 after" needs a real raise date
+(operator says Stripe is LAST, so this can wait). 5. Price lock?
 6. SECRET ROTATION overdue (Resend, ICS, Stripe test). 7. Stripe go-live. 8. tsx em-dash debt:
 6 files / 13 over cap. 9. Wire `page-cro` into /premium audit. 10. Settings prune: ~21 of 460
 redundant, ZERO credentials. 11. Ordani section on home still feels bare; birth-worker photos
