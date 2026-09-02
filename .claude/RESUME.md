@@ -34,9 +34,13 @@ Operator said **Stripe is last**.
   which is what makes "remove the sales part" honest. Byline shrank to name + `/work` link
   (underline saffron; `--cw-accent` is terracotta here = 2.39:1). Cut: $20M+ (still in footer +
   /about), page/file counts (spec card has them). LEDGER updated with both operator instructions.
-- **FLAGGED, operator's call:** he said Guardicore "super early"; it ships as "very early", but
-  his own case study publishes **2018-2021** and Guardicore was founded 2015. One-word fix to
-  "early" if he wants. Also unresolved: the author name I added to the cover foot.
+- **70:** RULED — flat "early" for all four (he: "just say early for all those companies
+  mentioned"), after the flag that Guardicore ships 2018-2021 against a 2015 founding. Ledger
+  separates the fact from the public rendering. Sub+byline now 53 words. HANDOFF's "generate
+  the animation assets" item struck: the factory loop is declined and closed, not queued.
+- **DEPLOY APPROVED 2026-09-02**, operator verbatim: **"keep the name on the cover, deploy 66
+  through 70"**. Author name STAYS at the cover foot (his ruling). CARD 1 ship flow run for
+  d6d6eb9.
 - **CLOSED:** "early-stage startup" is no longer owed — he gave per-company stage 2026-09-02 and
   it is ledgered. Guardicore no longer renders any job title, so the *sales* wording is retired
   from this page; the ledger records why it was there and what replaced it.
