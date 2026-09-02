@@ -40,6 +40,7 @@ Check on every card edit: open the target MDX and confirm each claim exists ther
 stages. The wrong versions keep trying to come back via stale docs and reviewer memory.
 
 **The ledger (operator-confirmed, current):**
+
 - Guardicore: **$80M pipeline generated, $14M revenue**, enterprise sales manager (no team
   led). NEVER: "$15M pipeline", "trained the sales team", "built the channel".
   Operator-supplied 2026-09-01, both now live on the case study: **average enterprise deal
@@ -63,6 +64,20 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   $2.33B + Akamai–Guardicore $600M = $5.58B; Neuton undisclosed, contributes $0. Sources
   pinned in content/citations.ts (EXITS_COMBINED_VALUE). NEVER: "Two exits". RETIRED (swept
   to zero rendered instances 2026-08-30): "Three companies I helped build reached an exit".
+  **JOINING STAGE — operator-supplied 2026-09-02**, verbatim: "postmates was earlysih,
+  surveymonkey earlyish, guardicore super early, neuto ai super early. name drop". So:
+  Postmates and SurveyMonkey EARLYISH; Guardicore and Neuton.AI VERY EARLY. This authorises
+  naming the four companies on public surfaces WITH their joining stage. It does NOT authorise
+  founder, founding-team, co-founder, or employee-number claims for any of them, and it does
+  not lift the HOLD on his Postmates role and years. First rendered on /playbook (Pass-68).
+  **NAME THE COMPANY, NOT THE JOB — operator 2026-09-02, verbatim: "remove the sales part
+  too"**. He does not want "Enterprise cybersecurity sales at Guardicore" on the page. The
+  standing concern is recorded rather than silently dropped: an unqualified "cybersecurity
+  background" beside a book chapter called "The security pre-flight" implies a technical
+  security role the ledger does not support. The resolution is to state NO role at all and
+  lean on the ledger's own umbrella verb, "worked inside". A bare name-drop makes no role
+  claim, so it cannot make a false one. Any future copy that reintroduces a Guardicore job
+  title must use the real one (enterprise sales manager) or none.
 - Ordani: **"hundreds of paying birth workers", none lost to a competitor** (operator
   update 2026-08-31: NO public user count. The paying framing replaces the 200 figure on
   EVERY public surface incl. metadata, JSON-LD, llms.txt, mdx dek/indexLine; 200 stays
@@ -204,7 +219,7 @@ flat white on cream (1.28:1, effectively invisible) on five routes and shipped t
 two more passes.
 
 **Root cause:** `.cw-nav` is `position: fixed` + `z-index: 200`, which establishes a stacking
-context. A blended child blends against *that* context's backdrop — transparent — not the page
+context. A blended child blends against _that_ context's backdrop — transparent — not the page
 behind it. The blend silently became a no-op.
 
 **Why it survived review:** `getComputedStyle` reports `color: #fff` whether the blend resolves
@@ -230,8 +245,8 @@ via Resend, but with no SPF/DKIM/DMARC anywhere the domain was unverified, so Re
 rejected the send and the lead survived only in a Vercel server log.
 
 **Root cause:** the address was treated as copy. Copy gates (`copy-lint`, the banned-word
-sweep, the design review) all check that a string is *correct*, never that the thing it
-names *functions*. Nothing in the build, the audit, or the ship runbook resolves DNS.
+sweep, the design review) all check that a string is _correct_, never that the thing it
+names _functions_. Nothing in the build, the audit, or the ship runbook resolves DNS.
 The contact server action was also dead code (no importer), which hid the fact that
 nothing on the site had ever exercised the mail path.
 
@@ -272,7 +287,7 @@ explicit, with the alias removed seconds before. Never via bare CLI `domains add
 
 **What happened:** The Pass-56 /services rebuild collapsed the 3×4 engagement matrix into one
 four-shape table and tagged the operator-weighted Embedded row "Most chosen". No sales data
-supports a frequency claim; the operator lock was a *preference* (weighted/recommended), not a
+supports a frequency claim; the operator lock was a _preference_ (weighted/recommended), not a
 count. Caught on the verification screenshot before commit; changed to "Recommended".
 
 **Root cause:** Reaching for pricing-page convention ("most popular") while restating a
@@ -297,7 +312,7 @@ lib/banned.ts, frontmatter in the Zod schema, vendor names in scripts/vendor-gat
 had prose. Judgment rules decay silently between the sessions that remember them.
 
 **Gate:** lib/copy-lint-runner.ts now counts em-dashes at build time and fails on any
-content/**/*.mdx over the cap, reporting file, count and line numbers. TSX counts only prose
+content/\*_/_.mdx over the cap, reporting file, count and line numbers. TSX counts only prose
 outside comments, since this codebase writes long explanatory comment blocks that legitimately
 use them. Two defects were caught while building the gate itself and are worth remembering:
 counting comment-stripped text while reporting raw line numbers cites lines it never counted, so
@@ -305,7 +320,6 @@ the stripper blanks comments while preserving newlines; and blanking a block com
 string instead of its own whitespace shifts every line number after it. The .tsx surfaces are
 excluded from the failing set on purpose, listed in the RESUME queue instead, because sweeping
 them edits copy the operator approved hours earlier. Widening the gate is one array.
-
 
 ## #12 — Two sessions on one repo collide silently, three ways (2026-09-01)
 

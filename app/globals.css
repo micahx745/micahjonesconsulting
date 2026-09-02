@@ -4887,7 +4887,27 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 18px 28px;
-  align-items: baseline;
+  align-items: center;
+}
+/* The hero pill. .cw-cta fills with --cw-accent, and the saffron override that
+ * makes that gold is scoped to .cw-playbook, which this page stopped using at
+ * the Pass-55 rebuild (it is .cw-lp now). So --cw-accent resolves to espresso
+ * here and the pill rendered espresso-on-espresso, invisible. Caught by a
+ * computed-contrast check reading 1.00 before it shipped.
+ * Fill and label are set explicitly rather than by re-pointing the world token,
+ * which other elements in this world depend on. Saffron with espresso text is
+ * 5.97:1; the bone label .cw-cta ships by default would be 2.1:1 on gold. */
+[data-mode="cw"] .cw-lp-object__cta {
+  background: var(--color-cw-saffron);
+  border-color: var(--color-cw-saffron);
+  color: var(--color-cw-espresso);
+  font-weight: 700;
+}
+[data-mode="cw"] .cw-lp-object__cta:hover,
+[data-mode="cw"] .cw-lp-object__cta:focus-visible {
+  background: color-mix(in srgb, var(--color-cw-saffron) 88%, #fff);
+  border-color: color-mix(in srgb, var(--color-cw-saffron) 88%, #fff);
+  color: var(--color-cw-espresso);
 }
 [data-mode="cw"] .cw-lp-object__meta {
   font-family: var(--font-cw-mono);

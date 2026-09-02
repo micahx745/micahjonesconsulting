@@ -191,11 +191,23 @@ export default function PlaybookPage() {
             Guardicore, acquired by Akamai in 2021.
           </p>
           <WallChart />
+          {/* The primary action, as a real button rather than a text link.
+              WAITLIST PHASE: the $99 rail is built and proven in test mode but
+              the operator is flipping Stripe last, so the strongest action that
+              actually works today is chapter one. When the button flips, this
+              same pill becomes "Buy the manual · $99" and the email link
+              demotes to the "not today" path beneath it (brief §8). Nothing
+              here promises a purchase the page cannot currently take. */}
           <div className="cw-lp-object__row">
-            <a href="#pb-free" className="cw-mlink">
-              Read chapter one free, by email <span aria-hidden>↓</span>
+            <a href="#pb-free" className="cw-cta cw-lp-object__cta">
+              Get chapter one free
+              <span className="cw-arr" aria-hidden>
+                →
+              </span>
             </a>
-            <p className="cw-lp-object__meta">$99 at launch · $149 after</p>
+            <p className="cw-lp-object__meta">
+              $99 at launch · $149 after · coming soon
+            </p>
           </div>
         </div>
       </header>
