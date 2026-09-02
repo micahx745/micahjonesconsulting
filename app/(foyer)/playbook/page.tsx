@@ -148,9 +148,80 @@ const FAQS = [
   },
 ] as const;
 
+// Flip this the same commit the buy button goes live. It gates the Offer block
+// below: asserting a purchasable offer in structured data while the page can
+// only take an email would be a machine-readable claim that is not true, and
+// Google treats availability as a factual statement about the product.
+const PURCHASE_LIVE = false;
+
+const BOOK_URL = "https://www.micahjonesconsulting.com/playbook";
+
+// Book + Offer. Every value here is checkable against the artifact itself:
+// 68 pages and 10 chapters are counted from the compiled PDF, and the 26
+// companion files are counted from the shipped ZIP.
+const BOOK_LD = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  name: "The 80% Wall",
+  headline: "The 80% Wall",
+  bookFormat: "https://schema.org/EBook",
+  numberOfPages: 68,
+  inLanguage: "en",
+  url: BOOK_URL,
+  image: "https://www.micahjonesconsulting.com/playbook/book-cover.png",
+  description:
+    "A field manual for solo builders: why AI-assisted builds stall between demo and production, and the systems that carry them through. Ten chapters, 68 pages, 26 companion files.",
+  author: {
+    "@type": "Person",
+    name: "Micah Jones",
+    url: "https://www.micahjonesconsulting.com/about",
+  },
+  publisher: { "@type": "Person", name: "Micah Jones" },
+  about: [
+    "AI-assisted software development",
+    "Shipping to production",
+    "Application security",
+    "Deployment",
+  ],
+  ...(PURCHASE_LIVE
+    ? {
+        offers: {
+          "@type": "Offer",
+          price: "99",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          url: BOOK_URL,
+          seller: { "@type": "Person", name: "Micah Jones" },
+        },
+      }
+    : {}),
+};
+
+// The five questions already on the page, generated from the same array that
+// renders them so the two can never drift apart.
+const FAQ_LD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function PlaybookPage() {
   return (
     <main className="cw-services cw-lp" data-section>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(BOOK_LD) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_LD) }}
+      />
       {/* 1. THE OBJECT — espresso */}
       <header className="cw-lp-object" data-world="espresso">
         <div className="cw-lp-book">
@@ -429,13 +500,39 @@ export default function PlaybookPage() {
                 shipped
               </figcaption>
             </figure>
+            {/* The 26 files were a number in a spec row and nowhere else. They
+                are the difference between a PDF and a toolkit, so they are
+                itemised here. Counts are from the shipped ZIP: 10 + 6 + 9 + a
+                README. The two SPEC examples named last appear in no chapter,
+                so a buyer had no way to know they exist. */}
+            <ul className="cw-lp-files">
+              <li>
+                <strong>Ten pre-flight checklists.</strong> One per chapter, the
+                card above being the security one. You run them the same night.
+              </li>
+              <li>
+                <strong>Six prompt files</strong> for Claude Code and Cursor: a
+                session opener, an architecture mapper, an invariant extractor,
+                a diff reviewer, a payments wiring prompt, and an outreach
+                drafter.
+              </li>
+              <li>
+                <strong>Nine templates</strong>, including three worked SPEC
+                files written end to end: a booking app, a photographer gallery,
+                and an internal ops tracker. Also a starter invariants file, an
+                architecture sample, and a real env example.
+              </li>
+            </ul>
+            <p className="cw-lp-files__note">
+              Every future edition is included, at no charge, to the same email.
+            </p>
           </div>
           <aside className="cw-lp-block__rail">
             § 0.7
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>
-              Twenty-six companion files: the ten cards, six prompt files for
-              Claude Code and Cursor, and the templates with worked examples.
+              The gallery and ops SPEC files appear in no chapter. They are
+              there because writing a spec is easier with one you can copy.
             </p>
           </aside>
         </section>

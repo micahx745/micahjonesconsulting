@@ -5201,6 +5201,33 @@ body {
   }
 }
 
+/* The companion-file breakdown. The 26 files were a number in a spec row; this
+ * is the only place on the page that says what they are. Sits on bone. */
+[data-mode="cw"] .cw-lp-files {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  max-width: 40rem;
+}
+[data-mode="cw"] .cw-lp-files li {
+  padding-left: 16px;
+  border-left: 2px solid
+    color-mix(in srgb, var(--color-cw-terracotta) 55%, transparent);
+  font-size: 15px;
+  line-height: 1.55;
+}
+[data-mode="cw"] .cw-lp-files strong {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+}
+[data-mode="cw"] .cw-lp-files__note {
+  margin: 16px 0 0;
+  font-size: 14px;
+  opacity: 0.72;
+}
+
 /* ============================================================
  * The prompt diff (.cw-diff) — two sentences from chapter two.
  * The whole design job is that the difference should be visible
