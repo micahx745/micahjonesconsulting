@@ -6133,9 +6133,13 @@ body {
   letter-spacing: -0.03em;
   text-transform: uppercase;
   margin-bottom: 24px;
+  /* Pass-76b: the card stopped being an <a> so it could hold more than one
+   * destination. The title carries the link now. */
+  color: inherit;
+  text-decoration: none;
 }
-[data-mode="cw"] .cw-door:hover .cw-door__name,
-[data-mode="cw"] .cw-door:focus-visible .cw-door__name {
+[data-mode="cw"] .cw-door__name:hover,
+[data-mode="cw"] .cw-door__name:focus-visible {
   color: var(--color-cw-terracotta);
 }
 [data-mode="cw"] .cw-door__body {
@@ -6161,19 +6165,38 @@ body {
   text-transform: uppercase;
   margin-bottom: 14px;
 }
-[data-mode="cw"] .cw-door__receipt {
+/* Pass-76b. Was .cw-door__receipt: a flat stat with a border-top and nowhere
+ * to go, sitting directly above the CTA. Operator read it as weak and out of
+ * place, which it was — two competing proof elements in one foot, one of them
+ * inert. It is a real button into the case study that backs the claim. */
+[data-mode="cw"] .cw-door__case {
   display: block;
   font-family: var(--font-cw-body);
   font-size: 15px;
-  line-height: 1.5;
-  opacity: 0.85;
+  line-height: 1.45;
   max-width: 38ch;
-  padding-top: 14px;
-  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  margin-top: 4px;
+  padding: 14px 16px;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid color-mix(in srgb, currentColor 26%, transparent);
+  transition:
+    color 200ms ease,
+    border-color 200ms ease;
+}
+[data-mode="cw"] .cw-door__case:hover,
+[data-mode="cw"] .cw-door__case:focus-visible {
+  color: var(--color-cw-terracotta);
+  border-color: var(--color-cw-terracotta);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] .cw-door__case {
+    transition: none;
+  }
 }
 [data-mode="cw"] .cw-door__go {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 22px;
   font-family: var(--font-cw-mono);
   font-size: 12px;
   letter-spacing: 0.16em;

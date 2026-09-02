@@ -240,45 +240,63 @@ export default function ServicesPage() {
           Services
         </h1>
 
+        {/* Pass-76b. Each door used to be ONE <a> wrapping everything, with a
+            flat proof line in the foot: "Guardicore: $80M in pipeline, $14M in
+            revenue." Operator: those read "weak and out of place" — a stat
+            with nowhere to go, sitting under the thing you actually came to
+            click. They are now the door's second action: a real link into the
+            case study that proves the claim, written as the thing the reader
+            would want to find out.
+
+            That forced the restructure. A link inside a link is invalid HTML,
+            so the card is a <div> and the title, the case link and the CTA are
+            three explicit links. The whole-card click target goes away; three
+            honest targets beat one that hides two destinations. */}
         <nav className="cw-doors" aria-label="Two ways to hire me">
-          <a href="#engagements" className="cw-door">
+          <div className="cw-door">
             <span className="cw-door__kicker">For companies</span>
-            <span className="cw-door__name">Engagements</span>
+            <a href="#engagements" className="cw-door__name">
+              Engagements
+            </a>
             <span className="cw-door__body">
               Advisory, project, retainer, or embedded. Scoped together on a
               free 30-minute call.
             </span>
             <span className="cw-door__foot">
               <span className="cw-door__price">From $5K a month</span>
-              <span className="cw-door__receipt">
-                Guardicore: $80M in pipeline, $14M in revenue. Acquired by
-                Akamai in 2021.
-              </span>
-              <span className="cw-door__go">
-                The three services <span aria-hidden>→</span>
-              </span>
+              <a href="/work/guardicore" className="cw-door__case">
+                See how I helped a foreign company break into the North American
+                market and get acquired
+                <span aria-hidden> &rarr;</span>
+              </a>
+              <a href="#engagements" className="cw-door__go">
+                The three services <span aria-hidden>&rarr;</span>
+              </a>
             </span>
-          </a>
-          <a href="/packages" className="cw-door">
+          </div>
+          <div className="cw-door">
             <span className="cw-door__kicker">
               For solo builders and small teams
             </span>
-            <span className="cw-door__name">Packages</span>
+            <a href="/packages" className="cw-door__name">
+              Packages
+            </a>
             <span className="cw-door__body">
               Three fixed prices. Pick one, email me, and the work starts this
               week.
             </span>
             <span className="cw-door__foot">
               <span className="cw-door__price">$500 · $2,500 · $7,500</span>
-              <span className="cw-door__receipt">
-                Ordani: a HIPAA-compliant CRM I founded and built. Active paying
-                users in beta.
-              </span>
-              <span className="cw-door__go">
-                The three packages <span aria-hidden>→</span>
-              </span>
+              <a href="/work/ordani" className="cw-door__case">
+                See how I shipped a HIPAA-compliant product solo, from first
+                commit to paying users
+                <span aria-hidden> &rarr;</span>
+              </a>
+              <a href="/packages" className="cw-door__go">
+                The three packages <span aria-hidden>&rarr;</span>
+              </a>
             </span>
-          </a>
+          </div>
         </nav>
 
         {/* The three services, compact. */}
