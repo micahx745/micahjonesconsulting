@@ -10,7 +10,7 @@ hero photo top-anchored + 30% right overscan ≥861px, content dropped, TWO stat
 `stats` frontmatter (≤3, LESSONS #2); case pages get an at-a-glance strip; ordani.mdx fixes
 (capitalization, beta as history, security sentence softened, placeholders → prose, client label).
 Verified: local prod build 1440 + ~500px (face clear, nav, /work, words at rest + wheel dissolve)
-and deployed preview micahjonesconsulting-fcaz5ie9z (share link in chat).
+and deployed preview micahjonesconsulting-fcaz5ie9z.
 
 ## Case-study content — proposals awaiting operator lock (buyer-persona review done)
 hr-author: cut politics paragraph to one sentence; drop "a top university and a county government".
@@ -23,8 +23,7 @@ Live = Pass-53..56c (deploy musrbwwz4, 2026-09-01, approval "push it"). Prod dep
 (`vercel deploy --prod --scope passioneer`); git push alone does not deploy.
 
 ## Stripe rail (Pass-52) — built + E2E-verified test mode, NOT live
-Go-live ritual (account decision, rotate test key, live keys, webhook, pay-yourself) → flip
-mailtos to checkout + /playbook $99 button + launch email. See PACKAGES-RUNBOOK.md, HANDOFF.md.
+Go-live ritual → flip mailtos to checkout + $99 button + launch email (PACKAGES-RUNBOOK.md).
 
 ## Operator queue
 1. Review preview → "push it". 2. Lock case-study proposals. 3. SECRET ROTATION overdue (Resend
@@ -34,5 +33,5 @@ key, calendar ICS URL, Stripe test key; 3 envs each). 4. Stripe go-live. 5. Read
 - Pane screenshots go black after scroll → chrome-devtools MCP for scrolled shots.
 - Python on Windows writes CRLF → prettier --write touched TS/TSX before commit.
 - `git add` with one bad pathspec adds NOTHING — check `git show --stat` after commit.
-- Lenis: programmatic scrollTo does not drive ScrollTrigger; test with real wheel scroll.
-- Secrets never inline. Ordani surfaces never name vendors. HIPAA-compliant, never -grade.
+- Lenis: programmatic scrollTo skips ScrollTrigger; test with real wheel scroll.
+- Secrets never inline. Ordani never names vendors. HIPAA-compliant, never -grade.
