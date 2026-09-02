@@ -77,11 +77,27 @@ export async function getAllCaseStudies(): Promise<CaseStudyMeta[]> {
     stub: 3,
   };
 
+  // Pass-61: an explicit `order` wins over everything. The status-then-year
+  // sort is a reasonable default and a poor editor: it ranked the
+  // name-protected author engagement above the Akamai acquisition purely
+  // because 2024 is later than 2021, so the strongest receipt on the site
+  // opened below the fold. Which engagement leads is an editorial call, so it
+  // is written in frontmatter. Studies without `order` keep the old behaviour
+  // and sort after every study that has one.
   return studies.sort((a, b) => {
+    if (a.order !== undefined || b.order !== undefined) {
+      return (a.order ?? Infinity) - (b.order ?? Infinity);
+    }
     const rs = (statusRank[a.status] ?? 99) - (statusRank[b.status] ?? 99);
     if (rs !== 0) return rs;
-    const ay = typeof a.year === "number" ? a.year : Number(String(a.year).match(/\d+/)?.[0] ?? 0);
-    const by = typeof b.year === "number" ? b.year : Number(String(b.year).match(/\d+/)?.[0] ?? 0);
+    const ay =
+      typeof a.year === "number"
+        ? a.year
+        : Number(String(a.year).match(/\d+/)?.[0] ?? 0);
+    const by =
+      typeof b.year === "number"
+        ? b.year
+        : Number(String(b.year).match(/\d+/)?.[0] ?? 0);
     return by - ay;
   });
 }

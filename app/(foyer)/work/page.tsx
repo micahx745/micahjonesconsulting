@@ -1,13 +1,40 @@
 // app/(foyer)/work/page.tsx
 //
-// /work — case study index. Pass-58 rebuild (operator 2026-09-01:
-// "work page is weird and weak"). The old page was a kicker, a title,
-// and three bare rows. Now each engagement carries its receipts: the
-// one figure-bearing line, up to three stat objects (frontmatter
-// `stats` — every figure also appears in the study body, LESSONS #2),
-// role · year, and one link. Same proof grammar /services uses.
+// /work — case study index. Pass-61 opening rebuild.
+//
+// Operator (2026-09-01): "work again when i first open it it does not entice
+// me to look more — web design is part of my services in a way so i need this
+// to look premium without screaming AI."
+//
+// The diagnosis: this page opened with its own name. A mono kicker reading
+// "WORK", the section title at 92px, and a lede repeating what the list below
+// already said. /services, /book and /about opened the identical three
+// elements in the identical order — four pages, one template, which is what
+// reads as machine-made. The two pages the operator likes (home, /playbook)
+// both open with an OBJECT: a photograph with type over it, and the book
+// presented as a physical thing.
+//
+// The move: open on ONE engagement, as an auction-catalogue lot. Christie's
+// and Phillips have used that form for decades because buyers trust it: one
+// object, a lot number, the estimate in large numerals, provenance in small
+// caps. Left, the figure at hero scale with its line. Right, the Tel Aviv
+// photograph as a bordered exhibit. Beneath, a mono provenance line. No
+// kicker, no headline sentence: the figure IS the headline.
+//
+// Which study leads is hand-set (`order` in frontmatter), because the default
+// status-then-year sort had buried the Akamai acquisition under a
+// name-protected engagement. The lot's figure and line come from the leading
+// study's `feature` frontmatter, so this page invents nothing.
+//
+// The exhibit is a CROP (public/guardicore-telaviv-detail.jpg). The source is
+// an Instagram screenshot carrying a "TEL AVIV, ISRAEL" location sticker and,
+// lower down, a colleague's face in profile. The crop keeps the gesturing
+// hand, the handwritten notes, the pen and the printed Guardicore cloth, and
+// excludes both. Nobody else's face ships.
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getAllCaseStudies } from "@/lib/case-studies";
+import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
@@ -32,60 +59,103 @@ export default async function WorkIndexPage() {
     (cs) => cs.status !== "stub",
   );
 
+  const [lead, ...rest] = studies;
+  const total = String(studies.length).padStart(2, "0");
+
   return (
-    <section
-      className="cw-block cw-wk"
-      data-section
-      data-world="bone"
-      aria-labelledby="cw-work-title"
-    >
-      <p className="cw-kicker">Work</p>
-      <h1 id="cw-work-title" className="cw-secttitle">
-        Four engagements. Receipts attached.
-      </h1>
-      <p className="cw-wk__lede">
-        An acquired security platform, a company I founded, and two systems I
-        built for an industry author. Every number below comes from the study it
-        sits next to.
-      </p>
+    <>
+      <OpeningWorld name="espresso" />
 
-      <ol className="cw-wk-list">
-        {studies.map((s, i) => (
-          <li key={s.slug} className="cw-wk-item">
-            <a href={`/work/${s.slug}`} className="cw-wk-item__link">
-              <div className="cw-wk-item__lead">
-                <p className="cw-wk-item__num">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h2 className="cw-wk-item__title">{s.title}</h2>
-                <p className="cw-wk-item__line">
-                  {s.indexLine ?? `${s.dek.split(". ")[0]}.`}
-                </p>
-                <p className="cw-wk-item__meta">
-                  <span>{s.role}</span>
-                  <span aria-hidden> &middot; </span>
-                  <span>{s.year}</span>
-                </p>
-                <span className="cw-wk-item__cta">
-                  Read the case study <span aria-hidden>→</span>
-                </span>
-              </div>
-              {s.stats && s.stats.length > 0 ? (
-                <ul className="cw-wk-stats" aria-label="Outcome at a glance">
-                  {s.stats.map((st) => (
-                    <li key={st.lbl}>
-                      <strong>{st.fig}</strong>
-                      <span>{st.lbl}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
+      {lead ? (
+        <section
+          className="cw-lot"
+          data-section
+          data-world="espresso"
+          aria-labelledby="cw-work-title"
+        >
+          <div className="cw-lot__figure">
+            <h1 id="cw-work-title" className="cw-lot__fig">
+              {lead.feature?.fig ?? lead.stats?.[0]?.fig ?? lead.title}
+            </h1>
+            <p className="cw-lot__line">
+              {lead.feature?.line ?? lead.indexLine ?? lead.dek}
+            </p>
+            <p className="cw-lot__prov">
+              <span>01 of {total}</span>
+              <span aria-hidden> · </span>
+              <span>{lead.title}</span>
+              <span aria-hidden> · </span>
+              <span>{lead.role}</span>
+              <span aria-hidden> · </span>
+              <span>{lead.year}</span>
+            </p>
+            <a href={`/work/${lead.slug}`} className="cw-lot__cta">
+              Read the case study <span aria-hidden>→</span>
             </a>
-          </li>
-        ))}
-      </ol>
+          </div>
 
-      <PageFooter />
-    </section>
+          <figure className="cw-lot__exhibit">
+            <Image
+              src="/guardicore-telaviv-detail.jpg"
+              alt="A working session: a hand over handwritten notes, a pen, and a table draped in a printed Guardicore cloth."
+              width={700}
+              height={520}
+              priority
+              sizes="(max-width: 900px) 100vw, 420px"
+            />
+            <figcaption>Working session · Tel Aviv · 2018-2021</figcaption>
+          </figure>
+        </section>
+      ) : null}
+
+      <section
+        className="cw-block cw-wk"
+        data-section
+        data-world="bone"
+        aria-labelledby="cw-work-rest-title"
+      >
+        <h2 id="cw-work-rest-title" className="cw-wk__rest-title">
+          The rest of the record
+        </h2>
+
+        <ol className="cw-wk-list">
+          {rest.map((s, i) => (
+            <li key={s.slug} className="cw-wk-item">
+              <a href={`/work/${s.slug}`} className="cw-wk-item__link">
+                <div className="cw-wk-item__lead">
+                  <p className="cw-wk-item__num">
+                    {String(i + 2).padStart(2, "0")}
+                  </p>
+                  <h3 className="cw-wk-item__title">{s.title}</h3>
+                  <p className="cw-wk-item__line">
+                    {s.indexLine ?? `${s.dek.split(". ")[0]}.`}
+                  </p>
+                  <p className="cw-wk-item__meta">
+                    <span>{s.role}</span>
+                    <span aria-hidden> &middot; </span>
+                    <span>{s.year}</span>
+                  </p>
+                  <span className="cw-wk-item__cta">
+                    Read the case study <span aria-hidden>→</span>
+                  </span>
+                </div>
+                {s.stats && s.stats.length > 0 ? (
+                  <ul className="cw-wk-stats" aria-label="Outcome at a glance">
+                    {s.stats.map((st) => (
+                      <li key={st.lbl}>
+                        <strong>{st.fig}</strong>
+                        <span>{st.lbl}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </a>
+            </li>
+          ))}
+        </ol>
+
+        <PageFooter />
+      </section>
+    </>
   );
 }

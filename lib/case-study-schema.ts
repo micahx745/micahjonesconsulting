@@ -83,6 +83,24 @@ export const caseStudyFrontmatterSchema = z.object({
     )
     .max(3)
     .optional(),
+
+  /** Pass-61: hand-set position in the /work index, ascending. The default
+   *  sort is status then year-descending, which put the name-protected author
+   *  engagement above the Akamai acquisition — the strongest receipt buried by
+   *  an accident of chronology. Order is an editorial decision, so it is
+   *  written down rather than derived. Studies without it sort last. */
+  order: z.number().int().positive().optional(),
+
+  /** Pass-61: the /work index opens on ONE study presented as a catalogue lot.
+   *  `feature` carries that opening's two pieces: the figure set at hero scale
+   *  and the line beneath it. Only the study with order 1 uses it. LESSONS #2
+   *  still binds — every number here must also appear in this study's body. */
+  feature: z
+    .object({
+      fig: z.string().min(1),
+      line: z.string().min(1),
+    })
+    .optional(),
 });
 
 export type CaseStudyFrontmatter = z.infer<typeof caseStudyFrontmatterSchema>;
