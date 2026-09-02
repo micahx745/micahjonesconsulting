@@ -29,7 +29,7 @@ const CATALOG = [
     name: "The 80% Wall",
     amount: 9900,
     description:
-      "A field manual for solo builders: the 68-page PDF plus the companion files, delivered by email.",
+      "A field manual for solo builders: the 69-page PDF plus the companion files, delivered by email.",
   },
   {
     lookupKey: "unstick-500",

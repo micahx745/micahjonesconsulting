@@ -58,6 +58,8 @@ Nearly every app you will build alone reduces to this map:
 
 The arrows matter more than the boxes. Every arrow is a trust line, and every trust line needs an answer to one question: _what stops the wrong person from using this?_ Five boxes, five or six arrows, one lock per arrow. That is the whole discipline.
 
+Written down it is a short file, and it ships in the companion pack as `ARCHITECTURE.md`, filled in for the trainer app from chapter two.
+
 == Where the AI cuts corners, box by box
 
 None of what follows is the AI being careless. It is the AI being _plausible_. Cut corners compile fine and demo fine. They fail only in production, against strangers.
@@ -125,6 +127,8 @@ You do not have to reconstruct the map by hand. The tool that built the accumula
 ]
 
 Then verify the answer against the code, arrow by arrow, the way chapter one taught you to read diffs: the AI's map is a draft, not a fact. An hour of this is the cheapest security review you will ever run. What you confirm goes into the spec's SHAPE section. What you can't confirm goes on the NOW list, because an arrow you can't explain is work, not trivia.
+
+What you end up with is a file, not a memory. Update it the day an arrow moves.
 
 == Pre-flight: the five locks
 

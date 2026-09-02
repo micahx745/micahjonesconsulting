@@ -1,7 +1,7 @@
 // lib/playbook-delivery.ts — the purchase delivery, shared by the
 // Stripe webhook route (production path) and the verification scripts.
 //
-// One email carries the whole purchase: the 68-page book PDF plus the
+// One email carries the whole purchase: the 69-page book PDF plus the
 // companion ZIP, exactly as the book's own End page promises ("they
 // arrived alongside this PDF with your purchase"). The Resend
 // idempotency key is derived from the checkout session id, so Stripe
@@ -44,7 +44,7 @@ export async function deliverPlaybook(
           "Thank you for buying The 80% Wall.",
           "",
           "Attached to this email:",
-          `- ${BOOK_FILENAME} — the full manual, ten chapters, 68 pages.`,
+          `- ${BOOK_FILENAME} — the full manual, ten chapters, 69 pages.`,
           `- ${COMPANION_FILENAME} — the working files: prompt files,`,
           "  pre-flight checklists, spec templates.",
           "",

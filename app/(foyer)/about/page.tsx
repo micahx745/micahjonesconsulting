@@ -12,14 +12,14 @@ import { PortraitImage } from "@/components/PortraitImage";
 
 export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
-  title: "About",
+  title: "Operator, not consultant",
   description:
-    "Independent operator in Oakland. Four exits behind my work: Postmates → Uber, TechValidate → SurveyMonkey IPO, Guardicore → Akamai, Neuton.AI → Nordic Semiconductor. $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with active paying users.",
+    "A decade inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined. Oakland, CA.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
-    title: "About — Micah Jones",
+    title: "Operator, not consultant — Micah Jones",
     description:
-      "Independent operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue. Building Ordani, in beta with active paying users.",
+      "A decade inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined.",
     type: "profile",
     url: "https://www.micahjonesconsulting.com/about",
   },
@@ -109,14 +109,28 @@ export default function AboutPage() {
           <h2 className="cw-about__h">What I&rsquo;m known for</h2>
           <ul className="cw-about__list">
             <li>
+              {/* Pass-67: was "average deal size moved $150K", the delta claim
+                  the operator superseded on 2026-09-01 with an absolute of
+                  $1.2M. The case study was swept the same day; this page was
+                  missed, so a retired figure sat live for hours. LESSONS #3
+                  bans restating the $150K version. Removing the em-dash also
+                  brings this page under the one-per-page cap. */}
               <strong>Positioning research that moves deal-size.</strong> The
               Guardicore engagement that became the Akamai acquisition began
-              with a single rewritten sentence — average deal size moved $150K.
+              with a single rewritten sentence. Average enterprise deal size:
+              $1.2M.
             </li>
             <li>
-              <strong>GTM systems that compound.</strong> Algorithm strategy +
-              content systems for an HR consultant returned 4× platform lift and
-              RFP wins inside one year.
+              {/* Pass-67: was "for an HR consultant returned 4× platform lift".
+                  Two defects. The sector label leaked a client the ledger
+                  anonymises, and it did so next to a redirect that used to name
+                  them. And 4× is the two-prioritised-platforms-beat-the-third
+                  figure, not the reach lift, so quoting it here read as a
+                  contradiction of the case study's 36×. Now the case study's
+                  own headline numbers, which trace. */}
+              <strong>GTM systems that compound.</strong> Algorithm strategy and
+              a content engine for an industry author took monthly reach from
+              8,000 to 290,000 in five months, and doubled their RFP close rate.
             </li>
             <li>
               <strong>End-to-end product builds.</strong> Ordani,

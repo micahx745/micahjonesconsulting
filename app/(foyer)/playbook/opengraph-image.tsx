@@ -16,7 +16,7 @@ export default async function Image() {
     <CWOGComposition
       eyebrow="THE 80% WALL · FIELD MANUAL"
       headline="80% DONE"
-      punch="The AI handed you the code. Now ship the company. 68 pages, 26 working files."
+      punch="The AI handed you the code. Now ship the company. 69 pages, 26 working files."
     />,
     size,
   );

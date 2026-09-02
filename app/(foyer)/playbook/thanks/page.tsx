@@ -20,22 +20,22 @@ export default function PlaybookThanksPage() {
         <p className="cw-services__kicker">The 80% Wall</p>
         <h1 className="cw-services__title">Check your inbox.</h1>
         <p className="cw-services__intro">
-          Thank you. Once the payment clears, the book and its companion
-          files land in the email you used at checkout, usually within a
-          couple of minutes.
+          Thank you. Once the payment clears, the book and its companion files
+          land in the email you used at checkout, usually within a couple of
+          minutes.
         </p>
       </header>
 
       <section className="cw-pb-sect" aria-labelledby="pb-thanks-title">
-        <h2 id="pb-thanks-title" className="cw-pb-h2">What arrives</h2>
+        <h2 id="pb-thanks-title" className="cw-pb-h2">
+          What arrives
+        </h2>
         <p className="cw-pb-sect__lede">
-          One email, two attachments: the 68-page PDF and the companion
-          ZIP with the prompt files, pre-flight checklists, and spec
-          templates.
+          One email, two attachments: the 69-page PDF and the companion ZIP with
+          the prompt files, pre-flight checklists, and spec templates.
         </p>
         <p className="cw-pb-sect__lede">
-          Nothing after ten minutes? Check spam first. Still nothing?
-          Write{" "}
+          Nothing after ten minutes? Check spam first. Still nothing? Write{" "}
           <a href="mailto:hello@micahjonesconsulting.com">
             hello@micahjonesconsulting.com
           </a>{" "}

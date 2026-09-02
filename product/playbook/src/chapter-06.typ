@@ -65,6 +65,25 @@ A webhook is Stripe calling your server: an HTTP POST to an endpoint you registe
 
 *Answer fast, work after.* Acknowledge the event, then do the slow parts. An endpoint that dawdles gets retried, and now you are back to rule two. "After" needs no clever machinery at solo scale: save the event to a table, answer, and let a job that runs every minute send the emails and do the slow writes.
 
+Hand the four rules to the tool rather than remembering them at three in the morning. This prompt ships in the companion pack:
+
+#filecard("prompts/stripe-wiring.md")[
+  Implement checkout using the provider's HOSTED checkout page, never
+  a custom card form, and a webhook endpoint that follows all four
+  rules:
+
+  1. Verify the webhook signature on every event; reject on failure.
+  2. Record processed event IDs and skip duplicates.
+  3. On each event, read current state from the provider's API rather
+     than trusting event order.
+  4. Acknowledge fast; do slow work after responding.
+
+  Access to the product is granted ONLY in the webhook handler, never
+  on the success page. Add refund handling that revokes what payment
+  granted. List every environment variable this needs, and which are
+  per-mode.
+]
+
 == Test-to-live: the five silent swaps
 
 Stripe's test mode is a parallel universe: same dashboard, same API shape, fake money. The day you flip to live, five things silently do not come along, and each one fails without an error message.

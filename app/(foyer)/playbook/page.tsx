@@ -48,7 +48,7 @@ import { WallChart } from "@/components/color-worlds/WallChart";
 export const metadata: Metadata = {
   title: "The 80% Wall — a field manual for solo builders",
   description:
-    "A field manual for solo builders stuck between demo and production. Ten chapters, 68 pages, 26 working files, from the operator who shipped a HIPAA-compliant SaaS solo with the same AI tools you're using.",
+    "A field manual for solo builders stuck between demo and production. Ten chapters, 69 pages, 26 working files, from the operator who shipped a HIPAA-compliant SaaS solo with the same AI tools you're using.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/playbook" },
   openGraph: {
     title: "The 80% Wall — a field manual for solo builders",
@@ -64,8 +64,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
-// The book's real table of contents; page numbers are the queried
-// values from the assembled 68pp PDF. Regenerate when pagination moves.
+// The book's real table of contents; page numbers are the queried values from
+// the assembled 69pp PDF, re-read off its own contents page after the chapter-6
+// filecard pushed chapters seven through ten down by one. Regenerate whenever
+// pagination moves: these numbers are a promise a buyer can check in seconds,
+// and a stale one is the cheapest possible way to look careless.
 const CHAPTERS = [
   {
     n: "01",
@@ -103,25 +106,25 @@ const CHAPTERS = [
     n: "07",
     title: "Compliance, when it matters",
     tag: "HIPAA, GDPR, SOC 2, and when",
-    page: 43,
+    page: 44,
   },
   {
     n: "08",
     title: "The first ten users",
     tag: "Ten users from conversations",
-    page: 49,
+    page: 50,
   },
   {
     n: "09",
     title: "The distribution loop",
     tag: "Second-hand users, the loop",
-    page: 56,
+    page: 57,
   },
   {
     n: "10",
     title: "When to hand it off",
     tag: "Hire, rent, sell, keep going",
-    page: 62,
+    page: 63,
   },
 ] as const;
 
@@ -157,7 +160,7 @@ const PURCHASE_LIVE = false;
 const BOOK_URL = "https://www.micahjonesconsulting.com/playbook";
 
 // Book + Offer. Every value here is checkable against the artifact itself:
-// 68 pages and 10 chapters are counted from the compiled PDF, and the 26
+// 69 pages and 10 chapters are counted from the compiled PDF, and the 26
 // companion files are counted from the shipped ZIP.
 const BOOK_LD = {
   "@context": "https://schema.org",
@@ -165,12 +168,12 @@ const BOOK_LD = {
   name: "The 80% Wall",
   headline: "The 80% Wall",
   bookFormat: "https://schema.org/EBook",
-  numberOfPages: 68,
+  numberOfPages: 69,
   inLanguage: "en",
   url: BOOK_URL,
   image: "https://www.micahjonesconsulting.com/playbook/book-cover.png",
   description:
-    "A field manual for solo builders: why AI-assisted builds stall between demo and production, and the systems that carry them through. Ten chapters, 68 pages, 26 companion files.",
+    "A field manual for solo builders: why AI-assisted builds stall between demo and production, and the systems that carry them through. Ten chapters, 69 pages, 26 companion files.",
   author: {
     "@type": "Person",
     name: "Micah Jones",
@@ -352,7 +355,7 @@ export default function PlaybookPage() {
                 sizes="(max-width: 1000px) 92vw, 640px"
               />
               <figcaption className="cw-lp-cap">
-                § 01.4 · Why it hits at 80% and not sooner · page 6 of 68
+                § 01.4 · Why it hits at 80% and not sooner · page 6 of 69
               </figcaption>
             </figure>
           </div>

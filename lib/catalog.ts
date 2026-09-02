@@ -30,7 +30,7 @@ export const SKUS: Record<string, Sku> = {
     amount: 9900,
     kind: "book",
     description:
-      "A field manual for solo builders: the 68-page PDF plus the companion files, delivered by email.",
+      "A field manual for solo builders: the 69-page PDF plus the companion files, delivered by email.",
   },
   "unstick-500": {
     lookupKey: "unstick-500",
