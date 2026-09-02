@@ -49,7 +49,7 @@ const EXTENSIONS = ["jpg", "jpeg", "png"] as const;
 
 const BASENAME: Record<Variant, string> = {
   main: "portrait-main",
-  context: "portrait-context",
+  context: "portrait-desk",
 };
 
 // Alt text has to stay TRUE for whatever photograph actually arrives. The
@@ -64,7 +64,7 @@ const REAL_ALT: Record<Variant, string> = {
 // Source dimensions; next/image resamples per breakpoint via `sizes`.
 const DIM: Record<Variant, { width: number; height: number }> = {
   main: { width: 1200, height: 1500 },
-  context: { width: 900, height: 1125 },
+  context: { width: 784, height: 980 },
 };
 
 const SIZES: Record<Variant, string> = {
@@ -81,6 +81,12 @@ export function PortraitImage({ variant, priority = true }: PortraitImageProps) 
 
   const { width, height } = DIM[variant];
   return (
+    // Pass-76: the figcaption read "Oakland · 2026" for whatever file was
+    // dropped in. The photo that actually ships is at a desk in front of an
+    // architecture whiteboard, and neither the city nor the year is something
+    // this repo can verify — an unverifiable caption under a real photograph is
+    // exactly the kind of claim LESSONS #3 exists to stop. No caption is honest;
+    // a guessed one is not.
     <figure className={`cw-portrait cw-portrait--${variant}`}>
       <Image
         src={`/${file}`}
@@ -91,9 +97,7 @@ export function PortraitImage({ variant, priority = true }: PortraitImageProps) 
         priority={priority}
         className="cw-portrait__img"
       />
-      <figcaption className="cw-portrait__cap">
-        Oakland <span aria-hidden>·</span> 2026
-      </figcaption>
+
     </figure>
   );
 }

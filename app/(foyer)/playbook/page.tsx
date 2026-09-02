@@ -51,12 +51,12 @@ export const metadata: Metadata = {
   // Google cuts. The em-dash became a colon: it buys the character the title
   // needed AND drops the rendered title from two em-dashes to one, which is
   // the LESSONS #11 cap. Numbers are the page's own verified counts.
-  title: "The 80% Wall: a field manual for solo builders",
+  title: "The 80% Wall: field manual for solo builders",
   description:
     "For solo builders stuck between demo and production. Ten chapters, 69 pages, 26 working files, from the operator who shipped a HIPAA-compliant SaaS solo.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/playbook" },
   openGraph: {
-    title: "The 80% Wall: a field manual for solo builders",
+    title: "The 80% Wall: field manual for solo builders",
     description:
       "Stuck between demo and production? The field manual from the operator who shipped a HIPAA-compliant SaaS solo, on the same AI tools you're using.",
     type: "website",

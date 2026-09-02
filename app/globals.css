@@ -4588,6 +4588,31 @@ body {
   display: block;
 }
 
+/* /about second photograph (Pass-76). Landscape, sits in the espresso Receipts
+ * column under the exits bullet. Border and caption match .cw-portrait so the
+ * two photographs read as one treatment: the site has one photo grammar. */
+[data-mode="cw"] .cw-ab-fig {
+  margin: clamp(28px, 4vw, 44px) 0 clamp(36px, 5vw, 56px);
+  max-width: 620px;
+}
+[data-mode="cw"] .cw-ab-fig__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 770 / 575;
+  object-fit: cover;
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+}
+[data-mode="cw"] .cw-ab-fig__cap {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-top: 12px;
+  display: block;
+}
+
 /* ================================================================
  * Mobile vertical rhythm (2026-08-15, operator review on an
  * iPhone 15 Plus: "too much spacing when scrolling the home page").
@@ -6059,6 +6084,34 @@ body {
     border-left: 0;
     border-top: 1px solid color-mix(in srgb, currentColor 26%, transparent);
     padding: 36px 0 0;
+  }
+}
+
+/* Pass-76. Operator: the two doors "doesn't seem even - looks off slightly."
+ *
+ * The columns were already equal height and the foot already bottom-pinned, so
+ * the bottoms lined up and the tops did not. "For companies" is one line;
+ * "For solo builders and small teams" wraps to two. That one extra line pushed
+ * PACKAGES a full line below ENGAGEMENTS, and at clamp(44px, 7vw, 92px) a
+ * one-line offset between two display words is impossible to unsee.
+ *
+ * Subgrid makes the four rows — kicker, name, body, foot — share their tracks
+ * across both doors, so each row is as tall as its taller side and every
+ * element starts on the same baseline. Fixing it with a min-height on the
+ * kicker would have worked at exactly one viewport width.
+ *
+ * Kept inside @supports and above the stacked breakpoint: the existing flex
+ * column stays the fallback, and stacked doors have nothing to align to. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 861px) {
+    [data-mode="cw"] .cw-doors {
+      grid-template-rows: auto auto 1fr auto;
+    }
+    [data-mode="cw"] .cw-door {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 4;
+    }
   }
 }
 

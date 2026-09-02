@@ -26,11 +26,19 @@
 // name-protected engagement. The lot's figure and line come from the leading
 // study's `feature` frontmatter, so this page invents nothing.
 //
-// The exhibit is a CROP (public/guardicore-telaviv-detail.jpg). The source is
-// an Instagram screenshot carrying a "TEL AVIV, ISRAEL" location sticker and,
-// lower down, a colleague's face in profile. The crop keeps the gesturing
-// hand, the handwritten notes, the pen and the printed Guardicore cloth, and
-// excludes both. Nobody else's face ships.
+// The exhibit is a CROP of an Instagram screenshot. Pass-76 REPLACED the
+// earlier crop (guardicore-telaviv-detail.jpg) on the operator's call: it was
+// framed so tightly to exclude every other face that all it showed was a hand
+// on a tablecloth, which read as a stock detail shot rather than a person.
+//
+// public/guardicore-telaviv-session.jpg is the wider frame. It keeps the
+// operator mid-discussion, the notes and the table. Two deliberate changes
+// from the source: the "TEL AVIV, ISRAEL" location sticker is cropped out, and
+// a second Instagram sticker sitting on the tablecloth was patched with
+// adjacent cloth (a platform UI artifact removed; no content of the scene
+// altered). TRADE-OFF, on the record: unlike the old crop, this one DOES ship
+// part of a colleague's face at the lower right, in profile. That is the cost
+// of showing the room, and the operator asked for the room.
 import type { Metadata } from "next";
 import Image from "next/image";
 import { getAllCaseStudies } from "@/lib/case-studies";
@@ -104,10 +112,10 @@ export default async function WorkIndexPage() {
 
           <figure className="cw-lot__exhibit">
             <Image
-              src="/guardicore-telaviv-detail.jpg"
-              alt="A working session: a hand over handwritten notes, a pen, and a table draped in a printed Guardicore cloth."
-              width={700}
-              height={520}
+              src="/guardicore-telaviv-session.jpg"
+              alt="A working session in Tel Aviv: Micah mid-discussion at a table of notes, phones and glasses."
+              width={770}
+              height={575}
               priority
               sizes="(max-width: 900px) 100vw, 420px"
             />

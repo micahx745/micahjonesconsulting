@@ -43,7 +43,7 @@ const NAV_LINKS = [
   { href: "/work", label: "Work" },
   { href: "/playbook", label: "Playbook" },
   { href: "/about", label: "About" },
-  { href: "/book", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export function Nav() {

@@ -36,6 +36,18 @@ export default function PackageThanksPage() {
           starts at kickoff, and the refund rule holds until then: full refund
           any time before the call.
         </p>
+        {/* Pass-76. The kickoff link used to exist only inside the email,
+            so the most motivated moment a buyer will ever have — the second
+            after paying — ended at "go wait for an inbox". The booking system
+            that used to sit behind "Contact" lives here now, where a scheduled
+            call is genuinely the next step. */}
+        <p className="cw-pb-sect__lede">
+          <a href="/book" className="cw-lede-link">
+            <strong>Put the kickoff call on my calendar now</strong>
+          </a>{" "}
+          if you would rather not wait for the email. Same slots, same
+          confirmation, and the intake questions still come by reply.
+        </p>
         <p className="cw-pb-sect__lede">
           Nothing after ten minutes? Check spam first. Still nothing? Write{" "}
           <a href="mailto:hello@micahjonesconsulting.com">

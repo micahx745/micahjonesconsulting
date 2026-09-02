@@ -8,6 +8,8 @@
 // Numbers that are real. Names that exist.
 import type { Metadata } from "next";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
+import Image from "next/image";
+import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PortraitImage } from "@/components/PortraitImage";
 
 export const metadata: Metadata = {
@@ -28,6 +30,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
+      <OpeningWorld name="bone" />
       {/* INTRO — bone. Calm editorial opening; mirrors the home's
           about-brief register. */}
       <section
@@ -105,6 +108,27 @@ export default function AboutPage() {
               enterprise software.
             </li>
           </ul>
+
+          {/* Pass-76. The second photograph the operator asked for, placed
+              here rather than in the intro because the Guardicore exit is the
+              bullet directly above it — the picture is that engagement. Same
+              frame as the /work exhibit; see that file's header for the crop
+              and sticker-removal notes. */}
+          <figure className="cw-ab-fig">
+            <Image
+              src="/guardicore-telaviv-session.jpg"
+              alt="A working session in Tel Aviv: Micah mid-discussion at a table of notes, phones and glasses."
+              width={770}
+              height={575}
+              sizes="(min-width: 900px) 620px, 100vw"
+              className="cw-ab-fig__img"
+            />
+            <figcaption className="cw-ab-fig__cap">
+              Working session <span aria-hidden>·</span> Tel Aviv{" "}
+              <span aria-hidden>·</span>{" "}
+              2018&ndash;2021
+            </figcaption>
+          </figure>
 
           <h2 className="cw-about__h">What I&rsquo;m known for</h2>
           <ul className="cw-about__list">

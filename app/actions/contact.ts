@@ -45,6 +45,7 @@ export async function contactAction(
   // 1. Parse
   const parsed = contactFormSchema.safeParse({
     name: formData.get("name"),
+    email: formData.get("email"),
     message: formData.get("message"),
   });
 
@@ -52,14 +53,14 @@ export async function contactAction(
     const fieldErrors: Partial<Record<keyof ContactFormInput, string>> = {};
     for (const issue of parsed.error.issues) {
       const key = issue.path[0];
-      if (key === "name" || key === "message") {
+      if (key === "name" || key === "email" || key === "message") {
         fieldErrors[key] = issue.message;
       }
     }
     return { ok: false, fieldErrors };
   }
 
-  const { name, message } = parsed.data;
+  const { name, email, message } = parsed.data;
 
   // 2. Env read (lazy — build passes without these)
   const resendKey = process.env.RESEND_API_KEY;
@@ -80,9 +81,11 @@ export async function contactAction(
     await resend.emails.send({
       from: "Micah Jones <hello@micahjonesconsulting.com>",
       to: ["hello@micahjonesconsulting.com"],
-      replyTo: undefined,
+      // Pass-76: was `replyTo: undefined`, so hitting reply in the inbox
+      // answered the site's own address and the sender never heard back.
+      replyTo: email,
       subject: `New note from ${name}`,
-      text: `From: ${name}\n\n${message}`,
+      text: `From: ${name} <${email}>\n\n${message}`,
     });
   } catch (err) {
     console.error("[contact] Resend failed:", err);
@@ -101,7 +104,7 @@ export async function contactAction(
       });
       const { error } = await supabase
         .from("contact_messages")
-        .insert({ name, message, created_at: new Date().toISOString() });
+        .insert({ name, email, message, created_at: new Date().toISOString() });
       if (error) {
         console.error("[contact] Supabase insert failed:", error.message);
       }
