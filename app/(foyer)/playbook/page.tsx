@@ -174,21 +174,27 @@ export default function PlaybookPage() {
             The AI handed you the code. Now ship the company.
           </h1>
           <p className="cw-lp-object__sub">
-            Ten chapters on the part the AI leaves to you: auth, deploys,
-            payments, security, compliance, and the first ten users who stay. I
-            wrote it after building a HIPAA-compliant SaaS for birth workers,
-            solo, with Claude Code and Cursor. Sixty-eight pages, twenty-six
-            working files, every build-log entry true and dated.
+            Ten chapters on what the AI leaves to you: auth, deploys, payments,
+            compliance, the first ten users. I joined Postmates and TechValidate
+            (SurveyMonkey) early, Guardicore (Akamai) and Neuton.AI very early.
+            Four exits, $5B+ combined. I built Ordani solo with Claude Code and
+            Cursor: HIPAA-compliant, active paying users, in beta.
           </p>
-          {/* The byline, not a bio. Every claim is the ledger's exact approved
-              form (LESSONS #3): the four-count uses "behind my work", $5B+ is
-              disclosed deals only, and Guardicore is named as SALES, never as a
-              technical security role, because the book sells a security
-              chapter and the inference would be false. */}
+          {/* The byline shrank to a name and a link because the history moved
+              up into the sub, where the operator was looking for it.
+              REVERSAL RECORDED (2026-09-02, operator: "remove the sales part
+              too"): this block used to read "Enterprise cybersecurity sales at
+              Guardicore". The word "sales" was there on purpose, because an
+              unqualified cybersecurity credential beside a chapter called "The
+              security pre-flight" implies a technical role the ledger does not
+              support. His call, and the resolution keeps it honest: the
+              companies are now named as places he JOINED, with no job title
+              anywhere, so no role is claimed and none can be inferred wrongly.
+              Also gone: $20M+ in client revenue, a consulting number that
+              answers a different buyer's question and still lives on /about. */}
           <p className="cw-lp-object__by">
-            By Micah Jones. Four exits behind my work, $5B+ combined. $20M+ in
-            client revenue (2013&ndash;2023). Enterprise cybersecurity sales at
-            Guardicore, acquired by Akamai in 2021.
+            By Micah Jones. <a href="/work">The case studies</a>{" "}
+            <span aria-hidden>→</span>
           </p>
           <WallChart />
           {/* The primary action, as a real button rather than a text link.
