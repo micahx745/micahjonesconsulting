@@ -68,6 +68,8 @@ export function Hero() {
   const ctaRowRef = useRef<HTMLDivElement | null>(null);
   const lineRefs = useRef<HTMLSpanElement[]>([]);
   const rollRef = useRef<HTMLSpanElement | null>(null);
+  // Pass-69: the .cw-roll box itself, so its width can ease with the roll.
+  const rollBoxRef = useRef<HTMLSpanElement | null>(null);
   const h1Ref = useRef<HTMLHeadingElement | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
 
@@ -95,10 +97,28 @@ export function Hero() {
     ctaRowRef.current?.classList.add("is-in");
   }, []);
 
-  // Rolling word — one-shot on first view (D1). Starts the first time
-  // the hero crosses 20% visible, steps through the stack once at the
-  // original 1900ms cadence, and stops on the duplicated first word
-  // at the end (no loop, nothing left to pause/resume).
+  // Rolling word — one-shot on first view (D1). Starts the first time the hero
+  // crosses 20% visible, steps once at the original 1900ms cadence, and lands
+  // back on "go-to-market." (no loop, nothing to pause or resume).
+  //
+  // Pass-69 — ONE WORD IN THE DOM AT A TIME.
+  //
+  // The stack used to hold all four words plus a duplicate, so the h1's text
+  // content read "I build the go-to-market, product, and data platforms.
+  // go-to-market.product.data platform.RFP engine.go-to-market." to anything
+  // reading text rather than looking at pixels. Screen readers were always
+  // fine (the stack is aria-hidden and there is a cw-sr-only sentence beside
+  // it), but every crawler saw that.
+  //
+  // Now the server renders ONE word. Each step appends the next word below the
+  // 1em overflow-hidden window, translates the stack up by exactly 1em, then
+  // drops the consumed word and resets the transform with no transition. So:
+  // one word in the initial HTML, one word at rest, two only during a 600ms
+  // transition. The motion is unchanged because the mechanic is unchanged.
+  //
+  // The roll's width is driven explicitly, because with one child the
+  // inline-block would otherwise snap between word widths at cleanup instead
+  // of easing with the roll.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduced = window.matchMedia(
@@ -106,26 +126,51 @@ export function Hero() {
     ).matches;
     if (reduced) return;
 
-    const roll = rollRef.current;
+    const stack = rollRef.current;
+    const roll = rollBoxRef.current;
     const hero = heroRef.current;
-    if (!roll || !hero) return;
+    if (!stack || !roll || !hero) return;
 
     let started = false;
     const timeouts: number[] = [];
+    const EASE = "cubic-bezier(.7,0,.2,1)";
+
+    function step(i: number) {
+      const current = stack!.firstElementChild as HTMLElement | null;
+      if (!current) return;
+      // Land back on the first word, the way the duplicate used to.
+      const word = ROLLING_WORDS[(i + 1) % ROLLING_WORDS.length]!;
+
+      const next = document.createElement("span");
+      next.textContent = word;
+      stack!.appendChild(next);
+
+      // Width first, so the box eases instead of snapping when the old word
+      // is dropped. Read it before any transition is attached.
+      const target = next.getBoundingClientRect().width;
+
+      requestAnimationFrame(() => {
+        roll!.style.transition = `width .6s ${EASE}`; // motion-ok: matches the pre-existing 600ms roll duration
+        roll!.style.width = `${target}px`;
+        stack!.style.transition = `transform .6s ${EASE}`; // motion-ok: pre-existing rolling-word duration, unchanged
+        stack!.style.transform = "translateY(-1em)";
+      });
+
+      const cleanup = window.setTimeout(() => {
+        current.remove();
+        stack!.style.transition = "none"; // motion-ok: instant reset of a finished step, never animated
+        stack!.style.transform = "none";
+      }, 640);
+      timeouts.push(cleanup);
+    }
 
     function runSequence() {
       if (started) return;
       started = true;
-      // Stack is ROLLING_WORDS plus a duplicated first word at the end
-      // (see JSX below) — the final step lands on that duplicate so
-      // the sequence closes on "go-to-market." without scrubbing back.
-      for (let step = 1; step <= ROLLING_WORDS.length; step++) {
-        const t = window.setTimeout(() => {
-          if (!roll) return;
-          roll.style.transition = "transform .6s cubic-bezier(.7,0,.2,1)"; // motion-ok: pre-existing rolling-word duration, unchanged by D1 (D1 only turns the loop into a one-shot)
-          roll.style.transform = `translateY(-${step}em)`;
-        }, step * 1900);
-        timeouts.push(t);
+      // Lock the starting width so the first step has something to ease from.
+      roll!.style.width = `${roll!.getBoundingClientRect().width}px`;
+      for (let i = 0; i < ROLLING_WORDS.length; i++) {
+        timeouts.push(window.setTimeout(() => step(i), (i + 1) * 1900));
       }
     }
 
@@ -270,20 +315,25 @@ export function Hero() {
         </span>
         <span className="cw-line">
           <span ref={captureLine}>
-            {/* Screen-reader fallback: the rolling stack is decorative
-                motion; the SR-only static label is read once. */}
-            <span className="cw-sr-only">
-              go-to-market, product, and data platforms.
-            </span>
-            <span className="cw-roll" aria-hidden>
+            {/* Pass-69: the roll comes FIRST and the screen-reader line
+                continues from it, so the h1 reads as prose to anything
+                consuming text: "I build the go-to-market. Also product, data
+                platforms, and RFP engines." It used to be the other way
+                round, which left the visible word stranded after a complete
+                sentence. The roll stays aria-hidden so a screen reader hears
+                this once instead of re-announcing on every step. */}
+            <span className="cw-roll" aria-hidden ref={rollBoxRef}>
+              {/* Pass-69: ONE word server-rendered. The effect above appends
+                  the next word for the duration of each 600ms step and drops
+                  the consumed one, so the h1's text is a clean sentence in the
+                  initial HTML and again at rest. */}
               <span className="cw-stack" ref={rollRef}>
-                {ROLLING_WORDS.map((w) => (
-                  <span key={w}>{w}</span>
-                ))}
-                {/* Duplicate first word at end so the loop close
-                    doesn't visibly scrub backwards through the stack. */}
                 <span>{ROLLING_WORDS[0]}</span>
               </span>
+            </span>
+            <span className="cw-sr-only">
+              {" "}
+              Also product, data platforms, and RFP engines.
             </span>
           </span>
         </span>
