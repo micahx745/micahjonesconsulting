@@ -9,14 +9,26 @@ WARNS (advisory) on unnamed Agent model; concurrent-session-guard (SessionStart)
 corrected: 31 hook events exist. TWO SESSIONS ran this tree tonight, two budgets on one 5h
 window; three collisions -> LESSONS #12.
 
-## Pass-61 /playbook conversion pass (57971e2) — brief executed, build green
-First brief under the new shape: `.claude/briefs/pass-61-playbook-cro.md` (Fable ruled, Opus
-executed; six copy edits + share card, all verified in rendered HTML). Email capture 76/100
-Moderate; **$99 purchase 68/100 LOW, NOT ready to flip** — purchase-phase layout is HELD in
-brief §8 behind 3 gates: prod RESEND_API_KEY probe, Stripe account split, one live-mode
-buy+refund with a real card.
-**PROD STILL SERVES THE RETIRED "hundreds of birth workers" CLAIM.** HEAD has the fix,
-unshipped. Largest trust correction available, zero engineering cost.
+## /playbook — Pass-61/65/66/67 (last: 6a530f9). Builds green. 65 IS LIVE, 66+67 ARE NOT.
+Brief: `.claude/briefs/pass-61-playbook-cro.md`. Email capture 76/100; **$99 purchase 68/100
+LOW, NOT ready to flip** — purchase layout HELD in brief §8 behind 3 gates: prod
+RESEND_API_KEY probe, Stripe account split, one live-mode buy+refund with a real card.
+Operator said **Stripe is last**.
+- **65 (live):** H1 "The AI handed you the code. Now ship the company." Cover re-rendered from
+  Typst: edition stamp + spec box + spine wording GONE, all centred, title leading -48pt,
+  author name added at the foot (operator has not ruled on that addition).
+- **66:** byline under the sub (four exits / $5B+ / $20M+ / Guardicore-Akamai). Prompt diff
+  from ch.2 warstory, both sentences quoted verbatim ("make it better." vs the locked
+  sentence); the redesign it describes produced THIS site, and the page says so.
+- **67:** `<WallChart />` — book's page-6 figure drawn once on load in the hero. Motion-engineer
+  APPROVED in writing as a FIGURE animation, not a third signature; logged as `motion.figure`
+  in brand.json + `.claude/CLAUDE.md`. Saffron not terracotta (terracotta on espresso = 2.39:1).
+  Motion only ≥900px + no reduced-motion. Replaced the AI "factory loop", declined under R12.
+- **OPERATOR OWES:** "early-stage startup" is NOT in the ledger and is NOT on the page — needs
+  company, stage, role, years; goes to LESSONS #3 first. Cybersecurity renders as *sales*, never
+  as a technical role, because the book sells a security chapter.
+- Gotcha: the browser pane throttles animation clocks to 0 and caches images; seek via the Web
+  Animations API and re-fetch to verify, never trust the pane.
 
 ## SHIPPED TO PRODUCTION 2026-09-01 (deploy 1uhmpp7nf, operator "push it")
 Everything through Pass-62 is LIVE on both domains, verified: www 200, apex 308->www.
