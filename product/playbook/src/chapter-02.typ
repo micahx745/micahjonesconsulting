@@ -18,7 +18,7 @@
     ("Reader", "Solo builders on AI tools"),
     ("Author", "Micah Jones"),
     ("Status", "Chapter two of ten"),
-    ("Time", "A ten-minute read"),
+    ("Time", "A seven-minute read"),
     ("Rev", "2026.08"),
   ),
 )
