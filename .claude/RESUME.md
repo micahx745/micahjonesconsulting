@@ -34,7 +34,16 @@ prior audit).
 NOT INVENTED: the review wanted a published "5K to 25K" engagement range. That ceiling is not
 in the ledger. /services now says WHEN the number arrives, not what it is. A real range is
 stronger and is the operator's to set.
-FLAGGED, other lane: app/(foyer)/playbook/page.tsx:622 still links to /services#packages.
+Pass-74 (59ed751, deploy db7nj5mbs): the playbook's "Fixed-price packages" link followed the
+packages to /packages. It had pointed at /services#packages since Pass-70, landing a reader
+who clicked it on a page with no packages. It RESOLVED, so no 404, no build error and no
+link check ever saw it -- only the destination was wrong. Swept app/ components/ lib/
+content/: it was the only one. I took the file because the other session had closed and the
+tree was clean, so the one-writer rule had nothing left to protect.
+GATE OWED (LESSONS): nothing in this repo checks that an internal link lands somewhere that
+still contains what the anchor text promises. A moved section leaves a live, resolving,
+wrong link. Worth a build-time sweep of href="/x#y" against the ids actually rendered.
+STILL other lane: /playbook title 61 chars and description 209 -- both past truncation.
 STILL OPEN from the review: nine vibe-coding articles + a hub, and the funnel (email
 sequences, second lead magnet, launch sequence). Both need operator input: an email platform
 and a launch date.
