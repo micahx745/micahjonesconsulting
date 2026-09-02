@@ -172,8 +172,8 @@ export default function AIEngineeringPage() {
             <a href="/playbook" className="cw-lede-link">
               playbook
             </a>{" "}
-            covers most of what the advisory shape does — for $149, not $5K a
-            month.
+            covers most of what the advisory shape does — for under $150, not
+            $5K a month.
           </p>
         </header>
       </section>

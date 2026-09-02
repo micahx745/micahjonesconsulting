@@ -295,3 +295,33 @@ string instead of its own whitespace shifts every line number after it. The .tsx
 excluded from the failing set on purpose, listed in the RESUME queue instead, because sweeping
 them edits copy the operator approved hours earlier. Widening the gate is one array.
 
+
+## #12 — Two sessions on one repo collide silently, three ways (2026-09-01)
+
+**What happened:** Two Claude sessions ran on this repo the same evening, neither aware of the
+other. They collided three separate ways, none of which either session noticed until git
+archaeology. First, a page rebuild was silently superseded: one session rebuilt /playbook as a
+three-act launch page (Pass-53/54) after a DISCUSS pass, live 2026 research, a design-director
+ruling and a buyer cold read; the other rebuilt the same route an hour later as "The manual,
+opened" under a new `cw-lp-*` namespace, having seen none of that. The second version shipped to
+production. Second, both sessions rewrote `.claude/RESUME.md`, a whole-file document each treats
+as "the only current-state source", so whoever wrote last would erase the other's state. Third,
+both committed a "Pass-61". The operator's actual complaint that evening was 5-hour usage, and
+two sessions on top tiers spend two budgets against one window.
+
+**Root cause:** Every coordination rule in this harness is per-session. The resume file, the pass
+numbering, the one-writer-per-file rule and the model routing card all assume a single writer.
+Nothing in the boot sequence asks whether anyone else is already here, so "read the resume file
+at session start" produces a confident but stale picture the moment a second session is running.
+The near-miss on RESUME.md was caught only because a status check happened to run before the
+write, which is luck, not a mechanism.
+
+**Gate:** `~/.claude/hooks/concurrent-session-guard.py`, wired to SessionStart globally. It looks
+for another transcript in this project's directory modified within 15 minutes and, when it finds
+one, injects the warning plus the four checks that would have prevented all three collisions: run
+`git log --oneline -5` before trusting a pass number, read and MERGE the committed resume file
+rather than rewriting from memory, stage by explicit path so the other session's in-flight work
+cannot be swept into your commit, and check whether a page you are about to rebuild has already
+been rebuilt. It never blocks, because concurrent sessions are often deliberate; it only removes
+"I didn't know". Recorded alongside it in `~/.claude/MODEL_ROUTING.md` §6, which also notes that
+routing cannot see this problem at all, since routing is per-session and this is between them.

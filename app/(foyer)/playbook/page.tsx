@@ -44,6 +44,10 @@ export const metadata: Metadata = {
     url: "https://www.micahjonesconsulting.com/playbook",
     siteName: "Micah Jones",
   },
+  // opengraph-image.tsx generates twitter:image but NOT twitter:card (verified
+  // in the Next 16 file-convention docs), so the card type is set explicitly or
+  // the unfurl renders as a small thumbnail.
+  twitter: { card: "summary_large_image" },
 };
 
 // The book's real table of contents; page numbers are the queried
@@ -120,6 +124,14 @@ const FAQS = [
     q: "How is this different from a tutorial?",
     a: "A tutorial shows one happy path. This is the failure modes, from someone who shipped through them.",
   },
+  {
+    q: "What if it does not help?",
+    a: "Thirty days, full refund, no questions asked. Reply to the delivery email and I refund it.",
+  },
+  {
+    q: "Will it go stale?",
+    a: "The tools change monthly. The walls do not. Every future edition is included and goes to the same email.",
+  },
 ] as const;
 
 export default function PlaybookPage() {
@@ -152,7 +164,7 @@ export default function PlaybookPage() {
           </p>
           <div className="cw-lp-object__row">
             <a href="#pb-free" className="cw-mlink">
-              Read chapter one free <span aria-hidden>↓</span>
+              Read chapter one free, by email <span aria-hidden>↓</span>
             </a>
             <p className="cw-lp-object__meta">$99 at launch · $149 after</p>
           </div>
@@ -188,9 +200,9 @@ export default function PlaybookPage() {
             § 0.1
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>I built Ordani
-              alone with Claude Code and Cursor: a HIPAA-compliant SaaS with
-              active paying users. Same tools you&rsquo;re using. Same wall I
-              hit.
+              alone with Claude Code and Cursor: a HIPAA-compliant SaaS for
+              birth workers, with active paying users. Same tools you&rsquo;re
+              using. Same wall I hit.
             </p>
           </aside>
         </section>
@@ -384,6 +396,11 @@ export default function PlaybookPage() {
               <dt>Companion files</dt>
               <dd>
                 <strong>26</strong>
+              </dd>
+              <dt>Author</dt>
+              <dd>
+                Micah Jones · Oakland · built Ordani solo · four exits behind my
+                work
               </dd>
               <dt>Format</dt>
               <dd>PDF + ZIP · every future edition</dd>

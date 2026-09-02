@@ -55,7 +55,8 @@ export function PlaybookSignupForm({ plain = false }: { plain?: boolean }) {
     return (
       <div className={`cw-signup${revealClass} is-in`} aria-live="polite">
         <p className="cw-msg" style={{ width: "100%" }}>
-          Chapter 1 is on its way. Check your inbox.
+          Chapter 1 is on its way from micah@micahjonesconsulting.com. Nothing
+          in a few minutes? Check spam.
         </p>
       </div>
     );
