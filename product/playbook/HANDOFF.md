@@ -21,6 +21,7 @@ repetition trimmed (ledger-safe removals only); ch10 End page now gives companio
 access + /playbook as free-ch1 share path; Cursor note precision (.mdc). Rejected with
 reasons: Codex nit (audience knows the tool), month-only build-log dates (honest; never
 invent precision), "$5B+" phrasing (ledger-locked, operator-owned).
+
 - DELIVERY CONTRACT (End page asserts it): the purchase delivery MUST include the
   companion ZIP alongside the book PDF. Bind this into the Stripe webhook build.
 - `src/chapter-01..10.typ` — ten chapters, Typst, one design system (`src/template.typ`)
@@ -37,8 +38,8 @@ invent precision), "$5B+" phrasing (ledger-locked, operator-owned).
 
 1. Edit `.typ` → 2. `python check.py src/chapter-NN.typ` (banned words, em-dash cap,
    fieldnote-before-heading) → 3. compile chapter AND book → 4. rasterize
-   (`typst compile ... "{p}.png" --format png`) and LOOK at every changed page →
-   5. if ch.1 changed: `node product/playbook/embed-ch1.mjs` → 6. commit.
+   (`typst compile ... "{p}.png" --format png`) and LOOK at every changed page → 5. if ch.1 changed: `node product/playbook/embed-ch1.mjs` → 6. commit.
+
 - Compile: `typst compile src/book.typ output/the-80-percent-wall.pdf --font-path fonts`
 - Page-count/byte asserts are blind; the visual walkthrough is the gate (a "verified"
   deck once shipped with an invisible slide — see machine playbook document-artifacts.md).
@@ -61,22 +62,23 @@ invent precision), "$5B+" phrasing (ledger-locked, operator-owned).
 ## Mission status (2026-08-31 PM)
 
 1. Perfection pass: DONE (Pass-45, e7860c7). 2. Harness: DONE (Pass-46, 43a1f83) —
-check.py gained the block-scoped Ordani vendor check (negative-tested) AND now runs as a
-blocking PostToolUse hook on product/playbook/src/*.typ writes (.claude/settings.json →
-hook-gate.py; live-fire proven). Skill evaluations, rejected with reasons: beautiful-prose
-(hollow stub, verified — no actual style contract), copy-editing (superseded by the house
-copy-editor agent + copy-lint + check.py), pdf-official (forms/manipulation; Typst
-pipeline has no need), canvas-design (would fight the locked print grammar).
-Deferred to their surfaces: frontend-design/scroll-experience/impeccable-* (the /playbook
-launch flip), remotion-best-practices (only if a video render step appears).
-3. Animation: the perfection pass is done, so the generation ask is NOW OPEN (see
-operator queue below). Integration returns to this workstream when assets land.
+   check.py gained the block-scoped Ordani vendor check (negative-tested) AND now runs as a
+   blocking PostToolUse hook on product/playbook/src/_.typ writes (.claude/settings.json →
+   hook-gate.py; live-fire proven). Skill evaluations, rejected with reasons: beautiful-prose
+   (hollow stub, verified — no actual style contract), copy-editing (superseded by the house
+   copy-editor agent + copy-lint + check.py), pdf-official (forms/manipulation; Typst
+   pipeline has no need), canvas-design (would fight the locked print grammar).
+   Deferred to their surfaces: frontend-design/scroll-experience/impeccable-_ (the /playbook
+   launch flip), remotion-best-practices (only if a video render step appears).
+2. Animation: the perfection pass is done, so the generation ask is NOW OPEN (see
+   operator queue below). Integration returns to this workstream when assets land.
 
 ## STRIPE RAIL — BUILT AND E2E-VERIFIED IN TEST MODE (Pass-49/50, 2026-09-01)
 
 Live-verified twice ($99 test payments, 4242): hosted checkout → Stripe's own webhook
 delivery → ONE email w/ book PDF + companion ZIP (idempotent on session id) → sale note;
 refund → refund echo note. Signature negatives verified (unsigned/wrong-key → 400).
+
 - Code: app/actions/playbook-checkout.ts (session + metadata tag), app/api/stripe/
   webhook/route.ts (verify → re-fetch → metadata gate → deliver), lib/playbook-
   delivery.ts, lib/stripe.ts, app/(foyer)/playbook/thanks (noindex), scripts/
@@ -100,9 +102,11 @@ Operator brief after seeing v1: "feels weak… I need to feel special… make th
 buy… too wordy… no trust signals… no restraint, go wild." Process: DISCUSS lock (his
 answers) → research leg (2026 exemplars, all fetched live: Refactoring UI, Practical UI,
 Whimsy, Devouring Details, Resend, Dia, Awwwards SOTD Aug-Sep 2026; ranked "want" moves
-+ word budget hero ≤45 / page ≤900) → design-director round 2 → build → Playwright
-verification per act → buyer-persona cold read → revisions.
-- SHIPPED: three-act world arc espresso → bone → espresso (per-section data-world; the
+
+- word budget hero ≤45 / page ≤900) → design-director round 2 → build → Playwright
+  verification per act → buyer-persona cold read → revisions.
+
+* SHIPPED: three-act world arc espresso → bone → espresso (per-section data-world; the
   site's own crossfade rearranged); THE OBJECT hero (real cover, static 7° tilt, one
   edge-light, still the loop socket via <PlaybookHeroMedia videoSrc>); pain trio + after
   trio; trust block (Ordani first in display type, then first-person ledger-exact exits/
@@ -110,14 +114,14 @@ verification per act → buyer-persona cold read → revisions.
   companion card as demonstration; TOC as page-numbered index with five-word failure
   tags; counted-from-source numbers + the 26 files defined; $99 headline / $149 anchor;
   capture form inside the price box too. 611 words (was ~1,500).
-- PERSONA COLD READ (vibe-coder, skeptic): want 6/10 → would leave email YES, pay $99
+* PERSONA COLD READ (vibe-coder, skeptic): want 6/10 → would leave email YES, pay $99
   "not today, leaning maybe" — top asks applied: capture in the price box, Ordani before
   the $5B line, failure tags in the index, files defined, mechanism in after-line 3.
-- OPERATOR-OWNED ASKS from the read: a SHIP WINDOW for the price box ("ships <month>")
+* OPERATOR-OWNED ASKS from the read: a SHIP WINDOW for the price box ("ships <month>")
   and a face/name photo in the author block. Both convert; both are facts only he has.
-- Render gotcha: full-page screenshots freeze the world at one bg — verify bone/espresso
+* Render gotcha: full-page screenshots freeze the world at one bg — verify bone/espresso
   sections with viewport captures after real scrolling (run_code script in session).
-- Mechanical lessons: equal-specificity overrides lose to SOURCE ORDER (mobile hero
+* Mechanical lessons: equal-specificity overrides lose to SOURCE ORDER (mobile hero
   collapsed to 0px twice); scroll-snap-align:start eats scroll-container padding on load
   (removed snap). Both fixed and verified by computed values, not by eye alone.
 
@@ -133,6 +137,7 @@ to the book's deks; ZIP list synced to the real 26 files; the stale "$149" kicke
 (one price artifact on the page). Verified: typecheck+build green, Playwright full-page
 at 1440 and 390 (no overflow, all reveals fire, images load). Red lines held: no 3D
 cover, no petrol/saffron in page chrome, no second CTA style, no new motion.
+
 - ⚠ CONCURRENT-ARC NOTE: the site session's commit bfc0363 ("Pass-47: self-serve
   packages") swept this whole in-flight build into its commit. Correct content, wrong
   subject line; the proof-spread caption fix landed separately (Pass-52). That session
@@ -144,7 +149,7 @@ cover, no petrol/saffron in page chrome, no second CTA style, no new motion.
   <PlaybookHeroMedia /> in app/(foyer)/playbook/page.tsx. Same box, cover = poster,
   reduced-motion users keep the still. Wide stills (PROMPT 3/4) can replace the cover
   or join the proof strip through the same next/image pattern.
-- PIPELINE LESSON: page-number renders (spread-*.png) are pagination-bound — the 68pp
+- PIPELINE LESSON: page-number renders (spread-\*.png) are pagination-bound — the 68pp
   repagination silently moved "p.21" from the diagram to body text and the caption
   would have lied. After ANY book recompile that changes pagination, re-render every
   spread AND look at it against its caption.
@@ -156,6 +161,7 @@ lib/catalog.ts is the SKU source of truth; the webhook dispatches by catalog (bo
 delivery, package -> kickoff email); refund echo carries the product name. E2E-verified in
 test mode (paid Audit w/ flavor field, kickoff + sale note + refund echo all delivered).
 COORDINATION FACTS:
+
 - The old test webhook endpoint we_1UAvPaPJokEBk2aDzUsGSVeO was DELETED (its whsec was never
   persisted). New endpoint: we_1UAwdlPJokEBk2aD62yaHEhs, same stripe-test URL + bypass param.
   Its whsec lives ONLY in deploy micahjonesconsulting-2kigmu15i's env (stripe-test alias now
@@ -169,10 +175,9 @@ COORDINATION FACTS:
 1. ROTATE the test secret key first (it entered a chat transcript, 2026-09-01) — roll
    in dashboard; live key NEVER via chat: temp file or Vercel dashboard only.
 2. Live key → Vercel env STRIPE_SECRET_KEY (Production). 3. `node scripts/
-   stripe-setup.mjs` with live key → live price. 4. Register live webhook at
+stripe-setup.mjs` with live key → live price. 4. Register live webhook at
    https://www.micahjonesconsulting.com/api/stripe/webhook (production custom domain =
-   NO bypass param needed) → its NEW whsec → STRIPE_WEBHOOK_SECRET (Production).
-   5. Deploy (installed is not live). Then the ritual: pay yourself $99 live, watch
+   NO bypass param needed) → its NEW whsec → STRIPE_WEBHOOK_SECRET (Production). 5. Deploy (installed is not live). Then the ritual: pay yourself $99 live, watch
    checkout → webhook → email → refund echo. Then flip /playbook waitlist → buy button
    (wire createPlaybookCheckout), launch email. Cleanup after: delete test webhook
    endpoint + stripe-test alias; rotate the Vercel automation-bypass secret.
@@ -184,10 +189,14 @@ COORDINATION FACTS:
    delivery-form check this session cannot do).
 2. END-TO-END READ of output/the-80-percent-wall.pdf (68pp) — the last human gate.
 3. Decide: separate Stripe account for the book vs shared-with-Ordani (see ⚠ above).
-4. GENERATE the animation assets (animation/PROMPTS.md, in a Recraft/Krea-class tool).
-   Run order: PROMPT 3 (wide still — seeds the video, doubles as poster) → PROMPT 1
-   (hero loop) → PROMPT 4 vignettes (optional, book spreads) → 2/5 only if wanted.
-   Paste the STYLE BLOCK first and the NEGATIVE block last on every prompt.
+4. ~~GENERATE the animation assets~~ **DECLINED AND CLOSED 2026-09-02.** The
+   AI-generated "vibe coding factory" loop is not being built. DESIGN_BAR R12 bans
+   AI-generated imagery by name and `.claude/CLAUDE.md` bans illustration; a video
+   element is imagery, so the imagery rules apply. The queued PROMPT 1 was also
+   frictionless motion with no wall in it, which contradicts a book about builds that
+   stall. REPLACED by `<WallChart />` (Pass-67): the book's own page-6 figure drawn
+   once on load, CSS only, motion-engineer approved in writing as a figure animation.
+   Do not re-queue the prompts for the site.
 5. Say the word on go-live → this session runs the runbook above.
 
 ## Mission for this workstream
@@ -198,7 +207,7 @@ COORDINATION FACTS:
    whole book). Consistency: cross-references, terminology, diagram grammar, TOC.
 2. **Harness research**: evaluate skills/hooks/plugins to add for book-quality work
    (candidates seen in the skill registry: pdf-official, canvas-design,
-   remotion-best-practices, scroll-experience, frontend-design, impeccable-*,
+   remotion-best-practices, scroll-experience, frontend-design, impeccable-\*,
    beautiful-prose, copy-editing). Propose, then wire the winners: e.g. graduate
    check.py into a write-boundary hook for `product/playbook/src/**`.
 3. **"Life" concept — assets and timing owned by THIS workstream.** Direction is locked:
@@ -241,6 +250,7 @@ COORDINATION FACTS:
 - Windows: cp1252 printing (reconfigure stdout), /tmp path split between bash/python.
 
 ## COORDINATION — /playbook rebuilt by the main session (Pass-55, 2026-09-01 PM)
+
 Operator rejected the Pass-53/54 launch page in review ("still looks bad… no inspiration… no
 animations") and instructed the main session to rebuild it in-chat. New direction, locked: the
 page is the book's own print grammar (object cover → bone paper + rail + § codes → spread at
@@ -256,4 +266,3 @@ then "push it" — production deploy musrbwwz4 now serves it at www.micahjonesco
 Stripe env in Production. /services also shipped simplified (Pass-56) with the packages section
 intact; its package CTAs remain mailto until the go-live ritual. Production deploys are CLI
 (`vercel deploy --prod --scope passioneer`); a git push alone does not deploy.
-

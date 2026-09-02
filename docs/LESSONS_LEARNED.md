@@ -66,7 +66,12 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   to zero rendered instances 2026-08-30): "Three companies I helped build reached an exit".
   **JOINING STAGE — operator-supplied 2026-09-02**, verbatim: "postmates was earlysih,
   surveymonkey earlyish, guardicore super early, neuto ai super early. name drop". So:
-  Postmates and SurveyMonkey EARLYISH; Guardicore and Neuton.AI VERY EARLY. This authorises
+  Postmates and SurveyMonkey EARLYISH; Guardicore and Neuton.AI VERY EARLY. **RULED
+  2026-09-02: render as plain "early" for ALL FOUR** (operator: "just say early for all those
+  companies mentioned"), after it was flagged that Guardicore ships as 2018-2021 on his own
+  case study against a 2015 founding, so "very early" was checkable and shaky. The per-company
+  distinction stays recorded here as fact; the PUBLIC rendering is the flat "early". This
+  authorises
   naming the four companies on public surfaces WITH their joining stage. It does NOT authorise
   founder, founding-team, co-founder, or employee-number claims for any of them, and it does
   not lift the HOLD on his Postmates role and years. First rendered on /playbook (Pass-68).
