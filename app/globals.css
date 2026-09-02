@@ -2490,47 +2490,6 @@ body {
 }
 
 /* Marquee — services + companies */
-[data-mode="cw"] .cw-marquee {
-  border-top: 1.5px solid currentColor;
-  border-bottom: 1.5px solid currentColor;
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 18px 0;
-}
-[data-mode="cw"] [data-scroll-track] .cw-track {
-  display: inline-block;
-  transform: translateX(var(--strip-x, 0%));
-  font-family: var(--font-cw-display);
-  font-weight: 600;
-  font-size: 28px;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-}
-/* Pass-20 fix (per Marcus): the prior descendant selector applied
- * 26px margin to ALL spans in the tree — block wrappers, word
- * wrappers, AND the inner .cw-dot spans. Compound margins inflated
- * inter-word gap to ~104px with ✦ floating in oversized empty space.
- * Scope to the word-wrapper level only; let the dot sit snug to its
- * trailing word with small padding. Result: ~42-50px between words,
- * ✦ visually attached to the word it follows. Reads as deliberate
- * typesetting, not as a tracking accident. */
-[data-mode="cw"] .cw-marquee .cw-track > span {
-  /* Outer block wrappers (the duplicated [0,1] for infinite loop).
-   * Structural only; children carry spacing. */
-  margin: 0;
-}
-[data-mode="cw"] .cw-marquee .cw-track > span > span {
-  /* Word wrappers — one per service. Carries inter-word margin. */
-  margin: 0 14px;
-}
-[data-mode="cw"] .cw-marquee .cw-track .cw-dot {
-  /* The ✦ sits at the END of each word wrapper. Tight padding
-   * so it reads as inline punctuation, not a floating element. */
-  margin: 0;
-  padding: 0 4px 0 12px;
-  color: var(--cw-accent);
-}
-/* Section blocks (Clients, Products) */
 [data-mode="cw"] .cw-block {
   padding: 130px 40px;
   position: relative;
@@ -3892,13 +3851,10 @@ body {
   [data-mode="cw"] .cw-bleed {
     filter: none !important;
   }
-  /* Pass-11 (B6): dropped `.cw-companies` from the hide-list (marquee
-   * removed in Pass-9, class no longer exists in DOM).
-   * Pass-12: H1 reveal-state override selector restored to
-   * `.cw-h1 .cw-line > span` for the rotating-word hero markup. */
-  [data-mode="cw"] .cw-marquee {
-    display: none !important;
-  }
+  /* Pass-12: H1 reveal-state override selector restored to
+   * `.cw-h1 .cw-line > span` for the rotating-word hero markup.
+   * Pass-68: the reduced-motion hide rule for the home ticker went with the
+   * ticker itself; the class no longer exists in the DOM. */
   [data-mode="cw"] .cw-h1 .cw-line > span,
   [data-mode="cw"] .cw-eyebrow > span {
     transform: none !important;

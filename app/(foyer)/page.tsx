@@ -7,8 +7,6 @@
 // Section order + worlds (Terracotta Workshop palette):
 //   Hero         → terracotta (Pass-21: rotating words pipeline→position
 //                              + system→engine; sub names 14 practices)
-//   Marquee      → terracotta (Pass-21: verb-forward phrases — was
-//                              category nouns reading as a tag cloud)
 //   Revenue+exits→ terracotta (Pass-21: dek cut "Named institutional
 //                              customers" — claim-without-evidence
 //                              since names follow in entry bodies)
@@ -100,50 +98,17 @@ const CLIENT_OFFERS = [
   },
 ] as const;
 
-// Pass-21 (Claude Chat audit): category nouns ("Go-to-market", "Product",
-// "Growth", "Strategy") read as a tag cloud. Verb-forward phrases name
-// specific artifacts a scrolling marquee can carry with energy. Each
-// phrase now maps to a buyer-recognizable thing: research, products,
-// GTM, AI work, repositioning outcomes.
-const SERVICE_MARQUEE = [
-  "Positioning research",
-  "Shipped products",
-  "Enterprise GTM",
-  "AI in production",
-  "Category shifts",
-] as const;
-
 export default function ColorWorldsHome() {
   return (
     <>
-      {/* HERO + MARQUEE — terracotta */}
+      {/* HERO — terracotta */}
       <Hero />
 
-      <div
-        className="cw-marquee"
-        data-section
-        data-world="terracotta"
-        data-scroll-track
-      >
-        <div className="cw-track">
-          {/* Track duplicated; scroll-linked translateX(0 to -50%) reveals
-              the second half cleanly (D2, operator-locked 2026-08 — no
-              idle loop; see Hero.tsx's scroll-link effect for the
-              [data-scroll-track] progress calc). */}
-          {[0, 1].map((dupe) => (
-            <span key={dupe}>
-              {SERVICE_MARQUEE.map((s) => (
-                <span key={`${dupe}-${s}`}>
-                  {s}
-                  <span className="cw-dot" aria-hidden>
-                    ✦
-                  </span>
-                </span>
-              ))}
-            </span>
-          ))}
-        </div>
-      </div>
+      {/* Pass-68: the scrolling ✦ marquee is gone. A ticker of buzzword
+          fragments is one of the two most recognisable AI-built-site tells,
+          it carried no information a static line would not, and the three
+          services are stated properly further down the page. The
+          [data-scroll-track] effect in Hero.tsx that drove it went with it. */}
 
       {/* REVENUE BAND DELETED (Pass-4). Its three claims ($20M+, three
           exits, trillions) moved ONTO the hero photo as proof chips —

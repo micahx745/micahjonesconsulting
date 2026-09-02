@@ -231,60 +231,6 @@ export function Hero() {
     };
   }, []);
 
-  // Service scroll-strip link (D2, operator-locked 2026-08). The
-  // scrolling service strip (app/(foyer)/page.tsx, [data-scroll-track])
-  // is a sibling section, not a Hero child — wiring its motion here
-  // (instead of a new client component) keeps this pass's file-touch
-  // surface to the four files it's scoped to. Same document.querySelector-
-  // for-a-sibling idiom Nav.tsx already uses for #main-content/nav.cw-nav.
-  // No idle loop: progress is derived from the strip's own
-  // getBoundingClientRect() every scroll frame (rAF-batched, no cached
-  // offsetTop, so layout shifts can't desync it) and written to
-  // --strip-x, which the CSS transform in globals.css reads. No JS /
-  // reduced-motion => --strip-x is never set => the track renders at
-  // translateX(0), the same static start state the old keyframe held.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduced) return;
-
-    const strip = document.querySelector<HTMLElement>("[data-scroll-track]");
-    const track = strip?.querySelector<HTMLElement>(".cw-track");
-    if (!strip || !track) return;
-
-    let raf = 0;
-    let pending = false;
-
-    function apply() {
-      const rect = strip!.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // Range: strip top entering the bottom of the viewport (rect.top
-      // === vh, progress 0) to it having scrolled a full viewport past
-      // the top (rect.top === -vh, progress 1) — two viewport-heights
-      // of scroll straddling the strip's position.
-      const progress = Math.min(Math.max((vh - rect.top) / (vh * 2), 0), 1);
-      track!.style.setProperty("--strip-x", `${progress * -50}%`);
-      pending = false;
-    }
-    function onScroll() {
-      if (!pending) {
-        pending = true;
-        raf = requestAnimationFrame(apply);
-      }
-    }
-
-    apply();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
   return (
     <header
       ref={heroRef}
@@ -316,7 +262,11 @@ export function Hero() {
 
       <h1 className="cw-h1 cw-shift" ref={h1Ref}>
         <span className="cw-line">
-          <span ref={captureLine}>I build the</span>
+          {/* Pass-68: trailing space. The two lines are separate block spans,
+              so visually they stack, but as TEXT they ran together and every
+              crawler read "I build thego-to-market". A real defect regardless
+              of what happens to the rotation itself. */}
+          <span ref={captureLine}>I build the </span>
         </span>
         <span className="cw-line">
           <span ref={captureLine}>
