@@ -11,8 +11,9 @@
 > $7,500. Production has `RESEND_API_KEY` but NOT `STRIPE_SECRET_KEY` or
 > `STRIPE_WEBHOOK_SECRET`, so the live site still cannot take a payment.
 > **Next: step 3.**
-> **What goes live:** four things on one rail — the ebook at $99 and the three
-> packages at $500, $2,500 and $7,500.
+
+**What goes live:** four things on one rail, the ebook at $99 and the three
+packages at $500, $2,500 and $7,500.
 
 The rail is already built and was proven end to end twice in test mode: hosted
 checkout, Stripe's own webhook delivery, one email carrying the book PDF and the
