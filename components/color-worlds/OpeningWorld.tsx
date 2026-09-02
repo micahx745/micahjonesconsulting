@@ -47,5 +47,15 @@ export function OpeningWorld({ name }: { name: WorldName }) {
   // Scoped to the cw wrapper, same specificity as the globals.css default but
   // later in the cascade, so it wins without !important.
   const css = `[data-mode="cw"]{--cw-bg:${w.bg};--cw-fg:${w.fg};--cw-accent:${w.accent}}`;
-  return <style dangerouslySetInnerHTML={{ __html: css }} />;
+  // href + precedence make React 19 HOIST this into <head> and dedupe it by
+  // href. Rendered in place it lands mid-body (measured: byte 6316 of 38298 on
+  // /work), which works but leaves a parse window where a paint could still use
+  // the terracotta default. In the head there is no window at all.
+  return (
+    <style
+      href={`opening-world-${name}`}
+      precedence="high"
+      dangerouslySetInnerHTML={{ __html: css }}
+    />
+  );
 }

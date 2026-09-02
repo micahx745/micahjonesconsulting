@@ -5733,7 +5733,7 @@ body {
   width: 100%;
   height: auto;
   border: 1px solid color-mix(in srgb, var(--color-cw-bone) 34%, transparent);
-  filter: grayscale(1) brightness(0.86) contrast(1.08) sepia(0.16);
+  filter: grayscale(1) brightness(1.02) contrast(1.06) sepia(0.12);
 }
 [data-mode="cw"] .cw-lot__exhibit figcaption {
   margin-top: 12px;
