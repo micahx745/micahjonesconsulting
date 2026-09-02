@@ -5,7 +5,7 @@ Audit: 9 of 320 Fable turns were taste calls, 311 execution. DIRECT (Fable) now 
 committing a brief (`.claude/briefs/README.md`); EXECUTE runs it verbatim; JUDGE returns 3x.
 Live+tested global gates: statusline `5h NN%`; tier-burn-monitor (12 Fable / 30 Opus / 75+90%,
 silent on Sonnet); secret-literal-gate DENIES token literals (proven live); agent-model-gate
-ASKs on unnamed Agent model. Card §4 corrected: 31 hook events exist.
+WARNS (advisory, never blocks) when an Agent call names no model. Card §4 corrected: 31 events.
 TWO SESSIONS ran this tree tonight — two budgets, one 5h window. The other's Pass-55 superseded
 my /playbook rebuild; prod serves Pass-55. Fable `page-cro` ruling on live /playbook pending.
 
