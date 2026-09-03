@@ -167,16 +167,13 @@ export function OrdaniSticky() {
 
       // Reduced-motion + touch get a static layout. Just ensure
       // visibility is unchanged from CSS.
-      mm.add(
-        "(prefers-reduced-motion: reduce), (max-width: 759px)",
-        () => {
-          // Explicit reset: anything from the desktop matchMedia
-          // branch that lingered gets cleared.
-          gsap.set([tag, title, lede, form, note], {
-            clearProps: "all",
-          });
-        },
-      );
+      mm.add("(prefers-reduced-motion: reduce), (max-width: 759px)", () => {
+        // Explicit reset: anything from the desktop matchMedia
+        // branch that lingered gets cleared.
+        gsap.set([tag, title, lede, form, note], {
+          clearProps: "all",
+        });
+      });
     },
     { scope: containerRef, dependencies: [] },
   );

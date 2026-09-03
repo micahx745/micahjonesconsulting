@@ -10,13 +10,11 @@ export const contentType = "image/png";
 
 export default async function Image() {
   return new ImageResponse(
-    (
-      <CWOGComposition
-        eyebrow="WORK · MICAH JONES"
-        headline="CASE STUDIES"
-        punch="Guardicore, TechValidate, Flexport, Postmates — and Ordani."
-      />
-    ),
+    <CWOGComposition
+      eyebrow="WORK · MICAH JONES"
+      headline="CASE STUDIES"
+      punch="Guardicore, TechValidate, Flexport, Postmates — and Ordani."
+    />,
     size,
   );
 }

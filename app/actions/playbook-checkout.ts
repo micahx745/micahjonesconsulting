@@ -61,7 +61,10 @@ export async function createPlaybookCheckout(): Promise<Result> {
 
     if (!session.url) {
       // eslint-disable-next-line no-console
-      console.error("[playbook-checkout] session created without url", session.id);
+      console.error(
+        "[playbook-checkout] session created without url",
+        session.id,
+      );
       return { ok: false, error: "Checkout hiccuped. Try again in a minute." };
     }
     return { ok: true, url: session.url };

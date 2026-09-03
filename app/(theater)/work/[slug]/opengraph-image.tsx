@@ -47,77 +47,75 @@ export default async function Image({
   const SAFFRON = "#C9982F";
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        width: "100%",
+        height: "100%",
+        background: GROUND,
+        color: INK,
+        padding: "72px 96px",
+        fontFamily: "sans-serif",
+      }}
+    >
+      {/* Wordmark — one brand mark everywhere (P2-4). */}
+      <div
+        style={{
+          display: "flex",
+          fontSize: 28,
+          fontWeight: 700,
+          letterSpacing: "-0.01em",
+        }}
+      >
+        MICAH/JONES
+      </div>
+
+      {/* Title-card word stack — resolved state. */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          width: "100%",
-          height: "100%",
-          background: GROUND,
-          color: INK,
-          padding: "72px 96px",
-          fontFamily: "sans-serif",
+          gap: "6px",
+          fontSize: words.length > 3 ? 76 : 92,
+          fontWeight: 700,
+          lineHeight: 0.95,
+          letterSpacing: "-0.02em",
         }}
       >
-        {/* Wordmark — one brand mark everywhere (P2-4). */}
-        <div
-          style={{
-            display: "flex",
-            fontSize: 28,
-            fontWeight: 700,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          MICAH/JONES
-        </div>
-
-        {/* Title-card word stack — resolved state. */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "6px",
-            fontSize: words.length > 3 ? 76 : 92,
-            fontWeight: 700,
-            lineHeight: 0.95,
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {words.map((word, i) => (
-            <span key={`${word}-${i}`} style={{ display: "flex" }}>
-              {word}
-            </span>
-          ))}
-        </div>
-
-        {/* Caption — first sentence of the dek, saffron-tagged. */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 20,
-              letterSpacing: "0.14em",
-              color: SAFFRON,
-            }}
-          >
-            {(cs?.client ?? "CASE STUDY").toUpperCase()}
-          </div>
-          <p
-            style={{
-              margin: 0,
-              fontSize: 30,
-              color: INK_SOFT,
-              maxWidth: "85%",
-              lineHeight: 1.3,
-            }}
-          >
-            {caption}
-          </p>
-        </div>
+        {words.map((word, i) => (
+          <span key={`${word}-${i}`} style={{ display: "flex" }}>
+            {word}
+          </span>
+        ))}
       </div>
-    ),
+
+      {/* Caption — first sentence of the dek, saffron-tagged. */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div
+          style={{
+            display: "flex",
+            fontSize: 20,
+            letterSpacing: "0.14em",
+            color: SAFFRON,
+          }}
+        >
+          {(cs?.client ?? "CASE STUDY").toUpperCase()}
+        </div>
+        <p
+          style={{
+            margin: 0,
+            fontSize: 30,
+            color: INK_SOFT,
+            maxWidth: "85%",
+            lineHeight: 1.3,
+          }}
+        >
+          {caption}
+        </p>
+      </div>
+    </div>,
     { ...size },
   );
 }

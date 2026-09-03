@@ -47,7 +47,10 @@ export function ViewTransitionLink({
 
     e.preventDefault();
 
-    const target = typeof href === "string" ? href : (href as { pathname?: string }).pathname ?? "/";
+    const target =
+      typeof href === "string"
+        ? href
+        : ((href as { pathname?: string }).pathname ?? "/");
 
     // PITFALLS.md C3 + D1 — feature-detect.
     // SSR guard (typeof document) is belt-and-suspenders; this is a

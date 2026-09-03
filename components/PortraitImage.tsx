@@ -73,9 +73,12 @@ const SIZES: Record<Variant, string> = {
   context: "(min-width: 1100px) 380px, 100vw",
 };
 
-export function PortraitImage({ variant, priority = true }: PortraitImageProps) {
-  const file = EXTENSIONS.map((ext) => `${BASENAME[variant]}.${ext}`).find((name) =>
-    existsSync(join(process.cwd(), "public", name)),
+export function PortraitImage({
+  variant,
+  priority = true,
+}: PortraitImageProps) {
+  const file = EXTENSIONS.map((ext) => `${BASENAME[variant]}.${ext}`).find(
+    (name) => existsSync(join(process.cwd(), "public", name)),
   );
   if (!file) return null;
 
@@ -97,7 +100,6 @@ export function PortraitImage({ variant, priority = true }: PortraitImageProps) 
         priority={priority}
         className="cw-portrait__img"
       />
-
     </figure>
   );
 }

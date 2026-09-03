@@ -103,7 +103,10 @@ export const fadeUp = {
   },
 };
 
-export const stagger = (children: number = STAGGER.base, delayChildren = 0) => ({
+export const stagger = (
+  children: number = STAGGER.base,
+  delayChildren = 0,
+) => ({
   hidden: {},
   show: {
     transition: { staggerChildren: children, delayChildren },

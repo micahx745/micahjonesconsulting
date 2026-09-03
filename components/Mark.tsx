@@ -42,13 +42,7 @@ export function Mark({ height = 28, className = "", style }: MarkProps) {
         height="38"
         fill="transparent"
       />
-      <line
-        className="brand-mark__divider"
-        x1="40"
-        y1="2"
-        x2="40"
-        y2="38"
-      />
+      <line className="brand-mark__divider" x1="40" y1="2" x2="40" y2="38" />
       <rect
         className="brand-mark__rect brand-mark__rect--theater"
         x="43"

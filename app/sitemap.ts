@@ -69,15 +69,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-      {
-        // Pass-76: /contact is the site-wide "reach me" route now. /book stays
-        // indexed but drops below it — a scheduled call is the step after a
-        // purchase, not the front door it used to be.
-        url: `${BASE_URL}/contact`,
-        lastModified: now,
-        changeFrequency: "yearly",
-        priority: 0.7,
-      },
+    {
+      // Pass-76: /contact is the site-wide "reach me" route now. /book stays
+      // indexed but drops below it — a scheduled call is the step after a
+      // purchase, not the front door it used to be.
+      url: `${BASE_URL}/contact`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
     {
       url: `${BASE_URL}/book`,
       lastModified: now,

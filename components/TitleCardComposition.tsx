@@ -88,16 +88,17 @@ export function TitleCardComposition({
           {caption}
         </p>
 
-        {heroSrc ? (
-          <div data-tc-hero className="title-card-hero">
-            {/* next/image not used here so the same composition is reusable
+        {
+          heroSrc ? (
+            <div data-tc-hero className="title-card-hero">
+              {/* next/image not used here so the same composition is reusable
                 in the OG route. Phase 8 will swap to next/image inside the
                 live render path if PERF requires it. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={heroSrc} alt={heroAlt ?? ""} loading="eager" />
-          </div>
-        ) : null
-        /* W1 (2026-08-11): the empty bordered placeholder frame is gone —
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={heroSrc} alt={heroAlt ?? ""} loading="eager" />
+            </div>
+          ) : null
+          /* W1 (2026-08-11): the empty bordered placeholder frame is gone —
            an empty rectangle in the hero read as a missing image, not
            restraint. When a real still lands (P2-1 artifact drops), the
            heroSrc branch renders it. TitleCard.tsx already null-checks

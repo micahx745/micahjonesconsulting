@@ -48,7 +48,11 @@ export function Nav({ variant }: { variant: NavVariant }) {
        * theater with copper hairline between). Replaces the "mj" typographic
        * wordmark. Draws itself on first paint (~1.1s). The name reads beside
        * it on desktop, hidden on mobile (nav fits better). */}
-      <ViewTransitionLink href="/" className="nav-brand" aria-label="Micah Jones — home">
+      <ViewTransitionLink
+        href="/"
+        className="nav-brand"
+        aria-label="Micah Jones — home"
+      >
         <Mark height={22} />
         <span className="nav-brand__divider" aria-hidden />
         <span className="nav-brand__name">Micah Jones</span>

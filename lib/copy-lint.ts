@@ -54,7 +54,10 @@ export function scanString(
         filePath,
         line: lineOffset + i,
         column: match.index + 1,
-        excerpt: line.slice(Math.max(0, match.index - 20), match.index + match[1]!.length + 20),
+        excerpt: line.slice(
+          Math.max(0, match.index - 20),
+          match.index + match[1]!.length + 20,
+        ),
       });
     }
   }
@@ -67,6 +70,9 @@ export function scanString(
  */
 export function formatFindings(findings: Finding[]): string {
   return findings
-    .map((f) => `${f.filePath}:${f.line}:${f.column} — banned word "${f.word}" in: "...${f.excerpt}..."`)
+    .map(
+      (f) =>
+        `${f.filePath}:${f.line}:${f.column} — banned word "${f.word}" in: "...${f.excerpt}..."`,
+    )
     .join("\n");
 }

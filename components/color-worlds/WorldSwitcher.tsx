@@ -121,7 +121,7 @@ export function WorldSwitcher() {
         const target =
           intersecting.length === 1
             ? intersecting[0]!
-            : pickCentered(intersecting) ?? intersecting[0]!;
+            : (pickCentered(intersecting) ?? intersecting[0]!);
         const name = resolveWorld(target.getAttribute("data-world"));
         if (name !== null) setWorld(name);
       },

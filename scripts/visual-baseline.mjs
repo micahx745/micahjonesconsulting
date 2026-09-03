@@ -39,7 +39,9 @@ async function loadChromium() {
       // land on the namespace or under .default depending on cjs-interop.
       const chromium = mod.chromium ?? mod.default?.chromium;
       if (!chromium) {
-        console.error(`PLAYWRIGHT_PATH resolved but exposed no chromium export: ${entry}`);
+        console.error(
+          `PLAYWRIGHT_PATH resolved but exposed no chromium export: ${entry}`,
+        );
         process.exit(2);
       }
       return chromium;
@@ -176,7 +178,8 @@ async function diff(dirA, dirB) {
             c.width = img.width;
             c.height = img.height;
             c.getContext("2d").drawImage(img, 0, 0);
-            return c.getContext("2d").getImageData(0, 0, img.width, img.height).data;
+            return c.getContext("2d").getImageData(0, 0, img.width, img.height)
+              .data;
           };
           const da = draw(ia);
           const db = draw(ib);
@@ -184,7 +187,10 @@ async function diff(dirA, dirB) {
           // channel deltas a human could see count as a differing pixel.
           const TOL = 12;
           let diffPx = 0;
-          let minX = ia.width, minY = ia.height, maxX = -1, maxY = -1;
+          let minX = ia.width,
+            minY = ia.height,
+            maxX = -1,
+            maxY = -1;
           for (let i = 0; i < da.length; i += 4) {
             if (
               Math.abs(da[i] - db[i]) > TOL ||
@@ -206,7 +212,10 @@ async function diff(dirA, dirB) {
             diffPx,
             totalPx,
             pct: +((diffPx / totalPx) * 100).toFixed(4),
-            box: maxX < 0 ? null : { x: minX, y: minY, w: maxX - minX + 1, h: maxY - minY + 1 },
+            box:
+              maxX < 0
+                ? null
+                : { x: minX, y: minY, w: maxX - minX + 1, h: maxY - minY + 1 },
             dims: `${ia.width}x${ia.height}`,
           };
         },
@@ -215,7 +224,8 @@ async function diff(dirA, dirB) {
           `data:image/png;base64,${bufB.toString("base64")}`,
         ],
       );
-      if (result.sizeMismatch || result.diffPx > 0) changed.push({ file: s.f, ...result });
+      if (result.sizeMismatch || result.diffPx > 0)
+        changed.push({ file: s.f, ...result });
       else identical.push(s.f);
     }
 
@@ -243,7 +253,8 @@ if (args[0] === "--diff") {
       );
     }
   }
-  if (report.missing.length) console.log(`  MISSING in ${dirB}: ${report.missing.join(", ")}`);
+  if (report.missing.length)
+    console.log(`  MISSING in ${dirB}: ${report.missing.join(", ")}`);
   await writeFile(
     join(dirB, "diff-report.json"),
     JSON.stringify(report, null, 2),
@@ -253,7 +264,9 @@ if (args[0] === "--diff") {
 } else {
   const outIdx = args.indexOf("--out");
   const outDir = outIdx >= 0 ? args[outIdx + 1] : "qa/baselines";
-  console.log(`Capturing ${ROUTES.length} routes x ${WIDTHS.length} widths -> ${outDir}`);
+  console.log(
+    `Capturing ${ROUTES.length} routes x ${WIDTHS.length} widths -> ${outDir}`,
+  );
   const results = await capture(outDir);
   console.log(`\nDone: ${results.length} captures in ${outDir}`);
 }

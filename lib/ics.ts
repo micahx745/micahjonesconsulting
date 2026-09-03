@@ -55,8 +55,7 @@ export function buildInviteIcs(input: InviteInput): {
   ics: string;
   uid: string;
 } {
-  const { date, time, durationMinutes, bookerName, bookerEmail, note } =
-    input;
+  const { date, time, durationMinutes, bookerName, bookerEmail, note } = input;
   const [y, mo, d] = date.split("-");
   const [h, mi] = time.split(":");
   const dtStart = `${y}${mo}${d}T${h}${mi}00`;
@@ -74,8 +73,7 @@ export function buildInviteIcs(input: InviteInput): {
     .slice(2, 10)}@micahjonesconsulting.com`;
 
   const now = new Date();
-  const dtStamp =
-    now.toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
+  const dtStamp = now.toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
 
   const description = escapeText(
     [
@@ -105,7 +103,7 @@ export function buildInviteIcs(input: InviteInput): {
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
     "TRANSP:OPAQUE",
-    'ORGANIZER;CN=Micah Jones:mailto:micah@micahjonesconsulting.com',
+    "ORGANIZER;CN=Micah Jones:mailto:micah@micahjonesconsulting.com",
     `ATTENDEE;CN=${escapeText(bookerName)};ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:${bookerEmail}`,
     "ATTENDEE;CN=Micah Jones;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED:mailto:micah@micahjonesconsulting.com",
     // Reminders: 24 hours and 1 hour before.

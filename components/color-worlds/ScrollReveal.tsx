@@ -34,8 +34,7 @@ export function ScrollReveal() {
       // Anything already in the viewport at mount counts as "in" — so
       // a hard refresh in mid-page doesn't leave the hero section hidden.
       const rect = el.getBoundingClientRect();
-      const inView =
-        rect.top < window.innerHeight * 0.82 && rect.bottom > 0;
+      const inView = rect.top < window.innerHeight * 0.82 && rect.bottom > 0;
       if (inView) el.classList.add("is-in");
       else observer.observe(el);
     });

@@ -15,7 +15,9 @@ export function PlaybookHeroMedia({ videoSrc }: { videoSrc?: string }) {
   return (
     <div
       className={
-        videoSrc ? "cw-pb-hero-media cw-pb-hero-media--video cw-reveal" : "cw-pb-hero-media cw-reveal"
+        videoSrc
+          ? "cw-pb-hero-media cw-pb-hero-media--video cw-reveal"
+          : "cw-pb-hero-media cw-reveal"
       }
     >
       <div className="cw-pb-hero-media__stage">

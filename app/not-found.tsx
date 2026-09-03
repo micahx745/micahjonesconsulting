@@ -17,9 +17,7 @@ export default function NotFound() {
         <p className="cw-notfound__code" aria-hidden>
           404
         </p>
-        <h1 className="cw-notfound__line">
-          That page isn&rsquo;t here.
-        </h1>
+        <h1 className="cw-notfound__line">That page isn&rsquo;t here.</h1>
         <p className="cw-notfound__links">
           <a href="/" className="cw-mlink">
             Back to home <span aria-hidden>→</span>

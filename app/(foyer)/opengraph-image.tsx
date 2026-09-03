@@ -13,12 +13,10 @@ export const contentType = "image/png";
 
 export default async function Image() {
   return new ImageResponse(
-    (
-      <CWOGComposition
-        headline="MICAH JONES"
-        punch="Four exits: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani."
-      />
-    ),
+    <CWOGComposition
+      headline="MICAH JONES"
+      punch="Four exits: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani."
+    />,
     size,
   );
 }

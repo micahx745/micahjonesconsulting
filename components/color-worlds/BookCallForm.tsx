@@ -27,9 +27,9 @@ function toDateInputValue(d: Date): string {
 }
 
 export function BookCallForm() {
-  const [state, setState] = useState<
-    "idle" | "busy" | "done" | "error"
-  >("idle");
+  const [state, setState] = useState<"idle" | "busy" | "done" | "error">(
+    "idle",
+  );
   const [error, setError] = useState("");
   const [dayWarn, setDayWarn] = useState(false);
 
@@ -73,8 +73,8 @@ export function BookCallForm() {
       <div className="cw-book__done" aria-live="polite">
         <p className="cw-book__donehead">Booked.</p>
         <p>
-          The calendar invite is in your inbox — reminders included.
-          I&rsquo;ll reply with a video link before the call.
+          The calendar invite is in your inbox — reminders included. I&rsquo;ll
+          reply with a video link before the call.
         </p>
       </div>
     );

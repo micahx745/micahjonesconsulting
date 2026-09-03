@@ -55,7 +55,10 @@ const EXT = /\.(tsx|mdx|typ)$|content[\\/].*\.ts$/;
 
 // Class 1: retired counts. Inherently Ordani — no proximity needed.
 const RETIRED_COUNTS = [
-  [/hundreds of (?:paying )?birth workers/gi, 'retired user count — use "active paying users", in beta'],
+  [
+    /hundreds of (?:paying )?birth workers/gi,
+    'retired user count — use "active paying users", in beta',
+  ],
   [/\bhundreds of users\b/gi, "retired user count"],
   [/\b200 birth workers\b/gi, "retired user count (200 is internal-only)"],
   [/\bused by 200\b/gi, "retired user count (200 is internal-only)"],
@@ -131,7 +134,10 @@ const report = (file, line, msg) => {
 
 for (const root of ROOTS) {
   for (const file of walk(root)) {
-    const src = stripComments(readFileSync(file, "utf-8"), file.endsWith(".mdx"));
+    const src = stripComments(
+      readFileSync(file, "utf-8"),
+      file.endsWith(".mdx"),
+    );
     const { flat, lineOf } = flatten(src.split("\n"));
     if (!flat) continue;
 
