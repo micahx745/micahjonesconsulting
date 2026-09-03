@@ -2220,6 +2220,26 @@ body {
 [data-mode="cw"] .cw-door:focus-visible .cw-door__cta span {
   transform: translateX(5px);
 }
+/* Review #10 (2026-09-02). The build door holds two destinations, so it is a
+ * <div> and the links sit in a foot row (the Pass-76b pattern on /services).
+ * The foot keeps the auto margin that pinned the single CTA to the bottom,
+ * and each arrow answers its own link rather than the whole panel. */
+[data-mode="cw"] .cw-door__ctas {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 28px;
+}
+[data-mode="cw"] .cw-door__ctas .cw-door__cta {
+  margin-top: 0;
+}
+[data-mode="cw"] .cw-door .cw-door__ctas .cw-door__cta span {
+  transform: none;
+}
+[data-mode="cw"] .cw-door .cw-door__ctas .cw-door__cta:hover span,
+[data-mode="cw"] .cw-door .cw-door__ctas .cw-door__cta:focus-visible span {
+  transform: translateX(5px);
+}
 @media (prefers-reduced-motion: reduce) {
   [data-mode="cw"] .cw-door,
   [data-mode="cw"] .cw-door__cta span {
@@ -5754,6 +5774,17 @@ body {
 }
 [data-mode="cw"] .cw-wk-item:last-child {
   border-bottom: 1px solid currentColor;
+}
+/* Review 2026-09-02 #11: the page the primary CTA points at closed on the
+ * footer. One line of prose after the list, at the /packages cross-link
+ * measure; no rule of its own, because the last item already draws one. */
+[data-mode="cw"] .cw-wk__cross {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 56ch;
+  margin: 48px 0 0;
+  opacity: 0.9;
 }
 [data-mode="cw"] .cw-wk-item__link {
   display: grid;

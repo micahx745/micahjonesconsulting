@@ -47,12 +47,12 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
-  title: "Work — pipeline, products, and exits",
+  title: "Work: pipeline, products, and exits",
   description:
     "Case studies with the receipts attached: an $80M security pipeline, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/work" },
   openGraph: {
-    title: "Work — pipeline, products, and exits",
+    title: "Work: pipeline, products, and exits",
     description:
       "Case studies with the receipts attached: an $80M security pipeline, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
     type: "website",
@@ -169,6 +169,23 @@ export default async function WorkIndexPage() {
             </li>
           ))}
         </ol>
+
+        {/* Review 2026-09-02 #11: "See the work" is the primary hero CTA, and
+            the page it lands on closed on the footer with nothing asking for
+            the sale. One line in the catalogue voice, prices as they stand on
+            /services and /packages. No entity in the text after either </a>
+            (LESSONS #6). */}
+        <p className="cw-wk__cross">
+          The next entry in this record could be yours.{" "}
+          <a href="/services" className="cw-lede-link">
+            Engagements
+          </a>{" "}
+          from $5K a month;{" "}
+          <a href="/packages" className="cw-lede-link">
+            packages
+          </a>{" "}
+          at $500, $2,500 and $7,500.
+        </p>
 
         <PageFooter />
       </section>

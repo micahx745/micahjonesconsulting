@@ -40,9 +40,25 @@ export async function generateStaticParams() {
 // studies will be statically generated via the params above.
 export const dynamicParams = true;
 
+// <meta>, OG and Twitter description. The full dek when it fits in 155
+// chars. Otherwise the whole sentences that fit (at least 100 chars, so a
+// two-sentence dek never shrinks to a stub), or, when the first sentence
+// alone runs long, a cut at the last word boundary plus an ellipsis. Never
+// a cut mid-word: the old slice(0, 152) shipped "...for North American
+// en..." as the Guardicore search snippet (site copy review 2026-09-02, #16).
+function clampDescription(dek: string): string {
+  if (dek.length <= 155) return dek;
+  const sentenceEnd = dek.slice(0, 156).lastIndexOf(". ");
+  if (sentenceEnd >= 100) return dek.slice(0, sentenceEnd + 1);
+  const cut = dek.slice(0, 152);
+  const wordEnd = cut.lastIndexOf(" ");
+  const words = cut.slice(0, wordEnd > 0 ? wordEnd : 152);
+  return `${words.replace(/[,;:]+$/, "")}...`;
+}
+
 // Per-route metadata for /work/[slug]. The root layout's title template
 // ("%s — Micah Jones") supplies the brand suffix — we just pass the
-// case study title here. Description clamped to ~155 chars with ellipsis.
+// case study title here. Description: see clampDescription above.
 //
 // Don't manually append " — Micah Jones" to the title; that's what the
 // template does. The previous version did both, producing the bug
@@ -60,8 +76,7 @@ export async function generateMetadata({
   // SERP truncation. If a title is longer, it was authored too long —
   // fix in MDX frontmatter, not by clamping at runtime.
   const title = cs.title;
-  const description =
-    cs.dek.length <= 155 ? cs.dek : `${cs.dek.slice(0, 152).trimEnd()}...`;
+  const description = clampDescription(cs.dek);
   const url = `https://www.micahjonesconsulting.com/work/${slug}`;
 
   return {

@@ -19,6 +19,17 @@
 //   LINKS  every internal href, and every fragment in one, lands somewhere real
 //   META   <title> and <meta description> stay inside what Google will show
 //   GLUE   no inline element is jammed against the word after it
+//   DASH   at most one em-dash in the body, and one in the <title>
+//
+// DASH exists because the em-dash cap was a rule only a human counted, and the
+// count kept losing. Two COMPONENTS injected one by construction
+// (CaseStudyStill's caption joiner, PullQuote's attribution), so every case
+// study with a photo or a quote broke the cap before an author typed a word.
+// Three page titles spent one that the root template ("%s - Micah Jones") then
+// doubled. Counting the SOURCE cannot see any of this: the dashes come from a
+// component, a metadata template, and an MDX string, and they only meet on the
+// rendered page. Body and title are counted separately because the template
+// owns one dash in every title and the nav's "Menu" line owns the body's one.
 //
 // GLUE exists because LESSONS #6 recurred a FOURTH time and shipped. Next 16's
 // RSC serializer drops the literal space between an inline element and the text
@@ -122,6 +133,18 @@ for (const file of walk(APP_DIR)) {
     links.push(raw);
   }
 
+  // ---- DASH ----
+  // Body count excludes <title> (counted separately) and the RSC flight
+  // payload, which repeats the same prose and would double every finding.
+  const titleMatch = html.match(/<title>([\s\S]*?)<\/title>/);
+  const titleDashes = titleMatch ? (titleMatch[1].match(/—/g) || []).length : 0;
+  const bodyOnly = html
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<style[\s\S]*?<\/style>/g, " ")
+    .replace(/<title[\s\S]*?<\/title>/g, " ")
+    .replace(/<[^>]+>/g, " ");
+  const bodyDashes = (decodeEntities(bodyOnly).match(/—/g) || []).length;
+
   // ---- GLUE ----
   // Strip <script> first: the RSC flight payload is escaped JSON carrying the
   // same prose, and matching inside it would double-report every finding.
@@ -146,6 +169,8 @@ for (const file of walk(APP_DIR)) {
     ids,
     links,
     glue,
+    bodyDashes,
+    titleDashes,
     title: t ? decodeEntities(t[1]) : null,
     desc: d ? decodeEntities(d[1]) : null,
     // A noindex page never appears in a result, so SERP truncation cannot
@@ -205,6 +230,26 @@ for (const [route, page] of pages) {
           '"',
       ]);
     }
+  }
+
+  // ---- DASH ----
+  // The nav's "Menu" line spends the body's one on every page, and the title
+  // template spends the title's one, so the cap here is 1 and 1, not 0 and 0.
+  if (page.bodyDashes > 1) {
+    findings.push([
+      route,
+      "body has " +
+        page.bodyDashes +
+        " em-dashes, cap is 1 (the nav spends it)",
+    ]);
+  }
+  if (page.titleDashes > 1) {
+    findings.push([
+      route,
+      "<title> has " +
+        page.titleDashes +
+        " em-dashes, cap is 1 (the title template spends it)",
+    ]);
   }
 
   // ---- GLUE ----

@@ -40,8 +40,8 @@ export default function ContactPage() {
             Tell me what you are working on.
           </h1>
           <p className="cw-bk__dek">
-            No form to fill out twice and no scheduling. Write what is in front
-            of you and send it. It reaches my inbox and I answer from there.
+            Three fields and no calendar. Write what is in front of you: what is
+            stuck, what you have tried, and when it needs to move. Send it.
           </p>
           {/* The operator asked for no explanation of the plumbing, so this
               says what the reader gets back rather than how it is routed. */}

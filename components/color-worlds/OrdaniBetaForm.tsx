@@ -51,7 +51,8 @@ export function OrdaniBetaForm() {
     return (
       <div className="cw-signup cw-reveal is-in" aria-live="polite">
         <p className="cw-msg" style={{ width: "100%" }}>
-          You&rsquo;re on the list. We&rsquo;ll be in touch.
+          You&rsquo;re on the list. I&rsquo;ll be in touch when the public
+          release opens.
         </p>
       </div>
     );
@@ -69,7 +70,7 @@ export function OrdaniBetaForm() {
         disabled={isPending}
       />
       <button type="submit" disabled={isPending}>
-        {isPending ? "Joining…" : "Join the beta →"}
+        {isPending ? "Joining…" : "Join the waitlist →"}
       </button>
       {status.kind === "error" ? (
         <p className="cw-msg" aria-live="polite">

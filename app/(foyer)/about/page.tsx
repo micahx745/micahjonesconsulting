@@ -152,10 +152,10 @@ export default function AboutPage() {
                   missed, so a retired figure sat live for hours. LESSONS #3
                   bans restating the $150K version. Removing the em-dash also
                   brings this page under the one-per-page cap. */}
-              <strong>Positioning research that moves deal-size.</strong> The
-              Guardicore engagement that became the Akamai acquisition began
-              with a single rewritten sentence. Average enterprise deal size:
-              $1.2M.
+              <strong>Positioning research that moves deal size.</strong> The
+              Guardicore engagement that ended in the Akamai acquisition began
+              with a single rewritten sentence. The average enterprise deal
+              there was $1.2M.
             </li>
             <li>
               {/* Pass-67: was "for an HR consultant returned 4× platform lift".
@@ -179,8 +179,9 @@ export default function AboutPage() {
             </li>
             <li>
               <strong>End-to-end product builds.</strong> Ordani,
-              HIPAA-compliant practice management with active paying users in
-              beta. I founded it and I write the code. Public release coming.
+              HIPAA-compliant practice management for birth workers, with active
+              paying users in beta. I founded it and I write the code. Public
+              release coming.
             </li>
           </ul>
 
@@ -196,10 +197,15 @@ export default function AboutPage() {
             hands them their hours back, so the work stays about the mothers and
             the babies.
           </p>
+          {/* Pass-83 (review #25): "a limited number of" was scarcity with no
+              ledger behind it, and "advisory" narrowed the offer to the
+              talking shape when the lede two screens up says I ship on the
+              same engagement. Now the plain picture, and the page's only
+              link to what I sell. */}
           <p>
-            Alongside it: a limited number of advisory engagements with teams at
-            the product-and-GTM seam, where the sales team and the product team
-            have stopped talking to each other.
+            Alongside it: <a href="/services">engagements</a> with teams where
+            the sales side and the product side have stopped talking to each
+            other. I sit on both sides until they do.
           </p>
           {/* Internal link added 2026-09-02: an SEO pass found only two
               contextual links into /playbook on the whole site, and none from

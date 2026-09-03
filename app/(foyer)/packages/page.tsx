@@ -19,12 +19,12 @@ import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
-  title: "Packages — fixed prices, start this week",
+  title: "Packages: fixed prices, start this week",
   description:
-    "Three fixed-price packages for solo builders and small teams: $500, $2,500 and $7,500. No call required. Every fee credits toward what you book next.",
+    "Three fixed-price packages for solo builders and small teams: $500, $2,500 and $7,500. No call required. Fees credit toward what you book next within 60 days.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/packages" },
   openGraph: {
-    title: "Packages — fixed prices, start this week",
+    title: "Packages: fixed prices, start this week",
     description:
       "Three fixed-price packages for solo builders and small teams: $500, $2,500 and $7,500. No call required.",
     type: "website",
@@ -108,9 +108,10 @@ export default function PackagesPage() {
           Three fixed prices. Start this week.
         </h1>
         <p className="cw-services__intro">
-          For solo builders and small teams. Pick one, email me, and the work
-          starts within the week. No call required, no scoping call, no
-          proposal.
+          For solo builders and small teams who got most of a product out of AI
+          tools and stalled on the last stretch. Pick one, email me, and the
+          work starts within the week. No scoping call, no proposal, no quote to
+          wait for.
         </p>
 
         <section id="packages" className="cw-pkgs" aria-label="The packages">
@@ -120,13 +121,12 @@ export default function PackagesPage() {
               <p className="cw-pkg__price">$500</p>
               <p className="cw-pkg__meta">90 minutes + same-day memo</p>
               <p className="cw-pkg__body">
-                Ninety minutes live on your stuck build, then a same-day written
-                fix plan: what is wrong, the order to fix it, and the prompts to
-                do it with.
+                Ninety minutes live on your stuck build. You leave with a
+                written plan the same day.
               </p>
               <ul className="cw-pkg__list">
-                <li>90-minute working call</li>
-                <li>Same-day written fix plan</li>
+                <li>What is wrong, in the order to fix it</li>
+                <li>The prompts to fix it with</li>
                 <li>Your tools, your repo</li>
               </ul>
               <a
@@ -139,9 +139,9 @@ export default function PackagesPage() {
 
             <article
               className="cw-pkg cw-pkg--lead"
-              aria-label="The Audit, $2,500, recommended"
+              aria-label="The Audit, $2,500, start here"
             >
-              <span className="cw-pkg__tag">Recommended</span>
+              <span className="cw-pkg__tag">Start here</span>
               <h2 className="cw-pkg__name">The Audit</h2>
               <p className="cw-pkg__price">$2,500</p>
               <p className="cw-pkg__meta">Two weeks + debrief call</p>
@@ -149,7 +149,9 @@ export default function PackagesPage() {
                 Pick one flavor: Build (architecture and code), Production
                 (security and deploy), or Traction (positioning and
                 go-to-market). I go through it top to bottom and hand you the
-                written audit.
+                written audit. Not sure which one? Start here: the memo tells
+                you what to fix first, and the fee credits toward what you book
+                next.
               </p>
               <ul className="cw-pkg__list">
                 <li>8-10 page audit memo</li>
@@ -173,7 +175,7 @@ export default function PackagesPage() {
                 production push, the AI feature. Not a plan. The thing, done.
               </p>
               <ul className="cw-pkg__list">
-                <li>One outcome, shipped</li>
+                <li>One outcome, agreed by email before day one</li>
                 <li>Daily progress notes</li>
                 <li>Debrief + next-step map</li>
               </ul>
@@ -197,9 +199,9 @@ export default function PackagesPage() {
           <p className="cw-pkgs__fine">
             The rules, in plain terms: every package fee credits toward the next
             package or an engagement started within 60 days. Full refund any
-            time before kickoff, none after, because the work starts fast. All
-            three include The 80% Wall, my field manual for solo builders, with
-            its companion files.
+            time before kickoff. None after, because by then the work has
+            started. All three include The 80% Wall, my field manual for solo
+            builders, with its companion files.
           </p>
         </section>
 

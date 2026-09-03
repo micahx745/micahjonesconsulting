@@ -34,7 +34,7 @@ export const contactFormSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(10, "Tell me a little more — at least a sentence.")
+    .min(10, "Give me at least a sentence.")
     .max(2000, "Please trim this to under 2000 characters."),
 });
 

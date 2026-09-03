@@ -114,7 +114,12 @@ export function PullQuote({
       </blockquote>
       {attribution ? (
         <figcaption className="case-study-pull-quote__attribution">
-          — {attribution}
+          {/* Review #34: the attribution dash is correct typography but it is
+              structural, so every quoted case study shipped over the em-dash
+              cap. The line is already styled as a distinct small attribution,
+              so it reads as one without the dash. Attributions in the MDX now
+              start with a capital or an article. */}
+          {attribution}
         </figcaption>
       ) : null}
     </figure>

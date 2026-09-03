@@ -2,7 +2,8 @@
 //
 // Phase 7 — CASE-09, THEATER-05. Captioned dashboard still with the
 // signature 2px warm off-white inner border + 4% film-grain overlay.
-// Caption format: "alt — date" or "caption — date".
+// Caption format: "alt · date" or "caption · date" (middot since Pass-83;
+// an em-dash here put every photo-bearing case study over the page cap).
 //
 // Server component. Renders next/image with WebP/AVIF when src is
 // present; renders an editorial specimen card when src is missing.
@@ -93,7 +94,8 @@ export function CaseStudyStill({
   // repeat the alt text verbatim below the specimen — the Cowork
   // review's duplicate-caption finding. The specimen already carries
   // the title + date; the figcaption only renders when it adds words.
-  const showCaption = Boolean(src) || (caption !== undefined && caption !== alt);
+  const showCaption =
+    Boolean(src) || (caption !== undefined && caption !== alt);
 
   return (
     <figure className="case-study-still">
@@ -132,9 +134,7 @@ export function CaseStudyStill({
               {placeholderEyebrow}
             </span>
             <span className="case-study-still__spec-title">{alt}</span>
-            <span className="case-study-still__spec-date">
-              {formattedDate}
-            </span>
+            <span className="case-study-still__spec-date">{formattedDate}</span>
           </div>
         )}
         {/* Film-grain overlay — 4% opacity (CSS) */}
@@ -142,7 +142,12 @@ export function CaseStudyStill({
       </div>
       {showCaption ? (
         <figcaption className="case-study-still__caption">
-          {captionText} — {formattedDate}
+          {/* Review #34: this joiner was an em-dash, so EVERY case study with a
+              photo broke the one-per-page cap before an author typed a word -
+              the nav's "Menu" line already spends the page's one. The middot is
+              the separator this site already uses for caption metadata (see
+              /about and /work). */}
+          {captionText} · {formattedDate}
         </figcaption>
       ) : null}
     </figure>

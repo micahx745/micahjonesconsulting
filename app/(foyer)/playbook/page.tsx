@@ -338,10 +338,10 @@ export default function PlaybookPage() {
               </figcaption>
             </figure>
             <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>I built Ordani
-              alone with Claude Code and Cursor: a HIPAA-compliant SaaS for
-              birth workers, with active paying users. Same tools you&rsquo;re
-              using. Same wall I hit.
+              <span className="cw-lp-note__lbl">Field note</span>Ordani is a
+              HIPAA-compliant SaaS for birth workers, in beta with active paying
+              users and a public release coming. I hit this wall building it, on
+              the tools you are using now.
             </p>
           </aside>
         </section>
@@ -388,8 +388,7 @@ export default function PlaybookPage() {
             § 0.3
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>
-              Both sentences are quoted from chapter two. The redesign they
-              describe is the one that produced this page.
+              Both sentences are quoted from chapter two, word for word.
             </p>
           </aside>
         </section>
@@ -397,7 +396,7 @@ export default function PlaybookPage() {
         <section className="cw-lp-block" aria-labelledby="lp-log">
           <div className="cw-lp-block__main">
             <h2 id="lp-log" className="cw-lp-h">
-              From the build log
+              One entry
             </h2>
             <article className="cw-lp-log">
               <p className="cw-lp-log__head">
@@ -475,8 +474,8 @@ export default function PlaybookPage() {
               className="cw-lp-body"
               style={{ marginTop: 0, marginBottom: 22 }}
             >
-              The real chapter, nine pages, not a teaser. Leave your email and
-              it arrives in about a minute.
+              The whole first chapter, not an excerpt. Leave your email and it
+              arrives in about a minute.
             </p>
             <PlaybookSignupForm plain />
           </div>
@@ -531,9 +530,6 @@ export default function PlaybookPage() {
                 architecture sample, and a real env example.
               </li>
             </ul>
-            <p className="cw-lp-files__note">
-              Every future edition is included, at no charge, to the same email.
-            </p>
           </div>
           <aside className="cw-lp-block__rail">
             § 0.7
@@ -560,7 +556,7 @@ export default function PlaybookPage() {
             <dl className="cw-lp-spec">
               <dt>Pages</dt>
               <dd>
-                <strong>68</strong>
+                <strong>69</strong>
               </dd>
               <dt>Chapters</dt>
               <dd>

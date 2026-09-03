@@ -89,7 +89,7 @@ const CLIENT_OFFERS = [
   {
     n: "02",
     title: "End-to-end product building",
-    desc: "Most AI ideas die in the gap between demo and production. I work in that gap.",
+    desc: "Most AI ideas die between demo and production. That stretch is where I work.",
   },
   {
     n: "03",
@@ -490,8 +490,8 @@ export default function ColorWorldsHome() {
               <span className="cw-lrow__tag">Enterprise sales · 2018</span>
             </span>
             <span className="cw-lrow__out">
-              <strong>$1M+</strong> toward the IPO · held through the Nasdaq
-              listing
+              <strong>$1M+</strong> toward the IPO · cap-table position held
+              through the Nasdaq listing
             </span>
           </div>
 
@@ -554,25 +554,13 @@ export default function ColorWorldsHome() {
             </span>
           </a>
 
-          <a
-            href="/services#ai-engineering"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "240ms" }}
-          >
-            <span className="cw-lrow__co">
-              Frontier AI
-              <span className="cw-lrow__tag">Embedded · 2025–</span>
-            </span>
-            <span className="cw-lrow__out">
-              Eval infrastructure, RAG, agent orchestration ·{" "}
-              <strong>specifics under NDA</strong>
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-
+          {/* Site copy review 2026-09-02 #21. The "Frontier AI · Embedded ·
+              2025– · specifics under NDA" row is gone. Under "Every line below
+              is real. Ask about any of them." it was the one row with no
+              number, no client and no page that proves it, and its arrow led
+              to /services. The ledger (LESSONS #3) carries no entry for the
+              AI engagements, so nothing here can be verified on request. The
+              AI work is carried by service 03 above and by /services. */}
           <a
             href="/work/ordani"
             className="cw-lrow cw-lrow--link cw-reveal"
@@ -593,14 +581,19 @@ export default function ColorWorldsHome() {
             </span>
           </a>
 
+          {/* Closing row. Its label was "Total" until the 2026-09-02 site copy
+              review (#41): at the foot of rows dated 2024, 2025 and 2026 it
+              read as a sum that does not add. The $20M+ figure is a separate
+              fact about the consulting practice, so the row now names it as
+              one. The cw-lrow--tot weight stays so it still closes the table. */}
           <div
             className="cw-lrow cw-lrow--tot cw-reveal"
             role="listitem"
             style={{ transitionDelay: "360ms" }}
           >
             <span className="cw-lrow__co">
-              Total
-              <span className="cw-lrow__tag">2013–2023</span>
+              Consulting
+              <span className="cw-lrow__tag">All clients · 2013–2023</span>
             </span>
             <span className="cw-lrow__out">
               <strong>$20M+ in client revenue</strong>
@@ -630,18 +623,30 @@ export default function ColorWorldsHome() {
         data-world="bone"
         aria-label="Which door fits"
       >
-        <a href="/playbook" className="cw-door cw-door--build cw-reveal">
+        {/* Review #10 (2026-09-02): this door sent the one reader a $500
+            session fits to a $149 book, and /packages had zero links from the
+            home page. The door holds two destinations now, so it is a <div>
+            with the links in its foot (the Pass-76b pattern on /services; a
+            link inside a link is invalid HTML). The body also drops "gap",
+            which appeared five times on the page. */}
+        <div className="cw-door cw-door--build cw-reveal">
           <p className="cw-door__kicker">Building solo, with AI</p>
           <h2 className="cw-door__title">
             The demo took a weekend. The last 20% is eating your month.
           </h2>
           <p className="cw-door__body">
-            That gap is my daily work. I wrote the field manual for it.
+            That last 20% is my daily work. I wrote the field manual for it.
+            Want me on your build? Three fixed prices start at $500.
           </p>
-          <span className="cw-door__cta">
-            Read the playbook <span aria-hidden>→</span>
-          </span>
-        </a>
+          <div className="cw-door__ctas">
+            <a href="/playbook" className="cw-door__cta">
+              Read the playbook <span aria-hidden>→</span>
+            </a>
+            <a href="/packages" className="cw-door__cta">
+              See the three packages <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
         <a
           href="/services"
           className="cw-door cw-door--sell cw-reveal"

@@ -24,7 +24,7 @@ import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
-  title: "Services — What I do, and how to hire me",
+  title: "Services: what I do, and how to hire me",
   description:
     "Three services, two ways to buy them: an engagement from $5K a month, or a fixed-price package at $500, $2,500 or $7,500. One operator, not an agency.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/services" },
@@ -64,7 +64,9 @@ const SERVICES: Service[] = [
         href: "/work/guardicore",
         label: "Read the case study",
       },
-      { text: "SurveyMonkey Enterprise: $1M+ toward the IPO." },
+      {
+        text: "SurveyMonkey Enterprise: $1M+ in enterprise sales toward the 2018 IPO.",
+      },
     ],
     serviceType: "Go-to-Market Strategy Consulting",
   },
@@ -72,15 +74,22 @@ const SERVICES: Service[] = [
     slug: "product-building",
     n: "02",
     title: "End-to-end product building",
-    pain: "Most AI ideas die in the gap between demo and production. I work in that gap.",
+    // Review #18 (2026-09-02): this line sold the demo-to-production gap,
+    // which is service 03's line and the /playbook's pitch, so 02 and 03 read
+    // as the same service. 02's proof (Ordani, the content engine) is whole
+    // product building. The reviewer proposed ending on "I am the team"; that
+    // collides with /work/ordani's "small team" sentence (Pass-63, kept) the
+    // same way the Packages door's "solo" did (Pass-78). The licensed claim is
+    // that he founded it and writes the code, so the line ends on building.
+    pain: "You have the idea, the budget, and customers waiting. What you do not have is the team to build it. I build it.",
     outcomes: [
-      "Strategy, design, code, security, and launch from one pair of hands. No relay race.",
+      "Strategy, design, code, security, and launch, all mine. Nothing gets handed to a second team.",
       "A production build, not a prototype: auth, data, deploy, and the compliance posture written down.",
       "A roadmap with the trade-offs named, agreed with the founder before the first sprint.",
     ],
     receipts: [
       {
-        text: "Ordani: a HIPAA-compliant CRM I founded and built. Active paying users in beta, none lost to a competitor.",
+        text: "Ordani: a HIPAA-compliant CRM I founded and built. Active paying users in beta, none lost to a competitor, and a public release coming.",
         href: "/work/ordani",
         label: "Read the case study",
       },
@@ -118,7 +127,9 @@ const SERVICES: Service[] = [
         href: "/work/rfp-engine",
         label: "Read the case study",
       },
-      { text: "Current AI engagements are under NDA." },
+      // Site copy review 2026-09-02 #21: the second receipt, "Current AI
+      // engagements are under NDA.", is gone. It sat under a label that says
+      // Proof and proved nothing, diluting the RFP receipt above it.
     ],
     serviceType: "AI Engineering Consulting",
   },
@@ -151,8 +162,8 @@ const SHAPES: Shape[] = [
   },
   {
     name: "Retainer",
-    when: "Ongoing partnership through launch and the iteration after it.",
-    time: "Month to month, 6-month minimum",
+    when: "I stay on after the project ships: the launch, the first customers, and what they break.",
+    time: "6 months, then month to month",
     price: "Scoped on the call",
   },
   {
@@ -328,7 +339,7 @@ export default function ServicesPage() {
           </h2>
           <p className="cw-services__intro">
             Strategy and software from the same person, so nothing is lost in
-            the hand-off. Pick the problem; we pick the shape on the call.
+            the hand-off. Pick the problem; I name the shape on the call.
           </p>
         </section>
 
@@ -392,9 +403,8 @@ export default function ServicesPage() {
             Four shapes. The same four for every service.
           </h2>
           <p className="cw-services__intro">
-            You bring the problem. We choose the shape together on the free
-            call, and I put the scope and price in writing before anything
-            starts.
+            You bring the problem. I choose the shape with you on the call, and
+            put the scope and price in writing before anything starts.
           </p>
           <table className="cw-sv-table">
             <caption className="sr-only">

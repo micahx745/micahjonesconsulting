@@ -65,7 +65,7 @@ export async function submitBooking(formData: {
   if (!["Tue", "Wed", "Thu"].includes(weekday))
     return {
       ok: false,
-      error: "Calls run Tuesday through Thursday — pick one of those days.",
+      error: "Calls run Tuesday through Thursday. Pick one of those days.",
     };
 
   // Window: tomorrow through 60 days out (Pacific-agnostic day math is
@@ -164,7 +164,7 @@ export async function submitBooking(formData: {
         `When: ${prettyWhen} (30 min)`,
         note ? `Note: ${note}` : "Note: (none)",
         "",
-        "Invite attached — add it and send them a video link.",
+        "Invite attached. Add it and send them a video link.",
       ].join("\n"),
       attachments: [attachment],
     });

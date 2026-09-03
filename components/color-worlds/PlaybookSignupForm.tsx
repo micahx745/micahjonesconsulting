@@ -55,7 +55,7 @@ export function PlaybookSignupForm({ plain = false }: { plain?: boolean }) {
     return (
       <div className={`cw-signup${revealClass} is-in`} aria-live="polite">
         <p className="cw-msg" style={{ width: "100%" }}>
-          Chapter 1 is on its way from micah@micahjonesconsulting.com. Nothing
+          Chapter one is on its way from micah@micahjonesconsulting.com. Nothing
           in a few minutes? Check spam.
         </p>
       </div>
@@ -74,7 +74,7 @@ export function PlaybookSignupForm({ plain = false }: { plain?: boolean }) {
         disabled={isPending}
       />
       <button type="submit" disabled={isPending}>
-        {isPending ? "Sending…" : "Send me Chapter 1 →"}
+        {isPending ? "Sending…" : "Send me chapter one →"}
       </button>
       {status.kind === "error" ? (
         <p className="cw-msg" aria-live="polite">

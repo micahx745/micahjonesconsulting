@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
-  title: "Check your inbox — next steps",
+  title: "Check your inbox: next steps",
   robots: { index: false, follow: false },
 };
 
