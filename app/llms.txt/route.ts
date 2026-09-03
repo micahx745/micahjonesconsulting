@@ -43,7 +43,7 @@ Two ways to buy them:
 - [RFP engine case study](https://www.micahjonesconsulting.com/work/rfp-engine): custom RFP software for an industry author; \$3M in contracts won, close rate doubled
 
 ## Contact
-- Email: hello@micahjonesconsulting.com
+- Email: micah@micahjonesconsulting.com
 - LinkedIn: https://www.linkedin.com/in/micah-j/
 `;
 

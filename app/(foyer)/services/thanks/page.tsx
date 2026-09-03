@@ -50,8 +50,8 @@ export default function PackageThanksPage() {
         </p>
         <p className="cw-pb-sect__lede">
           Nothing after ten minutes? Check spam first. Still nothing? Write{" "}
-          <a href="mailto:hello@micahjonesconsulting.com">
-            hello@micahjonesconsulting.com
+          <a href="mailto:micah@micahjonesconsulting.com">
+            micah@micahjonesconsulting.com
           </a>{" "}
           and I&rsquo;ll sort it by hand.
         </p>

@@ -16,8 +16,8 @@ export function PageFooter() {
         I read every message and reply inside two business days.
       </p>
       <p className="cw-pagefoot__row">
-        <a href="mailto:hello@micahjonesconsulting.com">
-          hello@micahjonesconsulting.com
+        <a href="mailto:micah@micahjonesconsulting.com">
+          micah@micahjonesconsulting.com
         </a>
         <span aria-hidden>·</span>
         <a

@@ -28,7 +28,10 @@
 
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
-import { contactFormSchema, type ContactFormInput } from "@/lib/contact-form-schema";
+import {
+  contactFormSchema,
+  type ContactFormInput,
+} from "@/lib/contact-form-schema";
 
 export type ContactActionState =
   | { ok: true }
@@ -71,7 +74,7 @@ export async function contactAction(
     return {
       ok: false,
       formError:
-        "The contact pipeline is not yet wired up. Please email hello@micahjonesconsulting.com.",
+        "The contact pipeline is not yet wired up. Please email micah@micahjonesconsulting.com.",
     };
   }
 
@@ -79,6 +82,14 @@ export async function contactAction(
   try {
     const resend = new Resend(resendKey);
     await resend.emails.send({
+      // Pass-79. The operator ruled "micah@ everywhere" and every PRINTED
+      // address on the site now says micah@. These two lines are mail
+      // ROUTING, not copy, and are deliberately left alone: `from` must match
+      // an identity Resend has verified for this domain, and `to` decides
+      // where a real note actually lands. Changing either without checking
+      // the Resend dashboard is LESSONS #8 exactly — a published address is
+      // not a working address — and it fails SILENTLY, which is how contact
+      // email died the last time. Flip these together, after a live send test.
       from: "Micah Jones <hello@micahjonesconsulting.com>",
       to: ["hello@micahjonesconsulting.com"],
       // Pass-76: was `replyTo: undefined`, so hitting reply in the inbox
@@ -92,7 +103,7 @@ export async function contactAction(
     return {
       ok: false,
       formError:
-        "Could not send the note right now. Please email hello@micahjonesconsulting.com.",
+        "Could not send the note right now. Please email micah@micahjonesconsulting.com.",
     };
   }
 

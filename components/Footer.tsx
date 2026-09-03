@@ -22,10 +22,10 @@ export function Footer() {
       <p className="footer-email">
         Or write to me directly:{" "}
         <a
-          href="mailto:hello@micahjonesconsulting.com"
+          href="mailto:micah@micahjonesconsulting.com"
           className="footer-email-link"
         >
-          hello@micahjonesconsulting.com
+          micah@micahjonesconsulting.com
         </a>
       </p>
     </footer>

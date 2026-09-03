@@ -689,8 +689,8 @@ export default function ColorWorldsHome() {
               Book a free intro call ↗
             </a>
           </MagneticArea>
-          <a href="mailto:hello@micahjonesconsulting.com">
-            hello@micahjonesconsulting.com
+          <a href="mailto:micah@micahjonesconsulting.com">
+            micah@micahjonesconsulting.com
           </a>
           <a
             href="https://www.linkedin.com/in/micah-j/"
