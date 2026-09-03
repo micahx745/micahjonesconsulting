@@ -1,5 +1,38 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-79 (c96028b) — five review findings applied. Committed, NOT pushed, NOT deployed.
+Operator 2026-09-02: "Push and deploy" (done for Pass-78, deploy dpl_8Ayud6wBNNF1Xwj6JxmPD3AKPUi7,
+both aliases verified, apex 308) and "All of it" for the work. Pass-79 is the work; its push
+is NOT covered by that approval and is queued for the operator.
+1. THE ENGAGEMENTS DOOR PAID OFF NOTHING. His own button sells "a foreign company breaking
+   into the North American market"; /work/guardicore rendered "Israel"/"foreign" ZERO times,
+   "Tel Aviv" once (photo caption), "North American" once (a CUSTOMER). The story was already
+   in the Outcome (bank, federal agency, Wall Street firm, U.S. utility) and never framed.
+   Now framed. Geography LEDGERED in #3 with three sources + the surfaces that move with it.
+   Also killed the dek's "honeypot-lead" typo and the "saturated PLATFORM" category error.
+2. THE $3M RECEIPT LINKED TO A PAGE WITHOUT IT (home ledger fused two engagements; $3M is on
+   /work/rfp-engine). Under "Ask about any of them." Split into two rows. Same fact fixed on
+   /services (a "website" claim appearing ZERO times in either study; receipt was also the
+   only one with a live study and no link) and /about (credited content engine with the RFP
+   engine's close rate).
+3. PACKAGES DOOR SAID "SOLO", /work/ordani SAYS "SMALL TEAM" (Pass-63 ruling, KEPT). Button
+   now claims what the ledger licenses; ordani role -> "Founder and sole engineer".
+4. /book TOLD A PAYING BUYER "Cost: Free". NEW static route /book/kickoff (noindex), shared
+   body via a `kickoff` prop; /services/thanks + package email repointed. NOT ?kickoff=1 —
+   searchParams forces dynamic rendering, /book would stop emitting .html, and render-gate
+   builds its route map from those files, so all six links to /book would fail as "no such
+   route". Form contract untouched (operator-verified).
+5. NEWEST CASE STUDY'S ONLY FORWARD LINK WAS A 404: getNextCaseStudy walked the unfiltered
+   list while getCaseStudyBySlug 404s stubs. Now filters stubs. LESSONS #13 class again.
+Verified in BUILT BYTES: 16 routes, gate green, next-work -> /work/guardicore, kickoff title +
+"Included with your package" + noindex, Tel Aviv opener, two ledger rows.
+NOT DONE, and why: `prettier --check` fails on 30 files REPO-WIDE and it is PRE-EXISTING —
+CRLF counts identical before/after my edits (65/65, 139/139) and untouched files fail too.
+Mass-reformatting would collide with the other session. Its own pass.
+11 REVIEW ITEMS NEED AN OPERATOR RULING, none touched — listed in the review artifact.
+TIER NOTE: Pass-79 was ~30 execution calls on Opus. The rulings were already locked by the
+review; this belonged on Sonnet after a brief.
+
 ## Pass-78 (4761a9f + aad2b53) — TWO LIVE TYPOS FIXED. Committed, NOT pushed.
 Operator redirected here from the book ("back to the site instead"), which was lucky: the
 book had just moved out and a playbook fix would have edited the frozen copy.
