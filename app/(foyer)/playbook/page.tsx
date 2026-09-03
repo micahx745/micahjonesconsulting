@@ -401,12 +401,33 @@ export default function PlaybookPage() {
                 <span>Entry · 2026-08-31</span>
               </p>
               <h3 className="cw-lp-log__title">The demo that lied for weeks</h3>
+              {/* Pass-85. This card previously said the cause was "one
+                  environment variable, the email key, was never installed".
+                  Asked to confirm it on 2026-09-02 the operator answered "not
+                  sure - you were the one you added that", so that cause has NO
+                  provenance. It sits under a rail reading "All true, all dated.
+                  None of them are anyone else's story", on the page selling a
+                  $149 manual, and it mirrors chapter one of the book. An
+                  unverifiable cause is exactly the LESSONS #2 defect class.
+
+                  Rewritten onto the ONE version this repo actually documents:
+                  LESSONS #8, dated 2026-08-29 - the domain carried zero MX
+                  records and no SPF/DKIM/DMARC, so Resend rejected the sends
+                  and the leads survived only in a Vercel server log.
+
+                  Count corrected too: it said THREE forms including contact,
+                  but no contact form was mounted on any page until 2026-09-02
+                  (Pass-76). At the time there were two.
+
+                  NOTE FOR THE BOOK REPO: chapter-01.typ carries this same
+                  story and needs the same correction. */}
               <p>
-                My own site had three lead forms: contact, a sample-chapter
-                signup, a beta waitlist. All three worked flawlessly in the
-                demo. In production, for weeks, every submission fell into a
-                server log nobody reads, because one environment variable, the
-                email key, was never installed on the live host.
+                My own site had two lead forms: a sample-chapter signup and a
+                beta waitlist. Both worked flawlessly in the demo. In
+                production, every submission fell into a server log nobody
+                reads. The sending domain had never been verified, so the mail
+                provider refused each message and the address I had published
+                could not receive one either.
               </p>
               <p>
                 No error. No bounce. The page told every visitor &ldquo;Got
