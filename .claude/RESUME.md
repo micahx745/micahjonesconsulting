@@ -1,5 +1,34 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-83 (5a0bddb) — THE SITE REVIEW IS CLOSED except 7 operator rulings. PUSHED.
+24 findings applied (10,11,15,16,17,18,19,20,21,22,24,25,27,28,29,30,31,32,34,38,40,41,42,43).
+Method that made it safe: every finding RE-VERIFIED against the current site first (Passes
+78-82 had already moved several), then every patch required a byte-exact UNIQUE anchor
+before touching a file. 45 patches, 45 anchors matched once, 0 skipped.
+**EM-DASH DEBT CLOSED (#34)** — the RESUME item "6 files / 13 over cap" that never closed.
+ROOT CAUSE, and why hand-counting always lost: TWO COMPONENTS injected a dash BY
+CONSTRUCTION (CaseStudyStill's caption joiner, PullQuote's attribution prefix), so every
+case study with a photo or a quote was over cap before an author typed a word; three titles
+spent one the root template then doubled. SOURCE-level counting cannot see this — the
+dashes come from a component, a metadata template and an MDX string and only meet on the
+rendered page. Now: middot joiners, attributions without the dash, colons in five titles.
+Measured across all 15 built pages: 0 over cap, 0 glue.
+**NEW GATE: render-gate DASH** (fourth check). Body and title counted SEPARATELY because
+the nav's "Menu" owns the body's one and the title template owns the title's one, so the
+cap is 1 and 1, not 0 and 0. Proved failing first: injected 2 body + 1 title dash into the
+built /about, it named both and exited 1. GOTCHA WORTH KEEPING: my FIRST proof was a false
+pass — the anchor I injected against did not exist, so the replace silently did nothing and
+the gate looked broken when the TEST was. A negative test that does not verify its own
+setup proves nothing.
+ALSO #16: the meta-description clamp now cuts on a word/sentence boundary (was slice(0,152),
+which shipped "...for North American en..." as the Guardicore snippet), and Guardicore's dek
+was split so the clamp lands on a whole sentence at 150 chars.
+TWO REJECTED, deliberately NOT applied: #13 would have stripped every figure from all three
+indexLines (DESIGN_BAR R11, and it breaks the Pass-78 invariant that home rows quote them
+verbatim); #26's four individually-correct Guardicore edits desynced the photographs from
+the narrative — caught by simulating the merge and READING the result, not the diffs.
+#34's drafting agent died on a FABLE USAGE LIMIT; implemented by hand instead.
+
 ## Pass-81 (ebe736e) + Pass-82 (51d0c05) — PUSHED. Booking retired, Medicaid claim down.
 81: three links to /book behaved like outbound ones (two with target="_blank", two with the
 ↗ glyph this site reserves for "leaves the site"). Internal links, corrected.
