@@ -97,6 +97,27 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   not 4× over six). The bet's OUTCOME is kept qualitatively ("the two platforms I backed
   outperformed the one I did not"), which the narrative supports. Do not restore the 4×
   without a source and a date.
+- **CONSULTING-ERA POSITIONING RECEIPTS — operator-supplied 2026-09-03.** Both clients
+  stay ANONYMOUS, matching how the case studies already refer to them.
+  BIRTH WORKER: repositioned from birth support alone to the full arc of care around it.
+  **Organic bookings up 30%**, and inquiries arriving across her whole range rather than one
+  service. Operator verbatim: "organic bookings went up 30% and her inquires went from 100%
+  normal birth support - to a diverse set of customers (abortion, prepping to get pregnant,
+  miscarriage support, etc)". THE SERVICE LIST IS DELIBERATELY NOT ITEMISED ON THE SITE:
+  naming abortion and miscarriage care on a consulting marketing page creates exposure for
+  HER practice that the proof does not need, and the breadth is the point. Itemise only on a
+  new operator instruction.
+  INDUSTRY AUTHOR: repositioned toward the buyers who award contracts; the $3M already
+  ledgered is the result that followed. Same person as the RFP-engine and content-engine
+  studies. **The operator named them in conversation on 2026-09-03; the site anonymises them
+  and must continue to.** Never publish the name or anything that resolves to it.
+- Content engine **EIGHT platforms, not seven — operator 2026-09-03: "We did ship on
+  YouTube"**. LinkedIn, YouTube, Facebook, Instagram, TikTok, X, Threads, Bluesky. This
+  SUPERSEDES the seven-platform line written 2026-09-02 and reconciles the strategy document
+  (which named YouTube) with what shipped. The stat reads "Eight".
+- **RETIRED 2026-09-03, operator "Cut it":** "The two largest engagements that closed were
+  both six-figure retainers" on /work/rfp-engine. Never in the ledger, unverifiable from
+  outside, and sitting beside two figures that are ledgered. Do not restore it.
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:

@@ -67,6 +67,23 @@ const SERVICES: Service[] = [
       {
         text: "SurveyMonkey Enterprise: $1M+ in enterprise sales toward the 2018 IPO.",
       },
+      // Operator-supplied 2026-09-03, the first CONSULTING-era positioning
+      // receipts on this page. The review's top finding was that section 01
+      // proved positioning with two employment roles, so a founder buying
+      // positioning saw one proof, from a job that ended in 2021.
+      // Both clients stay anonymous, matching how the case studies already
+      // refer to them. The birth worker's service list (she added care before
+      // and after birth, not only birth itself) is described by its BREADTH
+      // rather than itemised: naming those services on a consulting site
+      // creates exposure for her practice that the proof does not need.
+      {
+        text: "A birth worker: repositioned from birth support alone to the full arc of care around it. Organic bookings up 30%, and inquiries arriving across her whole range instead of one service.",
+      },
+      {
+        text: "An industry author: repositioned toward the buyers who award contracts. $3M in contracts won through the RFP software that followed.",
+        href: "/work/rfp-engine",
+        label: "Read the case study",
+      },
     ],
     serviceType: "Go-to-Market Strategy Consulting",
   },
