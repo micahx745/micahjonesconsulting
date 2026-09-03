@@ -88,11 +88,37 @@ nothing about VAs and no positioning decision has been made; this crawl is how
 you would find out whether the market is real for him, not a commitment to serve
 it. See the note at the foot of this section for the tension.
 
-THE WEDGE, and it is a good one: a person about to hire a VA has already decided
-the work is repeatable, already priced it (a VA runs roughly $800-2,000/month),
-and already accepts it must be delegated. That is a buyer who has done the
-qualifying for you. The pitch is not "hire me instead of a VA" - it is "the task
-you are about to hire for runs itself for a fixed price, once."
+THE WEDGE, sharpened by a REAL PROSPECT (operator, 2026-09-02): "potential client
+is currently paying 1500 a month for VA to produce AI slop for her and run her
+business. realized there are probably alot of people hiring folks like this."
+
+That is a much better wedge than the generic one, and it is worth stating
+precisely, because the precision is the whole pitch:
+
+  She is not paying $1,500/month for a virtual assistant.
+  She is paying $1,500/month for AI OUTPUT WITH A HUMAN MIDDLEMAN IN FRONT OF IT.
+
+The VA is running a chatbot and forwarding the result. She has already bought
+AI-produced work. She is buying the eighty-percent-and-stop version, monthly,
+at a markup, and the reason it reads as slop is the same reason a vibe-coded app
+does not ship: the tool got it most of the way and nobody did the last part.
+
+This matters for POSITIONING, and it reverses the earlier caution in this file.
+"Cheaper than a VA" reads DOWN against four exits and $80M in enterprise
+pipeline. "You are paying for AI output either way - pay for output that ships"
+reads UP, and it is the same thesis as the manual, in a different vertical.
+Do not write the cheap version.
+
+WHAT THIS CHANGES ABOUT THE CRAWL: stop looking for people who want to hire a
+VA. Look for people who ALREADY DID and are quietly unhappy with the output.
+They have a budget, a vendor, and a disappointment. That is a warmer buyer than
+anyone still shopping.
+
+N OF ONE, AND SAY SO. This is one prospect, not a validated market. The crawl
+exists to find out whether she is typical or unusual. Serving her well is worth
+more than any amount of this research, and she is also the best instrument in
+it: what exactly does the VA produce, what makes it slop, what would good have
+looked like, and what would she have paid for that instead.
 
 | subreddit            | why it matches                                        | conf |
 |----------------------|-------------------------------------------------------|------|
@@ -116,22 +142,33 @@ never do again, usually with a budget in it. That is the single richest artifact
 in this entire crawl. Extract: the task list, the hours per week, the offered
 rate, and the tools named.
 
-VA-lane search terms
-  "hired a VA"          "my VA quit"           "training a VA"
-  "looking for a VA"    "virtual assistant"    "VA to handle"
-  "drowning in"         "spending hours on"    "same thing every"
-  "copy paste between"  "manual process"       "can this be automated"
-  "10 hours a week"     "$/hour"               "offshore"
-  "data entry"          "inbox management"     "lead list"
+VA-lane search terms - THE SHARP ONES FIRST
+These target the real signal: already hired, already paying, output is AI slop.
+  "my VA uses ChatGPT"      "VA sends me AI"        "sounds like AI"
+  "AI generated garbage"    "generic content"       "it all sounds the same"
+  "paying someone to use"   "could have done that myself"
+  "quality dropped"         "VA quality"            "not worth what I pay"
+  "$1500 a month"           "$1,500/mo"             "monthly retainer"
 
-THE TENSION, for the operator, not for the crawler: this site currently sells
-from $5,000 a month on the strength of four exits and $80M in enterprise
-pipeline. The VA-hiring market is mostly price-sensitive small business. Both can
-be true markets and still not belong on the same page - the premium signal is
-what makes the $5K lane credible, and a "cheaper than a VA" message sitting
-beside it reads down, not up. If this becomes a lane it probably wants its own
-surface and its own offer, not a section bolted onto /services. Decide that
-BEFORE any copy gets written, not after.
+Already-hired-and-unhappy (warm: budget exists, vendor exists, trust is gone)
+  "hired a VA and"          "my VA quit"            "fired my VA"
+  "third VA"                "VA turnover"           "retraining"
+  "agency I hired"          "outsourced my"         "offshore team"
+
+Still-shopping (colder, but the job posts are itemised task specs with budgets)
+  "looking for a VA"        "virtual assistant"     "VA to handle"
+  "drowning in"             "spending hours on"     "same thing every week"
+  "copy paste between"      "manual process"        "can this be automated"
+  "10 hours a week"         "data entry"            "inbox management"
+
+THE TENSION, for the operator, not for the crawler: it still wants its own
+surface and its own offer rather than a section bolted onto /services, because
+the buyer arrives from a different problem and converts on a different promise.
+But the earlier worry that it dilutes the premium signal was based on the CHEAP
+framing, and the real wedge is not cheap - it is the manual's own thesis applied
+to business operations. Priced against $1,500 a month of recurring disappointment,
+a fixed-price build is not a discount; it is the thing she thought she was buying.
+Decide the surface and the offer BEFORE any copy gets written.
 
 ## Search terms - this is the part that matters
 
