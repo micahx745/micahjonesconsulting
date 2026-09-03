@@ -63,10 +63,15 @@ deployments already running.
 STILL OWED: a COMPLETED purchase + refund. Reaching checkout does NOT exercise the webhook,
 the kickoff email (intake + /book/kickoff link + book and companion attached), the
 success_url, or the refund echo. That is the only untested leg of the money rail.
-STILL OPEN, operator risk: **.env.local holds a LIVE key** (sk_live_, re-checked 23:22 after
-the rotation - he replaced it with the new live key, not a test one). lib/stripe.ts's own
-house rule is sk_test_ in Development, sk_live_ in Production only. `pnpm dev` hitting
-checkout can charge real cards.
+LOCAL KEY RESOLVED 2026-09-03: .env.local now holds sk_test_ (verified by prefix, value
+never read into the session). `pnpm dev` can no longer charge real cards, and lib/stripe.ts's
+house rule - sk_test_ in Development, sk_live_ in Production only - is satisfied.
+IT TOOK THREE ATTEMPTS, and the reason is worth keeping: Stripe's dashboard shows three
+values that look alike and only one works. `pk_` is the publishable key (browser-safe,
+useless server-side), `mk_` is the key's ID (an identifier, not a credential), `sk_` is the
+secret. Production failed on `mk_`; local passed through `sk_live_` then `pk_live_` before
+landing on `sk_test_`. When a Stripe auth error appears, CHECK THE PREFIX FIRST - the error
+text names it explicitly and saves the whole diagnosis.
 
 ## SUPERSEDED, kept for the diagnosis — was: CHECKOUT LIVE AND FAILING
 Every /packages buy click returns an error. Vercel runtime logs give Stripe's own words:
