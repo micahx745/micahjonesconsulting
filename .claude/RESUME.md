@@ -29,7 +29,39 @@ engagements") — ten hours after Pass-82 retired it. /book restored + indexable
 removed, six CTAs back to it. NOT reversed: packages still buy-then-book at /book/kickoff
 (noindex); /contact stays in nav.
 
-## STILL OPEN from the persona review (operator)
+## Pass-94/95/96 (2026-09-03) — PERSONA REVIEW CLOSED. All PUSHED.
+94: **the #1 finding is fixed** — /services section 01 now carries TWO consulting-era
+positioning receipts, both anonymous: a birth worker (organic bookings +30%, inquiries
+broadened from birth support alone to her full range) and the industry author ($3M, links to
+the case study). Service list NOT itemised on purpose — abortion/miscarriage care is her
+practice and naming it on his marketing page is exposure the proof does not need.
+Also: YouTube DID ship, so the study reads EIGHT platforms and the stat says Eight; the
+unledgered "six-figure retainers" line is CUT.
+95: cap table NAMED (SurveyMonkey + Guardicore). He asked "what does that even mean?", so
+the equity claim was EXPLAINED before being confirmed — do not restate it from the ledger
+alone if questioned again. Ordani start year 2025. **COMPANION COUNT INVERTED under
+checking**: the review said correct the total 26 down to 25; counting the shipped ZIP found
+10 checklists + 6 prompts + TEN templates = 26 (+README = 27 files). The TOTAL was right;
+"Nine templates" was the error. Applying the review's proposal would have published a newly
+wrong number.
+96: week one = scoping session + audit (the founder's actual first question; the site only
+answered month one) · "I am taking new engagements now", NO count, deliberately · "a decade"
+-> THIRTEEN YEARS (it undersold by three years against the site's own since-2013) · ONE reply
+promise everywhere, one business day, footers included (there had been three versions).
+
+## THE REVIEW IS CLOSED. What remains is operator-owned:
+- **LIVE STRIPE TEST OWED: one real buy + refund on /packages.** He confirmed the live key
+  2026-09-03 and the CTAs are live checkout. Self-certified pending that transaction.
+- RECRUITER POSTURE: effectively ruled ("i know recruitors might not like that but i prefer
+  it") — the site does not serve recruiters and "Hire me" means consulting. Not re-litigated.
+- Oakland STAYS in meta descriptions (local SEO); the page copy no longer carries it.
+- SITE-WIDE ROLE POLICY still unasked: Guardicore has no title, Postmates keeps "Product
+  analyst" (his own 2026-09-02 ledger entry). Ask before any further title sweep.
+- TWO REVIEW FINDINGS INVERTED UNDER CHECKING (the 404 blank-body was a different route; the
+  companion total was already right). The review is a good reader, not an oracle — verify
+  before applying, every time.
+
+## SUPERSEDED — was: still open from the persona review
 - POSITIONING RECEIPT: he named two real cases — a birth worker repositioned to attract
   clients, and the industry author (anti-racism, repositioned toward contracts). **He named
   the author to me; the site anonymises them and MUST CONTINUE TO.** Needs: a metric for the
