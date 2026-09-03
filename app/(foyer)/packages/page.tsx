@@ -208,7 +208,7 @@ export default function PackagesPage() {
           <a href="/services" className="cw-lede-link">
             The engagements
           </a>{" "}
-          start at $5K a month and begin with a free call.
+          start at $5K a month. Tell me the problem and I will scope it.
         </p>
 
         <PageFooter />

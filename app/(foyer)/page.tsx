@@ -305,12 +305,27 @@ export default function ColorWorldsHome() {
 
         <div className="cw-ordani-split">
           <div className="cw-ordani-split__text">
-            {/* Investor register (operator, 2026-08-30): active use +
-                the Medicaid money mechanism + the mission. User count
-                deliberately off this surface (it stays in THE LEDGER,
-                where receipts belong). "Hundreds of dollars" and the
-                Medicaid claim are operator-supplied; the mortality line
-                is purpose-framed ("lower"), never an outcome claim. */}
+            {/* Pass-82, operator ruling 2026-09-02: "soften it to what's
+                defensible". Two claims came out.
+
+                "processing Medicaid claims fee-free" reads as a regulated
+                billing function sitting on a HIPAA product, and the ledger
+                carries no sentence describing what Ordani actually does to a
+                claim. It was operator-supplied via a code comment, and a code
+                comment is not provenance.
+
+                "keeping hundreds of dollars in birth workers' pockets" was the
+                vaguest number on a page built from named ones, and it wore the
+                same "hundreds of" shape as the user count retired on
+                2026-08-31 - close enough to be misread as one.
+
+                What replaces them is the ledger framing this surface was
+                missing entirely: active paying users, in beta, public release
+                coming. The mortality line is purpose-framed ("lower"), never
+                an outcome claim, and stays.
+
+                To put the money claim back: one sentence on the real mechanism
+                and a named figure, ledgered in LESSONS #3 with a date. */}
             {/* LESSONS #6, sharpened: every apostrophe in this paragraph is a
                 LITERAL character, never &rsquo;. Next 16's RSC serializer
                 drops the space before a text node that follows an inline
@@ -325,11 +340,11 @@ export default function ColorWorldsHome() {
                 The render-gate GLUE check reads the rendered bytes. */}
             <p className="cw-lede cw-reveal">
               Birth workers run their practices on group chats and paper
-              intakes. HIPAA is the law. <em>So I built Ordani.</em> It’s in
-              active use today, processing Medicaid claims fee-free and keeping
-              hundreds of dollars in birth workers’ pockets. The mission is
-              bigger: lower infant mortality, by giving the people who care for
-              mothers and babies better tools than paperwork.
+              intakes. HIPAA is the law. <em>So I built Ordani.</em> It has
+              active paying users today, it is in beta, and a public release is
+              coming. The mission is bigger: lower infant mortality, by giving
+              the people who care for mothers and babies better tools than
+              paperwork.
             </p>
             <div className="cw-section-cta-wrap cw-reveal">
               <a href="/work/ordani" className="cw-section-cta">
@@ -659,9 +674,9 @@ export default function ColorWorldsHome() {
             split the visit in two and stranded the back button at the moment a
             buyer was closest to acting. _blank belongs on links that leave. */}
         <a
-          href="/book"
+          href="/contact"
           className="cw-big-link"
-          aria-label="Name the problem — book a free intro call"
+          aria-label="Name the problem — send me a note"
         >
           {/* Pass-21 (Claude Chat audit): "LET'S BUILD" was the single
               weakest line of copy on the site — a startup-culture
@@ -687,11 +702,9 @@ export default function ColorWorldsHome() {
             The playbook is reached from the /services self-select line. */}
         <div className="cw-footrow cw-reveal">
           <MagneticArea>
-            {/* Pass-80: internal route, so no _blank; and the arrow is now
-                the site's internal glyph. This page uses → for "goes somewhere
-                here" and ↗ for "leaves the site" (see the door CTAs), so ↗ on
-                /book promised an external destination that does not exist. */}
-            <a href="/book">Book a free intro call →</a>
+            {/* Pass-82: booking is post-purchase now, so the footer offers
+                the note. Internal route, so no _blank and the internal arrow. */}
+            <a href="/contact">Send me a note →</a>
           </MagneticArea>
           <a href="mailto:micah@micahjonesconsulting.com">
             micah@micahjonesconsulting.com

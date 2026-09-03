@@ -267,8 +267,8 @@ export default function ServicesPage() {
               Engagements
             </a>
             <span className="cw-door__body">
-              Advisory, project, retainer, or embedded. Scoped together on a
-              free 30-minute call.
+              Advisory, project, retainer, or embedded. Scoped together once you
+              tell me the problem.
             </span>
             <span className="cw-door__foot">
               <span className="cw-door__price">From $5K a month</span>
@@ -427,9 +427,9 @@ export default function ServicesPage() {
             </tbody>
           </table>
           <p className="cw-sv-shapes__foot">
-            Not sure which shape? That is what the call is for.{" "}
-            <a href="/book" className="cw-mlink">
-              Book a free intro call <span aria-hidden>→</span>
+            Not sure which shape? Describe the problem and I will name it.{" "}
+            <a href="/contact" className="cw-mlink">
+              Send me a note <span aria-hidden>→</span>
             </a>
           </p>
           {/* Pass-67: the bridge for the pre-production solo buyer, carried
@@ -489,17 +489,22 @@ export default function ServicesPage() {
         aria-label="Next step"
       >
         <p className="cw-services__foot-kicker">Next step</p>
+        {/* Pass-82. Was "A free 30-minute call comes first." Booking moved
+            behind the purchase (operator, 2026-09-02), so the first step is a
+            note, not a calendar slot. The old intro also opened on "We name",
+            the one banned pronoun on a solo consultant's page. */}
         <h2 className="cw-services__foot-title">
-          A free 30-minute call comes first.
+          Start with the problem, not a calendar.
         </h2>
         <p className="cw-services__foot-intro">
-          We name the shape and the fit. No deck, no pitch. If the work does not
-          map to what you need, I say so on the call.
+          Tell me what is stuck in a few lines. I read every note and reply
+          inside two business days. If the work does not map to what you need, I
+          say so in the reply.
         </p>
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
-            <a href="/book" className="cw-cta">
-              Book a free intro call{" "}
+            <a href="/contact" className="cw-cta">
+              Name the problem{" "}
               <span className="cw-arr" aria-hidden>
                 →
               </span>
