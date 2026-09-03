@@ -80,6 +80,59 @@ have produced real work against imaginary targets.
 | r/msp                | MSP/MSSP channel, adjacent to his partner work         | med  |
 | r/ExperiencedDevs    | senior ICs describing why enterprise buys stall        | high |
 
+## Lane C - people HIRING virtual assistants   (EXPLORATORY, not yet a lane)
+
+Added 2026-09-02 on the operator's "i also want to target people hiring virtual
+assistants - big market". Treat this as RESEARCH ONLY. The site currently says
+nothing about VAs and no positioning decision has been made; this crawl is how
+you would find out whether the market is real for him, not a commitment to serve
+it. See the note at the foot of this section for the tension.
+
+THE WEDGE, and it is a good one: a person about to hire a VA has already decided
+the work is repeatable, already priced it (a VA runs roughly $800-2,000/month),
+and already accepts it must be delegated. That is a buyer who has done the
+qualifying for you. The pitch is not "hire me instead of a VA" - it is "the task
+you are about to hire for runs itself for a fixed price, once."
+
+| subreddit            | why it matches                                        | conf |
+|----------------------|-------------------------------------------------------|------|
+| r/smallbusiness      | highest density of "drowning in admin" owners          | high |
+| r/Entrepreneur       | overlaps lane B; segment by post content               | high |
+| r/agency             | agencies staffing repeatable client work               | med  |
+| r/ecommerce          | order ops, listings, support - heavily automatable     | high |
+| r/FulfillmentByAmazon| listing and inventory busywork                         | high |
+| r/realestate         | one of the largest VA-hiring verticals                 | high |
+| r/RealEstateTechnology | the same buyer, already tool-curious                  | med  |
+| r/virtualassistants  | the SUPPLY side; read it to learn the task vocabulary  | med  |
+| r/hiring             | live job posts = a task spec someone will pay for      | high |
+| r/forhire            | same, with budgets attached                            | high |
+| r/Upwork             | what gets outsourced, and what it costs                | high |
+| r/freelance          | supply side; useful for pricing anchors                | high |
+| r/consulting         | adjacent buyer, higher budget                          | high |
+
+READ THE JOB POSTS, NOT JUST THE COMPLAINTS. A VA job post in r/hiring or
+r/forhire is a free, itemised specification of a task someone will pay money to
+never do again, usually with a budget in it. That is the single richest artifact
+in this entire crawl. Extract: the task list, the hours per week, the offered
+rate, and the tools named.
+
+VA-lane search terms
+  "hired a VA"          "my VA quit"           "training a VA"
+  "looking for a VA"    "virtual assistant"    "VA to handle"
+  "drowning in"         "spending hours on"    "same thing every"
+  "copy paste between"  "manual process"       "can this be automated"
+  "10 hours a week"     "$/hour"               "offshore"
+  "data entry"          "inbox management"     "lead list"
+
+THE TENSION, for the operator, not for the crawler: this site currently sells
+from $5,000 a month on the strength of four exits and $80M in enterprise
+pipeline. The VA-hiring market is mostly price-sensitive small business. Both can
+be true markets and still not belong on the same page - the premium signal is
+what makes the $5K lane credible, and a "cheaper than a VA" message sitting
+beside it reads down, not up. If this becomes a lane it probably wants its own
+surface and its own offer, not a section bolted onto /services. Decide that
+BEFORE any copy gets written, not after.
+
 ## Search terms - this is the part that matters
 
 A subreddit list is a crawl boundary. These are the SIGNAL. Each is a paraphrase
