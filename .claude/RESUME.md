@@ -1,4 +1,55 @@
-# RESUME — micahjonesconsulting (2026-09-01 PM)
+# RESUME — micahjonesconsulting (2026-09-02)
+
+## PLAYBOOK Pass-77 (0ea96d0) — cross-review of the BOOK. VERDICT: BLOCK. NOT FIXED YET.
+First independent cold read the manuscript has ever had. Harness `--mode manuscript` added;
+target is the shipped PDF (69pp, 95KB extracted, page-marked, no truncation), not the .typ
+source, because the buyer receives the PDF. Legs: Gemini PASS, GLM CONCERNS, Codex(deep)
+CONCERNS. Same-family Claude leg deliberately SKIPPED (usage window + least independent).
+Full artifact: `.planning/reviews/CROSS-REVIEW-PLAYBOOK-MANUSCRIPT-2026-09-02.md`.
+
+TWO HARNESS DEFECTS found and fixed first — round 1 was discarded because of the first:
+- manuscript mode reached only the CLI leg; both REST legs read a book under the Next.js
+  instruction and Gemini returned a baseless PASS. All legs now go through `_instruction_for`.
+- the Codex pin was DEAD (`Unknown model: gpt-5.6-sol`) and so was every fallback beside it.
+  The deep leg had been silently absent from rounds since the plugin rotated. Now gpt-5.4,
+  smoke-tested through the harness.
+
+THREE BLOCK-CLASS FINDINGS, none fixed — they came from checking the legs against LESSONS #3,
+which the legs could not see. Two operator rulings from 2026-09-01 were swept across the site
+and NEVER applied to the book, which no sweep walks because it is a different toolchain:
+1. Retired user count ("hundreds of birth workers") in 4 source places — ch1:33, ch1:240,
+   ch8:61, ch10:165. ch1:240 is `#sampler-only`, so it ships in the FREE chapter. Approved
+   phrasing is "active paying users", in beta, public release coming.
+2. Ordani's authorization design named in 3 field notes (ch3, ch5, ch7) — ch5's sits directly
+   under a working RLS policy. SECURITY-DETAIL GATE bans exactly this. Teaching RLS is fine;
+   the defect is Ordani's NAME beside it. Cut the name, keep the teaching.
+3. "$5B+ in combined value" hangs off Postmates+Guardicore+Neuton = ~$3.25B. True only across
+   all four. THE FIX IS ALREADY WRITTEN: ch1:238 (sampler) says "across the four"; ch10:162
+   dropped those three words. Propagate, no decision needed.
+CORRECTION to the Pass-57..62 line below: "every surface re-probed clean for user counts" was
+true of the SITE only. The book was never in scope and carries three of the four.
+
+NEW GATE `scripts/ordani-claims-gate.mjs` — counts anywhere, mechanism language within 8 lines
+of an Ordani mention, across app/ components/ content/ AND product/playbook/src/. Clean on the
+site, 10 findings in the book. NOT wired into `pnpm build` on purpose: it fails today, and
+wiring it before the fix would block the other session's builds. Wire it in the fix commit.
+Its first cut matched per line and MISSED ch7 (the phrase wraps mid-sentence); now matches
+flattened text. LESSONS #14.
+
+IMPROVEMENT-CLASS, unanimous: chapter 10 is thin and visibly so — no file card, no definition
+block, no artifact, and §10.4 recaps AFTER the pre-flight so the manual ends on an essay. Both
+critical legs independently proposed the same fix (a template + file card) and the same
+fallback (merge into ch9). Also: "RLS on every table" over-broad; `auth.uid()` is one
+platform's helper and the book names no platform (do NOT fix by naming the vendor — the VENDOR
+GATE covers this book); "every environment variable... until a rebuild" over-generalises;
+3 of 13 build-log entries are month-only against a cover claim of "TRUE AND DATED".
+REFUTED with evidence: softening "HIPAA-compliant" (operator confirmed, hedge banned); the
+"$149" on p42 (the live page says "$99 at launch · $149 after", so it is consistent — but it
+is COUPLED to the open $149 decision: remove that line and p42 orphans).
+
+NEXT: the fix pass is itself a review subject — re-render, re-extract, re-run before ship.
+The operator's own end-to-end read is still the last human gate and is still open.
+
 
 ## HARNESS Pass-61: arc-shape gate LIVE — full policy `MODEL_ROUTING.md` §6
 Audit: 9 of 320 Fable turns were taste calls, 311 execution. DIRECT (Fable) now ends by
