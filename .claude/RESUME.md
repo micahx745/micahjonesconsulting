@@ -1,5 +1,31 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## THE BOOK MOVED OUT — 2026-09-02. This repo is the WEBSITE now.
+New home: `https://github.com/micahx745/the-80-percent-wall` (private), checked
+out at `Code/the-80-percent-wall`. 39 commits of history went with it via
+`git subtree split`. Reason: two sessions on one tree, shared files, one git
+index, two budgets on one 5-hour window — and a real cost, see Pass-77 below.
+
+`product/playbook/` is still here and is now a FROZEN COPY; its README carries a
+MOVED banner. Do not edit it — the book repo will not see the change and the two
+will drift. Deleting it is safe for the build (nothing reads it at build or
+runtime) and is the right end state; it was left only because another session
+was live at the split. When it goes, drop `product/playbook/src` from
+`scripts/ordani-claims-gate.mjs` ROOTS — until then that gate reports the book's
+10 findings and is not wired into `pnpm build`.
+
+WHAT THE SITE STILL OWNS, unchanged: the /playbook sales page, the Stripe rail,
+and the three GENERATED deliverable modules `lib/book-pdf.ts`,
+`lib/companion-zip.ts`, `lib/chapter1-pdf.ts`. Those are what a buyer actually
+receives, they are checked in, and the site builds standalone.
+
+A book change reaches a customer ONLY via: build in the book repo →
+`npm run publish:site` (writes those three modules here) → `pnpm build` →
+operator-approved deploy, both domains re-aliased. Rebuilding the book alone
+changes nothing a buyer sees. The old `product/playbook/embed-*.mjs` are
+superseded by the book repo's `scripts/publish-to-site.mjs`.
+
+
 ## PLAYBOOK Pass-77 (0ea96d0) — cross-review of the BOOK. VERDICT: BLOCK. NOT FIXED YET.
 First independent cold read the manuscript has ever had. Harness `--mode manuscript` added;
 target is the shipped PDF (69pp, 95KB extracted, page-marked, no truncation), not the .typ
