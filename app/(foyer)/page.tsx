@@ -593,7 +593,7 @@ export default function ColorWorldsHome() {
           >
             <span className="cw-lrow__co">
               Consulting
-              <span className="cw-lrow__tag">All clients · 2013–2023</span>
+              <span className="cw-lrow__tag">All clients · since 2013</span>
             </span>
             <span className="cw-lrow__out">
               <strong>$20M+ in client revenue</strong>

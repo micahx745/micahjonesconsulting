@@ -35,8 +35,11 @@ export interface CaseStudyStillProps {
   /** Optional caption — defaults to alt if omitted. */
   caption?: string;
 
-  /** Required: ISO date "YYYY-MM" or formatted "Mon YYYY". Suffix on caption. */
-  date: string;
+  /** Optional ISO date "YYYY-MM" or formatted "Mon YYYY". Suffix on caption.
+   *  Pass-84: made optional. The operator asked for the little date/place
+   *  stamps off the photographs, so a still can now carry no date at all and
+   *  the caption line simply does not render it. */
+  date?: string;
 
   /** Image dimensions (next/image needs them for non-fill mode). */
   width?: number;
@@ -86,16 +89,18 @@ export function CaseStudyStill({
   height = 900,
   placeholderEyebrow = "Protected by NDA",
 }: CaseStudyStillProps) {
-  const captionText = caption ?? alt;
-  const formattedDate = formatDate(date);
+  const captionText = caption ?? "";
+  const formattedDate = date ? formatDate(date) : null;
 
   // W1 re-port (D3, 2026-08-11): when the placeholder specimen renders
   // (no src) and no distinct caption was authored, the figcaption would
   // repeat the alt text verbatim below the specimen — the Cowork
   // review's duplicate-caption finding. The specimen already carries
   // the title + date; the figcaption only renders when it adds words.
-  const showCaption =
-    Boolean(src) || (caption !== undefined && caption !== alt);
+  // Pass-84: renders ONLY when an author wrote a caption. This used to fall
+  // back to the alt text whenever an image was present, so deleting a caption
+  // printed the alt sentence under the photo instead of nothing.
+  const showCaption = caption !== undefined && caption.trim() !== "";
 
   return (
     <figure className="case-study-still">
@@ -134,7 +139,11 @@ export function CaseStudyStill({
               {placeholderEyebrow}
             </span>
             <span className="case-study-still__spec-title">{alt}</span>
-            <span className="case-study-still__spec-date">{formattedDate}</span>
+            {formattedDate ? (
+              <span className="case-study-still__spec-date">
+                {formattedDate}
+              </span>
+            ) : null}
           </div>
         )}
         {/* Film-grain overlay — 4% opacity (CSS) */}
@@ -147,7 +156,8 @@ export function CaseStudyStill({
               the nav's "Menu" line already spends the page's one. The middot is
               the separator this site already uses for caption metadata (see
               /about and /work). */}
-          {captionText} · {formattedDate}
+          {captionText}
+          {formattedDate ? ` · ${formattedDate}` : ""}
         </figcaption>
       ) : null}
     </figure>

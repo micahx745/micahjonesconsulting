@@ -27,8 +27,9 @@ export function PageFooter() {
         >
           LinkedIn
         </a>
-        <span aria-hidden>·</span>
-        <span>Oakland, CA</span>
+        {/* Pass-84, operator 2026-09-02: "Oakland, CA ... in many places that
+            is irrelevant". The city chip came off; the copyright line below
+            keeps his name because that is a legal notice, not decoration. */}
         <span aria-hidden>·</span>
         <span>© 2013–2026 Micah Jones</span>
       </p>

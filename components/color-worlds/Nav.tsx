@@ -240,9 +240,11 @@ export function Nav() {
             {l.label}
           </a>
         ))}
-        <div className="cw-overlay-meta">
-          Micah Jones · Independent operator · Oakland, CA
-        </div>
+        {/* Pass-84, operator 2026-09-02: "Oakland, CA and Micah Jones in many
+            places that is irrelevant". This strap rendered on every page of the
+            site. The nav already carries the wordmark and /about carries the
+            person; repeating the name and the city under the menu was
+            decoration, not information. */}
       </div>
     </>
   );

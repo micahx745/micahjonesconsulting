@@ -333,9 +333,6 @@ export default function PlaybookPage() {
                 sizes="(max-width: 999px) 40vw, 210px"
                 className="cw-lp-author__img"
               />
-              <figcaption className="cw-lp-author__cap">
-                Micah Jones · Oakland
-              </figcaption>
             </figure>
             <p className="cw-lp-note">
               <span className="cw-lp-note__lbl">Field note</span>Ordani is a
@@ -579,10 +576,7 @@ export default function PlaybookPage() {
                 <strong>26</strong>
               </dd>
               <dt>Author</dt>
-              <dd>
-                Micah Jones · Oakland · built Ordani solo · four exits behind my
-                work
-              </dd>
+              <dd>Micah Jones</dd>
               <dt>Format</dt>
               <dd>PDF + ZIP · every future edition</dd>
               <dt>Price</dt>

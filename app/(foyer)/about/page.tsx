@@ -98,7 +98,11 @@ export default function AboutPage() {
                   written as a literal character. No entity, no drop, and
                   nothing for prettier to undo. Enforced by the render-gate
                   GLUE check, which reads the rendered bytes. */}
-              <strong>$20M+</strong> in client revenue (2013–2023).
+              {/* Operator ruling 2026-09-02: the $20M+ HOLDS TO TODAY. The
+                  closed range read as a practice that stopped in 2023, two
+                  lines above a heading called "Currently". Ledgered in
+                  LESSONS #3 as "since 2013", open-ended. */}
+              <strong>$20M+</strong> in client revenue since 2013.
             </li>
             <li>
               {/* Four-exit update (operator, 2026-08-30): Postmates joins.
@@ -137,10 +141,6 @@ export default function AboutPage() {
               sizes="(min-width: 900px) 620px, 100vw"
               className="cw-ab-fig__img"
             />
-            <figcaption className="cw-ab-fig__cap">
-              Working session <span aria-hidden>·</span> Tel Aviv{" "}
-              <span aria-hidden>·</span> 2018&ndash;2021
-            </figcaption>
           </figure>
 
           <h2 className="cw-about__h">What I&rsquo;m known for</h2>

@@ -64,6 +64,11 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   on the site failed at the click. Say "Tel Aviv" or "a foreign company"; do NOT write a
   nationality claim about the founders, which the ledger does not carry.
 
+- Consulting revenue **$20M+, SINCE 2013 and OPEN-ENDED** (operator 2026-09-02: "20 mil holds
+  to today"). SUPERSEDES every closed "(2013–2023)" rendering, which read as a practice that
+  stopped three years ago — on /about it sat two lines above a heading called "Currently".
+  Swept 2026-09-02 to /about, the home ledger row, the JSON-LD in layout.tsx and llms.txt.
+  NEVER re-close the range. The footer's "© 2013–2026" is a copyright line, not this claim.
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:
@@ -71,8 +76,10 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   SUPERSEDES the three-exit entry below). Role split stays honest: TechValidate→SurveyMonkey
   (IPO 2018, cap table), Guardicore→Akamai (2021, cap table), Neuton.AI→Nordic Semiconductor
   (2025, "helped launch", NOT cap table — never claim Neuton equity), Postmates→Uber (2020,
-  employed there; role/years NOT yet supplied — the ledger table row is HELD until he gives
-  them; never invent a role). Umbrella phrasing: "worked inside" or "behind my work", never
+  **role CONFIRMED by the operator 2026-09-02, HOLD LIFTED: "product analyst at postmates is
+  the title"**. Renders on the home ledger as "Product analyst · 2020", which is where he was
+  asked about it and which he confirmed. The row had carried that tag since Pass-7 on a commit
+  message's word; it is now a ledgered fact with a date. Years beyond 2020 still not supplied). Umbrella phrasing: "worked inside" or "behind my work", never
   "helped build" for the four-count (Postmates was employment, not a build claim).
   **$5B+ combined** = DISCLOSED deals only: Uber–Postmates $2.65B + SVMK first-day IPO value
   $2.33B + Akamai–Guardicore $600M = $5.58B; Neuton undisclosed, contributes $0. Sources
@@ -88,7 +95,8 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   authorises
   naming the four companies on public surfaces WITH their joining stage. It does NOT authorise
   founder, founding-team, co-founder, or employee-number claims for any of them, and it does
-  not lift the HOLD on his Postmates role and years. First rendered on /playbook (Pass-68).
+  not authorise years beyond those already ledgered. (The Postmates ROLE hold was lifted
+  separately on 2026-09-02 - see that entry above.) First rendered on /playbook (Pass-68).
   **NAME THE COMPANY, NOT THE JOB — operator 2026-09-02, verbatim: "remove the sales part
   too"**. He does not want "Enterprise cybersecurity sales at Guardicore" on the page. The
   standing concern is recorded rather than silently dropped: an unqualified "cybersecurity
@@ -97,6 +105,10 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   lean on the ledger's own umbrella verb, "worked inside". A bare name-drop makes no role
   claim, so it cannot make a false one. Any future copy that reintroduces a Guardicore job
   title must use the real one (enterprise sales manager) or none.
+  **SCOPE RULED 2026-09-02, operator verbatim: "just the playbook"**. The "remove the sales
+  part too" instruction applies to **/playbook ONLY**. The home ledger's "Enterprise sales ·
+  2021" tag and the case study's "Enterprise sales manager" Role row are the REAL title and
+  STAY. Do not sweep them; a future review that flags them is reporting a false positive.
 - Ordani: **"hundreds of paying birth workers", none lost to a competitor** (operator
   update 2026-08-31: NO public user count. The paying framing replaces the 200 figure on
   EVERY public surface incl. metadata, JSON-LD, llms.txt, mdx dek/indexLine; 200 stays
