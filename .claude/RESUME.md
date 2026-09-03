@@ -1,5 +1,48 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-78 (4761a9f + aad2b53) — TWO LIVE TYPOS FIXED. Committed, NOT pushed.
+Operator redirected here from the book ("back to the site instead"), which was lucky: the
+book had just moved out and a playbook fix would have edited the frozen copy.
+CORRECTION to the Pass-76 heading below: 76/76b WERE pushed and auto-deployed. The last
+session froze during verification, not before it. Doors live and correct on both domains,
+dpl_G3wo83A9qoAybW16J29KvgJrFuMQ, apex 308 -> www.
+FOUND LIVE, both now fixed: `/about` served `<strong>$20M+</strong>in client revenue` (the
+page's FIRST receipt) and home served `<em>So I built Ordani.</em>It's in active use`.
+LESSONS #6, fourth recurrence, first one to actually ship.
+THREE THINGS OUR OWN NOTES HAD WRONG, all recorded in #6 RECURRENCE 4:
+- the documented grep was CORRECT and would have caught both (verified against the pre-fix
+  commit: 2 hits). It was NEVER RUN. A gate living as prose in a markdown file is not a
+  gate. "Candidate for a hook if it recurs" was written at recurrence 1 and was still a
+  candidate at recurrence 4.
+- prettier COLLAPSES the prescribed `{" "}` join back to a literal space when the line
+  fits, so the documented fix silently un-applies itself. Watched it revert.
+- the entity can sit ANYWHERE in the text node, not beside the tag. Fixing `It&rsquo;s`
+  did nothing; the trigger was `workers&rsquo; pockets` four lines on.
+FIX = remove the trigger (literal – and ’ characters), not re-add the space.
+GATE = `render-gate.mjs` third check GLUE, blocks `pnpm build`, reads rendered bytes.
+Proved it FAILS first per #13: wired before the fix, it named both. `span` excluded (label
+spans butt correctly, 7 on /playbook). Probed all 12 live routes: 2 real, 0 false.
+
+## SITE COPY REVIEW — 44 verified findings, NOTHING APPLIED except the two above.
+`.planning/reviews/SITE-COPY-REVIEW-2026-09-02.md`. 11 surface readers (fable) on the LIVE
+pages + one adversarial verifier each (sonnet, default REFUTED, must re-fetch and confirm
+the quote renders). 135 agents. Ranked by what costs a sale; the tail is polish.
+**#1 is the operator's own door sentence failing at the click.** The Engagements button
+says "helped a foreign company break into the North American market and get acquired";
+`/work/guardicore` never tells that story — verified: "Israel"/"foreign" 0, "Tel Aviv" 1
+(a photo caption), "North American" 1 (describing a CUSTOMER, "a top-10 North American
+bank"). It opens on honeypots. Biggest receipt on the site, $5K+ lane.
+#2 the $3M receipt on home links to /work/content-engine, which does not carry it (it is
+on /work/rfp-engine) — under "Every line below is real. Ask about any of them."
+#3 the Packages button promises "solo"; /work/ordani's only who-built-it line says "small
+team". #4 /book still says "free intro call · Cost: Free" to someone who just paid.
+#7 /work/content-engine "next work" -> /work/passioneer, a confirmed 404 (stub in the list,
+404 on the route). 11 findings need an operator ruling and were NOT touched.
+GOTCHA: `grep -oiF` under git-bash gave FALSE ZEROES on this tree (said "Tel Aviv" absent
+when it is present). Verify page content with Python, decoding UTF-8 explicitly.
+WORKFLOW GOTCHA: verifier agents do not echo the finding id back; pair verdicts
+POSITIONALLY. Keying by returned id silently discarded all 70 findings on the first run.
+
 ## THE BOOK MOVED OUT — 2026-09-02. This repo is the WEBSITE now.
 New home: `https://github.com/micahx745/the-80-percent-wall` (private), checked
 out at `Code/the-80-percent-wall`. 39 commits of history went with it via
