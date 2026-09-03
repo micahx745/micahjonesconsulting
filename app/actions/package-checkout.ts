@@ -93,6 +93,22 @@ export async function createPackageCheckout(skuKey: string): Promise<Result> {
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error("[package-checkout] session create failed:", err);
+    // A CONFIGURATION error is not transient, and telling a buyer to "try again
+    // in a minute" sends them into a loop that can never succeed. This bit on
+    // 2026-09-03: production had STRIPE_SECRET_KEY set to a key *ID* (the
+    // "mk_..." identifier the dashboard lists) rather than the revealed
+    // "sk_live_..." secret, so every click returned a StripeAuthenticationError
+    // and every buyer was told to wait and retry. Auth and permission failures
+    // now route to the same email path a missing key uses. Only genuinely
+    // transient failures keep the retry wording.
+    const type = (err as { type?: string } | null)?.type;
+    if (
+      type === "StripeAuthenticationError" ||
+      type === "StripePermissionError" ||
+      type === "StripeInvalidRequestError"
+    ) {
+      return FALLBACK;
+    }
     return { ok: false, error: "Checkout hiccuped. Try again in a minute." };
   }
 }
