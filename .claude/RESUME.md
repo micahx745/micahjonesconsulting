@@ -1,5 +1,28 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-80 (7457086) — PUSHED. The shipped book stops carrying the retired claim.
+Operator 2026-09-02: "Fix the book, then republish" + "micah@ everywhere".
+THE BOOK WAS ALREADY FIXED AT SOURCE by the other session in the-80-percent-wall
+(ordani-claims-gate CLEAN, 39 files; ch10 reads "across the four"). What had NEVER run was
+`npm run publish:site`, so THIS repo still carried and SHIPPED the old bytes.
+Not theoretical: lib/package-delivery.ts attaches lib/book-pdf.ts to EVERY package
+purchase's kickoff email, and /packages says "All three include The 80% Wall". The PDF this
+repo was serving had "hundreds of birth workers" x3, "$5B+ in combined value" with "across
+the four" x0, and "active paying users" x0. The FREE sampler emailed to every waitlist
+signup carried the retired count twice.
+Ran publish:site; VERIFIED by decoding both modules back to PDF and extracting text:
+  book    517051B sha 9b8b063b -> retired 0, across the four 1, active paying users 3
+  sampler 112197B sha 66a3e431 -> retired 0, across the four 1, active paying users 2
+LESSON: a claim fix in the book repo reaches NOBODY until publish:site + site deploy. The
+book repo being green is not the customer being safe.
+INBOX: all 13 PRINTED addresses -> micah@ (home footer, both thanks pages, PageFooter,
+theater Footer, llms.txt, two contact error messages).
+NOT CHANGED ON PURPOSE — Resend routing: contact.ts `from:`/`to:` and NOTIFICATION_TO in
+beta-signup, playbook-signup, package-delivery, playbook-delivery. `from` must match a
+Resend-VERIFIED identity or sends fail SILENTLY (LESSONS #8, how contact email died before).
+Site now PRINTS micah@ while notifications ROUTE to hello@; both reach the operator so
+nothing drops. QUEUED FOR OPERATOR: flip the routing after one live send test.
+
 ## Pass-79 (c96028b) — five review findings applied. Committed, NOT pushed, NOT deployed.
 Operator 2026-09-02: "Push and deploy" (done for Pass-78, deploy dpl_8Ayud6wBNNF1Xwj6JxmPD3AKPUi7,
 both aliases verified, apex 308) and "All of it" for the work. Pass-79 is the work; its push
