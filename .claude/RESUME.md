@@ -49,6 +49,26 @@ answered month one) · "I am taking new engagements now", NO count, deliberately
 -> THIRTEEN YEARS (it undersold by three years against the site's own since-2013) · ONE reply
 promise everywhere, one business day, footers included (there had been three versions).
 
+## BLOCKER 2026-09-03: CHECKOUT IS LIVE AND FAILING. Operator fix, one env var.
+Every /packages buy click returns an error. Vercel runtime logs give Stripe's own words:
+  "Invalid API key provided: mk_1UB98***. This looks like the ID of an API key rather than
+   the key itself. API keys typically start with pk_, rk_, or sk_."
+**STRIPE_SECRET_KEY in Vercel PRODUCTION holds a key ID (the "mk_..." identifier the
+dashboard lists) instead of the revealed "sk_live_..." secret.** Fix: Stripe > Developers >
+API keys > live secret key > REVEAL > copy the sk_live_ value > Vercel > Settings >
+Environment Variables > STRIPE_SECRET_KEY (Production) > replace > redeploy.
+NEVER paste that value into a shell command or a chat; set it in the dashboard.
+The rail is otherwise PROVEN by this incident: button -> action -> Stripe client -> API ->
+clean auth rejection. Only the credential is wrong.
+Pass-97 fixed the real code defect it exposed: the catch block answered a
+StripeAuthenticationError with "Checkout hiccuped. Try again in a minute." A config error is
+NOT transient, so every buyer was told to retry something that could never work (three such
+attempts in one session's logs). Auth/permission/invalid-request now return the email
+fallback; only transient failures keep the retry wording.
+DIAGNOSIS TECHNIQUE WORTH KEEPING: the Vercel MCP get_runtime_logs with query
+"package-checkout" gave the exact Stripe error in one call. projectId and teamId are in
+.vercel/project.json. Far faster than reasoning about which branch fired.
+
 ## THE REVIEW IS CLOSED. What remains is operator-owned:
 - **LIVE STRIPE TEST OWED: one real buy + refund on /packages.** He confirmed the live key
   2026-09-03 and the CTAs are live checkout. Self-certified pending that transaction.
