@@ -1,5 +1,37 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-81 (ebe736e) + Pass-82 (51d0c05) — PUSHED. Booking retired, Medicaid claim down.
+81: three links to /book behaved like outbound ones (two with target="_blank", two with the
+↗ glyph this site reserves for "leaves the site"). Internal links, corrected.
+82, OPERATOR RULING "booking behind the purchase everywhere": all SIX remaining CTAs now go
+to /contact (hero, home big-link, home footrow, /playbook foot, both /services CTAs).
+**/book IS RETIRED** — body folded into /book/kickoff (now self-contained),
+components/BookPageBody.tsx deleted, next.config.ts 301s /book -> /contact. /book/kickoff is
+NOT caught by that redirect (Next matches `source` exactly, not as a prefix) — verified, it
+still builds and the gate still sees it. The booking FORM contract is untouched.
+Copy followed the buttons: the Engagements door, the shapes-table foot, the /packages
+cross-link, and the /services closing section whose title was "A free 30-minute call comes
+first." That intro also opened on "We name the shape" — the one banned pronoun on a solo
+page — now first person.
+82, OPERATOR RULING "soften it to what's defensible" (Medicaid): BOTH claims off the home
+page. "processing Medicaid claims fee-free" = a regulated billing function on a HIPAA
+product with no ledger sentence behind it (it was supplied via a CODE COMMENT, which is not
+provenance). "hundreds of dollars" = vaguest figure on a page of named numbers, wearing the
+same shape as the user count retired 2026-08-31. Replaced by the framing this surface never
+had: active paying users, in beta, public release coming. **"Medicaid" now renders ZERO
+times on the home page.** Mission line ("lower infant mortality") is purpose-framed, stays.
+To restore the money claim: one sentence on the real mechanism + a named figure, ledgered
+with a date. The requirement is written into the source comment.
+Verified: 15 routes (was 16 — /book is a redirect, not a page), gate green, tsc clean, no
+dangling imports, zero href="/book" in source.
+
+STILL OPEN (operator): 9 of the 11 review rulings — #5 Guardicore job-title scope, #23
+Postmates role HOLD, #33 build-log root cause, #35 photo year, #36/#37 case-study copy, #44
+the 2013–2023 range, #8-adjacent /playbook price date. Artifact:
+`.planning/reviews/SITE-COPY-REVIEW-2026-09-02.md`.
+QUEUED: flip Resend routing to micah@ after ONE live send test (LESSONS #8 — silent failure).
+QUEUED: `prettier --check` fails on 30 files, PRE-EXISTING CRLF drift, its own pass.
+
 ## Pass-80 (7457086) — PUSHED. The shipped book stops carrying the retired claim.
 Operator 2026-09-02: "Fix the book, then republish" + "micah@ everywhere".
 THE BOOK WAS ALREADY FIXED AT SOURCE by the other session in the-80-percent-wall
