@@ -11,10 +11,16 @@
 //
 // Prices are operator-locked (2026-09-01): $500 / $2,500 / $7,500, the 60-day
 // credit bridge, refund before kickoff only, the book included with all three.
-// CTAs stay mailto on purpose. A Stripe rail exists and is verified in test
-// mode, but until it is switched live an email is the honest path, so the
-// copy now says what happens after the email instead of just "start".
+//
+// Pass-92: the CTAs are Stripe checkout now. They were mailto while the rail
+// sat test-only; the operator confirmed the live key on 2026-09-03 and asked
+// for immediate purchase. A persona review had found the buyer only discovered
+// a checkout existed on /services/thanks, which they reach AFTER paying.
+// If the key ever goes missing the action returns a plain-English fallback
+// naming the email address, so it degrades to the old path in words rather
+// than a dead button.
 import type { Metadata } from "next";
+import { BuyButton } from "@/components/BuyButton";
 import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 
@@ -129,12 +135,7 @@ export default function PackagesPage() {
                 <li>The prompts to fix it with</li>
                 <li>Your tools, your repo</li>
               </ul>
-              <a
-                className="cw-pkg__cta"
-                href="mailto:micah@micahjonesconsulting.com?subject=The%20Unstick%20Session%20(%24500)&body=Tell%20me%20what%27s%20stuck%2C%20plus%20repo%20or%20host%20links%3A"
-              >
-                Start by email <span aria-hidden>&rarr;</span>
-              </a>
+              <BuyButton skuKey="unstick-500" label="Buy the Unstick Session" />
             </article>
 
             <article
@@ -158,12 +159,7 @@ export default function PackagesPage() {
                 <li>Prioritized fix sequence</li>
                 <li>One-hour debrief call</li>
               </ul>
-              <a
-                className="cw-pkg__cta"
-                href="mailto:micah@micahjonesconsulting.com?subject=The%20Audit%20(%242%2C500)&body=Tell%20me%3A%201)%20which%20flavor%20(Build%20%2F%20Production%20%2F%20Traction)%202)%20your%20app%20and%20where%20it%27s%20stuck%203)%20links%3A"
-              >
-                Start by email <span aria-hidden>&rarr;</span>
-              </a>
+              <BuyButton skuKey="audit-2500" label="Buy the Audit" />
             </article>
 
             <article className="cw-pkg" aria-label="The Sprint, $7,500">
@@ -179,21 +175,22 @@ export default function PackagesPage() {
                 <li>Daily progress notes</li>
                 <li>Debrief + next-step map</li>
               </ul>
-              <a
-                className="cw-pkg__cta"
-                href="mailto:micah@micahjonesconsulting.com?subject=The%20Sprint%20(%247%2C500)&body=Tell%20me%20the%20one%20outcome%20you%20want%20shipped%3A"
-              >
-                Start by email <span aria-hidden>&rarr;</span>
-              </a>
+              <BuyButton skuKey="sprint-7500" label="Buy the Sprint" />
             </article>
           </div>
 
           {/* Pass-70: "Start by email" told the buyer the mechanism and not
               the consequence, which is the friction when there is no checkout
               button to press. This says what happens after they send it. */}
+          {/* Pass-92: was "opens an email ... I reply within one business day
+              with a start date", written when the CTAs were mailto. They are
+              Stripe checkout now, so this says what actually happens after the
+              card clears. The booking link is /book/kickoff, which is where
+              lib/package-delivery.ts already points. */}
           <p className="cw-pkg-page__next">
-            Every one of those opens an email with the questions I need. Send it
-            and I reply within one business day with a start date.
+            Each one goes straight to checkout. The moment your card clears you
+            get a kickoff email: the intake questions, a link to book the call,
+            and the manual with its companion files attached.
           </p>
 
           <p className="cw-pkgs__fine">
@@ -201,7 +198,8 @@ export default function PackagesPage() {
             package or an engagement started within 60 days. Full refund any
             time before kickoff. None after, because by then the work has
             started. All three include The 80% Wall, my field manual for solo
-            builders, with its companion files.
+            builders, with its companion files, attached to the kickoff email
+            the moment you buy.
           </p>
         </section>
 

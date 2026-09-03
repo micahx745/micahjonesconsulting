@@ -21,7 +21,7 @@ type Result = { ok: true; url: string } | { ok: false; error: string };
 const OWNER = "micah@micahjonesconsulting.com";
 const FALLBACK = {
   ok: false as const,
-  error: `Checkout isn't open yet — email ${OWNER} and I'll take care of you directly.`,
+  error: `Checkout isn't open yet. Email ${OWNER} and I'll take care of you directly.`,
 };
 
 export async function createPackageCheckout(skuKey: string): Promise<Result> {

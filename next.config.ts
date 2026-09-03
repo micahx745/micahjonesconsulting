@@ -22,17 +22,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // Pass-82. /book was the free-intro-call page. The operator ruled
-        // 2026-09-02 that booking sits behind the purchase everywhere, so the
-        // page is gone and anyone arriving on an old link, a bookmark or an
-        // indexed result lands on the note-first path instead of a 404.
-        // /book/kickoff is a separate route and is NOT caught by this: Next
-        // matches `source` exactly, not as a prefix.
-        source: "/book",
-        destination: "/contact",
-        permanent: true,
-      },
-      {
         source: "/work/akamai",
         destination: "/work/guardicore",
         permanent: true,

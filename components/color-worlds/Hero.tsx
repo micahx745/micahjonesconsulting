@@ -366,10 +366,11 @@ export function Hero() {
         <a href="/services" className="cw-mlink">
           Hire me <span aria-hidden>→</span>
         </a>
-        {/* Pass-82: booking moved behind the purchase (operator, 2026-09-02),
-            so the hero's second exit is the note, not a calendar slot. */}
-        <a href="/contact" className="cw-mlink">
-          Send me the problem <span aria-hidden>→</span>
+        {/* Pass-93, operator 2026-09-03: "Booking replaces the contact form for
+            engagements", reversing Pass-82 for this lane. /contact stays in the
+            nav for anyone who would rather write than take a slot. */}
+        <a href="/book" className="cw-mlink">
+          Book a free intro call <span aria-hidden>→</span>
         </a>
       </div>
 

@@ -642,8 +642,8 @@ export default function PlaybookPage() {
           <a href="/packages" className="cw-mlink">
             Fixed-price packages <span aria-hidden>→</span>
           </a>
-          <a href="/contact" className="cw-mlink">
-            Send me a note <span aria-hidden>→</span>
+          <a href="/book" className="cw-mlink">
+            Book a free intro call <span aria-hidden>→</span>
           </a>
         </div>
       </section>

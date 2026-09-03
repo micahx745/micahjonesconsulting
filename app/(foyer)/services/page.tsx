@@ -437,9 +437,9 @@ export default function ServicesPage() {
             </tbody>
           </table>
           <p className="cw-sv-shapes__foot">
-            Not sure which shape? Describe the problem and I will name it.{" "}
-            <a href="/contact" className="cw-mlink">
-              Send me a note <span aria-hidden>→</span>
+            Not sure which shape? That is what the call is for.{" "}
+            <a href="/book" className="cw-mlink">
+              Book a free intro call <span aria-hidden>→</span>
             </a>
           </p>
           {/* Pass-67: the bridge for the pre-production solo buyer, carried
@@ -504,17 +504,17 @@ export default function ServicesPage() {
             note, not a calendar slot. The old intro also opened on "We name",
             the one banned pronoun on a solo consultant's page. */}
         <h2 className="cw-services__foot-title">
-          Start with the problem, not a calendar.
+          A free 30-minute call comes first.
         </h2>
         <p className="cw-services__foot-intro">
-          Tell me what is stuck in a few lines. I read every note and reply
-          inside two business days. If the work does not map to what you need, I
-          say so in the reply.
+          Tell me what is stuck. I listen, then say what the work looks like and
+          whether I am the right person for it. If the work does not map to what
+          you need, I say so on the call.
         </p>
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
-            <a href="/contact" className="cw-cta">
-              Name the problem{" "}
+            <a href="/book" className="cw-cta">
+              Book a free intro call{" "}
               <span className="cw-arr" aria-hidden>
                 →
               </span>

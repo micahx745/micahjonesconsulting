@@ -679,9 +679,9 @@ export default function ColorWorldsHome() {
             split the visit in two and stranded the back button at the moment a
             buyer was closest to acting. _blank belongs on links that leave. */}
         <a
-          href="/contact"
+          href="/book"
           className="cw-big-link"
-          aria-label="Name the problem — send me a note"
+          aria-label="Name the problem — book a free intro call"
         >
           {/* Pass-21 (Claude Chat audit): "LET'S BUILD" was the single
               weakest line of copy on the site — a startup-culture
@@ -707,9 +707,9 @@ export default function ColorWorldsHome() {
             The playbook is reached from the /services self-select line. */}
         <div className="cw-footrow cw-reveal">
           <MagneticArea>
-            {/* Pass-82: booking is post-purchase now, so the footer offers
-                the note. Internal route, so no _blank and the internal arrow. */}
-            <a href="/contact">Send me a note →</a>
+            {/* Pass-93: engagements book a call again (operator 2026-09-03).
+                Internal route, so no _blank and the internal arrow. */}
+            <a href="/book">Book a free intro call →</a>
           </MagneticArea>
           <a href="mailto:micah@micahjonesconsulting.com">
             micah@micahjonesconsulting.com
