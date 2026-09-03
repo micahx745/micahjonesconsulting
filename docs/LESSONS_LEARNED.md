@@ -69,6 +69,16 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   stopped three years ago — on /about it sat two lines above a heading called "Currently".
   Swept 2026-09-02 to /about, the home ledger row, the JSON-LD in layout.tsx and llms.txt.
   NEVER re-close the range. The footer's "© 2013–2026" is a copyright line, not this claim.
+- Content engine **DISTRIBUTION — operator-supplied 2026-09-02**, verbatim: "it face
+  facebook, tiktok, linkedin, insta, twitter, threads, bleusky. a bunch of places got
+  content". Seven platforms: LinkedIn, Facebook, Instagram, TikTok, X, Threads, Bluesky.
+  Two carried the weekly cadence, one was deliberately underinvested. **RETIRED the same
+  day: the "4×" stat ("two platforms over the third")**. It had NO ledger entry, and once
+  seven platforms were named "the third" referred to nothing; rewording it to "the rest"
+  would have silently changed what the number compared against (4× over one platform is
+  not 4× over six). The bet's OUTCOME is kept qualitatively ("the two platforms I backed
+  outperformed the one I did not"), which the narrative supports. Do not restore the 4×
+  without a source and a date.
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:
