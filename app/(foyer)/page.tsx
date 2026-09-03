@@ -495,6 +495,14 @@ export default function ColorWorldsHome() {
             </span>
           </div>
 
+          {/* Pass-78. This was ONE row fusing two separate engagements for
+              the same author, linked to /work/content-engine. The $3M is not
+              on that page: it belongs to the RFP software and lives on
+              /work/rfp-engine. Under a heading that says "Every line below is
+              real. Ask about any of them.", the one receipt a skeptic clicks
+              to check led to a page that does not carry it. Now two rows, each
+              pointing at the study that proves its own number. Both figures
+              are the case studies' own indexLine values, verbatim. */}
           <a
             href="/work/content-engine"
             className="cw-lrow cw-lrow--link cw-reveal"
@@ -503,11 +511,28 @@ export default function ColorWorldsHome() {
           >
             <span className="cw-lrow__co">
               Industry author
-              <span className="cw-lrow__tag">GTM + software · 2024–</span>
+              <span className="cw-lrow__tag">Content engine · 2024–2025</span>
             </span>
             <span className="cw-lrow__out">
-              Reach <strong>8K → 290K</strong> ·{" "}
-              <strong>$3M in contracts won</strong>
+              Monthly reach <strong>8K → 290K</strong> in five months
+            </span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
+          </a>
+
+          <a
+            href="/work/rfp-engine"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "200ms" }}
+          >
+            <span className="cw-lrow__co">
+              Industry author
+              <span className="cw-lrow__tag">RFP engine · 2024–2025</span>
+            </span>
+            <span className="cw-lrow__out">
+              <strong>$3M in contracts won</strong> · close rate doubled
             </span>
             <span className="cw-lrow__go" aria-hidden>
               →

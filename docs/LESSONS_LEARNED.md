@@ -50,6 +50,20 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   behind those deployments"**. The trillions line was cut the same morning as unverifiable and
   RESTORED hours later on operator confirmation that it describes the value of financial assets
   protected behind the work. It is approved; do not re-cut it in a future honesty sweep.
+- Guardicore **GEOGRAPHY — ledgered 2026-09-02 (Pass-78)**: the product was built in
+  **Tel Aviv**; the buyers were **North American** enterprises. PROVENANCE, three
+  independent sources: (1) the operator's own /services door copy, written 2026-09-02,
+  verbatim "See how i helped a foreign company break into the north american market and
+  get sold"; (2) the photo caption shipped on three surfaces since Pass-76, "Working
+  session with the Guardicore team - Tel Aviv"; (3) public record, Akamai acquired the
+  Israeli company in 2021. DERIVED VALUES that move with it: the /work lot line, the
+  case-study dek, the meta description and the "The problem" opener all now state it.
+  WHY IT WAS ADDED: the door promised that story and the case study never told it -
+  "Israel" and "foreign" rendered ZERO times on /work/guardicore, "Tel Aviv" only in a
+  photo caption, "North American" only as a customer descriptor. The strongest receipt
+  on the site failed at the click. Say "Tel Aviv" or "a foreign company"; do NOT write a
+  nationality claim about the founders, which the ledger does not carry.
+
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:

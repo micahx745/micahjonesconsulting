@@ -22,9 +22,7 @@
 // own unit with its own verification, and it needs the calendar sync that is
 // still queued before a grid can honestly imply availability.
 import type { Metadata } from "next";
-import { BookCallForm } from "@/components/color-worlds/BookCallForm";
-import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
-import { PageFooter } from "@/components/color-worlds/PageFooter";
+import { BookPageBody } from "@/components/color-worlds/BookPageBody";
 
 export const metadata: Metadata = {
   title: "Book a free intro call",
@@ -35,62 +33,6 @@ export const metadata: Metadata = {
   },
 };
 
-// The three things a person actually wants to know before giving up a slot.
-const TERMS = [
-  { k: "Cost", v: "Free" },
-  { k: "Length", v: "Thirty minutes" },
-  { k: "When", v: "Tue to Thu, 10am to 4pm Pacific" },
-  { k: "After", v: "A calendar invite and a video link, by email" },
-];
-
 export default function BookPage() {
-  return (
-    <>
-      <OpeningWorld name="espresso" />
-      <section
-        className="cw-bk"
-        data-section
-        data-world="espresso"
-        aria-labelledby="cw-book-title"
-      >
-        <div className="cw-bk__offer">
-          <h1 id="cw-book-title" className="cw-bk__title">
-            Thirty minutes. Bring the problem.
-          </h1>
-          <p className="cw-bk__dek">
-            No deck and no pitch. We name the shape of the work and whether I am
-            the right person for it. If I am not, I say so on the call.
-          </p>
-          {/* Pass-67: the page gave a skeptical buyer no reason to believe the
-              thirty minutes would be worth it. This says what they walk away
-              with even if they never hire me, which is the point. */}
-          <p className="cw-bk__leave">
-            <strong>What you leave with:</strong> a named diagnosis of the gap,
-            the shape of the work that closes it, and a straight answer on
-            whether you need me at all.
-          </p>
-          <dl className="cw-bk__terms">
-            {TERMS.map((t) => (
-              <div key={t.k}>
-                <dt>{t.k}</dt>
-                <dd>{t.v}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <div className="cw-bk__form">
-          {/* "Slots I hold open", not "available times": availability is
-              confirmed by hand until the calendar sync ships, and a page
-              should not imply a live calendar it does not have. */}
-          <p className="cw-bk__form-label">Slots I hold open</p>
-          <BookCallForm />
-        </div>
-      </section>
-
-      <section className="cw-block cw-bk__foot" data-section data-world="bone">
-        <PageFooter />
-      </section>
-    </>
-  );
+  return <BookPageBody />;
 }

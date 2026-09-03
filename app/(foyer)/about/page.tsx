@@ -165,9 +165,17 @@ export default function AboutPage() {
                   figure, not the reach lift, so quoting it here read as a
                   contradiction of the case study's 36×. Now the case study's
                   own headline numbers, which trace. */}
-              <strong>GTM systems that compound.</strong> Algorithm strategy and
-              a content engine for an industry author took monthly reach from
-              8,000 to 290,000 in five months, and doubled their RFP close rate.
+              {/* Pass-78: this credited ONE product with BOTH results. The
+                  close rate was doubled by the RFP software (see
+                  /work/rfp-engine), not by the content engine, and
+                  content-engine.mdx makes no close-rate claim at all. Same
+                  author, two separate engagements. Now split, each clause
+                  naming the thing that produced its own number. "for the same
+                  author", not "next": the build order is not on record. */}
+              <strong>GTM systems that compound.</strong> For one industry
+              author, a content engine took monthly reach from 8,000 to 290,000
+              in five months. The RFP software I built for the same author
+              doubled their close rate inside six months.
             </li>
             <li>
               <strong>End-to-end product builds.</strong> Ordani,

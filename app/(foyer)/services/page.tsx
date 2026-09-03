@@ -85,7 +85,15 @@ const SERVICES: Service[] = [
         label: "Read the case study",
       },
       {
-        text: "An industry author: website, content engine, and go-to-market. Monthly reach grew from 8K to 290K.",
+        // Pass-78. Two defects. "website" is a deliverable NEITHER case study
+        // mentions (zero hits in content-engine.mdx and rfp-engine.mdx), so it
+        // was the one unsupported claim in a Proof block. And this was the only
+        // receipt on the page with a live case study and no link to it, while
+        // the receipt below it links out. Now it names what the study names and
+        // goes where the number is proved.
+        text: "An industry author: I built the content engine that took their monthly reach from 8,000 to 290,000 in five months.",
+        href: "/work/content-engine",
+        label: "Read the case study",
       },
     ],
     serviceType: "Product Development Consulting",
@@ -287,9 +295,18 @@ export default function ServicesPage() {
             </span>
             <span className="cw-door__foot">
               <span className="cw-door__price">$500 · $2,500 · $7,500</span>
+              {/* Pass-78: was "...solo, from first commit to paying users".
+                  The page it opens never says solo, and its one sentence about
+                  who built it says Ordani has a SMALL TEAM around it (birth
+                  workers, healthcare and cyber security people) — a Pass-63
+                  operator ruling that stays. So the button promised one-person
+                  delivery and the click landed on the opposite. The ledger's
+                  own framing is that he founded it and writes the code, which
+                  is what home and /about already say. That is the claim the
+                  button now makes. */}
               <a href="/work/ordani" className="cw-door__case">
-                See how I shipped a HIPAA-compliant product solo, from first
-                commit to paying users
+                See how I built a HIPAA-compliant product from first commit to
+                paying users, writing the code myself
                 <span aria-hidden> &rarr;</span>
               </a>
               <a href="/packages" className="cw-door__go">

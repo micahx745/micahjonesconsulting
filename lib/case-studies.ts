@@ -117,7 +117,9 @@ export async function getSelectedWork(limit = 3): Promise<CaseStudyMeta[]> {
  * shouldn't be public-discoverable (Pass-8 M2). Caller (page.tsx)
  * calls notFound() when this returns null.
  */
-export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyMeta | null> {
+export async function getCaseStudyBySlug(
+  slug: string,
+): Promise<CaseStudyMeta | null> {
   const all = await getAllCaseStudies();
   const cs = all.find((cs) => cs.slug === slug);
   if (!cs) return null;
@@ -129,9 +131,20 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudyMeta | 
  * Return the next case study after the given slug (for the [NEXT WORK ↘] link).
  * Wraps around to the first study; returns null if only one study exists or
  * the slug is unknown.
+ *
+ * EXCLUDES stubs, like getSelectedWork above. This walked the unfiltered list
+ * until Pass-78, while getCaseStudyBySlug returns null for a stub and the page
+ * then calls notFound(). The two disagreed, so the LAST shipped study (sorted
+ * by status, stubs last) always wrapped onto the passioneer stub: the only
+ * forward link on the newest case study was a 404. It resolved as a real href
+ * to a real slug, so no link checker and no render-gate finding ever saw it —
+ * the gate checks that a route exists, and /work/[slug] does. LESSONS #13's
+ * class again: the link worked, the destination did not.
  */
-export async function getNextCaseStudy(slug: string): Promise<CaseStudyMeta | null> {
-  const all = await getAllCaseStudies();
+export async function getNextCaseStudy(
+  slug: string,
+): Promise<CaseStudyMeta | null> {
+  const all = (await getAllCaseStudies()).filter((cs) => cs.status !== "stub");
   if (all.length < 2) return null;
   const idx = all.findIndex((cs) => cs.slug === slug);
   if (idx === -1) return null;
