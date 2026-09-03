@@ -46,12 +46,12 @@ export const metadata: Metadata = {
     absolute: "Micah Jones — Strategy and software, shipped by one person",
   },
   description:
-    "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $80M in enterprise pipeline, $20M+ in client revenue.",
+    "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title: "Micah Jones — Strategy and software, shipped by one person",
     description:
-      "Four exits behind my work, $5B+ combined. $80M in enterprise pipeline and $20M+ in client revenue. Now building Ordani, in beta with paying users.",
+      "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with paying users.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Micah Jones — Strategy and software, shipped by one person",
     description:
-      "Four exits behind my work, $5B+ combined. $80M in enterprise pipeline and $20M+ in client revenue. Now building Ordani.",
+      "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Now building Ordani.",
   },
 };
 
@@ -466,13 +466,13 @@ export default function ColorWorldsHome() {
           >
             <span className="cw-lrow__co">
               Guardicore
-              <span className="cw-lrow__tag">Enterprise sales · 2021</span>
+              <span className="cw-lrow__tag">2018–2021</span>
             </span>
             <span
               className="cw-lrow__out"
               aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"
             >
-              <strong>$80M pipeline</strong> on $14M revenue ·{" "}
+              <strong>$14M in revenue</strong> ·{" "}
               <strong>acquired by Akamai</strong>
             </span>
             <span className="cw-lrow__go" aria-hidden>

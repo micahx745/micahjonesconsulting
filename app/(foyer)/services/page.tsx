@@ -60,7 +60,7 @@ const SERVICES: Service[] = [
     ],
     receipts: [
       {
-        text: "Guardicore: $80M in pipeline generated, $14M in revenue. Acquired by Akamai in 2021.",
+        text: "Guardicore: $14M in revenue at a $1.2M average enterprise deal size. Acquired by Akamai in 2021.",
         href: "/work/guardicore",
         label: "Read the case study",
       },

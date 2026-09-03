@@ -49,12 +49,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "Work: pipeline, products, and exits",
   description:
-    "Case studies with the receipts attached: an $80M security pipeline, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
+    "Case studies with the receipts attached: $14M in security revenue, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/work" },
   openGraph: {
     title: "Work: pipeline, products, and exits",
     description:
-      "Case studies with the receipts attached: an $80M security pipeline, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
+      "Case studies with the receipts attached: $14M in security revenue, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
     type: "website",
     url: "https://www.micahjonesconsulting.com/work",
   },

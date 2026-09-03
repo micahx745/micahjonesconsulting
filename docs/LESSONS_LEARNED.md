@@ -50,6 +50,24 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   behind those deployments"**. The trillions line was cut the same morning as unverifiable and
   RESTORED hours later on operator confirmation that it describes the value of financial assets
   protected behind the work. It is approved; do not re-cut it in a future honesty sweep.
+- Guardicore **PIPELINE NUMBER RETIRED FROM PUBLIC SURFACES — operator 2026-09-03**,
+  verbatim: "just drop the pipelione number site wide. put the rev number. dont want to be
+  specific on roles. i know recruitors might not like that but i prefer it."
+  The $80M pipeline figure remains a TRUE ledger fact and is NOT withdrawn; it simply no
+  longer renders anywhere public. WHY: a persona review found the case study said "I
+  generated $80M in pipeline and $14M in revenue" beside "so the account executives spent
+  their time on real deals", so the site's largest number was also its least attributed -
+  a reader could not tell whether it was originated pipeline, closed quota, or the team's
+  book. The operator chose to drop the ambiguous number rather than resolve the attribution.
+  PUBLIC FIGURES NOW: **$14M in revenue** and **$1.2M average enterprise deal size**, plus
+  the 2021 Akamai acquisition. Swept 2026-09-03 to zero rendered instances across the home
+  metadata and ledger row, /services proof, /work metadata and hero, llms.txt, and the case
+  study's dek, feature, indexLine, stats, step 01 and Outcome.
+  ROLE: the case study's `role` is now **"Revenue and positioning"**, not a job title. This
+  SUPERSEDES the earlier "use the real one (enterprise sales manager) or none" for this
+  surface - he picked none, knowingly, and accepted the recruiter cost in the same sentence.
+  The home ledger tag is now the year range alone. NEVER restore "$80M" or a Guardicore job
+  title to a public surface without a new dated ruling.
 - Guardicore **GEOGRAPHY — ledgered 2026-09-02 (Pass-78)**: the product was built in
   **Tel Aviv**; the buyers were **North American** enterprises. PROVENANCE, three
   independent sources: (1) the operator's own /services door copy, written 2026-09-02,

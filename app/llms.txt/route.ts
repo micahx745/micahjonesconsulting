@@ -38,7 +38,7 @@ Two ways to buy them:
 - [About](https://www.micahjonesconsulting.com/about): bio, expertise areas, LinkedIn
 - [Work](https://www.micahjonesconsulting.com/work): case study index
 - [Ordani case study](https://www.micahjonesconsulting.com/work/ordani): HIPAA-compliant practice management software in beta with active paying users
-- [Guardicore case study](https://www.micahjonesconsulting.com/work/guardicore): positioning research behind \$80M in pipeline and a \$1.2M average enterprise deal size; led to the Akamai acquisition
+- [Guardicore case study](https://www.micahjonesconsulting.com/work/guardicore): positioning research behind \$14M in revenue at a \$1.2M average enterprise deal size; led to the Akamai acquisition
 - [Content engine case study](https://www.micahjonesconsulting.com/work/content-engine): an AI content engine plus algorithm strategy for an industry author; monthly reach 8,000 to 290,000 in five months
 - [RFP engine case study](https://www.micahjonesconsulting.com/work/rfp-engine): custom RFP software for an industry author; \$3M in contracts won, close rate doubled
 
