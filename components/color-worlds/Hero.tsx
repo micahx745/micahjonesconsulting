@@ -366,8 +366,10 @@ export function Hero() {
         <a href="/services" className="cw-mlink">
           Hire me <span aria-hidden>→</span>
         </a>
+        {/* Pass-80: ↗ means "leaves the site" everywhere else on this site;
+            /book is internal. */}
         <a href="/book" className="cw-mlink">
-          Book a free intro call <span aria-hidden>↗</span>
+          Book a free intro call <span aria-hidden>→</span>
         </a>
       </div>
 

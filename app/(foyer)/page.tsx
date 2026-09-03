@@ -654,10 +654,12 @@ export default function ColorWorldsHome() {
         data-world="terracotta"
         aria-labelledby="cw-build-title"
       >
+        {/* Pass-80: was target="_blank" + rel="noopener noreferrer". /book is
+            an internal route on this same site, so opening it in a new tab
+            split the visit in two and stranded the back button at the moment a
+            buyer was closest to acting. _blank belongs on links that leave. */}
         <a
           href="/book"
-          target="_blank"
-          rel="noopener noreferrer"
           className="cw-big-link"
           aria-label="Name the problem — book a free intro call"
         >
@@ -685,9 +687,11 @@ export default function ColorWorldsHome() {
             The playbook is reached from the /services self-select line. */}
         <div className="cw-footrow cw-reveal">
           <MagneticArea>
-            <a href="/book" target="_blank" rel="noopener noreferrer">
-              Book a free intro call ↗
-            </a>
+            {/* Pass-80: internal route, so no _blank; and the arrow is now
+                the site's internal glyph. This page uses → for "goes somewhere
+                here" and ↗ for "leaves the site" (see the door CTAs), so ↗ on
+                /book promised an external destination that does not exist. */}
+            <a href="/book">Book a free intro call →</a>
           </MagneticArea>
           <a href="mailto:micah@micahjonesconsulting.com">
             micah@micahjonesconsulting.com
