@@ -1,7 +1,7 @@
 // app/actions/beta-signup.ts
 //
 // Server action for the Ordani beta signup form. Validates the email,
-// sends a notification via Resend to hello@micahjonesconsulting.com,
+// sends a notification via Resend to micah@micahjonesconsulting.com,
 // and returns ok. The user sees signups in real time in their inbox.
 //
 // Env var required: RESEND_API_KEY (set in Vercel dashboard).
@@ -24,7 +24,7 @@ interface Result {
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const NOTIFICATION_TO = "hello@micahjonesconsulting.com";
+const NOTIFICATION_TO = "micah@micahjonesconsulting.com";
 const NOTIFICATION_FROM = "Ordani Beta <noreply@micahjonesconsulting.com>";
 
 export async function submitOrdaniBetaSignup(email: string): Promise<Result> {

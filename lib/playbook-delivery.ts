@@ -14,7 +14,7 @@ import { BOOK_FILENAME, BOOK_PDF_BASE64 } from "@/lib/book-pdf";
 import { COMPANION_FILENAME, COMPANION_ZIP_BASE64 } from "@/lib/companion-zip";
 
 const OWNER = "micah@micahjonesconsulting.com";
-const NOTIFICATION_TO = "hello@micahjonesconsulting.com";
+const NOTIFICATION_TO = "micah@micahjonesconsulting.com";
 
 export type DeliveryResult = { ok: boolean; error?: string };
 

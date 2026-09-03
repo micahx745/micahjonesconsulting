@@ -15,7 +15,7 @@ import type { Sku } from "@/lib/catalog";
 import { COMPANION_FILENAME, COMPANION_ZIP_BASE64 } from "@/lib/companion-zip";
 
 const OWNER = "micah@micahjonesconsulting.com";
-const NOTIFICATION_TO = "hello@micahjonesconsulting.com";
+const NOTIFICATION_TO = "micah@micahjonesconsulting.com";
 
 export type DeliveryResult = { ok: boolean; error?: string };
 

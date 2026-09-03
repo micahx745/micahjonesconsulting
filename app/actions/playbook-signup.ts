@@ -29,7 +29,7 @@ interface Result {
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const OWNER = "micah@micahjonesconsulting.com";
-const NOTIFICATION_TO = "hello@micahjonesconsulting.com";
+const NOTIFICATION_TO = "micah@micahjonesconsulting.com";
 
 export async function submitPlaybookSignup(email: string): Promise<Result> {
   if (typeof email !== "string" || !EMAIL_RE.test(email)) {

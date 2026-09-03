@@ -82,16 +82,19 @@ export async function contactAction(
   try {
     const resend = new Resend(resendKey);
     await resend.emails.send({
-      // Pass-79. The operator ruled "micah@ everywhere" and every PRINTED
-      // address on the site now says micah@. These two lines are mail
-      // ROUTING, not copy, and are deliberately left alone: `from` must match
-      // an identity Resend has verified for this domain, and `to` decides
-      // where a real note actually lands. Changing either without checking
-      // the Resend dashboard is LESSONS #8 exactly — a published address is
-      // not a working address — and it fails SILENTLY, which is how contact
-      // email died the last time. Flip these together, after a live send test.
-      from: "Micah Jones <hello@micahjonesconsulting.com>",
-      to: ["hello@micahjonesconsulting.com"],
+      // Pass-87. The routing now matches the printed address. What made this
+      // safe to do without the Resend dashboard: Resend verifies DOMAINS, not
+      // individual mailboxes, and micahjonesconsulting.com publishes a
+      // resend._domainkey DKIM record, so `micah@` authenticates on exactly
+      // the same basis `hello@` did. Checked before changing it, along with
+      // the MX records LESSONS #8 was written about — mx1/mx2.improvmx.com
+      // now exist, so the domain can receive as well as send.
+      //
+      // The one thing DNS cannot prove is whether `micah@` is a configured
+      // alias in ImprovMX. If a contact-form test does not arrive, that alias
+      // is the thing to add; nothing in this file needs to change again.
+      from: "Micah Jones <micah@micahjonesconsulting.com>",
+      to: ["micah@micahjonesconsulting.com"],
       // Pass-76: was `replyTo: undefined`, so hitting reply in the inbox
       // answered the site's own address and the sender never heard back.
       replyTo: email,
