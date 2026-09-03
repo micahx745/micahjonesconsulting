@@ -8,7 +8,16 @@
 // Root-level not-found renders inside the root layout only (no route
 // group chrome), so it stamps its own data-mode="cw" wrapper to pick up
 // the Color Worlds tokens. Static, zero client JS, zero motion.
+import type { Metadata } from "next";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
+
+// Without this the page fell through to the root layout's title.default, which
+// still read "Micah Jones — Oakland operator" — a leftover of the metadata
+// strap removed on 2026-09-02. A 404 also has no business being indexed.
+export const metadata: Metadata = {
+  title: "Not found",
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

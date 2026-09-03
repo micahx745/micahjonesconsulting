@@ -33,12 +33,21 @@ import {
 
 export async function generateStaticParams() {
   const all = await getAllCaseStudies();
-  return all.map((cs) => ({ slug: cs.slug }));
+  // Persona review 2026-09-03: stubs were included here, so /work/passioneer
+  // prerendered as a notFound() shell and SERVED AN EMPTY <body> - the "404 /
+  // That page isn't here" copy existed only in the client payload, so a reader
+  // with scripts off, and any crawler that does not run JS, got a blank page.
+  // getCaseStudyBySlug already returns null for stubs, so listing them here
+  // only ever produced that shell.
+  return all
+    .filter((cs) => cs.status !== "stub")
+    .map((cs) => ({ slug: cs.slug }));
 }
 
-// Allow dynamic params during dev for the Phase 7 test slug. Phase 8 case
-// studies will be statically generated via the params above.
-export const dynamicParams = true;
+// false, so an unknown slug (including a stub) serves the real static 404 at
+// app/not-found.tsx, which ships complete HTML. With this true, every unknown
+// slug rendered the same empty streaming shell described above.
+export const dynamicParams = false;
 
 // <meta>, OG and Twitter description. The full dek when it fits in 155
 // chars. Otherwise the whole sentences that fit (at least 100 chars, so a

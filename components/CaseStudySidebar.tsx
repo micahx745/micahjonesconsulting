@@ -210,7 +210,12 @@ export function CaseStudySidebar({ role, tools, year }: CaseStudySidebarProps) {
         <dl className="case-study__sidebar-meta">
           <dt>Role</dt>
           <dd>{role}</dd>
-          <dt>Tools</dt>
+          {/* Persona review 2026-09-03: this said "Tools" and listed
+              activities - "Pipeline origination", "Market & customer research",
+              "Progressive intake flow". A hiring manager reads "Tools" and
+              finds one tool. The frontmatter key stays `tools`; only the label
+              a reader sees changes. */}
+          <dt>Scope</dt>
           <dd>{tools.join(", ")}</dd>
           <dt>Year</dt>
           <dd>{year}</dd>

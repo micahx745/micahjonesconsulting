@@ -285,7 +285,7 @@ export default function PlaybookPage() {
               here promises a purchase the page cannot currently take. */}
           <div className="cw-lp-object__row">
             <a href="#pb-free" className="cw-cta cw-lp-object__cta">
-              Get chapter one free
+              Get chapter one free{" "}
               <span className="cw-arr" aria-hidden>
                 →
               </span>

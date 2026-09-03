@@ -22,7 +22,10 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Micah Jones — Oakland operator",
+    // Fallback title for any page that exports none. Was "Oakland operator",
+    // a leftover of the strap removed 2026-09-02; the city still lives in the
+    // JSON-LD addressLocality below, which is where a machine looks for it.
+    default: "Micah Jones — independent operator",
     template: "%s — Micah Jones",
   },
   description:
