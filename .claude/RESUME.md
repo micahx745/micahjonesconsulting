@@ -49,7 +49,26 @@ answered month one) · "I am taking new engagements now", NO count, deliberately
 -> THIRTEEN YEARS (it undersold by three years against the site's own since-2013) · ONE reply
 promise everywhere, one business day, footers included (there had been three versions).
 
-## BLOCKER 2026-09-03: CHECKOUT IS LIVE AND FAILING. Operator fix, one env var.
+## CHECKOUT AUTHENTICATES — 2026-09-03 23:2x. Blocker CLEARED, one test still owed.
+Operator rotated the key and reached the Stripe checkout page. Runtime logs show ZERO
+package-checkout errors after 23:19:13 (the action logs only on FAILURE, so silence is the
+success signal). PROVEN by that: the live key authenticates, the price lookup resolved
+`unstick-500` IN LIVE MODE so the products exist there, Stripe returned a session URL, and
+the redirect works.
+ROOT CAUSE WAS TWO THINGS, both worth remembering: (1) STRIPE_SECRET_KEY held the dashboard's
+"mk_..." key ID rather than the revealed sk_live_ secret; (2) **Vercel env vars only take
+effect on a NEW DEPLOYMENT** - the 23:19 failure ran on a deploy newer than the first
+failures and still carried the old value, because changing the variable does not update
+deployments already running.
+STILL OWED: a COMPLETED purchase + refund. Reaching checkout does NOT exercise the webhook,
+the kickoff email (intake + /book/kickoff link + book and companion attached), the
+success_url, or the refund echo. That is the only untested leg of the money rail.
+STILL OPEN, operator risk: **.env.local holds a LIVE key** (sk_live_, re-checked 23:22 after
+the rotation - he replaced it with the new live key, not a test one). lib/stripe.ts's own
+house rule is sk_test_ in Development, sk_live_ in Production only. `pnpm dev` hitting
+checkout can charge real cards.
+
+## SUPERSEDED, kept for the diagnosis — was: CHECKOUT LIVE AND FAILING
 Every /packages buy click returns an error. Vercel runtime logs give Stripe's own words:
   "Invalid API key provided: mk_1UB98***. This looks like the ID of an API key rather than
    the key itself. API keys typically start with pk_, rk_, or sk_."
