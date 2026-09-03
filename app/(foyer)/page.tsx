@@ -570,7 +570,7 @@ export default function ColorWorldsHome() {
             <span className="cw-lrow__co">
               Ordani
               <span className="cw-lrow__tag">
-                Founder, sole engineer · 2026
+                Founder, sole engineer · 2025–2026
               </span>
             </span>
             <span className="cw-lrow__out">

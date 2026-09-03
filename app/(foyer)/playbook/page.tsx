@@ -542,7 +542,7 @@ export default function PlaybookPage() {
                 drafter.
               </li>
               <li>
-                <strong>Nine templates</strong>, including three worked SPEC
+                <strong>Ten templates</strong>, including three worked SPEC
                 files written end to end: a booking app, a photographer gallery,
                 and an internal ops tracker. Also a starter invariants file, an
                 architecture sample, and a real env example.

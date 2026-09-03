@@ -118,6 +118,25 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
 - **RETIRED 2026-09-03, operator "Cut it":** "The two largest engagements that closed were
   both six-figure retainers" on /work/rfp-engine. Never in the ledger, unverifiable from
   outside, and sitting beside two figures that are ledgered. Do not restore it.
+- **CAP TABLE NAMED — operator confirmed 2026-09-03.** SurveyMonkey and Guardicore both
+  carried his name on the cap table; he held equity, not only salary, when each exited.
+  /about said "Two carried my name on the cap table" without saying which, which a
+  procurement reader flagged as unverifiable. Both are already named in the same sentence,
+  so naming them costs nothing and removes a bare count. Neuton is still explicitly NOT a
+  cap-table position; Postmates was employment.
+  NOTE ON HOW THIS WAS CONFIRMED: asked about the line he replied "what does that even mean?
+  what is the congtext of this". The claim was therefore explained to him in plain terms - an
+  equity stake at exit, materially more than "I worked there" - and only then confirmed. An
+  equity claim is the riskiest class of line on a personal site; do not restate it from the
+  ledger alone if it is ever questioned again.
+- Ordani **start year 2025** (operator 2026-09-03). The home ledger row said "2026" while
+  /work and the case study said "2025-2026". Home now matches.
+- Playbook **companion pack: 26 files, and the itemised line was the wrong number, not the
+  total.** Counted from the shipped ZIP on 2026-09-03: 10 checklists + 6 prompts + 10
+  TEMPLATES = 26, plus a README = 27 files in the archive. The page had said "Nine
+  templates", so the itemisation summed to 25 against a stated total of 26. The total was
+  always right. Corrected to "Ten templates". If the pack changes, re-count the archive
+  rather than trusting either number.
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:
