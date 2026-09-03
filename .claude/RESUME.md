@@ -1,5 +1,45 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-84 (5913fa2) + Pass-85 (dd31aa6) — PUSHED. Faint lettering gone, 6 rulings landed.
+84, OPERATOR: "remove all the little captions ... Oakland, CA and Micah Jones in many
+places that is irrelevant." The strap came from TWO components: Nav.tsx on all 15 routes
+and PageFooter.tsx on 10. Visible instances 25 -> 0. KEPT ON PURPOSE: the JSON-LD jobTitle
+and meta descriptions (machine-readable, how Google answers "who is Micah Jones") and the
+footer copyright line (a legal notice, not decoration).
+Also off: /about's "Working session · Tel Aviv · 2018–2021", /playbook's "Micah Jones ·
+Oakland" and the spec Author row's credential tail, guardicore's caption + date, and every
+specimen date stamp. ONLY CAPTION LEFT is ordani's "The intake, on paper: what Ordani
+replaces" — it says what the photo IS; flagged to him, trivially removed.
+TWO COMPONENT BUGS this surfaced: CaseStudyStill REQUIRED a date (now optional), and
+deleting a caption made it FALL BACK TO THE ALT TEXT — /work/guardicore printed the whole
+alt sentence under the photo, worse than what it replaced. Caught by reading the BUILT
+HTML, not the diff. A figcaption now renders only when an author wrote one.
+RULINGS LEDGERED with his words + date: Postmates "product analyst" HOLD LIFTED;
+Guardicore job-title rule is **/playbook ONLY** ("just the playbook") so the home tag and
+the case-study Role row STAY and flagging them is a false positive; consulting revenue is
+**$20M+ SINCE 2013, open-ended** ("20 mil holds to today") — swept to /about, home ledger,
+layout.tsx JSON-LD, llms.txt. Never re-close that range.
+
+85: THE BUILD-LOG CARD ON /playbook WAS NOT VERIFIABLE. Asked to confirm its cause the
+operator said "not sure - you were the one you added that". "One environment variable, the
+email key, was never installed" had NO provenance, under a rail reading "All true, all
+dated", on the page selling the $149 manual. Rewritten onto LESSONS #8, the version this
+repo documents (2026-08-29: zero MX, no SPF/DKIM/DMARC, provider rejected the sends).
+Count fixed too: it claimed THREE lead forms including contact, but no contact form existed
+until Pass-76. **BOOK REPO TODO: chapter-01.typ carries the same story and needs the same
+correction.**
+Pull quote CONFIRMED real ("they said it") -> attribution "The client" becomes "The author,
+name protected". Platforms named (his list): LinkedIn, Facebook, Instagram, TikTok, X,
+Threads, Bluesky.
+**OPEN, needs his ruling:** the "4×" stat reads "two platforms over the third" and the
+Outcome says "outperformed the third by 4×". With seven platforms named, "the third" has no
+referent. Changing it to "the rest" would silently change what the number compares against
+(4× over one platform is not 4× over six), so it is UNTOUCHED and flagged. It also has no
+LESSONS #3 entry.
+STILL OPEN besides that: nothing from the 44-finding review. Queued: Resend routing flip to
+micah@ after ONE live send test (LESSONS #8 — silent failure); prettier CRLF pass (30 files,
+pre-existing).
+
 ## Pass-83 (5a0bddb) — THE SITE REVIEW IS CLOSED except 7 operator rulings. PUSHED.
 24 findings applied (10,11,15,16,17,18,19,20,21,22,24,25,27,28,29,30,31,32,34,38,40,41,42,43).
 Method that made it safe: every finding RE-VERIFIED against the current site first (Passes
