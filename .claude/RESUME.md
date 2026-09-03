@@ -1,5 +1,33 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-86/87/88 (8604618, c127b64, a0941b8, 41835f1) — PUSHED. Everything queued is closed.
+86, operator "whatever you recommend": the **4× stat is RETIRED**. It had no LESSONS #3
+entry AND, once seven platforms were named, "two platforms over the third" referred to
+nothing; rewording to "the rest" would have silently changed the denominator (4× over one
+platform is not 4× over six). The bet's OUTCOME survives qualitatively ("the two platforms
+I backed outperformed the one I did not"). Vacated stat slot took a fact he supplied the
+same day: "Seven / platforms carried the work, two on the weekly cadence" — all three
+published studies use 3 stats, so dropping to 2 would have broken the row. Distribution
+list ledgered with a do-not-restore note.
+87, operator "do the full switch with the mail": **ROUTING NOW MATCHES THE PRINTED
+ADDRESS.** What made it safe without the Resend dashboard, checked FIRST: Resend verifies
+DOMAINS not mailboxes, and the domain publishes resend._domainkey, so micah@ authenticates
+exactly as hello@ did. ALSO: the MX records LESSONS #8 was written about now EXIST
+(mx1/mx2.improvmx.com) — that lesson's failure mode is closed. Zero hello@ left anywhere.
+**STILL UNPROVABLE BY DNS: whether micah@ is a configured ImprovMX alias. A contact-form
+test send is the check; if it does not arrive, add the alias — no code changes again.**
+88, operator "fix the 30 files thing": prettier passes REPO-WIDE. Root cause was not
+sloppiness — .gitattributes already says eol=lf, but this machine has core.autocrlf=true
+and the tree was never renormalized, so git stores LF while disk carries CRLF. A minority
+of files had also never been prettier-formatted, so this rewraps them; verified with
+`git diff --ignore-cr-at-eol` that the changes are line joins and wrapping only, no logic.
+NOT DONE ON PURPOSE: changing core.autocrlf, which is machine-level and would affect every
+other repo. .gitattributes is the repo-scoped control and is already correct.
+BOOK: the other session's commit eec7aaa fixed the build-log entry at source; its
+publish:site output was sitting in this tree and is now COMMITTED AND SHIPPED (that is the
+step that reaches a buyer). Verified by decoding both modules: sampler has
+"environment variable" 0, "two lead forms" 1, retired count 0.
+
 ## Pass-84 (5913fa2) + Pass-85 (dd31aa6) — PUSHED. Faint lettering gone, 6 rulings landed.
 84, OPERATOR: "remove all the little captions ... Oakland, CA and Micah Jones in many
 places that is irrelevant." The strap came from TWO components: Nav.tsx on all 15 routes
