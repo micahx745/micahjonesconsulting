@@ -80,11 +80,25 @@ export default function AboutPage() {
           </h2>
           <ul className="cw-about__list">
             <li>
-              {/* Explicit {" "} join: Next 16's RSC serializer drops the
-                  leading space of a text node that follows an inline
-                  element WHEN the text contains an HTML entity (verified
-                  against the built output — the review's "$20M+in" catch). */}
-              <strong>$20M+</strong> in client revenue (2013&ndash;2023).
+              {/* Next 16's RSC serializer drops the leading space of a text
+                  node that follows an inline element WHEN that text contains
+                  an HTML ENTITY, so this line shipped as "$20M+in client
+                  revenue" — the first receipt on the page, live.
+
+                  The documented fix was an explicit {" "} join, and the
+                  comment here claimed one for three passes while the code
+                  used a literal space. That is not carelessness: prettier
+                  COLLAPSES `</strong>{" "}` + newline back into a literal
+                  space whenever the result fits on one line, so the
+                  prescribed fix silently un-applies itself on the next
+                  format. That is why LESSONS #6 kept recurring.
+
+                  The durable fix is to remove the TRIGGER. The entity is
+                  what makes the serializer drop the space, so the en-dash is
+                  written as a literal character. No entity, no drop, and
+                  nothing for prettier to undo. Enforced by the render-gate
+                  GLUE check, which reads the rendered bytes. */}
+              <strong>$20M+</strong> in client revenue (2013–2023).
             </li>
             <li>
               {/* Four-exit update (operator, 2026-08-30): Postmates joins.
@@ -125,8 +139,7 @@ export default function AboutPage() {
             />
             <figcaption className="cw-ab-fig__cap">
               Working session <span aria-hidden>·</span> Tel Aviv{" "}
-              <span aria-hidden>·</span>{" "}
-              2018&ndash;2021
+              <span aria-hidden>·</span> 2018&ndash;2021
             </figcaption>
           </figure>
 

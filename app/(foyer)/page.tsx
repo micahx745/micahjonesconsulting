@@ -311,13 +311,25 @@ export default function ColorWorldsHome() {
                 where receipts belong). "Hundreds of dollars" and the
                 Medicaid claim are operator-supplied; the mortality line
                 is purpose-framed ("lower"), never an outcome claim. */}
+            {/* LESSONS #6, sharpened: every apostrophe in this paragraph is a
+                LITERAL character, never &rsquo;. Next 16's RSC serializer
+                drops the space before a text node that follows an inline
+                element when that text node contains an HTML entity ANYWHERE
+                in it — not just next to the tag. This paragraph shipped as
+                "So I built Ordani.It’s" because of the &rsquo; in
+                "workers’ pockets", four lines further on. Removing only the
+                nearby entity did not fix it; the whole node has to be clean.
+                Do not "tidy" these back into entities, and do not put a
+                {/* comment *\/} inside the <p>: an expression container splits
+                the text node and moves the problem rather than fixing it.
+                The render-gate GLUE check reads the rendered bytes. */}
             <p className="cw-lede cw-reveal">
               Birth workers run their practices on group chats and paper
-              intakes. HIPAA is the law. <em>So I built Ordani.</em> It&rsquo;s
-              in active use today, processing Medicaid claims fee-free and
-              keeping hundreds of dollars in birth workers&rsquo; pockets. The
-              mission is bigger: lower infant mortality, by giving the people
-              who care for mothers and babies better tools than paperwork.
+              intakes. HIPAA is the law. <em>So I built Ordani.</em> It’s in
+              active use today, processing Medicaid claims fee-free and keeping
+              hundreds of dollars in birth workers’ pockets. The mission is
+              bigger: lower infant mortality, by giving the people who care for
+              mothers and babies better tools than paperwork.
             </p>
             <div className="cw-section-cta-wrap cw-reveal">
               <a href="/work/ordani" className="cw-section-cta">

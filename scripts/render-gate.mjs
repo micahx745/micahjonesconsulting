@@ -12,12 +12,33 @@
 // are live, resolving, and pointing at nothing. Fixing the one instance without
 // adding the gate is an incomplete fix.
 //
-// Two checks, both read the prerendered HTML in .next/server/app, because that
+// Three checks, all read the prerendered HTML in .next/server/app, because that
 // is what a reader actually receives. Source-level checking would have to guess
 // at route resolution and would miss anything a component injects.
 //
 //   LINKS  every internal href, and every fragment in one, lands somewhere real
 //   META   <title> and <meta description> stay inside what Google will show
+//   GLUE   no inline element is jammed against the word after it
+//
+// GLUE exists because LESSONS #6 recurred a FOURTH time and shipped. Next 16's
+// RSC serializer drops the literal space between an inline element and the text
+// node after it when that text carries an HTML entity, so the source
+//
+//   <strong>$20M+</strong> in client revenue (2013&ndash;2023).
+//
+// reaches the reader as "$20M+in client revenue". The fix is an explicit {" "}
+// join, and every prior instance was caught by eye in preview. Two were live on
+// the two pages that matter most (/about's first receipt, the home page's
+// Ordani lede) before this check existed. Checking the SOURCE cannot catch this
+// class reliably: the JSX wraps across lines and the space looks correct there.
+// Only the rendered bytes show it.
+//
+// The pattern is deliberately narrow. `span` is EXCLUDED: this site styles
+// label spans (`<span class="cw-lp-note__lbl">Field note</span>`) that take
+// their spacing from CSS and correctly butt against the next word — 7 on
+// /playbook alone. Probed against all 12 live routes before wiring: this rule
+// returns exactly the 2 real defects and nothing else. Three standing false
+// positives is how a gate gets switched off (LESSONS #13).
 //
 // Runs at the END of `pnpm build`, after next build has produced the HTML.
 // Exit 1 with route + detail on any finding.
@@ -60,7 +81,9 @@ function routeOf(file) {
 
 function decodeEntities(s) {
   return s
-    .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, h) =>
+      String.fromCodePoint(parseInt(h, 16)),
+    )
     .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
     .replace(/&quot;/g, '"')
     .replace(/&apos;/g, "'")
@@ -99,6 +122,22 @@ for (const file of walk(APP_DIR)) {
     links.push(raw);
   }
 
+  // ---- GLUE ----
+  // Strip <script> first: the RSC flight payload is escaped JSON carrying the
+  // same prose, and matching inside it would double-report every finding.
+  const glue = [];
+  const dom = html.replace(/<script[\s\S]*?<\/script>/g, " ");
+  for (const m of dom.matchAll(
+    /<\/(strong|em|b|i|a|code|abbr)>(?=[A-Za-z0-9])/g,
+  )) {
+    glue.push(
+      dom
+        .slice(Math.max(0, m.index - 55), m.index + m[0].length + 30)
+        .replace(/\s+/g, " ")
+        .trim(),
+    );
+  }
+
   const t = html.match(/<title>([\s\S]*?)<\/title>/);
   const d = html.match(/<meta name="description" content="([\s\S]*?)"/);
   const r = html.match(/<meta name="robots" content="([^"]*)"/);
@@ -106,6 +145,7 @@ for (const file of walk(APP_DIR)) {
   pages.set(route, {
     ids,
     links,
+    glue,
     title: t ? decodeEntities(t[1]) : null,
     desc: d ? decodeEntities(d[1]) : null,
     // A noindex page never appears in a result, so SERP truncation cannot
@@ -128,7 +168,10 @@ for (const [route, page] of pages) {
     if (href.startsWith("#")) {
       const frag = decodeURIComponent(href.slice(1));
       if (frag && !page.ids.has(frag)) {
-        findings.push([route, 'href="' + href + '" — no element with that id on this page']);
+        findings.push([
+          route,
+          'href="' + href + '" — no element with that id on this page',
+        ]);
       }
       continue;
     }
@@ -153,9 +196,27 @@ for (const [route, page] of pages) {
     if (frag && !pages.get(path).ids.has(frag)) {
       findings.push([
         route,
-        'href="' + href + '" — ' + path + " renders, but has no id=\"" + frag + '"',
+        'href="' +
+          href +
+          '" — ' +
+          path +
+          ' renders, but has no id="' +
+          frag +
+          '"',
       ]);
     }
+  }
+
+  // ---- GLUE ----
+  // Checked before the noindex skip: a reader can reach a noindex page and
+  // read it, so a typo there is still shipped prose.
+  for (const ctx of page.glue) {
+    findings.push([
+      route,
+      'inline element glued to the next word (LESSONS #6) — needs an explicit {" "} join: ...' +
+        ctx +
+        "...",
+    ]);
   }
 
   // ---- META ----
@@ -166,7 +227,11 @@ for (const [route, page] of pages) {
   } else if (page.title.length > TITLE_MAX) {
     findings.push([
       route,
-      "title is " + page.title.length + " chars, over " + TITLE_MAX + " — Google cuts the tail",
+      "title is " +
+        page.title.length +
+        " chars, over " +
+        TITLE_MAX +
+        " — Google cuts the tail",
     ]);
   }
 
@@ -190,5 +255,7 @@ if (findings.length) {
 }
 
 console.log(
-  "render-gate: " + pages.size + " routes — links resolve, fragments exist, metadata within limits.",
+  "render-gate: " +
+    pages.size +
+    " routes — links resolve, fragments exist, metadata within limits.",
 );
