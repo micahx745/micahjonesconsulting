@@ -216,6 +216,46 @@ text that contains an `&…;` entity must be an explicit `{" "}` join. Check on 
 edit: `grep -rE '</(strong|em|a|b)> [^<{]*&[a-z]+;' app components --include='*.tsx'` —
 zero hits allowed. Candidate for a write-boundary hook if it recurs.
 
+### RECURRENCE 4 (2026-09-02, Pass-78) — it shipped, and three things above were wrong
+
+Both of these were LIVE on production, in the rendered bytes, on the two surfaces a buyer
+reads first: `/about` served `<strong>$20M+</strong>in client revenue` as the page's FIRST
+receipt, and the home page served `<em>So I built Ordani.</em>It's in active use today`.
+
+**The grep above was CORRECT and would have caught both.** Verified after the fact by
+running it against the pre-fix commit: two hits, `about/page.tsx:87` and `page.tsx:316`.
+It did not fail. **It was never run.** That is the primary cause, and the lesson is not
+about entities at all: a gate that lives as prose in a markdown file is not a gate, it is
+a reminder, and reminders lose to a busy pass every time. "Candidate for a hook if it
+recurs" was written after recurrence 1 and was still a candidate at recurrence 4.
+
+Two mechanism facts were also wrong, and each one costs a fix attempt:
+
+1. **The prescribed fix does not survive the formatter.** `/about` carried a comment
+   claiming an explicit `{" "}` join for three passes while the code used a literal space.
+   Not carelessness: prettier COLLAPSES `</strong>{" "}` + newline back into a literal
+   space whenever the result fits on one line. Applying the documented fix and running
+   prettier silently un-applies it. Confirmed by doing exactly that and watching it revert.
+2. **The entity does not have to be adjacent.** It can sit ANYWHERE in the same text node.
+   Replacing `It&rsquo;s` did not fix the home page; the trigger was `workers&rsquo;
+   pockets` four lines further on. Only clearing every entity in the node worked.
+   Corollary: a `{/* comment */}` inside the element SPLITS the text node, so it relocates
+   the boundary rather than fixing it.
+
+**The durable fix is to remove the TRIGGER, not to re-add the space.** Write the en-dash
+and the apostrophes as literal characters. No entity, no dropped space, and nothing for
+prettier to undo.
+
+**Gate, now actually wired:** `scripts/render-gate.mjs` gains a third check, `GLUE`, beside
+LINKS and META, so it BLOCKS `pnpm build`. It reads the prerendered HTML in
+`.next/server/app`, which is strictly stronger than the source grep: it survives prettier
+reformatting, sees anything a component injects, and does not care how the JSX wrapped.
+Proved it fails before trusting it (per #13) — wired and built BEFORE the fix, it named
+both defects with route and context; then the fix; then green.
+`span` is deliberately excluded (styled label spans correctly butt against the next word,
+7 on /playbook alone). Probed against all 12 live routes before wiring: exactly the 2 real
+defects, zero false positives.
+
 ## #7 — mix-blend-mode only blends inside its nearest stacking context (2026-08-13)
 
 **What happened:** Pass-38 moved `mix-blend-mode: difference` off `.cw-nav` and onto
