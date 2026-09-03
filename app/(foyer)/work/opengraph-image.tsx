@@ -13,7 +13,7 @@ export default async function Image() {
     <CWOGComposition
       eyebrow="WORK · MICAH JONES"
       headline="CASE STUDIES"
-      punch="Guardicore, TechValidate, Flexport, Postmates — and Ordani."
+      punch="Guardicore, SurveyMonkey, Flexport, Postmates — and Ordani."
     />,
     size,
   );

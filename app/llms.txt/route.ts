@@ -14,7 +14,7 @@
 export function GET() {
   const body = `# Micah Jones
 
-> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$20M+ in client revenue since 2013. Four companies he worked inside reached an exit: Postmates (acquired by Uber, 2020, $2.65B), TechValidate (acquired by SurveyMonkey 2015; cap-table position held through the SurveyMonkey IPO, 2018), Guardicore (acquired by Akamai, 2021, $600M), and Neuton.AI (technology acquired by Nordic Semiconductor, 2025; helped launch, not a cap-table position). Disclosed deal values total $5B+. Now building Ordani — HIPAA-compliant practice management software in beta with active paying users.
+> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$20M+ in client revenue since 2013. Four companies he worked inside reached an exit: Postmates (acquired by Uber, 2020, $2.65B), SurveyMonkey (cap-table position held through the IPO, 2018), Guardicore (acquired by Akamai, 2021, $600M), and Neuton.AI (technology acquired by Nordic Semiconductor, 2025; helped launch, not a cap-table position). Disclosed deal values total $5B+. Now building Ordani — HIPAA-compliant practice management software in beta with active paying users.
 
 ## What I do
 
@@ -29,7 +29,7 @@ Two ways to buy them:
 
 ## Background
 
-- 2013–2023: Growth, GTM, and platform strategy roles at Guardicore, TechValidate, Flexport, Cuebiq, Postmates
+- 2013–2023: Growth, GTM, and platform strategy roles at Guardicore, SurveyMonkey, Flexport, Cuebiq, Postmates
 - Currently building Ordani in private beta
 - Based in Oakland, CA
 

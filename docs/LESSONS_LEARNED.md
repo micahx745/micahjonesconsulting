@@ -101,7 +101,13 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:
   "considering i was apart of four exits - postmates, surveymonkey, guardicore, neuton ai" —
-  SUPERSEDES the three-exit entry below). Role split stays honest: TechValidate→SurveyMonkey
+  SUPERSEDES the three-exit entry below). **EMPLOYER RULED 2026-09-03, operator verbatim: "I worked at SurveyMonkey"** - not
+  TechValidate. The site had named one exit FOUR ways (SurveyMonkey on home and
+  /services, "TechValidate (held through the SurveyMonkey IPO)" on /about,
+  "TechValidate (SurveyMonkey)" on /playbook), which a cross-reading reviewer read as
+  the site being unable to decide. Standardised to SurveyMonkey on every surface
+  2026-09-03, including the JSON-LD alumniOf and llms.txt. Do not reintroduce
+  TechValidate. Role split: SurveyMonkey
   (IPO 2018, cap table), Guardicore→Akamai (2021, cap table), Neuton.AI→Nordic Semiconductor
   (2025, "helped launch", NOT cap table — never claim Neuton equity), Postmates→Uber (2020,
   **role CONFIRMED by the operator 2026-09-02, HOLD LIFTED: "product analyst at postmates is

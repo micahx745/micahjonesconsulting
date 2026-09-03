@@ -111,11 +111,10 @@ export default function AboutPage() {
                   (Uber $2.65B + SVMK IPO $2.33B + Akamai $600M; Neuton
                   undisclosed) — sources in content/citations.ts. */}
               <strong>Four companies I worked inside reached an exit.</strong>{" "}
-              Postmates (Uber, 2020). TechValidate (held through the
-              SurveyMonkey IPO, 2018). Guardicore (Akamai, 2021). Neuton.AI
-              (technology acquired by Nordic Semiconductor, 2025). Two carried
-              my name on the cap table; the disclosed deals total{" "}
-              <strong>$5B+</strong>.
+              Postmates (Uber, 2020). SurveyMonkey (IPO, 2018). Guardicore
+              (Akamai, 2021). Neuton.AI (technology acquired by Nordic
+              Semiconductor, 2025). Two carried my name on the cap table; the
+              disclosed deals total <strong>$5B+</strong>.
             </li>
             <li>
               {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates

@@ -254,10 +254,10 @@ export default function PlaybookPage() {
           </h1>
           <p className="cw-lp-object__sub">
             Ten chapters on what the AI leaves to you: auth, deploys, payments,
-            compliance, the first ten users. I joined Postmates, TechValidate
-            (SurveyMonkey), Guardicore (Akamai) and Neuton.AI early. Four exits,
-            $5B+ combined. I built Ordani solo with Claude Code and Cursor:
-            HIPAA-compliant, active paying users, in beta.
+            compliance, the first ten users. I joined Postmates, SurveyMonkey,
+            Guardicore (Akamai) and Neuton.AI early. Four exits, $5B+ combined.
+            I built Ordani solo with Claude Code and Cursor: HIPAA-compliant,
+            active paying users, in beta.
           </p>
           {/* The byline shrank to a name and a link because the history moved
               up into the sub, where the operator was looking for it.

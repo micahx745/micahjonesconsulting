@@ -97,7 +97,7 @@ const PERSON_LD = {
   // here would imply a separate tenure that wasn't the work claim.
   alumniOf: [
     { "@type": "Organization", name: "Guardicore" },
-    { "@type": "Organization", name: "TechValidate" },
+    { "@type": "Organization", name: "SurveyMonkey" },
     { "@type": "Organization", name: "Flexport" },
     { "@type": "Organization", name: "Cuebiq" },
     { "@type": "Organization", name: "Postmates" },
