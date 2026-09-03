@@ -17,7 +17,7 @@ export function Footer() {
   return (
     <footer data-footer-root aria-label="Site footer">
       <p className="footer-promise">
-        I read every message and reply inside two business days.
+        I read every message and reply inside one business day.
       </p>
       <p className="footer-email">
         Or write to me directly:{" "}

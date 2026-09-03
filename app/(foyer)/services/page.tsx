@@ -496,8 +496,10 @@ export default function ServicesPage() {
             An agency gives you a team and a relay race between them. A
             full-time hire takes three months to find and another to ramp. I am
             a senior operator you can start this week, on a scope with an end
-            date, and something named ships in month one. When the work is
-            bigger than one person, I say so on the call.
+            date. Week one is the scoping session and the audit: the
+            foundational work that decides what the engagement is actually for.
+            Something named ships in month one. When the work is bigger than one
+            person, I say so on the call.
           </p>
         </section>
 

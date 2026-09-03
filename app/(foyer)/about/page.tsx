@@ -52,11 +52,11 @@ export default function AboutPage() {
         <div className="cw-about-intro">
           <div className="cw-about">
             <p className="cw-about__lede">
-              I&rsquo;ve spent a decade inside B2B software companies as the
-              person who can sit on either side of the table: GTM strategy in
-              the morning, shipping product in the afternoon. Most consultants
-              don&rsquo;t ship. Most builders don&rsquo;t sell. I do both, on
-              the same engagement, for the same fee.
+              I&rsquo;ve spent thirteen years inside B2B software companies as
+              the person who can sit on either side of the table: GTM strategy
+              in the morning, shipping product in the afternoon. Most
+              consultants don&rsquo;t ship. Most builders don&rsquo;t sell. I do
+              both, on the same engagement, for the same fee.
             </p>
           </div>
           <PortraitImage variant="context" />
@@ -121,7 +121,7 @@ export default function AboutPage() {
                   cut — named companies carried no figure. Guardicore and
                   TechValidate stay named in the exits bullet above, where
                   their figures live. */}
-              Growth, GTM, and platform strategy roles across a decade of
+              Growth, GTM, and platform strategy roles across thirteen years of
               enterprise software.
             </li>
           </ul>
@@ -201,10 +201,16 @@ export default function AboutPage() {
               talking shape when the lede two screens up says I ship on the
               same engagement. Now the plain picture, and the page's only
               link to what I sell. */}
+          {/* Capacity, operator 2026-09-03: "Im taking work. No need to put
+              specifics on how many." A referrer could not tell from this page
+              whether he was available at all - it said "Building Ordani" and
+              then described engagements in the abstract. No count: an invented
+              number reads as a tactic, and a real one has to be maintained. */}
           <p>
             Alongside it: <a href="/services">engagements</a> with teams where
             the sales side and the product side have stopped talking to each
-            other. I sit on both sides until they do.
+            other. I sit on both sides until they do. I am taking new
+            engagements now.
           </p>
           {/* Internal link added 2026-09-02: an SEO pass found only two
               contextual links into /playbook on the whole site, and none from

@@ -137,6 +137,20 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   templates", so the itemisation summed to 25 against a stated total of 26. The total was
   always right. Corrected to "Ten templates". If the pack changes, re-count the archive
   rather than trusting either number.
+- **WEEK ONE of an engagement — operator 2026-09-03**: "First week would be a scoping
+  meeting and audit - foundational work to set up the engagement for success." The site had
+  only ever answered MONTH one ("something named ships in month one"), which is not the
+  question a buyer at $5K a month asks first. Now on /services under "Why one person".
+- **CAPACITY — operator 2026-09-03**: "Im taking work. No need to put specifics on how many."
+  /about now says "I am taking new engagements now" and carries NO COUNT, deliberately. An
+  invented number reads as a tactic and a real one has to be maintained. Do not add one.
+- **THIRTEEN YEARS, not "a decade" — operator 2026-09-03.** The site said "a decade" in two
+  places on /about while the footer and the revenue line both say since 2013, so it undersold
+  by three years on the page where a buyer assesses depth. SUPERSEDES "a decade" everywhere.
+- **REPLY PROMISE: one business day, everywhere — operator 2026-09-03.** The site had three
+  versions of one promise: "usually within one business day" (/contact), "within one business
+  day" (/packages) and "inside two business days" (the footer on EVERY page). Standardised to
+  one business day, footers included. Zero "two business days" remain.
 - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
   "anchored the Nasdaq IPO".
 - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:

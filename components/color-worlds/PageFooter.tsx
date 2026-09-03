@@ -13,7 +13,7 @@ export function PageFooter() {
   return (
     <footer className="cw-pagefoot" aria-label="Site footer">
       <p className="cw-pagefoot__promise">
-        I read every message and reply inside two business days.
+        I read every message and reply inside one business day.
       </p>
       <p className="cw-pagefoot__row">
         <a href="mailto:micah@micahjonesconsulting.com">
