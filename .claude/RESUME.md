@@ -1,5 +1,47 @@
 # RESUME — micahjonesconsulting (2026-09-02)
 
+## Pass-89..93 (2026-09-03) — PERSONA REVIEW being executed. All PUSHED.
+Review artifact: an external Fable run, 6 personas. Scores: founder 6, solo builder 7,
+recruiter 2 (by design), hiring manager 6, procurement 5, referrer 7.
+89: the five findings needing no ruling. Biggest was REAL: **/work/passioneer served an
+EMPTY BODY** — generateStaticParams included stubs so it prerendered a notFound() shell and
+the 404 copy lived only in the client payload. Stubs filtered + dynamicParams=false, so
+unknown slugs now serve the real static 404. Also: "Tools" label listed activities -> "Scope";
+404 inherited the "Oakland operator" fallback title (fixed, zero served titles carry it);
+guardicore year ranges normalised to en-dash; missing {" "} before an arrow.
+CORRECTION the review got wrong: the branded 404 page was never blank. The empty body was
+/work/[slug]'s, a different route.
+90: **$80M PIPELINE RETIRED FROM ALL PUBLIC SURFACES** (operator: "just drop the pipelione
+number site wide. put the rev number. dont want to be specific on roles"). The site's biggest
+number was its least attributed — "I generated $80M" beside "so the AEs spent their time on
+real deals". He chose dropping over attributing. 13 renderings swept. $14M revenue + $1.2M
+avg deal + the 2021 acquisition lead now. guardicore role -> "Revenue and positioning", not a
+title. SCOPED: Postmates keeps "Product analyst" (he ledgered that title himself 2026-09-02).
+91: **one exit, one name.** "I worked at SurveyMonkey" — TechValidate gone from /about,
+/playbook, llms.txt, the OG punch line and the JSON-LD alumniOf.
+92: **PACKAGES ARE ON SALE.** The Stripe rail existed since Pass-61 and NOTHING CALLED IT.
+New components/BuyButton.tsx; all three CTAs are checkout; zero mailto. Copy says what
+happens after the card clears. Book ships bundled today (settles the /packages-vs-/playbook
+"coming soon" contradiction).
+**OPERATOR OWES ONE LIVE BUY + REFUND WITH A REAL CARD. Self-certified pending that.**
+93: **BOOKING REVERSED FOR ENGAGEMENTS** ("Booking replaces the contact form for
+engagements") — ten hours after Pass-82 retired it. /book restored + indexable, the 301
+removed, six CTAs back to it. NOT reversed: packages still buy-then-book at /book/kickoff
+(noindex); /contact stays in nav.
+
+## STILL OPEN from the persona review (operator)
+- POSITIONING RECEIPT: he named two real cases — a birth worker repositioned to attract
+  clients, and the industry author (anti-racism, repositioned toward contracts). **He named
+  the author to me; the site anonymises them and MUST CONTINUE TO.** Needs: a metric for the
+  birth-worker case. The author case can use the ledgered $3M.
+- Content-engine YouTube (planned in 5, absent from the 7 shipped, listed as a tool)
+- "Two carried my name on the cap table" — only one is named
+- Ordani 2026 vs 2025-2026 · companion files 26 vs 25 itemised
+- "Six-figure retainers" on /work/rfp-engine — unledgered
+- Capacity line · week-one shape · recruiter posture · site-wide role policy
+- Oakland in meta descriptions (SEO trade-off, NOT a free tidy — I wrongly called it free)
+- three reply-time variants · "a decade" vs "since 2013"
+
 ## Pass-86/87/88 (8604618, c127b64, a0941b8, 41835f1) — PUSHED. Everything queued is closed.
 86, operator "whatever you recommend": the **4× stat is RETIRED**. It had no LESSONS #3
 entry AND, once seven platforms were named, "two platforms over the third" referred to
