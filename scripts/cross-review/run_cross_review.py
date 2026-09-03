@@ -105,7 +105,8 @@ def _run_gemini_rest_once(prompt_text, timeout):
         return ("NOT CONFIGURED", "", None)
     url = (GEMINI_ENDPOINT % GEMINI_MODEL) + "?key=" + urllib.parse.quote(key)
     body = json.dumps(
-        {"contents": [{"parts": [{"text": SHORT_INSTRUCTION + "\n\n" + prompt_text}]}]}
+        {"contents": [{"parts": [{"text": _instruction_for("gemini")
+                                  + "\n\n" + prompt_text}]}]}
     ).encode("utf-8")
     req = urllib.request.Request(
         url, data=body, headers={"Content-Type": "application/json"}, method="POST"
@@ -213,7 +214,7 @@ def _run_glm_rest(prompt_text, timeout):
     body = json.dumps({
         "model": model,
         "messages": [
-            {"role": "system", "content": SHORT_INSTRUCTION},
+            {"role": "system", "content": _instruction_for("glm")},
             {"role": "user", "content": prompt_text},
         ],
         "temperature": 0.2,
@@ -307,12 +308,21 @@ CLI_INVOCATIONS = {
     # limits. Needs `codex` to be ChatGPT-authenticated (codex login) -- else llm returns
     # an auth error, reported as [ERROR], never fabricated.
 
-    # MODEL PIN — re-verified 2026-07-09 (codex-cli 0.144.0). Operator directive: Sol is
-    # the Codex leg for this repo. Tested THROUGH this harness (`llm -m openai-codex/X`):
-    #   gpt-5.6-sol    harness OK  <- PINNED
-    #   gpt-5.6-terra  harness OK  <- fallback if sol regresses
-    #   gpt-5.6-luna   direct OK but harness 404 "Model not found" (llm plugin can't route it)
-    #   gpt-5.5        works; older fallback.
+    # MODEL PIN — re-pinned 2026-09-02 (see rotation note below). Tested THROUGH
+    # this harness (`llm -m openai-codex/X`) against `llm models`:
+    #   gpt-5.4        harness OK  <- PINNED
+    #   gpt-5.4-mini   available   <- fallback if 5.4 regresses
+    #   gpt-5.4-nano   available   <- last resort, do not use for the deep leg
+    #
+    # ROTATION 2026-09-02: the previous pin (gpt-5.6-sol) died with
+    #   Error: 'Unknown model: openai-codex/gpt-5.6-sol'
+    # and so did every fallback recorded beside it -- sol, terra, luna and 5.5 are
+    # ALL gone from the plugin's model list. The whole 2026-07-09 pin block was
+    # stale, fallbacks included, which is the failure this file already warned
+    # about one paragraph down. A dead pin fails loudly ([ERROR], never a
+    # fabricated review), but it also means the deep leg was silently absent from
+    # any round run since the plugin rotated. Re-probe `llm models` before
+    # trusting any line above.
 
     # Sol's availability REVERSED. Earlier the same day (codex-cli 0.135.0) sol returned
     # 400 "not supported when using Codex with a ChatGPT account", and this file recorded it
@@ -323,7 +333,7 @@ CLI_INVOCATIONS = {
     # does not imply the llm plugin can route it -- luna proves that).
     "codex": {
         "names": ["llm", "llm.cmd", "llm.exe"],
-        "argv": lambda short: ["-m", "openai-codex/gpt-5.6-sol"],
+        "argv": lambda short: ["-m", "openai-codex/gpt-5.4"],
         "stdin": True,
         "instruction_via_stdin": True,
         # Deep-leg contract (operator directive 2026-07-23): Sol walks the whole
@@ -379,6 +389,63 @@ CODEX_DEEP_INSTRUCTION = SHORT_INSTRUCTION + (
 CLI_INVOCATIONS["codex"]["instruction"] = CODEX_DEEP_INSTRUCTION
 
 
+# ---------------------------------------------------------------- manuscript
+# MODE: manuscript (added 2026-09-02). The plan/diff instructions above are
+# Next.js-specific and are actively harmful pointed at prose -- a leg told to
+# hunt Server/Client boundary errors will hallucinate them into a book. This
+# mode reviews a PAID MANUSCRIPT and is scoped accordingly. It does NOT replace
+# plan/diff; the override table below leaves both untouched.
+MANUSCRIPT_INSTRUCTION = """You are an INDEPENDENT cross-model reviewer reading a COMPLETE MANUSCRIPT of a paid technical book. This is NOT code and NOT a plan -- do not review it as software, and do not invent software defects.
+
+THE PRODUCT: 'The 80% Wall' -- a 69-page PDF field manual sold at $99 to solo builders and small teams who used AI coding tools to build something that works as a demo and then stalled before production. It ships with 26 companion files. The author is a real operator (four companies he worked inside reached an exit; he builds and sells his own software) but has NO book sales history and NO existing audience. A buyer is paying $99 on the strength of this text alone.
+
+COMPETITIVE CONTEXT you must weigh: Addy Osmani published a widely-read FREE essay, 'The 80% Problem in Agentic Coding', arguing functionally the same thesis -- the agent writes code that works but not code that survives. This book's claim to existence is that it ships the OPERATIONAL half: the actual runbook, the procedures, the files. Judge whether it delivers that, or whether it is an expensive restatement of a free essay.
+
+Reply terse and concrete, citing PAGE numbers (the text is page-marked). Start with a verdict line: VERDICT: PASS | CONCERNS | BLOCK.
+
+HUNT, in this priority order:
+1. TECHNICAL ERRORS. Advice that is wrong, unsafe, or already outdated. The security and authorization material is the highest-stakes: a confidently wrong instruction there is worse than no book at all. Name the page and say what the correct version is.
+2. CLAIMS THE AUTHOR CANNOT SUPPORT. Unsourced numbers, implied client outcomes, benchmarks with no provenance, anything a skeptical reader would demand a citation for. The author's standing rule is that every number is real and traceable; flag any that reads invented.
+3. UNDER-DELIVERY AGAINST $99. Find every place a section promises a procedure and delivers a platitude instead. Be specific and be harsh: this is the question the refund request will be written about.
+4. INTERNAL CONTRADICTIONS AND DRIFT. A rule stated one way early and differently later; terminology that shifts; broken cross-references; a contents list that disagrees with the body.
+5. WEAKEST CHAPTER. Name it explicitly and say what it needs. Say which chapter you would cut or merge if forced to lose one.
+6. STRUCTURE AND ARC. Ordering problems, repetition, a middle that sags, an ending that does not land.
+7. SHELF LIFE. Passages that will read stale within a year as tooling moves, and whether the book is written to survive that.
+
+Close with a BUYER VERDICT: you paid $99 and just finished it -- served, or refund? One paragraph, honest.
+
+DO NOT report as defects: missing figures, diagrams, or images (this is extracted text -- the visuals exist in the real PDF and were stripped); typography, layout, page breaks, or spacing; occasional glyph artifacts from text extraction. Do NOT invent issues. Where it is genuinely good, say so plainly and specifically."""
+
+MANUSCRIPT_DEEP_INSTRUCTION = MANUSCRIPT_INSTRUCTION + """
+
+DEPTH CONTRACT (this leg is the designated deep reviewer -- spend the effort):
+1. READ THE WHOLE MANUSCRIPT IN ORDER. Do not sample and do not skim the back half; the thinnest material in a book is usually late, and a leg that skims reports the ending as strong by default. For each chapter state (a) what it promises, (b) whether it pays that off, (c) what a practitioner still cannot do after reading it.
+2. For EVERY finding give a one-line PREMISE (what must be true for the finding to be real) plus the page. Separate what you VERIFIED in the text from what you ASSUMED about the world; list your assumptions at the end.
+3. Cross-check the book against itself: chapter N's procedure against chapter M's, the contents list against the actual chapters, every internal reference to another chapter or to a companion file.
+4. Rank findings most-severe-first. Close by naming specifically what you read and found clean, chapter by chapter, so a silent skip cannot be mistaken for a clean pass."""
+
+# leg -> instruction, consulted only for modes that set it. Empty dict means
+# plan/diff behaviour is byte-identical to before this mode existed.
+MODE_INSTRUCTION_OVERRIDE = {}
+
+
+def _instruction_for(leg):
+    """The instruction one leg runs under. MODE_INSTRUCTION_OVERRIDE wins.
+
+    EVERY leg must resolve its instruction here. The REST legs (gemini, glm)
+    build their own request payloads and never pass through _run_one, so a
+    mode override applied only to the CLI path silently misses two of the
+    three legs. That is not hypothetical: the first cut of manuscript mode
+    did exactly this, and both REST legs reviewed a 69-page book under the
+    Next.js instruction -- gemini duly reported on 'the repo' and returned a
+    PASS it had no basis for. Hardcoding SHORT_INSTRUCTION into a leg is the
+    bug; this function is the fix."""
+    if leg in MODE_INSTRUCTION_OVERRIDE:
+        return MODE_INSTRUCTION_OVERRIDE[leg]
+    spec = CLI_INVOCATIONS.get(leg) or {}
+    return spec.get("instruction") or SHORT_INSTRUCTION
+
+
 def _which(names):
     for n in names:
         p = shutil.which(n)
@@ -392,7 +459,7 @@ def _run_one(cli_key, prompt_text, timeout):
     path = _which(spec["names"])
     if not path:
         return ("NOT INSTALLED", "")
-    instr = spec.get("instruction") or SHORT_INSTRUCTION
+    instr = _instruction_for(cli_key)
     if spec.get("instruction_via_stdin"):
         # llm path: no prompt arg; the whole instruction+content goes on stdin.
         argv = [path] + spec["argv"](None)
@@ -425,7 +492,8 @@ def _run_one(cli_key, prompt_text, timeout):
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["plan", "diff"], default="diff")
+    ap.add_argument("--mode", choices=["plan", "diff", "manuscript"],
+                    default="diff")
     ap.add_argument("--input", default="")
     ap.add_argument("--out", default="")
     ap.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT)
@@ -447,6 +515,15 @@ def main() -> int:
     ap.add_argument("--legs", default="gemini,codex,glm",
                     help="comma-separated subset of: gemini,codex,glm")
     args = ap.parse_args()
+
+    # MODE: manuscript retargets EVERY leg away from the Next.js instructions.
+    # Pointed at prose, the plan/diff instruction manufactures software defects
+    # ("Server/Client boundary error") that cannot exist in a book, so this is a
+    # full swap and not an append. plan/diff never touch this table.
+    if args.mode == "manuscript":
+        MODE_INSTRUCTION_OVERRIDE["gemini"] = MANUSCRIPT_INSTRUCTION
+        MODE_INSTRUCTION_OVERRIDE["glm"] = MANUSCRIPT_INSTRUCTION
+        MODE_INSTRUCTION_OVERRIDE["codex"] = MANUSCRIPT_DEEP_INSTRUCTION
 
     KNOWN_LEGS = ("gemini", "codex", "glm")
     legs = [x.strip().lower() for x in args.legs.split(",") if x.strip()]

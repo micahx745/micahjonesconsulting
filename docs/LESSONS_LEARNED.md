@@ -395,3 +395,41 @@ untested; make it fail on purpose before trusting it.
 **Caught on the same run.** `/playbook` rendered a 61-char title and a 204-char description.
 The root layout appends `" — Micah Jones"`, so a page title that looks fine in the source is
 14 characters longer in the SERP. Measure the rendered `<title>`, never the literal.
+
+## #14 — A claim sweep scoped to the site cannot see the product (2026-09-02)
+
+**What happened.** Two operator rulings landed on 2026-09-01: drop every Ordani user count
+from public surfaces ("just say it has active paying users, it's in beta"), and stop
+describing how Ordani's protections work ("dont make specific security stuff on the app").
+Both were swept the same day across "the case study, home, about, services, playbook, root
+metadata and llms.txt", and #3 recorded that `content/work/ordani.mdx` "was the only surface
+carrying mechanism detail."
+
+That was wrong. `product/playbook/src/*.typ` — the 69-page PDF sold at $99 — carried the
+retired count in **four** places and Ordani's authorization design in **three** field notes,
+including one directly beneath a working row-level-security policy. It was on nobody's list
+because it is not part of the Next.js build: no route renders it, no `pnpm build` touches it,
+so every sweep that walked `app/ content/ components/` was structurally blind to it. One of
+the four counts sits in chapter one, which ships as the **free sample** — the most-read
+surface of all.
+
+Found a day later by a cross-model manuscript review, not by any sweep.
+
+**The lesson is not "sweep harder."** A sweep scoped to rendered site files cannot see a
+product that is compiled by a different toolchain. When a ruling is about a CLAIM rather than
+about code, its scope is every artifact a stranger can read, which here includes a PDF, a
+free sample chapter, and a companion ZIP.
+
+**The gate.** `scripts/ordani-claims-gate.mjs` — retired counts anywhere in scope, plus
+mechanism language within 8 lines of an Ordani mention (proximity, not a keyword ban:
+teaching RLS generically is the book's job; naming Ordani beside it is the defect). Scope is
+`app/ components/ content/` **and** `product/playbook/src/`.
+
+**Two things this cost, worth repeating.** The gate's first cut matched per line and missed
+the chapter-07 field note, because the book's Typst source hard-wraps prose and the phrase
+split as `ownership enforced in the\n  database`. It caught two of the three siblings and
+reported success. A gate with a blind spot is worse than no gate, because it certifies —
+match against flattened text and map offsets back to line numbers. And the chapter-05 source
+comment cites "RLS in the database" as an *approved* phrasing dated 2026-08-31; the ruling
+that retired it landed 2026-09-01. A file's own comment is a snapshot of the rules on the day
+it was written, never the current rule.
