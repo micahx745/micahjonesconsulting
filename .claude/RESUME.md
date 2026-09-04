@@ -30,6 +30,11 @@ lastmod, `/work/ordani` title. Book arc, other repo: ch8 as sample (brief §8.4)
 "third"→"first", cover art "SOLO BUILDERS", `publish:site` to refresh the stale frozen
 copy, "twenty years of selling" unledgered, the $149 trigger.
 
+## Cross-review carry-overs (97-98) — NONE block the deploy
+All seven dispositions: `.planning/reviews/CROSS-REVIEW-PASS-97-98-2026-09-04.md`. PARTIAL
+round (Codex dead: `gpt-5.4` unentitled). 5 CONFIRMED advisory, 2 REFUTED. Order XR-2, 6,
+1, 3, 7. XR-2: `/playbook` OFF emits `PreOrder` + `price 99` it cannot honour.
+
 ## Still blocked on the operator
 Google his own name (v0 page?) · Search Console · the offer's name/price · a portrait for
 the back cover · the launch date.
@@ -40,4 +45,4 @@ false zeroes, python utf-8 · strip `<script>` before counting · copy-lint hook
 that QUOTE banned words · snapshot `.txt` fakes spaces at tag boundaries · next/image
 srcset makes substring counts of image names meaningless, count `<img>` · full-page
 screenshots freeze the world cross-fade · `--cw-accent` flips across hydration, use literal
-tokens · a review is a reader, not an oracle · two sessions share this tree: stage by path.
+tokens · `snapshot-live.py` decodes 14 entities, NOT `&rsquo;` · a review is a reader, not an oracle · two sessions share this tree: stage by path.
