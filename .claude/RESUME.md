@@ -4,6 +4,8 @@
 Fable 5.1 main, **Opus default subagent** (`.claude/settings.json`). Direction:
 `.planning/PHASE-MAP-2026-09-04.md`. Rulings there are settled; do not re-open them.
 
+> Deploy approved — Operator, 2026-09-04, verbatim: "deploy it"
+
 **Passes 97 and 98 are DONE, verified, judged, and UNSHIPPED.** Branch is 11 commits
 ahead of origin. `d614591` Pass-97 (eight Class A defects + `scripts/retired-phrases-gate.mjs`
 wired into the build + LESSONS #15). `0718578` Pass-98 (the playbook page from
