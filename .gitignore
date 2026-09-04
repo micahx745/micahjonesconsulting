@@ -59,3 +59,6 @@ product/playbook/review-package/screenshots/
 product/playbook/review-package/page-renders/
 product/playbook/review-package/the-book/
 product/playbook/review-package/*.zip
+
+# Snapshot raw HTML (regenerate with scripts/snapshot-live.py)
+.planning/snapshots/**/*.raw.html
