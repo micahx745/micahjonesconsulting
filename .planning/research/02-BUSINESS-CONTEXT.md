@@ -548,25 +548,57 @@ This list is the honest answer and matters more than the list above.
 
 ### Traffic
 
-**All traffic figures: `UNKNOWN`.** And this is not simply missing data — it is a
-finding:
+**CORRECTED 2026-09-04.** An earlier draft of this document claimed no traffic
+data had ever been collected. That was wrong, and the error is worth stating
+because it shows how the wrong signal misleads: `@vercel/analytics/next` injects
+its script CLIENT-SIDE after hydration, so a `curl` of the HTML can never see it,
+and the Vercel Analytics API returned 404 for a token-scope reason rather than a
+disabled feature. Analytics has been collecting since roughly 2026-08-30.
 
-`@vercel/analytics` (v2.0.1) and `@vercel/speed-insights` (v1.3.1) are installed
-in `package.json` and `<Analytics />` and `<SpeedInsights />` are mounted in
-`app/layout.tsx`. But the Vercel Web Analytics API returns **404 Web Analytics
-not found** for this project, and the `/_vercel/insights/script.js` tag does not
-appear in the served HTML. **The feature has never been enabled on the Vercel
-project, so no traffic data has ever been collected.** The code believes it is
-tracking; nothing is.
+**Real figures, from the Vercel dashboard, last 7 days to 2026-09-04:**
 
 | Metric | Value |
 | --- | --- |
-| Sessions / pageviews | `UNKNOWN` — never collected |
-| Traffic sources | `UNKNOWN` — never collected |
-| Top landing pages | `UNKNOWN` — never collected |
+| Visitors | 26 |
+| Page views | 146 |
+| Bounce rate | 35% (+35 points on the prior period) |
+| First data | ~2026-08-30 |
+
+**Top pages by visitors:**
+
+| Path | Visitors |
+| --- | --- |
+| `/` | 19 |
+| `/playbook` | 15 |
+| `/services` | 9 |
+| `/about` | 7 |
+| `/book` | 6 |
+
+**Referrers:** `checkout.stripe.com` (1) and `google.com` (1). That is the whole
+list.
+
+**What these numbers do and do not support.**
+
+- **`/playbook` gets 15 of 26 visitors** — second only to the home page, and
+  ahead of `/services`. On this sample the book page is the strongest draw on the
+  site after the front door. `[INFERRED]` and on 26 visitors, so directional only.
+- **Organic search is effectively zero.** One Google referrer in seven days. The
+  SEO surface is well built (sitemap, JSON-LD, llms.txt, enforced metadata) and is
+  not yet bringing anyone.
+- **The Stripe referrer is the operator's own checkout test**, not a customer.
+- **5.6 page views per visitor** is high engagement for a consulting site;
+  people who arrive are reading more than one page. `[INFERRED]`
+- **The sample is far too small to evaluate copy.** 26 visitors cannot separate a
+  good headline from a bad one. Every copy decision in this repo still predates
+  any measurement, and none has been A/B tested.
+
+| Metric | Value |
+| --- | --- |
+| Traffic sources | Almost none — 2 referrers total in 7 days |
 | Keyword rankings | `UNKNOWN` — no Search Console data in the repo |
 | Email list size | `UNKNOWN` |
 | Where enquiries come from today | `UNKNOWN` |
+| Conversion rate on any event | `UNKNOWN` — no conversion has occurred |
 
 ### Funnel — conversion events that exist in code
 

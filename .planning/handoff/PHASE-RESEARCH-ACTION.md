@@ -54,23 +54,34 @@ lost exactly that way and had to be transcribed from a transcript.
 
 ---
 
-## 3. The one fact that reframes every recommendation
+## 3. The fact that reframes every recommendation
 
 **Zero revenue has ever passed through this website.** No package has been
-bought. The book has never been on sale. And Vercel Analytics is mounted in
-`app/layout.tsx` but was never ENABLED on the project, so **no traffic data has
-ever been collected**.
+bought. The book has never been on sale.
 
-Every copy, layout and funnel decision in this repo was made without a single
-measured conversion. Treat all of it as untested, including the parts that look
-settled. When the research contradicts a current page, the research is the
-better evidence — the page is only somebody's judgement, usually mine.
+**Traffic, corrected 2026-09-04.** An earlier version of this brief said no
+traffic data had ever been collected. That was WRONG — `@vercel/analytics/next`
+injects client-side, so a curl of the HTML cannot see it, and the API 404 was a
+token-scope problem. Analytics has been running since ~2026-08-30.
 
-**The cheapest useful thing anyone can do right now:** turn on Web Analytics in
-the Vercel project settings. Until that happens this phase cannot measure whether
-anything it changes worked, and the next session inherits the same blindness.
+Last 7 days: **26 visitors, 146 page views, 35% bounce.** Top pages `/` 19,
+`/playbook` 15, `/services` 9, `/about` 7, `/book` 6. Referrers: `google.com` 1
+and `checkout.stripe.com` 1 — the latter is the operator's own checkout test.
 
----
+Three things follow, and they matter more than the headline numbers:
+
+1. **`/playbook` is the second most-visited page**, ahead of `/services`. On 26
+   visitors that is directional, not conclusive, but it is the only behavioural
+   signal this business has ever had, and it points at the book.
+2. **Organic search is bringing nobody.** One Google referrer in a week, against
+   a well-built SEO surface. That is a gap, not a failure of the surface.
+3. **26 visitors cannot evaluate copy.** Every copy, layout and funnel decision
+   in this repo was still made without a measured conversion, and none has been
+   tested. Treat them as untested — but no longer as unmeasurable. There is now a
+   baseline to move.
+
+When the research contradicts a current page, the research is the better
+evidence: the page is only somebody's judgement, usually mine.
 
 ## 4. Open decisions the operator has NOT made
 
