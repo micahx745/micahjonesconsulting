@@ -1,0 +1,298 @@
+[
+  {
+    "sub": "SaaS",
+    "title": "I analyzed 19 Starter Story interviews to find what actually gets founders to $10K MRR - here are the patterns",
+    "score": 77,
+    "comments": 63,
+    "url": "https://www.reddit.com/r/SaaS/comments/1r5u6qu/i_analyzed_19_starter_story_interviews_to_find/",
+    "excerpt": "TL;DR: I analyzed 19 Starter Story founder interviews (all $10K-$200K+ MRR). The 1 pattern: distribution beats product every time. Not a single founder credited product quality as their primary growth driver. Reddit and SEO were the most common channels (37% of founders). I open sourced all 17 playbooks as a Claude Code skill you can query from your terminal. I'm a systems engineer by day. I reverse engineer things for a living. It's how my brain works. I can't just consume something, I have to pull it apart. So when I found Starter Story and started watching founder interviews, I couldn't jus"
+  },
+  {
+    "sub": "SaaS",
+    "title": "17yo founder, ~200 cold calls, $0 MRR. My unit economics are broken. Pivot or die?",
+    "score": 1,
+    "comments": 47,
+    "url": "https://www.reddit.com/r/SaaS/comments/1p4s0f8/17yo_founder_200_cold_calls_0_mrr_my_unit/",
+    "excerpt": "Hi everyone, I\u2019m a 17-year-old high school student from Poland. Three weeks ago, I launched a Voice AI SaaS (using no code tools) to help businesses automate phone calls. I\u2019m pouring every free hour after school into this. I\u2019ve made \\~200 cold calls, but I\u2019m hitting a wall, and I need a reality check from experienced founders. The Situation: Product: AI Receptionist (handles booking, FAQs). Target: Initially dental clinics (huge mistake \u2013 they don't have budget fot this). Currently pivoting to aesthetic clinics and HVAC/RES Installation Companies. Traction: 200 cold calls - 2 meetings - 1 demo"
+  },
+  {
+    "sub": "EntrepreneurRideAlong",
+    "title": "I posted like a founder in launch mode for a week. The useful part was everything after I stopped pitching.",
+    "score": 8,
+    "comments": 16,
+    "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1unrr8n/i_posted_like_a_founder_in_launch_mode_for_a_week/",
+    "excerpt": "context: i'm the founder of a small AI coding tool and a few other tiny software products. not linking anything here because this is more of a field note than a launch post. I spent the last week doing the thing a lot of founders do when they are tired: posting the product everywhere and hoping the right people magically appear. It did not work very well. The posts that were basically \"here is what i built\" got some views, a few comments, and a lot of silence. The comments that did better were the ones where i forgot about conversion and just answered the exact problem in front of me. Tiny sam"
+  },
+  {
+    "sub": "EntrepreneurRideAlong",
+    "title": "I'm a product manager, not an engineer. New AI tools let me build a full app solo and now I'm thinking about doing it as a service. Roast my idea.",
+    "score": 0,
+    "comments": 14,
+    "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1r5pb34/im_a_product_manager_not_an_engineer_new_ai_tools/",
+    "excerpt": "I've been a product manager for 16 years. Led teams and shipped products, all the PM stuff. I'm not a software engineer and never have been, although I do have enough high-level technical knowledge to architect a decent project. Last mopnth using AI coding tools (Claude Code specifically) I managed to build a web app from the ground up (one I had previously been quoted $70k to build). Took a few weeks, and I did it without a dev team. The hard part of building software was never really the coding. It was always figuring out what to build, how to scope it, what to cut, what matters to users. Th"
+  },
+  {
+    "sub": "SaaS",
+    "title": "Looking for opinions on a tourism marketplace platform: does this have partnership or acquisition potential?",
+    "score": 1,
+    "comments": 13,
+    "url": "https://www.reddit.com/r/SaaS/comments/1tzk6qy/looking_for_opinions_on_a_tourism_marketplace/",
+    "excerpt": "Hi everyone, I\u2019m looking for honest feedback from entrepreneurs, investors, travel operators, SaaS founders, marketplace builders, or anyone who has experience with selling, partnering, or acquiring software projects. Over the last few years, I spent 4,000+ hours building a tourism marketplace and operations platform. The project started as a serious attempt to connect travelers, local tourism partners, bookings, payments, QR validation, admin tools, partner dashboards, accounting, and travel package creation into one ecosystem. The platform is not just a landing page or a simple mockup. It ha"
+  },
+  {
+    "sub": "EntrepreneurRideAlong",
+    "title": "I spent 6 months building an app that made exactly $0 in revenue \ud83d\udcb8",
+    "score": 27,
+    "comments": 13,
+    "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1r5k62t/i_spent_6_months_building_an_app_that_made/",
+    "excerpt": "Just spent half a year coding. Launched my \"masterpiece.\" Result: 0 dollars. Here's what I wish I'd known before wasting 6 months of my life. The mistakes that cost me thousands: No validation \\- Built what I thought was cool, not what users needed Feature creep \\- \"Just one more feature\" syndrome for 5 months straight Perfect code obsession \\- Rewrote functions that users never even saw Zero marketing \\- Thought \"if you build it, they will come\" Ignored competition \\- Discovered 3 similar tools after launch The brutal reality: Spent 180+ days building $0 in revenue after launch few trials tot"
+  },
+  {
+    "sub": "EntrepreneurRideAlong",
+    "title": "i replaced a $2,400/mo virtual assistant with a $50/mo AI agent for a shopify store owner. here's exactly how it went.",
+    "score": 0,
+    "comments": 11,
+    "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1ruri4g/i_replaced_a_2400mo_virtual_assistant_with_a_50mo/",
+    "excerpt": "been doing AI agent setups for small businesses for a while now. wanted to share some real results because i see a lot of hype but not a lot of actual numbers. the shopify store owner was spending 4+ hours every day answering the same customer emails. where is my order. how do i return this. do you have this in size L. she had a VA handling it for $2,400/mo but the VA was slow (6 hour response time average) and made mistakes. set up an openclaw agent connected to her shopify backend via whatsapp and email. the agent pulls order status directly from shopify, handles return requests with the sto"
+  },
+  {
+    "sub": "microsaas",
+    "title": "I built a landing page for a YouTube comment analysis tool. How do I validate this without a finished product?",
+    "score": 2,
+    "comments": 10,
+    "url": "https://www.reddit.com/r/microsaas/comments/1qgapzg/i_built_a_landing_page_for_a_youtube_comment/",
+    "excerpt": "Hi everyone, I\u2019m a developer currently working on a new Micro-SaaS idea and I'm hitting the classic \"build it vs. sell it first\" dilemma. The Problem: I believe YouTube comments are a goldmine of product ideas and buyer intent, but for creators, it's too much noise to filter through manually. They miss critical feedback and leads. The Idea: I want to build an AI tool that automatically filters the noise (emojis, \"great video\") and extracts only the signals (questions, feature requests, complaints). What I've done so far: Instead of building the full product, I built a landing page to capture e"
+  },
+  {
+    "sub": "EntrepreneurRideAlong",
+    "title": "Reality check needed: Quit my job for a biotech startup (MVP stage). Are my priorities right?",
+    "score": 1,
+    "comments": 7,
+    "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1tz8wyd/reality_check_needed_quit_my_job_for_a_biotech/",
+    "excerpt": "Hi everyone, I recently quit my day job to go full-time on my biotech startup. We develop diagnostic kits for bacterial and viral diseases. Our first product (fish diseases) has a lab-proven MVP. Our second (TB antibiotic resistance) is due by late summer. My co-founder (R&D) and I have some personal runway, but zero sales and no warm B2B leads yet. I want to make sure I\u2019m focusing on the right things and not missing critical blind spots. My current top 3 priorities: 1 . Sales/Outreach: Figuring out how to reach decision-makers at fish farms to secure pilot testing and initial contracts. 2 . R"
+  },
+  {
+    "sub": "SaaS",
+    "title": "I sold 75 Bitcoin at $300 each to start a business. Lost everything. Ended up alone in Bahrain with no plan. Then I typed \"create me a chatbot\" as a laugh.",
+    "score": 0,
+    "comments": 6,
+    "url": "https://www.reddit.com/r/SaaS/comments/1ruuul8/i_sold_75_bitcoin_at_300_each_to_start_a_business/",
+    "excerpt": "I've been posting in this community for a while now and some of you have followed bits and pieces of what I've been working on. But I've never actually sat down and told the full story from the beginning. Today I want to do that \u2014 not as a pitch, not as a promotion, just as an honest account of how the last few years have actually gone for me, and where I am now. This is the full story. It's long. I think it's worth it. Where it actually starts \u2014 2015 I got into Bitcoin in 2015. Back then nobody took it seriously. I was buying coins at around $50 each at a time when most people thought it was "
+  },
+  {
+    "sub": "SaaS",
+    "title": "I analyzed 102 recent r/SaaS posts because my own SaaS got 3 tiny sales and then went dead. The pattern was painful.",
+    "score": 0,
+    "comments": 6,
+    "url": "https://www.reddit.com/r/SaaS/comments/1tzrp1h/i_analyzed_102_recent_rsaas_posts_because_my_own/",
+    "excerpt": "I had one of those small founder moments that messes with your head. I built a tiny SaaS. It worked. I got 3 real payments after an accidental community spike. Then nothing. No sales. No repeatable traffic. No clear sign that I knew what I was doing. My first instinct was to keep improving the product. New UI, better scan, better pricing, more features, more polish. But I started to suspect I was using \"improving the product\" as a socially acceptable way to avoid distribution. So I did something uncomfortable: I captured and analyzed 102 recent posts to see what founders are actually talking a"
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "I spent 6 months building an app that made exactly $0 in revenue \ud83d\udcb8",
+    "score": 0,
+    "comments": 5,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1r5k5ue/i_spent_6_months_building_an_app_that_made/",
+    "excerpt": "Just spent half a year coding. Launched my \"masterpiece.\" Result: 0 dollars. Here's what I wish I'd known before wasting 6 months of my life. The mistakes that cost me thousands: No validation \\- Built what I thought was cool, not what users needed Feature creep \\- \"Just one more feature\" syndrome for 5 months straight Perfect code obsession \\- Rewrote functions that users never even saw Zero marketing \\- Thought \"if you build it, they will come\" Ignored competition \\- Discovered 3 similar tools after launch The brutal reality: Spent 180+ days building $0 in revenue after launch few trials tot"
+  },
+  {
+    "sub": "SaaS",
+    "title": "I\u2019m 17 years old, I built a platform used by my school\u2026 and now I want to launch a SaaS. But I don\u2019t know how to enter the market.",
+    "score": 2,
+    "comments": 4,
+    "url": "https://www.reddit.com/r/SaaS/comments/1p4yddr/im_17_years_old_i_built_a_platform_used_by_my/",
+    "excerpt": "Hi everyone, I\u2019m 17 years old , and over the past few years, in my free time, I\u2019ve taught myself how to code. I haven\u2019t taken any courses, and I don\u2019t have any relatives in tech \u2014 I\u2019ve done everything on my own, through tutorials and nights spent in front of VSCode. I started dozens of projects, but like many here, I never finished one. Until six months ago. At some point, I had the idea to run for student council. Not because I wanted to get into politics, but because I had an idea in mind: to create a platform for students . A place to share notes, ask questions, see events, and get discount"
+  },
+  {
+    "sub": "SaaS",
+    "title": "B2B SaaS: do you keep orgs, memberships and base roles in your own DB, or let the auth provider own them?",
+    "score": 1,
+    "comments": 4,
+    "url": "https://www.reddit.com/r/SaaS/comments/1vdy4e1/b2b_saas_do_you_keep_orgs_memberships_and_base/",
+    "excerpt": "Solo dev here, building a multi-tenant B2B SaaS on Azure (.NET, PostgreSQL, Container Apps). I've got Microsoft Entra External ID working in a POC for the basic login flow. Nothing's in production yet and there are no real users, so switching providers now would cost me nothing in migration. That's why I want to figure this out before launch. The thing I keep going back and forth on: I almost never see Entra External ID mentioned when people talk about B2B SaaS auth. It's always WorkOS, Clerk, Auth0, Descope, ZITADEL or self-hosting. I can't tell if that's just weaker community/visibility, or "
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "\ud83d\ude80I \"soft launched\" on Jan 2nd but fell into the \"Just one more feature\" trap. Finally sharing my MVP today.",
+    "score": 1,
+    "comments": 3,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1qga6ly/i_soft_launched_on_jan_2nd_but_fell_into_the_just/",
+    "excerpt": "Hey everyone, I technically pushed the deploy button for my SaaS, Cubrain (PDF-to-AI-powered Flashcards with exporting Anki file format, .csv), on January 2nd . But instead of marketing it, I spent the last two weeks obsessing over \"UX gaps\" that I felt were show-stoppers. I convinced myself I couldn't share it until I fixed them. What I've been doing for the last 15 days (instead of marketing): 1. Server-Sent Events (SSE): The AI processing takes a few seconds, and standard loading spinners felt unresponsive. I rebuilt the backend to use SSE so users can see real-time progress bars. 2. Demo V"
+  },
+  {
+    "sub": "microsaas",
+    "title": "If You Had $50,000 to Speed Up SaaS Development, How Would You Spend It?",
+    "score": 1,
+    "comments": 3,
+    "url": "https://www.reddit.com/r/microsaas/comments/1qgfqeh/if_you_had_50000_to_speed_up_saas_development_how/",
+    "excerpt": "If you had $50,000 to speed up the SaaS development process, what would you spend it on? My goal is to reach $100k/year in profit as soon as possible. I have a lot of ideas for SaaS products (often automation-focused, including software that automatically creates sellable digital products), but I can only focus on one new project at a time myself. In the past, I\u2019ve hired freelancers, tried working with friends, and partnered before, but in most cases the work either wasn\u2019t done right, even with full specs, or required so much back-and-forth that I ended up doing most of it myself. One benefit "
+  },
+  {
+    "sub": "SaaS",
+    "title": "why i stopped building web-only saas (and how i skipped the 40h mobile setup pain)",
+    "score": 20,
+    "comments": 2,
+    "url": "https://www.reddit.com/r/SaaS/comments/1qgkcb4/why_i_stopped_building_webonly_saas_and_how_i/",
+    "excerpt": "i looked at the data for my last few projects and noticed a pattern i couldn't ignore. my web-based tools usually have a 30-day retention of like 15%. users sign up, use it once or twice, close the tab, and forget i exist. but my mobile apps are sitting at 35-40%. i think we underestimate the value of \"home screen real estate.\" when a user installs an app they are making a commitment and giving away home screen real estate for an icon + ideally a widget. on the web I'm just one of 50 open tabs fighting for attention against gmail and slack. plus push notifications are basically free marketing "
+  },
+  {
+    "sub": "SaaS",
+    "title": "Would you beta test another founder's product in exchange for getting yours tested?",
+    "score": 1,
+    "comments": 2,
+    "url": "https://www.reddit.com/r/SaaS/comments/1rurf6l/would_you_beta_test_another_founders_product_in/",
+    "excerpt": "I keep running into the same problem \u2014 I need real feedback on my product from people who actually understand SaaS, not friends and family who say \"looks great!\" and never use it again. So I'm exploring an idea: a marketplace where SaaS founders beta test each other's products. How it would work: \\- You sign up and list your product \\- You test other founders' products and earn credits \\- You spend credits to recruit testers for your own product \\- Or pay $50-100/tester if you want to skip the line The idea is that founders give way better feedback than random users \u2014 they understand UX patter"
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "My first web app using Lovable and what I learned",
+    "score": 6,
+    "comments": 2,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1pslsbl/my_first_web_app_using_lovable_and_what_i_learned/",
+    "excerpt": "Overview : I built my first web app using , which took me about two and a half weeks to complete. This was my first time using AI development tools to build a digital product, so it took me a bit longer (I didn't know what to expect, how it works, how much rework I had to do because the AI did some weird workflows and UX), but since then, I've gotten the hang of it. My first project I created using Lovable is LumaLog is a web app that helps you organize documents, events, and next steps after a car accident \u2014 all in one place. Lesson Learned using AI development: 1). Use Lovable when you are r"
+  },
+  {
+    "sub": "EntrepreneurRideAlong",
+    "title": "has anyone here built a cross-border recruitment agency?",
+    "score": 0,
+    "comments": 2,
+    "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1ogwzlp/has_anyone_here_built_a_crossborder_recruitment/",
+    "excerpt": "hey guys, so i've been doing some recruiting work recently and getting pretty solid results, which has me thinking about turning this into a proper cross-border recruitment agency. bit of backstory: was recruiting posters for a marketing campaign for a us-based company, ended up recruiting 10+ people in under 72 hours with another 50+ in the pipeline to backfill any low performers. did something similar for gtm and ppc manager roles, scheduled 12 interviews in under 24 hours. i already run an agency (varahr.com) helping us recruiters, companies with automation, and the biggest pain point i kee"
+  },
+  {
+    "sub": "SaaS",
+    "title": "Why removing features made me a better founder (and saved my sanity)",
+    "score": 1,
+    "comments": 1,
+    "url": "https://www.reddit.com/r/SaaS/comments/1psez8u/why_removing_features_made_me_a_better_founder/",
+    "excerpt": "On my research startup I had a feature that 8% of my customer base used. 340 people. seemed important right? wrong it was costing me 12+ hours a month just to keep alive. the codebase was horrible. every update risked breaking it. i couldn't improve it without basically rewriting everything from scratch so i killed it but I didn't just yeet it into the void. i announced it 60 days in advance. explained why. reached out to the heavy users personally. recorded videos showing them workarounds. provided export tools so nobody lost data. kept it running in read-only mode for a month after the resul"
+  },
+  {
+    "sub": "SaaS",
+    "title": "How I built a full bilingual SaaS in 27 days using AI (zero coding background) \u2014 312 commits, 181 deployments",
+    "score": 1,
+    "comments": 1,
+    "url": "https://www.reddit.com/r/SaaS/comments/1sfzy30/how_i_built_a_full_bilingual_saas_in_27_days/",
+    "excerpt": "I'm Mahmoud, I've been working in SEO since 2018. A little over a year ago I got into freelancing platforms, started offering SEO services on Upwork. The work was good, but dealing with clients directly and constantly drained me. I kept thinking: why don't I turn my expertise into a SaaS product? The only problem? I'm not a developer my background was WordPress and basic tech stuff only. The moment that changed everything Early 2025, I noticed a pattern: my clients started asking me about how their brands appear in ChatGPT and Gemini, not just Google. I looked for tools to track this \u2014 found s"
+  },
+  {
+    "sub": "SaaS",
+    "title": "I burned through my AI builder credits in one afternoon, so I spent two months building a free alternative",
+    "score": 0,
+    "comments": 1,
+    "url": "https://www.reddit.com/r/SaaS/comments/1vdnvns/i_burned_through_my_ai_builder_credits_in_one/",
+    "excerpt": "Short version: it's Lovable / Bolt / v0, except you paste in your own API key and pay the provider directly instead of buying credits from me. I take nothing. There is no paid tier. Why I built it: I kept hitting the credit wall on the paid ones, always right in the middle of the iteration where the site was finally getting good. Being rate limited by a billing counter while I had unused API keys sitting on my machine felt ridiculous. How it works: 1. paste a key from any of 18 providers (OpenAI, Anthropic, Gemini, DeepSeek, Groq, Mistral, OpenRouter, local Ollama, and more) 2. describe the si"
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "The Brutal Reality of Building a Startup: 4 Weeks In (Raw Truth)",
+    "score": 1,
+    "comments": 1,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/",
+    "excerpt": "Tired of seeing polished \"I quit my job and built a $10K MRR SaaS\" posts. Here's what actually happens when you're building something real. Tired of those Fake Stripe screenshot. Even so a guy faking is admission to the best european's incubator.. I mean wtf is wrong here ... Current state: 4 weeks . Working 9-5, then coding until 2 AM. Fix one bug, create three more. Major breakthroughs I can't tell anyone about. Day job feels like prison, but the bills don't care about my dreams. The Stuff Nobody Posts About 1. The idea-to-reality gap hits immediately Week 1: \"This will revolutionize AI deve"
+  },
+  {
+    "sub": "SaaS",
+    "title": "Trying to launch my SAAS that is a resumable file uploader. How do I get beta testers?",
+    "score": 2,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/SaaS/comments/1p4w42q/trying_to_launch_my_saas_that_is_a_resumable_file/",
+    "excerpt": "I am a software engineer, and I have been working on a project that fixes one of the problems I face quite often during development. I feel like it has a valid use-case but what I feel does not matter. What matters is apparently if others find value in it. it addresses/provides the following: 1. Browser side resumable uploads. Uploader chunks the file into smaller sizes, and uploads and keeps track of each uploaded chunk. If the upload fails for any reason, such as internet connection, device issues, etc it can retry, and if user uploads the same file again, it continues from the last successf"
+  },
+  {
+    "sub": "SaaS",
+    "title": "I\u2019m a 20yo student who built an AI price tracker. How do I get my first 100 users with zero marketing budget?",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/SaaS/comments/1rurcqf/im_a_20yo_student_who_built_an_ai_price_tracker/",
+    "excerpt": "Hey everyone, Between my afternoon classes and homework, I finally finished a side project I\u2019ve been working on. I was tired of manually opening 5 different tabs (Amazon, Walmart, local marketplaces) just to check if I was getting a fair price on tech stuff. So, I built a web app that does it for me. You type what you want, and it uses Gemini 2.5 Flash in the backend to fetch and compare real-time prices across stores instantly. To avoid going broke on API costs, I set up a freemium model (3 free searches per session, and a very cheap $2 VIP tier). My biggest problem right now is distribution."
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "Huge Success in my NextJS Project.",
+    "score": 3,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1nt2kqr/huge_success_in_my_nextjs_project/",
+    "excerpt": "Me and my friend have been working on a project for the last 8 months and I wanted to share a milestone that I'm really proud of. I've restarted this project over 6 times, reasons ranging from me shooting myself in the foot early on with packages that wasn't fit for purpose, code hardwired posing huge blockers to features I wanted but didn't plan properly for, to even things as small as not being satisfied with my file/folder layout I'd decided to go with at the start. I just wanted to celebrate success, and share a little about my project! I've finally (after 40 failed deployments) got a soli"
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "Imagine having a git-like UI for your leads management + AI (no links/offers -> feedback request)",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1r5kt7j/imagine_having_a_gitlike_ui_for_your_leads/",
+    "excerpt": "I've tried several tools to find leads on Reddit and it was disgusting. Everytime there were two main problems: \\- Leads found were irrelevant (matched by several keywords) \\- Leads were relevant by auto DM system tried its best and burnt warm contact with a rude spam I looked for a tool to sell my first startup (chatbot for ecom), where I did my best in aRAG/RAI/Synthetic Knowledge Augmentation... The tool is perfect for ecom, but finding leads and tracking them is a taugh process. Especially when you use some boring corporate level LMS/CRM. So, I decided to apply my knowledges in new product"
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "App/saas founders are cooked at marketing. I was one of them. so I built a fix.",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1t9edaa/appsaas_founders_are_cooked_at_marketing_i_was/",
+    "excerpt": "I am a decent developer. I can ship fast. I can build clean. I can figure out almost any technical problem. But marketing? completely different story. my first app was a fitness app. I spent 8 months on it. posted consistently, used AI tools, tried every platform. In total I got 16 users. 0 paying. dead. and the honest reason it died wasn't the product. the product was fine. it was that I had zero system for marketing. I didn't know who to talk to. I didn't know where they were. I didn't know if anything I posted was actually working. I was just guessing every single day and calling it a consi"
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "My SaaS signups dropped 72% in 2 months - I need honest feedback on what's broken",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1t96r2s/my_saas_signups_dropped_72_in_2_months_i_need/",
+    "excerpt": "I run a dynamic QR code platform and I'm watching my growth die in real-time. Need honest feedback. THE NUMBERS: \\- March: 58 signups/week \\- Now (May): 16 signups/week \\- That's a 72% drop in 7 weeks \\- Currently: 600+ users, paying customers in double digits WHAT I CHANGED (the mistake): I stopped ALL marketing 2 months ago because I thought each channel \"wasn't working\": \\- Stopped Google Ads (thought the ROI wasn't there) \\- Stopped Reddit engagement (thought 2-3 signups/day wasn't enough) \\- Stopped Twitter (only getting 1-2 signups/day) \\- Stopped LinkedIn (minimal results) \\- Stopped em"
+  },
+  {
+    "sub": "buildinpublic",
+    "title": "Best IPTV Service 2026: I Compared 7 IPTV Providers \u2014 Here\u2019s the One That Actually Delivered",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/buildinpublic/comments/1v68q8j/best_iptv_service_2026_i_compared_7_iptv/",
+    "excerpt": "Finding the best IPTV service in 2026 is not easy. Almost every website claims to recommend the \u201ctop IPTV provider,\u201d but most of those lists are filled with sponsored placements, copied descriptions, and services the writer probably never tested. So I decided to do things differently. Over the last three months, I tested seven different IPTV providers using the same internet connection, the same devices, the same IPTV apps, and the same viewing conditions. I focused on what actually matters: live sports performance, channel reliability, stream quality, PPV access, EPG accuracy, device compatib"
+  },
+  {
+    "sub": "microsaas",
+    "title": "I spent 6 months building an app that made exactly $0 in revenue \ud83d\udcb8",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/microsaas/comments/1r5k7ed/i_spent_6_months_building_an_app_that_made/",
+    "excerpt": "Just spent half a year coding. Launched my \"masterpiece.\" Result: 0 dollars. Here's what I wish I'd known before wasting 6 months of my life. The mistakes that cost me thousands: No validation \\- Built what I thought was cool, not what users needed Feature creep \\- \"Just one more feature\" syndrome for 5 months straight Perfect code obsession \\- Rewrote functions that users never even saw Zero marketing \\- Thought \"if you build it, they will come\" Ignored competition \\- Discovered 3 similar tools after launch The brutal reality: Spent 180+ days building $0 in revenue after launch few trials tot"
+  },
+  {
+    "sub": "microsaas",
+    "title": "Built a hedge fund tracking tool for my own investing. Now figuring out if anyone else will pay for it.",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/microsaas/comments/1runzro/built_a_hedge_fund_tracking_tool_for_my_own/",
+    "excerpt": "Hey r/microsaas \\- been working on HoldingsIntel for the past few months. I built it for my own investing and it kind of took on a life of its own. My thesis is simple - a billion dollars committed to a position tells you more than any analyst writing from a desk. The money is the opinion. SEC 13F filings are quarterly reports every hedge fund managing $100M+ has to file. The data is public, but it's 17 million rows of raw noise. A fund buying 100 shares of Apple tells you nothing. A multi-billion dollar fund putting 5% of their portfolio into one stock, then adding more while the price drops?"
+  },
+  {
+    "sub": "microsaas",
+    "title": "Spent 6 weeks building a subscription tracker SaaS  Stripe + Plaid already integrated, selling it for $499 because my agency is taking off and I just don't have time",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/microsaas/comments/1sjnokc/spent_6_weeks_building_a_subscription_tracker/",
+    "excerpt": "Honestly built this because I couldn't find a clean tool to track my own software subscriptions so I just built one. It's called WatchMyBills. Full React + TypeScript codebase, deployed on Netlify. Here's what's actually inside: Plaid integration is done sync, transaction pull, re-auth all working. Buyer just adds their keys. Stripe billing is set up with two tiers already configured: Individual at $14.99/mo and Business at $29.99/mo, both with 14-day free trials. Auto-detects recurring charges from real bank data. Flags zombie subs, duplicate tools, price increases, and trial conversions befo"
+  },
+  {
+    "sub": "microsaas",
+    "title": "Navigating Gumroad & Reddit auto-moderation",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/microsaas/comments/1tzr09l/navigating_gumroad_reddit_automoderation/",
+    "excerpt": "A few weeks ago I released a 100% local, audio-to-notes pipeline that converts unstructured audio into customized workflows like project management, devlogs, lecture capture, D&D campaigns... Really anything you like to talk about. I spent an entire year building an end-to-end tool and released 95% of it under a \"free\" tier to help solicit visibility. Gumroad was an easy access point for publishing, but I've been blindsided by Reddit auto-moderation issues. I know that Gumroad isn't always allowed. Some subreddits are explicitly clear about this and allow postings only inside self-promotional "
+  },
+  {
+    "sub": "microsaas",
+    "title": "My 8 Year Old Nephew Got Me Into FPL (UK)",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/microsaas/comments/1vdcdq1/my_8_year_old_nephew_got_me_into_fpl_uk/",
+    "excerpt": "My 8 Year old nephew is mad for the Premier League - Arsenal fan - and just getting into setting up Fantasy Premier League (FPL) ahead of the new season. Obviously I've been coerced into setting a team up myself, and obviously I can't be losing to an 8 year old. So I built MyFPLScout - a web app that does the boring maths for you. It projects points for every player using a stats model (Poisson for clean sheets, per-90 rates, minutes/rotation risk \u2014 no \"AI picks your team\" nonsense, it's all formulas you can actually inspect), builds you an optimal squad inside the \u00a3100m budget, plans transfer"
+  },
+  {
+    "sub": "EntrepreneurRideAlong",
+    "title": "I'm Building PrizeForge to Radically Improve Social Finance & Creator Economy",
+    "score": 1,
+    "comments": 0,
+    "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1ogdfek/im_building_prizeforge_to_radically_improve/",
+    "excerpt": "This is about a 100% tech entrepreneur startup, but I'll try not to start talking about Rust and WASM. I'm a several-time founder or early employee. My career tends to alternate between \"real job\" and startup, with bank account dynamics you can predict. Skipping ahead to now, I realized that every social finance product out there is a complete train wreck and that the creator economy can be at least a thousand times bigger than it is, tackling problems that are a lot bigger than tabletop gaming. Welcome to PrizeForge. The key initial breakthrough that compelled me to found is what I'm calling "
+  }
+]
