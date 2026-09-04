@@ -29,7 +29,7 @@ Two ways to buy them:
 
 ## Background
 
-- 2013–2023: Growth, GTM, and platform strategy roles at Guardicore, SurveyMonkey, Flexport, Cuebiq, Postmates
+- Since 2013: growth, GTM and platform strategy roles inside B2B software companies (thirteen years)
 - Currently building Ordani in private beta
 - Based in Oakland, CA
 

@@ -115,9 +115,9 @@ export default function PackagesPage() {
         </h1>
         <p className="cw-services__intro">
           For solo builders and small teams who got most of a product out of AI
-          tools and stalled on the last stretch. Pick one, email me, and the
-          work starts within the week. No scoping call, no proposal, no quote to
-          wait for.
+          tools and stalled on the last stretch. Pick one, buy it, and the work
+          starts within the week. No scoping call, no proposal, no quote to wait
+          for.
         </p>
 
         <section id="packages" className="cw-pkgs" aria-label="The packages">

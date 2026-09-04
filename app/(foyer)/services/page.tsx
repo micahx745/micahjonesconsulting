@@ -318,7 +318,7 @@ export default function ServicesPage() {
               Packages
             </a>
             <span className="cw-door__body">
-              Three fixed prices. Pick one, email me, and the work starts this
+              Three fixed prices. Pick one, buy it, and the work starts this
               week.
             </span>
             <span className="cw-door__foot">

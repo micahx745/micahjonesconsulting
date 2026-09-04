@@ -13,7 +13,7 @@ export default async function Image() {
     <CWOGComposition
       eyebrow="WORK · MICAH JONES"
       headline="CASE STUDIES"
-      punch="Guardicore, SurveyMonkey, Flexport, Postmates — and Ordani."
+      punch="Four exits: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. Now building Ordani."
     />,
     size,
   );

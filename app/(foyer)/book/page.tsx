@@ -20,7 +20,7 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "Book a free intro call",
   description:
-    "Thirty minutes, no deck, no pitch. Bring the problem; we name the shape of the work and whether I am the right person for it. Tue to Thu, Pacific.",
+    "Thirty minutes, no deck, no pitch. Bring the problem; I name the shape of the work and whether I am the right person for it. Tue to Thu, Pacific.",
   alternates: {
     canonical: "https://www.micahjonesconsulting.com/book",
   },
@@ -51,9 +51,8 @@ export default function BookPage() {
             Thirty minutes. Bring the problem.
           </h1>
           <p className="cw-bk__dek">
-            No deck and no pitch. You have paid, so this call is where the work
-            starts. Bring your intake answers if you have them. If not, bring
-            the problem and I will ask.
+            No deck and no pitch. Bring the problem, and this call is where the
+            work starts. If you have notes, bring them. If not, I will ask.
           </p>
           <p className="cw-bk__leave">
             <strong>What you leave with:</strong> a named diagnosis of what is

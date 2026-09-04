@@ -1,5 +1,5 @@
 import urllib.request, re, os, sys, json
-BASE="https://www.micahjonesconsulting.com"
+BASE=os.environ.get("SNAPSHOT_BASE","https://www.micahjonesconsulting.com")
 ROUTES=["/","/about","/services","/packages","/work","/playbook","/contact","/book","/book/kickoff",
         "/work/guardicore","/work/ordani","/work/rfp-engine","/work/content-engine",
         "/services/thanks","/playbook/thanks","/work/passioneer","/robots.txt","/sitemap.xml","/llms.txt"]
@@ -20,7 +20,7 @@ for r in ROUTES:
         raw=e.read().decode("utf-8",errors="replace")
     except Exception as e:
         report[r]={"status":"ERROR","error":str(e)}; continue
-    open(f"{OUT}/{name}.raw.html","w",encoding="utf-8").write(raw)
+    open(f"{OUT}/{name}.raw.html","w",encoding="utf-8",newline="\n").write(raw)
     # strip scripts/styles then extract visible text
     body=re.sub(r"(?is)<script.*?</script>","",raw)
     body=re.sub(r"(?is)<style.*?</style>","",body)
@@ -36,11 +36,21 @@ for r in ROUTES:
              .replace("&times;","×").replace("&hellip;","…"))
         return re.sub(r"\s+"," ",s).strip()
     text=clean(body)
-    open(f"{OUT}/{name}.txt","w",encoding="utf-8").write(text)
+    open(f"{OUT}/{name}.txt","w",encoding="utf-8",newline="\n").write(text)
     report[r]={"status":status,"final":final,"title":clean(title.group(1)) if title else None,
                "description":clean(desc.group(1)) if desc else None,
                "h1":[clean(h) for h in h1s],
                "text_len":len(text),
                "em_dashes_in_text":text.count("—")}
-json.dump(report,open(f"{OUT}/_report.json","w",encoding="utf-8"),indent=1,ensure_ascii=False)
+with open(f"{OUT}/_report.json","w",encoding="utf-8",newline="\n") as fh:
+    json.dump(report,fh,indent=2,ensure_ascii=False)
+    fh.write("\n")
+# prettier owns the committed shape of this artifact; normalize so `prettier --check` passes.
+# Best effort: if prettier is unavailable the snapshot still succeeds, just unformatted.
+try:
+    import subprocess
+    subprocess.run(f"pnpm exec prettier --write {OUT}/_report.json",shell=True,check=False,
+                   stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=180)
+except Exception:
+    pass
 print(json.dumps(report,indent=1,ensure_ascii=False))

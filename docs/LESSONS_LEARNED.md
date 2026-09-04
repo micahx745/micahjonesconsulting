@@ -352,7 +352,7 @@ Two mechanism facts were also wrong, and each one costs a fix attempt:
    prettier silently un-applies it. Confirmed by doing exactly that and watching it revert.
 2. **The entity does not have to be adjacent.** It can sit ANYWHERE in the same text node.
    Replacing `It&rsquo;s` did not fix the home page; the trigger was `workers&rsquo;
-   pockets` four lines further on. Only clearing every entity in the node worked.
+pockets` four lines further on. Only clearing every entity in the node worked.
    Corollary: a `{/* comment */}` inside the element SPLITS the text node, so it relocates
    the boundary rather than fixing it.
 
@@ -526,8 +526,8 @@ packages on it and no explanation. Every automated signal in the repo said the s
 
 **The class, stated generally.** Any time a section moves, is renamed, or loses its `id`,
 every link into it becomes live, resolving, and wrong. The failure is invisible to everything
-that checks *whether a request succeeds* and visible only to something that checks *whether
-the destination still contains what the anchor text promised*.
+that checks _whether a request succeeds_ and visible only to something that checks _whether
+the destination still contains what the anchor text promised_.
 
 **The gate.** `scripts/render-gate.mjs`, last step of `pnpm build`. It reads the prerendered
 HTML in `.next/server/app` — the bytes a reader actually receives, not the source, so it needs
@@ -584,6 +584,63 @@ the chapter-07 field note, because the book's Typst source hard-wraps prose and 
 split as `ownership enforced in the\n  database`. It caught two of the three siblings and
 reported success. A gate with a blind spot is worse than no gate, because it certifies —
 match against flattened text and map offsets back to line numbers. And the chapter-05 source
-comment cites "RLS in the database" as an *approved* phrasing dated 2026-08-31; the ruling
+comment cites "RLS in the database" as an _approved_ phrasing dated 2026-08-31; the ruling
 that retired it landed 2026-09-01. A file's own comment is a snapshot of the rules on the day
 it was written, never the current rule.
+
+## #15 — A sweep recorded as done is not a sweep; the probe is (2026-09-04)
+
+**What happened.** The #3 ledger entry that opened the consulting revenue range says it was
+"Swept 2026-09-02 to /about, the home ledger row, the JSON-LD in layout.tsx and llms.txt."
+`llms.txt` was not swept. It still served the closed range, and beside it two employers that
+appear in no ledger entry and on no other surface. The same file's opening paragraph names
+the four exits, so it contradicted itself for two days on the one page written for machines.
+
+The 2026-09-03 "thirteen years, not a decade" ruling went the same way. It landed on the
+`/about` body twice and stopped there. The meta description and the `/work` share image both
+kept the retired wording for a day, which is what a stranger sees first and what a share
+preview shows before anyone clicks.
+
+**What it cost.** Eight live defects on the pages that convert, found by reading a snapshot
+of the served site rather than by any check the build ran. "Swept to X" with a date on it
+read as evidence in every session that followed.
+
+**The lesson.** A sweep is a claim like any other, and a claim needs its probe output. "Swept
+to X" is an intention until a grep of the SERVED surface returns zero. Rendered copy, meta
+descriptions, share images and `llms.txt` are four different surfaces; a ruling that touches
+prose touches all four.
+
+**The gate.** `scripts/retired-phrases-gate.mjs`, wired into `pnpm build` after the vendor
+gate. It fails the build on the closed range in either dash, "a decade", the two unledgered
+employers, and the retired "email me" instruction, anywhere in `app/ content/ lib/`. Code
+comments are stripped first, since narrating a retired string is how the correction stays
+next to the code. One narrow exemption: the operator-locked `alumniOf` array in
+`app/layout.tsx`, whose membership is a schema.org employment list and whose own comment
+explains why it differs from the prose.
+
+## #16 — A generated artifact is committed code, and CRLF makes a clean file look dirty (2026-09-04)
+
+**What happened.** Pass-97 committed `.planning/snapshots/2026-09-04/_report.json` straight
+from `scripts/snapshot-live.py`. Python wrote it with CRLF endings and one-space indentation.
+Prettier wants LF and two. So the pass shipped an artifact that fails `prettier --check`,
+under a commit body that claimed "prettier --check passes".
+
+The same script wrote the 19 `.txt` snapshots with CRLF. Git normalized those to LF on commit,
+so the repository stayed clean and only the working copies drifted. Two files last written that
+way at Pass-94, `app/(foyer)/contact/page.tsx` and `content/work/rfp-engine.mdx`, then failed
+`prettier --check` on disk while their committed bytes passed it. A verifier read that as two
+style defects. Both were checkout artifacts. Deleting either file and running `git checkout`
+returns LF, because `.gitattributes` sets `eol=lf` and that beats `core.autocrlf=true`.
+
+**What it cost.** One false defect report naming two innocent files, and one real defect that
+the blanket claim had hidden. Pass-88 burned a pass on the same confusion and filed it as "30
+files, pre-existing CRLF drift", which is the description of a symptom.
+
+**The lesson.** Two rules. A file a script generates is a file the repo ships, so it meets the
+same formatting bar as code written by hand. And a formatting probe run against a Windows
+working tree reads line endings, not style. Check `git show HEAD:<path>` before calling a file
+malformed, and scope the claim to the files actually checked.
+
+**The gate.** `scripts/snapshot-live.py` now opens every output with `newline="\n"`, dumps the
+report at `indent=2`, and runs `pnpm exec prettier --write` on it before it exits. That last
+step is best effort, so a machine with no prettier still gets its snapshot.
