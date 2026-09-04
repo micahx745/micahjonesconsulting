@@ -2,12 +2,26 @@
 
 ## READ THIS FIRST
 Phase: **act on the research**. Brief: `.planning/handoff/PHASE-RESEARCH-ACTION.md`.
-This file is state only; that file is the brief. History before 2026-09-03 lives in
+This file is state only. History before 2026-09-03 is in
 `.planning/archive/RESUME-ARCHIVE-through-2026-09-03.md`. The claims ledger
 (`docs/LESSONS_LEARNED.md` #3) outranks any memory of what the site says.
 
-**Current task: the research-to-action map.** No page edits until the operator
-rules on it. Nothing has been edited this session.
+## THE MAP IS DELIVERED. IT AWAITS RULINGS.
+`.planning/RESEARCH-TO-ACTION-MAP-2026-09-04.md` (commit adc0b85). 24 findings,
+16 numbered rulings, ruling sheet in section 9. **No page has been edited.**
+Do not start editing until the operator rules. Class A (A1-A8) needs no ruling
+and can go in one pass the moment he says go.
+
+Top three, all verified against the live DOM, none of which any research package
+contained:
+- **A1 CRITICAL** `/book` says "You have paid" five lines above "Cost - Free".
+  Kickoff copy leaked in when /book was restored 2026-09-03. It is the
+  engagements lane's ONLY conversion. Two-line fix, awaiting his go.
+- **A2 CRITICAL** `app/llms.txt/route.ts:32` still carries the closed
+  "2013-2023" range the ledger forbids, plus two employers in no ledger entry.
+  The ledger records that sweep as done; it was not.
+- **B3 CRITICAL** the book's checkout is built and no button calls it. `/playbook`
+  is the #2 page. Needs only a launch date, and B1 first.
 
 ## BLOCKED ON THE OPERATOR
 **The Reddit evidence package is still not on disk.** 5,456 posts, ten
