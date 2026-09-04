@@ -33,14 +33,22 @@ would be the second-signature line; the answer there is no.
 
 `motion-discipline.sh` blocks cursor followers, scroll-jacking, marquees, mono aesthetic, and (Phase 1 addition) `syncTouch: true` on Lenis.
 
-## Model routing
-Read `C:/Users/micah/.claude/MODEL_ROUTING.md` when the work class changes. Short form for
-this repo: **Fable** for copy, design direction, positioning, claim honesty, and any "this
-looks bad" call — that tier caught the services-page rebuild, the popularity-badge claim, and
-the title-card timing bug. **Opus** for a locked plan, a known repro, builds and deploys.
-**Sonnet/Haiku** for sweeps, formatting, probes. Subagents default to `sonnet`
-(`CLAUDE_CODE_SUBAGENT_MODEL`); name `model:` on every Agent call — copy and design legs get
-`fable`, verification legs get `sonnet`.
+## Model routing — reset 2026-09-04
+Operator ruling, 2026-09-04, verbatim: "leave the main model on fable 5.1 ultracode but us
+opus as subagents for majority of the work ... having fable guide all other models doing the
+grunt work."
+
+So: **Fable 5.1 is the main model and stays there.** It rules, writes briefs, and judges at
+the named checkpoints. It does not run build, deploy, playwright or screenshot loops.
+**Opus is the default subagent** (`CLAUDE_CODE_SUBAGENT_MODEL=opus` in
+`.claude/settings.json`, overriding the user-global `sonnet`) and does the majority of the
+work: execution briefs, verification, sweeps, research legs. Still name `model:` on every
+Agent and Workflow call: `opus` for execution and verification, `sonnet`/`haiku` only for
+trivial lookups, `fable` never from a subagent (the main model IS Fable; fan-out inheriting
+Fable is what ended the 5-hour window). What Fable caught on this repo and why it stays on
+top: the services-page rebuild, the popularity-badge claim, the title-card timing bug.
+
+Full policy: `C:/Users/micah/.claude/MODEL_ROUTING.md`. The arc shape below is unchanged.
 
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
@@ -57,7 +65,7 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - TypeScript strict (including `noUncheckedIndexedAccess`)
 - Tailwind CSS v4 — CSS-first `@theme` block in `app/globals.css`; NO `tailwind.config.ts`
 - `@tailwindcss/postcss` is a SEPARATE package from `tailwindcss` in v4 — both required
-- `next/font/google` for Inter (display + body weights) and Source Serif 4 with `axes: ['opsz']`. NO Klim at v1 (deferred to v2)
+- `next/font/google` — three faces, the Color Worlds system (Pass-37): Bricolage Grotesque (display, `opsz`), Hanken Grotesk (body), JetBrains Mono (labels, § codes, data — the DESIGN_BAR R1 "narrow third" only, never body or headings). `lib/fonts.ts` is the source of truth. Inter and Source Serif 4 are gone; do not reintroduce them. (Prose corrected 2026-09-04 to match live code.)
 - MDX via `@next/mdx`; `mdx-components.tsx` MUST live at REPO ROOT, not inside `app/`
 - GSAP 3.15 (free as of 2025) — quarantined to `components/TitleCard.tsx` only. ALL OTHER FILES must not import `gsap`. Pitfall C1: always `'use client'` + `useGSAP` hook
 - Lenis 1.3 via `lenis/react` subpath at ROOT layout — NOT in group layouts. `syncTouch: false` is locked (Pitfall D2)
@@ -66,7 +74,7 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - Vercel hosting + Analytics + Speed Insights (cookieless, no consent banner needed)
 
 ## What not to do
-- Do not introduce monospace fonts. Anywhere. `font-license.sh` rejects via `motion-discipline.sh` + bullet in `brand.json.motion.banned`.
+- Do not use monospace for anything beyond labels, § codes and data. JetBrains Mono is the cleared R1 "narrow third" (`app/layout.tsx`, Pass-37). Mono body copy, mono headings, or a terminal aesthetic remain banned; `motion-discipline.sh` + `brand.json.motion.banned` enforce that. (Prose corrected 2026-09-04; an external review called the font a violation, and it is not.)
 - Do not introduce a second accent color. `design-tokens.sh` warns on off-palette hex.
 - Do not introduce a second signature motion. `motion-engineer` agent refuses.
 - Do not add Framer Motion. Component-level enter/exit uses CSS transitions + `:hover` via Tailwind utilities.
@@ -75,7 +83,7 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - Do not import `gsap` outside `components/TitleCard.tsx`.
 - Do not write `tailwind.config.ts` — v4 has no JS config.
 - Do not put `mdx-components.tsx` inside `app/` — silent render failure.
-- Do not add `noindex` to `/work/ordani` "out of abundance of caution" (Pitfall E3). Allow Googlebot; block GPTBot + Google-Extended in `robots.txt`.
+- Do not add `noindex` to `/work/ordani` "out of abundance of caution" (Pitfall E3). `robots.txt` deliberately allows ALL crawlers including the AI bots — `app/robots.ts` reasons it in its header — so do not "fix" it to block them without an operator ruling. (Prose corrected 2026-09-04 to match live code; the block it used to describe never shipped.)
 - Do not add a dark mode toggle, `next-themes`, or any user-facing mode switcher. Mode is route-based.
 - Do not add `/now`, `/uses`, `/colophon`, decision log, BART status, or any other dev-Twitter tell (blueprint §13).
 - Do not add a client logo wall, "trusted by" bar, newsletter signup in nav, Calendly link in first volley, or budget dropdown on contact form.
