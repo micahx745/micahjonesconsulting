@@ -1,41 +1,41 @@
-# RESUME — micahjonesconsulting (2026-09-04, late)
+# RESUME — micahjonesconsulting (2026-09-04, night)
 
-## READ THIS FIRST — the DIRECT segment is closed; EXECUTE is next
-Main model Fable 5.1 rules; **Opus is the default subagent** and runs the work
-(`.claude/settings.json`). Direction: `.planning/PHASE-MAP-2026-09-04.md`.
-**The Pass 98 brief is written and committed:** `.claude/briefs/pass-98-playbook-landing.md`
-— exact strings, layout in existing tokens, verification commands with expected output,
-the rejected list, return conditions, parked items. Materials came from one Opus
-workflow (five reads + 38 attest skeptics): 30 phrases attested, 8 killed, saved at
-`.planning/research/01-APPENDIX-phrase-bank-attested.json`. The brief already treats the
-8 kills as operator wording or unverifiable.
+## READ THIS FIRST
+Fable 5.1 main, **Opus default subagent** (`.claude/settings.json`). Direction:
+`.planning/PHASE-MAP-2026-09-04.md`. Rulings there are settled; do not re-open them.
 
-**Next session:** `/clear`, `/model opus`, then
-1. **Pass 97** — the eight Class A defects from `.planning/RESEARCH-TO-ACTION-MAP-2026-09-04.md`
-   §3 (exact strings there). One commit. Verify with `scripts/snapshot-live.py` + the
-   retired-phrase grep = 0.
-2. **Pass 98** — run the brief verbatim. Fable returns only at its §7 checkpoints
-   (390 + 1440 preview, ledger grep, buyer read at ship).
-Do not re-derive either. Do not touch `product/playbook/` (frozen, stale — see parked).
+**Passes 97 and 98 are DONE, verified, judged, and UNSHIPPED.** Branch is 11 commits
+ahead of origin. `d614591` Pass-97 (eight Class A defects + `scripts/retired-phrases-gate.mjs`
+wired into the build + LESSONS #15). `0718578` Pass-98 (the playbook page from
+`.claude/briefs/pass-98-playbook-landing.md`; §9 has the type/contrast record, §10 the
+JUDGE verdict: holds, no fix-list). Independent Opus verifiers passed both, both flag states.
+**The live domain still serves every defect until the operator deploys.**
 
-## Blocked on the operator, in the order it blocks
-1. Stripe webhook registered + `whsec_` in Vercel Production + one live $500 buy/refund.
-   `PLAYBOOK_ON_SALE` stays OFF until done; /packages buttons are live over nothing today.
-2. Google his own name: is a superseded v0 page the first result? (Leg claim; unverifiable here.)
-3. Search Console verification. 4. The landing-page offer's name/price; replace Unstick or add.
-5. A portrait for the back cover. 6. Launch date → flip the flag + redeploy. 7. The $149 trigger.
-8. Book arc (other repo): ch8 as sample (edit list in brief §8.4), ch8 line 31 "third"→"first",
-   `publish:site` to refresh the stale frozen copy, "twenty years of selling" unledgered.
+## Ship gate for 97+98 (operator-owned, in order)
+1. **Register the Stripe webhook + `whsec_` in Vercel Production + one live $500
+   buy/refund** (`docs/MONEY-RAIL-TEST.md`). The `/packages` buttons are live over nothing.
+2. **Approve deploy** — quote it here with a date, then `docs/DEPLOY-RUNBOOK.md`, both
+   aliases (LESSONS #5). Then rerun `scripts/snapshot-live.py` against the LIVE domain and
+   the §5 script: this is the only verification that counts.
+3. At the gate, in a real browser: scroll `/playbook` (the world cross-fade), zoom the hero
+   wall chart at 1440 (labels went 8→11 SVG units), read hero→checkout in the ON state.
+4. `PLAYBOOK_ON_SALE=1` in Vercel + redeploy = the launch. Not before 1.
 
-## Site state
-Live, both domains re-aliased each deploy. Build gate = copy-lint + vendor-gate + `next build`
-+ render-gate. Traffic 7d: 26 visitors; `/playbook` #2 at 15. Zero revenue ever. All three
-research packages on disk in `.planning/research/`. Live-DOM snapshot at
-`.planning/snapshots/2026-09-04/`. Claims ledger `docs/LESSONS_LEARNED.md` #3 outranks memory.
+## Next passes (Opus, from new Fable briefs)
+99: the landing-page offer + `/services` `/packages` distribution reframe (needs his
+name/price ruling first). 100: home spear, Search Console, `/work` ItemList, sitemap
+lastmod, `/work/ordani` title. Book arc, other repo: ch8 as sample (brief §8.4), ch8:31
+"third"→"first", cover art "SOLO BUILDERS", `publish:site` to refresh the stale frozen
+copy, "twenty years of selling" unledgered, the $149 trigger.
+
+## Still blocked on the operator
+Google his own name (v0 page?) · Search Console · the offer's name/price · a portrait for
+the back cover · the launch date.
 
 ## Standing traps
 Stripe prefixes `sk_`/`pk_`/`mk_` · Vercel env applies only on a NEW deploy · `grep -oiF`
-false zeroes, use python utf-8 · strip `<script>` before counting · copy-lint hook rejects
-docs that QUOTE banned words · snapshot `.txt` fakes spaces at tag boundaries · a review is
-a reader, not an oracle · two sessions share this tree: stage by path · `--cw-accent`
-flips between hydration states, use literal tokens for new colour rules.
+false zeroes, python utf-8 · strip `<script>` before counting · copy-lint hook rejects docs
+that QUOTE banned words · snapshot `.txt` fakes spaces at tag boundaries · next/image
+srcset makes substring counts of image names meaningless, count `<img>` · full-page
+screenshots freeze the world cross-fade · `--cw-accent` flips across hydration, use literal
+tokens · a review is a reader, not an oracle · two sessions share this tree: stage by path.

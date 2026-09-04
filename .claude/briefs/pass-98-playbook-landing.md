@@ -510,3 +510,31 @@ pass of its own, not an adjacent fix inside this one.
 is 10, and 10 is also what two images at five entries each would read. The lines now count
 `<img>` elements, which is what the block always meant and is the stricter test. Measured
 against the OFF build: opener 1, rings 1.
+
+## 10. JUDGE return — Fable, 2026-09-04
+
+Looked once at `p98-off-1440.png`, `p98-off-390.png`, `p98-on-1440.png`, against §7.
+
+**Verdict: holds. No fix-list.** Pain order, rings-then-wall, the opener as a real
+full-bleed at 1440 and centred with room at 390, one form, and the ON back cover with the
+refund sentence directly under the pill. Independent verifiers passed §5 in both states,
+including a live click-through to a `cs_test_` Stripe session. Commits `d614591` (Pass-97)
+and `0718578` (Pass-98), local only.
+
+Deviations accepted as recorded in the file: meta at 158 (the render gate's 160 outranks
+the brief's miscount); clamp minimums snapped to scale steps; rings directly after
+`lp-you`, wall spread to § 0.3.
+
+For the record, not for a fix:
+- Full-page captures freeze the world cross-fade on the starting ground, so bone blocks
+  read espresso in every screenshot. The verifier measured contrast per section, centred,
+  which is the correct probe. **The ship-gate buyer read must scroll a real browser.**
+- `.cw-wallchart__lbl` 8 → 11 SVG units changed the figure's internal proportions. Not
+  judgeable at full-page scale. **One zoomed look at the hero figure at 1440 before ship.**
+- The refund sentence appears under the pill and in FAQ 4 in the ON state. Both stay: one
+  sits at the decision, one serves the skimmer. R17 is about the CTA, not the guarantee.
+- The book cover art still prints "SOLO BUILDERS". It is a render from the book repo; add
+  to the book arc with the chapter-8 items.
+
+Live-domain verification is UNVERIFIED until deploy, which is the operator's.
+
