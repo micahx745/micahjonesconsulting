@@ -1,0 +1,219 @@
+{
+ "_note": "Attested 2026-09-04 by one Opus skeptic per phrase against the on-disk evidence files. attested=false means the count could not be found on disk OR the phrase is the operator's own wording presented as market language. Use only attested entries in copy that claims market backing.",
+ "attested": [
+  {
+   "phrase": "claude code",
+   "count": "38 distinct authors",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:139 (§4, Developer distinctive vocabulary); room economics at :132-133; crickets=0 at :219",
+   "slot": "38 distinct authors — the single largest attested term anywhere in the measured package. Room: DEVELOPER subs (r/nextjs, r/cursor, r/ClaudeAI, r/webdev, r/ChatG"
+  },
+  {
+   "phrase": "landing page",
+   "count": "27 distinct asking authors, 2.2x lift (01-REDDIT-EVIDENCE.md:101); 118 authors in the all-business-authors register count (:86-88)",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:101 (§3 table); showcase-register count at :86-88; routing at .planning/research/03-FABLE-RESEARCH-LEG.md:89 and :117",
+   "slot": "27 distinct ASKING authors, 2.2x lift vs showcase, cluster: distribution. Room: BUSINESS. The largest term in the asking corpus. Second reading: 118 authors acr"
+  },
+  {
+   "phrase": "next app",
+   "count": "20",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:139 and the ruling at :141",
+   "slot": "20 distinct authors. Room: DEVELOPER. Listed as ≥1.5x more common in the developer room. Slot: none on /playbook. Framework-support vocabulary (“app router” 12,"
+  },
+  {
+   "phrase": "kept running",
+   "count": "13 distinct asking authors, 7.3x lift",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:102 (§3 table); corpus form quoted at :199",
+   "slot": "13 distinct ASKING authors, 7.3x lift vs showcase — second-highest lift in the entire dataset. Cluster: repeated failure. Room: BUSINESS. Corpus form is “I kept"
+  },
+  {
+   "phrase": "every single",
+   "count": "12 distinct authors, 3.3x lift vs showcase",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:103 (§3 table)",
+   "slot": "12 distinct ASKING authors, 3.3x lift vs showcase. Cluster: repeated failure. Room: BUSINESS. Slot: PAIN-BLOCK. The third-highest-count member of the only clust"
+  },
+  {
+   "phrase": "real users",
+   "count": "10 distinct asking authors, 2.8x lift vs showcase",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:104 (§3 table); headline use at .planning/research/03-FABLE-RESEARCH-LEG.md:88",
+   "slot": "10 distinct ASKING authors, 2.8x lift vs showcase. Cluster: distribution. Room: BUSINESS. Clears the ≥8-author headline bar the Fable leg set. Slot: HEADLINE or"
+  },
+  {
+   "phrase": "cold outreach",
+   "count": "9 distinct authors, 2.5x lift vs showcase",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:105 (§3 table)",
+   "slot": "9 distinct ASKING authors, 2.5x lift vs showcase. Cluster: distribution. Room: BUSINESS. Slot: FAQ or the chapter-08 line. Clears the ≥8 bar."
+  },
+  {
+   "phrase": "pain points",
+   "count": "9 distinct asking-post authors, lift \"only here\", cluster \"research\"",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:106 (§3 table); room listing at :138",
+   "slot": "9 distinct ASKING authors, lift: “only here” (appears in asking posts and not in showcase posts). Cluster: research. Room: BUSINESS. Slot: NONE. Attested but un"
+  },
+  {
+   "phrase": "i'm stuck",
+   "count": "8 distinct asking authors, lift \"only here\", cluster \"frame\"",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:107 (§3 table)",
+   "slot": "8 distinct ASKING authors, lift: “only here” — zero showcase usage. Cluster: frame. Room: BUSINESS. Clears the ≥8 bar. Slot: PAIN-BLOCK, META-DESCRIPTION. The b"
+  },
+  {
+   "phrase": "couldn't find",
+   "count": "8",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:108 (§3 table); “can't find” (10, developer) at :139",
+   "slot": "8 distinct ASKING authors, lift: “only here”. Cluster: research. Room: BUSINESS. Note the developer room has its own near-twin, “can't find” at 10 authors. Slot"
+  },
+  {
+   "phrase": "first users",
+   "count": "8 distinct authors, 1.4x lift vs showcase, cluster \"distribution\"",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:109 (§3 table); H1 use at .planning/research/03-FABLE-RESEARCH-LEG.md:89",
+   "slot": "8 distinct ASKING authors, 1.4x lift vs showcase. Cluster: distribution. Room: BUSINESS. Clears the ≥8 bar but carries the weakest lift in the distribution clus"
+  },
+  {
+   "phrase": "early users",
+   "count": "8 authors, 9.1x lift",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:110 (§3 table)",
+   "slot": "8 distinct ASKING authors, 9.1x lift vs showcase — the third-highest lift in the set and the highest of any distribution term. Cluster: distribution. Room: BUSI"
+  },
+  {
+   "phrase": "i'm struggling",
+   "count": "7",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:111 (§3 table)",
+   "slot": "7 distinct ASKING authors, lift: “only here”. Cluster: frame. Room: BUSINESS. Below the ≥8 headline bar. Slot: PAIN-BLOCK body only."
+  },
+  {
+   "phrase": "spent months",
+   "count": "7 distinct ASKING authors, 2.2x lift vs showcase (line 112 of .planning/research/01-REDDIT-EVIDENCE.md, §3 table)",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:112 (§3 table)",
+   "slot": "7 distinct ASKING authors, 2.2x lift vs showcase. Cluster: sunk time. Room: BUSINESS. Below the ≥8 bar. Slot: PAIN-BLOCK."
+  },
+  {
+   "phrase": "keep running",
+   "count": "6 distinct authors, 13.4x lift",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:113 (§3 table); classifier seed at :70",
+   "slot": "6 distinct ASKING authors, 13.4x lift vs showcase — the HIGHEST lift in the entire dataset. Cluster: repeated failure. Room: BUSINESS. Below the ≥8 headline bar"
+  },
+  {
+   "phrase": "conversion rate",
+   "count": "6 distinct asking authors, 3.3x lift vs showcase, cluster: distribution",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:114 (§3 table); routing at .planning/research/03-FABLE-RESEARCH-LEG.md:60",
+   "slot": "6 distinct ASKING authors, 3.3x lift vs showcase. Cluster: distribution. Room: BUSINESS. Slot: NONE on /playbook. Belongs to the proposed landing-page teardown "
+  },
+  {
+   "phrase": "paid ads",
+   "count": "6 distinct asking authors, 2.2x lift",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:115 (§3 table)",
+   "slot": "6 distinct ASKING authors, 2.2x lift vs showcase. Cluster: distribution. Room: BUSINESS. Slot: NONE on /playbook — the book contains no paid-acquisition chapter"
+  },
+  {
+   "phrase": "user base",
+   "count": "6 distinct asking authors, 6.7x lift",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:116 (§3 table)",
+   "slot": "6 distinct ASKING authors, 6.7x lift vs showcase. Cluster: distribution. Room: BUSINESS. Slot: DEK body only — below the count bar, but high lift."
+  },
+  {
+   "phrase": "love to hear / honest feedback / happy to answer",
+   "count": "love to hear = 140 authors; honest feedback = 121; happy to answer = 84 (01-REDDIT-EVIDENCE.md:86-88). Showcase/stuck shares 26.1% / 8.0% at :76-77. Filtering rule (\"more common among askers than among showcasers, because a phrase equally common in both is register, not pain\") at :94-97, not :96-98.",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:86-88 (§2) and the filtering rule at :96-98",
+   "slot": "140, 121 and 84 distinct authors respectively — the three most-used phrases across all 2,067 business-sub authors, and by a wide margin the largest counts in th"
+  },
+  {
+   "phrase": "crickets",
+   "count": "29 hits / 8.9% in r/buildinpublic (325 bodies); 0 across 545 combined bodies in r/cursor + r/ClaudeAI + r/ChatGPTCoding",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:186 (§6 table, column header “Hits”); dev-room zero at :219; the nine-times ruling at :193-195",
+   "slot": "29 HITS in 325 r/buildinpublic bodies = 8.9%. Room: BUSINESS (r/buildinpublic only). Measured as 0 across 545 combined bodies in r/cursor + r/ClaudeAI + r/ChatG"
+  },
+  {
+   "phrase": "go-to-market",
+   "count": "0 occurrences of \"go-to-market\" (also 0 for \"go to market\" and \"gtm\", case-insensitive) in .planning/research/01-REDDIT-EVIDENCE.md, whole file (11,840 chars); 0 on the live /playbook snapshot",
+   "source": ".planning/research/03-FABLE-RESEARCH-LEG.md:66 (E2 #8) and :90; absence verified against .planning/research/01-REDDIT-EVIDENCE.md (0 hits, whole file)",
+   "slot": "NEGATIVE. ZERO occurrences anywhere in the measured package — I grepped 01-REDDIT-EVIDENCE.md in full: the string does not appear. The Fable leg's ruling is tha"
+  },
+  {
+   "phrase": "sameness (= 19 in r/SaaS)",
+   "count": "19 (explicit upper bound; \"Adjudicated figure could be 5\")",
+   "source": ".planning/research/01-REDDIT-EVIDENCE.md:230 (open question 2); ruling at .planning/research/03-FABLE-RESEARCH-LEG.md:155 and :102",
+   "slot": "NEGATIVE, and not this page's problem — recorded so the brief does not borrow it. 19 posts in r/SaaS, described by the evidence package as an explicit UPPER BOU"
+  },
+  {
+   "phrase": "My biggest problem right now is distribution.",
+   "count": "1 occurrence in 37 posts (array index 25 = post #26); post metadata score 1, comments 0. No lift/frequency figure — this is a single verbatim sentence, n=1, not a counted market phrase.",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 25, `.excerpt` final sentence; classification at .planning/research/03-FABLE-RESEARCH-LEG.md:22",
+   "slot": "VERBATIM BUYER SENTENCE. Post #26 (JSON array index 25). r/SaaS, score 1, comments 0. Permalink: https://www.reddit.com/r/SaaS/comments/1rurcqf/im_a_20yo_studen"
+  },
+  {
+   "phrase": "I built a tiny SaaS. It worked. I got 3 real payments after an accidental community spike. Then nothing. No sales. No repeatable traffic.",
+   "count": "n/a — not a frequency claim; single verbatim post. Post #11 = JSON array index 10; score 0, comments 6, sub \"SaaS\"; classified under post-launch distribution stalls at 03-FABLE-RESEARCH-LEG.md:22.",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 10, `.excerpt`; classification at .planning/research/03-FABLE-RESEARCH-LEG.md:22",
+   "slot": "VERBATIM BUYER SENTENCE. Post #11 (JSON array index 10). r/SaaS, score 0, comments 6. Permalink: https://www.reddit.com/r/SaaS/comments/1tzrp1h/i_analyzed_102_r"
+  },
+  {
+   "phrase": "the honest reason it died wasn't the product. the product was fine. it was that I had zero system for marketing.",
+   "count": "1 (single post: array index 28, r/buildinpublic, score 1, comments 0 — n=1 occurrence, no corpus-frequency lift)",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 28, `.excerpt`; classification at .planning/research/03-FABLE-RESEARCH-LEG.md:22",
+   "slot": "VERBATIM BUYER SENTENCE. Post #29 (JSON array index 28). r/buildinpublic, score 1, comments 0. Permalink: https://www.reddit.com/r/buildinpublic/comments/1t9eda"
+  },
+  {
+   "phrase": "The hard part of building software was never really the coding. It was always figuring out what to build, how to scope it, what to cut, what matters to users.",
+   "count": "1 (single verbatim instance; post #4 = JSON array index 3, score 0, comments 14 — no frequency/lift figure exists for this sentence, it is not a pattern-matched phrase)",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 3, `.excerpt`; named as representative at .planning/research/01-REDDIT-EVIDENCE.md:160",
+   "slot": "VERBATIM BUYER SENTENCE. Post #4 (JSON array index 3). r/EntrepreneurRideAlong, score 0, comments 14. Permalink: https://www.reddit.com/r/EntrepreneurRideAlong/"
+  },
+  {
+   "phrase": "every update risked breaking it. i couldn't improve it without basically rewriting everything from scratch",
+   "count": "1 of 37 ICP posts (JSON array index 20, i.e. post #21) — verbatim in `.excerpt`, and the only occurrence of either half of the phrase across all 37 excerpts",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 20, `.excerpt`; classification at .planning/research/03-FABLE-RESEARCH-LEG.md:22",
+   "slot": "VERBATIM BUYER SENTENCE, and the ONE that supports the current copy. Post #21 (JSON array index 20). r/SaaS, score 1, comments 1. Permalink: https://www.reddit."
+  },
+  {
+   "phrase": "I'm hitting a wall, and I need a reality check from experienced founders.",
+   "count": "1 verbatim occurrence in the 37-post corpus (array index 1, `.excerpt`); post score 1, comments 47 — both match. \"wall\" as a noun appears in 2 of 37 posts, not 1.",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 1, `.excerpt`; classification at .planning/research/03-FABLE-RESEARCH-LEG.md:22; the score/comment asymmetry called out at .planning/research/01-REDDIT-EVIDENCE.md:163-165",
+   "slot": "VERBATIM BUYER SENTENCE. Post #2 (JSON array index 1). r/SaaS, score 1, comments 47 — the highest comment count in the whole set against a score of 1. Permalink"
+  },
+  {
+   "phrase": "But instead of marketing it, I spent the last two weeks obsessing over \"UX gaps\" that I felt were show-stoppers.",
+   "count": "1 post (verbatim single-post excerpt, not a frequency-counted phrase); post score 1, comments 3",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 14, `.excerpt`; classification at .planning/research/03-FABLE-RESEARCH-LEG.md:22",
+   "slot": "VERBATIM BUYER SENTENCE. Post #15 (JSON array index 14). r/buildinpublic, score 1, comments 3. Permalink: https://www.reddit.com/r/buildinpublic/comments/1qga6l"
+  },
+  {
+   "phrase": "I'm hitting the classic \"build it vs. sell it first\" dilemma.",
+   "count": "1 verbatim occurrence in the corpus (array index 7 / post #8); supporting counts confirmed: \"landing page\" = 27 authors at 2.2x lift in 01-REDDIT-EVIDENCE.md; 2 of 37 ICP posts contain the string \"landing page\" (indices 4 and 7)",
+   "source": ".planning/research/01-APPENDIX-intersection-37.json array index 7, `.excerpt`; classification at .planning/research/03-FABLE-RESEARCH-LEG.md:22",
+   "slot": "VERBATIM BUYER SENTENCE. Post #8 (JSON array index 7). r/microsaas, score 2, comments 10. Permalink: https://www.reddit.com/r/microsaas/comments/1qgapzg/i_built"
+  }
+ ],
+ "killed": [
+  {
+   "phrase": "It shipped. Nobody came.",
+   "why": "operator wording, not corpus. \"It shipped. Nobody came.\" appears once in .planning/snapshots/2026-09-04/playbook.txt — i.e. it is the live site's own line, the operator's sentence. Searching .planning"
+  },
+  {
+   "phrase": "every change broke something that worked yesterday (the regression-loop family)",
+   "why": "operator wording, not corpus. The phrase is the playbook page's own second sentence (\"It got to eighty percent. Then every change broke something that worked yesterday.\" — confirmed verbatim in .plann"
+  },
+  {
+   "phrase": "solo builders",
+   "why": "Operator wording, not corpus. The cited source is real and the quoted ruling is real: 03-FABLE-RESEARCH-LEG.md line 30 reads \"**\\\"solo builder\\\" (site term) vs \\\"solo founder.\\\"** \\\"solo founder\\\" is "
+  },
+  {
+   "phrase": "solo founder",
+   "why": "The cited line exists and says what the prior agent quoted. C:/Users/micah/Code/micahjonesconsulting/.planning/research/03-FABLE-RESEARCH-LEG.md line 30 reads: '**\"solo builder\" (site term) vs \"solo f"
+  },
+  {
+   "phrase": "vibe coding",
+   "why": "The claimed count of 10 does not exist in any on-disk evidence file. Checks run with python/utf-8: (1) `.planning/research/01-REDDIT-EVIDENCE.md` — the measured package, 251 lines — contains the subst"
+  },
+  {
+   "phrase": "the wall / gate (as pain patterns)",
+   "why": "Two independent failures. (1) Not traceable to a count: the only on-disk numbers are the Fable leg's restatement of a file that does not exist in .planning/research/ (no reference/ directory at all — "
+  },
+  {
+   "phrase": "80% / the 80% Wall (as a search term)",
+   "why": "Operator wording, not corpus. The cited source lines both exist and say exactly what the prior agent reported: 03-FABLE-RESEARCH-LEG.md:96 reads \"*Attestation caveat:* \\\"80%\\\"/\\\"the wall\\\" are the **p"
+  },
+  {
+   "phrase": "stuck between demo and production",
+   "why": "The claim is a SPLIT and only the attested half survives. Verified with python/utf-8: .planning/research/01-REDDIT-EVIDENCE.md:107 reads \"| 8 | only here | **i'm stuck** | frame |\" — count 8 and lift "
+  }
+ ]
+}
