@@ -158,7 +158,7 @@ export async function submitBooking(formData: {
       replyTo: email,
       subject: `Booked: ${name} — ${prettyWhen}`,
       text: [
-        `New intro call booked via /book.`,
+        `New intro call booked via /call.`,
         "",
         `Who:  ${name} <${email}>`,
         `When: ${prettyWhen} (30 min)`,

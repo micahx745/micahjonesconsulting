@@ -369,7 +369,7 @@ export function Hero() {
         {/* Pass-93, operator 2026-09-03: "Booking replaces the contact form for
             engagements", reversing Pass-82 for this lane. /contact stays in the
             nav for anyone who would rather write than take a slot. */}
-        <a href="/book" className="cw-mlink">
+        <a href="/call" className="cw-mlink">
           Book a free intro call <span aria-hidden>→</span>
         </a>
       </div>

@@ -1,12 +1,17 @@
-// app/(foyer)/book/kickoff/page.tsx
+// app/(foyer)/call/kickoff/page.tsx
 //
 // The kickoff call a PACKAGE BUYER has already paid for. Reached from
 // /services/thanks and from the package delivery email.
 //
 // Pass-82: this is now the ONLY booking page. The operator ruled 2026-09-02
-// that booking sits behind the purchase everywhere, so the free-intro-call
-// page at /book is retired and 301s to /contact (next.config.ts). Someone who
-// has not bought anything writes a note; someone who has, books here.
+// that booking sits behind the purchase everywhere; the free-intro-call page
+// came back for engagements on 2026-09-03. Someone who has not bought anything
+// writes a note or books an intro call; someone who has, books here.
+//
+// Pass-98: this route was /book/kickoff. Both booking routes moved to /call so
+// the word "book" means the 69-page manual at /playbook and nothing else. The
+// old paths 308 (next.config.ts) because they are printed in delivery emails
+// that are already in people's inboxes.
 //
 // noindex: post-purchase page. It should never surface in a search result
 // offering a "kickoff call" to a stranger. The render-gate skips META limits
@@ -30,7 +35,7 @@ export const metadata: Metadata = {
     "Put the kickoff call for your package on the calendar. Thirty minutes, Tue to Thu, Pacific.",
   robots: { index: false, follow: false },
   alternates: {
-    canonical: "https://www.micahjonesconsulting.com/book/kickoff",
+    canonical: "https://www.micahjonesconsulting.com/call/kickoff",
   },
 };
 

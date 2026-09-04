@@ -153,7 +153,7 @@ Entries 2-5 unchanged.
 
 - `<title>`: `The 80% Wall: it shipped, nobody came` (the layout appends the suffix; total
   51 chars).
-- Description: `You built it with AI and shipped it. Now get the first ten users. Ten chapters, 69 pages, 26 working files, from the operator who shipped a HIPAA-compliant SaaS solo.` (156 chars.)
+- Description: `You built it with AI and shipped it. Now get the first ten users. Ten chapters, 69 pages, 26 working files, from the operator who shipped a HIPAA-compliant SaaS solo.` (156 chars by this brief's count; the string measures 166 and the render gate caps at 160 — see the deviation record in §9.)
 - OG image (`app/(foyer)/playbook/opengraph-image.tsx`): punch unchanged (the H1). Subline:
   find `solo builders`, replace `solo founders`.
 - JSON-LD: keep Book and FAQPage. Add `Product` with `offers: Offer { price: "99",
@@ -243,8 +243,9 @@ chk={'It shipped. Nobody came.':1,'kept running into':1,'worked yesterday':0,'so
 for k,v in chk.items(): print(('OK ' if t.count(k)==v else 'FAIL '),repr(k),t.count(k),'expected',v)
 print('forms:',raw.count('<form'),'expected 1')
 print('email inputs:',raw.count('name="email"'),'expected 1')
-print('opener img:',raw.count('spread-opener-02.png'),'expected 1')
-print('rings img:',raw.count('spread-rings.png'),'expected 1')
+imgs=re.findall(r'<img\b[^>]*>',raw)
+print('opener img:',sum(1 for i in imgs if 'spread-opener-02.png' in i),'expected 1')
+print('rings img:',sum(1 for i in imgs if 'spread-rings.png' in i),'expected 1')
 print('cw-reveal:',raw.count('cw-reveal'),'expected 0')
 print('hrefs to /book:',raw.count('href="/book'),'expected 0')
 import json
@@ -257,6 +258,11 @@ curl -sI https://www.micahjonesconsulting.com/book/kickoff | grep -i "^HTTP\|^lo
 grep -rn '"/book' app lib components content | grep -v next.config                  # expect no output
 python scripts/retired-phrase-grep.py 2>/dev/null || python /tmp/precise.py         # retired phrases 0, banned words 0
 ```
+
+The two image lines count `<img>` elements, not raw substrings. `next/image` emits a
+ten-entry `srcset`, so `raw.count('spread-rings.png')` reads 10 for a single mounted
+image, and would read the same 10 for two images at five entries each. Counting the tag
+is what the block means and is the stricter of the two tests.
 
 Two states of the flag:
 ```
@@ -330,12 +336,177 @@ Anything else lands from this brief without me.
    the first one. Change "third" → "first" in `the-80-percent-wall/src/chapter-08.typ:31`
    before the book goes on sale. Nobody sees the mismatch until then (the sample is
    chapter 1).
-6. **Re-publish the frozen copy.** `product/playbook/` is stale: the site's own gate reports
-   10 findings against it that the book repo does not have. Run `publish:site` from the
-   book repo, then commit here.
+6. **Re-publish the frozen copy.** `product/playbook/` is stale: `scripts/ordani-claims-gate.mjs`
+   reports 10 findings against it that the book repo does not have, all of them in
+   `product/playbook/src/chapter-0{1,3,5,7,8}.typ` and `chapter-10.typ` (4 retired user
+   counts, 6 security-mechanism sentences near Ordani's name). That gate is not in the
+   `pnpm build` chain, so it blocks nothing; the copy is frozen and Pass 98 did not touch
+   it. Run `publish:site` from the book repo, then commit here.
 7. **The $149 trigger** (a date, or an interval after launch). Moves the book's p.42 too.
 8. **A portrait for the page.** `hero-context.jpg` is mounted small in the rail; a real
    photograph at the back cover beside the Author row is the remaining "who are you"
    answer. R12: photograph only.
 9. **Chapter 8 carries "twenty years of selling"** at `chapter-08.typ:59`, unledgered. Not
    this repo; flagged for the book session.
+
+
+## 9. Execution record — type and contrast probe
+
+Opus, 2026-09-04, against the OFF build served from `next start -p 3111`. Playwright,
+Chromium. Method: walk every text node in `<body>`; skip `script`/`style`/`title`/`desc`,
+`display:none`, `visibility:hidden`, zero-box and above-viewport elements; record the
+parent's computed `font-size`. Contrast composites the element's colour through every
+ancestor `opacity` onto its ground, where the ground is the nearest opaque ancestor
+background or, failing that, the section's own `data-world` colour (the root repaints as
+you scroll, so measuring against the live root would grade every off-screen section
+against the wrong world). Fixed chrome with no `data-world` ancestor is measured against
+the live root pair, which globals.css:1649 establishes as an AA pair in every world.
+
+### Before / after, every class this pass touched
+
+| Class | Before | After | Step |
+| --- | --- | --- | --- |
+| `.cw-lp-object__title` | `clamp(40px, 4.6vw, 62px)` | `clamp(48px, 5.4vw, 74px)` | 74 / 48 |
+| `.cw-services__foot-title` (scoped to `.cw-lp`) | `clamp(28px, 3.4vw, 48px)` | `clamp(32px, 3.4vw, 48px)` | 48 / 32 |
+| `.cw-lp-h` | `clamp(26px, 2.6vw, 32px)` | `clamp(24px, 2.6vw, 32px)` | 32 / 24 |
+| `.cw-lp-lines p` | `clamp(20px, 2vw, 24px)` | unchanged | 24 / 20 |
+| `.cw-lp-log__title` | 22 | 24 | 24 |
+| `.cw-lp-toc__num` | 22 | 24 | 24 |
+| `.cw-wordmark` (scoped by `:has(.cw-lp)`) | 22 | 24 | 24 |
+| `.cw-lp-object__sub` | 18 | 20 | 20 |
+| `.cw-lp-spec dd strong` | 18 | 20 | 20 |
+| `.cw-lp-object__cta` (`.cw-cta` was 19) | 19 | 20 | 20 |
+| `.cw-diff__quote` | `clamp(17px, 1.7vw, 20px)` | unchanged | 20 / 17 |
+| `.cw-lp-body` | 17 | unchanged | 17 |
+| `.cw-lp-toc__title` | 17 | unchanged | 17 |
+| `.cw-signup button` | 17 | unchanged | 17 |
+| `.cw-lp-log p` | 15 | 17 | 17 |
+| `.cw-lp-files li` | 15 | 17 | 17 |
+| `.cw-lp-faq dd` | 15 | 17 | 17 |
+| `.cw-diff__lede` | 16 | 17 | 17 |
+| `.cw-lp-back__note` | 16 | 17 | 17 |
+| `.cw-signup input` (scoped) | 16 | 17 | 17 |
+| `.cw-pagefoot__promise` (scoped) | 16 | 17 | 17 |
+| `.cw-lp-object__by` | 14 | unchanged | 14 |
+| `.skip-to-content` | 14 | unchanged | 14 |
+| `.cw-lp-note` | 13 | 14 | 14 |
+| `.cw-diff__note` | 13 | 14 | 14 |
+| `.cw-lp-kicker` | 11 | unchanged | 11 |
+| `.cw-lp-object__meta` | 11 | unchanged | 11 |
+| `.cw-lp-block__rail` | 11 | unchanged | 11 |
+| `.cw-lp-toc__page` | 11 | unchanged | 11 |
+| `.cw-lp-spec` | 11 | unchanged | 11 |
+| `.cw-diff__eyebrow`, `.cw-diff__lbl` | 11 | unchanged | 11 |
+| `.cw-wallchart__cap` | 11 | unchanged | 11 |
+| `.cw-lp-note__lbl` | 10 | 11 | 11 |
+| `.cw-lp-cap` | 10 | 11 | 11 |
+| `.cw-lp-log__head` | 10 | 11 | 11 |
+| `.cw-lp-toc__tag` | 10 | 11 | 11 |
+| `.cw-lp-faq dt` | 10 | 11 | 11 |
+| `.cw-lp-author__cap` (mounted nowhere) | 10 | 11 | 11 |
+| `.cw-mlink`, `.cw-msg` (scoped) | 12 | 11 | 11 |
+| `.cw-pagefoot__row` (scoped) | 12 | 11 | 11 |
+| `.cw-services__foot-kicker` (scoped) | 12 | 11 | 11 |
+| `.cw-navlinks`, `.cw-menubtn` (scoped by `:has`) | 12 | 11 | 11 |
+| `.cw-wallchart__lbl` | 8 | 11 | 11 |
+
+**Deviations from §3.1, both to keep the eight-step rule the table exists to serve.** The
+brief's hero minimum was 44px and its `.cw-lp-h` minimum stayed 26px. `clamp()` renders
+its MINIMUM at 390, so a min that is not a step puts a ninth and tenth value on the page
+at that width. 48 and 24 are steps; 44 and 26 are not. The full deviation list, type and
+copy together, is at the end of this section.
+
+### Result — 1440 x 900
+
+Distinct computed sizes: **8**. Values: **74, 48, 32, 24, 20, 17, 14, 11**.
+Largest / `.cw-lp-body` = 74 / 17 = **4.35** (floor 4.0). Adjacent ratios: 1.54, 1.50,
+1.33, 1.20, 1.18, 1.21, 1.27 — every one clears the 15% bar.
+
+### Result — 390 x 844
+
+Distinct computed sizes: **7**. Values: **48, 32, 24, 20, 17, 14, 11** — a subset of the
+same eight. Largest / body = 2.82 (the brief sets the 4.0 floor at 1440).
+
+### Mono labels, worst first (1440, composited)
+
+| Label | px | Contrast | Ground |
+| --- | --- | --- | --- |
+| `.cw-lp-block__rail` | 11 | 5.27 | bone |
+| `.cw-lp-note__lbl` | 11 | 5.27 | bone |
+| `.cw-lp-toc__tag em` | 11 | 5.27 | bone |
+| `.cw-lp-object__meta` | 11 | 5.42 | espresso |
+| `.cw-lp-kicker` | 11 | 6.13 | espresso |
+| `.cw-lp-spec dt` | 11 | 6.13 | espresso |
+| `.cw-lp-cap` | 11 | 8.28 | bone |
+| `.cw-lp-toc__tag` | 11 | 8.28 | bone |
+| `.cw-lp-toc__page` | 11 | 8.28 | bone |
+| `.cw-lp-spec dd` | 11 | 10.43 | espresso |
+| `.cw-services__foot-kicker` | 11 | 10.43 | espresso |
+| `.cw-navlinks a` | 11 | 10.84 | live world pair |
+| `.cw-mlink` | 11 | 12.59 | espresso |
+
+Minimum 5.27 against a 4.5 floor. Identical at 390. Five labels were repaired to get
+there, four of them named in §3.2 and one the probe found:
+
+| Label | Was | Measured | Now | Measures |
+| --- | --- | --- | --- | --- |
+| `.cw-lp-toc__page` | bone ground, `opacity: 0.55` | 3.43 | `--color-cw-petrol`, no opacity | 8.28 |
+| `.cw-lp-cap` | bone ground, `opacity: 0.6` | 3.95 | `--color-cw-petrol` | 8.28 |
+| `.cw-lp-toc__tag` | bone ground, `opacity: 0.6` | 3.95 | `--color-cw-petrol` | 8.28 |
+| `.cw-wallchart__cap` | espresso ground, `opacity: 0.45` | 3.67 | `--color-cw-saffron` | 6.13 |
+| `.cw-lp-note__lbl` | terracotta inside `.cw-lp-note`'s `opacity: 0.82` | 3.83 | parent opacity replaced by an equivalent `color-mix`, so nothing inherits it | 5.27 |
+| `.cw-lp-log__head span:last-child` | `color-mix(bone 50%)` on espresso | 4.20 | `color-mix(bone 75%)` | 7.66 |
+
+The last one was not on the §3.2 list and is not mono; it is the build-log card's date, an
+11px label sitting under AA, so it was fixed with the rest. Every non-mono text node was
+also measured with its own section centred, so the world tokens resolve to the pair the
+reader actually sees: nothing on the page reads below 4.5:1 (3:1 for large text).
+
+### Not measured, and why
+
+`.cw-wallchart__lbl` is SVG text inside a `340 x 168` viewBox, so its computed
+`font-size` is a user-unit count, not a rendered size. It is listed at 11 because that is
+what the probe reads and what keeps the page on eight steps; at the figure's 400px display
+width it renders at about 12.9px, up from about 9.4px.
+
+### Deviations from the brief — the complete list
+
+Three, and nothing else. Every other string in §2 ships as written.
+
+**1. Type scale minimums (§3.1).** Recorded above: hero `clamp()` min 48 not 44, `.cw-lp-h`
+min 24 not 26, because `clamp()` renders its minimum at 390 and a min that is not a step
+puts a ninth value on the page at that width.
+
+**2. Meta description (§2.9): "26 working files" ships as "26 files".** The brief's string
+is annotated 156 characters; it measures 166, and `scripts/render-gate.mjs` caps the
+description at 160. Dropping the one adjective is the only edit to that sentence that costs
+no number and no clause. Measured:
+
+```
+$ python -c "s='You built it with AI and shipped it. Now get the first ten users. Ten chapters, 69 pages, 26 working files, from the operator who shipped a HIPAA-compliant SaaS solo.'; print(len(s), len(s.replace('26 working files','26 files')))"
+166 158
+```
+
+Rendered: 158 characters, under the gate.
+
+**3. Apostrophes render as U+2019, not the brief's ASCII `'`.** §2.7's OFF-state string is
+written `I'll tell you`; the page carries `I&rsquo;ll tell you` and renders `I’ll tell you`.
+This is the site's TSX convention, not a Pass 98 choice: 9 files across `app/` and
+`components/` carry 16 `&rsquo;` entities, and JSX would reject a bare `'` in text under
+`react/no-unescaped-entities`. Verbatim in substance; one codepoint apart in the source. It
+applies to every apostrophe in §2, not only this string.
+
+Measured across all 19 snapshotted routes, the site is not uniform: 11 U+2019 against 20
+ASCII. The ASCII side is MDX prose, which does not smart-quote (`/work/ordani` 8,
+`/work/rfp-engine` 4, `/work/content-engine` 3). `/playbook` itself carries 4 U+2019 and one
+ASCII, at `page.tsx:100`, in the chapter-three TOC title `The architecture you didn't draw`.
+That line predates Pass 98 and Pass 98 did not touch it; a site-wide apostrophe sweep is a
+pass of its own, not an adjacent fix inside this one.
+
+### Probe correction
+
+§5's `opener img` and `rings img` lines originally counted raw substrings and expected 1.
+`next/image` emits a ten-entry `srcset`, so the true reading for one correctly mounted image
+is 10, and 10 is also what two images at five entries each would read. The lines now count
+`<img>` elements, which is what the block always meant and is the stricter test. Measured
+against the OFF build: opener 1, rings 1.

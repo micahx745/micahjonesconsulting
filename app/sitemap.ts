@@ -58,10 +58,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    // Pass-22 (SEO sweep): /book, /playbook were live with
+    // Pass-22 (SEO sweep): the booking route and /playbook were live with
     // canonicals + OG but absent here — invisible to crawlers that
     // lean on the sitemap. /playbook is a conversion target for the
-    // Buyer-B "vibe coder" query space; /book is the site-wide CTA.
+    // Buyer-B "vibe coder" query space; /call is the site-wide CTA.
+    // Pass-98 renamed that route from /book to /call; a redirect source must
+    // never sit in a sitemap, so the old path is not listed.
     {
       // Pass-70: the fixed-price lane split out of /services.
       url: `${BASE_URL}/packages`,
@@ -70,16 +72,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      // Pass-76: /contact is the site-wide "reach me" route now. /book stays
-      // indexed but drops below it — a scheduled call is the step after a
-      // purchase, not the front door it used to be.
+      // Pass-76: /contact is the site-wide "reach me" route now. The booking
+      // route stays indexed but drops below it — a scheduled call is the step
+      // after a purchase, not the front door it used to be.
       url: `${BASE_URL}/contact`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/book`,
+      url: `${BASE_URL}/call`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.6,

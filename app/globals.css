@@ -4863,13 +4863,13 @@ body {
 [data-mode="cw"] .cw-lp-object__title {
   font-family: var(--font-cw-display);
   font-weight: 800;
-  font-size: clamp(40px, 4.6vw, 62px);
+  font-size: clamp(48px, 5.4vw, 74px);
   line-height: 0.98;
   letter-spacing: -0.02em;
   margin: 0 0 26px;
 }
 [data-mode="cw"] .cw-lp-object__sub {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
   margin: 0 0 18px;
   opacity: 0.92;
@@ -4945,7 +4945,10 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 18px 0;
-  margin: 0 0 84px;
+  /* Pass-98: 84 -> 96. Every gap on this page was 84px, which is a rhythm
+     with no accents in it. .cw-lp-block--breath below carries the two that
+     are meant to be felt. */
+  margin: 0 0 96px;
 }
 @media (min-width: 1000px) {
   [data-mode="cw"] .cw-lp-block {
@@ -4973,19 +4976,23 @@ body {
 [data-mode="cw"] .cw-lp-note {
   margin: 14px 0 0;
   font-family: var(--font-cw-body);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.55;
   letter-spacing: 0;
   text-transform: none;
-  /* book grammar: note body in ink, only the label in terracotta */
-  color: var(--color-cw-espresso);
-  opacity: 0.82;
+  /* book grammar: note body in ink, only the label in terracotta.
+     Pass-98: this was `color: espresso; opacity: 0.82`, and opacity is
+     inherited by children — so the terracotta "Field note" label inside it
+     rendered at 3.83:1, under AA, while the note body it was quieting read
+     7.62:1. The mix below is the same colour on the bone ground and stops at
+     this element, so the label keeps its full 5.27:1. */
+  color: color-mix(in srgb, var(--color-cw-espresso) 82%, var(--color-cw-bone));
   max-width: 210px;
 }
 [data-mode="cw"] .cw-lp-note__lbl {
   display: block;
   font-family: var(--font-cw-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-cw-terracotta);
@@ -5009,16 +5016,17 @@ body {
 [data-mode="cw"] .cw-lp-author__cap {
   margin-top: 6px;
   font-family: var(--font-cw-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-cw-espresso);
-  opacity: 0.62;
+  /* Pass-98: was espresso at 0.62 = 4.18:1, under AA. Petrol on bone is
+     8.28:1 and needs no opacity to read quieter than the note beside it. */
+  color: var(--color-cw-petrol);
 }
 [data-mode="cw"] .cw-lp-h {
   font-family: var(--font-cw-display);
   font-weight: 800;
-  font-size: clamp(26px, 2.6vw, 32px);
+  font-size: clamp(24px, 2.6vw, 32px);
   line-height: 1.1;
   margin: 0 0 18px;
 }
@@ -5090,7 +5098,10 @@ body {
   /* display face, not the kicker: .cw-lp-kicker is mono, which is banned for
      new surfaces. Matches the same-pass decision in .cw-diff__eyebrow. */
   font-family: var(--font-cw-display);
-  font-size: 8px;
+  /* Pass-98: 8px was the smallest type on the page and the one value below
+     the eight-step scale. These are user units in a 340-wide viewBox, so at
+     the figure display width of 400px, 11 renders as about 12.9px. */
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -5114,8 +5125,9 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-cw-bone);
-  opacity: 0.45;
+  /* Pass-98: bone at 0.45 measured 3.67:1, under AA for an 11px label.
+     Saffron is the espresso world own accent, at 6.13:1. */
+  color: var(--color-cw-saffron);
 }
 
 @media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
@@ -5217,7 +5229,7 @@ body {
   padding-left: 16px;
   border-left: 2px solid
     color-mix(in srgb, var(--color-cw-terracotta) 55%, transparent);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.55;
 }
 [data-mode="cw"] .cw-lp-files strong {
@@ -5258,7 +5270,7 @@ body {
 }
 [data-mode="cw"] .cw-diff__lede {
   display: block;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.55;
   max-width: 34rem;
   opacity: 0.86;
@@ -5308,7 +5320,7 @@ body {
 }
 [data-mode="cw"] .cw-diff__note {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   opacity: 0.7;
 }
@@ -5341,10 +5353,13 @@ body {
 }
 [data-mode="cw"] .cw-lp-cap {
   font-family: var(--font-cw-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.6;
+  /* Pass-98: opacity 0.6 on bone measured 3.95:1. A caption that names the
+     page number is the one label a buyer checks against the book, so it gets
+     a colour and not a fade. Petrol on bone is 8.28:1. */
+  color: var(--color-cw-petrol);
   margin: 10px 0 0;
 }
 
@@ -5360,23 +5375,25 @@ body {
   justify-content: space-between;
   gap: 16px;
   font-family: var(--font-cw-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-cw-saffron);
   margin: 0 0 14px;
 }
+/* Pass-98: 50% bone on espresso measured 4.20:1, just under AA. 75% is
+   7.66:1 and still reads as the quieter half of the pair. */
 [data-mode="cw"] .cw-lp-log__head span:last-child {
-  color: color-mix(in srgb, var(--color-cw-bone) 50%, transparent);
+  color: color-mix(in srgb, var(--color-cw-bone) 75%, transparent);
 }
 [data-mode="cw"] .cw-lp-log__title {
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 24px;
   margin: 0 0 12px;
 }
 [data-mode="cw"] .cw-lp-log p {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.55;
   margin: 0 0 12px;
   color: color-mix(in srgb, var(--color-cw-bone) 92%, transparent);
@@ -5403,7 +5420,7 @@ body {
 [data-mode="cw"] .cw-lp-toc__num {
   font-family: var(--font-cw-display);
   font-weight: 800;
-  font-size: 22px;
+  font-size: 24px;
   color: var(--color-cw-terracotta);
 }
 [data-mode="cw"] .cw-lp-toc__title {
@@ -5415,22 +5432,24 @@ body {
 [data-mode="cw"] .cw-lp-toc__tag {
   display: block;
   font-family: var(--font-cw-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  opacity: 0.6;
+  /* Pass-98: 0.6 opacity measured 3.95:1 on bone. */
+  color: var(--color-cw-petrol);
   margin-top: 4px;
 }
 [data-mode="cw"] .cw-lp-toc__tag em {
   font-style: normal;
   color: var(--color-cw-terracotta);
-  opacity: 1;
 }
 [data-mode="cw"] .cw-lp-toc__page {
   font-family: var(--font-cw-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
-  opacity: 0.55;
+  /* Pass-98: 0.55 opacity measured 3.43:1 on bone, the worst label on the
+     page, and it sits on the numbers a buyer checks against the contents. */
+  color: var(--color-cw-petrol);
 }
 
 /* Back cover: spec card + capture */
@@ -5472,13 +5491,13 @@ body {
 }
 [data-mode="cw"] .cw-lp-spec dd strong {
   font-family: var(--font-cw-display);
-  font-size: 18px;
+  font-size: 20px;
   letter-spacing: 0;
   font-weight: 800;
   text-transform: none;
 }
 [data-mode="cw"] .cw-lp-back__note {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.55;
   margin: 0 0 18px;
   opacity: 0.9;
@@ -5489,7 +5508,7 @@ body {
 }
 [data-mode="cw"] .cw-lp-faq dt {
   font-family: var(--font-cw-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-cw-saffron);
@@ -5497,9 +5516,116 @@ body {
 }
 [data-mode="cw"] .cw-lp-faq dd {
   margin: 0 0 22px;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.55;
   opacity: 0.9;
+}
+
+/* ============================================================
+ * Pass-98 — /playbook: rhythm, the opener, and the page's own scale
+ * applied to the chrome it shares with every other route.
+ *
+ * 1. RHYTHM (DESIGN_BAR R8). Every gap on the page was 84px, so the
+ *    page had a pulse and no phrasing. .cw-lp-block is 96px now, and
+ *    two blocks carry --breath (160px, 17.8vh at 900) exactly where a
+ *    reader should feel a section end: after the three pain lines, and
+ *    after the build-log card.
+ *
+ * 2. THE OPENER. One quiet section carrying a page of the book at
+ *    reading size and nothing else. It sits OUTSIDE the bone shell, so
+ *    the WorldSwitcher takes the ground to espresso and back and the
+ *    ground bleeds the full viewport. Nothing here animates, and there
+ *    is nothing to reduce for prefers-reduced-motion.
+ *
+ * 3. THE SHARED CHROME, SCOPED. The nav, the page footer and the
+ *    .cw-mlink / .cw-cta / .cw-signup families set sizes that are not
+ *    on this page's eight-step scale (12, 16, 19, 22, 28). They render
+ *    on every other route too, and the site follows the page rather
+ *    than the other way round (phase map, ruling G), so each override
+ *    is scoped to this page and changes nothing anywhere else. When
+ *    Passes 99-100 take the scale site-wide, delete the scope and keep
+ *    the rules.
+ * ============================================================ */
+
+[data-mode="cw"] .cw-lp-block--breath {
+  margin-bottom: 160px;
+}
+/* The last block in a shell hands its bottom edge to the shell's own
+   padding; keeping the margin as well stacked 200px on top of it. */
+[data-mode="cw"] .cw-lp-page > .cw-lp-block:last-child {
+  margin-bottom: 0;
+}
+/* The bone shell resumes after the opener, so it does not repeat the
+   88px it uses to open the paper world the first time. */
+[data-mode="cw"] .cw-lp-page--cont {
+  padding-top: 40px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-lp-block {
+    margin-bottom: 64px;
+  }
+  [data-mode="cw"] .cw-lp-block--breath {
+    margin-bottom: 104px;
+  }
+}
+
+[data-mode="cw"] .cw-lp-opener {
+  display: flex;
+  justify-content: center;
+  padding: 128px 0;
+}
+[data-mode="cw"] .cw-lp-opener img {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 22%, transparent);
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-lp-opener {
+    padding: 80px 0;
+  }
+}
+
+/* The back cover's ON state: the refund sentence sits under the button,
+   where the decision is made, and the free-chapter path sits under that.
+   Spacing only; both borrow type that already exists. */
+[data-mode="cw"] .cw-lp-back__refund {
+  max-width: 34rem;
+}
+[data-mode="cw"] .cw-lp-back__alt {
+  margin: 20px 0 0;
+}
+
+/* --- the scale, applied to the shared chrome, on this page only --- */
+[data-mode="cw"] .cw-lp-object__cta {
+  font-size: 20px;
+}
+[data-mode="cw"] .cw-lp .cw-mlink,
+[data-mode="cw"] .cw-lp .cw-msg {
+  font-size: 11px;
+}
+[data-mode="cw"] .cw-lp .cw-signup input {
+  font-size: 17px;
+}
+[data-mode="cw"] .cw-lp .cw-pagefoot__promise {
+  font-size: 17px;
+}
+[data-mode="cw"] .cw-lp .cw-pagefoot__row,
+[data-mode="cw"] .cw-lp .cw-services__foot-kicker {
+  font-size: 11px;
+}
+[data-mode="cw"] .cw-lp .cw-services__foot-title {
+  font-size: clamp(32px, 3.4vw, 48px);
+}
+/* The nav is a sibling of the page, not a descendant, so it is reached
+   by :has() rather than by nesting. */
+[data-mode="cw"]:has(.cw-lp) .cw-wordmark {
+  font-size: 24px;
+}
+[data-mode="cw"]:has(.cw-lp) .cw-navlinks,
+[data-mode="cw"]:has(.cw-lp) .cw-menubtn {
+  font-size: 11px;
 }
 
 /* ============================================================

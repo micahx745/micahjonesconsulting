@@ -56,6 +56,22 @@ const nextConfig: NextConfig = {
         destination: "/services",
         permanent: true,
       },
+      // Pass-98: /book -> /call. The site sells a 69-page book at /playbook
+      // and scheduled a call at /book, and the two routes had already leaked
+      // copy into each other once. A reader who types or shares "the book
+      // page" now has one answer. Both routes move together; the kickoff page
+      // is reached from the package delivery email, so its redirect is the
+      // one that has to outlive the rename.
+      {
+        source: "/book",
+        destination: "/call",
+        permanent: true,
+      },
+      {
+        source: "/book/kickoff",
+        destination: "/call/kickoff",
+        permanent: true,
+      },
     ];
   },
 };

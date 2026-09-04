@@ -1,9 +1,9 @@
 import urllib.request, re, os, sys, json
 BASE=os.environ.get("SNAPSHOT_BASE","https://www.micahjonesconsulting.com")
-ROUTES=["/","/about","/services","/packages","/work","/playbook","/contact","/book","/book/kickoff",
+ROUTES=["/","/about","/services","/packages","/work","/playbook","/contact","/call","/call/kickoff",
         "/work/guardicore","/work/ordani","/work/rfp-engine","/work/content-engine",
         "/services/thanks","/playbook/thanks","/work/passioneer","/robots.txt","/sitemap.xml","/llms.txt"]
-OUT=".planning/snapshots/2026-09-04"
+OUT=os.environ.get("SNAPSHOT_OUT",".planning/snapshots/2026-09-04")
 os.makedirs(OUT,exist_ok=True)
 report={}
 for r in ROUTES:

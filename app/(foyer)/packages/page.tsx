@@ -185,7 +185,7 @@ export default function PackagesPage() {
           {/* Pass-92: was "opens an email ... I reply within one business day
               with a start date", written when the CTAs were mailto. They are
               Stripe checkout now, so this says what actually happens after the
-              card clears. The booking link is /book/kickoff, which is where
+              card clears. The booking link is /call/kickoff, which is where
               lib/package-delivery.ts already points. */}
           <p className="cw-pkg-page__next">
             Each one goes straight to checkout. The moment your card clears you

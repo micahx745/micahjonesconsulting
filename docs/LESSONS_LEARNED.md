@@ -131,12 +131,15 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   ledger alone if it is ever questioned again.
 - Ordani **start year 2025** (operator 2026-09-03). The home ledger row said "2026" while
   /work and the case study said "2025-2026". Home now matches.
-- Playbook **companion pack: 26 files, and the itemised line was the wrong number, not the
-  total.** Counted from the shipped ZIP on 2026-09-03: 10 checklists + 6 prompts + 10
-  TEMPLATES = 26, plus a README = 27 files in the archive. The page had said "Nine
-  templates", so the itemisation summed to 25 against a stated total of 26. The total was
-  always right. Corrected to "Ten templates". If the pack changes, re-count the archive
-  rather than trusting either number.
+- Playbook **companion pack: 26 ZIP entries = README + 10 checklists + 6 prompts + 9
+  templates.** The page says "Nine templates". CORRECTION, 2026-09-04 (Pass-98): the
+  2026-09-03 adjudication recorded above said ten templates and 27 files in the archive,
+  and both halves were wrong. It counted the README as a template and then also added it
+  again as a 27th file. The probe is the archive itself, not a document:
+  `python -c "import zipfile;print(zipfile.ZipFile('product/playbook/output/the-80-percent-wall-companion.zip').namelist())"`
+  returns 26 names, 9 of them under `templates/`. The spec row "Companion files 26" was
+  right all along and is unchanged. Re-run the namelist whenever the pack changes; never
+  reconcile two written numbers against each other.
 - **WEEK ONE of an engagement — operator 2026-09-03**: "First week would be a scoping
   meeting and audit - foundational work to set up the engagement for success." The site had
   only ever answered MONTH one ("something named ships in month one"), which is not the

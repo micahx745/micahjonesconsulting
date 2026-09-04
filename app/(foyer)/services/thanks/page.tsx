@@ -42,7 +42,7 @@ export default function PackageThanksPage() {
             that used to sit behind "Contact" lives here now, where a scheduled
             call is genuinely the next step. */}
         <p className="cw-pb-sect__lede">
-          <a href="/book/kickoff" className="cw-lede-link">
+          <a href="/call/kickoff" className="cw-lede-link">
             <strong>Put the kickoff call on my calendar now</strong>
           </a>{" "}
           if you would rather not wait for the email. Same slots, same

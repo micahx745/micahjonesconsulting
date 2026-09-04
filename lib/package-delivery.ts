@@ -55,7 +55,7 @@ export async function deliverPackageKickoff(
           ...intake.map((q) => `   ${q}`),
           "",
           "2. Grab the kickoff call here (my real calendar, invite lands",
-          "   in your inbox): https://www.micahjonesconsulting.com/book/kickoff",
+          "   in your inbox): https://www.micahjonesconsulting.com/call/kickoff",
           "",
           "The rules, restated: full refund any time before the kickoff",
           "call, none after, because the work starts fast. And your fee",

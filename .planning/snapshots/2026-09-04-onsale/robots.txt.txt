@@ -1,0 +1,1 @@
+User-Agent: * Allow: / Host: https://www.micahjonesconsulting.com Sitemap: https://www.micahjonesconsulting.com/sitemap.xml

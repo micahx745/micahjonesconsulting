@@ -679,7 +679,7 @@ export default function ColorWorldsHome() {
             split the visit in two and stranded the back button at the moment a
             buyer was closest to acting. _blank belongs on links that leave. */}
         <a
-          href="/book"
+          href="/call"
           className="cw-big-link"
           aria-label="Name the problem — book a free intro call"
         >
@@ -709,7 +709,7 @@ export default function ColorWorldsHome() {
           <MagneticArea>
             {/* Pass-93: engagements book a call again (operator 2026-09-03).
                 Internal route, so no _blank and the internal arrow. */}
-            <a href="/book">Book a free intro call →</a>
+            <a href="/call">Book a free intro call →</a>
           </MagneticArea>
           <a href="mailto:micah@micahjonesconsulting.com">
             micah@micahjonesconsulting.com

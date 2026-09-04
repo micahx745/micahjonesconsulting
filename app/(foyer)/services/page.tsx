@@ -455,7 +455,7 @@ export default function ServicesPage() {
           </table>
           <p className="cw-sv-shapes__foot">
             Not sure which shape? That is what the call is for.{" "}
-            <a href="/book" className="cw-mlink">
+            <a href="/call" className="cw-mlink">
               Book a free intro call <span aria-hidden>→</span>
             </a>
           </p>
@@ -532,7 +532,7 @@ export default function ServicesPage() {
         </p>
         <div className="cw-services__foot-cta-row">
           <MagneticArea>
-            <a href="/book" className="cw-cta">
+            <a href="/call" className="cw-cta">
               Book a free intro call{" "}
               <span className="cw-arr" aria-hidden>
                 →

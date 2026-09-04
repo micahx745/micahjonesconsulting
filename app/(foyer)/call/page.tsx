@@ -1,4 +1,4 @@
-// app/(foyer)/book/page.tsx
+// app/(foyer)/call/page.tsx
 //
 // The free intro call for the ENGAGEMENTS lane, from $5K a month.
 //
@@ -7,8 +7,11 @@
 // /contact, and /book 308'd there. On 2026-09-03 he reversed that FOR
 // ENGAGEMENTS ONLY - "Booking replaces the contact form for engagements" - so
 // the page is back and the redirect is gone. The packages lane keeps the
-// Pass-82 shape: buy first, then /book/kickoff. /contact stays for everyone
+// Pass-82 shape: buy first, then /call/kickoff. /contact stays for everyone
 // who just wants to write.
+//
+// Pass-98 moved this route from /book to /call, with a 308 behind it. "Book"
+// on this site now means the manual at /playbook.
 //
 // The form and its submission contract are UNTOUCHED throughout, because that
 // path is operator-verified ("booked and it worked - invite came through").
@@ -22,7 +25,7 @@ export const metadata: Metadata = {
   description:
     "Thirty minutes, no deck, no pitch. Bring the problem; I name the shape of the work and whether I am the right person for it. Tue to Thu, Pacific.",
   alternates: {
-    canonical: "https://www.micahjonesconsulting.com/book",
+    canonical: "https://www.micahjonesconsulting.com/call",
   },
 };
 
