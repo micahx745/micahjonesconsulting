@@ -21,3 +21,15 @@ Each route yields:
   per page is normal and is not a defect**. Body copy carries zero.
 - Never verify against the RSC payload; it repeats page prose and doubles `$`.
   Stripping `<script>` already handles this.
+
+## The one thing the `.txt` files CANNOT tell you
+
+The extractor replaces every tag with a space, so **punctuation spacing in `.txt`
+is not real**. `<strong>Ten templates</strong>, including` comes out as
+`Ten templates , including`. That is the extractor, not a GLUE defect.
+
+Verified 2026-09-04 against `playbook.raw.html`: the source is correct.
+
+So: judge wording, claims and presence/absence from `.txt`; judge spacing,
+markup and attributes from `.raw.html` only. The render gate's GLUE check runs
+against the build, and it is the authority on glued inline elements.
