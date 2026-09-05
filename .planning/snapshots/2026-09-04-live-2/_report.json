@@ -1,0 +1,177 @@
+{
+  "/": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/",
+    "title": "Micah Jones — Strategy and software, shipped by one person",
+    "description": "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue.",
+    "h1": [
+      "I build the go-to-market. Also product, data platforms, and RFP engines."
+    ],
+    "text_len": 3123,
+    "em_dashes_in_text": 2
+  },
+  "/about": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/about",
+    "title": "Operator, not consultant — Micah Jones",
+    "description": "Thirteen years inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined. Oakland, CA.",
+    "h1": ["Operator, not consultant."],
+    "text_len": 2202,
+    "em_dashes_in_text": 2
+  },
+  "/services": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/services",
+    "title": "Services: what I do, and how to hire me — Micah Jones",
+    "description": "Three services, two ways to buy them: an engagement from $5K a month, or a fixed-price package at $500, $2,500 or $7,500. One operator, not an agency.",
+    "h1": ["Services"],
+    "text_len": 5234,
+    "em_dashes_in_text": 2
+  },
+  "/packages": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/packages",
+    "title": "Packages: fixed prices, start this week — Micah Jones",
+    "description": "Three fixed-price packages for solo builders and small teams: $500, $2,500 and $7,500. No call required. Fees credit toward what you book next within 60 days.",
+    "h1": ["Three fixed prices. Start this week."],
+    "text_len": 2165,
+    "em_dashes_in_text": 2
+  },
+  "/work": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/work",
+    "title": "Work: pipeline, products, and exits — Micah Jones",
+    "description": "Case studies with the receipts attached: $14M in security revenue, a HIPAA-compliant CRM I founded, a $3M RFP engine, and 36x reach for an author.",
+    "h1": [
+      "$14M in revenue for a Tel Aviv security company breaking into North America. Acquired by Akamai in 2021."
+    ],
+    "text_len": 1599,
+    "em_dashes_in_text": 2
+  },
+  "/playbook": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/playbook",
+    "title": "The 80% Wall: it shipped, nobody came — Micah Jones",
+    "description": "You built it with AI and shipped it. Now get the first ten users. Ten chapters, 69 pages, 26 files, from the operator who shipped a HIPAA-compliant SaaS solo.",
+    "h1": ["The AI handed you the code. Now ship the company."],
+    "text_len": 6579,
+    "em_dashes_in_text": 2
+  },
+  "/contact": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/contact",
+    "title": "Contact — Micah Jones",
+    "description": "Send a note about what you are working on. It goes straight to my inbox and I answer from there, usually within one business day.",
+    "h1": ["Tell me what you are working on."],
+    "text_len": 657,
+    "em_dashes_in_text": 2
+  },
+  "/call": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/call",
+    "title": "Book a free intro call — Micah Jones",
+    "description": "Thirty minutes, no deck, no pitch. Bring the problem; I name the shape of the work and whether I am the right person for it. Tue to Thu, Pacific.",
+    "h1": ["Thirty minutes. Bring the problem."],
+    "text_len": 971,
+    "em_dashes_in_text": 2
+  },
+  "/call/kickoff": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/call/kickoff",
+    "title": "Book the kickoff call — Micah Jones",
+    "description": "Put the kickoff call for your package on the calendar. Thirty minutes, Tue to Thu, Pacific.",
+    "h1": ["Thirty minutes. The work starts here."],
+    "text_len": 1043,
+    "em_dashes_in_text": 2
+  },
+  "/work/guardicore": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/work/guardicore",
+    "title": "Guardicore (Akamai) — Micah Jones",
+    "description": "$14M in revenue. The research and data science behind repositioning a Tel Aviv security company for North American buyers.",
+    "h1": ["Guardicore (Akamai)"],
+    "text_len": 3105,
+    "em_dashes_in_text": 2
+  },
+  "/work/ordani": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/work/ordani",
+    "title": "ORDANI — Micah Jones",
+    "description": "A HIPAA-compliant CRM for birth workers, and a company I founded and built. Active paying users in beta, none lost to a competitor. Public release coming.",
+    "h1": ["ORDANI"],
+    "text_len": 3973,
+    "em_dashes_in_text": 2
+  },
+  "/work/rfp-engine": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/work/rfp-engine",
+    "title": "RFP engine for an industry author — Micah Jones",
+    "description": "$3M in contracts won through software I built for an industry-authority author, government contracts among them.",
+    "h1": ["RFP engine for an industry author"],
+    "text_len": 2784,
+    "em_dashes_in_text": 2
+  },
+  "/work/content-engine": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/work/content-engine",
+    "title": "AI content engine for an industry author — Micah Jones",
+    "description": "I built the AI content engine and the distribution strategy behind an industry-authority author's reach.",
+    "h1": ["AI content engine for an industry author"],
+    "text_len": 3459,
+    "em_dashes_in_text": 2
+  },
+  "/services/thanks": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/services/thanks",
+    "title": "Check your inbox: next steps — Micah Jones",
+    "description": "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, HIPAA-compliant practice management in beta with active paying users.",
+    "h1": ["Check your inbox."],
+    "text_len": 1046,
+    "em_dashes_in_text": 2
+  },
+  "/playbook/thanks": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/playbook/thanks",
+    "title": "Check your inbox: The 80% Wall — Micah Jones",
+    "description": "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, HIPAA-compliant practice management in beta with active paying users.",
+    "h1": ["Check your inbox."],
+    "text_len": 729,
+    "em_dashes_in_text": 2
+  },
+  "/work/passioneer": {
+    "status": 404,
+    "final": "https://www.micahjonesconsulting.com/work/passioneer",
+    "title": "Not found — Micah Jones",
+    "description": "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in client revenue. Now building Ordani, HIPAA-compliant practice management in beta with active paying users.",
+    "h1": ["That page isn’t here."],
+    "text_len": 203,
+    "em_dashes_in_text": 1
+  },
+  "/robots.txt": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/robots.txt",
+    "title": null,
+    "description": null,
+    "h1": [],
+    "text_len": 123,
+    "em_dashes_in_text": 0
+  },
+  "/sitemap.xml": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/sitemap.xml",
+    "title": null,
+    "description": null,
+    "h1": [],
+    "text_len": 995,
+    "em_dashes_in_text": 0
+  },
+  "/llms.txt": {
+    "status": 200,
+    "final": "https://www.micahjonesconsulting.com/llms.txt",
+    "title": null,
+    "description": null,
+    "h1": [],
+    "text_len": 2548,
+    "em_dashes_in_text": 4
+  }
+}
