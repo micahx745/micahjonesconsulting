@@ -1,0 +1,59 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Main · the home",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 5600,
+      "expand": "fill"
+    },
+    {
+      "file": "Playbook.dc.html",
+      "title": "Playbook · the proof page",
+      "x": 1560,
+      "y": 0,
+      "w": 1440,
+      "h": 6440,
+      "expand": "fill"
+    },
+    {
+      "file": "Services.dc.html",
+      "title": "Services · the two doors",
+      "x": 3120,
+      "y": 0,
+      "w": 1440,
+      "h": 4340,
+      "expand": "fill"
+    },
+    {
+      "file": "DirectionB.dc.html",
+      "title": "Direction B · paper first",
+      "x": 0,
+      "y": 6640,
+      "w": 1440,
+      "h": 900
+    },
+    {
+      "file": "DirectionC.dc.html",
+      "title": "Direction C · type is the image",
+      "x": 1560,
+      "y": 6640,
+      "w": 1440,
+      "h": 900
+    }
+  ],
+  "annotations": [
+    {
+      "id": "read-me-first",
+      "x": 0,
+      "y": -160,
+      "w": 520,
+      "text": "Dark studio, warm paper. Everything on these boards is a sentence the site already publishes. Two alternates below name a different axis each."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

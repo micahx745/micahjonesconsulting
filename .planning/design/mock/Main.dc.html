@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --ground: #0F0C0A;
+      --surface-1: #17120F;
+      --surface-2: #1F1915;
+      --hair: rgba(236, 227, 208, 0.10);
+      --hair-strong: rgba(236, 227, 208, 0.18);
+      --ink: #F2EADB;
+      --ink-soft: #B9AE9C;
+      --ink-mute: #7E7466;
+      --accent: #E3A63B;
+      --accent-hover: #F0B650;
+      --paper: #ECE3D0;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--ink); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    .grain { position: relative; }
+    .grain::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.055; mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 240px 240px;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .kicker-mute { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+    .h2 { font-family: var(--sans); font-weight: 600; font-size: 44px; line-height: 1.05; letter-spacing: -0.028em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .lede { font-family: var(--sans); font-weight: 400; font-size: 19px; line-height: 1.55; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .body { font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .tick { width: 28px; height: 2px; background: var(--accent); border-radius: 1px; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; background: var(--accent); color: #14100C; font-family: var(--sans); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; }
+    .pill:hover { background: var(--accent-hover); color: #14100C; }
+    .textlink { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 500; font-size: 16px; color: var(--ink); border-bottom: 1px solid var(--hair-strong); padding-bottom: 2px; }
+    .textlink:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-mute); }
+    .card { background: var(--surface-1); border: 1px solid var(--hair); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .card:hover { background: var(--surface-2); border-color: var(--hair-strong); }
+    .paper { background: var(--paper); border-radius: 6px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.06) inset; }
+    .paper img { display: block; width: 100%; height: auto; }
+    .row { display: grid; grid-template-columns: 72px minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; align-items: baseline; padding: 26px 0; border-top: 1px solid var(--hair); }
+    .row:last-child { border-bottom: 1px solid var(--hair); }
+    .rec { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 24px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--hair); }
+    .rec:last-child { border-bottom: 1px solid var(--hair); }
+    .serif-quote { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .serif-body { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.5; color: var(--ink); margin: 0; text-wrap: pretty; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .rise { animation: rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .d1 { animation-delay: 80ms; } .d2 { animation-delay: 180ms; } .d3 { animation-delay: 280ms; } .d4 { animation-delay: 400ms; }
+    @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+  </style>
+</helmet>
+
+<div class="grain" style="min-height: 100vh; background: #0F0C0A; color: #F2EADB; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <!-- NAV -->
+  <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; height: 84px;">
+    <a href="#" style="font-weight: 700; font-size: 17px; letter-spacing: -0.02em; color: #F2EADB;">MICAH/JONES</a>
+    <div style="display: flex; align-items: center; gap: 34px;">
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Services</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Work</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Playbook</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">About</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="wrap" style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 72px; align-items: center; padding-top: 72px; padding-bottom: 120px; min-height: 78vh;">
+    <div style="display: flex; flex-direction: column; gap: 28px;">
+      <div class="kicker rise">Operator, not consultant</div>
+      <h1 class="rise d1" style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 84px; line-height: 0.98; letter-spacing: -0.038em; color: #F2EADB; text-wrap: balance;">Strategy and software, shipped by the same pair of hands.</h1>
+      <p class="lede rise d2" style="max-width: 560px; font-size: 21px;">I find the gap between what you built and what buyers actually pay for.</p>
+      <div class="rise d3" style="display: flex; align-items: center; gap: 28px; padding-top: 6px;">
+        <a href="#" class="pill">See the work <span aria-hidden="true">↓</span></a>
+        <a href="#" class="textlink">Book a free intro call <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="rise d4" style="display: flex; flex-direction: column; gap: 14px; align-items: flex-end;">
+      <div style="width: 100%; max-width: 520px; border-radius: 20px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6); border: 1px solid rgba(236,227,208,0.10);">
+        <img src="portrait.jpg" alt="Micah Jones at a laptop in front of a whiteboard covered in service architecture" style="display: block; width: 100%; height: auto; filter: saturate(0.9) contrast(1.04);">
+      </div>
+      <div class="mono" style="align-self: flex-start; padding-left: 4px;">§ 0 · the operator · working session</div>
+    </div>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div style="border-top: 1px solid rgba(236,227,208,0.10); border-bottom: 1px solid rgba(236,227,208,0.10);">
+    <div class="wrap" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding-top: 40px; padding-bottom: 40px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-weight: 600; font-size: 46px; letter-spacing: -0.03em; line-height: 1; color: #F2EADB;">$5B+</div>
+        <div class="body" style="font-size: 15px;">combined value of four exits</div>
+        <div class="mono">Postmates · SurveyMonkey · Guardicore · Neuton.AI</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-weight: 600; font-size: 46px; letter-spacing: -0.03em; line-height: 1; color: #F2EADB;">$20M+</div>
+        <div class="body" style="font-size: 15px;">client revenue since 2013</div>
+        <div class="mono">Consulting · all clients</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-weight: 600; font-size: 46px; letter-spacing: -0.03em; line-height: 1; color: #F2EADB;">Thirteen years</div>
+        <div class="body" style="font-size: 15px;">inside B2B software companies</div>
+        <div class="mono">GTM in the morning · shipping product in the afternoon</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 01 PACKAGES: the path to business -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 56px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">§ 01 · Packages</div>
+        <div class="tick"></div>
+        <h2 class="h2">Three fixed prices. Start this week.</h2>
+      </div>
+      <p class="lede" style="max-width: 520px;">For solo builders and small teams who got most of a product out of AI tools and stalled on the last stretch. Pick one, buy it, and the work starts within the week. No scoping call, no proposal, no quote to wait for.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
+      <div class="card">
+        <div class="kicker-mute">90 minutes + same-day memo</div>
+        <div style="font-weight: 600; font-size: 26px; letter-spacing: -0.02em; line-height: 1.1; color: #F2EADB;">The Unstick Session</div>
+        <p class="body">Ninety minutes live on your stuck build. You leave with a written plan the same day.</p>
+        <div style="flex-grow: 1;"></div>
+        <div style="display: flex; align-items: baseline; gap: 10px;">
+          <div style="font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: #F2EADB;">$500</div>
+          <div class="mono" style="color: #B9AE9C;">Fixed.</div>
+        </div>
+        <a href="#" class="pill" style="align-self: flex-start;">Buy the Unstick Session <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="card" style="border-color: rgba(227,166,59,0.35);">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div class="kicker-mute">Two weeks + debrief call</div>
+          <div class="kicker">Start here</div>
+        </div>
+        <div style="font-weight: 600; font-size: 26px; letter-spacing: -0.02em; line-height: 1.1; color: #F2EADB;">The Audit</div>
+        <p class="body">Pick one flavor: Build, Production, or Traction. I go through it top to bottom and hand you the written audit.</p>
+        <div style="flex-grow: 1;"></div>
+        <div style="display: flex; align-items: baseline; gap: 10px;">
+          <div style="font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: #F2EADB;">$2,500</div>
+          <div class="mono" style="color: #B9AE9C;">Fixed.</div>
+        </div>
+        <a href="#" class="pill" style="align-self: flex-start;">Buy the Audit <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="card">
+        <div class="kicker-mute">One week, embedded</div>
+        <div style="font-weight: 600; font-size: 26px; letter-spacing: -0.02em; line-height: 1.1; color: #F2EADB;">The Sprint</div>
+        <p class="body">One week on one outcome, shipped: the repositioning, the production push, the AI feature. Not a plan. The thing, done.</p>
+        <div style="flex-grow: 1;"></div>
+        <div style="display: flex; align-items: baseline; gap: 10px;">
+          <div style="font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: #F2EADB;">$7,500</div>
+          <div class="mono" style="color: #B9AE9C;">Fixed.</div>
+        </div>
+        <a href="#" class="pill" style="align-self: flex-start;">Buy the Sprint <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <p class="body" style="max-width: 760px; font-size: 15px; color: #7E7466;">Each one goes straight to checkout. The moment your card clears you get a kickoff email: the intake questions, a link to book the call, and the manual with its companion files attached. Every package fee credits toward the next package or an engagement started within 60 days. Full refund any time before kickoff.</p>
+  </div>
+
+  <!-- § 02 ENGAGEMENTS -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 48px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">§ 02 · Engagements</div>
+        <div class="tick"></div>
+        <h2 class="h2">Three engagements.</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px; max-width: 520px;">
+        <p class="lede">For companies. Advisory, project, retainer, or embedded. Scoped together once you tell me the problem.</p>
+        <div style="display: flex; align-items: baseline; gap: 10px;">
+          <div style="font-weight: 600; font-size: 28px; letter-spacing: -0.03em; color: #F2EADB;">From $5K a month</div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="row">
+        <div class="mono" style="color: #E3A63B;">01</div>
+        <div style="font-weight: 600; font-size: 24px; letter-spacing: -0.02em; color: #F2EADB;">Positioning &amp; GTM</div>
+        <p class="body">You built it. Enterprise teams still aren't buying. The gap is positioning, not features.</p>
+      </div>
+      <div class="row">
+        <div class="mono" style="color: #E3A63B;">02</div>
+        <div style="font-weight: 600; font-size: 24px; letter-spacing: -0.02em; color: #F2EADB;">End-to-end product building</div>
+        <p class="body">Most AI ideas die between demo and production. That stretch is where I work.</p>
+      </div>
+      <div class="row">
+        <div class="mono" style="color: #E3A63B;">03</div>
+        <div style="font-weight: 600; font-size: 24px; letter-spacing: -0.02em; color: #F2EADB;">Frontier AI engineering</div>
+        <p class="body">Eval, orchestration, deployment. The shipping discipline most AI founders skip.</p>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 28px;">
+      <a href="#" class="pill">Book a free intro call <span aria-hidden="true">→</span></a>
+      <a href="#" class="textlink">See full services <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+
+  <!-- § 03 THE RECORD -->
+  <div class="wrap" style="padding-top: 160px; padding-bottom: 40px; display: flex; flex-direction: column; gap: 44px;">
+    <div style="display: flex; flex-direction: column; gap: 18px; max-width: 820px;">
+      <div class="kicker">§ 03 · The record</div>
+      <div class="tick"></div>
+      <p class="serif-quote">The receipts. Every line below is real. Ask about any of them.</p>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="rec">
+        <div style="font-weight: 600; font-size: 18px; color: #F2EADB;">Guardicore</div>
+        <div class="body" style="font-size: 15px;">Revenue and positioning · 2018–2021 · acquired by Akamai</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; color: #F2EADB; text-align: right;">$14M in revenue</div>
+      </div>
+      <div class="rec">
+        <div style="font-weight: 600; font-size: 18px; color: #F2EADB;">SurveyMonkey Enterprise</div>
+        <div class="body" style="font-size: 15px;">Enterprise sales · 2018 · cap-table position held through the Nasdaq listing</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; color: #F2EADB; text-align: right;">$1M+ toward the IPO</div>
+      </div>
+      <div class="rec">
+        <div style="font-weight: 600; font-size: 18px; color: #F2EADB;">Postmates</div>
+        <div class="body" style="font-size: 15px;">Product analyst · 2020 · market and fraud analysis in the wide-open era</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; color: #F2EADB; text-align: right;">Acquired by Uber, $2.65B</div>
+      </div>
+      <div class="rec">
+        <div style="font-weight: 600; font-size: 18px; color: #F2EADB;">Industry author</div>
+        <div class="body" style="font-size: 15px;">Content engine · 2024–2025 · eight platforms</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; color: #F2EADB; text-align: right;">8K → 290K monthly reach</div>
+      </div>
+      <div class="rec">
+        <div style="font-weight: 600; font-size: 18px; color: #F2EADB;">Industry author</div>
+        <div class="body" style="font-size: 15px;">RFP engine · 2024–2025 · close rate doubled</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; color: #F2EADB; text-align: right;">$3M in contracts won</div>
+      </div>
+      <div class="rec">
+        <div style="font-weight: 600; font-size: 18px; color: #F2EADB;">Ordani</div>
+        <div class="body" style="font-size: 15px;">Founder, sole engineer · 2025–2026 · none lost to a competitor</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; color: #F2EADB; text-align: right;">Intake completion 40% → 91%</div>
+      </div>
+      <div class="rec">
+        <div style="font-weight: 600; font-size: 18px; color: #F2EADB;">Consulting</div>
+        <div class="body" style="font-size: 15px;">All clients · since 2013</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; color: #F2EADB; text-align: right;">$20M+ in client revenue</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 04 THE MANUAL: paper on dark -->
+  <div class="wrap" style="padding-top: 160px; padding-bottom: 60px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 80px; align-items: center;">
+    <div style="position: relative; display: grid; grid-template-columns: 1fr; padding: 24px 0;">
+      <div class="paper" style="width: 78%; z-index: 2; position: relative;">
+        <img src="cover.jpg" alt="The 80% Wall, book cover">
+      </div>
+      <div class="paper" style="width: 62%; position: absolute; right: 0; bottom: 0; z-index: 1; transform: translateY(24px); opacity: 0.96;">
+        <img src="rings.jpg" alt="Book page 51: where the ten users live, three rings">
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div class="kicker">§ 04 · The field manual</div>
+      <div class="tick"></div>
+      <h2 class="h2" style="font-size: 48px;">The AI handed you the code. Now ship the company.</h2>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 6px;">
+        <p style="margin: 0; font-weight: 500; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; color: #F2EADB;">It shipped. Nobody came.</p>
+        <p style="margin: 0; font-weight: 500; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; color: #F2EADB;">The demo looked done. Production turned out to be a different machine entirely.</p>
+        <p style="margin: 0; font-weight: 500; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; color: #F2EADB;">You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
+      </div>
+      <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Nine line-drawn diagrams. Thirteen dated build-log entries. Twenty-six companion files.</p>
+      <div class="mono" style="color: #B9AE9C;">69 pages · PDF + ZIP · every future edition · $99 at launch</div>
+      <div style="display: flex; align-items: center; gap: 28px; padding-top: 6px;">
+        <a href="#" class="pill">Read the playbook <span aria-hidden="true">→</span></a>
+        <a href="#" class="textlink">Get chapter one free <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 05 FROM THE BUILD LOG + the one real quote -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 40px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 80px; align-items: start;">
+    <div style="display: flex; flex-direction: column; gap: 22px; background: #17120F; border: 1px solid rgba(236,227,208,0.10); border-radius: 20px; padding: 40px;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <div class="kicker">From the build log</div>
+        <div class="kicker-mute">Entry · 2026-08-31</div>
+      </div>
+      <div style="font-weight: 600; font-size: 30px; letter-spacing: -0.025em; line-height: 1.1; color: #F2EADB;">The demo that lied for weeks</div>
+      <p class="serif-body">My own site had two lead forms: a sample-chapter signup and a beta waitlist. Both worked flawlessly in the demo. In production, every submission fell into a server log nobody reads. The sending domain had never been verified, so the mail provider refused each message and the address I had published could not receive one either. No error. No bounce. The page told every visitor “Got it.”</p>
+      <p class="serif-body">Production is a different machine than the demo. And “it works” is a claim about the path you actually tested, never about the code you wrote.</p>
+      <div class="mono">§ 0.4 · thirteen entries like this one in the manual · all true, all dated</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 22px; padding-top: 16px;">
+      <div class="kicker">§ 05 · Said of the work</div>
+      <div class="tick"></div>
+      <p class="serif-quote" style="font-size: 38px;">Micah does the work that most strategy decks promise and never deliver.</p>
+      <div class="mono">The author · name protected</div>
+    </div>
+  </div>
+
+  <!-- § 06 ORDANI -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 80px; align-items: center;">
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div class="kicker">§ 06 · Ordani</div>
+      <div class="tick"></div>
+      <h2 class="h2">Built for the people who show up for mothers.</h2>
+      <p class="body">Birth workers run their practices on group chats and paper intakes. HIPAA is the law. So I built Ordani. It has active paying users today, it is in beta, and a public release is coming.</p>
+      <a href="#" class="textlink" style="align-self: flex-start;">See how it was built <span aria-hidden="true">→</span></a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px;">
+      <div class="card" style="gap: 10px;">
+        <div style="font-weight: 600; font-size: 44px; letter-spacing: -0.03em; line-height: 1; color: #F2EADB;">91%</div>
+        <div class="body" style="font-size: 15px;">intake completion, from a measured 40%</div>
+      </div>
+      <div class="card" style="gap: 10px;">
+        <div style="font-weight: 600; font-size: 44px; letter-spacing: -0.03em; line-height: 1; color: #F2EADB;">HIPAA</div>
+        <div class="body" style="font-size: 15px;">compliant, founded and built by one person</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOT CTA -->
+  <div class="wrap" style="padding-top: 180px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 28px;">
+    <div class="kicker">Next step</div>
+    <a href="#" style="font-weight: 600; font-size: 72px; letter-spacing: -0.04em; line-height: 0.98; color: #F2EADB; text-wrap: balance;">Name the problem <span aria-hidden="true" style="color: #E3A63B;">→</span></a>
+    <p class="lede" style="max-width: 560px;">A free thirty-minute call comes first. Tell me what is stuck. I listen, then say what the work looks like and whether I am the right person for it.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="border-top: 1px solid rgba(236,227,208,0.10);">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; padding-top: 28px; padding-bottom: 36px;">
+      <div class="mono">I read every message and reply inside one business day.</div>
+      <div style="display: flex; align-items: center; gap: 28px;">
+        <a href="#" class="mono" style="color: #B9AE9C;">micah@micahjonesconsulting.com</a>
+        <a href="#" class="mono" style="color: #B9AE9C;">LinkedIn ↗</a>
+        <div class="mono">© 2013–2026 Micah Jones</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

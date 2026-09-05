@@ -1,0 +1,379 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --ground: #0F0C0A;
+      --surface-1: #17120F;
+      --surface-2: #1F1915;
+      --hair: rgba(236, 227, 208, 0.10);
+      --hair-strong: rgba(236, 227, 208, 0.18);
+      --ink: #F2EADB;
+      --ink-soft: #B9AE9C;
+      --ink-mute: #7E7466;
+      --accent: #E3A63B;
+      --accent-hover: #F0B650;
+      --paper: #ECE3D0;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--ink); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    .grain { position: relative; }
+    .grain::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.055; mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 240px 240px;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .kicker-mute { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+    .h2 { font-family: var(--sans); font-weight: 600; font-size: 44px; line-height: 1.05; letter-spacing: -0.028em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .lede { font-family: var(--sans); font-weight: 400; font-size: 19px; line-height: 1.55; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .body { font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .tick { width: 28px; height: 2px; background: var(--accent); border-radius: 1px; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; background: var(--accent); color: #14100C; font-family: var(--sans); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; }
+    .pill:hover { background: var(--accent-hover); color: #14100C; }
+    .textlink { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 500; font-size: 16px; color: var(--ink); border-bottom: 1px solid var(--hair-strong); padding-bottom: 2px; }
+    .textlink:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-mute); }
+    .card { background: var(--surface-1); border: 1px solid var(--hair); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .card:hover { background: var(--surface-2); border-color: var(--hair-strong); }
+    .paper { background: var(--paper); border-radius: 6px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.06) inset; }
+    .paper img { display: block; width: 100%; height: auto; }
+    .row { display: grid; grid-template-columns: 72px minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; align-items: baseline; padding: 26px 0; border-top: 1px solid var(--hair); }
+    .row:last-child { border-bottom: 1px solid var(--hair); }
+    .rec { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 24px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--hair); }
+    .rec:last-child { border-bottom: 1px solid var(--hair); }
+    .serif-quote { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .serif-body { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.5; color: var(--ink); margin: 0; text-wrap: pretty; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .rise { animation: rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .d1 { animation-delay: 80ms; } .d2 { animation-delay: 180ms; } .d3 { animation-delay: 280ms; } .d4 { animation-delay: 400ms; }
+    @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+    .chap { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr) 88px; gap: 28px; align-items: baseline; padding: 22px 0; border-top: 1px solid var(--hair); }
+    .chap:last-child { border-bottom: 1px solid var(--hair); }
+    .spec { display: grid; grid-template-columns: 176px minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 13px 0; border-top: 1px solid var(--hair); }
+    .spec:last-child { border-bottom: 1px solid var(--hair); }
+    .faq { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: baseline; padding: 26px 0; border-top: 1px solid var(--hair); }
+    .faq:last-child { border-bottom: 1px solid var(--hair); }
+    .field { height: 48px; padding: 0 20px; border-radius: 999px; background: rgba(236,227,208,0.05); border: 1px solid var(--hair-strong); color: var(--ink); font-family: var(--sans); font-weight: 400; font-size: 16px; }
+    .pain { margin: 0; font-family: var(--sans); font-weight: 500; font-size: 30px; line-height: 1.18; letter-spacing: -0.022em; color: var(--ink); text-wrap: pretty; }
+  </style>
+</helmet>
+
+<div class="grain" style="min-height: 3200px; background: #0F0C0A; color: #F2EADB; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <!-- NAV -->
+  <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; height: 84px;">
+    <a href="#" style="font-weight: 700; font-size: 17px; letter-spacing: -0.02em; color: #F2EADB;">MICAH/JONES</a>
+    <div style="display: flex; align-items: center; gap: 34px;">
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Services</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Work</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Playbook</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">About</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Contact</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="wrap" style="display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 64px; align-items: center; padding-top: 60px; padding-bottom: 110px;">
+    <div style="display: flex; flex-direction: column; gap: 26px;">
+      <div class="kicker rise">A field manual for solo founders</div>
+      <h1 class="rise d1" style="margin: 0; font-family: 'Instrument Sans', system-ui, sans-serif; font-weight: 600; font-size: 76px; line-height: 0.99; letter-spacing: -0.036em; color: #F2EADB; text-wrap: balance;">The AI handed you the code. Now ship the company.</h1>
+      <p class="lede rise d2" style="max-width: 540px; font-size: 21px;">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance.</p>
+      <p class="body rise d2" style="max-width: 540px;">I joined Postmates, SurveyMonkey, Guardicore (Akamai) and Neuton.AI early. Four exits, $5B+ combined. I built Ordani solo with Claude Code and Cursor: HIPAA-compliant, active paying users, in beta. By Micah Jones.</p>
+      <div class="rise d3" style="display: flex; align-items: center; gap: 26px; padding-top: 8px;">
+        <a href="#" class="pill">Get chapter one free <span aria-hidden="true">&#8594;</span></a>
+        <a href="#" class="textlink" style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 400; font-size: 13px; letter-spacing: 0.06em;">$99 at launch &#183; coming soon</a>
+      </div>
+    </div>
+    <div class="rise d4" style="display: flex; flex-direction: column; gap: 18px;">
+      <div style="position: relative; height: 646px;">
+        <div class="paper" style="position: absolute; right: 0; top: 0; width: 248px; z-index: 1; opacity: 0.94;">
+          <img src="wallchart.jpg" alt="Page six of the manual, the wall chart drawn by hand">
+        </div>
+        <div class="paper" style="position: absolute; left: 0; top: 66px; width: 400px; z-index: 2;">
+          <img src="cover.jpg" alt="The cover of the field manual">
+        </div>
+      </div>
+      <div class="mono">Format &#183; PDF + ZIP &#183; every future edition</div>
+    </div>
+  </div>
+
+  <!-- 01 IF THIS IS YOU -->
+  <div style="border-top: 1px solid rgba(236,227,208,0.10);">
+    <div class="wrap" style="padding-top: 110px; padding-bottom: 20px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">&#167; 01 &#183; If this is you</div>
+        <div class="tick"></div>
+        <div style="display: flex; flex-direction: column; gap: 22px; padding-top: 10px;">
+          <p class="pain">It shipped. Nobody came.</p>
+          <p class="pain">The demo looked done. Production turned out to be a different machine entirely.</p>
+          <p class="pain">You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 22px; padding-top: 52px;">
+        <p class="body" style="font-size: 19px;">The wall is not a talent problem. It is arithmetic: the tool&#8217;s memory runs out, and yours has to take over, on paper, in the repo. This manual is that hand-off, one system per chapter.</p>
+        <div class="mono" style="padding-top: 6px;">&#167; 0.1 &#183; Field note</div>
+        <p class="body" style="font-size: 15px;">Ordani is a HIPAA-compliant SaaS for birth workers, in beta with active paying users and a public release coming. Its intake replaced a paper packet; completion moved from 40% to a measured 91%. I hit this wall building it, on the tools you are using now.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 READ TWO PAGES -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 52px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">&#167; 02 &#183; Read two pages</div>
+        <div class="tick"></div>
+        <h2 class="h2">Read a page</h2>
+      </div>
+      <p class="lede" style="max-width: 520px;">Nine line-drawn diagrams, each drawn for this book. No stock art anywhere in it.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="paper">
+          <img src="wallchart.jpg" alt="Page six: a line chart of what fits in the window against the unwritten rules">
+        </div>
+        <div class="mono">&#167; 01.4 &#183; Why it hits at 80% and not sooner &#183; page 6 of 69</div>
+        <p class="body" style="font-size: 15px;">A line chart. A nearly flat dashed line marks how much of a codebase fits in an AI tool&#8217;s context window. A second line, rising in four increasingly steep segments, marks the unwritten rules the project accumulates. The two cross at about four fifths along, and that crossing is the wall.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="paper">
+          <img src="rings.jpg" alt="Page fifty-one: three rings showing where the first ten users live">
+        </div>
+        <div class="mono">&#167; 08.2 &#183; Where the ten actually live &#183; page 51 of 69</div>
+        <p class="body" style="font-size: 15px;">Three rings, drawn for the book. Your ten users are one ask away, and a hundred conversations is a month of mornings.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 CONTENTS -->
+  <div class="wrap" style="padding-top: 150px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 44px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">&#167; 03 &#183; Contents</div>
+        <div class="tick"></div>
+        <h2 class="h2">Contents</h2>
+      </div>
+      <p class="lede" style="max-width: 520px;">Every chapter ends in a pre-flight card you run the same night. The cards ship separately as files, too.</p>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">01</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">Why your build broke at 80%</div>
+        <p class="body" style="font-size: 15px;">The AI undoes your features &#183; free, below</p>
+        <div class="mono" style="text-align: right;">p. 3</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">02</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">The spec is the moat</div>
+        <p class="body" style="font-size: 15px;">Drift, not bugs</p>
+        <div class="mono" style="text-align: right;">p. 12</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">03</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">The architecture you didn't draw</div>
+        <p class="body" style="font-size: 15px;">Auth, data, storage, the arrows</p>
+        <div class="mono" style="text-align: right;">p. 19</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">04</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">Deploy day</div>
+        <p class="body" style="font-size: 15px;">Env vars, migrations, domains</p>
+        <div class="mono" style="text-align: right;">p. 25</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">05</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">The security pre-flight</div>
+        <p class="body" style="font-size: 15px;">Row-level security, leaked keys</p>
+        <div class="mono" style="text-align: right;">p. 31</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">06</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">Stripe in production</div>
+        <p class="body" style="font-size: 15px;">Webhooks, refunds, test-to-live</p>
+        <div class="mono" style="text-align: right;">p. 37</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">07</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">Compliance, when it matters</div>
+        <p class="body" style="font-size: 15px;">HIPAA, GDPR, SOC 2, and when</p>
+        <div class="mono" style="text-align: right;">p. 44</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">08</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">The first ten users</div>
+        <p class="body" style="font-size: 15px;">Ten users from conversations</p>
+        <div class="mono" style="text-align: right;">p. 50</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">09</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">The distribution loop</div>
+        <p class="body" style="font-size: 15px;">Second-hand users, the loop</p>
+        <div class="mono" style="text-align: right;">p. 57</div>
+      </div>
+      <div class="chap">
+        <div class="mono" style="color: #E3A63B;">10</div>
+        <div style="font-weight: 600; font-size: 22px; letter-spacing: -0.02em; line-height: 1.2; color: #F2EADB;">When to hand it off</div>
+        <p class="body" style="font-size: 15px;">Hire, rent, sell, keep going</p>
+        <div class="mono" style="text-align: right;">p. 63</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 RUN TONIGHT -->
+  <div class="wrap" style="padding-top: 150px; padding-bottom: 20px; display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: 72px; align-items: center;">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="paper">
+        <img src="card.jpg" alt="A pre-flight card from the manual, the security one, as shipped">
+      </div>
+      <div class="mono">checklists/05-security.md &#183; one of ten pre-flight cards, as shipped</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 22px;">
+      <div class="kicker">&#167; 04 &#183; Run tonight</div>
+      <div class="tick"></div>
+      <h2 class="h2">Run tonight</h2>
+      <p class="body" style="font-size: 18px;">Ten pre-flight checklists. One per chapter, the card above being the security one. You run them the same night.</p>
+      <p class="body" style="font-size: 18px;">Six prompt files for Claude Code and Cursor: a session opener, an architecture mapper, an invariant extractor, a diff reviewer, a payments wiring prompt, and an outreach drafter.</p>
+      <p class="body" style="font-size: 18px;">Nine templates, including three worked SPEC files written end to end: a booking app, a photographer gallery, and an internal ops tracker. Also a starter invariants file, an architecture sample, and a real env example.</p>
+      <div class="mono" style="padding-top: 6px;">&#167; 0.8 &#183; Field note</div>
+      <p class="body" style="font-size: 15px;">The gallery and ops SPEC files appear in no chapter. They are there because writing a spec is easier with one you can copy.</p>
+    </div>
+  </div>
+
+  <!-- BACK COVER BAND -->
+  <div class="wrap" style="padding-top: 150px; padding-bottom: 20px;">
+    <div style="background: #17120F; border: 1px solid rgba(236,227,208,0.10); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 72px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">What ships</div>
+        <div class="tick"></div>
+        <div style="display: flex; flex-direction: column; padding-top: 12px;">
+          <div class="spec">
+            <div class="kicker-mute">Pages</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">69</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Chapters</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">10</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Pre-flight cards</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">10</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Diagrams</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">9</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Build-log entries</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">13</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Companion files</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">26</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Author</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">Micah Jones &#183; built Ordani solo &#183; four exits behind my work</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Format</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">PDF + ZIP &#183; every future edition</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Price</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">$99 at launch &#183; $149 after</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Refund</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">30 days, no questions</div>
+          </div>
+          <div class="spec">
+            <div class="kicker-mute">Status</div>
+            <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB;">Coming soon</div>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="kicker">The day it ships</div>
+        <div class="tick"></div>
+        <h2 class="h2" style="font-size: 34px;">Chapter one, free</h2>
+        <p class="body" style="font-size: 18px;">The whole first chapter, not an excerpt. Leave your email and it arrives in about a minute.</p>
+        <p class="body" style="font-size: 18px;">Leave your email for chapter one now, and I&#8217;ll tell you the day the full manual opens, at the launch price.</p>
+        <div style="display: flex; align-items: center; gap: 14px; padding-top: 8px;">
+          <input class="field" type="email" placeholder="you@email.com" aria-label="Email" style="flex-grow: 1; min-width: 0;">
+          <a href="#" class="pill">Send me chapter one <span aria-hidden="true">&#8594;</span></a>
+        </div>
+        <div class="mono">&#167; 0.7 &#183; No sequence, no drip. One email with the PDF, and a second one the day the manual ships.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="wrap" style="padding-top: 150px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 40px;">
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div class="kicker">&#167; 05 &#183; Before you ask</div>
+      <div class="tick"></div>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="faq">
+        <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.018em; line-height: 1.25; color: #F2EADB;">Is this for me, if I vibe-coded it?</div>
+        <p class="body">You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.</p>
+      </div>
+      <div class="faq">
+        <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.018em; line-height: 1.25; color: #F2EADB;">Do I need to know how to code?</div>
+        <p class="body">You need to read code and run a terminal. The AI writes; the manual teaches you to steer.</p>
+      </div>
+      <div class="faq">
+        <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.018em; line-height: 1.25; color: #F2EADB;">How is this different from a tutorial?</div>
+        <p class="body">A tutorial shows one happy path. This is the failure modes, from someone who shipped through them.</p>
+      </div>
+      <div class="faq">
+        <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.018em; line-height: 1.25; color: #F2EADB;">What if it does not help?</div>
+        <p class="body">Thirty days, full refund, no questions asked. Reply to the delivery email and I refund it.</p>
+      </div>
+      <div class="faq">
+        <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.018em; line-height: 1.25; color: #F2EADB;">Will it go stale?</div>
+        <p class="body">The tools change monthly. The walls do not. Every future edition is included and goes to the same email.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOT CTA -->
+  <div class="wrap" style="padding-top: 160px; padding-bottom: 90px; display: flex; flex-direction: column; gap: 26px;">
+    <div class="kicker">Past the playbook?</div>
+    <div class="tick"></div>
+    <h2 class="h2">If your build needs a second pair of hands.</h2>
+    <div style="display: flex; align-items: center; gap: 30px; padding-top: 12px;">
+      <a href="#" class="textlink">Fixed-price packages <span aria-hidden="true">&#8594;</span></a>
+      <a href="#" class="textlink">Book a free intro call <span aria-hidden="true">&#8594;</span></a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="border-top: 1px solid rgba(236,227,208,0.10);">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; padding-top: 28px; padding-bottom: 36px;">
+      <div class="mono">I read every message and reply inside one business day.</div>
+      <div style="display: flex; align-items: center; gap: 28px;">
+        <a href="#" class="mono" style="color: #B9AE9C;">micah@micahjonesconsulting.com</a>
+        <a href="#" class="mono" style="color: #B9AE9C;">LinkedIn <span aria-hidden="true">&#8599;</span></a>
+        <div class="mono">&#169; 2013&#8211;2026 Micah Jones</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

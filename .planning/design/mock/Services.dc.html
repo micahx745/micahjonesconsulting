@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --ground: #0F0C0A;
+      --surface-1: #17120F;
+      --surface-2: #1F1915;
+      --hair: rgba(236, 227, 208, 0.10);
+      --hair-strong: rgba(236, 227, 208, 0.18);
+      --ink: #F2EADB;
+      --ink-soft: #B9AE9C;
+      --ink-mute: #7E7466;
+      --accent: #E3A63B;
+      --accent-hover: #F0B650;
+      --paper: #ECE3D0;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--ink); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    .grain { position: relative; }
+    .grain::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.055; mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 240px 240px;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .kicker-mute { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+    .h2 { font-family: var(--sans); font-weight: 600; font-size: 44px; line-height: 1.05; letter-spacing: -0.028em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .lede { font-family: var(--sans); font-weight: 400; font-size: 19px; line-height: 1.55; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .body { font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .tick { width: 28px; height: 2px; background: var(--accent); border-radius: 1px; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; background: var(--accent); color: #14100C; font-family: var(--sans); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; }
+    .pill:hover { background: var(--accent-hover); color: #14100C; }
+    .textlink { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 500; font-size: 16px; color: var(--ink); border-bottom: 1px solid var(--hair-strong); padding-bottom: 2px; }
+    .textlink:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-mute); }
+    .card { background: var(--surface-1); border: 1px solid var(--hair); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .card:hover { background: var(--surface-2); border-color: var(--hair-strong); }
+    .paper { background: var(--paper); border-radius: 6px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.06) inset; }
+    .paper img { display: block; width: 100%; height: auto; }
+    .row { display: grid; grid-template-columns: 72px minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; align-items: baseline; padding: 26px 0; border-top: 1px solid var(--hair); }
+    .row:last-child { border-bottom: 1px solid var(--hair); }
+    .rec { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 24px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--hair); }
+    .rec:last-child { border-bottom: 1px solid var(--hair); }
+    .serif-quote { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .serif-body { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.5; color: var(--ink); margin: 0; text-wrap: pretty; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .rise { animation: rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .d1 { animation-delay: 80ms; } .d2 { animation-delay: 180ms; } .d3 { animation-delay: 280ms; } .d4 { animation-delay: 400ms; }
+    @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+    .item { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 12px; align-items: start; }
+    .dot { width: 6px; height: 6px; border-radius: 1px; background: var(--accent); margin-top: 8px; }
+    .dot-mute { width: 6px; height: 6px; border-radius: 1px; background: var(--ink-mute); margin-top: 8px; }
+    .tbl { display: grid; grid-template-columns: 168px minmax(0, 1fr) 200px 190px; gap: 24px; align-items: baseline; padding: 22px 0; border-top: 1px solid var(--hair); }
+    .tbl:last-child { border-bottom: 1px solid var(--hair); }
+    .svc { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 24px; align-items: start; padding: 44px 0; border-top: 1px solid var(--hair); }
+    .svc:last-child { border-bottom: 1px solid var(--hair); }
+  </style>
+</helmet>
+
+<div class="grain" style="min-height: 2400px; background: #0F0C0A; color: #F2EADB; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <!-- NAV -->
+  <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; height: 84px;">
+    <a href="#" style="font-weight: 700; font-size: 17px; letter-spacing: -0.02em; color: #F2EADB;">MICAH/JONES</a>
+    <div style="display: flex; align-items: center; gap: 34px;">
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Services</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Work</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Playbook</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">About</a>
+      <a href="#" class="kicker-mute" style="color: #B9AE9C;">Contact</a>
+    </div>
+  </div>
+
+  <!-- TWO DOORS -->
+  <div class="wrap" style="padding-top: 56px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 44px;">
+    <div class="rise" style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="kicker">Services</div>
+      <div class="tick"></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+      <div class="card rise d1" style="padding: 40px; gap: 20px;">
+        <div class="kicker-mute">For companies</div>
+        <div style="font-weight: 600; font-size: 40px; letter-spacing: -0.032em; line-height: 1.02; color: #F2EADB;">Engagements</div>
+        <p class="body" style="font-size: 18px;">Advisory, project, retainer, or embedded. Scoped together once you tell me the problem.</p>
+        <div style="flex-grow: 1;"></div>
+        <div style="font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: #F2EADB;">From $5K a month</div>
+        <a href="#" class="pill" style="align-self: flex-start;">The three services <span aria-hidden="true">&#8594;</span></a>
+      </div>
+      <div class="card rise d2" style="padding: 40px; gap: 20px;">
+        <div class="kicker-mute">For solo builders and small teams</div>
+        <div style="font-weight: 600; font-size: 40px; letter-spacing: -0.032em; line-height: 1.02; color: #F2EADB;">Packages</div>
+        <p class="body" style="font-size: 18px;">Three fixed prices. Pick one, buy it, and the work starts this week.</p>
+        <div style="flex-grow: 1;"></div>
+        <div style="font-weight: 600; font-size: 32px; letter-spacing: -0.03em; color: #F2EADB;">$500 &#183; $2,500 &#183; $7,500</div>
+        <a href="#" class="pill" style="align-self: flex-start;">The three packages <span aria-hidden="true">&#8594;</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 ENGAGEMENTS -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 40px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">&#167; 01 &#183; Engagements</div>
+        <div class="tick"></div>
+        <h2 class="h2">Three services, one pair of hands.</h2>
+      </div>
+      <p class="lede" style="max-width: 520px;">Strategy and software from the same person, so nothing is lost in the hand-off. Pick the problem; I name the shape on the call.</p>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="svc">
+        <div class="mono" style="color: #E3A63B;">01</div>
+        <div style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-weight: 600; font-size: 30px; letter-spacing: -0.025em; line-height: 1.1; color: #F2EADB;">Positioning &amp; GTM</div>
+            <p class="body" style="font-size: 19px;">You built it. Enterprise teams still aren't buying. The gap is positioning, not features.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 26px;">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="kicker-mute">What lands</div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">Customer interviews and sales-call analysis that name the question buyers are actually asking.</p></div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">A positioning shift and a sales narrative your team can run without me.</p></div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">A plan for selling data and security into banks, insurers, and slow procurement committees.</p></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="kicker-mute">Proof</div>
+            <div class="item"><span class="dot-mute"></span><p class="body" style="font-size: 16px;">Guardicore: $14M in revenue at a $1.2M average enterprise deal size. Acquired by Akamai in 2021.</p></div>
+            <div class="item"><span class="dot-mute"></span><p class="body" style="font-size: 16px;">SurveyMonkey Enterprise: $1M+ in enterprise sales toward the 2018 IPO.</p></div>
+            <div class="item"><span class="dot-mute"></span><p class="body" style="font-size: 16px;">A birth worker: repositioned from birth support alone to the full arc of care around it. Organic bookings up 30%, and inquiries arriving across her whole range instead of one service.</p></div>
+            <div class="item"><span class="dot-mute"></span><p class="body" style="font-size: 16px;">An industry author: repositioned toward the buyers who award contracts. $3M in contracts won through the RFP software that followed.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="mono" style="color: #E3A63B;">02</div>
+        <div style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-weight: 600; font-size: 30px; letter-spacing: -0.025em; line-height: 1.1; color: #F2EADB;">End-to-end product building</div>
+            <p class="body" style="font-size: 19px;">You have the idea, the budget, and customers waiting. What you do not have is the team to build it. I build it.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 26px;">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="kicker-mute">What lands</div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">Strategy, design, code, security, and launch, all mine. Nothing gets handed to a second team.</p></div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">A production build, not a prototype: auth, data, deploy, and the compliance posture written down.</p></div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">A roadmap with the trade-offs named, agreed with the founder before the first sprint.</p></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="kicker-mute">Proof</div>
+            <div class="item"><span class="dot-mute"></span><p class="body" style="font-size: 16px;">Ordani: a HIPAA-compliant CRM I founded and built. Active paying users in beta, none lost to a competitor, and a public release coming.</p></div>
+            <div class="item"><span class="dot-mute"></span><p class="body" style="font-size: 16px;">An industry author: I built the content engine that took their monthly reach from 8,000 to 290,000 in five months.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="svc">
+        <div class="mono" style="color: #E3A63B;">03</div>
+        <div style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: start;">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-weight: 600; font-size: 30px; letter-spacing: -0.025em; line-height: 1.1; color: #F2EADB;">Frontier AI engineering</div>
+            <p class="body" style="font-size: 19px;">Your AI works in the notebook. Production is a different stack. I run that stack.</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 26px;">
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="kicker-mute">What lands</div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">Retrieval, agents, and orchestration built for real load, not the demo.</p></div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">Evals that fire on every change and catch failures before your customers do.</p></div>
+            <div class="item"><span class="dot"></span><p class="body" style="font-size: 16px;">Prompt deployment as its own pipeline, and a written bar for what ships. Your team runs it after I leave.</p></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="kicker-mute">Proof</div>
+            <div class="item"><span class="dot-mute"></span><p class="body" style="font-size: 16px;">For an industry author: software that reads every new RFP each morning and drafts the first pass at a response. RFP-to-close rate doubled; $3M in contracts won.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 HOW ENGAGEMENTS WORK -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 40px;">
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: end;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">&#167; 02 &#183; How engagements work</div>
+        <div class="tick"></div>
+        <h2 class="h2">Four shapes. The same four for every service.</h2>
+      </div>
+      <p class="lede" style="max-width: 520px;">You bring the problem. I choose the shape with you on the call, and put the scope and price in writing before anything starts.</p>
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <div class="tbl" style="border-top: none; padding-bottom: 10px;">
+        <div class="kicker-mute">Shape</div>
+        <div class="kicker-mute">When it fits</div>
+        <div class="kicker-mute">Time</div>
+        <div class="kicker-mute" style="text-align: right;">Price</div>
+      </div>
+      <div class="tbl">
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.02em; color: #F2EADB;">Advisory</div>
+        </div>
+        <p class="body" style="font-size: 16px;">You want a second operator in the room for the big decisions, a few hours a month.</p>
+        <div class="mono" style="color: #B9AE9C;">4-6 hours a month, ongoing</div>
+        <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB; text-align: right;">From $5K a month</div>
+      </div>
+      <div class="tbl">
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.02em; color: #F2EADB;">Project</div>
+        </div>
+        <p class="body" style="font-size: 16px;">One defined outcome with a start, an end, and a named deliverable.</p>
+        <div class="mono" style="color: #B9AE9C;">6-20 weeks</div>
+        <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB; text-align: right;">Scoped on the call</div>
+      </div>
+      <div class="tbl">
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.02em; color: #F2EADB;">Retainer</div>
+        </div>
+        <p class="body" style="font-size: 16px;">I stay on after the project ships: the launch, the first customers, and what they break.</p>
+        <div class="mono" style="color: #B9AE9C;">6 months, then month to month</div>
+        <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB; text-align: right;">Scoped on the call</div>
+      </div>
+      <div class="tbl">
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="font-weight: 600; font-size: 20px; letter-spacing: -0.02em; color: #F2EADB;">Embedded</div>
+          <div class="kicker" style="padding-top: 4px;">Recommended</div>
+        </div>
+        <p class="body" style="font-size: 16px;">I act as your head of GTM, product, or AI engineering for the window.</p>
+        <div class="mono" style="color: #B9AE9C;">3-8 months, 3+ days a week</div>
+        <div style="font-weight: 500; font-size: 17px; letter-spacing: -0.01em; color: #F2EADB; text-align: right;">Scoped on the call</div>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding-top: 10px;">
+      <div style="display: flex; align-items: center; gap: 28px;">
+        <a href="#" class="pill">Book a free intro call <span aria-hidden="true">&#8594;</span></a>
+        <span class="body" style="font-size: 16px;">Not sure which shape? That is what the call is for.</span>
+      </div>
+      <p class="body" style="font-size: 15px;">Pre-production and working solo? The playbook covers most of what the advisory shape does, for under $150 rather than $5K a month.</p>
+    </div>
+  </div>
+
+  <!-- 03 ON THE PRICE -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 20px; display: flex; flex-direction: column; gap: 44px;">
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div class="kicker">&#167; 03 &#183; On the price</div>
+      <div class="tick"></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <h2 class="h2" style="font-size: 34px;">On the price</h2>
+        <p class="body" style="font-size: 18px;">Advisory is the only shape with a standing rate, because it is the only one with a standing shape: a few hours a month, ongoing. The other three are sized to one piece of work, so the number comes out of the call. You get it in writing, with the scope, before anything starts. No proposal theatre and no discovery fee.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <h2 class="h2" style="font-size: 34px;">Why one person</h2>
+        <p class="body" style="font-size: 18px;">An agency gives you a team and a relay race between them. A full-time hire takes three months to find and another to ramp. I am a senior operator you can start this week, on a scope with an end date. Week one is the scoping session and the audit: the foundational work that decides what the engagement is actually for. Something named ships in month one. When the work is bigger than one person, I say so on the call.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEP -->
+  <div class="wrap" style="padding-top: 140px; padding-bottom: 90px;">
+    <div style="background: #17120F; border: 1px solid rgba(236,227,208,0.10); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 64px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="kicker">Next step</div>
+        <div class="tick"></div>
+        <p class="lede" style="font-size: 22px; color: #F2EADB;">A free 30-minute call comes first. Tell me what is stuck. I listen, then say what the work looks like and whether I am the right person for it.</p>
+        <p class="body" style="font-size: 16px;">If the work does not map to what you need, I say so on the call.</p>
+      </div>
+      <div style="display: flex; justify-content: flex-end;">
+        <a href="#" class="pill">Book a free intro call <span aria-hidden="true">&#8594;</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="border-top: 1px solid rgba(236,227,208,0.10);">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; padding-top: 28px; padding-bottom: 36px;">
+      <div class="mono">I read every message and reply inside one business day.</div>
+      <div style="display: flex; align-items: center; gap: 28px;">
+        <a href="#" class="mono" style="color: #B9AE9C;">micah@micahjonesconsulting.com</a>
+        <a href="#" class="mono" style="color: #B9AE9C;">LinkedIn <span aria-hidden="true">&#8599;</span></a>
+        <div class="mono">&#169; 2013&#8211;2026 Micah Jones</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

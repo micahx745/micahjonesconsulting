@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    :root {
+      --ground: #0F0C0A;
+      --surface-1: #17120F;
+      --surface-2: #1F1915;
+      --hair: rgba(236, 227, 208, 0.10);
+      --hair-strong: rgba(236, 227, 208, 0.18);
+      --ink: #F2EADB;
+      --ink-soft: #B9AE9C;
+      --ink-mute: #7E7466;
+      --accent: #E3A63B;
+      --accent-hover: #F0B650;
+      --paper: #ECE3D0;
+      --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--ink); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+    .grain { position: relative; }
+    .grain::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.055; mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 240px 240px;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+    .kicker-mute { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; }
+    .h2 { font-family: var(--sans); font-weight: 600; font-size: 44px; line-height: 1.05; letter-spacing: -0.028em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .lede { font-family: var(--sans); font-weight: 400; font-size: 19px; line-height: 1.55; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .body { font-family: var(--sans); font-weight: 400; font-size: 17px; line-height: 1.6; color: var(--ink-soft); margin: 0; text-wrap: pretty; }
+    .tick { width: 28px; height: 2px; background: var(--accent); border-radius: 1px; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; background: var(--accent); color: #14100C; font-family: var(--sans); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; white-space: nowrap; }
+    .pill:hover { background: var(--accent-hover); color: #14100C; }
+    .textlink { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-weight: 500; font-size: 16px; color: var(--ink); border-bottom: 1px solid var(--hair-strong); padding-bottom: 2px; }
+    .textlink:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+    .mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-mute); }
+    .card { background: var(--surface-1); border: 1px solid var(--hair); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .card:hover { background: var(--surface-2); border-color: var(--hair-strong); }
+    .paper { background: var(--paper); border-radius: 6px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.06) inset; }
+    .paper img { display: block; width: 100%; height: auto; }
+    .row { display: grid; grid-template-columns: 72px minmax(0, 1fr) minmax(0, 1.4fr); gap: 28px; align-items: baseline; padding: 26px 0; border-top: 1px solid var(--hair); }
+    .row:last-child { border-bottom: 1px solid var(--hair); }
+    .rec { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 24px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--hair); }
+    .rec:last-child { border-bottom: 1px solid var(--hair); }
+    .serif-quote { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; line-height: 1.25; letter-spacing: -0.01em; color: var(--ink); margin: 0; text-wrap: pretty; }
+    .serif-body { font-family: var(--serif); font-weight: 400; font-size: 21px; line-height: 1.5; color: var(--ink); margin: 0; text-wrap: pretty; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .rise { animation: rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .d1 { animation-delay: 80ms; } .d2 { animation-delay: 180ms; } .d3 { animation-delay: 280ms; } .d4 { animation-delay: 400ms; }
+    @media (prefers-reduced-motion: reduce) { .rise { animation: none; } }
+    .ph { display: flex; align-items: flex-end; justify-content: flex-start; background: rgba(236,227,208,0.15); border: 1px solid rgba(236,227,208,0.26); border-radius: 6px; padding: 10px; box-sizing: border-box; }
+    .ph-ink { display: flex; align-items: flex-end; justify-content: flex-start; background: rgba(15,12,10,0.09); border: 1px solid rgba(15,12,10,0.30); border-radius: 6px; padding: 10px; box-sizing: border-box; }
+    .lofi { border: 1px solid var(--hair-strong); border-radius: 6px; box-sizing: border-box; }
+    .lofi-ink { border: 1px solid rgba(15,12,10,0.30); border-radius: 6px; box-sizing: border-box; }
+    .mono-ink { font-family: var(--mono); font-size: 11px; letter-spacing: 0.09em; color: rgba(15,12,10,0.55); }
+    .swatch { width: 26px; height: 26px; border-radius: 4px; background: var(--accent); }
+    .note { font-family: var(--mono); font-size: 11px; line-height: 1.7; letter-spacing: 0.06em; }
+  </style>
+</helmet>
+
+<div class="grain" style="position: relative; width: 1440px; height: 900px; box-sizing: border-box; background: #ECE3D0; color: #0F0C0A; font-family: 'Instrument Sans', system-ui, sans-serif; overflow: hidden;">
+
+  <!-- nav, sketched -->
+  <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; height: 62px; border-bottom: 1px solid rgba(15,12,10,0.16);">
+    <div style="font-weight: 700; font-size: 16px; letter-spacing: -0.02em; color: #0F0C0A;">MICAH/JONES</div>
+    <div style="display: flex; align-items: center; gap: 28px;">
+      <div class="mono-ink">Services</div>
+      <div class="mono-ink">Work</div>
+      <div class="mono-ink">Playbook</div>
+      <div class="mono-ink">About</div>
+      <div class="mono-ink">Contact</div>
+    </div>
+  </div>
+
+  <!-- the one dark band, with the cover breaking out of it -->
+  <div style="position: relative; height: 236px; background: #0F0C0A;">
+    <div class="wrap" style="height: 100%; display: flex; align-items: center; justify-content: flex-start;">
+      <div class="mono" style="color: #B9AE9C; max-width: 560px; line-height: 1.7;">hero band &#183; the only dark left on the page &#183; the paper sits on it and breaks out below</div>
+    </div>
+    <div class="ph" style="position: absolute; left: 930px; top: 58px; width: 142px; height: 202px; z-index: 2;">
+      <span class="mono">cover.jpg</span>
+    </div>
+    <div class="ph" style="position: absolute; left: 1054px; top: 78px; width: 120px; height: 162px; z-index: 1; opacity: 0.7;">
+      <span class="mono">wallchart</span>
+    </div>
+  </div>
+
+  <!-- page body on paper -->
+  <div class="wrap" style="padding-top: 40px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 60px; align-items: start;">
+    <div style="display: flex; flex-direction: column; gap: 26px;">
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div class="mono-ink" style="color: #8E5A12;">Operator, not consultant</div>
+        <div style="width: 28px; height: 2px; background: #E3A63B; border-radius: 1px;"></div>
+      </div>
+      <h1 style="margin: 0; font-weight: 600; font-size: 58px; line-height: 1.0; letter-spacing: -0.034em; color: #0F0C0A; max-width: 700px; text-wrap: balance;">Strategy and software, shipped by the same pair of hands.</h1>
+      <p style="margin: 0; font-weight: 400; font-size: 18px; line-height: 1.55; color: rgba(15,12,10,0.72); max-width: 620px;">I find the gap between what you built and what buyers actually pay for.</p>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding-top: 6px;">
+        <div class="lofi-ink" style="padding: 18px; display: flex; flex-direction: column; gap: 10px; height: 132px;">
+          <div class="mono-ink">&#167; 01</div>
+          <div style="font-weight: 600; font-size: 19px; line-height: 1.2; letter-spacing: -0.02em; color: #0F0C0A;">Three fixed prices. Start this week.</div>
+        </div>
+        <div class="lofi-ink" style="padding: 18px; display: flex; flex-direction: column; gap: 10px; height: 132px;">
+          <div class="mono-ink">&#167; 02</div>
+          <div style="font-weight: 600; font-size: 19px; line-height: 1.2; letter-spacing: -0.02em; color: #0F0C0A;">Three engagements.</div>
+        </div>
+        <div class="lofi-ink" style="padding: 18px; display: flex; flex-direction: column; gap: 10px; height: 132px;">
+          <div class="mono-ink">&#167; 03</div>
+          <div style="font-weight: 600; font-size: 19px; line-height: 1.2; letter-spacing: -0.02em; color: #0F0C0A;">The receipts. Every line below is real.</div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div class="ph-ink" style="height: 168px;">
+        <span class="mono-ink">portrait.jpg</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="swatch"></div>
+        <div class="mono-ink">accent &#183; E3A63B &#183; one only</div>
+      </div>
+      <div class="lofi-ink" style="padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+        <div class="mono-ink">Ground</div>
+        <div style="display: flex; gap: 8px;">
+          <div style="width: 34px; height: 22px; border-radius: 3px; background: #ECE3D0; border: 1px solid rgba(15,12,10,0.30);"></div>
+          <div style="width: 34px; height: 22px; border-radius: 3px; background: #DCD1B9;"></div>
+          <div style="width: 34px; height: 22px; border-radius: 3px; background: #0F0C0A;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- corner note -->
+  <div class="wrap" style="position: absolute; left: 0; right: 0; bottom: 26px; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;">
+    <div class="note" style="color: rgba(15,12,10,0.62); max-width: 760px;">
+      DIRECTION B &#183; PAPER FIRST<br>
+      Axis: light editorial against dark studio.<br>
+      Trade-off: on bone, the book pages stop being the one lit thing on the page, so the artifact loses its glow.
+    </div>
+    <div class="mono-ink">low fidelity &#183; 1440 &#215; 900 &#183; real headlines only</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
