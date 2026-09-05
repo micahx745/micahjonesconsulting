@@ -1,0 +1,4044 @@
+{
+  "cut": "A - chapter demand map",
+  "produced": "2026-09-04 by an Opus agent in the book arc",
+  "script": "C:/Users/micah/Code/reddit-research/cuts/cut_a_chapter_demand.py",
+  "corpus": "C:/Users/micah/Code/reddit-research/data/corpus.jsonl",
+  "denominators": {
+    "corpus_lines": 5456,
+    "posts_body_250": 4464,
+    "corpus_authors": 3842,
+    "asking_posts": 607,
+    "asking_authors": 567,
+    "business_asking_posts": 284,
+    "business_asking_authors": 261,
+    "developer_asking_posts": 323,
+    "developer_asking_authors": 307,
+    "business_subs": [
+      "EntrepreneurRideAlong",
+      "SaaS",
+      "buildinpublic",
+      "microsaas",
+      "startups"
+    ],
+    "developer_subs": [
+      "ChatGPTCoding",
+      "ClaudeAI",
+      "cursor",
+      "nextjs",
+      "webdev"
+    ]
+  },
+  "counting_rule": "distinct authors, never post frequency; never ranked or filtered by score or comment count",
+  "rejected_terms": [
+    {
+      "chapter": "09",
+      "term": "\\bpromot(?:e|ing|ion)",
+      "pattern": "\\bpromot(?:e|ing|ion)",
+      "why": "dominated by the r/SaaS rule boilerplate 'I will not promote'",
+      "business_asking_authors": 76,
+      "new_to_chapter": 48
+    },
+    {
+      "chapter": "09",
+      "term": "\\bcommunity\\b",
+      "pattern": "\\bcommunity\\b",
+      "why": "dominated by 'this community' addressed to the subreddit",
+      "business_asking_authors": 29,
+      "new_to_chapter": 13
+    },
+    {
+      "chapter": "09",
+      "term": "\\bgrowth\\b (bare)",
+      "pattern": "\\bgrowth\\b",
+      "why": "mostly 'growth' as a goal word, not a channel",
+      "business_asking_authors": 23,
+      "new_to_chapter": 7
+    },
+    {
+      "chapter": "09",
+      "term": "launch(?:ed)? (?:it )?on",
+      "pattern": "launch(?:ed)? (?:it )?on",
+      "why": "every business-asking match is already in the chapter on a named channel, so the term earns nothing",
+      "business_asking_authors": 2,
+      "new_to_chapter": 0
+    },
+    {
+      "chapter": "10",
+      "term": "\\bacquisition\\b (bare)",
+      "pattern": "\\bacquisition\\b",
+      "why": "almost all CUSTOMER acquisition, i.e. chapter 09",
+      "business_asking_authors": 8,
+      "new_to_chapter": 7
+    },
+    {
+      "chapter": "10",
+      "term": "\\bexit\\b (bare)",
+      "pattern": "\\bexit\\b",
+      "why": "the single match is a crypto trade, 'felt like a smart exit'",
+      "business_asking_authors": 1,
+      "new_to_chapter": 1
+    },
+    {
+      "chapter": "10",
+      "term": "co.?founder (bare)",
+      "pattern": "co.?founder",
+      "why": "mostly descriptive 'my cofounder and I'",
+      "business_asking_authors": 21,
+      "new_to_chapter": 11
+    },
+    {
+      "chapter": "10",
+      "term": "\\bagency\\b",
+      "pattern": "\\bagency\\b",
+      "why": "mostly the poster's own agency or an agency pivot",
+      "business_asking_authors": 12,
+      "new_to_chapter": 4
+    },
+    {
+      "chapter": "06",
+      "term": "\\bsubscription\\b (bare)",
+      "pattern": "\\bsubscription\\b",
+      "why": "mostly their own product's pricing model",
+      "business_asking_authors": 12,
+      "new_to_chapter": 7
+    },
+    {
+      "chapter": "06",
+      "term": "\\bbilling\\b (bare)",
+      "pattern": "\\bbilling\\b",
+      "why": "their own billing model, not a payment integration",
+      "business_asking_authors": 5,
+      "new_to_chapter": 2
+    },
+    {
+      "chapter": "11",
+      "term": "\\bconversion\\b (bare)",
+      "pattern": "\\bconversion\\b",
+      "why": "the authors it adds are funnel-wide, not the page: '0.2% conversion end-to-end'",
+      "business_asking_authors": 12,
+      "new_to_chapter": 2
+    },
+    {
+      "chapter": "11",
+      "term": "\\bmessaging\\b",
+      "pattern": "\\bmessaging\\b",
+      "why": "the one author it adds is a services line item, 'scripting and messaging'",
+      "business_asking_authors": 5,
+      "new_to_chapter": 1
+    },
+    {
+      "chapter": "05",
+      "term": "\\bapi key\\b (bare)",
+      "pattern": "\\bapi key\\b",
+      "why": "configuration of an AI tool, not a leaked credential",
+      "business_asking_authors": 3,
+      "new_to_chapter": 2
+    },
+    {
+      "chapter": "03",
+      "term": "\\bdiagram\\b",
+      "pattern": "\\bdiagram\\b",
+      "why": "no business-asking author at all; corpus-wide it is a product feature line, 'Visual ER diagram', never an architecture question",
+      "business_asking_authors": 0,
+      "new_to_chapter": 0
+    },
+    {
+      "chapter": "01",
+      "term": "\\bvibe cod",
+      "pattern": "\\bvibe cod",
+      "why": "an audience descriptor, not the chapter's mechanism",
+      "business_asking_authors": 6,
+      "new_to_chapter": 6
+    },
+    {
+      "chapter": "01",
+      "term": "worked fine",
+      "pattern": "worked fine",
+      "why": "no business-asking author at all, and corpus-wide it carries a different sense: 'The feature worked fine, I just never explained it properly'",
+      "business_asking_authors": 0,
+      "new_to_chapter": 0
+    },
+    {
+      "chapter": "01",
+      "term": "broke something",
+      "pattern": "broke something",
+      "why": "matches 'That broke something in me'",
+      "business_asking_authors": 1,
+      "new_to_chapter": 1
+    },
+    {
+      "chapter": "01",
+      "term": "spaghetti (bare)",
+      "pattern": "spaghetti",
+      "why": "matches 'throwing spaghetti at the wall'",
+      "business_asking_authors": 1,
+      "new_to_chapter": 1
+    }
+  ],
+  "lexicon_hygiene": {
+    "chapter": "01",
+    "term": "worked (?:yesterday|last week|until)",
+    "why_it_is_harmless": "both corpus matches are the unrelated construction: 'That worked until I was traveling' and 'That worked until the build output became too large'",
+    "corpus_posts_matching_term": 2,
+    "business_with": 2,
+    "business_without": 2,
+    "developer_with": 19,
+    "developer_without": 19
+  },
+  "quote_gate": {
+    "hand_fragments_checked": 24,
+    "rejected_fragments_checked": 13,
+    "failures": 0
+  },
+  "phrase_assignment": [
+    {
+      "phrase": "claude code",
+      "bucket": "tool",
+      "authors_in_reference": 46
+    },
+    {
+      "phrase": "landing page",
+      "bucket": "11",
+      "authors_in_reference": 32
+    },
+    {
+      "phrase": "every single",
+      "bucket": "none",
+      "authors_in_reference": 24
+    },
+    {
+      "phrase": "love hear",
+      "bucket": "register",
+      "authors_in_reference": 24
+    },
+    {
+      "phrase": "greatly appreciated",
+      "bucket": "register",
+      "authors_in_reference": 22
+    },
+    {
+      "phrase": "kept running",
+      "bucket": "none",
+      "authors_in_reference": 21
+    },
+    {
+      "phrase": "next app",
+      "bucket": "tool",
+      "authors_in_reference": 20
+    },
+    {
+      "phrase": "i'm trying",
+      "bucket": "none",
+      "authors_in_reference": 19
+    },
+    {
+      "phrase": "thanks advance",
+      "bucket": "register",
+      "authors_in_reference": 19
+    },
+    {
+      "phrase": "web app",
+      "bucket": "none",
+      "authors_in_reference": 18
+    },
+    {
+      "phrase": "honest feedback",
+      "bucket": "register",
+      "authors_in_reference": 18
+    },
+    {
+      "phrase": "months ago",
+      "bucket": "none",
+      "authors_in_reference": 17
+    },
+    {
+      "phrase": "else experienced",
+      "bucket": "none",
+      "authors_in_reference": 17
+    },
+    {
+      "phrase": "trying figure",
+      "bucket": "none",
+      "authors_in_reference": 15
+    },
+    {
+      "phrase": "happy answer",
+      "bucket": "register",
+      "authors_in_reference": 15
+    },
+    {
+      "phrase": "every day",
+      "bucket": "none",
+      "authors_in_reference": 14
+    },
+    {
+      "phrase": "i'm building",
+      "bucket": "none",
+      "authors_in_reference": 14
+    },
+    {
+      "phrase": "open source",
+      "bucket": "none",
+      "authors_in_reference": 14
+    },
+    {
+      "phrase": "keep running",
+      "bucket": "none",
+      "authors_in_reference": 14
+    },
+    {
+      "phrase": "i'd love",
+      "bucket": "register",
+      "authors_in_reference": 14
+    },
+    {
+      "phrase": "last week",
+      "bucket": "none",
+      "authors_in_reference": 13
+    },
+    {
+      "phrase": "i'm stuck",
+      "bucket": "none",
+      "authors_in_reference": 13
+    },
+    {
+      "phrase": "real users",
+      "bucket": "08",
+      "authors_in_reference": 12
+    },
+    {
+      "phrase": "can't find",
+      "bucket": "none",
+      "authors_in_reference": 12
+    },
+    {
+      "phrase": "trying build",
+      "bucket": "none",
+      "authors_in_reference": 12
+    },
+    {
+      "phrase": "i've tried",
+      "bucket": "none",
+      "authors_in_reference": 12
+    },
+    {
+      "phrase": "app router",
+      "bucket": "tool",
+      "authors_in_reference": 12
+    },
+    {
+      "phrase": "answer questions",
+      "bucket": "register",
+      "authors_in_reference": 11
+    },
+    {
+      "phrase": "free tier",
+      "bucket": "tool",
+      "authors_in_reference": 11
+    },
+    {
+      "phrase": "i'm not sure",
+      "bucket": "none",
+      "authors_in_reference": 11
+    },
+    {
+      "phrase": "couldn't find",
+      "bucket": "none",
+      "authors_in_reference": 11
+    },
+    {
+      "phrase": "appreciated thanks",
+      "bucket": "register",
+      "authors_in_reference": 11
+    },
+    {
+      "phrase": "i'm thinking",
+      "bucket": "none",
+      "authors_in_reference": 11
+    },
+    {
+      "phrase": "wanted share",
+      "bucket": "register",
+      "authors_in_reference": 11
+    },
+    {
+      "phrase": "trying understand",
+      "bucket": "none",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "software engineer",
+      "bucket": "none",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "last year",
+      "bucket": "none",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "hey guys",
+      "bucket": "register",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "building public",
+      "bucket": "none",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "i've been working",
+      "bucket": "none",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "social media",
+      "bucket": "09",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "full stack",
+      "bucket": "none",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "vibe coding",
+      "bucket": "none",
+      "authors_in_reference": 10
+    },
+    {
+      "phrase": "early users",
+      "bucket": "08",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "actually work",
+      "bucket": "none",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "keep getting",
+      "bucket": "none",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "cold outreach",
+      "bucket": "08",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "pain points",
+      "bucket": "none",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "i'm struggling",
+      "bucket": "none",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "tech stack",
+      "bucket": "03",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "kept hitting",
+      "bucket": "none",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "i'd love hear",
+      "bucket": "register",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "love feedback",
+      "bucket": "register",
+      "authors_in_reference": 9
+    },
+    {
+      "phrase": "per day",
+      "bucket": "none",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "saas product",
+      "bucket": "none",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "first users",
+      "bucket": "08",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "genuinely love",
+      "bucket": "register",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "app store",
+      "bucket": "none",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "paying customers",
+      "bucket": "08",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "appreciate any advice",
+      "bucket": "register",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "api key",
+      "bucket": "tool",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "i'm working",
+      "bucket": "none",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "hey everyone i'm",
+      "bucket": "register",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "completely different",
+      "bucket": "none",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "auto mode",
+      "bucket": "tool",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "greatly appreciated thanks",
+      "bucket": "register",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "looking for feedback",
+      "bucket": "register",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "happy answer questions",
+      "bucket": "register",
+      "authors_in_reference": 8
+    },
+    {
+      "phrase": "chrome extension",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "please help",
+      "bucket": "register",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "blog posts",
+      "bucket": "09",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "working project",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "spent the last",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "per month",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "stack next",
+      "bucket": "tool",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "cursor claude",
+      "bucket": "tool",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "google search",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "mobile app",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "hardest part",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "months building",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "app built",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "spent months",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "appreciate any help",
+      "bucket": "register",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "i've done",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "problem kept",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "knowledge base",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "i'm curious",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "next react",
+      "bucket": "tool",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "keep hitting",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "part i'm",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "mcp server",
+      "bucket": "tool",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "usage limits",
+      "bucket": "tool",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "i've seen",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "server components",
+      "bucket": "tool",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "doesn't seem",
+      "bucket": "none",
+      "authors_in_reference": 7
+    },
+    {
+      "phrase": "side project",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "put together",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "makes sense",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "what's actually",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "help would appreciated",
+      "bucket": "register",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "real estate",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "solo founder",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "customer support",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "paid ads",
+      "bucket": "09",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "experienced something similar",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "search console",
+      "bucket": "09",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "keep building",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "started working",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "user base",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "conversion rate",
+      "bucket": "11",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "real problem",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "problem kept running",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "went wrong",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "across different",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "currently working",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "weeks ago",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "i'm wondering",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "keep seeing",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "promote i'm",
+      "bucket": "register",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "agent mode",
+      "bucket": "tool",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "claude pro",
+      "bucket": "tool",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "next app router",
+      "bucket": "tool",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "already tried",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "export default",
+      "bucket": "tool",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "i've been building",
+      "bucket": "none",
+      "authors_in_reference": 6
+    },
+    {
+      "phrase": "building saas",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "stop thinking",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "saas products",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "search results",
+      "bucket": "09",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "actually works",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "actually working",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "doesn't work",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "instead starting",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "moved the needle",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "feature requests",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "adding more features",
+      "bucket": "02",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "next week",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "management tool",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "you're building",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "cursor claude code",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "saas founders",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "built app",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "i've already",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "problem i'm",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "google search console",
+      "bucket": "09",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "software development",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "decided build",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "next step",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "working product",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "real question",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "real product",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "coding agents",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "came across",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "app called",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "api keys",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "right now i'm",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "thanks for reading",
+      "bucket": "register",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "reality check",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "question i'm",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "worst part",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "real pain",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "actually built",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "reddit posts",
+      "bucket": "09",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "pain point",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "happy share",
+      "bucket": "register",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "i'm running",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "actually worked",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "google play",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "hard part",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "i'm actually",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "problem every",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "write code",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "last months",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "cursor pro",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "pro plan",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "claude sonnet",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "i've found",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "edge cases",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "days ago",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "works fine",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "code claude",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "lines code",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "claude gemini",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "years ago",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "export const",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "react typescript",
+      "bucket": "tool",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "past few months",
+      "bucket": "none",
+      "authors_in_reference": 5
+    },
+    {
+      "phrase": "i'm currently",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "code base",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "hey folks",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "bit lost",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "built chrome",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "built chrome extension",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "privacy policy",
+      "bucket": "07",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "marketing budget",
+      "bucket": "09",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "support tickets",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "server costs",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "start thinking",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "six months",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "idea came",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "local businesses",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "internet connection",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "months later",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "power users",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "trying solve",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "giving away",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "built first",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "zero marketing",
+      "bucket": "09",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "seo content",
+      "bucket": "09",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "content marketing",
+      "bucket": "09",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "facebook groups",
+      "bucket": "09",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "built tool",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "doesn't matter",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "build the app",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "cold email",
+      "bucket": "08",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "year ago",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "working code",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "first customers",
+      "bucket": "08",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "product hunt",
+      "bucket": "09",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "planning start",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "else entirely",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "building the product",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "getting the first",
+      "bucket": "08",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "first project",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "simple tool",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "appreciate honest",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "looking for honest",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "active users",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "quit job",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "try build",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "every week",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "actual product",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "help hey",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "else experiencing",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "next months",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "can't tell",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i'd rather",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "cloudflare pages",
+      "bucket": "04",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "since i'm",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i've written",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "lesson learned",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "since it's",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "it's free",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "please tell",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "spent months building",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "multiple times",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "demo video",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "messy middle",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "build next",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "almost nothing",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "spend hours",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "day day",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "ios app",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "works well",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "recently decided",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i'd genuinely",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "feels slow",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "three months",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i'm looking",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "digital products",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "years experience",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i'm hitting",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "user sessions",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "project management",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "seem work",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "actually pay",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "company work",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "better results",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "launch day",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "small project",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "start building",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "promote hey",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "front end",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "offer free",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "removed moderator",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "small businesses",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "exact problem",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "started building",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "didn't work",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "decided start",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "web dev",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "day job",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "don't understand",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i'm sure",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "latest version",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "long term",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "code generation",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "rules file",
+      "bucket": "01",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "past months",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "last month",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "on-demand usage",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "cursor account",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i'm confused",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "expected behavior",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "pro subscription",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "solve problem",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "free plan",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "help understanding",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "trying create",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "seem find",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "rather hear",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "worked fine",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "claude web",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "work fine",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "i'm making",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "api calls",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "chatgpt plus",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "learning next",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "server component",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "client components",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "nextjs project",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "next project",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "div classname",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "api route",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "default function",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "export default function",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "next typescript",
+      "bucket": "tool",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "hey everyone i've",
+      "bucket": "register",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "building simple",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "play store",
+      "bucket": "none",
+      "authors_in_reference": 4
+    },
+    {
+      "phrase": "validate the idea",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "users sign",
+      "bucket": "11",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "feel bit",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "sensitive data",
+      "bucket": "07",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "actually costs",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "first big",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "terms service",
+      "bucket": "07",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "instead building",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "war stories",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "years old",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "launch saas",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "ask questions",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "started developing",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "build saas",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "move forward",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "product market",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "step step",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "actually makes",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "without actually",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "what's happening",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "content calendar",
+      "bucket": "09",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "actually understand",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "can't fix",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "what's actually working",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "next steps",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "domain name",
+      "bucket": "04",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "moving forward",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "potential clients",
+      "bucket": "08",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "actually moved",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "cold start",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "actually matters",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "analytics dashboard",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "weeks building",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "every feature",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "already exists",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "mobile apps",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "home screen",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "always say",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "every founder",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "biggest surprise",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "niche communities",
+      "bucket": "09",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "tool without",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "hit mrr",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "give away",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "give feedback",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "giving feedback",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "chat history",
+      "bucket": "tool",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "competitor analysis",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "built free",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "next supabase",
+      "bucket": "tool",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "building right",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "genuinely curious",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "what's broken",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "friends and family",
+      "bucket": "08",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "api costs",
+      "bucket": "tool",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "biggest problem",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "title says",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "take look",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "ago started",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "dev team",
+      "bucket": "10",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "hours day",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "saas app",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "claude cowork",
+      "bucket": "tool",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "zero paying",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "growing fast",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "recently launched",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "early feedback",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "paying customer",
+      "bucket": "08",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "genuinely appreciate",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "distribution problem",
+      "bucket": "09",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "product the problem",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "working prototype",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "honest advice",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "trying learn",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "payment integration",
+      "bucket": "06",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "appreciated thank",
+      "bucket": "register",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "took months",
+      "bucket": "none",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "third party",
+      "bucket": "03",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "beta users",
+      "bucket": "08",
+      "authors_in_reference": 3
+    },
+    {
+      "phrase": "specific enough",
+      "bucket": "none",
+      "authors_in_reference": 3
+    }
+  ],
+  "bucket_sizes": {
+    "tool": 48,
+    "11": 3,
+    "none": 266,
+    "register": 44,
+    "08": 12,
+    "09": 16,
+    "03": 2,
+    "02": 1,
+    "07": 3,
+    "04": 2,
+    "01": 1,
+    "10": 1,
+    "06": 1
+  },
+  "overlap": {
+    "business_asking_posts_by_chapters_matched": {
+      "0": 87,
+      "1": 85,
+      "2": 61,
+      "3": 28,
+      "4": 13,
+      "5+": 10
+    },
+    "all_asking_posts_by_chapters_matched": {
+      "0": 279,
+      "1": 169,
+      "2": 90,
+      "3": 44,
+      "4": 14,
+      "5+": 11
+    },
+    "top_pairs_business_asking_posts": [
+      {
+        "pair": "08+09",
+        "posts": 45
+      },
+      {
+        "pair": "09+11",
+        "posts": 33
+      },
+      {
+        "pair": "08+11",
+        "posts": 20
+      },
+      {
+        "pair": "09+10",
+        "posts": 18
+      },
+      {
+        "pair": "08+10",
+        "posts": 16
+      },
+      {
+        "pair": "04+09",
+        "posts": 12
+      },
+      {
+        "pair": "03+04",
+        "posts": 11
+      },
+      {
+        "pair": "06+09",
+        "posts": 11
+      },
+      {
+        "pair": "04+11",
+        "posts": 11
+      },
+      {
+        "pair": "05+09",
+        "posts": 10
+      }
+    ]
+  },
+  "chapter11_families": {
+    "landing page": {
+      "pattern": "landing page|home ?page|hero section|above the fold|page copy|website copy",
+      "business": 30,
+      "developer": 8,
+      "all_asking": 38,
+      "all_posts": 211
+    },
+    "conversion": {
+      "pattern": "conversion rate|trial conversion|signup conversion|low conversion|high.?conversion|conversion from|convert(?:ing)? (?:visitors|traffic|signups|users)|bounce rate|a/?b test",
+      "business": 11,
+      "developer": 0,
+      "all_asking": 11,
+      "all_posts": 65
+    },
+    "signup": {
+      "pattern": "sign.?ups?\\b|signed up|sign.?up (?:rate|flow|page|form)|users sign|free trial|\\bvisitors\\b|\\btraffic\\b",
+      "business": 45,
+      "developer": 14,
+      "all_asking": 59,
+      "all_posts": 462
+    }
+  },
+  "money_wall_split_by_chapter": {
+    "09": {
+      "business_asking_posts": 113,
+      "money": 77,
+      "wall": 30,
+      "both": 24,
+      "developer_asking": {
+        "posts": 24,
+        "money": 5,
+        "wall": 8,
+        "both": 3,
+        "money_pct": 21,
+        "wall_pct": 33,
+        "both_pct": 12
+      }
+    },
+    "08": {
+      "business_asking_posts": 73,
+      "money": 51,
+      "wall": 23,
+      "both": 19,
+      "developer_asking": {
+        "posts": 4,
+        "money": 2,
+        "wall": 1,
+        "both": 0,
+        "money_pct": 50,
+        "wall_pct": 25,
+        "both_pct": 0
+      }
+    },
+    "11": {
+      "business_asking_posts": 50,
+      "money": 38,
+      "wall": 16,
+      "both": 12,
+      "developer_asking": {
+        "posts": 9,
+        "money": 2,
+        "wall": 4,
+        "both": 1,
+        "money_pct": 22,
+        "wall_pct": 44,
+        "both_pct": 11
+      }
+    },
+    "10": {
+      "business_asking_posts": 48,
+      "money": 34,
+      "wall": 14,
+      "both": 9,
+      "developer_asking": {
+        "posts": 10,
+        "money": 3,
+        "wall": 4,
+        "both": 1,
+        "money_pct": 30,
+        "wall_pct": 40,
+        "both_pct": 10
+      }
+    },
+    "04": {
+      "business_asking_posts": 28,
+      "money": 17,
+      "wall": 24,
+      "both": 17,
+      "developer_asking": {
+        "posts": 58,
+        "money": 8,
+        "wall": 46,
+        "both": 8,
+        "money_pct": 14,
+        "wall_pct": 79,
+        "both_pct": 14
+      }
+    },
+    "05": {
+      "business_asking_posts": 21,
+      "money": 15,
+      "wall": 12,
+      "both": 9,
+      "developer_asking": {
+        "posts": 29,
+        "money": 7,
+        "wall": 18,
+        "both": 4,
+        "money_pct": 24,
+        "wall_pct": 62,
+        "both_pct": 14
+      }
+    },
+    "06": {
+      "business_asking_posts": 20,
+      "money": 13,
+      "wall": 8,
+      "both": 7,
+      "developer_asking": {
+        "posts": 16,
+        "money": 9,
+        "wall": 9,
+        "both": 5,
+        "money_pct": 56,
+        "wall_pct": 56,
+        "both_pct": 31
+      }
+    },
+    "03": {
+      "business_asking_posts": 19,
+      "money": 11,
+      "wall": 12,
+      "both": 7,
+      "developer_asking": {
+        "posts": 25,
+        "money": 4,
+        "wall": 11,
+        "both": 1,
+        "money_pct": 16,
+        "wall_pct": 44,
+        "both_pct": 4
+      }
+    },
+    "07": {
+      "business_asking_posts": 12,
+      "money": 4,
+      "wall": 5,
+      "both": 2,
+      "developer_asking": {
+        "posts": 3,
+        "money": 1,
+        "wall": 2,
+        "both": 0,
+        "money_pct": 33,
+        "wall_pct": 67,
+        "both_pct": 0
+      }
+    },
+    "02": {
+      "business_asking_posts": 12,
+      "money": 9,
+      "wall": 7,
+      "both": 5,
+      "developer_asking": {
+        "posts": 2,
+        "money": 0,
+        "wall": 1,
+        "both": 0,
+        "money_pct": 0,
+        "wall_pct": 50,
+        "both_pct": 0
+      }
+    },
+    "01": {
+      "business_asking_posts": 2,
+      "money": 1,
+      "wall": 1,
+      "both": 1,
+      "developer_asking": {
+        "posts": 19,
+        "money": 5,
+        "wall": 11,
+        "both": 1,
+        "money_pct": 26,
+        "wall_pct": 58,
+        "both_pct": 5
+      }
+    }
+  },
+  "money_wall_room_baselines": {
+    "business_asking": {
+      "posts": 284,
+      "money": 147,
+      "wall": 56,
+      "both": 37,
+      "money_pct": 52,
+      "wall_pct": 20,
+      "both_pct": 13
+    },
+    "developer_asking": {
+      "posts": 323,
+      "money": 45,
+      "wall": 113,
+      "both": 14,
+      "money_pct": 14,
+      "wall_pct": 35,
+      "both_pct": 4
+    }
+  },
+  "wall_shaped_chapters": [
+    "03",
+    "04",
+    "07"
+  ],
+  "nobody_asks": [
+    "01"
+  ],
+  "chapters": {
+    "01": {
+      "title": "Why your build broke at 80% (AI context, regressions, invariants file)",
+      "method1_lexicon": [
+        "context window",
+        "context limit",
+        "runs? out of context",
+        "loses? (?:the )?context",
+        "lost (?:the |all )?context",
+        "forgets? (?:the |my |what |everything)",
+        "regression",
+        "used to work",
+        "worked (?:yesterday|last week|until)",
+        "broke (?:the (?:app|build|site|code|login|whole)|everything|again|another)",
+        "break(?:s|ing)? (?:something else|everything|another (?:feature|thing|part)|three more)",
+        "keeps? breaking",
+        "kept breaking",
+        "fix one (?:thing|bug|issue)",
+        "whack.?a.?mole",
+        "rules? file",
+        "claude\\.md",
+        "cursorrules",
+        "hallucinat",
+        "rewrites? (?:my|the|whole)",
+        "spaghetti code",
+        "unmaintainable"
+      ],
+      "method1": {
+        "business_asking_authors": 2,
+        "business_asking_posts": 2,
+        "developer_asking_authors": 19,
+        "all_asking_authors": 21,
+        "all_posts_authors": 166
+      },
+      "method2": {
+        "phrases": [
+          "rules file"
+        ],
+        "business_asking_authors": 0,
+        "developer_asking_authors": 4,
+        "all_asking_authors": 4
+      },
+      "hand_read": [
+        {
+          "id": "1nqitgi",
+          "verdict": "ON",
+          "reason": "developer room: how a project rules file attaches context",
+          "sub": "cursor",
+          "score": 1,
+          "url": "https://www.reddit.com/r/cursor/comments/1nqitgi/attaching_files_to_project_rules/"
+        },
+        {
+          "id": "1nqlb9a",
+          "verdict": "ON",
+          "reason": "developer room: making the AI obey a 10,000-line style guide",
+          "sub": "cursor",
+          "score": 1,
+          "url": "https://www.reddit.com/r/cursor/comments/1nqlb9a/best_way_to_use_a_large_10000_lines_company_style/"
+        },
+        {
+          "id": "1ns2h94",
+          "verdict": "PASSING",
+          "reason": "'Fix one bug, create three more' is one line of a founder diary",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/"
+        },
+        {
+          "id": "1ofashm",
+          "verdict": "ON",
+          "reason": "developer room: vibecoding with no experience, hallucinations named",
+          "sub": "ChatGPTCoding",
+          "score": 0,
+          "url": "https://www.reddit.com/r/ChatGPTCoding/comments/1ofashm/what_ive_learned_about_vibecoding_a_website_with/"
+        },
+        {
+          "id": "1p27nfx",
+          "verdict": "ON",
+          "reason": "developer room: 18 months making coding agents reliable",
+          "sub": "ChatGPTCoding",
+          "score": 0,
+          "url": "https://www.reddit.com/r/ChatGPTCoding/comments/1p27nfx/what_are_the_rules/"
+        },
+        {
+          "id": "1pqqqnp",
+          "verdict": "ON",
+          "reason": "developer room: agent wiped the project, hit the context limit",
+          "sub": "cursor",
+          "score": 0,
+          "url": "https://www.reddit.com/r/cursor/comments/1pqqqnp/ai_in_cursor_deleted_my_entire_project_and/"
+        },
+        {
+          "id": "1pscnse",
+          "verdict": "OFF",
+          "reason": "'breaking everything into specific short topics' is help-centre copywriting",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1pscnse/built_a_help_center_to_reduce_support_tickets/"
+        },
+        {
+          "id": "1qbj5fg",
+          "verdict": "OFF",
+          "reason": "'rewrites' is the Next.js config feature",
+          "sub": "nextjs",
+          "score": 2,
+          "url": "https://www.reddit.com/r/nextjs/comments/1qbj5fg/getting_invalid_server_actions_request_origin/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 8,
+        "ON": 5,
+        "PASSING": 1,
+        "OFF": 2
+      },
+      "examples": [
+        {
+          "quote": "Fix one bug, create three more.",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/",
+          "id": "1ns2h94",
+          "words": 6,
+          "verbatim": true
+        },
+        {
+          "quote": "I want to make sure Cursor follows this guide for all code generation and modifications.",
+          "sub": "cursor",
+          "room": "developer",
+          "score": 1,
+          "num_comments": 4,
+          "url": "https://www.reddit.com/r/cursor/comments/1nqlb9a/best_way_to_use_a_large_10000_lines_company_style/",
+          "id": "1nqlb9a",
+          "words": 15,
+          "verbatim": true
+        },
+        {
+          "quote": "Tried undoing via chat, but hit context limit and it suggested starting a new convo.",
+          "sub": "cursor",
+          "room": "developer",
+          "score": 0,
+          "num_comments": 58,
+          "url": "https://www.reddit.com/r/cursor/comments/1pqqqnp/ai_in_cursor_deleted_my_entire_project_and/",
+          "id": "1pqqqnp",
+          "words": 15,
+          "verbatim": true
+        }
+      ]
+    },
+    "02": {
+      "title": "The spec is the moat (one-page spec, scope drift)",
+      "method1_lexicon": [
+        "\\bspec\\b",
+        "\\bspecs\\b",
+        "specification",
+        "requirements? (?:doc|document|gathering)",
+        "\\bprd\\b",
+        "product requirements",
+        "scope creep",
+        "feature creep",
+        "scope (?:drift|keeps)",
+        "out of scope",
+        "keeps? adding features",
+        "kept adding",
+        "adding more features",
+        "user stories",
+        "acceptance criteria",
+        "defin(?:e|ed|ing) (?:the )?(?:scope|requirements)",
+        "\\bmvp scope\\b",
+        "one page plan"
+      ],
+      "method1": {
+        "business_asking_authors": 10,
+        "business_asking_posts": 12,
+        "developer_asking_authors": 2,
+        "all_asking_authors": 12,
+        "all_posts_authors": 95
+      },
+      "method2": {
+        "phrases": [
+          "adding more features"
+        ],
+        "business_asking_authors": 5,
+        "developer_asking_authors": 0,
+        "all_asking_authors": 5
+      },
+      "hand_read": [
+        {
+          "id": "1nrifkd",
+          "verdict": "ON",
+          "reason": "spec-driven workflow is the post's whole subject",
+          "sub": "buildinpublic",
+          "score": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1nrifkd/specly_code_ongoing_journey_of_creating_an/"
+        },
+        {
+          "id": "1psc1ey",
+          "verdict": "ON",
+          "reason": "refusing 17 requested features on purpose",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1psc1ey/i_know_exactly_which_features_my_users_want_im/"
+        },
+        {
+          "id": "1qgfqeh",
+          "verdict": "PASSING",
+          "reason": "'even with full specs' sits inside a hiring question",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1qgfqeh/if_you_had_50000_to_speed_up_saas_development_how/"
+        },
+        {
+          "id": "1r5k7ed",
+          "verdict": "ON",
+          "reason": "feature creep named as a cause of a $0 launch",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1r5k7ed/i_spent_6_months_building_an_app_that_made/"
+        },
+        {
+          "id": "1sjjuf4",
+          "verdict": "PASSING",
+          "reason": "scope named as a cause; the ask is about positioning",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1sjjuf4/i_need_help_clarifying_the_positioning_of_my_saas/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 5,
+        "ON": 3,
+        "PASSING": 2,
+        "OFF": 0
+      },
+      "examples": [
+        {
+          "quote": "\"Just one more feature\" syndrome for 5 months straight",
+          "sub": "microsaas",
+          "room": "business",
+          "score": 1,
+          "num_comments": 0,
+          "url": "https://www.reddit.com/r/microsaas/comments/1r5k7ed/i_spent_6_months_building_an_app_that_made/",
+          "id": "1r5k7ed",
+          "words": 9,
+          "verbatim": true
+        },
+        {
+          "quote": "Every feature I add increases the surface area of my product. More things that can break.",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 1,
+          "num_comments": 2,
+          "url": "https://www.reddit.com/r/SaaS/comments/1psc1ey/i_know_exactly_which_features_my_users_want_im/",
+          "id": "1psc1ey",
+          "words": 16,
+          "verbatim": true
+        },
+        {
+          "quote": "I convinced myself I couldn't share it until I fixed them.",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 3,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1qga6ly/i_soft_launched_on_jan_2nd_but_fell_into_the_just/",
+          "id": "1qga6ly",
+          "words": 11,
+          "verbatim": true
+        }
+      ]
+    },
+    "03": {
+      "title": "The architecture you didn't draw (client/server/data/storage/3rd parties)",
+      "method1_lexicon": [
+        "architecture",
+        "architect(?:ing|ural)\\b",
+        "system design",
+        "data model",
+        "schema design",
+        "database design",
+        "folder structure",
+        "project structure",
+        "file structure",
+        "separation of concerns",
+        "tightly coupled",
+        "\\bcoupling\\b",
+        "monolith",
+        "microservice",
+        "data flow",
+        "third.?party (?:api|service|integration)",
+        "file storage",
+        "object storage",
+        "\\bs3\\b",
+        "blob storage",
+        "tech stack"
+      ],
+      "method1": {
+        "business_asking_authors": 18,
+        "business_asking_posts": 19,
+        "developer_asking_authors": 23,
+        "all_asking_authors": 41,
+        "all_posts_authors": 340
+      },
+      "method2": {
+        "phrases": [
+          "tech stack",
+          "third party"
+        ],
+        "business_asking_authors": 6,
+        "developer_asking_authors": 6,
+        "all_asking_authors": 12
+      },
+      "hand_read": [
+        {
+          "id": "1nrifkd",
+          "verdict": "PASSING",
+          "reason": "'architecture' once, inside a spec-tool showcase",
+          "sub": "buildinpublic",
+          "score": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1nrifkd/specly_code_ongoing_journey_of_creating_an/"
+        },
+        {
+          "id": "1nt2kqr",
+          "verdict": "ON",
+          "reason": "restarted six times over packages and folder layout",
+          "sub": "buildinpublic",
+          "score": 3,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1nt2kqr/huge_success_in_my_nextjs_project/"
+        },
+        {
+          "id": "1p4sk8n",
+          "verdict": "ON",
+          "reason": "third-party image API cost per round is the stated challenge",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1p4sk8n/launching_my_first_b2c_microsaas_a_multiplayer/"
+        },
+        {
+          "id": "1r58x9y",
+          "verdict": "PASSING",
+          "reason": "'architecture' once; the post is about launching in stealth",
+          "sub": "buildinpublic",
+          "score": 3,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1r58x9y/i_waited_6_months_to_show_anyone_my_project_turns/"
+        },
+        {
+          "id": "1t9ice4",
+          "verdict": "OFF",
+          "reason": "'system architecture' in an agency capability list",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1t9ice4/building_a_product_engineering_studio_from_india/"
+        },
+        {
+          "id": "1tzk6qy",
+          "verdict": "OFF",
+          "reason": "capability list inside a for-sale post",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1tzk6qy/looking_for_opinions_on_a_tourism_marketplace/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 6,
+        "ON": 2,
+        "PASSING": 2,
+        "OFF": 2
+      },
+      "examples": [
+        {
+          "quote": "code hardwired posing huge blockers to features I wanted but didn't plan properly for",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 3,
+          "num_comments": 0,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1nt2kqr/huge_success_in_my_nextjs_project/",
+          "id": "1nt2kqr",
+          "words": 14,
+          "verbatim": true
+        },
+        {
+          "quote": "every single round generates 4 high-resolution images via an external API",
+          "sub": "microsaas",
+          "room": "business",
+          "score": 1,
+          "num_comments": 2,
+          "url": "https://www.reddit.com/r/microsaas/comments/1p4sk8n/launching_my_first_b2c_microsaas_a_multiplayer/",
+          "id": "1p4sk8n",
+          "words": 11,
+          "verbatim": true
+        },
+        {
+          "quote": "I onboarded into a mass vibe-coded monolith. Here's what I did to survive it.",
+          "sub": "ClaudeAI",
+          "room": "developer",
+          "score": 206,
+          "num_comments": 46,
+          "url": "https://www.reddit.com/r/ClaudeAI/comments/1ps6ys9/i_onboarded_into_a_mass_vibecoded_monolith_heres/",
+          "id": "1ps6ys9",
+          "words": 14,
+          "verbatim": true
+        }
+      ]
+    },
+    "04": {
+      "title": "Deploy day (env vars, migrations, domains, works on my machine)",
+      "method1_lexicon": [
+        "\\bdeploy",
+        "\\bproduction\\b",
+        "works (?:locally|on my machine|fine locally)",
+        "\\blocalhost\\b",
+        "env(?:ironment)? var",
+        "\\.env\\b",
+        "environment variable",
+        "\\bdns\\b",
+        "domain name",
+        "custom domain",
+        "\\bssl\\b",
+        "build fail",
+        "build error",
+        "staging",
+        "ci/?cd",
+        "\\bhosting\\b",
+        "database migration",
+        "\\bmigration",
+        "went live",
+        "push(?:ed)? to prod",
+        "cloudflare pages"
+      ],
+      "method1": {
+        "business_asking_authors": 27,
+        "business_asking_posts": 28,
+        "developer_asking_authors": 57,
+        "all_asking_authors": 84,
+        "all_posts_authors": 502
+      },
+      "method2": {
+        "phrases": [
+          "cloudflare pages",
+          "domain name"
+        ],
+        "business_asking_authors": 4,
+        "developer_asking_authors": 3,
+        "all_asking_authors": 7
+      },
+      "hand_read": [
+        {
+          "id": "1nrifkd",
+          "verdict": "PASSING",
+          "reason": "deploy/hosting/production describe the product being shown",
+          "sub": "buildinpublic",
+          "score": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1nrifkd/specly_code_ongoing_journey_of_creating_an/"
+        },
+        {
+          "id": "1p4yddr",
+          "verdict": "PASSING",
+          "reason": "ci/cd mentioned; the ask is how to enter the market",
+          "sub": "SaaS",
+          "score": 2,
+          "url": "https://www.reddit.com/r/SaaS/comments/1p4yddr/im_17_years_old_i_built_a_platform_used_by_my/"
+        },
+        {
+          "id": "1pslsbl",
+          "verdict": "ON",
+          "reason": "mock data carried into the production database on first push",
+          "sub": "buildinpublic",
+          "score": 6,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1pslsbl/my_first_web_app_using_lovable_and_what_i_learned/"
+        },
+        {
+          "id": "1r5pb34",
+          "verdict": "PASSING",
+          "reason": "deploy and hosting appear as service-tier line items",
+          "sub": "EntrepreneurRideAlong",
+          "score": 0,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1r5pb34/im_a_product_manager_not_an_engineer_new_ai_tools/"
+        },
+        {
+          "id": "1ruh8b7",
+          "verdict": "OFF",
+          "reason": "'went live' is the landing page, not a deploy",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ruh8b7/ulup_elevating_the_collective/"
+        },
+        {
+          "id": "1sjnokc",
+          "verdict": "PASSING",
+          "reason": "'deployed on Netlify' inside a for-sale listing",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1sjnokc/spent_6_weeks_building_a_subscription_tracker/"
+        },
+        {
+          "id": "1unrr8n",
+          "verdict": "OFF",
+          "reason": "SSL and deployment are his product's topic; post is about posting",
+          "sub": "EntrepreneurRideAlong",
+          "score": 8,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1unrr8n/i_posted_like_a_founder_in_launch_mode_for_a_week/"
+        },
+        {
+          "id": "1uoh2ld",
+          "verdict": "OFF",
+          "reason": "'production ready' used as a code-quality adjective",
+          "sub": "SaaS",
+          "score": 6,
+          "url": "https://www.reddit.com/r/SaaS/comments/1uoh2ld/im_struggling_to_give_advice_to_my_junior_devs/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 8,
+        "ON": 1,
+        "PASSING": 4,
+        "OFF": 3
+      },
+      "examples": [
+        {
+          "quote": "when I pushed to Production, the data carried over, so I had to go back and reset the production database",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 6,
+          "num_comments": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1pslsbl/my_first_web_app_using_lovable_and_what_i_learned/",
+          "id": "1pslsbl",
+          "words": 20,
+          "verbatim": true
+        },
+        {
+          "quote": "I am new to nextJS and azure app services so I have had some issues deploying my app.",
+          "sub": "nextjs",
+          "room": "developer",
+          "score": 2,
+          "num_comments": 7,
+          "url": "https://www.reddit.com/r/nextjs/comments/1pom1it/deploying_to_an_azure_app_service/",
+          "id": "1pom1it",
+          "words": 18,
+          "verbatim": true
+        },
+        {
+          "quote": "I got a vps, installed nginx on it and put my next.js 15 project.",
+          "sub": "nextjs",
+          "room": "developer",
+          "score": 2,
+          "num_comments": 5,
+          "url": "https://www.reddit.com/r/nextjs/comments/1nol225/slow_server_response_time/",
+          "id": "1nol225",
+          "words": 14,
+          "verbatim": true
+        }
+      ]
+    },
+    "05": {
+      "title": "The security pre-flight (authn vs authz, IDOR, row-level security, keys)",
+      "method1_lexicon": [
+        "\\bsecurity\\b",
+        "\\bsecure\\b",
+        "vulnerab",
+        "authentication",
+        "authorization",
+        "row.level security",
+        "\\brls\\b",
+        "\\bidor\\b",
+        "access control",
+        "permission",
+        "api key(?:s)? (?:leak|expos|public|commit)",
+        "leaked (?:key|secret|credential)",
+        "exposed (?:key|secret|api|endpoint|database)",
+        "hard.?cod(?:ed|ing) (?:the )?(?:key|secret|api)",
+        "sql injection",
+        "\\bxss\\b",
+        "\\bcsrf\\b",
+        "pen.?test",
+        "data (?:breach|leak)",
+        "other users(?:'|.s)? data",
+        "another user(?:'|.s)? data",
+        "\\bjwt\\b",
+        "service role"
+      ],
+      "method1": {
+        "business_asking_authors": 20,
+        "business_asking_posts": 21,
+        "developer_asking_authors": 27,
+        "all_asking_authors": 47,
+        "all_posts_authors": 266
+      },
+      "method2": {
+        "phrases": [],
+        "business_asking_authors": 0,
+        "developer_asking_authors": 0,
+        "all_asking_authors": 0
+      },
+      "hand_read": [
+        {
+          "id": "1ns2h94",
+          "verdict": "ON",
+          "reason": "'Why is user authentication so complicated?' plus a nightly auth bug",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/"
+        },
+        {
+          "id": "1psf3l1",
+          "verdict": "OFF",
+          "reason": "'permissions interrupting your flow' is a tool prompt",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1psf3l1/just_shipped_a_marketing_skill_kit_for_claude/"
+        },
+        {
+          "id": "1r5oeio",
+          "verdict": "PASSING",
+          "reason": "security audits raised as a trust signal, not a build problem",
+          "sub": "SaaS",
+          "score": 2,
+          "url": "https://www.reddit.com/r/SaaS/comments/1r5oeio/as_a_dev_building_a_privacyfirst_desktop_app_how/"
+        },
+        {
+          "id": "1sjnokc",
+          "verdict": "OFF",
+          "reason": "'access control' in a feature list of a product for sale",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1sjnokc/spent_6_weeks_building_a_subscription_tracker/"
+        },
+        {
+          "id": "1tzrp1h",
+          "verdict": "OFF",
+          "reason": "'waiting for permission to sell'",
+          "sub": "SaaS",
+          "score": 0,
+          "url": "https://www.reddit.com/r/SaaS/comments/1tzrp1h/i_analyzed_102_recent_rsaas_posts_because_my_own/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 5,
+        "ON": 1,
+        "PASSING": 1,
+        "OFF": 3
+      },
+      "examples": [
+        {
+          "quote": "Why is user authentication so complicated?",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/",
+          "id": "1ns2h94",
+          "words": 6,
+          "verbatim": true
+        },
+        {
+          "quote": "Can you tell me if my code is secure enough, or there is anything I can improve?",
+          "sub": "nextjs",
+          "room": "developer",
+          "score": 1,
+          "num_comments": 9,
+          "url": "https://www.reddit.com/r/nextjs/comments/1ppbbd0/i_have_created_an_endpoint_that_receives_the/",
+          "id": "1ppbbd0",
+          "words": 17,
+          "verbatim": true
+        },
+        {
+          "quote": "each user can belong to multiple companies and switch between them",
+          "sub": "nextjs",
+          "room": "developer",
+          "score": 6,
+          "num_comments": 8,
+          "url": "https://www.reddit.com/r/nextjs/comments/1nogdd1/multi_tenancy_problems_in_nextjs_storing_users/",
+          "id": "1nogdd1",
+          "words": 11,
+          "verbatim": true
+        }
+      ]
+    },
+    "06": {
+      "title": "Stripe in production (webhooks, test-to-live, refunds, subscriptions)",
+      "method1_lexicon": [
+        "\\bstripe\\b",
+        "webhook",
+        "payment (?:integration|processing|provider|flow|gateway)",
+        "\\bcheckout\\b",
+        "subscription (?:billing|payment|management|system|logic)",
+        "recurring (?:payment|billing)",
+        "\\brefund",
+        "chargeback",
+        "test mode",
+        "live mode",
+        "\\bpaddle\\b",
+        "lemon ?squeezy",
+        "billing (?:system|integration|portal|logic|flow|issue)",
+        "failed payment",
+        "payment failed",
+        "card declined",
+        "take payments?",
+        "accept payments?",
+        "\\bpayouts?\\b"
+      ],
+      "method1": {
+        "business_asking_authors": 20,
+        "business_asking_posts": 20,
+        "developer_asking_authors": 16,
+        "all_asking_authors": 36,
+        "all_posts_authors": 225
+      },
+      "method2": {
+        "phrases": [
+          "payment integration"
+        ],
+        "business_asking_authors": 2,
+        "developer_asking_authors": 1,
+        "all_asking_authors": 3
+      },
+      "hand_read": [
+        {
+          "id": "1ns2h94",
+          "verdict": "PASSING",
+          "reason": "'debug payment integration' is one item in a task list",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/"
+        },
+        {
+          "id": "1psfx2s",
+          "verdict": "OFF",
+          "reason": "'checked Stripe' means the revenue dashboard",
+          "sub": "microsaas",
+          "score": 0,
+          "url": "https://www.reddit.com/r/microsaas/comments/1psfx2s/my_saas_hit_144_mrr_i_cant_even_believe_it/"
+        },
+        {
+          "id": "1sjnokc",
+          "verdict": "OFF",
+          "reason": "Stripe billing listed as an asset in a for-sale post",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1sjnokc/spent_6_weeks_building_a_subscription_tracker/"
+        },
+        {
+          "id": "1t9hpuc",
+          "verdict": "ON",
+          "reason": "Paddle chosen because Stripe is unavailable in his country",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1t9hpuc/app_for_booking_appointments_for_barbers_beauty/"
+        },
+        {
+          "id": "1uo5xc0",
+          "verdict": "ON",
+          "reason": "asking how to hold and split payouts before launching",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1uo5xc0/help_me_with_the_payment_system_for_the_website/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 5,
+        "ON": 2,
+        "PASSING": 1,
+        "OFF": 2
+      },
+      "examples": [
+        {
+          "quote": "I have been building a website ,not knowing about the payment gateway",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 1,
+          "num_comments": 0,
+          "url": "https://www.reddit.com/r/SaaS/comments/1uo5xc0/help_me_with_the_payment_system_for_the_website/",
+          "id": "1uo5xc0",
+          "words": 12,
+          "verbatim": true
+        },
+        {
+          "quote": "Payment integration is through Paddle, I wanted Stripe but it is not supported in my country.",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 1,
+          "num_comments": 3,
+          "url": "https://www.reddit.com/r/SaaS/comments/1t9hpuc/app_for_booking_appointments_for_barbers_beauty/",
+          "id": "1t9hpuc",
+          "words": 16,
+          "verbatim": true
+        },
+        {
+          "quote": "Fix authentication bug, design new onboarding flow, write marketing copy, plan feature roadmap, debug payment integration.",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/",
+          "id": "1ns2h94",
+          "words": 16,
+          "verbatim": true
+        }
+      ]
+    },
+    "07": {
+      "title": "Compliance, when it matters (HIPAA, SOC 2, GDPR, BAA, DPA)",
+      "method1_lexicon": [
+        "\\bhipaa\\b",
+        "soc ?2",
+        "\\bgdpr\\b",
+        "\\bccpa\\b",
+        "\\bbaa\\b",
+        "\\bdpa\\b",
+        "data processing agreement",
+        "complian(?:ce|t)",
+        "\\bpci\\b",
+        "\\bphi\\b",
+        "\\bpii\\b",
+        "privacy policy",
+        "terms of service",
+        "cookie consent",
+        "regulated",
+        "legal(?:ly)? (?:requir|oblig)",
+        "data residency",
+        "sensitive data",
+        "personal(?:ly identifiable)? data",
+        "security audit"
+      ],
+      "method1": {
+        "business_asking_authors": 12,
+        "business_asking_posts": 12,
+        "developer_asking_authors": 3,
+        "all_asking_authors": 15,
+        "all_posts_authors": 102
+      },
+      "method2": {
+        "phrases": [
+          "privacy policy",
+          "sensitive data",
+          "terms service"
+        ],
+        "business_asking_authors": 7,
+        "developer_asking_authors": 1,
+        "all_asking_authors": 8
+      },
+      "hand_read": [
+        {
+          "id": "1ogq0vu",
+          "verdict": "ON",
+          "reason": "privacy policy and terms as the unbudgeted MVP cost",
+          "sub": "SaaS",
+          "score": 432,
+          "url": "https://www.reddit.com/r/SaaS/comments/1ogq0vu/i_wasted_50k_because_i_thought_the_code_was_the/"
+        },
+        {
+          "id": "1ogwzlp",
+          "verdict": "OFF",
+          "reason": "recruitment-agency compliance, a different regulatory domain",
+          "sub": "EntrepreneurRideAlong",
+          "score": 0,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1ogwzlp/has_anyone_here_built_a_crossborder_recruitment/"
+        },
+        {
+          "id": "1ps1uf3",
+          "verdict": "OFF",
+          "reason": "'compliance' inside a platform description",
+          "sub": "buildinpublic",
+          "score": 3,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ps1uf3/im_building_prosh_a_platform_for_founders_who/"
+        },
+        {
+          "id": "1r5oeio",
+          "verdict": "PASSING",
+          "reason": "sensitive data and audits inside a user-trust question",
+          "sub": "SaaS",
+          "score": 2,
+          "url": "https://www.reddit.com/r/SaaS/comments/1r5oeio/as_a_dev_building_a_privacyfirst_desktop_app_how/"
+        },
+        {
+          "id": "1v64v0i",
+          "verdict": "ON",
+          "reason": "compliance and onboarding blockers at the payment provider",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1v64v0i/what_payment_gateway_are_you_using_which_is/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 5,
+        "ON": 2,
+        "PASSING": 1,
+        "OFF": 2
+      },
+      "examples": [
+        {
+          "quote": "Our privacy policy and terms of service were garbage templates we pulled offline.",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 432,
+          "num_comments": 140,
+          "url": "https://www.reddit.com/r/SaaS/comments/1ogq0vu/i_wasted_50k_because_i_thought_the_code_was_the/",
+          "id": "1ogq0vu",
+          "words": 13,
+          "verbatim": true
+        },
+        {
+          "quote": "I keep running into compliance or onboarding blockers unless I register as a business/entity.",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 6,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1v64v0i/what_payment_gateway_are_you_using_which_is/",
+          "id": "1v64v0i",
+          "words": 14,
+          "verbatim": true
+        },
+        {
+          "quote": "Did you use partial open-sourcing, security audits, code signing, blog posts, sandboxed demos, or something else?",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 2,
+          "num_comments": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1r5oeio/as_a_dev_building_a_privacyfirst_desktop_app_how/",
+          "id": "1r5oeio",
+          "words": 16,
+          "verbatim": true
+        }
+      ]
+    },
+    "08": {
+      "title": "The first ten users (outreach, warm intros, conversations not broadcast)",
+      "method1_lexicon": [
+        "first (?:ten|10|few|five|5|100|hundred)? ?(?:users|customers|clients)",
+        "early (?:users|adopters|customers)",
+        "getting (?:my |the |our )?first (?:user|customer|client|sale)",
+        "no (?:users|customers|signups)",
+        "zero (?:users|customers|signups|paying)",
+        "cold (?:email|outreach|dm|call|message)",
+        "warm (?:intro|introduction)",
+        "reach(?:ed|ing)? out to",
+        "talk(?:ed|ing)? to (?:users|customers|potential)",
+        "user interviews?",
+        "customer interviews?",
+        "beta (?:users|testers)",
+        "waitlist",
+        "find(?:ing)? (?:my |the )?(?:first )?(?:users|customers)",
+        "get(?:ting)? (?:my |the )?(?:first )?(?:users|customers)",
+        "acquire (?:users|customers)",
+        "first (?:paying )?customer",
+        "friends and family"
+      ],
+      "method1": {
+        "business_asking_authors": 66,
+        "business_asking_posts": 73,
+        "developer_asking_authors": 4,
+        "all_asking_authors": 70,
+        "all_posts_authors": 396
+      },
+      "method2": {
+        "phrases": [
+          "beta users",
+          "cold email",
+          "cold outreach",
+          "early users",
+          "first customers",
+          "first users",
+          "friends and family",
+          "getting the first",
+          "paying customer",
+          "paying customers",
+          "potential clients",
+          "real users"
+        ],
+        "business_asking_authors": 49,
+        "developer_asking_authors": 4,
+        "all_asking_authors": 53
+      },
+      "hand_read": [
+        {
+          "id": "1nst9nz",
+          "verdict": "ON",
+          "reason": "how did you land your very first sale",
+          "sub": "EntrepreneurRideAlong",
+          "score": 2,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1nst9nz/how_to_make_your_first_sale/"
+        },
+        {
+          "id": "1ps3nn4",
+          "verdict": "PASSING",
+          "reason": "'early users' is what his product promises to find",
+          "sub": "buildinpublic",
+          "score": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ps3nn4/building_an_affordable_tool_for_myself_and_for/"
+        },
+        {
+          "id": "1r5mrj8",
+          "verdict": "ON",
+          "reason": "cold DMs with no structured plan",
+          "sub": "buildinpublic",
+          "score": 3,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1r5mrj8/need_help_in_gtm_streatgy/"
+        },
+        {
+          "id": "1sjq533",
+          "verdict": "ON",
+          "reason": "struggling to get users, suspects the product or positioning",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1sjq533/roast_my_product/"
+        },
+        {
+          "id": "1tzkjy2",
+          "verdict": "ON",
+          "reason": "200 cold emails, zero replies",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1tzkjy2/i_sent_200_cold_emails_and_got_0_response/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 5,
+        "ON": 4,
+        "PASSING": 1,
+        "OFF": 0
+      },
+      "examples": [
+        {
+          "quote": "apparently cold email just does not work Do you have any advice ?",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1tzkjy2/i_sent_200_cold_emails_and_got_0_response/",
+          "id": "1tzkjy2",
+          "words": 13,
+          "verbatim": true
+        },
+        {
+          "quote": "I'm struggling to get users and I think the problem might be the product itself, the positioning, or both.",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 8,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1sjq533/roast_my_product/",
+          "id": "1sjq533",
+          "words": 19,
+          "verbatim": true
+        },
+        {
+          "quote": "Right now, I haven’t gotten my first order yet, and honestly, that’s the hardest part.",
+          "sub": "EntrepreneurRideAlong",
+          "room": "business",
+          "score": 2,
+          "num_comments": 3,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1nst9nz/how_to_make_your_first_sale/",
+          "id": "1nst9nz",
+          "words": 15,
+          "verbatim": true
+        }
+      ]
+    },
+    "09": {
+      "title": "The distribution loop (referrals, channels, users who came from users)",
+      "method1_lexicon": [
+        "\\bdistribution\\b",
+        "\\bmarketing\\b",
+        "referral",
+        "word of mouth",
+        "\\bviral\\b",
+        "\\bseo\\b",
+        "content marketing",
+        "content calendar",
+        "social media",
+        "product hunt",
+        "paid ads",
+        "google ads",
+        "facebook (?:ads|groups)",
+        "\\btraffic\\b",
+        "crickets",
+        "newsletter",
+        "\\baudience\\b",
+        "organic (?:traffic|growth|reach)",
+        "search console",
+        "growth (?:channel|tactic|strateg|hack|engine|loop)",
+        "grow(?:ing)? (?:my|the|our) (?:user|customer|audience|traffic)",
+        "acquisition channel",
+        "niche communities",
+        "posting (?:on|in)"
+      ],
+      "method1": {
+        "business_asking_authors": 105,
+        "business_asking_posts": 113,
+        "developer_asking_authors": 22,
+        "all_asking_authors": 127,
+        "all_posts_authors": 834
+      },
+      "method2": {
+        "phrases": [
+          "blog posts",
+          "content calendar",
+          "content marketing",
+          "distribution problem",
+          "facebook groups",
+          "google search console",
+          "marketing budget",
+          "niche communities",
+          "paid ads",
+          "product hunt",
+          "reddit posts",
+          "search console",
+          "search results",
+          "seo content",
+          "social media",
+          "zero marketing"
+        ],
+        "business_asking_authors": 42,
+        "developer_asking_authors": 11,
+        "all_asking_authors": 52
+      },
+      "hand_read": [
+        {
+          "id": "1nrifkd",
+          "verdict": "OFF",
+          "reason": "'Search Console' listed as a product integration",
+          "sub": "buildinpublic",
+          "score": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1nrifkd/specly_code_ongoing_journey_of_creating_an/"
+        },
+        {
+          "id": "1p4zaza",
+          "verdict": "PASSING",
+          "reason": "'marketing attempts that went nowhere' inside a feedback-culture post",
+          "sub": "SaaS",
+          "score": 0,
+          "url": "https://www.reddit.com/r/SaaS/comments/1p4zaza/lets_skip_the_bullshit_how_do_you_actually_get/"
+        },
+        {
+          "id": "1pscw5m",
+          "verdict": "ON",
+          "reason": "short-term growth tactics versus a durable channel",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1pscw5m/stopped_optimizing_for_next_month_started/"
+        },
+        {
+          "id": "1r5mrj8",
+          "verdict": "ON",
+          "reason": "wants a GTM roadmap, names the channels he knows",
+          "sub": "buildinpublic",
+          "score": 3,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1r5mrj8/need_help_in_gtm_streatgy/"
+        },
+        {
+          "id": "1ruc8yr",
+          "verdict": "OFF",
+          "reason": "agency owner looking for white-label partners",
+          "sub": "EntrepreneurRideAlong",
+          "score": 5,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1ruc8yr/how_can_i_find_marketing_agencies_to_partner_with/"
+        },
+        {
+          "id": "1t96h72",
+          "verdict": "ON",
+          "reason": "cannot make himself post; the distribution act is the blocker",
+          "sub": "startups",
+          "score": 1,
+          "url": "https://www.reddit.com/r/startups/comments/1t96h72/how_can_i_stop_thinking_what_others_would_think/"
+        },
+        {
+          "id": "1t9mfzo",
+          "verdict": "ON",
+          "reason": "how to start marketing; first ten users in a crowded market",
+          "sub": "SaaS",
+          "score": 2,
+          "url": "https://www.reddit.com/r/SaaS/comments/1t9mfzo/how_do_you_guys_start_marketing_me2_saas_and_get/"
+        },
+        {
+          "id": "1tzoqzp",
+          "verdict": "PASSING",
+          "reason": "150 free signups, scared nobody pays; ads mentioned once",
+          "sub": "buildinpublic",
+          "score": 3,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1tzoqzp/spent_36_days_building_this_for_myself_150/"
+        },
+        {
+          "id": "1un0jcu",
+          "verdict": "PASSING",
+          "reason": "names the distribution problem while asking about a cofounder",
+          "sub": "startups",
+          "score": 7,
+          "url": "https://www.reddit.com/r/startups/comments/1un0jcu/am_i_wasting_time_looking_for_a_technical/"
+        },
+        {
+          "id": "1uocitz",
+          "verdict": "OFF",
+          "reason": "'marketing' describes the market his product serves",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1uocitz/building_the_most_complex_saas_i_have_ever_built/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 10,
+        "ON": 4,
+        "PASSING": 3,
+        "OFF": 3
+      },
+      "examples": [
+        {
+          "quote": "The problem is not building the product. The problem is getting the first 10 users in an extremely crowded market.",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 2,
+          "num_comments": 3,
+          "url": "https://www.reddit.com/r/SaaS/comments/1t9mfzo/how_do_you_guys_start_marketing_me2_saas_and_get/",
+          "id": "1t9mfzo",
+          "words": 20,
+          "verbatim": true
+        },
+        {
+          "quote": "I don’t have a clear roadmap or structured strategy yet.",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 3,
+          "num_comments": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1r5mrj8/need_help_in_gtm_streatgy/",
+          "id": "1r5mrj8",
+          "words": 10,
+          "verbatim": true
+        },
+        {
+          "quote": "What can I do this month to increase MRR? What's the fastest growth tactic?",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 1,
+          "num_comments": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1pscw5m/stopped_optimizing_for_next_month_started/",
+          "id": "1pscw5m",
+          "words": 14,
+          "verbatim": true
+        }
+      ]
+    },
+    "10": {
+      "title": "When to hand it off (hire, fractional help, sell, a data room)",
+      "method1_lexicon": [
+        "\\bhir(?:e|ing|ed)\\b",
+        "freelanc",
+        "contractor",
+        "outsourc",
+        "technical co.?founder",
+        "\\bcto\\b",
+        "fractional",
+        "(?:find|finding|looking for|need|needed|want) an? (?:technical )?co.?founder",
+        "sell(?:ing)? (?:my|the) (?:app|business|saas|product|startup|company)",
+        "acquisition (?:offer|potential|price|talks)",
+        "acquired by",
+        "\\bflippa\\b",
+        "exit (?:strategy|plan)",
+        "due diligence",
+        "data room",
+        "hand(?:ing)? (?:it |this )?off",
+        "handover",
+        "burn(?:ed|t)? out",
+        "burnout",
+        "dev team",
+        "bring(?:ing)? on a (?:dev|engineer|partner)"
+      ],
+      "method1": {
+        "business_asking_authors": 45,
+        "business_asking_posts": 48,
+        "developer_asking_authors": 10,
+        "all_asking_authors": 55,
+        "all_posts_authors": 303
+      },
+      "method2": {
+        "phrases": [
+          "dev team"
+        ],
+        "business_asking_authors": 3,
+        "developer_asking_authors": 0,
+        "all_asking_authors": 3
+      },
+      "hand_read": [
+        {
+          "id": "1ns2h94",
+          "verdict": "PASSING",
+          "reason": "burnout named in a diary, no handoff decision",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1ns2h94/the_brutal_reality_of_building_a_startup_4_weeks/"
+        },
+        {
+          "id": "1p4w42q",
+          "verdict": "OFF",
+          "reason": "'selling the product' means go-to-market",
+          "sub": "SaaS",
+          "score": 2,
+          "url": "https://www.reddit.com/r/SaaS/comments/1p4w42q/trying_to_launch_my_saas_that_is_a_resumable_file/"
+        },
+        {
+          "id": "1p4wblc",
+          "verdict": "ON",
+          "reason": "where to find buyers or partners; names two marketplaces",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1p4wblc/how_do_i_find_genuine_buyers_or_partners_for_my/"
+        },
+        {
+          "id": "1qgfqeh",
+          "verdict": "ON",
+          "reason": "$50k to buy development capacity; past freelancer failures",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1qgfqeh/if_you_had_50000_to_speed_up_saas_development_how/"
+        },
+        {
+          "id": "1sfzy30",
+          "verdict": "PASSING",
+          "reason": "freelancing is his background, not a handoff",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1sfzy30/how_i_built_a_full_bilingual_saas_in_27_days/"
+        },
+        {
+          "id": "1sjk2g2",
+          "verdict": "PASSING",
+          "reason": "'I've been a CTO' is biography",
+          "sub": "microsaas",
+          "score": 1,
+          "url": "https://www.reddit.com/r/microsaas/comments/1sjk2g2/im_50_and_i_launched_my_first_micro_saas_a_weeks/"
+        },
+        {
+          "id": "1tz57uk",
+          "verdict": "ON",
+          "reason": "hired a dev, then realised the prototype was already the MVP",
+          "sub": "EntrepreneurRideAlong",
+          "score": 1,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1tz57uk/i_did_it_the_same_mistake_most_do/"
+        },
+        {
+          "id": "1tz6bhd",
+          "verdict": "OFF",
+          "reason": "his own freelance consulting business",
+          "sub": "EntrepreneurRideAlong",
+          "score": 4,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1tz6bhd/my_freelance_and_lead_gen_odyssey_got_beaten_down/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 8,
+        "ON": 3,
+        "PASSING": 3,
+        "OFF": 2
+      },
+      "examples": [
+        {
+          "quote": "Are there marketplaces, communities, or places where founders connect with buyers or partners for niche products?",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 1,
+          "num_comments": 0,
+          "url": "https://www.reddit.com/r/SaaS/comments/1p4wblc/how_do_i_find_genuine_buyers_or_partners_for_my/",
+          "id": "1p4wblc",
+          "words": 16,
+          "verbatim": true
+        },
+        {
+          "quote": "I'm realizing that my prototype already was the MVP",
+          "sub": "EntrepreneurRideAlong",
+          "room": "business",
+          "score": 1,
+          "num_comments": 7,
+          "url": "https://www.reddit.com/r/EntrepreneurRideAlong/comments/1tz57uk/i_did_it_the_same_mistake_most_do/",
+          "id": "1tz57uk",
+          "words": 9,
+          "verbatim": true
+        },
+        {
+          "quote": "I’ve hired freelancers, tried working with friends, and partnered before",
+          "sub": "microsaas",
+          "room": "business",
+          "score": 1,
+          "num_comments": 3,
+          "url": "https://www.reddit.com/r/microsaas/comments/1qgfqeh/if_you_had_50000_to_speed_up_saas_development_how/",
+          "id": "1qgfqeh",
+          "words": 10,
+          "verbatim": true
+        }
+      ]
+    },
+    "11": {
+      "title": "CANDIDATE: the landing page (landing page, conversion, signups, pricing, copy)",
+      "method1_lexicon": [
+        "landing page",
+        "home ?page",
+        "hero section",
+        "above the fold",
+        "conversion rate",
+        "trial conversion",
+        "signup conversion",
+        "low conversion",
+        "high.?conversion",
+        "conversion from",
+        "convert(?:ing)? (?:visitors|traffic|signups|users)",
+        "\\bcta\\b",
+        "call to action",
+        "sign.?up (?:rate|flow|page|form)",
+        "pricing page",
+        "\\bheadline",
+        "value prop",
+        "bounce rate",
+        "\\bvisitors\\b",
+        "a/?b test",
+        "website copy",
+        "\\bcopywriting\\b",
+        "page copy",
+        "waitlist page"
+      ],
+      "method1": {
+        "business_asking_authors": 48,
+        "business_asking_posts": 50,
+        "developer_asking_authors": 8,
+        "all_asking_authors": 56,
+        "all_posts_authors": 353
+      },
+      "method2": {
+        "phrases": [
+          "conversion rate",
+          "landing page",
+          "users sign"
+        ],
+        "business_asking_authors": 33,
+        "developer_asking_authors": 5,
+        "all_asking_authors": 38
+      },
+      "hand_read": [
+        {
+          "id": "1nrifkd",
+          "verdict": "PASSING",
+          "reason": "'landing page' appears once in a product tour",
+          "sub": "buildinpublic",
+          "score": 2,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1nrifkd/specly_code_ongoing_journey_of_creating_an/"
+        },
+        {
+          "id": "1p4r5zu",
+          "verdict": "ON",
+          "reason": "landing page drew traffic; unsure what to build next",
+          "sub": "startups",
+          "score": 2,
+          "url": "https://www.reddit.com/r/startups/comments/1p4r5zu/i_posted_a_landing_page_a_week_ago_and_it_got_a/"
+        },
+        {
+          "id": "1qgapzg",
+          "verdict": "ON",
+          "reason": "landing page built to validate before building the product",
+          "sub": "microsaas",
+          "score": 2,
+          "url": "https://www.reddit.com/r/microsaas/comments/1qgapzg/i_built_a_landing_page_for_a_youtube_comment/"
+        },
+        {
+          "id": "1qgkcb4",
+          "verdict": "PASSING",
+          "reason": "sign-up then forget: retention, not the page",
+          "sub": "SaaS",
+          "score": 20,
+          "url": "https://www.reddit.com/r/SaaS/comments/1qgkcb4/why_i_stopped_building_webonly_saas_and_how_i/"
+        },
+        {
+          "id": "1ruuul8",
+          "verdict": "PASSING",
+          "reason": "a conversion rate inside a long life story",
+          "sub": "SaaS",
+          "score": 0,
+          "url": "https://www.reddit.com/r/SaaS/comments/1ruuul8/i_sold_75_bitcoin_at_300_each_to_start_a_business/"
+        },
+        {
+          "id": "1sfvrk4",
+          "verdict": "PASSING",
+          "reason": "visitors mentioned; the stated problem is SEO",
+          "sub": "SaaS",
+          "score": 3,
+          "url": "https://www.reddit.com/r/SaaS/comments/1sfvrk4/i_know_my_product_is_good_but_im_struggling_with/"
+        },
+        {
+          "id": "1t96r2s",
+          "verdict": "ON",
+          "reason": "signups down 72%, asking what is broken",
+          "sub": "buildinpublic",
+          "score": 1,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1t96r2s/my_saas_signups_dropped_72_in_2_months_i_need/"
+        },
+        {
+          "id": "1t9iu14",
+          "verdict": "PASSING",
+          "reason": "landing page named while asking what he is doing wrong",
+          "sub": "SaaS",
+          "score": 1,
+          "url": "https://www.reddit.com/r/SaaS/comments/1t9iu14/there_are_so_many_posts_about_saas_success_what/"
+        },
+        {
+          "id": "1tzrp1h",
+          "verdict": "PASSING",
+          "reason": "landing page inside a distribution post-mortem",
+          "sub": "SaaS",
+          "score": 0,
+          "url": "https://www.reddit.com/r/SaaS/comments/1tzrp1h/i_analyzed_102_recent_rsaas_posts_because_my_own/"
+        },
+        {
+          "id": "1uoh80l",
+          "verdict": "ON",
+          "reason": "$20 of ads measured through to landing-page conversion",
+          "sub": "SaaS",
+          "score": 6,
+          "url": "https://www.reddit.com/r/SaaS/comments/1uoh80l/i_spent_20_on_meta_ads_for_my_saas_heres_every/"
+        }
+      ],
+      "hand_read_counts": {
+        "read": 10,
+        "ON": 4,
+        "PASSING": 6,
+        "OFF": 0
+      },
+      "examples": [
+        {
+          "quote": "My SaaS signups dropped 72% in 2 months - I need honest feedback on what's broken",
+          "sub": "buildinpublic",
+          "room": "business",
+          "score": 1,
+          "num_comments": 0,
+          "url": "https://www.reddit.com/r/buildinpublic/comments/1t96r2s/my_saas_signups_dropped_72_in_2_months_i_need/",
+          "id": "1t96r2s",
+          "words": 16,
+          "verbatim": true
+        },
+        {
+          "quote": "to see whether my biggest problem was getting visitors or converting them",
+          "sub": "SaaS",
+          "room": "business",
+          "score": 6,
+          "num_comments": 58,
+          "url": "https://www.reddit.com/r/SaaS/comments/1uoh80l/i_spent_20_on_meta_ads_for_my_saas_heres_every/",
+          "id": "1uoh80l",
+          "words": 12,
+          "verbatim": true
+        },
+        {
+          "quote": "I decided to build a landing page to create a waitlist.",
+          "sub": "startups",
+          "room": "business",
+          "score": 2,
+          "num_comments": 6,
+          "url": "https://www.reddit.com/r/startups/comments/1p4r5zu/i_posted_a_landing_page_a_week_ago_and_it_got_a/",
+          "id": "1p4r5zu",
+          "words": 11,
+          "verbatim": true
+        }
+      ]
+    }
+  }
+}
