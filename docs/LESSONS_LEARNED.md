@@ -299,6 +299,14 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   build-log entry ("the $149 button"). Twin row in the book repo's
   `docs/CLAIMS-LEDGER.md`, same session.
 
+- **ORDANI BUILD TIME, "six weeks" — provenance recorded 2026-09-04, operator
+  confirmation pending at the book's ship gate.** The book's chapter 2 build-log entry
+  (2026-05-19) says the author spent six weeks polishing Ordani's interface toward an
+  unlocked reference. Provenance: the UI-006 post-mortem of 2026-05-19 in the Ordani
+  repo, cited in the operator's marketing playbook ("UI-006 burned 6+ weeks"). The
+  author's own working time, not a customer, revenue, user or security fact. Twin
+  row in the book repo's `docs/CLAIMS-LEDGER.md`, same session.
+
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
 
