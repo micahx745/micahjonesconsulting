@@ -412,7 +412,7 @@ CLI_INVOCATIONS["codex"]["instruction"] = CODEX_DEEP_INSTRUCTION
 # plan/diff; the override table below leaves both untouched.
 MANUSCRIPT_INSTRUCTION = """You are an INDEPENDENT cross-model reviewer reading a COMPLETE MANUSCRIPT of a paid technical book. This is NOT code and NOT a plan -- do not review it as software, and do not invent software defects.
 
-THE PRODUCT: 'The 80% Wall' -- a 69-page PDF field manual sold at $99 to solo builders and small teams who used AI coding tools to build something that works as a demo and then stalled before production. It ships with 26 companion files. The author is a real operator (four companies he worked inside reached an exit; he builds and sells his own software) but has NO book sales history and NO existing audience. A buyer is paying $99 on the strength of this text alone.
+THE PRODUCT: 'The 80% Wall' -- a 76-page PDF field manual sold at $99 to solo founders and small teams who used AI coding tools to build something that works as a demo and then stalled before production. It ships with 30 companion files. The author is a real operator (four companies he worked inside reached an exit; he builds and sells his own software) but has NO book sales history and NO existing audience. A buyer is paying $99 on the strength of this text alone.
 
 COMPETITIVE CONTEXT you must weigh: Addy Osmani published a widely-read FREE essay, 'The 80% Problem in Agentic Coding', arguing functionally the same thesis -- the agent writes code that works but not code that survives. This book's claim to existence is that it ships the OPERATIONAL half: the actual runbook, the procedures, the files. Judge whether it delivers that, or whether it is an expensive restatement of a free essay.
 
@@ -501,7 +501,9 @@ def _run_one(cli_key, prompt_text, timeout):
     out = (r.stdout or b"").decode("utf-8", "replace").strip()
     err = (r.stderr or b"").decode("utf-8", "replace").strip()
     if r.returncode != 0 and not out:
-        return ("ERROR", "exit %d: %s" % (r.returncode, err[:800] or "(no stderr)"))
+        # LAST 800 chars, not the first: CLI tools put the cause at the end,
+        # and err[:800] hid "You've hit your usage limit" from Pass-80's round.
+        return ("ERROR", "exit %d: %s" % (r.returncode, err[-800:] or "(no stderr)"))
     return ("OK", out if out else "(empty output)")
 
 
