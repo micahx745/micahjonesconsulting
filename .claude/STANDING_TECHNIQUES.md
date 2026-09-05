@@ -81,12 +81,17 @@ rule). Command: `/cross-review plan|diff`. Escape hatch: `SKIP_CROSS_REVIEW=1`.
 - **Keys live at `~/.claude/.gemini-key` and `~/.claude/.zai-key`** — outside
   every repo, so one rotation site serves all projects and no working tree can
   stage a secret. `.gitignore` also blocks the in-repo paths as a backstop.
-- **Model pins live ONLY in the script.** Never restate a pin in prose; a
-  restated pin is what rotted upstream. Codex is pinned to `gpt-5.6-sol` and is
-  the DEEP leg — give it latency, never truncation. Never bump the pin without
-  smoke-testing THROUGH the harness: a direct-CLI OK does not imply the `llm`
-  plugin can route it (`gpt-5.6-luna` answers directly but 404s through the
-  plugin).
+- **Model pins live ONLY in the script.** The pin lives in the script — read
+  `CLI_INVOCATIONS` in `scripts/cross-review/run_cross_review.py`, which also
+  carries the reasoning effort and the transport each leg runs under. Never
+  restate any of it here; a restated pin is what rotted upstream, and this line
+  itself carried a dead one for two days. Codex is the DEEP leg — give it
+  latency, never truncation. Never bump a pin or an effort without smoke-testing
+  THROUGH the harness (`--legs codex` on a tiny input). What a route can carry is
+  a snapshot, not a law, and the routes disagree in both directions: one model
+  answered a direct call while 404ing through the `llm` plugin, and the plugin
+  later went stale the other way — hardcoded to models the account had lost,
+  unable to reach the one the CLI ran fine.
 - **Cost:** zero ambient; per-round pennies on operator-owned accounts (Codex on
   the ChatGPT plan, Gemini on AI Studio, GLM pay-go). Invoke deliberately.
 - Python 3.14 on PATH; the script is 100% stdlib — nothing to install.
