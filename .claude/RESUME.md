@@ -2,49 +2,40 @@
 
 ## READ THIS FIRST
 Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-09-04.md`.
-**Passes 97 + 98 are LIVE on both domains and independently verified.**
-Deploy approved — Operator, 2026-09-04, verbatim: "deploy it". Ship per CARD 1; both
-domains on one id (`dpl_HwBFed…`), lineage 6eb543e → origin/main proven. Live verify
-`448cbb2`: brief §5 all OK on the live snapshot, Pass-97 probes OK, retired phrases 0,
-banned words 0, 4/4 redirects, both share images read back as images. Cross-review
-`6eb543e`: 2 legs, advisory only, 0 blockers. Codex leg repinned `gpt-6-astra` at
-`model_reasoning_effort=ultra` via the codex CLI (`c009693` + `381e519`), smoke-tested.
-**A second session — the book chat — is on this tree** (it made `c009693`). Stage by
-path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md`; its materials:
-`.planning/handoff/04-BOOK-MATERIALS.md`.
+**Passes 97 + 98 are LIVE on both domains and independently verified.** Deploy approved —
+Operator, 2026-09-04, verbatim: "deploy it". Both domains on one id, lineage proven.
+Live verify `448cbb2`: brief §5 all OK on the live snapshot, Pass-97 probes OK, retired
+phrases 0, banned words 0, 4/4 redirects, share images read back. Cross-review `6eb543e`:
+advisory only, 0 blockers. Codex leg repinned `gpt-6-astra` at ultra via the codex CLI
+(`c009693`, `381e519`), smoke-tested alive.
+**A second session (the book chat) is on this tree.** Stage by path. Its brief:
+`.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md`; materials `04-BOOK-MATERIALS.md` beside it.
 
 ## Ship gate, what remains (operator-owned)
-1. **Stripe webhook + `whsec_` in Vercel Production + one live $500 buy/refund.**
-   `/packages` buttons are live over nothing. Blocks the flag.
-2. Real-browser look at `/playbook`: the world cross-fade on scroll, the hero wall chart
-   zoomed at 1440 (labels 8→11 SVG units), hero→checkout read in the ON state. An Opus
-   scroll-capture was dispatched; crops land in the session scratchpad.
-3. `PLAYBOOK_ON_SALE=1` in Vercel + redeploy = the launch. Not before 1.
+1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** `/packages`
+   buttons are live over nothing. Blocks the flag.
+2. Real-browser look at `/playbook` (cross-fade on scroll, hero chart zoomed, ON-state
+   hero→checkout). Opus scroll-capture dispatched; crops in the session scratchpad.
+3. `PLAYBOOK_ON_SALE=1` + redeploy = launch. Not before 1.
 
-## Housekeeping from the cross-review (one small Opus pass, none urgent)
-XR-2 drop the `offers` block from JSON-LD while the flag is unset · XR-1 `Product.brand`
-Person → Organization · XR-7 `.cw-lp-block--breath` loses its 160px on `:last-child`
-(specificity) · XR-6 `scripts/snapshot-live.py` does not decode the `&rsquo;` family ·
-XR-3 the gate's comment-strip regex eats `//` inside strings.
+## Housekeeping, one small Opus pass, none urgent
+XR-2 no `offers` in JSON-LD while the flag is unset · XR-1 `Product.brand` → Organization ·
+XR-7 `--breath` margin lost on `:last-child` · XR-6 snapshot script decode `&rsquo;` family ·
+XR-3 gate regex eats `//` in strings.
 
 ## Observation for LESSONS #5
-The auto-deploy fired by the verifier's push moved BOTH domains with no manual alias.
-www may now be a project domain. Confirm in the dashboard before deleting the re-alias
-step from CARD 1; until confirmed, keep checking parity after every push.
+Auto-deploys from pushes moved BOTH domains with no manual alias, twice. www may now be
+a project domain. Confirm in the dashboard before dropping CARD 1's re-alias step.
 
-## Next passes
-99: the landing-page offer + `/services` `/packages` distribution reframe (needs his
-name/price ruling). 100: home spear, Search Console, `/work` ItemList, sitemap lastmod,
-`/work/ordani` title. Book arc: its own chat, other repo.
-
-## Still his
-Google his own name (a v0 page?) · Search Console · the offer's name/price · a portrait
-for the back cover · the launch date · the $149 trigger.
+## Next
+99: the landing-page offer + services/packages reframe (needs his name/price). 100: home
+spear, Search Console, `/work` ItemList, sitemap lastmod, `/work/ordani` title. Book: its
+own chat. Still his: Google his own name · Search Console · offer name/price · portrait ·
+launch date · $149 trigger.
 
 ## Standing traps
-Stripe prefixes `sk_`/`pk_`/`mk_` · Vercel env applies only on a NEW deploy · every push
-fires an auto-deploy, check both domains after · `grep -oiF` false zeroes, python utf-8 ·
-strip `<script>` before counting · next/image srcsets: count `<img>`, not substrings ·
-full-page screenshots freeze the world cross-fade · copy-lint hook rejects docs that
-QUOTE banned words · `--cw-accent` flips across hydration · a review is a reader, not an
-oracle · two sessions share this tree.
+Stripe prefixes `sk_`/`pk_`/`mk_` · Vercel env only on a NEW deploy · every push
+auto-deploys, check parity after · `grep -oiF` false zeroes, python utf-8 · strip
+`<script>` before counting · next/image: count `<img>` not substrings · full-page
+screenshots freeze the cross-fade · copy-lint hook rejects docs that QUOTE banned words ·
+`--cw-accent` flips across hydration · a review is a reader, not an oracle.
