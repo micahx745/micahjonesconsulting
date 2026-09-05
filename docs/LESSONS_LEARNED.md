@@ -268,6 +268,22 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   in Postgres" reviewer line). scripts/vendor-gate.mjs blocks `pnpm build` when any rendered
   Ordani-mentioning file names an infra vendor/engine. Dev tools (Claude Code, Cursor) permitted.
 
+- **RESEARCH CORPUS, the four facts the book's chapter 9 cites — operator "proceed"
+  2026-09-04.** Written in the same session as the book repo's `docs/CLAIMS-LEDGER.md`
+  row of the same title (split hazard). **4,464 posts** with 250+ character bodies from
+  **ten subreddits** (SaaS, buildinpublic, microsaas, startups, EntrepreneurRideAlong,
+  nextjs, cursor, ClaudeAI, webdev, ChatGPTCoding), 3,842 authors, windows 2025-09-23
+  to 2026-08-03 (`Code/reddit-research/data/corpus.jsonl`, gitignored; denominators
+  asserted by every script in `Code/reddit-research/cuts/`). **607 asking posts / 567
+  authors; "kept running" = 21 distinct asking authors** (`reddit-research/reference/
+  emergent-language.json`). **The playbook page's former second sentence appears in 0
+  of the 4,464 posts** (`.planning/research/04-CUT-A-chapter-demand-map.md`, appendices
+  A and B). The page moved the attested beat to first on 2026-09-04 (Pass-98). MAY say:
+  those four facts as the author's own measurement. NEVER: a market-size claim from
+  them; a rate ("8.9%", "1.0%") — the fetches disagree tenfold on rates
+  (`.planning/research/04-CUT-F-launch-rooms.md` §8); a Reddit user's words as an
+  attributed quotation.
+
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
 
