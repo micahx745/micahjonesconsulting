@@ -11,15 +11,11 @@ advisory only, 0 blockers. Codex leg repinned `gpt-6-astra` at ultra via the cod
 **A second session (the book chat) is on this tree.** Stage by path. Its brief:
 `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md`; materials `04-BOOK-MATERIALS.md` beside it.
 
-## Design exploration (2026-09-05) — a mock, not a shipping change
-Operator: "I really like procreate.com style … go wild." Constitution RELEASED for the mock;
-facts and anonymity NOT released. Ruling + study: `.planning/design/MOCK-BRIEF-2026-09-05.md`.
-Direction "dark studio, warm paper": warm stepped near-blacks, the book's real pages and his
-photograph as the only light surfaces, Instrument Sans/Serif + JetBrains Mono, one saffron
-accent for actions, "Fixed." as the pricing-model word. Boards in `.planning/design/mock/`
-(Main by Fable, Playbook/Services/two low-fi alternates by Opus). Canvas:
-https://claude.ai/code/artifact/a398fb1a-741e-4d9f-b043-4cc7a5536a91 (editable, exportable).
-Every sentence on it is one the site already publishes. Nothing on the live site changed.
+## Design exploration (2026-09-05) — a mock, nothing live changed
+Operator: "I really like procreate.com style … go wild." Constitution released for the mock;
+facts and anonymity not. Ruling + study: `.planning/design/MOCK-BRIEF-2026-09-05.md`. Boards
+in `.planning/design/mock/` (Main by Fable, the rest by Opus). Canvas, editable + exportable:
+https://claude.ai/code/artifact/a398fb1a-741e-4d9f-b043-4cc7a5536a91
 
 ## Ship gate, what remains (operator-owned)
 1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** `/packages`
@@ -28,10 +24,9 @@ Every sentence on it is one the site already publishes. Nothing on the live site
    hero→checkout). Opus scroll-capture dispatched; crops in the session scratchpad.
 3. `PLAYBOOK_ON_SALE=1` + redeploy = launch. Not before 1.
 
-## Housekeeping, one small Opus pass, none urgent
-XR-2 no `offers` in JSON-LD while the flag is unset · XR-1 `Product.brand` → Organization ·
-XR-7 `--breath` margin lost on `:last-child` · XR-6 snapshot script decode `&rsquo;` family ·
-XR-3 gate regex eats `//` in strings.
+## Housekeeping (one small Opus pass): XR-2 no `offers` while flag unset · XR-1
+`Product.brand` → Organization · XR-7 `--breath` on `:last-child` · XR-6 snapshot decodes
+`&rsquo;` · XR-3 gate regex and `//` in strings.
 
 ## Observation for LESSONS #5
 Auto-deploys moved BOTH domains with no manual alias, four times. Confirm www is a project
