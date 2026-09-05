@@ -282,7 +282,22 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   those four facts as the author's own measurement. NEVER: a market-size claim from
   them; a rate ("8.9%", "1.0%") — the fetches disagree tenfold on rates
   (`.planning/research/04-CUT-F-launch-rooms.md` §8); a Reddit user's words as an
-  attributed quotation.
+  attributed quotation. ADDED 2026-09-04, same session as the book repo: the
+  governing phrase file is the frozen snapshot `reddit-research/handoff/
+  emergent-language.json` (4,464 posts), not `reference/`, which was regenerated on
+  a larger crawl; **Cut B** (`.planning/research/04-CUT-B-landing-page-posts.md`:
+  35 asking posts / 34 authors say "landing page", 18 of 34 want a page that exists
+  to convert or be reached, 4 want one built) licenses chapter 9's body line
+  "founder after founder who asked for help with a page"; the corpus is twelve
+  10-day windows across 2025-09-23 → 2026-08-03, so the book says "ten months",
+  never "a year".
+- **PLAYBOOK PRICE — operator 2026-09-04**, verbatim: "Price stays $99 launch / $149
+  after unless I say otherwise. The $149 trigger is open; it moves p.42 and the
+  site's spec card together." $99 at launch, $149 after; the increase date is NOT
+  ruled. Surfaces that move together: the /playbook spec card and price lines, the
+  book's chapter-8 sampler colophon, the dormant chapter-1 colophon, chapter 6's
+  build-log entry ("the $149 button"). Twin row in the book repo's
+  `docs/CLAIMS-LEDGER.md`, same session.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
