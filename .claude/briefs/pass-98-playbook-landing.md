@@ -538,3 +538,19 @@ For the record, not for a fix:
 
 Live-domain verification is UNVERIFIED until deploy, which is the operator's.
 
+### 10.1 Live look, after deploy — Fable, 2026-09-04
+
+Scrolled captures of the LIVE page (Opus, real browser, viewport not full-page), read once.
+- **Cross-fade confirmed.** Pain block centred at 1440: root ground `#ECE3D0`, pain line
+  `#2A1F18` at 24px. Opener centred: root `#2A1F18` at 1440 and at 390. The espresso in
+  every full-page capture was the capture, as recorded above.
+- **Wall chart at 2×: holds.** Labels at 11px sit clear of the lines; no overlap, no
+  crowding. The 8→11 change resolved in favour of legibility. Closed.
+- **XR-7 confirmed live:** the build-log block is `:last-child` of its shell, so its 160px
+  breath computes to 0; the gap before the opener is the opener's own 128px. Cosmetic.
+  Parked in the resume's housekeeping pass with the other cross-review advisories.
+- Zero console errors at 1440 and 390.
+- **Not closable until launch:** the ON-state hero→checkout read on the live domain. The
+  local verifier clicked through to a `cs_test_` session; the live read happens when
+  `PLAYBOOK_ON_SALE` flips, after the webhook.
+
