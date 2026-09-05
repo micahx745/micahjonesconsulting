@@ -46,3 +46,6 @@ that QUOTE banned words · snapshot `.txt` fakes spaces at tag boundaries · nex
 srcset makes substring counts of image names meaningless, count `<img>` · full-page
 screenshots freeze the world cross-fade · `--cw-accent` flips across hydration, use literal
 tokens · `snapshot-live.py` decodes 14 entities, NOT `&rsquo;` · a review is a reader, not an oracle · two sessions share this tree: stage by path.
+
+## Merged from the book session (2026-09-04)
+- **Cross-review Codex leg re-pinned 2026-09-04 to gpt-6-astra at `ultra` via `codex exec`** (operator directive; llm plugin could not route astra; codex-cli 0.144.0→0.153.4). Smoke-tested through the harness: CODEX(CLI) [OK]. Same file in both repos. Written by the BOOK session.

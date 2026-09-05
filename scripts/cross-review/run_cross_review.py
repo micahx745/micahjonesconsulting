@@ -40,6 +40,7 @@ import json
 import os
 import shutil
 import subprocess
+import tempfile
 import sys
 import time
 import urllib.error
@@ -303,42 +304,55 @@ CLI_INVOCATIONS = {
         "argv": lambda short: ["-p", short],
         "stdin": True,
     },
-    # ChatGPT via simonw/llm-openai-via-codex: `llm -m openai-codex/<model>`.
-    # Prompt goes fully on stdin (no arg) so large diffs are not blocked by Windows argv
-    # limits. Needs `codex` to be ChatGPT-authenticated (codex login) -- else llm returns
-    # an auth error, reported as [ERROR], never fabricated.
-
-    # MODEL PIN — re-pinned 2026-09-02 (see rotation note below). Tested THROUGH
-    # this harness (`llm -m openai-codex/X`) against `llm models`:
-    #   gpt-5.4        harness OK  <- PINNED
-    #   gpt-5.4-mini   available   <- fallback if 5.4 regresses
-    #   gpt-5.4-nano   available   <- last resort, do not use for the deep leg
+    # ChatGPT via the Codex CLI itself: `codex exec -m gpt-6-astra ... -`, with
+    # the whole instruction+content on stdin. The final message goes to stdout;
+    # the banner and token count go to stderr, which _run_one surfaces only on
+    # a non-zero exit with empty stdout.
     #
-    # ROTATION 2026-09-02: the previous pin (gpt-5.6-sol) died with
-    #   Error: 'Unknown model: openai-codex/gpt-5.6-sol'
-    # and so did every fallback recorded beside it -- sol, terra, luna and 5.5 are
-    # ALL gone from the plugin's model list. The whole 2026-07-09 pin block was
-    # stale, fallbacks included, which is the failure this file already warned
-    # about one paragraph down. A dead pin fails loudly ([ERROR], never a
-    # fabricated review), but it also means the deep leg was silently absent from
-    # any round run since the plugin rotated. Re-probe `llm models` before
-    # trusting any line above.
-
-    # Sol's availability REVERSED. Earlier the same day (codex-cli 0.135.0) sol returned
-    # 400 "not supported when using Codex with a ChatGPT account", and this file recorded it
-    # as requiring API-key auth. It now answers on the same $20 ChatGPT plan. A model verdict
-    # written here is a snapshot, not a law -- re-probe before trusting any line above.
-
-    # RULE: never bump this pin without smoke-testing THROUGH the harness (a direct-CLI OK
-    # does not imply the llm plugin can route it -- luna proves that).
+    # MODEL PIN -- re-pinned 2026-09-04 to **gpt-6-astra at reasoning effort
+    # `ultra`** (operator directive, same day: "make sure the model is astra at
+    # ultra now"). Smoke-tested THROUGH this harness the same day: plan mode,
+    # --legs codex, a five-line plan -> CODEX(CLI) [OK].
+    #
+    # ROTATION 2026-09-04, and why the INVOCATION changed with the pin:
+    #   - The previous route, simonw/llm-openai-via-codex (`llm -m openai-codex/X`),
+    #     is v0.1a0 with a HARDCODED model list (gpt-5.4, -mini, -nano) and a
+    #     reasoning_effort option capped at xhigh. It cannot route astra
+    #     ('Unknown model: openai-codex/gpt-6-astra') and has no `ultra`. The
+    #     gpt-5.4 pin itself had already died ("unentitled", the Pass 97-98
+    #     round in the site repo), so the deep leg was absent AGAIN.
+    #   - `codex exec` uses the CLI's own model list (~/.codex/models_cache.json
+    #     lists gpt-6-astra with `ultra` among its supported reasoning levels)
+    #     and takes `-c model_reasoning_effort=ultra` -- a BARE value on purpose:
+    #     the TOML parse fails and the raw string is used, which avoids quoting
+    #     an argument through the npm .cmd shim on Windows.
+    #   - codex-cli 0.144.0 refused astra ("requires a newer version of Codex").
+    #     Upgraded to 0.153.4 (npm -g @openai/codex@latest) 2026-09-04.
+    #     Revert: npm i -g @openai/codex@0.144.0.
+    #   - Fallbacks if astra dies, in order: gpt-5.6-sol, gpt-5.5. Both are in
+    #     the CLI's cache; NEITHER is smoke-tested through this harness. Probe first.
+    #
+    # RULE (unchanged): never bump this pin without smoke-testing THROUGH the
+    # harness. A model verdict written here is a snapshot, not a law.
     "codex": {
-        "names": ["llm", "llm.cmd", "llm.exe"],
-        "argv": lambda short: ["-m", "openai-codex/gpt-5.4"],
+        "names": ["codex", "codex.cmd", "codex.exe"],
+        "argv": lambda short: [
+            "exec",
+            "-m", "gpt-6-astra",
+            "-c", "model_reasoning_effort=ultra",
+            "-s", "read-only",             # a reviewer reads; it never edits
+            "--skip-git-repo-check",
+            "--ephemeral",                 # no session files left behind per round
+            "--color", "never",
+            "-C", tempfile.gettempdir(),   # neutral workdir: the artifact is on stdin
+            "-",                           # read the prompt from stdin
+        ],
         "stdin": True,
         "instruction_via_stdin": True,
-        # Deep-leg contract (operator directive 2026-07-23): Sol walks the whole
-        # artifact under CODEX_DEEP_INSTRUCTION (assigned below the instruction
-        # constants -- they are defined after this dict) and gets --codex-timeout.
+        # Deep-leg contract (operator directive 2026-07-23): this leg walks the
+        # whole artifact under CODEX_DEEP_INSTRUCTION (assigned below the
+        # instruction constants -- they are defined after this dict) and gets
+        # --codex-timeout.
     },
 }
 
@@ -360,7 +374,8 @@ SHORT_INSTRUCTION = (
     "file/section. Do NOT invent issues; if it looks fine, say so."
 )
 
-# Operator directive 2026-07-23: the Codex (gpt-5.6-sol) leg is the DEEP leg --
+# Operator directive 2026-07-23: the Codex leg (gpt-6-astra at ultra since
+# 2026-09-04; gpt-5.6-sol when the directive was written) is the DEEP leg --
 # it consistently finds real blockers the fast legs miss, so it gets a longer,
 # more demanding instruction and its own generous timeout (--codex-timeout).
 CODEX_DEEP_INSTRUCTION = SHORT_INSTRUCTION + (
@@ -461,7 +476,7 @@ def _run_one(cli_key, prompt_text, timeout):
         return ("NOT INSTALLED", "")
     instr = _instruction_for(cli_key)
     if spec.get("instruction_via_stdin"):
-        # llm path: no prompt arg; the whole instruction+content goes on stdin.
+        # stdin path (codex exec "-", llm): no prompt arg; instruction+content on stdin.
         argv = [path] + spec["argv"](None)
         prompt_text = instr + "\n\n" + prompt_text
     else:
@@ -504,7 +519,9 @@ def main() -> int:
     ap.add_argument("--glm-timeout", type=int, default=DEFAULT_GLM_TIMEOUT)
     # Deep-leg budget (2026-07-23): Sol's DEPTH CONTRACT produces much longer
     # generations than the 120s shared default tolerates.
-    ap.add_argument("--codex-timeout", type=int, default=600)
+    # 1500s since 2026-09-04: astra at `ultra` walks a 95KB manuscript slower
+    # than 5.4 did, and a timeout renders as a dead leg, not a slow one.
+    ap.add_argument("--codex-timeout", type=int, default=1500)
     ap.add_argument("--max-bytes", type=int, default=DEFAULT_MAX_BYTES)
     # mid-arc solo re-run of one leg (e.g. after a Gemini 503)
     # previously required importing the module by hand. Comma-separated; the
@@ -592,7 +609,7 @@ def main() -> int:
         if g_status.startswith("OK"):
             available += 1
         parts.append("\n----- %s [%s] -----\n%s" % (g_label, g_status, g_body))
-    # Codex: CLI path (ChatGPT-via-Codex). Installed + authed (verified 2026-06-09).
+    # Codex: CLI path (`codex exec`, ChatGPT-authed). Verified 2026-09-04 with gpt-6-astra.
     if "codex" not in legs:
         parts.append("\n----- CODEX [SKIPPED] -----\nCODEX LEG SKIPPED BY FLAG (--legs=%s)." % args.legs)
     else:
