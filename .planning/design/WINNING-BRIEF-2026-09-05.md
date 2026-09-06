@@ -405,9 +405,51 @@ for eyebrows and metadata. Index row names at 28px; FAQ questions at 28px, answe
 captions 19px. Section entry air back to 120px at ≥ 900. Two display sizes remain the
 rule; nothing at `--d` except the hero and the ask.
 
-**14.5 Packages and engagements** and **14.6 the rail's panels**: ruled after the corpus
-leg returns (`research/CORPUS-PRICING-SECTIONS.md`, `research/CORPUS-METHOD-SECTIONS.md`),
-with example crops sent to the operator.
+**14.5 Packages and engagements: three cards, then one bar** (from
+`research/CORPUS-PRICING-SECTIONS.md`: tambo §8's geometry, cora §10's framing; the
+complaint was a rank problem, five offers reading as five peers when only three are).
+- Section head at `--d2`: `Three fixed prices. Start this week.` with `Fixed.` as the
+  eyebrow.
+- Three cards in a row at ≥ 900px (each = (content − 48px) / 3), 24px gap, no border, no
+  shadow, no fill; a single 1px hairline (ink 12%) under the price block of each. Card
+  interior, five parts and no more, 24px padding: the package name as the label-style
+  eyebrow (`The Unstick Session` / `The Audit` / `The Sprint`) · the price at 64px, Anybody
+  300, `"wdth" 106`, tabular, letter-spacing −0.02em · the unit/suffix in the label style at
+  60% ink on the price's baseline (`Start here` on the Audit only) · the row's one sentence
+  from the template at 17px/1.5, max two lines · the CTA chip (primary, 48px, full card
+  width) linking to /packages?from=mock-price. The Audit card alone carries a 1px copper
+  border and nothing else (athenahq §3's hairline; no ribbon, no claim).
+- Hover/focus on a card: the chip's ground swaps to copper in 300ms; nothing lifts; 0ms
+  under reduced motion.
+- 32px beneath the cards, ONE bar, full content width, 104px tall, 16px radius, espresso
+  ground with bone type (on the bone half): the sentence `Engagements · advisory, project,
+  retainer, or embedded.` at 19px left, and `From $5K a month` in an outlined copper pill
+  (1px copper border, copper text, 44px tall) flush right, the whole bar a link to
+  /call?from=mock-engagements. Never a fourth price slot.
+- The $99 manual stays in section 07 only.
+- At ≤ 899px the cards stack full width, price at 52px, the bar becomes a 2-row block
+  (sentence, then the pill) with the tap target kept.
+
+**14.6 The rail's panels: real artifacts, or type; never a photograph of him.** The
+headline finding in `research/CORPUS-METHOD-SECTIONS.md`: 0 of 14 builds put a photograph
+of the founder, the team or the workspace in the method section; 9 of 14 run typographic
+panels, 4 crop the product's own output into one soft frame, 1 redraws the system diagram
+in live type. Ruling, per panel:
+- 01 Diagnose → the manual's page-6 diagram REDRAWN in live type and SVG (boxes, hand-curved
+  arrows, capsule labels in the label style), the `<WallChart />` subject at panel scale;
+  the builder ports the geometry from `components/WallChart.tsx` if it is SVG, else redraws
+  it from `mock-assets/wallchart.jpg` as boxes + arrows. Static; no animation in the mock.
+- 02 Build → one real screen of the shipped CRM in one soft frame (bone card, 16px radius,
+  no device chrome), IF a real product screenshot exists in `public/` or `content/`
+  (the builder inventories and reports; `ordani-intake.jpg` is a photograph, not a screen).
+  If none exists: a typographic panel (label, the step's one sentence at 28px, a § code,
+  hairline) per pattern D, and the slot is named as the place the screen goes.
+- 03 Position → typographic panel: the positioning sentence the site already runs
+  (`Strategy and software, shipped by the same pair of hands…`) set at 28px as the artifact,
+  with the label `Position` above and a hairline; the RFP engine's real output replaces it
+  when he supplies a redacted page.
+All three panels share one frame geometry and one ground; a missing artifact is a
+legitimate variant, not a hole (growthloop §11).
 
 ## 10. Return conditions (stop and report instead of guessing)
 
