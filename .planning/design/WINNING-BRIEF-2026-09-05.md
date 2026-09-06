@@ -225,6 +225,48 @@ any new sentence.
   under the figure so all five figures are flush right; the manual's label precedes its
   display line; the rail sticks at 140px.
 
+## 12. Astra's review (2026-09-05, one call at ultra), verified, and the rulings → v2
+
+`reviews/CODEX-ROOM-AND-LEDGER-2026-09-05.md`. Eight of its premises were checked against
+the template before any ruling; all eight held (price rows are divs; `--ink` and `--ground`
+are the same mixture at p=.5; `100lvh`/720 hero; `.ask:hover` dims the block; `data-rise=30`
+on 15 text rows; bar reveals at a bare innerHeight; no IntersectionObserver; no off-screen
+pause). Its jury verdict: not SOTD as it stands; first juror comment the stranded "not" in
+the person heading; the tell is one composition applied regardless of content.
+
+**Accepted into v2 (Fable):**
+- Two display sizes, not one. `--d` (poster: hero, the three record names, the ask) and
+  `--d2: calc(.76 * var(--d))` (the person heading, composed "Operator," / "not consultant."
+  at wdth 115; the four figures). The one-size rule came from 1/14 builds; Astra is right
+  that it had become a constraint on judgement.
+- Labels 14px, wdth 80, tracking .04em, weight 500; metadata 14/20 at 80% ink; number
+  footnotes as reading text (Hanken 16/23, 80% ink, ≤ 34ch). Printer's marks no more.
+- Hero on `100svh` with content-driven min-height; no 720px floor; at 390 the proof row
+  ends above the fold. The full-bleed film at 390 stays (Astra's 360px stage rejected).
+- Price rows are links (three services → /packages, the manual → /playbook, engagements →
+  /call), grouped 3 + 40px + 2, min height 80/96, prices 32px, copper rule on hover and
+  focus.
+- Both videos pause off-screen (IntersectionObserver); B starts at ≥ 35% visible. Veil at
+  40% tried at .55 (from .75) gated by the bone row ≥ 4.5 across frames; solid stays at
+  56%. B's grade starts below 65% height.
+- Numbers at `--d2`, two columns from 1280 up, explanation 20px below, rules 10% ink, the
+  first figure of a comparison at 65% ink and the result at 100%.
+- Bar: desktop reveals when the hero chips pass under its bottom edge (180ms); ≤ 899px a
+  48px bar from first paint with `MICAH JONES` and `PACKAGES FROM $500`; 64px anchor
+  clearance.
+- Ink switches hard at p=.5 (text never inherits the mid-mixture) while the ground travels;
+  mobile rail pairs each heading with its artifact (all headings opacity 1); `data-rise`
+  removed from text (media keeps 10); section entry air 96/56.
+- The ask: the heading is the link to /call; the block hover removed; field ≥ 720px at
+  1440 with 112/96 padding, 48px to the chips, the arrow 56px on the baseline; 390: 88px
+  padding, 64px heading, 48px controls.
+
+**Parked for the operator:** (1) Astra #1, offer before proof: move price + FAQ to
+immediately after the hero. Fable recommends keeping proof at two (corpus 6/14) with the
+price in the mobile bar from first paint. (2) Astra #6, forward-then-hold instead of the
+ping-pong loops. Fable recommends keeping the loops; hold B only if the reversed
+conversation reads wrong to him.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
