@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>The Receipts</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Xanh+Mono:ital@0;1&display=swap">
 <style>
@@ -369,6 +370,7 @@
 
   if (typeof window.Lenis !== 'undefined') {
     var lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+    window.lenis = lenis;
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
