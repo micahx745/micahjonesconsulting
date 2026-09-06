@@ -9,8 +9,7 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
 1. Dark studio mock: artifact a398fb1a (superseded).
-2. "Operator, not consultant" (from the CLIENT-WORK corpus, `FREIGHT-BRIEF-2026-09-05.md`):
-   artifact 1d43593f. He: "love it" but header, loudness, "AI font" → item 4 answers them.
+2. "Operator, not consultant" (`FREIGHT-BRIEF-2026-09-05.md`): artifact 1d43593f, superseded by 4.
 3. Video: Kling 3 Pro; clips arrive graded (dark grounds only). `design/video/`: B-loop.*,
    A2-hold.* (points at the headline, plays once + holds). `COMPOSITE-BRIEF-2026-09-06.md`:
    Nano Banana Pro; RSA composite C2 done, Kling prompt given; boardroom = him + AI clients.
@@ -19,8 +18,9 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
    no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
    48/48 checks, two verifiers, published:
    https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
-   Astra reviewed (§12). v3 PUBLISHED 2026-09-06 to the same URL: his §13 order, A2 hold,
-   B as ground, index proof (2 figures), exists-today rail images. 34/34 + 21/21 pass.
+   Astra (§12) · his v3 review (§14). v4 PUBLISHED 2026-09-06, same URL: 16:9 hero stage
+   with the words AT the finger (≤14px), operator overlay, no years/figures, 3 cards + 1
+   bar, SVG page-6 panel + type panels, heads at --d2. 43/43 + 39/39 pass.
 
 ## Ship gate (operator-owned)
 1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** Blocks the flag.

@@ -2,15 +2,16 @@
 
 Usage:  python .planning/design/winning/build.py [out_path]
 Reads   .planning/design/winning/room-and-ledger.template.html
-Images  .planning/design/mock-assets/{cover,w1-diagnose,w2-build,w3-position}.jpg
+Images  .planning/design/mock-assets/cover.jpg
 Video   .planning/design/video/A2-hold.{webm,mp4} + A2-hold-720.mp4 + A2-poster-last.jpg
         .planning/design/video/B-loop.{webm,mp4}  + B-loop-720.mp4  + B-poster.jpg
 Writes  out_path (default: the session scratchpad) -- the file the Artifact tool publishes.
 
-v3 (brief SS13): the four book-page images are gone with the numbers section and the
-record's artifacts; the rail's three panels now carry his own photographs. Clip A is the
-regenerated A2 hold (forward once, no loop, the poster is the LAST frame). Each clip also
-ships a 720 cut that is the only source below 900px.
+v4 (brief SS14): the rail's three photographs are gone -- SS14.6 forbids a photograph of
+him in the method section, so panel 01 is the page-6 diagram redrawn in SVG and panels 02
+and 03 are typographic. Only the book cover remains a raster. Clip A is the A2 hold
+(forward once, no loop, the poster is the LAST frame); each clip ships a 720 cut that is
+the only source below 900px.
 
 Hard ceiling: 12MB (brief SS7).
 """
@@ -29,9 +30,6 @@ LIMIT = 12 * 1024 * 1024
 # key -> (absolute path, mime)
 PARTS = {
     "IMG_cover":   (os.path.join(ASSETS, "cover.jpg"), "image/jpeg"),
-    "IMG_w1":      (os.path.join(ASSETS, "w1-diagnose.jpg"), "image/jpeg"),
-    "IMG_w2":      (os.path.join(ASSETS, "w2-build.jpg"), "image/jpeg"),
-    "IMG_w3":      (os.path.join(ASSETS, "w3-position.jpg"), "image/jpeg"),
     "VID_Awebm":   (os.path.join(VIDEO, "A2-hold.webm"), "video/webm"),
     "VID_Amp4":    (os.path.join(VIDEO, "A2-hold.mp4"), "video/mp4"),
     "VID_A720":    (os.path.join(VIDEO, "A2-hold-720.mp4"), "video/mp4"),
