@@ -1,398 +1,370 @@
 <meta charset="utf-8">
-<title>The Receipts</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Xanh+Mono:ital@0;1&display=swap">
+<title>Operator, not consultant</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400&family=Hanken+Grotesk:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   :root {
-    --paper: #F7F4EE;
-    --paper-2: #EFEBE3;
-    --ink: #121110;
-    --ink-2: #4A4642;
-    --grey: #8B857C;
-    --hair: rgba(18, 17, 16, 0.12);
-    --hair-2: rgba(18, 17, 16, 0.32);
-    --black: #0B0A09;
-    --serif: "EB Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-    --mono: "Xanh Mono", "Courier Prime", "IBM Plex Mono", ui-monospace, Menlo, monospace;
-    --g: 20px;
-    /* five sizes, one weight per face */
-    --t-thesis: clamp(40px, 5vw, 72px);
-    --t-head: 30px;
-    --t-line: 26px;
-    --t-body: 19px;
-    --t-mono: 13px;
+    --espresso: #0D0D0F;
+    --bone: #F5EFE4;
+    --copper: #C8542B;
+    --copper-deep: #8E3A1E;
+    --p: 0;                                   /* 0 = espresso world, 1 = bone world; set from scroll */
+    --ground: color-mix(in oklab, var(--espresso) calc((1 - var(--p)) * 100%), var(--bone));
+    --ink: color-mix(in oklab, #EAE6DD calc((1 - var(--p)) * 100%), #1A1816);
+    --ink-soft: color-mix(in oklab, #9C988F calc((1 - var(--p)) * 100%), #5A554E);
+    --hair: color-mix(in oklab, var(--ink) 15%, transparent);
+    --hair-4: color-mix(in oklab, var(--ink) 4%, transparent);
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --text: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --gleasing: cubic-bezier(0.4, 0, 0, 1);
+    --g: 24px;
   }
-  html { background: var(--paper); }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-weight: 400; font-size: var(--t-body); line-height: 1.45; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  html { background: var(--espresso); }
+  body { margin: 0; background: var(--espresso); color: var(--ink); font-family: var(--text); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; text-decoration: none; }
-  a:hover { color: var(--ink-2); }
-  a:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 4px; }
-  ::selection { background: var(--ink); color: var(--paper); }
-  h1, h2, h3, p { margin: 0; font-weight: 400; }
+  a:focus-visible, button:focus-visible { outline: 1.5px solid var(--copper); outline-offset: 4px; }
+  ::selection { background: var(--copper); color: var(--bone); }
+  h1, h2, h3, p, ol, ul, figure { margin: 0; }
 
-  .mono { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; line-height: 1.5; color: var(--ink); }
-  .mono i { font-style: italic; }
-  .grey { color: var(--grey); }
-  .up { text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; }
+  /* the atmosphere: one fixed ground no section overrides; the light changes, sections never start */
+  .ground { position: fixed; inset: 0; height: 100lvh; z-index: 0; background: var(--ground); transition: background 700ms var(--gleasing); }
+  .page { position: relative; z-index: 1; color: var(--ink); transition: color 700ms var(--gleasing); }
 
-  /* corners: fixed chrome that reads on paper, on the photograph and on the dark tile alike */
-  .corner { position: fixed; z-index: 40; display: flex; align-items: center; gap: 20px; mix-blend-mode: difference; }
-  .corner, .corner a, .corner span { color: #F7F4EE; }
-  .c-tl { top: 20px; left: var(--g); }
-  .c-tr { top: 20px; right: var(--g); }
-  .c-bl { bottom: 20px; left: var(--g); }
-  .c-br { bottom: 20px; right: var(--g); }
-  .corner .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #F7F4EE; margin-right: 8px; vertical-align: 2px; }
+  /* ONE label style, repeated */
+  .lbl { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; color: var(--ink-soft); }
+  .lbl b { font-weight: 500; color: var(--ink); }
+  .mono { font-family: var(--mono); font-size: 13px; letter-spacing: 0.01em; line-height: 1.5; color: var(--ink-soft); }
+  .hd { font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 96; letter-spacing: -0.02em; line-height: 1; color: var(--ink); text-wrap: balance; }
+  .body { font-family: var(--text); font-size: 17px; line-height: 1.55; color: var(--ink-soft); text-wrap: pretty; max-width: 58ch; }
 
-  .band { padding-left: var(--g); padding-right: var(--g); }
-  .measure { max-width: 46ch; text-wrap: pretty; }
+  /* chrome: fixed, never hides, never shrinks */
+  .nav { position: fixed; z-index: 30; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 22px var(--g); mix-blend-mode: difference; color: #F5EFE4; }
+  .nav a, .nav span { color: #F5EFE4; }
+  .nav .l, .nav .r { display: flex; align-items: center; gap: 28px; }
+  .nav .wm { font-family: var(--display); font-weight: 400; font-size: 16px; letter-spacing: -0.01em; }
 
-  /* the mosaic: the work is the first screen; the thesis sits in a cleared cell */
-  .mosaic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 22vw; gap: var(--g); padding: 72px var(--g) 0; }
-  .tile { position: relative; overflow: hidden; background: var(--paper-2); }
-  .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; will-change: transform; }
-  .tile.paper { background: #ECE3D0; } .tile.paper img { object-fit: contain; padding: 7%; }
-  .tile.dark { background: var(--black); } .tile.dark img { object-fit: contain; padding: 9%; }
-  .tile.tall { grid-row: span 2; }
-  .tile.wide { grid-column: span 2; }
-  .cap { position: absolute; left: 12px; right: 12px; bottom: 10px; display: flex; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.01em; color: #F7F4EE; mix-blend-mode: difference; }
-  .cell { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 4px 6px; }
-  .cell h1 { font-size: var(--t-thesis); line-height: 1; letter-spacing: -0.03em; text-wrap: balance; }
-  .cell .mono { color: var(--grey); }
+  /* the ask: one chip pair, square corners, an accent arrow chip bolted to the primary */
+  .chips { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .chip { display: inline-flex; align-items: stretch; font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1; }
+  .chip .t { display: inline-flex; align-items: center; padding: 0 16px; height: 40px; background: var(--bone); color: var(--espresso); }
+  .chip .a { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--copper); color: var(--bone); }
+  .chip.sec .t { background: color-mix(in oklab, var(--ink) 12%, transparent); color: var(--ink); }
+  .chip:hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
+  .chip.sec:hover .t { background: color-mix(in oklab, var(--ink) 20%, transparent); }
 
-  /* one sentence under the work */
-  .intro { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding: 96px var(--g) 0; }
-  .intro .k { grid-column: 1 / 3; }
-  .intro p { grid-column: 3 / 9; font-size: var(--t-line); line-height: 1.3; letter-spacing: -0.012em; text-wrap: pretty; }
-  .intro .row { grid-column: 9 / 13; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; justify-content: flex-end; }
+  .wrap { padding-left: var(--g); padding-right: var(--g); }
 
-  .btn { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 18px; border-radius: 999px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; white-space: nowrap; }
-  .btn:hover { background: var(--ink-2); color: var(--paper); }
-  .ul { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; border-bottom: 1px solid var(--hair-2); padding-bottom: 2px; }
-  .ul:hover { border-bottom-color: var(--ink); }
+  /* hero: four blocks and a void */
+  .hero { position: relative; min-height: 900px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto 1fr auto; gap: var(--g); padding-top: 132px; padding-bottom: 40px; }
+  .hero h1 { grid-column: 1 / 9; grid-row: 1; font-size: clamp(48px, 6.4vw, 96px); letter-spacing: -0.03em; line-height: 0.98; }
+  .hero h1 em { font-style: normal; color: var(--copper); }
+  .hero .chips { grid-column: 1 / 5; grid-row: 2; align-self: start; padding-top: 32px; }
+  .hero .void { grid-column: 1 / -1; grid-row: 2; min-height: 320px; }
+  .hero .pos { grid-column: 1 / 7; grid-row: 3; align-self: end; font-family: var(--text); font-size: 21px; line-height: 1.35; color: var(--ink); text-wrap: pretty; max-width: 40ch; }
+  .hero .proof { grid-column: 8 / 13; grid-row: 3; align-self: end; display: flex; flex-direction: column; gap: 6px; text-align: right; }
 
-  /* section furniture: one mono line, one hairline */
-  .sec { padding: 140px var(--g) 0; }
-  .sec-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
-  .sec-head .l { grid-column: 1 / 7; } .sec-head .r { grid-column: 7 / 13; text-align: right; }
+  /* proof at position two: spotlight over index, names as text, zero logos */
+  .sec { padding-top: 160px; }
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--hair); }
+  .spot { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: var(--g); align-items: baseline; padding: 30px 0 26px; border-bottom: 1px solid var(--hair); position: relative; }
+  .spot .n { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+  .spot .who { font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 96; font-size: clamp(28px, 3.4vw, 48px); letter-spacing: -0.025em; line-height: 1.02; }
+  .spot .what { font-family: var(--text); font-size: 17px; color: var(--ink-soft); text-align: right; max-width: 32ch; text-wrap: pretty; }
+  .spot::before { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--copper); transform: scaleX(0); transform-origin: 0 50%; transition: transform 300ms var(--gleasing); }
+  .spot:hover::before { transform: scaleX(1); }
+  .spot .peek { position: absolute; left: 80px; top: 50%; width: 150px; transform: translateY(-50%); opacity: 0; transition: opacity 400ms var(--gleasing); pointer-events: none; border: 1px solid var(--hair); background: #ECE3D0; }
+  .spot .peek img { display: block; width: 100%; height: auto; }
+  .spot:hover .peek { opacity: 1; }
+  .idx { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: var(--g); align-items: baseline; padding: 18px 0 16px; border-bottom: 1px solid var(--hair); }
+  .idx .n { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+  .idx .who { font-family: var(--text); font-weight: 500; font-size: 19px; color: var(--ink); }
+  .idx .what { font-family: var(--text); font-size: 16px; color: var(--ink-soft); text-align: right; max-width: 40ch; text-wrap: pretty; }
 
-  /* the record: an index of sentences */
-  .rec { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--g); align-items: baseline; padding: 24px 0 22px; border-bottom: 1px solid var(--hair); }
-  .rec .n { font-family: var(--mono); font-size: var(--t-mono); color: var(--grey); }
-  .rec p { font-size: var(--t-line); line-height: 1.28; letter-spacing: -0.012em; text-wrap: pretty; max-width: 62ch; }
-  .rec p b { font-weight: 400; color: var(--ink); }
-  .rec p span { color: var(--ink-2); }
-  .rec:hover { background: linear-gradient(90deg, var(--paper-2), transparent 60%); }
+  /* the one motion moment: a pinned rail, lines lighting as the panels pass */
+  .rail-sec { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 160px; }
+  .rail { grid-column: 1 / 6; position: sticky; top: 140px; align-self: start; display: flex; flex-direction: column; gap: 28px; }
+  .rail ol { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+  .rail li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; opacity: 0.42; transition: opacity 300ms var(--gleasing); }
+  .rail li.on { opacity: 1; }
+  .rail li .n { font-family: var(--mono); font-size: 12px; color: var(--copper); padding-top: 8px; }
+  .rail li h3 { font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 96; font-size: 34px; letter-spacing: -0.02em; line-height: 1.02; margin-bottom: 8px; }
+  .rail li p { font-family: var(--text); font-size: 17px; color: var(--ink-soft); max-width: 40ch; text-wrap: pretty; }
+  .rail li .out { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-top: 10px; }
+  .panels { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 32vh; padding-top: 6px; padding-bottom: 20vh; }
+  .panel { border: 1px dashed var(--hair); padding: 14px; background: color-mix(in oklab, var(--ink) 3%, transparent); }
+  .panel .frame { background: #ECE3D0; overflow: hidden; }
+  .panel img { display: block; width: 100%; height: auto; }
+  .panel .cap { display: flex; justify-content: space-between; gap: 12px; padding-top: 10px; }
 
-  /* the manual: two tiles, then the copy */
-  .manual { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 28px; align-items: start; }
-  .manual .t1 { grid-column: 1 / 6; aspect-ratio: 4 / 5; }
-  .manual .t2 { grid-column: 6 / 13; aspect-ratio: 16 / 10; align-self: end; }
-  .manual .copy { grid-column: 1 / 9; display: flex; flex-direction: column; gap: 20px; padding-top: 40px; }
-  .manual h2 { font-size: var(--t-thesis); line-height: 1; letter-spacing: -0.03em; text-wrap: balance; max-width: 18ch; }
-  .lines { display: flex; flex-direction: column; gap: 6px; }
-  .lines p { font-size: var(--t-line); line-height: 1.28; letter-spacing: -0.012em; max-width: 44ch; }
-  .manual .body { font-size: var(--t-body); color: var(--ink-2); max-width: 54ch; text-wrap: pretty; }
+  /* the product doing the thing */
+  .prod { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 160px; align-items: end; }
+  .prod .copy { grid-column: 1 / 6; display: flex; flex-direction: column; gap: 22px; }
+  .prod h2 { font-size: clamp(36px, 4.2vw, 60px); letter-spacing: -0.025em; line-height: 1; max-width: 14ch; }
+  .prod .art { grid-column: 7 / 13; }
+  .prod .lines { display: flex; flex-direction: column; gap: 4px; }
+  .prod .lines p { font-family: var(--text); font-size: 20px; line-height: 1.3; color: var(--ink); text-wrap: pretty; max-width: 44ch; }
 
-  /* the fork: one question, two doors */
-  .fork h2 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.15; padding: 28px 0 22px; }
-  .doors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--g); border-top: 1px solid var(--ink); }
-  .door { display: flex; flex-direction: column; gap: 14px; padding: 26px 0 8px; border-right: 1px solid var(--hair); padding-right: var(--g); }
-  .door:last-child { border-right: 0; padding-right: 0; padding-left: 0; }
-  .door h3 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.1; }
-  .door p { font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; max-width: 40ch; }
-  .door .price { font-size: var(--t-head); letter-spacing: -0.015em; font-variant-numeric: tabular-nums; }
+  /* the numbers as the graphic, with the baseline footnote; nothing bigger than the numbers */
+  .nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--g); padding-top: 28px; }
+  .num { border: 1px solid var(--hair-4); padding: 22px 22px 20px; display: flex; flex-direction: column; gap: 14px; min-height: 150px; }
+  .num .v { font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 96; font-size: 32px; letter-spacing: -0.02em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .num .f { font-family: var(--mono); font-size: 12px; line-height: 1.45; color: var(--ink-soft); margin-top: auto; }
 
-  /* programs: named, priced, one promise line each */
-  .prog { display: grid; grid-template-columns: 56px minmax(0, 1.1fr) minmax(0, 1.5fr) 200px 220px; gap: var(--g); align-items: baseline; padding: 26px 0 24px; border-bottom: 1px solid var(--hair); }
-  .prog .n { font-family: var(--mono); font-size: var(--t-mono); color: var(--grey); }
-  .prog h3 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.1; }
-  .prog .promise { font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; }
-  .prog .promise .mono { display: block; margin-top: 8px; color: var(--grey); }
-  .prog .price { font-size: 40px; letter-spacing: -0.025em; line-height: 1; font-variant-numeric: tabular-nums; }
-  .prog .price small { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; color: var(--grey); margin-left: 10px; vertical-align: 24%; }
-  .prog .act { text-align: right; }
-  .prog:hover { background: linear-gradient(90deg, var(--paper-2), transparent 60%); }
-  .terms { padding: 22px 0 0; font-size: var(--t-body); color: var(--ink-2); max-width: 74ch; text-wrap: pretty; }
+  /* the objection beside the price */
+  .price-sec { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 160px; }
+  .prices { grid-column: 1 / 6; display: flex; flex-direction: column; }
+  .prow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 20px 0; border-top: 1px solid var(--hair); }
+  .prow:last-child { border-bottom: 1px solid var(--hair); }
+  .prow .k { font-family: var(--text); font-size: 17px; color: var(--ink-soft); }
+  .prow .v { font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 96; font-size: 30px; letter-spacing: -0.02em; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .prow .v small { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-left: 10px; vertical-align: 20%; }
+  .obj { grid-column: 7 / 13; display: flex; flex-direction: column; }
+  .q { padding: 20px 0; border-top: 1px solid var(--hair); display: flex; flex-direction: column; gap: 8px; }
+  .q:last-child { border-bottom: 1px solid var(--hair); }
+  .q dt { font-family: var(--text); font-weight: 500; font-size: 19px; color: var(--ink); }
+  .q dd { margin: 0; font-family: var(--text); font-size: 17px; color: var(--ink-soft); max-width: 46ch; text-wrap: pretty; }
 
-  /* engagements */
-  .eng { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--g); padding: 24px 0 22px; border-bottom: 1px solid var(--hair); align-items: baseline; }
-  .eng .n { font-family: var(--mono); font-size: var(--t-mono); color: var(--grey); }
-  .eng h3 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.1; }
-  .eng p { font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; max-width: 52ch; }
+  /* the person: names as text, one photograph, held still */
+  .person { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 160px; align-items: start; }
+  .person .ph { grid-column: 1 / 5; }
+  .person .ph img { display: block; width: 100%; height: auto; border: 1px solid var(--hair); }
+  .person .t { grid-column: 6 / 12; display: flex; flex-direction: column; gap: 20px; }
+  .person .t p { font-family: var(--text); font-size: 21px; line-height: 1.4; color: var(--ink); text-wrap: pretty; }
+  .person .t p.s { font-size: 17px; color: var(--ink-soft); }
 
-  /* about: the fact as a sentence */
-  .about { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 28px; }
-  .about .t { grid-column: 3 / 11; font-size: var(--t-line); line-height: 1.3; letter-spacing: -0.012em; text-wrap: pretty; }
-  .about .t em { font-style: italic; }
-  .about .k { grid-column: 1 / 3; }
+  /* the foot: the pair returns, then logistics */
+  .foot { padding: 180px var(--g) 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); }
+  .foot h2 { grid-column: 1 / 7; font-size: clamp(40px, 5vw, 72px); letter-spacing: -0.03em; line-height: 0.98; }
+  .foot .chips { grid-column: 8 / 13; align-self: end; }
+  .foot .log { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 20px; padding-top: 80px; border-top: 1px solid var(--hair); margin-top: 60px; }
 
-  /* receipt: the one quote, their heading, his word */
-  .receipt { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 28px; }
-  .receipt .k { grid-column: 1 / 3; }
-  .receipt blockquote { grid-column: 3 / 11; margin: 0; font-style: italic; font-size: var(--t-thesis); line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }
-  .receipt .who { grid-column: 3 / 11; padding-top: 16px; }
+  /* entrances: transform only, visible at rest; the picture lands before the claim */
+  [data-rise] { transform: translateY(var(--rise, 0px)); transition: transform 900ms var(--gleasing); }
+  .js [data-rise="10"] { --rise: 10%; } .js [data-rise="30"] { --rise: 30%; }
+  .js .in[data-rise] { --rise: 0px; }
 
-  /* foot */
-  .foot { padding: 160px var(--g) 96px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); border-top: 1px solid var(--ink); margin-top: 140px; }
-  .foot h2 { grid-column: 1 / 7; font-size: var(--t-thesis); line-height: 1; letter-spacing: -0.03em; }
-  .foot p { grid-column: 7 / 12; font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; align-self: end; }
-  .foot .log { grid-column: 1 / 13; display: flex; justify-content: space-between; gap: 20px; padding-top: 72px; }
-
-  @media (max-width: 1000px) {
-    .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 44vw; padding-top: 64px; }
-    .tile.wide { grid-column: span 2; } .tile.tall { grid-row: span 1; }
-    .cell { grid-column: span 2; padding: 24px 0; }
-    .intro .k, .intro p, .intro .row { grid-column: 1 / -1; }
-    .manual .t1, .manual .t2, .manual .copy { grid-column: 1 / -1; }
-    .doors { grid-template-columns: minmax(0, 1fr); }
-    .door { border-right: 0; padding-right: 0; border-bottom: 1px solid var(--hair); }
-    .prog { grid-template-columns: 40px minmax(0, 1fr); }
-    .prog .promise, .prog .price, .prog .act { grid-column: 2; text-align: left; }
-    .eng { grid-template-columns: 40px minmax(0, 1fr); } .eng p { grid-column: 2; }
-    .about .k, .about .t, .receipt .k, .receipt blockquote, .receipt .who, .foot h2, .foot p { grid-column: 1 / -1; }
-    .sec-head .l, .sec-head .r { grid-column: 1 / -1; text-align: left; }
-    .c-bl { display: none; }
+  @media (max-width: 960px) {
+    .hero { min-height: 0; grid-template-rows: auto auto auto auto; padding-top: 110px; }
+    .hero h1, .hero .chips, .hero .pos, .hero .proof { grid-column: 1 / -1; }
+    .hero .chips { grid-row: 2; } .hero .void { display: none; } .hero .pos { grid-row: 3; padding-top: 48px; } .hero .proof { grid-row: 4; text-align: left; padding-top: 24px; }
+    .rail-sec { grid-template-columns: minmax(0, 1fr); }
+    .rail { grid-column: 1 / -1; position: static; } .panels { grid-column: 1 / -1; gap: 40px; padding-top: 32px; }
+    .prod .copy, .prod .art, .prices, .obj, .person .ph, .person .t, .foot h2, .foot .chips { grid-column: 1 / -1; }
+    .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .spot { grid-template-columns: 40px minmax(0, 1fr); } .spot .what, .idx .what { grid-column: 2; text-align: left; }
+    .idx { grid-template-columns: 40px minmax(0, 1fr); }
+    .spot .peek { display: none; }
+    .nav .l .hide-m, .nav .r .hide-m { display: none; }
   }
-  @media (max-width: 560px) {
-    .mosaic { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 70vw; }
-    .tile.wide, .cell { grid-column: span 1; }
-    .foot .log { flex-direction: column; }
+  @media (max-width: 560px) { .nums { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) {
+    .ground, .page, .spot::before, .spot .peek, .rail li, [data-rise] { transition: none !important; }
+    [data-rise] { transform: none !important; }
   }
-  @media (prefers-reduced-motion: reduce) { .tile img { will-change: auto; transform: none !important; } }
 </style>
 
-<div id="page">
+<div class="ground" aria-hidden="true"></div>
 
-  <div class="corner c-tl mono"><a href="#page"><i>MICAH/JONES</i></a></div>
-  <div class="corner c-tr mono"><a href="#record"><span class="dot"></span>Record</a><a href="#manual">Playbook</a><a href="#hire">Hire</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-  <div class="corner c-bl mono"><a href="mailto:micah@micahjonesconsulting.com">Email</a><span>/</span><a href="#contact">LinkedIn</a></div>
-  <div class="corner c-br mono"><span>©2013–2026</span><span>/</span><span>Micah Jones</span></div>
+<div class="page" id="page">
 
-  <!-- the work is the first screen; the thesis sits in a cleared cell -->
-  <section class="mosaic" aria-label="The work">
-    <figure class="tile tall" style="margin: 0;" data-rise>
-      <img src="{{IMG_portrait}}" alt="Micah Jones at a laptop in front of a whiteboard covered in service architecture" data-parallax="0.05">
-      <figcaption class="cap"><span>§ 0</span><span>Operator, not consultant</span></figcaption>
-    </figure>
-    <figure class="tile dark" style="margin: 0;" data-rise>
-      <img src="{{IMG_cover}}" alt="The 80% Wall, book cover" data-parallax="-0.04">
-      <figcaption class="cap"><span>The 80% Wall</span><span>Field manual</span></figcaption>
-    </figure>
-    <div class="cell" data-rise>
-      <h1 id="thesis">Operator, not consultant.</h1>
-      <div class="mono">Four case studies · one field manual · seven receipts</div>
+  <nav class="nav" aria-label="Site">
+    <div class="l"><a class="wm" href="#page">MICAH/JONES</a><a class="lbl hide-m" href="#record" style="color:#F5EFE4;">Record</a><a class="lbl hide-m" href="#manual" style="color:#F5EFE4;">Playbook</a></div>
+    <div class="r"><a class="lbl" href="#price" style="color:#F5EFE4;">Packages <b style="color:#F5EFE4;">from $500</b></a><a class="lbl hide-m" href="https://www.micahjonesconsulting.com/call?from=mock-nav" style="color:#F5EFE4;">Name the problem →</a></div>
+  </nav>
+
+  <!-- hero: headline, the ask, a void, the positioning sentence, one dated proof row -->
+  <header class="hero wrap" data-world="0">
+    <h1 class="hd">I build the <em>go-to-market.</em></h1>
+    <div class="chips">
+      <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-hero"><span class="t">Name the problem</span><span class="a" aria-hidden="true">→</span></a>
+      <a class="chip sec" href="#price"><span class="t">See the packages</span></a>
     </div>
-    <figure class="tile paper" style="margin: 0;" data-rise>
-      <img src="{{IMG_rings}}" alt="Book page 51: where the ten users live, three rings" data-parallax="0.05">
-      <figcaption class="cap" style="color: #121110;"><span>§ 08.2</span><span>page 51 of 69</span></figcaption>
-    </figure>
-    <figure class="tile paper wide" style="margin: 0;" data-rise>
-      <img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill" data-parallax="0.04" style="object-fit: cover; padding: 0; object-position: center 14%;">
-      <figcaption class="cap" style="color: #121110;"><span>§ 01.4 · Why it hits at 80% and not sooner</span><span>page 6 of 69</span></figcaption>
-    </figure>
-    <figure class="tile dark" style="margin: 0;" data-rise>
-      <img src="{{IMG_opener}}" alt="Chapter two opener: The spec is the moat" data-parallax="-0.04">
-      <figcaption class="cap"><span>From chapter two</span><span>The spec is the moat</span></figcaption>
-    </figure>
-    <figure class="tile paper" style="margin: 0;" data-rise>
-      <img src="{{IMG_card}}" alt="checklists/05-security.md, one of ten pre-flight cards, as shipped" data-parallax="0.04">
-      <figcaption class="cap" style="color: #121110;"><span>checklists/05-security.md</span><span>as shipped</span></figcaption>
-    </figure>
-  </section>
-
-  <!-- one sentence -->
-  <section class="intro">
-    <div class="k mono grey">Micah Jones</div>
-    <p>Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
-    <div class="row">
-      <a class="btn" href="#record">See the work <span aria-hidden="true">↓</span></a>
-      <a class="ul" href="#contact">Book a free intro call <span aria-hidden="true">→</span></a>
+    <div class="void" aria-hidden="true"></div>
+    <p class="pos">Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
+    <div class="proof">
+      <div class="lbl"><b>Guardicore</b> · 2018–2021</div>
+      <div class="mono">$14M in revenue · acquired by Akamai</div>
     </div>
-  </section>
+  </header>
 
-  <!-- the record: sentences, not tiles -->
-  <section class="sec" id="record" aria-label="The record">
+  <!-- proof, second, before a single service is named -->
+  <section class="sec wrap" id="record" aria-label="The record" data-world="0">
     <div class="sec-head">
-      <div class="l mono">The receipts. Every line below is real.</div>
-      <div class="r mono grey">Ask about any of them.</div>
+      <div class="lbl">The receipts. Every line below is real.</div>
+      <div class="mono">07</div>
     </div>
-    <div class="rec"><div class="n">01</div><p><b>Guardicore:</b> <span>$14M in revenue for a Tel Aviv security company breaking into North America. Acquired by Akamai in 2021.</span></p></div>
-    <div class="rec"><div class="n">02</div><p><b>SurveyMonkey Enterprise:</b> <span>$1M+ in enterprise sales toward the 2018 IPO.</span></p></div>
-    <div class="rec"><div class="n">03</div><p><b>Postmates:</b> <span>Market and fraud analysis in the wide-open era. Acquired by Uber, $2.65B.</span></p></div>
-    <div class="rec"><div class="n">04</div><p><b>Industry author:</b> <span>Monthly reach grew from 8,000 to 290,000 in five months, a 36× lift.</span></p></div>
-    <div class="rec"><div class="n">05</div><p><b>Industry author:</b> <span>$3M in contracts won through RFP software that doubled the author's close rate inside six months.</span></p></div>
-    <div class="rec"><div class="n">06</div><p><b>Ordani:</b> <span>Intake completion moved from 40% to a measured 91%. Active paying users in beta.</span></p></div>
-    <div class="rec"><div class="n">07</div><p><b>Consulting:</b> <span>$20M+ in client revenue since 2013.</span></p></div>
-  </section>
-
-  <!-- the manual -->
-  <section class="sec" id="manual" aria-label="The field manual">
-    <div class="sec-head">
-      <div class="l mono">The 80% Wall</div>
-      <div class="r mono grey">A field manual for solo founders</div>
-    </div>
-    <div class="manual">
-      <figure class="tile dark t1" style="margin: 0;">
-        <img src="{{IMG_cover}}" alt="The 80% Wall, book cover" data-parallax="-0.04">
-        <figcaption class="cap"><span>Pages 69 · Chapters 10 · Diagrams 9 · Companion files 26</span><span>$99 at launch</span></figcaption>
-      </figure>
-      <figure class="tile paper t2" style="margin: 0;">
-        <img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill" data-parallax="0.04" style="object-fit: cover; padding: 0; object-position: center 10%;">
-        <figcaption class="cap" style="color: #121110;"><span>§ 01.4</span><span>page 6 of 69</span></figcaption>
-      </figure>
-      <div class="copy">
-        <h2>The AI handed you the code. Now ship the company.</h2>
-        <div class="lines">
-          <p>It shipped. Nobody came.</p>
-          <p>The demo looked done. Production turned out to be a different machine entirely.</p>
-          <p>You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
-        </div>
-        <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
-        <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
-          <a class="btn" href="#">Get chapter one free <span aria-hidden="true">→</span></a>
-          <span class="mono grey">$99 at launch · coming soon</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- the fork: one question, two doors -->
-  <section class="sec fork" id="hire" aria-label="Hire">
-    <div class="sec-head">
-      <div class="l mono">Hire</div>
-      <div class="r mono grey">Two ways to buy the same person</div>
-    </div>
-    <h2>Hiring for a company rather than a build?</h2>
-    <div class="doors">
-      <div class="door">
-        <div class="mono grey">For companies</div>
-        <h3>Engagements</h3>
-        <p>Advisory, project, retainer, or embedded. Scoped together once you tell me the problem.</p>
-        <div class="price">From $5K a month</div>
-        <div><a class="ul" href="#contact">Book a free intro call <span aria-hidden="true">→</span></a></div>
-      </div>
-      <div class="door">
-        <div class="mono grey">For solo builders and small teams</div>
-        <h3>Packages</h3>
-        <p>Three fixed prices. Pick one, buy it, and the work starts this week.</p>
-        <div class="price">$500 · $2,500 · $7,500</div>
-        <div><a class="ul" href="#programs">The three packages <span aria-hidden="true">↓</span></a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- programs: named, priced, a promise line each -->
-  <section class="sec" id="programs" aria-label="Packages">
-    <div class="sec-head">
-      <div class="l mono">Three fixed prices. Start this week.</div>
-      <div class="r mono grey">Each one goes straight to checkout.</div>
-    </div>
-    <div class="prog">
+    <div class="spot" data-rise="30">
       <div class="n">01</div>
-      <h3>The Unstick Session</h3>
-      <div class="promise">Ninety minutes live on your stuck build. You leave with a written plan the same day.<span class="mono">90 minutes + same-day memo</span></div>
-      <div class="price">$500<small>Fixed.</small></div>
-      <div class="act"><a class="ul" href="#">Buy the Unstick Session <span aria-hidden="true">→</span></a></div>
+      <div class="who">Guardicore</div>
+      <div class="what">$14M in revenue. Acquired by Akamai in 2021.</div>
     </div>
-    <div class="prog">
+    <div class="spot" data-rise="30">
       <div class="n">02</div>
-      <h3>The Audit</h3>
-      <div class="promise">Pick one flavor: Build (architecture and code), Production (security and deploy), or Traction (positioning and go-to-market). I go through it top to bottom and hand you the written audit.<span class="mono">Two weeks + debrief call · Start here</span></div>
-      <div class="price">$2,500<small>Fixed.</small></div>
-      <div class="act"><a class="ul" href="#">Buy the Audit <span aria-hidden="true">→</span></a></div>
+      <div class="who">Postmates</div>
+      <div class="what">Market and fraud analysis in the wide-open era. Acquired by Uber, $2.65B.</div>
     </div>
-    <div class="prog">
+    <div class="spot" data-rise="30">
       <div class="n">03</div>
-      <h3>The Sprint</h3>
-      <div class="promise">One week on one outcome, shipped: the repositioning, the production push, the AI feature. Not a plan. The thing, done.<span class="mono">One week, embedded</span></div>
-      <div class="price">$7,500<small>Fixed.</small></div>
-      <div class="act"><a class="ul" href="#">Buy the Sprint <span aria-hidden="true">→</span></a></div>
+      <div class="who">Industry author</div>
+      <div class="what">$3M in contracts won · close rate doubled</div>
     </div>
-    <p class="terms">The moment your card clears you get a kickoff email: the intake questions, a link to book the call, and the manual with its companion files attached. The rules, in plain terms: every package fee credits toward the next package or an engagement started within 60 days. Full refund any time before kickoff.</p>
+    <div class="idx"><div class="n">04</div><div class="who">SurveyMonkey Enterprise</div><div class="what">$1M+ toward the IPO · cap-table position held through the Nasdaq listing</div></div>
+    <div class="idx"><div class="n">05</div><div class="who">Industry author</div><div class="what">Monthly reach 8K → 290K in five months</div></div>
+    <div class="idx">
+      <div class="n">06</div><div class="who">Ordani</div><div class="what">Active paying users · none lost to a competitor</div>
+    </div>
+    <div class="idx"><div class="n">07</div><div class="who">Consulting</div><div class="what">$20M+ in client revenue · since 2013</div></div>
   </section>
 
-  <!-- engagements -->
-  <section class="sec" aria-label="Engagements">
-    <div class="sec-head">
-      <div class="l mono">Three engagements.</div>
-      <div class="r mono grey">From $5K a month</div>
+  <!-- the one motion moment: the rail holds, the panels pass, one line lights at a time -->
+  <section class="rail-sec wrap" aria-label="How I work" data-world="0">
+    <div class="rail">
+      <div class="lbl">Operating principles · How I work.</div>
+      <ol id="rail">
+        <li data-step="1"><div class="n">01</div><div><h3>Diagnose</h3><p>I find the gap between what you built and what buyers actually pay for.</p><div class="out">→ Positioning audit memo</div></div></li>
+        <li data-step="2"><div class="n">02</div><div><h3>Build</h3><p>Every engagement ships a named artifact in month one. No decks. No discovery debt.</p><div class="out">→ Shipped artifact, month one</div></div></li>
+        <li data-step="3"><div class="n">03</div><div><h3>Position</h3><p>I stay until the narrative sells without me. The Guardicore repositioning carried into the Akamai acquisition.</p><div class="out">→ The story the market repeats</div></div></li>
+      </ol>
     </div>
-    <div class="eng"><div class="n">01</div><h3>Positioning &amp; GTM</h3><p>You built it. Enterprise teams still aren't buying. The gap is positioning, not features.</p></div>
-    <div class="eng"><div class="n">02</div><h3>End-to-end product building</h3><p>Most AI ideas die between demo and production. That stretch is where I work.</p></div>
-    <div class="eng"><div class="n">03</div><h3>Frontier AI engineering</h3><p>Eval, orchestration, deployment. The shipping discipline most AI founders skip.</p></div>
-  </section>
-
-  <!-- about: the fact as a sentence -->
-  <section class="sec" id="about" aria-label="About">
-    <div class="sec-head">
-      <div class="l mono">About</div>
-      <div class="r mono grey">I am taking new engagements now.</div>
-    </div>
-    <div class="about">
-      <div class="k mono grey">Thirteen years</div>
-      <p class="t">I've spent thirteen years inside B2B software companies as the person who can sit on either side of the table: GTM strategy in the morning, shipping product in the afternoon. Most consultants don't ship. Most builders don't sell. <em>I do both, on the same engagement, for the same fee.</em> Four companies I worked inside reached an exit. Postmates. SurveyMonkey. Guardicore. Neuton.AI.</p>
+    <div class="panels">
+      <figure class="panel" data-panel="1" data-rise="10"><div class="frame"><img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill"></div><figcaption class="cap"><span class="lbl">§ 01.4 · Why it hits at 80% and not sooner</span><span class="mono">page 6 of 69</span></figcaption></figure>
+      <figure class="panel" data-panel="2" data-rise="10"><div class="frame"><img src="{{IMG_card}}" alt="checklists/05-security.md, one of ten pre-flight cards, as shipped"></div><figcaption class="cap"><span class="lbl">checklists/05-security.md</span><span class="mono">one of ten pre-flight cards, as shipped</span></figcaption></figure>
+      <figure class="panel" data-panel="3" data-rise="10"><div class="frame"><img src="{{IMG_rings}}" alt="Book page 51: where the ten users live, three rings"></div><figcaption class="cap"><span class="lbl">§ 08.2 · Where the ten actually live</span><span class="mono">page 51 of 69</span></figcaption></figure>
     </div>
   </section>
 
-  <!-- receipt: their heading, his word, the one real quote -->
-  <section class="sec" aria-label="Receipt">
-    <div class="sec-head">
-      <div class="l mono">Receipt</div>
-      <div class="r mono grey">Industry author</div>
+  <!-- the product doing the thing; the light changes here -->
+  <section class="prod wrap" id="manual" aria-label="The field manual" data-world="1">
+    <div class="copy">
+      <div class="lbl">The 80% Wall · <b>from $99</b></div>
+      <h2 class="hd">The AI handed you the code. Now ship the company.</h2>
+      <div class="lines">
+        <p>It shipped. Nobody came.</p>
+        <p>The demo looked done. Production turned out to be a different machine entirely.</p>
+        <p>You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
+      </div>
+      <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
+      <div class="mono">Pages 69 · Chapters 10 · Diagrams 9 · Companion files 26 · <a href="https://www.micahjonesconsulting.com/playbook" style="color: var(--ink); border-bottom: 1px solid var(--hair);">Get chapter one free →</a></div>
     </div>
-    <div class="receipt">
-      <div class="k mono grey">Said of the RFP engine</div>
-      <blockquote>Micah does the work that most strategy decks promise and never deliver.</blockquote>
-      <div class="who mono grey">The author, name protected</div>
+    <figure class="art panel" data-rise="10">
+      <div class="frame" style="background: #0B0A09;"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover" style="padding: 8%; box-sizing: border-box;"></div>
+      <figcaption class="cap"><span class="lbl">the-80-percent-wall.pdf</span><span class="mono">PDF + ZIP · every future edition</span></figcaption>
+    </figure>
+  </section>
+
+  <!-- the numbers as the graphic, with what each is measured against -->
+  <section class="sec wrap" aria-label="Numbers" data-world="1" style="padding-top: 120px;">
+    <div class="sec-head"><div class="lbl">Named numbers, with their mechanism</div><div class="mono">04</div></div>
+    <div class="nums">
+      <div class="num" data-rise="10"><div class="v">40% → 91%</div><div class="f">*intake completion, Ordani beta. Its intake replaced a paper packet.</div></div>
+      <div class="num" data-rise="10"><div class="v">8,000 → 290,000</div><div class="f">*monthly reach for an industry author, in five months. Eight platforms carried the work.</div></div>
+      <div class="num" data-rise="10"><div class="v">$3M</div><div class="f">*contracts won through RFP software that doubled the author's close rate inside six months.</div></div>
+      <div class="num" data-rise="10"><div class="v">$14M</div><div class="f">*revenue, Guardicore, at a $1.2M average enterprise deal size. Acquired by Akamai in 2021.</div></div>
     </div>
   </section>
 
-  <footer class="foot" id="contact">
-    <h2>Name the problem.</h2>
-    <p>A free 30-minute call comes first. Tell me what is stuck. I listen, then say what the work looks like and whether I am the right person for it.</p>
+  <!-- the price on the page, with the objection beside it -->
+  <section class="price-sec wrap" id="price" aria-label="Prices" data-world="1">
+    <div class="prices">
+      <div class="sec-head" style="border: 0; padding-bottom: 18px;"><div class="lbl">Three fixed prices. Start this week.</div><div class="mono">Fixed.</div></div>
+      <div class="prow"><div class="k">The Unstick Session · Ninety minutes live on your stuck build.</div><div class="v">$500</div></div>
+      <div class="prow"><div class="k">The Audit · I go through it top to bottom and hand you the written audit.</div><div class="v">$2,500<small>Start here</small></div></div>
+      <div class="prow"><div class="k">The Sprint · One week on one outcome, shipped.</div><div class="v">$7,500</div></div>
+      <div class="prow"><div class="k">The 80% Wall · the field manual, PDF + ZIP.</div><div class="v">$99<small>at launch</small></div></div>
+      <div class="prow"><div class="k">Engagements · advisory, project, retainer, or embedded.</div><div class="v">From $5K<small>a month</small></div></div>
+    </div>
+    <dl class="obj">
+      <div class="sec-head" style="border: 0; padding-bottom: 18px;"><div class="lbl">The objections, in your words</div><div class="mono">03</div></div>
+      <div class="q"><dt>Is this for me, if I vibe-coded it?</dt><dd>You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.</dd></div>
+      <div class="q"><dt>What if it does not help?</dt><dd>Thirty days, full refund, no questions asked. Reply to the delivery email and I refund it.</dd></div>
+      <div class="q"><dt>Hiring for a company rather than a build?</dt><dd>The engagements start at $5K a month. Tell me the problem and I will scope it. A free 30-minute call comes first.</dd></div>
+    </dl>
+  </section>
+
+  <!-- the person: one photograph, held still; the names as text -->
+  <section class="person wrap" id="about" aria-label="About" data-world="1">
+    <figure class="ph"><img src="{{IMG_portrait}}" alt="Micah Jones at a laptop in front of a whiteboard covered in service architecture"></figure>
+    <div class="t">
+      <div class="lbl">Operator, not consultant.</div>
+      <p>I've spent thirteen years inside B2B software companies as the person who can sit on either side of the table: GTM strategy in the morning, shipping product in the afternoon. Most consultants don't ship. Most builders don't sell. I do both, on the same engagement, for the same fee.</p>
+      <p class="s">I joined Postmates, SurveyMonkey, Guardicore (Akamai) and Neuton.AI early. Four exits, $5B+ combined. I built Ordani solo with Claude Code and Cursor: HIPAA-compliant, active paying users, in beta. I am taking new engagements now.</p>
+      <div class="mono">Micah does the work that most strategy decks promise and never deliver. <span class="lbl" style="display:block; margin-top: 8px;">The author, name protected · Receipt</span></div>
+    </div>
+  </section>
+
+  <footer class="foot" id="contact" data-world="1">
+    <h2 class="hd">Name the problem.</h2>
+    <div class="chips">
+      <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-foot"><span class="t">Book a free intro call</span><span class="a" aria-hidden="true">→</span></a>
+      <a class="chip sec" href="https://www.micahjonesconsulting.com/packages?from=mock-foot"><span class="t">See the packages</span></a>
+    </div>
     <div class="log mono">
       <a href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a>
-      <a href="#">LinkedIn</a>
-      <span class="grey">I read every message and reply inside one business day.</span>
+      <span>I read every message and reply inside one business day.</span>
+      <span>© 2013–2026 Micah Jones</span>
     </div>
   </footer>
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
 <script>
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce || typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') return;
-  gsap.registerPlugin(ScrollTrigger);
+  var root = document.documentElement;
+  var worlds = Array.prototype.slice.call(document.querySelectorAll('[data-world]'));
+  var steps = Array.prototype.slice.call(document.querySelectorAll('#rail li'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[data-panel]'));
+  var risers = Array.prototype.slice.call(document.querySelectorAll('[data-rise]'));
 
-  if (typeof window.Lenis !== 'undefined') {
+  // the finished frame is the HTML; JS only offsets, then settles
+  if (!reduce) root.classList.add('js');
+
+  function world() {
+    // the light changes as sections cross the reading line; no section owns a colour
+    var line = window.innerHeight * 0.55, target = 0;
+    for (var i = 0; i < worlds.length; i++) {
+      var r = worlds[i].getBoundingClientRect();
+      if (r.top <= line) target = Number(worlds[i].getAttribute('data-world'));
+    }
+    root.style.setProperty('--p', String(target));
+  }
+  function rail() {
+    // the one moment: the line whose panel is nearest the reading line lights
+    if (!panels.length) return;
+    var line = window.innerHeight * 0.5, best = 0, bestD = Infinity;
+    for (var i = 0; i < panels.length; i++) {
+      var r = panels[i].getBoundingClientRect(), d = Math.abs((r.top + r.height / 2) - line);
+      if (d < bestD) { bestD = d; best = i; }
+    }
+    for (var j = 0; j < steps.length; j++) steps[j].classList.toggle('on', j === best);
+  }
+  function rise() {
+    var h = window.innerHeight;
+    for (var i = 0; i < risers.length; i++) {
+      if (risers[i].classList.contains('in')) continue;
+      if (risers[i].getBoundingClientRect().top < h * 0.92) risers[i].classList.add('in');
+    }
+  }
+  function tick() { world(); rail(); if (!reduce) rise(); }
+
+  if (!reduce && typeof window.Lenis !== 'undefined') {
     var lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
     window.lenis = lenis;
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
-    gsap.ticker.lagSmoothing(0);
+    lenis.on('scroll', tick);
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href'); if (id.length < 2) return;
         var el = document.querySelector(id); if (!el) return;
-        e.preventDefault(); lenis.scrollTo(el, { offset: -20, duration: 1.1 });
+        e.preventDefault(); lenis.scrollTo(el, { offset: -100, duration: 1.1 });
       });
     });
+  } else {
+    window.addEventListener('scroll', tick, { passive: true });
   }
-
-  // load: the mosaic settles, from a visible resting state
-  gsap.from('[data-rise]', { y: 14, duration: 0.9, stagger: 0.06, ease: 'power3.out', clearProps: 'transform' });
-
-  // the only ongoing motion: a slow parallax inside each tile, transform only
-  document.querySelectorAll('[data-parallax]').forEach(function (img) {
-    var k = parseFloat(img.getAttribute('data-parallax')) || 0.04;
-    gsap.fromTo(img, { yPercent: -k * 100, scale: 1.08 }, {
-      yPercent: k * 100, scale: 1.08, ease: 'none',
-      scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-  });
+  window.addEventListener('resize', tick);
+  tick();
+  if (!reduce) requestAnimationFrame(function () { requestAnimationFrame(rise); });
 })();
 </script>
