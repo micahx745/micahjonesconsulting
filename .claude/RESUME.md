@@ -9,15 +9,17 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
 1. Dark studio, `MOCK-BRIEF-2026-09-05.md`: artifact a398fb1a (superseded).
-2. "Operator, not consultant", from Studio Freight's CLIENT WORK (14 live sites,
-   `research/client-work/`), not their homepage. `FREIGHT-BRIEF-2026-09-05.md` §0 records
-   the wrong passes. https://claude.ai/code/artifact/1d43593f-2049-4128-8e6e-319ba8e4e2da
-   He: "love it" but the header, loudness, the font ("AI font") → item 4 answers all three.
-3. Video, `VIDEO-BRIEF-2026-09-05.md`: Kling 3 Pro. He fed the TREATED posters, so both
-   clips are graded already → dark grounds only. Loops + posters in `design/video/`.
-4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md`: the ruled combination (film as
-   the hero ground, no header on screen one, one display size, Anybody wide/light, no
-   mono, espresso→bone→copper). Build: `design/winning/` → Artifact. Judge at 390/1440.
+2. "Operator, not consultant" (from the CLIENT-WORK corpus, `FREIGHT-BRIEF-2026-09-05.md`):
+   artifact 1d43593f. He: "love it" but header, loudness, "AI font" → item 4 answers them.
+3. Video, `VIDEO-BRIEF-2026-09-05.md`: Kling 3 Pro; clips arrived graded (dark grounds
+   only). Loops + posters in `design/video/`.
+4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
+   film as the hero ground, no header on screen one, one display size, Anybody wide/light,
+   no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
+   48/48 checks, two verifiers, published:
+   https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
+   Astra review (ONE call, ultra) → `reviews/CODEX-ROOM-AND-LEDGER-*.md`; verify its claims
+   before any edit. His: react to the page; a live pass is a new brief.
 
 ## Ship gate (operator-owned)
 1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** Blocks the flag.
@@ -29,8 +31,7 @@ LESSONS #5: auto-deploys moved both domains 5× with no manual alias; confirm ww
 ## Next
 99: landing offer + services/packages reframe (needs his name/price). 100: home spear,
 Search Console, `/work` ItemList, sitemap lastmod, `/work/ordani` title. Codex site review
-running; report → `.planning/reviews/`, DOM-verify before any edit. His: pick a direction ·
-offer name/price · portrait · launch date.
+running → `.planning/reviews/`. His: pick a direction · offer name/price · launch date.
 
 ## Standing traps
 Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys, check parity ·

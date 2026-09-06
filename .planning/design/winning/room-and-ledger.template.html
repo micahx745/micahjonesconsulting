@@ -1,0 +1,653 @@
+<meta charset="utf-8">
+<title>Room and Ledger</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,300;50..150,500&family=Hanken+Grotesk:wght@400;500&display=swap">
+<style>
+  :root {
+    --espresso: #0D0D0F;
+    --bone: #F5EFE4;
+    --copper: #C8542B;
+
+    /* one source of light. 0 = the dark half (the room), 1 = the light half (the ledger). */
+    --p: 0;
+    /* the film's own extinguish, so the record stays espresso while the man goes out */
+    --f: 0;
+
+    --ground: color-mix(in oklab, var(--espresso) calc((1 - var(--p)) * 100%), var(--bone));
+    --ink:    color-mix(in oklab, var(--bone) calc((1 - var(--p)) * 100%), var(--espresso));
+    --ink-72: color-mix(in oklab, var(--ink) 72%, transparent);
+    --ink-60: color-mix(in oklab, var(--ink) 60%, transparent);
+    --hair:   color-mix(in oklab, var(--ink) 15%, transparent);
+    --hair-4: color-mix(in oklab, var(--ink) 4%, transparent);
+
+    --display: "Anybody", "Helvetica Neue", Arial, sans-serif;
+    --text: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+    /* the one display size, and the width axis that carries it */
+    --d: clamp(52px, 9.4vw, 136px);
+    --dw: 125;
+    --t: 17px;
+    --lede: 21px;
+
+    --e: cubic-bezier(0.4, 0, 0, 1);
+    --g: 32px;          /* page gutter */
+    --gap: 24px;        /* column gap */
+    --s: 160px;         /* section air */
+  }
+
+  html { background: #0D0D0F; }
+  body {
+    margin: 0; background: transparent; color: var(--ink);
+    font-family: var(--text); font-size: var(--t); line-height: 1.5;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+    transition: color 700ms var(--e);
+  }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 1.5px solid var(--copper); outline-offset: 4px; }
+  ::selection { background: var(--copper); color: var(--bone); }
+  h1, h2, h3, p, ol, ul, dl, dd, figure, figcaption { margin: 0; }
+  img, video { display: block; max-width: 100%; }
+
+  /* ---- the sheet: one fixed ground, no section declares a colour ---- */
+  .sheet { position: fixed; inset: 0; z-index: 0; background: var(--ground); transition: background 700ms var(--e); }
+
+  /* ---- the room: clip A, fixed, playing at rest, extinguished by the scroll ---- */
+  .film { position: fixed; inset: 0; height: 100lvh; z-index: 1; pointer-events: none; overflow: hidden;
+          opacity: calc(1 - clamp(0, var(--f) * 4, 1)); }
+  .film video { width: 100%; height: 100lvh; object-fit: cover; object-position: 60% 30%; }
+  .film .veil { position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(13,13,15,0) 0%, rgba(13,13,15,0) 14%, rgba(13,13,15,0.75) 40%, rgba(13,13,15,1) 56%); }
+
+  .page { position: relative; z-index: 3; }
+
+  /* ---- the one label style ---- */
+  .l {
+    font-family: var(--display); font-size: 13px; font-weight: 500;
+    font-variation-settings: "wdth" 62; text-transform: uppercase;
+    letter-spacing: 0.08em; line-height: 1.45; color: var(--ink-60);
+  }
+  .l.now { color: var(--ink); }
+
+  /* ---- the one display size ---- */
+  .d {
+    font-family: var(--display); font-weight: 300;
+    font-variation-settings: "wdth" var(--dw);
+    font-size: var(--d); line-height: 0.92; letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .d.fig { font-variant-numeric: tabular-nums;
+            /* RULING 4, forced: the unbreakable run "-> 290,000" measures 738px at
+               wdth 125 and the card holds 638. The display SIZE never drops (S2); SS11
+               ruled the width axis is the lever, and 106 is that ladder's own rung. */
+            font-variation-settings: "wdth" 106; }
+  .cu { color: var(--copper); }
+
+  .lede { font-size: var(--lede); line-height: 1.35; max-width: 40ch; color: var(--ink); }
+  .body { font-size: var(--t); line-height: 1.55; max-width: 46ch; color: var(--ink-72); }
+  .body.full { color: var(--ink); }
+
+  .wrap { box-sizing: border-box; width: 100%; padding-left: var(--g); padding-right: var(--g); }
+  .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
+
+  /* ---- the chip pair ---- */
+  .chips { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .chip { display: inline-flex; align-items: stretch; height: 44px; }
+  .chip .t { display: inline-flex; align-items: center; padding: 0 20px; background: var(--bone); color: var(--espresso);
+             font-family: var(--display); font-size: 13px; font-weight: 500; font-variation-settings: "wdth" 62;
+             text-transform: uppercase; letter-spacing: 0.08em; line-height: 1; }
+  .chip .a { display: inline-flex; align-items: center; justify-content: center; width: 44px;
+             background: var(--copper); color: var(--bone); font-family: var(--display); font-size: 16px; line-height: 1; }
+  .chip.quiet .t { background: color-mix(in oklab, var(--ink) 12%, transparent); color: var(--ink); }
+  .chip .t, .chip .a { transition: background 260ms var(--e), color 260ms var(--e); }
+  .chip:hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
+  .chip.quiet:hover .t { background: color-mix(in oklab, var(--ink) 20%, transparent); }
+
+  /* ---- 00 the bar: nothing on screen one ---- */
+  .bar {
+    position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 30;
+    box-sizing: border-box; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 var(--g); background: var(--ground); border-bottom: 1px solid var(--hair);
+    color: var(--ink); opacity: 0; pointer-events: none;
+    transition: opacity 300ms var(--e), background 700ms var(--e), color 700ms var(--e), border-color 700ms var(--e);
+  }
+  .bar.on { opacity: 1; pointer-events: auto; }
+  .bar a:hover { color: var(--ink); }
+  .bar .ar { color: var(--copper); }
+  /* SS11: while the ask's copper field is under the bar, the bar IS the field.
+     No bone strip cutting across it; the arrow turns espresso with the rest. */
+  .bar.over-ask { background: var(--copper); color: var(--espresso);
+                  border-bottom-color: color-mix(in oklab, var(--espresso) 20%, transparent); }
+  .bar.over-ask .l, .bar.over-ask .l.now, .bar.over-ask a:hover, .bar.over-ask .ar { color: var(--espresso); }
+
+  /* ---- 01 the room ---- */
+  .room { position: relative; box-sizing: border-box; min-height: max(100lvh, 720px);
+          display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 64px; }
+  .room .base { align-items: end; }
+  .room h1 { grid-column: 1 / -1; margin-bottom: 24px; }
+  .room h1 .r { display: block; width: max-content; max-width: 100%; white-space: nowrap; }
+  .room .say { grid-column: 1 / 8; }
+  .room .lede { margin-bottom: 0; }
+  /* SS11: the chips and the dated proof share ONE baseline row. Flex baseline alignment
+     puts the proof's first line on the chip label's baseline by construction rather than
+     by a nudge, so the two read as one line of evidence across the fold. */
+  .room .base-row { grid-column: 1 / -1; margin-top: 28px;
+                    display: flex; align-items: baseline; justify-content: space-between; gap: 24px 32px; }
+  .room .proof { text-align: right; display: flex; flex-direction: column; gap: 8px; }
+  .room .proof .l { color: var(--ink); }
+
+  /* ---- 02 the record ---- */
+  .band { padding-top: var(--s); }
+  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+              gap: 8px 24px; padding-bottom: 16px; border-bottom: 1px solid var(--hair); }
+
+  .spot { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr);
+          column-gap: var(--gap); row-gap: 16px; padding: 40px 0 32px; border-bottom: 1px solid var(--hair); }
+  .spot .n { grid-column: 1; grid-row: 1; padding-top: 0.44em; }
+  .spot .who { grid-column: 2; grid-row: 1; }
+  .spot .what { grid-column: 2; grid-row: 2; max-width: 46ch; margin-left: auto; text-align: right; }
+  .spot::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+                 background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
+                 transition: transform 400ms var(--e); }
+  .spot:hover::after { transform: scaleX(1); }
+  .peek { position: absolute; right: 0; top: 24px; width: 140px; opacity: 0; filter: grayscale(1);
+          transition: opacity 400ms var(--e); pointer-events: none; border: 1px solid var(--hair); }
+  .spot:hover .peek { opacity: 1; }
+
+  .idx { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 38ch);
+         column-gap: var(--gap); align-items: baseline; padding: 22px 0 20px; border-bottom: 1px solid var(--hair); }
+  .idx .who { font-family: var(--text); font-weight: 500; font-size: 19px; color: var(--ink); }
+  .idx .what { text-align: right; color: var(--ink-72); font-size: 16px; }
+  .idx::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+                background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
+                transition: transform 400ms var(--e); }
+  .idx:hover::after { transform: scaleX(1); }
+
+  /* ---- 03 the person ---- */
+  /* brief S4-03: clip B in a square panel on the left; the display line, the names-as-text
+     paragraph and the SS lines all live in the RIGHT column.
+     The clip takes grid lines 1 -> 5 rather than 1 -> 6: at --d the display line's longest
+     word ("consultant.") measures 879px at 1440, so a 7-column right column (793px) clips
+     it. Eight columns (909px) hold it. The brief's "cols 1-5" is read as the grid lines. */
+  .person { padding-top: var(--s); padding-bottom: 120px; }
+  .person .cols { align-items: start; }
+  /* RULING 3 (2026-09-05): the clip is 4:5, and the left column carries the second
+     paragraph and the section-mark line under it, so the two columns end together
+     instead of the right one running two hundred pixels past the picture. */
+  .person .lcol { grid-column: 1 / 5; display: flex; flex-direction: column;
+                  align-items: flex-start; gap: 24px; }
+  .person .rcol { grid-column: 5 / 13; display: flex; flex-direction: column;
+                  align-items: flex-start; gap: 28px; }
+  .person .clip { width: 100%; }
+  .person .clip video { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; }
+  .person .rcol h2 { margin-bottom: 4px; }
+
+  .person .say { font-size: var(--lede); line-height: 1.4; max-width: 42ch; color: var(--ink); }
+  .person .sub { max-width: 46ch; }
+  .person .quote { max-width: 44ch; }
+
+  /* ---- 05 how I work: the rail ---- */
+  .work { padding-top: 160px; }
+  .rail { grid-column: 1 / 8; position: sticky; top: 140px; align-self: start; }
+  .rail ol { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 48px; margin-top: 40px; }
+  .rail li { opacity: 0.42; transition: opacity 300ms var(--e); }
+  .rail li.on { opacity: 1; }
+  .rail li .n { display: block; margin-bottom: 10px; }
+  .rail li .d { display: block; }
+  .rail li .out { display: block; margin-top: 14px; }
+  .panels { grid-column: 8 / 13; display: flex; flex-direction: column; gap: 32vh; padding-bottom: 24vh; }
+  .panel .frame { background: #241C17; overflow: hidden; }
+  .panel figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid var(--hair); margin-top: 14px; }
+  .panel .body { margin-top: 16px; }
+
+  /* ---- 06 the manual ---- */
+  .manual { padding-top: var(--s); }
+  /* SS11: the label names the artifact BEFORE the display line makes its claim. */
+  .manual .head { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .manual h2 { margin-bottom: 56px; }
+  .manual .copy { grid-column: 1 / 7; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+  .manual .lines { display: flex; flex-direction: column; gap: 6px; }
+  .manual .lines p { font-size: 20px; line-height: 1.35; color: var(--ink); max-width: 44ch; }
+  .manual .art { grid-column: 8 / 13; }
+  .manual .art .frame { border: 1px dashed var(--hair); padding: 16px; background: #0B0A09; }
+  .manual .art figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; }
+
+  /* ---- 07 the numbers ---- */
+  .nums { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+  .num { border: 1px solid var(--hair-4); box-sizing: border-box;
+         display: grid; grid-template-rows: auto auto; align-content: start; gap: 24px;
+         padding: 40px 32px 32px; }
+  .num:nth-child(n + 3) { margin-top: -1px; }
+  .num:nth-child(even) { margin-left: -1px; }
+  /* SS11: no reservation. The footnote follows its figure at 24px, and the two cards in a
+     grid row take their shared height from the grid itself (default stretch). */
+  .num .d { align-self: start; }
+  .num .f { align-self: start; max-width: 42ch; }
+  /* RULING 4: a two-line figure breaks BEFORE the arrow, never after it. */
+  .nb { white-space: nowrap; }
+
+  /* ---- 08 the price ---- */
+  .price { padding-top: var(--s); padding-bottom: var(--s); }
+  .price .col-a { grid-column: 1 / 7; }
+  .price .col-b { grid-column: 8 / 13; }
+  .prow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--gap); align-items: baseline;
+          padding: 24px 0; border-top: 1px solid var(--hair); }
+  .prow:last-child { border-bottom: 1px solid var(--hair); }
+  .prow .k { color: var(--ink-72); }
+  .prow .v { font-family: var(--display); font-weight: 300; font-variation-settings: "wdth" var(--dw);
+             font-size: calc(var(--t) * 1.6); line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+             font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+  /* SS11: the suffix drops to its own line in the label style, so nothing is bolted to the
+     right of a figure and all five figures are flush to one right edge. */
+  .prow .v .l { display: block; margin-top: 8px; }
+  .q { padding: 24px 0; border-top: 1px solid var(--hair); display: flex; flex-direction: column; gap: 10px; }
+  .q:last-child { border-bottom: 1px solid var(--hair); }
+  .q dt { font-weight: 500; font-size: 19px; color: var(--ink); }
+  .q dd { color: var(--ink-72); max-width: 46ch; }
+
+  /* ---- 09 the ask ---- */
+  .ask { position: relative; z-index: 3; box-sizing: border-box; background: var(--copper); color: var(--espresso);
+         min-height: 100lvh; display: flex; align-items: center; padding: 220px var(--g); margin-top: 0; }
+  .ask .block { display: flex; flex-direction: column; align-items: flex-start; gap: 56px; transition: opacity 300ms var(--e); }
+  .ask:hover .block { opacity: 0.8; }
+  .ask .d { color: var(--espresso); max-width: 9ch; }
+  .ask .ar { display: inline-block; font-size: 0.34em; vertical-align: 0.62em; margin-left: 0.2em; }
+  .ask .chip .t { background: var(--espresso); color: var(--bone); }
+  .ask .chip .a { background: var(--bone); color: var(--espresso); }
+  /* RULING 6: on the copper field the quiet chip is drawn, not filled -- a 1px
+     espresso rule at 40% and solid espresso type. */
+  .ask .chip.quiet .t { box-sizing: border-box; background: transparent; color: var(--espresso);
+                        border: 1px solid color-mix(in srgb, var(--espresso) 40%, transparent); }
+  .ask .chip:hover .t { background: color-mix(in oklab, var(--espresso) 86%, var(--bone)); }
+  .ask .chip.quiet:hover .t { background: transparent; border-color: var(--espresso); }
+
+  /* ---- 10 the foot ---- */
+  .foot { position: relative; z-index: 3; box-sizing: border-box; background: var(--espresso); color: var(--bone); padding: 72px var(--g) 64px; }
+  .foot .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; }
+  .foot .l { color: color-mix(in oklab, var(--bone) 60%, transparent); }
+  .foot .l.now { color: var(--bone); }
+
+  /* ---- entrances: transform only, once, the picture before the claim ---- */
+  [data-rise] { transform: translateY(var(--rise, 0px)); transition: transform 500ms var(--e); }
+  .js [data-rise="10"] { --rise: 10px; }
+  .js [data-rise="30"] { --rise: 30px; transition-delay: 120ms; }
+  .js [data-rise].in { --rise: 0px; }
+
+  @media (hover: none) { .peek { opacity: 1; } }
+
+  @media (max-width: 1279px) {
+    :root { --s: 128px; }
+    .spot { grid-template-columns: 44px minmax(0, 1fr); }
+    .idx { grid-template-columns: 44px minmax(0, 1fr) minmax(0, 34ch); }
+    /* the two wrappers dissolve and the six pieces stack in the order the page reads:
+       clip, display line, first paragraph, second paragraph, quote, section mark. */
+    .person .cols { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+    .person .lcol, .person .rcol { display: contents; }
+    .person .clip { order: 1; width: 100%; max-width: 560px; }
+    .person .rcol h2 { order: 2; }
+    .person .say { order: 3; }
+    .person .sub { order: 4; }
+    .person .quote { order: 5; }
+    .person .lcol > .l { order: 6; }
+  }
+
+  /* RULING 4, forced: a two-up card narrower than 1440's 688px cannot hold "-> 290,000"
+     unbroken at any width axis that still reads as the display face, so the numbers stack
+     below 1440. SS11 ruled the 2x2 grid AT 1440, and it still stands there. */
+  @media (max-width: 1439px) {
+    .nums { grid-template-columns: minmax(0, 1fr); }
+    .num:nth-child(n + 2) { margin-top: -1px; }
+    .num:nth-child(even) { margin-left: 0; }
+  }
+
+  @media (max-width: 899px) {
+    :root { --g: 20px; --gap: 16px; --s: 96px; }
+    .bar { height: 44px; }
+    .bar .hide-s { display: none; }
+    /* RULING 1 (2026-09-05): the hero block is bottom-aligned and tightened until its
+       top clears the 44% line, and the veil is pushed down to meet it. That gives the
+       man back the lower half of his face; both headline rows still sit on flat
+       espresso. Stops: 0 at 0%, 0 at 18%, .8 at 34%, 1 at 44%. */
+    .room { padding-bottom: 20px; }
+    .room .base { margin-top: auto; }
+    .room .say { grid-column: 1 / -1; }
+    .room .base-row { flex-direction: column; align-items: stretch; gap: 24px; margin-top: 16px; }
+    .room .proof { text-align: left; gap: 6px; }
+    .room h1 { margin-bottom: 12px; }
+    .film .veil { background: linear-gradient(to bottom,
+      rgba(13,13,15,0) 0%, rgba(13,13,15,0) 18%, rgba(13,13,15,0.8) 34%, rgba(13,13,15,1) 44%); }
+    .chips { gap: 10px; }
+    .spot { grid-template-columns: minmax(0, 1fr); row-gap: 12px; padding: 28px 0 24px; }
+    .spot .n { grid-column: 1; grid-row: 1; padding-top: 0; }
+    .spot .who { grid-column: 1; grid-row: 2; }
+    /* RULING 2: there is no hover on a phone, so the one artifact in the record is
+       shown outright -- 120px wide, in the flow, 16px under the name it belongs to. */
+    .spot .what { grid-column: 1; grid-row: 4; margin-left: 0; text-align: left; }
+    .peek { position: static; grid-column: 1; grid-row: 3; box-sizing: border-box;
+            width: 120px; margin-top: 4px; opacity: 1; }
+    .idx { grid-template-columns: 40px minmax(0, 1fr); row-gap: 6px; }
+    .idx .what { grid-column: 2; text-align: left; }
+    .person { padding-bottom: 96px; }
+    .work { padding-top: 128px; }
+    .rail, .panels { grid-column: 1 / -1; }
+    .rail { position: static; }
+    .rail ol { gap: 40px; }
+    .panels { gap: 72px; padding-top: 64px; padding-bottom: 0; }
+    .manual .copy, .manual .art { grid-column: 1 / -1; }
+    .manual .art { margin-top: 56px; }
+    .manual h2 { margin-bottom: 40px; }
+    .nums { grid-template-columns: minmax(0, 1fr); }
+    .num { gap: 24px; padding: 28px 20px; }
+    .num:nth-child(n + 2) { margin-top: -1px; }
+    .num:nth-child(even) { margin-left: 0; }
+    .price .col-a, .price .col-b { grid-column: 1 / -1; }
+    .price .col-b { margin-top: 72px; }
+    .ask { min-height: 0; padding: 120px var(--g); margin-top: 0; }
+    .ask .block { gap: 40px; }
+    .foot .row { flex-direction: column; }
+  }
+
+  /* the phone: the chip pair stacks (brief S4-01) */
+  @media (max-width: 599px) {
+    .room .chips { flex-direction: column; align-items: stretch; gap: 12px; }
+    .room .chips .chip { width: 100%; }
+    .room .chips .chip .t { flex: 1; }
+  }
+
+  /* RETURN CONDITION, brief S10 -- reported, not resolved silently.
+     "go-to-market." cannot fit the 350px content width at 390 at wdth 125 (it lays out
+     433px, measured) nor at the brief's single authorised fallback of wdth 115 (386px).
+     wdth 106 is the widest cut that fits (344px). --d is already at its 52px floor, and
+     the brief forbids dropping the size. The phone therefore ships a narrower cut of the
+     same face than the desktop, which the brief does not authorise. */
+  @media (max-width: 479px) { :root { --dw: 106; } }
+
+  @media (max-width: 359px) { :root { --dw: 98; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    video { display: none; }
+    .film { background: url("{{VID_Aposter}}") 60% 30% / cover no-repeat; }
+    .person .clip { aspect-ratio: 4 / 5; background: url("{{VID_Bposter}}") 50% 50% / cover no-repeat; }
+    .sheet, body, .bar, .spot::after, .idx::after, .peek, .rail li, [data-rise], .ask .block, .chip .t, .chip .a { transition: none !important; }
+    [data-rise] { transform: none !important; }
+    .peek { opacity: 1; }
+  }
+</style>
+
+<div class="sheet" aria-hidden="true"></div>
+
+<div class="film" id="film" aria-hidden="true">
+  <video autoplay muted loop playsinline preload="metadata" poster="{{VID_Aposter}}">
+    <source src="{{VID_Awebm}}" type="video/webm">
+    <source src="{{VID_Amp4}}" type="video/mp4">
+  </video>
+  <div class="veil"></div>
+</div>
+
+<nav class="bar" id="bar" aria-label="Site">
+  <a class="l now" href="#room">Micah Jones</a>
+  <a class="l hide-s" href="#record">Record</a>
+  <a class="l hide-s" href="#manual">Playbook</a>
+  <a class="l" href="#price">Packages from $500</a>
+  <a class="l" href="https://www.micahjonesconsulting.com/call?from=mock-bar">Name the problem <span class="ar">&#8594;</span></a>
+</nav>
+
+<div class="page" id="page">
+
+  <!-- 01 the room -->
+  <header class="room wrap" id="room" data-world="0">
+    <div class="grid base">
+      <h1 class="d"><span class="r">I build the</span><span class="r cu">go-to-market.</span></h1>
+      <div class="say">
+        <p class="lede">Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
+      </div>
+      <div class="base-row">
+        <div class="chips">
+          <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-room"><span class="t">Name the problem</span><span class="a" aria-hidden="true">&#8594;</span></a>
+          <a class="chip quiet" href="#price"><span class="t">See the packages</span></a>
+        </div>
+        <div class="proof">
+          <div><span class="l now">Guardicore</span> <span class="l">&#183; 2018&#8211;2021</span></div>
+          <div class="l">$14M in revenue &#183; acquired by Akamai</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 02 the record -->
+  <section class="band wrap" id="record" aria-label="The record" data-world="0">
+    <div class="sec-head">
+      <div class="l">The receipts. Every line below is real.</div>
+      <div class="l">07</div>
+    </div>
+
+    <div class="spot" data-rise="30">
+      <div class="l n">01</div>
+      <div class="who d">Guardicore</div>
+      <p class="what body">$14M in revenue. Acquired by Akamai in 2021.</p>
+      <img class="peek" src="{{IMG_portrait}}" alt="Micah Jones at a laptop in front of a whiteboard covered in service architecture">
+    </div>
+    <div class="spot" data-rise="30">
+      <div class="l n">02</div>
+      <div class="who d">Postmates</div>
+      <p class="what body">Market and fraud analysis in the wide-open era. Acquired by Uber, $2.65B.</p>
+    </div>
+    <div class="spot" data-rise="30">
+      <div class="l n">03</div>
+      <div class="who d">Industry author</div>
+      <p class="what body">$3M in contracts won &#183; close rate doubled</p>
+    </div>
+
+    <div class="idx" data-rise="30"><div class="l n">04</div><div class="who">SurveyMonkey Enterprise</div><div class="what">$1M+ toward the IPO &#183; cap-table position held through the Nasdaq listing</div></div>
+    <div class="idx" data-rise="30"><div class="l n">05</div><div class="who">Industry author</div><div class="what">Monthly reach 8K &#8594; 290K in five months</div></div>
+    <div class="idx" data-rise="30"><div class="l n">06</div><div class="who">Ordani</div><div class="what">Active paying users &#183; none lost to a competitor</div></div>
+    <div class="idx" data-rise="30"><div class="l n">07</div><div class="who">Consulting</div><div class="what">$20M+ in client revenue &#183; since 2013</div></div>
+  </section>
+
+  <!-- 03 the person -->
+  <section class="person wrap" id="about" aria-label="About" data-world="0">
+    <div class="grid cols">
+    <div class="lcol">
+      <div class="clip" data-rise="10">
+        <video autoplay muted loop playsinline preload="metadata" poster="{{VID_Bposter}}" aria-hidden="true">
+          <source src="{{VID_Bwebm}}" type="video/webm">
+          <source src="{{VID_Bmp4}}" type="video/mp4">
+        </video>
+      </div>
+      <p class="sub body">I joined Postmates, SurveyMonkey, Guardicore (Akamai) and Neuton.AI early. Four exits, $5B+ combined. I built Ordani solo with Claude Code and Cursor: HIPAA-compliant, active paying users, in beta. I am taking new engagements now.</p>
+      <div class="l">The author, name protected &#183; Receipt</div>
+    </div>
+    <div class="rcol">
+      <h2 class="d">Operator, not consultant.</h2>
+      <p class="say">I've spent thirteen years inside B2B software companies as the person who can sit on either side of the table: GTM strategy in the morning, shipping product in the afternoon. Most consultants don't ship. Most builders don't sell. I do both, on the same engagement, for the same fee.</p>
+      <p class="quote body full">Micah does the work that most strategy decks promise and never deliver.</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- 04 the seam: the air above the rail, where the light travels. no section declares it. -->
+
+  <!-- 05 how I work -->
+  <section class="work grid wrap" id="work" aria-label="How I work" data-world="1">
+    <div class="rail">
+      <div class="l">Operating principles &#183; How I work.</div>
+      <ol id="rail">
+        <li data-step="1"><span class="l n">01</span><span class="d">Diagnose</span><span class="l out">&#8594; Positioning audit memo</span></li>
+        <li data-step="2"><span class="l n">02</span><span class="d">Build</span><span class="l out">&#8594; Shipped artifact, month one</span></li>
+        <li data-step="3"><span class="l n">03</span><span class="d">Position</span><span class="l out">&#8594; The story the market repeats</span></li>
+      </ol>
+    </div>
+    <div class="panels">
+      <figure class="panel" data-panel="1">
+        <div class="frame" data-rise="10"><img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill"></div>
+        <figcaption><span class="l">&#167; 01.4 &#183; Why it hits at 80% and not sooner</span><span class="l">page 6 of 69</span></figcaption>
+        <p class="body" data-rise="30">I find the gap between what you built and what buyers actually pay for.</p>
+      </figure>
+      <figure class="panel" data-panel="2">
+        <div class="frame" data-rise="10"><img src="{{IMG_card}}" alt="checklists/05-security.md, one of ten pre-flight cards, as shipped"></div>
+        <figcaption><span class="l">checklists/05-security.md</span><span class="l">one of ten pre-flight cards, as shipped</span></figcaption>
+        <p class="body" data-rise="30">Every engagement ships a named artifact in month one. No decks. No discovery debt.</p>
+      </figure>
+      <figure class="panel" data-panel="3">
+        <div class="frame" data-rise="10"><img src="{{IMG_rings}}" alt="Book page 51: where the ten users live, three rings"></div>
+        <figcaption><span class="l">&#167; 08.2 &#183; Where the ten actually live</span><span class="l">page 51 of 69</span></figcaption>
+        <p class="body" data-rise="30">I stay until the narrative sells without me. The Guardicore repositioning carried into the Akamai acquisition.</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 06 the manual -->
+  <section class="manual wrap" id="manual" aria-label="The field manual" data-world="1">
+    <div class="head"><span class="l">The 80% Wall</span><span class="l">&#183;</span><span class="l now">from $99</span></div>
+    <h2 class="d">The AI handed you the code. Now ship the company.</h2>
+    <div class="grid">
+      <div class="copy">
+        <div class="lines">
+          <p>It shipped. Nobody came.</p>
+          <p>The demo looked done. Production turned out to be a different machine entirely.</p>
+          <p>You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
+        </div>
+        <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
+        <div class="l">Pages 69 &#183; Chapters 10 &#183; Diagrams 9 &#183; Companion files 26</div>
+        <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="t">Get chapter one free</span><span class="a" aria-hidden="true">&#8594;</span></a>
+      </div>
+      <figure class="art">
+        <div class="frame" data-rise="10"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover"></div>
+        <figcaption><span class="l">the-80-percent-wall.pdf</span><span class="l">PDF + ZIP &#183; every future edition</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 07 the numbers -->
+  <section class="band wrap" aria-label="Numbers" data-world="1">
+    <div class="sec-head"><div class="l">Named numbers, with their mechanism</div><div class="l">04</div></div>
+    <div class="nums">
+      <div class="num" data-rise="30"><div class="d fig">40% <span class="nb">&#8594; 91%</span></div><div class="l f">*intake completion, Ordani beta. Its intake replaced a paper packet.</div></div>
+      <div class="num" data-rise="30"><div class="d fig">8,000 <span class="nb">&#8594; 290,000</span></div><div class="l f">*monthly reach for an industry author, in five months. Eight platforms carried the work.</div></div>
+      <div class="num" data-rise="30"><div class="d fig">$3M</div><div class="l f">*contracts won through RFP software that doubled the author's close rate inside six months.</div></div>
+      <div class="num" data-rise="30"><div class="d fig">$14M</div><div class="l f">*revenue, Guardicore, at a $1.2M average enterprise deal size. Acquired by Akamai in 2021.</div></div>
+    </div>
+  </section>
+
+  <!-- 08 the price, with the objection beside it -->
+  <section class="price grid wrap" id="price" aria-label="Prices" data-world="1">
+    <div class="col-a">
+      <div class="sec-head" style="border: 0; padding-bottom: 20px;"><div class="l">Three fixed prices. Start this week.</div><div class="l">Fixed.</div></div>
+      <div class="prow"><div class="k">The Unstick Session &#183; Ninety minutes live on your stuck build.</div><div class="v">$500</div></div>
+      <div class="prow"><div class="k">The Audit &#183; I go through it top to bottom and hand you the written audit.</div><div class="v">$2,500<span class="l">Start here</span></div></div>
+      <div class="prow"><div class="k">The Sprint &#183; One week on one outcome, shipped.</div><div class="v">$7,500</div></div>
+      <div class="prow"><div class="k">The 80% Wall &#183; the field manual, PDF + ZIP.</div><div class="v">$99<span class="l">at launch</span></div></div>
+      <div class="prow"><div class="k">Engagements &#183; advisory, project, retainer, or embedded.</div><div class="v">From $5K<span class="l">a month</span></div></div>
+    </div>
+    <dl class="col-b">
+      <div class="sec-head" style="border: 0; padding-bottom: 20px;"><div class="l">The objections, in your words</div><div class="l">03</div></div>
+      <div class="q"><dt>Is this for me, if I vibe-coded it?</dt><dd>You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.</dd></div>
+      <div class="q"><dt>What if it does not help?</dt><dd>Thirty days, full refund, no questions asked. Reply to the delivery email and I refund it.</dd></div>
+      <div class="q"><dt>Hiring for a company rather than a build?</dt><dd>The engagements start at $5K a month. Tell me the problem and I will scope it. A free 30-minute call comes first.</dd></div>
+    </dl>
+  </section>
+
+</div>
+
+<!-- 09 the ask -->
+<section class="ask wrap" id="contact" aria-label="Name the problem">
+  <div class="block">
+    <h2 class="d">Name the problem.<span class="ar" aria-hidden="true">&#8594;</span></h2>
+    <div class="chips">
+      <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-ask"><span class="t">Book a free intro call</span><span class="a" aria-hidden="true">&#8594;</span></a>
+      <a class="chip quiet" href="https://www.micahjonesconsulting.com/packages?from=mock-ask"><span class="t">See the packages</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 10 the foot -->
+<footer class="foot">
+  <div class="row">
+    <a class="l now" href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a>
+    <span class="l">I read every message and reply inside one business day.</span>
+    <span class="l">&#169; 2013&#8211;2026 Micah Jones</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var bar = document.getElementById('bar');
+  var record = document.getElementById('record');
+  var person = document.getElementById('about');
+  var work = document.getElementById('work');
+  var ask = document.getElementById('contact');
+  var steps = [].slice.call(document.querySelectorAll('#rail li'));
+  var panels = [].slice.call(document.querySelectorAll('[data-panel]'));
+  var risers = [].slice.call(document.querySelectorAll('[data-rise]'));
+  var lastP = -1, lastF = -1, queued = false;
+
+  if (!reduce) root.classList.add('js');
+
+  function clamp(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
+
+  function light() {
+    var h = window.innerHeight, line = h * 0.55;
+    // the film goes out across the record: the man is gone before the ledger opens
+    var a = record.getBoundingClientRect().top, b = person.getBoundingClientRect().top;
+    var f = (b > a) ? clamp((line - a) / (b - a)) : (line >= a ? 1 : 0);
+    // the ground: one travel, landing exactly as the reading line reaches the rail
+    var w = work.getBoundingClientRect().top, zone = Math.min(h * 0.38, 320);
+    var p = clamp((line - (w - zone)) / zone);
+    if (reduce) { p = p > 0.5 ? 1 : 0; f = f > 0.25 ? 1 : 0; }
+    if (p !== lastP) { root.style.setProperty('--p', p.toFixed(4)); lastP = p; }
+    if (f !== lastF) { root.style.setProperty('--f', f.toFixed(4)); lastF = f; }
+  }
+
+  function chrome() {
+    if (!bar) return;
+    bar.classList.toggle('on', window.scrollY >= window.innerHeight);
+    // SS11: the copper field owns the bar while it is under it -- top above the bar's
+    // bottom edge, bottom below it. Same rAF writer, one class, no new library.
+    if (ask) {
+      var edge = bar.getBoundingClientRect().height || 40;
+      var r = ask.getBoundingClientRect();
+      bar.classList.toggle('over-ask', r.top <= edge && r.bottom >= edge);
+    }
+  }
+
+  function rail() {
+    if (!panels.length) return;
+    var line = window.innerHeight * 0.5, best = 0;
+    for (var i = 0; i < panels.length; i++) {
+      if (panels[i].getBoundingClientRect().top <= line) best = i;
+    }
+    for (var j = 0; j < steps.length; j++) steps[j].classList.toggle('on', j === best);
+  }
+
+  function rise() {
+    var h = window.innerHeight;
+    for (var i = 0; i < risers.length; i++) {
+      if (risers[i].classList.contains('in')) continue;
+      if (risers[i].getBoundingClientRect().top < h * 0.92) risers[i].classList.add('in');
+    }
+  }
+
+  function tick() { light(); chrome(); rail(); if (!reduce) rise(); }
+  function schedule() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; tick(); }); }
+
+  if (!reduce && typeof window.Lenis !== 'undefined') {
+    var lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+    window.lenis = lenis;
+    lenis.on('scroll', schedule);
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href'); if (id.length < 2) return;
+        var el = document.querySelector(id); if (!el) return;
+        e.preventDefault(); lenis.scrollTo(el, { offset: -72, duration: 1.1 });
+      });
+    });
+  } else {
+    window.addEventListener('scroll', schedule, { passive: true });
+  }
+  window.addEventListener('resize', schedule);
+  tick();
+  if (!reduce) requestAnimationFrame(function () { requestAnimationFrame(rise); });
+})();
+</script>

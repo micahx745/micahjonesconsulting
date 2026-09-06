@@ -199,6 +199,32 @@ preloaders, gates, counters, cursor effects, split text, magnetic buttons; mono 
 Instrument Serif (proposed by the buyer lens; it is on the AI-tell list); grain overlays;
 any new sentence.
 
+## 11. Rulings after verification (Fable, 2026-09-05, three verify rounds)
+
+- **Copper row contrast.** `go-to-market.` in copper on solid espresso measures 4.37–4.40:1
+  at every frame; that is the accent's ceiling on this ground, not a tuning failure. The
+  4.5 threshold in §8.6 was written for bone over film. Ruled: the copper row passes at
+  ≥ 3:1 (large text, per the constitution's own WCAG rule); the bone row keeps 4.5.
+- **Width axis on phones.** At 390 `go-to-market.` cannot fit at wdth 115 at the 52px
+  floor. Ruled: the width axis is the lever all the way down (106 at ≤479px, 98 at
+  ≤359px); the size never drops below the clamp. §10's first return condition is retired.
+- **The veil.** Solid espresso from the 56% mark so both headline rows sit on flat
+  espresso; the film carries the top ~45% at 1440. Accepted over the §3 stops. At ≤899px
+  the veil goes solid earlier (opaque by 36%) so the second row's tail is never over lit
+  film.
+- **The person section.** "cols 1–5" read as grid lines 1→5 (four columns); the display
+  line sits in the right column and needs eight columns to hold `consultant.` at `--d`.
+  Accepted. Below 1280px the section stacks.
+- **The numbers.** A 2×2 grid at 1440 (a single row of four cannot hold the two-line
+  figures at one display size). Accepted. No min-height reservation: the footnote follows
+  the figure at 24px; cards in a row share height through the grid.
+- **The bar over the copper field.** While the ask section is under the bar, the bar
+  paints copper with espresso type (its `→` turns espresso); the bone strip is gone.
+- Also fixed in the final round: proof row baseline-aligned with the chip text at 1440;
+  the price column's suffixes (`START HERE`, `AT LAUNCH`, `A MONTH`) set on their own line
+  under the figure so all five figures are flush right; the manual's label precedes its
+  display line; the rail sticks at 140px.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
