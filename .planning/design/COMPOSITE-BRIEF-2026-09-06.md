@@ -154,6 +154,29 @@ by continuing the blue wall on the right and the window on the left" at 4K for a
 Silhouette fix: "her face is clearly visible and lit". Optional third change: "remove the
 green logo from the black laptop" (Fable would leave it).
 
+**Revision (operator, same evening): "readjust my body language and remove the hat."** This
+makes it an identity job (the model regenerates his head and torso), so: character
+references `S4-head.jpg` and `S3-op-head.jpg`, and TWO PASSES. Pass 1, him only:
+
+```
+Using the provided photograph, change only the man and keep everything else in the image
+exactly the same, preserving the original style, lighting, and composition. Remove his cap:
+his hair is short and close-cropped with the hairline shown in the character references,
+and his face, beard and skin tone stay exactly as photographed. Change his posture so he
+sits upright and open, turned a little toward the empty chair on his left, one forearm
+resting on the table beside the black laptop and the other hand relaxed, looking toward
+that chair with an attentive, easy expression, as if listening to someone sitting there. He
+keeps the dark hoodie. The window light falls on him from behind exactly as before and the
+room light on his face is unchanged. The two laptops, the glass, the table, the chair, the
+window and the city stay exactly as photographed. Photographic, no added text. Same facial
+proportions, eye spacing, jaw shape and hairline throughout.
+```
+
+Judge at 100% against `S4-head.jpg`: hairline, ear, beard density; reject on the face. Pass 2:
+the pass-1 keeper becomes the object reference and the room prompt above runs unchanged,
+with "meeting his eyes" added to the woman's description. One-pass merge ("make three
+changes") is allowed but costs attempts.
+
 Clip (loops; both return to rest):
 ```
 A man and a woman sit at a table by a window and talk. He glances up from his laptop toward
