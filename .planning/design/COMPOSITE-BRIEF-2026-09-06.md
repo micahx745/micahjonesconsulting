@@ -142,6 +142,24 @@ small gesture, then settle. The booth stays still. The camera does not move.
 "Talks" without audio can produce a mushy mouth; if it does, change "talks" to "listens and
 nods" for scene 1 and "speaks" to "explains with his hands" for scene 2.
 
+### Kling terms and face-stability rules (research leg 2, 2026-09-06)
+
+- **Generate on a paid Kling membership or not at all.** The free tier forbids commercial use
+  of output and non-members must keep the watermark and attribute; members' commercial use
+  is unrestricted (kling.ai/docs/payment-policy §3.1.2, §4.6, §7.2).
+- **The colleagues' consent is a warranty he gives at upload** (user policy §4.3, personality
+  rights). Get it in writing before scene 1 is generated.
+- Add the preservation clause to every clip prompt, verbatim: "Same facial proportions, eye
+  spacing, jaw shape and hairline throughout." Keep the character wording byte-identical
+  across retries; change one variable per run.
+- No head turns away and back, no orbits, no whip pans: those make the model reinvent the
+  face. A slow push-in of a few inches over five seconds is the safe camera move if any.
+- Feed the compositor's original render (JPEG q92, true 16:9 at 2560×1440 or larger, under
+  10 MB), never a screenshot or a re-save. Do not downscale: face size in frame is a warping
+  factor.
+- Unverified: whether Kling 3 Pro really outputs above 1080p (its page says 4K; a head-to-
+  head measured 1080p). Probe the first file.
+
 ## 7. Where they land
 
 Scene 1 is the strongest candidate for the "three rooms" Position panel in How I work, or
