@@ -488,6 +488,69 @@ by a fetch through Fable's own session) did not load for him: the clips are inli
 720p only (webm and 1080p dropped, target ≤ 3.5MB), every inline script is guarded, and
 the headline lands at the finger from CSS defaults alone, verified with JavaScript off.
 
+## 15. Operator review of v4.1 (2026-09-06) → v5
+
+Verbatim: "i see no vids and the structure of the book section and the objections part
+still look bad. The cards to the right of diagnose and build etc look horrible. The part
+showing pckages could look a little more prounonced and visually enticing. Engagements is
+the highest paying form - so maybe make that special looking instead of underwhelming but
+still connected with the packagers. consolidated the receipts part and show two and offer
+to see the rest. guardicore RFP engine. For the book the image didnt load. WE NEED TO have
+a round for all the wording and also - did you create the pages for the existing websites
+pages in this version? i click on the stuff and it takes me to the active sites version of
+that page" + "the wording round will be using the data from the other reddit data scraping
+sessions data".
+
+**15.1 The clips.** The account has no asset capability (contract 0.2.41: artifact, db,
+downloads, mcp, room, sample, self), so clips can only travel as data URIs. A diagnostic
+artifact ("Clip Test") plays the same 160KB clip three ways with a readout; the operator's
+answer decides the mechanism. Meanwhile v5: `preload="auto"`; on the first user gesture
+(pointerdown / touchstart / keydown / wheel) call `play()` on the hero if it has not
+ended and on the operator clip if ≥ 35% visible, in addition to autoplay; posters stay the
+fallback. If the readout shows data-URI media refused, the fallback is the poster and the
+clips move to the live-site build.
+
+**15.2 The manual (07), recomposed.** Two columns at ≥ 900: LEFT cols 1–5 the cover filling
+the column at 4:5 inside the dashed frame, the file line under it (the cover JPEG is
+720×1018 and decodes; the builder verifies it renders in Chromium). RIGHT cols 6–12: the
+label `The 80% Wall`, the display line at `--d2` (never `--d`: it out-shouted the hero),
+the three symptom lines as a hairline ledger at 21px, the chapters paragraph 19px, then
+the buy block: `$99` at 64px, `at launch`, the chip `Get chapter one free →`. At 390: cover
+first, full width, then the copy.
+
+**15.3 The objections (08), recomposed.** Head at `--d2`; the three Q/A as THREE COLUMNS at
+≥ 900 in the price cards' geometry ((content − 48)/3, 24px gap): hairline top, question
+24px/1.2 Hanken 500, answer 17px/1.5 at 80% ink; stacked at 390 with 40px between.
+
+**15.4 How I work (03): no cards.** The three panels are removed and the section becomes a
+full-width ledger: head at `--d2`, then three rows, each: ordinal in the label style · the
+step name at `--d2` · its one sentence at 21px (≤ 46ch) in the right half; hairlines
+between; no frames, no images, no sticky rail. The page-6 SVG leaves the section. The slot
+for the "three rooms" clips is recorded, not shown.
+
+**15.5 Packages, pronounced; Engagements, the top tier.** The three cards get a ground: 1px
+border (ink 15%), 8px radius, 28px padding; the package name at 24px Hanken 500 (not the
+14px label); the price at 72px; the sentence 17px; the chip full width. The Audit: a 2px
+copper top rule and `Start here`, instead of the full copper box. Then Engagements as a
+full-width espresso block, same width as the cards row, 24px below, 16px radius, a 2px
+copper top rule, min-height 220px: left `Engagements` at `--d2` + `advisory, project,
+retainer, or embedded.` at 21px; right `From $5K a month` at 64px (bone) + the chip `Name
+the problem →` (bone block, copper arrow). The whole block one link to /call. Stacked at 390.
+
+**15.6 The receipts, consolidated.** Two rows only: Guardicore and the RFP engine (name 28px,
+caption 19px, arrow), then a third row-shaped link `See the rest →` (the operator's own
+words, recorded as operator-supplied copy) to https://www.micahjonesconsulting.com/work
+?from=mock-proof. The head stays.
+
+**15.7 Sub-pages.** None exist in this design; every link goes to the live site on purpose.
+The click-through build (packages, playbook, work, call in the new system) is the next arc
+and belongs on a branch with a Vercel preview, not in a mock. Operator decision.
+
+**15.8 The wording round** follows this structural round: the Reddit research
+(`.planning/research/01-REDDIT-EVIDENCE.md`, the attested phrase bank, the scraping app's
+data) + the copy-editor + the claims ledger; every proposed string is put to the operator
+before it enters the page; the copy gate then widens to the approved list.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
