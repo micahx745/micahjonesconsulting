@@ -451,6 +451,34 @@ in live type. Ruling, per panel:
 All three panels share one frame geometry and one ground; a missing artifact is a
 legitimate variant, not a hole (growthloop §11).
 
+**14.7 After v4 verify 2 (2026-09-06): the words go to the finger.** Measured fingertip on
+the hold frame: source (372, 413) = 19.375% across, 38.24% down; the finger points left
+and slightly up. v4 pinned the headline's left at the gutter, so the tip landed 209px right
+of the "I". Ruling: the headline block is positioned by the fingertip on both axes:
+`left = fingertip_x − 48px` (the "I" glyph sits one hand's width left of the tip, so the
+finger points at it), `cap-top = fingertip_y + 4px` (the row's centre at the tip; the
+double-applied 12px correction is removed). The positioning sentence and chips share that
+left edge; the proof row stays right. At 1280/1440/1920 the "go-to-market." row must still
+end ≥ 32px inside the stage (drop wdth to 115 then 106 if not). At ≤ 899px the 4:3 stage
+is cropped at `object-position 0% 50%` (source x 0–1440 visible) so the fingertip lands at
+≈ 26% of the stage width; the headline is OVERLAID on the stage there too (two rows at the
+52px floor, wdth per the ladder, "I" at fingertip_x − 40px, cap-top at fingertip_y + 4px,
+veil solid from the cap-top down); sentence, chips and proof under the stage. The face
+(source x 1010–1290) stays in frame at that crop. This is the composition at every width:
+the words are where the finger ends.
+
+Also from verify 2: the operator heading stays at `--d2` and drops to wdth 106 to fit the
+square (no third display size); the operator veil reaches solid at 82% (.6 at 62%) so film
+shows behind the heading's top; the operator right column's rows take their own height;
+the price cards' text aligns to the section gutter (the row offset −24px so content sits
+at 32px; at ≤ 899 the Audit's mark is a 2px copper left rule, not a box, so nothing
+bleeds); the card chips read the live /packages button labels verbatim (`Buy the Unstick
+Session →` / `Buy the Audit →` / `Buy the Sprint →`, a third verified source:
+`app/(foyer)/packages/page.tsx`); index captions take an initial capital (the only
+permitted case change); the FAQ head takes its terminal full stop; the middot in
+`Operating principles · How I work.` is kept with the word after it in a nowrap span;
+panel 01's `THE WALL` capsule gets a leader and the 390 overlap is cleared.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
