@@ -345,6 +345,70 @@ widens the copy gate to a second verified source; nothing else is written. Drago
 proof above the fold, one screen for section 02, the engagements strip one row, the
 packages three rows, the FAQ readable at 17px.
 
+## 14. Operator review of v3 (2026-09-06) → v4
+
+Verbatim: "The vid does not point to the actual go to market part. You should have the vid
+be the background with the i build the go to market positioned perfectly to be pointed at.
+also teh same thing for the operator not consultant vid. I want overlay, so the video is a
+direct focus. The pics for diagnose being the white board pic and then two pics of me is
+for the other two is bad. What would be a better thing to put there? Examples from the
+collection of sites you looked? The list of packages and engagements look very unorganized.
+I like the previous structure - but defintely look for examples for the sites you looked at.
+Needs to be less underwhelming. Same thing with the rest of the things - looks really nice
+but underwhelimg. ALso i mentioned on top of the chat that I want to remove years and
+specific numbers like the REv number. Just say things like millions and do not need to
+specify when i did things"
+
+**14.1 The hero is a stage, and the words sit where the finger ends.** The hero becomes a
+fixed-aspect 16:9 stage: width 100%, height = width × 9/16 (1440 → 810px; 1920 → 1080px),
+the film filling it exactly (no cover crop, so source coordinates map 1:1 to the box). The
+builder measures the fingertip on `A2-poster-last.jpg` (the leftmost skin pixels of the
+pointing hand; Fable's estimate from the v3 render is source ≈ (457, 402) of 1920×1080,
+i.e. 23.8% across, 37.2% down) and positions the headline block so the cap-top of
+`I build the` sits 12px below the fingertip's y and its left edge at the gutter (32px),
+with `go-to-market.` on the row beneath. The point lands on the "I". The positioning
+sentence, chips and proof row sit below the headline inside the stage; whatever does not
+fit inside the stage at a given width goes directly under it on espresso, never
+bottom-anchored to the viewport again. The veil is re-tuned to the stage: solid espresso
+from the headline's cap-top down, .55 at the fingertip's y, clear above 25%. The bar
+overlays the stage's top. At ≤ 899px the stage is still 16:9 full width (390 → 219px tall)
+with the same 1:1 mapping, and the headline block starts right under the stage, so the
+finger points down-left at it; if the film at 219px is too small to read, the builder may
+use a 4:3 crop of the SAME source region (object-position such that the hand and face
+stay inside; measure) up to 292px tall. No other mobile composition.
+
+**14.2 The operator section is an overlay.** Clip B (1440×1440) becomes a square stage:
+at ≥ 900px a two-column section where the film fills the left 7 columns as a square and the
+heading "Operator," / "not consultant." at `--d2` is set OVER the film's lower third on a
+veil (solid espresso by 70% of the square's height, .6 at 50%), the first paragraph
+directly under the heading still on the film, and the second paragraph + § line in the
+right 5 columns, top-aligned with the film. At ≤ 899px the film is a full-width square
+(390×390) with the heading over its lower third and the paragraphs under it. The film is
+the focus: no band above, no heading below the frame.
+
+**14.3 No years, no specific figures (operator ruling).** Every year and every specific
+figure leaves the mock: the hero proof row becomes `Guardicore · acquired by Akamai`; the
+index rows carry no years and no "since"; captions with figures are replaced by
+figure-free verified sentences, and where none exists the ONLY permitted rewrite is the
+figure → magnitude word, listed exhaustively: `$14M in revenue` → `millions in revenue`;
+`$3M in contracts won` → `millions in contracts won`. Nothing else may be composed.
+`From $5K a month` and the three package prices stay: they are prices, not receipts. The
+$99 stays. The copy gate gains exactly those two rewrites. The voice rule ("named
+numbers") is overruled on this surface by the operator; the case studies keep the numbers.
+
+**14.4 Underwhelming, diagnosed.** v2/v3 demoted every section head to a 14px label, so
+the light half lost its poster rhythm; the corpus's product register opens every section
+with a display line. Restore: every section head at `--d2` (`Three fixed prices. Start
+this week.`, `The receipts. Every line below is real.`, `The objections, in your words.`,
+`Operating principles · How I work.` as the template has them), the label style kept only
+for eyebrows and metadata. Index row names at 28px; FAQ questions at 28px, answers 19px;
+captions 19px. Section entry air back to 120px at ≥ 900. Two display sizes remain the
+rule; nothing at `--d` except the hero and the ask.
+
+**14.5 Packages and engagements** and **14.6 the rail's panels**: ruled after the corpus
+leg returns (`research/CORPUS-PRICING-SECTIONS.md`, `research/CORPUS-METHOD-SECTIONS.md`),
+with example crops sent to the operator.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
