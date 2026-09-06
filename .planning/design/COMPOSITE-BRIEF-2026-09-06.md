@@ -124,6 +124,44 @@ Google is likeliest to refuse this one. If it does after two rephrasings, go str
 Seedream 5.0 Pro with the same prompt. If the frame stays slim, add one scale anchor rather
 than repeating the weight.
 
+## 4b. Scene 3 — the desk by the window (added 2026-09-06)
+
+Operator: "me at a desk with too laptops. I want to use a ai image generation model to add a
+person at the seat beside me like we are meeting and cover up the guardicore logo on that
+macbook." Source `S6-desk-two-laptops.jpg` (1401×1051, 4:3): him in a cap and hoodie at a
+round table against a city window, a blue MacBook with the Guardicore sticker facing the
+camera, a black Razer laptop open in front of him, a glass of water, an empty chair on the
+viewer's left by the window. Backlit. No character reference needed: the photograph is
+edited in place and he stays untouched.
+
+```
+Using the provided photograph, make two changes and keep everything else in the image
+exactly the same, preserving the original style, lighting, and composition. First, seat a
+woman in the empty chair at the left of the table beside the man, turned toward him as if
+they are in a meeting: mid-thirties, business-casual, a notebook and pen on the table in
+front of her, listening to him with a slight smile. She is a new person who resembles no
+one. The bright window behind her lights her hair and shoulders from behind exactly as it
+lights the man, and her face takes the same soft room light as his; her shadow and
+reflection on the table match the existing ones. Second, remove the sticker from the lid of
+the blue laptop so the lid is plain, the same blue and the same finish as the rest of the
+lid. The man, his cap and hoodie, the black laptop with the green logo, the glass of water,
+the table, the window and the city outside stay exactly as photographed. Photographic, a
+phone camera against a bright window, no added text.
+```
+
+Nano Banana Pro, one object reference, 4:3 at 2K for a panel; add "extend the frame to 16:9
+by continuing the blue wall on the right and the window on the left" at 4K for a ground.
+Silhouette fix: "her face is clearly visible and lit". Optional third change: "remove the
+green logo from the black laptop" (Fable would leave it).
+
+Clip (loops; both return to rest):
+```
+A man and a woman sit at a table by a window and talk. He glances up from his laptop toward
+her and speaks briefly; she nods and replies. Their hands stay near the table. The window,
+the city and the room stay exactly as they are. The camera does not move. Same facial
+proportions, eye spacing, jaw shape and hairline throughout.
+```
+
 ## 5. Judging a composite
 
 Face at 100% against `S3-op-head` / `S4-head`: hairline, beard density, the shape of the
