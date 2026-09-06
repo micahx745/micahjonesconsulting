@@ -3,8 +3,8 @@
 Usage:  python .planning/design/winning/build.py [out_path]
 Reads   .planning/design/winning/room-and-ledger.template.html
 Images  .planning/design/mock-assets/cover.jpg
-Video   .planning/design/video/A2-hold.{webm,mp4} + A2-hold-720.mp4 + A2-poster-last.jpg
-        .planning/design/video/B-loop.{webm,mp4}  + B-loop-720.mp4  + B-poster.jpg
+Video   .planning/design/video/A2-hold-720.mp4 + A2-poster-last.jpg
+        .planning/design/video/B-loop-720.mp4  + B-poster.jpg
 Writes  out_path (default: the session scratchpad) -- the file the Artifact tool publishes.
 
 v4 (brief SS14): the rail's three photographs are gone -- SS14.6 forbids a photograph of
@@ -13,7 +13,11 @@ and 03 are typographic. Only the book cover remains a raster. Clip A is the A2 h
 (forward once, no loop, the poster is the LAST frame); each clip ships a 720 cut that is
 the only source below 900px.
 
-Hard ceiling: 12MB (brief SS7).
+v5 (operator, 2026-09-06): the published page did not load for him. The webm and 1080p
+cuts are gone -- each clip ships ONE source, the 720 mp4, at every width -- so the whole
+inlined page comes in under 3.5MB instead of 5.4MB. Posters unchanged.
+
+Hard ceiling: 12MB (brief SS7). Operator target after v5: 3.5MB.
 """
 import base64, os, sys
 
@@ -26,16 +30,13 @@ DEFAULT_OUT = (r"C:\Users\micah\AppData\Local\Temp\claude\C--Users-micah-Code-mi
                r"\5e1d622c-a05a-43bd-9bbe-992aaaf6d702\scratchpad\room-and-ledger.html")
 
 LIMIT = 12 * 1024 * 1024
+TARGET = 3.5 * 1024 * 1024  # operator, 2026-09-06: the page has to actually load
 
 # key -> (absolute path, mime)
 PARTS = {
     "IMG_cover":   (os.path.join(ASSETS, "cover.jpg"), "image/jpeg"),
-    "VID_Awebm":   (os.path.join(VIDEO, "A2-hold.webm"), "video/webm"),
-    "VID_Amp4":    (os.path.join(VIDEO, "A2-hold.mp4"), "video/mp4"),
     "VID_A720":    (os.path.join(VIDEO, "A2-hold-720.mp4"), "video/mp4"),
     "VID_Aposter": (os.path.join(VIDEO, "A2-poster-last.jpg"), "image/jpeg"),
-    "VID_Bwebm":   (os.path.join(VIDEO, "B-loop.webm"), "video/webm"),
-    "VID_Bmp4":    (os.path.join(VIDEO, "B-loop.mp4"), "video/mp4"),
     "VID_B720":    (os.path.join(VIDEO, "B-loop-720.mp4"), "video/mp4"),
     "VID_Bposter": (os.path.join(VIDEO, "B-poster.jpg"), "image/jpeg"),
 }
@@ -75,9 +76,10 @@ def main(out):
 
     size = os.path.getsize(out)
     print("\nOUT   %s" % out)
-    print("SIZE  %d bytes (%.2f MB) -- ceiling %.0fMB -- %s"
+    print("SIZE  %d bytes (%.2f MB) -- ceiling %.0fMB -- %s -- operator target 3.5MB: %s"
           % (size, size / 1024 / 1024, LIMIT / 1024 / 1024,
-             "OK" if size <= LIMIT else "OVER"))
+             "OK" if size <= LIMIT else "OVER",
+             "OK" if size <= TARGET else "OVER"))
     return 0 if size <= LIMIT else 1
 
 

@@ -43,9 +43,9 @@ Checks, in SS14 order (SS14.7 supersedes SS14.1's gutter pin and SS14.5's card r
                       leader or head touching a plate or a label at 1440 or 390
   15 hero-rows        both hero display rows unwrapped and inside the content width
   16 no-hscroll       390 and 360 have no horizontal scroll
-  17 media            two <video>, correct attributes, two sources each, readyState >= 2
+  17 media            two <video>, correct attributes, ONE 720 source each, readyState >= 2
   18 discipline       zero @keyframes, no gsap, no mix-blend-mode, no banned faces
-  19 proof-row        the hero proof row reads exactly "Guardicore . acquired by Akamai"
+  19 proof-row        the hero proof row reads exactly "Four exits, $5B+ combined."
 """
 import json, os, re, sys, unicodedata
 from playwright.sync_api import sync_playwright
@@ -69,7 +69,10 @@ REWRITES = [
     ("$3M in contracts won", "millions in contracts won"),
 ]
 # SS14.3: the four prices and the engagements floor survive; they are prices, not receipts.
-ALLOWED_FIGURES = ["$500", "$2,500", "$7,500", "$99", "$5K"]
+# Operator ruling 2026-09-06, verbatim: "Just put somewhere the 5 billion of exits i have
+# helped with." "$5B+" is the SINGLE named exception to the no-figures rule -- it is a
+# receipt, not a price, and it is the only one. Nothing else in the rule changes.
+ALLOWED_FIGURES = ["$500", "$2,500", "$7,500", "$99", "$5K", "$5B+"]
 # tokens that carry a digit but are not a figure: the book's own title/argument, a product
 # name, the rail's step ordinals, and one page citation.
 ALLOWED_DIGIT_TOKENS = ["80%", "80-percent", "v0", "01", "02", "03", "page 6"]
@@ -890,8 +893,10 @@ def main(built):
             return vs.map(v=>({id:v.id,muted:v.muted,loop:v.loop,
                 playsinline:v.hasAttribute('playsinline'),poster:!!v.getAttribute('poster'),
                 srcs:v.querySelectorAll('source').length,rs:v.readyState}));}""")
+        # Operator, 2026-09-06: the published page did not load for him. The webm and 1080p
+        # cuts are gone; each clip now ships exactly ONE source, the 720 mp4, at every width.
         chk("media", len(med) == 2 and all(m["muted"] and m["playsinline"] and m["poster"]
-                                           and m["srcs"] == 2 and m["rs"] >= 2 for m in med)
+                                           and m["srcs"] == 1 and m["rs"] >= 2 for m in med)
             and med[0]["loop"] is False and med[1]["loop"] is True,
             json.dumps(med))
 
@@ -914,7 +919,7 @@ def main(built):
         pr = pg.evaluate("""()=>{const e=document.getElementById('heroproof');
             return {txt:e.textContent.replace(/\\s+/g,' ').trim(),
                     parts:[].map.call(e.children,c=>c.textContent.trim())};}""")
-        want = "Guardicore \u00b7 acquired by Akamai"
+        want = "Four exits, $5B+ combined."
         chk("14.3-proof-row", norm(pr["txt"]) == norm(want),
             "reads %r; nodes %s (both verified substrings of the freight template)"
             % (pr["txt"], pr["parts"]))
@@ -1121,7 +1126,7 @@ def main(built):
             const out=[]; const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
             let n; while((n=w.nextNode())){
               const p=n.parentElement;
-              if(!p||p.closest('script,style')) continue;
+              if(!p||p.closest('script,style,noscript')) continue;
               const t=n.textContent.replace(/\\s+/g,' ').trim();
               if(t) out.push(t);}
             document.querySelectorAll('[alt]').forEach(e=>out.push(e.getAttribute('alt')));

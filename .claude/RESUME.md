@@ -10,9 +10,8 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 ## Design explorations (2026-09-05) — mocks, nothing live changed
 1. Dark studio mock: artifact a398fb1a (superseded).
 2. "Operator, not consultant" (`FREIGHT-BRIEF-2026-09-05.md`): artifact 1d43593f, superseded by 4.
-3. Video: Kling 3 Pro; clips arrive graded (dark grounds only). `design/video/`: B-loop.*,
-   A2-hold.* (points at the headline, plays once + holds). `COMPOSITE-BRIEF-2026-09-06.md`:
-   Nano Banana Pro; RSA composite C2 done, Kling prompt given; boardroom = him + AI clients.
+3. Video: `design/video/` (B-loop, A2-hold; clips arrive graded). `COMPOSITE-BRIEF-2026-09-06.md`:
+   Nano Banana Pro; RSA composite C2b done + prompt; boardroom = him + AI clients; desk scene.
 4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
    film as the hero ground, no header on screen one, one display size, Anybody wide/light,
    no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
@@ -20,14 +19,15 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
    https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
    Astra (§12) · his v3 review (§14). v4 PUBLISHED 2026-09-06, same URL: 16:9 hero stage
    with the words AT the finger (≤14px), operator overlay, no years/figures, 3 cards + 1
-   bar, SVG page-6 panel + type panels, heads at --d2. 43/43 + 39/39 pass.
+   bar, SVG page-6 panel + type panels, heads at --d2. v4.1: 1.2MB (720p clips), proof row
+   'Four exits, $5B+ combined.' (the one figure). 43/43 + 37/37, no-JS verified.
 
 ## Ship gate (operator-owned)
 1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** Blocks the flag.
 2. `PLAYBOOK_ON_SALE=1` + redeploy = launch. Not before 1.
 
 ## Housekeeping (one Opus pass): XR-1/2/3/6/7 (2026-09-04 cross-review). LESSONS #5:
-auto-deploys moved both domains 5× with no manual alias; confirm www first.
+auto-deploys moved both domains 5× with no alias; confirm www first.
 
 ## Next
 99: landing offer + packages reframe (needs his name/price). 100: home spear, Search Console,

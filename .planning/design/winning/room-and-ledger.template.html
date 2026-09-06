@@ -704,6 +704,12 @@
 
 <div class="sheet" aria-hidden="true"></div>
 
+<!-- The bar is revealed on scroll by JS at >=900px. Below 900, and under reduced motion,
+     CSS already pins it open. With scripting OFF nothing would ever open it, so the same
+     rule those two cases use is declared here -- it is parsed ONLY when scripting is
+     disabled, so it cannot touch the scripted render. -->
+<noscript><style>.bar{opacity:1;pointer-events:auto}</style></noscript>
+
 <nav class="bar" id="bar" aria-label="Site">
   <a class="l now" href="#room">Micah Jones</a>
   <a class="l hide-s" href="#proof">Record</a>
@@ -718,10 +724,10 @@
   <header class="room" id="room">
     <div class="stagewrap" id="stagewrap" data-fx="19.3750" data-fy="38.2407">
       <div class="stage" id="stage" aria-hidden="true">
+        <!-- One source, the 720 cut, at every width: the page is inlined as data URIs
+             and the 1080/webm cuts made it too heavy to load. -->
         <video id="filmvid" autoplay muted playsinline preload="metadata" poster="{{VID_Aposter}}">
-          <source data-k="s" media="(max-width: 899px)" src="{{VID_A720}}" type="video/mp4">
-          <source data-k="w" src="{{VID_Awebm}}" type="video/webm">
-          <source data-k="m" src="{{VID_Amp4}}" type="video/mp4">
+          <source src="{{VID_A720}}" type="video/mp4">
         </video>
         <div class="still"></div>
         <div class="veil"></div>
@@ -734,8 +740,11 @@
             <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-room"><span class="t">Name the problem</span><span class="a" aria-hidden="true">&#8594;</span></a>
             <a class="chip quiet" href="#price"><span class="t">See the packages</span></a>
           </div>
+          <!-- Operator ruling 2026-09-06: no per-company caption in the hero.
+               ONE line, the freight template's own sentence, verbatim:
+               the-receipts.template.html:292. -->
           <div class="proof" id="heroproof">
-            <span class="l now">Guardicore</span> <span class="l">&#183; acquired by Akamai</span>
+            <span class="l now">Four exits, $5B+ combined.</span>
           </div>
         </div>
       </div>
@@ -748,9 +757,7 @@
       <div class="opstage" id="opstage">
         <div class="opfilm" aria-hidden="true">
           <video id="opvid" muted loop playsinline preload="metadata" poster="{{VID_Bposter}}">
-            <source data-k="s" media="(max-width: 899px)" src="{{VID_B720}}" type="video/mp4">
-            <source data-k="w" src="{{VID_Bwebm}}" type="video/webm">
-            <source data-k="m" src="{{VID_Bmp4}}" type="video/mp4">
+            <source src="{{VID_B720}}" type="video/mp4">
           </video>
           <div class="still"></div>
           <div class="veil"></div>
@@ -992,131 +999,134 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
 <script>
 (function () {
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var root = document.documentElement;
-  var bar = document.getElementById('bar');
-  var op = document.getElementById('operator');
-  var work = document.getElementById('work');
-  var ask = document.getElementById('contact');
-  var room = document.getElementById('room');
-  var opstage = document.getElementById('opstage');
-  var chips = document.getElementById('herochips');
-  var steps = [].slice.call(document.querySelectorAll('#rail li'));
-  var panels = [].slice.call(document.querySelectorAll('[data-panel]'));
-  var risers = [].slice.call(document.querySelectorAll('[data-rise]'));
-  var filmVid = document.getElementById('filmvid');
-  var opVid = document.getElementById('opvid');
-  var darks = [room, op, ask, document.querySelector('.foot')];
-  var lastP = -1, queued = false, opStarted = false;
+  /* Every line of this script is optional. The page's rest state is its FINISHED
+     state -- --fx/--fy carry the measured fingertip percentages in :root, so the
+     headline lands on the finger with no JS at all, and [data-rise] only moves
+     once html.js exists. A throw here must therefore leave a whole page, not a
+     blank one, so the whole body sits inside one try/catch. */
+  try {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var root = document.documentElement;
+    var bar = document.getElementById('bar');
+    var op = document.getElementById('operator');
+    var work = document.getElementById('work');
+    var ask = document.getElementById('contact');
+    var room = document.getElementById('room');
+    var opstage = document.getElementById('opstage');
+    var chips = document.getElementById('herochips');
+    var steps = [].slice.call(document.querySelectorAll('#rail li'));
+    var panels = [].slice.call(document.querySelectorAll('[data-panel]'));
+    var risers = [].slice.call(document.querySelectorAll('[data-rise]'));
+    var filmVid = document.getElementById('filmvid');
+    var opVid = document.getElementById('opvid');
+    var darks = [room, op, ask, document.querySelector('.foot')];
+    var lastP = -1, queued = false, opStarted = false;
 
-  (function pick() {
-    var small = window.innerWidth <= 899;
-    [filmVid, opVid].forEach(function (v) {
-      if (!v) return;
-      [].slice.call(v.querySelectorAll('source')).forEach(function (s) {
-        var isSmall = s.getAttribute('data-k') === 's';
-        if (isSmall !== small) s.parentNode.removeChild(s);
-      });
-    });
-  })();
+    if (!reduce) root.classList.add('js');
 
-  if (!reduce) root.classList.add('js');
-
-  function clamp(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
-  function play(v) {
-    if (!v || reduce || v.ended) return;
-    var r = v.play(); if (r && r.catch) r.catch(function () {});
-  }
-
-  function light() {
-    var h = window.innerHeight, line = h * 0.55;
-    var w = work.getBoundingClientRect().top, zone = Math.min(h * 0.38, 320);
-    var p = clamp((line - (w - zone)) / zone);
-    if (reduce) { p = p > 0.5 ? 1 : 0; }
-    if (p !== lastP) {
-      root.style.setProperty('--p', p.toFixed(4));
-      root.classList.toggle('lit', p >= 0.5);
-      lastP = p;
+    function clamp(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
+    function play(v) {
+      if (!v || reduce || v.ended) return;
+      var r = v.play(); if (r && r.catch) r.catch(function () {});
     }
-  }
 
-  function chrome() {
-    if (!bar) return;
-    var edge = bar.getBoundingClientRect().height || 40;
-    if (reduce || window.innerWidth <= 899) {
-      bar.classList.add('on');
-    } else if (chips) {
-      bar.classList.toggle('on', chips.getBoundingClientRect().bottom <= edge);
-    } else {
-      bar.classList.toggle('on', window.scrollY >= window.innerHeight);
-    }
-    var dark = false;
-    for (var i = 0; i < darks.length; i++) {
-      if (!darks[i]) continue;
-      var r = darks[i].getBoundingClientRect();
-      if (r.top <= edge && r.bottom >= edge) { dark = true; break; }
-    }
-    bar.classList.toggle('dark', dark);
-  }
-
-  function rail() {
-    if (!panels.length) return;
-    var line = window.innerHeight * 0.5, best = 0;
-    for (var i = 0; i < panels.length; i++) {
-      if (panels[i].getBoundingClientRect().top <= line) best = i;
-    }
-    for (var j = 0; j < steps.length; j++) steps[j].classList.toggle('on', j === best);
-  }
-
-  function rise() {
-    var h = window.innerHeight;
-    for (var i = 0; i < risers.length; i++) {
-      if (risers[i].classList.contains('in')) continue;
-      if (risers[i].getBoundingClientRect().top < h * 0.92) risers[i].classList.add('in');
-    }
-  }
-
-  if (reduce) {
-    if (filmVid) filmVid.pause();
-    if (opVid) opVid.pause();
-  } else if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      for (var i = 0; i < entries.length; i++) {
-        var e = entries[i];
-        var isRoom = e.target === room;
-        var v = isRoom ? filmVid : opVid;
-        if (!v) continue;
-        if (e.intersectionRatio < 0.10) { if (!v.paused) v.pause(); continue; }
-        if (!isRoom && !opStarted) {
-          if (e.intersectionRatio >= 0.35) opStarted = true; else continue;
-        }
-        if (v.paused) play(v);
+    function light() {
+      var h = window.innerHeight, line = h * 0.55;
+      var w = work.getBoundingClientRect().top, zone = Math.min(h * 0.38, 320);
+      var p = clamp((line - (w - zone)) / zone);
+      if (reduce) { p = p > 0.5 ? 1 : 0; }
+      if (p !== lastP) {
+        root.style.setProperty('--p', p.toFixed(4));
+        root.classList.toggle('lit', p >= 0.5);
+        lastP = p;
       }
-    }, { threshold: [0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1] });
-    if (room) io.observe(room);
-    if (opstage) { if (opVid) opVid.pause(); io.observe(opstage); }
-  }
+    }
 
-  function tick() { light(); chrome(); rail(); if (!reduce) rise(); }
-  function schedule() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; tick(); }); }
+    function chrome() {
+      if (!bar) return;
+      var edge = bar.getBoundingClientRect().height || 40;
+      if (reduce || window.innerWidth <= 899) {
+        bar.classList.add('on');
+      } else if (chips) {
+        bar.classList.toggle('on', chips.getBoundingClientRect().bottom <= edge);
+      } else {
+        bar.classList.toggle('on', window.scrollY >= window.innerHeight);
+      }
+      var dark = false;
+      for (var i = 0; i < darks.length; i++) {
+        if (!darks[i]) continue;
+        var r = darks[i].getBoundingClientRect();
+        if (r.top <= edge && r.bottom >= edge) { dark = true; break; }
+      }
+      bar.classList.toggle('dark', dark);
+    }
 
-  if (!reduce && typeof window.Lenis !== 'undefined') {
-    var lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
-    window.lenis = lenis;
-    lenis.on('scroll', schedule);
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
-    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var id = a.getAttribute('href'); if (id.length < 2) return;
-        var el = document.querySelector(id); if (!el) return;
-        e.preventDefault(); lenis.scrollTo(el, { offset: -64, duration: 1.1 });
+    function rail() {
+      if (!panels.length) return;
+      var line = window.innerHeight * 0.5, best = 0;
+      for (var i = 0; i < panels.length; i++) {
+        if (panels[i].getBoundingClientRect().top <= line) best = i;
+      }
+      for (var j = 0; j < steps.length; j++) steps[j].classList.toggle('on', j === best);
+    }
+
+    function rise() {
+      var h = window.innerHeight;
+      for (var i = 0; i < risers.length; i++) {
+        if (risers[i].classList.contains('in')) continue;
+        if (risers[i].getBoundingClientRect().top < h * 0.92) risers[i].classList.add('in');
+      }
+    }
+
+    if (reduce) {
+      if (filmVid) filmVid.pause();
+      if (opVid) opVid.pause();
+    } else if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          var e = entries[i];
+          var isRoom = e.target === room;
+          var v = isRoom ? filmVid : opVid;
+          if (!v) continue;
+          if (e.intersectionRatio < 0.10) { if (!v.paused) v.pause(); continue; }
+          if (!isRoom && !opStarted) {
+            if (e.intersectionRatio >= 0.35) opStarted = true; else continue;
+          }
+          if (v.paused) play(v);
+        }
+      }, { threshold: [0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1] });
+      if (room) io.observe(room);
+      if (opstage) { if (opVid) opVid.pause(); io.observe(opstage); }
+    }
+
+    function tick() {
+      try { light(); } catch (e) {}
+      try { chrome(); } catch (e) {}
+      try { rail(); } catch (e) {}
+      try { if (!reduce) rise(); } catch (e) {}
+    }
+    function schedule() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; tick(); }); }
+
+    if (!reduce && typeof window.Lenis !== 'undefined') {
+      var lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+      window.lenis = lenis;
+      lenis.on('scroll', schedule);
+      (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(0);
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href'); if (id.length < 2) return;
+          var el = document.querySelector(id); if (!el) return;
+          e.preventDefault(); lenis.scrollTo(el, { offset: -64, duration: 1.1 });
+        });
       });
-    });
-  } else {
-    window.addEventListener('scroll', schedule, { passive: true });
+    } else {
+      window.addEventListener('scroll', schedule, { passive: true });
+    }
+    window.addEventListener('resize', schedule);
+    tick();
+    if (!reduce) requestAnimationFrame(function () { requestAnimationFrame(rise); });
+  } catch (e) {
+    try { if (window.console && console.error) console.error(e); } catch (e2) {}
   }
-  window.addEventListener('resize', schedule);
-  tick();
-  if (!reduce) requestAnimationFrame(function () { requestAnimationFrame(rise); });
 })();
 </script>
