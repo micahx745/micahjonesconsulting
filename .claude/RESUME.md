@@ -19,8 +19,8 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
    no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
    48/48 checks, two verifiers, published:
    https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
-   Astra reviewed (1 call, ultra; §12 rulings). v2 (Astra items) building; v3 = his §13
-   decisions: new order, A2 hold, B blended, index-not-ledger proof, how-I-work images.
+   Astra reviewed (§12). v3 PUBLISHED 2026-09-06 to the same URL: his §13 order, A2 hold,
+   B as ground, index proof (2 figures), exists-today rail images. 34/34 + 21/21 pass.
 
 ## Ship gate (operator-owned)
 1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** Blocks the flag.

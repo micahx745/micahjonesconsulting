@@ -9,21 +9,26 @@
 
     /* one source of light. 0 = the dark half (the room), 1 = the light half (the ledger). */
     --p: 0;
-    /* the film's own extinguish, so the record stays espresso while the man goes out */
+    /* the hero film's own extinguish, so the man goes out as the operator section arrives */
     --f: 0;
 
     --ground: color-mix(in oklab, var(--espresso) calc((1 - var(--p)) * 100%), var(--bone));
-    --ink:    color-mix(in oklab, var(--bone) calc((1 - var(--p)) * 100%), var(--espresso));
+    /* the GROUND travels; the INK is a hard switch at p >= .5 (html.lit), so no readable
+       glyph ever inherits the mid-mixture that used to equal its own background. */
+    --ink: var(--bone);
+    --ink-80: color-mix(in oklab, var(--ink) 80%, transparent);
     --ink-72: color-mix(in oklab, var(--ink) 72%, transparent);
     --ink-60: color-mix(in oklab, var(--ink) 60%, transparent);
     --hair:   color-mix(in oklab, var(--ink) 15%, transparent);
-    --hair-4: color-mix(in oklab, var(--ink) 4%, transparent);
+    --hair-10: color-mix(in oklab, var(--ink) 10%, transparent);
 
     --display: "Anybody", "Helvetica Neue", Arial, sans-serif;
     --text: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
 
-    /* the one display size, and the width axis that carries it */
+    /* TWO display sizes. --d is the poster (hero, the manual, the ask); --d2 is the
+       composed size (the operator heading, the three rail step names). */
     --d: clamp(52px, 9.4vw, 136px);
+    --d2: calc(0.76 * var(--d));
     --dw: 125;
     --t: 17px;
     --lede: 21px;
@@ -31,55 +36,71 @@
     --e: cubic-bezier(0.4, 0, 0, 1);
     --g: 32px;          /* page gutter */
     --gap: 24px;        /* column gap */
-    --s: 160px;         /* section air */
+    --s: 96px;          /* section entry air */
   }
+  html.lit { --ink: var(--espresso); }
 
   html { background: #0D0D0F; }
   body {
     margin: 0; background: transparent; color: var(--ink);
     font-family: var(--text); font-size: var(--t); line-height: 1.5;
     -webkit-font-smoothing: antialiased; overflow-x: hidden;
-    transition: color 700ms var(--e);
   }
   a { color: inherit; text-decoration: none; }
   a:focus-visible { outline: 1.5px solid var(--copper); outline-offset: 4px; }
   ::selection { background: var(--copper); color: var(--bone); }
   h1, h2, h3, p, ol, ul, dl, dd, figure, figcaption { margin: 0; }
   img, video { display: block; max-width: 100%; }
+  /* the bar clears every anchor landing by 64px. */
+  [id] { scroll-margin-top: 64px; }
 
   /* ---- the sheet: one fixed ground, no section declares a colour ---- */
   .sheet { position: fixed; inset: 0; z-index: 0; background: var(--ground); transition: background 700ms var(--e); }
 
-  /* ---- the room: clip A, fixed, playing at rest, extinguished by the scroll ---- */
+  /* ---- 01 the room: clip A2, fixed, forward once then holding, put out by the scroll ---- */
   .film { position: fixed; inset: 0; height: 100lvh; z-index: 1; pointer-events: none; overflow: hidden;
-          opacity: calc(1 - clamp(0, var(--f) * 4, 1)); }
-  .film video { width: 100%; height: 100lvh; object-fit: cover; object-position: 60% 30%; }
+          opacity: calc(1 - clamp(0, (var(--f) - 0.25) * 2, 1)); }
+  /* RULING (v3.1, measured): at 1440x900 the source (1920x1080) covers WIDTH-first, so the
+     film has no vertical slack and the pointing hand landed at y 333-517 -- straight through
+     the 'd' of 'build' (headline cap line 419). Pulling the box up 12.5lvh moves the hand to
+     y 231-405, above the headline, so the gesture aims at the corner instead of crossing it,
+     and it now sits in the veil's .25-.69 band instead of .49-.85, which is what turned the
+     arm into a smudge. object-position y is 0% so a shorter viewport crops from the FOOT and
+     keeps his head in frame. Below 900px the mobile band rule resets both. */
+  .film video { width: 100%; height: 100lvh; margin-top: -12.5lvh;
+                object-fit: cover; object-position: 60% 0%; }
+  .still { display: none; }
+  /* the 40% stop at .55, gated on the bone headline row holding >= 4.5:1 across the hold.
+     Solid espresso arrives at 56%. */
   .film .veil { position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(13,13,15,0) 0%, rgba(13,13,15,0) 14%, rgba(13,13,15,0.75) 40%, rgba(13,13,15,1) 56%); }
+    background: linear-gradient(to bottom, rgba(13,13,15,0) 0%, rgba(13,13,15,0) 14%, rgba(13,13,15,0.55) 40%, rgba(13,13,15,1) 56%); }
 
   .page { position: relative; z-index: 3; }
 
-  /* ---- the one label style ---- */
+  /* ---- the one label style: 14px / wdth 80 / .04em / 500 ---- */
   .l {
-    font-family: var(--display); font-size: 13px; font-weight: 500;
-    font-variation-settings: "wdth" 62; text-transform: uppercase;
-    letter-spacing: 0.08em; line-height: 1.45; color: var(--ink-60);
+    font-family: var(--display); font-size: 14px; font-weight: 500;
+    font-variation-settings: "wdth" 80; text-transform: uppercase;
+    letter-spacing: 0.04em; line-height: 1.45; color: var(--ink-60);
   }
   .l.now { color: var(--ink); }
+  .l.meta { font-size: 14px; line-height: 20px; font-variation-settings: "wdth" 90;
+            letter-spacing: 0.04em; color: var(--ink-80); }
 
-  /* ---- the one display size ---- */
+  /* ---- the display sizes ---- */
   .d {
     font-family: var(--display); font-weight: 300;
     font-variation-settings: "wdth" var(--dw);
     font-size: var(--d); line-height: 0.92; letter-spacing: -0.03em;
     color: var(--ink);
   }
-  .d.fig { font-variant-numeric: tabular-nums;
-            /* RULING 4, forced: the unbreakable run "-> 290,000" measures 738px at
-               wdth 125 and the card holds 638. The display SIZE never drops (S2); SS11
-               ruled the width axis is the lever, and 106 is that ladder's own rung. */
-            font-variation-settings: "wdth" 106; }
+  .d .r { display: block; width: max-content; max-width: 100%; white-space: nowrap; }
+  .d.two { font-size: var(--d2); }
   .cu { color: var(--copper); }
+
+  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+              gap: 8px 24px; padding-bottom: 16px; }
+  .sec-head.rule { border-bottom: 1px solid var(--hair); }
 
   .lede { font-size: var(--lede); line-height: 1.35; max-width: 40ch; color: var(--ink); }
   .body { font-size: var(--t); line-height: 1.55; max-width: 46ch; color: var(--ink-72); }
@@ -92,315 +113,460 @@
   .chips { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .chip { display: inline-flex; align-items: stretch; height: 44px; }
   .chip .t { display: inline-flex; align-items: center; padding: 0 20px; background: var(--bone); color: var(--espresso);
-             font-family: var(--display); font-size: 13px; font-weight: 500; font-variation-settings: "wdth" 62;
-             text-transform: uppercase; letter-spacing: 0.08em; line-height: 1; }
+             font-family: var(--display); font-size: 14px; font-weight: 500; font-variation-settings: "wdth" 80;
+             text-transform: uppercase; letter-spacing: 0.04em; line-height: 1; }
+  /* the arrow is bone on raw copper, which measures 3.83:1 -- the accent's ceiling on this
+     ground. At 24px it is large text, where the bar is 3:1, and a 24px glyph in a 44px square
+     is the better proportion anyway. */
   .chip .a { display: inline-flex; align-items: center; justify-content: center; width: 44px;
-             background: var(--copper); color: var(--bone); font-family: var(--display); font-size: 16px; line-height: 1; }
+             background: var(--copper); color: var(--bone); font-family: var(--display); font-size: 24px; line-height: 1; }
   .chip.quiet .t { background: color-mix(in oklab, var(--ink) 12%, transparent); color: var(--ink); }
   .chip .t, .chip .a { transition: background 260ms var(--e), color 260ms var(--e); }
   .chip:hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
   .chip.quiet:hover .t { background: color-mix(in oklab, var(--ink) 20%, transparent); }
+  /* RULING (RL4): the chip's label block belongs to the ground it stands on. A bone block on
+     the bone half of the page is a chip with no chip in it -- the only thing holding it was
+     the copper arrow square beside it. So once the ground is lit (bone: the manual, the
+     packages, the FAQ, anything after the seam) the primary chip inverts to an espresso
+     block with bone type (16.90:1); on espresso ground it stays bone with espresso type
+     (16.90:1 the other way). The arrow square is copper with a bone arrow in both states --
+     it is the one piece of accent the chip carries, and it does not move. */
+  html.lit .chip:not(.quiet) .t { background: var(--espresso); color: var(--bone); }
+  html.lit .chip:not(.quiet):hover .t { background: color-mix(in oklab, var(--espresso) 86%, var(--bone)); }
+  /* the hero stands on its own film, which is espresso at every value of --p. */
+  html.lit .room .chip:not(.quiet) .t { background: var(--bone); color: var(--espresso); }
+  html.lit .room .chip:not(.quiet):hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
 
-  /* ---- 00 the bar: nothing on screen one ---- */
+  /* ---- 00 the bar ---- */
+  /* RULING (v3): the bar's ground is a HARD switch, not a colour-mix. It is espresso while
+     p < .5 and bone at p >= .5, so it never carries the travelling mid-mixture. The arrow
+     is ink-coloured; copper does not appear in the bar at all. */
   .bar {
     position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 30;
     box-sizing: border-box; display: flex; align-items: center; justify-content: space-between;
-    padding: 0 var(--g); background: var(--ground); border-bottom: 1px solid var(--hair);
+    padding: 0 var(--g); background: var(--espresso); border-bottom: 1px solid var(--hair);
     color: var(--ink); opacity: 0; pointer-events: none;
-    transition: opacity 300ms var(--e), background 700ms var(--e), color 700ms var(--e), border-color 700ms var(--e);
+    transition: opacity 180ms var(--e);
   }
+  html.lit .bar { background: var(--bone); }
   .bar.on { opacity: 1; pointer-events: auto; }
-  .bar a:hover { color: var(--ink); }
-  .bar .ar { color: var(--copper); }
-  /* SS11: while the ask's copper field is under the bar, the bar IS the field.
-     No bone strip cutting across it; the arrow turns espresso with the rest. */
-  .bar.over-ask { background: var(--copper); color: var(--espresso);
-                  border-bottom-color: color-mix(in oklab, var(--espresso) 20%, transparent); }
-  .bar.over-ask .l, .bar.over-ask .l.now, .bar.over-ask a:hover, .bar.over-ask .ar { color: var(--espresso); }
+  .bar a { display: inline-flex; align-items: center; height: 100%; }
+  .bar a:hover .l, .bar a:hover { color: var(--ink); }
+  /* the label is an inline-flex child, which collapses the whitespace text node before the
+     arrow: the gap has to be a margin, not a space. */
+  .bar .ar { color: var(--ink); margin-left: 0.4em; }
+  /* the bar reads the section under its lower edge. Over the copper ask field, over the
+     espresso foot and over the two filmed sections it is espresso with bone labels
+     (bone on espresso measures 16.9:1, the 60% label tint 6.4:1). */
+  .bar.dark, html.lit .bar.dark {
+    background: var(--espresso); color: var(--bone);
+    border-bottom-color: color-mix(in srgb, #F5EFE4 20%, transparent);
+  }
+  .bar.dark .l { color: color-mix(in srgb, #F5EFE4 60%, transparent); }
+  .bar.dark .l.now, .bar.dark .ar, .bar.dark a:hover .l { color: var(--bone); }
+  /* RULING (RL4, superseding SS11's bar-over-the-ask line): the copper bar is retired.
+     Espresso type on raw copper measured 4.40:1 -- the arithmetic ceiling of that pair, and
+     0.10 short of AA for 14px type, which is a floor the accent cannot be argued past. The
+     ask now joins the room, the operator section and the foot in the `dark` set above: the
+     bar paints ESPRESSO with BONE labels and a bone arrow, and every run clears 5:1
+     (quiet labels 6.36:1, the current item and the arrow 16.90:1). Check 12 measures it at
+     1440 and 390 at the scrollY where the ask is under the bar. The copper state is gone. */
+
+  /* RULING (v3): sections 01 and 02 are ALWAYS espresso -- the hero's fixed film and the
+     operator's own film each paint their whole area -- so they declare their own bone ink
+     instead of inheriting the travelling one. Without this the hard ink switch at p >= .5
+     turns the operator's heading espresso-on-espresso while it is still on screen. The
+     derived tokens are re-declared here because a custom property substitutes var() against
+     the element that DECLARES it, not the element that uses it. */
+  .room, .op {
+    --ink: var(--bone);
+    --ink-80: color-mix(in oklab, #F5EFE4 80%, transparent);
+    --ink-72: color-mix(in oklab, #F5EFE4 72%, transparent);
+    --ink-60: color-mix(in oklab, #F5EFE4 60%, transparent);
+    --hair:   color-mix(in oklab, #F5EFE4 15%, transparent);
+    --hair-10: color-mix(in oklab, #F5EFE4 10%, transparent);
+    color: var(--bone);
+  }
 
   /* ---- 01 the room ---- */
-  .room { position: relative; box-sizing: border-box; min-height: max(100lvh, 720px);
+  .room { position: relative; box-sizing: border-box; min-height: 100vh; min-height: 100svh;
           display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 64px; }
   .room .base { align-items: end; }
   .room h1 { grid-column: 1 / -1; margin-bottom: 24px; }
-  .room h1 .r { display: block; width: max-content; max-width: 100%; white-space: nowrap; }
   .room .say { grid-column: 1 / 8; }
   .room .lede { margin-bottom: 0; }
-  /* SS11: the chips and the dated proof share ONE baseline row. Flex baseline alignment
-     puts the proof's first line on the chip label's baseline by construction rather than
-     by a nudge, so the two read as one line of evidence across the fold. */
   .room .base-row { grid-column: 1 / -1; margin-top: 28px;
                     display: flex; align-items: baseline; justify-content: space-between; gap: 24px 32px; }
   .room .proof { text-align: right; display: flex; flex-direction: column; gap: 8px; }
   .room .proof .l { color: var(--ink); }
 
-  /* ---- 02 the record ---- */
-  .band { padding-top: var(--s); }
-  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
-              gap: 8px 24px; padding-bottom: 16px; border-bottom: 1px solid var(--hair); }
+  /* ---- 02 operator: clip B is the section's GROUND, not a portrait ---- */
+  /* RULING (v3.1): the section opened with padding-top:100svh, so a desktop reader got one
+     entire silent screen of the film and THEN a screen of copy. The operator asked to "blend
+     it with the operator not consultant thing more, not like its own portrait" -- which is
+     what already happened at 390. Desktop now composes the same single frame: the film carries
+     the top ~39%, the heading sits just under the fade, the argument sits beside it. */
+  .op { position: relative; box-sizing: border-box; background: var(--espresso); }
+  .opfilm { position: absolute; left: 0; right: 0; top: 0; bottom: 0; overflow: hidden; z-index: 0; }
+  .opfilm video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+  .opfilm .veil { position: absolute; inset: 0; background: linear-gradient(to bottom,
+      rgba(13,13,15,0) 0%, rgba(13,13,15,0) 13%, rgba(13,13,15,0.7) 27%, rgba(13,13,15,1) 39%); }
+  .opstage { position: relative; z-index: 1; box-sizing: border-box; min-height: 100svh;
+             display: flex; flex-direction: column; justify-content: flex-end;
+             padding-top: 120px; padding-bottom: 96px; }
+  .op h2 { margin-bottom: 32px; font-variation-settings: "wdth" 115; line-height: 0.98; }
+  /* The columns register at the TOP, not the bottom. Bottom-aligned, the right column's
+     first line started 28.5px below the left's and the eye -- which enters at the top --
+     read it as a slipped column rather than a considered one. */
+  .opwrap { display: flex; align-items: flex-start; gap: 48px; }
+  .op .ca, .op .cb { flex: 1 1 0; min-width: 0; }
+  /* ONE argument, not two leftovers: the two paragraphs were 21px at 100% ink and 17px at 72%
+     with ~470px of empty ground between them. Same size, same ink, adjacent columns, common
+     baseline. The orphaned "The author, name protected / Receipt" metadata line -- which hung
+     under a paragraph that never mentions an author -- is gone with them. */
+  .op .ca p, .op .cb p { font-size: 19px; line-height: 1.5; color: var(--ink);
+                         max-width: 46ch; margin: 0; }
 
-  .spot { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr);
-          column-gap: var(--gap); row-gap: 16px; padding: 40px 0 32px; border-bottom: 1px solid var(--hair); }
-  .spot .n { grid-column: 1; grid-row: 1; padding-top: 0.44em; }
-  .spot .who { grid-column: 2; grid-row: 1; }
-  .spot .what { grid-column: 2; grid-row: 2; max-width: 46ch; margin-left: auto; text-align: right; }
-  .spot::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
-                 background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
-                 transition: transform 400ms var(--e); }
-  .spot:hover::after { transform: scaleX(1); }
-  .peek { position: absolute; right: 0; top: 24px; width: 140px; opacity: 0; filter: grayscale(1);
-          transition: opacity 400ms var(--e); pointer-events: none; border: 1px solid var(--hair); }
-  .spot:hover .peek { opacity: 1; }
-
-  .idx { position: relative; display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 38ch);
-         column-gap: var(--gap); align-items: baseline; padding: 22px 0 20px; border-bottom: 1px solid var(--hair); }
-  .idx .who { font-family: var(--text); font-weight: 500; font-size: 19px; color: var(--ink); }
-  .idx .what { text-align: right; color: var(--ink-72); font-size: 16px; }
-  .idx::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
-                background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
-                transition: transform 400ms var(--e); }
-  .idx:hover::after { transform: scaleX(1); }
-
-  /* ---- 03 the person ---- */
-  /* brief S4-03: clip B in a square panel on the left; the display line, the names-as-text
-     paragraph and the SS lines all live in the RIGHT column.
-     The clip takes grid lines 1 -> 5 rather than 1 -> 6: at --d the display line's longest
-     word ("consultant.") measures 879px at 1440, so a 7-column right column (793px) clips
-     it. Eight columns (909px) hold it. The brief's "cols 1-5" is read as the grid lines. */
-  .person { padding-top: var(--s); padding-bottom: 120px; }
-  .person .cols { align-items: start; }
-  /* RULING 3 (2026-09-05): the clip is 4:5, and the left column carries the second
-     paragraph and the section-mark line under it, so the two columns end together
-     instead of the right one running two hundred pixels past the picture. */
-  .person .lcol { grid-column: 1 / 5; display: flex; flex-direction: column;
-                  align-items: flex-start; gap: 24px; }
-  .person .rcol { grid-column: 5 / 13; display: flex; flex-direction: column;
-                  align-items: flex-start; gap: 28px; }
-  .person .clip { width: 100%; }
-  .person .clip video { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 50%; }
-  .person .rcol h2 { margin-bottom: 4px; }
-
-  .person .say { font-size: var(--lede); line-height: 1.4; max-width: 42ch; color: var(--ink); }
-  .person .sub { max-width: 46ch; }
-  .person .quote { max-width: 44ch; }
-
-  /* ---- 05 how I work: the rail ---- */
-  .work { padding-top: 160px; }
-  .rail { grid-column: 1 / 8; position: sticky; top: 140px; align-self: start; }
+  /* ---- 03 how I work: the rail ---- */
+  .work { padding-top: var(--s); }
+  .rail { grid-column: 1 / 7; position: sticky; top: 140px; align-self: start; }
   .rail ol { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 48px; margin-top: 40px; }
-  .rail li { opacity: 0.42; transition: opacity 300ms var(--e); }
-  .rail li.on { opacity: 1; }
+  /* The dim used to sit on the whole <li> at .42, which did two wrong things: it took the
+     step NAME to 2.65:1 at ~100px (two of the three read as grey ghosts), and it multiplied
+     into the 14px ordinal and out-line, which are already at 60% ink -- 2.1:1, unreadable.
+     The rest state now dims the display name only (4.0:1 at 103px, over the 3:1 large-text
+     bar) and the labels stay at their own 4.8:1. */
+  .rail li .d { opacity: 0.55; transition: opacity 300ms var(--e); }
+  .rail li.on .d { opacity: 1; }
   .rail li .n { display: block; margin-bottom: 10px; }
   .rail li .d { display: block; }
   .rail li .out { display: block; margin-top: 14px; }
-  .panels { grid-column: 8 / 13; display: flex; flex-direction: column; gap: 32vh; padding-bottom: 24vh; }
-  .panel .frame { background: #241C17; overflow: hidden; }
-  .panel figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid var(--hair); margin-top: 14px; }
+  .panels { grid-column: 7 / 13; display: flex; flex-direction: column; gap: 26vh; padding-bottom: 22vh; }
+  .panel .frame { background: #241C17; overflow: hidden; aspect-ratio: 4 / 3; }
+  .panel .frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+  .panel figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px;
+                      border-top: 1px solid var(--hair); margin-top: 14px; }
   .panel .body { margin-top: 16px; }
 
-  /* ---- 06 the manual ---- */
+  /* ---- 04 engagements: one quiet strip above the packages ---- */
+  .engage { padding-top: var(--s); }
+  .erow { position: relative; margin-top: 24px; display: flex; align-items: baseline;
+          justify-content: space-between; gap: 24px; padding-bottom: 4px; }
+  .erow .k { color: var(--ink-72); }
+  /* the largest number on the page was set in the 14px label style while $500 / $2,500 /
+     $7,500 ran at 32px, so the biggest engagement read as the smallest offer. 28px: present,
+     still quieter than the packages, out of the label register. */
+  .erow .v { font-family: var(--display); font-weight: 300; font-size: 28px; line-height: 1;
+             font-variation-settings: "wdth" var(--dw); letter-spacing: -0.02em;
+             color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .erow::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+                 background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
+                 transition: transform 400ms var(--e); }
+  .erow:hover::after, .erow:focus-visible::after { transform: scaleX(1); }
+
+  /* ---- 05 packages ---- */
+  .price { margin-top: 40px; }
+  .prows { grid-column: 1 / -1; }
+  .prow { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto;
+          gap: var(--gap); align-items: start;
+          box-sizing: border-box; padding: 26px 0 30px;
+          border-top: 1px solid var(--hair); border-bottom: 1px solid transparent; }
+  .prow:last-child { border-bottom-color: var(--hair); }
+  .prow .k { color: var(--ink-72); }
+  .prow .v { position: relative; font-family: var(--display); font-weight: 300;
+             font-variation-settings: "wdth" var(--dw);
+             font-size: 32px; line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+             font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
+  /* The suffix hangs in the row's own bottom padding. The rows that HAVE no suffix no
+     longer carry an empty span reserving a line for one: an empty 20px box under $500 and
+     $7,500 read as three unevenly padded rows instead of a set. One suffix, one row, and
+     all three rows keep identical geometry because the mark is out of flow. */
+  .prow .v .l { position: absolute; right: 0; top: 100%; margin-top: 4px;
+                display: block; text-align: right; }
+  .prow::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+                 background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
+                 transition: transform 400ms var(--e); }
+  .prow:hover::after, .prow:focus-visible::after { transform: scaleX(1); }
+
+  /* ---- 06 the proof index: name, year, one caption, an arrow ---- */
+  .proofsec { padding-top: var(--s); }
+  /* RULING (RL4): the arrow is a RAIL, not a tail. Hung off the end of each caption it sat
+     at a different x on every row -- seven arrows, seven positions, in a section whose whole
+     job is to read as a ledger. The third track is a fixed 40px column at the right edge of
+     the content width; every linking row puts its arrow there and they share one x exactly.
+     A row that opens nothing leaves the column empty rather than borrowing a mark. */
+  .prf { position: relative; box-sizing: border-box; display: grid;
+         grid-template-columns: minmax(0, 460px) minmax(0, 1fr) 40px;
+         column-gap: 32px; align-items: baseline; min-height: 72px; padding: 22px 0;
+         border-bottom: 1px solid var(--hair-10); }
+  .prf .who { font-family: var(--text); font-weight: 500; font-size: 21px; line-height: 1.25;
+              color: var(--ink); }
+  .prf .yr { margin-left: 10px; white-space: nowrap; }
+  .prf .cap { font-size: var(--t); line-height: 1.4; color: var(--ink-72); max-width: 62ch; }
+  /* INK, not copper: copper at 17px on bone measures 3.86:1, under the 4.5 a non-display
+     row needs (SS11's >= 3:1 exception is for display rows only). */
+  .prf .ar { grid-column: 3; justify-self: end; color: var(--ink);
+             font-family: var(--display); font-size: 17px; }
+  /* Every row in the index is now a link with a year, a caption and an arrow, so the quiet
+     register for dead-end rows is retired: an index that entices the click cannot hold three
+     rows that go nowhere. RL4 answers that differently: Postmates and SurveyMonkey
+     Enterprise are back, because an index of the record that drops two of the four exits is
+     not the record. They carry no year in either verified source and no case study to open,
+     so they carry no arrow either -- the rail is what separates a row you can open from a
+     row that is simply true. */
+  .prf::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+                background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
+                transition: transform 400ms var(--e); }
+  a.prf:hover::after, a.prf:focus-visible::after { transform: scaleX(1); }
+
+  /* ---- 07 the manual ---- */
   .manual { padding-top: var(--s); }
-  /* SS11: the label names the artifact BEFORE the display line makes its claim. */
   .manual .head { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-  .manual h2 { margin-bottom: 56px; }
+  /* Three rows at --d (136px, ~550px tall) out-shouted the two-row hero and broke SS6's
+     loudness budget -- the book was louder than the man. --d2 is the composed size. */
+  .manual h2 { margin-bottom: 56px; font-size: var(--d2); }
   .manual .copy { grid-column: 1 / 7; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
   .manual .lines { display: flex; flex-direction: column; gap: 6px; }
   .manual .lines p { font-size: 20px; line-height: 1.35; color: var(--ink); max-width: 44ch; }
+  .manual .buy { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .manual .buy .v { font-family: var(--display); font-weight: 300; font-variation-settings: "wdth" var(--dw);
+                    font-size: 32px; line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+                    font-variant-numeric: tabular-nums; }
+  .manual .buy .v .l { display: block; margin-top: 10px; }
   .manual .art { grid-column: 8 / 13; }
   .manual .art .frame { border: 1px dashed var(--hair); padding: 16px; background: #0B0A09; }
   .manual .art figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; }
 
-  /* ---- 07 the numbers ---- */
-  .nums { margin-top: 40px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
-  .num { border: 1px solid var(--hair-4); box-sizing: border-box;
-         display: grid; grid-template-rows: auto auto; align-content: start; gap: 24px;
-         padding: 40px 32px 32px; }
-  .num:nth-child(n + 3) { margin-top: -1px; }
-  .num:nth-child(even) { margin-left: -1px; }
-  /* SS11: no reservation. The footnote follows its figure at 24px, and the two cards in a
-     grid row take their shared height from the grid itself (default stretch). */
-  .num .d { align-self: start; }
-  .num .f { align-self: start; max-width: 42ch; }
-  /* RULING 4: a two-line figure breaks BEFORE the arrow, never after it. */
-  .nb { white-space: nowrap; }
-
-  /* ---- 08 the price ---- */
-  .price { padding-top: var(--s); padding-bottom: var(--s); }
-  .price .col-a { grid-column: 1 / 7; }
-  .price .col-b { grid-column: 8 / 13; }
-  .prow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--gap); align-items: baseline;
-          padding: 24px 0; border-top: 1px solid var(--hair); }
-  .prow:last-child { border-bottom: 1px solid var(--hair); }
-  .prow .k { color: var(--ink-72); }
-  .prow .v { font-family: var(--display); font-weight: 300; font-variation-settings: "wdth" var(--dw);
-             font-size: calc(var(--t) * 1.6); line-height: 1; letter-spacing: -0.02em; color: var(--ink);
-             font-variant-numeric: tabular-nums; white-space: nowrap; text-align: right; }
-  /* SS11: the suffix drops to its own line in the label style, so nothing is bolted to the
-     right of a figure and all five figures are flush to one right edge. */
-  .prow .v .l { display: block; margin-top: 8px; }
-  .q { padding: 24px 0; border-top: 1px solid var(--hair); display: flex; flex-direction: column; gap: 10px; }
-  .q:last-child { border-bottom: 1px solid var(--hair); }
-  .q dt { font-weight: 500; font-size: 19px; color: var(--ink); }
-  .q dd { color: var(--ink-72); max-width: 46ch; }
+  /* ---- 08 the FAQ ---- */
+  .faq { padding-top: var(--s); padding-bottom: var(--s); }
+  /* The block and its hairlines stopped at x=940 while the price rows, the proof rows and
+     the engagements rule all ran the full 1376 -- it read as a layout that failed rather than
+     a measure that was chosen. The question now holds the left columns and the answer the
+     right, and the hairline runs the section's full width. */
+  .qs { grid-column: 1 / -1; margin-top: 24px; }
+  .q { padding-top: 24px; border-top: 1px solid var(--hair);
+       display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+       column-gap: var(--gap); row-gap: 10px; }
+  .q + .q { margin-top: 48px; }
+  .q dt { font-family: var(--text); font-weight: 500; font-size: 21px; line-height: 1.35; color: var(--ink); }
+  .q dd { font-size: var(--t); line-height: 1.5; color: var(--ink-80); max-width: 60ch; }
 
   /* ---- 09 the ask ---- */
+  /* SS12: the field is >= 720px at 1440 with 112/96 padding. It shipped at 549px -- the
+     shortest section on a 9,000px page, shorter than the manual or the FAQ -- so the close
+     landed soft. */
   .ask { position: relative; z-index: 3; box-sizing: border-box; background: var(--copper); color: var(--espresso);
-         min-height: 100lvh; display: flex; align-items: center; padding: 220px var(--g); margin-top: 0; }
-  .ask .block { display: flex; flex-direction: column; align-items: flex-start; gap: 56px; transition: opacity 300ms var(--e); }
-  .ask:hover .block { opacity: 0.8; }
+         min-height: 720px; display: flex; align-items: center;
+         padding: 112px var(--g) 96px; }
+  .ask .block { display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
   .ask .d { color: var(--espresso); max-width: 9ch; }
-  .ask .ar { display: inline-block; font-size: 0.34em; vertical-align: 0.62em; margin-left: 0.2em; }
+  /* The gap is optical, not em-derived: 0.12em of a 56px glyph is 6.7px, which set the
+     mark hard against the full stop of "problem." and read as a typo. */
+  .ask .ar { font-size: 56px; vertical-align: baseline; margin-left: 22px; }
   .ask .chip .t { background: var(--espresso); color: var(--bone); }
   .ask .chip .a { background: var(--bone); color: var(--espresso); }
-  /* RULING 6: on the copper field the quiet chip is drawn, not filled -- a 1px
-     espresso rule at 40% and solid espresso type. */
-  .ask .chip.quiet .t { box-sizing: border-box; background: transparent; color: var(--espresso);
-                        border: 1px solid color-mix(in srgb, var(--espresso) 40%, transparent); }
+  /* espresso 14px on raw copper measures 4.40:1 -- the weakest element on the page, on the
+     screen that asks for the money. A bone chip carries it at 16.97:1. */
+  .ask .chip.quiet .t { box-sizing: border-box; background: var(--bone); color: var(--espresso);
+                        border: none; }
   .ask .chip:hover .t { background: color-mix(in oklab, var(--espresso) 86%, var(--bone)); }
-  .ask .chip.quiet:hover .t { background: transparent; border-color: var(--espresso); }
+  .ask .chip.quiet:hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--espresso)); }
 
   /* ---- 10 the foot ---- */
   .foot { position: relative; z-index: 3; box-sizing: border-box; background: var(--espresso); color: var(--bone); padding: 72px var(--g) 64px; }
   .foot .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; }
-  .foot .l { color: color-mix(in oklab, var(--bone) 60%, transparent); }
+  .foot .l { color: color-mix(in srgb, #F5EFE4 60%, transparent); }
   .foot .l.now { color: var(--bone); }
 
-  /* ---- entrances: transform only, once, the picture before the claim ---- */
+  /* ---- entrances: media only ---- */
   [data-rise] { transform: translateY(var(--rise, 0px)); transition: transform 500ms var(--e); }
   .js [data-rise="10"] { --rise: 10px; }
-  .js [data-rise="30"] { --rise: 30px; transition-delay: 120ms; }
   .js [data-rise].in { --rise: 0px; }
 
-  @media (hover: none) { .peek { opacity: 1; } }
-
   @media (max-width: 1279px) {
-    :root { --s: 128px; }
-    .spot { grid-template-columns: 44px minmax(0, 1fr); }
-    .idx { grid-template-columns: 44px minmax(0, 1fr) minmax(0, 34ch); }
-    /* the two wrappers dissolve and the six pieces stack in the order the page reads:
-       clip, display line, first paragraph, second paragraph, quote, section mark. */
-    .person .cols { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
-    .person .lcol, .person .rcol { display: contents; }
-    .person .clip { order: 1; width: 100%; max-width: 560px; }
-    .person .rcol h2 { order: 2; }
-    .person .say { order: 3; }
-    .person .sub { order: 4; }
-    .person .quote { order: 5; }
-    .person .lcol > .l { order: 6; }
-  }
-
-  /* RULING 4, forced: a two-up card narrower than 1440's 688px cannot hold "-> 290,000"
-     unbroken at any width axis that still reads as the display face, so the numbers stack
-     below 1440. SS11 ruled the 2x2 grid AT 1440, and it still stands there. */
-  @media (max-width: 1439px) {
-    .nums { grid-template-columns: minmax(0, 1fr); }
-    .num:nth-child(n + 2) { margin-top: -1px; }
-    .num:nth-child(even) { margin-left: 0; }
+    /* the operator section's two columns become one; the film still carries the section. */
+    .opwrap { flex-direction: column; align-items: flex-start; gap: 28px; }
+    .op .cb { flex: 0 1 auto; }
+    .rail { grid-column: 1 / 6; }
+    .panels { grid-column: 6 / 13; }
+    .manual .copy { grid-column: 1 / 7; }
+    .manual .art { grid-column: 7 / 13; }
+    .qs { grid-column: 1 / -1; }
+    /* measured at 21px/17px: the longest name lays out at 443px and the longest caption at
+       378px, so 452 + 24 + 386 + 24 + 20 = 906 -- which clears the 960px content width at
+       1024 but NOT the 836px at 900. Hence the 1023px rung below. */
+    .prf { grid-template-columns: minmax(0, 452px) minmax(0, 1fr) 40px; column-gap: 24px; }
   }
 
   @media (max-width: 899px) {
-    :root { --g: 20px; --gap: 16px; --s: 96px; }
-    .bar { height: 44px; }
+    :root { --g: 20px; --gap: 16px; --s: 56px; }
+    /* on a phone the bar has a different job: it carries the price from first paint,
+       before any script has run. */
+    .bar { height: 48px; opacity: 1; pointer-events: auto; }
     .bar .hide-s { display: none; }
-    /* RULING 1 (2026-09-05): the hero block is bottom-aligned and tightened until its
-       top clears the 44% line, and the veil is pushed down to meet it. That gives the
-       man back the lower half of his face; both headline rows still sit on flat
-       espresso. Stops: 0 at 0%, 0 at 18%, .8 at 34%, 1 at 44%. */
+
+    /* the hero block is bottom-aligned and tightened until its top clears the 44% line,
+       and the veil is pushed down to meet it. */
     .room { padding-bottom: 20px; }
     .room .base { margin-top: auto; }
     .room .say { grid-column: 1 / -1; }
     .room .base-row { flex-direction: column; align-items: stretch; gap: 24px; margin-top: 16px; }
     .room .proof { text-align: left; gap: 6px; }
     .room h1 { margin-bottom: 12px; }
+    /* RULING (v3, measured): clip A2 points to the LEFT, and the pointing hand lives at
+       source x 368-685 of 1920 while the face lives at 1010-1290. A 100lvh cover crop on a
+       390px screen shows a 499px-wide slice of the source -- it cannot hold both. The film
+       therefore becomes a full-width band of 46lvh below 900px, which widens the visible
+       slice to ~1040px of source and puts the hand AND the face in frame. Everything under
+       the 44% line was already solid espresso, so nothing visible is lost. */
+    .film video { height: 46lvh; margin-top: 0; object-position: 34% 30%; }
     .film .veil { background: linear-gradient(to bottom,
       rgba(13,13,15,0) 0%, rgba(13,13,15,0) 18%, rgba(13,13,15,0.8) 34%, rgba(13,13,15,1) 44%); }
     .chips { gap: 10px; }
-    .spot { grid-template-columns: minmax(0, 1fr); row-gap: 12px; padding: 28px 0 24px; }
-    .spot .n { grid-column: 1; grid-row: 1; padding-top: 0; }
-    .spot .who { grid-column: 1; grid-row: 2; }
-    /* RULING 2: there is no hover on a phone, so the one artifact in the record is
-       shown outright -- 120px wide, in the flow, 16px under the name it belongs to. */
-    .spot .what { grid-column: 1; grid-row: 4; margin-left: 0; text-align: left; }
-    .peek { position: static; grid-column: 1; grid-row: 3; box-sizing: border-box;
-            width: 120px; margin-top: 4px; opacity: 1; }
-    .idx { grid-template-columns: 40px minmax(0, 1fr); row-gap: 6px; }
-    .idx .what { grid-column: 2; text-align: left; }
-    .person { padding-bottom: 96px; }
-    .work { padding-top: 128px; }
-    .rail, .panels { grid-column: 1 / -1; }
-    .rail { position: static; }
-    .rail ol { gap: 40px; }
-    .panels { gap: 72px; padding-top: 64px; padding-bottom: 0; }
+
+    /* the operator section is ONE screen: the film carries the top, the heading and both
+       paragraphs sit at its foot on flat espresso. Same frame as the desktop composition. */
+    /* SS13 asks for ONE screen here. It shipped at exactly 100svh, which is one screen only
+       if nothing overlaps it: the 48px bar sits on its top edge and the 64px anchor clearance
+       lands it 64px down the viewport, so the last line of the second paragraph fell under
+       the fold in both cases. The stage is 100svh MINUS that clearance now, and the copy is
+       tightened to buy the film back its band. */
+    .opstage { min-height: calc(100svh - 64px); padding-top: 0; padding-bottom: 40px; }
+    /* Clip B read as a dark smudge at 390. The crop was centred at 50%, which on a 390-wide
+       slice of a 1440 square frame shows the far side of the table, a stranger's jacket and
+       the edge of his face. 88% puts his head in the middle of the visible band, and the
+       grade is lifted because here the clip carries a ~260px strip, not a whole screen. */
+    .opfilm video { object-position: 88% 30%; filter: brightness(1.22) contrast(1.06); }
+    /* The veil is anchored to the BOTTOM in pixels here, not to a percentage of the section.
+       The copy block is a fixed height (445-494px across 360/390/414) while the section
+       tracks the viewport, so a percentage stop put the solid line above the heading on a
+       tall phone and under it on a short one. Measured from the foot, the solid line always
+       lands just above the heading and the film keeps every pixel left over. */
+    .opfilm .veil { background: linear-gradient(to top,
+      rgba(13,13,15,1) 0px, rgba(13,13,15,1) 520px,
+      rgba(13,13,15,0.45) 630px, rgba(13,13,15,0) 730px); }
+    .opwrap { display: block; }
+    .op .cb { margin-top: 20px; }
+    .op h2 { margin-bottom: 12px; }
+    .op .ca p, .op .cb p { font-size: 17px; line-height: 1.45; max-width: none; }
+
+    /* one row, two lines: the price leads and the descriptor follows, instead of three
+       wrapped lines with the biggest number on the page set in the label style. RL4: the
+       comment was the ruling and the CSS was not -- `display: block` cannot reorder, so the
+       descriptor still led and the price still followed. A column flex box with an explicit
+       order does what the comment says. */
+    .erow { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+    .erow .v { order: 0; display: block; font-size: 26px; margin-bottom: 6px; }
+    .erow .k { order: 1; display: block; }
+
+    /* each step is followed by ITS OWN artifact, and no heading is dimmed. */
+    .work { display: flex; flex-direction: column; gap: 0; }
+    .rail, .rail ol, .panels { display: contents; }
+    .rail > .l { order: 0; }
+    .rail li { margin: 0; }
+    .rail li .d { opacity: 1; }
+    .rail li[data-step="1"] { order: 1; margin-top: 24px; }
+    .rail li[data-step="2"] { order: 3; margin-top: 56px; }
+    .rail li[data-step="3"] { order: 5; margin-top: 56px; }
+    .panel[data-panel="1"] { order: 2; }
+    .panel[data-panel="2"] { order: 4; }
+    .panel[data-panel="3"] { order: 6; }
+    .panel { margin-top: 20px; }
+    .panel figcaption { margin-top: 0; padding-top: 12px; flex-wrap: wrap; }
+    .panel .body { margin-top: 16px; }
+
+    /* on a phone the price sits UNDER the name: sharing the row squeezed the description
+       to a ~245px measure and broke it mid-phrase. */
+    .prow { grid-template-columns: minmax(0, 1fr); padding: 22px 0 26px; }
+    .prow .v { text-align: left; margin-top: 14px; }
+    .prow .v .l { position: static; display: inline-block; margin: 0 0 0 14px; }
+    .q { grid-template-columns: minmax(0, 1fr); }
     .manual .copy, .manual .art { grid-column: 1 / -1; }
     .manual .art { margin-top: 56px; }
     .manual h2 { margin-bottom: 40px; }
-    .nums { grid-template-columns: minmax(0, 1fr); }
-    .num { gap: 24px; padding: 28px 20px; }
-    .num:nth-child(n + 2) { margin-top: -1px; }
-    .num:nth-child(even) { margin-left: 0; }
-    .price .col-a, .price .col-b { grid-column: 1 / -1; }
-    .price .col-b { margin-top: 72px; }
-    .ask { min-height: 0; padding: 120px var(--g); margin-top: 0; }
+    .ask { min-height: 0; padding: 88px var(--g); }
     .ask .block { gap: 40px; }
+    .ask .d { font-size: 64px; }
+    .ask .ar { font-size: 0.42em; margin-left: 11px; }
+    .ask .chip { height: 48px; }
     .foot .row { flex-direction: column; }
   }
 
-  /* the phone: the chip pair stacks (brief S4-01) */
+  /* RULING (v3, measured): the one-line proof row holds from 1024px up. Below it the row
+     takes its composed two-line shape -- name + year, then the caption -- rather than
+     letting the longest name wrap by accident. The arrow keeps its rail: it drops to the
+     second track, still a fixed 40px at the right edge, still one x for every row. */
+  @media (max-width: 1023px) {
+    .prf { grid-template-columns: minmax(0, 1fr) 40px; row-gap: 6px; column-gap: 12px;
+           align-items: baseline; padding: 18px 0; }
+    .prf .who { grid-column: 1 / -1; font-size: 19px; }
+    .prf .cap { grid-column: 1; }
+    .prf .ar { grid-column: 2; }
+  }
+
+  /* the phone: the chip pair stacks */
   @media (max-width: 599px) {
     .room .chips { flex-direction: column; align-items: stretch; gap: 12px; }
     .room .chips .chip { width: 100%; }
     .room .chips .chip .t { flex: 1; }
   }
 
-  /* RETURN CONDITION, brief S10 -- reported, not resolved silently.
-     "go-to-market." cannot fit the 350px content width at 390 at wdth 125 (it lays out
-     433px, measured) nor at the brief's single authorised fallback of wdth 115 (386px).
-     wdth 106 is the widest cut that fits (344px). --d is already at its 52px floor, and
-     the brief forbids dropping the size. The phone therefore ships a narrower cut of the
-     same face than the desktop, which the brief does not authorise. */
+  /* THE WIDTH LADDER. --d is already pinned at its 52px floor below 554px, so the width
+     axis is the only lever left. Each rung is the widest cut of Anybody that leaves at
+     least 12px of right gutter on 'go-to-market.' at that viewport. Measured, not guessed. */
   @media (max-width: 479px) { :root { --dw: 106; } }
-
-  @media (max-width: 359px) { :root { --dw: 98; } }
+  @media (max-width: 399px) { :root { --dw: 104; } }
+  @media (max-width: 379px) { :root { --dw: 100; } }
+  @media (max-width: 364px) { :root { --dw: 96; } }
+  @media (max-width: 339px) { :root { --dw: 90; } }
 
   @media (prefers-reduced-motion: reduce) {
     video { display: none; }
-    .film { background: url("{{VID_Aposter}}") 60% 30% / cover no-repeat; }
-    .person .clip { aspect-ratio: 4 / 5; background: url("{{VID_Bposter}}") 50% 50% / cover no-repeat; }
-    .sheet, body, .bar, .spot::after, .idx::after, .peek, .rail li, [data-rise], .ask .block, .chip .t, .chip .a { transition: none !important; }
+    .still { display: block; position: absolute; left: 0; right: 0; top: 0; }
+    .film .still { height: 100lvh; margin-top: -12.5lvh;
+                   background: url("{{VID_Aposter}}") 60% 0% / cover no-repeat; }
+    .opfilm .still { bottom: 0; background: url("{{VID_Bposter}}") 50% 40% / cover no-repeat; }
+    .bar { opacity: 1; pointer-events: auto; }
+    .sheet, body, .bar, .prow::after, .prf::after, .erow::after, .rail li .d, [data-rise],
+    .chip .t, .chip .a { transition: none !important; }
     [data-rise] { transform: none !important; }
-    .peek { opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) and (max-width: 899px) {
+    .film .still { height: 46lvh; margin-top: 0; background-position: 34% 30%; }
   }
 </style>
 
 <div class="sheet" aria-hidden="true"></div>
 
 <div class="film" id="film" aria-hidden="true">
-  <video autoplay muted loop playsinline preload="metadata" poster="{{VID_Aposter}}">
-    <source src="{{VID_Awebm}}" type="video/webm">
-    <source src="{{VID_Amp4}}" type="video/mp4">
+  <video id="filmvid" autoplay muted playsinline preload="metadata" poster="{{VID_Aposter}}">
+    <source data-k="s" media="(max-width: 899px)" src="{{VID_A720}}" type="video/mp4">
+    <source data-k="w" src="{{VID_Awebm}}" type="video/webm">
+    <source data-k="m" src="{{VID_Amp4}}" type="video/mp4">
   </video>
+  <div class="still"></div>
   <div class="veil"></div>
 </div>
 
 <nav class="bar" id="bar" aria-label="Site">
   <a class="l now" href="#room">Micah Jones</a>
-  <a class="l hide-s" href="#record">Record</a>
+  <a class="l hide-s" href="#proof">Record</a>
   <a class="l hide-s" href="#manual">Playbook</a>
   <a class="l" href="#price">Packages from $500</a>
-  <a class="l" href="https://www.micahjonesconsulting.com/call?from=mock-bar">Name the problem <span class="ar">&#8594;</span></a>
+  <a class="l hide-s" href="https://www.micahjonesconsulting.com/call?from=mock-bar">Name the problem <span class="ar">&#8594;</span></a>
 </nav>
 
 <div class="page" id="page">
 
   <!-- 01 the room -->
-  <header class="room wrap" id="room" data-world="0">
+  <header class="room wrap" id="room">
     <div class="grid base">
       <h1 class="d"><span class="r">I build the</span><span class="r cu">go-to-market.</span></h1>
       <div class="say">
         <p class="lede">Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
       </div>
       <div class="base-row">
-        <div class="chips">
+        <div class="chips" id="herochips">
           <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-room"><span class="t">Name the problem</span><span class="a" aria-hidden="true">&#8594;</span></a>
           <a class="chip quiet" href="#price"><span class="t">See the packages</span></a>
         </div>
@@ -412,91 +578,120 @@
     </div>
   </header>
 
-  <!-- 02 the record -->
-  <section class="band wrap" id="record" aria-label="The record" data-world="0">
-    <div class="sec-head">
-      <div class="l">The receipts. Every line below is real.</div>
-      <div class="l">07</div>
+  <!-- 02 operator, not consultant -- clip B is the GROUND of this section -->
+  <section class="op" id="operator" aria-label="Operator, not consultant">
+    <div class="opfilm" aria-hidden="true">
+      <video id="opvid" muted loop playsinline preload="metadata" poster="{{VID_Bposter}}">
+        <source data-k="s" media="(max-width: 899px)" src="{{VID_B720}}" type="video/mp4">
+        <source data-k="w" src="{{VID_Bwebm}}" type="video/webm">
+        <source data-k="m" src="{{VID_Bmp4}}" type="video/mp4">
+      </video>
+      <div class="still"></div>
+      <div class="veil"></div>
     </div>
-
-    <div class="spot" data-rise="30">
-      <div class="l n">01</div>
-      <div class="who d">Guardicore</div>
-      <p class="what body">$14M in revenue. Acquired by Akamai in 2021.</p>
-      <img class="peek" src="{{IMG_portrait}}" alt="Micah Jones at a laptop in front of a whiteboard covered in service architecture">
-    </div>
-    <div class="spot" data-rise="30">
-      <div class="l n">02</div>
-      <div class="who d">Postmates</div>
-      <p class="what body">Market and fraud analysis in the wide-open era. Acquired by Uber, $2.65B.</p>
-    </div>
-    <div class="spot" data-rise="30">
-      <div class="l n">03</div>
-      <div class="who d">Industry author</div>
-      <p class="what body">$3M in contracts won &#183; close rate doubled</p>
-    </div>
-
-    <div class="idx" data-rise="30"><div class="l n">04</div><div class="who">SurveyMonkey Enterprise</div><div class="what">$1M+ toward the IPO &#183; cap-table position held through the Nasdaq listing</div></div>
-    <div class="idx" data-rise="30"><div class="l n">05</div><div class="who">Industry author</div><div class="what">Monthly reach 8K &#8594; 290K in five months</div></div>
-    <div class="idx" data-rise="30"><div class="l n">06</div><div class="who">Ordani</div><div class="what">Active paying users &#183; none lost to a competitor</div></div>
-    <div class="idx" data-rise="30"><div class="l n">07</div><div class="who">Consulting</div><div class="what">$20M+ in client revenue &#183; since 2013</div></div>
-  </section>
-
-  <!-- 03 the person -->
-  <section class="person wrap" id="about" aria-label="About" data-world="0">
-    <div class="grid cols">
-    <div class="lcol">
-      <div class="clip" data-rise="10">
-        <video autoplay muted loop playsinline preload="metadata" poster="{{VID_Bposter}}" aria-hidden="true">
-          <source src="{{VID_Bwebm}}" type="video/webm">
-          <source src="{{VID_Bmp4}}" type="video/mp4">
-        </video>
+    <div class="opstage wrap">
+      <h2 class="d two"><span class="r">Operator,</span><span class="r">not consultant.</span></h2>
+      <div class="opwrap">
+        <div class="ca">
+          <p class="lede">I've spent thirteen years inside B2B software companies as the person who can sit on either side of the table: GTM strategy in the morning, shipping product in the afternoon. Most consultants don't ship. Most builders don't sell. I do both, on the same engagement, for the same fee.</p>
+        </div>
+        <div class="cb">
+          <p class="body">I joined Postmates, SurveyMonkey, Guardicore (Akamai) and Neuton.AI early. Four exits, $5B+ combined. I built Ordani solo with Claude Code and Cursor: HIPAA-compliant, active paying users, in beta. I am taking new engagements now.</p>
+        </div>
       </div>
-      <p class="sub body">I joined Postmates, SurveyMonkey, Guardicore (Akamai) and Neuton.AI early. Four exits, $5B+ combined. I built Ordani solo with Claude Code and Cursor: HIPAA-compliant, active paying users, in beta. I am taking new engagements now.</p>
-      <div class="l">The author, name protected &#183; Receipt</div>
-    </div>
-    <div class="rcol">
-      <h2 class="d">Operator, not consultant.</h2>
-      <p class="say">I've spent thirteen years inside B2B software companies as the person who can sit on either side of the table: GTM strategy in the morning, shipping product in the afternoon. Most consultants don't ship. Most builders don't sell. I do both, on the same engagement, for the same fee.</p>
-      <p class="quote body full">Micah does the work that most strategy decks promise and never deliver.</p>
-    </div>
     </div>
   </section>
 
-  <!-- 04 the seam: the air above the rail, where the light travels. no section declares it. -->
+  <!-- the seam: the air above the rail, where the light travels. no section declares it. -->
 
-  <!-- 05 how I work -->
-  <section class="work grid wrap" id="work" aria-label="How I work" data-world="1">
+  <!-- 03 how I work -->
+  <section class="work grid wrap" id="work" aria-label="How I work">
     <div class="rail">
       <div class="l">Operating principles &#183; How I work.</div>
       <ol id="rail">
-        <li data-step="1"><span class="l n">01</span><span class="d">Diagnose</span><span class="l out">&#8594; Positioning audit memo</span></li>
-        <li data-step="2"><span class="l n">02</span><span class="d">Build</span><span class="l out">&#8594; Shipped artifact, month one</span></li>
-        <li data-step="3"><span class="l n">03</span><span class="d">Position</span><span class="l out">&#8594; The story the market repeats</span></li>
+        <li data-step="1"><span class="l n">01</span><span class="d two">Diagnose</span><span class="l out">&#8594; Positioning audit memo</span></li>
+        <li data-step="2"><span class="l n">02</span><span class="d two">Build</span><span class="l out">&#8594; Shipped artifact, month one</span></li>
+        <li data-step="3"><span class="l n">03</span><span class="d two">Position</span><span class="l out">&#8594; The story the market repeats</span></li>
       </ol>
     </div>
     <div class="panels">
       <figure class="panel" data-panel="1">
-        <div class="frame" data-rise="10"><img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill"></div>
-        <figcaption><span class="l">&#167; 01.4 &#183; Why it hits at 80% and not sooner</span><span class="l">page 6 of 69</span></figcaption>
-        <p class="body" data-rise="30">I find the gap between what you built and what buyers actually pay for.</p>
+        <div class="frame" data-rise="10"><img src="{{IMG_w1}}" alt="a whiteboard covered in service architecture"></div>
+        <figcaption><span class="l meta">a whiteboard covered in service architecture</span></figcaption>
+        <p class="body">I find the gap between what you built and what buyers actually pay for.</p>
       </figure>
       <figure class="panel" data-panel="2">
-        <div class="frame" data-rise="10"><img src="{{IMG_card}}" alt="checklists/05-security.md, one of ten pre-flight cards, as shipped"></div>
-        <figcaption><span class="l">checklists/05-security.md</span><span class="l">one of ten pre-flight cards, as shipped</span></figcaption>
-        <p class="body" data-rise="30">Every engagement ships a named artifact in month one. No decks. No discovery debt.</p>
+        <div class="frame" data-rise="10"><img src="{{IMG_w2}}" alt="Micah Jones at a laptop"></div>
+        <figcaption><span class="l meta">Micah Jones at a laptop</span></figcaption>
+        <p class="body">Every engagement ships a named artifact in month one. No decks. No discovery debt.</p>
       </figure>
       <figure class="panel" data-panel="3">
-        <div class="frame" data-rise="10"><img src="{{IMG_rings}}" alt="Book page 51: where the ten users live, three rings"></div>
-        <figcaption><span class="l">&#167; 08.2 &#183; Where the ten actually live</span><span class="l">page 51 of 69</span></figcaption>
-        <p class="body" data-rise="30">I stay until the narrative sells without me. The Guardicore repositioning carried into the Akamai acquisition.</p>
+        <div class="frame" data-rise="10"><img src="{{IMG_w3}}" alt="a Tel Aviv security company"></div>
+        <figcaption><span class="l meta">a Tel Aviv security company</span><span class="l meta">2018&#8211;2021</span></figcaption>
+        <p class="body">I stay until the narrative sells without me. The Guardicore repositioning carried into the Akamai acquisition.</p>
       </figure>
     </div>
   </section>
 
-  <!-- 06 the manual -->
-  <section class="manual wrap" id="manual" aria-label="The field manual" data-world="1">
-    <div class="head"><span class="l">The 80% Wall</span><span class="l">&#183;</span><span class="l now">from $99</span></div>
+  <!-- 04 engagements: the quiet strip above the packages -->
+  <section class="engage wrap" id="engagements" aria-label="Engagements">
+    <div class="sec-head rule"><div class="l">Engagements</div></div>
+    <a class="erow" href="https://www.micahjonesconsulting.com/call?from=mock-engagements">
+      <span class="k">advisory, project, retainer, or embedded.</span>
+      <span class="v">From $5K a month</span>
+    </a>
+  </section>
+
+  <!-- 05 packages -->
+  <section class="price grid wrap" id="price" aria-label="Packages">
+    <div class="prows">
+      <div class="sec-head"><div class="l">Three fixed prices. Start this week.</div><div class="l">Fixed.</div></div>
+      <a class="prow" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><div class="k">The Unstick Session &#183; Ninety minutes live on your stuck build.</div><div class="v">$500</div></a>
+      <a class="prow" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><div class="k">The Audit &#183; I go through it top to bottom and hand you the written audit.</div><div class="v">$2,500<span class="l">Start here</span></div></a>
+      <a class="prow" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><div class="k">The Sprint &#183; One week on one outcome, shipped.</div><div class="v">$7,500</div></a>
+    </div>
+  </section>
+
+  <!-- 06 the proof index -->
+  <section class="proofsec wrap" id="proof" aria-label="The record">
+    <div class="sec-head rule"><div class="l">The receipts. Every line below is real.</div></div>
+    <a class="prf" href="https://www.micahjonesconsulting.com/work/guardicore?from=mock-proof">
+      <div class="who">Guardicore<span class="l yr">2018&#8211;2021</span></div>
+      <div class="cap">$14M in revenue &#183; acquired by Akamai</div>
+      <span class="ar" aria-hidden="true">&#8594;</span>
+    </a>
+    <div class="prf">
+      <div class="who">Postmates</div>
+      <div class="cap">Market and fraud analysis in the wide-open era.</div>
+    </div>
+    <a class="prf" href="https://www.micahjonesconsulting.com/work/rfp-engine?from=mock-proof">
+      <div class="who">RFP engine for an industry author<span class="l yr">2024&#8211;2025</span></div>
+      <div class="cap">$3M in contracts won &#183; close rate doubled</div>
+      <span class="ar" aria-hidden="true">&#8594;</span>
+    </a>
+    <div class="prf">
+      <div class="who">SurveyMonkey Enterprise</div>
+      <div class="cap">cap-table position held through the Nasdaq listing</div>
+    </div>
+    <a class="prf" href="https://www.micahjonesconsulting.com/work/content-engine?from=mock-proof">
+      <div class="who">AI content engine for an industry author<span class="l yr">2024&#8211;2025</span></div>
+      <div class="cap">Eight platforms carried the work.</div>
+      <span class="ar" aria-hidden="true">&#8594;</span>
+    </a>
+    <a class="prf" href="https://www.micahjonesconsulting.com/work/ordani?from=mock-proof">
+      <div class="who">ORDANI<span class="l yr">2025&#8211;2026</span></div>
+      <div class="cap">Active paying users &#183; none lost to a competitor</div>
+      <span class="ar" aria-hidden="true">&#8594;</span>
+    </a>
+    <a class="prf" href="https://www.micahjonesconsulting.com/work?from=mock-proof">
+      <div class="who">Consulting<span class="l yr">since 2013</span></div>
+      <span class="ar" aria-hidden="true">&#8594;</span>
+    </a>
+  </section>
+
+  <!-- 07 the manual -->
+  <section class="manual wrap" id="manual" aria-label="The field manual">
+    <div class="head"><span class="l">The 80% Wall</span></div>
     <h2 class="d">The AI handed you the code. Now ship the company.</h2>
     <div class="grid">
       <div class="copy">
@@ -506,39 +701,23 @@
           <p>You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
         </div>
         <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
-        <div class="l">Pages 69 &#183; Chapters 10 &#183; Diagrams 9 &#183; Companion files 26</div>
-        <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="t">Get chapter one free</span><span class="a" aria-hidden="true">&#8594;</span></a>
+        <div class="l meta">Pages 69 &#183; Chapters 10 &#183; Diagrams 9 &#183; Companion files 26</div>
+        <div class="buy">
+          <div class="v">$99<span class="l">at launch</span></div>
+          <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="t">Get chapter one free</span><span class="a" aria-hidden="true">&#8594;</span></a>
+        </div>
       </div>
       <figure class="art">
         <div class="frame" data-rise="10"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover"></div>
-        <figcaption><span class="l">the-80-percent-wall.pdf</span><span class="l">PDF + ZIP &#183; every future edition</span></figcaption>
+        <figcaption><span class="l meta">the-80-percent-wall.pdf</span><span class="l meta">PDF + ZIP &#183; every future edition</span></figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- 07 the numbers -->
-  <section class="band wrap" aria-label="Numbers" data-world="1">
-    <div class="sec-head"><div class="l">Named numbers, with their mechanism</div><div class="l">04</div></div>
-    <div class="nums">
-      <div class="num" data-rise="30"><div class="d fig">40% <span class="nb">&#8594; 91%</span></div><div class="l f">*intake completion, Ordani beta. Its intake replaced a paper packet.</div></div>
-      <div class="num" data-rise="30"><div class="d fig">8,000 <span class="nb">&#8594; 290,000</span></div><div class="l f">*monthly reach for an industry author, in five months. Eight platforms carried the work.</div></div>
-      <div class="num" data-rise="30"><div class="d fig">$3M</div><div class="l f">*contracts won through RFP software that doubled the author's close rate inside six months.</div></div>
-      <div class="num" data-rise="30"><div class="d fig">$14M</div><div class="l f">*revenue, Guardicore, at a $1.2M average enterprise deal size. Acquired by Akamai in 2021.</div></div>
-    </div>
-  </section>
-
-  <!-- 08 the price, with the objection beside it -->
-  <section class="price grid wrap" id="price" aria-label="Prices" data-world="1">
-    <div class="col-a">
-      <div class="sec-head" style="border: 0; padding-bottom: 20px;"><div class="l">Three fixed prices. Start this week.</div><div class="l">Fixed.</div></div>
-      <div class="prow"><div class="k">The Unstick Session &#183; Ninety minutes live on your stuck build.</div><div class="v">$500</div></div>
-      <div class="prow"><div class="k">The Audit &#183; I go through it top to bottom and hand you the written audit.</div><div class="v">$2,500<span class="l">Start here</span></div></div>
-      <div class="prow"><div class="k">The Sprint &#183; One week on one outcome, shipped.</div><div class="v">$7,500</div></div>
-      <div class="prow"><div class="k">The 80% Wall &#183; the field manual, PDF + ZIP.</div><div class="v">$99<span class="l">at launch</span></div></div>
-      <div class="prow"><div class="k">Engagements &#183; advisory, project, retainer, or embedded.</div><div class="v">From $5K<span class="l">a month</span></div></div>
-    </div>
-    <dl class="col-b">
-      <div class="sec-head" style="border: 0; padding-bottom: 20px;"><div class="l">The objections, in your words</div><div class="l">03</div></div>
+  <!-- 08 the FAQ -->
+  <section class="faq grid wrap" id="faq" aria-label="The objections">
+    <dl class="qs">
+      <div class="sec-head"><div class="l">The objections, in your words</div></div>
       <div class="q"><dt>Is this for me, if I vibe-coded it?</dt><dd>You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.</dd></div>
       <div class="q"><dt>What if it does not help?</dt><dd>Thirty days, full refund, no questions asked. Reply to the delivery email and I refund it.</dd></div>
       <div class="q"><dt>Hiring for a company rather than a build?</dt><dd>The engagements start at $5K a month. Tell me the problem and I will scope it. A free 30-minute call comes first.</dd></div>
@@ -550,7 +729,7 @@
 <!-- 09 the ask -->
 <section class="ask wrap" id="contact" aria-label="Name the problem">
   <div class="block">
-    <h2 class="d">Name the problem.<span class="ar" aria-hidden="true">&#8594;</span></h2>
+    <h2 class="d"><a id="asklink" href="https://www.micahjonesconsulting.com/call?from=mock-ask">Name the problem.<span class="ar" aria-hidden="true">&#8594;</span></a></h2>
     <div class="chips">
       <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-ask"><span class="t">Book a free intro call</span><span class="a" aria-hidden="true">&#8594;</span></a>
       <a class="chip quiet" href="https://www.micahjonesconsulting.com/packages?from=mock-ask"><span class="t">See the packages</span></a>
@@ -573,42 +752,76 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
   var bar = document.getElementById('bar');
-  var record = document.getElementById('record');
-  var person = document.getElementById('about');
+  var op = document.getElementById('operator');
   var work = document.getElementById('work');
   var ask = document.getElementById('contact');
+  var room = document.getElementById('room');
+  var chips = document.getElementById('herochips');
   var steps = [].slice.call(document.querySelectorAll('#rail li'));
   var panels = [].slice.call(document.querySelectorAll('[data-panel]'));
   var risers = [].slice.call(document.querySelectorAll('[data-rise]'));
-  var lastP = -1, lastF = -1, queued = false;
+  var filmVid = document.getElementById('filmvid');
+  var opVid = document.getElementById('opvid');
+  // RL4: the ask is a dark-bar section like the room, the operator film and the foot.
+  var darks = [room, op, ask, document.querySelector('.foot')];
+  var lastP = -1, lastF = -1, queued = false, opStarted = false;
+  var vis = {};
+
+  // Small-screen sources are guaranteed, not hoped for: the source that does not belong to
+  // this viewport is removed before the browser's resource selection runs.
+  (function pick() {
+    var small = window.innerWidth <= 899;
+    [filmVid, opVid].forEach(function (v) {
+      if (!v) return;
+      [].slice.call(v.querySelectorAll('source')).forEach(function (s) {
+        var isSmall = s.getAttribute('data-k') === 's';
+        if (isSmall !== small) s.parentNode.removeChild(s);
+      });
+    });
+  })();
 
   if (!reduce) root.classList.add('js');
 
   function clamp(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
+  // resume, never restart: a clip that has run to its hold frame stays on that frame.
+  function play(v) {
+    if (!v || reduce || v.ended) return;
+    var r = v.play(); if (r && r.catch) r.catch(function () {});
+  }
 
   function light() {
     var h = window.innerHeight, line = h * 0.55;
-    // the film goes out across the record: the man is gone before the ledger opens
-    var a = record.getBoundingClientRect().top, b = person.getBoundingClientRect().top;
-    var f = (b > a) ? clamp((line - a) / (b - a)) : (line >= a ? 1 : 0);
+    // the hero film goes out as the operator section rises into the screen
+    var f = clamp(1 - op.getBoundingClientRect().top / h);
     // the ground: one travel, landing exactly as the reading line reaches the rail
     var w = work.getBoundingClientRect().top, zone = Math.min(h * 0.38, 320);
     var p = clamp((line - (w - zone)) / zone);
-    if (reduce) { p = p > 0.5 ? 1 : 0; f = f > 0.25 ? 1 : 0; }
-    if (p !== lastP) { root.style.setProperty('--p', p.toFixed(4)); lastP = p; }
+    if (reduce) { p = p > 0.5 ? 1 : 0; f = f > 0.5 ? 1 : 0; }
+    if (p !== lastP) {
+      root.style.setProperty('--p', p.toFixed(4));
+      root.classList.toggle('lit', p >= 0.5);
+      lastP = p;
+    }
     if (f !== lastF) { root.style.setProperty('--f', f.toFixed(4)); lastF = f; }
   }
 
   function chrome() {
     if (!bar) return;
-    bar.classList.toggle('on', window.scrollY >= window.innerHeight);
-    // SS11: the copper field owns the bar while it is under it -- top above the bar's
-    // bottom edge, bottom below it. Same rAF writer, one class, no new library.
-    if (ask) {
-      var edge = bar.getBoundingClientRect().height || 40;
-      var r = ask.getBoundingClientRect();
-      bar.classList.toggle('over-ask', r.top <= edge && r.bottom >= edge);
+    var edge = bar.getBoundingClientRect().height || 40;
+    if (reduce || window.innerWidth <= 899) {
+      bar.classList.add('on');
+    } else if (chips) {
+      bar.classList.toggle('on', chips.getBoundingClientRect().bottom <= edge);
+    } else {
+      bar.classList.toggle('on', window.scrollY >= window.innerHeight);
     }
+    var dark = false;
+    for (var i = 0; i < darks.length; i++) {
+      if (!darks[i]) continue;
+      var r = darks[i].getBoundingClientRect();
+      if (r.top <= edge && r.bottom >= edge) { dark = true; break; }
+    }
+    bar.classList.toggle('dark', dark);
   }
 
   function rail() {
@@ -628,6 +841,31 @@
     }
   }
 
+  // Neither clip runs where nobody is looking. Under 10% visible the decoder stops; B does
+  // not begin at all until at least 35% of it is on screen. The hero clip is observed
+  // through its SECTION, because the film element itself is fixed and always intersecting.
+  if (reduce) {
+    if (filmVid) filmVid.pause();
+    if (opVid) opVid.pause();
+  } else if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        var e = entries[i];
+        var isRoom = e.target === room;
+        var v = isRoom ? filmVid : opVid;
+        if (!v) continue;
+        vis[isRoom ? 'a' : 'b'] = e.intersectionRatio;
+        if (e.intersectionRatio < 0.10) { if (!v.paused) v.pause(); continue; }
+        if (!isRoom && !opStarted) {
+          if (e.intersectionRatio >= 0.35) opStarted = true; else continue;
+        }
+        if (v.paused) play(v);
+      }
+    }, { threshold: [0, 0.05, 0.1, 0.2, 0.35, 0.5, 0.75, 1] });
+    if (room) io.observe(room);
+    if (opVid) { opVid.pause(); io.observe(opVid); }
+  }
+
   function tick() { light(); chrome(); rail(); if (!reduce) rise(); }
   function schedule() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; tick(); }); }
 
@@ -640,7 +878,7 @@
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href'); if (id.length < 2) return;
         var el = document.querySelector(id); if (!el) return;
-        e.preventDefault(); lenis.scrollTo(el, { offset: -72, duration: 1.1 });
+        e.preventDefault(); lenis.scrollTo(el, { offset: -64, duration: 1.1 });
       });
     });
   } else {

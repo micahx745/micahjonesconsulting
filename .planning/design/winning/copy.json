@@ -1,0 +1,55 @@
+{
+ "Playbook.dc.html": {
+  "n_units": 138,
+  "n_sentences": 179,
+  "missing_sentences": [
+   "Nine templates, including three worked SPEC files written end to end: a booking app, a photographer gallery, and an internal ops tracker.",
+   "§ 0.7 · No sequence, no drip."
+  ],
+  "missing_fragments": [
+   "Format · PDF + ZIP · every future edition",
+   "§ 01 · If this is you",
+   "§ 0.1 · Field note",
+   "§ 02 · Read two pages",
+   "§ 03 · Contents",
+   "§ 04 · Run tonight",
+   "§ 0.8 · Field note",
+   "§ 05 · Before you ask",
+   "↗",
+   "Page six of the manual, the wall chart drawn by hand",
+   "The cover of the field manual",
+   "Page six: a line chart of what fits in the window against the unwritten rules",
+   "Page fifty-one: three rings showing where the first ten users live",
+   "A pre-flight card from the manual, the security one, as shipped",
+   "you@email.com",
+   "Email"
+  ],
+  "em_dash_visible": 0,
+  "em_dash_entity_raw": 0,
+  "banned_hits": [],
+  "attrs": [
+   "Page six of the manual, the wall chart drawn by hand",
+   "The cover of the field manual",
+   "Page six: a line chart of what fits in the window against the unwritten rules",
+   "Page fifty-one: three rings showing where the first ten users live",
+   "A pre-flight card from the manual, the security one, as shipped",
+   "you@email.com",
+   "Email"
+  ]
+ },
+ "Services.dc.html": {
+  "n_units": 96,
+  "n_sentences": 126,
+  "missing_sentences": [],
+  "missing_fragments": [
+   "§ 01 · Engagements",
+   "§ 02 · How engagements work",
+   "§ 03 · On the price",
+   "↗"
+  ],
+  "em_dash_visible": 0,
+  "em_dash_entity_raw": 0,
+  "banned_hits": [],
+  "attrs": []
+ }
+}

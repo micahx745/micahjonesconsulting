@@ -1,13 +1,18 @@
-"""Build the "Room and Ledger" page: inline the six artifacts AND the two clips as data URIs.
+"""Build the "Room and Ledger" page (v3): inline the artifacts AND the two clips as data URIs.
 
 Usage:  python .planning/design/winning/build.py [out_path]
 Reads   .planning/design/winning/room-and-ledger.template.html
-Images  .planning/design/mock-assets/{portrait,cover,rings,wallchart,card,opener02}.jpg
-Video   .planning/design/video/{A,B}-loop.{webm,mp4} + {A,B}-poster.jpg
+Images  .planning/design/mock-assets/{cover,w1-diagnose,w2-build,w3-position}.jpg
+Video   .planning/design/video/A2-hold.{webm,mp4} + A2-hold-720.mp4 + A2-poster-last.jpg
+        .planning/design/video/B-loop.{webm,mp4}  + B-loop-720.mp4  + B-poster.jpg
 Writes  out_path (default: the session scratchpad) -- the file the Artifact tool publishes.
 
-Derived from freight/build.py. The template stays readable and committed; the built file
-carries ~6MB of base64 and is not. Hard ceiling: 12MB (brief SS7).
+v3 (brief SS13): the four book-page images are gone with the numbers section and the
+record's artifacts; the rail's three panels now carry his own photographs. Clip A is the
+regenerated A2 hold (forward once, no loop, the poster is the LAST frame). Each clip also
+ships a 720 cut that is the only source below 900px.
+
+Hard ceiling: 12MB (brief SS7).
 """
 import base64, os, sys
 
@@ -23,50 +28,60 @@ LIMIT = 12 * 1024 * 1024
 
 # key -> (absolute path, mime)
 PARTS = {
-    "IMG_portrait":  (os.path.join(ASSETS, "portrait.jpg"), "image/jpeg"),
-    "IMG_cover":     (os.path.join(ASSETS, "cover.jpg"), "image/jpeg"),
-    "IMG_rings":     (os.path.join(ASSETS, "rings.jpg"), "image/jpeg"),
-    "IMG_wallchart": (os.path.join(ASSETS, "wallchart.jpg"), "image/jpeg"),
-    "IMG_card":      (os.path.join(ASSETS, "card.jpg"), "image/jpeg"),
-    "IMG_opener":    (os.path.join(ASSETS, "opener02.jpg"), "image/jpeg"),
-    "VID_Awebm":     (os.path.join(VIDEO, "A-loop.webm"), "video/webm"),
-    "VID_Amp4":      (os.path.join(VIDEO, "A-loop.mp4"), "video/mp4"),
-    "VID_Aposter":   (os.path.join(VIDEO, "A-poster.jpg"), "image/jpeg"),
-    "VID_Bwebm":     (os.path.join(VIDEO, "B-loop.webm"), "video/webm"),
-    "VID_Bmp4":      (os.path.join(VIDEO, "B-loop.mp4"), "video/mp4"),
-    "VID_Bposter":   (os.path.join(VIDEO, "B-poster.jpg"), "image/jpeg"),
+    "IMG_cover":   (os.path.join(ASSETS, "cover.jpg"), "image/jpeg"),
+    "IMG_w1":      (os.path.join(ASSETS, "w1-diagnose.jpg"), "image/jpeg"),
+    "IMG_w2":      (os.path.join(ASSETS, "w2-build.jpg"), "image/jpeg"),
+    "IMG_w3":      (os.path.join(ASSETS, "w3-position.jpg"), "image/jpeg"),
+    "VID_Awebm":   (os.path.join(VIDEO, "A2-hold.webm"), "video/webm"),
+    "VID_Amp4":    (os.path.join(VIDEO, "A2-hold.mp4"), "video/mp4"),
+    "VID_A720":    (os.path.join(VIDEO, "A2-hold-720.mp4"), "video/mp4"),
+    "VID_Aposter": (os.path.join(VIDEO, "A2-poster-last.jpg"), "image/jpeg"),
+    "VID_Bwebm":   (os.path.join(VIDEO, "B-loop.webm"), "video/webm"),
+    "VID_Bmp4":    (os.path.join(VIDEO, "B-loop.mp4"), "video/mp4"),
+    "VID_B720":    (os.path.join(VIDEO, "B-loop-720.mp4"), "video/mp4"),
+    "VID_Bposter": (os.path.join(VIDEO, "B-poster.jpg"), "image/jpeg"),
 }
 
 
-def main(out_path: str) -> None:
-    html = open(TEMPLATE, encoding="utf-8").read()
-    raw = 0
-    unused = []
-    for key, (path, mime) in PARTS.items():
-        placeholder = "{{" + key + "}}"
-        n = html.count(placeholder)
-        if n == 0:
-            unused.append(key)
-            continue
-        data = open(path, "rb").read()
-        raw += len(data) * n
-        uri = "data:" + mime + ";base64," + base64.b64encode(data).decode("ascii")
-        html = html.replace(placeholder, uri)
-        print(f"  {key:<14} {len(data)//1024:>6}KB raw  x{n}  <- {os.path.basename(path)}")
-    for key in unused:
-        print(f"  {key:<14} not referenced in the template; skipped", file=sys.stderr)
-    if "{{" in html and ("{{IMG_" in html or "{{VID_" in html):
-        raise SystemExit("unresolved placeholder remains in output")
+def data_uri(path, mime):
+    with open(path, "rb") as fh:
+        return "data:%s;base64,%s" % (mime, base64.b64encode(fh.read()).decode("ascii"))
 
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    open(out_path, "w", encoding="utf-8", newline="\n").write(html)
-    size = os.path.getsize(out_path)
-    print(f"wrote {out_path}")
-    print(f"total {size} bytes ({size/1024/1024:.2f}MB); media {raw//1024}KB raw; "
-          f"limit {LIMIT//1024//1024}MB; headroom {(LIMIT - size)/1024/1024:.2f}MB")
-    if size > LIMIT:
-        raise SystemExit(f"FAIL: built file is {size} bytes, over the {LIMIT} byte ceiling")
+
+def main(out):
+    with open(TEMPLATE, encoding="utf-8") as fh:
+        html = fh.read()
+
+    missing = [k for k, (p, _) in PARTS.items() if not os.path.exists(p)]
+    if missing:
+        print("MISSING: %s" % ", ".join("%s -> %s" % (k, PARTS[k][0]) for k in missing))
+        return 2
+
+    for key, (path, mime) in sorted(PARTS.items()):
+        token = "{{%s}}" % key
+        n = html.count(token)
+        if n == 0:
+            print("WARN  %-12s unused in the template" % key)
+            continue
+        html = html.replace(token, data_uri(path, mime))
+        print("%-12s %8d bytes source x%d  (%s)" % (key, os.path.getsize(path), n,
+                                                    os.path.basename(path)))
+
+    left = [t for t in ("{{" + k + "}}" for k in PARTS) if t in html]
+    if "{{" in html:
+        print("WARN  unresolved token(s) remain: %s" % left)
+
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(html)
+
+    size = os.path.getsize(out)
+    print("\nOUT   %s" % out)
+    print("SIZE  %d bytes (%.2f MB) -- ceiling %.0fMB -- %s"
+          % (size, size / 1024 / 1024, LIMIT / 1024 / 1024,
+             "OK" if size <= LIMIT else "OVER"))
+    return 0 if size <= LIMIT else 1
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else DEFAULT_OUT)
+    sys.exit(main(sys.argv[1] if len(sys.argv) > 1 else DEFAULT_OUT))
