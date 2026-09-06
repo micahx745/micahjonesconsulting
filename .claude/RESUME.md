@@ -8,17 +8,16 @@ Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-
 by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATERIALS.md`.
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
-1. Dark studio, `MOCK-BRIEF-2026-09-05.md`:
-   https://claude.ai/code/artifact/a398fb1a-741e-4d9f-b043-4cc7a5536a91
+1. Dark studio, `MOCK-BRIEF-2026-09-05.md`: artifact a398fb1a (superseded).
 2. "Operator, not consultant", from Studio Freight's CLIENT WORK (14 live sites,
    `research/client-work/`), not their homepage. `FREIGHT-BRIEF-2026-09-05.md` §0 records
    the wrong passes. https://claude.ai/code/artifact/1d43593f-2049-4128-8e6e-319ba8e4e2da
-   He: "love it" but the header, loudness, the font ("AI font"). Three louder versions led
-   by different elements are ON HOLD at his "wait". More studios: `research/01-MORE-STUDIOS.md`.
-3. Video, `VIDEO-BRIEF-2026-09-05.md`: his two photos → hero clips. Ruled: the grade is
-   CSS (grayscale + gradient); clips generated in COLOUR. Pick Kling 3 Pro (fal $0.56/5s,
-   Recraft 3–5× dearer; Seedance 2.0 blocks real faces). Frames in `design/video/`,
-   prompts + settings + loop in §4. His: 3 attempts per clip, reject on the face.
+   He: "love it" but the header, loudness, the font ("AI font") → item 4 answers all three.
+3. Video, `VIDEO-BRIEF-2026-09-05.md`: Kling 3 Pro. He fed the TREATED posters, so both
+   clips are graded already → dark grounds only. Loops + posters in `design/video/`.
+4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md`: the ruled combination (film as
+   the hero ground, no header on screen one, one display size, Anybody wide/light, no
+   mono, espresso→bone→copper). Build: `design/winning/` → Artifact. Judge at 390/1440.
 
 ## Ship gate (operator-owned)
 1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** Blocks the flag.
