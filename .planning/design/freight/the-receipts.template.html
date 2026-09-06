@@ -1,326 +1,359 @@
 <title>The Receipts</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Xanh+Mono:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Xanh+Mono:ital@0;1&display=swap">
 <style>
   :root {
     --paper: #F7F4EE;
-    --paper-2: #EFEAE1;
+    --paper-2: #EFEBE3;
     --ink: #121110;
     --ink-2: #4A4642;
     --grey: #8B857C;
     --hair: rgba(18, 17, 16, 0.12);
-    --hair-2: rgba(18, 17, 16, 0.28);
+    --hair-2: rgba(18, 17, 16, 0.32);
     --black: #0B0A09;
     --serif: "EB Garamond", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
     --mono: "Xanh Mono", "Courier Prime", "IBM Plex Mono", ui-monospace, Menlo, monospace;
-    --gutter: 24px;
+    --g: 20px;
+    /* five sizes, one weight per face */
+    --t-thesis: clamp(40px, 5vw, 72px);
+    --t-head: 30px;
+    --t-line: 26px;
+    --t-body: 19px;
+    --t-mono: 13px;
   }
   html { background: var(--paper); }
-  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.45; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--serif); font-weight: 400; font-size: var(--t-body); line-height: 1.45; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; text-decoration: none; }
   a:hover { color: var(--ink-2); }
-  a:focus-visible, button:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 4px; }
+  a:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 4px; }
   ::selection { background: var(--ink); color: var(--paper); }
+  h1, h2, h3, p { margin: 0; font-weight: 400; }
 
-  /* ---- mono chrome ---- */
-  .mono { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; line-height: 1.4; color: var(--ink); }
-  .mono-up { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.4; color: var(--ink); }
-  .mono-grey { color: var(--grey); }
-  .mono i, .mono-up i { font-style: italic; }
+  .mono { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; line-height: 1.5; color: var(--ink); }
+  .mono i { font-style: italic; }
+  .grey { color: var(--grey); }
+  .up { text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; }
 
-  /* fixed corners: the studio grammar */
-  .corner { position: fixed; z-index: 40; display: flex; align-items: center; gap: 22px; mix-blend-mode: difference; color: #F7F4EE; }
-  .corner a, .corner span { color: #F7F4EE; }
-  .c-tl { top: 22px; left: var(--gutter); }
-  .c-tr { top: 22px; right: var(--gutter); }
-  .c-bl { bottom: 22px; left: var(--gutter); }
-  .c-br { bottom: 22px; right: var(--gutter); }
-  .c-bc { bottom: 22px; left: 50%; transform: translateX(-50%); }
-  .corner .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #F7F4EE; margin-right: 8px; vertical-align: 1px; }
+  /* corners: fixed chrome that reads on paper, on the photograph and on the dark tile alike */
+  .corner { position: fixed; z-index: 40; display: flex; align-items: center; gap: 20px; mix-blend-mode: difference; }
+  .corner, .corner a, .corner span { color: #F7F4EE; }
+  .c-tl { top: 20px; left: var(--g); }
+  .c-tr { top: 20px; right: var(--g); }
+  .c-bl { bottom: 20px; left: var(--g); }
+  .c-br { bottom: 20px; right: var(--g); }
+  .corner .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: #F7F4EE; margin-right: 8px; vertical-align: 2px; }
 
-  /* ---- layout ---- */
-  .page { position: relative; width: 100%; }
-  .band { padding: 0 var(--gutter); }
-  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); padding: 84px var(--gutter) 0; }
-  .tile { position: relative; overflow: hidden; background: var(--paper-2); aspect-ratio: 4 / 3; }
+  .band { padding-left: var(--g); padding-right: var(--g); }
+  .measure { max-width: 46ch; text-wrap: pretty; }
+
+  /* the mosaic: the work is the first screen; the thesis sits in a cleared cell */
+  .mosaic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 22vw; gap: var(--g); padding: 72px var(--g) 0; }
+  .tile { position: relative; overflow: hidden; background: var(--paper-2); }
   .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; will-change: transform; }
-  .tile.paper { background: #ECE3D0; }
-  .tile.paper img { object-fit: contain; padding: 8%; }
-  .tile.dark { background: var(--black); }
-  .tile.dark img { object-fit: contain; padding: 10%; }
-  .cap { position: absolute; left: 14px; bottom: 12px; right: 14px; display: flex; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.02em; color: #F7F4EE; mix-blend-mode: difference; }
-  .tile-wide { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
-  .tile-wide img { object-fit: cover; object-position: center 20%; }
+  .tile.paper { background: #ECE3D0; } .tile.paper img { object-fit: contain; padding: 7%; }
+  .tile.dark { background: var(--black); } .tile.dark img { object-fit: contain; padding: 9%; }
+  .tile.tall { grid-row: span 2; }
+  .tile.wide { grid-column: span 2; }
+  .cap { position: absolute; left: 12px; right: 12px; bottom: 10px; display: flex; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.01em; color: #F7F4EE; mix-blend-mode: difference; }
+  .cell { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 4px 6px; }
+  .cell h1 { font-size: var(--t-thesis); line-height: 1; letter-spacing: -0.03em; text-wrap: balance; }
+  .cell .mono { color: var(--grey); }
 
-  /* ---- thesis ---- */
-  .thesis { text-align: center; padding: 160px var(--gutter) 120px; display: flex; flex-direction: column; align-items: center; gap: 28px; }
-  .thesis h1, .thesis h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(56px, 9.2vw, 160px); line-height: 0.96; letter-spacing: -0.035em; color: var(--ink); text-wrap: balance; }
-  .thesis h2 { font-weight: 400; font-size: clamp(44px, 7vw, 120px); }
-  .thesis .sub { font-family: var(--serif); font-size: 21px; line-height: 1.4; color: var(--ink-2); max-width: 46ch; margin: 0; text-wrap: pretty; }
-  .thesis .row { display: flex; gap: 28px; align-items: center; justify-content: center; padding-top: 8px; }
+  /* one sentence under the work */
+  .intro { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding: 96px var(--g) 0; }
+  .intro .k { grid-column: 1 / 3; }
+  .intro p { grid-column: 3 / 9; font-size: var(--t-line); line-height: 1.3; letter-spacing: -0.012em; text-wrap: pretty; }
+  .intro .row { grid-column: 9 / 13; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; justify-content: flex-end; }
 
-  .btn { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 20px; border-radius: 999px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; white-space: nowrap; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 42px; padding: 0 18px; border-radius: 999px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; white-space: nowrap; }
   .btn:hover { background: var(--ink-2); color: var(--paper); }
-  .ul { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; border-bottom: 1px solid var(--hair-2); padding-bottom: 2px; }
+  .ul { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; border-bottom: 1px solid var(--hair-2); padding-bottom: 2px; }
   .ul:hover { border-bottom-color: var(--ink); }
 
-  /* ---- index list: the record ---- */
-  .index { padding: 40px var(--gutter) 0; }
-  .index-head { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 24px; padding: 0 0 16px; border-bottom: 1px solid var(--ink); }
-  .irow { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr); gap: 24px; align-items: baseline; padding: 26px 0 22px; border-bottom: 1px solid var(--hair); }
-  .irow:hover { background: linear-gradient(90deg, var(--paper-2), transparent 70%); }
-  .irow .n { font-family: var(--mono); font-size: 13px; color: var(--grey); }
-  .irow .who { display: flex; flex-direction: column; gap: 6px; }
-  .irow .who strong { font-family: var(--serif); font-weight: 500; font-size: 30px; line-height: 1.05; letter-spacing: -0.015em; color: var(--ink); }
-  .irow .who span { font-family: var(--mono); font-size: 13px; color: var(--grey); }
-  .irow .fig { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.4vw, 68px); line-height: 1; letter-spacing: -0.03em; text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; will-change: transform; }
+  /* section furniture: one mono line, one hairline */
+  .sec { padding: 140px var(--g) 0; }
+  .sec-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
+  .sec-head .l { grid-column: 1 / 7; } .sec-head .r { grid-column: 7 / 13; text-align: right; }
 
-  /* ---- horizontal gallery: packages ---- */
-  .gal-head { display: flex; justify-content: space-between; align-items: baseline; padding: 140px var(--gutter) 28px; }
-  .gal-head h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); letter-spacing: -0.03em; line-height: 1; }
-  .gal { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(360px, 34vw); gap: var(--gutter); overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 var(--gutter) 28px; scrollbar-width: none; }
-  .gal::-webkit-scrollbar { display: none; }
-  .pk { scroll-snap-align: start; background: var(--black); color: var(--paper); padding: 28px 28px 30px; display: flex; flex-direction: column; gap: 18px; min-height: 520px; }
-  .pk .k { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(247,244,238,0.62); display: flex; justify-content: space-between; gap: 12px; }
-  .pk .price { font-family: var(--serif); font-weight: 400; font-size: clamp(84px, 9vw, 140px); line-height: 0.9; letter-spacing: -0.04em; color: var(--paper); }
-  .pk .price small { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; color: rgba(247,244,238,0.62); margin-left: 14px; vertical-align: 22%; }
-  .pk h3 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 30px; letter-spacing: -0.015em; line-height: 1.05; }
-  .pk p { margin: 0; font-family: var(--serif); font-size: 19px; line-height: 1.4; color: rgba(247,244,238,0.82); text-wrap: pretty; }
-  .pk .grow { flex-grow: 1; }
-  .pk .btn { background: var(--paper); color: var(--black); align-self: flex-start; }
-  .pk .btn:hover { background: #E3DDD2; color: var(--black); }
-  .gal-foot { display: flex; justify-content: space-between; gap: 24px; padding: 8px var(--gutter) 0; }
-  .gal-foot p { margin: 0; max-width: 72ch; font-family: var(--serif); font-size: 17px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty; }
+  /* the record: an index of sentences */
+  .rec { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--g); align-items: baseline; padding: 24px 0 22px; border-bottom: 1px solid var(--hair); }
+  .rec .n { font-family: var(--mono); font-size: var(--t-mono); color: var(--grey); }
+  .rec p { font-size: var(--t-line); line-height: 1.28; letter-spacing: -0.012em; text-wrap: pretty; max-width: 62ch; }
+  .rec p b { font-weight: 400; color: var(--ink); }
+  .rec p span { color: var(--ink-2); }
+  .rec:hover { background: linear-gradient(90deg, var(--paper-2), transparent 60%); }
 
-  /* ---- book ---- */
-  .book { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gutter); align-items: center; padding: 60px var(--gutter) 0; }
-  .book .copy { display: flex; flex-direction: column; gap: 22px; max-width: 56ch; }
-  .book h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 76px); line-height: 0.98; letter-spacing: -0.03em; text-wrap: balance; }
-  .book p { margin: 0; font-family: var(--serif); font-size: 20px; line-height: 1.45; color: var(--ink-2); text-wrap: pretty; }
-  .book .lines { display: flex; flex-direction: column; gap: 4px; }
-  .book .lines p { color: var(--ink); font-size: 24px; line-height: 1.25; }
+  /* the manual: two tiles, then the copy */
+  .manual { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 28px; align-items: start; }
+  .manual .t1 { grid-column: 1 / 6; aspect-ratio: 4 / 5; }
+  .manual .t2 { grid-column: 6 / 13; aspect-ratio: 16 / 10; align-self: end; }
+  .manual .copy { grid-column: 1 / 9; display: flex; flex-direction: column; gap: 20px; padding-top: 40px; }
+  .manual h2 { font-size: var(--t-thesis); line-height: 1; letter-spacing: -0.03em; text-wrap: balance; max-width: 18ch; }
+  .lines { display: flex; flex-direction: column; gap: 6px; }
+  .lines p { font-size: var(--t-line); line-height: 1.28; letter-spacing: -0.012em; max-width: 44ch; }
+  .manual .body { font-size: var(--t-body); color: var(--ink-2); max-width: 54ch; text-wrap: pretty; }
 
-  /* ---- quote ---- */
-  .quote { text-align: center; padding: 180px var(--gutter) 60px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
-  .quote p { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(30px, 3.6vw, 56px); line-height: 1.15; letter-spacing: -0.02em; max-width: 26ch; text-wrap: balance; }
+  /* the fork: one question, two doors */
+  .fork h2 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.15; padding: 28px 0 22px; }
+  .doors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--g); border-top: 1px solid var(--ink); }
+  .door { display: flex; flex-direction: column; gap: 14px; padding: 26px 0 8px; border-right: 1px solid var(--hair); padding-right: var(--g); }
+  .door:last-child { border-right: 0; padding-right: 0; padding-left: 0; }
+  .door h3 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.1; }
+  .door p { font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; max-width: 40ch; }
+  .door .price { font-size: var(--t-head); letter-spacing: -0.015em; font-variant-numeric: tabular-nums; }
 
-  /* ---- engagements ---- */
-  .eng { padding: 120px var(--gutter) 0; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--gutter); }
-  .eng .lead { display: flex; flex-direction: column; gap: 18px; }
-  .eng h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5vw, 76px); line-height: 0.98; letter-spacing: -0.03em; }
-  .eng .from { font-family: var(--serif); font-size: 30px; letter-spacing: -0.015em; }
-  .erow { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; padding: 22px 0; border-top: 1px solid var(--hair); }
-  .erow:last-of-type { border-bottom: 1px solid var(--hair); }
-  .erow .n { font-family: var(--mono); font-size: 13px; color: var(--grey); padding-top: 8px; }
-  .erow strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 28px; letter-spacing: -0.015em; line-height: 1.1; margin-bottom: 8px; }
-  .erow p { margin: 0; font-family: var(--serif); font-size: 19px; line-height: 1.4; color: var(--ink-2); text-wrap: pretty; }
+  /* programs: named, priced, one promise line each */
+  .prog { display: grid; grid-template-columns: 56px minmax(0, 1.1fr) minmax(0, 1.5fr) 200px 220px; gap: var(--g); align-items: baseline; padding: 26px 0 24px; border-bottom: 1px solid var(--hair); }
+  .prog .n { font-family: var(--mono); font-size: var(--t-mono); color: var(--grey); }
+  .prog h3 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.1; }
+  .prog .promise { font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; }
+  .prog .promise .mono { display: block; margin-top: 8px; color: var(--grey); }
+  .prog .price { font-size: 40px; letter-spacing: -0.025em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .prog .price small { font-family: var(--mono); font-size: var(--t-mono); letter-spacing: 0.01em; color: var(--grey); margin-left: 10px; vertical-align: 24%; }
+  .prog .act { text-align: right; }
+  .prog:hover { background: linear-gradient(90deg, var(--paper-2), transparent 60%); }
+  .terms { padding: 22px 0 0; font-size: var(--t-body); color: var(--ink-2); max-width: 74ch; text-wrap: pretty; }
 
-  /* ---- about ---- */
-  .about { padding: 140px var(--gutter) 0; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); }
-  .about .k { grid-column: 1 / 4; }
-  .about .t { grid-column: 4 / 11; font-family: var(--serif); font-size: clamp(24px, 2.3vw, 34px); line-height: 1.25; letter-spacing: -0.015em; text-wrap: pretty; margin: 0; }
+  /* engagements */
+  .eng { display: grid; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1.6fr); gap: var(--g); padding: 24px 0 22px; border-bottom: 1px solid var(--hair); align-items: baseline; }
+  .eng .n { font-family: var(--mono); font-size: var(--t-mono); color: var(--grey); }
+  .eng h3 { font-size: var(--t-head); letter-spacing: -0.015em; line-height: 1.1; }
+  .eng p { font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; max-width: 52ch; }
+
+  /* about: the fact as a sentence */
+  .about { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 28px; }
+  .about .t { grid-column: 3 / 11; font-size: var(--t-line); line-height: 1.3; letter-spacing: -0.012em; text-wrap: pretty; }
   .about .t em { font-style: italic; }
+  .about .k { grid-column: 1 / 3; }
 
-  /* ---- foot ---- */
-  .foot { position: relative; padding: 160px var(--gutter) 0; overflow: hidden; }
-  .foot .cta { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding-bottom: 40px; border-bottom: 1px solid var(--ink); }
-  .foot .cta h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5.4vw, 84px); letter-spacing: -0.035em; line-height: 0.96; }
-  .foot .cta p { margin: 0; max-width: 40ch; font-family: var(--serif); font-size: 19px; line-height: 1.45; color: var(--ink-2); text-wrap: pretty; }
-  .wordmark { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(120px, 21vw, 300px); line-height: 0.78; letter-spacing: -0.05em; color: var(--ink); white-space: nowrap; margin: 40px 0 -0.14em; will-change: transform; }
-  .foot .logistics { display: flex; justify-content: space-between; gap: 24px; padding: 28px 0 88px; }
+  /* receipt: the one quote, their heading, his word */
+  .receipt { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); padding-top: 28px; }
+  .receipt .k { grid-column: 1 / 3; }
+  .receipt blockquote { grid-column: 3 / 11; margin: 0; font-style: italic; font-size: var(--t-thesis); line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }
+  .receipt .who { grid-column: 3 / 11; padding-top: 16px; }
 
-  @media (max-width: 900px) {
-    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 72px; }
-    .tile-wide { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
-    .index-head, .irow { grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
-    .irow .who strong { font-size: 22px; }
-    .book, .eng { grid-template-columns: minmax(0, 1fr); }
-    .about .k { grid-column: 1 / -1; }
-    .about .t { grid-column: 1 / -1; }
-    .gal { grid-auto-columns: 82vw; }
-    .c-bc { display: none; }
+  /* foot */
+  .foot { padding: 160px var(--g) 96px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); border-top: 1px solid var(--ink); margin-top: 140px; }
+  .foot h2 { grid-column: 1 / 7; font-size: var(--t-thesis); line-height: 1; letter-spacing: -0.03em; }
+  .foot p { grid-column: 7 / 12; font-size: var(--t-body); color: var(--ink-2); text-wrap: pretty; align-self: end; }
+  .foot .log { grid-column: 1 / 13; display: flex; justify-content: space-between; gap: 20px; padding-top: 72px; }
+
+  @media (max-width: 1000px) {
+    .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 44vw; padding-top: 64px; }
+    .tile.wide { grid-column: span 2; } .tile.tall { grid-row: span 1; }
+    .cell { grid-column: span 2; padding: 24px 0; }
+    .intro .k, .intro p, .intro .row { grid-column: 1 / -1; }
+    .manual .t1, .manual .t2, .manual .copy { grid-column: 1 / -1; }
+    .doors { grid-template-columns: minmax(0, 1fr); }
+    .door { border-right: 0; padding-right: 0; border-bottom: 1px solid var(--hair); }
+    .prog { grid-template-columns: 40px minmax(0, 1fr); }
+    .prog .promise, .prog .price, .prog .act { grid-column: 2; text-align: left; }
+    .eng { grid-template-columns: 40px minmax(0, 1fr); } .eng p { grid-column: 2; }
+    .about .k, .about .t, .receipt .k, .receipt blockquote, .receipt .who, .foot h2, .foot p { grid-column: 1 / -1; }
+    .sec-head .l, .sec-head .r { grid-column: 1 / -1; text-align: left; }
+    .c-bl { display: none; }
   }
   @media (max-width: 560px) {
-    .tiles { grid-template-columns: minmax(0, 1fr); }
-    .thesis { padding: 120px var(--gutter) 88px; }
-    .foot .cta { flex-direction: column; align-items: flex-start; }
+    .mosaic { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 70vw; }
+    .tile.wide, .cell { grid-column: span 1; }
+    .foot .log { flex-direction: column; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .tile img, .irow .fig, .wordmark { will-change: auto; transform: none !important; }
-  }
+  @media (prefers-reduced-motion: reduce) { .tile img { will-change: auto; transform: none !important; } }
 </style>
 
-<div class="page" id="page">
+<div id="page">
 
-  <!-- corners: fixed chrome -->
   <div class="corner c-tl mono"><a href="#page"><i>MICAH/JONES</i></a></div>
-  <div class="corner c-tr mono"><a href="#record"><span class="dot"></span>Record</a><a href="#packages">Packages</a><a href="#manual">Playbook</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-  <div class="corner c-bl mono"><a href="#contact">Email</a><span>/</span><a href="#contact">LinkedIn</a></div>
-  <div class="corner c-bc mono"><i>MJ</i></div>
-  <div class="corner c-br mono"><span>©2013–2026</span><span>/</span><a href="#contact">Reply inside one business day</a></div>
+  <div class="corner c-tr mono"><a href="#record"><span class="dot"></span>Record</a><a href="#manual">Playbook</a><a href="#hire">Hire</a><a href="#about">About</a><a href="#contact">Contact</a></div>
+  <div class="corner c-bl mono"><a href="mailto:micah@micahjonesconsulting.com">Email</a><span>/</span><a href="#contact">LinkedIn</a></div>
+  <div class="corner c-br mono"><span>©2013–2026</span><span>/</span><span>Micah Jones</span></div>
 
-  <!-- tiles: the work is the page -->
-  <section class="tiles" aria-label="Work">
-    <figure class="tile" style="margin: 0;">
-      <img src="{{IMG_portrait}}" alt="Micah Jones at a laptop in front of a whiteboard covered in service architecture" data-parallax="0.06">
+  <!-- the work is the first screen; the thesis sits in a cleared cell -->
+  <section class="mosaic" aria-label="The work">
+    <figure class="tile tall" style="margin: 0;" data-rise>
+      <img src="{{IMG_portrait}}" alt="Micah Jones at a laptop in front of a whiteboard covered in service architecture" data-parallax="0.05">
       <figcaption class="cap"><span>§ 0</span><span>Operator, not consultant</span></figcaption>
     </figure>
-    <figure class="tile dark" style="margin: 0;">
+    <figure class="tile dark" style="margin: 0;" data-rise>
       <img src="{{IMG_cover}}" alt="The 80% Wall, book cover" data-parallax="-0.04">
       <figcaption class="cap"><span>The 80% Wall</span><span>Field manual</span></figcaption>
     </figure>
-    <figure class="tile paper" style="margin: 0;">
+    <div class="cell" data-rise>
+      <h1 id="thesis">Operator, not consultant.</h1>
+      <div class="mono">Four case studies · one field manual · seven receipts</div>
+    </div>
+    <figure class="tile paper" style="margin: 0;" data-rise>
       <img src="{{IMG_rings}}" alt="Book page 51: where the ten users live, three rings" data-parallax="0.05">
       <figcaption class="cap" style="color: #121110;"><span>§ 08.2</span><span>page 51 of 69</span></figcaption>
     </figure>
+    <figure class="tile paper wide" style="margin: 0;" data-rise>
+      <img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill" data-parallax="0.04" style="object-fit: cover; padding: 0; object-position: center 14%;">
+      <figcaption class="cap" style="color: #121110;"><span>§ 01.4 · Why it hits at 80% and not sooner</span><span>page 6 of 69</span></figcaption>
+    </figure>
+    <figure class="tile dark" style="margin: 0;" data-rise>
+      <img src="{{IMG_opener}}" alt="Chapter two opener: The spec is the moat" data-parallax="-0.04">
+      <figcaption class="cap"><span>From chapter two</span><span>The spec is the moat</span></figcaption>
+    </figure>
+    <figure class="tile paper" style="margin: 0;" data-rise>
+      <img src="{{IMG_card}}" alt="checklists/05-security.md, one of ten pre-flight cards, as shipped" data-parallax="0.04">
+      <figcaption class="cap" style="color: #121110;"><span>checklists/05-security.md</span><span>as shipped</span></figcaption>
+    </figure>
   </section>
 
-  <!-- thesis -->
-  <section class="thesis">
-    <h1 id="thesis">Operator, not consultant.</h1>
-    <p class="sub">Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
+  <!-- one sentence -->
+  <section class="intro">
+    <div class="k mono grey">Micah Jones</div>
+    <p>Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
     <div class="row">
       <a class="btn" href="#record">See the work <span aria-hidden="true">↓</span></a>
       <a class="ul" href="#contact">Book a free intro call <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
-  <!-- wide tile -->
-  <section class="tiles" style="padding-top: 0;" aria-label="A page from the manual">
-    <figure class="tile tile-wide paper" style="margin: 0;">
-      <img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill" data-parallax="0.04" style="object-fit: cover; padding: 0; object-position: center 12%;">
-      <figcaption class="cap" style="color: #121110;"><span>§ 01.4 · Why it hits at 80% and not sooner</span><span>page 6 of 69</span></figcaption>
-    </figure>
-  </section>
-
-  <!-- the record -->
-  <section class="index" id="record" aria-label="The record">
-    <div class="index-head">
-      <div class="mono-up mono-grey">Index</div>
-      <div class="mono-up">The receipts. Every line below is real.</div>
-      <div class="mono-up" style="text-align: right;">Ask about any of them.</div>
+  <!-- the record: sentences, not tiles -->
+  <section class="sec" id="record" aria-label="The record">
+    <div class="sec-head">
+      <div class="l mono">The receipts. Every line below is real.</div>
+      <div class="r mono grey">Ask about any of them.</div>
     </div>
-    <div class="irow"><div class="n">01</div><div class="who"><strong>Guardicore</strong><span>Revenue and positioning · 2018–2021 · acquired by Akamai</span></div><div class="fig" data-skew>$14M in revenue</div></div>
-    <div class="irow"><div class="n">02</div><div class="who"><strong>SurveyMonkey Enterprise</strong><span>Enterprise sales · 2018 · cap-table position held through the Nasdaq listing</span></div><div class="fig" data-skew>$1M+ toward the IPO</div></div>
-    <div class="irow"><div class="n">03</div><div class="who"><strong>Postmates</strong><span>Product analyst · 2020 · market and fraud analysis in the wide-open era</span></div><div class="fig" data-skew>Acquired by Uber, $2.65B</div></div>
-    <div class="irow"><div class="n">04</div><div class="who"><strong>Industry author</strong><span>Content engine · 2024–2025 · eight platforms</span></div><div class="fig" data-skew>Monthly reach 8K → 290K</div></div>
-    <div class="irow"><div class="n">05</div><div class="who"><strong>Industry author</strong><span>RFP engine · 2024–2025 · close rate doubled</span></div><div class="fig" data-skew>$3M in contracts won</div></div>
-    <div class="irow"><div class="n">06</div><div class="who"><strong>Ordani</strong><span>Founder, sole engineer · 2025–2026 · none lost to a competitor</span></div><div class="fig" data-skew>91% intake completion, from 40%</div></div>
-    <div class="irow"><div class="n">07</div><div class="who"><strong>Consulting</strong><span>All clients · since 2013</span></div><div class="fig" data-skew>$20M+ in client revenue</div></div>
-  </section>
-
-  <!-- packages: horizontal gallery -->
-  <div class="gal-head" id="packages">
-    <h2>Three fixed prices. Start this week.</h2>
-    <div class="mono mono-grey"><span id="galcount">01</span> / 03 <i>· scroll →</i></div>
-  </div>
-  <section class="gal" id="gal" aria-label="Packages">
-    <article class="pk">
-      <div class="k"><span>The Unstick Session</span><span>90 minutes + same-day memo</span></div>
-      <div class="price">$500<small>Fixed.</small></div>
-      <h3>Ninety minutes live on your stuck build.</h3>
-      <p>You leave with a written plan the same day.</p>
-      <div class="grow"></div>
-      <a class="btn" href="#">Buy the Unstick Session <span aria-hidden="true">→</span></a>
-    </article>
-    <article class="pk">
-      <div class="k"><span>The Audit</span><span>Two weeks + debrief call · Start here</span></div>
-      <div class="price">$2,500<small>Fixed.</small></div>
-      <h3>I go through it top to bottom and hand you the written audit.</h3>
-      <p>Pick one flavor: Build (architecture and code), Production (security and deploy), or Traction (positioning and go-to-market).</p>
-      <div class="grow"></div>
-      <a class="btn" href="#">Buy the Audit <span aria-hidden="true">→</span></a>
-    </article>
-    <article class="pk">
-      <div class="k"><span>The Sprint</span><span>One week, embedded</span></div>
-      <div class="price">$7,500<small>Fixed.</small></div>
-      <h3>One week on one outcome, shipped.</h3>
-      <p>The repositioning, the production push, the AI feature. Not a plan. The thing, done.</p>
-      <div class="grow"></div>
-      <a class="btn" href="#">Buy the Sprint <span aria-hidden="true">→</span></a>
-    </article>
-  </section>
-  <div class="gal-foot">
-    <p>Each one goes straight to checkout. The moment your card clears you get a kickoff email: the intake questions, a link to book the call, and the manual with its companion files attached. The rules, in plain terms: every package fee credits toward the next package or an engagement started within 60 days. Full refund any time before kickoff.</p>
-  </div>
-
-  <!-- second thesis -->
-  <section class="thesis" style="padding-top: 200px; padding-bottom: 40px;">
-    <h2 id="thesis2">It shipped. Nobody came.</h2>
+    <div class="rec"><div class="n">01</div><p><b>Guardicore:</b> <span>$14M in revenue for a Tel Aviv security company breaking into North America. Acquired by Akamai in 2021.</span></p></div>
+    <div class="rec"><div class="n">02</div><p><b>SurveyMonkey Enterprise:</b> <span>$1M+ in enterprise sales toward the 2018 IPO.</span></p></div>
+    <div class="rec"><div class="n">03</div><p><b>Postmates:</b> <span>Market and fraud analysis in the wide-open era. Acquired by Uber, $2.65B.</span></p></div>
+    <div class="rec"><div class="n">04</div><p><b>Industry author:</b> <span>Monthly reach grew from 8,000 to 290,000 in five months, a 36× lift.</span></p></div>
+    <div class="rec"><div class="n">05</div><p><b>Industry author:</b> <span>$3M in contracts won through RFP software that doubled the author's close rate inside six months.</span></p></div>
+    <div class="rec"><div class="n">06</div><p><b>Ordani:</b> <span>Intake completion moved from 40% to a measured 91%. Active paying users in beta.</span></p></div>
+    <div class="rec"><div class="n">07</div><p><b>Consulting:</b> <span>$20M+ in client revenue since 2013.</span></p></div>
   </section>
 
   <!-- the manual -->
-  <section class="book" id="manual" aria-label="The field manual">
-    <figure class="tile dark" style="margin: 0; aspect-ratio: 1 / 1;">
-      <img src="{{IMG_cover}}" alt="The 80% Wall, book cover" data-parallax="-0.05">
-      <figcaption class="cap"><span>Pages 69 · Chapters 10 · Diagrams 9 · Companion files 26</span><span>$99 at launch</span></figcaption>
-    </figure>
-    <div class="copy">
-      <div class="mono-up mono-grey">A field manual for solo founders</div>
-      <h2>The AI handed you the code. Now ship the company.</h2>
-      <div class="lines">
-        <p>The demo looked done. Production turned out to be a different machine entirely.</p>
-        <p>You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
-      </div>
-      <p>Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
-      <div class="row" style="display: flex; gap: 28px; align-items: center;">
-        <a class="btn" href="#">Get chapter one free <span aria-hidden="true">→</span></a>
-        <span class="mono mono-grey">$99 at launch · coming soon</span>
+  <section class="sec" id="manual" aria-label="The field manual">
+    <div class="sec-head">
+      <div class="l mono">The 80% Wall</div>
+      <div class="r mono grey">A field manual for solo founders</div>
+    </div>
+    <div class="manual">
+      <figure class="tile dark t1" style="margin: 0;">
+        <img src="{{IMG_cover}}" alt="The 80% Wall, book cover" data-parallax="-0.04">
+        <figcaption class="cap"><span>Pages 69 · Chapters 10 · Diagrams 9 · Companion files 26</span><span>$99 at launch</span></figcaption>
+      </figure>
+      <figure class="tile paper t2" style="margin: 0;">
+        <img src="{{IMG_wallchart}}" alt="Book page 6: why the wall is arithmetic, not skill" data-parallax="0.04" style="object-fit: cover; padding: 0; object-position: center 10%;">
+        <figcaption class="cap" style="color: #121110;"><span>§ 01.4</span><span>page 6 of 69</span></figcaption>
+      </figure>
+      <div class="copy">
+        <h2>The AI handed you the code. Now ship the company.</h2>
+        <div class="lines">
+          <p>It shipped. Nobody came.</p>
+          <p>The demo looked done. Production turned out to be a different machine entirely.</p>
+          <p>You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
+        </div>
+        <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
+        <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+          <a class="btn" href="#">Get chapter one free <span aria-hidden="true">→</span></a>
+          <span class="mono grey">$99 at launch · coming soon</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- tiles: two more pages -->
-  <section class="tiles" style="padding-top: 60px; grid-template-columns: repeat(2, minmax(0, 1fr));" aria-label="More pages">
-    <figure class="tile paper" style="margin: 0;">
-      <img src="{{IMG_card}}" alt="checklists/05-security.md, one of ten pre-flight cards, as shipped" data-parallax="0.04">
-      <figcaption class="cap" style="color: #121110;"><span>checklists/05-security.md</span><span>one of ten pre-flight cards, as shipped</span></figcaption>
-    </figure>
-    <figure class="tile dark" style="margin: 0;">
-      <img src="{{IMG_opener}}" alt="Chapter two opener: The spec is the moat" data-parallax="-0.04">
-      <figcaption class="cap"><span>From chapter two</span><span>The spec is the moat</span></figcaption>
-    </figure>
+  <!-- the fork: one question, two doors -->
+  <section class="sec fork" id="hire" aria-label="Hire">
+    <div class="sec-head">
+      <div class="l mono">Hire</div>
+      <div class="r mono grey">Two ways to buy the same person</div>
+    </div>
+    <h2>Hiring for a company rather than a build?</h2>
+    <div class="doors">
+      <div class="door">
+        <div class="mono grey">For companies</div>
+        <h3>Engagements</h3>
+        <p>Advisory, project, retainer, or embedded. Scoped together once you tell me the problem.</p>
+        <div class="price">From $5K a month</div>
+        <div><a class="ul" href="#contact">Book a free intro call <span aria-hidden="true">→</span></a></div>
+      </div>
+      <div class="door">
+        <div class="mono grey">For solo builders and small teams</div>
+        <h3>Packages</h3>
+        <p>Three fixed prices. Pick one, buy it, and the work starts this week.</p>
+        <div class="price">$500 · $2,500 · $7,500</div>
+        <div><a class="ul" href="#programs">The three packages <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </div>
   </section>
 
-  <!-- quote -->
-  <section class="quote">
-    <p>Micah does the work that most strategy decks promise and never deliver.</p>
-    <div class="mono mono-grey">The author, name protected</div>
+  <!-- programs: named, priced, a promise line each -->
+  <section class="sec" id="programs" aria-label="Packages">
+    <div class="sec-head">
+      <div class="l mono">Three fixed prices. Start this week.</div>
+      <div class="r mono grey">Each one goes straight to checkout.</div>
+    </div>
+    <div class="prog">
+      <div class="n">01</div>
+      <h3>The Unstick Session</h3>
+      <div class="promise">Ninety minutes live on your stuck build. You leave with a written plan the same day.<span class="mono">90 minutes + same-day memo</span></div>
+      <div class="price">$500<small>Fixed.</small></div>
+      <div class="act"><a class="ul" href="#">Buy the Unstick Session <span aria-hidden="true">→</span></a></div>
+    </div>
+    <div class="prog">
+      <div class="n">02</div>
+      <h3>The Audit</h3>
+      <div class="promise">Pick one flavor: Build (architecture and code), Production (security and deploy), or Traction (positioning and go-to-market). I go through it top to bottom and hand you the written audit.<span class="mono">Two weeks + debrief call · Start here</span></div>
+      <div class="price">$2,500<small>Fixed.</small></div>
+      <div class="act"><a class="ul" href="#">Buy the Audit <span aria-hidden="true">→</span></a></div>
+    </div>
+    <div class="prog">
+      <div class="n">03</div>
+      <h3>The Sprint</h3>
+      <div class="promise">One week on one outcome, shipped: the repositioning, the production push, the AI feature. Not a plan. The thing, done.<span class="mono">One week, embedded</span></div>
+      <div class="price">$7,500<small>Fixed.</small></div>
+      <div class="act"><a class="ul" href="#">Buy the Sprint <span aria-hidden="true">→</span></a></div>
+    </div>
+    <p class="terms">The moment your card clears you get a kickoff email: the intake questions, a link to book the call, and the manual with its companion files attached. The rules, in plain terms: every package fee credits toward the next package or an engagement started within 60 days. Full refund any time before kickoff.</p>
   </section>
 
   <!-- engagements -->
-  <section class="eng" id="engagements" aria-label="Engagements">
-    <div class="lead">
-      <div class="mono-up mono-grey">For companies</div>
-      <h2>Three engagements.</h2>
-      <div class="from">From $5K a month</div>
-      <p style="margin: 0; font-family: var(--serif); font-size: 19px; line-height: 1.45; color: var(--ink-2); max-width: 40ch;">Advisory, project, retainer, or embedded. Scoped together once you tell me the problem.</p>
-      <div><a class="ul" href="#contact">Book a free intro call <span aria-hidden="true">→</span></a></div>
+  <section class="sec" aria-label="Engagements">
+    <div class="sec-head">
+      <div class="l mono">Three engagements.</div>
+      <div class="r mono grey">From $5K a month</div>
     </div>
-    <div>
-      <div class="erow"><div class="n">01</div><div><strong>Positioning &amp; GTM</strong><p>You built it. Enterprise teams still aren't buying. The gap is positioning, not features.</p></div></div>
-      <div class="erow"><div class="n">02</div><div><strong>End-to-end product building</strong><p>Most AI ideas die between demo and production. That stretch is where I work.</p></div></div>
-      <div class="erow"><div class="n">03</div><div><strong>Frontier AI engineering</strong><p>Eval, orchestration, deployment. The shipping discipline most AI founders skip.</p></div></div>
+    <div class="eng"><div class="n">01</div><h3>Positioning &amp; GTM</h3><p>You built it. Enterprise teams still aren't buying. The gap is positioning, not features.</p></div>
+    <div class="eng"><div class="n">02</div><h3>End-to-end product building</h3><p>Most AI ideas die between demo and production. That stretch is where I work.</p></div>
+    <div class="eng"><div class="n">03</div><h3>Frontier AI engineering</h3><p>Eval, orchestration, deployment. The shipping discipline most AI founders skip.</p></div>
+  </section>
+
+  <!-- about: the fact as a sentence -->
+  <section class="sec" id="about" aria-label="About">
+    <div class="sec-head">
+      <div class="l mono">About</div>
+      <div class="r mono grey">I am taking new engagements now.</div>
+    </div>
+    <div class="about">
+      <div class="k mono grey">Thirteen years</div>
+      <p class="t">I've spent thirteen years inside B2B software companies as the person who can sit on either side of the table: GTM strategy in the morning, shipping product in the afternoon. Most consultants don't ship. Most builders don't sell. <em>I do both, on the same engagement, for the same fee.</em> Four companies I worked inside reached an exit. Postmates. SurveyMonkey. Guardicore. Neuton.AI.</p>
     </div>
   </section>
 
-  <!-- about -->
-  <section class="about" id="about" aria-label="About">
-    <div class="k mono-up mono-grey">About</div>
-    <p class="t">I've spent thirteen years inside B2B software companies as the person who can sit on either side of the table: GTM strategy in the morning, shipping product in the afternoon. Most consultants don't ship. Most builders don't sell. <em>I do both, on the same engagement, for the same fee.</em> I am taking new engagements now.</p>
+  <!-- receipt: their heading, his word, the one real quote -->
+  <section class="sec" aria-label="Receipt">
+    <div class="sec-head">
+      <div class="l mono">Receipt</div>
+      <div class="r mono grey">Industry author</div>
+    </div>
+    <div class="receipt">
+      <div class="k mono grey">Said of the RFP engine</div>
+      <blockquote>Micah does the work that most strategy decks promise and never deliver.</blockquote>
+      <div class="who mono grey">The author, name protected</div>
+    </div>
   </section>
 
-  <!-- foot -->
   <footer class="foot" id="contact">
-    <div class="cta">
-      <h2>Name the problem.</h2>
-      <p>A free 30-minute call comes first. Tell me what is stuck. I listen, then say what the work looks like and whether I am the right person for it.</p>
-    </div>
-    <div class="logistics mono">
+    <h2>Name the problem.</h2>
+    <p>A free 30-minute call comes first. Tell me what is stuck. I listen, then say what the work looks like and whether I am the right person for it.</p>
+    <div class="log mono">
       <a href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a>
       <a href="#">LinkedIn</a>
-      <span class="mono-grey">I read every message and reply inside one business day.</span>
+      <span class="grey">I read every message and reply inside one business day.</span>
     </div>
-    <div class="wordmark" aria-hidden="true" data-wordmark>MICAH/JONES</div>
   </footer>
 
 </div>
@@ -331,27 +364,11 @@
 <script>
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hasGsap = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
-  var hasLenis = typeof window.Lenis !== 'undefined';
-
-  // gallery counter (works without any library)
-  var gal = document.getElementById('gal'), count = document.getElementById('galcount');
-  if (gal && count) {
-    gal.addEventListener('scroll', function () {
-      var cards = gal.querySelectorAll('.pk'); if (!cards.length) return;
-      var step = cards[0].getBoundingClientRect().width + 24;
-      var i = Math.min(cards.length, Math.max(1, Math.round(gal.scrollLeft / step) + 1));
-      count.textContent = (i < 10 ? '0' : '') + i;
-    }, { passive: true });
-  }
-
-  if (reduce || !hasGsap) return;
+  if (reduce || typeof window.gsap === 'undefined' || typeof window.ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  // smooth scroll: the studio's own library, wired to gsap's ticker
-  var lenis = null;
-  if (hasLenis) {
-    lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
+  if (typeof window.Lenis !== 'undefined') {
+    var lenis = new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
     gsap.ticker.lagSmoothing(0);
@@ -359,47 +376,21 @@
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href'); if (id.length < 2) return;
         var el = document.querySelector(id); if (!el) return;
-        e.preventDefault(); lenis.scrollTo(el, { offset: -24, duration: 1.2 });
+        e.preventDefault(); lenis.scrollTo(el, { offset: -20, duration: 1.1 });
       });
     });
   }
 
-  // load: the thesis settles into place (from a visible resting state)
-  gsap.from('#thesis', { y: 18, letterSpacing: '-0.01em', duration: 1.1, ease: 'power3.out' });
-  gsap.from('.thesis .sub, .thesis .row', { y: 10, opacity: 0.001, duration: 0.9, delay: 0.15, stagger: 0.08, ease: 'power3.out' });
+  // load: the mosaic settles, from a visible resting state
+  gsap.from('[data-rise]', { y: 14, duration: 0.9, stagger: 0.06, ease: 'power3.out', clearProps: 'transform' });
 
-  // tiles: slow parallax, transform only
+  // the only ongoing motion: a slow parallax inside each tile, transform only
   document.querySelectorAll('[data-parallax]').forEach(function (img) {
-    var k = parseFloat(img.getAttribute('data-parallax')) || 0.05;
+    var k = parseFloat(img.getAttribute('data-parallax')) || 0.04;
     gsap.fromTo(img, { yPercent: -k * 100, scale: 1.08 }, {
       yPercent: k * 100, scale: 1.08, ease: 'none',
       scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
     });
-  });
-
-  // the record: figures skew with scroll velocity, then settle
-  var figs = gsap.utils.toArray('[data-skew]');
-  var proxy = { skew: 0 }, clamp = gsap.utils.clamp(-6, 6), setSkew = gsap.quickSetter(figs, 'skewX', 'deg');
-  ScrollTrigger.create({
-    onUpdate: function (self) {
-      var s = clamp(self.getVelocity() / -350);
-      if (Math.abs(s) > Math.abs(proxy.skew)) {
-        proxy.skew = s;
-        gsap.to(proxy, { skew: 0, duration: 0.7, ease: 'power3', overwrite: true, onUpdate: function () { setSkew(proxy.skew); } });
-      }
-    }
-  });
-
-  // second thesis: tightens as it arrives
-  gsap.fromTo('#thesis2', { letterSpacing: '0.02em', y: 24 }, {
-    letterSpacing: '-0.035em', y: 0, ease: 'none',
-    scrollTrigger: { trigger: '#thesis2', start: 'top 90%', end: 'top 45%', scrub: true }
-  });
-
-  // footer wordmark rises out of the page edge
-  gsap.fromTo('[data-wordmark]', { yPercent: 28 }, {
-    yPercent: 0, ease: 'none',
-    scrollTrigger: { trigger: '.foot', start: 'top bottom', end: 'bottom bottom', scrub: true }
   });
 })();
 </script>
