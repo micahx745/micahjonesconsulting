@@ -479,6 +479,15 @@ permitted case change); the FAQ head takes its terminal full stop; the middot in
 `Operating principles · How I work.` is kept with the word after it in a nowrap span;
 panel 01's `THE WALL` capsule gets a leader and the 390 overlap is cleared.
 
+**14.8 After v4 (2026-09-06).** Operator: "its not loaded for me. also you do not need to
+have random captions like the guaridocore acquired by akami thing. Just put somewhere the
+5 billion of exits i have helped with." Rulings: the hero proof row is the template's
+verbatim `Four exits, $5B+ combined.` and `$5B+` is the single named exception to §14.3;
+no other caption is added to the hero. The published page (5.2MB, v4 HTML confirmed served
+by a fetch through Fable's own session) did not load for him: the clips are inlined at
+720p only (webm and 1080p dropped, target ≤ 3.5MB), every inline script is guarded, and
+the headline lands at the finger from CSS defaults alone, verified with JavaScript off.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
