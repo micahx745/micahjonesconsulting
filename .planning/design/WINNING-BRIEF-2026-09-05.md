@@ -218,8 +218,9 @@ any new sentence.
 - **The numbers.** A 2×2 grid at 1440 (a single row of four cannot hold the two-line
   figures at one display size). Accepted. No min-height reservation: the footnote follows
   the figure at 24px; cards in a row share height through the grid.
-- **The bar over the copper field.** While the ask section is under the bar, the bar
-  paints copper with espresso type (its `→` turns espresso); the bone strip is gone.
+- **The bar over the copper field.** SUPERSEDED 2026-09-06 (v3 verify 2): copper with
+  espresso labels measures 4.40:1 at 14px, below AA. The bar over the ask paints
+  **espresso with bone labels** (≥ 5.5:1 measured); the arrow is bone. Not copper, not bone.
 - Also fixed in the final round: proof row baseline-aligned with the chip text at 1440;
   the price column's suffixes (`START HERE`, `AT LAUNCH`, `A MONTH`) set on their own line
   under the figure so all five figures are flush right; the manual's label precedes its
