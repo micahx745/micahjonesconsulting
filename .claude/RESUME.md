@@ -8,19 +8,19 @@ Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-
 by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATERIALS.md`.
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
-1. Dark studio mock: artifact a398fb1a (superseded).
-2. "Operator, not consultant" (`FREIGHT-BRIEF-2026-09-05.md`): artifact 1d43593f, superseded by 4.
-3. Video: `design/video/` (B-loop, A2-hold; clips arrive graded). `COMPOSITE-BRIEF-2026-09-06.md`:
-   Nano Banana Pro; RSA composite C2b done + prompt; boardroom = him + AI clients; desk scene.
+1–2. Earlier mocks (a398fb1a, 1d43593f) superseded by 4.
+3. Video: `design/video/` (B-loop, A2-hold). `COMPOSITE-BRIEF-2026-09-06.md`: Nano Banana
+   Pro; RSA composite C2b done + prompt; boardroom = him + AI clients; desk scene.
 4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
    film as the hero ground, no header on screen one, one display size, Anybody wide/light,
    no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
    48/48 checks, two verifiers, published:
    https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
-   Astra (§12) · his v3 review (§14). v4 PUBLISHED 2026-09-06, same URL: 16:9 hero stage
-   with the words AT the finger (≤14px), operator overlay, no years/figures, 3 cards + 1
-   bar, SVG page-6 panel + type panels, heads at --d2. v4.1: 1.2MB (720p clips), proof row
-   'Four exits, $5B+ combined.' (the one figure). 43/43 + 37/37, no-JS verified.
+   Astra (§12) · his reviews (§14, §15). v4: 16:9 hero stage, words AT the finger (≤14px),
+   operator overlay, no years/figures. v5 (§15) PUBLISHED: manual + objections recomposed, how-I-work ledger (no cards),
+   Engagements as the top tier, receipts = 2 rows + 'See the rest →', clips play on first
+   gesture, 1.2MB. Clip Test artifact 41d552b6 awaits his answer (data: media in viewer?).
+   NEXT: the wording round (Reddit data + copy-editor + ledger); sub-pages = live-site branch.
 
 ## Ship gate (operator-owned)
 1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** Blocks the flag.
@@ -30,8 +30,8 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 auto-deploys moved both domains 5× with no alias; confirm www first.
 
 ## Next
-99: landing offer + packages reframe (needs his name/price). 100: home spear, Search Console,
-`/work` ItemList, sitemap lastmod. His: pick a direction · offer name/price · launch date.
+99: landing offer + packages reframe. 100: home spear, Search Console, `/work` ItemList,
+sitemap lastmod. His: offer name/price · launch date.
 
 ## Standing traps
 Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys, check parity ·

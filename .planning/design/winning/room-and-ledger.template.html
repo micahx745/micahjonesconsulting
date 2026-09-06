@@ -321,188 +321,235 @@
      three sentences are three text nodes already, so they become three ledger rows -- the
      column now reads as a register that spans the square instead of a hole with a quote at
      the bottom of it. */
-  .opside .lead { flex: 1; display: flex; flex-direction: column; }
+  /* round 9: the register no longer stretches to the square. flex:1 on the block plus
+     margin-top:auto on the quote pinned the quote to the film's FOOT and opened 421px of
+     empty espresso between the last row and it (measured at 1440). The rows take their
+     height, the quote FOLLOWS them, and the column simply ends where its content does. */
+  .opside .lead { flex: 0 0 auto; display: flex; flex-direction: column; }
   /* SS14.7: the rows take their OWN height. Stretched to equal thirds of the square they
      opened 30-40px of dead space inside two of the three register lines. */
   .opside .lead span { flex: 0 0 auto; display: block; font-size: 21px; line-height: 1.45;
                        padding: 24px 0; border-top: 1px solid var(--hair); }
   .opside .lead span:first-child { padding-top: 0; border-top: 0; }
   .opside .lead span:last-child { padding-bottom: 0; }
-  /* the paragraph stays top-aligned with the film (SS14.2); the receipt is pushed to the
-     film's FOOT so the right column spans the square instead of stopping at 490 of 783. */
-  .opside .sig { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--hair);
+  /* the paragraph stays top-aligned with the film (SS14.2). Round 9: the quote is NOT
+     pinned to the film's foot any more -- it comes 40px after the last register row, which
+     is the column's own 28px flex gap plus this 12px. */
+  .opside .sig { margin-top: 12px; padding-top: 22px; border-top: 1px solid var(--hair);
                  display: flex; flex-direction: column; gap: 12px; }
   .opside .sig q { quotes: none; font-size: 21px; line-height: 1.35; color: var(--bone); }
 
-  /* ================= 03 HOW I WORK: the rail =========================================== */
-  .work { padding-top: var(--s); }
-  .rail { grid-column: 1 / 6; position: sticky; top: 140px; align-self: start; }
-  .rail ol { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 48px; margin: 0; }
-  .rail li .d { opacity: 0.55; transition: opacity 300ms var(--e); display: block; }
-  .rail li.on .d { opacity: 1; }
-  .rail li .n { display: block; margin-bottom: 10px; }
-  .panels { grid-column: 6 / 13; display: flex; flex-direction: column; gap: 22vh; padding-bottom: 18vh; }
-
-  /* SS14.6: ONE frame geometry and one ground for all three panels. No photograph of him
-     appears in this section at any width. */
-  .panel .frame { box-sizing: border-box; aspect-ratio: 4 / 3; border-radius: 16px;
-                  border: 1px solid var(--hair-12);
-                  background: color-mix(in oklab, var(--ink) 4%, transparent);
-                  padding: 28px; display: flex; flex-direction: column; }
-  /* CORRECTED after verify round 3: panels 02 and 03 read as placeholders next to panel
-     01's real diagram -- a label at the top, a section line at the foot and the type
-     floating in ~150px of dead space between them. All three plates now carry the SAME
-     head-rule under the label that they already carried at the foot, so the artifact sits
-     in a bounded field rather than in the middle of nothing, and the type-only panels
-     set their sentence from the TOP of that field in the display face, which is what
-     makes a sentence read as a specimen instead of a caption. */
-  .panel .frame > .l:first-child { display: block; padding-bottom: 14px;
-                                   border-bottom: 1px solid var(--hair-12); }
-  .panel .frame .art { flex: 1; display: flex; align-items: center; justify-content: center;
-                       min-height: 0; padding: 18px 0; }
-  .panel .frame .art p { font-size: 28px; line-height: 1.2; letter-spacing: -0.01em;
-                         color: var(--ink); max-width: 22ch; }
-  .panel[data-kind="type"] .frame .art { justify-content: flex-start; }
-  /* the sentence IS the artifact on a pattern-D plate, so it is set as a specimen -- the
-     display face at the pinned 28px, a 26ch measure that lands three lines in the frame at
-     every width, and the field's own matting above and below it. */
-  .panel[data-kind="type"] .frame .art p { font-family: var(--display); font-weight: 300;
-                       font-variation-settings: "wdth" 106; font-size: 28px; line-height: 1.3;
-                       letter-spacing: -0.015em; max-width: 26ch; }
-  .panel .frame .footrule { border-top: 1px solid var(--hair-12); padding-top: 12px; }
-  .panel figcaption { padding-top: 14px; }
-
-  /* the redrawn page-6 diagram. Geometry transcribed 1:1 from
-     components/color-worlds/WallChart.tsx (viewBox 0 0 340 168), which itself transcribes
-     wall-chart() in product/playbook/src/template.typ. Static: no draw-on in the mock. */
-  .wc { width: 100%; height: auto; display: block; }
-  .wc .ax { stroke: var(--hair); stroke-width: 1; }
-  .wc .win { fill: none; stroke: var(--ink-60); stroke-width: 1.5; stroke-dasharray: 5 4; }
-  .wc .rules { fill: none; stroke: var(--copper); stroke-width: 2.5; stroke-linejoin: round;
-               stroke-linecap: round; }
-  .wc .cross { fill: none; stroke: var(--ink); stroke-width: 1.5; }
-  .wc text { font-family: "Anybody", Arial, sans-serif; font-size: 8px; font-weight: 500;
-             font-variation-settings: "wdth" 80; letter-spacing: 0.04em;
-             text-transform: uppercase; fill: var(--ink-60); }
-  .wc text.strong { fill: var(--ink); }
-  /* SS14.6 asks for capsule labels in the label style and hand-curved arrows. The capsule
-     is a rounded plate under each label so the type never sits on a stroke; the two leaders
-     are drawn by hand off the plate to the line each label names. */
-  .wc .plate { fill: #0D0D0F; stroke: var(--hair-12); stroke-width: 1; }
-  html.lit .wc .plate { fill: #F5EFE4; }
-  .wc .lead { fill: none; stroke: var(--hair); stroke-width: 1; stroke-linecap: round; }
-  .wc .head { fill: var(--hair); stroke: none; }
-  /* CORRECTED after verify round 3: an 8px label in a 340-unit viewBox rendered at 7.3px
-     inside a 310px panel on a phone -- under the readable floor. The label furniture is
-     scaled 1.40x below 900px through the CSS geometry properties (x/y/width/height are
-     presentation attributes, so CSS owns them), the two leaders are re-drawn to start
-     clear of the widened plates, and the figure paints outside its box by the 0.6 unit the
-     bottom plate gains. The diagram's own axes, curve, window and crossing are untouched,
-     so the transcription from WallChart.tsx still holds line for line. */
-  @media (max-width: 899px) {
-    .wc { overflow: visible; }
-    .wc text { font-size: 11.2px; }
-    .wc .plate:nth-of-type(1) { x: 1px; y: 32.4px; width: 126.5px; height: 18.2px; rx: 9.1px; }
-    .wc .plate:nth-of-type(2) { x: 9px; y: 102.4px; width: 90.9px; height: 18.2px; rx: 9.1px; }
-    .wc .plate:nth-of-type(3) { x: 180px; y: 20.4px; width: 51.4px; height: 18.2px; rx: 9.1px; }
-    .wc .plate:nth-of-type(4) { x: 1px; y: 150.4px; width: 82.1px; height: 18.2px; rx: 9.1px; }
-    /* x/y on <text> are attribute LISTS, not CSS geometry properties, so the baselines
-       move by transform; the leaders are the 5th and 7th <path> in the figure. */
-    #wc-t1, #wc-t2, #wc-t4 { transform: translateY(1px); }
-    #wc-t3 { transform: translate(-7px, 1px); }
-    .wc .lead:nth-of-type(5) { d: path("M130 41.5 C 137 41.5, 139 48, 146.5 55.4"); }
-    .wc .lead:nth-of-type(7) { d: path("M103 111.5 C 108 111.5, 112 114.5, 118.2 118.7"); }
-    /* the widened THE WALL plate ends at x 231.4 here, so its leader starts clear of it. */
-    .wc .lead:nth-of-type(9) { d: path("M233.5 29.5 C 239.5 29.5, 243.5 33.5, 243.5 45.4"); }
-  }
-
-  /* ================= 04 PACKAGES: three cards, then one bar ============================ */
+  /* ================= 03 HOW I WORK: the ledger =========================================
+     SS15.4. Operator, on v4.1: "The cards to the right of diagnose and build etc look
+     horrible." The three framed panels are gone -- with them the redrawn page-6 SVG, the
+     two typographic plates, the sticky rail and the whole 12-column split. What is left is
+     the section the corpus's method sections actually run: a full-width ledger of three
+     rows, each an ordinal, the step name at the composed display size, and the step's one
+     sentence in the right half, with a hairline between. No frame, no image, no video, no
+     sticky. */
+  .work { padding-top: var(--s); padding-bottom: var(--s); }
+  .steps { list-style: none; margin: 0; padding: 0; }
+  /* the ordinal takes a 56px stub rather than a full twelfth: at 1440 a twelfth left it
+     stranded 100px from the name it numbers. The sentence still opens past the section's
+     own midline, which is what SS15.4 means by the right half. */
+  /* round 9: the row was baseline-aligned, so the sentence's first line hung off the NAME's
+     baseline -- 54px below the name's cap-top at 1440, level with the name's foot, reading
+     as a caption dropped under a display word instead of the second column of a ledger
+     line. The row is TOP-aligned; the sentence's own cap-top is then brought onto the
+     name's cap line by the padding below. */
+  .steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr);
+              column-gap: var(--gap); row-gap: 12px; align-items: start;
+              padding: 40px 0; border-top: 1px solid var(--hair); }
+  .steps li:last-child { border-bottom: 1px solid var(--hair); }
+  /* v5 verify 3: baseline-aligned, a 14px ordinal beside a 103px name sits at the name's
+     FOOT and reads as a stray artifact. It goes on the name's CAP-LINE and to full ink, and
+     the stub drops 56px -> 40px so it stops standing 80px clear of the number it numbers.
+     The cap-top of a line box is (line-height - 0.92)/2 + --capk of the font size: 0.0891
+     of --d2 for the name at line-height 0.98, 0.3241 of 14px for the label at 1.45. */
+  .steps .n { grid-column: 1 / 2; align-self: start; color: var(--ink);
+              padding-top: calc((var(--capk) + 0.03) * var(--d2)
+                                - (var(--capk) + 0.265) * 14px); }
+  .steps .nm { grid-column: 2 / 3; display: block; }
+  .steps .s { grid-column: 3 / 4; font-size: 21px; line-height: 1.45; max-width: 46ch;
+              color: var(--ink-80); }
+  /* SEND-BACK, round 9: keeping this head on ONE line cost it the section-head register --
+     it ran at wdth 88 on the desktop and 68 on the phone while every other head and every
+     step name stayed at 115, so the head was set NARROWER than the names under it and the
+     hierarchy inverted. The width axis goes back to 115 at every width and the head is
+     allowed to WRAP. The middot rule survives the wrap in the markup, not here: the
+     separator is tied to the word on BOTH sides with nbsp, so the only breakable spaces
+     left are the two outside that unit and the separator can neither end a line nor open
+     one. The 20ch cap stays off -- the content box is the measure. */
+  .work .sec h2 { max-width: none; }
+  /* ================= 04 PACKAGES: three cards, then the top tier ========================
+     SS15.5. Operator: "The part showing pckages could look a little more prounonced and
+     visually enticing. Engagements is the highest paying form - so maybe make that special
+     looking instead of underwhelming but still connected with the packagers."
+     So the three cards stop being invisible: each gets a real ground (a 1px hairline box at
+     15% ink, 8px radius, 28px of interior), the package name comes off the 14px label and
+     onto 24px Hanken 500, and the price goes to 72px. The Audit's mark is a 2px COPPER TOP
+     RULE, not the full copper box of v4 -- a box around one of three peers is a badge; a
+     rule over it is a rank. SS14.7's gutter pin goes with the borderless card it was written
+     for: a bordered box hanging 25px into the page gutter is a mistake, so the row sits in
+     the content width and each card is (content - 48)/3, which is the geometry SS15.3 then
+     borrows for the objections. */
   .price { padding-top: var(--s); }
-  /* SS14.7: the cards' TEXT aligns to the section gutter. The card carries 24px of interior
-     padding, so the row is pulled 24px into the gutter on both sides and the first glyph
-     lands at 32px -- the same left edge as every section head on the page. The three
-     interiors then span exactly the content width (1376 at 1440), so each card box is
-     content/3 and each interior is (content - 144)/3. */
   .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;
-           margin: 0 -25px; }
-  .card { box-sizing: border-box; padding: 24px; display: flex; flex-direction: column;
-          border: 1px solid transparent; border-radius: 0; background: none; box-shadow: none; }
-  /* SS14.5: the Audit alone carries a 1px copper border. No ribbon, no claim. */
-  .card.mark { border-color: var(--copper); }
+           margin: 0; }
+  .card { box-sizing: border-box; padding: 28px; display: flex; flex-direction: column;
+          border: 1px solid var(--hair); border-radius: 8px; background: none;
+          box-shadow: none; }
+  /* the 2px rule is 1px thicker than the hairline it replaces, so the interior is pulled
+     back by exactly that 1px and the three card interiors stay on one line. */
+  .card.mark { border-top: 2px solid var(--copper); padding-top: 27px; }
+  .card .nm { font-family: var(--text); font-weight: 500; font-size: 24px; line-height: 1.2;
+              letter-spacing: -0.01em; color: var(--ink); }
   .card .pblock { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
                   padding: 18px 0 20px; border-bottom: 1px solid var(--hair-12); }
-  .card .pr { font-family: var(--display); font-weight: 300; font-size: 64px; line-height: 1;
+  .card .pr { font-family: var(--display); font-weight: 300; font-size: 72px; line-height: 1;
               font-variation-settings: "wdth" 106; letter-spacing: -0.02em;
               font-variant-numeric: tabular-nums; color: var(--ink); }
   .card .one { font-size: 17px; line-height: 1.5; color: var(--ink-72); margin-top: 20px; }
   .card .cta { margin-top: auto; padding-top: 28px; }
   .card .cta .chip { height: 48px; width: 100%; }
-  .card .cta .chip .t { flex: 1; justify-content: center; font-size: 24px;
-                        font-variation-settings: "wdth" 80; letter-spacing: 0.02em;
-                        font-weight: 300; text-transform: none; white-space: nowrap; }
+  /* v5 verify 3: the chip was condensed Anybody 300 at 24px under a 24px Hanken 500 name,
+     "six lines apart and ... belonging to different systems" inside one 443px box. The chip
+     takes the NAME's register -- same family, same weight, same tracking -- one step down in
+     size so it reads as the card's button and not as a second title. */
+  .card .cta .chip .t { flex: 1; justify-content: center; font-family: var(--text);
+                        font-size: 20px; font-weight: 500; letter-spacing: -0.01em;
+                        text-transform: none; white-space: nowrap; }
   .card .cta .chip .a { width: 48px; }
   /* the ground swaps to copper; the type does not move. 24px is large text, where copper
      carries bone at 3.83:1 and espresso at 4.43:1 against the 3:1 bar. */
   .card:hover .cta .chip .t, .card:focus-within .cta .chip .t { background: var(--copper); color: var(--bone); }
   .card:hover .cta .chip .a, .card:focus-within .cta .chip .a { background: var(--copper); }
 
-  .ebar { margin-top: 32px; box-sizing: border-box; height: 104px; border-radius: 16px;
-          background: var(--espresso); color: var(--bone);
-          display: flex; align-items: center; justify-content: space-between;
-          gap: 24px; padding: 0 28px; }
-  .ebar .say { font-size: 19px; line-height: 1.4; color: var(--bone); }
-  .ebar .pill { box-sizing: border-box; height: 44px; border: 1px solid var(--copper);
-                border-radius: 22px; color: var(--copper); display: inline-flex; align-items: center;
-                padding: 0 22px; font-family: var(--display); font-weight: 300; font-size: 24px;
-                line-height: 1; font-variation-settings: "wdth" 106; letter-spacing: -0.01em;
-                font-variant-numeric: tabular-nums; white-space: nowrap;
-                transition: background 300ms var(--e), color 300ms var(--e); }
-  .ebar:hover .pill, .ebar:focus-visible .pill { background: var(--copper); color: var(--bone); }
-
-  /* ================= 05 THE RECORD: the index ========================================== */
-  .proofsec { padding-top: var(--s); }
-  /* CORRECTED after verify round 3: at 420px the one long name wrapped to two lines while
-     its caption stayed baseline-aligned to line one, so that row sat unevenly against the
-     six single-line rows. 560px holds every name on one line at 1440. */
-  .prf { position: relative; box-sizing: border-box; display: grid;
+  /* SS15.5: Engagements is the top tier, so it is not a fourth card and not the 104px strip
+     of v4 either. One espresso block the full width of the card row, 24px under it, carrying
+     the same 2px copper rule the Audit carries -- which is what connects the tier to the
+     packages -- and 220px of height, which is what separates it from them. */
+  /* v5 verify 3: as two space-between columns the block held "a wide band of empty espresso
+     across the middle" -- the head and the figure started level but ended 31px apart, so the
+     two columns opened gaps of 27px and 42px on the same 220px plate. It is a TABLE instead:
+     two rows of two cells, the head and the figure sharing a BASELINE on row one, the
+     descriptor and the chip sharing a foot on row two. Nothing floats, and the plate is
+     filled by its own content rather than by a minimum height. */
+  .eng { display: grid; grid-template-columns: minmax(0, 1fr) auto;
+         grid-template-rows: auto auto; column-gap: 40px; row-gap: 24px;
+         /* between 900 and 1279 the head is short enough that the 220px floor is taller
+            than the two rows; the leftover is padding around the PAIR, never a hole
+            between them, so the row gap stays 24px at every width. */
+         align-content: center;
+         box-sizing: border-box; margin-top: 24px; min-height: 220px; border-radius: 16px;
+         border-top: 2px solid var(--copper); background: var(--espresso); color: var(--bone);
+         padding: 34px 36px; }
+  /* the two halves keep their own boxes and BORROW the block's rows (subgrid), so row one
+     is the head and the figure and row two is the descriptor and the chip -- one shared
+     top edge and one shared foot across the plate, instead of two columns each opening
+     their own gap. */
+  .eng .side { display: grid; grid-row: 1 / 3; grid-template-rows: subgrid;
+               row-gap: 24px; align-items: baseline; min-width: 0; }
+  .eng .side.l-side { grid-column: 1; }
+  .eng .side.r { grid-column: 2; justify-items: end; text-align: right; }
+  .eng .hd  { grid-row: 1; min-width: 0; }
+  .eng .v   { grid-row: 1; }
+  .eng .dsc { grid-row: 2; align-self: end; min-width: 0; }
+  .eng .chip { grid-row: 2; align-self: end; }
+  /* SS15.5 pins the SIZE of "Engagements" at --d2 and nothing else; the width axis is the
+     lever that keeps it and the figure on one row down to 1280 (SS14.7's own precedent on
+     the operator heading). */
+  .eng .hd { font-size: var(--d2); font-variation-settings: "wdth" 96; line-height: 0.92;
+             color: var(--bone); }
+  .eng .dsc { font-size: 21px; line-height: 1.35; color: var(--bone); max-width: 34ch; }
+  .eng .v { font-family: var(--display); font-weight: 300; font-size: 64px; line-height: 1;
+            font-variation-settings: "wdth" 100; letter-spacing: -0.02em;
+            font-variant-numeric: tabular-nums; color: var(--bone); white-space: nowrap; }
+  /* the block is espresso on the BONE half of the page, so it needs the inverted chip --
+     and html.lit's own chip rule out-specifies a bare .eng .chip, which is why these three
+     carry the html prefix. MEASURED: without it the plate went espresso-on-espresso and
+     the chip lost its block. */
+  html .eng .chip .t, html.lit .eng .chip .t { background: var(--bone); color: var(--espresso); }
+  html .eng .chip .a, html.lit .eng .chip .a { background: var(--copper); color: var(--bone); }
+  html .eng:hover .chip .t, html.lit .eng:hover .chip .t,
+  html .eng:focus-visible .chip .t, html.lit .eng:focus-visible .chip .t {
+    background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
+  /* ================= 05 THE RECORD: consolidated ========================================
+     SS15.6. Operator: "consolidated the receipts part and show two and offer to see the
+     rest. guardicore RFP engine." So the index is TWO rows and a third row-shaped link. The
+     link keeps the row's geometry -- hairline, height, arrow at the right margin -- and
+     takes the quieter 21px so it reads as the way out of the ledger rather than a third
+     receipt. */
+  .prf, .prfx { position: relative; box-sizing: border-box; display: grid;
          grid-template-columns: minmax(0, 560px) minmax(0, 1fr) 40px;
          column-gap: 32px; align-items: baseline; min-height: 84px; padding: 26px 0;
          border-bottom: 1px solid var(--hair-10); }
+  .proofsec { padding-top: var(--s); }
+  /* v5 verify 3: the rows carried bottom borders only, so the ledger's first row floated
+     while the manual's symptom lines opened on a rule. The index opens on one too. */
+  .proofsec a:first-of-type { border-top: 1px solid var(--hair-10); }
   .prf .who { font-family: var(--text); font-weight: 500; font-size: 28px; line-height: 1.15;
               letter-spacing: -0.01em; color: var(--ink); }
+  .prfx .who { font-family: var(--text); font-weight: 500; font-size: 21px; line-height: 1.3;
+               color: var(--ink-80); }
   .prf .cap { grid-column: 2; }
-  .prf .ar { grid-column: 3; justify-self: end; color: var(--ink);
+  .prf .ar, .prfx .ar { grid-column: 3; justify-self: end; color: var(--ink);
              font-family: var(--display); font-size: 19px; }
-  .prf::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
-                background: var(--copper); transform: scaleX(0); transform-origin: 0 50%;
-                transition: transform 400ms var(--e); }
-  a.prf:hover::after, a.prf:focus-visible::after { transform: scaleX(1); }
+  .prf::after, .prfx::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
+                height: 1px; background: var(--copper); transform: scaleX(0);
+                transform-origin: 0 50%; transition: transform 400ms var(--e); }
+  a.prf:hover::after, a.prf:focus-visible::after,
+  a.prfx:hover::after, a.prfx:focus-visible::after { transform: scaleX(1); }
+  a.prfx:hover .who, a.prfx:focus-visible .who { color: var(--ink); }
 
-  /* ================= 06 THE MANUAL ===================================================== */
+  /* ================= 06 THE MANUAL ======================================================
+     SS15.2. Operator: "For the book the image didnt load." and the section read as a stack.
+     Recomposed: the cover fills columns 1-5 at 4:5 inside the dashed frame with the file
+     line under it, and every word moves to columns 6-12 -- label, the display line at --d2
+     (never --d: at the poster size it out-shouted the hero), the three symptoms as a
+     hairline ledger at 21px, the chapters paragraph, then the buy block. */
   .manual { padding-top: var(--s); }
-  .manual .copy { grid-column: 1 / 7; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
-  .manual .lines { display: flex; flex-direction: column; gap: 6px; }
-  .manual .lines p { font-size: 20px; line-height: 1.35; color: var(--ink); max-width: 44ch; }
+  .manual .art { grid-column: 1 / 6; }
+  .manual .copy { grid-column: 6 / 13; display: flex; flex-direction: column;
+                  align-items: flex-start; gap: 28px; }
+  .manual .copy .sec { margin-bottom: 0; }
+  .manual .lines { display: flex; flex-direction: column; align-self: stretch; }
+  /* v5 verify 3: the ledger's hairlines stopped at a 46ch measure inside a 793px column,
+     so the head ran one width and everything under it another, and the column's right third
+     was empty. A ledger takes the COLUMN; the reading paragraph under it keeps its measure. */
+  .manual .lines p { font-size: 21px; line-height: 1.35; color: var(--ink);
+                     padding: 14px 0; border-top: 1px solid var(--hair); }
+  .manual .lines p:last-child { border-bottom: 1px solid var(--hair); }
   .manual .buy { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
   .manual .buy .v { font-family: var(--display); font-weight: 300; font-variation-settings: "wdth" 106;
                     font-size: 64px; line-height: 1; letter-spacing: -0.02em; color: var(--ink);
                     font-variant-numeric: tabular-nums; }
   .manual .buy .v .l { display: block; margin-top: 10px; }
-  .manual .art { grid-column: 8 / 13; }
-  .manual .art .frame { border: 1px dashed var(--hair); padding: 16px; background: #0B0A09; }
+  /* the frame's BORDER BOX is the column and the frame is 4:5; the cover fills its content
+     box. The source is 720x1018 (0.707), so a cover fit trims 5.8% off the top and the same
+     off the foot -- both inside the cover's own margins, measured.
+     SEND-BACK, round 9: the frame painted #0B0A09 across its whole padding box, so the dash
+     sat ON the black fill -- ink 15% over rgb(11,10,9) measured 1.00:1 and the frame was in
+     the CSSOM and invisible on screen. The FILL moves to an inner cover box and the padding
+     becomes 16px of BONE between the dash and the cover; the dash goes to ink 40%, which is
+     the step the hairline needs against paper. */
+  .manual .art .frame { box-sizing: border-box; aspect-ratio: 4 / 5;
+                        border: 1px dashed color-mix(in oklab, var(--ink) 40%, transparent);
+                        padding: 16px; background: none; }
+  .manual .art .frame .cov { display: block; width: 100%; height: 100%; background: #0B0A09; }
+  .manual .art .frame img { display: block; width: 100%; height: 100%; object-fit: cover;
+                            object-position: 50% 50%; }
   .manual .art figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; }
 
-  /* ================= 07 THE FAQ ======================================================== */
+  /* ================= 07 THE FAQ ========================================================
+     SS15.3. Operator: "the objections part still look bad." Three equal columns in the price
+     cards' own geometry -- (content - 48)/3 on a 24px gap -- each opening on a hairline. */
   .faq { padding-top: var(--s); padding-bottom: var(--s); }
-  .qs { grid-column: 1 / -1; }
-  .q { padding-top: 24px; border-top: 1px solid var(--hair);
-       display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-       column-gap: var(--gap); row-gap: 10px; }
-  .q + .q { margin-top: 48px; }
-  .q dt { font-family: var(--text); font-weight: 500; font-size: 28px; line-height: 1.2;
-          letter-spacing: -0.01em; color: var(--ink); }
-  .q dd { font-size: 19px; line-height: 1.5; color: var(--ink-80); max-width: 56ch; }
-
+  .qs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .q { padding-top: 24px; border-top: 1px solid var(--hair); }
+  .q dt { font-family: var(--text); font-weight: 500; font-size: 24px; line-height: 1.2;
+          letter-spacing: -0.01em; color: var(--ink); text-wrap: balance; }
+  .q dd { font-size: 17px; line-height: 1.5; color: var(--ink-80); margin-top: 12px; }
   /* ================= 08 THE ASK ======================================================== */
   .ask { position: relative; z-index: 3; box-sizing: border-box; background: var(--copper); color: var(--espresso);
          min-height: 720px; display: flex; align-items: center;
@@ -531,24 +578,31 @@
 
   @media (max-width: 1279px) {
     .room { padding-bottom: 120px; }
-    .card .cta .chip .t { font-size: 20px; }
+    .card .cta .chip .t { font-size: 19px; }
     .opgrid { gap: 32px; }
     .opstage { grid-column: 1 / -1; }
     .opside { grid-column: 1 / -1; }
-    .rail { grid-column: 1 / 6; }
-    .panels { grid-column: 6 / 13; }
-    .manual .copy { grid-column: 1 / 7; }
-    .manual .art { grid-column: 7 / 13; }
-    .prf { grid-template-columns: minmax(0, 460px) minmax(0, 1fr) 40px; column-gap: 24px; }
+    /* SS15.5: the engagements figure gives up 12px so it and "Engagements" stay on one row
+       inside a 1216px content width. MEASURED, not guessed -- see the verifier's own
+       one-row report at 1280. */
+    .eng .v { font-size: 52px; }
+    .eng { column-gap: 28px; row-gap: 22px; padding: 30px 28px; }
+    .prf, .prfx { grid-template-columns: minmax(0, 460px) minmax(0, 1fr) 40px; column-gap: 24px; }
   }
 
   @media (max-width: 1023px) {
-    .card .cta .chip .t { font-size: 18px; }
-    .prf { grid-template-columns: minmax(0, 1fr) 40px; row-gap: 8px; column-gap: 12px;
+    .card .cta .chip .t { font-size: 17px; }
+    /* MEASURED: between 900 and 1023 the heading and the figure together needed 892 of an
+       856px content width and the block wrapped into an accidental third row. The figure
+       gives up 20px; the block keeps its one row and its 220px. */
+    .eng { column-gap: 24px; row-gap: 20px; padding: 28px 24px; }
+    .eng .v { font-size: 44px; }
+    .prf, .prfx { grid-template-columns: minmax(0, 1fr) 40px; row-gap: 8px; column-gap: 12px;
            align-items: baseline; padding: 22px 0; }
     .prf .who { grid-column: 1 / -1; font-size: 24px; }
+    .prfx .who { grid-column: 1; }
     .prf .cap { grid-column: 1; }
-    .prf .ar { grid-column: 2; }
+    .prf .ar, .prfx .ar { grid-column: 2; }
   }
 
   @media (max-width: 899px) {
@@ -567,7 +621,15 @@
        At 390 that is (100.6, 111.7) of a 390x292 stage -- 25.8% across, the 26% SS14.7
        measures. The window is H * 16/9 source px wide (1442 at 390, 1440 at 360), so the
        face at source x 1010..1290 stays inside the frame at both. */
-    .room { padding-bottom: 0;
+    /* SEND-BACK, v5 verify 3: the stage began at y=0 under an opaque 48px bar, so 16% of
+       a 292px film was hidden and the measured hair silhouette on the first visible row
+       showed the crown of his head was inside the covered band -- he read as cut off flat
+       at the top of the phone. The stage starts BELOW the bar instead. SS14.1's "the bar
+       overlays the stage's top" is written for the desktop stage; nothing in SS14.1/14.7
+       puts the bar over the mobile crop, and the overlay is worth nothing if what it
+       overlays is the subject's head. Everything hung on the stage -- the headline at the
+       fingertip included -- is positioned inside the stage's own box and moves with it. */
+    .room { padding-bottom: 0; padding-top: 48px;
             --H: min(75vw, 292px);
             --mfx: calc(0.3444444 * var(--H));
             --mfy: calc(0.3824074 * var(--H)); }
@@ -583,8 +645,15 @@
     .hero-copy h1 { position: absolute; z-index: 2; margin: 0;
                     left: calc(var(--mfx) - 40px); right: 12px;
                     top: calc(var(--mfy) + 4px - var(--capk) * var(--d)); }
+    /* round 9: the top padding is spent. SS14.7 puts the sentence UNDER the stage at
+       <=899 and the stage's own box is pinned (a full-width 4:3 crop, 390x292, which is
+       what puts the fingertip at 25.8% of the stage width), so the only air between the
+       stage's foot and the sentence that this composition owns is this padding -- 12px of
+       it, now zero. The rest of what reads as air on the phone is the veil's solid tail
+       INSIDE the stage, between the headline's foot and the stage's, and it cannot be cut
+       without moving the stage's box and with it the fingertip. Measured and reported. */
     .hero-copy { position: static; left: auto; right: auto; top: auto;
-                 padding: 12px var(--g) 56px; }
+                 padding: 0 var(--g) 56px; }
     .hero-copy .lede { margin-bottom: 24px; }
     .hero-copy .base-row { flex-direction: column; align-items: stretch; gap: 24px; }
 
@@ -611,48 +680,50 @@
     .opside { margin-top: 4px; gap: 20px; }
     .opside p { font-size: 17px; line-height: 1.45; }
     .opside .lead span { font-size: 18px; line-height: 1.45; padding: 18px 0; }
+    /* the phone column runs a 20px flex gap, so the quote's own margin carries the rest
+       of the same 40px. */
+    .opside .sig { margin-top: 20px; }
 
-    /* each step is followed by ITS OWN artifact, and no heading is dimmed. The flatten has
-       to happen on the GRID that holds the rail and the panels -- flattening onto .work
-       itself left the <li> and <figure> as items of the 12-column grid, stacked on top of
-       each other in columns 1 and 6. */
-    .work .grid { display: flex; flex-direction: column; gap: 0; }
-    .rail, .rail ol, .panels { display: contents; }
-    .rail { position: static; }
-    .rail li { margin: 0; }
-    .rail li .d { opacity: 1; }
-    .rail li[data-step="1"] { order: 1; margin-top: 8px; }
-    .rail li[data-step="2"] { order: 3; margin-top: 56px; }
-    .rail li[data-step="3"] { order: 5; margin-top: 56px; }
-    .panel[data-panel="1"] { order: 2; }
-    .panel[data-panel="2"] { order: 4; }
-    .panel[data-panel="3"] { order: 6; }
-    .panel { margin-top: 20px; }
-    .panel .frame { padding: 20px; aspect-ratio: auto; min-height: 300px; }
+    /* SS15.4: the ledger stacks. Each row keeps its hairline; the ordinal and the step name
+       take the full width and the sentence follows them. */
+    /* round 9: the phone override is GONE. The head keeps the section-head width axis
+       (115) here too and wraps inside the content box; the nbsp unit round the separator
+       is what holds the middot rule, at 390 exactly as at 1440. */
+    .steps li { grid-template-columns: minmax(0, 1fr); padding: 28px 0; row-gap: 8px; }
+    .steps .n, .steps .nm, .steps .s { grid-column: 1 / 2; }
+    .steps .s { font-size: 19px; }
 
-    /* SS14.7: at <=899 the Audit's mark is a 2px copper LEFT RULE, not a box, and the row
-       carries no negative margin -- nothing bleeds past the 20px gutter. All three cards
-       carry the identical geometry (a hairline over, a 2px left rule, 14px of interior);
-       the Audit's rule is copper and the other two are transparent, so the mark is the only
-       difference between them and the three interiors stay aligned. */
+    /* SS15.5: the cards KEEP their ground at every width -- a bordered box is the thing the
+       operator asked for, and the v4 left-rule variant existed only because the borderless
+       row hung into the gutter. They simply stack. */
     .cards { grid-template-columns: minmax(0, 1fr); gap: 20px; margin: 0; }
-    .card { padding: 16px 0 16px 14px; border: 0; border-top: 1px solid var(--hair-12);
-            border-left: 2px solid transparent; }
-    /* the base rule sets border-color on all four sides, so without this the Audit's top
-       hairline turned copper too and the mark was a rule PLUS a differently-coloured
-       hairline. The left rule is the only difference between the three cards. */
-    .card.mark { border-left-color: var(--copper); border-top-color: var(--hair-12); }
+    .card { padding: 22px; }
+    .card.mark { padding-top: 21px; }
     .card .pr { font-size: 52px; }
-    .card .cta .chip .t { font-size: 20px; }
+    .card .cta .chip .t { font-size: 19px; }
     .hero-copy { min-height: 0; }
-    /* the bar becomes two rows and keeps its tap target. */
-    .ebar { height: auto; min-height: 104px; flex-direction: column; align-items: flex-start;
-            justify-content: center; gap: 16px; padding: 24px 20px; }
+    /* SS15.5: the top tier stacks into two rows and keeps its height and its rule. */
+    /* one column: the two halves stack, each keeping its own two rows. */
+    .eng { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto;
+           row-gap: 22px; padding: 26px 20px; }
+    .eng .side { grid-column: 1; row-gap: 22px; }
+    .eng .side.l-side { grid-row: 1 / 3; }
+    /* round 9: the chip takes the block's whole interior on the phone. justify-items:start
+       shrink-wrapped it to 192px of a 310px interior, so the top tier's one tap target sat
+       narrower than the package cards' chips under it. It stretches instead. */
+    .eng .side.r { grid-column: 1; grid-row: 3 / 5; justify-items: stretch; text-align: left; }
+    .eng .chip { width: 100%; }
+    .eng .chip .t { flex: 1; }
+    /* MEASURED: nowrap at 52px, "From $5K a month" is 404px against a 310px column at 390
+       and 280px at 360 -- it was the whole page's horizontal overflow. It is sized to fit
+       one line at 360 (273px at 40px / wdth 88) and the nowrap comes off as the net. */
+    .eng .v { font-size: 40px; font-variation-settings: "wdth" 88; white-space: normal; }
+    .eng .hd { font-variation-settings: "wdth" 106; }
 
-    .q { grid-template-columns: minmax(0, 1fr); }
-    .q dt { font-size: 24px; }
+    /* SS15.3: the three objections stack, 40px apart. */
+    .qs { grid-template-columns: minmax(0, 1fr); gap: 40px; }
     .manual .copy, .manual .art { grid-column: 1 / -1; }
-    .manual .art { margin-top: 56px; }
+    .manual .copy { margin-top: 40px; }
     .manual .buy .v { font-size: 52px; }
     .ask { min-height: 0; padding: 88px var(--g); }
     .ask .block { gap: 40px; }
@@ -660,6 +731,16 @@
     .ask .ar { font-size: 0.42em; margin-left: 11px; }
     .ask .chip { height: 48px; }
     .foot .row { flex-direction: column; }
+  }
+
+  /* SS15.2 send-back (verify round 8): at 390 the manual's file line stayed a two-column
+     row, so BOTH halves wrapped -- 'THE-80-PERCENT- / WALL.PDF' beside 'PDF + ZIP . EVERY
+     FUTURE / EDITION' -- four ragged fragments and a hyphen break under an otherwise clean
+     full-width cover. Under 700px the caption row stacks: two whole lines, left-aligned on
+     the cover's own left edge, neither of them wrapping. Measured: 173px and 240px of a
+     326px column at 390. Above 700px each half has >=310px and the spread row is right. */
+  @media (max-width: 699px) {
+    .manual .art figcaption { flex-direction: column; align-items: flex-start; gap: 6px; }
   }
 
   @media (max-width: 599px) {
@@ -696,8 +777,8 @@
     }
     .opfilm .still { background: url("{{VID_Bposter}}") 50% 40% / cover no-repeat; }
     .bar { opacity: 1; pointer-events: auto; }
-    .sheet, body, .bar, .prf::after, .rail li .d, [data-rise],
-    .chip .t, .chip .a, .ebar .pill { transition: none !important; }
+    .sheet, body, .bar, .prf::after, .prfx::after, .prfx .who, [data-rise],
+    .chip .t, .chip .a { transition: none !important; }
     [data-rise] { transform: none !important; }
   }
 </style>
@@ -726,7 +807,7 @@
       <div class="stage" id="stage" aria-hidden="true">
         <!-- One source, the 720 cut, at every width: the page is inlined as data URIs
              and the 1080/webm cuts made it too heavy to load. -->
-        <video id="filmvid" autoplay muted playsinline preload="metadata" poster="{{VID_Aposter}}">
+        <video id="filmvid" autoplay muted playsinline preload="auto" poster="{{VID_Aposter}}">
           <source src="{{VID_A720}}" type="video/mp4">
         </video>
         <div class="still"></div>
@@ -756,7 +837,7 @@
     <div class="opgrid">
       <div class="opstage" id="opstage">
         <div class="opfilm" aria-hidden="true">
-          <video id="opvid" muted loop playsinline preload="metadata" poster="{{VID_Bposter}}">
+          <video id="opvid" muted loop playsinline preload="auto" poster="{{VID_Bposter}}">
             <source src="{{VID_B720}}" type="video/mp4">
           </video>
           <div class="still"></div>
@@ -783,82 +864,30 @@
   <!-- 03 how I work -->
   <section class="work wrap" id="work" aria-label="How I work">
     <div class="sec">
-      <!-- SS14.4 pins this string and it has to wrap at every width, so the only question
-           is which side of the break the middot lands on. Tied BACK (round 4) it ENDED line
-           one alone. SS14.7 keeps it with the word AFTER it: the space before the separator
-           is the only breakable one in the line, so the middot can never be the last thing
-           on a row at any width, and line two opens on the separator with "How" attached. -->
-      <h2 class="d two">Operating principles &#183;&nbsp;How I work.</h2>
+      <!-- SS14.4 pins this string. Round 9 puts the head back on the section-head width
+           axis (115), which means it wraps. The separator is tied to the word on BOTH
+           sides, so "principles&#183;How" is one unbreakable unit: the only breakable
+           spaces left are the one after "Operating" and the one after "How", and the
+           middot can neither end a line nor open one at any width. -->
+      <h2 class="d two">Operating principles&nbsp;&#183;&nbsp;How I work.</h2>
     </div>
-    <div class="grid">
-      <div class="rail">
-        <ol id="rail">
-          <li data-step="1"><span class="l n">01</span><span class="d two">Diagnose</span></li>
-          <li data-step="2"><span class="l n">02</span><span class="d two">Build</span></li>
-          <li data-step="3"><span class="l n">03</span><span class="d two">Position</span></li>
-        </ol>
-      </div>
-      <div class="panels">
-        <!-- 01 Diagnose: the manual's page-6 diagram, redrawn in live type and SVG. -->
-        <figure class="panel" data-panel="1" data-kind="diagram">
-          <div class="frame" data-rise="10">
-            <span class="l">Book page 6</span>
-            <div class="art">
-              <!-- Geometry transcribed 1:1 from components/color-worlds/WallChart.tsx: the
-                   same 340x168 canvas and the same four coordinate sets. The two axes are
-                   <path> rather than <line> only so the whole figure is one element type.
-                   The axis-end label read "80%" there; SS14.3 takes every bare figure off
-                   this page, so it is gone and the crossing carries the argument instead. -->
-              <svg class="wc" viewBox="0 0 340 168" role="img" aria-label="Book page 6: why the wall is arithmetic, not skill">
-                <path class="ax" d="M0 146 H340"></path>
-                <path class="ax" d="M0 6 V146"></path>
-                <path class="win" d="M2 58 L334 54"></path>
-                <path class="rules" d="M0 144 L90 130 L170 102 L240 58 L300 8"></path>
-                <circle class="cross" cx="243.5" cy="55.1" r="4"></circle>
-                <!-- leaders and heads: drawn by hand off each plate to the line it names.
-                     The plate boxes below are the measured getBBox of their own <text> at
-                     Anybody 500 / wdth 80 / 8px, padded 5 either side. -->
-                <path class="lead" d="M96 41.5 C 118 41.5, 130 48, 146.5 55.4"></path>
-                <path class="head" d="M150.4 55.9 L144.6 55.9 L146.1 52.0 Z"></path>
-                <path class="lead" d="M78.8 111.5 C 96 111.5, 108 114, 118.2 118.7"></path>
-                <path class="head" d="M120.4 119.4 L114.6 119.1 L116.2 115.5 Z"></path>
-                <!-- SS14.7: THE WALL was the one capsule with no leader, so it read as a
-                     floating title rather than a label on the crossing. It is drawn off the
-                     plate's right shoulder down to the crossing circle at (243.5, 55.1). -->
-                <path class="lead" d="M228 29.5 C 238 29.5, 243.5 34, 243.5 45.4"></path>
-                <path class="head" d="M240.6 45.4 L246.4 45.4 L243.5 50.4 Z"></path>
-                <rect class="plate" x="1" y="35" width="93.2" height="13" rx="6.5"></rect>
-                <rect class="plate" x="9" y="105" width="67.8" height="13" rx="6.5"></rect>
-                <rect class="plate" x="187" y="23" width="39.6" height="13" rx="6.5"></rect>
-                <rect class="plate" x="1" y="153" width="61.5" height="13" rx="6.5"></rect>
-                <text id="wc-t1" x="6" y="44">What fits in the window</text>
-                <text id="wc-t2" x="14" y="114">Unwritten rules</text>
-                <text class="strong" id="wc-t3" x="192" y="32">The wall</text>
-                <text id="wc-t4" x="6" y="162">Build progress</text>
-              </svg>
-            </div>
-            <div class="footrule"><span class="l meta">&#8594; Positioning audit memo</span></div>
-          </div>
-          <figcaption><span class="cap">Book page 6: why the wall is arithmetic, not skill</span></figcaption>
-        </figure>
-        <!-- 02 Build: no real product screen exists in public/ or content/, so pattern D. -->
-        <figure class="panel" data-panel="2" data-kind="type">
-          <div class="frame" data-rise="10">
-            <span class="l">month one</span>
-            <div class="art"><p>Every engagement ships a named artifact in month one. No decks. No discovery debt.</p></div>
-            <div class="footrule"><span class="l meta">&#8594; Shipped artifact, month one</span></div>
-          </div>
-        </figure>
-        <!-- 03 Position: the positioning sentence the site already runs, as the artifact. -->
-        <figure class="panel" data-panel="3" data-kind="type">
-          <div class="frame" data-rise="10">
-            <span class="l">Position</span>
-            <div class="art"><p>Strategy and software, shipped by the same pair of hands.</p></div>
-            <div class="footrule"><span class="l meta">&#8594; The story the market repeats</span></div>
-          </div>
-        </figure>
-      </div>
-    </div>
+    <ol class="steps">
+      <li>
+        <span class="l n">01</span>
+        <span class="d two nm">Diagnose</span>
+        <span class="s">I find the gap between what you built and what buyers actually pay for.</span>
+      </li>
+      <li>
+        <span class="l n">02</span>
+        <span class="d two nm">Build</span>
+        <span class="s">Every engagement ships a named artifact in month one.</span>
+      </li>
+      <li>
+        <span class="l n">03</span>
+        <span class="d two nm">Position</span>
+        <span class="s">I stay until the narrative sells without me.</span>
+      </li>
+    </ol>
   </section>
 
   <!-- 04 packages: three cards, then one bar -->
@@ -869,27 +898,36 @@
     </div>
     <div class="cards" id="cards">
       <div class="card">
-        <span class="l">The Unstick Session</span>
+        <span class="nm">The Unstick Session</span>
         <div class="pblock"><span class="pr">$500</span></div>
         <p class="one">Ninety minutes live on your stuck build.</p>
         <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Unstick Session</span><span class="a" aria-hidden="true">&#8594;</span></a></div>
       </div>
       <div class="card mark">
-        <span class="l">The Audit</span>
+        <span class="nm">The Audit</span>
         <div class="pblock"><span class="pr">$2,500</span><span class="l">Start here</span></div>
         <p class="one">I go through it top to bottom and hand you the written audit.</p>
         <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Audit</span><span class="a" aria-hidden="true">&#8594;</span></a></div>
       </div>
       <div class="card">
-        <span class="l">The Sprint</span>
+        <span class="nm">The Sprint</span>
         <div class="pblock"><span class="pr">$7,500</span></div>
         <p class="one">One week on one outcome, shipped.</p>
         <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Sprint</span><span class="a" aria-hidden="true">&#8594;</span></a></div>
       </div>
     </div>
-    <a class="ebar" id="ebar" href="https://www.micahjonesconsulting.com/call?from=mock-engagements">
-      <span class="say">Engagements &#183; advisory, project, retainer, or embedded.</span>
-      <span class="pill">From $5K a month</span>
+    <!-- SS15.5: the top tier. ONE <a>, no link inside it, the same 2px copper rule the
+         Audit carries. "Engagements" and the descriptor are the two halves of the freight
+         template's own line, split at its separator; nothing is composed. -->
+    <a class="eng" id="ebar" href="https://www.micahjonesconsulting.com/call?from=mock-engagements">
+      <span class="side l-side">
+        <span class="d two hd">Engagements</span>
+        <span class="dsc">advisory, project, retainer, or embedded.</span>
+      </span>
+      <span class="side r">
+        <span class="v">From $5K a month</span>
+        <span class="chip"><span class="t">Name the problem</span><span class="a" aria-hidden="true">&#8594;</span></span>
+      </span>
     </a>
   </section>
 
@@ -904,46 +942,31 @@
       <div class="cap">Millions in revenue &#183; acquired by Akamai</div>
       <span class="ar" aria-hidden="true">&#8594;</span>
     </a>
-    <a class="prf" href="https://www.micahjonesconsulting.com/work?from=mock-proof">
-      <div class="who">Postmates</div>
-      <div class="cap">Market and fraud analysis in the wide-open era</div>
-      <span class="ar" aria-hidden="true">&#8594;</span>
-    </a>
     <a class="prf" href="https://www.micahjonesconsulting.com/work/rfp-engine?from=mock-proof">
       <div class="who">RFP engine for an industry author</div>
       <div class="cap">Millions in contracts won &#183; close rate doubled</div>
       <span class="ar" aria-hidden="true">&#8594;</span>
     </a>
-    <a class="prf" href="https://www.micahjonesconsulting.com/work?from=mock-proof">
-      <div class="who">SurveyMonkey Enterprise</div>
-      <div class="cap">Cap-table position held through the Nasdaq listing</div>
-      <span class="ar" aria-hidden="true">&#8594;</span>
-    </a>
-    <a class="prf" href="https://www.micahjonesconsulting.com/work/content-engine?from=mock-proof">
-      <div class="who">AI content engine for an industry author</div>
-      <div class="cap">Strategist, ghostwriter, content-engine builder</div>
-      <span class="ar" aria-hidden="true">&#8594;</span>
-    </a>
-    <a class="prf" href="https://www.micahjonesconsulting.com/work/ordani?from=mock-proof">
-      <div class="who">ORDANI</div>
-      <div class="cap">Active paying users &#183; none lost to a competitor</div>
-      <span class="ar" aria-hidden="true">&#8594;</span>
-    </a>
-    <a class="prf" href="https://www.micahjonesconsulting.com/work?from=mock-proof">
-      <div class="who">Consulting</div>
-      <div class="cap">I stay until the narrative sells without me</div>
+    <!-- SS15.6: the one operator-supplied string on the page, in his own words, registered
+         as such in both copy gates. -->
+    <a class="prfx" href="https://www.micahjonesconsulting.com/work?from=mock-proof">
+      <div class="who">See the rest</div>
       <span class="ar" aria-hidden="true">&#8594;</span>
     </a>
   </section>
 
-  <!-- 06 the manual -->
+  <!-- 06 the manual (SS15.2) -->
   <section class="manual wrap" id="manual" aria-label="The field manual">
-    <div class="sec">
-      <div class="eyebrow"><span class="l">The 80% Wall</span></div>
-      <h2 class="d two">The AI handed you the code. Now ship the company.</h2>
-    </div>
     <div class="grid">
+      <figure class="art">
+        <div class="frame" data-rise="10"><span class="cov"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover"></span></div>
+        <figcaption><span class="l meta">the-80-percent-wall.pdf</span><span class="l meta">PDF + ZIP &#183; every future edition</span></figcaption>
+      </figure>
       <div class="copy">
+        <div class="sec">
+          <div class="eyebrow"><span class="l">The 80% Wall</span></div>
+          <h2 class="d two">The AI handed you the code. Now ship the company.</h2>
+        </div>
         <div class="lines">
           <p>It shipped. Nobody came.</p>
           <p>The demo looked done. Production turned out to be a different machine entirely.</p>
@@ -955,10 +978,6 @@
           <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="t">Get chapter one free</span><span class="a" aria-hidden="true">&#8594;</span></a>
         </div>
       </div>
-      <figure class="art">
-        <div class="frame" data-rise="10"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover"></div>
-        <figcaption><span class="l meta">the-80-percent-wall.pdf</span><span class="l meta">PDF + ZIP &#183; every future edition</span></figcaption>
-      </figure>
     </div>
   </section>
 
@@ -1014,8 +1033,6 @@
     var room = document.getElementById('room');
     var opstage = document.getElementById('opstage');
     var chips = document.getElementById('herochips');
-    var steps = [].slice.call(document.querySelectorAll('#rail li'));
-    var panels = [].slice.call(document.querySelectorAll('[data-panel]'));
     var risers = [].slice.call(document.querySelectorAll('[data-rise]'));
     var filmVid = document.getElementById('filmvid');
     var opVid = document.getElementById('opvid');
@@ -1061,15 +1078,6 @@
       bar.classList.toggle('dark', dark);
     }
 
-    function rail() {
-      if (!panels.length) return;
-      var line = window.innerHeight * 0.5, best = 0;
-      for (var i = 0; i < panels.length; i++) {
-        if (panels[i].getBoundingClientRect().top <= line) best = i;
-      }
-      for (var j = 0; j < steps.length; j++) steps[j].classList.toggle('on', j === best);
-    }
-
     function rise() {
       var h = window.innerHeight;
       for (var i = 0; i < risers.length; i++) {
@@ -1099,10 +1107,35 @@
       if (opstage) { if (opVid) opVid.pause(); io.observe(opstage); }
     }
 
+    /* SS15.1. Operator, twice: "i see no vids". Autoplay of a muted inline clip is allowed
+       by policy, but a data-URI <video> can still be refused or deferred by a client, and
+       the FIRST user gesture is the one moment a refusal can be undone. So: one handler,
+       four gesture kinds, passive and `once`, which plays the hero unless it has already
+       ended (clip A runs forward once and holds -- restarting a held clip would be the one
+       motion nobody asked for) and the operator clip only when it is >= 35% visible, which
+       is the same threshold the observer uses. Autoplay is untouched; this is the second
+       key to the same lock. */
+    var kicked = false;
+    function kick() {
+      if (kicked || reduce) return;
+      kicked = true;
+      if (filmVid && !filmVid.ended) play(filmVid);
+      if (opVid && opstage) {
+        var r = opstage.getBoundingClientRect(), h = window.innerHeight;
+        var vis = Math.max(0, Math.min(r.bottom, h) - Math.max(r.top, 0));
+        if (r.height > 0 && vis / r.height >= 0.35) { opStarted = true; play(opVid); }
+      }
+    }
+    if (!reduce) {
+      var GEST = ['pointerdown', 'touchstart', 'keydown', 'wheel'];
+      for (var gi = 0; gi < GEST.length; gi++) {
+        window.addEventListener(GEST[gi], kick, { passive: true, once: true });
+      }
+    }
+
     function tick() {
       try { light(); } catch (e) {}
       try { chrome(); } catch (e) {}
-      try { rail(); } catch (e) {}
       try { if (!reduce) rise(); } catch (e) {}
     }
     function schedule() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; tick(); }); }
