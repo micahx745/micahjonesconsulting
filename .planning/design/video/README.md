@@ -43,3 +43,12 @@ needed. MP4s are `crf 22 -preset slow -pix_fmt yuv420p -movflags +faststart`;
 
 Posters were written with Pillow at `quality=82` rather than an ffmpeg qscale
 approximation, so 82 is the literal JPEG quality.
+
+## Clip A, second generation (2026-09-06) — forward once, then hold
+Source `A2-raw.mp4` (Kling 3 Pro, from the treated poster again: mean chroma 1.2, already
+grayscale with the gradient baked in). He looks up, raises a finger, then points to the
+viewer's left at laptop height and holds. `A2-hold.mp4` / `.webm` / `-720.mp4` are the
+forward-only encodes (4.04 s, 24 fps, no audio; the page holds the last frame, no loop).
+`A2-poster-last.jpg` is the hold frame and the poster; `A2-poster-first.jpg` the opening
+frame. The fingertip sits just outside a 3:4 centre crop: use object-position ≈ 55% 30%
+on phones. The first-generation loop (`A-loop.*`) is retired from the page.
