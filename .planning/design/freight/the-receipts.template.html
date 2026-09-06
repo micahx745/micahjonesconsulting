@@ -55,17 +55,17 @@
   .wrap { padding-left: var(--g); padding-right: var(--g); }
 
   /* hero: four blocks and a void */
-  .hero { position: relative; min-height: 900px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto 1fr auto; gap: var(--g); padding-top: 132px; padding-bottom: 40px; }
+  .hero { position: relative; box-sizing: border-box; min-height: 860px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto auto 1fr auto; gap: var(--g); padding-top: 132px; padding-bottom: 40px; }
   .hero h1 { grid-column: 1 / 9; grid-row: 1; font-size: clamp(48px, 6.4vw, 96px); letter-spacing: -0.03em; line-height: 0.98; }
   .hero h1 em { font-style: normal; color: var(--copper); }
-  .hero .chips { grid-column: 1 / 5; grid-row: 2; align-self: start; padding-top: 32px; }
-  .hero .void { grid-column: 1 / -1; grid-row: 2; min-height: 320px; }
-  .hero .pos { grid-column: 1 / 7; grid-row: 3; align-self: end; font-family: var(--text); font-size: 21px; line-height: 1.35; color: var(--ink); text-wrap: pretty; max-width: 40ch; }
-  .hero .proof { grid-column: 8 / 13; grid-row: 3; align-self: end; display: flex; flex-direction: column; gap: 6px; text-align: right; }
+  .hero .chips { grid-column: 1 / 5; grid-row: 2; align-self: start; padding-top: 8px; }
+  .hero .void { grid-column: 1 / -1; grid-row: 3; min-height: 200px; }
+  .hero .pos { grid-column: 1 / 7; grid-row: 4; align-self: end; font-family: var(--text); font-size: 21px; line-height: 1.35; color: var(--ink); text-wrap: pretty; max-width: 40ch; }
+  .hero .proof { grid-column: 8 / 13; grid-row: 4; align-self: end; display: flex; flex-direction: column; gap: 6px; text-align: right; }
 
   /* proof at position two: spotlight over index, names as text, zero logos */
   .sec { padding-top: 160px; }
-  .sec-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--hair); }
+  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; padding-bottom: 12px; border-bottom: 1px solid var(--hair); }
   .spot { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: var(--g); align-items: baseline; padding: 30px 0 26px; border-bottom: 1px solid var(--hair); position: relative; }
   .spot .n { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
   .spot .who { font-family: var(--display); font-weight: 400; font-variation-settings: "opsz" 96; font-size: clamp(28px, 3.4vw, 48px); letter-spacing: -0.025em; line-height: 1.02; }
@@ -136,7 +136,8 @@
   .foot { padding: 180px var(--g) 80px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--g); }
   .foot h2 { grid-column: 1 / 7; font-size: clamp(40px, 5vw, 72px); letter-spacing: -0.03em; line-height: 0.98; }
   .foot .chips { grid-column: 8 / 13; align-self: end; }
-  .foot .log { grid-column: 1 / -1; display: flex; justify-content: space-between; gap: 20px; padding-top: 80px; border-top: 1px solid var(--hair); margin-top: 60px; }
+  .foot .log { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 20px; padding-top: 80px; border-top: 1px solid var(--hair); margin-top: 60px; }
+  .foot .log a { overflow-wrap: anywhere; }
 
   /* entrances: transform only, visible at rest; the picture lands before the claim */
   [data-rise] { transform: translateY(var(--rise, 0px)); transition: transform 900ms var(--gleasing); }
@@ -147,6 +148,7 @@
     .hero { min-height: 0; grid-template-rows: auto auto auto auto; padding-top: 110px; }
     .hero h1, .hero .chips, .hero .pos, .hero .proof { grid-column: 1 / -1; }
     .hero .chips { grid-row: 2; } .hero .void { display: none; } .hero .pos { grid-row: 3; padding-top: 48px; } .hero .proof { grid-row: 4; text-align: left; padding-top: 24px; }
+    .foot .log { flex-direction: column; align-items: flex-start; }
     .rail-sec { grid-template-columns: minmax(0, 1fr); }
     .rail { grid-column: 1 / -1; position: static; } .panels { grid-column: 1 / -1; gap: 40px; padding-top: 32px; }
     .prod .copy, .prod .art, .prices, .obj, .person .ph, .person .t, .foot h2, .foot .chips { grid-column: 1 / -1; }
