@@ -267,6 +267,83 @@ price in the mobile bar from first paint. (2) Astra #6, forward-then-hold instea
 ping-pong loops. Fable recommends keeping the loops; hold B only if the reversed
 conversation reads wrong to him.
 
+## 13. Operator decisions (2026-09-05, after Astra) → v3
+
+Verbatim: "i like the breakdown on how i work (we need way better images, lets brainstorm
+what to put there instead of the screenshots of the book). then pricing packages and a
+small part for engagements on top before the packages, then proof then playbook and then
+faq. I ike the idea of the video stopping. I also like the idea of the video blending more
+into the hero. maybe having my handpointing to the go to market part and it stopping - make
+sure things looking good on mobile too. I think the video of me talk should be looped and
+maybe blend it with the operator not consutltant thing more. not like its own portrait."
+
+**Order (v3).** 01 The room (hero, clip A) → 02 Operator, not consultant (clip B as the
+section's ground, not a portrait) → 03 How I work (the rail) → 04 Engagements, small, above
+05 Packages (the three priced rows) → 06 Proof (the record + the four figures) → 07 The
+manual → 08 FAQ (the three answers, now their own section) → 09 The ask (copper) → 10 Foot.
+Astra #1 is therefore settled by the operator: offer before proof. The FAQ moves off the
+price and closes the argument.
+
+**Clip A: forward once, then hold** (Astra #6, accepted by the operator). Play on load, no
+loop, hold the last frame; the poster is the LAST frame. Pause/resume off-screen still.
+"Hand pointing at the go-to-market part": with the current clip this cannot be composed
+honestly. He points up-right at the board; the headline lives bottom-left; any placement
+of a 1127px headline in the upper half crosses his head (viewport x 730–810 at 1440), and
+mirroring the clip mirrors the handwriting on the board. At 390 the pointing hand leaves
+the frame entirely (the visible slice is source x ≈ 867–1342; the hand ends at ≈ 1700).
+So: **regenerate clip A** with the gesture aimed at the headline's corner and the hand
+kept near the body (in frame on phones). Kling 3 Pro, same settings as §4 of the video
+brief, 5 s, colour master this time (feed `A-whiteboard-16x9.jpg`, not the treated poster):
+
+```
+A man sits at a laptop. He looks up at the camera, raises his right hand and points
+toward the lower left corner of the frame, and holds the point. The whiteboard
+stays still. The camera does not move.
+```
+
+Fallback if the model mirrors left and right (it sometimes does): "points toward the left
+edge of the frame". Judge on the face and the hand; the point must end in the frame at a
+3:4 centre crop. Until the new clip exists, v3 ships the current clip forward-then-hold.
+
+**Clip B: loop, blended into the operator section.** Not a framed portrait: clip B becomes
+the ground of section 02 the way clip A is the ground of 01, full-bleed within the
+section, veiled to espresso from 55% down, the heading "Operator," / "not consultant." over
+the dark part, the paragraph beside. Loops. Pauses off-screen. At 390 the section is one
+screen: film top, heading and first paragraph bottom.
+
+**How I work: the images.** The three book pages come out. Brainstorm, three tiers, no
+stock, no illustration, nothing generated that is not his own material:
+- Exists today: 01 Diagnose, the real whiteboard, cropped from the hero photograph (his
+  own service diagram, the diagnosis drawn on a wall); 02 Build, an Ordani screen he
+  shipped solo (`public/ordani-*.jpg`, the intake flow that went 40%→91%); 03 Position,
+  the Tel Aviv room (`public/guardicore-telaviv.jpg`, the wider frame) or the site's own
+  hero line as the artifact ("the positioning line I shipped for myself").
+- He shoots on a phone (a shoot list, one evening): 01 him standing at a whiteboard,
+  marker up, 3:4, from the side; 02 a 6-second screen recording of Ordani's intake flow,
+  the phone in his hand; 03 a real positioning one-pager on a desk, redacted, or him
+  writing the line on the board.
+- The bold system, "three rooms": each step is him in the room where it happens, three
+  stills (whiteboard / laptop / table), one of them moving. Costs one new photograph (the
+  whiteboard stand) and reuses the two he has. Risk: with clips A and B already moving,
+  a third motion is the corpus's noise line; the three would be stills.
+Fable recommends the "three rooms" as stills, with the Ordani screen recording as the one
+exception if he records it. v3 ships the exists-today tier so the page does not wait.
+
+**Proof, minimalist (added the same evening).** Verbatim: "also we need more a minimalist
+approach with some figures. We do not have to put specific figures for the stuff. Also
+captions and little things like years. we want to entice people to click to see stuff."
+So section 06 is an index that entices, not a ledger that tells: each row is name · year ·
+one caption · `→`, and the row is a link to its case study or record. The four-card
+numbers section is retired; at most two figures survive, inside captions, as bait ("40%
+→ 91% intake completion · 2025"). Captions and years are the live case studies' own
+frontmatter (`content/work/*.mdx`: `title`, `dek`, `year`, `role`), verbatim, which
+widens the copy gate to a second verified source; nothing else is written. Dragonfly §10
+(names as text, year, one line, the ask as an address) is the precedent.
+
+**Mobile.** Every v3 section is judged at 390 first: the film's face in frame, the hero's
+proof above the fold, one screen for section 02, the engagements strip one row, the
+packages three rows, the FAQ readable at 17px.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
