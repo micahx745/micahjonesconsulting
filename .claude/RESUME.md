@@ -9,11 +9,11 @@ approved — Operator, 2026-09-04, verbatim: "deploy it". Live verify `448cbb2`;
 `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATERIALS.md`.
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
-Constitution released; facts, anonymity and live-copy-only not.
-1. **Dark studio** (procreate register). Brief `.planning/design/MOCK-BRIEF-2026-09-05.md`.
+1. Dark studio (procreate register), `MOCK-BRIEF-2026-09-05.md`:
    https://claude.ai/code/artifact/a398fb1a-741e-4d9f-b043-4cc7a5536a91
-2. **The Receipts** (Studio Freight ethos, 14-studio teardown in `.planning/design/research/`).
-   Brief `.planning/design/FREIGHT-BRIEF-2026-09-05.md`; page `.planning/design/freight/`.
+2. "Operator, not consultant", built from Studio Freight's CLIENT WORK (14 live sites,
+   `.planning/design/research/client-work/`), not their homepage; the corpus keeps his
+   faces, copper, espresso/bone. `FREIGHT-BRIEF-2026-09-05.md` §0 records the wrong passes.
    https://claude.ai/code/artifact/1d43593f-2049-4128-8e6e-319ba8e4e2da
 
 ## Ship gate, what remains (operator-owned)
