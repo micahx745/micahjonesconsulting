@@ -192,6 +192,24 @@ The camera does not move.
 If the mouth reads as mush, change "and talks" to "and listens". A listening beat loops
 better and is the truer register for a clip behind a headline.
 
+### Clip C, the workshop table (added 2026-09-06)
+
+Source `video/sources/S3-group-clean.jpg` (1024×780, real photograph: him arms folded at
+left, a grey-haired colleague reading, a bald colleague writing). Colleagues kept nearly
+still by the prompt, for their sake and for identity. Loops (returns to rest). A panel, not
+a ground (4:3, modest resolution).
+
+```
+A man sits at a table with his arms folded, listening. He glances down at the papers in
+front of him, looks back up, and nods once. The man beside him keeps reading and the man
+writing moves his pen slightly; otherwise they stay still. The room and the table stay
+exactly as they are. The camera does not move. Same facial proportions, eye spacing, jaw
+shape and hairline throughout.
+```
+
+Negative: the list below plus "head turning away, standing up". 5 s, audio off, no end
+frame, cfg 0.5. If the nod reads mechanical, drop "and nods once".
+
 ### Negative prompt, both clips
 
 ```
