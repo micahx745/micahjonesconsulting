@@ -142,11 +142,21 @@ A man sits at a conference table and talks. His head turns slightly toward the m
 him and one hand makes a small gesture. The other men listen. The window stays still. The
 camera does not move.
 ```
-Scene 2, forward then hold (like the hero):
+Scene 2, forward then hold (like the hero). The composite exists: `sources/C2-rsa-composite.jpg`
+(2752×1536, JPEG q92, 915 KB, from Nano Banana Pro on 2026-09-06; the booth extended to 16:9,
+the viewfinder shows him, judged good at preview, hands and beard line to be checked at 100%):
 ```
-A man stands and speaks toward the camera. His head nods slightly and his hands make a
-small gesture, then settle. The booth stays still. The camera does not move.
+A man stands at a conference booth and speaks toward the camera. His lips move in quiet
+continuous speech, his head nods slightly on the beat, and his hands make one small open
+gesture and then settle at chest height. The booth, the banner, the screen, the camera on
+the tripod, the camera operator and the people in the background stay exactly as they are.
+The camera does not move. Same facial proportions, eye spacing, jaw shape and hairline
+throughout.
 ```
+Negative: the §4 list of the video brief plus "second person, head turning away". Settings:
+start image as above, no end image, 5 s, audio off, cfg 0.5 then 0.65. Fallbacks in order:
+"explains something with his hands" without the lips sentence; then "listens to a question,
+then nods once".
 "Talks" without audio can produce a mushy mouth; if it does, change "talks" to "listens and
 nods" for scene 1 and "speaks" to "explains with his hands" for scene 2.
 
