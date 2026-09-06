@@ -11,8 +11,9 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 1. Dark studio mock: artifact a398fb1a (superseded).
 2. "Operator, not consultant" (from the CLIENT-WORK corpus, `FREIGHT-BRIEF-2026-09-05.md`):
    artifact 1d43593f. He: "love it" but header, loudness, "AI font" → item 4 answers them.
-3. Video: Kling 3 Pro; all clips arrived graded (dark grounds only). `design/video/`:
-   B-loop.* (loops), A2-hold.* (2nd gen, points at the headline, plays once + holds).
+3. Video: Kling 3 Pro; clips arrive graded (dark grounds only). `design/video/`: B-loop.*,
+   A2-hold.* (points at the headline, plays once + holds). `COMPOSITE-BRIEF-2026-09-06.md`:
+   Nano Banana Pro; RSA composite C2 done, Kling prompt given; boardroom = him + AI clients.
 4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
    film as the hero ground, no header on screen one, one display size, Anybody wide/light,
    no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
@@ -29,12 +30,11 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 auto-deploys moved both domains 5× with no manual alias; confirm www first.
 
 ## Next
-99: landing offer + services/packages reframe (needs his name/price). 100: home spear,
-Search Console, `/work` ItemList, sitemap lastmod, `/work/ordani` title. Codex site review
-running → `.planning/reviews/`. His: pick a direction · offer name/price · launch date.
+99: landing offer + packages reframe (needs his name/price). 100: home spear, Search Console,
+`/work` ItemList, sitemap lastmod. His: pick a direction · offer name/price · launch date.
 
 ## Standing traps
 Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys, check parity ·
-`grep -oiF` false zeroes, python utf-8 · strip `<script>` first · count `<img>` not
-substrings · copy-lint hook rejects docs that QUOTE banned words · `vh` in a canvas frame is
-the frame · a fragment without a charset renders mojibake · a review is a reader, not an oracle.
+`grep -oiF` false zeroes, python utf-8 · strip `<script>` first · count `<img>` not substrings ·
+copy-lint hook rejects docs that QUOTE banned words · `vh` in a canvas frame is the frame ·
+no charset = mojibake · a review is a reader, not an oracle.
