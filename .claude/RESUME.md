@@ -17,11 +17,11 @@ every measured number.
 
 ## Pass 101 — the real site (`.claude/briefs/pass-101-…`), NO push, NO deploy
 Branch `design/room-and-ledger`. Phase 1 DONE (`313709a` type, `9ad2181` tokens, `03b3c36`
-clips as files). **Phase 2 DONE** — worktree `wf_0cc599f0-660-2`, base `03b3c36`, tip
-`6854fd8`, a strict fast-forward: `646c1e8` room.css · `4961601` components/room + the new
+clips as files). **Phase 2 DONE** — worktree `wf_0cc599f0-660-2`, base `03b3c36`, a strict
+fast-forward, tip = its last commit: `646c1e8` room.css · `4961601` components/room + the new
 `app/(room)/` group that owns `/` (Hero retired; (foyer) keeps the unported routes) ·
 `540618b` scripts/verify-room.py + the `--dw` width ladder it caught missing (the copper row
-was clipped 103px at 390) · `6854fd8` QA. verify-room.py 60/60 vs `pnpm start`; build green;
+was clipped 103px at 390) · `6854fd8` QA · `2d444e6` the third caption. verify-room.py 60/60 vs `pnpm start`; build green;
 axe 0 at 1440 + 390. Receipts = THREE rows (§17 binds this pass), not §15.6's two.
 DEBT: 9 legacy @keyframes still ship site-wide (Color Worlds + WallChart) — the room
 declares and runs 0; phase 3's to clear. NEXT: phase 3 (packages, playbook, work, call,
