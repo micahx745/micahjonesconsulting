@@ -551,6 +551,63 @@ and belongs on a branch with a Vercel preview, not in a mock. Operator decision.
 data) + the copy-editor + the claims ledger; every proposed string is put to the operator
 before it enters the page; the copy gate then widens to the approved list.
 
+## 16. Operator review of v5 (2026-09-06) → v6 and the site arc
+
+Verbatim: "1. 1st one moves. the website it still is not angled right to the point i point at
+the go to market. the vid in the header 2. idk but i see it has loaded now 3. Well arent
+you going to build the other pages in this style? 4. Lack of animations and weak ones that
+exist. FYI I love website animations need more"
+
+**16.1 Clips settled.** The viewer plays data-URI video and autoplays it (player 1 moved).
+The hero's hold frame was read as a still. Keep data URIs; the gesture handler stays.
+
+**16.2 The point lands on `go-to-market.`** The copper row's cap-top sits 4px under the
+fingertip and its left edge one hand's width (48px) left of the tip; `I build the` sits on
+the row ABOVE, over the film, bone on the veiled wall (≥ 4.5:1 measured at three frames).
+The veil: .55 at fingertip_y − 12px, solid from fingertip_y + 4px (the copper row's ground);
+the hand emerges from the dark and its tip touches the "g". At ≤ 899px the same rule inside
+the 4:3 stage, the stage starting below the 48px bar (in flow, not under it); the builder
+measures that row 1 clears the bar. Everything else in the hero as v5.
+
+**16.3 Motion, widened (operator ruling: "I love website animations, need more").** The
+corpus's one-moment discipline is overruled by the client; the vocabulary stays premium
+(transform/opacity/clip-path, the house curve `cubic-bezier(.4,0,0,1)`, nothing coupled to
+the cursor, no scroll-jack, no marquee, no parallax on photographs, ≤ 3 `@keyframes`,
+everything off under reduced motion). The set, in full:
+1. THE MOMENT: the copper word lights when the fingertip arrives. `go-to-market.` rests at
+   opacity .28 and fills to 1 over 260ms on the house curve, triggered by the clip's
+   `timeupdate` when currentTime ≥ the arrival time (the builder measures the frame where
+   the tip reaches its final x: ~3.4 s) and by the hold frame if the clip is already past
+   it. `I build the` rises 24px into place over 600ms as the clip starts. Once lit, it
+   stays lit.
+2. The bar: slides down 12px + fades in at the seam (240ms), never again.
+3. Section heads: a clip-path reveal from the left (`inset(0 100% 0 0)` → `inset(0)`,
+   700ms) as the head crosses the reading line, once each.
+4. Hairlines draw: every ledger rule (how-I-work rows, receipts, manual symptoms,
+   objections' tops, the card price rules) `scaleX(0→1)` from the left, 500ms, 60ms stagger
+   within a section, as the section enters.
+5. Cards and blocks rise: the three price cards rise 20px with a 70ms stagger; the
+   Engagements block rises after them; the objection columns the same; media and the
+   cover rise 10px. All transform + opacity, 500ms, once.
+6. Operator: the square's film settles from `scale(1.06)` to 1 over 1.2 s as it enters; the
+   two heading rows rise 20px, 80ms apart.
+7. Hovers, everywhere: chips swap ground in 300ms; the `→` in every chip and row slides
+   6px right on hover/focus (200ms); the receipt rows' copper wipe stays; the price cards'
+   border turns copper on hover (300ms).
+8. The ask: the copper field's headline rises 30px and the arrow slides in from the left
+   (both 600ms) as the field enters; the chips follow 120ms later.
+9. The ground travel and the rail-style lighting stay as they are.
+Rest states are always the finished frame (a page with scripting off shows everything).
+
+**16.4 The other pages: the site arc.** The operator expects the whole site in this
+style. Ruled: not more mocks. A branch of the real site (`design/room-and-ledger`), the
+system installed (Anybody + Hanken via next/font with the wdth axis; JetBrains Mono retired;
+copper/espresso/bone unchanged), the home rebuilt from the template as components, and
+packages / playbook / work (+ case studies) / call / about restyled to the system, with
+the motion set above, `pnpm build` green, axe clean, screenshots at 390/1440. Brief:
+`.claude/briefs/pass-101-room-and-ledger-site.md`. No push, no deploy: the preview URL is
+the operator's push. The wording round runs on those pages.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
