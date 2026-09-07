@@ -9,8 +9,7 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
 1–2. Earlier mocks (a398fb1a, 1d43593f) superseded by 4.
-3. Video: `design/video/`. `COMPOSITE-BRIEF-2026-09-06.md`: Nano Banana Pro; RSA composite
-   C2b done + prompt; boardroom = him + AI clients; desk scene.
+3. Video + composites: `design/video/`, `COMPOSITE-BRIEF-2026-09-06.md` (RSA C2b done).
 4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
    film as the hero ground, no header on screen one, one display size, Anybody wide/light,
    no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
@@ -21,7 +20,7 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
    Engagements as the top tier, receipts = 2 rows + 'See the rest →', 1.2MB. Viewer plays
    data: video (Clip Test: player 1 moved). IN FLIGHT: v6 (§16: copper row AT the finger,
    the word lights on arrival, full motion set) · **Pass 101** (`.claude/briefs/pass-101-…`):
-   the real site: 3 phases built on worktree branches (LESSONS #16); INTEGRATION + §5
+   the real site: 3 phases built on worktree branches (LESSONS #17); INTEGRATION + §5
    verify in flight → `design/room-and-ledger`. NO push/deploy.
    NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.
 
