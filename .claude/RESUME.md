@@ -1,4 +1,4 @@
-# RESUME — micahjonesconsulting (2026-09-06)
+# RESUME — micahjonesconsulting (2026-09-07)
 
 ## READ THIS FIRST
 
@@ -8,41 +8,32 @@ Fable 5.1 main, **Opus subagents**. Direction: `.planning/PHASE-MAP-2026-09-04.m
 
 ## Pass 101 — "Room and Ledger" on the real site. **NO push, NO deploy.**
 
-Branch `design/room-and-ledger`; brief `.claude/briefs/pass-101-room-and-ledger-site.md`;
-ruling `WINNING-BRIEF-2026-09-05` §14–§18. Three build phases, then a verifier's return,
-then this repair round. Worktree `.claude/worktrees/p101-integrate`.
+Branch `design/room-and-ledger` (**46 commits ahead of main, NOT pushed**); worktree
+`.claude/worktrees/p101-integrate`; brief `.claude/briefs/pass-101-room-and-ledger-site.md`;
+ruling `WINNING-BRIEF-2026-09-05` §14–§18. Three build phases, a verifier's return, a repair
+round `7d51d8e`…`1ebddea`, then the integrate QA `747ee52`.
 
-- **P1–P3 + integrate** `313709a`…`7ec42ec`: the type system, the home from the template,
-  the other five routes, and the two engines merged (`/` from `app/(home)/`, the rest from
-  `(room)`; `SiteMotion.tsx` is P3's engine).
-- **REPAIR ROUND** `7d51d8e`…`1ebddea`, against the verifier's two failures and 15 visual
-  findings:
-  - `7d51d8e` **@keyframes ceiling MET.** 9 → 6 site-wide: `theater-ambient-drift`,
-    `cw-pulse`, `cw-hero-line-up` deleted with their call sites. 4 are WallChart's
-    (its written exception, running only on /playbook); 2 non-WallChart against a
-    ceiling of 3. Measured in the browser on 9 routes.
-  - `d9cf829` **§18, the recomposition** — the largest gap the verifier found, and it is
-    now on the branch. Rules A (no border on a picture), B (one seam, `--lane`, col 6 at
-    x=615), C (one chip: 48px, 8px radius, 19px Hanken 500, inline arrow). All nine
-    sections re-cut; ONE foot for the whole site, no copyright range, LinkedIn kept.
-    Six verifier checks rewritten to §18.
-  - `d9272a1` **the hero reads.** Veil ramp opens at .38 (was 0) and the plateau holds to
-    2px above the tip: the finger's step off the wall goes 17 → **37 levels**. §16.2's
-    three pinned stops untouched.
-  - `6bd7f10` §18 on the ported pages; **the invisible-chip defect** (`#rl-root a` beat a
-    bare `.rl-chip`) caught and gated.
-  - `a9a57c6` clip B to `preload="none"` (260KB off the critical path); the last AA
-    failure on /services fixed → **9 routes, 0 serious/critical**.
-  - `1ebddea` /packages joins the card system.
-- **Verified now:** build green · prettier clean · `verify-room.py` **61/61** (a 61st check
-  added: Rule C swept over 7 routes, 24 chips) · a11y **100 on 9 routes, 0 violations** ·
-  reverse flash gone (rAF trace: frame 1 already at the rest state).
+- **`931fee0` the reply promise is large text.** §18 ran it 19px regular espresso on copper
+  = **4.40:1** — AA for LARGE text only, and 19px regular is not large. Now **24px/1.3
+  Hanken 500, max 22ch**, right-aligned in the field's right third; below 900 it wraps
+  rather than shrink. Measured on the built page: 1440 → 24px/500/Hanken, 4.40:1, right edge
+  1407.98 on the field's 1408.00, last line **0.33px** off the headline's (a measured
+  desktop-only `margin-bottom:-8px`); 390 → 2 lines, scrollWidth 390 = innerWidth 390.
+- **Verified now:** build green · prettier clean · `verify-room.py` **61/61** · axe-core
+  4.10.2 after `fonts.ready` + 600ms + a Lenis wheel walk, **13 routes x 2 widths**:
+  **0 serious/critical on all 12 ported routes.** The prior run's one serious finding was
+  this promise.
+- **NEW OPEN DEFECT:** `/services` shows **1 serious** contrast at both widths —
+  `.cw-lede-link` (12px) once SCROLLED. `a9a57c6` fixed the top ground (5.94:1); scrolled,
+  the ground darkens to `#2a1f18` where copper-deep is **1.95:1**. Fails on main too (old
+  accent 2.86:1) — not introduced here, but made worse. /services is unported. **The earlier
+  "9 routes, 0 serious" claim was measured unscrolled and does not survive a wheel walk.**
 - **OPEN / operator-owned:** Lighthouse mobile `/` **Performance 86, LCP 4.2s simulated**
-  (observed 225ms) — clears brief §6 (≥70), does NOT clear the DoD (≥95 / ≤1800ms) and
-  will not with a video hero. The hand BELOW the fingertip stays dark on both widths and
-  the mobile stage keeps a ~134px black tail: both are §16.2/§14.7's own pinned geometry,
-  so changing them is a **ruling, not a fix**. /contact + /services still Color Worlds.
-  /playbook is 15,787px at 1440 (the col-6 seam cost 1,691px). **NEXT:** wording (§15.8).
+  (observed 225ms; last run `a9a57c6`, not re-run) — clears brief §6 (≥70), not the DoD, and
+  will not with a video hero. The dark hand below the fingertip and the mobile stage's ~134px
+  tail are §16.2/§14.7's pinned geometry: **rulings, not fixes**. /contact + /services still
+  Color Worlds. **NEXT:** §15.8.
+- **Preview:** `git push -u origin design/room-and-ledger` — **the operator's call.**
 
 ## Ship gate (operator-owned)
 
@@ -54,7 +45,8 @@ then this repair round. Worktree `.claude/worktrees/p101-integrate`.
 Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys · `grep -oiF`
 false zeroes, python utf-8 · copy-lint rejects docs QUOTING banned words · scratchpad
 `copy.py` shadows stdlib (`python -P`) · a review is a reader, not an oracle · **a stale
-`next start` on :3000 serves OLD chunks — it cost a whole verify run this round** · axe
-before `document.fonts.ready` invents contrast failures · **a motion gate added on mount
-plays the animation backwards first (LESSONS #17)** · **moving a block onto its own element
-is a specificity change first (LESSONS #18)**.
+`next start` on :3000 serves OLD chunks — it cost a run again this pass** · axe before
+`document.fonts.ready` invents contrast failures, and axe WITHOUT a wheel walk MISSES the
+ones a scrolled ground creates · **a motion gate added on mount plays backwards first
+(LESSONS #17)** · **moving a block onto its own element is a specificity change first
+(LESSONS #18)**.
