@@ -2167,6 +2167,18 @@ html.rl-js [data-rl="media"].rl-in {
   content: none;
 }
 
+/* The foot's own wrapper. app/(theater)/layout.tsx puts the foot inside an
+ * id="rl-root" so section 09's fourteen rules reach it, and that block declares
+ * `background: var(--color-rl-bone)` for the light half. MEASURED on
+ * /work/guardicore at 1440 with the wrapper in: `.rl-foot` carries
+ * `margin-top: var(--s)` (120px) and #rl-root's `overflow-x: hidden` makes it
+ * a block formatting context, so the margin cannot collapse out and 120px of
+ * BONE painted across the espresso page between the case study and its foot.
+ * The wrapper gives up the ground here; the foot paints its own. */
+#rl-theater #rl-root {
+  background: transparent;
+}
+
 /* the case study's own display type takes the system's setting. Sizes and
  * layout are globals.css's; this is weight, width and tracking only. */
 #rl-theater :is(h1, h2, h3) {
