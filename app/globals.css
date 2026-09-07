@@ -967,6 +967,20 @@ body {
   [data-mode="theater"] .case-study__layout > .case-study__body {
     grid-column: 2;
   }
+  /* PASS-101 polish, MEASURED: `grid-row: 1 / -1` needs an EXPLICIT grid to
+   * span. With grid-template-rows unset, -1 resolves to the last line of the
+   * explicit row grid, which is line 1, so the sidebar occupied ROW ONE only
+   * -- and row one is the header, whose only child is display:none at this
+   * width. The sidebar's 471px therefore SIZED the empty header row, and
+   * every case study opened with a ~470px hole between the stat row and "The
+   * problem" (543px glance-to-heading on guardicore, 607 on ordani), with the
+   * sidebar unable to stick because its row ended before the body began.
+   *   Three explicit auto rows -- header, optional hero still, body, the most
+   * this layout ever renders -- give -1 a real last line. An unused row is
+   * 0px. Nothing else about the layout changes. */
+  [data-mode="theater"] .case-study__layout {
+    grid-template-rows: auto auto auto;
+  }
   /* Sidebar takes column 3 and spans all rows; sticky positioning keeps
    * it in view as the user scrolls through the body. align-self: start
    * pins it to the top of its grid cell (not stretched to row height). */
@@ -6227,7 +6241,10 @@ body {
       minmax(0, 1fr);
     column-gap: clamp(40px, 5vw, 72px);
     padding: 0;
-    margin-bottom: 72px;
+    /* PASS-101 polish: 64px, the section-air step, not 72. The stat row and
+       the first heading of the story are one move; 72 was the only value in
+       this stack that belonged to no scale. */
+    margin-bottom: 64px;
   }
   [data-mode="theater"] .case-study__glance-list {
     grid-column: 2 / 4;
