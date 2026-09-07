@@ -12,7 +12,16 @@ plus the ONE operator-supplied string SS15.6 names.
 Checks, in SS14/SS15 order (SS15 supersedes SS14 on the rail, the cards, the engagements
 strip, the manual, the objections and the index; SS14 binds everywhere SS15 is silent):
   01 stage-map        the hero stage is 16:9 at >=900, the film fills it, 1:1 source mapping
-  02 fingertip        the tip is <=60px from the "I" glyph box AND the "I" is LEFT of the tip
+  16.2 fingertip      the tip is <=60px from the "g" glyph box AND the "g" is LEFT of the
+                      tip (SS16.2 moves the words up one row: the COPPER row's cap-top is
+                      the 4px stop under the tip and "I build the" is the row above it)
+  16.2 arrival        the fingertip's arrival frame, re-measured IN the browser off the
+                      built page's own clip at 0.1s steps, against the script's constant
+  16.2 lighting       bone row >=4.5:1 at three frames; the copper row's ground, from the
+                      cap-top SS16.2 pins, flat espresso; the veil's own alpha profile
+  16.3 motion         one probe per item: initial vs settled computed values, <=3
+                      @keyframes, everything off under reduced motion, and the no-JS
+                      render finished at opacity 1
   02b copper-row      'go-to-market.' ends >=32px inside the stage at 1280/1440/1920
   03 hero-veil        composited contrast behind both headline rows at frames 0/48/96
   04 hero-mobile      390 and 360: crop 0% 50%, the headline OVERLAID at the fingertip, both
@@ -56,7 +65,7 @@ strip, the manual, the objections and the index; SS14 binds everywhere SS15 is s
   18 discipline       zero @keyframes, no gsap, no mix-blend-mode, no banned faces
   19 proof-row        the hero proof row reads exactly "Four exits, $5B+ combined."
 """
-import json, os, re, sys, unicodedata
+import json, os, re, shutil, subprocess, sys, unicodedata
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 except Exception:
@@ -194,6 +203,322 @@ def bg_contrast(page, sel, png_path):
         for x in range(0, w, 2):
             worst = min(worst, ratio(fg, lum(*px[x, y])))
     return worst
+
+
+FFMPEG = (r"C:\Users\micah\AppData\Local\Microsoft\WinGet\Packages"
+          r"\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe"
+          r"\ffmpeg-8.0.1-full_build\bin\ffmpeg.exe")
+
+def measure_arrival(clip, workdir):
+    """SS16.3-1's trigger, measured rather than guessed. Frames every 0.1s; in each one the
+    leftmost run of six pixels 25 levels under the local wall median, inside the band the
+    fingertip lives in (source rows 370..520 of 1080). The arrival is the FIRST frame whose
+    leftmost hand pixel is within 6px of its value on the last frame."""
+    from PIL import Image
+    exe = FFMPEG if os.path.exists(FFMPEG) else (shutil.which("ffmpeg") or "")
+    if not exe or not os.path.exists(clip):
+        return None
+    d = os.path.join(workdir, "arr")
+    if os.path.isdir(d):
+        for f in os.listdir(d):
+            os.remove(os.path.join(d, f))
+    os.makedirs(d, exist_ok=True)
+    r = subprocess.run([exe, "-v", "error", "-i", clip, "-vf", "fps=10",
+                        "-start_number", "0", os.path.join(d, "f%03d.png")],
+                       capture_output=True)
+    if r.returncode != 0:
+        return None
+    files = sorted(f for f in os.listdir(d) if f.endswith(".png"))
+    if not files:
+        return None
+    im0 = Image.open(os.path.join(d, files[0]))
+    W, H = im0.size
+    Y0, Y1 = int(round(370 * H / 1080.0)), int(round(520 * H / 1080.0))
+    RX0, RX1 = int(round(300 * W / 1920.0)), int(round(365 * W / 1920.0))
+    XMAX = min(W, int(round(1050 * W / 1920.0)))
+
+    def leftmost(path):
+        px = Image.open(path).convert("L").load()
+        best = None
+        for y in range(Y0, Y1 + 1):
+            row = [px[x, y] for x in range(XMAX)]
+            ref = sorted(row[RX0:RX1 + 1])
+            thr = ref[len(ref) // 2] - 25
+            run = 0
+            for x in range(XMAX):
+                if row[x] < thr:
+                    run += 1
+                    if run >= 6:
+                        xx = x - 5
+                        if best is None or xx < best:
+                            best = xx
+                        break
+                else:
+                    run = 0
+        return best
+
+    trace = [(i / 10.0, leftmost(os.path.join(d, f))) for i, f in enumerate(files)]
+    final = trace[-1][1]
+    arrival = None
+    for t, x in trace:
+        if x is not None and final is not None and abs(x - final) <= 6:
+            arrival = t
+            break
+    return {"trace": trace, "final": final, "arrival": arrival,
+            "w": W, "h": H, "n": len(files)}
+
+
+def ident(v):
+    """Is this computed transform the identity (no move, no scale)?"""
+    if not v or v == "none":
+        return True
+    tx, ty, sc = tmat(v)
+    return abs(tx) < 0.01 and abs(ty) < 0.01 and abs(sc - 1) < 0.01
+
+
+def tmat(v):
+    """(tx, ty, scale) out of a computed `transform` matrix string."""
+    if not v or v == "none":
+        return (0.0, 0.0, 1.0)
+    n = [float(x) for x in re.findall(r"-?[\d.eE+]+", v)]
+    if len(n) >= 6:
+        return (n[4], n[5], n[0])
+    return (0.0, 0.0, 1.0)
+
+
+def ground_from_cap(page, sel, png_path):
+    """SS16.2 pins the veil solid from `fingertip_y + 4px`, which IS the copper row's own
+    INK top -- the top of the leading lowercase `g`, --xk of the font size below the line
+    box (round 10; pinned to the cap line instead, the tip stood 15-16px clear of the g and
+    touched nothing). So the row's GROUND is measured from that ink top down -- the band the
+    row's ink actually stands on -- and what is returned is (worst contrast, brightest
+    channel). The --xk of line box ABOVE it is empty except where the two `t`s and the `k`
+    of `go-to-market.` run up to the box's own top; that strip stands in the veil's
+    .55 -> 1 ramp by construction and is reported separately, never folded into this
+    number."""
+    from PIL import Image
+    info = page.evaluate("""(sel)=>{const e=document.querySelector(sel);
+        if(!e) return null; const r=e.getBoundingClientRect();
+        const h1=e.closest('h1')||e;
+        const xk=parseFloat(getComputedStyle(document.documentElement)
+                    .getPropertyValue('--xk'))||0.1404;
+        return {x:r.x,y:r.y,w:r.width,h:r.height,color:getComputedStyle(e).color,
+                cap:xk*parseFloat(getComputedStyle(h1).fontSize)};}""", sel)
+    if not info or info["w"] < 2 or info["h"] < 2:
+        return None
+    page.evaluate("(sel)=>{document.querySelector(sel).style.color='transparent';}", sel)
+    y = max(0, info["y"] + info["cap"])
+    h = info["h"] - info["cap"]
+    clip = {"x": max(0, info["x"]), "y": y,
+            "width": min(info["w"], page.viewport_size["width"] - max(0, info["x"])),
+            "height": min(h, page.viewport_size["height"] - y)}
+    page.screenshot(path=png_path, clip=clip)
+    page.evaluate("(sel)=>{document.querySelector(sel).style.color='';}", sel)
+    im = Image.open(png_path).convert("RGB")
+    fg = lum(*parse_rgb(info["color"]))
+    px = im.load()
+    w, hh = im.size
+    worst, bright = 99.0, 0
+    for yy in range(0, hh, 2):
+        for xx in range(0, w, 2):
+            p = px[xx, yy]
+            worst = min(worst, ratio(fg, lum(*p)))
+            bright = max(bright, max(p))
+    return worst, bright
+
+
+def tip_to_g_ink(page, png):
+    """SS16.2: "its tip touches the 'g'". Measured in PIXELS, not from a glyph box: the
+    copper row is painted black on a white sheet at full opacity, the leading glyph's own
+    ink mask is scanned, and what is returned is the distance from the measured fingertip
+    to the nearest INK pixel of that "g". A Range rect is the font's ascent+descent box and
+    says nothing about where a lowercase bowl actually starts."""
+    from PIL import Image
+    import math
+    info = page.evaluate("""()=>{
+        const stg=document.getElementById('stage'); const b=stg.getBoundingClientRect();
+        const v=document.getElementById('filmvid'), cs=getComputedStyle(v);
+        const SW=1920,SH=1080,FX=372,FY=413;
+        const sc=Math.max(b.width/SW,b.height/SH);
+        const op=cs.objectPosition.split(' ');
+        const ox=b.x+(b.width-SW*sc)*(parseFloat(op[0])/100);
+        const oy=b.y+(b.height-SH*sc)*(parseFloat(op[1])/100);
+        const r=document.querySelector('#h1 .r.cu').getBoundingClientRect();
+        document.getElementById('stage').style.visibility='hidden';
+        document.getElementById('room').style.background='#fff';
+        document.querySelector('.hero-copy .lede').style.visibility='hidden';
+        document.querySelector('#h1 .r.r1').style.visibility='hidden';
+        const cu=document.querySelector('#h1 .r.cu');
+        cu.style.color='#000'; cu.style.opacity='1'; cu.style.transition='none';
+        return {x:r.x,y:r.y,w:r.width,h:r.height,fx:ox+FX*sc,fy:oy+FY*sc};}""")
+    page.wait_for_timeout(120)
+    page.screenshot(path=png, clip={"x": max(0, info["x"]), "y": max(0, info["y"]),
+                                    "width": info["w"], "height": info["h"]})
+    page.evaluate("""()=>{document.getElementById('stage').style.visibility='';
+        document.getElementById('room').style.background='';
+        document.querySelector('.hero-copy .lede').style.visibility='';
+        document.querySelector('#h1 .r.r1').style.visibility='';
+        const cu=document.querySelector('#h1 .r.cu');
+        cu.style.color=''; cu.style.opacity=''; cu.style.transition='';}""")
+    im = Image.open(png).convert("L")
+    px, W, H = im.load(), im.size[0], im.size[1]
+    cols = [any(px[x, y] < 128 for y in range(H)) for x in range(W)]
+    try:
+        first = next(i for i, v in enumerate(cols) if v)
+    except StopIteration:
+        return None
+    gap = next((i for i in range(first, W) if not cols[i]), W)
+    best, at = 1e9, None
+    for x in range(first, gap):
+        for y in range(H):
+            if px[x, y] < 128:
+                d = math.hypot(info["x"] + x - info["fx"], info["y"] + y - info["fy"])
+                if d < best:
+                    best, at = d, (info["x"] + x, info["y"] + y)
+    inktop = min(y for x in range(first, gap) for y in range(H) if px[x, y] < 128)
+    return {"dist": best, "at": at, "fx": info["fx"], "fy": info["fy"],
+            "gInkTop": info["y"] + inktop, "gInkLeft": info["x"] + first,
+            "gInkRight": info["x"] + gap, "rowTop": info["y"]}
+
+
+def hand_emerges(page, png_raw, png_out):
+    """SS16.2: "the hand emerges from the dark". The hand-and-arm silhouette is taken from
+    the film itself with the veil OFF (every pixel in the arm's own source window that is
+    >= 14 levels darker than the wall's median on its own row), and what is reported is the
+    share of that silhouette that still reads >= 8 levels off the local wall once the veil
+    is composited over it -- plus how much of what survives lies BELOW the fingertip, which
+    is the half round 9 painted out entirely."""
+    from PIL import Image
+    import statistics
+    box = page.evaluate("""()=>{
+        const stg=document.getElementById('stage'); const b=stg.getBoundingClientRect();
+        const v=document.getElementById('filmvid'), cs=getComputedStyle(v);
+        const SW=1920,SH=1080,FX=372,FY=413;
+        const sc=Math.max(b.width/SW,b.height/SH);
+        const op=cs.objectPosition.split(' ');
+        const ox=b.x+(b.width-SW*sc)*(parseFloat(op[0])/100);
+        const oy=b.y+(b.height-SH*sc)*(parseFloat(op[1])/100);
+        document.getElementById('herocopy').style.visibility='hidden';
+        return {x:b.x,y:b.y,w:b.width,h:b.height,sc:sc,ox:ox,oy:oy,
+                fx:ox+FX*sc, fy:oy+FY*sc};}""")
+    clip = {"x": max(0, box["x"]), "y": max(0, box["y"]),
+            "width": box["w"], "height": box["h"]}
+    page.evaluate("()=>{document.querySelector('#stage .veil').style.display='none';}")
+    page.wait_for_timeout(120)
+    page.screenshot(path=png_raw, clip=clip)
+    page.evaluate("()=>{document.querySelector('#stage .veil').style.display='';}")
+    page.wait_for_timeout(120)
+    page.screenshot(path=png_out, clip=clip)
+    page.evaluate("()=>{document.getElementById('herocopy').style.visibility='';}")
+    raw = Image.open(png_raw).convert("L").load()
+    cmp_ = Image.open(png_out).convert("L").load()
+    im = Image.open(png_raw)
+    W, H = im.size
+
+    def sx(s):
+        return int(round(box["ox"] - box["x"] + s * box["sc"]))
+
+    def sy(s):
+        return int(round(box["oy"] - box["y"] + s * box["sc"]))
+
+    tipy = box["fy"] - box["y"]
+    tot = sur = below = 0
+    for s_y in range(400, 761, 2):
+        y = sy(s_y)
+        if y < 0 or y >= H:
+            continue
+        wall_r = [raw[sx(s), y] for s in range(120, 331, 6) if 0 <= sx(s) < W]
+        wall_c = [cmp_[sx(s), y] for s in range(120, 331, 6) if 0 <= sx(s) < W]
+        if not wall_r:
+            continue
+        wr, wc = statistics.median(wall_r), statistics.median(wall_c)
+        for s_x in range(360, 761, 2):
+            x = sx(s_x)
+            if x < 0 or x >= W:
+                continue
+            if wr - raw[x, y] >= 14:
+                tot += 1
+                if wc - cmp_[x, y] >= 8:
+                    sur += 1
+                    if y > tipy:
+                        below += 1
+    if not tot:
+        return None
+    return {"tot": tot, "sur": sur, "below": below, "frac": sur / float(tot),
+            "below_share": (below / float(sur)) if sur else 0.0}
+
+
+def veil_profile(page, png):
+    """Measure the veil's OWN alpha, not a composite guess: the film is hidden and the
+    stage painted flat white, so alpha = (255 - pixel) / (255 - 13) at every row."""
+    from PIL import Image
+    box = page.evaluate("""()=>{const s=document.getElementById('stage');
+        const v=s.querySelector('video'); const st=s.querySelector('.still');
+        v.style.display='none'; if(st) st.style.display='none';
+        s.style.background='#ffffff';
+        document.getElementById('herocopy').style.visibility='hidden';
+        const r=s.getBoundingClientRect();
+        const wEl=document.getElementById('stagewrap');
+        const fy=r.top+r.height*parseFloat(wEl.dataset.fy||'38.2407')/100;
+        const rows=[...document.querySelectorAll('#h1 .r')];
+        return {x:r.x,y:r.y,w:r.width,h:r.height,fy:fy,
+                boneTop:rows[0].getBoundingClientRect().y};}""")
+    page.wait_for_timeout(200)
+    page.screenshot(path=png, clip={"x": max(0, box["x"]), "y": max(0, box["y"]),
+                                    "width": box["w"], "height": box["h"]})
+    page.evaluate("""()=>{const s=document.getElementById('stage');
+        const v=s.querySelector('video'); const st=s.querySelector('.still');
+        v.style.display=''; if(st) st.style.display='';
+        s.style.background='';
+        document.getElementById('herocopy').style.visibility='';}""")
+    im = Image.open(png).convert("L")
+    px, W, H = im.load(), im.size[0], im.size[1]
+
+    def a_at(abs_y):
+        y = int(round(abs_y - box["y"]))
+        if y < 0 or y >= H:
+            return None
+        v = px[min(W - 1, int(W * 0.5)), y]
+        return (255.0 - v) / (255.0 - 13.0)
+
+    out = {"a_m12": a_at(box["fy"] - 12), "a_p4": a_at(box["fy"] + 4),
+           "a_m40": a_at(box["fy"] - 40), "a_p40": a_at(box["fy"] + 40),
+           "a_bone_top": a_at(box["boneTop"])}
+    return None if any(v is None for v in out.values()) else out
+
+
+def finger_emerges(page, png):
+    """SS16.2 supersedes SS14.1's ">= 25 levels" gate. That number was set against a veil
+    that held .55 THROUGH the fingertip's row and stayed lit below it, so the finger sat on
+    a wall reading ~145 and an absolute step was the right measure. SS16.2 takes the veil
+    solid at fingertip_y + 4px, so the finger's lit band is the 18px of ramp above it, where
+    the wall itself falls from ~90 to ~19 -- an absolute step there is a measure of the ramp,
+    not of the gesture. What is measured instead is the RELATIVE step, row by row inside the
+    lit band: the finger's darkest decile against the wall's median at the SAME y. Scale
+    free, so it is the same test at any veil alpha."""
+    from PIL import Image
+    import statistics
+    box = page.evaluate("""()=>{const w=document.getElementById('stagewrap');
+        const r=w.getBoundingClientRect();
+        const fx=parseFloat(w.dataset.fx)/100, fy=parseFloat(w.dataset.fy)/100;
+        return {x:r.left+r.width*fx, y:r.top+r.height*fy, w:r.width};}""")
+    x, y = box["x"], box["y"]
+    clip = {"x": max(0, x - 90), "y": max(0, y - 16), "width": 200, "height": 18}
+    page.screenshot(path=png, clip=clip)
+    im = Image.open(png).convert("L")
+    px, W, H = im.load(), im.size[0], im.size[1]
+    rows = []
+    for yy in range(H):
+        wall = [px[xx, yy] for xx in range(0, 60)]
+        ink = sorted(px[xx, yy] for xx in range(60, W))
+        wv = statistics.median(wall)
+        iv = statistics.median(ink[:max(1, len(ink) // 10)])
+        if wv > 2:
+            rows.append((wv, iv, (wv - iv) / float(wv)))
+    if not rows:
+        return None
+    return {"rows": rows, "rel": statistics.median(r[2] for r in rows),
+            "absmax": max(r[0] - r[1] for r in rows), "bw": W, "bh": H}
 
 
 def finger_visible(page, png):
@@ -335,12 +660,23 @@ def main(built):
             const h1=document.getElementById('h1');
             const hb=h1.getBoundingClientRect();
             const rows=[...h1.querySelectorAll('.r')];
-            const tn=[...rows[0].childNodes].filter(n=>n.nodeType===3&&n.textContent.trim())[0];
+            /* SS16.2: the glyph the finger points at is the "g" of go-to-market., on the
+               COPPER row. The row span is display:block, so ITS box is the line box (a
+               Range rect is the font's own ascent+descent box and sits ~8px higher at
+               1440). ROUND 10: what SS16.2 pins 4px under the tip is that row's own INK
+               top -- the top of the lowercase "g", --xk of the font size below the line
+               box -- and NOT the cap line. Pinned to the cap line, "its tip touches the g"
+               was false by 15-16px at every width, because "g" has no ink at cap height.
+               The ink top is also, by SS16.2's own parenthesis, where the veil goes solid
+               ("the copper row's ground"), so the finger's last lit pixel and the g's
+               first copper pixel are the same row. */
+            const tn=[...rows[1].childNodes].filter(n=>n.nodeType===3&&n.textContent.trim())[0];
             const rg=document.createRange(); rg.setStart(tn,0); rg.setEnd(tn,1);
             const g=rg.getBoundingClientRect();
-            const capk=parseFloat(getComputedStyle(document.documentElement)
-                        .getPropertyValue('--capk'))||0.0591;
-            const capTop=g.y+capk*parseFloat(getComputedStyle(h1).fontSize);
+            const lineBox=rows[1].getBoundingClientRect();
+            const xk=parseFloat(getComputedStyle(document.documentElement)
+                        .getPropertyValue('--xk'))||0.1404;
+            const capTop=lineBox.y+xk*parseFloat(getComputedStyle(h1).fontSize);
             const dx=(g.x<=fx&&fx<=g.right)?0:Math.min(Math.abs(fx-g.x),Math.abs(fx-g.right));
             const dy=(capTop<=fy&&fy<=g.bottom)?0:Math.min(Math.abs(fy-capTop),
                                                            Math.abs(fy-g.bottom));
@@ -355,7 +691,8 @@ def main(built):
                     fx:fx, fy:fy,
                     fpct:[(fx-b.x)/b.width*100,(fy-b.y)/b.height*100],
                     I:[g.x,capTop,g.right,g.bottom],
-                    euclid:Math.hypot(dx,dy), dx:dx, dy:dy, Ileft:g.right<fx,
+                    capTop:capTop, capDelta:capTop-fy,
+                    euclid:Math.hypot(dx,dy), dx:dx, dy:dy, Ileft:g.x<fx,
                     h1Box:[hb.x,hb.y,hb.right,hb.bottom],
                     rows:rows.map(r=>{const k=ink(r);
                        return {t:r.textContent.trim(), x:k.x, right:k.right, w:k.width,
@@ -368,14 +705,36 @@ def main(built):
             pg.set_viewport_size({"width": W, "height": 900})
             pg.wait_for_timeout(500)
             pt[W] = pg.evaluate(FINGER_JS)
-        chk("14.7-fingertip-to-I",
-            all(v["euclid"] <= 60 and v["Ileft"] for v in pt.values()),
-            "tip -> nearest point of the \"I\" glyph box, and the glyph LEFT of the tip: "
+        gink = {}
+        for W in (1280, 1440, 1920):
+            pg.set_viewport_size({"width": W, "height": 900})
+            pg.wait_for_timeout(400)
+            gink[W] = tip_to_g_ink(pg, os.path.join(SCRATCH, "vfy", "_gink_%d.png" % W))
+        pg.set_viewport_size({"width": 1440, "height": 900})
+        pg.wait_for_timeout(300)
+        chk("16.2-tip-touches-the-g-ink",
+            all(g is not None and g["dist"] <= 10.0 for g in gink.values()),
+            "SS16.2 \"its tip touches the 'g'\", measured in PIXELS against the leading "
+            "glyph's own ink mask (the row painted black on white at full opacity), NOT "
+            "against a Range box: "
             + "; ".join(
-                "%d: tip (%.0f, %.0f), I box [%.0f %.0f %.0f %.0f], dx %.1f dy %.1f, "
-                "euclid %.1fpx (<=60), I left of tip=%s"
+                "%d: tip (%.0f, %.0f), nearest ink pixel of the \"g\" at (%.0f, %.0f), "
+                "%.1fpx (<=10); the g's ink top %.1fpx under the tip"
+                % (W, gink[W]["fx"], gink[W]["fy"], gink[W]["at"][0], gink[W]["at"][1],
+                   gink[W]["dist"], gink[W]["gInkTop"] - gink[W]["fy"])
+                if gink[W] else "%d: not measurable" % W
+                for W in (1280, 1440, 1920)))
+        chk("16.2-fingertip-to-g",
+            all(v["euclid"] <= 60 and v["Ileft"] and abs(v["capDelta"] - 4) <= 1.0
+                for v in pt.values()),
+            "tip -> nearest point of the \"g\" glyph box, the glyph LEFT of the tip, and the "
+            "copper row's INK top 4px UNDER the tip: "
+            + "; ".join(
+                "%d: tip (%.0f, %.0f), g box [%.0f %.0f %.0f %.0f], dx %.1f dy %.1f, "
+                "euclid %.1fpx (<=60), g left of tip=%s, ink-top %+.1fpx off the tip"
                 % (W, pt[W]["fx"], pt[W]["fy"], pt[W]["I"][0], pt[W]["I"][1], pt[W]["I"][2],
-                   pt[W]["I"][3], pt[W]["dx"], pt[W]["dy"], pt[W]["euclid"], pt[W]["Ileft"])
+                   pt[W]["I"][3], pt[W]["dx"], pt[W]["dy"], pt[W]["euclid"], pt[W]["Ileft"],
+                   pt[W]["capDelta"])
                 for W in (1280, 1440, 1920)))
         chk("14.7-copper-row-inside-stage",
             all(v["rows"][1]["gutter"] >= 32 and v["rows"][1]["n"] == 1 for v in pt.values()),
@@ -388,7 +747,7 @@ def main(built):
         chk("14.7-sentence-and-chips-share-the-left-edge",
             all(abs(v["ledeX"] - v["I"][0]) <= 1.5 and abs(v["chipsX"] - v["I"][0]) <= 1.5
                 and v["proofRight"] >= v["stage"]["right"] - 34 for v in pt.values()),
-            "; ".join("%d: I at %.0f, sentence at %.0f, chips at %.0f, proof row ends %.0f "
+            "; ".join("%d: g at %.0f, sentence at %.0f, chips at %.0f, proof row ends %.0f "
                       "(stage ends %.0f, gutter 32)"
                       % (W, pt[W]["I"][0], pt[W]["ledeX"], pt[W]["chipsX"],
                          pt[W]["proofRight"], pt[W]["stage"]["right"])
@@ -397,19 +756,25 @@ def main(built):
         # ---- 03 hero veil contrast at frames 0 / 48 / 96 ---------------------
         pg.set_viewport_size({"width": 1440, "height": 900})
         pg.wait_for_timeout(600)
-        bone_min, cop_min, det = 99, 99, []
+        bone_min, cop_min, cop_px, det = 99, 99, 0, []
         for fr in (0, 48, 96):
             t = set_frame(pg, "filmvid", fr)
             b = bg_contrast(pg, "#h1 .r:nth-child(1)", os.path.join(SCRATCH, "vfy", "_b.png"))
-            c = bg_contrast(pg, "#h1 .r.cu", os.path.join(SCRATCH, "vfy", "_c.png"))
+            c = ground_from_cap(pg, "#h1 .r.cu", os.path.join(SCRATCH, "vfy", "_c.png"))
             if b:
                 bone_min = min(bone_min, b)
             if c:
-                cop_min = min(cop_min, c)
-            det.append("f%d(t=%.2fs) bone %.2f copper %.2f" % (fr, t or 0, b or 0, c or 0))
-        chk("14.1-hero-contrast", bone_min >= 4.5 and cop_min >= 3.0,
-            "bone row min %.2f:1 (>=4.5), copper row min %.2f:1 (>=3.0) | %s"
-            % (bone_min, cop_min, "; ".join(det)))
+                cop_min = min(cop_min, c[0])
+                cop_px = max(cop_px, c[1])
+            det.append("f%d(t=%.2fs) bone %.2f | copper ground %.2f, brightest channel %d"
+                       % (fr, t or 0, b or 0, c[0] if c else 0, c[1] if c else 0))
+        chk("16.2-hero-lighting", bone_min >= 4.5 and cop_min >= 4.3 and cop_px <= 16,
+            "SS16.2: the bone row is over the film on the veiled wall, the copper row is on "
+            "the veil's solid ground. bone row min %.2f:1 (>=4.5); the copper row's ground "
+            "from its cap-top (= fingertip_y + 4px, the stop SS16.2 pins) down is FLAT "
+            "espresso -- brightest channel %d of 255 (#0D0D0F is 15) -- carrying copper at "
+            "%.2f:1, which is the brief's own measured copper-on-espresso figure | %s"
+            % (bone_min, cop_px, cop_min, "; ".join(det)))
 
         # ---- 02b the out-of-flow hero block must never reach section 02 ------
         clear = []
@@ -433,18 +798,44 @@ def main(built):
         set_frame(pg, "filmvid", 96)
         pg.evaluate("()=>window.scrollTo(0,0)")
         pg.wait_for_timeout(500)
-        vis = finger_visible(pg, os.path.join(SCRATCH, "vfy", "_finger.png"))
-        hand = hand_reads(pg, os.path.join(SCRATCH, "vfy", "_hand.png"))
-        chk("14.1-hand-reads", all(d >= 10 for _, d in hand),
-            "1440, hold frame: the hand's own band (source x 460..660 -- knuckles, fist, "
-            "wrist) against the wall beside it, BELOW the fingertip: "
-            + ", ".join("%d%% of the stage %+.0f levels" % (pc, d) for pc, d in hand)
-            + " (>=10 at every height, or the gesture is a fingertip with nothing attached)")
-        chk("14.1-finger-visible", vis and vis["delta"] >= 25,
-            "1440, hold frame: the fingertip band reads %.0f against a local wall of %.0f "
-            "-- a %.0f-level step (>=25 to read at 1x); sampled in a %dx%d box centred on "
-            "the measured fingertip" % (vis["ink"], vis["wall"], vis["delta"],
-                                        vis["bw"], vis["bh"]))
+        vis = finger_emerges(pg, os.path.join(SCRATCH, "vfy", "_finger.png"))
+        # SS16.2 supersedes SS14.1's hand check: the veil is now SOLID from the fingertip's
+        # own row +4px, so the hand below the tip is inside the dark BY DESIGN ("the hand
+        # emerges from the dark and its tip touches the g"). What is measured instead is
+        # the veil's own alpha profile against the two stops SS16.2 pins.
+        veil = veil_profile(pg, os.path.join(SCRATCH, "vfy", "_veil.png"))
+        chk("16.2-veil-cut",
+            veil is not None and abs(veil["a_m12"] - 0.55) <= 0.03
+            and veil["a_p4"] >= 0.995 and veil["a_bone_top"] >= 0.52,
+            "1440, the veil measured directly (the film replaced by flat white, so alpha = "
+            "(255 - pixel) / 242): %.3f at fingertip_y - 12px (SS16.2 pins .55), %.3f at "
+            "fingertip_y + 4px (SS16.2 pins solid), %.3f at the bone row's own box top "
+            "(what carries that row at >=4.5:1), %.3f 40px above the tip, %.3f 40px below"
+            % (veil["a_m12"], veil["a_p4"], veil["a_bone_top"], veil["a_m40"], veil["a_p40"])
+            if veil else "veil profile could not be measured")
+        he = hand_emerges(pg, os.path.join(SCRATCH, "vfy", "_hand_raw.png"),
+                          os.path.join(SCRATCH, "vfy", "_hand_cmp.png"))
+        chk("16.2-hand-emerges",
+            he is not None and he["frac"] >= 0.25 and he["below_share"] >= 0.35,
+            "SS16.2 \"the hand emerges from the dark\", 1440 at the hold frame. The "
+            "hand-and-arm silhouette is taken from the film with the veil OFF; %d of %d of "
+            "its pixels still read >=8 levels off the wall on their own row once the veil "
+            "is composited (%.1f%%, gate 25%%), and %.1f%% of those sit BELOW the fingertip "
+            "(gate 35%%) -- the half round 9 painted out entirely (1.7%% survived there, "
+            "100%% of it above the tip). The veil holds solid across the copper row's own "
+            "box and reopens under it, so the wrist, the forearm and the table come back."
+            % (he["sur"], he["tot"], he["frac"] * 100, he["below_share"] * 100)
+            if he else "the hand silhouette could not be sampled")
+        chk("16.2-fingertip-emerges", vis and vis["rel"] >= 0.15,
+            "1440, hold frame: inside the 18px of ramp still lit above the tip, the finger "
+            "reads a median %.0f%% darker than the wall on the same row (>=15%%, the "
+            "scale-free form of SS14.1's old 25-of-145 step), peaking at a %.0f-level "
+            "absolute step; per-row (wall, finger, rel): %s. Below fingertip_y + 4px the "
+            "veil is solid by SS16.2's own ruling, so the hand is in the dark there BY "
+            "DESIGN and only the tip is lit."
+            % (vis["rel"] * 100, vis["absmax"],
+               [(int(a), int(b), round(c, 2)) for a, b, c in vis["rows"][::3]])
+            if vis else "the fingertip band could not be sampled")
 
         # ---- 05/06 operator overlay -----------------------------------------
         pg.evaluate("()=>document.getElementById('operator').scrollIntoView()")
@@ -1087,6 +1478,7 @@ def main(built):
         more_n = np_.locator(".prfx").count()
         eng_b = np_.locator("#ebar").bounding_box()
         cov_b = np_.locator(".manual .art .frame").bounding_box()
+        cu_b = np_.locator("#h1 .r.cu").bounding_box()
         barvis = np_.locator("#bar").is_visible()
         nctx.close()
         # the fingertip, from CSS alone: 19.375% across and 38.2407% down the 16:9 stage.
@@ -1097,15 +1489,22 @@ def main(built):
             and prf_n == 2 and more_n == 1 and barvis
             and abs(stg["width"] * 9 / 16 - stg["height"]) <= 1.5
             and h1b["x"] < ftx and ftx - h1b["x"] <= 60
-            and abs(h1b["y"] - fty) <= 40
+            # SS16.2: the row whose INK top is pinned 4px under the tip is the COPPER one.
+            # .r is display:block at line-height .92, so --d is its height / .92 and the
+            # leading "g"'s ink top is --xk of that below the box top (round 10: --capk, the
+            # cap line, is 15-16px higher and has no ink on it in `go-to-market.`).
+            and abs((cu_b["y"] + 0.1404 * cu_b["height"] / 0.92) - (fty + 4)) <= 2.0
             and eng_b["height"] >= 219.5 and cov_b["width"] > 0,
             "scripting DISABLED: the 16:9 stage is %.0fx%.0f and the headline block starts "
             "at (%.0f, %.0f) against the CSS-only fingertip (%.0f, %.0f) -- %.0fpx to its "
-            "left, from :root's measured percentages and nothing else; %d headline rows, "
+            "left and the copper row's ink-top at %.1f, %+.1fpx off the tip, from :root's "
+            "measured percentages and nothing else; %d headline rows, "
             "%d cards, %d ledger rows, %d objection columns, %d receipts + %d 'see the "
             "rest' link, the engagements block %.0fpx tall, the cover frame %.0fpx wide, "
             "and the bar visible=%s (the <noscript> rule opens it)"
             % (stg["width"], stg["height"], h1b["x"], h1b["y"], ftx, fty, ftx - h1b["x"],
+               cu_b["y"] + 0.1404 * cu_b["height"] / 0.92,
+               cu_b["y"] + 0.1404 * cu_b["height"] / 0.92 - fty,
                rows_n, cards_n, steps_n, qs_n, prf_n, more_n, eng_b["height"],
                cov_b["width"], barvis))
 
@@ -1156,9 +1555,10 @@ def main(built):
               if(cs.mixBlendMode&&cs.mixBlendMode!=='normal') blends.push(e.tagName);});
             return {kf:kf, gsap: typeof window.gsap, fams:[...fams], blends:blends};}""")
         bad = [f for f in disc["fams"] if "Bricolage" in f or "JetBrains" in f or "mono" in f.lower()]
-        chk("discipline", disc["kf"] == 0 and disc["gsap"] == "undefined"
+        chk("discipline", disc["kf"] <= 3 and disc["gsap"] == "undefined"
             and not disc["blends"] and not bad,
-            "@keyframes=%d, gsap=%s, mix-blend-mode elements=%d, banned faces=%s, "
+            "@keyframes=%d (SS16.3 ceiling 3 -- the whole set is transitions between two "
+            "declared states), gsap=%s, mix-blend-mode elements=%d, banned faces=%s, "
             "Anybody loaded=%s" % (disc["kf"], disc["gsap"], len(disc["blends"]), bad,
                                    pg.evaluate("()=>document.fonts.check('300 20px Anybody')")))
 
@@ -1216,7 +1616,8 @@ def main(built):
                     # the headline is OVERLAID: its box sits inside the stage's own box
                     and m["h1Box"][1] >= m["stage"]["y"] - 0.5
                     and m["h1Box"][3] <= m["stage"]["bottom"] + 0.5
-                    and m["Ileft"] and m["dx"] <= 50
+                    and m["Ileft"] and m["euclid"] <= 60
+                    and abs(m["capDelta"] - 4) <= 1.5
                     and all(r["n"] == 1 and r["gutter"] >= 12 for r in m["rows"])
                     # the face, source x 1010..1290, stays inside the visible window
                     and m["srcWindow"][0] <= 1010 and m["srcWindow"][1] >= 1290
@@ -1229,17 +1630,17 @@ def main(built):
                     # stage starts BELOW the bar on the phone.
                     and m["stage"]["y"] >= m["bar"]["h"] - 0.5)
 
-        chk("14.7-hero-mobile", all(mob_ok(m) for m in mob.values()),
+        chk("16.2-hero-mobile", all(mob_ok(m) for m in mob.values()),
             " || ".join(
                 "%d: stage %.0fx%.0f cropped %s; fingertip (%.1f, %.1f) = %.2f%% across "
-                "(SS14.7 wants ~26) and %.2f%% down; \"I\" box left edge %.1f, %.1fpx LEFT "
-                "of the tip (<=50, I left=%s); rows %s; visible source window %.0f..%.0f "
+                "(SS14.7 wants ~26) and %.2f%% down; \"g\" box left edge %.1f, %.1fpx from "
+                "the tip (<=60, g left=%s); rows %s; visible source window %.0f..%.0f "
                 "(the face at 1010..1290 is inside); headline box %.0f..%.0f inside the "
                 "stage %.0f..%.0f; the sentence starts %.0f, the stage ends %.0f; bar "
                 "opacity %s, %.0fpx tall, and the stage opens at y %.0f CLEAR of it"
                 % (W, mob[W]["stage"]["w"], mob[W]["stage"]["h"], mob[W]["objpos"],
                    mob[W]["fx"], mob[W]["fy"], mob[W]["fpct"][0], mob[W]["fpct"][1],
-                   mob[W]["I"][0], mob[W]["dx"], mob[W]["Ileft"],
+                   mob[W]["I"][0], mob[W]["euclid"], mob[W]["Ileft"],
                    [(r["t"], round(r["w"], 1), "%.0fpx gutter" % r["gutter"], r["n"])
                     for r in mob[W]["rows"]],
                    mob[W]["srcWindow"][0], mob[W]["srcWindow"][1],
@@ -1252,27 +1653,76 @@ def main(built):
             "; ".join("%d: scrollWidth %d <= innerWidth %d"
                       % (W, mob[W]["scrollW"], mob[W]["iw"]) for W in (390, 360)))
 
+        # ---- SS16.2 on the phone: the same two facts, measured the same way -----
+        mg, mh = {}, {}
+        for W in (390, 360):
+            pg.set_viewport_size({"width": W, "height": 844})
+            pg.reload()
+            pg.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
+            pg.wait_for_timeout(1600)
+            pg.evaluate("()=>window.scrollTo(0,0)")
+            pg.wait_for_timeout(300)
+            mg[W] = tip_to_g_ink(pg, os.path.join(SCRATCH, "vfy", "_gink_m%d.png" % W))
+            mh[W] = hand_emerges(pg, os.path.join(SCRATCH, "vfy", "_hand_raw_m%d.png" % W),
+                                 os.path.join(SCRATCH, "vfy", "_hand_cmp_m%d.png" % W))
+        chk("16.2-tip-touches-the-g-ink-390",
+            all(g is not None and g["dist"] <= 10.0 for g in mg.values()),
+            "the phone runs the SAME rule, measured against the g's own ink mask: "
+            + "; ".join(
+                "%d: tip (%.0f, %.0f), nearest ink pixel of the \"g\" at (%.0f, %.0f), "
+                "%.1fpx (<=10; it was 17.4 at 390 and 18.4 at 360 on the 40px offset, with "
+                "the tip past the g and over the \"o\")"
+                % (W, mg[W]["fx"], mg[W]["fy"], mg[W]["at"][0], mg[W]["at"][1],
+                   mg[W]["dist"]) if mg[W] else "%d: not measurable" % W
+                for W in (390, 360)))
+        chk("16.2-hand-emerges-390",
+            all(h is not None and h["frac"] >= 0.25 and h["below_share"] >= 0.35
+                for h in mh.values()),
+            "the veil reopens under the copper row at the phone end of the ladder too: "
+            + "; ".join(
+                "%d: %d of %d silhouette pixels survive (%.1f%%, gate 25%%), %.1f%% of them "
+                "BELOW the tip (gate 35%%)"
+                % (W, mh[W]["sur"], mh[W]["tot"], mh[W]["frac"] * 100,
+                   mh[W]["below_share"] * 100) if mh[W] else "%d: not measurable" % W
+                for W in (390, 360)))
+
         # the veil is re-cut from the new cap-top at BOTH ends of the ladder, so the two
         # rows are measured over the film on the phone too.
+        # ROUND 11: 360 joins 390. This check ran at 390 only, and 390 cleared the 4.5 gate
+        # by 0.04 while 360 -- the narrowest width in the ladder -- missed it on two of the
+        # three frames. The narrowest width is where the mobile crop puts the brightest wall
+        # behind the bone row, so it is the width the gate has to be measured at.
+        mb, mc, mpx, mdet = 99, 99, 0, []
+        for MW, MH in ((390, 844), (360, 800)):
+            pg.set_viewport_size({"width": MW, "height": MH})
+            pg.reload()
+            pg.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
+            pg.wait_for_timeout(1600)
+            for fr in (0, 48, 96):
+                t = set_frame(pg, "filmvid", fr)
+                pg.evaluate("()=>window.scrollTo(0,0)")
+                pg.wait_for_timeout(200)
+                b = bg_contrast(pg, "#h1 .r:nth-child(1)",
+                                os.path.join(SCRATCH, "vfy", "_mb%d.png" % MW))
+                c2 = ground_from_cap(pg, "#h1 .r.cu",
+                                     os.path.join(SCRATCH, "vfy", "_mc%d.png" % MW))
+                if b:
+                    mb = min(mb, b)
+                if c2:
+                    mc = min(mc, c2[0])
+                    mpx = max(mpx, c2[1])
+                mdet.append("%d f%d(t=%.2fs) bone %.2f | copper ground %.2f, brightest "
+                            "channel %d" % (MW, fr, t or 0, b or 0,
+                                            c2[0] if c2 else 0, c2[1] if c2 else 0))
         pg.set_viewport_size({"width": 390, "height": 844})
         pg.reload()
         pg.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
         pg.wait_for_timeout(1600)
-        mb, mc, mdet = 99, 99, []
-        for fr in (0, 48, 96):
-            t = set_frame(pg, "filmvid", fr)
-            pg.evaluate("()=>window.scrollTo(0,0)")
-            pg.wait_for_timeout(200)
-            b = bg_contrast(pg, "#h1 .r:nth-child(1)", os.path.join(SCRATCH, "vfy", "_mb.png"))
-            c2 = bg_contrast(pg, "#h1 .r.cu", os.path.join(SCRATCH, "vfy", "_mc.png"))
-            if b:
-                mb = min(mb, b)
-            if c2:
-                mc = min(mc, c2)
-            mdet.append("f%d(t=%.2fs) bone %.2f copper %.2f" % (fr, t or 0, b or 0, c2 or 0))
-        chk("14.7-hero-contrast-390", mb >= 4.5 and mc >= 3.0,
-            "390, veil re-cut from the new cap-top: bone row min %.2f:1 (>=4.5), copper row "
-            "min %.2f:1 (>=3.0) | %s" % (mb, mc, "; ".join(mdet)))
+        chk("16.2-hero-lighting-390-360", mb >= 4.5 and mc >= 4.3 and mpx <= 16,
+            "390 AND 360, the SS16.2 cut at the other end of the ladder: bone row min "
+            "%.2f:1 (>=4.5) across both widths and all three frames; the copper row's "
+            "ground from its cap-top down is flat espresso (brightest channel %d) at "
+            "%.2f:1 | %s" % (mb, mpx, mc, "; ".join(mdet)))
 
         pg.evaluate("()=>document.getElementById('operator').scrollIntoView({block:'start'})")
         pg.wait_for_timeout(1000)
@@ -1417,6 +1867,382 @@ def main(built):
             document.querySelectorAll('svg[aria-label]').forEach(
               e=>out.push(e.getAttribute('aria-label')));
             return out;}""")
+
+        # ================= SS16.2 / SS16.3 =====================================
+        # ---- 16.2 the arrival frame -------------------------------------------
+        clipA = os.path.join(DESIGN, "video", "A2-hold-720.mp4")
+        arr = measure_arrival(clipA, os.path.join(SCRATCH, "vfy"))
+        src = open(built, encoding="utf-8").read()
+        m = re.search(r"var ARRIVAL = ([\d.]+);", src)
+        pageArr = float(m.group(1)) if m else None
+        moved = [(t, x) for t, x in (arr["trace"] if arr else []) if x is not None]
+        chk("16.2-arrival",
+            arr is not None and arr["arrival"] is not None and pageArr is not None
+            and abs(pageArr - arr["arrival"]) <= 0.1,
+            ("A2-hold-720.mp4 %dx%d, %d frames at 0.1s: the leftmost hand pixel settles at "
+             "x=%s; the FIRST frame within 6px of that is t=%.2fs, and the page's own "
+             "trigger constant is ARRIVAL=%.2f. (SS16.3 estimated ~3.4s; the clip measures "
+             "%.2fs -- the measurement is what ships.) Trace, 2.0s..3.0s: %s"
+             % (arr["w"], arr["h"], arr["n"], arr["final"], arr["arrival"], pageArr,
+                arr["arrival"], [(round(t, 1), x) for t, x in moved if 2.0 <= t <= 3.0]))
+            if arr and arr["arrival"] is not None else
+            "the arrival could not be measured (ffmpeg missing or clip absent)")
+
+        # ---- 16.3 the motion set: initial vs settled --------------------------
+        MOTION_JS = r"""()=>{
+          const one=(s,p)=>{const e=document.querySelector(s);
+                            return e?getComputedStyle(e)[p]:null;};
+          const all=(s,p)=>[...document.querySelectorAll(s)].map(
+                            e=>getComputedStyle(e)[p]);
+          const pone=(s,pe,p)=>{const e=document.querySelector(s);
+                            return e?getComputedStyle(e,pe)[p]:null;};
+          const pall=(s,pe,p)=>[...document.querySelectorAll(s)].map(
+                            e=>getComputedStyle(e,pe)[p]);
+          return {
+            js:document.documentElement.classList.contains('js'),
+            cuOp:one('#h1 .cu','opacity'), cuDur:one('#h1 .cu','transitionDuration'),
+            r1:one('#h1 .r1','transform'), r1Dur:one('#h1 .r1','transitionDuration'),
+            bar:one('.bar','transform'), barDur:one('.bar','transitionDuration'),
+            barOp:one('.bar','opacity'),
+            heads:all('.sec h2','clipPath'), headDur:all('.sec h2','transitionDuration'),
+            stepRule:pall('.steps li','::before','transform'),
+            stepDelay:pall('.steps li','::before','transitionDelay'),
+            stepDur:pall('.steps li','::before','transitionDuration'),
+            stepLast:pone('.steps li:last-child','::after','transform'),
+            qRule:pall('.q','::before','transform'),
+            prfRule:pall('.prf','::before','transform'),
+            prfxRule:pone('.prfx','::before','transform'),
+            ledgerRule:pone('.proofsec .ledger','::before','transform'),
+            priceRule:pall('.card .pblock','::after','transform'),
+            priceDelay:pall('.card .pblock','::after','transitionDelay'),
+            lineRule:pall('.manual .lines p','::before','transform'),
+            lineLast:pone('.manual .lines p:last-child','::after','transform'),
+            cards:all('.card','transform'), cardOp:all('.card','opacity'),
+            cardDelay:all('.card','transitionDelay'),
+            cardDur:all('.card','transitionDuration'),
+            eng:one('.eng','transform'), engOp:one('.eng','opacity'),
+            engDelay:one('.eng','transitionDelay'),
+            qs:all('.q','transform'), qOp:all('.q','opacity'),
+            qDelay:all('.q','transitionDelay'),
+            opfilm:one('.opfilm video','transform'),
+            opfilmDur:one('.opfilm video','transitionDuration'),
+            opRow:all('.opover .r','transform'), opRowOp:all('.opover .r','opacity'),
+            opRowDelay:all('.opover .r','transitionDelay'),
+            askH:one('.ask h2','transform'), askHOp:one('.ask h2','opacity'),
+            askHDur:one('.ask h2','transitionDuration'),
+            askAr:one('.ask .ar','transform'), askArOp:one('.ask .ar','opacity'),
+            askArDur:one('.ask .ar','transitionDuration'),
+            askChips:one('.ask .chips','transform'), askChipsOp:one('.ask .chips','opacity'),
+            askChipsDelay:one('.ask .chips','transitionDelay'),
+            askChipsDur:one('.ask .chips','transitionDuration'),
+            glDur:one('.chip .a .gl','transitionDuration'),
+            arDur:one('.prf .ar','transitionDuration'),
+            cover:one('.manual .art .frame','transform'),
+            sheetDur:one('.sheet','transitionDuration')};}"""
+
+        mctx = br.new_context(viewport={"width": 1440, "height": 900},
+                              device_scale_factor=1, reduced_motion="no-preference")
+        mp = mctx.new_page()
+        mp.goto(url)
+        mp.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
+        mp.wait_for_timeout(1000)
+        ini = mp.evaluate(MOTION_JS)
+        mp.evaluate("""()=>{document.querySelectorAll('[data-anim],[data-rise]').forEach(
+            e=>e.classList.add('in'));
+            const h=document.getElementById('h1'); h.classList.add('on','up');
+            document.getElementById('bar').classList.add('on');}""")
+        mp.wait_for_timeout(1700)
+        fin = mp.evaluate(MOTION_JS)
+
+        # 1 THE MOMENT -- driven through the clip's own clock, not by a class
+        tctx = br.new_context(viewport={"width": 1440, "height": 900}, device_scale_factor=1)
+        tp = tctx.new_page()
+        tp.add_init_script("""new MutationObserver(function(mu,o){
+              var v=document.getElementById('filmvid');
+              if(v){v.removeAttribute('autoplay'); v.autoplay=false; o.disconnect();}})
+            .observe(document.documentElement,{childList:true,subtree:true});
+          Object.defineProperty(HTMLMediaElement.prototype,'play',
+            {value:function(){return Promise.resolve();}});""")
+        tp.goto(url)
+        tp.wait_for_function("document.getElementById('filmvid').readyState>=1", timeout=30000)
+        tp.wait_for_timeout(600)
+        # the clip cannot start on this page (autoplay stripped, play() a no-op), so this
+        # is the ONLY place the pre-start rest state of row 1 survives to be read.
+        # read the DECLARED rest state, with the transition suppressed so what comes back
+        # is the rule's own value and not a frame of the fill in progress.
+        r1_rest = tp.evaluate("""()=>{const h=document.getElementById('h1');
+            const el=document.querySelector('#h1 .r1');
+            const d=getComputedStyle(el).transitionDuration;
+            const had=h.classList.contains('up');
+            el.style.transition='none'; h.classList.remove('up'); void el.offsetWidth;
+            const t=getComputedStyle(el).transform;
+            if(had) h.classList.add('up'); void el.offsetWidth; el.style.transition='';
+            return {t:t, d:d, had:had};}""")
+        seek = """async (t)=>{const v=document.getElementById('filmvid');
+            v.pause(); v.currentTime=t;
+            await new Promise(r=>{const go=()=>{v.removeEventListener('seeked',go);r();};
+              v.addEventListener('seeked',go); setTimeout(r,900);});
+            return v.currentTime;}"""
+        tp.evaluate(seek, 1.0)
+        tp.wait_for_timeout(500)
+        op_at_1 = tp.evaluate("()=>getComputedStyle(document.querySelector('#h1 .cu')).opacity")
+        tp.evaluate(seek, (pageArr or 2.54) + 0.5)
+        tp.wait_for_timeout(500)
+        op_after = tp.evaluate("()=>getComputedStyle(document.querySelector('#h1 .cu')).opacity")
+        tctx.close()
+        chk("16.3-1-the-moment",
+            abs(float(op_at_1) - 0.28) < 0.02 and float(op_after) >= 0.99
+            and abs(float(ini["cuDur"].rstrip("s")) - 0.26) < 0.01
+            and abs(tmat(r1_rest["t"])[1] - 24) < 0.5 and tmat(fin["r1"])[1] == 0
+            and abs(float(r1_rest["d"].rstrip("s")) - 0.6) < 0.01,
+            "with the clip paused at t=1.00s the copper row computes opacity %s (rest state "
+            ".28) and at t=%.2fs (arrival + 0.5s) it computes %s, over a %s fill; "
+            "'I build the' rests at translateY %.1fpx over %s and settles at %.1fpx"
+            % (op_at_1, (pageArr or 2.54) + 0.5, op_after, ini["cuDur"],
+               tmat(r1_rest["t"])[1], r1_rest["d"], tmat(fin["r1"])[1]))
+
+        # 2 the bar
+        chk("16.3-2-bar",
+            abs(tmat(ini["bar"])[1] + 12) < 0.5 and tmat(fin["bar"])[1] == 0
+            and abs(float(ini["barDur"].split(",")[0].rstrip("s")) - 0.24) < 0.01,
+            "the bar rests at translateY %.1fpx and arrives at %.1fpx over %s (opacity and "
+            "transform together); `on` is only ever ADDED by the script, so the entrance "
+            "cannot run twice"
+            % (tmat(ini["bar"])[1], tmat(fin["bar"])[1], ini["barDur"]))
+
+        # 3 section heads
+        heads_hidden = all("100%" in c for c in ini["heads"])
+        heads_open = all("100%" not in c and c != "none" for c in fin["heads"])
+        chk("16.3-3-heads",
+            len(ini["heads"]) == 5 and heads_hidden and heads_open
+            and all(abs(float(d.rstrip("s")) - 0.7) < 0.01 for d in ini["headDur"]),
+            "%d section heads; each rests clipped from the left (%s) and settles open (%s) "
+            "over %s. The vertical inset is -0.3em in BOTH states: the .d.two line box is "
+            "shorter than the font's em box and a literal inset(0) shears descenders"
+            % (len(ini["heads"]), ini["heads"][0], fin["heads"][0], set(ini["headDur"])))
+
+        # 4 the hairlines
+        drawn0 = ([tmat(v)[2] for v in ini["stepRule"]] + [tmat(v)[2] for v in ini["qRule"]]
+                  + [tmat(v)[2] for v in ini["prfRule"]] + [tmat(v)[2] for v in ini["priceRule"]]
+                  + [tmat(v)[2] for v in ini["lineRule"]]
+                  + [tmat(ini["ledgerRule"])[2], tmat(ini["prfxRule"])[2],
+                     tmat(ini["stepLast"])[2], tmat(ini["lineLast"])[2]])
+        drawn1 = ([tmat(v)[2] for v in fin["stepRule"]] + [tmat(v)[2] for v in fin["qRule"]]
+                  + [tmat(v)[2] for v in fin["prfRule"]] + [tmat(v)[2] for v in fin["priceRule"]]
+                  + [tmat(v)[2] for v in fin["lineRule"]]
+                  + [tmat(fin["ledgerRule"])[2], tmat(fin["prfxRule"])[2],
+                     tmat(fin["stepLast"])[2], tmat(fin["lineLast"])[2]])
+        chk("16.3-4-hairlines",
+            len(drawn0) == 18 and all(abs(v) < 0.001 for v in drawn0)
+            and all(abs(v - 1) < 0.001 for v in drawn1)
+            and all(abs(float(d.rstrip("s")) - 0.5) < 0.01 for d in ini["stepDur"])
+            and [d.strip() for d in ini["stepDelay"]] == ["0s", "0.06s", "0.12s"],
+            "%d ledger rules -- the three how-I-work rows and the ledger's closing rule, the "
+            "three manual symptoms and theirs, the three objection tops, the three card price "
+            "rules, the two receipts, the way-out row and the ledger's opening rule -- all "
+            "rest at scaleX %s and settle at scaleX %s over %s, staggered %s inside a section"
+            % (len(drawn0), set(round(v, 3) for v in drawn0),
+               set(round(v, 3) for v in drawn1), set(ini["stepDur"]),
+               [d.strip() for d in ini["stepDelay"]]))
+
+        # 5 cards and blocks rise
+        chk("16.3-5-rises",
+            all(abs(tmat(v)[1] - 20) < 0.5 for v in ini["cards"])
+            and all(float(o) == 0 for o in ini["cardOp"])
+            and all(tmat(v)[1] == 0 for v in fin["cards"])
+            and all(float(o) == 1 for o in fin["cardOp"])
+            and [d.split(",")[0].strip() for d in ini["cardDelay"]] == ["0s", "0.07s", "0.14s"]
+            and abs(tmat(ini["eng"])[1] - 20) < 0.5
+            and ini["engDelay"].split(",")[0].strip() == "0.21s"
+            and all(abs(tmat(v)[1] - 20) < 0.5 for v in ini["qs"])
+            and [d.split(",")[0].strip() for d in ini["qDelay"]] == ["0s", "0.07s", "0.14s"]
+            and abs(tmat(ini["cover"])[1] - 10) < 0.5 and tmat(fin["cover"])[1] == 0,
+            "three price cards rest at translateY %s / opacity %s on delays %s and settle at "
+            "%s / %s; the Engagements block rests at %.0fpx on a %s delay (after them); the "
+            "three objection columns rest at %s on %s; the cover rests at %.0fpx and settles "
+            "at %.0fpx"
+            % ([round(tmat(v)[1]) for v in ini["cards"]], ini["cardOp"],
+               [d.split(",")[0].strip() for d in ini["cardDelay"]],
+               [round(tmat(v)[1]) for v in fin["cards"]], fin["cardOp"],
+               tmat(ini["eng"])[1], ini["engDelay"].split(",")[0].strip(),
+               [round(tmat(v)[1]) for v in ini["qs"]],
+               [d.split(",")[0].strip() for d in ini["qDelay"]],
+               tmat(ini["cover"])[1], tmat(fin["cover"])[1]))
+
+        # 6 the operator square
+        chk("16.3-6-operator",
+            abs(tmat(ini["opfilm"])[2] - 1.378) < 0.005
+            and abs(tmat(fin["opfilm"])[2] - 1.30) < 0.005
+            and abs(float(ini["opfilmDur"].rstrip("s")) - 1.2) < 0.01
+            and all(abs(tmat(v)[1] - 20) < 0.5 for v in ini["opRow"])
+            and all(tmat(v)[1] == 0 for v in fin["opRow"])
+            and [d.split(",")[0].strip() for d in ini["opRowDelay"]] == ["0s", "0.08s"],
+            "the square's film rests at scale %.3f and settles to %.3f over %s (the SS14.2 "
+            "crop zoom is 1.30, so the SS16.3 1.06 settle is applied on it: 1.30 x 1.06 = "
+            "1.378); the two heading rows rest at translateY %s on delays %s"
+            % (tmat(ini["opfilm"])[2], tmat(fin["opfilm"])[2], ini["opfilmDur"],
+               [round(tmat(v)[1]) for v in ini["opRow"]],
+               [d.split(",")[0].strip() for d in ini["opRowDelay"]]))
+
+        # 7 hovers
+        mp.evaluate("()=>window.scrollTo(0,0)")
+        mp.wait_for_timeout(300)
+        mp.hover("#herochips .chip")
+        mp.wait_for_timeout(400)
+        hv_chip = mp.evaluate("()=>getComputedStyle("
+                              "document.querySelector('#herochips .chip .a .gl')).transform")
+        mp.evaluate("()=>document.getElementById('proof').scrollIntoView({block:'center'})")
+        mp.wait_for_timeout(700)
+        mp.hover(".prf")
+        mp.wait_for_timeout(400)
+        hv_row = mp.evaluate("()=>getComputedStyle(document.querySelector('.prf .ar')).transform")
+        mp.evaluate("()=>document.getElementById('price').scrollIntoView({block:'center'})")
+        mp.wait_for_timeout(700)
+        mp.hover(".card")
+        mp.wait_for_timeout(500)
+        hv_card = mp.evaluate("()=>getComputedStyle(document.querySelector('.card')).borderTopColor")
+        chk("16.3-7-hovers",
+            abs(tmat(hv_chip)[0] - 6) < 0.5 and abs(tmat(hv_row)[0] - 6) < 0.5
+            and "200, 84, 43" in hv_card
+            and abs(float(ini["glDur"].rstrip("s")) - 0.2) < 0.01
+            and abs(float(ini["arDur"].rstrip("s")) - 0.2) < 0.01,
+            "on hover the chip's arrow slides to translateX %.1fpx and a receipt row's arrow "
+            "to %.1fpx, both over %s / %s; the price card's border computes %s (copper) over "
+            "300ms. The chips' 300ms ground swap is unchanged and the receipts' copper wipe "
+            "is untouched."
+            % (tmat(hv_chip)[0], tmat(hv_row)[0], ini["glDur"], ini["arDur"], hv_card))
+
+        # 8 the ask
+        chk("16.3-8-ask",
+            abs(tmat(ini["askH"])[1] - 30) < 0.5 and float(ini["askHOp"]) == 0
+            and abs(tmat(ini["askAr"])[0] + 30) < 0.5
+            and abs(float(ini["askHDur"].split(",")[0].rstrip("s")) - 0.6) < 0.01
+            and abs(float(ini["askArDur"].split(",")[0].rstrip("s")) - 0.6) < 0.01
+            and ini["askChipsDelay"].split(",")[0].strip() == "0.12s"
+            and tmat(fin["askH"])[1] == 0 and tmat(fin["askAr"])[0] == 0
+            and float(fin["askChipsOp"]) == 1,
+            "the copper field's headline rests at translateY %.0fpx / opacity %s and the "
+            "arrow at translateX %.0fpx, both over %s; the chips follow on a %s delay and "
+            "settle at opacity %s"
+            % (tmat(ini["askH"])[1], ini["askHOp"], tmat(ini["askAr"])[0],
+               ini["askHDur"].split(",")[0], ini["askChipsDelay"].split(",")[0],
+               fin["askChipsOp"]))
+
+        # 9 the ground travel and the rail lighting are untouched
+        mp.evaluate("()=>window.scrollTo(0,0)")
+        mp.wait_for_timeout(400)
+        p_top = mp.evaluate("()=>getComputedStyle(document.documentElement)"
+                            ".getPropertyValue('--p').trim()")
+        mp.evaluate("()=>document.getElementById('price').scrollIntoView({block:'center'})")
+        mp.wait_for_timeout(900)
+        p_lit = mp.evaluate("""()=>({p:getComputedStyle(document.documentElement)
+            .getPropertyValue('--p').trim(),
+            lit:document.documentElement.classList.contains('lit')})""")
+        chk("16.3-9-ground-unchanged",
+            float(p_top or 0) < 0.02 and float(p_lit["p"]) > 0.98 and p_lit["lit"]
+            and abs(float(ini["sheetDur"].rstrip("s")) - 0.7) < 0.01,
+            "--p reads %s at the top of the room and %s over the ledger with html.lit=%s; "
+            "the sheet still travels over %s. Nothing in SS16.3 touched it."
+            % (p_top, p_lit["p"], p_lit["lit"], ini["sheetDur"]))
+
+        # keyframes ceiling
+        kf = mp.evaluate("""()=>{let n=0; for(const s of document.styleSheets){
+            try{for(const r of s.cssRules){if(r.type===CSSRule.KEYFRAMES_RULE) n++;}}
+            catch(e){}} return n;}""")
+        chk("16.3-keyframes", kf <= 3,
+            "@keyframes declared: %d (SS16.3 ceiling 3). Every item in the set is a "
+            "transition between two declared states, so none is needed." % kf)
+        mctx.close()
+
+        # ---- 16.3 reduced motion: everything off ------------------------------
+        rctx = br.new_context(viewport={"width": 1440, "height": 900},
+                              device_scale_factor=1, reduced_motion="reduce")
+        rp = rctx.new_page()
+        rp.goto(url)
+        rp.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
+        rp.wait_for_timeout(1200)
+        rm = rp.evaluate(MOTION_JS)
+        rp.hover("#herochips .chip")
+        rp.wait_for_timeout(300)
+        rm_hover = rp.evaluate("()=>getComputedStyle("
+                               "document.querySelector('#herochips .chip .a .gl')).transform")
+        rctx.close()
+        rm_tf = ([rm["r1"], rm["bar"], rm["eng"], rm["askH"], rm["askAr"], rm["askChips"],
+                  rm["cover"], rm_hover] + rm["cards"] + rm["qs"] + rm["opRow"])
+        rm_op = ([rm["cuOp"], rm["barOp"], rm["askHOp"], rm["askArOp"], rm["askChipsOp"],
+                  rm["engOp"]] + rm["cardOp"] + rm["qOp"] + rm["opRowOp"])
+        rm_dur = ([rm["cuDur"], rm["r1Dur"], rm["sheetDur"], rm["glDur"], rm["arDur"]]
+                  + rm["headDur"])
+        chk("16.3-reduced-motion-off",
+            rm["js"] is False and all(ident(v) for v in rm_tf)
+            and all(float(o) == 1 for o in rm_op)
+            and all(c == "none" for c in rm["heads"])
+            and all(float(d.split(",")[0].rstrip("s")) == 0 for d in rm_dur),
+            "under prefers-reduced-motion: reduce the script never adds html.js (js=%s), so "
+            "every SS16.3 rest state is absent: %d transforms all identity (hover included), "
+            "%d opacities all 1, %d clip-paths all `none`, and every remaining transition "
+            "duration is 0s (%s)"
+            % (rm["js"], len(rm_tf), len(rm_op), len(rm["heads"]), set(rm_dur)))
+
+        # ---- 16.3 the no-JS render is the finished frame ----------------------
+        # Scripting off is simulated exactly: every <script> is removed and the <noscript>
+        # block is unwrapped, which is what a scripting-disabled UA does to this page's CSS.
+        # Corroborated below by a real java_script_enabled=False screenshot.
+        nojs_src = re.sub(r"<script\b.*?</script>", "", src, flags=re.S | re.I)
+        nojs_src = nojs_src.replace("<noscript>", "").replace("</noscript>", "")
+        nojs_path = os.path.join(SCRATCH, "vfy", "nojs.html")
+        open(nojs_path, "w", encoding="utf-8", newline="\n").write(nojs_src)
+        jctx = br.new_context(viewport={"width": 1440, "height": 900}, device_scale_factor=1)
+        jp = jctx.new_page()
+        jp.goto("file:///" + nojs_path.replace("\\", "/"))
+        jp.wait_for_timeout(1500)
+        nj = jp.evaluate(MOTION_JS)
+        jctx.close()
+        nj_tf = ([nj["r1"], nj["bar"], nj["eng"], nj["askH"], nj["askAr"], nj["askChips"],
+                  nj["cover"]] + nj["cards"] + nj["qs"] + nj["opRow"])
+        nj_op = ([nj["cuOp"], nj["barOp"], nj["askHOp"], nj["askArOp"], nj["askChipsOp"],
+                  nj["engOp"]] + nj["cardOp"] + nj["qOp"] + nj["opRowOp"])
+        nj_rules = ([tmat(v)[2] for v in nj["stepRule"]] + [tmat(v)[2] for v in nj["qRule"]]
+                    + [tmat(v)[2] for v in nj["prfRule"]]
+                    + [tmat(v)[2] for v in nj["priceRule"]]
+                    + [tmat(v)[2] for v in nj["lineRule"]])
+        chk("16.3-no-js-finished-frame",
+            nj["js"] is False and all(ident(v) for v in nj_tf)
+            and all(float(o) == 1 for o in nj_op)
+            and all(c == "none" for c in nj["heads"])
+            and all(abs(v - 1) < 0.001 for v in nj_rules)
+            and abs(tmat(nj["opfilm"])[2] - 1.30) < 0.005,
+            "with every <script> removed html.js is %s, so nothing declares a rest state: "
+            "%d transforms identity, %d opacities 1 (the copper word included, at %s), %d "
+            "clip-paths `none`, %d ledger rules at scaleX 1, the operator film at its plain "
+            "%.2f crop, and the bar at opacity %s"
+            % (nj["js"], len(nj_tf), len(nj_op), nj["cuOp"], len(nj["heads"]),
+               len(nj_rules), tmat(nj["opfilm"])[2], nj["barOp"]))
+
+        njctx = br.new_context(viewport={"width": 1440, "height": 900},
+                               device_scale_factor=1, java_script_enabled=False)
+        njp = njctx.new_page()
+        njp.goto(url)
+        njp.wait_for_timeout(2500)
+        njshot = os.path.join(SCRATCH, "rl10-nojs-1440.png")
+        njp.screenshot(path=njshot)
+        njctx.close()
+        shots.append(njshot)
+        from PIL import Image as _I
+        _im = _I.open(njshot).convert("RGB")
+        _px = _im.load()
+        copper_px = sum(1 for y in range(300, 440, 3) for x in range(230, 1360, 6)
+                        if _px[x, y][0] > 150 and _px[x, y][0] > _px[x, y][1] + 60)
+        # y=4 is inside the 40px bar and above its 14px labels' ink, so this counts the
+        # bar's own espresso band and not the holes its type punches in it.
+        bar_px = sum(1 for x in range(0, 1440, 8) if sum(_px[x, 4]) < 120)
+        chk("16.3-no-js-render",
+            copper_px > 200 and bar_px > 170,
+            "the REAL java_script_enabled=False render at 1440: %d copper pixels sampled "
+            "across the `go-to-market.` row (the word is at full strength with no script to "
+            "light it) and the bar paints its espresso band on %d of 180 sampled columns"
+            % (copper_px, bar_px))
+
         br.close()
 
     uniq = sorted(set(nodes))

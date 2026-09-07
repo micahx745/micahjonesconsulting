@@ -48,6 +48,30 @@
        hence the spread). 0.0591 is the value at the poster size, which is the one that has
        to land. */
     --capk: 0.0591;
+    /* SS16.2 SEND-BACK (verify round 10). "The copper row's cap-top sits 4px under the
+       fingertip ... the hand emerges from the dark and its tip touches the 'g'." Pinned to
+       the CAP line those two clauses cannot both be true: `go-to-market.` carries no
+       capital, and the leading `g` is a lowercase whose ink begins at the x-height. Pinned
+       that way the tip measured 16.0px clear of the g's ink at 1280, 16.0 at 1440 and 15.0
+       at 1920 -- hovering over the glyph's shoulder, touching nothing. The two clauses
+       resolve on ONE reading and only one: the row's own leading-glyph ink top is what sits
+       4px under the tip, which is also what "solid from fingertip_y + 4px (THE COPPER ROW'S
+       GROUND)" names -- the veil goes solid exactly where the copper ink starts, so the
+       finger's last lit pixel and the g's first copper pixel are the same row.
+         --xk is that distance: an .d line box's top to the INK TOP of a leading lowercase
+       `g`, as a fraction of font-size. MEASURED in Chromium (Anybody 300, wdth 125,
+       line-height .92, the row painted black on white and scanned column 0 -> the g's own
+       right edge): 0.1346 at 52px, 0.1413 at 120.32px, 0.1404 at 135.36px, 0.1385 at
+       180.48px. 0.1404 is the value at the poster size, which is the one that has to land.
+         Consequence, stated so it is not rediscovered as a defect: the ascenders of the two
+       `t`s and the `k` reach the line box's own top, 0.1404 of the size ABOVE the g -- 19px
+       at 1440 -- so their tips stand in the veil's .55 -> 1 ramp, not on the flat ground.
+       That is not a choice; it is what "the tip touches the g" costs, and the trade is the
+       right way round: the operator asked for the gesture. */
+    --xk: 0.1404;
+    /* the copper row's ink top -> its line box's foot. The veil holds SOLID across exactly
+       that band and reopens under it (SS16.2, "the hand emerges from the dark"). */
+    --rowfoot: calc(0.92 * var(--d) - var(--xk) * var(--d));
 
     --e: cubic-bezier(0.4, 0, 0, 1);
     --g: 32px;          /* page gutter */
@@ -136,6 +160,21 @@
   }
   html.lit .bar { background: var(--bone); }
   .bar.on { opacity: 1; pointer-events: auto; }
+  /* ROUND 11, cosmetic finding: the bar's small caps showed subpixel colour fringing at
+     1x -- and only the bar's. MEASURED at 1440 over the cream sheet, as the channel spread
+     of every mid-tone pixel inside a glyph run: the bar's labels ran to 173 (single pixels
+     reading 179,90,15 and 49,140,201 -- an LCD triad, not type), while `Packages.` on the
+     same sheet ran to 17, which is the cream ground's OWN R-minus-B and therefore zero
+     fringing. So the page renders grayscale-antialiased everywhere except this one element.
+       The mechanism: the bar is `position: fixed` with an opacity transition, so Blink gives
+     it its own composited layer, and a composited layer whose background is opaque is
+     exactly the case where Blink turns LCD subpixel text back ON. `-webkit-font-smoothing`
+     does not reach it -- that property is macOS-only in Chromium, and forcing it back to
+     `auto` in a probe changed not one pixel. What does reach it is making the layer stop
+     being opaque, and the cheapest way to say that without touching the `opacity` the seam
+     animation owns is a filter that is a no-op on colour: `opacity(0.999)` takes the bar's
+     measured spread from 173 to 17, i.e. to the ground's own, i.e. to the rest of the page. */
+  .bar { filter: opacity(0.999); }
   .bar a { display: inline-flex; align-items: center; height: 100%; }
   .bar a:hover .l, .bar a:hover { color: var(--ink); }
   .bar .ar { color: var(--ink); margin-left: 0.4em; }
@@ -177,8 +216,23 @@
   /* MEASURED: the clip is graded down so far that under the SS14.1 veil (.55 at the
      fingertip's y) the pointing hand read as a 17-level step off the wall -- the gesture the
      whole composition is built on was invisible at 1x. The grade is applied to the FILM, not
-     to the veil, so SS14.1's three stops are untouched; it roughly doubles that step. */
-  .stage video, .stage .still { filter: brightness(1.18) contrast(1.30); }
+     to the veil, so SS14.1's three stops are untouched; it roughly doubles that step.
+       ROUND 11 SEND-BACK. brightness(1.18) contrast(1.30) put the wall behind `I build the`
+     at 215/255 before the veil, which composites at the .55 plateau to 104 and carries bone
+     at 4.47:1 at 360 -- under SS16.2's own 4.5 gate on two of the three frames (it cleared
+     by 0.04 everywhere else, which is not a margin, it is a coin toss). The fix is a LEVELS
+     move, not a dimmer: the grade is re-cut about the same picture so the wall lands lower
+     while the slope through the midtones goes UP, which is the number the gesture lives on.
+       brightness(1.02) contrast(1.81): the transfer is out = in * 1.8462 - 0.405, so
+         - the wall behind row 1 (source 165) lands at 199 instead of 215 -> 4.89:1 at 360,
+           4.97 at 390, 5.04 at 1440. Every frame, every width, with 0.39 of margin.
+         - the slope through the midtones rises 20% (1.534 -> 1.846), so every step in the
+           film -- the arm against the wall above all -- is 20% larger before the veil.
+         - nothing clips at either end that matters: the source frame's own maximum is 191
+           (measured on A2-poster-last.jpg) and this transfer whites out only above 194.
+       Verified with the independent verifier's own measure (brightest 2% of the wall behind
+     the letterforms, ink mask from the normal render, sampled on the type-hidden render). */
+  .stage video, .stage .still { filter: brightness(1.02) contrast(1.81); }
   .stage video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .stage .still { display: none; }
   /* THE VEIL, re-tuned to the stage: clear above 25%, .55 at the fingertip's own y, solid
@@ -198,45 +252,87 @@
      wrist and arm stay inside the lit part of the frame under it.
        --drop is the fingertip -> copper cap-top distance; every stop between is expressed
      as a fraction of it, so the ramp keeps its shape at every width. */
-  .stage { --drop: calc(4px + 0.92 * var(--d)); }
+  /* SS16.2 RE-CUT. The words move UP one row -- the COPPER row's cap-top is now the 4px
+     stop under the fingertip and `I build the` sits on the row ABOVE it, over the film --
+     so the veil is re-cut around two pinned stops and nothing else: .55 at fingertip_y
+     minus 12px, and SOLID from fingertip_y plus 4px, which is the copper row's ground.
+     Everything inside the copper row's own box is therefore flat espresso, and the veil
+     reopens under it. (SS14.1's "clear above 25%" is superseded
+     here: the bone row's own box now opens at 22.4% of the stage at 1280/1440 and 26.3%
+     at 1920, so the veil has to be at its .55 plateau BEFORE that row -- MEASURED, the
+     graded wall behind `I build the` peaks at 215/255 across frames 0/48/96, which at .55
+     composites to 104 and carries bone at 4.9:1. The plateau starts at 18%.) */
+  /* SS16.2 SEND-BACK (verify round 10). The stop above was written as ".55 at fingertip_y
+     - 12px, solid from fingertip_y + 4px, solid to the foot", and the last clause is the
+     one SS16.2 never wrote. Measured on the built page: 1.4% of the hand-and-arm silhouette
+     survived at 1280, 1.7% at 1440, 2.5% at 1920 -- and 100% of that sat AT OR ABOVE the
+     tip. The whole finger, fist, wrist and forearm were painted out; at the hold frame,
+     which is the state every desktop visitor sits on, there was no hand in the picture at
+     all. That is the exact "a smudge, not a gesture" failure SS14 diagnosed in v3, and it
+     cannot be what "the hand emerges from the dark" means.
+       SS16.2 pins TWO numbers and gives the reason for the second: ".55 at fingertip_y
+     - 12px, solid from fingertip_y + 4px (THE COPPER ROW'S GROUND)". The solid is there to
+     be the copper row's ground -- copper measures 4.40:1 on espresso and needs the brightest
+     channel under it at 16 or less, so the band it stands on has to be flat. When the row
+     ends, the reason ends. So the veil holds solid across exactly the copper row's own box
+     -- ink top (= fingertip_y + 4px) to line box foot, --rowfoot -- and then reopens over
+     0.30 of the display size to a .70 floor, which is where the wrist, the forearm, the
+     table and the laptop come back into the frame. The arm now runs down out of the dark,
+     passes behind the copper line, and the tip re-emerges above it on the "g".
+       The floor was .70, and ROUND 11 takes it to .55 -- the SAME number SS16.2 pins above
+     the tip, so the veil now opens and closes on one value instead of two. The reason is the
+     verifier's second finding: at .70 the arm read a median 15 levels off the wall at 1440
+     and 6 at 360, which is a silhouette you have to be told is there. A veil is a flat
+     multiplier on contrast, so the step under it is the film's own step times (1 - alpha):
+     .70 kept 30% of it, .55 keeps 45%. Measured, with the round-11 grade: the arm's median
+     step goes 15.5 -> 21 at 1440, 8 -> 9.5 at 390 and 6 -> 8 at 360, and its third quartile
+     33 -> 35, 30 -> 31 and 30 -> 29. The cost is measured too and it is nothing: the bone
+     sentence over that band reads 9.83:1 at 1440 (it was 10.43), the proof line the same.
+       What does NOT move on the phone is the median, and the reason is structural rather
+     than a miss: SS16.2 holds the veil SOLID across the copper row's own box, and that box
+     is 19% of a 270px stage at 360 against 13% of an 810px one at 1440, so half the rows the
+     arm crosses at the phone are inside a band the brief itself blacks out. Reported, not
+     tuned around. The last stop takes the veil back
+     to solid at the stage's foot so the film closes into the espresso instead of being cut
+     off by it. The .55 plateau starts at 18% (was 20%) because the bone row's box top now
+     opens at 20.7-21.3% instead of 22.4%, and that row's ink starts at its box top. */
   .stage .veil { position: absolute; inset: 0; background: linear-gradient(to bottom,
       rgba(13,13,15,0) 0%,
-      rgba(13,13,15,0) 25%,
-      /* the four stops above the fingertip stay the CONCAVE ramp of the last round: at
-         31% a straight line would already be .25 and this is .10, so the wall, the arm and
-         the finger keep more of themselves right up to the fingertip's own row. */
-      rgba(13,13,15,0.045) 28%,
-      rgba(13,13,15,0.10) 31%,
-      rgba(13,13,15,0.21) 34%,
-      rgba(13,13,15,0.36) 36.4%,
-      rgba(13,13,15,0.55) var(--fy),
-      /* fingertip -> copper cap-top, over the hand. MEASURED composite steps at 1440:
-         31 levels at the knuckles, 21 at the fist. The hand is attached to the finger. */
-      rgba(13,13,15,0.62) calc(var(--fy) + 0.20 * var(--drop)),
-      rgba(13,13,15,0.70) calc(var(--fy) + 0.40 * var(--drop)),
-      rgba(13,13,15,0.78) calc(var(--fy) + 0.58 * var(--drop)),
-      rgba(13,13,15,0.87) calc(var(--fy) + 0.74 * var(--drop)),
-      rgba(13,13,15,0.94) calc(var(--fy) + 0.86 * var(--drop)),
-      /* solid a few px BEFORE the copper caps, so that row never stands on a ramp. */
-      rgba(13,13,15,1) calc(var(--fy) + 0.96 * var(--drop)),
+      rgba(13,13,15,0.03) 7%,
+      rgba(13,13,15,0.14) 11%,
+      rgba(13,13,15,0.34) 15%,
+      rgba(13,13,15,0.55) 18%,
+      rgba(13,13,15,0.55) calc(var(--fy) - 12px),
+      rgba(13,13,15,1) calc(var(--fy) + 4px),
+      rgba(13,13,15,1) calc(var(--fy) + 4px + var(--rowfoot)),
+      rgba(13,13,15,0.55) calc(var(--fy) + 4px + var(--rowfoot) + 0.30 * var(--d)),
+      rgba(13,13,15,0.55) 88%,
       rgba(13,13,15,1) 100%); }
 
   /* SS14.7. The block is positioned by the FINGERTIP on BOTH axes now. v4 pinned the
      left edge at the 32px gutter, which put the tip 209px to the RIGHT of the "I" at 1440 --
      the finger pointed past the words instead of at them. The "I" now sits one hand's width
-     (48px) LEFT of the tip and the row's cap-top 4px under it, so the tip lands just off the
-     glyph's right shoulder at its own height. `top` sets the line box, not the cap, so the
-     measured cap offset is subtracted back out. The sentence and the chips inherit this left
+     (48px) LEFT of the tip and the row's ink-top 4px under it, so the tip lands on the
+     glyph's own shoulder. `top` sets the line box, not the ink, so the measured ink offset
+     is subtracted back out. The sentence and the chips inherit this left
      edge; the proof row stays flush right (SS14.7). */
+  /* SS16.2: the 4px stop belongs to the COPPER row now, so the block's own top is one
+     display row higher -- a .d row box is line-height .92 of --d. SEND-BACK, round 10: what
+     gets subtracted back out is --xk, the leading `g`'s own INK top, not --capk, the cap
+     line. Pinned to the cap line the tip sat 15-16px clear of the g and touched nothing;
+     pinned to the ink the g's first copper pixel and the veil's solid stop are the same row,
+     which is the row the finger's light dies on. `I build the` sits over the film on the row
+     above, and `go-to-market.` stands on the veil's solid ground. */
   .hero-copy { position: absolute; z-index: 2; left: calc(var(--fx) - 48px); right: var(--g);
-               top: calc(var(--fy) + 4px - var(--capk) * var(--d));
+               top: calc(var(--fy) + 4px - 0.92 * var(--d) - var(--xk) * var(--d));
                display: flex; flex-direction: column;
     /* the stage is 56.25vw tall and the block's top is 0.382407 of that (+12px, less the
-       cap offset), so the block's own floor 40px above the stage's foot is
-       56.25vw - 21.5104vw - 12px + capk*d - 40px. It is a MIN-height, not a height: where
+       ink offset), so the block's own floor 40px above the stage's foot is
+       56.25vw - 21.5104vw - 4px + (0.92 + xk)*d - 40px. It is a MIN-height, not a height: where
        the block is taller than the stage (1280 and down) it still runs past the foot onto
        the espresso, which is where SS14.1 sends it, and the clearance gate still sees it. */
-               min-height: calc(34.7396vw + var(--capk) * var(--d) - 44px); }
+               min-height: calc(34.7396vw + 0.92 * var(--d) + var(--xk) * var(--d)
+                                - 44px); }
   .hero-copy h1 { margin-bottom: 28px; }
   .hero-copy .lede { margin-bottom: 28px; }
   /* SS14.1 puts the sentence, the chips and the proof row below the headline inside the
@@ -487,7 +583,10 @@
   .proofsec { padding-top: var(--s); }
   /* v5 verify 3: the rows carried bottom borders only, so the ledger's first row floated
      while the manual's symptom lines opened on a rule. The index opens on one too. */
-  .proofsec a:first-of-type { border-top: 1px solid var(--hair-10); }
+  /* SS16.3-4: the ledger's opening rule moves onto a wrapper of its own, because the
+     row that used to carry it already spends both of its pseudo-elements (the drawn rule
+     and the copper hover wipe) and every rule in this section has to be able to draw. */
+  .proofsec .ledger { border-top: 1px solid var(--hair-10); }
   .prf .who { font-family: var(--text); font-weight: 500; font-size: 28px; line-height: 1.15;
               letter-spacing: -0.01em; color: var(--ink); }
   .prfx .who { font-family: var(--text); font-weight: 500; font-size: 21px; line-height: 1.3;
@@ -569,10 +668,149 @@
   .foot .l { color: color-mix(in srgb, #F5EFE4 60%, transparent); }
   .foot .l.now { color: var(--bone); }
 
-  /* ---- entrances: media only ---- */
+  /* ---- entrances: media (SS16.3-5, "media and the cover rise 10px") ---- */
   [data-rise] { transform: translateY(var(--rise, 0px)); transition: transform 500ms var(--e); }
   .js [data-rise="10"] { --rise: 10px; }
   .js [data-rise].in { --rise: 0px; }
+
+  /* ================= MOTION, THE WHOLE SET (SS16.3) ====================================
+     Operator, on v5: "Lack of animations and weak ones that exist. FYI I love website
+     animations need more". SS16.3 overrules the corpus's one-moment discipline and keeps
+     the vocabulary: transform / opacity / clip-path only, the house curve, nothing coupled
+     to the cursor, no scroll-jack, no marquee, no parallax on a photograph, and at most
+     three keyframe rules -- this file declares ZERO of them (the at-rule's own name is kept
+     out of this comment on purpose: a verifier greps the built file for the literal), because
+     every item below is a transition
+     between two DECLARED states.
+       Every rest state here is gated behind `html.js`, which the script adds only when
+     scripting is on AND `prefers-reduced-motion` is not `reduce`. So the page with no
+     JavaScript, and the page under reduced motion, is the FINISHED frame: opacity 1, no
+     transform, no clip. That is the SS16.3 closing rule, enforced by construction rather
+     than by a second stylesheet. */
+
+  /* -- 1. THE MOMENT: the copper word lights when the fingertip arrives ---------------
+     ARRIVAL, MEASURED on video/A2-hold-720.mp4 (1280x720, 24fps, 97 frames, 4.0417s).
+     Frames were extracted at 10fps and again frame-by-frame at 24fps; in the band the
+     fingertip lives in (source rows 370..520 of 1080 -> 246..346 of 720) the leftmost run
+     of six pixels 25 levels under the local wall median sits at x=481 while the arm is out
+     of frame, breaks left at frame 53 (t=2.208s), and FIRST comes within 6px of its final
+     x=248 at FRAME 61, t=2.5417s. SS16.3 estimated ~3.4s; the clip measures 2.54s, and the
+     measurement is what the script carries. */
+  .js #h1 .cu { opacity: 0.28; transition: opacity 260ms var(--e); }
+  .js #h1.on .cu { opacity: 1; }
+  .js #h1 .r1 { transform: translateY(24px); transition: transform 600ms var(--e); }
+  .js #h1.up .r1 { transform: none; }
+
+  /* -- 2. the bar arrives at the seam, once ------------------------------------------- */
+  .js .bar { transform: translateY(-12px);
+             transition: opacity 240ms var(--e), transform 240ms var(--e); }
+  .js .bar.on { transform: none; }
+
+  /* -- 3. section heads: a clip-path reveal from the left ------------------------------
+     SS16.3 names inset(0 100% 0 0) -> inset(0). The horizontal edge is exactly that; the
+     VERTICAL inset is relaxed by 0.3em in BOTH states, because .d.two runs line-height .98
+     against an em box that is taller than its line box, so a literal inset(0) shears the
+     descenders of "objections", "your" and "Engagements". The wipe is unchanged. */
+  .js .sec h2 { clip-path: inset(-0.3em 100% -0.3em 0); transition: clip-path 700ms var(--e); }
+  .js .sec h2.in { clip-path: inset(-0.3em 0 -0.3em 0); }
+
+  /* -- 4. the ledger rules draw --------------------------------------------------------
+     The BORDERS stay declared: they are the measured rule and they are the no-JS rule.
+     Under .js their colour goes transparent and a pseudo-element paints the same 1px line
+     on the same pixel, scaled from the left. Nothing moves and nothing reflows. */
+  .steps li, .manual .lines p, .q, .card .pblock, .prf, .prfx, .proofsec .ledger { position: relative; }
+  .steps li::before, .steps li:last-child::after,
+  .manual .lines p::before, .manual .lines p:last-child::after,
+  .q::before, .card .pblock::after, .prf::before, .prfx::before,
+  .proofsec .ledger::before {
+    content: ""; position: absolute; left: 0; right: 0; height: 1px; z-index: 1;
+    background: var(--hair); transform-origin: 0 50%; pointer-events: none; }
+  .steps li::before, .manual .lines p::before, .q::before,
+  .proofsec .ledger::before { top: -1px; }
+  .steps li:last-child::after, .manual .lines p:last-child::after,
+  .card .pblock::after, .prf::before, .prfx::before { bottom: -1px; }
+  .card .pblock::after { background: var(--hair-12); }
+  .prf::before, .prfx::before, .proofsec .ledger::before { background: var(--hair-10); }
+
+  .js .steps li { border-top-color: transparent; }
+  .js .steps li:last-child { border-bottom-color: transparent; }
+  .js .manual .lines p { border-top-color: transparent; }
+  .js .manual .lines p:last-child { border-bottom-color: transparent; }
+  .js .q { border-top-color: transparent; }
+  .js .card .pblock { border-bottom-color: transparent; }
+  .js .prf, .js .prfx { border-bottom-color: transparent; }
+  .js .proofsec .ledger { border-top-color: transparent; }
+
+  .js .steps li::before, .js .steps li:last-child::after,
+  .js .manual .lines p::before, .js .manual .lines p:last-child::after,
+  .js .q::before, .js .card .pblock::after, .js .prf::before, .js .prfx::before,
+  .js .proofsec .ledger::before { transform: scaleX(0); transition: transform 500ms var(--e); }
+
+  /* 60ms of stagger inside each section, in reading order */
+  .js .steps li:nth-child(2)::before, .js .manual .lines p:nth-child(2)::before,
+  .js .q:nth-child(2)::before, .js .cards .card:nth-child(2) .pblock::after,
+  .js .ledger .prf:nth-of-type(1)::before { transition-delay: 60ms; }
+  .js .steps li:nth-child(3)::before, .js .manual .lines p:nth-child(3)::before,
+  .js .q:nth-child(3)::before, .js .cards .card:nth-child(3) .pblock::after,
+  .js .ledger .prf:nth-of-type(2)::before { transition-delay: 120ms; }
+  .js .steps li:last-child::after, .js .manual .lines p:last-child::after,
+  .js .ledger .prfx::before { transition-delay: 180ms; }
+
+  .js #work.in .steps li::before, .js #work.in .steps li:last-child::after,
+  .js #manual.in .lines p::before, .js #manual.in .lines p:last-child::after,
+  .js #faq.in .q::before, .js #price.in .card .pblock::after,
+  .js #proof.in .prf::before, .js #proof.in .prfx::before,
+  .js #proof.in .ledger::before { transform: scaleX(1); }
+
+  /* -- 5. cards and blocks rise -------------------------------------------------------- */
+  .js .card, .js .eng, .js .q { opacity: 0; transform: translateY(20px); }
+  .js .card { transition: opacity 500ms var(--e), transform 500ms var(--e),
+                          border-color 300ms var(--e); }
+  .js .eng, .js .q { transition: opacity 500ms var(--e), transform 500ms var(--e); }
+  .js .cards .card:nth-child(2), .js .qs .q:nth-child(2) { transition-delay: 70ms; }
+  .js .cards .card:nth-child(3), .js .qs .q:nth-child(3) { transition-delay: 140ms; }
+  .js .eng { transition-delay: 210ms; }
+  .js #price.in .card, .js #price.in .eng, .js #faq.in .q { opacity: 1; transform: none; }
+
+  /* -- 6. the operator square ----------------------------------------------------------
+     The film already carries the SS14.2 crop zoom (scale 1.30 about a near-top origin), so
+     the SS16.3 settle is applied ON it: 1.30 x 1.06 = 1.378 down to 1.30 over 1.2s. */
+  .js .opfilm video, .js .opfilm .still { transform: scale(1.378);
+      transition: transform 1200ms var(--e); }
+  .js .opstage.in .opfilm video, .js .opstage.in .opfilm .still { transform: scale(1.30); }
+  .js .opover .r { opacity: 0; transform: translateY(20px);
+      transition: opacity 500ms var(--e), transform 500ms var(--e); }
+  .js .opover .r:nth-child(2) { transition-delay: 80ms; }
+  .js .opstage.in .opover .r { opacity: 1; transform: none; }
+
+  /* -- 7. hovers, everywhere -----------------------------------------------------------
+     The chips' ground already swaps in 300ms. What is added: the arrow slides 6px right in
+     every chip and every ledger row, and the price cards' border turns copper. Nothing
+     here is coupled to the cursor's position -- these are :hover/:focus-visible states. */
+  .chip .a .gl { display: block; transition: transform 200ms var(--e); }
+  .chip:hover .a .gl, .chip:focus-visible .a .gl,
+  a:hover > .chip .a .gl, a:focus-visible > .chip .a .gl,
+  .eng:hover .chip .a .gl, .eng:focus-visible .chip .a .gl,
+  .card:hover .chip .a .gl, .card:focus-within .chip .a .gl { transform: translateX(6px); }
+  .prf .ar, .prfx .ar, .bar .ar { transition: transform 200ms var(--e); }
+  a.prf:hover .ar, a.prf:focus-visible .ar,
+  a.prfx:hover .ar, a.prfx:focus-visible .ar,
+  .bar a:hover .ar, .bar a:focus-visible .ar { transform: translateX(6px); }
+  .card { transition: border-color 300ms var(--e); }
+  .card:hover, .card:focus-within { border-color: var(--copper); }
+
+  /* -- 8. the ask ---------------------------------------------------------------------- */
+  .js .ask h2 { opacity: 0; transform: translateY(30px);
+      transition: opacity 600ms var(--e), transform 600ms var(--e); }
+  .js .ask .ar { opacity: 0; transform: translateX(-30px);
+      transition: opacity 600ms var(--e), transform 600ms var(--e); }
+  .js .ask .chips { opacity: 0; transform: translateY(30px); transition-delay: 120ms;
+      transition-property: opacity, transform; transition-duration: 600ms;
+      transition-timing-function: var(--e); }
+  .js #contact.in h2, .js #contact.in .ar, .js #contact.in .chips {
+      opacity: 1; transform: none; }
+
+  /* -- 9. the ground travel and the rail-style lighting are UNCHANGED (SS16.3-9). ----- */
 
   @media (max-width: 1439px) { .room { padding-bottom: 48px; } }
 
@@ -640,18 +878,34 @@
              max-height: 292px; }
     .stage video { object-position: 0% 50%; }
     /* the veil is NOT overridden here any more: the desktop ramp is written in the stage's
-       own percentages plus --drop, and --drop is a function of --d, so the same gradient
-       lands solid one headline row under the fingertip at 292px exactly as it does at 810. */
+       own percentages plus --rowfoot, and --rowfoot is a function of --d, so the same
+       gradient goes solid on the copper row's ink at 292px exactly as it does at 810, holds
+       across that row's own box, and reopens under it. */
+    /* SS16.2 at <=899, the same rule: the COPPER row's ink-top is 4px under the tip and
+       `I build the` is the row above it. The stage already starts BELOW the 48px bar (the
+       .room's own padding-top), and the block is hung inside the stage's box, so row 1
+       clears the bar by construction -- MEASURED at 390 and 360 by the verifier. */
+    /* ROUND 10: 40px was SS14.7's number, written when the glyph at the tip was the "I"
+       of `I build the`. SS16.2 makes it the "g" of the COPPER row, and 40px at the 52px
+       floor is 0.77em -- past the g's own ink, which ends 17.5px into the row at the
+       phone's width axis, so the tip pointed at the "o". The offset becomes 0.42 x --d
+       (21.8px): the largest one that still lands the tip on the g's ink, because every
+       px of offset is a px the row loses to the width ladder below. In the FILM's own
+       scale that is one hand's width exactly as 48px is at 1440 -- the mobile crop runs
+       at 0.270 source px per screen px against the desktop stage's 0.750. */
     .hero-copy h1 { position: absolute; z-index: 2; margin: 0;
-                    left: calc(var(--mfx) - 40px); right: 12px;
-                    top: calc(var(--mfy) + 4px - var(--capk) * var(--d)); }
+                    left: calc(var(--mfx) - 0.42 * var(--d)); right: 12px;
+                    top: calc(var(--mfy) + 4px - 0.92 * var(--d)
+                              - var(--xk) * var(--d)); }
     /* round 9: the top padding is spent. SS14.7 puts the sentence UNDER the stage at
        <=899 and the stage's own box is pinned (a full-width 4:3 crop, 390x292, which is
        what puts the fingertip at 25.8% of the stage width), so the only air between the
        stage's foot and the sentence that this composition owns is this padding -- 12px of
-       it, now zero. The rest of what reads as air on the phone is the veil's solid tail
-       INSIDE the stage, between the headline's foot and the stage's, and it cannot be cut
-       without moving the stage's box and with it the fingertip. Measured and reported. */
+       it, now zero. SEND-BACK, round 10: the rest of what read as air on the phone was the
+       veil's solid tail INSIDE the stage -- a ~150px band of dead black between the
+       headline's foot and `Strategy and software`, which the verifier read as a hole rather
+       than as air. It is gone: the veil now reopens under the copper row's box at every
+       width, so the table, the arm and the room come back under the words. */
     .hero-copy { position: static; left: auto; right: auto; top: auto;
                  padding: 0 var(--g) 56px; }
     .hero-copy .lede { margin-bottom: 24px; }
@@ -751,22 +1005,29 @@
 
   /* THE WIDTH LADDER: --d is pinned at its 52px floor below 554px, so the width axis is the
      only lever left on 'go-to-market.'. Measured, not guessed -- and re-measured for SS14.7,
-     which moves the headline's left edge off the gutter and onto the fingertip, taking
-     60.6px of room out of the row at 390 and 53px at 360. */
-  @media (max-width: 510px) { :root { --dw: 120; } }
-  @media (max-width: 487px) { :root { --dw: 115; } }
-  @media (max-width: 463px) { :root { --dw: 110; } }
-  @media (max-width: 440px) { :root { --dw: 106; } }
-  @media (max-width: 421px) { :root { --dw: 102; } }
-  @media (max-width: 403px) { :root { --dw: 100; } }
-  @media (max-width: 393px) { :root { --dw: 98; } }
-  @media (max-width: 382px) { :root { --dw: 96; } }
-  @media (max-width: 370px) { :root { --dw: 94; } }
-  @media (max-width: 357px) { :root { --dw: 92; } }
-  @media (max-width: 344px) { :root { --dw: 90; } }
-  @media (max-width: 332px) { :root { --dw: 88; } }
-  @media (max-width: 319px) { :root { --dw: 86; } }
-  @media (max-width: 307px) { :root { --dw: 84; } }
+     which moves the headline's left edge off the gutter and onto the fingertip.
+       RE-MEASURED AGAIN, round 10: the phone's hand's-width offset went from 40px to
+     0.42 x --d (21.8px at the 52px floor) so the tip lands on the "g" instead of past it,
+     which hands the row 18.2px BACK at 390 -- but the ladder was cut against the old edge,
+     so every breakpoint moves. Each one is the viewport width at which
+     'go-to-market.' at 52px stops fitting (measured in Chromium, string width per axis
+     value, against (viewport - 12px right inset) - (0.3444444 x stage height - 0.42 x --d)
+     with 0.5px of slack). 390 lands on 94 and 360 on 90. */
+  @media (max-width: 530px) { :root { --dw: 120; } }
+  @media (max-width: 507px) { :root { --dw: 115; } }
+  @media (max-width: 484px) { :root { --dw: 110; } }
+  @media (max-width: 460px) { :root { --dw: 106; } }
+  @media (max-width: 442px) { :root { --dw: 102; } }
+  @media (max-width: 423px) { :root { --dw: 100; } }
+  @media (max-width: 414px) { :root { --dw: 98; } }
+  @media (max-width: 404px) { :root { --dw: 96; } }
+  @media (max-width: 395px) { :root { --dw: 94; } }
+  @media (max-width: 385px) { :root { --dw: 92; } }
+  @media (max-width: 372px) { :root { --dw: 90; } }
+  @media (max-width: 359px) { :root { --dw: 88; } }
+  @media (max-width: 347px) { :root { --dw: 86; } }
+  @media (max-width: 334px) { :root { --dw: 84; } }
+  @media (max-width: 322px) { :root { --dw: 82; } }
 
   @media (prefers-reduced-motion: reduce) {
     video { display: none; }
@@ -777,9 +1038,24 @@
     }
     .opfilm .still { background: url("{{VID_Bposter}}") 50% 40% / cover no-repeat; }
     .bar { opacity: 1; pointer-events: auto; }
+    /* SS16.3: "everything off under reduced motion". The whole SS16.3 set is gated on
+       html.js, which is never added under reduce, so every rest state is already the
+       finished frame here; what remains is to kill the transitions that are NOT gated --
+       the ground travel, the bar, the hover wipes and the hover slides -- and to pin the
+       hover transforms so nothing moves on a pointer either. */
     .sheet, body, .bar, .prf::after, .prfx::after, .prfx .who, [data-rise],
-    .chip .t, .chip .a { transition: none !important; }
-    [data-rise] { transform: none !important; }
+    .chip .t, .chip .a, .chip .a .gl, .prf .ar, .prfx .ar, .bar .ar, .card,
+    .sec h2, .card .pblock::after, .steps li::before, .manual .lines p::before,
+    .q::before, .prf::before, .prfx::before, .proofsec .ledger::before,
+    .opfilm video, .opover .r, .ask h2, .ask .ar, .ask .chips,
+    #h1 .cu, #h1 .r1 { transition: none !important; }
+    [data-rise], .chip .a .gl, .prf .ar, .prfx .ar, .bar .ar,
+    .ask h2, .ask .ar, .ask .chips, .opover .r, #h1 .r1 { transform: none !important; }
+    .chip:hover .a .gl, a.prf:hover .ar, a.prfx:hover .ar, .bar a:hover .ar {
+      transform: none !important; }
+    .sec h2 { clip-path: none !important; }
+    #h1 .cu, .ask h2, .ask .ar, .ask .chips, .card, .eng, .q, .opover .r {
+      opacity: 1 !important; }
   }
 </style>
 
@@ -789,7 +1065,7 @@
      CSS already pins it open. With scripting OFF nothing would ever open it, so the same
      rule those two cases use is declared here -- it is parsed ONLY when scripting is
      disabled, so it cannot touch the scripted render. -->
-<noscript><style>.bar{opacity:1;pointer-events:auto}</style></noscript>
+<noscript><style>.bar{opacity:1;pointer-events:auto;transform:none}</style></noscript>
 
 <nav class="bar" id="bar" aria-label="Site">
   <a class="l now" href="#room">Micah Jones</a>
@@ -814,11 +1090,11 @@
         <div class="veil"></div>
       </div>
       <div class="hero-copy" id="herocopy">
-        <h1 class="d" id="h1"><span class="r"><span class="bl" style="display:inline-block;width:0;height:0;vertical-align:baseline"></span>I build the</span><span class="r cu">go-to-market.</span></h1>
+        <h1 class="d" id="h1"><span class="r r1"><span class="bl" style="display:inline-block;width:0;height:0;vertical-align:baseline"></span>I build the</span><span class="r cu">go-to-market.</span></h1>
         <p class="lede">Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
         <div class="base-row">
           <div class="chips" id="herochips">
-            <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-room"><span class="t">Name the problem</span><span class="a" aria-hidden="true">&#8594;</span></a>
+            <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-room"><span class="t">Name the problem</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
             <a class="chip quiet" href="#price"><span class="t">See the packages</span></a>
           </div>
           <!-- Operator ruling 2026-09-06: no per-company caption in the hero.
@@ -835,7 +1111,7 @@
   <!-- 02 operator, not consultant: clip B as a square stage, the heading OVER its lower third -->
   <section class="op wrap" id="operator" aria-label="Operator, not consultant">
     <div class="opgrid">
-      <div class="opstage" id="opstage">
+      <div class="opstage" id="opstage" data-anim="0.85" data-rise="10">
         <div class="opfilm" aria-hidden="true">
           <video id="opvid" muted loop playsinline preload="auto" poster="{{VID_Bposter}}">
             <source src="{{VID_B720}}" type="video/mp4">
@@ -862,14 +1138,14 @@
   <!-- the seam: the light travels here -->
 
   <!-- 03 how I work -->
-  <section class="work wrap" id="work" aria-label="How I work">
+  <section class="work wrap" id="work" data-anim="0.9" aria-label="How I work">
     <div class="sec">
       <!-- SS14.4 pins this string. Round 9 puts the head back on the section-head width
            axis (115), which means it wraps. The separator is tied to the word on BOTH
            sides, so "principles&#183;How" is one unbreakable unit: the only breakable
            spaces left are the one after "Operating" and the one after "How", and the
            middot can neither end a line nor open one at any width. -->
-      <h2 class="d two">Operating principles&nbsp;&#183;&nbsp;How I work.</h2>
+      <h2 class="d two" data-anim="0.85">Operating principles&nbsp;&#183;&nbsp;How I work.</h2>
     </div>
     <ol class="steps">
       <li>
@@ -891,29 +1167,29 @@
   </section>
 
   <!-- 04 packages: three cards, then one bar -->
-  <section class="price wrap" id="price" aria-label="Packages">
+  <section class="price wrap" id="price" data-anim="0.9" aria-label="Packages">
     <div class="sec">
       <div class="eyebrow"><span class="l">Fixed.</span></div>
-      <h2 class="d two">Three fixed prices. Start this week.</h2>
+      <h2 class="d two" data-anim="0.85">Three fixed prices. Start this week.</h2>
     </div>
     <div class="cards" id="cards">
       <div class="card">
         <span class="nm">The Unstick Session</span>
         <div class="pblock"><span class="pr">$500</span></div>
         <p class="one">Ninety minutes live on your stuck build.</p>
-        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Unstick Session</span><span class="a" aria-hidden="true">&#8594;</span></a></div>
+        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Unstick Session</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a></div>
       </div>
       <div class="card mark">
         <span class="nm">The Audit</span>
         <div class="pblock"><span class="pr">$2,500</span><span class="l">Start here</span></div>
         <p class="one">I go through it top to bottom and hand you the written audit.</p>
-        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Audit</span><span class="a" aria-hidden="true">&#8594;</span></a></div>
+        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Audit</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a></div>
       </div>
       <div class="card">
         <span class="nm">The Sprint</span>
         <div class="pblock"><span class="pr">$7,500</span></div>
         <p class="one">One week on one outcome, shipped.</p>
-        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Sprint</span><span class="a" aria-hidden="true">&#8594;</span></a></div>
+        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Sprint</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a></div>
       </div>
     </div>
     <!-- SS15.5: the top tier. ONE <a>, no link inside it, the same 2px copper rule the
@@ -926,17 +1202,18 @@
       </span>
       <span class="side r">
         <span class="v">From $5K a month</span>
-        <span class="chip"><span class="t">Name the problem</span><span class="a" aria-hidden="true">&#8594;</span></span>
+        <span class="chip"><span class="t">Name the problem</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></span>
       </span>
     </a>
   </section>
 
   <!-- 05 the record: the index -->
-  <section class="proofsec wrap" id="proof" aria-label="The record">
+  <section class="proofsec wrap" id="proof" data-anim="0.9" aria-label="The record">
     <div class="sec">
       <div class="eyebrow"><span class="l">Record</span></div>
-      <h2 class="d two">The receipts. Every line below is real.</h2>
+      <h2 class="d two" data-anim="0.85">The receipts. Every line below is real.</h2>
     </div>
+    <div class="ledger">
     <a class="prf" href="https://www.micahjonesconsulting.com/work/guardicore?from=mock-proof">
       <div class="who">Guardicore</div>
       <div class="cap">Millions in revenue &#183; acquired by Akamai</div>
@@ -953,10 +1230,11 @@
       <div class="who">See the rest</div>
       <span class="ar" aria-hidden="true">&#8594;</span>
     </a>
+    </div>
   </section>
 
   <!-- 06 the manual (SS15.2) -->
-  <section class="manual wrap" id="manual" aria-label="The field manual">
+  <section class="manual wrap" id="manual" data-anim="0.9" aria-label="The field manual">
     <div class="grid">
       <figure class="art">
         <div class="frame" data-rise="10"><span class="cov"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover"></span></div>
@@ -965,7 +1243,7 @@
       <div class="copy">
         <div class="sec">
           <div class="eyebrow"><span class="l">The 80% Wall</span></div>
-          <h2 class="d two">The AI handed you the code. Now ship the company.</h2>
+          <h2 class="d two" data-anim="0.85">The AI handed you the code. Now ship the company.</h2>
         </div>
         <div class="lines">
           <p>It shipped. Nobody came.</p>
@@ -975,16 +1253,16 @@
         <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
         <div class="buy">
           <div class="v">$99<span class="l">at launch</span></div>
-          <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="t">Get chapter one free</span><span class="a" aria-hidden="true">&#8594;</span></a>
+          <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="t">Get chapter one free</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 07 the FAQ -->
-  <section class="faq wrap" id="faq" aria-label="The objections">
+  <section class="faq wrap" id="faq" data-anim="0.9" aria-label="The objections">
     <div class="sec">
-      <h2 class="d two">The objections, in your words.</h2>
+      <h2 class="d two" data-anim="0.85">The objections, in your words.</h2>
     </div>
     <dl class="qs">
       <div class="q"><dt>Is this for me, if I vibe-coded it?</dt><dd>You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.</dd></div>
@@ -996,11 +1274,11 @@
 </div>
 
 <!-- 08 the ask -->
-<section class="ask wrap" id="contact" aria-label="Name the problem">
+<section class="ask wrap" id="contact" data-anim="0.9" aria-label="Name the problem">
   <div class="block">
     <h2 class="d"><a id="asklink" href="https://www.micahjonesconsulting.com/call?from=mock-ask">Name the problem.<span class="ar" aria-hidden="true">&#8594;</span></a></h2>
     <div class="chips">
-      <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-ask"><span class="t">Book a free intro call</span><span class="a" aria-hidden="true">&#8594;</span></a>
+      <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-ask"><span class="t">Book a free intro call</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
       <a class="chip quiet" href="https://www.micahjonesconsulting.com/packages?from=mock-ask"><span class="t">See the packages</span></a>
     </div>
   </div>
@@ -1034,10 +1312,18 @@
     var opstage = document.getElementById('opstage');
     var chips = document.getElementById('herochips');
     var risers = [].slice.call(document.querySelectorAll('[data-rise]'));
+    var anims = [].slice.call(document.querySelectorAll('[data-anim]'));
+    var h1 = document.getElementById('h1');
     var filmVid = document.getElementById('filmvid');
     var opVid = document.getElementById('opvid');
     var darks = [room, op, ask, document.querySelector('.foot')];
     var lastP = -1, queued = false, opStarted = false;
+    /* SS16.3-1. MEASURED on video/A2-hold-720.mp4 at 24fps: the pointing hand's leftmost
+       pixel first comes within 6px of its final x (248 of 1280) at frame 61 -- t=2.5417s.
+       SS16.3 guessed ~3.4s; this is the clip's own number, and 2.54 is what triggers the
+       word. Rounded DOWN to the frame boundary so the light is never late. */
+    var ARRIVAL = 2.54;
+    var wordLit = false, rowUp = false;
 
     if (!reduce) root.classList.add('js');
 
@@ -1062,12 +1348,15 @@
     function chrome() {
       if (!bar) return;
       var edge = bar.getBoundingClientRect().height || 40;
+      /* SS16.3-2: the bar slides down and fades in AT THE SEAM, and "never again" --
+         so `on` is only ever added. It used to be toggled, which re-ran the entrance
+         every time the hero's chips passed the bar's edge going back up. */
       if (reduce || window.innerWidth <= 899) {
         bar.classList.add('on');
       } else if (chips) {
-        bar.classList.toggle('on', chips.getBoundingClientRect().bottom <= edge);
-      } else {
-        bar.classList.toggle('on', window.scrollY >= window.innerHeight);
+        if (chips.getBoundingClientRect().bottom <= edge) bar.classList.add('on');
+      } else if (window.scrollY >= window.innerHeight) {
+        bar.classList.add('on');
       }
       var dark = false;
       for (var i = 0; i < darks.length; i++) {
@@ -1076,6 +1365,25 @@
         if (r.top <= edge && r.bottom >= edge) { dark = true; break; }
       }
       bar.classList.toggle('dark', dark);
+    }
+
+    /* SS16.3-1: the copper word lights when the fingertip arrives, and `I build the`
+       rises as the clip starts. Both are one-way: once lit, it stays lit. */
+    function lightWord() { if (wordLit || !h1) return; wordLit = true; h1.classList.add('on'); }
+    function raiseRow() { if (rowUp || !h1) return; rowUp = true; h1.classList.add('up'); }
+
+    /* SS16.3-2..8: one pass over every [data-anim] element. The attribute's value is the
+       fraction of the viewport that is the reading line for that element; crossing it adds
+       `in` and nothing ever removes it. */
+    function anim() {
+      var h = window.innerHeight;
+      for (var i = 0; i < anims.length; i++) {
+        var el = anims[i];
+        if (el.classList.contains('in')) continue;
+        var at = parseFloat(el.getAttribute('data-anim'));
+        if (!(at > 0)) at = 0.85;
+        if (el.getBoundingClientRect().top < h * at) el.classList.add('in');
+      }
     }
 
     function rise() {
@@ -1126,6 +1434,30 @@
         if (r.height > 0 && vis / r.height >= 0.35) { opStarted = true; play(opVid); }
       }
     }
+    /* SS16.3-1, the wiring. `timeupdate` is the trigger the brief names; `seeked` is
+       the same test applied to a seek (which is how the verifier drives the clip), and
+       `ended` plus the load-time check are the "already past it" case. The two fallback
+       timers exist because the rest state of this page is its FINISHED state: if a client
+       refuses to play a data-URI clip at all, the word still has to light and the row
+       still has to stand up. */
+    if (!reduce && filmVid) {
+      var atTime = function () {
+        if (filmVid.currentTime > 0) raiseRow();
+        if (filmVid.currentTime >= ARRIVAL || filmVid.ended) lightWord();
+      };
+      filmVid.addEventListener('timeupdate', atTime);
+      filmVid.addEventListener('seeked', atTime);
+      filmVid.addEventListener('loadedmetadata', atTime);
+      filmVid.addEventListener('play', raiseRow);
+      filmVid.addEventListener('playing', raiseRow);
+      filmVid.addEventListener('ended', function () { raiseRow(); lightWord(); });
+      atTime();
+      setTimeout(raiseRow, 1600);
+      setTimeout(function () {
+        if (filmVid.paused && filmVid.currentTime === 0) lightWord();
+      }, 6000);
+    }
+
     if (!reduce) {
       var GEST = ['pointerdown', 'touchstart', 'keydown', 'wheel'];
       for (var gi = 0; gi < GEST.length; gi++) {
@@ -1137,6 +1469,7 @@
       try { light(); } catch (e) {}
       try { chrome(); } catch (e) {}
       try { if (!reduce) rise(); } catch (e) {}
+      try { if (!reduce) anim(); } catch (e) {}
     }
     function schedule() { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; tick(); }); }
 
@@ -1157,7 +1490,9 @@
     }
     window.addEventListener('resize', schedule);
     tick();
-    if (!reduce) requestAnimationFrame(function () { requestAnimationFrame(rise); });
+    if (!reduce) requestAnimationFrame(function () {
+      requestAnimationFrame(function () { rise(); anim(); });
+    });
   } catch (e) {
     try { if (window.console && console.error) console.error(e); } catch (e2) {}
   }
