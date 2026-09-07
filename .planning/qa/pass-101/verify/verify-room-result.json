@@ -143,7 +143,7 @@
   {
    "id": "media",
    "pass": true,
-   "evidence": "[{\"id\": \"filmvid\", \"muted\": true, \"loop\": false, \"preload\": \"auto\", \"playsinline\": true, \"poster\": true, \"srcs\": 2, \"rs\": 4, \"types\": [\"video/webm\", \"video/mp4\"], \"urls\": [\"/video/a2-hold-720.webm\", \"/video/a2-hold-720.mp4\"]}, {\"id\": \"opvid\", \"muted\": true, \"loop\": true, \"preload\": \"auto\", \"playsinline\": true, \"poster\": true, \"srcs\": 2, \"rs\": 4, \"types\": [\"video/webm\", \"video/mp4\"], \"urls\": [\"/video/b-loop-720.webm\", \"/video/b-loop-720.mp4\"]}]"
+   "evidence": "[{\"id\": \"filmvid\", \"muted\": true, \"loop\": false, \"preload\": \"auto\", \"playsinline\": true, \"poster\": true, \"srcs\": 2, \"rs\": 4, \"types\": [\"video/webm\", \"video/mp4\"], \"urls\": [\"/video/a2-hold-720.webm\", \"/video/a2-hold-720.mp4\"]}, {\"id\": \"opvid\", \"muted\": true, \"loop\": true, \"preload\": \"none\", \"playsinline\": true, \"poster\": true, \"srcs\": 2, \"rs\": 4, \"types\": [\"video/webm\", \"video/mp4\"], \"urls\": [\"/video/b-loop-720.webm\", \"/video/b-loop-720.mp4\"]}]"
   },
   {
    "id": "14.8-renders-with-javascript-off",
@@ -153,7 +153,7 @@
   {
    "id": "15.1-gesture-plays-both",
    "pass": true,
-   "evidence": "preload ['auto', 'auto'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.20s) and the operator clip is playing (paused=False, t=3.72s)"
+   "evidence": "preload ['auto', 'none'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.21s) and the operator clip is playing (paused=False, t=3.71s)"
   },
   {
    "id": "discipline",
@@ -298,7 +298,7 @@
   {
    "id": "no-data-uri-media",
    "pass": true,
-   "evidence": "the served document is 51986 bytes and carries 0 data: URIs (SS7: data-URI video on the site is rejected). Both clips, both posters and the cover are FILES."
+   "evidence": "the served document is 52358 bytes and carries 0 data: URIs (SS7: data-URI video on the site is rejected). Both clips, both posters and the cover are FILES."
   }
  ],
  "screenshots": [
@@ -314,6 +314,6 @@
   "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-390-work.png",
   "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl10-nojs-1440.png"
  ],
- "document_bytes": 51986,
+ "document_bytes": 52358,
  "all_pass": true
 }

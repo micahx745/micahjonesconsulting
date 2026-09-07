@@ -2733,12 +2733,21 @@ body {
 [data-mode="cw"] .cw-lede-sub {
   margin: 18px 0 0;
 }
+/* PASS-101 a11y. Brief §5.3 wants zero serious findings on EVERY page, and
+ * this rule was the site's last one: on /services the accent resolves to
+ * #a64d36 against #ece3d0, which measures 4.40:1 at 12px — under the 4.5:1
+ * bar for text that small. The TYPE takes --color-accent-copper-deep
+ * (#8a3d24, 5.94:1 there), which is the constitution's own documented AA
+ * variant for exactly this case (Pitfall B1), not a second accent. The
+ * UNDERLINE keeps the accent: it is decoration, and it carries the colour.
+ * The Ordani override below is unchanged — bone still wins in the petrol
+ * zone, where copper-deep would be worse than the saffron it replaces. */
 [data-mode="cw"] .cw-lede-link {
   font-family: var(--font-cw-label);
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cw-accent);
+  color: var(--color-accent-copper-deep);
   text-decoration: none;
   border-bottom: 1.5px solid var(--cw-accent);
   padding-bottom: 2px;

@@ -63,6 +63,15 @@ export default function HomeLayout({
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: BOOT }}
       />
+      {/* The hero's poster is the first screen's largest paint and it is
+          discovered late — it is a <video poster>, not an <img>, so the
+          preload scanner never sees it. React hoists this into <head>. */}
+      <link
+        rel="preload"
+        as="image"
+        href="/video/a2-poster-last.jpg"
+        fetchPriority="high"
+      />
       <a href="#main-content" className="skip-to-content">
         Skip to content
       </a>

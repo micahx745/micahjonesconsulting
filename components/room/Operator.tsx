@@ -21,12 +21,25 @@ export function Operator() {
       <div className="opgrid">
         <div className="opstage" id="opstage" data-anim="0.85" data-rise="10">
           <div className="opfilm" aria-hidden="true">
+            {/* PASS-101 PERF, measured. Clip B is BELOW THE FOLD and it is the
+                heaviest file on the page: 260KB of webm plus an 88KB poster,
+                against the hero's 84KB + 80KB. At `preload="auto"` all four
+                downloaded before the first screen had painted — 512KB
+                competing for the same simulated bandwidth — and Lighthouse
+                mobile put LCP at 4.2s for it.
+                  `preload="none"` costs nothing this clip needs: it does not
+                autoplay, RoomMotion starts it on the IntersectionObserver's
+                own 35% threshold, and the gesture handler starts it on the
+                first wheel or tap. The poster is what stands in until then and
+                it still loads. The hero clip KEEPS preload="auto" — that one
+                is the first screen, and it is the clip the operator's "i see no
+                vids" was about. */}
             <video
               id="opvid"
               muted
               loop
               playsInline
-              preload="auto"
+              preload="none"
               poster="/video/b-poster.jpg"
             >
               <source src="/video/b-loop-720.webm" type="video/webm" />

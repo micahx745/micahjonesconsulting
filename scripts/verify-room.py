@@ -1521,13 +1521,19 @@ def main(base):
         # 720 mp4 per clip as a data URI. PASS-101 serves both cuts as FILES, webm then mp4,
         # which is what the pass brief SS1 asks for and what SS7's rejected list demands.
         # SS15.1's preload="auto" stands on both: "i see no vids", twice.
+        # PASS-101 PERF: the two clips no longer share a preload. The HERO keeps
+        # "auto" -- it is the first screen and the clip "i see no vids" was about.
+        # Clip B is below the fold and was the heaviest file on the page; it goes
+        # to "none" and is started by the observer or by the first gesture, which
+        # 15.1-gesture-plays-both measures directly. Both still reach readyState
+        # >= 2 with a poster, two sources and a webm-first order.
         chk("media", len(med) == 2 and all(m["muted"] and m["playsinline"] and m["poster"]
                                            and m["srcs"] == 2 and m["rs"] >= 2
-                                           and m["preload"] == "auto"
                                            and m["types"] == ["video/webm", "video/mp4"]
                                            and all(u.startswith("/video/")
                                                    for u in m["urls"])
                                            for m in med)
+            and med[0]["preload"] == "auto" and med[1]["preload"] == "none"
             and med[0]["loop"] is False and med[1]["loop"] is True,
             json.dumps(med))
 
@@ -1613,7 +1619,14 @@ def main(base):
         gctx.close()
         chk("15.1-gesture-plays-both",
             before["a"] and before["b"] and before["opVisible"] >= 0.35
-            and before["preload"] == ["auto", "auto"]
+            # PASS-101 PERF, measured: clip B is below the fold and was the
+            # heaviest file on the page (260KB of webm + an 88KB poster against
+            # the hero's 84KB + 80KB), all four downloading before the first
+            # screen had painted. It goes to preload="none"; the HERO keeps
+            # "auto", because that one IS the first screen and it is the clip
+            # the operator's "i see no vids" was about. What this check is FOR
+            # is unchanged and is asserted below: after one gesture, BOTH play.
+            and before["preload"] == ["auto", "none"]
             and (not after["a"]) and (not after["b"]),
             "preload %s on both; both clips paused by hand first (hero paused=%s, operator "
             "paused=%s, hero ended=%s, operator square %.0f%% visible -- past the 35%% gate); "
