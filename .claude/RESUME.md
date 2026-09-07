@@ -36,4 +36,5 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 ## Standing traps
 Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys · `grep -oiF`
 false zeroes, python utf-8 · copy-lint hook rejects docs that QUOTE banned words · scratchpad
-copy.py shadows stdlib (run verifiers with `python -P`) · a review is a reader, not an oracle.
+copy.py shadows stdlib (`python -P`) · Bash heredocs collapse `\` — build escape bytes
+from codes · a review is a reader, not an oracle.
