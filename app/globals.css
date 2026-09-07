@@ -280,6 +280,20 @@
   --g: 32px; /* page gutter */
   --gap: 24px; /* column gap */
   --s: 120px; /* section entry air: 120 at >=900, 64 below (§14.4) */
+
+  /* PASS-101 INTEGRATE, MEASURED: app/room-and-ledger.css reads
+   * `var(--accent-copper-deep)` at seven live call sites -- the .rl-link
+   * underline pair, the checkout error, the book warning, the /playbook
+   * contents tag, the diff column label and the signup message -- but the
+   * token this repo declares is `--color-accent-copper-deep` (the @theme
+   * block above, #8a3d24). An undefined var() in `color` falls back to
+   * INHERIT, so all seven rendered as the surrounding ink: a link that was
+   * indistinguishable from body text, and an error message with no error
+   * colour. The alias is declared ONCE, here, rather than renamed at seven
+   * call sites, because the Pitfall B1 prose in this file's own header and in
+   * .claude/CLAUDE.md both call the token `--accent-copper-deep` -- the short
+   * name is the one the constitution uses, and it now resolves. */
+  --accent-copper-deep: var(--color-accent-copper-deep);
 }
 
 @media (max-width: 899px) {

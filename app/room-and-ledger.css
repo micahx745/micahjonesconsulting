@@ -64,6 +64,12 @@
   --hair-12: color-mix(in oklab, var(--color-rl-espresso) 12%, transparent);
   --hair-10: color-mix(in oklab, var(--color-rl-espresso) 10%, transparent);
 
+  /* THE TEXT-LINK COLOUR, declared with the ink family because it belongs to
+   * the ground and not to the link. On this half it is Pitfall B1's deep
+   * copper (5.4:1 on bone); the two espresso blocks below reset it to bone,
+   * where deep copper would measure 2.2:1. PASS-101 INTEGRATE. */
+  --link: var(--accent-copper-deep);
+
   /* The Color Worlds variables are repointed rather than fought. Every
    * [data-mode="cw"] rule that survives on these routes now paints in the
    * Room and Ledger palette and sets in the Room and Ledger faces. */
@@ -411,20 +417,22 @@ button:focus-visible .rl-ar {
  * rule in .claude/CLAUDE.md (Pitfall B1) and is NOT superseded by this pass.
  * The underline is painted at rest and only its colour moves on hover — a
  * reading cue is not a place to spend motion. */
-.rl-link {
-  color: var(--accent-copper-deep);
+/* PASS-101 INTEGRATE, MEASURED: this rule was `.rl-link` at (0,1,0) and
+ * `#rl-root a { color: inherit }` at (1,0,1) out-specified it, so NOT ONE of
+ * the nine text links on the ported pages was ever copper -- /playbook's
+ * `The case studies` computed the surrounding --ink-80 and /work's
+ * `Engagements` the body ink. The same specificity trap LESSONS #18 records
+ * against `.rl-chip`. Scoped to #rl-root at (1,1,0), which wins. */
+#rl-root .rl-link {
+  color: var(--link);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  text-decoration-color: color-mix(
-    in oklab,
-    var(--accent-copper-deep) 45%,
-    transparent
-  );
+  text-decoration-color: color-mix(in oklab, var(--link) 45%, transparent);
 }
-.rl-link:hover,
-.rl-link:focus-visible {
-  text-decoration-color: var(--accent-copper-deep);
+#rl-root .rl-link:hover,
+#rl-root .rl-link:focus-visible {
+  text-decoration-color: var(--link);
 }
 
 /* ============================================================
@@ -1234,6 +1242,7 @@ a.rl-prfx:focus-visible .who {
   --hair: color-mix(in oklab, var(--color-rl-bone) 15%, transparent);
   --hair-12: color-mix(in oklab, var(--color-rl-bone) 12%, transparent);
   --hair-10: color-mix(in oklab, var(--color-rl-bone) 10%, transparent);
+  --link: var(--color-rl-bone);
   color: var(--color-rl-bone);
 }
 /* the operator section can BE the first section of a page (/about opens on
@@ -1826,6 +1835,7 @@ html.rl-js [data-rl="media"].rl-in {
   --hair: color-mix(in oklab, var(--color-rl-bone) 15%, transparent);
   --hair-12: color-mix(in oklab, var(--color-rl-bone) 12%, transparent);
   --hair-10: color-mix(in oklab, var(--color-rl-bone) 10%, transparent);
+  --link: var(--color-rl-bone);
   color: var(--color-rl-bone);
 }
 /* the objections stack in a column here rather than running three across. */
