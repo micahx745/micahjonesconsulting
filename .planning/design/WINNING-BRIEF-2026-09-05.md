@@ -623,6 +623,88 @@ receipts - we should add the content ai part to the list so we have three."
   proof index). Output: a recomposition per failing section with px values and a named
   reference. Fable rules → v7 (mock) and a Pass-101 follow-up commit on the branch.
 
+## 18. The recomposition (2026-09-06) → v7 and a Pass-101 follow-up
+
+Sources: `research/HOME-CRITIQUE-2026-09-06.md` (section by section, 1440 and 390) and
+`research/REFERENCES-2026-PATTERNS.md` (nine live 2026 pages measured: Warp, Basecamp,
+Stripe Press, Cursor, Linear Method, Locomotive, Resend, Aardvark, Fauna). Both name the
+same two boxes: the dashed frame around the cover, and the Engagements slab set in a
+different box language from the cards. Two page-wide rules, then the sections.
+
+**Rule A — the border goes on the list, never on the picture.** No frame around any
+photograph or cover. Borders belong to ledgers, cards and buy lists.
+**Rule B — one seam.** Every right-hand lane in the light half starts at x = 600 (cols
+6–12, 776px) at 1440: the how-I-work sentences, the manual's copy column, the objections
+list, the receipts' captions. One vertical line down the page.
+**Rule C — one chip shape, everywhere.** A single block, 48px tall, 8px radius, label 19px
+Hanken 500 centred, the `→` an inline glyph with 10px margin (it keeps the §16.3 slide);
+no bolted arrow square. Espresso fill with bone type on bone grounds; bone fill with
+espresso type on espresso grounds; hover to copper in 300ms, no lift. The hero's pair
+follows the same shape.
+
+- **Bar.** 1440: identity and the ask in auto tracks, the three middle labels centred in a
+  1fr track. 390: the CTA returns to the bar as a compact pill (`Name the problem →`, 12px
+  label, 32px tall, 1px copper border, radius 999) and `Packages from $500` is the label
+  that hides; bar 52px.
+- **Hero.** §16.2 as v6 delivers it (the copper row at the tip). Then: `Four exits, $5B+
+  combined.` moves to 24px under the chips, left-aligned with the headline, 14px label at
+  60% bone; the full-width hairline above the chips is deleted; stage padding-bottom 56px.
+- **Operator.** The film becomes a 4:5 portrait in cols 1–7 (8px radius, object-position
+  measured to keep the face and the phone), the heading overlaid at the film's own left
+  edge (32px), veil solid from the heading's cap-top; the first paragraph leaves the film
+  and becomes the right column's first row at 21px above the three register rows; the
+  quote 40px after the last row; both columns align-items:start. No hole.
+- **How I work.** Eyebrow `Operating principles` (label style) 20px above the head `How I
+  work.` at `--d2` on one line (both verbatim halves of the existing string; the middot
+  and its nowrap go); the ordinal in a 28px cell at 60% ink; the sentence lane at x = 600
+  (Rule B); rows and hairlines as v5.
+- **Packages + Engagements, one card system.** Three cards (equal thirds of the content,
+  24px gap), 1px border ink 15%, 8px radius, 28px padding, name 24px Hanken 500, price
+  72px, sentence 17px, ONE chip (Rule C). The Audit carries exactly two devices: a 1px
+  copper border on all four sides and an inline `Start here` pill (12px label, copper text,
+  1px copper border, radius 999) on the name line; the 2px top rule is deleted.
+  Engagements is the fourth object in the SAME system: one block the width of the three
+  cards, 24px below, 8px radius, 28px padding, espresso ground, `Engagements` at 24px
+  Hanken 500 bone (not `--d2`), the descriptor at 17px, `From $5K a month` at 72px bone in
+  the price's slot, one chip (`Name the problem →`, bone fill) right; height by content.
+  Special by ground, connected by grammar.
+- **Receipts.** Three rows (Guardicore · RFP engine for an industry author · AI content
+  engine for an industry author), row 72px, name cols 1–5 at 28px 100% ink, caption from
+  x = 600 at 28px 60% ink (one size; rank by colour and column), the arrow in a 32px cell
+  flush right; 2px transparent top/bottom borders reserved so the copper hover rule causes
+  no shift. The head carries the count `07`. `See the rest →` stops being a row: a pill
+  (14px label, 1px ink-40% border, radius 999, 40px tall, padding 0 20px) 32px under the
+  ledger, left-aligned.
+- **The manual.** The dashed frame and its padding are deleted (Rule A). Cover alone in
+  cols 1–5 at 4:5, 8px radius; the file line under it as a caption, space-between across
+  the cover's width. Right column from x = 600 on one measure: eyebrow `The 80% Wall`,
+  head `The 80% Wall.` at `--d2` on one line, the display sentence demoted to a 28px/1.25
+  lede (max three lines), the three symptom lines as the hairline ledger, the chapters
+  paragraph at 19px, then a BUY LEDGER (Stripe Press): one bordered box (1px ink 15%,
+  radius 0), three 48px rows on hairlines, each `label` left · value right · a copper `→`
+  in a 44px ruled cell: `Get chapter one free` → /playbook · `$99` · `at launch` ·
+  `PDF + ZIP · every future edition`. The only border in the section is on the list.
+- **The objections.** Eyebrow `Objections` (label style) 20px above the head at `--d2`
+  (one line at wdth 106 if it fits at 1440; else two lines with the count `03` right-aligned
+  on the head's last baseline). Then TWO columns: the head stays in cols 1–5, the list is
+  ONE column from x = 600 (776px): each row padding 30px 0, hairline bottom, a 24px copper
+  `→` cell ahead of the question (text from x = 632), question 24px/1.2 Hanken 500, answer
+  17px/1.5 at 80% ink beneath, max 60ch. Rows close on their own hairlines; no ragged feet.
+- **The ask.** min-height 0, padding 120px; the field is its content. The floating 56px
+  arrow is deleted; the chips carry the arrow. The reply promise (`I read every message
+  and reply inside one business day.`) leaves the foot and sits right-aligned in the
+  field's right third at 19px espresso, max 26ch, baseline-aligned to the headline's last
+  line. Two chips, Rule C.
+- **The foot.** A 1px bone-15% hairline across the top. Three columns on the grid,
+  align-items:start: cols 1–4 `Micah Jones` at 24px Hanken 500 + the email at 17px 60%;
+  cols 6–8 the four nav labels (`Record` · `Playbook` · `Packages from $500` · `Name the
+  problem`) as 17px rows 12px apart; cols 10–12 `The 80% Wall` + `$99 at launch` + the
+  chip `Get chapter one free →`. No copyright range (no years).
+
+Copy note: every string above is a verbatim substring of the verified sources or a
+label-style transform of one; `Start here` and `Objections` and `Operating principles`
+already exist. Nothing new is written.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
