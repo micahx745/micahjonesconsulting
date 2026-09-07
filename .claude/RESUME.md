@@ -8,7 +8,6 @@ Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-
 by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATERIALS.md`.
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
-1–2. Earlier mocks (a398fb1a, 1d43593f) superseded by 4.
 3. Video + composites: `design/video/`, `COMPOSITE-BRIEF-2026-09-06.md` (RSA C2b done).
 4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
    film as the hero ground, no header on screen one, one display size, Anybody wide/light,
@@ -20,16 +19,16 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
  Viewer plays data: video. v6 (§16: copper row AT the finger, lights at
    2.54s, motion set) and v7 (§18: border on the list, one seam x=600, one chip, three
    receipts, every section recomposed; 72/72 + independent) PUBLISHED · **Pass 101** (`.claude/briefs/pass-101-…`):
-   the real site: 3 phases built on worktree branches (LESSONS #17); INTEGRATION + §5
-   verify in flight → `design/room-and-ledger`. NO push/deploy.
+   the real site on `design/room-and-ledger` (worktree `.claude/worktrees/p101-integrate`):
+   integrated + §18 ported; build/verify-room/axe green; Lighthouse mobile 88, LCP 4.0s
+   (pre-existing). NO push/deploy — the preview push is HIS.
    NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.
 
 ## Ship gate (operator-owned)
 1. Stripe webhook + `whsec_` in Production + one live $500 buy/refund. 2. Then
 `PLAYBOOK_ON_SALE=1` + redeploy = launch.
 
-## Housekeeping (one Opus pass): XR-1/2/3/6/7 (2026-09-04 cross-review). LESSONS #5:
-auto-deploys moved both domains 5× with no alias; confirm www first.
+## Housekeeping: XR-1/2/3/6/7 (2026-09-04 cross-review); LESSONS #5 www alias check.
 
 ## Next
 99: landing offer + packages reframe. 100: home spear, Search Console, sitemap lastmod.
