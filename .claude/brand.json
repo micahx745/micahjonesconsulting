@@ -54,29 +54,65 @@
     {
       "id": "rule-theater",
       "value": "#2A2A30"
+    },
+    {
+      "id": "rl-espresso",
+      "value": "#0D0D0F",
+      "scope": "Room and Ledger (Pass-101, WINNING-BRIEF §3) — the dark ground"
+    },
+    {
+      "id": "rl-bone",
+      "value": "#F5EFE4",
+      "scope": "Room and Ledger (Pass-101, WINNING-BRIEF §3) — the light ground"
+    },
+    {
+      "id": "rl-copper",
+      "value": "#C8542B",
+      "scope": "Room and Ledger (Pass-101, WINNING-BRIEF §3) — the one accent, unchanged"
     }
   ],
   "typography": {
+    "_ruling": "Pass-101, WINNING-BRIEF-2026-09-05 §2 and §16.4 (operator, 2026-09-06: 'Well arent you going to build the other pages in this style?'). The Room and Ledger system: Anybody is the display AND label face, Hanken Grotesk is the text face, and there is NO mono. The retired mono face and Bricolage, Instrument Serif/Sans, Inter, Space Grotesk, Syne, Unbounded are banned in this direction. Bricolage remains loaded, unpreloaded, only until phase 3 ports the last unrestyled route.",
     "display": {
-      "family": "Inter Display (Inter weight 700-800)",
-      "foundry": "system",
-      "weights": [600, 700, 800],
+      "family": "Anybody",
+      "foundry": "google",
+      "weights": [300, 500],
+      "axes": ["wdth", "wght"],
+      "width_ladder": {
+        "poster": 125,
+        "composed": 115,
+        "fitted": 106,
+        "meta": 90,
+        "label": 80
+      },
+      "license": null
+    },
+    "label": {
+      "family": "Anybody",
+      "foundry": "google",
+      "weights": [500],
+      "setting": "14px, wdth 80, uppercase, letter-spacing .04em, line-height 1.45, ink at 60% (100% when current)",
       "license": null
     },
     "body": {
-      "family": "Inter",
+      "family": "Hanken Grotesk",
       "foundry": "system",
-      "weights": [400, 500, 600],
+      "weights": [400, 500, 600, 700],
+      "setting": "17px/1.5 body, 21px/1.35 lede, measure <= 40ch",
       "license": null
     },
-    "serif": {
-      "family": "Source Serif 4",
-      "foundry": "system",
-      "weights": [400, 500],
-      "axes": ["opsz"],
-      "license": null
-    },
-    "mono": null
+    "serif": null,
+    "mono": null,
+    "banned": [
+      "Bricolage Grotesque",
+      "Instrument Serif",
+      "Instrument Sans",
+      "Inter",
+      "Space Grotesk",
+      "Syne",
+      "Unbounded",
+      "any monospace face"
+    ]
   },
   "voice": {
     "person": "first-singular",

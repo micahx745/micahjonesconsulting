@@ -3,14 +3,17 @@
 This project uses the **premium-web** Claude Code plugin (installed at `~/Code/premium-web-harness`). Read `.claude/brand.json` before making any UI decision.
 
 ## Two modes
+
 - Foyer pages (`app/(foyer)/`) — warm cream paper `#F5EFE4`, ink `#1A1816`. Hospitality feel. Home / About / Work With Me / Contact / Work index.
 - Theater pages (`app/(theater)/`) — obsidian ground `#0D0D0F`, bone `#EAE6DD`. Cinematic feel. `/work/[slug]` case studies.
 - Mode is route-determined. NO `useTheme()`, NO `<ThemeProvider>`, NO toggle. Group layouts stamp `data-mode="foyer"` or `data-mode="theater"` on a wrapper `<div>`; Tailwind v4 reads the attribute via `[data-mode="..."]` selectors in `app/globals.css`.
 
 ## One accent
+
 Copper `#C8542B`. Used everywhere across both modes. One exception: `ordani.sage #5E7158` inside `/work/ordani` only.
 
 **CRITICAL — WCAG AA rule (Pitfall B1):**
+
 - `--accent-copper #C8542B` on `--foyer-paper #F5EFE4` is 3.85:1 → FAILS WCAG AA for normal body text.
 - Use `--accent-copper-deep #8E3A1E` (5.4:1, PASS) for body-text emphasis and foyer body link color.
 - Plain `--accent-copper` is fine for large text (≥24px), headlines, UI components (buttons, focus rings, dividers), and decorative underlines.
@@ -18,6 +21,7 @@ Copper `#C8542B`. Used everywhere across both modes. One exception: `ordani.sage
 The `design-tokens.sh` hook warns on any other hex literal.
 
 ## One signature motion
+
 `<TitleCard />` on case-study hero (Phase 5). Foyer↔theater View Transition (Phase 2). NOTHING ELSE pins, sticks, parallax-scrolls, or follows the cursor without the `motion-engineer` agent's written approval.
 
 **One FIGURE animation exists and is not a third signature** (`motion.figure` in
@@ -34,6 +38,7 @@ would be the second-signature line; the answer there is no.
 `motion-discipline.sh` blocks cursor followers, scroll-jacking, marquees, mono aesthetic, and (Phase 1 addition) `syncTouch: true` on Lenis.
 
 ## Model routing — reset 2026-09-04
+
 Operator ruling, 2026-09-04, verbatim: "leave the main model on fable 5.1 ultracode but us
 opus as subagents for majority of the work ... having fable guide all other models doing the
 grunt work."
@@ -60,12 +65,13 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 `curl -s | grep` rather than screenshot, and one buyer read at the ship gate.
 
 ## Stack
+
 - Next.js 16.2.6 (App Router, `experimental.viewTransition: true`, Turbopack)
 - React 19.2.6 — `ViewTransition` is imported from `react`, NOT from `next`
 - TypeScript strict (including `noUncheckedIndexedAccess`)
 - Tailwind CSS v4 — CSS-first `@theme` block in `app/globals.css`; NO `tailwind.config.ts`
 - `@tailwindcss/postcss` is a SEPARATE package from `tailwindcss` in v4 — both required
-- `next/font/google` — three faces, the Color Worlds system (Pass-37): Bricolage Grotesque (display, `opsz`), Hanken Grotesk (body), JetBrains Mono (labels, § codes, data — the DESIGN_BAR R1 "narrow third" only, never body or headings). `lib/fonts.ts` is the source of truth. Inter and Source Serif 4 are gone; do not reintroduce them. (Prose corrected 2026-09-04 to match live code.)
+- `next/font/google` — **TWO faces, the Room and Ledger system (Pass-101, WINNING-BRIEF §2 + §16.4, operator 2026-09-06 "Well arent you going to build the other pages in this style?"):** Anybody (display AND label; `axes: ['wdth']`, weight variable, 300 for display lines and 500 for labels) and Hanken Grotesk (text, 400/500). `lib/fonts.ts` is the source of truth. The mono face is RETIRED — §2's type table reads `Mono | none`, and R1's "narrow third" clearance is withdrawn with it. Data takes Anybody with `font-variant-numeric: tabular-nums`. Bricolage Grotesque is loaded but NOT preloaded, and only until Pass-101 phase 3 ports the last unrestyled route; §2 bans it in this direction, so do not add call sites. Inter and Source Serif 4 are gone; do not reintroduce them.
 - MDX via `@next/mdx`; `mdx-components.tsx` MUST live at REPO ROOT, not inside `app/`
 - GSAP 3.15 (free as of 2025) — quarantined to `components/TitleCard.tsx` only. ALL OTHER FILES must not import `gsap`. Pitfall C1: always `'use client'` + `useGSAP` hook
 - Lenis 1.3 via `lenis/react` subpath at ROOT layout — NOT in group layouts. `syncTouch: false` is locked (Pitfall D2)
@@ -74,7 +80,8 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - Vercel hosting + Analytics + Speed Insights (cookieless, no consent banner needed)
 
 ## What not to do
-- Do not use monospace for anything beyond labels, § codes and data. JetBrains Mono is the cleared R1 "narrow third" (`app/layout.tsx`, Pass-37). Mono body copy, mono headings, or a terminal aesthetic remain banned; `motion-discipline.sh` + `brand.json.motion.banned` enforce that. (Prose corrected 2026-09-04; an external review called the font a violation, and it is not.)
+
+- Do not use monospace anywhere. **Amended Pass-101 (§2):** the rule used to clear a mono for labels, § codes and data as the R1 "narrow third"; that clearance is withdrawn. `Mono | none`. Labels are Anybody at 14px / `"wdth" 80` / uppercase / `.04em` / weight 500; § codes and data are Anybody with tabular figures. Mono body copy, mono headings and the terminal aesthetic stay banned, and now so does the label exception; `motion-discipline.sh` (`font-mono|font-family: ui-monospace`) + `brand.json.motion.banned` enforce it, and neither pattern is relaxed by this amendment — it only makes them total.
 - Do not introduce a second accent color. `design-tokens.sh` warns on off-palette hex.
 - Do not introduce a second signature motion. `motion-engineer` agent refuses.
 - Do not add Framer Motion. Component-level enter/exit uses CSS transitions + `:hover` via Tailwind utilities.
@@ -90,11 +97,13 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - Do not use stock photography, illustration, icon kits, or 3D. Type and photographs/screenshots only.
 
 ## Content
+
 - `content/work/*.mdx` — case studies. Frontmatter required (validated by Zod schema in Phase 7 + harness `mdx-frontmatter.sh`): `title`, `dek`, `role`, `tools[]`, `year`, `status`, `titleCardWords[3-6]`, `hero?`.
 - `content/citations.ts` — locked sources (e.g., CDC maternal-mortality statistics for ORDANI). Numbers in case studies render from this object, NOT as literals in prose (Pitfall E2).
 - `content/site.ts` — global copy (nav labels, footer copy, positioning sentence).
 
 ## Voice
+
 - First person (`I`, never `we` if it's just Micah).
 - ≤25 words per sentence on average.
 - Specific named numbers (`$150K`, `14 practices`, `91% intake completion`) — never "significant impact."
@@ -106,12 +115,14 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 The voice rules above are enforced in two layers:
 
 **Automated (Phase 2 — `lib/copy-lint-runner.ts` + `instrumentation.ts`):**
+
 - 30 banned words rejected at `pnpm build` with `file:line:column` reporting.
 - Scope: `content/**/*.{mdx,md,ts}` and `app/**/*.{tsx,ts}`.
 - Gated to `NEXT_PHASE === 'phase-production-build'` — does NOT run on `next dev`.
 - Plus the write-boundary `copy-lint.sh` harness hook catches violations on save.
 
 **Manual subagent (every prose-touching PR — `copy-editor` subagent):**
+
 - **COPY-04** Sentence length cap: average ≤25 words. Sentences over 35 words rewritten.
 - **COPY-04** First person locked: `I`, `me`, `my`. The word `we` rejected unless plural truly applies (rare — Micah is solo).
 - **COPY-04** Active voice required. Passive constructions ("was built", "is being shipped") rewritten unless documenting outcomes ("Acquired by Salesforce for $27.7 billion" stays passive — that's a fact, not voice).
@@ -141,6 +152,7 @@ real file exists. The operator flow is a file drop plus a build:
 yet — mount it somewhere before dropping that file in. See `public/README.md`.
 
 Rewritten 2026-08-15. What changed and why:
+
 - The component previously had NO importer at all, so the documented drop-in flow
   would have done nothing. It is now actually wired.
 - The placeholder branch (a large "MJ" monogram poster standing in for a face) was
@@ -149,7 +161,9 @@ Rewritten 2026-08-15. What changed and why:
   reads as unfinished; an empty column is the more honest interim state.
 
 ## Definition of done
+
 A page is done when:
+
 1. The signature interactions hold per blueprint §4f (TitleCard pin ~600ms, foyer↔theater dim 600ms ease-in-out).
 2. Lighthouse Performance ≥ 95 on mobile; LCP ≤ 1800ms; INP ≤ 200ms; CLS ≤ 0.05.
 3. Zero serious/critical axe violations (`a11y-baseline.sh` passes).
@@ -159,6 +173,7 @@ A page is done when:
 7. `prettier --check` passes.
 
 ## How to ask for things
+
 - "Make me a foyer page" → the `house-lights-direction` skill fires from the harness.
 - "Draft a case study for X" → `/premium case-study x` → `case-study-writer` agent.
 - "Audit the build" → `/premium audit`.

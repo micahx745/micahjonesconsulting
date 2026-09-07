@@ -1,50 +1,51 @@
-// Source: https://nextjs.org/docs/app/getting-started/fonts
-//         + STACK.md §"Typography (free path)"
+// Source: node_modules/next/dist/docs/01-app/03-api-reference/02-components/font.md
+//         (`axes`, `weight: "variable"`, `adjustFontFallback`, `variable`)
 //
-// Pass-37 (operator: "delete"): the /v1-/v4 legacy directions and the
-// six fonts only they used are GONE. The site loads exactly three
-// faces — Bricolage Grotesque (display), Hanken Grotesk (body),
-// JetBrains Mono (labels) — the Color Worlds system, nothing else.
+// Pass-101 — "Room and Ledger" (WINNING-BRIEF-2026-09-05 §2, §16.4).
+// Operator ruling 2026-09-06 ("Well arent you going to build the other pages
+// in this style?"): the site moves onto the Room and Ledger system.
+//
+//   Display AND label face .... Anybody, variable, wdth 50..150 + wght 100..900
+//   Text face ................. Hanken Grotesk 400 / 500
+//   Mono ...................... NONE. The mono face is RETIRED by the §2 type
+//                               table ("Mono | none | retired in this
+//                               direction"). The label style is Anybody at
+//                               wdth 80, not a monospace.
+//
+// Bricolage Grotesque is kept ONLY until Pass-101 phase 3 restyles the
+// remaining routes; §2 bans it in this direction. Do not add call sites.
 //
 // IMPORTANT — PITFALL A1:
 //   adjustFontFallback: true asks Next.js to inject size-adjust / ascent-override
 //   metrics into the generated @font-face rule, which neutralizes CLS on first paint.
-import {
-  Bricolage_Grotesque,
-  Hanken_Grotesk,
-  JetBrains_Mono,
-} from "next/font/google";
+import { Anybody, Bricolage_Grotesque, Hanken_Grotesk } from "next/font/google";
 
-// preload: true because this is now the LCP font for the foyer hero.
-// Perf (2026-08-13): the `wdth` axis is DROPPED. Nothing in the site's CSS
-// sets font-stretch or font-variation-settings 'wdth', so the axis was pure
-// payload: the latin file goes 128.5KB -> 75.1KB, a 41.6% cut to the largest
-// asset on every route. Advance widths measured identical to 3 significant
-// figures across all six real size/weight combinations.
+// THE DISPLAY AND LABEL FACE.
 //
-// `opsz` STAYS. It is tempting to drop it too (a further 34.7KB) but browsers
-// default to font-optical-sizing: auto, so the axis is applied from font-size
-// even though no CSS mentions it — removing it would pin every glyph to one
-// optical size and visibly change the display type.
-export const bricolage = Bricolage_Grotesque({
+// `weight: "variable"` keeps the full wght range (the system uses 300 for every
+// display line and 500 for every label); `axes: ["wdth"]` ships the width axis,
+// which this direction depends on — the width ladder (125 poster / 115 composed
+// / 106 fitted / 90 meta / 80 label) is set with font-variation-settings and
+// collapses to a single width without the axis.
+//
+// The 2026-08-13 perf note on Bricolage ("the wdth axis is DROPPED, nothing sets
+// font-variation-settings") is REVERSED here on purpose: the ladder is the
+// direction. Cost is measured at the ship gate, not assumed.
+export const anybody = Anybody({
   subsets: ["latin"],
-  axes: ["opsz"],
+  axes: ["wdth"],
   weight: "variable",
-  variable: "--font-bricolage",
+  variable: "--font-anybody",
   display: "swap",
   adjustFontFallback: true,
   preload: true,
 });
 
-// "Color Worlds" — body face. Hanken Grotesk per the approved mockup. Used
-// for hero subline, body prose, and the form input on the Ordani band.
-// Bricolage handles display (already present); JetBrains Mono handles
-// labels/nav/eyebrows.
-// 700 added 2026-08-15: the CSS renders Hanken at 700 in 17 places across the
-// live routes with no 700 face declared, so browsers were synthesizing a fake
-// bold (smeared stems, wrong sidebearings). Costs 0 bytes — Google serves the
-// same variable 100..900 file regardless of which weights are listed, measured
-// identical at 33.9KB before and after.
+// THE TEXT FACE. 17px/1.5 body, 21px/1.35 lede, 500 for metadata keys only.
+// 600/700 stay declared: the unrestyled routes render Hanken at those weights
+// in ~17 places and would otherwise get a synthesized bold. Google serves the
+// same variable file regardless of which weights are listed (measured identical
+// at 33.9KB, 2026-08-15).
 export const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -54,15 +55,15 @@ export const hankenGrotesk = Hanken_Grotesk({
   preload: true,
 });
 
-// "Color Worlds" — mono labels. JetBrains Mono per the approved mockup.
-// Used ONLY for: nav links, eyebrows, kickers, meta text, footnotes,
-// status pills, scroll hints. Never body. Never decorative.
-// 600 added 2026-08-15: same synthesized-weight fix as Hanken above — three
-// labels render at 600 with no matching face. Also 0 bytes (30.7KB either way).
-export const jetbrainsMono = JetBrains_Mono({
+// DEPRECATED — Pass-101. Bricolage carries the display type on the routes that
+// have not been ported to the Room and Ledger system yet. It is banned in the
+// new direction (§2) and leaves the bundle when the last route is ported.
+// preload: false so it never competes with Anybody for the LCP font slot.
+export const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-jetbrains",
+  axes: ["opsz"],
+  weight: "variable",
+  variable: "--font-bricolage",
   display: "swap",
   adjustFontFallback: true,
   preload: false,

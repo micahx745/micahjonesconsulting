@@ -35,20 +35,20 @@ $14M revenue, $1M+ toward IPO) — not by imitating 200-person-firm scale.
 
 ## 2. Reference set
 
-| # | Exemplar | URL | Observable traits |
-|---|---|---|---|
-| 1 | **Pentagram** | pentagram.com | 5-item nav (Work, About, News, Contact, Search). Homepage = project cards, 1–2 line descriptions, no service pitches. Footer nearly empty: Privacy + "© 1972–2026" — the date range asserts longevity. One-sentence tagline. |
-| 2 | **COLLINS** | wearecollins.com | ~85% imagery / 15% text. 3-word command headline ("Rewrite your worth"). Services as 11 named productized "Programs." Footer: email, few links, one quiet award row. |
-| 3 | **Koto** | koto.com | Work cards carry exactly four data points: client, one-line tagline, year, category. One-sentence tagline, no adjectival pile-up. Clients named plainly in text. |
-| 4 | **Instrument** | instrument.com | Homepage work carousel with NO descriptions — depth lives on case pages. "Select clients" list states curation. Awards as one discrete section. Quarterly editorial newsletter. |
-| 5 | **Metalab** | metalab.com | Three-word thesis: "We make interfaces." Numbered portfolio sequence, almost no prose. ONE bespoke interaction (HoverDrag), not many effects. |
-| 6 | **BUCK** | buck.co | One-sentence brand statement, then work tiles (hero image + title + one sentence). Footer = offices/contacts — logistics, not marketing. Six-item nav. |
-| 7 | **Locomotive** | locomotive.ca | Nav = 4 items + "Let's talk." Five featured case studies in a restrained grid. Credibility via specifics ("15 years"), never superlatives. |
-| 8 | **Darkroom** | darkroom.engineering | Authority via shipped open source (Lenis: Awwwards SOTD, industry-default scroll library) — the craft claim is a verifiable artifact, not adjectives. One-line self-description. |
-| 9 | **Work & Co** | work.co | Title is name + category, zero adjectives. App-grade fully client-rendered build signals product-firm engineering. |
-| 10 | **DesignStudio → Further** | design.studio → further.group | An entire page carrying ONE repeated sentence + a single CTA — top-tier comfort with emptiness. |
-| 11 | **Rauno Freiberg** (solo craft benchmark) | rauno.me | Near-monochrome, zero decoration, hierarchy from spacing and type alone. The site demonstrates its own principles. Closest structural analog for a solo operator. |
-| 12 | **Dan Mall / SuperFriendly** (solo commercial benchmark) | danmall.com | Solo operator documented at $100K/month engagements. Sells point of view via writing, books, named priced offers — proof a one-person site reads six-figure through authored expertise, not headcount. |
+| #   | Exemplar                                                 | URL                           | Observable traits                                                                                                                                                                                                            |
+| --- | -------------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Pentagram**                                            | pentagram.com                 | 5-item nav (Work, About, News, Contact, Search). Homepage = project cards, 1–2 line descriptions, no service pitches. Footer nearly empty: Privacy + "© 1972–2026" — the date range asserts longevity. One-sentence tagline. |
+| 2   | **COLLINS**                                              | wearecollins.com              | ~85% imagery / 15% text. 3-word command headline ("Rewrite your worth"). Services as 11 named productized "Programs." Footer: email, few links, one quiet award row.                                                         |
+| 3   | **Koto**                                                 | koto.com                      | Work cards carry exactly four data points: client, one-line tagline, year, category. One-sentence tagline, no adjectival pile-up. Clients named plainly in text.                                                             |
+| 4   | **Instrument**                                           | instrument.com                | Homepage work carousel with NO descriptions — depth lives on case pages. "Select clients" list states curation. Awards as one discrete section. Quarterly editorial newsletter.                                              |
+| 5   | **Metalab**                                              | metalab.com                   | Three-word thesis: "We make interfaces." Numbered portfolio sequence, almost no prose. ONE bespoke interaction (HoverDrag), not many effects.                                                                                |
+| 6   | **BUCK**                                                 | buck.co                       | One-sentence brand statement, then work tiles (hero image + title + one sentence). Footer = offices/contacts — logistics, not marketing. Six-item nav.                                                                       |
+| 7   | **Locomotive**                                           | locomotive.ca                 | Nav = 4 items + "Let's talk." Five featured case studies in a restrained grid. Credibility via specifics ("15 years"), never superlatives.                                                                                   |
+| 8   | **Darkroom**                                             | darkroom.engineering          | Authority via shipped open source (Lenis: Awwwards SOTD, industry-default scroll library) — the craft claim is a verifiable artifact, not adjectives. One-line self-description.                                             |
+| 9   | **Work & Co**                                            | work.co                       | Title is name + category, zero adjectives. App-grade fully client-rendered build signals product-firm engineering.                                                                                                           |
+| 10  | **DesignStudio → Further**                               | design.studio → further.group | An entire page carrying ONE repeated sentence + a single CTA — top-tier comfort with emptiness.                                                                                                                              |
+| 11  | **Rauno Freiberg** (solo craft benchmark)                | rauno.me                      | Near-monochrome, zero decoration, hierarchy from spacing and type alone. The site demonstrates its own principles. Closest structural analog for a solo operator.                                                            |
+| 12  | **Dan Mall / SuperFriendly** (solo commercial benchmark) | danmall.com                   | Solo operator documented at $100K/month engagements. Sells point of view via writing, books, named priced offers — proof a one-person site reads six-figure through authored expertise, not headcount.                       |
 
 ---
 
@@ -82,12 +82,14 @@ $14M revenue, $1M+ toward IPO) — not by imitating 200-person-firm scale.
 Merged from both legs. Any single instance is a defect; several are automatic-fail tells in §6.
 
 **Color & surface**
+
 - Indigo/purple or cyan-to-purple gradients (the Tailwind-`#6366F1` AI tell). Gradient text.
   Glow/halo/radial-orb decoration. Neon-on-dark glowing card borders.
 - Glassmorphism. Shadows at the reflexive 0.1-opacity default. Cream/beige used reflexively with
   no palette system behind it (Color Worlds IS a system — the tell is systemlessness).
 
 **Cards & layout**
+
 - Three rounded cards in a row: icon above heading above 3-line blurb (the Tailwind-tutorial
   feature-section default).
 - Thick one-side accent border on cards. Cards nested in cards. Border radius >16px on content
@@ -97,21 +99,25 @@ Merged from both legs. Any single instance is a defect; several are automatic-fa
   layout with gradient accents.
 
 **Typography**
+
 - Inter/Roboto/Geist/Open Sans as the display face ("the font of no typography decision").
 - Flat hierarchy (adjacent sizes within 15%). Tracked-uppercase kicker labels on every section.
   Italic-serif hero as the reflexive "elegance" move.
 
 **Imagery & proof**
+
 - Stock photography, stock 3D blobs, Undraw/Storyset figures, AI-generated imagery.
 - Logo-soup carousel; "trusted by 500+" counters; testimonial sliders with headshots; star
   ratings; generated avatars; animated stat tickers.
 
 **Motion**
+
 - AOS-style fade-up on every section; parallax everywhere; hover lifts and stagger sprinkled
   broadly; bounce/elastic easing; pulsing status dots on static content; auto-scrolling marquees;
   anything that loops idly.
 
 **Copy & selling pressure**
+
 - Hedged/explanatory headlines ("We help businesses grow through…").
 - Hype vocabulary anywhere in body copy: stream·line, em·power, supercharge, world·class,
   seam·less, cutting·edge, enterprise-grade, award-winning, plus the full repo copy-lint banned
@@ -127,9 +133,14 @@ hand-drawn SVG accents, provided they are ONE consistent voice, used sparingly.
 ## 5. Typography standard
 
 **The premium foundation:** a display face with personality paired with a calm legible text face —
-one carries voice, one carries reading. Two faces maximum; a mono for numerals/data is an
-acceptable narrow third voice. Free fonts aren't disqualifying — *default* fonts are; the tell is
-absence of decision, not absence of budget.
+one carries voice, one carries reading. Two faces maximum. Free fonts aren't disqualifying —
+_default_ fonts are; the tell is absence of decision, not absence of budget.
+
+**Amended Pass-101 (WINNING-BRIEF-2026-09-05 §2).** The clearance for "a mono for numerals/data as
+an acceptable narrow third voice" is withdrawn with R1. The system is two faces: Anybody carries
+display AND label, Hanken Grotesk carries reading. Numerals take Anybody with tabular figures.
+The width axis, not a third family, is what separates a label from a headline here — one ladder,
+five stops: 125 poster · 115 composed · 106 fitted · 90 meta · 80 label.
 
 **Scale:** display-to-body 4–8× (e.g., 72–120px against 16–18px). Each hierarchy level ≥1.25× the
 last; no more than ~5 active sizes; no two adjacent levels within 15% of each other.
@@ -138,7 +149,10 @@ last; no more than ~5 active sizes; no two adjacent levels within 15% of each ot
 negative tracking acceptable at display scale; generous letter-spacing only in small-caps/label
 settings; WCAG AA (4.5:1) everywhere, including muted text.
 
-**Reconciliation with the existing system (Bricolage display + Inter body):**
+**Reconciliation with the existing system (Bricolage display + Inter body)** — HISTORY as of
+Pass-101; the four notes below described the pre-Room-and-Ledger stack and are kept for the
+reasoning, not as current rules:
+
 - **Already at the bar:** Bricolage Grotesque has visible character (ink traps, quirky terminals) —
   exactly the class of characterful grotesk the research names as qualifying. Inter confined to
   body duty is fine; the documented tell is Inter-as-everything or Inter-as-display.
@@ -162,9 +176,15 @@ by looking. Grade per page; report R-numbers.
 
 **Type & color**
 
-- **R1 — ≤2 typefaces** (a mono for numerals/data permitted as a narrow third); the display face
-  has visible character. Inter/Roboto/Geist/Open Sans serving as the display face is an automatic
-  fail.
+- **R1 — ≤2 typefaces**; the display face has visible character. Inter/Roboto/Geist/Open Sans
+  serving as the display face is an automatic fail.
+  **Amended Pass-101 (WINNING-BRIEF-2026-09-05 §2, §16.4).** The "narrow third" clearance for a
+  mono on numerals/data is WITHDRAWN. The Room and Ledger ruling sets the type table as: display
+  and label both Anybody (variable, wdth 50–150), text Hanken Grotesk, `Mono | none`. Data
+  (prices, figures, ordinals) is Anybody with `font-variant-numeric: tabular-nums` at the size of
+  the surrounding role — a width, not a third face. Two faces is now the hard ceiling and a mono
+  is a fail, not a clearance. The retired mono face left the bundle on 2026-09-06; Bricolage is
+  loaded but unpreloaded until phase 3 ports the last unrestyled route, and then leaves too.
 - **R2 — Real scale contrast:** largest display type ≥4× body size; no two adjacent hierarchy
   levels within 15% of each other; ≤5 active sizes per page.
 - **R3 — Body discipline:** body ≥16px, line length ≤75ch, line-height 1.5–1.7, AA contrast
@@ -227,6 +247,7 @@ by looking. Grade per page; report R-numbers.
   has seen the site once could identify it. If it could be any of 50 SaaS templates, fail.
 
 **Scoring guidance for the reviewer:**
+
 - 18–20 pass = studio-grade (commands the tier)
 - 15–17 = competent but not commanding
 - ≤14 = template tier, regardless of polish elsewhere
@@ -238,6 +259,7 @@ by looking. Grade per page; report R-numbers.
 ## 7. Sources
 
 **Leg A — exemplars (fetched Aug 2026 unless noted)**
+
 - https://www.pentagram.com/
 - https://www.wearecollins.com/
 - https://koto.com/ (koto.studio 301s here)
@@ -257,6 +279,7 @@ by looking. Grade per page; report R-numbers.
 - https://passionates.com/top-pentagram-alternatives/
 
 **Leg B — craft / anti-slop / buyer psychology**
+
 - https://impeccable.style/slop/ (exhaustive tell catalog)
 - https://www.925studios.co/blog/ai-slop-design-tells
 - https://superdesign.dev/blog/why-ai-design-looks-generic (Show HN fingerprint audit)

@@ -8,15 +8,15 @@
 // actually belongs. Keeping it in the root + hiding via CSS leaked the
 // "Oakland · May 2026 · Issue 01" text into Color Worlds SSR HTML.
 //
-// Pass-37 (operator: "delete"): the /v1-/v4 legacy directions are gone,
-// and with them the six fonts only they used. The root now loads the
-// THREE system faces — Bricolage (display), Hanken (body), JetBrains
-// Mono (labels) — which is the full R1 clear: nothing else ships.
+// Pass-101 ("Room and Ledger", WINNING-BRIEF §2 + §16.4): the root loads
+// Anybody (display AND label, wdth axis) + Hanken Grotesk (text). The mono
+// face is RETIRED — the direction has none. Bricolage stays loaded, and
+// unpreloaded, only until phase 3 ports the last unrestyled route.
 import type { Metadata, Viewport } from "next";
 import { ViewTransition } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { bricolage, hankenGrotesk, jetbrainsMono } from "@/lib/fonts";
+import { anybody, bricolage, hankenGrotesk } from "@/lib/fonts";
 import { LenisProvider } from "@/components/LenisProvider";
 import "./globals.css";
 
@@ -139,7 +139,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${hankenGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${anybody.variable} ${hankenGrotesk.variable} ${bricolage.variable}`}
       suppressHydrationWarning
     >
       <body>
