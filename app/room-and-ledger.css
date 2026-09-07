@@ -1556,6 +1556,374 @@ html.rl-js [data-rl="media"].rl-in {
 }
 
 /* ============================================================
+ * 15. THE PLAYBOOK'S OWN FURNITURE
+ *
+ * /playbook opens on §15.2's manual composition (section 9 above) and then
+ * runs eight blocks of the book's own print grammar: a main column with a
+ * marginalia rail beside it, § codes, field notes, real spreads, the
+ * contents, the build log and the back cover. Those are the page's content
+ * and this pass does not touch them — it gives them the system's type,
+ * grounds and hairlines.
+ *
+ * <WallChart />, <PromptDiff /> and <PlaybookSignupForm /> render their own
+ * markup and are restyled through the class names it already carries.
+ * <WallChart /> keeps its figure animation: it is the one FIGURE animation on
+ * the site, approved in writing 2026-09-01, and nothing here touches it.
+ * ============================================================ */
+
+.rl-block {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px;
+  padding-top: var(--s);
+}
+.rl-block > .main {
+  grid-column: 1 / 9;
+  min-width: 0;
+}
+.rl-block > .rail {
+  grid-column: 10 / 13;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+@media (max-width: 899px) {
+  .rl-block {
+    display: block;
+    padding-top: var(--s);
+  }
+  .rl-block > .rail {
+    margin-top: 40px;
+  }
+}
+
+/* the marginalia note: a hairline, a label, and the note under it. */
+.rl-note {
+  border-top: 1px solid var(--hair);
+  padding-top: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-72);
+  max-width: 34ch;
+}
+.rl-note .rl-l {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* the build-log card — the page's one bordered block, because it is a card in
+ * the book too. */
+.rl-log {
+  box-sizing: border-box;
+  border: 1px solid var(--hair);
+  border-top: 2px solid var(--color-rl-copper);
+  border-radius: 8px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 66ch;
+}
+.rl-log .head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--hair);
+  padding-bottom: 14px;
+}
+.rl-log .title {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.rl-log p:not(.head) {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-80);
+}
+
+/* the contents, as the book's own TOC set on the ledger. */
+.rl-toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-toc > li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  column-gap: var(--gap);
+  row-gap: 4px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-toc > li:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-toc .num {
+  color: var(--ink);
+}
+.rl-toc .body {
+  display: block;
+  min-width: 0;
+}
+.rl-toc .title {
+  display: block;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.rl-toc .tag {
+  display: block;
+  margin-top: 4px;
+}
+.rl-toc .tag em {
+  font-style: normal;
+  color: var(--color-rl-copper);
+}
+.rl-toc .page {
+  justify-self: end;
+}
+@media (max-width: 599px) {
+  .rl-toc > li {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  .rl-toc .page {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* the full-bleed page of the book: espresso, one artifact, no words. */
+.rl-opener {
+  background: var(--color-rl-espresso);
+  padding: var(--s) var(--g);
+  margin-top: var(--s);
+  display: flex;
+  justify-content: center;
+}
+.rl-opener img {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+/* the back cover: espresso, the spec register on it. */
+.rl-back {
+  background: var(--color-rl-espresso);
+  padding-top: var(--s);
+  padding-bottom: var(--s);
+  margin-top: var(--s);
+  --ink: var(--color-rl-bone);
+  --ink-80: color-mix(in oklab, var(--color-rl-bone) 80%, transparent);
+  --ink-72: color-mix(in oklab, var(--color-rl-bone) 72%, transparent);
+  --ink-60: color-mix(in oklab, var(--color-rl-bone) 60%, transparent);
+  --hair: color-mix(in oklab, var(--color-rl-bone) 15%, transparent);
+  --hair-12: color-mix(in oklab, var(--color-rl-bone) 12%, transparent);
+  --hair-10: color-mix(in oklab, var(--color-rl-bone) 10%, transparent);
+  color: var(--color-rl-bone);
+}
+/* the objections stack in a column here rather than running three across. */
+.rl-qs--stack {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+.rl-qs--stack .rl-q {
+  padding: 24px 0;
+}
+
+/* ---- the three client components, restyled through their own classes ---- */
+
+/* WallChart: the one figure animation, approved in writing 2026-09-01 as a
+ * FIGURE animation and not a second signature. Its DRAWING, its timing, its
+ * >=900px gate and its reduced-motion branch are untouched — every rule below
+ * changes a colour and nothing else.
+ *
+ * It was drawn for an espresso ground: bone strokes, an espresso wipe, and
+ * SAFFRON for the rules line and its label. On the ledger's bone half the bone
+ * strokes are invisible, the espresso wipe is a black rectangle sitting on the
+ * figure, and saffron is a SECOND ACCENT, which .claude/CLAUDE.md bans and §3
+ * has no room for. So the figure is re-inked into the system: espresso where
+ * it was bone, bone where it was espresso, copper where it was saffron.
+ *
+ * Contrast, measured against bone #F5EFE4: the 2px rules line in copper is
+ * 3.85:1 and is a graphic object, where the bar is 3:1. Its LABEL is 11px
+ * text, where the bar is 4.5:1 and copper fails, so the label takes
+ * --accent-copper-deep (5.4:1) — the standing Pitfall B1 rule. The neutral
+ * labels go to espresso at 78%, which measures about 5.8:1; at 62% (the value
+ * the bone original used) they were 4.4:1 and under the bar. */
+#rl-root .cw-wallchart {
+  margin: 0;
+  max-width: 520px;
+  color: var(--ink);
+}
+#rl-root .cw-wallchart__axes line,
+#rl-root .cw-wallchart__window {
+  stroke: var(--color-rl-espresso);
+}
+#rl-root .cw-wallchart__wipe {
+  fill: var(--color-rl-bone);
+}
+#rl-root .cw-wallchart__rules {
+  stroke: var(--color-rl-copper);
+}
+#rl-root .cw-wallchart__cross {
+  fill: var(--color-rl-bone);
+  stroke: var(--color-rl-espresso);
+}
+#rl-root .cw-wallchart__lbl {
+  fill: var(--color-rl-espresso);
+  opacity: 0.78;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+#rl-root .cw-wallchart__lbl--rules {
+  fill: var(--accent-copper-deep);
+  opacity: 1;
+}
+#rl-root .cw-wallchart__cap {
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-60);
+  padding-top: 12px;
+}
+#rl-root .cw-wallchart__lbl {
+  font-family: var(--font-rl-display);
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  letter-spacing: 0.04em;
+}
+
+/* PromptDiff: two quoted columns from chapter two. */
+#rl-root .cw-diff {
+  margin: 0;
+}
+#rl-root .cw-diff__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 899px) {
+  #rl-root .cw-diff__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+#rl-root .cw-diff__col {
+  border-top: 1px solid var(--hair);
+  padding-top: 20px;
+  background: none;
+  border-radius: 0;
+}
+#rl-root .cw-diff__col--after {
+  border-top-color: var(--color-rl-copper);
+  border-top-width: 2px;
+  padding-top: 19px;
+}
+#rl-root .cw-diff__eyebrow,
+#rl-root .cw-diff__lbl {
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-60);
+}
+#rl-root .cw-diff__quote {
+  font-family: var(--font-rl-text);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-top: 12px;
+}
+#rl-root .cw-diff__lede,
+#rl-root .cw-diff__note,
+#rl-root .cw-diff__cap {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-72);
+}
+
+/* PlaybookSignupForm: the same hairline field and square chip the booking
+ * form takes, through the classes its own markup carries. */
+#rl-root .cw-signup {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+#rl-root .cw-signup input {
+  box-sizing: border-box;
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 12px 0;
+  font-family: var(--font-rl-text);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--hair);
+  border-radius: 0;
+  transition: border-color 300ms var(--e);
+}
+#rl-root .cw-signup input:hover,
+#rl-root .cw-signup input:focus {
+  border-bottom-color: var(--color-rl-copper);
+}
+#rl-root .cw-signup button {
+  flex: 0 0 auto;
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  transition: background 300ms var(--e);
+}
+#rl-root .cw-signup button:hover,
+#rl-root .cw-signup button:focus-visible {
+  background: var(--color-rl-copper);
+}
+#rl-root .cw-msg {
+  flex: 1 1 100%;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--accent-copper-deep);
+}
+
+/* the buy button on /playbook is not inside a card, so it sizes to its own
+ * label rather than filling a column. */
+.rl-buy--auto {
+  width: auto;
+  padding-right: 0;
+}
+
+/* ============================================================
  * 13. THE LADDER — the responsive stops, ported from the template
  * ============================================================ */
 

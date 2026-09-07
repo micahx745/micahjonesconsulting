@@ -145,10 +145,7 @@ export default function PackagesPage() {
           for.
         </p>
 
-        <div
-          className="rl-cards rl-air-m"
-          data-rl-group="cards"
-        >
+        <div className="rl-cards rl-air-m" data-rl-group="cards">
           <article
             className="rl-card"
             aria-label="The Unstick Session, $500"

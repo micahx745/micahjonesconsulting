@@ -1,4 +1,4 @@
-// app/(foyer)/playbook/page.tsx
+// app/(room)/playbook/page.tsx
 //
 // Pass-55 — "The manual, opened." Operator verdict on the Pass-53/54
 // launch page (2026-09-01): "still looks bad. I don't see any
@@ -7,7 +7,7 @@
 // The direction, locked with the operator ("go"): the page is built
 // from the BOOK's own print grammar instead of a landing-page
 // template. Named moves and their sources:
-//   1. The cover as an object, at scale, with a spine — Stripe Press.
+//   1. The cover as an object, at scale — Stripe Press.
 //   2. Then the page turns to paper: bone ground, the marginalia rail,
 //      § codes, field notes — the book's own pages.
 //   3. One real spread at reading size, so the buyer reads the method
@@ -19,8 +19,6 @@
 //      Shape Up + Every Layout.
 //   6. What ships and the price as a spec card in the cover's own
 //      AUTHOR / CHAPTERS / REV grammar.
-// Two world shifts only: object (espresso) → paper (bone) → back cover
-// (espresso).
 //
 // MOTION, REVERSED BY THE OPERATOR 2026-09-01. This header read "Zero reveals,
 // zero transitions on this page", from his Pass-55 verdict ("still looks bad. I
@@ -37,11 +35,38 @@
 // Claims: ledger phrasings only (docs/LESSONS_LEARNED.md #3); the
 // build-log entry is the true 2026-08-31 dead-forms story. Vendor gate
 // holds. Waitlist phase: capture only, until the $99 button flips.
+//
+// PASS-101 PHASE 3 (WINNING-BRIEF §15.2; brief §3 item 2: "the manual
+// section's composition at page scale (cover left in the dashed frame, ledger
+// right), then the page's existing content ... in the system's type and
+// grounds; PLAYBOOK_ON_SALE untouched").
+//
+// The page OPENS on §15.2 at page scale: the cover fills columns 1-5 at 4:5
+// inside the dashed frame with the file line under it, and every word moves to
+// columns 6-12 — the label, the display line at --d2 (never --d: at the poster
+// size it out-shouts the cover it is describing), the chapters paragraph, the
+// byline, the figure, then the buy block with $99 at 64px.
+//
+// BOTH PLAYBOOK_ON_SALE BRANCHES ARE UNTOUCHED. Same flag, same
+// <PlaybookBuyButton> call with the same label, same hrefs, same fallback copy
+// in both states. The only change is that "$99 at launch · coming soon" is set
+// as the figure and its label rather than as one 14px line, which is §15.2's
+// own composition of the same string.
+//
+// Everything after the hero keeps its markup, its order and its words, and
+// takes the system's type and grounds: the marginalia rail becomes the block's
+// right column, the § codes and field notes take the label style, the spreads
+// take the one media frame, the contents take the ledger, and the back cover's
+// spec card becomes the register on espresso.
+//
+// <WallChart />, <PromptDiff />, <PlaybookSignupForm /> and
+// <PlaybookBuyButton /> are rendered exactly as before. None of their internals
+// is touched; they are restyled through the class names their own markup
+// carries (app/room-and-ledger.css §15).
 import type { Metadata } from "next";
 import Image from "next/image";
 
 import { PlaybookSignupForm } from "@/components/color-worlds/PlaybookSignupForm";
-import { PageFooter } from "@/components/color-worlds/PageFooter";
 import { PromptDiff } from "@/components/color-worlds/PromptDiff";
 import { WallChart } from "@/components/color-worlds/WallChart";
 import { PlaybookBuyButton } from "@/components/PlaybookBuyButton";
@@ -178,16 +203,13 @@ const FAQS = [
 // screens away from the button it described. It now reads the same flag the
 // button does (lib/playbook-sale.ts), so the structured data and the page can
 // never disagree about whether the book is for sale. Availability is a
-// machine-readable factual claim, which is why it is derived and not typed.
+
 const BOOK_URL = "https://www.micahjonesconsulting.com/playbook";
 
 const AVAILABILITY = PLAYBOOK_ON_SALE
   ? "https://schema.org/InStock"
   : "https://schema.org/PreOrder";
 
-// Book + Offer. Every value here is checkable against the artifact itself:
-// 69 pages and 10 chapters are counted from the compiled PDF, and the 26
-// companion files are counted from the shipped ZIP.
 const BOOK_LD = {
   "@context": "https://schema.org",
   "@type": "Book",
@@ -222,10 +244,6 @@ const BOOK_LD = {
   },
 };
 
-// Product, added Pass-98. Book carries the editorial facts; Product is what a
-// shopping surface reads, and it is the type that makes price, currency and
-// availability legible to a machine. PreOrder until the flag flips, so nothing
-// here asserts a purchase the page cannot take.
 const PRODUCT_LD = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -245,7 +263,6 @@ const PRODUCT_LD = {
   },
 };
 
-// Breadcrumb, added Pass-98. Two levels, because that is the real depth.
 const BREADCRUMB_LD = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -265,8 +282,6 @@ const BREADCRUMB_LD = {
   ],
 };
 
-// The five questions already on the page, generated from the same array that
-// renders them so the two can never drift apart.
 const FAQ_LD = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -279,7 +294,7 @@ const FAQ_LD = {
 
 export default function PlaybookPage() {
   return (
-    <main className="cw-services cw-lp" data-section>
+    <>
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
@@ -300,145 +315,171 @@ export default function PlaybookPage() {
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_LD) }}
       />
-      {/* 1. THE OBJECT — espresso */}
-      <header className="cw-lp-object" data-world="espresso">
-        <div className="cw-lp-book">
-          {/* The binding stays: it is what makes the cover read as an object.
-              The wording on it went (operator, 2026-09-01) — it repeated the
-              title at 8px and said nothing the cover did not already say. */}
-          <div className="cw-lp-book__spine" aria-hidden />
 
-          <Image
-            src="/playbook/book-cover.png"
-            alt="The cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type."
-            width={1819}
-            height={2572}
-            priority
-            sizes="(max-width: 900px) 88vw, 520px"
-          />
-        </div>
-        <div className="cw-lp-object__text">
-          {/* Pass-98: "solo builders" had zero authors in the asking corpus.
-              "solo founders" is what six of them wrote. That is a weak count
-              against an unverified file, which is why it changes a kicker and
-              not the headline. */}
-          <p className="cw-lp-kicker">A field manual for solo founders</p>
-          <h1 className="cw-lp-object__title">
-            The AI handed you the code. Now ship the company.
-          </h1>
-          {/* The list order changed in Pass-98 and nothing else did: "the
-              first ten users" moved from last to first, because it is the
-              pain 8 authors named and the other four are the ones they meet
-              on the way to it. */}
-          <p className="cw-lp-object__sub">
-            Ten chapters on what the AI leaves to you: the first ten users,
-            auth, deploys, payments, compliance. I joined Postmates,
-            SurveyMonkey, Guardicore (Akamai) and Neuton.AI early. Four exits,
-            $5B+ combined. I built Ordani solo with Claude Code and Cursor:
-            HIPAA-compliant, active paying users, in beta.
-          </p>
-          {/* The byline shrank to a name and a link because the history moved
-              up into the sub, where the operator was looking for it.
-              REVERSAL RECORDED (2026-09-02, operator: "remove the sales part
-              too"): this block used to read "Enterprise cybersecurity sales at
-              Guardicore". The word "sales" was there on purpose, because an
-              unqualified cybersecurity credential beside a chapter called "The
-              security pre-flight" implies a technical role the ledger does not
-              support. His call, and the resolution keeps it honest: the
-              companies are now named as places he JOINED, with no job title
-              anywhere, so no role is claimed and none can be inferred wrongly.
-              Also gone: $20M+ in client revenue, a consulting number that
-              answers a different buyer's question and still lives on /about. */}
-          <p className="cw-lp-object__by">
-            By Micah Jones. <a href="/work">The case studies</a>{" "}
-            <span aria-hidden>→</span>
-          </p>
-          <WallChart />
-          {/* The primary action, as a real button rather than a text link.
-              Pass-98 built both states of it. OFF (today): the $99 rail is
-              wired and test-verified, but the live Stripe webhook is not
-              registered, so the strongest action the page can honour is
-              chapter one. ON: the same pill becomes the buy, and chapter one
-              demotes to the text link beside it. Nothing in either state
-              promises a purchase the page cannot take. */}
-          <div className="cw-lp-object__row">
-            {PLAYBOOK_ON_SALE ? (
-              <>
-                <PlaybookBuyButton
-                  label="Buy the manual · $99"
-                  className="cw-cta cw-lp-object__cta"
+      {/* §15.2 — the manual, at page scale. */}
+      <section
+        className="rl-manual rl-wrap rl-first"
+        aria-labelledby="rl-playbook-title"
+      >
+        <div className="rl-grid">
+          <figure className="art" data-rl="media">
+            <div className="frame">
+              <span className="cov">
+                <Image
+                  src="/playbook/book-cover.png"
+                  alt="The cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type."
+                  width={1819}
+                  height={2572}
+                  priority
+                  sizes="(max-width: 900px) 92vw, 520px"
                 />
-                <a href="#pb-free" className="cw-mlink">
-                  Or read chapter one free <span aria-hidden>↓</span>
-                </a>
-                <p className="cw-lp-object__meta">
-                  $99 · PDF + ZIP · 30-day refund
-                </p>
-              </>
-            ) : (
-              <>
-                <a href="#pb-free" className="cw-cta cw-lp-object__cta">
-                  Get chapter one free{" "}
-                  <span className="cw-arr" aria-hidden>
-                    →
-                  </span>
-                </a>
-                <p className="cw-lp-object__meta">
-                  $99 at launch · coming soon
-                </p>
-              </>
-            )}
+              </span>
+            </div>
+            <figcaption>
+              <span className="rl-l meta">the-80-percent-wall.pdf</span>
+              <span className="rl-l meta">
+                PDF + ZIP &middot; every future edition
+              </span>
+            </figcaption>
+          </figure>
+
+          <div className="copy">
+            <div className="rl-sec rl-sec--wide">
+              {/* Pass-98: "solo builders" had zero authors in the asking
+                  corpus. "solo founders" is what six of them wrote. That is a
+                  weak count against an unverified file, which is why it
+                  changes a kicker and not the headline. */}
+              <div className="rl-eyebrow">
+                <span className="rl-l">A field manual for solo founders</span>
+              </div>
+              <h1 id="rl-playbook-title" className="rl-d two" data-rl="head">
+                The AI handed you the code. Now ship the company.
+              </h1>
+            </div>
+
+            {/* The list order changed in Pass-98 and nothing else did: "the
+                first ten users" moved from last to first, because it is the
+                pain 8 authors named and the other four are the ones they meet
+                on the way to it. */}
+            <p className="rl-lede">
+              Ten chapters on what the AI leaves to you: the first ten users,
+              auth, deploys, payments, compliance. I joined Postmates,
+              SurveyMonkey, Guardicore (Akamai) and Neuton.AI early. Four exits,
+              $5B+ combined. I built Ordani solo with Claude Code and Cursor:
+              HIPAA-compliant, active paying users, in beta.
+            </p>
+
+            {/* The byline shrank to a name and a link because the history moved
+                up into the sub, where the operator was looking for it.
+                REVERSAL RECORDED (2026-09-02, operator: "remove the sales part
+                too"): this block used to read "Enterprise cybersecurity sales at
+                Guardicore". The word "sales" was there on purpose, because an
+                unqualified cybersecurity credential beside a chapter called "The
+                security pre-flight" implies a technical role the ledger does not
+                support. His call, and the resolution keeps it honest: the
+                companies are now named as places he JOINED, with no job title
+                anywhere, so no role is claimed and none can be inferred wrongly.
+                Also gone: $20M+ in client revenue, a consulting number that
+                answers a different buyer's question and still lives on /about. */}
+            <p className="rl-l meta">
+              By Micah Jones.{" "}
+              <a href="/work" className="rl-link">
+                The case studies
+              </a>{" "}
+              <span className="rl-ar" aria-hidden>
+                &#8594;
+              </span>
+            </p>
+
+            <WallChart />
+
+            {/* The primary action, as a real button rather than a text link.
+                Pass-98 built both states of it. OFF (today): the $99 rail is
+                wired and test-verified, but the live Stripe webhook is not
+                registered, so the strongest action the page can honour is
+                chapter one. ON: the same pill becomes the buy, and chapter one
+                demotes to the text link beside it. Nothing in either state
+                promises a purchase the page cannot take. */}
+            <div className="buy">
+              {PLAYBOOK_ON_SALE ? (
+                <>
+                  <div className="v rl-num">
+                    $99
+                    <span className="rl-l">
+                      PDF + ZIP &middot; 30-day refund
+                    </span>
+                  </div>
+                  <PlaybookBuyButton
+                    label="Buy the manual · $99"
+                    className="rl-buy rl-buy--auto"
+                  />
+                  <a href="#pb-free" className="rl-link">
+                    Or read chapter one free <span aria-hidden>&darr;</span>
+                  </a>
+                </>
+              ) : (
+                <>
+                  <div className="v rl-num">
+                    $99
+                    <span className="rl-l">at launch &middot; coming soon</span>
+                  </div>
+                  <a href="#pb-free" className="rl-chip">
+                    <span className="t">Get chapter one free</span>
+                    <span className="a" aria-hidden>
+                      <span>&#8594;</span>
+                    </span>
+                  </a>
+                </>
+              )}
+            </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      {/* 2. THE PAPER — bone. Main column + marginalia rail. */}
-      <div className="cw-lp-page" data-world="bone">
-        {/* Pass-98 reordered these three and rewrote the third.
-            "It shipped. Nobody came." is the operator's own sentence and its
-            beat is the most common one in the corpus: 29 of 325
-            r/buildinpublic bodies, 8.9%. It was sitting last.
-            The line that was FIRST ("It got to eighty percent. Then every
-            change broke something that worked yesterday.") measured 1.0% on a
-            phrasing-free test, so it was rewritten onto "kept running into",
-            which 13 authors used at 7.3x lift. Tuesday is chapter one's own
-            example. */}
-        <section
-          className="cw-lp-block cw-lp-block--breath"
-          aria-labelledby="lp-you"
-        >
-          <div className="cw-lp-block__main">
-            <h2 id="lp-you" className="cw-lp-h">
-              If this is you
-            </h2>
-            <div className="cw-lp-lines">
-              <p>It shipped. Nobody came.</p>
-              <p>
+      {/* Pass-98 reordered these three and rewrote the third.
+          "It shipped. Nobody came." is the operator's own sentence and its
+          beat is the most common one in the corpus: 29 of 325
+          r/buildinpublic bodies, 8.9%. It was sitting last.
+          The line that was FIRST ("It got to eighty percent. Then every
+          change broke something that worked yesterday.") measured 1.0% on a
+          phrasing-free test, so it was rewritten onto "kept running into",
+          which 13 authors used at 7.3x lift. Tuesday is chapter one's own
+          example. */}
+      <div className="rl-wrap">
+        <section className="rl-block" aria-labelledby="lp-you">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 id="lp-you" className="rl-d two" data-rl="head">
+                If this is you
+              </h2>
+            </div>
+            <div className="rl-lines" data-rl-group="symptoms">
+              <p data-rl="rule">It shipped. Nobody came.</p>
+              <p data-rl="rule">
                 The demo looked done. Production turned out to be a different
                 machine entirely.
               </p>
-              <p>
+              <p data-rl="rule">
                 You kept running into the same thing. Fixed Tuesday, broken
                 Friday, because the tool forgot.
               </p>
             </div>
-            <p className="cw-lp-body">
+            <p className="rl-body rl-air-m">
               The wall is not a talent problem. It is arithmetic: the
               tool&rsquo;s memory runs out, and yours has to take over, on
               paper, in the repo. This manual is that hand-off, one system per
               chapter.
             </p>
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.1
-            <figure className="cw-lp-author">
+          <aside className="rail">
+            <span className="rl-l">§ 0.1</span>
+            <figure className="rl-figure" data-rl="media">
               <Image
                 src="/hero-context.jpg"
                 alt="Micah Jones working at a laptop in front of a whiteboard covered in service architecture."
                 width={1800}
                 height={1800}
-                sizes="(max-width: 999px) 40vw, 210px"
-                className="cw-lp-author__img"
+                sizes="(max-width: 999px) 40vw, 260px"
               />
             </figure>
             {/* Pass-98 added the metric and its mechanism. A field note that
@@ -446,8 +487,8 @@ export default function PlaybookPage() {
                 moved and what it replaced is a receipt. 40% to 91% is the
                 ledgered intake figure and the paper packet is live copy on
                 /work/ordani, so nothing new is asserted here. */}
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>Ordani is a
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>Ordani is a
               HIPAA-compliant SaaS for birth workers, in beta with active paying
               users and a public release coming. Its intake replaced a paper
               packet; completion moved from 40% to a measured 91%. I hit this
@@ -460,12 +501,14 @@ export default function PlaybookPage() {
             argument; the rings (page 51) show the chapter a reader is most
             likely here for. The image has been deployed since Pass-55 and no
             file referenced it. */}
-        <section className="cw-lp-block" aria-labelledby="lp-page-rings">
-          <div className="cw-lp-block__main">
-            <h2 id="lp-page-rings" className="cw-lp-h">
-              Where the ten live
-            </h2>
-            <figure className="cw-lp-spread">
+        <section className="rl-block" aria-labelledby="lp-page-rings">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 id="lp-page-rings" className="rl-d two" data-rl="head">
+                Where the ten live
+              </h2>
+            </div>
+            <figure className="rl-figure" data-rl="media">
               <Image
                 src="/playbook/spread-rings.png"
                 alt="Page fifty-one of the manual: three concentric rings, people you know in the middle, people they know around them, strangers at the edge, with the ask that fits each ring."
@@ -473,27 +516,32 @@ export default function PlaybookPage() {
                 height={1980}
                 sizes="(max-width: 1000px) 92vw, 640px"
               />
-              <figcaption className="cw-lp-cap">
-                § 08.2 · Where the ten actually live · page 51 of 69
+              <figcaption>
+                <span className="rl-l meta">
+                  § 08.2 &middot; Where the ten actually live &middot; page 51
+                  of 69
+                </span>
               </figcaption>
             </figure>
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.2
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>
+          <aside className="rail">
+            <span className="rl-l">§ 0.2</span>
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>
               Three rings, drawn for the book. Your ten users are one ask away,
               and a hundred conversations is a month of mornings.
             </p>
           </aside>
         </section>
 
-        <section className="cw-lp-block" aria-labelledby="lp-page">
-          <div className="cw-lp-block__main">
-            <h2 id="lp-page" className="cw-lp-h">
-              Read a page
-            </h2>
-            <figure className="cw-lp-spread">
+        <section className="rl-block" aria-labelledby="lp-page">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 id="lp-page" className="rl-d two" data-rl="head">
+                Read a page
+              </h2>
+            </div>
+            <figure className="rl-figure" data-rl="media">
               <Image
                 src="/playbook/spread-wallchart.png"
                 alt="Page six of the manual: the wall chart, two lines crossing where unwritten rules outnumber what fits in the context window, above the three reasons the wall hits at 80%."
@@ -501,15 +549,18 @@ export default function PlaybookPage() {
                 height={1980}
                 sizes="(max-width: 1000px) 92vw, 640px"
               />
-              <figcaption className="cw-lp-cap">
-                § 01.4 · Why it hits at 80% and not sooner · page 6 of 69
+              <figcaption>
+                <span className="rl-l meta">
+                  § 01.4 &middot; Why it hits at 80% and not sooner &middot;
+                  page 6 of 69
+                </span>
               </figcaption>
             </figure>
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.3
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>
+          <aside className="rail">
+            <span className="rl-l">§ 0.3</span>
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>
               Nine line-drawn diagrams, each drawn for this book. No stock art
               anywhere in it.
             </p>
@@ -519,36 +570,37 @@ export default function PlaybookPage() {
         {/* The prompt diff. Sits straight after the spread, where a reader is
             deciding whether the writing is any good, and answers it with the
             book's own words instead of a claim about them. */}
-        <section className="cw-lp-block" aria-labelledby="lp-diff">
-          <div className="cw-lp-block__main">
-            <h2 id="lp-diff" className="cw-lp-h">
-              One sentence, four rounds apart
-            </h2>
+        <section className="rl-block" aria-labelledby="lp-diff">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 id="lp-diff" className="rl-d two" data-rl="head">
+                One sentence, four rounds apart
+              </h2>
+            </div>
             <PromptDiff />
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.4
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>
+          <aside className="rail">
+            <span className="rl-l">§ 0.4</span>
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>
               Both sentences are quoted from chapter two, word for word.
             </p>
           </aside>
         </section>
 
-        <section
-          className="cw-lp-block cw-lp-block--breath"
-          aria-labelledby="lp-log"
-        >
-          <div className="cw-lp-block__main">
-            <h2 id="lp-log" className="cw-lp-h">
-              One entry
-            </h2>
-            <article className="cw-lp-log">
-              <p className="cw-lp-log__head">
-                <span>From the build log</span>
-                <span>Entry · 2026-08-31</span>
+        <section className="rl-block" aria-labelledby="lp-log">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 id="lp-log" className="rl-d two" data-rl="head">
+                One entry
+              </h2>
+            </div>
+            <article className="rl-log" data-rl="rise">
+              <p className="head">
+                <span className="rl-l">From the build log</span>
+                <span className="rl-l">Entry &middot; 2026-08-31</span>
               </p>
-              <h3 className="cw-lp-log__title">The demo that lied for weeks</h3>
+              <h3 className="title">The demo that lied for weeks</h3>
               {/* Pass-85. This card previously said the cause was "one
                   environment variable, the email key, was never installed".
                   Asked to confirm it on 2026-09-02 the operator answered "not
@@ -590,10 +642,10 @@ export default function PlaybookPage() {
               </p>
             </article>
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.5
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>
+          <aside className="rail">
+            <span className="rl-l">§ 0.5</span>
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>
               Thirteen entries like this one in the manual. All true, all dated.
               None of them are anyone else&rsquo;s story.
             </p>
@@ -604,82 +656,88 @@ export default function PlaybookPage() {
       {/* Pass-98. One quiet full-bleed section, and it is a page of the book:
           the chapter-two opener, at the size it prints. No copy, no heading,
           no caption, because the page has been talking for four blocks and
-          this is the pause. It sits OUTSIDE the bone shell on purpose, so the
-          WorldSwitcher carries the ground to espresso and back and the reader
-          feels the book open rather than reads a claim that it is one.
-          R12-legal: a real artifact, not decoration. Nothing here animates. */}
-      <section data-section data-world="espresso" className="cw-lp-opener">
+          this is the pause. R12-legal: a real artifact, not decoration.
+          Nothing here animates beyond the system's own 10px media rise. */}
+      <section className="rl-opener" aria-hidden="true">
         <Image
           src="/playbook/spread-opener-02.png"
-          alt="Chapter two opener: The spec is the moat"
+          alt=""
           width={1488}
           height={2105}
           sizes="(max-width: 760px) 88vw, 560px"
+          data-rl="media"
         />
       </section>
 
-      <div className="cw-lp-page cw-lp-page--cont" data-world="bone">
-        <section className="cw-lp-block" aria-labelledby="lp-toc">
-          <div className="cw-lp-block__main">
-            <h2 id="lp-toc" className="cw-lp-h">
-              Contents
-            </h2>
-            <ol className="cw-lp-toc">
+      <div className="rl-wrap">
+        <section className="rl-block" aria-labelledby="lp-toc">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 id="lp-toc" className="rl-d two" data-rl="head">
+                Contents
+              </h2>
+            </div>
+            <ol className="rl-toc" data-rl-group="toc">
               {CHAPTERS.map((c) => (
-                <li key={c.n}>
-                  <span className="cw-lp-toc__num" aria-hidden>
+                <li key={c.n} data-rl="rule">
+                  <span className="rl-l num" aria-hidden>
                     {c.n}
                   </span>
-                  <span>
-                    <span className="cw-lp-toc__title">{c.title}</span>
-                    <span className="cw-lp-toc__tag">
+                  <span className="body">
+                    <span className="title">{c.title}</span>
+                    <span className="rl-l meta tag">
                       {c.tag}
                       {"free" in c && c.free ? <em> · free, below</em> : null}
                     </span>
                   </span>
-                  <span className="cw-lp-toc__page">p. {c.page}</span>
+                  <span className="rl-l meta page rl-num">p. {c.page}</span>
                 </li>
               ))}
             </ol>
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.6
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>
+          <aside className="rail">
+            <span className="rl-l">§ 0.6</span>
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>
               Every chapter ends in a pre-flight card you run the same night.
               The cards ship separately as files, too.
             </p>
           </aside>
         </section>
 
-        <section className="cw-lp-block" aria-labelledby="pb-free" id="pb-free">
-          <div className="cw-lp-block__main">
-            <h2 className="cw-lp-h">Chapter one, free</h2>
-            <p
-              className="cw-lp-body"
-              style={{ marginTop: 0, marginBottom: 22 }}
-            >
+        <section className="rl-block" aria-labelledby="pb-free" id="pb-free">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 className="rl-d two" data-rl="head">
+                Chapter one, free
+              </h2>
+            </div>
+            <p className="rl-lede">
               The whole first chapter, not an excerpt. Leave your email and it
               arrives in about a minute.
             </p>
-            <PlaybookSignupForm plain />
+            <div className="rl-form rl-air-m">
+              <PlaybookSignupForm plain />
+            </div>
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.7
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>
+          <aside className="rail">
+            <span className="rl-l">§ 0.7</span>
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>
               No sequence, no drip. One email with the PDF, and a second one the
               day the manual ships.
             </p>
           </aside>
         </section>
 
-        <section className="cw-lp-block" aria-labelledby="lp-run">
-          <div className="cw-lp-block__main">
-            <h2 id="lp-run" className="cw-lp-h">
-              Run tonight
-            </h2>
-            <figure className="cw-lp-spread">
+        <section className="rl-block" aria-labelledby="lp-run">
+          <div className="main">
+            <div className="rl-sec rl-sec--wide">
+              <h2 id="lp-run" className="rl-d two" data-rl="head">
+                Run tonight
+              </h2>
+            </div>
+            <figure className="rl-figure" data-rl="media">
               <Image
                 src="/playbook/companion-card.png"
                 alt="A companion file rendered as a pre-flight card: the five security checks, each with a checkbox."
@@ -687,9 +745,11 @@ export default function PlaybookPage() {
                 height={1150}
                 sizes="(max-width: 1000px) 92vw, 640px"
               />
-              <figcaption className="cw-lp-cap">
-                checklists/05-security.md · one of ten pre-flight cards, as
-                shipped
+              <figcaption>
+                <span className="rl-l meta">
+                  checklists/05-security.md &middot; one of ten pre-flight
+                  cards, as shipped
+                </span>
               </figcaption>
             </figure>
             {/* The 26 files were a number in a spec row and nowhere else. They
@@ -697,33 +757,41 @@ export default function PlaybookPage() {
                 itemised here. Counts are from the shipped ZIP: 10 + 6 + 9 + a
                 README. The two SPEC examples named last appear in no chapter,
                 so a buyer had no way to know they exist. */}
-            <ul className="cw-lp-files">
-              <li>
-                <strong>Ten pre-flight checklists.</strong> One per chapter, the
-                card above being the security one. You run them the same night.
+            <ul className="rl-ledger rl-air-m" data-rl-group="files">
+              <li data-rl="rule">
+                <span className="term">Ten pre-flight checklists.</span>
+                <span className="stmt">
+                  One per chapter, the card above being the security one. You
+                  run them the same night.
+                </span>
               </li>
-              <li>
-                <strong>Six prompt files</strong> for Claude Code and Cursor: a
-                session opener, an architecture mapper, an invariant extractor,
-                a diff reviewer, a payments wiring prompt, and an outreach
-                drafter.
+              <li data-rl="rule">
+                <span className="term">Six prompt files</span>
+                <span className="stmt">
+                  for Claude Code and Cursor: a session opener, an architecture
+                  mapper, an invariant extractor, a diff reviewer, a payments
+                  wiring prompt, and an outreach drafter.
+                </span>
               </li>
               {/* Pass-98 count correction. The archive holds NINE files under
                   templates/; the 26th entry is the README. The 2026-09-03
                   adjudication that said ten counted the README as a template.
                   The probe is `zipfile.namelist()`, not a document. */}
-              <li>
-                <strong>Nine templates</strong>, including three worked SPEC
-                files written end to end: a booking app, a photographer gallery,
-                and an internal ops tracker. Also a starter invariants file, an
-                architecture sample, and a real env example.
+              <li data-rl="rule">
+                <span className="term">Nine templates</span>
+                <span className="stmt">
+                  , including three worked SPEC files written end to end: a
+                  booking app, a photographer gallery, and an internal ops
+                  tracker. Also a starter invariants file, an architecture
+                  sample, and a real env example.
+                </span>
               </li>
             </ul>
           </div>
-          <aside className="cw-lp-block__rail">
-            § 0.8
-            <p className="cw-lp-note">
-              <span className="cw-lp-note__lbl">Field note</span>
+          <aside className="rail">
+            <span className="rl-l">§ 0.8</span>
+            <p className="rl-note">
+              <span className="rl-l">Field note</span>
               The gallery and ops SPEC files appear in no chapter. They are
               there because writing a spec is easier with one you can copy.
             </p>
@@ -732,58 +800,66 @@ export default function PlaybookPage() {
       </div>
 
       {/* 3. BACK COVER — espresso. The spec card is the price. */}
-      <section
-        className="cw-lp-back"
-        data-world="espresso"
-        aria-labelledby="lp-ships"
-      >
-        <div className="cw-lp-back__grid">
-          <div>
-            <p className="cw-lp-kicker" id="lp-ships">
+      <section className="rl-back rl-wrap" aria-labelledby="lp-ships">
+        <div className="rl-two">
+          <div className="rl-two__l">
+            <p className="rl-l" id="lp-ships">
               What ships
             </p>
-            <dl className="cw-lp-spec">
-              <dt>Pages</dt>
-              <dd>
-                <strong>69</strong>
-              </dd>
-              <dt>Chapters</dt>
-              <dd>
-                <strong>10</strong>
-              </dd>
-              <dt>Pre-flight cards</dt>
-              <dd>
-                <strong>10</strong>
-              </dd>
-              <dt>Diagrams</dt>
-              <dd>
-                <strong>9</strong>
-              </dd>
-              <dt>Build-log entries</dt>
-              <dd>
-                <strong>13</strong>
-              </dd>
-              <dt>Companion files</dt>
-              <dd>
-                <strong>26</strong>
-              </dd>
+            <dl className="rl-reg rl-air-s" data-rl-group="spec">
+              <div data-rl="rule">
+                <dt>Pages</dt>
+                <dd className="rl-num">69</dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Chapters</dt>
+                <dd className="rl-num">10</dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Pre-flight cards</dt>
+                <dd className="rl-num">10</dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Diagrams</dt>
+                <dd className="rl-num">9</dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Build-log entries</dt>
+                <dd className="rl-num">13</dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Companion files</dt>
+                <dd className="rl-num">26</dd>
+              </div>
               {/* Pass-98: the Author row is the only place the page answers
                   "who are you" beside the price, so it carries the two facts
                   a buyer weighs there. No city, per the 2026-09-02 ruling. */}
-              <dt>Author</dt>
-              <dd>
-                Micah Jones · built Ordani solo · four exits behind my work
-              </dd>
-              <dt>Format</dt>
-              <dd>PDF + ZIP · every future edition</dd>
-              <dt>Price</dt>
-              <dd>
-                <strong>$99</strong> at launch · $149 after
-              </dd>
-              <dt>Refund</dt>
-              <dd>30 days, no questions</dd>
-              <dt>Status</dt>
-              <dd>{PLAYBOOK_ON_SALE ? "On sale" : "Coming soon"}</dd>
+              <div data-rl="rule">
+                <dt>Author</dt>
+                <dd>
+                  Micah Jones &middot; built Ordani solo &middot; four exits
+                  behind my work
+                </dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Format</dt>
+                <dd>PDF + ZIP &middot; every future edition</dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Price</dt>
+                <dd>
+                  <span className="rl-num">$99</span> at launch &middot; $149
+                  after
+                </dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Refund</dt>
+                <dd>30 days, no questions</dd>
+              </div>
+              <div data-rl="rule">
+                <dt>Status</dt>
+                <dd>{PLAYBOOK_ON_SALE ? "On sale" : "Coming soon"}</dd>
+              </div>
             </dl>
           </div>
           {/* Pass-98 closed two of the three Pass-61 purchase blockers here.
@@ -793,42 +869,44 @@ export default function PlaybookPage() {
               Two forms asking for the same address on one page is a page that
               does not know what it wants; the free chapter block keeps the
               only one, and this column links up to it. */}
-          <div>
+          <div className="rl-two__r">
             {PLAYBOOK_ON_SALE ? (
               <>
-                <p className="cw-lp-kicker">The manual</p>
-                <PlaybookBuyButton
-                  label="Buy the manual · $99"
-                  className="cw-cta cw-lp-object__cta"
-                />
-                <p className="cw-lp-body cw-lp-back__refund">
+                <p className="rl-l">The manual</p>
+                <div className="rl-air-s">
+                  <PlaybookBuyButton
+                    label="Buy the manual · $99"
+                    className="rl-buy rl-buy--auto"
+                  />
+                </div>
+                <p className="rl-body rl-air-s">
                   Thirty days, full refund, no questions asked. Reply to the
                   delivery email and I refund it.
                 </p>
-                <p className="cw-lp-back__alt">
-                  <a href="#pb-free" className="cw-mlink">
+                <p className="rl-air-s">
+                  <a href="#pb-free" className="rl-link">
                     Not today? Chapter one is free, above{" "}
-                    <span aria-hidden>↑</span>
+                    <span aria-hidden>&uarr;</span>
                   </a>
                 </p>
               </>
             ) : (
               <>
-                <p className="cw-lp-kicker">The day it ships</p>
-                <p className="cw-lp-back__note">
+                <p className="rl-l">The day it ships</p>
+                <p className="rl-body rl-air-s">
                   Leave your email for chapter one now, and I&rsquo;ll tell you
                   the day the full manual opens, at the launch price.
                 </p>
-                <p className="cw-lp-back__alt">
-                  <a href="#pb-free" className="cw-mlink">
-                    Chapter one, free <span aria-hidden>↑</span>
+                <p className="rl-air-s">
+                  <a href="#pb-free" className="rl-link">
+                    Chapter one, free <span aria-hidden>&uarr;</span>
                   </a>
                 </p>
               </>
             )}
-            <dl className="cw-lp-faq">
+            <dl className="rl-qs rl-qs--stack rl-air-m" data-rl-group="faq">
               {FAQS.map((f) => (
-                <div key={f.q}>
+                <div className="rl-q" key={f.q} data-rl="rule">
                   <dt>{f.q}</dt>
                   <dd>{f.a}</dd>
                 </div>
@@ -838,26 +916,31 @@ export default function PlaybookPage() {
         </div>
       </section>
 
-      <section className="cw-services__foot" data-world="espresso">
-        <p className="cw-services__foot-kicker">Past the playbook?</p>
-        <h2 className="cw-services__foot-title">
-          If your build needs a second pair of hands.
-        </h2>
-        <div className="cw-services__foot-cta-row">
+      <section className="rl-wrap rl-sec-air" aria-labelledby="rl-past-title">
+        <div className="rl-sec rl-sec--wide">
+          <div className="rl-eyebrow">
+            <span className="rl-l">Past the playbook?</span>
+          </div>
+          <h2 id="rl-past-title" className="rl-d two" data-rl="head">
+            If your build needs a second pair of hands.
+          </h2>
+        </div>
+        <div className="rl-chips" data-rl="rise">
           {/* Pass-74: was /services#packages. The packages moved to their own
               page in Pass-70, so this dropped a reader who had just clicked
               "Fixed-price packages" onto a page that no longer had any. The
               link still resolved, which is why nothing caught it. */}
-          <a href="/packages" className="cw-mlink">
-            Fixed-price packages <span aria-hidden>→</span>
+          <a href="/packages" className="rl-chip">
+            <span className="t">Fixed-price packages</span>
+            <span className="a" aria-hidden>
+              <span>&#8594;</span>
+            </span>
           </a>
-          <a href="/call" className="cw-mlink">
-            Book a free intro call <span aria-hidden>→</span>
+          <a href="/call" className="rl-chip quiet">
+            <span className="t">Book a free intro call</span>
           </a>
         </div>
       </section>
-
-      <PageFooter />
-    </main>
+    </>
   );
 }
