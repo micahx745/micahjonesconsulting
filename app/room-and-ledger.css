@@ -79,6 +79,17 @@
   transition: none;
 }
 
+/* The Color Worlds vignette. [data-mode="cw"]::after paints a fixed radial
+ * gradient that darkens the corners ~18% under mix-blend-mode: multiply —
+ * "a magazine that's been handled", and a real part of that direction. This
+ * one has one fixed sheet and nothing over it (§3), and the vignette was
+ * measurably reading as a stain across the top-left of every ported page. It
+ * is switched off for this subtree only; on (foyer) it is untouched. */
+#rl-root::after,
+#rl-root::before {
+  content: none;
+}
+
 #rl-root a {
   color: inherit;
   text-decoration: none;
@@ -185,6 +196,20 @@
   border: 0;
   border-top: 1px solid var(--hair);
   margin: 0;
+}
+
+/* The four air steps the ported pages use between blocks. Named rather than
+ * written inline so the rhythm is one decision in one place: 24 inside a
+ * block, 48 between blocks, 64 before a ledger, and the section air (--s)
+ * between sections. */
+.rl-air-s {
+  margin-top: 24px;
+}
+.rl-air-m {
+  margin-top: 48px;
+}
+.rl-air-l {
+  margin-top: 64px;
 }
 
 /* ============================================================
@@ -734,15 +759,19 @@ html.rl-js .rl-bar.rl-in {
   align-items: baseline;
   min-height: 84px;
   padding: 26px 0;
+  /* v5 verify 3: the rows carried bottom borders only, so the ledger's first
+   * row floated. Every row opens on a rule and the ledger closes on one. The
+   * rule is the row's TOP border on purpose: that is the edge §16.3-4 draws
+   * from the left, and it is the only edge a [data-rl="rule"] element owns. */
+  border-top: 1px solid var(--hair-10);
+}
+.rl-index > :last-child {
   border-bottom: 1px solid var(--hair-10);
 }
-/* v5 verify 3: the rows carried bottom borders only, so the ledger's first
- * row floated. The index opens on a rule too. */
-.rl-index > :first-child .rl-prf,
-.rl-index > :first-child .rl-prfx,
-.rl-index > .rl-prf:first-child,
-.rl-index > .rl-prfx:first-child {
-  border-top: 1px solid var(--hair-10);
+/* the caption's own metadata line — role and year, under the receipt. */
+.rl-prf .cap .rl-l.meta {
+  display: block;
+  margin-top: 6px;
 }
 .rl-prf .who {
   font-family: var(--font-rl-text);
@@ -1199,6 +1228,12 @@ a.rl-prfx:focus-visible .who {
 }
 .rl-figure figcaption {
   padding-top: 12px;
+}
+/* A photograph is evidence, not wallpaper: at 1440 a full-content-width frame
+ * is 1376px of one Instagram crop and the page stops being a ledger. The
+ * exhibit takes the reading half. */
+.rl-figure--half {
+  max-width: 620px;
 }
 
 /* ============================================================

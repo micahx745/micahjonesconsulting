@@ -146,9 +146,8 @@ export default function PackagesPage() {
         </p>
 
         <div
-          className="rl-cards"
+          className="rl-cards rl-air-m"
           data-rl-group="cards"
-          style={{ marginTop: 48 }}
         >
           <article
             className="rl-card"
@@ -269,13 +268,13 @@ export default function PackagesPage() {
             Stripe checkout now, so this says what actually happens after the
             card clears. The booking link is /call/kickoff, which is where
             lib/package-delivery.ts already points. */}
-        <p className="rl-lede" style={{ marginTop: 48 }} data-rl="rise">
+        <p className="rl-lede rl-air-m" data-rl="rise">
           Each one goes straight to checkout. The moment your card clears you
           get a kickoff email: the intake questions, a link to book the call,
           and the manual with its companion files attached.
         </p>
 
-        <p className="rl-body" style={{ marginTop: 24 }} data-rl="rise">
+        <p className="rl-body rl-air-s" data-rl="rise">
           The rules, in plain terms: every package fee credits toward the next
           package or an engagement started within 60 days. Full refund any time
           before kickoff. None after, because by then the work has started. All
