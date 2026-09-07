@@ -9,7 +9,7 @@ that file's; what changed is the target (a Next.js route served over HTTP) and t
 places the site differs from the mock, each marked PASS-101 where it happens:
 
   * the `js` class is on `.rl-home`, not on <html>: the mock's script owned the document,
-    the site's RoomMotion owns one wrapper (app/(room)/layout.tsx).
+    the site's RoomMotion owns one wrapper (app/(home)/layout.tsx).
   * the sheet is `.rl-sheet`.
   * the receipts index is THREE rows, not two -- SS17, "Binds v7 and Pass 101".
   * each clip ships TWO sources (webm then mp4). The mock shipped one 720 mp4 because data
@@ -21,7 +21,7 @@ places the site differs from the mock, each marked PASS-101 where it happens:
 
 Every check is measured in Chromium against the running server. Nothing is asserted from the source
 text alone except the copy gate, which reads the built HTML and the three verified copy
-sources (freight template, content/work/*.mdx frontmatter, app/(foyer)/packages/page.tsx)
+sources (freight template, content/work/*.mdx frontmatter, app/(room)/packages/page.tsx)
 plus the ONE operator-supplied string SS15.6 names.
 
 Checks, in SS14/SS15 order (SS15 supersedes SS14 on the rail, the cards, the engagements
@@ -94,7 +94,7 @@ FREIGHT = os.path.join(DESIGN, "freight", "the-receipts.template.html")
 WORK = os.path.join(REPO, "content", "work")
 # SS14.7 names a THIRD verified copy source: the live /packages page, whose three BuyButton
 # labels the card chips now read verbatim.
-PACKAGES = os.path.join(REPO, "app", "(foyer)", "packages", "page.tsx")
+PACKAGES = os.path.join(REPO, "app", "(room)", "packages", "page.tsx")
 # PASS-101: artifacts land in the repo, not a scratchpad, so a reviewer can open them.
 OUT = os.path.join(REPO, ".planning", "qa", "pass-101", "verify")
 os.makedirs(OUT, exist_ok=True)
@@ -975,7 +975,7 @@ def main(base):
         live = re.findall(r'(?<!aria-)label="([^"]*)"', pk)
         chk("14.7-chip-labels-are-the-live-buttons",
             cd["chipT"] == live and all(cd["chipFits"]),
-            "the three card chips read %s; app/(foyer)/packages/page.tsx renders %s "
+            "the three card chips read %s; app/(room)/packages/page.tsx renders %s "
             "(BuyButton appends the arrow, which the chip carries as its own glyph); each "
             "label fits its chip without clipping: %s"
             % (cd["chipT"], live, cd["chipFits"]))
@@ -2175,7 +2175,7 @@ def main(base):
         counts[p] = counts.get(p, 0) + 1
     chk("14.3-copy-gate", not misses,
         "%d distinct text nodes, %d misses %s; provenance %s (sources: freight template + "
-        "content/work frontmatter + app/(foyer)/packages/page.tsx; exempt: "
+        "content/work frontmatter + app/(room)/packages/page.tsx; exempt: "
         "the five bar labels). The two SS14.7 shape changes, in full: %s"
         % (len(uniq), len(misses), misses if misses else "", json.dumps(counts),
            json.dumps([[t, p] for t, p in graded if p and "SS14.7" in p])))

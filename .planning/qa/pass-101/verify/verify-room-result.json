@@ -103,7 +103,7 @@
   {
    "id": "14.7-chip-labels-are-the-live-buttons",
    "pass": true,
-   "evidence": "the three card chips read ['Buy the Unstick Session', 'Buy the Audit', 'Buy the Sprint']; app/(foyer)/packages/page.tsx renders ['Buy the Unstick Session', 'Buy the Audit', 'Buy the Sprint'] (BuyButton appends the arrow, which the chip carries as its own glyph); each label fits its chip without clipping: [True, True, True]"
+   "evidence": "the three card chips read ['Buy the Unstick Session', 'Buy the Audit', 'Buy the Sprint']; app/(room)/packages/page.tsx renders ['Buy the Unstick Session', 'Buy the Audit', 'Buy the Sprint'] (BuyButton appends the arrow, which the chip carries as its own glyph); each label fits its chip without clipping: [True, True, True]"
   },
   {
    "id": "15.5-engagements",
@@ -153,7 +153,7 @@
   {
    "id": "15.1-gesture-plays-both",
    "pass": true,
-   "evidence": "preload ['auto', 'auto'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.21s) and the operator clip is playing (paused=False, t=3.73s)"
+   "evidence": "preload ['auto', 'auto'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.22s) and the operator clip is playing (paused=False, t=3.73s)"
   },
   {
    "id": "discipline",
@@ -278,7 +278,7 @@
   {
    "id": "14.3-copy-gate",
    "pass": true,
-   "evidence": "79 distinct text nodes, 0 misses ; provenance {\"verbatim\": 68, \"bar label\": 7, \"SS14.3 rewrite + SS14.7 initial capital\": 2, \"SS15.6 operator-supplied\": 1, \"verbatim + SS14.7 terminal full stop\": 1} (sources: freight template + content/work frontmatter + app/(foyer)/packages/page.tsx; exempt: the five bar labels). The two SS14.7 shape changes, in full: [[\"Millions in contracts won \\u00b7 close rate doubled\", \"SS14.3 rewrite + SS14.7 initial capital\"], [\"Millions in revenue \\u00b7 acquired by Akamai\", \"SS14.3 rewrite + SS14.7 initial capital\"], [\"The objections, in your words.\", \"verbatim + SS14.7 terminal full stop\"]]"
+   "evidence": "79 distinct text nodes, 0 misses ; provenance {\"verbatim\": 68, \"bar label\": 7, \"SS14.3 rewrite + SS14.7 initial capital\": 2, \"SS15.6 operator-supplied\": 1, \"verbatim + SS14.7 terminal full stop\": 1} (sources: freight template + content/work frontmatter + app/(room)/packages/page.tsx; exempt: the five bar labels). The two SS14.7 shape changes, in full: [[\"Millions in contracts won \\u00b7 close rate doubled\", \"SS14.3 rewrite + SS14.7 initial capital\"], [\"Millions in revenue \\u00b7 acquired by Akamai\", \"SS14.3 rewrite + SS14.7 initial capital\"], [\"The objections, in your words.\", \"verbatim + SS14.7 terminal full stop\"]]"
   },
   {
    "id": "14.3-two-rewrites",
@@ -298,22 +298,22 @@
   {
    "id": "no-data-uri-media",
    "pass": true,
-   "evidence": "the served document is 48045 bytes and carries 0 data: URIs (SS7: data-URI video on the site is rejected). Both clips, both posters and the cover are FILES."
+   "evidence": "the served document is 48122 bytes and carries 0 data: URIs (SS7: data-URI video on the site is rejected). Both clips, both posters and the cover are FILES."
   }
  ],
  "screenshots": [
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-1440-top.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-work.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-price.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-proof.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-manual.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-faq.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-price.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-manual.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-faq.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-work.png",
-  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl10-nojs-1440.png"
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-1440-top.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-sec-work.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-sec-price.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-sec-proof.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-sec-manual.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-sec-faq.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-390-price.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-390-manual.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-390-faq.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl8-390-work.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p101-integrate\\.planning\\qa\\pass-101\\verify\\rl10-nojs-1440.png"
  ],
- "document_bytes": 48045,
+ "document_bytes": 48122,
  "all_pass": true
 }

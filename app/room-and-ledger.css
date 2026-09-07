@@ -1,0 +1,2255 @@
+/* app/room-and-ledger.css
+ *
+ * PASS-101 PHASE 3 — "Room and Ledger" on the pages that are not the home.
+ *
+ * Source of truth: .planning/design/winning/room-and-ledger.template.html
+ * (verified over nine rounds) and WINNING-BRIEF-2026-09-05 §2, §3, §14.4,
+ * §14.5, §15.2-15.6, §16.3, §16.4. Every geometry below is the template's
+ * own, ported to page scale; nothing here is invented.
+ *
+ * WHY A SEPARATE FILE, AND WHY IDs.
+ *   app/globals.css carries the Room and Ledger TOKENS (Pass-101 phase 1) and
+ *   the whole 6,600-line Color Worlds stylesheet, which is scoped to
+ *   [data-mode="cw"]. The restyled routes keep rendering shared client
+ *   components (BookCallForm, BuyButton, PlaybookSignupForm, PortraitImage)
+ *   whose markup carries cw- class names, so the wrapper keeps data-mode="cw"
+ *   and those components keep a working base. This file is the OVERRIDE layer
+ *   on top of it. `#rl-root` is (1,0,0) and beats every `[data-mode="cw"] .x`
+ *   rule (0,2,0) regardless of which stylesheet the bundler emits first —
+ *   which source order alone would not guarantee.
+ *
+ *   The single most load-bearing line in the file is the --font-cw-display
+ *   override: it takes Bricolage out of the computed font-family of every
+ *   Color Worlds rule on these routes in one move (§2 bans it; Pass-101
+ *   verification item 6 measures it).
+ *
+ * MOTION (§16.3 items 2, 3, 4, 5, 7 — the set this brief puts on every page
+ * that is not the home). Transitions only, transform / opacity / clip-path,
+ * the house curve var(--e), everything once, ZERO @keyframes added, nothing
+ * coupled to the pointer, no scroll-jack, no scrolling banner, no parallax.
+ * The rest state of every rule is the FINISHED frame: the pre-state is gated
+ * on html.rl-js, which components/room/SiteMotion.tsx's boot script sets
+ * synchronously and only when the visitor has not asked for reduced motion.
+ * Scripting off, or reduced motion on, and the page is simply there.
+ *
+ * The four lines over 300ms carry motion-token-lint.sh's OWN documented
+ * per-line opt-out, "motion-ok: §16.3-N, <reason>", exactly as Pass-101
+ * phase 1 did for the ground travel. No check is deleted and no hook is
+ * disabled; the raised cap is written into DESIGN_BAR R15, .claude/CLAUDE.md
+ * and brand.json.motion.room_and_ledger, which is where the rule lives.
+ * ============================================================ */
+
+/* ============================================================
+ * 0. THE GROUND AND THE INK
+ * ============================================================ */
+
+#rl-root {
+  /* §3: the ledger half. These routes are the light half of the system; the
+   * dark half is the home's film and the case-study theater. The ink is
+   * espresso here, so the phase-1 :root defaults (which start on the dark
+   * half for the home's hero) are re-declared for this subtree. */
+  --ink: var(--color-rl-espresso);
+  --ink-80: color-mix(in oklab, var(--color-rl-espresso) 80%, transparent);
+  --ink-72: color-mix(in oklab, var(--color-rl-espresso) 72%, transparent);
+  /* THE QUIET INK IS NOT 60% ON THIS HALF. §2 sets the label style at "ink at
+   * 60%", and that figure was measured on the DARK half, where bone at 60%
+   * over espresso composites to about 7:1. On the LIGHT half the same 60%
+   * composites (in oklab, which is lighter than an sRGB blend at the same
+   * stop) to #787571 — axe measured 4.0:1 against bone at 14px, under the
+   * 4.5:1 bar, on every form label, register key and diff label on the site.
+   * 74% is the stop that clears it while staying visibly quieter than full
+   * ink. The dark-half sections below keep 60%, where it measures fine. */
+  --ink-60: color-mix(in oklab, var(--color-rl-espresso) 74%, transparent);
+  --hair: color-mix(in oklab, var(--color-rl-espresso) 15%, transparent);
+  --hair-12: color-mix(in oklab, var(--color-rl-espresso) 12%, transparent);
+  --hair-10: color-mix(in oklab, var(--color-rl-espresso) 10%, transparent);
+
+  /* The Color Worlds variables are repointed rather than fought. Every
+   * [data-mode="cw"] rule that survives on these routes now paints in the
+   * Room and Ledger palette and sets in the Room and Ledger faces. */
+  --cw-bg: var(--color-rl-bone);
+  --cw-fg: var(--color-rl-espresso);
+  --cw-accent: var(--color-rl-copper);
+  --font-cw-display: var(--font-rl-display);
+  --font-cw-body: var(--font-rl-text);
+  --font-cw-label: var(--font-rl-display);
+
+  background: var(--color-rl-bone);
+  color: var(--color-rl-espresso);
+  font-family: var(--font-rl-text);
+  font-size: var(--t);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* the cw root travels its background over 700ms as worlds change; there are
+   * no worlds here, so that is dead weight and one more thing to have to
+   * disable under reduced motion. */
+  transition: none;
+}
+
+/* The Color Worlds vignette. [data-mode="cw"]::after paints a fixed radial
+ * gradient that darkens the corners ~18% under mix-blend-mode: multiply —
+ * "a magazine that's been handled", and a real part of that direction. This
+ * one has one fixed sheet and nothing over it (§3), and the vignette was
+ * measurably reading as a stain across the top-left of every ported page. It
+ * is switched off for this subtree only; on (foyer) it is untouched. */
+#rl-root::after,
+#rl-root::before {
+  content: none;
+}
+
+#rl-root a {
+  color: inherit;
+  text-decoration: none;
+}
+/* ...EXCEPT the skip link, which sets its own pair. globals.css gives it
+ * --color-foyer-paper on --color-accent-copper-deep (5.4:1, the Phase 10 axe
+ * fix), and `#rl-root a` at (1,0,1) was out-specifying that `color` and
+ * inheriting espresso instead — 3.0:1 on the copper ground, and the ONE
+ * serious axe finding this pass introduced. Measured, then fixed here rather
+ * than by weakening the inherit rule the rest of the system depends on. */
+#rl-root a.skip-to-content {
+  color: var(--color-rl-bone);
+}
+#rl-root a:focus-visible,
+#rl-root button:focus-visible,
+#rl-root input:focus-visible,
+#rl-root textarea:focus-visible,
+#rl-root select:focus-visible {
+  outline: 1.5px solid var(--color-rl-copper);
+  outline-offset: 4px;
+  border-radius: 0;
+}
+#rl-root ::selection {
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+}
+#rl-root
+  :is(h1, h2, h3, h4, p, ol, ul, dl, dd, figure, figcaption, blockquote) {
+  margin: 0;
+}
+#rl-root :is(img, video) {
+  display: block;
+  max-width: 100%;
+}
+#rl-root [id] {
+  scroll-margin-top: 88px;
+}
+
+/* ============================================================
+ * 1. THE PAGE FRAME — the template's wrap, grid and section air
+ * ============================================================ */
+
+.rl-wrap {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: var(--g);
+  padding-right: var(--g);
+}
+.rl-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+}
+.rl-sec-air {
+  padding-top: var(--s);
+}
+.rl-sec-air-b {
+  padding-bottom: var(--s);
+}
+
+/* The bar is fixed and 40px tall (48 below 900), so the first section of a
+ * page owes it that height on top of its own entry air. */
+.rl-first {
+  padding-top: calc(var(--s) + 40px);
+}
+@media (max-width: 899px) {
+  .rl-first {
+    padding-top: calc(var(--s) + 48px);
+  }
+}
+
+/* §14.4: the section head is a display line again, not a 14px label. The
+ * eyebrow keeps the label style; everything else in the head is the poster. */
+.rl-sec {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.rl-sec .rl-eyebrow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.rl-sec h1,
+.rl-sec h2 {
+  max-width: 20ch;
+}
+.rl-sec.rl-sec--wide h1,
+.rl-sec.rl-sec--wide h2 {
+  max-width: none;
+}
+
+.rl-lede {
+  font-size: var(--lede);
+  line-height: 1.35;
+  max-width: 40ch;
+  color: var(--ink);
+}
+.rl-body {
+  font-size: 19px;
+  line-height: 1.5;
+  max-width: 46ch;
+  color: var(--ink-72);
+}
+.rl-cap {
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink-72);
+}
+.rl-hair {
+  border: 0;
+  border-top: 1px solid var(--hair);
+  margin: 0;
+}
+
+/* THE TWO-COLUMN PAGE. The template's own split (§14.2's operator section,
+ * §15.2's manual): seven columns of the twelve for the argument, five for the
+ * artifact, 48px between them, and one column below 900px. */
+.rl-two {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px;
+}
+.rl-two__l {
+  grid-column: 1 / 7;
+  min-width: 0;
+}
+.rl-two__r {
+  grid-column: 8 / 13;
+  min-width: 0;
+}
+@media (max-width: 899px) {
+  .rl-two {
+    display: block;
+  }
+  .rl-two__r {
+    margin-top: 48px;
+  }
+}
+
+/* The four air steps the ported pages use between blocks. Named rather than
+ * written inline so the rhythm is one decision in one place: 24 inside a
+ * block, 48 between blocks, 64 before a ledger, and the section air (--s)
+ * between sections. */
+/* #rl-root-prefixed on purpose: the margin reset above is (1,0,1) and would
+ * out-specify a bare class, so a <p> or a <figure> carrying an air class
+ * would silently keep margin:0. Measured on /call, where the lede and the
+ * paragraph under it were sitting on the same line box. */
+#rl-root .rl-air-s {
+  margin-top: 24px;
+}
+#rl-root .rl-air-m {
+  margin-top: 48px;
+}
+#rl-root .rl-air-l {
+  margin-top: 64px;
+}
+
+/* ============================================================
+ * 2. THE CHIP PAIR (template lines 112-128)
+ * ============================================================ */
+
+.rl-chips {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.rl-chip {
+  display: inline-flex;
+  align-items: stretch;
+  height: 44px;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+}
+.rl-chip .t {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 20px;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  white-space: nowrap;
+}
+.rl-chip .a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+  font-family: var(--font-rl-display);
+  font-size: 24px;
+  line-height: 1;
+}
+.rl-chip.quiet .t {
+  background: color-mix(in oklab, var(--ink) 12%, transparent);
+  color: var(--ink);
+}
+/* §16.3-7: the chip swaps ground in 300ms; the arrow slides 6px right in
+ * 200ms on hover AND on focus. Both are transitions on a rest state that is
+ * already the finished frame. */
+.rl-chip .t,
+.rl-chip .a {
+  transition:
+    background 300ms var(--e),
+    color 300ms var(--e);
+}
+.rl-chip .a > span {
+  display: inline-block;
+  transition: transform 200ms var(--e);
+}
+.rl-chip:hover .t,
+.rl-chip:focus-visible .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-espresso) 86%,
+    var(--color-rl-bone)
+  );
+}
+.rl-chip.quiet:hover .t,
+.rl-chip.quiet:focus-visible .t {
+  background: color-mix(in oklab, var(--ink) 20%, transparent);
+}
+.rl-chip:hover .a > span,
+.rl-chip:focus-visible .a > span,
+a:hover > .rl-chip .a > span,
+a:focus-visible > .rl-chip .a > span {
+  transform: translateX(6px);
+}
+
+/* the inline arrow that is not in a chip — rows, links, CTAs. */
+.rl-ar {
+  display: inline-block;
+  color: var(--color-rl-copper);
+  font-family: var(--font-rl-display);
+  transition: transform 200ms var(--e);
+}
+a:hover .rl-ar,
+a:focus-visible .rl-ar,
+button:hover .rl-ar,
+button:focus-visible .rl-ar {
+  transform: translateX(6px);
+}
+
+/* The text link inside a paragraph. Copper is 3.85:1 on bone, so body-text
+ * emphasis takes --accent-copper-deep (5.4:1), which is the standing WCAG
+ * rule in .claude/CLAUDE.md (Pitfall B1) and is NOT superseded by this pass.
+ * The underline is painted at rest and only its colour moves on hover — a
+ * reading cue is not a place to spend motion. */
+.rl-link {
+  color: var(--accent-copper-deep);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(
+    in oklab,
+    var(--accent-copper-deep) 45%,
+    transparent
+  );
+}
+.rl-link:hover,
+.rl-link:focus-visible {
+  text-decoration-color: var(--accent-copper-deep);
+}
+
+/* ============================================================
+ * 3. THE BAR (§4 "00", template lines 129-148)
+ *
+ * On the home the bar is hidden until the first screen is gone. There is no
+ * first screen on these pages, so it is simply open — and the one motion it
+ * owns is §16.3-2: it slides down 12px and fades in once, on load, never
+ * again.
+ * ============================================================ */
+
+.rl-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 30;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 var(--g);
+  background: var(--color-rl-bone);
+  border-bottom: 1px solid
+    color-mix(in oklab, var(--color-rl-espresso) 15%, transparent);
+  color: var(--color-rl-espresso);
+}
+.rl-bar a {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+.rl-bar .rl-l {
+  /* 74%, not 60%, for the reason measured on --ink-60 above: this is 14px
+   * text on bone and 60% is 4.0:1. The dark variant below keeps 60% because
+   * bone at 60% on espresso measures about 7:1. */
+  color: color-mix(in oklab, var(--color-rl-espresso) 74%, transparent);
+  white-space: nowrap;
+  transition: color 200ms var(--e);
+}
+.rl-bar .rl-l.now,
+.rl-bar a:hover .rl-l,
+.rl-bar a:focus-visible .rl-l,
+.rl-bar a[aria-current="page"] .rl-l {
+  color: var(--color-rl-espresso);
+}
+.rl-bar .ar {
+  color: var(--color-rl-copper);
+  margin-left: 0.4em;
+  display: inline-block;
+  transition: transform 200ms var(--e);
+}
+.rl-bar a:hover .ar,
+.rl-bar a:focus-visible .ar {
+  transform: translateX(6px);
+}
+/* the dark variant: the case-study theater keeps its obsidian ground. */
+.rl-bar.dark {
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  border-bottom-color: color-mix(
+    in oklab,
+    var(--color-rl-bone) 20%,
+    transparent
+  );
+}
+.rl-bar.dark .rl-l {
+  color: color-mix(in oklab, var(--color-rl-bone) 60%, transparent);
+}
+.rl-bar.dark .rl-l.now,
+.rl-bar.dark a:hover .rl-l,
+.rl-bar.dark a:focus-visible .rl-l,
+.rl-bar.dark a[aria-current="page"] .rl-l {
+  color: var(--color-rl-bone);
+}
+
+/* THE BAR'S LADDER, measured at 360 / 390 / 768 / 1440 rather than guessed.
+ * Five items justified edge to edge is a desktop composition; the same five
+ * strings at 14px need 472px of a 390px bar. So:
+ *   >= 900  five items at 14px
+ *   600-899 three items at 12px, nothing wrapping (407px at 768)
+ *   <  600  two items — the wordmark and the primary CTA (266px at 390,
+ *           and it still fits at 320)
+ * Nothing is allowed to wrap: a two-line item inside a 48px bar is what the
+ * first phone render actually did, and it read as a broken header. */
+@media (max-width: 899px) {
+  .rl-bar {
+    height: 48px;
+    gap: 12px;
+  }
+  .rl-bar .rl-l {
+    font-size: 12px;
+  }
+  .rl-bar .hide-s {
+    display: none;
+  }
+}
+@media (max-width: 599px) {
+  .rl-bar .hide-xs {
+    display: none;
+  }
+}
+
+/* §16.3-2, and the ONLY entrance the bar ever runs. */
+html.rl-js .rl-bar {
+  opacity: 0;
+  transform: translateY(-12px);
+  transition:
+    opacity 240ms var(--e),
+    transform 240ms var(--e);
+}
+html.rl-js .rl-bar.rl-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+ * 4. THE FOOT (§4 "10", template lines 566-570)
+ * ============================================================ */
+
+.rl-foot {
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  padding: 72px var(--g) 64px;
+  margin-top: var(--s);
+}
+.rl-foot .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px 32px;
+}
+.rl-foot .rl-l {
+  color: color-mix(in oklab, var(--color-rl-bone) 60%, transparent);
+}
+.rl-foot .rl-l.now {
+  color: var(--color-rl-bone);
+}
+.rl-foot a:hover .rl-l,
+.rl-foot a:focus-visible .rl-l {
+  color: var(--color-rl-bone);
+}
+@media (max-width: 899px) {
+  .rl-foot .row {
+    flex-direction: column;
+  }
+}
+
+/* ============================================================
+ * 5. THE PRICE CARDS AND THE TOP TIER (§14.5, §15.5)
+ *    Template lines 384-476, ported verbatim.
+ * ============================================================ */
+
+.rl-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.rl-card {
+  box-sizing: border-box;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  background: none;
+  box-shadow: none;
+  /* §16.3-7: the card's border turns copper on hover, 300ms. */
+  transition: border-color 300ms var(--e);
+}
+#rl-root .rl-card:hover,
+#rl-root .rl-card:focus-within {
+  border-color: color-mix(in oklab, var(--color-rl-copper) 55%, transparent);
+}
+/* the 2px rule is 1px thicker than the hairline it replaces, so the interior
+ * is pulled back by exactly that 1px and the three card interiors stay on
+ * one line. */
+.rl-card.mark {
+  border-top: 2px solid var(--color-rl-copper);
+  padding-top: 27px;
+}
+#rl-root .rl-card.mark:hover,
+#rl-root .rl-card.mark:focus-within {
+  border-top-color: var(--color-rl-copper);
+}
+.rl-card .nm {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.rl-card .pblock {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 18px 0 20px;
+  border-bottom: 1px solid var(--hair-12);
+}
+.rl-card .pr {
+  font-family: var(--font-rl-display);
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1;
+  font-variation-settings: "wdth" var(--dw-fit);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.rl-card .one {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-72);
+  margin-top: 20px;
+}
+.rl-card .rl-list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+.rl-card .rl-list li {
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--ink-80);
+  padding: 12px 0;
+  border-top: 1px solid var(--hair-12);
+}
+.rl-card .cta {
+  margin-top: auto;
+  padding-top: 28px;
+}
+.rl-card .cta .rl-chip {
+  height: 48px;
+  width: 100%;
+}
+/* v5 verify 3: the chip takes the NAME's register — same family, same
+ * weight, same tracking — one step down in size, so it reads as the card's
+ * button and not as a second title. */
+.rl-card .cta .rl-chip .t {
+  flex: 1;
+  justify-content: center;
+  font-family: var(--font-rl-text);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  white-space: nowrap;
+}
+.rl-card .cta .rl-chip .a {
+  width: 48px;
+}
+/* the ground swaps to copper; the type does not move. 20px at weight 500 is
+ * large text, where copper carries bone at 3.83:1 against the 3:1 bar. */
+#rl-root .rl-card:hover .cta .rl-chip .t,
+#rl-root .rl-card:focus-within .cta .rl-chip .t {
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+}
+#rl-root .rl-card:hover .cta .rl-chip .a,
+#rl-root .rl-card:focus-within .cta .rl-chip .a {
+  background: var(--color-rl-copper);
+}
+/* THE BUY BUTTON, given the chip's geometry without touching its markup.
+ * components/BuyButton.tsx renders ONE <button> holding the label and a
+ * trailing aria-hidden arrow span — the Stripe rail is operator-verified and
+ * this pass does not open it. So the chip is rebuilt on that shape: the button
+ * is the label block and its last child becomes the copper square. Same
+ * geometry as .rl-chip, no logic changed, no prop added. */
+.rl-buy {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 0 0 0 20px;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-rl-text);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-align: left;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  transition:
+    background 300ms var(--e),
+    color 300ms var(--e);
+}
+.rl-buy > span[aria-hidden] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex: 0 0 48px;
+  margin-left: auto;
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+  font-family: var(--font-rl-display);
+  font-size: 24px;
+  transition: transform 200ms var(--e);
+}
+#rl-root .rl-card:hover .rl-buy,
+#rl-root .rl-card:focus-within .rl-buy,
+.rl-buy:hover,
+.rl-buy:focus-visible {
+  background: var(--color-rl-copper);
+}
+.rl-buy:hover > span[aria-hidden],
+.rl-buy:focus-visible > span[aria-hidden] {
+  transform: translateX(6px);
+}
+.rl-buy[disabled] {
+  cursor: progress;
+  opacity: 0.7;
+}
+@media (max-width: 1023px) {
+  .rl-buy {
+    font-size: 17px;
+  }
+}
+@media (max-width: 899px) {
+  .rl-buy {
+    font-size: 19px;
+  }
+}
+
+/* the checkout error the BuyButton renders when the key is missing. It has to
+ * read as the page's own voice, not as a browser default. */
+#rl-root .cw-pkg__cta-error {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--accent-copper-deep);
+}
+
+/* §15.5: Engagements is the TOP TIER — not a fourth card, and not a strip. */
+.rl-eng {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 40px;
+  row-gap: 24px;
+  align-content: center;
+  box-sizing: border-box;
+  margin-top: 24px;
+  min-height: 220px;
+  border-radius: 16px;
+  border-top: 2px solid var(--color-rl-copper);
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  padding: 34px 36px;
+}
+.rl-eng .side {
+  display: grid;
+  grid-row: 1 / 3;
+  grid-template-rows: subgrid;
+  row-gap: 24px;
+  align-items: baseline;
+  min-width: 0;
+}
+.rl-eng .side.l-side {
+  grid-column: 1;
+}
+.rl-eng .side.r {
+  grid-column: 2;
+  justify-items: end;
+  text-align: right;
+}
+.rl-eng .hd {
+  grid-row: 1;
+  min-width: 0;
+  font-size: var(--d2);
+  font-variation-settings: "wdth" 96;
+  line-height: 0.92;
+  color: var(--color-rl-bone);
+}
+.rl-eng .v {
+  grid-row: 1;
+  font-family: var(--font-rl-display);
+  font-weight: 300;
+  font-size: 64px;
+  line-height: 1;
+  font-variation-settings: "wdth" 100;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-rl-bone);
+  white-space: nowrap;
+}
+.rl-eng .dsc {
+  grid-row: 2;
+  align-self: end;
+  min-width: 0;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--color-rl-bone);
+  max-width: 34ch;
+}
+.rl-eng .rl-chip {
+  grid-row: 2;
+  align-self: end;
+}
+/* the block is espresso on the BONE half, so it needs the inverted chip. */
+#rl-root .rl-eng .rl-chip .t {
+  background: var(--color-rl-bone);
+  color: var(--color-rl-espresso);
+}
+#rl-root .rl-eng .rl-chip .a {
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+}
+#rl-root .rl-eng:hover .rl-chip .t,
+#rl-root .rl-eng:focus-visible .rl-chip .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-bone) 88%,
+    var(--color-rl-copper)
+  );
+}
+#rl-root .rl-eng:hover .rl-chip .a > span,
+#rl-root .rl-eng:focus-visible .rl-chip .a > span {
+  transform: translateX(6px);
+}
+
+/* ============================================================
+ * 6. THE RECEIPTS INDEX (§15.6, template lines 477-504)
+ *    /work runs this over EVERY case study (brief §3).
+ * ============================================================ */
+
+.rl-index {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-prf,
+.rl-prfx {
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr) 40px;
+  column-gap: 32px;
+  align-items: baseline;
+  min-height: 84px;
+  padding: 26px 0;
+  /* v5 verify 3: the rows carried bottom borders only, so the ledger's first
+   * row floated. Every row opens on a rule and the ledger closes on one. The
+   * rule is the row's TOP border on purpose: that is the edge §16.3-4 draws
+   * from the left, and it is the only edge a [data-rl="rule"] element owns. */
+  border-top: 1px solid var(--hair-10);
+}
+.rl-index > :last-child {
+  border-bottom: 1px solid var(--hair-10);
+}
+/* the caption's own metadata line — role and year, under the receipt. */
+.rl-prf .cap .rl-l.meta {
+  display: block;
+  margin-top: 6px;
+}
+.rl-prf .who {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.rl-prfx .who {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--ink-80);
+  transition: color 300ms var(--e);
+}
+.rl-prf .cap {
+  grid-column: 2;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink-72);
+}
+.rl-prf .ar,
+.rl-prfx .ar {
+  grid-column: 3;
+  justify-self: end;
+  color: var(--ink);
+  font-family: var(--font-rl-display);
+  font-size: 19px;
+  display: inline-block;
+  transition: transform 200ms var(--e);
+}
+/* §16.3-7: the row's copper wipe. */
+.rl-prf::after,
+.rl-prfx::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--color-rl-copper);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 400ms var(--e); /* motion-ok: §16.3-7, the receipt row's copper wipe, ported verbatim from the verified template. The cap is amended for Room and Ledger surfaces in DESIGN_BAR R15 and .claude/CLAUDE.md. */
+}
+a.rl-prf:hover::after,
+a.rl-prf:focus-visible::after,
+a.rl-prfx:hover::after,
+a.rl-prfx:focus-visible::after {
+  transform: scaleX(1);
+}
+a.rl-prf:hover .ar,
+a.rl-prf:focus-visible .ar,
+a.rl-prfx:hover .ar,
+a.rl-prfx:focus-visible .ar {
+  transform: translateX(6px);
+}
+a.rl-prfx:hover .who,
+a.rl-prfx:focus-visible .who {
+  color: var(--ink);
+}
+
+/* ============================================================
+ * 7. THE LEDGER ROWS (§15.4, template lines 342-383)
+ * ============================================================ */
+
+.rl-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-steps li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: var(--gap);
+  row-gap: 12px;
+  align-items: start;
+  padding: 40px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-steps li:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-steps .n {
+  grid-column: 1 / 2;
+  align-self: start;
+  color: var(--ink);
+  padding-top: calc(
+    (var(--capk) + 0.03) * var(--d2) - (var(--capk) + 0.265) * 14px
+  );
+}
+.rl-steps .nm {
+  grid-column: 2 / 3;
+  display: block;
+}
+.rl-steps .s {
+  grid-column: 3 / 4;
+  font-size: 21px;
+  line-height: 1.45;
+  max-width: 46ch;
+  color: var(--ink-80);
+}
+
+/* the plain hairline ledger — a list of statements, no ordinal, no name. */
+.rl-lines {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-lines > * {
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--ink);
+  padding: 14px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-lines > :last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-lines strong {
+  font-weight: 500;
+}
+.rl-lines.rl-lines--prose > * {
+  font-size: 19px;
+  line-height: 1.5;
+  padding: 20px 0;
+}
+
+/* THE TWO-COLUMN LEDGER — §15.4's row shape without the ordinal. Used where
+ * a claim already opens with its own named term ("Positioning research that
+ * moves deal size.") and the rest of the row is the evidence for it.
+ *
+ * Round 9's finding applies here too: a ledger takes the COLUMN. Set as one
+ * 1376px line at 1440, these rows ran ~150 characters, which is twice a
+ * readable measure; split in two they open past the section's own midline and
+ * the hairline still runs the full width, which is what makes it a ledger and
+ * not a caption. */
+.rl-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-ledger > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: var(--gap);
+  row-gap: 8px;
+  align-items: start;
+  padding: 32px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-ledger > li:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-ledger .term {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.rl-ledger .stmt {
+  font-size: 19px;
+  line-height: 1.5;
+  max-width: 46ch;
+  color: var(--ink-80);
+}
+@media (max-width: 899px) {
+  .rl-ledger > li {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 0;
+  }
+  .rl-ledger .term {
+    font-size: 21px;
+  }
+  .rl-ledger .stmt {
+    font-size: 17px;
+  }
+}
+
+/* the metadata register — a key/value ledger. */
+.rl-reg {
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+.rl-reg > div {
+  display: grid;
+  grid-template-columns: minmax(120px, 200px) minmax(0, 1fr);
+  column-gap: var(--gap);
+  row-gap: 6px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-reg > div:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-reg dt {
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  color: var(--ink-60);
+}
+.rl-reg dd {
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+@media (max-width: 599px) {
+  .rl-reg > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ============================================================
+ * 8. THE OBJECTION COLUMNS (§15.3, template lines 544-552)
+ * ============================================================ */
+
+.rl-qs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+}
+.rl-q {
+  padding-top: 24px;
+  border-top: 1px solid var(--hair);
+}
+.rl-q dt,
+.rl-q .q {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.rl-q dd,
+.rl-q .a {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-80);
+  margin-top: 12px;
+}
+
+/* ============================================================
+ * 9. THE MANUAL COMPOSITION (§15.2, template lines 505-543)
+ *    /playbook runs this at PAGE scale (brief §3).
+ * ============================================================ */
+
+.rl-manual .art {
+  grid-column: 1 / 6;
+}
+.rl-manual .copy {
+  grid-column: 6 / 13;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+.rl-manual .copy .rl-sec {
+  margin-bottom: 0;
+}
+.rl-manual .rl-lines {
+  align-self: stretch;
+}
+.rl-manual .buy {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.rl-manual .buy .v {
+  font-family: var(--font-rl-display);
+  font-weight: 300;
+  font-variation-settings: "wdth" var(--dw-fit);
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.rl-manual .buy .v .rl-l {
+  display: block;
+  margin-top: 10px;
+}
+/* the frame's BORDER BOX is the column and the frame is 4:5; the cover fills
+ * its content box. The dash is ink at 40%, which is the step the hairline
+ * needs against paper (round 9's finding). */
+.rl-manual .art .frame {
+  box-sizing: border-box;
+  aspect-ratio: 4 / 5;
+  border: 1px dashed color-mix(in oklab, var(--ink) 40%, transparent);
+  padding: 16px;
+  background: none;
+}
+.rl-manual .art .frame .cov {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-rl-espresso);
+  position: relative;
+  overflow: hidden;
+}
+.rl-manual .art .frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.rl-manual .art figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+}
+@media (max-width: 699px) {
+  .rl-manual .art figcaption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+/* ============================================================
+ * 10. THE OPERATOR FILM (§14.2, template lines 254-341)
+ *     /about runs clip B as a ground (brief §3).
+ * ============================================================ */
+
+.rl-op {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--color-rl-espresso);
+  padding-top: var(--s);
+  padding-bottom: var(--s);
+  /* the section paints its own area, so it declares its own bone ink instead
+   * of inheriting the page's espresso one. */
+  --ink: var(--color-rl-bone);
+  --ink-80: color-mix(in oklab, var(--color-rl-bone) 80%, transparent);
+  --ink-72: color-mix(in oklab, var(--color-rl-bone) 72%, transparent);
+  --ink-60: color-mix(in oklab, var(--color-rl-bone) 60%, transparent);
+  --hair: color-mix(in oklab, var(--color-rl-bone) 15%, transparent);
+  --hair-12: color-mix(in oklab, var(--color-rl-bone) 12%, transparent);
+  --hair-10: color-mix(in oklab, var(--color-rl-bone) 10%, transparent);
+  color: var(--color-rl-bone);
+}
+/* the operator section can BE the first section of a page (/about opens on
+ * it), and then it owes the fixed bar its height on top of its own air. Both
+ * rules are single-class, so this one has to name both to win. */
+.rl-op.rl-first {
+  padding-top: calc(var(--s) + 40px);
+}
+@media (max-width: 899px) {
+  .rl-op.rl-first {
+    padding-top: calc(var(--s) + 48px);
+  }
+}
+#rl-root .rl-opside h2 {
+  margin: 0;
+}
+.rl-opgrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px;
+  align-items: stretch;
+}
+.rl-opstage {
+  grid-column: 1 / 8;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  container-type: inline-size;
+}
+.rl-opfilm {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-rl-espresso);
+}
+/* MEASURED on B-poster.jpg (1440x1440): the source's own lower third is
+ * already dark, so the type §14.2 puts over the lower third had nothing left
+ * to sit on. A grade and a 1.30 zoom about a near-top origin slide the bright
+ * band of the table and the hands DOWN into the lower third. The transform is
+ * a fixed frame decision, not a scroll coupling: it never changes. */
+.rl-opfilm video,
+.rl-opfilm .still {
+  transform: scale(1.3);
+  transform-origin: 50% 6%;
+  filter: brightness(1.45) contrast(1.2);
+}
+.rl-opfilm video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+.rl-opfilm .still {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: url("/video/b-poster.jpg") 50% 40% / cover no-repeat;
+}
+.rl-opfilm .veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 15, 0) 0%,
+    rgba(13, 13, 15, 0) 30%,
+    rgba(13, 13, 15, 0.1) 40%,
+    rgba(13, 13, 15, 0.26) 48%,
+    rgba(13, 13, 15, 0.45) 56%,
+    rgba(13, 13, 15, 0.6) 62%,
+    rgba(13, 13, 15, 0.68) 68%,
+    rgba(13, 13, 15, 0.74) 73%,
+    rgba(13, 13, 15, 0.8) 77%,
+    rgba(13, 13, 15, 0.92) 80%,
+    rgba(13, 13, 15, 1) 82%,
+    rgba(13, 13, 15, 1) 100%
+  );
+}
+.rl-opover {
+  position: absolute;
+  z-index: 2;
+  left: 32px;
+  right: 32px;
+  top: calc(67% - var(--capk) * var(--d2));
+  bottom: auto;
+}
+.rl-opover h1.two,
+.rl-opover h2.two {
+  margin-bottom: 10px;
+  margin-right: -32px;
+  line-height: 0.92;
+  font-size: var(--d2);
+  font-variation-settings: "wdth" var(--dw-fit);
+  color: var(--color-rl-bone);
+}
+.rl-opover p {
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--color-rl-bone);
+  max-width: none;
+}
+.rl-opside {
+  grid-column: 8 / 13;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.rl-opside p {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--color-rl-bone);
+}
+.rl-opside .m-first {
+  display: none;
+}
+/* §14.7: the register rows take their OWN height. */
+.rl-opside .lead {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-opside .lead > * {
+  flex: 0 0 auto;
+  display: block;
+  font-size: 21px;
+  line-height: 1.45;
+  padding: 24px 0;
+  border-top: 1px solid var(--hair);
+  color: var(--color-rl-bone);
+}
+.rl-opside .lead > :first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.rl-opside .lead > :last-child {
+  padding-bottom: 0;
+}
+.rl-opside .sig {
+  margin-top: 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rl-opside .sig q {
+  quotes: none;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--color-rl-bone);
+}
+
+/* ============================================================
+ * 10b. THE BOOKING FORM (/call and /call/kickoff)
+ *
+ * components/color-worlds/BookCallForm.tsx is operator-verified end to end
+ * ("booked and it worked - invite came through") and this pass does not open
+ * it. Its markup is fixed, so the form is restyled through the cw- class names
+ * it already renders: label rows become the register's own key/value rhythm,
+ * the fields become hairline-ruled inputs on the ledger's paper, and the
+ * submit button takes the chip. Nothing is added and no prop is introduced.
+ * ============================================================ */
+
+.rl-form {
+  border-top: 1px solid var(--hair);
+  padding-top: 28px;
+}
+#rl-root .rl-form > .rl-l {
+  display: block;
+  margin-bottom: 24px;
+}
+#rl-root .cw-book {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+#rl-root .cw-book__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 599px) {
+  #rl-root .cw-book__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+#rl-root .cw-book__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+#rl-root .cw-book__lbl {
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  color: var(--ink-60);
+}
+#rl-root .cw-book input,
+#rl-root .cw-book select,
+#rl-root .cw-book textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 0;
+  font-family: var(--font-rl-text);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--hair);
+  border-radius: 0;
+  appearance: none;
+  transition: border-color 300ms var(--e);
+}
+#rl-root .cw-book textarea {
+  resize: vertical;
+}
+#rl-root .cw-book input:hover,
+#rl-root .cw-book select:hover,
+#rl-root .cw-book textarea:hover,
+#rl-root .cw-book input:focus,
+#rl-root .cw-book select:focus,
+#rl-root .cw-book textarea:focus {
+  border-bottom-color: var(--color-rl-copper);
+}
+#rl-root .cw-book__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  /* the cw button ships a pill radius; the system has square chips. */
+  border-radius: 0;
+  transition: background 300ms var(--e);
+}
+#rl-root .cw-book__btn:hover,
+#rl-root .cw-book__btn:focus-visible {
+  background: var(--color-rl-copper);
+}
+#rl-root .cw-book__btn[disabled] {
+  cursor: progress;
+  opacity: 0.7;
+}
+#rl-root .cw-book__warn {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--accent-copper-deep);
+}
+#rl-root .cw-book__done {
+  border-top: 2px solid var(--color-rl-copper);
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#rl-root .cw-book__donehead {
+  font-family: var(--font-rl-display);
+  font-weight: 300;
+  font-variation-settings: "wdth" var(--dw-fit);
+  font-size: var(--d2);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+#rl-root .cw-book__done p:not(.cw-book__donehead) {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-80);
+  max-width: 46ch;
+}
+
+/* ============================================================
+ * 11. MEDIA — the one frame geometry the whole system uses
+ * ============================================================ */
+
+.rl-figure {
+  margin: 0;
+}
+.rl-figure img {
+  width: 100%;
+  height: auto;
+}
+.rl-figure figcaption {
+  padding-top: 12px;
+}
+/* A photograph is evidence, not wallpaper: at 1440 a full-content-width frame
+ * is 1376px of one Instagram crop and the page stops being a ledger. The
+ * exhibit takes the reading half. */
+.rl-figure--half {
+  max-width: 620px;
+}
+
+/* ============================================================
+ * 12. THE MOTION ENGINE (§16.3 items 3, 4, 5)
+ *
+ * One pattern for all three: the finished frame is the CSS default, the
+ * pre-state is added only under html.rl-js, and SiteMotion.tsx's single
+ * IntersectionObserver adds .rl-in once, never removing it. --i carries the
+ * item's index within its section for the stagger.
+ * ============================================================ */
+
+/* 3. Section heads: a clip-path reveal from the left, 700ms, once each. */
+html.rl-js [data-rl="head"] {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 700ms var(--e); /* motion-ok: §16.3-3, the section head's one clip-path reveal, at the operator-ruled duration. The 400ms cap is amended for Room and Ledger surfaces in DESIGN_BAR R15 and .claude/CLAUDE.md. */
+}
+html.rl-js [data-rl="head"].rl-in {
+  clip-path: inset(0 -2% 0 0);
+}
+
+/* 4. Hairlines draw: scaleX(0 -> 1) from the left, 500ms, 60ms stagger. The
+ * rule is painted by a pseudo-element so the layout box never moves. */
+html.rl-js [data-rl="rule"] {
+  position: relative;
+  border-top-color: transparent !important;
+}
+html.rl-js [data-rl="rule"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 1px;
+  background: var(--ink);
+  opacity: 0.15;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 500ms var(--e); /* motion-ok: §16.3-4, the ledger hairline drawing from the left. Operator-ruled duration; the cap is amended for these surfaces in DESIGN_BAR R15. */
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+html.rl-js [data-rl="rule"].rl-in::before {
+  transform: scaleX(1);
+}
+
+/* 5. Cards and blocks rise 20px with a 70ms stagger; media rise 10px. */
+html.rl-js [data-rl="rise"],
+html.rl-js [data-rl="media"] {
+  opacity: 0;
+  transform: translateY(var(--rl-rise, 20px));
+  transition:
+    opacity 500ms var(--e),
+    transform 500ms var(--e); /* motion-ok: §16.3-5, the card and block rise with its 70ms stagger. Operator-ruled duration; the cap is amended for these surfaces in DESIGN_BAR R15. */
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+html.rl-js [data-rl="media"] {
+  --rl-rise: 10px;
+}
+html.rl-js [data-rl="rise"].rl-in,
+html.rl-js [data-rl="media"].rl-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+ * 15. THE PLAYBOOK'S OWN FURNITURE
+ *
+ * /playbook opens on §15.2's manual composition (section 9 above) and then
+ * runs eight blocks of the book's own print grammar: a main column with a
+ * marginalia rail beside it, § codes, field notes, real spreads, the
+ * contents, the build log and the back cover. Those are the page's content
+ * and this pass does not touch them — it gives them the system's type,
+ * grounds and hairlines.
+ *
+ * <WallChart />, <PromptDiff /> and <PlaybookSignupForm /> render their own
+ * markup and are restyled through the class names it already carries.
+ * <WallChart /> keeps its figure animation: it is the one FIGURE animation on
+ * the site, approved in writing 2026-09-01, and nothing here touches it.
+ * ============================================================ */
+
+.rl-block {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px;
+  padding-top: var(--s);
+}
+.rl-block > .main {
+  grid-column: 1 / 9;
+  min-width: 0;
+}
+.rl-block > .rail {
+  grid-column: 10 / 13;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+@media (max-width: 899px) {
+  .rl-block {
+    display: block;
+    padding-top: var(--s);
+  }
+  .rl-block > .rail {
+    margin-top: 40px;
+  }
+}
+
+/* the marginalia note: a hairline, a label, and the note under it. */
+.rl-note {
+  border-top: 1px solid var(--hair);
+  padding-top: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-72);
+  max-width: 34ch;
+}
+.rl-note .rl-l {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* the build-log card — the page's one bordered block, because it is a card in
+ * the book too. */
+.rl-log {
+  box-sizing: border-box;
+  border: 1px solid var(--hair);
+  border-top: 2px solid var(--color-rl-copper);
+  border-radius: 8px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 66ch;
+}
+.rl-log .head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--hair);
+  padding-bottom: 14px;
+}
+.rl-log .title {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.rl-log p:not(.head) {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-80);
+}
+
+/* the contents, as the book's own TOC set on the ledger. */
+.rl-toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-toc > li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  column-gap: var(--gap);
+  row-gap: 4px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-toc > li:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-toc .num {
+  color: var(--ink);
+}
+.rl-toc .body {
+  display: block;
+  min-width: 0;
+}
+.rl-toc .title {
+  display: block;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.rl-toc .tag {
+  display: block;
+  margin-top: 4px;
+}
+.rl-toc .tag em {
+  font-style: normal;
+  /* "· free, below" is 14px text, where copper is 3.85:1 on bone and fails.
+   * Pitfall B1's deep copper (5.4:1) is the body-text emphasis colour, and
+   * axe measured this one too. */
+  color: var(--accent-copper-deep);
+}
+.rl-toc .page {
+  justify-self: end;
+}
+@media (max-width: 599px) {
+  .rl-toc > li {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+  .rl-toc .page {
+    grid-column: 2;
+    justify-self: start;
+  }
+}
+
+/* the full-bleed page of the book: espresso, one artifact, no words. */
+.rl-opener {
+  background: var(--color-rl-espresso);
+  padding: var(--s) var(--g);
+  margin-top: var(--s);
+  display: flex;
+  justify-content: center;
+}
+.rl-opener img {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+/* the back cover: espresso, the spec register on it. */
+.rl-back {
+  background: var(--color-rl-espresso);
+  padding-top: var(--s);
+  padding-bottom: var(--s);
+  margin-top: var(--s);
+  --ink: var(--color-rl-bone);
+  --ink-80: color-mix(in oklab, var(--color-rl-bone) 80%, transparent);
+  --ink-72: color-mix(in oklab, var(--color-rl-bone) 72%, transparent);
+  --ink-60: color-mix(in oklab, var(--color-rl-bone) 60%, transparent);
+  --hair: color-mix(in oklab, var(--color-rl-bone) 15%, transparent);
+  --hair-12: color-mix(in oklab, var(--color-rl-bone) 12%, transparent);
+  --hair-10: color-mix(in oklab, var(--color-rl-bone) 10%, transparent);
+  color: var(--color-rl-bone);
+}
+/* the objections stack in a column here rather than running three across. */
+.rl-qs--stack {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+.rl-qs--stack .rl-q {
+  padding: 24px 0;
+}
+
+/* ---- the three client components, restyled through their own classes ---- */
+
+/* WallChart: the one figure animation, approved in writing 2026-09-01 as a
+ * FIGURE animation and not a second signature. Its DRAWING, its timing, its
+ * >=900px gate and its reduced-motion branch are untouched — every rule below
+ * changes a colour and nothing else.
+ *
+ * It was drawn for an espresso ground: bone strokes, an espresso wipe, and
+ * SAFFRON for the rules line and its label. On the ledger's bone half the bone
+ * strokes are invisible, the espresso wipe is a black rectangle sitting on the
+ * figure, and saffron is a SECOND ACCENT, which .claude/CLAUDE.md bans and §3
+ * has no room for. So the figure is re-inked into the system: espresso where
+ * it was bone, bone where it was espresso, copper where it was saffron.
+ *
+ * Contrast, measured against bone #F5EFE4: the 2px rules line in copper is
+ * 3.85:1 and is a graphic object, where the bar is 3:1. Its LABEL is 11px
+ * text, where the bar is 4.5:1 and copper fails, so the label takes
+ * --accent-copper-deep (5.4:1) — the standing Pitfall B1 rule. The neutral
+ * labels go to espresso at 78%, which measures about 5.8:1; at 62% (the value
+ * the bone original used) they were 4.4:1 and under the bar. */
+#rl-root .cw-wallchart {
+  margin: 0;
+  max-width: 520px;
+  color: var(--ink);
+}
+#rl-root .cw-wallchart__axes line,
+#rl-root .cw-wallchart__window {
+  stroke: var(--color-rl-espresso);
+}
+#rl-root .cw-wallchart__wipe {
+  fill: var(--color-rl-bone);
+}
+#rl-root .cw-wallchart__rules {
+  stroke: var(--color-rl-copper);
+}
+#rl-root .cw-wallchart__cross {
+  fill: var(--color-rl-bone);
+  stroke: var(--color-rl-espresso);
+}
+#rl-root .cw-wallchart__lbl {
+  fill: var(--color-rl-espresso);
+  opacity: 0.78;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+#rl-root .cw-wallchart__lbl--rules {
+  fill: var(--accent-copper-deep);
+  opacity: 1;
+}
+#rl-root .cw-wallchart__cap {
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-60);
+  padding-top: 12px;
+}
+#rl-root .cw-wallchart__lbl {
+  font-family: var(--font-rl-display);
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  letter-spacing: 0.04em;
+}
+
+/* PromptDiff: two quoted columns from chapter two. */
+#rl-root .cw-diff {
+  margin: 0;
+}
+#rl-root .cw-diff__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 899px) {
+  #rl-root .cw-diff__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+#rl-root .cw-diff__col {
+  border-top: 1px solid var(--hair);
+  padding-top: 20px;
+  background: none;
+  border-radius: 0;
+}
+#rl-root .cw-diff__col--after {
+  border-top-color: var(--color-rl-copper);
+  border-top-width: 2px;
+  padding-top: 19px;
+}
+/* The "before" column is quieter than the "after" one, and in Color Worlds
+ * that was done with opacity: 0.68 on the block, compounding with an
+ * opacity: 0.7 on the note inside it. axe measured the result at 2.35:1 and
+ * 2.22:1 against bone — two serious findings on /playbook at both widths.
+ *
+ * The system says quiet in INK, not in layer opacity, precisely so a value
+ * can be measured instead of multiplied. Both opacities go to 1 and the
+ * quietness moves onto the ink ramp. */
+#rl-root .cw-diff__col--before {
+  opacity: 1;
+}
+#rl-root .cw-diff__col--before .cw-diff__quote {
+  color: var(--ink-80);
+}
+#rl-root .cw-diff__note {
+  opacity: 1;
+}
+#rl-root .cw-diff__eyebrow,
+#rl-root .cw-diff__lbl {
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-60);
+  /* the third compounding opacity in this component (0.72 on the label, on
+   * top of the column's own). Measured at 3.9:1 against bone even after the
+   * ink ramp was corrected. Quiet is carried by --ink-60 alone. */
+  opacity: 1;
+}
+#rl-root .cw-diff__col--after .cw-diff__lbl {
+  color: var(--accent-copper-deep);
+}
+#rl-root .cw-diff__quote {
+  font-family: var(--font-rl-text);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-top: 12px;
+}
+#rl-root .cw-diff__lede,
+#rl-root .cw-diff__note,
+#rl-root .cw-diff__cap {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-80);
+}
+
+/* PlaybookSignupForm: the same hairline field and square chip the booking
+ * form takes, through the classes its own markup carries. */
+#rl-root .cw-signup {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+#rl-root .cw-signup input {
+  box-sizing: border-box;
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 12px 0;
+  font-family: var(--font-rl-text);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--hair);
+  border-radius: 0;
+  transition: border-color 300ms var(--e);
+}
+#rl-root .cw-signup input:hover,
+#rl-root .cw-signup input:focus {
+  border-bottom-color: var(--color-rl-copper);
+}
+#rl-root .cw-signup button {
+  flex: 0 0 auto;
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  transition: background 300ms var(--e);
+}
+#rl-root .cw-signup button:hover,
+#rl-root .cw-signup button:focus-visible {
+  background: var(--color-rl-copper);
+}
+#rl-root .cw-msg {
+  flex: 1 1 100%;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--accent-copper-deep);
+}
+
+/* the buy button on /playbook is not inside a card, so it sizes to its own
+ * label rather than filling a column. */
+.rl-buy--auto {
+  width: auto;
+  padding-right: 0;
+}
+
+/* ============================================================
+ * 16. THE THEATER — /work/[slug], type system and grounds only
+ *
+ * Brief §3 item 4 is deliberately the lightest touch in the pass: the case
+ * studies keep their composition, their TitleCard, their sidebar, their stills
+ * and their view transition. What they take is the SYSTEM'S TYPE and the
+ * SYSTEM'S GROUNDS, and both arrive by repointing variables that
+ * app/globals.css already reads — not by rewriting a single layout rule.
+ *
+ * --font-display is the whole of the font half: every theater rule and every
+ * mdx-components heading resolves through it, and it pointed at Bricolage,
+ * which §2 bans in this direction. One line takes it out of the computed
+ * font-family of the entire route.
+ * ============================================================ */
+
+#rl-theater {
+  --font-display: var(--font-rl-display);
+  --font-sans: var(--font-rl-text);
+  --font-serif: var(--font-rl-text);
+  --font-cw-display: var(--font-rl-display);
+  --font-cw-label: var(--font-rl-display);
+
+  /* §3: the two grounds are espresso and bone, and the theater's own
+   * #12100E / #EAE6DD pair is a near-miss of them. Ink on espresso is bone. */
+  --color-theater-ground: var(--color-rl-espresso);
+  --color-theater-ink: var(--color-rl-bone);
+
+  /* the fixed bar is 40px (48 below 900) and the case study's own top padding
+   * was written for a page with no bar over it. */
+  padding-top: 40px;
+}
+@media (max-width: 899px) {
+  #rl-theater {
+    padding-top: 48px;
+  }
+}
+
+/* The theater's two atmosphere layers come off. ::before is a two-layer film
+ * grain at screen blend; ::after is a warm radial spotlight that DRIFTS — an
+ * idle loop, and §16.3's vocabulary is entrances that run once and terminate,
+ * with no exception for a background. §3 also has one ground and nothing over
+ * it. Both are switched off for this route only; nothing else in globals.css
+ * is touched, and (foyer)'s paper grain is untouched. */
+#rl-theater::before,
+#rl-theater::after {
+  content: none;
+}
+
+/* the case study's own display type takes the system's setting. Sizes and
+ * layout are globals.css's; this is weight, width and tracking only. */
+#rl-theater :is(h1, h2, h3) {
+  font-weight: 300;
+  font-variation-settings: "wdth" var(--dw-two);
+  letter-spacing: -0.03em;
+}
+#rl-theater .case-study__meta,
+#rl-theater .case-study__glance-list {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+ * 13. THE LADDER — the responsive stops, ported from the template
+ * ============================================================ */
+
+@media (max-width: 1279px) {
+  .rl-card .cta .rl-chip .t {
+    font-size: 19px;
+  }
+  .rl-eng .v {
+    font-size: 52px;
+  }
+  .rl-eng {
+    column-gap: 28px;
+    row-gap: 22px;
+    padding: 30px 28px;
+  }
+  .rl-prf,
+  .rl-prfx {
+    grid-template-columns: minmax(0, 460px) minmax(0, 1fr) 40px;
+    column-gap: 24px;
+  }
+  .rl-opgrid {
+    gap: 32px;
+  }
+  .rl-opstage,
+  .rl-opside {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 1023px) {
+  .rl-card .cta .rl-chip .t {
+    font-size: 17px;
+  }
+  .rl-eng {
+    column-gap: 24px;
+    row-gap: 20px;
+    padding: 28px 24px;
+  }
+  .rl-eng .v {
+    font-size: 44px;
+  }
+  .rl-prf,
+  .rl-prfx {
+    grid-template-columns: minmax(0, 1fr) 40px;
+    row-gap: 8px;
+    column-gap: 12px;
+    align-items: baseline;
+    padding: 22px 0;
+  }
+  .rl-prf .who {
+    grid-column: 1 / -1;
+    font-size: 24px;
+  }
+  .rl-prfx .who {
+    grid-column: 1;
+  }
+  .rl-prf .cap {
+    grid-column: 1;
+  }
+  .rl-prf .ar,
+  .rl-prfx .ar {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 899px) {
+  .rl-steps li {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 28px 0;
+    row-gap: 8px;
+  }
+  .rl-steps .n,
+  .rl-steps .nm,
+  .rl-steps .s {
+    grid-column: 1 / 2;
+  }
+  .rl-steps .s {
+    font-size: 19px;
+  }
+  .rl-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .rl-card {
+    padding: 22px;
+  }
+  .rl-card.mark {
+    padding-top: 21px;
+  }
+  .rl-card .pr {
+    font-size: 52px;
+  }
+  .rl-card .cta .rl-chip .t {
+    font-size: 19px;
+  }
+  .rl-eng {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+    row-gap: 22px;
+    padding: 26px 20px;
+  }
+  .rl-eng .side {
+    grid-column: 1;
+    row-gap: 22px;
+  }
+  .rl-eng .side.l-side {
+    grid-row: 1 / 3;
+  }
+  .rl-eng .side.r {
+    grid-column: 1;
+    grid-row: 3 / 5;
+    justify-items: stretch;
+    text-align: left;
+  }
+  .rl-eng .rl-chip {
+    width: 100%;
+  }
+  .rl-eng .rl-chip .t {
+    flex: 1;
+  }
+  .rl-eng .v {
+    font-size: 40px;
+    font-variation-settings: "wdth" 88;
+    white-space: normal;
+  }
+  .rl-eng .hd {
+    font-variation-settings: "wdth" var(--dw-fit);
+  }
+  .rl-qs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+  .rl-manual .copy,
+  .rl-manual .art {
+    grid-column: 1 / -1;
+  }
+  .rl-manual .copy {
+    margin-top: 40px;
+  }
+  .rl-manual .buy .v {
+    font-size: 52px;
+  }
+  .rl-opgrid {
+    display: block;
+  }
+  .rl-opstage {
+    width: auto;
+    margin-left: calc(-1 * var(--g));
+    margin-right: calc(-1 * var(--g));
+  }
+  .rl-opover {
+    left: var(--g);
+    right: var(--g);
+  }
+  .rl-opover h1.two,
+  .rl-opover h2.two {
+    margin-right: 0;
+  }
+  .rl-opover p {
+    display: none;
+  }
+  .rl-opside .m-first {
+    display: block;
+  }
+  .rl-opside {
+    margin-top: 4px;
+    gap: 20px;
+  }
+  .rl-opside p {
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .rl-opside .lead > * {
+    font-size: 18px;
+    line-height: 1.45;
+    padding: 18px 0;
+  }
+  .rl-opside .sig {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 599px) {
+  .rl-chips {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .rl-chips .rl-chip {
+    width: 100%;
+  }
+  .rl-chips .rl-chip .t {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* ============================================================
+ * 14. REDUCED MOTION — the finished frame, nothing travels (§16.3)
+ *
+ * html.rl-js is never set when the visitor asks for reduced motion, so the
+ * pre-states above are never parsed onto anything. This block is the belt to
+ * those braces: it kills the hover transitions too, and swaps clip B for its
+ * poster.
+ * ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  #rl-root *,
+  .rl-bar,
+  .rl-foot {
+    transition: none !important;
+  }
+  #rl-root [data-rl] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .rl-opfilm video {
+    display: none;
+  }
+  .rl-opfilm .still {
+    display: block;
+  }
+}
