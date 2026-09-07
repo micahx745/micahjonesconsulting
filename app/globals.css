@@ -51,6 +51,32 @@
   /* ORDANI-only — permitted via design-tokens.sh allowlist for /work/ordani only (Phase 8). */
   --color-ordani-sage: #5e7158;
 
+  /* ============================================================
+   * ROOM AND LEDGER — Pass-101 (WINNING-BRIEF-2026-09-05 §3, §16.4)
+   *
+   * Two grounds and one accent. "Ink on espresso is bone; ink on bone
+   * is espresso" (§3). Copper is unchanged from the constitution:
+   * #C8542B, the accent the site has always run. Espresso and bone are
+   * already in brand.json's palette (theater-ground, foyer-paper) and
+   * are re-declared here under the rl- prefix because the direction
+   * uses them as a PAIR of grounds one light travels between, not as
+   * two route modes.
+   *
+   * These are Tailwind v4 namespaced tokens, so bg-rl-espresso,
+   * text-rl-bone and font-rl-display resolve as utilities. The system
+   * variables the direction composes with — the width ladder, the two
+   * display sizes, the fingertip, the travelling ground — are not
+   * namespaced and live in the :root block after this @theme.
+   * ============================================================ */
+  --color-rl-espresso: #0d0d0f;
+  --color-rl-bone: #f5efe4;
+  --color-rl-copper: #c8542b;
+
+  --font-rl-display:
+    var(--font-anybody), "Anybody", "Helvetica Neue", Arial, sans-serif;
+  --font-rl-text:
+    var(--font-hanken), "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+
   /* Tier Z — tertiary accent. Used ONLY in the booth (contact room) on
    * the "Write to me" link underline. Adds depth without breaking the
    * single-accent rule (copper remains the dominant accent). */
@@ -166,6 +192,175 @@
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0); /* ease-in-quart */
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1); /* ease-in-out-quart */
+}
+
+/* ============================================================
+ * ROOM AND LEDGER — the system variables (Pass-101)
+ *
+ * Source of truth: .planning/design/winning/room-and-ledger.template.html,
+ * verified over seven rounds; every value below is measured there and the
+ * names are the template's names on purpose, so the ported sections and
+ * scripts/verify-room.py read the same custom properties they were written
+ * against. Collision check before adopting the short names: `var(--d)`,
+ * `var(--d2)`, `var(--p)`, `var(--e)`, `var(--g)`, `var(--t)`, `var(--s)`
+ * and `var(--gap)` had ZERO occurrences in this 6,600-line stylesheet and
+ * zero definitions, so nothing legacy inherits them.
+ *
+ * These are deliberately NOT in @theme: Tailwind v4 prunes theme variables
+ * it sees no utility for, and --p is written at runtime from scroll.
+ * ============================================================ */
+
+:root {
+  /* One source of light. 0 = the dark half (the room), 1 = the light half
+   * (the ledger). §3: --p is written from scroll, reaches 1 when the reading
+   * line (55vh) crosses the top of the rail section, and never goes back
+   * below its section value on the way up — the light does not flicker. */
+  --p: 0;
+  --ground: color-mix(
+    in oklab,
+    var(--color-rl-espresso) calc((1 - var(--p)) * 100%),
+    var(--color-rl-bone)
+  );
+
+  /* The GROUND travels; the INK is a hard switch at p >= .5 (html.lit). */
+  --ink: var(--color-rl-bone);
+  --ink-80: color-mix(in oklab, var(--ink) 80%, transparent);
+  --ink-72: color-mix(in oklab, var(--ink) 72%, transparent);
+  --ink-60: color-mix(in oklab, var(--ink) 60%, transparent);
+  --hair: color-mix(in oklab, var(--ink) 15%, transparent);
+  --hair-12: color-mix(in oklab, var(--ink) 12%, transparent);
+  --hair-10: color-mix(in oklab, var(--ink) 10%, transparent);
+
+  --display: var(--font-rl-display);
+  --text: var(--font-rl-text);
+
+  /* TWO display sizes and no third (§14.4). --d is the poster — the hero and
+   * the ask, nothing else. --d2 is the composed size: every section head, the
+   * operator heading, the three rail step names. */
+  --d: clamp(52px, 9.4vw, 136px);
+  --d2: calc(0.76 * var(--d));
+  --t: 17px;
+  --lede: 21px;
+
+  /* THE WIDTH LADDER (§2, §14.7). Five stops on Anybody's wdth axis, which is
+   * what separates a label from a headline here instead of a third family.
+   * 125 is the poster; the hero row drops to 115 then 106 if `go-to-market.`
+   * cannot end 32px inside the stage, and the size never drops (§2, §14.7). */
+  --dw: 125; /* poster: the hero and the ask */
+  --dw-two: 115; /* composed: section heads at --d2 */
+  --dw-fit: 106; /* fitted: prices, the operator heading in the square */
+  --dw-meta: 90; /* metadata rows */
+  --dw-label: 80; /* the one label style */
+
+  /* THE FINGERTIP (§14.1, §14.7), measured on video/A2-poster-last.jpg
+   * (1920x1080): the leftmost skin pixels of the pointing hand sit at source
+   * x=372, y=410..416, midpoint y=413. The wall there reads 143-146 and the
+   * finger 97-113, a >=30-level step. 372/1920 and 413/1080. The stage is
+   * 16:9 and the film is 16:9, so a cover fit is a fill fit and these two
+   * percentages ARE the fingertip inside the box. */
+  --fx: 19.375%;
+  --fy: 38.2407%;
+
+  /* Distance from a display line box's top to the CAP-TOP of its first glyph,
+   * as a fraction of font-size. Measured in Chromium with Anybody 300 /
+   * wdth 125 / line-height .92 at 52px, 96.3px and 135.36px: 0.0577, 0.0623,
+   * 0.0591 (canvas ascent is integer-rounded, hence the spread). 0.0591 is
+   * the value at the poster size, which is the one that has to land. */
+  --capk: 0.0591;
+
+  /* The house curve. Every Room and Ledger transition uses it (§16.3). */
+  --e: cubic-bezier(0.4, 0, 0, 1);
+
+  --g: 32px; /* page gutter */
+  --gap: 24px; /* column gap */
+  --s: 120px; /* section entry air: 120 at >=900, 64 below (§14.4) */
+}
+
+@media (max-width: 899px) {
+  :root {
+    --s: 64px;
+  }
+}
+
+/* The ink switch. Set on <html> by the home's scroll handler at p >= .5. */
+html.lit {
+  --ink: var(--color-rl-espresso);
+}
+
+/* ---- the sheet: one fixed ground, no section declares a colour (§3) ---- */
+.rl-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--ground);
+  transition: background 700ms var(--e); /* motion-ok: §16.3-9, the ground travel. The light moving between the two halves IS the direction, not an entrance effect; DESIGN_BAR R15's 400ms cap is amended for this surface in this same commit. */
+}
+
+/* ---- the two display sizes ---- */
+.rl-d {
+  font-family: var(--display);
+  font-weight: 300;
+  font-variation-settings: "wdth" var(--dw);
+  font-size: var(--d);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+/* Display rows are set by hand, one per line, never balanced or wrapped. */
+.rl-d .r {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.rl-d.two {
+  font-size: var(--d2);
+  font-variation-settings: "wdth" var(--dw-two);
+  line-height: 0.98;
+}
+
+.rl-cu {
+  color: var(--color-rl-copper);
+}
+
+/* ---- the one label style (§2): 14px, wdth 80, .04em, weight 500 ---- */
+.rl-l {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  color: var(--ink-60);
+}
+
+.rl-l.now {
+  color: var(--ink);
+}
+
+.rl-l.meta {
+  font-size: 14px;
+  line-height: 20px;
+  font-variation-settings: "wdth" var(--dw-meta);
+  letter-spacing: 0.04em;
+  color: var(--ink-80);
+}
+
+/* Data — prices, figures, ordinals — is Anybody with tabular figures at the
+ * size of the surrounding role. This replaces the retired mono third face
+ * (DESIGN_BAR R1, amended Pass-101). */
+.rl-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- reduced motion: the finished frame, no travel (§16.3) ---- */
+@media (prefers-reduced-motion: reduce) {
+  .rl-sheet {
+    transition: none;
+  }
 }
 
 /* ---- Mode-driven defaults — applied by [data-mode] on group layout <div> ----

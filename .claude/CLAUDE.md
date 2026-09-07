@@ -37,6 +37,29 @@ would be the second-signature line; the answer there is no.
 
 `motion-discipline.sh` blocks cursor followers, scroll-jacking, marquees, mono aesthetic, and (Phase 1 addition) `syncTouch: true` on Lenis.
 
+**AMENDED Pass-101 — the Room and Ledger motion set (§16.3).** Operator, 2026-09-06, verbatim:
+"Lack of animations and weak ones that exist. FYI I love website animations need more". The
+one-signature rule above is overruled BY THE CLIENT on the Room and Ledger surfaces, and only
+there. The nine-item set is recorded in full in `brand.json.motion.room_and_ledger`: the
+fingertip moment, the bar seam, section-head clip-path reveals, hairlines drawing, cards
+rising, the operator film settling, arrow and chip hovers, the ask field, and the ground
+travel. All nine on the home; items 2, 3, 4, 5 and 7 on every other ported page.
+
+What the amendment buys is more ENTRANCES, not a loop, and it does not touch the vocabulary:
+transform / opacity / clip-path only, the house curve `cubic-bezier(.4,0,0,1)`, nothing
+coupled to the cursor, no scroll-jack, no marquee, no parallax on a photograph, ≤ 3
+`@keyframes` site-wide, every animation runs once and terminates, every rest state is the
+finished frame, and `prefers-reduced-motion: reduce` disables all of it. GSAP stays
+quarantined to `components/TitleCard.tsx` — the set is CSS transitions plus
+IntersectionObserver plus the clip's `timeupdate`. `<TitleCard />` and the foyer↔theater View
+Transition are unchanged; `<WallChart />` stays the one figure animation on `/playbook`.
+
+The entrance cap for these surfaces is 1200ms (`brand.json.motion.room_and_ledger.tokens.max_entrance_ms`),
+raised from 300. `motion-token-lint.sh` still hardcodes 300, so a line over the cap carries the
+hook's own documented per-line opt-out, `/* motion-ok: §16.3-N, <reason> */`, quoting the item
+it belongs to. That is the gate's defined escape hatch, not a bypass: no check was deleted, no
+hook was disabled, and off these surfaces the 300ms cap stands.
+
 ## Model routing — reset 2026-09-04
 
 Operator ruling, 2026-09-04, verbatim: "leave the main model on fable 5.1 ultracode but us

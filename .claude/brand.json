@@ -180,6 +180,31 @@
       "description": "The book's page-6 figure drawn once on load in the /playbook hero: dashed context-window line wiped in, saffron unwritten-rules line climbing on an ease-in-quad, an 80ms hold at the crossing while the marker stamps, then a break-through on ease-out. ~1.26s of visible motion, CSS only, no loop, no scroll or input coupling. Approved in writing by the motion-engineer 2026-09-01 as a FIGURE animation, NOT a second signature interaction: it is the artifact playing, not the site responding to the visitor. Granted an explicit exception to the R15 400ms entrance cap on that basis. Base CSS is the finished frame; motion applies only at >=900px with no reduced-motion preference. Scoped to /playbook.",
       "files": ["components/color-worlds/WallChart.tsx", "app/globals.css"]
     },
+    "room_and_ledger": {
+      "id": "room-and-ledger-motion-set",
+      "_ruling": "WINNING-BRIEF-2026-09-05 §16.3, operator 2026-09-06 verbatim: 'Lack of animations and weak ones that exist. FYI I love website animations need more'. The corpus's one-moment discipline is OVERRULED BY THE CLIENT on the Room and Ledger surfaces. The vocabulary is not relaxed: transform/opacity/clip-path only, the house curve cubic-bezier(.4,0,0,1), nothing coupled to the cursor, no scroll-jack, no marquee, no parallax on photographs, at most 3 @keyframes site-wide, and every rest state is the finished frame — a page with scripting off shows everything.",
+      "set": [
+        "1. THE MOMENT: the copper word lights when the fingertip arrives — opacity .28 filling to 1 over 260ms, triggered by the clip's timeupdate at the arrival time; 'I build the' rises 24px over 600ms. Once lit it stays lit.",
+        "2. The bar slides down 12px and fades in at the seam (240ms), never again.",
+        "3. Section heads: clip-path reveal from the left, inset(0 100% 0 0) to inset(0), 700ms, once each as the head crosses the reading line.",
+        "4. Hairlines draw: every ledger rule scaleX(0 to 1) from the left, 500ms, 60ms stagger within a section.",
+        "5. Cards and blocks rise: price cards 20px with a 70ms stagger, then Engagements, then objection columns; media and the cover rise 10px. 500ms, once.",
+        "6. Operator: the square's film settles from scale(1.06) to 1 over 1.2s as it enters; the two heading rows rise 20px, 80ms apart.",
+        "7. Hovers: chips swap ground in 300ms; every arrow slides 6px right on hover/focus (200ms); the receipt rows' copper wipe; price-card borders turn copper (300ms).",
+        "8. The ask: the copper field's headline rises 30px and the arrow slides in from the left (600ms); the chips follow 120ms later.",
+        "9. The ground travel and the rail-style lighting.",
+        "All nine on the home; items 2, 3, 4, 5 and 7 on every other page. prefers-reduced-motion: reduce disables all of it and shows finished frames."
+      ],
+      "tokens": {
+        "easings": {
+          "house": "cubic-bezier(0.4, 0, 0, 1)"
+        },
+        "max_entrance_ms": 1200,
+        "max_entrance_ms_note": "Raised from 300 for Room and Ledger surfaces ONLY, by the §16.3 ruling. The longest member of the set is item 6's 1.2s film settle. motion-token-lint.sh still hardcodes 300; until it reads this value, a line over the cap carries the hook's own documented escape hatch — '/* motion-ok: §16.3-N, <reason> */' — which is an opt-out the gate defines, not a bypass. Outside these surfaces the 300ms cap stands.",
+        "scope": "app/(foyer) home, /packages, /playbook, /work, /work/[slug], /call, /about once ported by Pass-101"
+      },
+      "files": ["app/globals.css", "components/room/"]
+    },
     "banned": [
       "cursor.*follow|MouseFollower",
       "scroll-snap-type:\\s*y\\s+mandatory",

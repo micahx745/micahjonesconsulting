@@ -228,6 +228,18 @@ by looking. Grade per page; report R-numbers.
 
 - **R15 — Motion is punctuation:** nothing animates idly (no pulsing dots, marquees, looping
   gradients); entrance effects, if any, run once, ≤400ms, ease-out, transform/opacity only.
+  **Amended Pass-101 (WINNING-BRIEF-2026-09-05 §16.3), operator ruling 2026-09-06, verbatim:**
+  "Lack of animations and weak ones that exist. FYI I love website animations need more". On the
+  Room and Ledger surfaces the 400ms entrance cap and the one-moment reading of R9 are overruled
+  by the client, and the nine-item set in `brand.json.motion.room_and_ledger` is the standard: the
+  cap there is 1200ms (item 6's film settle). **What is NOT relaxed, and is the price of the
+  amendment:** transform / opacity / clip-path only; the house curve `cubic-bezier(.4,0,0,1)`;
+  nothing coupled to the cursor; no scroll-jack; no marquee; no parallax on a photograph; at most
+  3 `@keyframes` site-wide; every animation runs ONCE and terminates; every rest state is the
+  finished frame, so a page with scripting off shows everything; and
+  `prefers-reduced-motion: reduce` turns all of it off. Off those surfaces R15 stands as written.
+  Idle motion is still a fail everywhere — "more animation" bought more _entrances_, not a
+  loop.
 - **R16 — Copy passes the specificity test:** zero instances of hype vocabulary (stream·line,
   em·power, supercharge, world·class, seam·less, cutting·edge, enterprise-grade, award-winning, or
   anything on the repo copy-lint banned list — dots stripped when grepping); zero emoji bullets;
