@@ -33,12 +33,12 @@
   {
    "id": "16.2-veil-cut",
    "pass": true,
-   "evidence": "1440, the veil measured directly (the film replaced by flat white, so alpha = (255 - pixel) / 242): 0.570 at fingertip_y - 12px (SS16.2 pins .55), 1.000 at fingertip_y + 4px (SS16.2 pins solid), 0.550 at the bone row's own box top (what carries that row at >=4.5:1), 0.550 40px above the tip, 1.000 40px below"
+   "evidence": "1440, the veil measured directly (the film replaced by flat white, so alpha = (255 - pixel) / 242): 0.554 at fingertip_y - 12px (SS16.2 pins .55), 1.000 at fingertip_y + 4px (SS16.2 pins solid), 0.550 at the bone row's own box top (what carries that row at >=4.5:1), 0.550 40px above the tip, 1.000 40px below"
   },
   {
    "id": "16.2-fingertip-emerges",
    "pass": true,
-   "evidence": "1440, hold frame: inside the 18px of ramp still lit above the tip, the finger reads a median 20% darker than the wall on the same row (>=15%, the scale-free form of SS14.1's old 25-of-145 step), peaking at a 17-level absolute step; per-row (wall, finger, rel): [(91, 91, 0.0), (91, 91, 0.0), (77, 66, 0.14), (62, 50, 0.19), (48, 32, 0.32), (33, 20, 0.4)]. Below fingertip_y + 4px the veil is solid by SS16.2's own ruling, so the hand is in the dark there BY DESIGN and only the tip is lit."
+   "evidence": "1440, hold frame: inside the 18px of ramp still lit above the tip, the finger reads a median 22% darker than the wall on the same row (>=15%, the scale-free form of SS14.1's old 25-of-145 step), peaking at a 37-level absolute step; per-row (wall, finger, rel): [(91, 91, 0.0), (91, 91, 0.0), (88, 74, 0.15), (85, 67, 0.21), (83, 51, 0.39), (61, 29, 0.52)]. Below fingertip_y + 4px the veil is solid by SS16.2's own ruling, so the hand is in the dark there BY DESIGN and only the tip is lit."
   },
   {
    "id": "14.2-op-square",
@@ -153,7 +153,7 @@
   {
    "id": "15.1-gesture-plays-both",
    "pass": true,
-   "evidence": "preload ['auto', 'auto'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.20s) and the operator clip is playing (paused=False, t=3.73s)"
+   "evidence": "preload ['auto', 'auto'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.20s) and the operator clip is playing (paused=False, t=3.72s)"
   },
   {
    "id": "discipline",
