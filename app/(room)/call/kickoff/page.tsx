@@ -1,4 +1,4 @@
-// app/(foyer)/call/kickoff/page.tsx
+// app/(room)/call/kickoff/page.tsx
 //
 // The kickoff call a PACKAGE BUYER has already paid for. Reached from
 // /services/thanks and from the package delivery email.
@@ -19,10 +19,13 @@
 //
 // The form and its submission contract are UNTOUCHED and must stay that way:
 // that path is operator-verified ("booked and it worked - invite came through").
+//
+// PASS-101 PHASE 3 — restyled with /call, which it shares a shape with. Same
+// URL, same <BookCallForm /> call, same five terms in the same order; the
+// terms take the system's register and the form is restyled through the class
+// names its own markup already carries. Nothing in the submission path moved.
 import type { Metadata } from "next";
 import { BookCallForm } from "@/components/color-worlds/BookCallForm";
-import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
-import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 // "Included with your package", never "Free": they paid. The refund line is
 // the one already live on /packages, /services/thanks and in the kickoff
@@ -52,30 +55,30 @@ const KICKOFF_TERMS = [
 
 export default function BookKickoffPage() {
   return (
-    <>
-      <OpeningWorld name="espresso" />
-      <section
-        className="cw-bk"
-        data-section
-        data-world="espresso"
-        aria-labelledby="cw-book-title"
-      >
-        <div className="cw-bk__offer">
-          <h1 id="cw-book-title" className="cw-bk__title">
-            Thirty minutes. The work starts here.
-          </h1>
-          <p className="cw-bk__dek">
+    <section className="rl-wrap rl-first" aria-labelledby="rl-kickoff-title">
+      <div className="rl-sec rl-sec--wide">
+        <div className="rl-eyebrow">
+          <span className="rl-l">The kickoff call</span>
+        </div>
+        <h1 id="rl-kickoff-title" className="rl-d" data-rl="head">
+          Thirty minutes. The work starts here.
+        </h1>
+      </div>
+
+      <div className="rl-two">
+        <div className="rl-two__l">
+          <p className="rl-lede" data-rl="rise">
             No deck and no pitch. You have paid, so this call is where the work
             starts. Bring your intake answers if you have them. If not, bring
             the problem and I will ask.
           </p>
-          <p className="cw-bk__leave">
+          <p className="rl-body rl-air-s" data-rl="rise">
             <strong>What you leave with:</strong> the first deliverable named,
             the date it lands, and what I need from you before then.
           </p>
-          <dl className="cw-bk__terms">
+          <dl className="rl-reg rl-air-m" data-rl-group="terms">
             {KICKOFF_TERMS.map((t) => (
-              <div key={t.k}>
+              <div key={t.k} data-rl="rule">
                 <dt>{t.k}</dt>
                 <dd>{t.v}</dd>
               </div>
@@ -83,18 +86,16 @@ export default function BookKickoffPage() {
           </dl>
         </div>
 
-        <div className="cw-bk__form">
+        <div className="rl-two__r">
           {/* "Slots I hold open", not "available times": availability is
               confirmed by hand until the calendar sync ships, and a page
               should not imply a live calendar it does not have. */}
-          <p className="cw-bk__form-label">Slots I hold open</p>
-          <BookCallForm />
+          <div className="rl-form" data-rl="rise">
+            <p className="rl-l">Slots I hold open</p>
+            <BookCallForm />
+          </div>
         </div>
-      </section>
-
-      <section className="cw-block cw-bk__foot" data-section data-world="bone">
-        <PageFooter />
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

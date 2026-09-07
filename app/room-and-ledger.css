@@ -198,17 +198,46 @@
   margin: 0;
 }
 
+/* THE TWO-COLUMN PAGE. The template's own split (§14.2's operator section,
+ * §15.2's manual): seven columns of the twelve for the argument, five for the
+ * artifact, 48px between them, and one column below 900px. */
+.rl-two {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px;
+}
+.rl-two__l {
+  grid-column: 1 / 7;
+  min-width: 0;
+}
+.rl-two__r {
+  grid-column: 8 / 13;
+  min-width: 0;
+}
+@media (max-width: 899px) {
+  .rl-two {
+    display: block;
+  }
+  .rl-two__r {
+    margin-top: 48px;
+  }
+}
+
 /* The four air steps the ported pages use between blocks. Named rather than
  * written inline so the rhythm is one decision in one place: 24 inside a
  * block, 48 between blocks, 64 before a ledger, and the section air (--s)
  * between sections. */
-.rl-air-s {
+/* #rl-root-prefixed on purpose: the margin reset above is (1,0,1) and would
+ * out-specify a bare class, so a <p> or a <figure> carrying an air class
+ * would silently keep margin:0. Measured on /call, where the lede and the
+ * paragraph under it were sitting on the same line box. */
+#rl-root .rl-air-s {
   margin-top: 24px;
 }
-.rl-air-m {
+#rl-root .rl-air-m {
   margin-top: 48px;
 }
-.rl-air-l {
+#rl-root .rl-air-l {
   margin-top: 64px;
 }
 
@@ -363,6 +392,7 @@ button:focus-visible .rl-ar {
 }
 .rl-bar .rl-l {
   color: color-mix(in oklab, var(--color-rl-espresso) 60%, transparent);
+  white-space: nowrap;
   transition: color 200ms var(--e);
 }
 .rl-bar .rl-l.now,
@@ -401,11 +431,29 @@ button:focus-visible .rl-ar {
   color: var(--color-rl-bone);
 }
 
+/* THE BAR'S LADDER, measured at 360 / 390 / 768 / 1440 rather than guessed.
+ * Five items justified edge to edge is a desktop composition; the same five
+ * strings at 14px need 472px of a 390px bar. So:
+ *   >= 900  five items at 14px
+ *   600-899 three items at 12px, nothing wrapping (407px at 768)
+ *   <  600  two items — the wordmark and the primary CTA (266px at 390,
+ *           and it still fits at 320)
+ * Nothing is allowed to wrap: a two-line item inside a 48px bar is what the
+ * first phone render actually did, and it read as a broken header. */
 @media (max-width: 899px) {
   .rl-bar {
     height: 48px;
+    gap: 12px;
+  }
+  .rl-bar .rl-l {
+    font-size: 12px;
   }
   .rl-bar .hide-s {
+    display: none;
+  }
+}
+@media (max-width: 599px) {
+  .rl-bar .hide-xs {
     display: none;
   }
 }
@@ -904,6 +952,60 @@ a.rl-prfx:focus-visible .who {
   padding: 20px 0;
 }
 
+/* THE TWO-COLUMN LEDGER — §15.4's row shape without the ordinal. Used where
+ * a claim already opens with its own named term ("Positioning research that
+ * moves deal size.") and the rest of the row is the evidence for it.
+ *
+ * Round 9's finding applies here too: a ledger takes the COLUMN. Set as one
+ * 1376px line at 1440, these rows ran ~150 characters, which is twice a
+ * readable measure; split in two they open past the section's own midline and
+ * the hairline still runs the full width, which is what makes it a ledger and
+ * not a caption. */
+.rl-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rl-ledger > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: var(--gap);
+  row-gap: 8px;
+  align-items: start;
+  padding: 32px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-ledger > li:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-ledger .term {
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.rl-ledger .stmt {
+  font-size: 19px;
+  line-height: 1.5;
+  max-width: 46ch;
+  color: var(--ink-80);
+}
+@media (max-width: 899px) {
+  .rl-ledger > li {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 0;
+  }
+  .rl-ledger .term {
+    font-size: 21px;
+  }
+  .rl-ledger .stmt {
+    font-size: 17px;
+  }
+}
+
 /* the metadata register — a key/value ledger. */
 .rl-reg {
   margin: 0;
@@ -1077,6 +1179,20 @@ a.rl-prfx:focus-visible .who {
   --hair-10: color-mix(in oklab, var(--color-rl-bone) 10%, transparent);
   color: var(--color-rl-bone);
 }
+/* the operator section can BE the first section of a page (/about opens on
+ * it), and then it owes the fixed bar its height on top of its own air. Both
+ * rules are single-class, so this one has to name both to win. */
+.rl-op.rl-first {
+  padding-top: calc(var(--s) + 40px);
+}
+@media (max-width: 899px) {
+  .rl-op.rl-first {
+    padding-top: calc(var(--s) + 48px);
+  }
+}
+#rl-root .rl-opside h2 {
+  margin: 0;
+}
 .rl-opgrid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1213,6 +1329,148 @@ a.rl-prfx:focus-visible .who {
   font-size: 21px;
   line-height: 1.35;
   color: var(--color-rl-bone);
+}
+
+/* ============================================================
+ * 10b. THE BOOKING FORM (/call and /call/kickoff)
+ *
+ * components/color-worlds/BookCallForm.tsx is operator-verified end to end
+ * ("booked and it worked - invite came through") and this pass does not open
+ * it. Its markup is fixed, so the form is restyled through the cw- class names
+ * it already renders: label rows become the register's own key/value rhythm,
+ * the fields become hairline-ruled inputs on the ledger's paper, and the
+ * submit button takes the chip. Nothing is added and no prop is introduced.
+ * ============================================================ */
+
+.rl-form {
+  border-top: 1px solid var(--hair);
+  padding-top: 28px;
+}
+#rl-root .rl-form > .rl-l {
+  display: block;
+  margin-bottom: 24px;
+}
+#rl-root .cw-book {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+#rl-root .cw-book__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+@media (max-width: 599px) {
+  #rl-root .cw-book__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+#rl-root .cw-book__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+#rl-root .cw-book__lbl {
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.45;
+  color: var(--ink-60);
+}
+#rl-root .cw-book input,
+#rl-root .cw-book select,
+#rl-root .cw-book textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 0;
+  font-family: var(--font-rl-text);
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--hair);
+  border-radius: 0;
+  appearance: none;
+  transition: border-color 300ms var(--e);
+}
+#rl-root .cw-book textarea {
+  resize: vertical;
+}
+#rl-root .cw-book input:hover,
+#rl-root .cw-book select:hover,
+#rl-root .cw-book textarea:hover,
+#rl-root .cw-book input:focus,
+#rl-root .cw-book select:focus,
+#rl-root .cw-book textarea:focus {
+  border-bottom-color: var(--color-rl-copper);
+}
+#rl-root .cw-book__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  height: 48px;
+  padding: 0 28px;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-rl-display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  /* the cw button ships a pill radius; the system has square chips. */
+  border-radius: 0;
+  transition: background 300ms var(--e);
+}
+#rl-root .cw-book__btn:hover,
+#rl-root .cw-book__btn:focus-visible {
+  background: var(--color-rl-copper);
+}
+#rl-root .cw-book__btn[disabled] {
+  cursor: progress;
+  opacity: 0.7;
+}
+#rl-root .cw-book__warn {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--accent-copper-deep);
+}
+#rl-root .cw-book__done {
+  border-top: 2px solid var(--color-rl-copper);
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#rl-root .cw-book__donehead {
+  font-family: var(--font-rl-display);
+  font-weight: 300;
+  font-variation-settings: "wdth" var(--dw-fit);
+  font-size: var(--d2);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+#rl-root .cw-book__done p:not(.cw-book__donehead) {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-80);
+  max-width: 46ch;
 }
 
 /* ============================================================

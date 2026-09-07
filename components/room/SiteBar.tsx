@@ -5,7 +5,8 @@
 //
 // Five items in the ONE label style, justified edge to edge. No logo-left /
 // menu-right cluster, no blur, no glass, no blend mode, and no overlay menu:
-// the bar drops to three items below 900px and that is the whole phone design.
+// the bar drops to three items below 900px and to two below 600px, and that
+// is the whole phone design.
 // The template's own five strings, mapped to the live routes they name:
 //
 //   Micah Jones ......... /
@@ -26,16 +27,19 @@
 
 import { usePathname } from "next/navigation";
 
+// `hide` is the width below which the item leaves the bar, measured rather
+// than guessed: all five strings at the label size need 472px of a 390px bar.
+// See the ladder in app/room-and-ledger.css §3.
 const ITEMS: {
   href: string;
   label: string;
   arrow?: boolean;
-  hideOnPhone?: boolean;
+  hide?: "s" | "xs";
 }[] = [
   { href: "/", label: "Micah Jones" },
-  { href: "/work", label: "Record", hideOnPhone: true },
-  { href: "/playbook", label: "Playbook", hideOnPhone: true },
-  { href: "/packages", label: "Packages from $500" },
+  { href: "/work", label: "Record", hide: "s" },
+  { href: "/playbook", label: "Playbook", hide: "s" },
+  { href: "/packages", label: "Packages from $500", hide: "xs" },
   { href: "/call", label: "Name the problem", arrow: true },
 ];
 
@@ -60,7 +64,7 @@ export function SiteBar({ dark = false }: { dark?: boolean }) {
           <a
             key={item.href}
             href={item.href}
-            className={item.hideOnPhone ? "hide-s" : undefined}
+            className={item.hide ? `hide-${item.hide}` : undefined}
             aria-current={isCurrent ? "page" : undefined}
           >
             <span

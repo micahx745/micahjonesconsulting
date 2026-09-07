@@ -1,4 +1,4 @@
-// app/(foyer)/call/page.tsx
+// app/(room)/call/page.tsx
 //
 // The free intro call for the ENGAGEMENTS lane, from $5K a month.
 //
@@ -15,10 +15,20 @@
 //
 // The form and its submission contract are UNTOUCHED throughout, because that
 // path is operator-verified ("booked and it worked - invite came through").
+//
+// PASS-101 PHASE 3 — restyled to Room and Ledger (brief §3: "/call keeps its
+// form and logic, restyled"). The route moved from (foyer) to (room), same
+// URL. <BookCallForm /> is imported and rendered exactly as before: no prop,
+// no wrapper inside it, no change to a field, a name, or the action. It is
+// restyled entirely through the cw- class names its own markup already carries
+// (app/room-and-ledger.css §10b), so the operator-verified path is byte-for-
+// byte the path that was verified.
+//
+// The four TERMS become the system's REGISTER — a key/value ledger on
+// hairlines, which is the shape §14.2's operator column and §15.2's manual
+// both use. Same four keys, same four values, same order.
 import type { Metadata } from "next";
 import { BookCallForm } from "@/components/color-worlds/BookCallForm";
-import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
-import { PageFooter } from "@/components/color-worlds/PageFooter";
 
 export const metadata: Metadata = {
   title: "Book a free intro call",
@@ -41,30 +51,30 @@ const TERMS = [
 
 export default function BookPage() {
   return (
-    <>
-      <OpeningWorld name="espresso" />
-      <section
-        className="cw-bk"
-        data-section
-        data-world="espresso"
-        aria-labelledby="cw-book-title"
-      >
-        <div className="cw-bk__offer">
-          <h1 id="cw-book-title" className="cw-bk__title">
-            Thirty minutes. Bring the problem.
-          </h1>
-          <p className="cw-bk__dek">
+    <section className="rl-wrap rl-first" aria-labelledby="rl-book-title">
+      <div className="rl-sec rl-sec--wide">
+        <div className="rl-eyebrow">
+          <span className="rl-l">The intro call</span>
+        </div>
+        <h1 id="rl-book-title" className="rl-d" data-rl="head">
+          Thirty minutes. Bring the problem.
+        </h1>
+      </div>
+
+      <div className="rl-two">
+        <div className="rl-two__l">
+          <p className="rl-lede" data-rl="rise">
             No deck and no pitch. Bring the problem, and this call is where the
             work starts. If you have notes, bring them. If not, I will ask.
           </p>
-          <p className="cw-bk__leave">
+          <p className="rl-body rl-air-s" data-rl="rise">
             <strong>What you leave with:</strong> a named diagnosis of what is
             stuck, the shape of the work that would fix it, and a straight
             answer on whether you need me at all.
           </p>
-          <dl className="cw-bk__terms">
+          <dl className="rl-reg rl-air-m" data-rl-group="terms">
             {TERMS.map((t) => (
-              <div key={t.k}>
+              <div key={t.k} data-rl="rule">
                 <dt>{t.k}</dt>
                 <dd>{t.v}</dd>
               </div>
@@ -72,18 +82,16 @@ export default function BookPage() {
           </dl>
         </div>
 
-        <div className="cw-bk__form">
+        <div className="rl-two__r">
           {/* "Slots I hold open", not "available times": availability is
               confirmed by hand until the calendar sync ships, and a page
               should not imply a live calendar it does not have. */}
-          <p className="cw-bk__form-label">Slots I hold open</p>
-          <BookCallForm />
+          <div className="rl-form" data-rl="rise">
+            <p className="rl-l">Slots I hold open</p>
+            <BookCallForm />
+          </div>
         </div>
-      </section>
-
-      <section className="cw-block cw-bk__foot" data-section data-world="bone">
-        <PageFooter />
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
