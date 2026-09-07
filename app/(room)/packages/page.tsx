@@ -143,7 +143,15 @@ export default function PackagesPage() {
             Three fixed prices. Start this week.
           </h1>
         </div>
-        <p className="rl-lede" data-rl="rise">
+        {/* PASS-101 INTEGRATE, §18 Rule B — "every right-hand lane in the light
+            half starts at x = 600". MEASURED at 1440: this paragraph ran a
+            40ch measure at the gutter (470px at x=32) under a head that spans
+            the full 1376px and above a card row that spans it too, so the page
+            opened with a narrow left column and 906px of empty bone beside it
+            — the same hole the two closing paragraphs at the foot of this file
+            were moved off in the polish pass. It takes the same seam they do:
+            x = 615.3, 792.7px measure. Copy unchanged. */}
+        <p className="rl-lede rl-seam" data-rl="rise">
           For solo builders and small teams who got most of a product out of AI
           tools and stalled on the last stretch. Pick one, buy it, and the work
           starts within the week. No scoping call, no proposal, no quote to wait
