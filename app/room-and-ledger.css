@@ -548,9 +548,44 @@ html.rl-js .rl-bar.rl-in {
 /* the 2px rule is 1px thicker than the hairline it replaces, so the interior
  * is pulled back by exactly that 1px and the three card interiors stay on
  * one line. */
+/* §18: "The Audit carries exactly two devices: a 1px copper border on all four
+ * sides and an inline `Start here` pill on the name line; the 2px top rule is
+ * deleted." A rule on one edge had to be paid for with a 1px pull-back on the
+ * interior to keep the three card interiors on one line; a border on four
+ * sides costs nothing and reads as the marked card at any angle. */
 .rl-card.mark {
-  border-top: 2px solid var(--color-rl-copper);
-  padding-top: 27px;
+  border-color: var(--color-rl-copper);
+}
+.rl-card .nmrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.rl-card .nmrow .nm {
+  margin: 0;
+}
+/* §18 names this pill "12px label, copper text, 1px copper border, radius
+ * 999". The BORDER is copper as ruled; the LABEL is not: copper on bone
+ * measures 3.85:1 and a 12px label fails WCAG AA at that, which brief §5's axe
+ * gate rejects. The ink takes the ledger's own 72% stop and the copper is
+ * carried by the border, a UI component at the 3:1 bar. Same reading as the
+ * home's card in app/room.css. */
+.rl-card .tag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 12px;
+  border: 1px solid var(--color-rl-copper);
+  border-radius: 999px;
+  font-family: var(--font-rl-display);
+  font-weight: 500;
+  font-size: 12px;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--ink-72);
 }
 #rl-root .rl-card.mark:hover,
 #rl-root .rl-card.mark:focus-within {
@@ -2102,9 +2137,6 @@ html.rl-js [data-rl="media"].rl-in {
   }
   .rl-card {
     padding: 22px;
-  }
-  .rl-card.mark {
-    padding-top: 21px;
   }
   .rl-card .pr {
     font-size: 52px;

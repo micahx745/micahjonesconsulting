@@ -179,10 +179,16 @@ export default function PackagesPage() {
             aria-label="The Audit, $2,500, start here"
             data-rl="rise"
           >
-            <h2 className="nm">The Audit</h2>
+            {/* PASS-101 §18: the mark's two devices are a 1px copper border on
+                four sides and an inline `Start here` PILL on the name line.
+                It used to sit against the $2,500 baseline as a bare caption,
+                which read as a stray label on the price. */}
+            <span className="nmrow">
+              <h2 className="nm">The Audit</h2>
+              <span className="tag">Start here</span>
+            </span>
             <div className="pblock">
               <span className="pr rl-num">$2,500</span>
-              <span className="rl-l now">Start here</span>
               <span className="rl-l">Two weeks + debrief call</span>
             </div>
             <p className="one">
@@ -235,19 +241,24 @@ export default function PackagesPage() {
           </article>
         </div>
 
-        {/* §15.5: the top tier. ONE <a>, no link inside it, the same 2px copper
-            rule the Audit carries. The link is this page's own /services link,
-            kept to the byte. */}
+        {/* PASS-101 §18: "Engagements is the fourth object in the SAME system
+            ... Special by ground, connected by grammar." Same order as the
+            home's: the name in the card's name slot, `From $5K a month` in the
+            price slot under it, the sentence under that, and ONE chip right.
+            The 72px figure used to sit in the RIGHT cell beside the chip,
+            which put a display figure and a button on one line and left the
+            block's whole middle empty. ONE <a>, no link inside it; the link is
+            this page's own /services link, kept to the byte. */}
         <a className="rl-eng" href="/services" data-rl="rise">
           <span className="side l-side">
-            <span className="rl-d two hd">Engagements</span>
+            <span className="hd">Engagements</span>
+            <span className="v rl-num">From $5K a month</span>
             <span className="dsc">
               Hiring for a company rather than a build? Tell me the problem and
               I will scope it.
             </span>
           </span>
           <span className="side r">
-            <span className="v rl-num">From $5K a month</span>
             <span className="rl-chip">
               <span className="t">The engagements</span>
               <span className="a" aria-hidden>
