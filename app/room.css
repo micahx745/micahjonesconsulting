@@ -1824,6 +1824,87 @@ html.lit .rl-home .eng:focus-visible .chip .t {
   }
 }
 
+/* THE WIDTH LADDER. --d is pinned at its 52px floor below 554px, so the width axis is
+   the ONLY lever left on `go-to-market.` — the size never drops (§2, §14.7). Measured,
+   not guessed, and re-measured for §14.7, which moves the headline's left edge off the
+   gutter and onto the fingertip, taking 60.6px of room out of the row at 390 and 53px
+   at 360.
+     CAUGHT BY scripts/verify-room.py, first run: this block was left out of the port and
+   the copper row ran 103px past the stage's right edge at 390 — clipped, not wrapped,
+   because .rl-home hides its overflow-x, so no-hscroll passed while the word was cut in
+   half. The ladder is set on .rl-home rather than :root: --dw is read by `.rl-home .d`,
+   which inherits it, and keeping it inside the scope keeps it off every other route. */
+@media (max-width: 510px) {
+  .rl-home {
+    --dw: 120;
+  }
+}
+@media (max-width: 487px) {
+  .rl-home {
+    --dw: 115;
+  }
+}
+@media (max-width: 463px) {
+  .rl-home {
+    --dw: 110;
+  }
+}
+@media (max-width: 440px) {
+  .rl-home {
+    --dw: 106;
+  }
+}
+@media (max-width: 421px) {
+  .rl-home {
+    --dw: 102;
+  }
+}
+@media (max-width: 403px) {
+  .rl-home {
+    --dw: 100;
+  }
+}
+@media (max-width: 393px) {
+  .rl-home {
+    --dw: 98;
+  }
+}
+@media (max-width: 382px) {
+  .rl-home {
+    --dw: 96;
+  }
+}
+@media (max-width: 370px) {
+  .rl-home {
+    --dw: 94;
+  }
+}
+@media (max-width: 357px) {
+  .rl-home {
+    --dw: 92;
+  }
+}
+@media (max-width: 344px) {
+  .rl-home {
+    --dw: 90;
+  }
+}
+@media (max-width: 332px) {
+  .rl-home {
+    --dw: 88;
+  }
+}
+@media (max-width: 319px) {
+  .rl-home {
+    --dw: 86;
+  }
+}
+@media (max-width: 307px) {
+  .rl-home {
+    --dw: 84;
+  }
+}
+
 @media (max-width: 599px) {
   .rl-home .room .chips {
     flex-direction: column;
