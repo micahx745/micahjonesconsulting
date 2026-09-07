@@ -1924,6 +1924,66 @@ html.rl-js [data-rl="media"].rl-in {
 }
 
 /* ============================================================
+ * 16. THE THEATER — /work/[slug], type system and grounds only
+ *
+ * Brief §3 item 4 is deliberately the lightest touch in the pass: the case
+ * studies keep their composition, their TitleCard, their sidebar, their stills
+ * and their view transition. What they take is the SYSTEM'S TYPE and the
+ * SYSTEM'S GROUNDS, and both arrive by repointing variables that
+ * app/globals.css already reads — not by rewriting a single layout rule.
+ *
+ * --font-display is the whole of the font half: every theater rule and every
+ * mdx-components heading resolves through it, and it pointed at Bricolage,
+ * which §2 bans in this direction. One line takes it out of the computed
+ * font-family of the entire route.
+ * ============================================================ */
+
+#rl-theater {
+  --font-display: var(--font-rl-display);
+  --font-sans: var(--font-rl-text);
+  --font-serif: var(--font-rl-text);
+  --font-cw-display: var(--font-rl-display);
+  --font-cw-label: var(--font-rl-display);
+
+  /* §3: the two grounds are espresso and bone, and the theater's own
+   * #12100E / #EAE6DD pair is a near-miss of them. Ink on espresso is bone. */
+  --color-theater-ground: var(--color-rl-espresso);
+  --color-theater-ink: var(--color-rl-bone);
+
+  /* the fixed bar is 40px (48 below 900) and the case study's own top padding
+   * was written for a page with no bar over it. */
+  padding-top: 40px;
+}
+@media (max-width: 899px) {
+  #rl-theater {
+    padding-top: 48px;
+  }
+}
+
+/* The theater's two atmosphere layers come off. ::before is a two-layer film
+ * grain at screen blend; ::after is a warm radial spotlight that DRIFTS — an
+ * idle loop, and §16.3's vocabulary is entrances that run once and terminate,
+ * with no exception for a background. §3 also has one ground and nothing over
+ * it. Both are switched off for this route only; nothing else in globals.css
+ * is touched, and (foyer)'s paper grain is untouched. */
+#rl-theater::before,
+#rl-theater::after {
+  content: none;
+}
+
+/* the case study's own display type takes the system's setting. Sizes and
+ * layout are globals.css's; this is weight, width and tracking only. */
+#rl-theater :is(h1, h2, h3) {
+  font-weight: 300;
+  font-variation-settings: "wdth" var(--dw-two);
+  letter-spacing: -0.03em;
+}
+#rl-theater .case-study__meta,
+#rl-theater .case-study__glance-list {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
  * 13. THE LADDER — the responsive stops, ported from the template
  * ============================================================ */
 
