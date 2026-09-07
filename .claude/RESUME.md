@@ -7,22 +7,25 @@ Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-
 `gpt-6-astra` ultra (`381e519`). **The book chat shares this tree.** Stage
 by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATERIALS.md`.
 
-## Design explorations (2026-09-05) — mocks, nothing live changed
-1–2. Earlier mocks (a398fb1a, 1d43593f) superseded by 4.
-3. Video: `design/video/`. `COMPOSITE-BRIEF-2026-09-06.md`: Nano Banana Pro; RSA composite
-   C2b done + prompt; boardroom = him + AI clients; desk scene.
-4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
-   film as the hero ground, no header on screen one, one display size, Anybody wide/light,
-   no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
-   48/48 checks, two verifiers, published:
-   https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
-   Astra (§12) · his reviews (§14, §15). v4: 16:9 hero stage, words AT the finger (≤14px),
-   operator overlay, no years/figures. v5 (§15) PUBLISHED: manual + objections recomposed, how-I-work ledger (no cards),
-   Engagements as the top tier, receipts = 2 rows + 'See the rest →', 1.2MB. Viewer plays
-   data: video (Clip Test: player 1 moved). IN FLIGHT: v6 (§16: copper row AT the finger,
-   the word lights on arrival, full motion set) · **Pass 101** (`.claude/briefs/pass-101-…`):
-   the real site on branch `design/room-and-ledger` in a worktree, NO push/deploy.
-   NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.
+## Design (2026-09-05) — three mocks; two are superseded (a398fb1a, 1d43593f)
+Video: `design/video/` + `COMPOSITE-BRIEF-2026-09-06.md`. The two cut clips now live at
+`public/video/` (that README carries the encodes and the fingertip measurement).
+**"Room and Ledger"** WON — `WINNING-BRIEF-2026-09-05.md` is the ruling; §14–§17 are the
+operator's own reviews and supersede §1–§13 wherever they touch it. The verified mock is
+`.planning/design/winning/room-and-ledger.template.html` + `verify.py`; its comments carry
+every measured number.
+
+## Pass 101 — the real site (`.claude/briefs/pass-101-…`), NO push, NO deploy
+Branch `design/room-and-ledger`. Phase 1 DONE (`313709a` type, `9ad2181` tokens, `03b3c36`
+clips as files). **Phase 2 DONE** — worktree `wf_0cc599f0-660-2`, base `03b3c36`, tip
+`6854fd8`, a strict fast-forward: `646c1e8` room.css · `4961601` components/room + the new
+`app/(room)/` group that owns `/` (Hero retired; (foyer) keeps the unported routes) ·
+`540618b` scripts/verify-room.py + the `--dw` width ladder it caught missing (the copper row
+was clipped 103px at 390) · `6854fd8` QA. verify-room.py 60/60 vs `pnpm start`; build green;
+axe 0 at 1440 + 390. Receipts = THREE rows (§17 binds this pass), not §15.6's two.
+DEBT: 9 legacy @keyframes still ship site-wide (Color Worlds + WallChart) — the room
+declares and runs 0; phase 3's to clear. NEXT: phase 3 (packages, playbook, work, call,
+about), then the wording round (Reddit data + copy-editor + ledger).
 
 ## Ship gate (operator-owned)
 1. Stripe webhook + `whsec_` in Production + one live $500 buy/refund. 2. Then
@@ -30,9 +33,6 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 
 ## Housekeeping (one Opus pass): XR-1/2/3/6/7 (2026-09-04 cross-review). LESSONS #5:
 auto-deploys moved both domains 5× with no alias; confirm www first.
-
-## Next
-99: landing offer + packages reframe. 100: home spear, Search Console, sitemap lastmod.
 
 ## Standing traps
 Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys · `grep -oiF`
