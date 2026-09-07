@@ -47,7 +47,23 @@ export default function TheaterLayout({
       <main id="main-content" tabIndex={-1}>
         {children}
       </main>
-      <SiteFoot />
+      {/* PASS-101 INTEGRATE, MEASURED: <SiteFoot /> was mounted bare here, and
+       * the fourteen rules that compose it -- app/room.css §09, every one of
+       * them written `#rl-root .rl-foot ...` -- matched NOTHING on a case
+       * study, because this group's wrapper carries id="rl-theater". The
+       * three columns collapsed to a stack of unstyled links on the page's
+       * own ground, the hairline and the espresso band were absent, and the
+       * chip lost its shape with them (`#rl-root .rl-chip`). The id is put
+       * back around the foot ALONE rather than dropping the prefix from those
+       * rules: `#rl-root a { color: inherit }` at (1,0,1) out-specifies a bare
+       * `.rl-foot .nav a` at (0,2,1), so unscoping them would have taken the
+       * 60% ink off every foot link on the five (room) routes to fix it here.
+       * Wrapping preserves every specificity relationship the foot was
+       * written against, and scopes the #rl-root block to the foot's own
+       * subtree -- the case study above it is untouched. */}
+      <div id="rl-root">
+        <SiteFoot />
+      </div>
     </div>
   );
 }
