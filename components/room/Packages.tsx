@@ -1,14 +1,26 @@
 // components/room/Packages.tsx — section 04, packages and the top tier.
 //
-// Pass-101 phase 2. §15.5: three cards with a real ground, then Engagements as
-// a full-width espresso block carrying the same 2px copper rule the Audit
-// carries — connected to the packages by that rule, separated from them by its
-// height. Never a fourth price slot.
+// Pass-101 phase 2, recomposed by §18: "Packages + Engagements, one card
+// system."
+//
+// §15.5 gave the three cards a real ground and marked the Audit with a 2px
+// copper TOP rule; Engagements was a full-width espresso slab in a different
+// box language — 16px radius, its name at --d2, its figure at 64px, a 220px
+// floor. Both the section-by-section critique and the sweep of nine live 2026
+// pages named that slab as one of the page's two boxes.
+//
+// §18: "The Audit carries exactly two devices: a 1px copper border on all four
+// sides and an inline `Start here` pill on the name line; the 2px top rule is
+// deleted. Engagements is the fourth object in the SAME system ... Special by
+// ground, connected by grammar."
+//
+// So all four objects now share one grammar — name at 24px Hanken 500, a price
+// slot, a sentence, ONE chip (Rule C) — and Engagements is set apart by its
+// ground alone.
 //
 // The three prices and the three chip labels are LIVE strings, read verbatim
-// off app/(foyer)/packages/page.tsx (the BuyButton labels) — §14.7 names that
-// page as the third verified copy source. The cards link to /packages; the buy
-// flow itself is untouched and still lives there.
+// off the packages page (the BuyButton labels). The cards link to /packages;
+// the buy flow itself is untouched and still lives there.
 import Link from "next/link";
 
 export function Packages() {
@@ -29,7 +41,9 @@ export function Packages() {
       </div>
       <div className="cards" id="cards">
         <div className="card">
-          <span className="nm">The Unstick Session</span>
+          <span className="nmrow">
+            <span className="nm">The Unstick Session</span>
+          </span>
           <div className="pblock">
             <span className="pr">$500</span>
           </div>
@@ -44,10 +58,14 @@ export function Packages() {
           </div>
         </div>
         <div className="card mark">
-          <span className="nm">The Audit</span>
+          {/* §18: the mark's second device, on the NAME line — not crammed
+              against the $2,500 baseline, where it read as a stray caption. */}
+          <span className="nmrow">
+            <span className="nm">The Audit</span>
+            <span className="tag">Start here</span>
+          </span>
           <div className="pblock">
             <span className="pr">$2,500</span>
-            <span className="l">Start here</span>
           </div>
           <p className="one">
             I go through it top to bottom and hand you the written audit.
@@ -62,7 +80,9 @@ export function Packages() {
           </div>
         </div>
         <div className="card">
-          <span className="nm">The Sprint</span>
+          <span className="nmrow">
+            <span className="nm">The Sprint</span>
+          </span>
           <div className="pblock">
             <span className="pr">$7,500</span>
           </div>
@@ -77,16 +97,18 @@ export function Packages() {
           </div>
         </div>
       </div>
-      {/* §15.5: the top tier. ONE link, no link inside it. "Engagements" and
-          the descriptor are the two halves of the freight template's own line,
-          split at its separator; nothing is composed. */}
+      {/* §18: the fourth object in the same system. Name, price slot,
+          sentence, one chip — the card's grammar on the top tier's ground.
+          "Engagements" and the descriptor are still the two halves of the
+          freight template's own line, split at its separator; nothing is
+          composed. */}
       <Link className="eng" id="ebar" href="/call">
         <span className="side l-side">
-          <span className="d two hd">Engagements</span>
+          <span className="hd">Engagements</span>
+          <span className="v">From $5K a month</span>
           <span className="dsc">advisory, project, retainer, or embedded.</span>
         </span>
         <span className="side r">
-          <span className="v">From $5K a month</span>
           <span className="chip">
             <span className="t">Name the problem</span>
             <span className="a" aria-hidden="true">

@@ -268,70 +268,81 @@
   gap: 12px;
   flex-wrap: wrap;
 }
+/* §18 RULE C — ONE CHIP SHAPE, EVERYWHERE. The same block the home takes in
+ * app/room.css: 48px tall, 8px radius, label 19px Hanken 500 centred, the
+ * arrow an inline glyph 10px off the label, no bolted copper square. The
+ * MARKUP is unchanged (.rl-chip > .t + .a > span), so every call site on
+ * /packages, /playbook, /work, /about and /call keeps its element tree; the
+ * block simply moves onto .rl-chip and the two children become inline runs.
+ * On these pages the ground is bone, so the chip is espresso-filled. */
 .rl-chip {
-  display: inline-flex;
-  align-items: stretch;
-  height: 44px;
-  border: 0;
-  padding: 0;
-  background: none;
-  cursor: pointer;
-  font: inherit;
-}
-.rl-chip .t {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  padding: 0 20px;
+  justify-content: center;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 8px;
   background: var(--color-rl-espresso);
   color: var(--color-rl-bone);
-  font-family: var(--font-rl-display);
-  font-size: 14px;
+  cursor: pointer;
+  font-family: var(--font-rl-text);
+  font-size: 19px;
   font-weight: 500;
-  font-variation-settings: "wdth" var(--dw-label);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
   line-height: 1;
+  transition:
+    background 300ms var(--e),
+    border-color 300ms var(--e),
+    color 300ms var(--e);
+}
+.rl-chip .t {
+  display: inline;
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-variation-settings: normal;
+  letter-spacing: inherit;
+  text-transform: none;
+  line-height: inherit;
   white-space: nowrap;
 }
 .rl-chip .a {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 44px;
-  background: var(--color-rl-copper);
-  color: var(--color-rl-bone);
+  justify-content: flex-start;
+  width: auto;
+  margin-left: 10px;
+  background: none;
+  color: inherit;
   font-family: var(--font-rl-display);
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1;
 }
-.rl-chip.quiet .t {
-  background: color-mix(in oklab, var(--ink) 12%, transparent);
+/* the quiet member of a pair keeps the SHAPE and gives up the fill */
+.rl-chip.quiet {
+  background: none;
   color: var(--ink);
+  border-color: color-mix(in oklab, var(--ink) 40%, transparent);
 }
 /* §16.3-7: the chip swaps ground in 300ms; the arrow slides 6px right in
  * 200ms on hover AND on focus. Both are transitions on a rest state that is
  * already the finished frame. */
-.rl-chip .t,
-.rl-chip .a {
-  transition:
-    background 300ms var(--e),
-    color 300ms var(--e);
-}
 .rl-chip .a > span {
   display: inline-block;
   transition: transform 200ms var(--e);
 }
-.rl-chip:hover .t,
-.rl-chip:focus-visible .t {
-  background: color-mix(
-    in oklab,
-    var(--color-rl-espresso) 86%,
-    var(--color-rl-bone)
-  );
-}
-.rl-chip.quiet:hover .t,
-.rl-chip.quiet:focus-visible .t {
-  background: color-mix(in oklab, var(--ink) 20%, transparent);
+.rl-chip:hover,
+.rl-chip:focus-visible,
+a:hover > .rl-chip,
+a:focus-visible > .rl-chip {
+  background: var(--color-rl-copper);
+  border-color: var(--color-rl-copper);
+  color: var(--color-rl-bone);
 }
 .rl-chip:hover .a > span,
 .rl-chip:focus-visible .a > span,
@@ -495,35 +506,12 @@ html.rl-js .rl-bar.rl-in {
  * 4. THE FOOT (§4 "10", template lines 566-570)
  * ============================================================ */
 
+/* §18's three-column foot is declared ONCE, in app/room.css, against both
+ * `.rl-home .foot` and `#rl-root .rl-foot` — one foot, one set of rules, so
+ * the two groups cannot drift apart again. What stays here is the air above
+ * it, which is this group's own and not the home's. */
 .rl-foot {
-  position: relative;
-  z-index: 3;
-  box-sizing: border-box;
-  background: var(--color-rl-espresso);
-  color: var(--color-rl-bone);
-  padding: 72px var(--g) 64px;
   margin-top: var(--s);
-}
-.rl-foot .row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 16px 32px;
-}
-.rl-foot .rl-l {
-  color: color-mix(in oklab, var(--color-rl-bone) 60%, transparent);
-}
-.rl-foot .rl-l.now {
-  color: var(--color-rl-bone);
-}
-.rl-foot a:hover .rl-l,
-.rl-foot a:focus-visible .rl-l {
-  color: var(--color-rl-bone);
-}
-@media (max-width: 899px) {
-  .rl-foot .row {
-    flex-direction: column;
-  }
 }
 
 /* ============================================================
@@ -615,36 +603,9 @@ html.rl-js .rl-bar.rl-in {
   padding-top: 28px;
 }
 .rl-card .cta .rl-chip {
-  height: 48px;
   width: 100%;
 }
-/* v5 verify 3: the chip takes the NAME's register — same family, same
- * weight, same tracking — one step down in size, so it reads as the card's
- * button and not as a second title. */
-.rl-card .cta .rl-chip .t {
-  flex: 1;
-  justify-content: center;
-  font-family: var(--font-rl-text);
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-transform: none;
-  white-space: nowrap;
-}
-.rl-card .cta .rl-chip .a {
-  width: 48px;
-}
-/* the ground swaps to copper; the type does not move. 20px at weight 500 is
- * large text, where copper carries bone at 3.83:1 against the 3:1 bar. */
-#rl-root .rl-card:hover .cta .rl-chip .t,
-#rl-root .rl-card:focus-within .cta .rl-chip .t {
-  background: var(--color-rl-copper);
-  color: var(--color-rl-bone);
-}
-#rl-root .rl-card:hover .cta .rl-chip .a,
-#rl-root .rl-card:focus-within .cta .rl-chip .a {
-  background: var(--color-rl-copper);
-}
+
 /* THE BUY BUTTON, given the chip's geometry without touching its markup.
  * components/BuyButton.tsx renders ONE <button> holding the label and a
  * trailing aria-hidden arrow span — the Stripe rail is operator-verified and
@@ -652,36 +613,39 @@ html.rl-js .rl-bar.rl-in {
  * is the label block and its last child becomes the copper square. Same
  * geometry as .rl-chip, no logic changed, no prop added. */
 .rl-buy {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 48px;
-  padding: 0 0 0 20px;
-  border: 0;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 8px;
   cursor: pointer;
   font-family: var(--font-rl-text);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 500;
   letter-spacing: -0.01em;
   line-height: 1;
-  text-align: left;
   background: var(--color-rl-espresso);
   color: var(--color-rl-bone);
   transition:
     background 300ms var(--e),
+    border-color 300ms var(--e),
     color 300ms var(--e);
 }
+/* §18 Rule C: the trailing glyph is an inline arrow 10px off the label, never
+ * a bolted square. It keeps its §16.3-7 slide. */
 .rl-buy > span[aria-hidden] {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex: 0 0 48px;
-  margin-left: auto;
-  background: var(--color-rl-copper);
-  color: var(--color-rl-bone);
+  margin-left: 10px;
+  background: none;
+  color: inherit;
   font-family: var(--font-rl-display);
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 1;
   transition: transform 200ms var(--e);
 }
 #rl-root .rl-card:hover .rl-buy,
@@ -689,6 +653,7 @@ html.rl-js .rl-bar.rl-in {
 .rl-buy:hover,
 .rl-buy:focus-visible {
   background: var(--color-rl-copper);
+  border-color: var(--color-rl-copper);
 }
 .rl-buy:hover > span[aria-hidden],
 .rl-buy:focus-visible > span[aria-hidden] {
@@ -697,16 +662,6 @@ html.rl-js .rl-bar.rl-in {
 .rl-buy[disabled] {
   cursor: progress;
   opacity: 0.7;
-}
-@media (max-width: 1023px) {
-  .rl-buy {
-    font-size: 17px;
-  }
-}
-@media (max-width: 899px) {
-  .rl-buy {
-    font-size: 19px;
-  }
 }
 
 /* the checkout error the BuyButton renders when the key is missing. It has to
@@ -718,88 +673,76 @@ html.rl-js .rl-bar.rl-in {
   color: var(--accent-copper-deep);
 }
 
-/* §15.5: Engagements is the TOP TIER — not a fourth card, and not a strip. */
+/* §18: "Engagements is the fourth object in the SAME system: one block the
+ * width of the three cards, 24px below, 8px radius, 28px padding, espresso
+ * ground, `Engagements` at 24px Hanken 500 bone (not --d2), the descriptor at
+ * 17px, `From $5K a month` at 72px bone in the price's slot, one chip right;
+ * height by content. Special by ground, connected by grammar."
+ *   This is the home's block verbatim (app/room.css §04) on the .rl- names,
+ * so /packages and the home show one object and not two. */
 .rl-eng {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-rows: auto auto;
   column-gap: 40px;
   row-gap: 24px;
-  align-content: center;
+  align-items: end;
   box-sizing: border-box;
   margin-top: 24px;
-  min-height: 220px;
-  border-radius: 16px;
-  border-top: 2px solid var(--color-rl-copper);
+  border: 1px solid transparent;
+  border-radius: 8px;
   background: var(--color-rl-espresso);
   color: var(--color-rl-bone);
-  padding: 34px 36px;
-}
-.rl-eng .side {
-  display: grid;
-  grid-row: 1 / 3;
-  grid-template-rows: subgrid;
-  row-gap: 24px;
-  align-items: baseline;
-  min-width: 0;
+  padding: 28px;
 }
 .rl-eng .side.l-side {
   grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
 }
 .rl-eng .side.r {
   grid-column: 2;
-  justify-items: end;
-  text-align: right;
+  justify-self: end;
+  align-self: end;
 }
 .rl-eng .hd {
-  grid-row: 1;
-  min-width: 0;
-  font-size: var(--d2);
-  font-variation-settings: "wdth" 96;
-  line-height: 0.92;
+  font-family: var(--font-rl-text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  font-variation-settings: normal;
   color: var(--color-rl-bone);
 }
 .rl-eng .v {
-  grid-row: 1;
+  margin-top: 18px;
   font-family: var(--font-rl-display);
   font-weight: 300;
-  font-size: 64px;
+  font-size: 72px;
   line-height: 1;
-  font-variation-settings: "wdth" 100;
+  font-variation-settings: "wdth" var(--dw-fit);
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
   color: var(--color-rl-bone);
-  white-space: nowrap;
 }
 .rl-eng .dsc {
-  grid-row: 2;
-  align-self: end;
-  min-width: 0;
-  font-size: 21px;
-  line-height: 1.35;
-  color: var(--color-rl-bone);
-  max-width: 34ch;
-}
-.rl-eng .rl-chip {
-  grid-row: 2;
-  align-self: end;
+  margin-top: 20px;
+  font-size: 17px;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--color-rl-bone) 80%, transparent);
+  max-width: 46ch;
 }
 /* the block is espresso on the BONE half, so it needs the inverted chip. */
-#rl-root .rl-eng .rl-chip .t {
+#rl-root .rl-eng .rl-chip {
   background: var(--color-rl-bone);
   color: var(--color-rl-espresso);
 }
-#rl-root .rl-eng .rl-chip .a {
+#rl-root .rl-eng:hover .rl-chip,
+#rl-root .rl-eng:focus-visible .rl-chip {
   background: var(--color-rl-copper);
+  border-color: var(--color-rl-copper);
   color: var(--color-rl-bone);
-}
-#rl-root .rl-eng:hover .rl-chip .t,
-#rl-root .rl-eng:focus-visible .rl-chip .t {
-  background: color-mix(
-    in oklab,
-    var(--color-rl-bone) 88%,
-    var(--color-rl-copper)
-  );
 }
 #rl-root .rl-eng:hover .rl-chip .a > span,
 #rl-root .rl-eng:focus-visible .rl-chip .a > span {
@@ -2035,16 +1978,8 @@ html.rl-js [data-rl="media"].rl-in {
  * ============================================================ */
 
 @media (max-width: 1279px) {
-  .rl-card .cta .rl-chip .t {
-    font-size: 19px;
-  }
   .rl-eng .v {
-    font-size: 52px;
-  }
-  .rl-eng {
-    column-gap: 28px;
-    row-gap: 22px;
-    padding: 30px 28px;
+    font-size: 60px;
   }
   .rl-prf,
   .rl-prfx {
@@ -2061,16 +1996,8 @@ html.rl-js [data-rl="media"].rl-in {
 }
 
 @media (max-width: 1023px) {
-  .rl-card .cta .rl-chip .t {
-    font-size: 17px;
-  }
-  .rl-eng {
-    column-gap: 24px;
-    row-gap: 20px;
-    padding: 28px 24px;
-  }
   .rl-eng .v {
-    font-size: 44px;
+    font-size: 52px;
   }
   .rl-prf,
   .rl-prfx {
@@ -2123,41 +2050,24 @@ html.rl-js [data-rl="media"].rl-in {
   .rl-card .pr {
     font-size: 52px;
   }
-  .rl-card .cta .rl-chip .t {
-    font-size: 19px;
-  }
   .rl-eng {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto auto;
     row-gap: 22px;
-    padding: 26px 20px;
+    padding: 22px;
   }
-  .rl-eng .side {
-    grid-column: 1;
-    row-gap: 22px;
-  }
-  .rl-eng .side.l-side {
-    grid-row: 1 / 3;
-  }
+  .rl-eng .side.l-side,
   .rl-eng .side.r {
     grid-column: 1;
-    grid-row: 3 / 5;
-    justify-items: stretch;
-    text-align: left;
+    justify-self: stretch;
+    align-self: auto;
   }
   .rl-eng .rl-chip {
     width: 100%;
-  }
-  .rl-eng .rl-chip .t {
-    flex: 1;
   }
   .rl-eng .v {
     font-size: 40px;
     font-variation-settings: "wdth" 88;
     white-space: normal;
-  }
-  .rl-eng .hd {
-    font-variation-settings: "wdth" var(--dw-fit);
   }
   .rl-qs {
     grid-template-columns: minmax(0, 1fr);

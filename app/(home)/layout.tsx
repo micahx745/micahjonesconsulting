@@ -23,16 +23,46 @@
 // space; this one owns `/` only.
 //
 // The wrapper carries `.rl-home`, which is the scope every rule in
-// app/room.css hangs off, and RoomMotion adds `js` to it when scripting is on
-// and reduced motion is off.
+// app/room.css hangs off.
+//
+// THE BOOT SCRIPT (Pass-101 §18 follow-up, defect: the reverse flash).
+//   Every §16.3 pre-state used to be gated on `.rl-home.js`, a class RoomMotion
+//   added in a useEffect — i.e. AFTER the first paint. Measured on a live load:
+//   at t=84ms the copper row painted LIT (opacity 1), at t=147ms the class
+//   landed, and from t=179ms it visibly DIMMED to .28 over 260ms before
+//   re-lighting at ~2.8s. The bar did the same, 0 -> -12px. §16.3-1's second
+//   half never played at all: raiseRow() ran in the same tick as the class, so
+//   `I build the` never rendered at translateY(24px) and the 600ms rise was a
+//   no-op.
+//   The sibling engine already solved this — SiteMotion.tsx documents it:
+//   "If it were applied on mount, everything would paint, jump back and
+//   animate in — a flash of finished content." So the gate moves to
+//   `html.rl-js`, stamped SYNCHRONOUSLY during parse, before the first paint,
+//   and only when reduced motion is not asked for. With scripting off the
+//   class is never set and the rest state — the finished frame — is what
+//   renders, which is §16.3's closing rule, unchanged.
+//   The 4s net: if the class is set but React never mounts (a hydration
+//   error), nothing would ever add `in` and the page would stay in its
+//   pre-state. RoomMotion stamps `rl-on`; if it has not by then, the gate is
+//   dropped and the finished frame comes back.
 import type { ReactNode } from "react";
 import { Bar } from "@/components/room/Bar";
+
+const BOOT =
+  `try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){` +
+  `var d=document.documentElement;d.classList.add('rl-js');` +
+  `setTimeout(function(){if(!d.classList.contains('rl-on'))` +
+  `d.classList.remove('rl-js')},4000)}}catch(e){}`;
 
 export default function HomeLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
     <div className="rl-home">
+      <script
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: BOOT }}
+      />
       <a href="#main-content" className="skip-to-content">
         Skip to content
       </a>

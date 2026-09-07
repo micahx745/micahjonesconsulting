@@ -116,6 +116,12 @@ ALLOWED_FIGURES = ["$500", "$2,500", "$7,500", "$99", "$5K", "$5B+"]
 # tokens that carry a digit but are not a figure: the book's own title/argument, a product
 # name, the rail's step ordinals, and one page citation.
 ALLOWED_DIGIT_TOKENS = ["80%", "80-percent", "v0", "01", "02", "03", "page 6"]
+# SS18: "The head carries the count." It is not a figure and not a receipt -- it is the
+# number of non-stub case studies in content/work, read at render time through the same
+# lib/case-studies.ts call /work makes, and zero-padded. Every two-digit count from 00 to
+# 99 is cleared here because the number is DERIVED: a hard-coded literal is what the rule
+# exists to catch, and this one cannot be hard-coded.
+ALLOWED_DIGIT_TOKENS = ALLOWED_DIGIT_TOKENS + ["%02d" % i for i in range(100)]
 BAR_LABELS = ["Micah Jones", "Record", "Playbook", "Packages from $500",
               "Name the problem", "\u2192"]
 # SS15.6, verbatim: the receipts index is consolidated to two rows "and offer to see
@@ -127,6 +133,12 @@ OPERATOR_COPY = ["See the rest →"]
 # PASS-101: the skip link is site chrome, not page copy -- it is the a11y affordance the
 # layout has always carried, and it is exempt exactly as the bar's five labels are.
 BAR_LABELS = BAR_LABELS + ["Skip to content"]
+# SS18 gives the home the site's ONE foot, and with it four strings that are chrome in the
+# same sense the bar's five labels are. `LinkedIn` is a live link label lifted verbatim off
+# components/room/SiteFoot.tsx, which every other route already rendered; the email, the
+# name and the book's own title and price line are the foot's identity block. Nothing here
+# is composed -- what changed is which foot renders them.
+BAR_LABELS = BAR_LABELS + ["LinkedIn", "micah@micahjonesconsulting.com"]
 
 RES = []
 
@@ -592,6 +604,9 @@ def main(base):
                                n:r.getClientRects().length, gutter:b.right-k.right};}),
                     srcWindow:[(b.x-ox)/sc,(b.right-ox)/sc],
                     copyTop:hc.y, ledeX:lede.x, chipsX:chips.x, proofRight:proof.right,
+                    proofX:proof.x, proofTop:proof.top, chipsBottom:chips.bottom,
+                    proofFs:parseFloat(getComputedStyle(
+                        document.querySelector('#heroproof .l')).fontSize),
                     scrollW:document.documentElement.scrollWidth, iw:window.innerWidth};}"""
         pt = {}
         for W in (1280, 1440, 1920):
@@ -618,13 +633,20 @@ def main(base):
                 % (W, pt[W]["rows"][1]["right"], pt[W]["stage"]["right"],
                    pt[W]["rows"][1]["gutter"], pt[W]["rows"][1]["n"])
                 for W in (1280, 1440, 1920)))
+        # SS18 re-cuts the base row: "`Four exits, $5B+ combined.` moves to 24px under the
+        # chips, left-aligned with the headline, 14px label at 60% bone; the full-width
+        # hairline above the chips is deleted." So the proof row stops being the right end
+        # of a spread row and joins the ONE left edge every other element in the block sits
+        # on -- which is what this check was always about.
         chk("14.7-sentence-and-chips-share-the-left-edge",
             all(abs(v["ledeX"] - v["I"][0]) <= 1.5 and abs(v["chipsX"] - v["I"][0]) <= 1.5
-                and v["proofRight"] >= v["stage"]["right"] - 34 for v in pt.values()),
-            "; ".join("%d: g at %.0f, sentence at %.0f, chips at %.0f, proof row ends %.0f "
-                      "(stage ends %.0f, gutter 32)"
-                      % (W, pt[W]["I"][0], pt[W]["ledeX"], pt[W]["chipsX"],
-                         pt[W]["proofRight"], pt[W]["stage"]["right"])
+                and abs(v["proofX"] - v["I"][0]) <= 1.5
+                and abs((v["proofTop"] - v["chipsBottom"]) - 24) <= 1.5
+                and abs(v["proofFs"] - 14) <= 0.6 for v in pt.values()),
+            "; ".join("%d: g at %.0f, sentence at %.0f, chips at %.0f, proof at %.0f "
+                      "and %.0fpx under the chips at %.0fpx (SS18: 24px, 14px label)"
+                      % (W, pt[W]["I"][0], pt[W]["ledeX"], pt[W]["chipsX"], pt[W]["proofX"],
+                         pt[W]["proofTop"] - pt[W]["chipsBottom"], pt[W]["proofFs"])
                       for W in (1280, 1440, 1920)))
 
         # ---- 03 hero veil contrast at frames 0 / 48 / 96 ---------------------
@@ -815,7 +837,9 @@ def main(base):
             # SS15.3 supersedes SS14.4 on the objections: 24px question, 17px answer.
             and all(abs(n - 24) < 0.6 for n in sizes["q"])
             and all(abs(n - 17) < 0.6 for n in sizes["a"])
-            and all(abs(n - 19) < 0.6 for n in sizes["caps"])
+            # SS18: "caption from x = 600 at 28px 60% ink (one size; rank by colour and
+            # column)". The 19px caption WAS the size rank SS18 replaced.
+            and all(abs(n - 28) < 0.6 for n in sizes["caps"])
             and all(abs(x - 120) < 1 for x in sizes["air"]),
             "--d2=%.1f; %d section heads all at --d2 %s; index names %s; FAQ q %s / a %s; "
             "captions %s; section air %s; hero --d=%.1f, ask --d=%.1f (only these two)"
@@ -836,55 +860,60 @@ def main(base):
             "%d index captions, every one opening on a capital: %s"
             % (len(tp["caps"]), [c[:26] for c in tp["caps"]]))
 
-        # the middot: glyph-by-glyph line grouping, so "last thing on a line" is measured,
-        # not inferred from where the nbsp were put.
-        MID_JS = r"""()=>{
-            const h=[...document.querySelectorAll('.sec h2')].find(
-                e=>/Operating principles/.test(e.textContent));
-            const tn=[...h.childNodes].filter(n=>n.nodeType===3)[0];
-            const t=tn.textContent, rg=document.createRange(), rows={};
-            for(let i=0;i<t.length;i++){
-              if(!t[i].trim()) continue;
-              rg.setStart(tn,i); rg.setEnd(tn,i+1);
-              const r=rg.getBoundingClientRect(); const k=Math.round(r.y);
-              (rows[k]=rows[k]||[]).push([t[i], r.right]);}
-            return Object.keys(rows).map(k=>{
-              const a=rows[k].slice().sort((p,q)=>q[1]-p[1]);
-              return {y:+k, line:rows[k].map(p=>p[0]).join(''), last:a[0][0]};});}"""
-        mid = {}
+        # SS18 SUPERSEDES THE MIDDOT RULE BY DELETING THE MIDDOT.
+        #   "Eyebrow `Operating principles` (label style) 20px above the head `How I work.`
+        #   at --d2 on one line (both verbatim halves of the existing string; the middot and
+        #   its nowrap go)."
+        # There is no separator left to protect, so what is measured instead is the split
+        # itself: the eyebrow carries the first half in the label style, the head carries
+        # the second half at --d2 on ONE line at every width, the gap between them is 20px,
+        # and no section head anywhere on the page still contains a middot. The width-axis
+        # assertion survives unchanged -- all five heads on wdth 115.
+        HEAD_JS = r"""()=>{
+            const sec=[...document.querySelectorAll('#work .sec')][0];
+            const eb=sec.querySelector('.eyebrow .l');
+            const h=sec.querySelector('h2');
+            const ebs=getComputedStyle(eb), hs=getComputedStyle(h);
+            const hr=h.getBoundingClientRect(), er=eb.getBoundingClientRect();
+            return {eyebrow:eb.textContent.trim(), head:h.textContent.trim(),
+                    ebFs:parseFloat(ebs.fontSize), ebTransform:ebs.textTransform,
+                    ebVar:ebs.fontVariationSettings,
+                    headFs:parseFloat(hs.fontSize), rects:h.getClientRects().length,
+                    gap:hr.top-er.bottom,
+                    anyMiddot:[...document.querySelectorAll('.sec h2')]
+                        .some(e=>e.textContent.indexOf('·')>=0)};}"""
+        hd = {}
         for W in (1920, 1440, 1280, 900, 390, 360):
             pg.set_viewport_size({"width": W, "height": 900})
             pg.wait_for_timeout(450)
             pg.evaluate("()=>document.getElementById('work').scrollIntoView({block:'start'})")
             pg.wait_for_timeout(400)
-            mid[W] = pg.evaluate(MID_JS)
-        # ROUND-9 RULE CHANGE (operator, 2026-09-06): "the how-I-work head ... on the same
-        # width axis as the other section heads (wdth 115) at every width; it may wrap to
-        # two lines; the middot rule (never alone at a line end) still holds."
-        # So the ONE-LINE clause is gone -- it was what forced this head to wdth 88 on the
-        # desktop and 68 on the phone, i.e. NARROWER than the step names under it. What
-        # survives is the separator condition, and it is still measured glyph by glyph:
-        # the middot can neither END a row nor OPEN one, at any width. The width axis is
-        # asserted with it, because dropping the one-line clause is only correct if the
-        # head is actually back in the section-head register.
+            hd[W] = pg.evaluate(HEAD_JS)
         WW = (1920, 1440, 1280, 900, 390, 360)
-        never_last = all(l["last"] != "\u00b7" for W in WW for l in mid[W])
-        never_first = all(l["line"].lstrip()[:1] != "\u00b7" for W in WW for l in mid[W])
+        split_ok = all(hd[W]["eyebrow"] == "Operating principles"
+                       and hd[W]["head"] == "How I work."
+                       and not hd[W]["anyMiddot"]
+                       and hd[W]["ebFs"] == 14 and hd[W]["ebTransform"] == "uppercase"
+                       and abs(hd[W]["gap"] - 20) <= 2.5
+                       for W in WW)
+        one_line = all(hd[W]["rects"] == 1 for W in WW)
+        pg.set_viewport_size({"width": 1440, "height": 900})
+        pg.wait_for_timeout(400)
         axis = pg.evaluate(r"""()=>{const o={};
             document.querySelectorAll('.sec h2').forEach(h=>{
               o[(h.closest('[id]')||{}).id||'?']=getComputedStyle(h).fontVariationSettings;});
             return o;}""")
         one_axis = len(set(axis.values())) == 1 and '"wdth" 115' in set(axis.values()).pop()
-        chk("15.4-work-head-one-axis-middot-interior",
-            one_axis and never_last and never_first,
-            "every section head on one width axis: %s (round 9 wants wdth 115 on all five, "
-            "the head free to wrap). Rows, glyph-grouped: %s"
+        chk("18-work-head-split-eyebrow-and-one-line",
+            one_axis and split_ok and one_line,
+            "every section head on one width axis: %s (wdth 115 on all five, and zero "
+            "middots left in any of them). The how-I-work head, at each width: %s"
             % (json.dumps(axis),
-               "; ".join("%d: %d row(s) %s" % (W, len(mid[W]),
-                         [(l["line"], "opens %r ends %r" % (l["line"].lstrip()[:1], l["last"]))
-                          for l in mid[W]]) for W in WW)))
-        pg.set_viewport_size({"width": 1440, "height": 900})
-        pg.wait_for_timeout(400)
+               "; ".join("%d: eyebrow %r at %.0fpx %s, head %r at %.1fpx in %d line(s), "
+                         "gap %.1fpx"
+                         % (W, hd[W]["eyebrow"], hd[W]["ebFs"], hd[W]["ebTransform"],
+                            hd[W]["head"], hd[W]["headFs"], hd[W]["rects"], hd[W]["gap"])
+                         for W in WW)))
 
         # ---- 15.5 the cards, pronounced -------------------------------------
         # SS15.5 supersedes SS14.5/SS14.7 here. The cards get a ground -- 1px hairline at
@@ -926,6 +955,20 @@ def main(base):
                          st.borderBottomWidth+' '+st.borderBottomColor,
                          st.borderLeftWidth+' '+st.borderLeftColor];}),
               mark:cards.map(c=>c.classList.contains('mark')),
+              tag:(()=>{const t=document.querySelector('.card.mark .tag');
+                 return t?t.textContent.trim():null;})(),
+              tagFs:(()=>{const t=document.querySelector('.card.mark .tag');
+                 return t?parseFloat(getComputedStyle(t).fontSize):0;})(),
+              tagRadius:(()=>{const t=document.querySelector('.card.mark .tag');
+                 return t?getComputedStyle(t).borderRadius:'';})(),
+              tagBorder:(()=>{const t=document.querySelector('.card.mark .tag');
+                 return t?getComputedStyle(t).borderTopWidth+' '
+                          +getComputedStyle(t).borderTopColor:'';})(),
+              tagOnNameLine:(()=>{const t=document.querySelector('.card.mark .tag');
+                 const n=document.querySelector('.card.mark .nm');
+                 if(!t||!n) return false;
+                 const a=t.getBoundingClientRect(), b=n.getBoundingClientRect();
+                 return a.top < b.bottom && a.bottom > b.top && a.x > b.x;})(),
               hairPx:(()=>{const d=document.createElement('div');
                  d.style.cssText='color:var(--hair)';
                  document.querySelector('.price').appendChild(d);
@@ -960,17 +1003,25 @@ def main(base):
                cd["nameFs"], [f.split(",")[0] for f in cd["nameFam"]], cd["nameWt"], cd["pr"],
                [round(x, 1) for x in cd["chipW"]], [round(x, 1) for x in cd["inner"]], spread))
         marked = [i for i, m in enumerate(cd["mark"]) if m]
-        # SS15.5: a 2px COPPER TOP RULE on the Audit, and no full copper box.
-        top_ok = (marked == [1]
-                  and cd["borders"][1][0].startswith("2px")
-                  and "200, 84, 43" in cd["borders"][1][0]
-                  and not any("200, 84, 43" in cd["borders"][1][k] for k in (1, 2, 3))
-                  and not any("200, 84, 43" in bd for i in (0, 2) for bd in cd["borders"][i]))
-        chk("15.5-audit-top-rule", top_ok,
-            "the Audit's four borders are %s -- a 2px copper rule on the TOP edge and the "
-            "hairline on the other three, which is the rank SS15.5 asks for and not the full "
-            "copper box of v4; the other two cards read %s and %s"
-            % (cd["borders"][1], cd["borders"][0], cd["borders"][2]))
+        # SS18 REPLACES SS15.5's 2px COPPER TOP RULE. "The Audit carries exactly two
+        # devices: a 1px copper border on all four sides and an inline `Start here` pill on
+        # the name line; the 2px top rule is deleted." A rule on one edge had to be paid for
+        # with a 1px pull-back on the interior to keep the three card interiors on one line;
+        # a border on four sides costs nothing and reads as the marked card at any angle.
+        cop = "200, 84, 43"
+        mark_ok = (marked == [1]
+                   and all(bd.startswith("1px") and cop in bd for bd in cd["borders"][1])
+                   and not any(cop in bd for i in (0, 2) for bd in cd["borders"][i]))
+        chk("18-audit-copper-border-and-pill", mark_ok and cd["tag"] is not None
+            and cd["tag"] == "Start here" and cd["tagOnNameLine"]
+            and cd["tagRadius"] == "999px" and abs(cd["tagFs"] - 12) < 0.6
+            and cop in cd["tagBorder"],
+            "the Audit's four borders are %s -- 1px copper on ALL FOUR, which is SS18's "
+            "first device, and the other two cards keep the hairline (%s / %s). The second "
+            "device is the pill %r on the NAME line (same row as the name: %s), %.0fpx, "
+            "radius %s, border %s"
+            % (cd["borders"][1], cd["borders"][0], cd["borders"][2], cd["tag"],
+               cd["tagOnNameLine"], cd["tagFs"], cd["tagRadius"], cd["tagBorder"]))
         pk = open(PACKAGES, encoding="utf-8").read()
         live = re.findall(r'(?<!aria-)label="([^"]*)"', pk)
         chk("14.7-chip-labels-are-the-live-buttons",
@@ -1005,6 +1056,10 @@ def main(base):
                     bt:cs.borderTopWidth+' '+cs.borderTopColor,
                     bo:[cs.borderRightWidth,cs.borderBottomWidth,cs.borderLeftWidth],
                     hdFs:parseFloat(getComputedStyle(hd).fontSize), d2:d2,
+                    hdFam:getComputedStyle(hd).fontFamily,
+                    hdWt:getComputedStyle(hd).fontWeight,
+                    hdTxt:hd.textContent.trim(),
+                    pad:cs.padding,
                     hdX:hd.getBoundingClientRect().x,
                     dscFs:parseFloat(getComputedStyle(dsc).fontSize),
                     vFs:parseFloat(getComputedStyle(v).fontSize),
@@ -1027,130 +1082,193 @@ def main(base):
         glyphs = [rr for rr in eb["runs"] if rr["hidden"]]
         worst_word = min([run_ratio(rr) for rr in words] or [0])
         worst_glyph = min([run_ratio(rr) for rr in glyphs] or [99])
-        chk("15.5-engagements",
+        # SS18: "Engagements is the fourth object in the SAME system: one block the width
+        # of the three cards, 24px below, 8px radius, 28px padding, espresso ground,
+        # `Engagements` at 24px Hanken 500 bone (not --d2), the descriptor at 17px, `From
+        # $5K a month` at 72px bone in the price's slot, one chip right; height by content.
+        # Special by ground, connected by grammar."
+        # So the three things SS15.5 used to assert are exactly the three SS18 deleted: the
+        # 220px floor (which opened a band of empty espresso across the middle), the 16px
+        # radius, and the 2px copper top rule. What replaces them is the CARD's grammar.
+        chk("18-engagements-is-the-fourth-card",
             eb["tag"] == "A" and eb["links"] == 0
-            and eb["h"] >= 219.5 and abs(eb["w"] - eb["cardsW"]) <= 1.0
-            and abs(eb["gapAbove"] - 24) <= 1.0 and eb["radius"] == "16px"
-            and eb["bt"].startswith("2px") and "200, 84, 43" in eb["bt"]
-            and all(x == "0px" for x in eb["bo"])
+            and abs(eb["w"] - eb["cardsW"]) <= 1.0
+            and abs(eb["gapAbove"] - 24) <= 1.0 and eb["radius"] == "8px"
+            and eb["pad"].startswith("28px")
+            and all(x == "0px" or x == "1px" for x in eb["bo"])
+            and "200, 84, 43" not in eb["bt"]
             and "13, 13, 15" in eb["bg"]
-            and abs(eb["hdFs"] - eb["d2"]) < 1.0 and abs(eb["dscFs"] - 21) < 0.6
-            and abs(eb["vFs"] - 64) < 0.6
-            and eb["hdX"] < eb["mid"] and eb["vRight"] > eb["mid"]
-            and eb["chipRight"] > eb["mid"]
+            and abs(eb["hdFs"] - 24) < 0.6 and "Hanken" in eb["hdFam"]
+            and eb["hdWt"] == "500"
+            and abs(eb["dscFs"] - 17) < 0.6
+            and abs(eb["vFs"] - 72) < 0.6
+            and eb["hdX"] < eb["mid"] and eb["chipRight"] > eb["mid"]
             and worst_word >= 4.5 and worst_glyph >= 3.0,
-            "one <%s> with %d links inside it -> %s; %.0fpx tall (>=220), %.1fpx wide == the "
-            "cards row %.1f, %.1fpx below it; radius %s; top border %s and nothing on the "
-            "other three (%s); ground %s; 'Engagements' at %.1f == --d2 %.1f on the LEFT "
-            "(x %.0f of a midline %.0f) with the descriptor at %.0fpx; the figure at %.0fpx "
-            "and the chip %r on the RIGHT; every word run >= %.2f:1 and the one aria-hidden "
-            "24px arrow at %.2f:1 (SS11: copper's ceiling is 4.41 on espresso and 3.85 on "
-            "bone, so large text takes the 3:1 bar). Runs: %s"
-            % (eb["tag"], eb["links"], eb["href"], eb["h"], eb["w"], eb["cardsW"],
-               eb["gapAbove"], eb["radius"], eb["bt"], eb["bo"], eb["bg"], eb["hdFs"],
-               eb["d2"], eb["hdX"], eb["mid"], eb["dscFs"], eb["vFs"], eb["chipT"],
-               worst_word, worst_glyph, runs))
+            "one <%s> with %d links inside it -> %s; %.1fpx wide == the cards row %.1f, "
+            "%.1fpx below it; radius %s (the cards' 8px, not the slab's 16px); padding %s "
+            "(the cards' 28px); NO copper top rule (%s); height %.0fpx, by content, not a "
+            "220px floor; ground %s; the name %r at %.1fpx %s weight %s (the card's name "
+            "slot, not --d2 %.1f), the price slot at %.0fpx, the sentence at %.0fpx, one "
+            "chip %r on the right; every word run >= %.2f:1 and the one aria-hidden arrow "
+            "at %.2f:1. Runs: %s"
+            % (eb["tag"], eb["links"], eb["href"], eb["w"], eb["cardsW"], eb["gapAbove"],
+               eb["radius"], eb["pad"], eb["bt"], eb["h"], eb["bg"], eb["hdTxt"],
+               eb["hdFs"], eb["hdFam"].split(",")[0], eb["hdWt"], eb["d2"], eb["vFs"],
+               eb["dscFs"], eb["chipT"], worst_word, worst_glyph, runs))
 
-        # ---- 15.3 the objections: three equal columns ------------------------
+        # ---- SS18 the objections: the head in cols 1-5, ONE list from the seam -------
+        # SS15.3's three equal columns are what the critique measured as "three ragged
+        # feet", under a head alone on two lines with the whole right half of the band
+        # empty. SS18: "the head stays in cols 1-5, the list is ONE column from x = 600
+        # (Rule B): each row padding 30px 0, hairline bottom, a 24px copper arrow cell ahead
+        # of the question, question 24px/1.2 Hanken 500, answer 17px/1.5 at 80% ink beneath,
+        # max 60ch. Rows close on their own hairlines; no ragged feet."
         fq = pg.evaluate(r"""()=>{
             const qs=[].slice.call(document.querySelectorAll('.q'));
             const sec=document.querySelector('.faq');
             const gut=parseFloat(getComputedStyle(sec).paddingLeft);
             const content=sec.getBoundingClientRect().width-2*gut;
+            const gap=parseFloat(getComputedStyle(sec).columnGap);
+            const col=(content-11*gap)/12;
             const dl=document.querySelector('.qs');
+            const head=document.querySelector('.faq .sec');
+            const arrow=getComputedStyle(qs[0],'::after');
             return {n:qs.length, w:qs.map(e=>+e.getBoundingClientRect().width.toFixed(2)),
-                    tops:qs.map(e=>Math.round(e.getBoundingClientRect().top)),
                     x:qs.map(e=>+e.getBoundingClientRect().x.toFixed(1)),
+                    tops:qs.map(e=>Math.round(e.getBoundingClientRect().top)),
                     rule:qs.map(e=>{const c=getComputedStyle(e);
-                       return c.borderTopWidth+' '+c.borderTopStyle;}),
+                       return c.borderBottomWidth+' '+c.borderBottomStyle;}),
+                    pad:qs.map(e=>getComputedStyle(e).paddingBottom),
                     dt:qs.map(e=>parseFloat(getComputedStyle(e.querySelector('dt')).fontSize)),
                     dd:qs.map(e=>parseFloat(getComputedStyle(e.querySelector('dd')).fontSize)),
-                    gap:getComputedStyle(dl).columnGap, content:content};}""")
-        wexp2 = (fq["content"] - 48) / 3.0
-        chk("15.3-objections-three-columns",
-            fq["n"] == 3 and len(set(fq["tops"])) == 1
-            and max(fq["w"]) - min(fq["w"]) <= 1.0 and abs(fq["w"][0] - wexp2) <= 1.0
+                    ddColor:getComputedStyle(qs[0].querySelector('dd')).color,
+                    arrowColor:arrow.color, arrowContent:arrow.content,
+                    listX:+dl.getBoundingClientRect().x.toFixed(1),
+                    listW:+dl.getBoundingClientRect().width.toFixed(1),
+                    headX:+head.getBoundingClientRect().x.toFixed(1),
+                    headW:+head.getBoundingClientRect().width.toFixed(1),
+                    wantSeam:+(gut+5*col+5*gap).toFixed(1),
+                    wantLane:+(7*col+6*gap).toFixed(1),
+                    wantHead:+(5*col+4*gap).toFixed(1), content:content};}""")
+        stacked = len(set(fq["tops"])) == 3
+        chk("18-objections-one-lane-from-the-seam",
+            fq["n"] == 3 and stacked
+            and max(fq["w"]) - min(fq["w"]) <= 1.0
+            and abs(fq["listX"] - fq["wantSeam"]) <= 1.5
+            and abs(fq["listW"] - fq["wantLane"]) <= 1.5
+            and abs(fq["headW"] - fq["wantHead"]) <= 1.5
             and all(r == "1px solid" for r in fq["rule"])
-            and all(x == fq["x"][0] or True for x in fq["x"])
             and all(abs(x - 24) < 0.6 for x in fq["dt"])
-            and all(abs(x - 17) < 0.6 for x in fq["dd"]),
-            "1440: three columns on ONE row (tops %s) at %s -- each (content - 48)/3 = %.2f "
-            "of a %.0f content, equal within %.2fpx; hairline tops %s; questions %s / "
-            "answers %s; column gap %s"
-            % (fq["tops"], fq["w"], wexp2, fq["content"], max(fq["w"]) - min(fq["w"]),
-               set(fq["rule"]), fq["dt"], fq["dd"], fq["gap"]))
+            and all(abs(x - 17) < 0.6 for x in fq["dd"])
+            and "200, 84, 43" in fq["arrowColor"],
+            "1440: THREE rows in ONE column, stacked (tops %s), every row the lane's own "
+            "width %s; the lane opens at x %.1f -- the column-6 seam is %.1f (Rule B) -- and "
+            "runs %.1f against the cols 6-12 span %.1f, with the head holding cols 1-5 "
+            "(%.1f vs %.1f); each row closes on its own %s hairline; questions %s / answers "
+            "%s at %s; the copper arrow cell is %s %s"
+            % (fq["tops"], fq["w"], fq["listX"], fq["wantSeam"], fq["listW"],
+               fq["wantLane"], fq["headW"], fq["wantHead"], set(fq["rule"]), fq["dt"],
+               fq["dd"], fq["ddColor"], fq["arrowContent"], fq["arrowColor"]))
 
-        # ---- 15.2 the manual -------------------------------------------------
+        # ---- SS18 the manual: RULE A, and the buy ledger ---------------------
+        # RULE A, page-wide: "the border goes on the list, never on the picture. No frame
+        # around any photograph or cover." The dashed frame SS15.2 put around the cover is
+        # DELETED, and so is its 16px of padding: the cover is alone in cols 1-5 at 4:5 with
+        # an 8px radius. The section's only border is the buy LEDGER -- one bordered box,
+        # square corners, three 48px rows on hairlines, each label left, value right, a
+        # copper arrow in a 44px ruled cell.
+        # The display line is demoted with them: "the display sentence demoted to a
+        # 28px/1.25 lede (max three lines)", because at --d2 across three lines it measured
+        # as the loudest thing on the site, over the hero's own copper row.
         mn = pg.evaluate(r"""()=>{
             const art=document.querySelector('.manual .art');
-            const fr=art.querySelector('.frame'), img=art.querySelector('img');
+            const cov=art.querySelector('.cov'), img=art.querySelector('img');
             const copy=document.querySelector('.manual .copy');
             const grid=document.querySelector('.manual .grid');
             const cols=getComputedStyle(grid).gridTemplateColumns.split(' ').map(parseFloat);
             const gap=parseFloat(getComputedStyle(grid).columnGap);
             const want15=cols.slice(0,5).reduce((a,b)=>a+b,0)+4*gap;
             const want612=cols.slice(5,12).reduce((a,b)=>a+b,0)+6*gap;
-            const fb=fr.getBoundingClientRect(), ib=img.getBoundingClientRect();
-            const cs=getComputedStyle(fr);
+            const cb=cov.getBoundingClientRect(), ib=img.getBoundingClientRect();
+            const cs=getComputedStyle(cov);
             const h2=document.querySelector('.manual .sec h2');
+            const lede=document.querySelector('.manual .copy .lede');
             const d2=0.76*parseFloat(getComputedStyle(document.getElementById('h1')).fontSize);
             const lines=[].slice.call(document.querySelectorAll('.manual .lines p'));
-            const buyV=document.querySelector('.manual .buy .v');
-            const chip=document.querySelector('.manual .buy .chip');
+            const rows=[].slice.call(document.querySelectorAll('.manual .buyledger .brow'));
+            const box=document.querySelector('.manual .buyledger');
+            const bs=getComputedStyle(box);
+            const framed=art.querySelectorAll('.frame').length;
+            const dashed=[].slice.call(art.querySelectorAll('*')).filter(
+                e=>/dashed/.test(getComputedStyle(e).borderTopStyle)).length;
             return {artW:+art.getBoundingClientRect().width.toFixed(1),
                     want15:+want15.toFixed(1),
                     copyW:+copy.getBoundingClientRect().width.toFixed(1),
                     want612:+want612.toFixed(1),
                     copyRightOfArt: copy.getBoundingClientRect().x
                                     > art.getBoundingClientRect().x,
-                    frameW:+fb.width.toFixed(1), frameH:+fb.height.toFixed(1),
-                    frameAr:+(fb.width/fb.height).toFixed(4),
-                    border:cs.borderTopWidth+' '+cs.borderTopStyle,
-                    imgW:+ib.width.toFixed(1), imgH:+ib.height.toFixed(1),
-                    imgFit:getComputedStyle(img).objectFit,
-                    inner:+(fb.width-2*parseFloat(cs.paddingLeft)
-                            -2*parseFloat(cs.borderTopWidth)).toFixed(1),
+                    framed:framed, dashed:dashed,
+                    covW:+cb.width.toFixed(1), covH:+cb.height.toFixed(1),
+                    covAr:+(cb.width/cb.height).toFixed(4),
+                    covBorder:cs.borderTopWidth, covRadius:cs.borderRadius,
+                    covPad:cs.padding,
+                    imgW:+ib.width.toFixed(1), imgFit:getComputedStyle(img).objectFit,
                     nw:img.naturalWidth, nh:img.naturalHeight, complete:img.complete,
-                    headFs:parseFloat(getComputedStyle(h2).fontSize), d2:d2,
+                    headFs:parseFloat(getComputedStyle(h2).fontSize),
+                    headTxt:h2.textContent.trim(), d2:d2,
+                    ledeFs:parseFloat(getComputedStyle(lede).fontSize),
+                    ledeLines:Math.round(lede.getBoundingClientRect().height
+                        /parseFloat(getComputedStyle(lede).lineHeight)),
                     lineFs:lines.map(e=>parseFloat(getComputedStyle(e).fontSize)),
                     lineRule:lines.map(e=>getComputedStyle(e).borderTopWidth+' '
                                           +getComputedStyle(e).borderTopStyle),
                     lastBottom:getComputedStyle(lines[2]).borderBottomWidth,
-                    buyFs:parseFloat(getComputedStyle(buyV).fontSize),
-                    buyTxt:buyV.textContent.replace(/\s+/g,' ').trim(),
-                    chipTxt:chip.textContent.replace(/\s+/g,' ').trim(),
-                    chipH:+chip.getBoundingClientRect().height.toFixed(0)};}""")
-        # PASS-101: the mock inlined a 720x1018 JPEG. The site serves
-        # public/playbook/book-cover.png (1819x2572, the same file /playbook runs) through
-        # next/image, so the decoded width is whatever the optimizer chose for this
-        # viewport. What still has to hold is the thing the check was written for -- the
-        # cover DECODES, and it is the portrait source the dashed frame crops -- so the two
-        # literals become "it decoded" and "it is taller than it is wide".
-        chk("15.2-manual",
+                    boxBorder:bs.borderTopWidth+' '+bs.borderTopStyle,
+                    boxRadius:bs.borderRadius,
+                    rowN:rows.length,
+                    rowH:rows.map(e=>+e.getBoundingClientRect().height.toFixed(0)),
+                    rowTxt:rows.map(e=>e.textContent.replace(/\s+/g,' ').trim()),
+                    cellW:[].slice.call(document.querySelectorAll('.manual .buyledger .cell'))
+                        .map(e=>+e.getBoundingClientRect().width.toFixed(0)),
+                    cellColor:getComputedStyle(
+                        document.querySelector('.manual .buyledger .cell')).color,
+                    rowHref:rows[0].getAttribute('href')};}""")
+        chk("18-manual-no-frame-and-a-buy-ledger",
             mn["nw"] > 0 and mn["nh"] > mn["nw"] and mn["complete"]
+            and mn["framed"] == 0 and mn["dashed"] == 0
             and abs(mn["artW"] - mn["want15"]) <= 1.0
             and abs(mn["copyW"] - mn["want612"]) <= 1.0 and mn["copyRightOfArt"]
-            and abs(mn["frameW"] - mn["artW"]) <= 0.6
-            and abs(mn["frameAr"] - 0.8) <= 0.01
-            and mn["border"] == "1px dashed"
-            and abs(mn["imgW"] - mn["inner"]) <= 0.6 and mn["imgFit"] == "cover"
-            and abs(mn["headFs"] - mn["d2"]) < 1.0
+            and abs(mn["covW"] - mn["artW"]) <= 0.6
+            and abs(mn["covAr"] - 0.8) <= 0.01
+            and mn["covBorder"] == "0px" and mn["covRadius"] == "8px"
+            and mn["covPad"] == "0px"
+            and abs(mn["imgW"] - mn["covW"]) <= 0.6 and mn["imgFit"] == "cover"
+            and abs(mn["headFs"] - mn["d2"]) < 1.0 and mn["headTxt"] == "The 80% Wall."
+            and abs(mn["ledeFs"] - 28) < 0.6 and mn["ledeLines"] <= 3
             and all(abs(f - 21) < 0.6 for f in mn["lineFs"])
             and all(r == "1px solid" for r in mn["lineRule"])
             and mn["lastBottom"] == "1px"
-            and abs(mn["buyFs"] - 64) < 0.6,
-            "the cover DECODES in Chromium: naturalWidth %d x %d, complete=%s; the dashed "
-            "frame (%s) fills cols 1-5 -- %.1f wide against the measured column span %.1f -- "
-            "at 4:5 (%.1f x %.1f = %.4f) with the cover filling its content box (%.1f of "
-            "%.1f, object-fit %s); the copy holds cols 6-12 (%.1f vs %.1f) to the RIGHT of "
-            "it; display line %.1f == --d2 %.1f; three symptom rows at %s on %s hairlines "
-            "(the last closing on a %s rule); the buy figure %r at %.0fpx with the chip %r "
-            "at %dpx"
-            % (mn["nw"], mn["nh"], mn["complete"], mn["border"], mn["frameW"], mn["want15"],
-               mn["frameW"], mn["frameH"], mn["frameAr"], mn["imgW"], mn["inner"],
-               mn["imgFit"], mn["copyW"], mn["want612"], mn["headFs"], mn["d2"],
-               mn["lineFs"], set(mn["lineRule"]), mn["lastBottom"], mn["buyTxt"],
-               mn["buyFs"], mn["chipTxt"], mn["chipH"]))
+            and mn["boxBorder"] == "1px solid" and mn["boxRadius"] == "0px"
+            and mn["rowN"] == 3 and all(h >= 48 for h in mn["rowH"])
+            and all(abs(w - 44) <= 0.6 for w in mn["cellW"])
+            and "200, 84, 43" in mn["cellColor"]
+            and mn["rowHref"] == "/playbook",
+            "RULE A: zero .frame and zero dashed borders inside the figure (%d / %d). The "
+            "cover DECODES (%d x %d, complete=%s) and fills cols 1-5 alone -- %.1f wide "
+            "against the measured span %.1f, at 4:5 (%.1f x %.1f = %.4f), border %s, radius "
+            "%s, padding %s, object-fit %s. The copy holds cols 6-12 (%.1f vs %.1f) to its "
+            "RIGHT; the head reads %r at %.1f == --d2 %.1f and the display sentence is "
+            "DEMOTED to %.0fpx in %d line(s); three symptom rows at %s on %s hairlines (the "
+            "last closing on a %s rule). The buy LEDGER is the section's only border: a %s "
+            "box at radius %s holding %d rows %s tall %s, each with a %s copper cell %s, "
+            "the first linking %s"
+            % (mn["framed"], mn["dashed"], mn["nw"], mn["nh"], mn["complete"], mn["covW"],
+               mn["want15"], mn["covW"], mn["covH"], mn["covAr"], mn["covBorder"],
+               mn["covRadius"], mn["covPad"], mn["imgFit"], mn["copyW"], mn["want612"],
+               mn["headTxt"], mn["headFs"], mn["d2"], mn["ledeFs"], mn["ledeLines"],
+               mn["lineFs"], set(mn["lineRule"]), mn["lastBottom"], mn["boxBorder"],
+               mn["boxRadius"], mn["rowN"], mn["rowH"], mn["rowTxt"], mn["cellW"],
+               mn["cellColor"], mn["rowHref"]))
 
         # ---- SS11 the bar over the copper field is espresso with bone labels --
         pg.evaluate("""()=>{const a=document.getElementById('contact');
@@ -1209,6 +1327,13 @@ def main(base):
                     nmFs:rows.map(r=>parseFloat(getComputedStyle(r.querySelector('.nm')).fontSize)),
                     sFs:rows.map(r=>parseFloat(getComputedStyle(r.querySelector('.s')).fontSize)),
                     sX:rows.map(r=>+r.querySelector('.s').getBoundingClientRect().x.toFixed(1)),
+                    ordW:rows.map(r=>+r.querySelector('.n')
+                        .getBoundingClientRect().width.toFixed(1)),
+                    ordColor:getComputedStyle(rows[0].querySelector('.n')).color,
+                    seam:(()=>{const g=parseFloat(getComputedStyle(sec).columnGap)||24;
+                        const content=secR.width-2*gut;
+                        const col=(content-11*g)/12;
+                        return +(secR.x+gut+5*col+5*g).toFixed(1);})(),
                     sMeasure:rows.map(r=>getComputedStyle(r.querySelector('.s')).maxWidth),
                     // PASS-101: the mock measured `ch` by copying the `font` shorthand
                     // onto a probe span. On the site that shorthand serializes EMPTY --
@@ -1242,7 +1367,11 @@ def main(base):
             and all(t == "uppercase" for t in wk["ordTr"])
             and all(abs(f - wk["d2"]) < 1.0 for f in wk["nmFs"])
             and all(abs(f - 21) < 0.6 for f in wk["sFs"])
-            and all(x >= wk["mid"] - 0.5 for x in wk["sX"])
+            # SS18 Rule B: the sentence lane opens on the column-6 seam, not merely in
+            # the right half. The seam is computed from the section's own grid.
+            and all(abs(x - wk["seam"]) <= 1.5 for x in wk["sX"])
+            # SS18: "the ordinal in a 28px cell at 60% ink".
+            and all(abs(w - 28) <= 0.6 for w in wk["ordW"])
             # computed style resolves ch to px, so the measure is divided back out by the
             # element's own '0' advance and asserted as 46 characters.
             and all(abs(c - 46) <= 0.5 for c in wk["sCh"])
@@ -1254,13 +1383,13 @@ def main(base):
             "(%s of a %.0f content): ordinals %s in the label style (%s at %s, %s), the step "
             "names %s at %s == --d2 %.1f, and each sentence at %s on a %s measure (%s = 46ch) "
             "starting "
-            "at x %s against the section's midline %.0f (the right half); hairlines %s, the "
+            "at x %s against the column-6 seam %.1f (SS18 Rule B); hairlines %s, the "
             "ledger closing on a %s rule"
             % (wk["panels"], wk["svg"], wk["img"], wk["video"], len(wk["sticky"]),
                wk["sticky"] or "[]", wk["w"], wk["contentW"], wk["ord"],
                [f.split(",")[0] for f in wk["ordFam"]], wk["ordFs"], set(wk["ordTr"]),
                wk["nm"], [round(x, 1) for x in wk["nmFs"]], wk["d2"], wk["sFs"],
-               wk["sCh"], set(wk["sMeasure"]), wk["sX"], wk["mid"], set(wk["rule"]),
+               wk["sCh"], set(wk["sMeasure"]), wk["sX"], wk["seam"], set(wk["rule"]),
                wk["lastRule"]))
 
         # ---- 15.6 the record index, consolidated -----------------------------
@@ -1273,16 +1402,33 @@ def main(base):
                 return {h:Math.round(b.height), rule:c.borderBottomWidth+' '
                         +c.borderBottomStyle, x:Math.round(b.x),
                         w:Math.round(b.width)};};
+            const sec=document.querySelector('.proofsec');
+            const secR=sec.getBoundingClientRect();
+            const gut=parseFloat(getComputedStyle(sec).paddingLeft);
+            const g=parseFloat(getComputedStyle(sec).columnGap)||24;
+            const content=secR.width-2*gut;
+            const col=(content-11*g)/12;
+            const ledger=document.querySelector('.proofsec .ledger');
+            const cnt=document.querySelector('#proof .sec .eyebrow .count');
             return {head:head,
+              count:cnt?cnt.textContent.trim():null,
+              lane:+(5*col+4*g).toFixed(1),
+              seam:+(secR.x+gut+5*col+5*g).toFixed(1),
               prf:rows.map(e=>({tag:e.tagName, href:e.getAttribute('href')||'',
                  who:e.querySelector('.who').textContent.trim(),
                  cap:e.querySelector('.cap').textContent.trim(),
                  whoFs:parseFloat(getComputedStyle(e.querySelector('.who')).fontSize),
                  capFs:parseFloat(getComputedStyle(e.querySelector('.cap')).fontSize),
+                 whoW:e.querySelector('.who').getBoundingClientRect().width,
+                 capX:e.querySelector('.cap').getBoundingClientRect().x,
+                 arW:+e.querySelector('.ar').getBoundingClientRect().width.toFixed(1),
+                 reserve:getComputedStyle(e).borderTopWidth,
                  arrow:!!e.querySelector('.ar'), geo:geo(e)})),
               more:more.map(e=>({tag:e.tagName, href:e.getAttribute('href')||'',
                  who:e.querySelector('.who').textContent.trim(),
                  arrow:(e.querySelector('.ar')||{}).textContent,
+                 radius:getComputedStyle(e).borderRadius,
+                 gapAbove:e.getBoundingClientRect().top-ledger.getBoundingClientRect().bottom,
                  geo:geo(e)}))};}""")
         prf = rec["prf"]
         allink = all(r["tag"] == "A" and r["href"] and r["arrow"] for r in prf)
@@ -1294,30 +1440,63 @@ def main(base):
         # superseded, and that ruling names this pass: "Binds v7 and Pass 101." Everything
         # else about the section -- the row geometry, the hairlines, the sizes, the
         # row-shaped way out -- is unchanged, so only the count and the names move.
-        chk("15.6-receipts-consolidated",
+        # SS18 recomposes the ROW and the way out. "row 72px, name cols 1-5 at 28px 100%
+        # ink, caption from x = 600 at 28px 60% ink (one size; rank by colour and column),
+        # the arrow in a 32px cell flush right; 2px transparent top/bottom borders reserved
+        # so the copper hover rule causes no shift. The head carries the count. `See the
+        # rest` stops being a row: a pill (14px label, 1px ink-40% border, radius 999, 40px
+        # tall, padding 0 20px) 32px under the ledger, left-aligned."
+        #   THE COUNT. SS18's draft wrote `07`, a number from the mock. The repo holds FOUR
+        # non-stub case studies and the pill lands on the index that lists exactly those
+        # four, so the component reads the count from lib/case-studies.ts and this check
+        # reads it from the same directory. A count is a fact.
+        want_count = "%02d" % len([
+            f for f in os.listdir(WORK)
+            if f.endswith(".mdx")
+            and "status: stub" not in open(
+                os.path.join(WORK, f), encoding="utf-8").read()])
+        chk("18-receipts-ledger-and-the-way-out",
             len(prf) == 3 and names == ["Guardicore",
                                         "RFP engine for an industry author",
                                         "AI content engine for an industry author"]
             and allink and not stops
             and all(abs(r["whoFs"] - 28) < 0.6 for r in prf)
-            and all(abs(r["capFs"] - 19) < 0.6 for r in prf)
+            and all(abs(r["capFs"] - 28) < 0.6 for r in prf)
+            and all(r["geo"]["h"] >= 72 for r in prf)
+            and all(abs(r["whoW"] - rec["lane"]) <= 1.5 for r in prf)
+            and all(abs(r["capX"] - rec["seam"]) <= 1.5 for r in prf)
+            and all(abs(r["arW"] - 32) <= 0.6 for r in prf)
+            and all(r["reserve"] == "2px" for r in prf)
             and len(more) == 1 and more[0]["tag"] == "A"
             and more[0]["who"] == "See the rest"
-            and more[0]["arrow"] == "\u2192"
+            and more[0]["arrow"] == "→"
             and more[0]["href"] == "/work"
-            and more[0]["geo"]["rule"] == prf[0]["geo"]["rule"]
-            and more[0]["geo"]["x"] == prf[0]["geo"]["x"]
-            and more[0]["geo"]["w"] == prf[0]["geo"]["w"]
-            and rec["head"] == "The receipts. Every line below is real.",
-            "exactly %d .prf rows (SS17: three) -- %s -- each a link carrying an arrow "
-            "(%s), names at %s "
-            "and captions at %s, zero captions ending in a full stop (tails %s); then ONE "
-            "row-shaped link %r + %r to %s, sharing the rows' geometry (%s vs %s). The head "
-            "is unchanged: %r"
-            % (len(prf), names, allink, [r["whoFs"] for r in prf],
-               [r["capFs"] for r in prf], [r["cap"][-24:] for r in prf],
-               more[0]["who"], more[0]["arrow"], more[0]["href"], more[0]["geo"],
-               prf[0]["geo"], rec["head"]))
+            and more[0]["geo"]["h"] == 40
+            and more[0]["radius"] == "999px"
+            and abs(more[0]["gapAbove"] - 32) <= 1.5
+            and abs(more[0]["geo"]["x"] - prf[0]["geo"]["x"]) <= 1.0
+            and more[0]["geo"]["w"] < prf[0]["geo"]["w"]
+            and rec["head"] == "The receipts. Every line below is real."
+            and rec["count"] == want_count,
+            "exactly %d .prf rows -- %s -- each a link carrying an arrow (%s), %spx tall; "
+            "name and caption at ONE size (%s / %s), the name holding the cols 1-5 lane "
+            "(%s vs %.1f) and the caption opening on the column-6 seam (%s vs %.1f), the "
+            "arrow in a %s cell, 2px reserved top and bottom (%s) so the copper hover rule "
+            "cannot shift the row; zero captions ending in a full stop (tails %s). The way "
+            "out is a PILL, not a fourth row: %r + %r to %s, %dpx tall at radius %s, %.0fpx "
+            "under the ledger, on the ledger's own left edge (%d vs %d) and narrower than "
+            "it (%d vs %d). The head is unchanged (%r) and carries the count %r, which is "
+            "the number of non-stub case studies in content/work (%r)"
+            % (len(prf), names, allink, [r["geo"]["h"] for r in prf],
+               [r["whoFs"] for r in prf], [r["capFs"] for r in prf],
+               [round(r["whoW"], 1) for r in prf], rec["lane"],
+               [round(r["capX"], 1) for r in prf], rec["seam"],
+               [r["arW"] for r in prf], set(r["reserve"] for r in prf),
+               [r["cap"][-24:] for r in prf],
+               more[0]["who"], more[0]["arrow"], more[0]["href"], more[0]["geo"]["h"],
+               more[0]["radius"], more[0]["gapAbove"], more[0]["geo"]["x"],
+               prf[0]["geo"]["x"], more[0]["geo"]["w"], prf[0]["geo"]["w"],
+               rec["head"], rec["count"], want_count))
 
         # ---- 15 hero rows ----------------------------------------------------
         pg.evaluate("()=>window.scrollTo(0,0)")
@@ -1372,7 +1551,7 @@ def main(base):
         prf_n = np_.locator(".prf").count()
         more_n = np_.locator(".prfx").count()
         eng_b = np_.locator("#ebar").bounding_box()
-        cov_b = np_.locator(".manual .art .frame").bounding_box()
+        cov_b = np_.locator(".manual .art .cov").bounding_box()
         cu_b = np_.locator("#h1 .r.cu").bounding_box()
         barvis = np_.locator("#bar").is_visible()
         nctx.close()
@@ -1388,7 +1567,9 @@ def main(base):
             # .r is display:block at line-height .92, so --d is its height / .92 and the
             # cap-top is --capk of that below the box top.
             and abs((cu_b["y"] + 0.0591 * cu_b["height"] / 0.92) - (fty + 4)) <= 2.0
-            and eng_b["height"] >= 219.5 and cov_b["width"] > 0,
+            # SS18 deleted the 220px floor ("height by content"), so what is asserted
+            # here is that the block RENDERS with scripting off, not that it is tall.
+            and eng_b["height"] > 0 and cov_b["width"] > 0,
             "scripting DISABLED: the 16:9 stage is %.0fx%.0f and the headline block starts "
             "at (%.0f, %.0f) against the CSS-only fingertip (%.0f, %.0f) -- %.0fpx to its "
             "left and the copper row's cap-top at %.1f, %+.1fpx off the tip, from :root's "
@@ -1666,18 +1847,21 @@ def main(base):
         chk("15.5-cards-mobile",
             stacked and all(w == mcard["inner"] for w in mcard["w"])
             and all(r == "8px" for r in mcard["radius"])
-            and mk[0].startswith("2px") and "200, 84, 43" in mk[0]
+            # SS18: 1px copper on ALL FOUR sides, at every width.
+            and all(bd.startswith("1px") and "200, 84, 43" in bd for bd in mk)
             and not any("200, 84, 43" in bd for i in (0, 2) for bd in mcard["borders"][i])
             and all(x >= mcard["gut"] - 0.5 for x in mcard["x"])
             and all(r <= mcard["iw"] - mcard["gut"] + 0.5 for r in mcard["right"])
             and mcard["rowMargin"].replace(" ", "") in ("0px", "0px0px0px0px")
-            and mcard["engH"] >= 220 and mcard["engRows"] == 4
+            # SS18: the fourth card stacks like the three, and takes its height from
+            # its content -- the 220px floor was what opened the empty band.
+            and mcard["engH"] > 0 and mcard["engRows"] == 4
             and mcard["engCols"] == 1
             and mcard["engW"] == mcard["inner"]
             and abs(mcard["air"] - 64) < 1,
             "390: the three cards stack (tops %s) at the full %dpx content width %s, keeping "
-            "their 8px ground %s; the Audit's borders are %s -- the SAME 2px copper TOP rule "
-            "as the desktop, no box, no bleed (row margin %s, x %s, right %s of a %dpx "
+            "their 8px ground %s; the Audit's borders are %s -- the SAME 1px copper border "
+            "on four sides as the desktop, no bleed (row margin %s, x %s, right %s of a %dpx "
             "viewport); the engagements block stacks into %d rows on %d left edge(s), %dpx "
             "tall and %dpx wide; "
             "section air %.0fpx"
@@ -1685,11 +1869,15 @@ def main(base):
                mcard["rowMargin"], mcard["x"], mcard["right"], mcard["iw"],
                mcard["engRows"], mcard["engCols"], mcard["engH"], mcard["engW"],
                mcard["air"]))
-        chk("15.3-objections-mobile",
+        # SS18 supersedes SS15.3's 40px gap: "Rows close on their own hairlines; no
+        # ragged feet." A row that closes on a rule cannot also stand 40px clear of the
+        # next one -- the rule IS the separation. What is asserted is the stack, the full
+        # width, and that consecutive rows meet on their shared hairline.
+        chk("18-objections-mobile",
             len(set(mcard["qTops"])) == 3 and all(w == mcard["inner"] for w in mcard["qW"])
-            and all(abs(g - 40) <= 1 for g in mcard["qGaps"]),
-            "390: the three objections stack (tops %s) at the full %dpx width %s, on %s "
-            "gaps (SS15.3 wants 40)"
+            and all(abs(g) <= 2 for g in mcard["qGaps"]),
+            "390: the three objections stack (tops %s) at the full %dpx width %s, each "
+            "closing on its own hairline with no gap between rows (%s)"
             % (mcard["qTops"], mcard["inner"], mcard["qW"], mcard["qGaps"]))
         chk("15.2-manual-mobile",
             mcard["artTop"] < mcard["copyTop"] and mcard["artW"] == mcard["inner"],
@@ -1780,7 +1968,6 @@ def main(base):
             stepLast:pone('.steps li:last-child','::after','transform'),
             qRule:pall('.q','::before','transform'),
             prfRule:pall('.prf','::before','transform'),
-            prfxRule:pone('.prfx','::before','transform'),
             ledgerRule:pone('.proofsec .ledger','::before','transform'),
             priceRule:pall('.card .pblock','::after','transform'),
             priceDelay:pall('.card .pblock','::after','transitionDelay'),
@@ -1799,14 +1986,15 @@ def main(base):
             opRowDelay:all('.opover .r','transitionDelay'),
             askH:one('.ask h2','transform'), askHOp:one('.ask h2','opacity'),
             askHDur:one('.ask h2','transitionDuration'),
-            askAr:one('.ask .ar','transform'), askArOp:one('.ask .ar','opacity'),
-            askArDur:one('.ask .ar','transitionDuration'),
+            askPr:one('.ask .promise','transform'),
+            askPrOp:one('.ask .promise','opacity'),
+            askPrDur:one('.ask .promise','transitionDuration'),
             askChips:one('.ask .chips','transform'), askChipsOp:one('.ask .chips','opacity'),
             askChipsDelay:one('.ask .chips','transitionDelay'),
             askChipsDur:one('.ask .chips','transitionDuration'),
             glDur:one('.chip .a .gl','transitionDuration'),
             arDur:one('.prf .ar','transitionDuration'),
-            cover:one('.manual .art .frame','transform'),
+            cover:one('.manual .art .cov','transform'),
             sheetDur:one('.rl-sheet','transitionDuration')};}"""
 
         mctx = br.new_context(viewport={"width": 1440, "height": 900},
@@ -1894,22 +2082,23 @@ def main(base):
         drawn0 = ([tmat(v)[2] for v in ini["stepRule"]] + [tmat(v)[2] for v in ini["qRule"]]
                   + [tmat(v)[2] for v in ini["prfRule"]] + [tmat(v)[2] for v in ini["priceRule"]]
                   + [tmat(v)[2] for v in ini["lineRule"]]
-                  + [tmat(ini["ledgerRule"])[2], tmat(ini["prfxRule"])[2],
+                  # SS18 took `See the rest` out of the ledger and made it a pill, so it
+                  # draws no rule and leaves this set: 19 becomes 18.
+                  + [tmat(ini["ledgerRule"])[2],
                      tmat(ini["stepLast"])[2], tmat(ini["lineLast"])[2]])
         drawn1 = ([tmat(v)[2] for v in fin["stepRule"]] + [tmat(v)[2] for v in fin["qRule"]]
                   + [tmat(v)[2] for v in fin["prfRule"]] + [tmat(v)[2] for v in fin["priceRule"]]
                   + [tmat(v)[2] for v in fin["lineRule"]]
-                  + [tmat(fin["ledgerRule"])[2], tmat(fin["prfxRule"])[2],
+                  + [tmat(fin["ledgerRule"])[2],
                      tmat(fin["stepLast"])[2], tmat(fin["lineLast"])[2]])
         chk("16.3-4-hairlines",
-            len(drawn0) == 19 and all(abs(v) < 0.001 for v in drawn0)
+            len(drawn0) == 18 and all(abs(v) < 0.001 for v in drawn0)
             and all(abs(v - 1) < 0.001 for v in drawn1)
             and all(abs(float(d.rstrip("s")) - 0.5) < 0.01 for d in ini["stepDur"])
             and [d.strip() for d in ini["stepDelay"]] == ["0s", "0.06s", "0.12s"],
             "%d ledger rules -- the three how-I-work rows and the ledger's closing rule, the "
-            "three manual symptoms and theirs, the three objection tops, the three card price "
-            "rules, the THREE receipts (SS17), the way-out row and the ledger's opening rule "
-            "-- all "
+            "three manual symptoms and theirs, the three objection rules, the three card price "
+            "rules, the THREE receipts (SS17) and the ledger's opening rule -- all "
             "rest at scaleX %s and settle at scaleX %s over %s, staggered %s inside a section"
             % (len(drawn0), set(round(v, 3) for v in drawn0),
                set(round(v, 3) for v in drawn1), set(ini["stepDur"]),
@@ -1983,19 +2172,28 @@ def main(base):
             % (tmat(hv_chip)[0], tmat(hv_row)[0], ini["glDur"], ini["arDur"], hv_card))
 
         # 8 the ask
+        # SS16.3-8 names two moves: the headline rises 30px and "the arrow slides in
+        # from the left", both 600ms, with the chips 120ms behind. SS18 DELETED the
+        # floating 56px arrow ("the chips carry the arrow"), so the slide moves onto the
+        # chips themselves -- they now enter from the left AND from below -- and the
+        # promise, which SS18 baselines to the headline, rides up with the headline.
         chk("16.3-8-ask",
             abs(tmat(ini["askH"])[1] - 30) < 0.5 and float(ini["askHOp"]) == 0
-            and abs(tmat(ini["askAr"])[0] + 30) < 0.5
+            and abs(tmat(ini["askPr"])[1] - 30) < 0.5 and float(ini["askPrOp"]) == 0
+            and abs(tmat(ini["askChips"])[0] + 30) < 0.5
+            and abs(tmat(ini["askChips"])[1] - 30) < 0.5
             and abs(float(ini["askHDur"].split(",")[0].rstrip("s")) - 0.6) < 0.01
-            and abs(float(ini["askArDur"].split(",")[0].rstrip("s")) - 0.6) < 0.01
+            and abs(float(ini["askPrDur"].split(",")[0].rstrip("s")) - 0.6) < 0.01
             and ini["askChipsDelay"].split(",")[0].strip() == "0.12s"
-            and tmat(fin["askH"])[1] == 0 and tmat(fin["askAr"])[0] == 0
+            and tmat(fin["askH"])[1] == 0 and tmat(fin["askChips"])[0] == 0
             and float(fin["askChipsOp"]) == 1,
-            "the copper field's headline rests at translateY %.0fpx / opacity %s and the "
-            "arrow at translateX %.0fpx, both over %s; the chips follow on a %s delay and "
-            "settle at opacity %s"
-            % (tmat(ini["askH"])[1], ini["askHOp"], tmat(ini["askAr"])[0],
-               ini["askHDur"].split(",")[0], ini["askChipsDelay"].split(",")[0],
+            "the copper field's headline rests at translateY %.0fpx / opacity %s over %s, "
+            "the reply promise rides with it at translateY %.0fpx / opacity %s, and the "
+            "chips -- which carry the arrow now that SS18 deleted the floating one -- enter "
+            "from translate(%.0f, %.0f) on a %s delay, settling at opacity %s"
+            % (tmat(ini["askH"])[1], ini["askHOp"], ini["askHDur"].split(",")[0],
+               tmat(ini["askPr"])[1], ini["askPrOp"], tmat(ini["askChips"])[0],
+               tmat(ini["askChips"])[1], ini["askChipsDelay"].split(",")[0],
                fin["askChipsOp"]))
 
         # 9 the ground travel and the rail lighting are untouched
@@ -2043,9 +2241,9 @@ def main(base):
         rm_hover = rp.evaluate("()=>getComputedStyle("
                                "document.querySelector('#herochips .chip .a .gl')).transform")
         rctx.close()
-        rm_tf = ([rm["r1"], rm["bar"], rm["eng"], rm["askH"], rm["askAr"], rm["askChips"],
+        rm_tf = ([rm["r1"], rm["bar"], rm["eng"], rm["askH"], rm["askPr"], rm["askChips"],
                   rm["cover"], rm_hover] + rm["cards"] + rm["qs"] + rm["opRow"])
-        rm_op = ([rm["cuOp"], rm["barOp"], rm["askHOp"], rm["askArOp"], rm["askChipsOp"],
+        rm_op = ([rm["cuOp"], rm["barOp"], rm["askHOp"], rm["askPrOp"], rm["askChipsOp"],
                   rm["engOp"]] + rm["cardOp"] + rm["qOp"] + rm["opRowOp"])
         rm_dur = ([rm["cuDur"], rm["r1Dur"], rm["sheetDur"], rm["glDur"], rm["arDur"]]
                   + rm["headDur"])
@@ -2065,8 +2263,7 @@ def main(base):
         # its <script> tags and re-serving it from disk. A Next.js route cannot be re-served
         # that way -- its stylesheet, its clips and its cover are all absolute paths off the
         # server -- so the same state is produced IN the live page, and it is produced
-        # exactly: the `js` class RoomMotion adds is removed (every SS16.3 rest state is
-        # gated on it, so removing it IS scripting-off for the whole set), and the
+        # exactly: the gate class is removed, and the
         # <noscript> block is unwrapped into a real stylesheet, which is what a
         # scripting-disabled UA does to this page's CSS. Corroborated below by a REAL
         # java_script_enabled=False render.
@@ -2075,7 +2272,14 @@ def main(base):
         jp.goto(url)
         jp.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
         jp.wait_for_timeout(1500)
+        # SS18 FOLLOW-UP: the gate moved from `.rl-home.js` (added in a useEffect, i.e.
+        # after the first paint -- the reverse flash) to `html.rl-js`, stamped by the
+        # layout's boot script during parse. So scripting-off is simulated by removing
+        # BOTH: `rl-js` is what every rest state hangs off now, and `js` is the marker this
+        # check reads back. Removing only the second left every pre-state live and the
+        # probe read the copper word mid-transition at 0.9996 instead of at rest.
         jp.evaluate("""()=>{
+            document.documentElement.classList.remove('rl-js','rl-on');
             const h=document.querySelector('.rl-home'); if(h) h.classList.remove('js');
             document.querySelectorAll('noscript').forEach(ns=>{
               const css=(ns.textContent||'').replace(/<\\/?style[^>]*>/gi,'');
@@ -2089,9 +2293,9 @@ def main(base):
         jp.wait_for_timeout(1400)
         nj = jp.evaluate(MOTION_JS)
         jctx.close()
-        nj_tf = ([nj["r1"], nj["bar"], nj["eng"], nj["askH"], nj["askAr"], nj["askChips"],
+        nj_tf = ([nj["r1"], nj["bar"], nj["eng"], nj["askH"], nj["askPr"], nj["askChips"],
                   nj["cover"]] + nj["cards"] + nj["qs"] + nj["opRow"])
-        nj_op = ([nj["cuOp"], nj["barOp"], nj["askHOp"], nj["askArOp"], nj["askChipsOp"],
+        nj_op = ([nj["cuOp"], nj["barOp"], nj["askHOp"], nj["askPrOp"], nj["askChipsOp"],
                   nj["engOp"]] + nj["cardOp"] + nj["qOp"] + nj["opRowOp"])
         nj_rules = ([tmat(v)[2] for v in nj["stepRule"]] + [tmat(v)[2] for v in nj["qRule"]]
                     + [tmat(v)[2] for v in nj["prfRule"]]

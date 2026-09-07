@@ -1,35 +1,17 @@
 // components/room/SiteFoot.tsx
 //
-// PASS-101 PHASE 3 — the Room and Ledger foot (WINNING-BRIEF §4 "10",
-// template lines 566-570 and 1009-1017).
+// PASS-101, §18 follow-up. This used to be a SECOND foot: espresso, one thin
+// flex row, and — unlike the home's — a LinkedIn link and "© 2013–2026 Micah
+// Jones". Two chrome languages across one site, and §18's foot ruling names
+// the copyright range as a device that goes ("No copyright range (no years).")
 //
-// Espresso, one row in the label style, nothing over 24px. The template's
-// three items are the reply promise, the email and the name; the LinkedIn
-// link and the copyright range come from the block this replaces
-// (components/color-worlds/PageFooter.tsx), so nothing the live foot carried
-// is dropped and no string is composed. Every one of these five is a live
-// string moved, not rewritten.
-//
-// Server Component. No motion, no client JS.
+// There is one foot now. This file is the (room) group's call into it: the
+// same three columns, on the .rl- class names this group's stylesheet uses,
+// and carrying the reply promise, which on these pages has no copper ask to
+// move to. See components/room/Foot.tsx for the ruling and the two departures
+// recorded against it.
+import { Foot } from "@/components/room/Foot";
+
 export function SiteFoot() {
-  return (
-    <footer className="rl-foot" aria-label="Site footer">
-      <div className="row">
-        <a href="mailto:micah@micahjonesconsulting.com">
-          <span className="rl-l now">micah@micahjonesconsulting.com</span>
-        </a>
-        <span className="rl-l">
-          I read every message and reply inside one business day.
-        </span>
-        <a
-          href="https://www.linkedin.com/in/micah-j/"
-          rel="me noopener noreferrer"
-          target="_blank"
-        >
-          <span className="rl-l">LinkedIn</span>
-        </a>
-        <span className="rl-l">© 2013–2026 Micah Jones</span>
-      </div>
-    </footer>
-  );
+  return <Foot className="rl-foot" chipClass="rl-chip" promise />;
 }

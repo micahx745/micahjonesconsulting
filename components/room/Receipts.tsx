@@ -1,12 +1,18 @@
 // components/room/Receipts.tsx — section 05, the record.
 //
-// Pass-101 phase 2. §15.6 consolidated the index to two rows and a way out.
-// §17 (operator, 2026-09-06, verbatim: "receipts - we should add the content ai
-// part to the list so we have three") re-opens it to THREE, and that ruling
-// names this pass: "Binds v7 and Pass 101." The geometry, the hairlines and the
-// row-shaped `See the rest` link are the verified template's; only the count
-// moved, and the third row's name and caption are read verbatim off
-// content/work/content-engine.mdx, which is one of the gate's verified sources.
+// Pass-101 phase 2, recomposed by §18.
+//
+// §15.6 consolidated the index; §17 re-opened it to THREE rows. §18 recomposes
+// the row itself: "row 72px, name cols 1-5 at 28px 100% ink, caption from
+// x = 600 at 28px 60% ink (one size; rank by colour and column), the arrow in
+// a 32px cell flush right ... The head carries the count. `See the rest →`
+// stops being a row: a pill."
+//
+// THE COUNT. §18's draft wrote `07`, a number from the mock. The repo holds
+// FOUR non-stub case studies and `See the rest` lands on the index that lists
+// exactly those four, so the count is READ from lib/case-studies.ts — the same
+// call /work makes — rather than printed as a literal nobody can check. A
+// count is a fact and facts come from the live source (brief §0).
 //
 // §14.3 governs the captions: no years, no specific figures. Guardicore's
 // "$14M in revenue" and the RFP engine's "$3M in contracts won" take the two
@@ -16,8 +22,13 @@
 // The industry author is never named — the case studies say "an industry
 // author" and so does this index.
 import Link from "next/link";
+import { getAllCaseStudies } from "@/lib/case-studies";
 
-export function Receipts() {
+export async function Receipts() {
+  const count = (await getAllCaseStudies()).filter(
+    (cs) => cs.status !== "stub",
+  ).length;
+
   return (
     <section
       className="proofsec wrap"
@@ -28,6 +39,7 @@ export function Receipts() {
       <div className="sec">
         <div className="eyebrow">
           <span className="l">Record</span>
+          <span className="l count">{String(count).padStart(2, "0")}</span>
         </div>
         <h2 className="d two" data-anim="0.85">
           The receipts. Every line below is real.
@@ -62,15 +74,16 @@ export function Receipts() {
             &#8594;
           </span>
         </Link>
-        {/* §15.6: the one operator-supplied string on the page, in his own
-            words, registered as such in both copy gates. */}
-        <Link className="prfx" href="/work">
-          <div className="who">See the rest</div>
-          <span className="ar" aria-hidden="true">
-            &#8594;
-          </span>
-        </Link>
       </div>
+      {/* §15.6: the one operator-supplied string on the page, in his own
+          words, registered as such in both copy gates. §18 takes it out of the
+          ledger — a way out is not a fourth receipt — and gives it the pill. */}
+      <Link className="prfx" href="/work">
+        <span className="who">See the rest</span>
+        <span className="ar" aria-hidden="true">
+          &#8594;
+        </span>
+      </Link>
     </section>
   );
 }

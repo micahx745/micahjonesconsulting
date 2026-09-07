@@ -64,7 +64,16 @@ export function RoomMotion() {
       const darks = [room, op, ask, foot];
 
       if (!home || !work) return;
-      if (!reduce) home.classList.add("js");
+      // The §16.3 pre-states are gated on `html.rl-js`, which the (home)
+      // layout's boot script stamps during parse — before the first paint, so
+      // nothing paints finished and then jumps back (the reverse flash). All
+      // this does is confirm the component mounted, which is what keeps the
+      // boot script's 4s net from dropping the gate, and carry the `js` marker
+      // the verifier reads.
+      if (!reduce) {
+        root.classList.add("rl-on");
+        home.classList.add("js");
+      }
 
       let lastP = -1;
       let queued = false;
@@ -308,6 +317,7 @@ export function RoomMotion() {
         io?.disconnect();
         root.style.removeProperty("--p");
         root.classList.remove("lit");
+        root.classList.remove("rl-on");
         home.classList.remove("js");
       };
     } catch (e) {

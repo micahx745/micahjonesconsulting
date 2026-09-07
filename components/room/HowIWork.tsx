@@ -1,15 +1,20 @@
 // components/room/HowIWork.tsx — section 03, how I work.
 //
-// Pass-101 phase 2. §15.4 removed the three framed panels the operator called
-// horrible, and with them the redrawn page-6 diagram, the two typographic
-// plates and the sticky rail. What is left is a full-width ledger: three rows,
-// each an ordinal, the step name at the composed display size, and the step's
-// one sentence in the right half, with a hairline between.
+// Pass-101 phase 2, recomposed by §18.
 //
-// The head keeps the section-head width axis (115) and is allowed to WRAP. The
-// middot rule survives the wrap in the MARKUP: the separator is tied to the
-// word on both sides with a non-breaking space, so "principles·How" is one
-// unbreakable unit and the middot can neither end a line nor open one.
+// §15.4 removed the three framed panels the operator called horrible. §18
+// splits the head: "Eyebrow `Operating principles` (label style) 20px above
+// the head `How I work.` at --d2 on one line (both verbatim halves of the
+// existing string; the middot and its nowrap go)."
+//
+// The one string used to render as a single display line with the middot
+// inside it, which is why v5 had to tie the separator to both neighbours with
+// non-breaking spaces so it could survive a wrap. Split at the separator there
+// is nothing left to protect. Both halves are the live string's own words; no
+// copy is written here.
+//
+// The ordinal sits in a 28px cell at 60% ink and the sentence lane opens on
+// the column-6 line — §18 Rule B, the one seam that runs down the page.
 export function HowIWork() {
   return (
     <section
@@ -19,8 +24,11 @@ export function HowIWork() {
       aria-label="How I work"
     >
       <div className="sec">
+        <div className="eyebrow">
+          <span className="l">Operating principles</span>
+        </div>
         <h2 className="d two" data-anim="0.85">
-          Operating principles&#160;&#183;&#160;How I work.
+          How I work.
         </h2>
       </div>
       <ol className="steps">

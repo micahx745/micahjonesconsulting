@@ -1,0 +1,612 @@
+{
+ "shots": [
+  "home-390.png",
+  "about-390.png",
+  "call-390.png",
+  "call-kickoff-390.png",
+  "contact-390.png",
+  "packages-390.png",
+  "playbook-390.png",
+  "playbook-thanks-390.png",
+  "services-390.png",
+  "services-thanks-390.png",
+  "work-390.png",
+  "work-guardicore-390.png",
+  "work-ordani-390.png",
+  "work-rfp-engine-390.png",
+  "work-content-engine-390.png",
+  "home-1440.png",
+  "about-1440.png",
+  "call-1440.png",
+  "call-kickoff-1440.png",
+  "contact-1440.png",
+  "packages-1440.png",
+  "playbook-1440.png",
+  "playbook-thanks-1440.png",
+  "services-1440.png",
+  "services-thanks-1440.png",
+  "work-1440.png",
+  "work-guardicore-1440.png",
+  "work-ordani-1440.png",
+  "work-rfp-engine-1440.png",
+  "work-content-engine-1440.png"
+ ],
+ "axe": {
+  "/": [],
+  "/about": [],
+  "/call": [],
+  "/call/kickoff": [],
+  "/contact": [],
+  "/packages": [],
+  "/playbook": [],
+  "/playbook/thanks": [],
+  "/services": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 1,
+    "t": [
+     ".cw-lede-link :: <a href=\"/playbook\" class=\"cw-lede-link\">playbook</a>"
+    ]
+   }
+  ],
+  "/services/thanks": [
+   {
+    "id": "color-contrast",
+    "impact": "serious",
+    "n": 1,
+    "t": [
+     "strong :: <strong>Put the kickoff call on my calendar now</strong>"
+    ]
+   }
+  ],
+  "/work": [],
+  "/work/guardicore": [],
+  "/work/ordani": [],
+  "/work/rfp-engine": [],
+  "/work/content-engine": []
+ },
+ "fonts": {
+  "/": [],
+  "/about": [],
+  "/call": [],
+  "/call/kickoff": [],
+  "/contact": [
+   "BR|A.cw-wordmark",
+   "BR|A.",
+   "BR|H1.cw-bk__title"
+  ],
+  "/packages": [],
+  "/playbook": [],
+  "/playbook/thanks": [],
+  "/services": [
+   "BR|A.cw-wordmark",
+   "BR|A.",
+   "BR|A.cw-door__name",
+   "BR|H2.cw-service__title",
+   "BR|H3.cw-sv-svc__title",
+   "BR|P.cw-sv-receipt",
+   "BR|TH.cw-sv-table__name",
+   "BR|H2.cw-services__foot-title",
+   "BR|A.cw-cta",
+   "BR|SPAN.cw-arr"
+  ],
+  "/services/thanks": [
+   "BR|A.cw-wordmark",
+   "BR|A.",
+   "BR|H1.cw-services__title",
+   "BR|H2.cw-pb-h2"
+  ],
+  "/work": [],
+  "/work/guardicore": [],
+  "/work/ordani": [],
+  "/work/rfp-engine": [],
+  "/work/content-engine": []
+ },
+ "keyframes": {
+  "/": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/about": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/call": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/call/kickoff": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/contact": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/packages": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/playbook": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/playbook/thanks": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/services": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/services/thanks": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/work": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/work/guardicore": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/work/ordani": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/work/rfp-engine": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ],
+  "/work/content-engine": [
+   "theater-ambient-drift",
+   "fade-out",
+   "fade-in",
+   "cw-hero-line-up",
+   "cw-pulse",
+   "wc-wipe",
+   "wc-climb",
+   "wc-stamp",
+   "wc-fade"
+  ]
+ },
+ "notes": [],
+ "fingertip": {
+  "1280": {
+   "fx": 248,
+   "fy": 275.3333333333333,
+   "gx": 200,
+   "gright": 287.125,
+   "gbottom": 389.203125,
+   "capTop": 279.314037,
+   "capDelta": 3.9807036666666704,
+   "gLeftOfTip": true,
+   "objpos": "50% 50%",
+   "stage": [
+    0,
+    0,
+    1280,
+    720
+   ],
+   "rowRight": 1201.5625,
+   "stageRight": 1280,
+   "scrollW": 1280,
+   "iw": 1280
+  },
+  "1440": {
+   "fx": 279,
+   "fy": 309.75,
+   "gx": 231,
+   "gright": 329.015625,
+   "gbottom": 437.71875,
+   "capTop": 313.718526,
+   "capDelta": 3.968525999999997,
+   "gLeftOfTip": true,
+   "objpos": "50% 50%",
+   "stage": [
+    0,
+    0,
+    1440,
+    810
+   ],
+   "rowRight": 1357.75,
+   "stageRight": 1440,
+   "scrollW": 1440,
+   "iw": 1440
+  },
+  "1920": {
+   "fx": 372,
+   "fy": 413,
+   "gx": 324,
+   "gright": 422.46875,
+   "gbottom": 541.9375,
+   "capTop": 416.9751,
+   "capDelta": 3.9750999999999976,
+   "gLeftOfTip": true,
+   "objpos": "50% 50%",
+   "stage": [
+    0,
+    0,
+    1920,
+    1080
+   ],
+   "rowRight": 1456.078125,
+   "stageRight": 1920,
+   "scrollW": 1920,
+   "iw": 1920
+  },
+  "390": {
+   "fx": 100.57777777777778,
+   "fy": 159.66296296296298,
+   "gx": 60.5625,
+   "gright": 87.140625,
+   "gbottom": 210.5625,
+   "capTop": 163.63569999999999,
+   "capDelta": 3.9727370370370068,
+   "gLeftOfTip": true,
+   "objpos": "0% 50%",
+   "stage": [
+    0,
+    48,
+    390,
+    292
+   ],
+   "rowRight": 367.328125,
+   "stageRight": 390,
+   "scrollW": 390,
+   "iw": 390
+  },
+  "360": {
+   "fx": 93,
+   "fy": 151.25,
+   "gx": 52.984375,
+   "gright": 77.921875,
+   "gbottom": 202.15625,
+   "capTop": 155.22944999999999,
+   "capDelta": 3.9794499999999857,
+   "gLeftOfTip": true,
+   "objpos": "0% 50%",
+   "stage": [
+    0,
+    48,
+    360,
+    270
+   ],
+   "rowRight": 341.109375,
+   "stageRight": 360,
+   "scrollW": 360,
+   "iw": 360
+  }
+ },
+ "clipsBeforeGesture": [
+  {
+   "id": "filmvid",
+   "rs": 4,
+   "paused": false,
+   "ct": 1.162024,
+   "loop": false,
+   "preload": "auto",
+   "srcs": [
+    "a2-hold-720.webm",
+    "a2-hold-720.mp4"
+   ]
+  },
+  {
+   "id": "opvid",
+   "rs": 4,
+   "paused": true,
+   "ct": 0,
+   "loop": true,
+   "preload": "auto",
+   "srcs": [
+    "b-loop-720.webm",
+    "b-loop-720.mp4"
+   ]
+  }
+ ],
+ "clipsAfterGesture": [
+  {
+   "id": "filmvid",
+   "rs": 4,
+   "paused": false,
+   "ct": 3.704545,
+   "loop": false,
+   "preload": "auto",
+   "srcs": [
+    "a2-hold-720.webm",
+    "a2-hold-720.mp4"
+   ]
+  },
+  {
+   "id": "opvid",
+   "rs": 4,
+   "paused": true,
+   "ct": 0,
+   "loop": true,
+   "preload": "auto",
+   "srcs": [
+    "b-loop-720.webm",
+    "b-loop-720.mp4"
+   ]
+  }
+ ],
+ "clipsAfterGestureScrolledToOperator": [
+  {
+   "id": "filmvid",
+   "rs": 4,
+   "paused": true,
+   "ct": 3.722798,
+   "loop": false,
+   "preload": "auto",
+   "srcs": [
+    "a2-hold-720.webm",
+    "a2-hold-720.mp4"
+   ]
+  },
+  {
+   "id": "opvid",
+   "rs": 4,
+   "paused": false,
+   "ct": 2.496859,
+   "loop": true,
+   "preload": "auto",
+   "srcs": [
+    "b-loop-720.webm",
+    "b-loop-720.mp4"
+   ]
+  }
+ ],
+ "lighting": {
+  "at~0.3s": {
+   "o": "1",
+   "ct": 0.310641
+  },
+  "at~1.8s": {
+   "o": "1",
+   "ct": 1.823347
+  },
+  "at~3.1s": {
+   "o": "1",
+   "ct": 3.131007
+  },
+  "at~4.6s": {
+   "o": "1",
+   "ct": 4.042
+  }
+ },
+ "contrast": {
+  "t=0.0": {
+   "r1": {
+    "text": [
+     245,
+     239,
+     228
+    ],
+    "worstBg": [
+     103,
+     103,
+     104
+    ],
+    "ratioWorst": 4.94,
+    "bgMedian": [
+     91,
+     91,
+     92
+    ],
+    "ratioMedian": 5.93,
+    "nBg": 78387,
+    "nPx": 92876
+   },
+   "cu": {
+    "text": [
+     200,
+     84,
+     43
+    ],
+    "worstBg": [
+     13,
+     13,
+     15
+    ],
+    "ratioWorst": 4.4,
+    "bgMedian": [
+     13,
+     13,
+     15
+    ],
+    "ratioMedian": 4.4,
+    "nBg": 120753,
+    "nPx": 140750
+   }
+  },
+  "t=1.2": {
+   "r1": {
+    "text": [
+     245,
+     239,
+     228
+    ],
+    "worstBg": [
+     102,
+     102,
+     103
+    ],
+    "ratioWorst": 5.01,
+    "bgMedian": [
+     89,
+     89,
+     90
+    ],
+    "ratioMedian": 6.11,
+    "nBg": 78391,
+    "nPx": 92876
+   },
+   "cu": {
+    "text": [
+     200,
+     84,
+     43
+    ],
+    "worstBg": [
+     13,
+     13,
+     15
+    ],
+    "ratioWorst": 4.4,
+    "bgMedian": [
+     13,
+     13,
+     15
+    ],
+    "ratioMedian": 4.4,
+    "nBg": 120754,
+    "nPx": 140750
+   }
+  },
+  "t=2.6": {
+   "r1": {
+    "text": [
+     245,
+     239,
+     228
+    ],
+    "worstBg": [
+     101,
+     101,
+     102
+    ],
+    "ratioWorst": 5.09,
+    "bgMedian": [
+     91,
+     91,
+     92
+    ],
+    "ratioMedian": 5.93,
+    "nBg": 78389,
+    "nPx": 92876
+   },
+   "cu": {
+    "text": [
+     200,
+     84,
+     43
+    ],
+    "worstBg": [
+     13,
+     13,
+     15
+    ],
+    "ratioWorst": 4.4,
+    "bgMedian": [
+     13,
+     13,
+     15
+    ],
+    "ratioMedian": 4.4,
+    "nBg": 120754,
+    "nPx": 140750
+   }
+  }
+ },
+ "reducedMotionCopperOpacity": "1"
+}
