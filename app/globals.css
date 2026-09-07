@@ -16,6 +16,12 @@
  *           at the bottom of this file.
  * ============================================================ */
 @import "tailwindcss";
+/* Pass-101 phase 2: the Room and Ledger home, section by section. Everything in
+ * that file is scoped under `.rl-home` and reads the system variables declared
+ * below. It is a separate file because it is a PORT — the verified template's
+ * own rules and its own measurement comments, kept together so a diff against
+ * .planning/design/winning/room-and-ledger.template.html stays readable. */
+@import "./room.css";
 
 @theme {
   /* ---- Colors (blueprint §4b — all 11 tokens) ---- */
@@ -297,7 +303,13 @@ html.lit {
 }
 
 /* ---- the two display sizes ---- */
-.rl-d {
+/* Pass-101 phase 2: the home's ported markup carries the TEMPLATE's own class
+ * names (`d`, `two`, `l`, `now`, `meta`, `cu`), because scripts/verify-room.py
+ * is a port of the template's verifier and reads those selectors in ~90 places.
+ * The primitives are therefore declared once and aliased under `.rl-home`
+ * rather than duplicated — the `rl-` names stay for the routes phase 3 ports. */
+.rl-d,
+.rl-home .d {
   font-family: var(--display);
   font-weight: 300;
   font-variation-settings: "wdth" var(--dw);
@@ -308,25 +320,29 @@ html.lit {
 }
 
 /* Display rows are set by hand, one per line, never balanced or wrapped. */
-.rl-d .r {
+.rl-d .r,
+.rl-home .d .r {
   display: block;
   width: max-content;
   max-width: 100%;
   white-space: nowrap;
 }
 
-.rl-d.two {
+.rl-d.two,
+.rl-home .d.two {
   font-size: var(--d2);
   font-variation-settings: "wdth" var(--dw-two);
   line-height: 0.98;
 }
 
-.rl-cu {
+.rl-cu,
+.rl-home .cu {
   color: var(--color-rl-copper);
 }
 
 /* ---- the one label style (§2): 14px, wdth 80, .04em, weight 500 ---- */
-.rl-l {
+.rl-l,
+.rl-home .l {
   font-family: var(--display);
   font-size: 14px;
   font-weight: 500;
@@ -337,11 +353,13 @@ html.lit {
   color: var(--ink-60);
 }
 
-.rl-l.now {
+.rl-l.now,
+.rl-home .l.now {
   color: var(--ink);
 }
 
-.rl-l.meta {
+.rl-l.meta,
+.rl-home .l.meta {
   font-size: 14px;
   line-height: 20px;
   font-variation-settings: "wdth" var(--dw-meta);

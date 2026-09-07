@@ -1,0 +1,1932 @@
+/* ============================================================
+ * ROOM AND LEDGER — the home, section by section (Pass-101, phase 2)
+ *
+ * Source of truth: .planning/design/winning/room-and-ledger.template.html,
+ * verified over seven rounds. Every measured value below is the template's
+ * own, and every comment that carries a measurement is carried across with
+ * it — the numbers are the ruling, the prose is the receipt for the number.
+ *
+ * Ported, not re-derived. The three departures from the template, each
+ * forced by the move off a single-file mock and onto the real site:
+ *   1. Every selector is scoped under `.rl-home`, the wrapper the (room)
+ *      layout stamps. globals.css is 6,795 lines of legacy Color Worlds
+ *      rules; a bare `.card` or `.bar` in that file would be a landmine for
+ *      whoever ports the next route. Collision check before adopting the
+ *      template's short class names: `.room`, `.op`, `.stage`, `.veil`,
+ *      `.bar`, `.card`, `.chip`, `.eng`, `.prf`, `.sec`, `.steps`, `.qs`,
+ *      `.faq`, `.ask`, `.foot`, `.manual`, `.work`, `.price`, `.wrap`,
+ *      `.hero-copy` — ZERO occurrences in globals.css.
+ *   2. The cover box's fill was the literal #0B0A09; it is
+ *      var(--color-rl-espresso) here. Two levels darker than the palette
+ *      token for no reason anyone recorded, and an off-palette hex is the
+ *      one thing design-tokens.sh exists to catch.
+ *   3. The clips are FILES (public/video/*), not data URIs — §7's rejected
+ *      list is explicit about that, and it is why the webm cut is back.
+ *
+ * The system variables (--d, --d2, --dw, --fx, --fy, --capk, --e, --g,
+ * --gap, --s, --p, --ground, --ink*, --hair*) are declared in globals.css
+ * by the phase-1 commit and are not restated here.
+ * ============================================================ */
+
+/* The room paints its own ground behind the fixed sheet, so overscroll at
+ * either end of the page shows espresso rather than the browser's white. */
+html:has(.rl-home) {
+  background: #0d0d0f;
+}
+
+.rl-home {
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: var(--t);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.rl-home a {
+  color: inherit;
+  text-decoration: none;
+}
+.rl-home a:focus-visible {
+  outline: 1.5px solid var(--color-rl-copper);
+  outline-offset: 4px;
+}
+.rl-home ::selection {
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+}
+.rl-home h1,
+.rl-home h2,
+.rl-home h3,
+.rl-home p,
+.rl-home ol,
+.rl-home ul,
+.rl-home dl,
+.rl-home dd,
+.rl-home figure,
+.rl-home figcaption {
+  margin: 0;
+}
+.rl-home img,
+.rl-home video {
+  display: block;
+  max-width: 100%;
+}
+.rl-home [id] {
+  scroll-margin-top: 64px;
+}
+
+/* ---- the page stack ---- */
+.rl-home .page {
+  position: relative;
+  z-index: 3;
+}
+
+.rl-home .lede {
+  font-size: var(--lede);
+  line-height: 1.35;
+  max-width: 40ch;
+  color: var(--ink);
+}
+.rl-home .body {
+  font-size: 19px;
+  line-height: 1.5;
+  max-width: 46ch;
+  color: var(--ink-72);
+}
+.rl-home .cap {
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink-72);
+}
+
+.rl-home .wrap {
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: var(--g);
+  padding-right: var(--g);
+}
+.rl-home .grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+}
+
+/* §14.4: the section head is a display line again, not a 14px label. The
+ * eyebrow keeps the label style; everything else in the head is the poster. */
+.rl-home .sec {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 48px;
+}
+.rl-home .sec .eyebrow {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.rl-home .sec h2 {
+  max-width: 20ch;
+}
+
+/* ---- the chip pair ---- */
+.rl-home .chips {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.rl-home .chip {
+  display: inline-flex;
+  align-items: stretch;
+  height: 44px;
+}
+.rl-home .chip .t {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 20px;
+  background: var(--color-rl-bone);
+  color: var(--color-rl-espresso);
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 500;
+  font-variation-settings: "wdth" var(--dw-label);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+.rl-home .chip .a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1;
+}
+.rl-home .chip.quiet .t {
+  background: color-mix(in oklab, var(--ink) 12%, transparent);
+  color: var(--ink);
+}
+.rl-home .chip .t,
+.rl-home .chip .a {
+  transition:
+    background 300ms var(--e),
+    color 300ms var(--e); /* motion-ok: §16.3-7, the chip ground swaps in 300ms — the brief's own number, and a hover state, not an entrance. */
+}
+.rl-home .chip:hover .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-bone) 88%,
+    var(--color-rl-copper)
+  );
+}
+.rl-home .chip.quiet:hover .t {
+  background: color-mix(in oklab, var(--ink) 20%, transparent);
+}
+html.lit .rl-home .chip:not(.quiet) .t {
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+}
+html.lit .rl-home .chip:not(.quiet):hover .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-espresso) 86%,
+    var(--color-rl-bone)
+  );
+}
+html.lit .rl-home .room .chip:not(.quiet) .t {
+  background: var(--color-rl-bone);
+  color: var(--color-rl-espresso);
+}
+html.lit .rl-home .room .chip:not(.quiet):hover .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-bone) 88%,
+    var(--color-rl-copper)
+  );
+}
+
+/* ================= 00 THE BAR ======================================== */
+.rl-home .bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 30;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--g);
+  background: var(--color-rl-espresso);
+  border-bottom: 1px solid var(--hair);
+  color: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms var(--e);
+}
+html.lit .rl-home .bar {
+  background: var(--color-rl-bone);
+}
+.rl-home .bar.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+.rl-home .bar a {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+.rl-home .bar a:hover .l,
+.rl-home .bar a:hover {
+  color: var(--ink);
+}
+.rl-home .bar .ar {
+  color: var(--ink);
+  margin-left: 0.4em;
+}
+.rl-home .bar.dark,
+html.lit .rl-home .bar.dark {
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  border-bottom-color: color-mix(in srgb, #f5efe4 20%, transparent);
+}
+.rl-home .bar.dark .l {
+  color: color-mix(in srgb, #f5efe4 60%, transparent);
+}
+.rl-home .bar.dark .l.now,
+.rl-home .bar.dark .ar,
+.rl-home .bar.dark a:hover .l {
+  color: var(--color-rl-bone);
+}
+
+/* Sections 01 and 02 are ALWAYS espresso: each paints its own area, so each
+ * declares its own bone ink instead of inheriting the travelling one. */
+.rl-home .room,
+.rl-home .op {
+  --ink: var(--color-rl-bone);
+  --ink-80: color-mix(in oklab, #f5efe4 80%, transparent);
+  --ink-72: color-mix(in oklab, #f5efe4 72%, transparent);
+  --ink-60: color-mix(in oklab, #f5efe4 60%, transparent);
+  --hair: color-mix(in oklab, #f5efe4 15%, transparent);
+  --hair-12: color-mix(in oklab, #f5efe4 12%, transparent);
+  --hair-10: color-mix(in oklab, #f5efe4 10%, transparent);
+  color: var(--color-rl-bone);
+}
+
+/* ================= 01 THE ROOM: the stage, and the words where the finger ends
+   §14.1. The film is not a full-viewport sheet; it is a 16:9 STAGE whose box
+   matches the source frame exactly, so the fingertip's source percentage is
+   also its screen percentage. Nothing here is bottom-anchored to the viewport.
+   MEASURED: at 1440 and up the copy block ends inside the stage (proof row
+   foot 740 of 810); from 1280 down it runs past the stage's foot — 13px at
+   1280, 63px at 1024, 85px at 900 — and the room's padding has to carry it or
+   the proof row lands on the operator film. */
+.rl-home .room {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--color-rl-espresso);
+  padding-bottom: 0;
+}
+.rl-home .stagewrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+/* The clip is on the INNER box only: the copy block is allowed to run past the
+   stage's foot onto the espresso below it, which is where §14.1 sends it. */
+.rl-home .stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-rl-espresso);
+}
+/* MEASURED: the clip is graded down so far that under the §14.1 veil (.55 at
+   the fingertip's y) the pointing hand read as a 17-level step off the wall —
+   the gesture the whole composition is built on was invisible at 1x. The grade
+   is applied to the FILM, not to the veil, so §14.1's three stops are
+   untouched; it roughly doubles that step. */
+.rl-home .stage video,
+.rl-home .stage .still {
+  filter: brightness(1.18) contrast(1.3);
+}
+.rl-home .stage video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.rl-home .stage .still {
+  display: none;
+}
+/* THE VEIL. §16.2 RE-CUT: the COPPER row's cap-top is the 4px stop under the
+   fingertip and `I build the` sits on the row ABOVE it, over the film — so the
+   veil is cut around two pinned stops and nothing else: .55 at fingertip_y
+   minus 12px, and SOLID from fingertip_y plus 4px, which is the copper row's
+   ground. Everything below the tip is flat espresso: the hand emerges from the
+   dark and only its tip is lit, touching the "g". (§14.1's "clear above 25%"
+   is superseded — the bone row's own box opens at 22.4% of the stage at
+   1280/1440 and 26.3% at 1920, so the veil has to be at its .55 plateau BEFORE
+   that row. MEASURED: the graded wall behind `I build the` peaks at 215/255
+   across frames 0/48/96, which at .55 composites to 104 and carries bone at
+   4.9:1. The plateau starts at 20%.) */
+.rl-home .stage .veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 15, 0) 0%,
+    rgba(13, 13, 15, 0.03) 8%,
+    rgba(13, 13, 15, 0.14) 13%,
+    rgba(13, 13, 15, 0.34) 17%,
+    rgba(13, 13, 15, 0.55) 20%,
+    rgba(13, 13, 15, 0.55) calc(var(--fy) - 12px),
+    rgba(13, 13, 15, 1) calc(var(--fy) + 4px),
+    rgba(13, 13, 15, 1) 100%
+  );
+}
+
+/* §14.7 / §16.2. The block is positioned by the FINGERTIP on BOTH axes. v4
+   pinned the left edge at the 32px gutter, which put the tip 209px to the
+   RIGHT of the "I" at 1440 — the finger pointed past the words instead of at
+   them. The "I" now sits one hand's width (48px) LEFT of the tip. §16.2 moves
+   the words up one row: the 4px stop belongs to the COPPER row, so the block's
+   own top is one display row higher — a .d row box is line-height .92 of --d,
+   and the measured cap offset is subtracted back out. */
+.rl-home .hero-copy {
+  position: absolute;
+  z-index: 2;
+  left: calc(var(--fx) - 48px);
+  right: var(--g);
+  top: calc(var(--fy) + 4px - 0.92 * var(--d) - var(--capk) * var(--d));
+  display: flex;
+  flex-direction: column;
+  /* The stage is 56.25vw tall and the block's top is 0.382407 of that, so the
+     block's own floor 40px above the stage's foot is 56.25vw - 21.5104vw
+     - 12px + capk*d - 40px. It is a MIN-height: where the block is taller than
+     the stage (1280 and down) it runs past the foot onto the espresso, which is
+     where §14.1 sends it, and the clearance gate still sees it. */
+  min-height: calc(34.7396vw + 0.92 * var(--d) + var(--capk) * var(--d) - 44px);
+}
+.rl-home .hero-copy h1 {
+  margin-bottom: 28px;
+}
+/* §14.1 puts the sentence, the chips and the proof row below the headline
+   inside the stage. Left as a stack they ended a third of the way down an 810px
+   stage and the rest read as a black bar taped under a photograph. The base row
+   is pushed to the block's floor instead and carries a hairline: the stage
+   closes on a rule with the record at its right end. */
+.rl-home .hero-copy .base-row {
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px 32px;
+  flex-wrap: wrap;
+}
+.rl-home .hero-copy .lede {
+  font-size: 23px;
+  max-width: 44ch;
+  margin-bottom: 28px;
+}
+.rl-home .hero-copy .proof {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.rl-home .hero-copy .proof .l.now {
+  color: var(--color-rl-bone);
+}
+
+/* ================= 02 OPERATOR: the overlay ==========================
+   §14.2. Clip B is a SQUARE stage in the left seven columns; the heading sits
+   OVER its lower third on a veil, the first paragraph directly under the
+   heading still on the film, and the argument's second half sits in the right
+   five columns, top-aligned. */
+.rl-home .op {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--color-rl-espresso);
+  padding-top: var(--s);
+  padding-bottom: var(--s);
+}
+.rl-home .opgrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 48px;
+  align-items: stretch;
+}
+/* A size container so the heading over the film can be sized in the FILM's
+   units: at --d2 'not consultant.' measures ~800px against a 719px type column
+   and its full stop ran off the film onto the espresso. */
+.rl-home .opstage {
+  grid-column: 1 / 8;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  container-type: inline-size;
+}
+.rl-home .opfilm {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--color-rl-espresso);
+}
+/* MEASURED on b-poster.jpg: the source's own lower third is already dark — row
+   medians fall 87 (64%) -> 52 (68%) -> 35 (72%) -> 19 (88%) — so the type §14.2
+   puts over the lower third had nothing to sit on. Two corrections, both on the
+   FILM so §14.2's veil stops are untouched: a grade, and a 1.30 zoom about a
+   near-top origin, which slides the bright band of the table and the hands DOWN
+   into the lower third and tightens the frame on him. Horizontal crop is
+   11.5%..88.5% — his face and both hands stay in. */
+.rl-home .opfilm video,
+.rl-home .opfilm .still {
+  transform: scale(1.3);
+  transform-origin: 50% 6%;
+  filter: brightness(1.45) contrast(1.2);
+}
+.rl-home .opfilm video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+}
+.rl-home .opfilm .still {
+  display: none;
+}
+/* .6 at the half line, solid by 70% of the square: §14.2's two pinned stops.
+   CORRECTED after verify round 3: the ramp used to reach .96 by 65.5%, so the
+   heading's cap-top (67.2%) stood on visually flat black — a caption under a
+   photograph, not type over film. The stops between the two pins hold the veil
+   at .84 through 67% and spend the last 3% getting to solid, so the first row
+   of the heading has live film behind it and the second descends into the
+   espresso. */
+.rl-home .opfilm .veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13, 13, 15, 0) 0%,
+    rgba(13, 13, 15, 0) 30%,
+    rgba(13, 13, 15, 0.1) 40%,
+    rgba(13, 13, 15, 0.26) 48%,
+    rgba(13, 13, 15, 0.45) 56%,
+    rgba(13, 13, 15, 0.6) 62%,
+    rgba(13, 13, 15, 0.68) 68%,
+    rgba(13, 13, 15, 0.74) 73%,
+    rgba(13, 13, 15, 0.8) 77%,
+    rgba(13, 13, 15, 0.92) 80%,
+    rgba(13, 13, 15, 1) 82%,
+    rgba(13, 13, 15, 1) 100%
+  );
+}
+/* CORRECTED after verify round 3: bottom-anchored, the block's own height
+   decided where the type landed — 67% of the square on the desktop and 76% on
+   the phone, the second of which is past the 70% line where §14.2 takes the
+   veil solid, so the phone read as a caption under a photograph. The cap-top is
+   anchored to the lower-third line itself at BOTH ends of the ladder, which is
+   where the veil still has live film under it. */
+.rl-home .opover {
+  position: absolute;
+  z-index: 2;
+  left: 32px;
+  right: 32px;
+  top: calc(67% - var(--capk) * var(--d2));
+  bottom: auto;
+}
+/* .d.two carries line-height .98; this override has to out-specify it or the
+   block runs 12px long and the heading leaves the lower third. §14.7: the
+   heading stays at --d2 and drops to "wdth" 106 to fit the square. The 11.6cqw
+   cap this replaces made 1440 a THIRD display size (90.8px against --d2 102.9);
+   the width axis is the lever, never the size. */
+.rl-home .opover h2.two {
+  margin-bottom: 10px;
+  margin-right: -32px;
+  line-height: 0.92;
+  font-size: var(--d2);
+  font-variation-settings: "wdth" var(--dw-fit);
+}
+.rl-home .opover p {
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--color-rl-bone);
+  max-width: none;
+}
+.rl-home .opside .m-first {
+  display: none;
+}
+.rl-home .opside {
+  grid-column: 8 / 13;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.rl-home .opside p {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--color-rl-bone);
+}
+/* Round 9: the register no longer stretches to the square. flex:1 on the block
+   plus margin-top:auto on the quote pinned the quote to the film's FOOT and
+   opened 421px of empty espresso between the last row and it (measured at
+   1440). The rows take their height, the quote FOLLOWS them, and the column
+   ends where its content does. */
+.rl-home .opside .lead {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+/* §14.7: the rows take their OWN height. Stretched to equal thirds of the
+   square they opened 30-40px of dead space inside two of the three rows. */
+.rl-home .opside .lead span {
+  flex: 0 0 auto;
+  display: block;
+  font-size: 21px;
+  line-height: 1.45;
+  padding: 24px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-home .opside .lead span:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.rl-home .opside .lead span:last-child {
+  padding-bottom: 0;
+}
+.rl-home .opside .sig {
+  margin-top: 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.rl-home .opside .sig q {
+  quotes: none;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--color-rl-bone);
+}
+
+/* ================= 03 HOW I WORK: the ledger =========================
+   §15.4. Operator, on v4.1: "The cards to the right of diagnose and build etc
+   look horrible." The three framed panels are gone — with them the redrawn
+   page-6 SVG, the two typographic plates, the sticky rail and the 12-column
+   split. What is left is the section the corpus's method sections actually
+   run: a full-width ledger of three rows, each an ordinal, the step name at the
+   composed display size, and the step's one sentence in the right half, with a
+   hairline between. No frame, no image, no video, no sticky. */
+.rl-home .work {
+  padding-top: var(--s);
+  padding-bottom: var(--s);
+}
+.rl-home .steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* Round 9: the row was baseline-aligned, so the sentence's first line hung off
+   the NAME's baseline — 54px below the name's cap-top at 1440, level with the
+   name's foot, reading as a caption dropped under a display word instead of the
+   second column of a ledger line. The row is TOP-aligned; the sentence's own
+   cap-top is brought onto the name's cap line by the padding below. */
+.rl-home .steps li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: var(--gap);
+  row-gap: 12px;
+  align-items: start;
+  padding: 40px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-home .steps li:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+/* v5 verify 3: baseline-aligned, a 14px ordinal beside a 103px name sits at the
+   name's FOOT and reads as a stray artifact. It goes on the name's CAP-LINE and
+   to full ink, and the stub drops 56px -> 40px so it stops standing 80px clear
+   of the number it numbers. The cap-top of a line box is (line-height - 0.92)/2
+   + --capk of the font size: 0.0891 of --d2 for the name at line-height 0.98,
+   0.3241 of 14px for the label at 1.45. */
+.rl-home .steps .n {
+  grid-column: 1 / 2;
+  align-self: start;
+  color: var(--ink);
+  padding-top: calc(
+    (var(--capk) + 0.03) * var(--d2) - (var(--capk) + 0.265) * 14px
+  );
+}
+.rl-home .steps .nm {
+  grid-column: 2 / 3;
+  display: block;
+}
+.rl-home .steps .s {
+  grid-column: 3 / 4;
+  font-size: 21px;
+  line-height: 1.45;
+  max-width: 46ch;
+  color: var(--ink-80);
+}
+/* SEND-BACK, round 9: keeping this head on ONE line cost it the section-head
+   register — it ran at wdth 88 on the desktop and 68 on the phone while every
+   other head and every step name stayed at 115, so the head was set NARROWER
+   than the names under it and the hierarchy inverted. The width axis goes back
+   to 115 at every width and the head is allowed to WRAP. The middot rule
+   survives the wrap in the markup, not here: the separator is tied to the word
+   on BOTH sides with nbsp. The 20ch cap stays off — the content box is the
+   measure. */
+.rl-home .work .sec h2 {
+  max-width: none;
+}
+
+/* ================= 04 PACKAGES: three cards, then the top tier ========
+   §15.5. Operator: "The part showing pckages could look a little more
+   prounonced and visually enticing. Engagements is the highest paying form - so
+   maybe make that special looking instead of underwhelming but still connected
+   with the packagers." So the three cards stop being invisible: each gets a
+   real ground (1px hairline at 15% ink, 8px radius, 28px interior), the package
+   name comes off the 14px label and onto 24px Hanken 500, and the price goes to
+   72px. The Audit's mark is a 2px COPPER TOP RULE, not the full copper box of
+   v4 — a box around one of three peers is a badge; a rule over it is a rank. */
+.rl-home .price {
+  padding-top: var(--s);
+}
+.rl-home .cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+}
+.rl-home .card {
+  box-sizing: border-box;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  background: none;
+  box-shadow: none;
+}
+/* The 2px rule is 1px thicker than the hairline it replaces, so the interior is
+   pulled back by exactly that 1px and the three card interiors stay on one
+   line. */
+.rl-home .card.mark {
+  border-top: 2px solid var(--color-rl-copper);
+  padding-top: 27px;
+}
+.rl-home .card .nm {
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.rl-home .card .pblock {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 18px 0 20px;
+  border-bottom: 1px solid var(--hair-12);
+}
+.rl-home .card .pr {
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 72px;
+  line-height: 1;
+  font-variation-settings: "wdth" var(--dw-fit);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.rl-home .card .one {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-72);
+  margin-top: 20px;
+}
+.rl-home .card .cta {
+  margin-top: auto;
+  padding-top: 28px;
+}
+.rl-home .card .cta .chip {
+  height: 48px;
+  width: 100%;
+}
+/* v5 verify 3: the chip was condensed Anybody 300 at 24px under a 24px Hanken
+   500 name, "six lines apart and ... belonging to different systems" inside one
+   443px box. The chip takes the NAME's register — same family, same weight,
+   same tracking — one step down in size so it reads as the card's button and
+   not as a second title. */
+.rl-home .card .cta .chip .t {
+  flex: 1;
+  justify-content: center;
+  font-family: var(--text);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  white-space: nowrap;
+}
+.rl-home .card .cta .chip .a {
+  width: 48px;
+}
+/* The ground swaps to copper; the type does not move. 20px 500 is large text,
+   where copper carries bone at 3.83:1 against the 3:1 bar. */
+.rl-home .card:hover .cta .chip .t,
+.rl-home .card:focus-within .cta .chip .t {
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+}
+.rl-home .card:hover .cta .chip .a,
+.rl-home .card:focus-within .cta .chip .a {
+  background: var(--color-rl-copper);
+}
+
+/* §15.5: Engagements is the top tier, so it is not a fourth card and not the
+   104px strip of v4 either. One espresso block the full width of the card row,
+   24px under it, carrying the same 2px copper rule the Audit carries — which is
+   what connects the tier to the packages — and 220px of height, which is what
+   separates it from them.
+   v5 verify 3: as two space-between columns the block held "a wide band of
+   empty espresso across the middle" — the head and the figure started level but
+   ended 31px apart. It is a TABLE instead: two rows of two cells, the head and
+   the figure sharing a BASELINE on row one, the descriptor and the chip sharing
+   a foot on row two. */
+.rl-home .eng {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 40px;
+  row-gap: 24px;
+  align-content: center;
+  box-sizing: border-box;
+  margin-top: 24px;
+  min-height: 220px;
+  border-radius: 16px;
+  border-top: 2px solid var(--color-rl-copper);
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  padding: 34px 36px;
+}
+/* The two halves keep their own boxes and BORROW the block's rows (subgrid), so
+   row one is the head and the figure and row two is the descriptor and the
+   chip — one shared top edge and one shared foot across the plate. */
+.rl-home .eng .side {
+  display: grid;
+  grid-row: 1 / 3;
+  grid-template-rows: subgrid;
+  row-gap: 24px;
+  align-items: baseline;
+  min-width: 0;
+}
+.rl-home .eng .side.l-side {
+  grid-column: 1;
+}
+.rl-home .eng .side.r {
+  grid-column: 2;
+  justify-items: end;
+  text-align: right;
+}
+.rl-home .eng .hd {
+  grid-row: 1;
+  min-width: 0;
+  font-size: var(--d2);
+  font-variation-settings: "wdth" 96;
+  line-height: 0.92;
+  color: var(--color-rl-bone);
+}
+.rl-home .eng .v {
+  grid-row: 1;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 64px;
+  line-height: 1;
+  font-variation-settings: "wdth" 100;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-rl-bone);
+  white-space: nowrap;
+}
+.rl-home .eng .dsc {
+  grid-row: 2;
+  align-self: end;
+  min-width: 0;
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--color-rl-bone);
+  max-width: 34ch;
+}
+.rl-home .eng .chip {
+  grid-row: 2;
+  align-self: end;
+}
+/* The block is espresso on the BONE half of the page, so it needs the inverted
+   chip — and html.lit's own chip rule out-specifies a bare .eng .chip.
+   MEASURED: without this the plate went espresso-on-espresso and the chip lost
+   its block. */
+html .rl-home .eng .chip .t,
+html.lit .rl-home .eng .chip .t {
+  background: var(--color-rl-bone);
+  color: var(--color-rl-espresso);
+}
+html .rl-home .eng .chip .a,
+html.lit .rl-home .eng .chip .a {
+  background: var(--color-rl-copper);
+  color: var(--color-rl-bone);
+}
+html .rl-home .eng:hover .chip .t,
+html.lit .rl-home .eng:hover .chip .t,
+html .rl-home .eng:focus-visible .chip .t,
+html.lit .rl-home .eng:focus-visible .chip .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-bone) 88%,
+    var(--color-rl-copper)
+  );
+}
+
+/* ================= 05 THE RECORD =====================================
+   §15.6 consolidated the index to two rows and a way out. §17 (2026-09-06,
+   operator, verbatim: "receipts - we should add the content ai part to the list
+   so we have three") re-opens it to THREE, and that ruling names this pass:
+   "Binds v7 and Pass 101." The row geometry, the hairlines and the row-shaped
+   `See the rest` link are unchanged from the verified template; only the count
+   moved. */
+.rl-home .prf,
+.rl-home .prfx {
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr) 40px;
+  column-gap: 32px;
+  align-items: baseline;
+  min-height: 84px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--hair-10);
+}
+.rl-home .proofsec {
+  padding-top: var(--s);
+}
+/* v5 verify 3: the rows carried bottom borders only, so the ledger's first row
+   floated while the manual's symptom lines opened on a rule. §16.3-4: the
+   opening rule lives on a wrapper of its own, because the row that used to
+   carry it already spends both of its pseudo-elements (the drawn rule and the
+   copper hover wipe). */
+.rl-home .proofsec .ledger {
+  border-top: 1px solid var(--hair-10);
+}
+.rl-home .prf .who {
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.rl-home .prfx .who {
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--ink-80);
+}
+.rl-home .prf .cap {
+  grid-column: 2;
+}
+.rl-home .prf .ar,
+.rl-home .prfx .ar {
+  grid-column: 3;
+  justify-self: end;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 19px;
+}
+.rl-home .prf::after,
+.rl-home .prfx::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--color-rl-copper);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 400ms var(--e); /* motion-ok: §16.3-7, the receipt row's copper wipe — a hover state on a ledger row, carried over unchanged from the verified template. */
+}
+.rl-home a.prf:hover::after,
+.rl-home a.prf:focus-visible::after,
+.rl-home a.prfx:hover::after,
+.rl-home a.prfx:focus-visible::after {
+  transform: scaleX(1);
+}
+.rl-home a.prfx:hover .who,
+.rl-home a.prfx:focus-visible .who {
+  color: var(--ink);
+}
+
+/* ================= 06 THE MANUAL =====================================
+   §15.2. Operator: "For the book the image didnt load." and the section read as
+   a stack. Recomposed: the cover fills columns 1-5 at 4:5 inside the dashed
+   frame with the file line under it, and every word moves to columns 6-12 —
+   label, the display line at --d2 (never --d: at the poster size it out-shouted
+   the hero), the three symptoms as a hairline ledger at 21px, the chapters
+   paragraph, then the buy block. */
+.rl-home .manual {
+  padding-top: var(--s);
+}
+.rl-home .manual .art {
+  grid-column: 1 / 6;
+}
+.rl-home .manual .copy {
+  grid-column: 6 / 13;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+.rl-home .manual .copy .sec {
+  margin-bottom: 0;
+}
+.rl-home .manual .lines {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
+/* v5 verify 3: the ledger's hairlines stopped at a 46ch measure inside a 793px
+   column, so the head ran one width and everything under it another. A ledger
+   takes the COLUMN; the reading paragraph under it keeps its measure. */
+.rl-home .manual .lines p {
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--ink);
+  padding: 14px 0;
+  border-top: 1px solid var(--hair);
+}
+.rl-home .manual .lines p:last-child {
+  border-bottom: 1px solid var(--hair);
+}
+.rl-home .manual .buy {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.rl-home .manual .buy .v {
+  font-family: var(--display);
+  font-weight: 300;
+  font-variation-settings: "wdth" var(--dw-fit);
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.rl-home .manual .buy .v .l {
+  display: block;
+  margin-top: 10px;
+}
+/* The frame's BORDER BOX is the column and the frame is 4:5; the cover fills
+   its content box.
+   SEND-BACK, round 9: the frame painted a near-black across its whole padding
+   box, so the dash sat ON the black fill — ink 15% over that measured 1.00:1
+   and the frame was in the CSSOM and invisible on screen. The FILL moves to an
+   inner cover box and the padding becomes 16px of BONE between the dash and the
+   cover; the dash goes to ink 40%, which is the step the hairline needs against
+   paper. */
+.rl-home .manual .art .frame {
+  box-sizing: border-box;
+  aspect-ratio: 4 / 5;
+  border: 1px dashed color-mix(in oklab, var(--ink) 40%, transparent);
+  padding: 16px;
+  background: none;
+}
+.rl-home .manual .art .frame .cov {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-rl-espresso);
+}
+.rl-home .manual .art .frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.rl-home .manual .art figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 12px;
+}
+
+/* ================= 07 THE FAQ ========================================
+   §15.3. Operator: "the objections part still look bad." Three equal columns in
+   the price cards' own geometry — (content - 48)/3 on a 24px gap — each opening
+   on a hairline. */
+.rl-home .faq {
+  padding-top: var(--s);
+  padding-bottom: var(--s);
+}
+.rl-home .qs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.rl-home .q {
+  padding-top: 24px;
+  border-top: 1px solid var(--hair);
+}
+.rl-home .q dt {
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+.rl-home .q dd {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-80);
+  margin-top: 12px;
+}
+
+/* ================= 08 THE ASK ======================================== */
+.rl-home .ask {
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  background: var(--color-rl-copper);
+  color: var(--color-rl-espresso);
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  padding: 112px var(--g) 96px;
+}
+.rl-home .ask .block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+}
+.rl-home .ask .d {
+  color: var(--color-rl-espresso);
+  max-width: 9ch;
+}
+.rl-home .ask .ar {
+  font-size: 56px;
+  vertical-align: baseline;
+  margin-left: 22px;
+}
+.rl-home .ask .chip .t {
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+}
+.rl-home .ask .chip .a {
+  background: var(--color-rl-bone);
+  color: var(--color-rl-espresso);
+}
+.rl-home .ask .chip.quiet .t {
+  box-sizing: border-box;
+  background: var(--color-rl-bone);
+  color: var(--color-rl-espresso);
+  border: none;
+}
+.rl-home .ask .chip:hover .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-espresso) 86%,
+    var(--color-rl-bone)
+  );
+}
+.rl-home .ask .chip.quiet:hover .t {
+  background: color-mix(
+    in oklab,
+    var(--color-rl-bone) 88%,
+    var(--color-rl-espresso)
+  );
+}
+
+/* ================= 09 THE FOOT ======================================= */
+.rl-home .foot {
+  position: relative;
+  z-index: 3;
+  box-sizing: border-box;
+  background: var(--color-rl-espresso);
+  color: var(--color-rl-bone);
+  padding: 72px var(--g) 64px;
+}
+.rl-home .foot .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px 32px;
+}
+.rl-home .foot .l {
+  color: color-mix(in srgb, #f5efe4 60%, transparent);
+}
+.rl-home .foot .l.now {
+  color: var(--color-rl-bone);
+}
+
+/* ---- entrances: media (§16.3-5, "media and the cover rise 10px") ---- */
+.rl-home [data-rise] {
+  transform: translateY(var(--rise, 0px));
+  transition: transform 500ms var(--e); /* motion-ok: §16.3-5, media and the cover rise 10px over 500ms. DESIGN_BAR R15's cap is amended for Room and Ledger surfaces by the phase-1 commit, which quotes the ruling. */
+}
+.rl-home.js [data-rise="10"] {
+  --rise: 10px;
+}
+.rl-home.js [data-rise].in {
+  --rise: 0px;
+}
+
+/* ================= MOTION, THE WHOLE SET (§16.3) =====================
+   Operator, on v5: "Lack of animations and weak ones that exist. FYI I love
+   website animations need more". §16.3 overrules the corpus's one-moment
+   discipline and keeps the vocabulary: transform / opacity / clip-path only,
+   the house curve, nothing coupled to the cursor, no scroll-jack, no scrolling
+   ticker, no parallax on a photograph, and at most three @keyframes — this file
+   declares ZERO, because every item below is a transition between two DECLARED
+   states.
+     Every rest state here is gated behind `.rl-home.js`, which the client
+   component adds only when scripting is on AND `prefers-reduced-motion` is not
+   `reduce`. So the page with no JavaScript, and the page under reduced motion,
+   is the FINISHED frame: opacity 1, no transform, no clip. That is §16.3's
+   closing rule, enforced by construction rather than by a second stylesheet. */
+
+/* -- 1. THE MOMENT: the copper word lights when the fingertip arrives ------
+   ARRIVAL, MEASURED on public/video/a2-hold-720.mp4 (1280x720, 24fps, 97
+   frames, 4.0417s). In the band the fingertip lives in (source rows 370..520 of
+   1080 -> 246..346 of 720) the leftmost run of six pixels 25 levels under the
+   local wall median sits at x=481 while the arm is out of frame, breaks left at
+   frame 53 (t=2.208s), and FIRST comes within 6px of its final x=248 at FRAME
+   61, t=2.5417s. §16.3 estimated ~3.4s; the clip measures 2.54s, and the
+   measurement is what the component carries. */
+.rl-home.js #h1 .cu {
+  opacity: 0.28;
+  transition: opacity 260ms var(--e); /* motion-ok: §16.3-1, the lighting moment — the one thing the whole composition is built to deliver, 260ms is the brief's own number. */
+}
+.rl-home.js #h1.on .cu {
+  opacity: 1;
+}
+.rl-home.js #h1 .r1 {
+  transform: translateY(24px);
+  transition: transform 600ms var(--e); /* motion-ok: §16.3-1 signature, `I build the` rises 24px into place over 600ms as the clip starts. */
+}
+.rl-home.js #h1.up .r1 {
+  transform: none;
+}
+
+/* -- 2. the bar arrives at the seam, once -------------------------------- */
+.rl-home.js .bar {
+  transform: translateY(-12px);
+  transition:
+    opacity 240ms var(--e),
+    transform 240ms var(--e);
+}
+.rl-home.js .bar.on {
+  transform: none;
+}
+
+/* -- 3. section heads: a clip-path reveal from the left ------------------
+   §16.3 names inset(0 100% 0 0) -> inset(0). The horizontal edge is exactly
+   that; the VERTICAL inset is relaxed by 0.3em in BOTH states, because .d.two
+   runs line-height .98 against an em box taller than its line box, so a literal
+   inset(0) shears the descenders of "objections", "your" and "Engagements". */
+.rl-home.js .sec h2 {
+  clip-path: inset(-0.3em 100% -0.3em 0);
+  transition: clip-path 700ms var(--e); /* motion-ok: §16.3-3, the section head's wipe, 700ms, once each. */
+}
+.rl-home.js .sec h2.in {
+  clip-path: inset(-0.3em 0 -0.3em 0);
+}
+
+/* -- 4. the ledger rules draw --------------------------------------------
+   The BORDERS stay declared: they are the measured rule and they are the no-JS
+   rule. Under .js their colour goes transparent and a pseudo-element paints the
+   same 1px line on the same pixel, scaled from the left. Nothing moves and
+   nothing reflows. */
+.rl-home .steps li,
+.rl-home .manual .lines p,
+.rl-home .q,
+.rl-home .card .pblock,
+.rl-home .prf,
+.rl-home .prfx,
+.rl-home .proofsec .ledger {
+  position: relative;
+}
+.rl-home .steps li::before,
+.rl-home .steps li:last-child::after,
+.rl-home .manual .lines p::before,
+.rl-home .manual .lines p:last-child::after,
+.rl-home .q::before,
+.rl-home .card .pblock::after,
+.rl-home .prf::before,
+.rl-home .prfx::before,
+.rl-home .proofsec .ledger::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  z-index: 1;
+  background: var(--hair);
+  transform-origin: 0 50%;
+  pointer-events: none;
+}
+.rl-home .steps li::before,
+.rl-home .manual .lines p::before,
+.rl-home .q::before,
+.rl-home .proofsec .ledger::before {
+  top: -1px;
+}
+.rl-home .steps li:last-child::after,
+.rl-home .manual .lines p:last-child::after,
+.rl-home .card .pblock::after,
+.rl-home .prf::before,
+.rl-home .prfx::before {
+  bottom: -1px;
+}
+.rl-home .card .pblock::after {
+  background: var(--hair-12);
+}
+.rl-home .prf::before,
+.rl-home .prfx::before,
+.rl-home .proofsec .ledger::before {
+  background: var(--hair-10);
+}
+
+.rl-home.js .steps li {
+  border-top-color: transparent;
+}
+.rl-home.js .steps li:last-child {
+  border-bottom-color: transparent;
+}
+.rl-home.js .manual .lines p {
+  border-top-color: transparent;
+}
+.rl-home.js .manual .lines p:last-child {
+  border-bottom-color: transparent;
+}
+.rl-home.js .q {
+  border-top-color: transparent;
+}
+.rl-home.js .card .pblock {
+  border-bottom-color: transparent;
+}
+.rl-home.js .prf,
+.rl-home.js .prfx {
+  border-bottom-color: transparent;
+}
+.rl-home.js .proofsec .ledger {
+  border-top-color: transparent;
+}
+
+.rl-home.js .steps li::before,
+.rl-home.js .steps li:last-child::after,
+.rl-home.js .manual .lines p::before,
+.rl-home.js .manual .lines p:last-child::after,
+.rl-home.js .q::before,
+.rl-home.js .card .pblock::after,
+.rl-home.js .prf::before,
+.rl-home.js .prfx::before,
+.rl-home.js .proofsec .ledger::before {
+  transform: scaleX(0);
+  transition: transform 500ms var(--e); /* motion-ok: §16.3-4, every ledger rule draws from the left in 500ms on a 60ms stagger. */
+}
+
+/* 60ms of stagger inside each section, in reading order */
+.rl-home.js .steps li:nth-child(2)::before,
+.rl-home.js .manual .lines p:nth-child(2)::before,
+.rl-home.js .q:nth-child(2)::before,
+.rl-home.js .cards .card:nth-child(2) .pblock::after,
+.rl-home.js .ledger .prf:nth-of-type(1)::before {
+  transition-delay: 60ms;
+}
+.rl-home.js .steps li:nth-child(3)::before,
+.rl-home.js .manual .lines p:nth-child(3)::before,
+.rl-home.js .q:nth-child(3)::before,
+.rl-home.js .cards .card:nth-child(3) .pblock::after,
+.rl-home.js .ledger .prf:nth-of-type(2)::before {
+  transition-delay: 120ms;
+}
+.rl-home.js .steps li:last-child::after,
+.rl-home.js .ledger .prf:nth-of-type(3)::before {
+  transition-delay: 180ms;
+}
+.rl-home.js .manual .lines p:last-child::after,
+.rl-home.js .ledger .prfx::before {
+  transition-delay: 240ms;
+}
+
+.rl-home.js #work.in .steps li::before,
+.rl-home.js #work.in .steps li:last-child::after,
+.rl-home.js #manual.in .lines p::before,
+.rl-home.js #manual.in .lines p:last-child::after,
+.rl-home.js #faq.in .q::before,
+.rl-home.js #price.in .card .pblock::after,
+.rl-home.js #proof.in .prf::before,
+.rl-home.js #proof.in .prfx::before,
+.rl-home.js #proof.in .ledger::before {
+  transform: scaleX(1);
+}
+
+/* -- 5. cards and blocks rise -------------------------------------------- */
+.rl-home.js .card,
+.rl-home.js .eng,
+.rl-home.js .q {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.rl-home.js .card {
+  transition:
+    opacity 500ms var(--e),
+    transform 500ms var(--e),
+    border-color 300ms var(--e); /* motion-ok: §16.3-5, the three price cards rise 20px on a 70ms stagger. */
+}
+.rl-home.js .eng,
+.rl-home.js .q {
+  transition:
+    opacity 500ms var(--e),
+    transform 500ms var(--e); /* motion-ok: §16.3-5, the Engagements block and the objection columns rise after the cards, each with its own delay. */
+}
+.rl-home.js .cards .card:nth-child(2),
+.rl-home.js .qs .q:nth-child(2) {
+  transition-delay: 70ms;
+}
+.rl-home.js .cards .card:nth-child(3),
+.rl-home.js .qs .q:nth-child(3) {
+  transition-delay: 140ms;
+}
+.rl-home.js .eng {
+  transition-delay: 210ms;
+}
+.rl-home.js #price.in .card,
+.rl-home.js #price.in .eng,
+.rl-home.js #faq.in .q {
+  opacity: 1;
+  transform: none;
+}
+
+/* -- 6. the operator square ----------------------------------------------
+   The film already carries the §14.2 crop zoom (scale 1.30 about a near-top
+   origin), so the §16.3 settle is applied ON it: 1.30 x 1.06 = 1.378 down to
+   1.30 over 1.2s. */
+.rl-home.js .opfilm video,
+.rl-home.js .opfilm .still {
+  transform: scale(1.378);
+  transition: transform 1200ms var(--e); /* motion-ok: §16.3-6 signature, the operator square's film settles from scale(1.06) over 1.2s as it enters — the brief's own duration. */
+}
+.rl-home.js .opstage.in .opfilm video,
+.rl-home.js .opstage.in .opfilm .still {
+  transform: scale(1.3);
+}
+.rl-home.js .opover .r {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 500ms var(--e),
+    transform 500ms var(--e); /* motion-ok: §16.3-6, the two heading rows rise 20px, 80ms apart — the delay is on the second row below. */
+}
+.rl-home.js .opover .r:nth-child(2) {
+  transition-delay: 80ms;
+}
+.rl-home.js .opstage.in .opover .r {
+  opacity: 1;
+  transform: none;
+}
+
+/* -- 7. hovers, everywhere ------------------------------------------------
+   The chips' ground already swaps in 300ms. What is added: the arrow slides 6px
+   right in every chip and every ledger row, and the price cards' border turns
+   copper. Nothing here is coupled to the pointer's position — these are
+   :hover/:focus-visible states. */
+.rl-home .chip .a .gl {
+  display: block;
+  transition: transform 200ms var(--e);
+}
+.rl-home .chip:hover .a .gl,
+.rl-home .chip:focus-visible .a .gl,
+.rl-home a:hover > .chip .a .gl,
+.rl-home a:focus-visible > .chip .a .gl,
+.rl-home .eng:hover .chip .a .gl,
+.rl-home .eng:focus-visible .chip .a .gl,
+.rl-home .card:hover .chip .a .gl,
+.rl-home .card:focus-within .chip .a .gl {
+  transform: translateX(6px);
+}
+.rl-home .prf .ar,
+.rl-home .prfx .ar,
+.rl-home .bar .ar {
+  transition: transform 200ms var(--e);
+}
+.rl-home a.prf:hover .ar,
+.rl-home a.prf:focus-visible .ar,
+.rl-home a.prfx:hover .ar,
+.rl-home a.prfx:focus-visible .ar,
+.rl-home .bar a:hover .ar,
+.rl-home .bar a:focus-visible .ar {
+  transform: translateX(6px);
+}
+.rl-home .card {
+  transition: border-color 300ms var(--e);
+}
+.rl-home .card:hover,
+.rl-home .card:focus-within {
+  border-color: var(--color-rl-copper);
+}
+
+/* -- 8. the ask ----------------------------------------------------------- */
+.rl-home.js .ask h2 {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 600ms var(--e),
+    transform 600ms var(--e); /* motion-ok: §16.3-8 signature, the copper field's headline rises 30px over 600ms as the field enters. */
+}
+.rl-home.js .ask .ar {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition:
+    opacity 600ms var(--e),
+    transform 600ms var(--e); /* motion-ok: §16.3-8, the arrow slides in from the left over 600ms with the headline. */
+}
+.rl-home.js .ask .chips {
+  opacity: 0;
+  transform: translateY(30px);
+  transition-delay: 120ms;
+  transition-property: opacity, transform;
+  transition-duration: 600ms; /* motion-ok: §16.3-8, the chips follow the headline 120ms later. */
+  transition-timing-function: var(--e);
+}
+.rl-home.js #contact.in h2,
+.rl-home.js #contact.in .ar,
+.rl-home.js #contact.in .chips {
+  opacity: 1;
+  transform: none;
+}
+
+/* -- 9. the ground travel and the rail-style lighting are UNCHANGED
+   (§16.3-9). They live on .rl-sheet in globals.css. */
+
+@media (max-width: 1439px) {
+  .rl-home .room {
+    padding-bottom: 48px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .rl-home .room {
+    padding-bottom: 120px;
+  }
+  .rl-home .card .cta .chip .t {
+    font-size: 19px;
+  }
+  .rl-home .opgrid {
+    gap: 32px;
+  }
+  .rl-home .opstage {
+    grid-column: 1 / -1;
+  }
+  .rl-home .opside {
+    grid-column: 1 / -1;
+  }
+  /* §15.5: the engagements figure gives up 12px so it and "Engagements" stay on
+     one row inside a 1216px content width. MEASURED, not guessed. */
+  .rl-home .eng .v {
+    font-size: 52px;
+  }
+  .rl-home .eng {
+    column-gap: 28px;
+    row-gap: 22px;
+    padding: 30px 28px;
+  }
+  .rl-home .prf,
+  .rl-home .prfx {
+    grid-template-columns: minmax(0, 460px) minmax(0, 1fr) 40px;
+    column-gap: 24px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .rl-home .card .cta .chip .t {
+    font-size: 17px;
+  }
+  /* MEASURED: between 900 and 1023 the heading and the figure together needed
+     892 of an 856px content width and the block wrapped into an accidental
+     third row. The figure gives up 20px; the block keeps its one row. */
+  .rl-home .eng {
+    column-gap: 24px;
+    row-gap: 20px;
+    padding: 28px 24px;
+  }
+  .rl-home .eng .v {
+    font-size: 44px;
+  }
+  .rl-home .prf,
+  .rl-home .prfx {
+    grid-template-columns: minmax(0, 1fr) 40px;
+    row-gap: 8px;
+    column-gap: 12px;
+    align-items: baseline;
+    padding: 22px 0;
+  }
+  .rl-home .prf .who {
+    grid-column: 1 / -1;
+    font-size: 24px;
+  }
+  .rl-home .prfx .who {
+    grid-column: 1;
+  }
+  .rl-home .prf .cap {
+    grid-column: 1;
+  }
+  .rl-home .prf .ar,
+  .rl-home .prfx .ar {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 899px) {
+  .rl-home .bar {
+    height: 48px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .rl-home .bar .hide-s {
+    display: none;
+  }
+
+  /* §14.7, the ONLY permitted mobile composition, and it is the SAME
+     composition as the desktop: the words are where the finger ends at every
+     width. The stage is the 4:3 crop of the same source; the HEADLINE is
+     overlaid on it; only the sentence, the chips and the proof row follow it in
+     flow.
+       The crop is object-position 0% 50%, so the visible source window starts at
+     x 0. The stage is W x H with H = min(75vw, 292px) and a cover fit scales the
+     1920x1080 source by H/1080, which makes BOTH fingertip coordinates pure
+     functions of H:
+       x = 372 * (H/1080) = 0.3444444 * H     y = 413 * (H/1080) = 0.3824074 * H
+     At 390 that is (100.6, 111.7) of a 390x292 stage — 25.8% across, the 26%
+     §14.7 measures. The window is H * 16/9 source px wide (1442 at 390, 1440 at
+     360), so the face at source x 1010..1290 stays inside the frame at both.
+       SEND-BACK, v5 verify 3: the stage began at y=0 under an opaque 48px bar,
+     so 16% of a 292px film was hidden and the crown of his head was inside the
+     covered band — he read as cut off flat at the top of the phone. The stage
+     starts BELOW the bar instead. */
+  .rl-home .room {
+    padding-bottom: 0;
+    padding-top: 48px;
+    --H: min(75vw, 292px);
+    --mfx: calc(0.3444444 * var(--H));
+    --mfy: calc(0.3824074 * var(--H));
+  }
+  /* The stage returns to the flow; the headline is taken OUT of it and hung on
+     the stagewrap, which is the stage's own box while the copy block is
+     static. */
+  .rl-home .stagewrap {
+    aspect-ratio: auto;
+  }
+  .rl-home .stage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    max-height: 292px;
+  }
+  .rl-home .stage video {
+    object-position: 0% 50%;
+  }
+  /* The veil is NOT overridden here: the desktop ramp is written in the stage's
+     own percentages, so the same gradient lands solid one headline row under the
+     fingertip at 292px exactly as it does at 810. */
+  /* §16.2 at <=899, the same rule: the COPPER row's cap-top is 4px under the tip
+     and `I build the` is the row above it. The stage already starts BELOW the
+     48px bar, and the block is hung inside the stage's box, so row 1 clears the
+     bar by construction — MEASURED at 390 and 360 by the verifier. */
+  .rl-home .hero-copy h1 {
+    position: absolute;
+    z-index: 2;
+    margin: 0;
+    left: calc(var(--mfx) - 40px);
+    right: 12px;
+    top: calc(var(--mfy) + 4px - 0.92 * var(--d) - var(--capk) * var(--d));
+  }
+  /* Round 9: the top padding is spent. §14.7 puts the sentence UNDER the stage
+     at <=899 and the stage's own box is pinned, so the only air between the
+     stage's foot and the sentence that this composition owns is this padding —
+     now zero. The rest of what reads as air on the phone is the veil's solid
+     tail INSIDE the stage and cannot be cut without moving the fingertip. */
+  .rl-home .hero-copy {
+    position: static;
+    left: auto;
+    right: auto;
+    top: auto;
+    padding: 0 var(--g) 56px;
+    min-height: 0;
+  }
+  .rl-home .hero-copy .lede {
+    margin-bottom: 24px;
+  }
+  .rl-home .hero-copy .base-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  /* §14.2 at <=899: the film is a full-width square, the heading is over its
+     lower third, the paragraphs are under it. */
+  .rl-home .opgrid {
+    display: block;
+  }
+  /* §14.2 names a FULL-WIDTH square at <=899 (390 -> 390x390). It was 350x350,
+     inset by the page gutter, which is a framed picture — the one thing §14.2
+     rules out. The section's own gutter is pulled back off this one block. */
+  .rl-home .opstage {
+    width: auto;
+    margin-left: calc(-1 * var(--g));
+    margin-right: calc(-1 * var(--g));
+  }
+  /* The type keeps the page gutter; the film does not. */
+  .rl-home .opover {
+    left: var(--g);
+    right: var(--g);
+  }
+  .rl-home .opover h2.two {
+    margin-right: 0;
+  }
+  .rl-home .opover p {
+    display: none;
+  }
+  .rl-home .opside .m-first {
+    display: block;
+  }
+  /* The square's own black tail under the heading IS the air between the film
+     and the paragraphs; a second 28px margin on top of it opened a hole. */
+  .rl-home .opside {
+    margin-top: 4px;
+    gap: 20px;
+  }
+  .rl-home .opside p {
+    font-size: 17px;
+    line-height: 1.45;
+  }
+  .rl-home .opside .lead span {
+    font-size: 18px;
+    line-height: 1.45;
+    padding: 18px 0;
+  }
+  .rl-home .opside .sig {
+    margin-top: 20px;
+  }
+
+  /* §15.4: the ledger stacks. Each row keeps its hairline; the ordinal and the
+     step name take the full width and the sentence follows them. Round 9: the
+     phone override is GONE — the head keeps the section-head width axis (115)
+     here too and wraps inside the content box. */
+  .rl-home .steps li {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 28px 0;
+    row-gap: 8px;
+  }
+  .rl-home .steps .n,
+  .rl-home .steps .nm,
+  .rl-home .steps .s {
+    grid-column: 1 / 2;
+  }
+  .rl-home .steps .s {
+    font-size: 19px;
+  }
+
+  /* §15.5: the cards KEEP their ground at every width — a bordered box is the
+     thing the operator asked for. They simply stack. */
+  .rl-home .cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    margin: 0;
+  }
+  .rl-home .card {
+    padding: 22px;
+  }
+  .rl-home .card.mark {
+    padding-top: 21px;
+  }
+  .rl-home .card .pr {
+    font-size: 52px;
+  }
+  .rl-home .card .cta .chip .t {
+    font-size: 19px;
+  }
+  /* §15.5: the top tier stacks into two rows and keeps its rule. One column:
+     the two halves stack, each keeping its own two rows. */
+  .rl-home .eng {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+    row-gap: 22px;
+    padding: 26px 20px;
+  }
+  .rl-home .eng .side {
+    grid-column: 1;
+    row-gap: 22px;
+  }
+  .rl-home .eng .side.l-side {
+    grid-row: 1 / 3;
+  }
+  /* Round 9: the chip takes the block's whole interior on the phone.
+     justify-items:start shrink-wrapped it to 192px of a 310px interior, so the
+     top tier's one tap target sat narrower than the package cards' chips. */
+  .rl-home .eng .side.r {
+    grid-column: 1;
+    grid-row: 3 / 5;
+    justify-items: stretch;
+    text-align: left;
+  }
+  .rl-home .eng .chip {
+    width: 100%;
+  }
+  .rl-home .eng .chip .t {
+    flex: 1;
+  }
+  /* MEASURED: nowrap at 52px, "From $5K a month" is 404px against a 310px
+     column at 390 and 280px at 360 — it was the whole page's horizontal
+     overflow. It is sized to fit one line at 360 (273px at 40px / wdth 88) and
+     the nowrap comes off as the net. */
+  .rl-home .eng .v {
+    font-size: 40px;
+    font-variation-settings: "wdth" 88;
+    white-space: normal;
+  }
+  .rl-home .eng .hd {
+    font-variation-settings: "wdth" var(--dw-fit);
+  }
+
+  /* §15.3: the three objections stack, 40px apart. */
+  .rl-home .qs {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+  .rl-home .manual .copy,
+  .rl-home .manual .art {
+    grid-column: 1 / -1;
+  }
+  .rl-home .manual .copy {
+    margin-top: 40px;
+  }
+  .rl-home .manual .buy .v {
+    font-size: 52px;
+  }
+  .rl-home .ask {
+    min-height: 0;
+    padding: 88px var(--g);
+  }
+  .rl-home .ask .block {
+    gap: 40px;
+  }
+  .rl-home .ask .d {
+    font-size: 64px;
+  }
+  .rl-home .ask .ar {
+    font-size: 0.42em;
+    margin-left: 11px;
+  }
+  .rl-home .ask .chip {
+    height: 48px;
+  }
+  .rl-home .foot .row {
+    flex-direction: column;
+  }
+}
+
+/* §15.2 send-back (verify round 8): at 390 the manual's file line stayed a
+   two-column row, so BOTH halves wrapped — four ragged fragments and a hyphen
+   break under an otherwise clean full-width cover. Under 700px the caption row
+   stacks: two whole lines, left-aligned on the cover's own left edge, neither
+   wrapping. Measured: 173px and 240px of a 326px column at 390. Above 700px
+   each half has >=310px and the spread row is right. */
+@media (max-width: 699px) {
+  .rl-home .manual .art figcaption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 599px) {
+  .rl-home .room .chips {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .rl-home .room .chips .chip {
+    width: 100%;
+  }
+  .rl-home .room .chips .chip .t {
+    flex: 1;
+  }
+}
+
+/* ---- reduced motion: the finished frame (§16.3) ---- */
+@media (prefers-reduced-motion: reduce) {
+  .rl-home video {
+    display: none;
+  }
+  .rl-home .stage .still,
+  .rl-home .opfilm .still {
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+  .rl-home .stage .still {
+    background: url("/video/a2-poster-last.jpg") 50% 50% / cover no-repeat;
+  }
+  @media (max-width: 899px) {
+    .rl-home .stage .still {
+      background-position: 0% 50%;
+    }
+  }
+  .rl-home .opfilm .still {
+    background: url("/video/b-poster.jpg") 50% 40% / cover no-repeat;
+  }
+  .rl-home .bar {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  /* §16.3: "everything off under reduced motion". The whole set is gated on
+     .rl-home.js, which is never added under reduce, so every rest state is
+     already the finished frame; what remains is to kill the transitions that
+     are NOT gated — the bar, the hover wipes and the hover slides — and to pin
+     the hover transforms so nothing moves on a pointer either. */
+  .rl-home .bar,
+  .rl-home .prf::after,
+  .rl-home .prfx::after,
+  .rl-home .prfx .who,
+  .rl-home [data-rise],
+  .rl-home .chip .t,
+  .rl-home .chip .a,
+  .rl-home .chip .a .gl,
+  .rl-home .prf .ar,
+  .rl-home .prfx .ar,
+  .rl-home .bar .ar,
+  .rl-home .card,
+  .rl-home .sec h2,
+  .rl-home .card .pblock::after,
+  .rl-home .steps li::before,
+  .rl-home .manual .lines p::before,
+  .rl-home .q::before,
+  .rl-home .prf::before,
+  .rl-home .prfx::before,
+  .rl-home .proofsec .ledger::before,
+  .rl-home .opfilm video,
+  .rl-home .opover .r,
+  .rl-home .ask h2,
+  .rl-home .ask .ar,
+  .rl-home .ask .chips,
+  .rl-home #h1 .cu,
+  .rl-home #h1 .r1 {
+    transition: none !important;
+  }
+  .rl-home [data-rise],
+  .rl-home .chip .a .gl,
+  .rl-home .prf .ar,
+  .rl-home .prfx .ar,
+  .rl-home .bar .ar,
+  .rl-home .ask h2,
+  .rl-home .ask .ar,
+  .rl-home .ask .chips,
+  .rl-home .opover .r,
+  .rl-home #h1 .r1 {
+    transform: none !important;
+  }
+  .rl-home .chip:hover .a .gl,
+  .rl-home a.prf:hover .ar,
+  .rl-home a.prfx:hover .ar,
+  .rl-home .bar a:hover .ar {
+    transform: none !important;
+  }
+  .rl-home .sec h2 {
+    clip-path: none !important;
+  }
+  .rl-home #h1 .cu,
+  .rl-home .ask h2,
+  .rl-home .ask .ar,
+  .rl-home .ask .chips,
+  .rl-home .card,
+  .rl-home .eng,
+  .rl-home .q,
+  .rl-home .opover .r {
+    opacity: 1 !important;
+  }
+}
