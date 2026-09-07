@@ -466,25 +466,14 @@ body {
     rgba(255, 220, 180, 0.03) 30%,
     transparent 65%
   );
-  animation: theater-ambient-drift 34s ease-in-out infinite alternate;
-}
-
-@keyframes theater-ambient-drift {
-  0% {
-    background-position: 40% 20%;
-  }
-  25% {
-    background-position: 60% 35%;
-  }
-  50% {
-    background-position: 50% 25%;
-  }
-  75% {
-    background-position: 55% 40%;
-  }
-  100% {
-    background-position: 45% 30%;
-  }
+  /* PASS-101 §16.3: the ceiling is <= 3 @keyframes site-wide, and one
+   * stylesheet is reachable from every route, so a keyframe declared here is
+   * declared on the Room and Ledger pages too. This one drove a 34s infinite
+   * alternate drift of the spotlight's background-position — ambient motion
+   * that never terminates, which is the opposite of the vocabulary §16.3
+   * names ("everything once"). The pool itself is the design and it stays;
+   * only the perpetual drift is deleted. */
+  background-position: 50% 25%;
 }
 
 /* Reduced-motion users: grain layers stay (they're static), but the
@@ -2499,7 +2488,9 @@ body {
 }
 [data-mode="cw"].cw-js-reveals .cw-eyebrow > span {
   /* P1-3 (review): entrance tightened from 0.8s/0.15s to 0.35s/0.07s, same proportion and easing family. */
-  animation: cw-hero-line-up 0.35s 0.07s cubic-bezier(0.16, 1, 0.3, 1) both; /* motion-ok: load-reveal duration reduced, not raised */
+  /* PASS-101 §16.3 keyframe ceiling: `cw-hero-line-up` deleted. Both call
+   * sites belong to components/color-worlds/Hero.tsx, which brief §2 retired
+   * from the home and which no route imports any more. */
 }
 
 /* Hero — restored display H1 (Pass-12).
@@ -2551,17 +2542,8 @@ body {
 [data-mode="cw"].cw-js-reveals .cw-h1 .cw-line > span {
   /* P1-3 (review): entrance tightened from 0.85s to 0.35s; stagger delay
    * tightened proportionally (0.20s base/step -> 0.08s), same easing family. */
-  animation: cw-hero-line-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; /* motion-ok: load-reveal duration reduced, not raised */
-  animation-delay: calc(0.08s + var(--reveal-i, 0) * 0.08s);
-}
-
-@keyframes cw-hero-line-up {
-  from {
-    transform: translateY(110%);
-  }
-  to {
-    transform: translateY(0);
-  }
+  /* PASS-101 §16.3 keyframe ceiling: see above. The rest state was already
+   * the finished frame; only the entrance is gone. */
 }
 
 /* Rolling word — bone color + italic. Distinction from the rest of
@@ -3669,20 +3651,10 @@ body {
   height: 9px;
   border-radius: 50%;
   background: var(--cw-accent);
+  /* PASS-101 §16.3: `cw-pulse` (an infinite 2s box-shadow ring) is deleted
+   * with the rest of the keyframe budget. Its only call site is .cw-ordani,
+   * the home block §4 dropped — zero components render that class now. */
   box-shadow: 0 0 0 0 var(--cw-accent);
-  animation: cw-pulse 2s infinite;
-}
-@keyframes cw-pulse {
-  0% {
-    /* Sunflower pulse — was lime rgba(203,255,53). */
-    box-shadow: 0 0 0 0 rgba(255, 181, 17, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(255, 181, 17, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 181, 17, 0);
-  }
 }
 [data-mode="cw"] .cw-ordani h2 {
   font-family: var(--font-cw-display);
