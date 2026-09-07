@@ -56,7 +56,7 @@ export function Receipts() {
           <div className="who">AI content engine for an industry author</div>
           <div className="cap">
             Videos, blogs, newsletters, and digital events cost the author less
-            money and fewer hours to produce.
+            money and fewer hours to produce
           </div>
           <span className="ar" aria-hidden="true">
             &#8594;
