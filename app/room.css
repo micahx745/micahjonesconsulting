@@ -1191,7 +1191,7 @@ html.lit .rl-home .eng .chip {
    drawn hairline (§16.3-4), so the glyph is ::after with an explicit cell —
    it is absolutely positioned and out of flow, so the two never collide. */
 .rl-home .q::after {
-  content: "92";
+  content: "\2192";
   grid-column: 1;
   grid-row: 1;
   align-self: start;
