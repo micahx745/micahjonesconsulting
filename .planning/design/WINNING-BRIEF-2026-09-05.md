@@ -608,6 +608,21 @@ the motion set above, `pnpm build` green, axe clean, screenshots at 390/1440. Br
 `.claude/briefs/pass-101-room-and-ledger-site.md`. No push, no deploy: the preview URL is
 the operator's push. The wording round runs on those pages.
 
+## 17. Mid-flight (2026-09-06): "really think about UI design"
+
+Verbatim: "really think about UI design and look at those references and look up web
+search. I still feel like the home page has parts that feel unorganized like the box.
+receipts - we should add the content ai part to the list so we have three."
+
+- **Receipts = three rows:** Guardicore · RFP engine for an industry author · AI content
+  engine for an industry author, then `See the rest →`. Binds v7 and Pass 101.
+- **A design-critique leg** (Opus, web + corpus): every home section screenshotted at 1440
+  and 390 from v5/v6, judged section by section as composed or assembled, against the
+  corpus teardowns AND a fresh web search of 2026 award-level pages for the same patterns
+  (a pricing row with a premium tier, a product block, a small FAQ, a method ledger, a
+  proof index). Output: a recomposition per failing section with px values and a named
+  reference. Fable rules → v7 (mock) and a Pass-101 follow-up commit on the branch.
+
 ## 10. Return conditions (stop and report instead of guessing)
 
 A hero row that cannot fit at wdth 115 at either size · contrast under 4.5:1 that the 60%
