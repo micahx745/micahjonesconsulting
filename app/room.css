@@ -43,19 +43,24 @@ html:has(.rl-home) {
   overflow-x: hidden;
 }
 
-/* ...EXCEPT the skip link, which sets its own pair. globals.css gives it
- * --color-foyer-paper on --color-accent-copper-deep (5.4:1, the Phase 10 axe
- * fix), and a bare `.rl-home a` at (0,1,1) was out-specifying that `color`
- * and inheriting the ink instead -- bone on copper-deep while the page is
- * dark, espresso on copper-deep once html.lit lands, which is 3.0:1 and a
- * serious axe finding on the FIRST tab stop of the site's front door. The
- * exclusion is the same shape app/room-and-ledger.css:111 already uses for
- * the (room) group's copy of this rule; it is written as :not() here so the
- * `text-decoration: none` the skip link declares for itself is not being
- * silently supplied by a rule that does not mean to. PASS-101 INTEGRATE. */
-.rl-home a:not(.skip-to-content) {
+.rl-home a {
   color: inherit;
   text-decoration: none;
+}
+/* ...EXCEPT the skip link, which sets its own pair. globals.css gives it
+ * --color-foyer-paper on --color-accent-copper-deep (5.4:1, the Phase 10 axe
+ * fix), and `.rl-home a` at (0,1,1) was out-specifying that `color`, so the
+ * FIRST tab stop on the site's front door inherited the page's ink onto the
+ * copper-deep ground the link sets for itself: bone while the page is dark,
+ * espresso once html.lit lands, the latter 3.0:1 and a serious axe finding.
+ * Raised here rather than excluded with :not() on the rule above -- MEASURED:
+ * `.rl-home a:not(.skip-to-content)` is (0,2,1) and out-specifies
+ * `.rl-home .chip` at (0,2,0), which would have taken the espresso off every
+ * <a class="chip"> on the unlit half of the home. This is the same shape
+ * app/room-and-ledger.css:111 already uses for the (room) group's copy of the
+ * inherit rule. PASS-101 INTEGRATE. */
+.rl-home a.skip-to-content {
+  color: var(--color-foyer-paper);
 }
 .rl-home a:focus-visible {
   outline: 1.5px solid var(--color-rl-copper);
