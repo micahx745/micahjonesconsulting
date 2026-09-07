@@ -153,7 +153,7 @@
   {
    "id": "15.1-gesture-plays-both",
    "pass": true,
-   "evidence": "preload ['auto', 'none'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.21s) and the operator clip is playing (paused=False, t=3.71s)"
+   "evidence": "preload ['auto', 'none'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.21s) and the operator clip is playing (paused=False, t=3.72s)"
   },
   {
    "id": "discipline",

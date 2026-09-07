@@ -1,0 +1,349 @@
+{
+  "1-token": {
+    "/packages": {
+      "alias": "#8a3d24",
+      "named": "#8a3d24",
+      "probeColor": "rgb(138, 61, 36)",
+      "links": [],
+      "deepCount": 0
+    },
+    "/playbook": {
+      "alias": "#8a3d24",
+      "named": "#8a3d24",
+      "probeColor": "rgb(138, 61, 36)",
+      "links": [
+        {
+          "t": "The case studies",
+          "color": "rgb(138, 61, 36)",
+          "deco": "oklab(0.45769 0.08786 0.0694675 / 0.45)"
+        },
+        {
+          "t": "Chapter one, free \u2191",
+          "color": "rgb(245, 239, 228)",
+          "deco": "oklab(0.953792 0.00204816 0.0158697 / 0.45)"
+        }
+      ],
+      "deepCount": 3
+    },
+    "/about": {
+      "alias": "#8a3d24",
+      "named": "#8a3d24",
+      "probeColor": "rgb(138, 61, 36)",
+      "links": [
+        {
+          "t": "engagements",
+          "color": "rgb(138, 61, 36)",
+          "deco": "oklab(0.45769 0.08786 0.0694675 / 0.45)"
+        },
+        {
+          "t": "The 80% Wall",
+          "color": "rgb(138, 61, 36)",
+          "deco": "oklab(0.45769 0.08786 0.0694675 / 0.45)"
+        }
+      ],
+      "deepCount": 2
+    },
+    "/work": {
+      "alias": "#8a3d24",
+      "named": "#8a3d24",
+      "probeColor": "rgb(138, 61, 36)",
+      "links": [
+        {
+          "t": "Engagements",
+          "color": "rgb(138, 61, 36)",
+          "deco": "oklab(0.45769 0.08786 0.0694675 / 0.45)"
+        },
+        {
+          "t": "packages",
+          "color": "rgb(138, 61, 36)",
+          "deco": "oklab(0.45769 0.08786 0.0694675 / 0.45)"
+        }
+      ],
+      "deepCount": 2
+    }
+  },
+  "2-skip": {
+    "focused": true,
+    "color": "rgb(245, 239, 228)",
+    "bg": "rgb(138, 61, 36)",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)",
+    "lit": true,
+    "rect": {
+      "x": 0,
+      "y": -6108,
+      "width": 166.578125,
+      "height": 45,
+      "top": -6108,
+      "right": 166.578125,
+      "bottom": -6063,
+      "left": 0
+    },
+    "litAtFoot": true,
+    "contrast": 6.62,
+    "atTop": {
+      "focused": false,
+      "color": "rgb(245, 239, 228)",
+      "bg": "rgb(138, 61, 36)",
+      "transform": "matrix(1, 0, 0, 1, 0, -45)",
+      "lit": false,
+      "rect": {
+        "x": 0,
+        "y": -45,
+        "width": 166.578125,
+        "height": 45,
+        "top": -45,
+        "right": 166.578125,
+        "bottom": 0,
+        "left": 0
+      },
+      "contrast": 6.62
+    }
+  },
+  "3-foot": {
+    "packages": {
+      "found": true,
+      "height": 297,
+      "width": 1440,
+      "bg": "rgb(13, 13, 15)",
+      "color": "rgb(245, 239, 228)",
+      "cols": [
+        {
+          "sel": ".who",
+          "x": 32,
+          "w": 443,
+          "h": 128
+        },
+        {
+          "sel": ".nav",
+          "x": 615,
+          "w": 326,
+          "h": 176
+        },
+        {
+          "sel": ".book",
+          "x": 1082,
+          "w": 326,
+          "h": 123
+        }
+      ],
+      "rowDisplay": "grid",
+      "rowCols": 12,
+      "borderTop": "1px",
+      "navLinkColor": "rgba(245, 239, 228, 0.6)",
+      "chip": {
+        "h": 48,
+        "w": 252,
+        "bg": "rgb(245, 239, 228)",
+        "color": "rgb(13, 13, 15)",
+        "radius": "8px"
+      }
+    },
+    "guardicore": {
+      "found": true,
+      "height": 297,
+      "width": 1440,
+      "bg": "rgb(13, 13, 15)",
+      "color": "rgb(245, 239, 228)",
+      "cols": [
+        {
+          "sel": ".who",
+          "x": 32,
+          "w": 443,
+          "h": 128
+        },
+        {
+          "sel": ".nav",
+          "x": 615,
+          "w": 326,
+          "h": 176
+        },
+        {
+          "sel": ".book",
+          "x": 1082,
+          "w": 326,
+          "h": 123
+        }
+      ],
+      "rowDisplay": "grid",
+      "rowCols": 12,
+      "borderTop": "1px",
+      "navLinkColor": "rgba(245, 239, 228, 0.6)",
+      "chip": {
+        "h": 48,
+        "w": 252,
+        "bg": "rgb(245, 239, 228)",
+        "color": "rgb(13, 13, 15)",
+        "radius": "8px"
+      }
+    },
+    "deltaPx": 0
+  },
+  "4-about-1440": {
+    "fig": {
+      "x": 32,
+      "w": 559,
+      "h": 418
+    },
+    "body": {
+      "x": 615,
+      "w": 793,
+      "h": 620
+    },
+    "contentRight": 1408,
+    "emptyBeside": 24,
+    "topsAligned": 0,
+    "imgW": 559
+  },
+  "5-packages-1440": {
+    "intro": {
+      "x": 615,
+      "w": 793
+    },
+    "seams": [
+      {
+        "t": "For solo builders and small team",
+        "x": 615,
+        "w": 793
+      },
+      {
+        "t": "Each one goes straight to checko",
+        "x": 615,
+        "w": 793
+      },
+      {
+        "t": "The rules, in plain terms: every",
+        "x": 615,
+        "w": 793
+      }
+    ],
+    "overflow": 0
+  },
+  "4-about-390": {
+    "stacked": true,
+    "figX": 32,
+    "figW": 326,
+    "bodyX": 32,
+    "bodyW": 326,
+    "gap": 48,
+    "ledgerCols": "326px",
+    "overflow": 0
+  },
+  "5-packages-390": {
+    "intro": {
+      "x": 32,
+      "w": 326
+    },
+    "seams": [
+      {
+        "t": "For solo builders and small team",
+        "x": 32,
+        "w": 326
+      },
+      {
+        "t": "Each one goes straight to checko",
+        "x": 32,
+        "w": 326
+      },
+      {
+        "t": "The rules, in plain terms: every",
+        "x": 32,
+        "w": 326
+      }
+    ],
+    "overflow": 0
+  },
+  "3-foot-390-guardicore": {
+    "found": true,
+    "height": 579,
+    "width": 390,
+    "bg": "rgb(13, 13, 15)",
+    "color": "rgb(245, 239, 228)",
+    "cols": [
+      {
+        "sel": ".who",
+        "x": 32,
+        "w": 326,
+        "h": 128
+      },
+      {
+        "sel": ".nav",
+        "x": 32,
+        "w": 326,
+        "h": 176
+      },
+      {
+        "sel": ".book",
+        "x": 32,
+        "w": 326,
+        "h": 123
+      }
+    ],
+    "rowDisplay": "grid",
+    "rowCols": 12,
+    "borderTop": "1px",
+    "navLinkColor": "rgba(245, 239, 228, 0.6)",
+    "chip": {
+      "h": 48,
+      "w": 252,
+      "bg": "rgb(245, 239, 228)",
+      "color": "rgb(13, 13, 15)",
+      "radius": "8px"
+    }
+  },
+  "6-axe": {
+    "home@1440": {
+      "seriousCritical": 1,
+      "detail": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "n": 1,
+          "targets": [".promise"]
+        }
+      ],
+      "all": ["color-contrast(serious,1)"]
+    },
+    "packages@1440": {
+      "seriousCritical": 0,
+      "detail": [],
+      "all": []
+    },
+    "about@1440": {
+      "seriousCritical": 0,
+      "detail": [],
+      "all": []
+    },
+    "work-guardicore@1440": {
+      "seriousCritical": 0,
+      "detail": [],
+      "all": []
+    },
+    "home@390": {
+      "seriousCritical": 1,
+      "detail": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "n": 1,
+          "targets": [".promise"]
+        }
+      ],
+      "all": ["color-contrast(serious,1)"]
+    },
+    "packages@390": {
+      "seriousCritical": 0,
+      "detail": [],
+      "all": []
+    },
+    "about@390": {
+      "seriousCritical": 0,
+      "detail": [],
+      "all": []
+    },
+    "work-guardicore@390": {
+      "seriousCritical": 0,
+      "detail": [],
+      "all": []
+    }
+  }
+}
