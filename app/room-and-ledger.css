@@ -209,6 +209,27 @@
   line-height: 1.4;
   color: var(--ink-72);
 }
+
+/* §18 RULE B — ONE SEAM, for a paragraph that follows a full-width ledger.
+ * "Every right-hand lane in the light half starts at x = 600 (cols 6-12,
+ * 776px) at 1440."
+ *   MEASURED on /packages before this rule: the two closing paragraphs ran a
+ * 40ch / 46ch measure at the 32px gutter (470px and 489px wide), so the last
+ * screen of the page was a narrow left column with an empty right 60% under a
+ * card row that spans the full width. The seam is the page's one vertical
+ * line, and these two paragraphs are the last things on it.
+ *   --lane is the width of columns 1-5 (§18 Rule B's own construction, the
+ * definition room.css gives the home), so the margin lands the text on the
+ * column-6 line by geometry rather than on a magic 600. At 1440 that is
+ * x = 615.3 with a 792.7px measure; the max-width cap goes with it, because a
+ * 40ch box inside a 793px lane would just move the same narrow column right.
+ *   Below 900 the seam has no room and the lane returns to the gutter. */
+@media (min-width: 900px) {
+  #rl-root .rl-seam {
+    margin-left: calc(var(--lane) + var(--gap));
+    max-width: none;
+  }
+}
 .rl-hair {
   border: 0;
   border-top: 1px solid var(--hair);

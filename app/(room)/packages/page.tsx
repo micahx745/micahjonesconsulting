@@ -281,13 +281,17 @@ export default function PackagesPage() {
             Stripe checkout now, so this says what actually happens after the
             card clears. The booking link is /call/kickoff, which is where
             lib/package-delivery.ts already points. */}
-        <p className="rl-lede rl-air-m" data-rl="rise">
+        {/* PASS-101 polish, §18 Rule B: the two closing paragraphs open on the
+            column-6 seam. They used to run a 40ch / 46ch measure at the gutter
+            under a card row that spans the full width, which left the page's
+            last screen a narrow left column with an empty right 60%. */}
+        <p className="rl-lede rl-seam rl-air-m" data-rl="rise">
           Each one goes straight to checkout. The moment your card clears you
           get a kickoff email: the intake questions, a link to book the call,
           and the manual with its companion files attached.
         </p>
 
-        <p className="rl-body rl-air-s" data-rl="rise">
+        <p className="rl-body rl-seam rl-air-s" data-rl="rise">
           The rules, in plain terms: every package fee credits toward the next
           package or an engagement started within 60 days. Full refund any time
           before kickoff. None after, because by then the work has started. All
