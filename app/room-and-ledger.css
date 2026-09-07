@@ -275,6 +275,7 @@
  * /packages, /playbook, /work, /about and /call keeps its element tree; the
  * block simply moves onto .rl-chip and the two children become inline runs.
  * On these pages the ground is bone, so the chip is espresso-filled. */
+#rl-root .rl-chip,
 .rl-chip {
   box-sizing: border-box;
   display: inline-flex;
@@ -324,6 +325,7 @@
   line-height: 1;
 }
 /* the quiet member of a pair keeps the SHAPE and gives up the fill */
+#rl-root .rl-chip.quiet,
 .rl-chip.quiet {
   background: none;
   color: var(--ink);
@@ -336,10 +338,10 @@
   display: inline-block;
   transition: transform 200ms var(--e);
 }
-.rl-chip:hover,
-.rl-chip:focus-visible,
-a:hover > .rl-chip,
-a:focus-visible > .rl-chip {
+#rl-root .rl-chip:hover,
+#rl-root .rl-chip:focus-visible,
+#rl-root a:hover > .rl-chip,
+#rl-root a:focus-visible > .rl-chip {
   background: var(--color-rl-copper);
   border-color: var(--color-rl-copper);
   color: var(--color-rl-bone);
@@ -612,6 +614,7 @@ html.rl-js .rl-bar.rl-in {
  * this pass does not open it. So the chip is rebuilt on that shape: the button
  * is the label block and its last child becomes the copper square. Same
  * geometry as .rl-chip, no logic changed, no prop added. */
+#rl-root .rl-buy,
 .rl-buy {
   box-sizing: border-box;
   display: flex;
@@ -754,6 +757,12 @@ html.rl-js .rl-bar.rl-in {
  *    /work runs this over EVERY case study (brief §3).
  * ============================================================ */
 
+/* §18 Rule B: --lane is the width of columns 1-5 of the page's own grid, the
+ * same definition app/room.css gives the home, so both groups open their
+ * right-hand lanes on one vertical line. */
+#rl-root {
+  --lane: calc((100% - 11 * var(--gap)) / 12 * 5 + 4 * var(--gap));
+}
 .rl-index {
   display: block;
   list-style: none;
@@ -765,11 +774,13 @@ html.rl-js .rl-bar.rl-in {
   position: relative;
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: minmax(0, 560px) minmax(0, 1fr) 40px;
-  column-gap: 32px;
+  /* §18: name in cols 1-5, caption from the column-6 seam, the arrow in a
+     32px cell flush right — the home's receipts row, on this group's names. */
+  grid-template-columns: minmax(0, var(--lane)) minmax(0, 1fr) 32px;
+  column-gap: var(--gap);
   align-items: baseline;
-  min-height: 84px;
-  padding: 26px 0;
+  min-height: 72px;
+  padding: 22px 0;
   /* v5 verify 3: the rows carried bottom borders only, so the ledger's first
    * row floated. Every row opens on a rule and the ledger closes on one. The
    * rule is the row's TOP border on purpose: that is the edge §16.3-4 draws
@@ -809,7 +820,8 @@ html.rl-js .rl-bar.rl-in {
 .rl-prf .ar,
 .rl-prfx .ar {
   grid-column: 3;
-  justify-self: end;
+  justify-self: stretch;
+  text-align: right;
   color: var(--ink);
   font-family: var(--font-rl-display);
   font-size: 19px;
@@ -1084,11 +1096,19 @@ a.rl-prfx:focus-visible .who {
 /* the frame's BORDER BOX is the column and the frame is 4:5; the cover fills
  * its content box. The dash is ink at 40%, which is the step the hairline
  * needs against paper (round 9's finding). */
+/* §18 RULE A: "the border goes on the list, never on the picture. No frame
+ * around any photograph or cover." The dashed 1px frame and its 16px of
+ * padding are deleted here exactly as they are on the home — /playbook runs
+ * the same manual composition and it was the last surface still carrying the
+ * frame. The .frame element stays as the cover's 4:5 box; it simply stops
+ * drawing a border around a picture. */
 .rl-manual .art .frame {
   box-sizing: border-box;
   aspect-ratio: 4 / 5;
-  border: 1px dashed color-mix(in oklab, var(--ink) 40%, transparent);
-  padding: 16px;
+  border: 0;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
   background: none;
 }
 .rl-manual .art .frame .cov {
@@ -1452,9 +1472,35 @@ a.rl-prfx:focus-visible .who {
 }
 /* A photograph is evidence, not wallpaper: at 1440 a full-content-width frame
  * is 1376px of one Instagram crop and the page stops being a ledger. The
- * exhibit takes the reading half. */
+ * exhibit takes cols 1-5 — the same lane the receipts' names take — and its
+ * CAPTION opens on the column-6 seam beside it (§18 Rule B), which is what
+ * turns ~740px of empty bone to the picture's right into the page's own
+ * grid line rather than a hole. Rule A holds: no border on the picture. */
 .rl-figure--half {
-  max-width: 620px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: end;
+  max-width: none;
+}
+.rl-figure--half > img,
+.rl-figure--half > picture,
+.rl-figure--half > span {
+  grid-column: 1 / 6;
+}
+.rl-figure--half > figcaption {
+  grid-column: 6 / 13;
+  padding-top: 0;
+  padding-bottom: 4px;
+}
+@media (max-width: 899px) {
+  .rl-figure--half {
+    display: block;
+  }
+  .rl-figure--half > figcaption {
+    padding-top: 12px;
+    padding-bottom: 0;
+  }
 }
 
 /* ============================================================
@@ -1540,16 +1586,27 @@ html.rl-js [data-rl="media"].rl-in {
   gap: 48px;
   padding-top: var(--s);
 }
+/* §18 RULE B — ONE SEAM. The block used to run the reading column across cols
+ * 1-8 (x 32 to ~1150) with the rail pinned in cols 10-12, which put its notes
+ * at x = 1100 in a 286px lane with a dead column between them and the thing
+ * they annotate. The critique read them as "near-illegible and float far from
+ * what they annotate", and the page as one that "never settles into one grid".
+ *   The two lanes swap. The marginalia take cols 1-5 — a book's own left
+ * margin, beside what they annotate — and the reading column opens on the
+ * COLUMN-6 SEAM, the same vertical line the home's how-I-work sentences, the
+ * receipts' captions, the objections list and the manual's copy all open on.
+ * The page does not get taller doing it: .rl-body is capped at 46ch, so the
+ * measure was already shorter than the lane that held it. */
 .rl-block > .main {
-  grid-column: 1 / 9;
+  grid-column: 6 / 13;
   min-width: 0;
 }
 .rl-block > .rail {
-  grid-column: 10 / 13;
+  grid-column: 1 / 6;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   align-items: flex-start;
 }
 @media (max-width: 899px) {
@@ -1563,10 +1620,12 @@ html.rl-js [data-rl="media"].rl-in {
 }
 
 /* the marginalia note: a hairline, a label, and the note under it. */
+/* 15px in a 286px lane at the far right was the smallest reading size on the
+ * site. In the left margin it takes the ledger's own 17px. */
 .rl-note {
   border-top: 1px solid var(--hair);
   padding-top: 14px;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.5;
   color: var(--ink-72);
   max-width: 34ch;

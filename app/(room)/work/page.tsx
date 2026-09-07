@@ -136,6 +136,18 @@ export default async function WorkIndexPage() {
         </a>{" "}
         at $500, $2,500 and $7,500.
       </p>
+      {/* PASS-101 SS18: the page closed on a hanging paragraph with nothing to
+          press. Every other section on the system ends in ONE chip (Rule C),
+          and this is the page the home's primary CTA lands on. The label is
+          the bar's and the foot's own live string; nothing is written here. */}
+      <div className="rl-chips rl-air-s" data-rl="rise">
+        <a className="rl-chip" href="/call">
+          <span className="t">Name the problem</span>
+          <span className="a" aria-hidden="true">
+            <span>&#8594;</span>
+          </span>
+        </a>
+      </div>
     </section>
   );
 }
