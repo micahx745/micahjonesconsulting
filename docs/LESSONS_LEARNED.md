@@ -686,3 +686,23 @@ malformed, and scope the claim to the files actually checked.
 **The gate.** `scripts/snapshot-live.py` now opens every output with `newline="\n"`, dumps the
 report at `indent=2`, and runs `pnpm exec prettier --write` on it before it exits. That last
 step is best effort, so a machine with no prettier still gets its snapshot.
+
+
+## #17 — A branch lives in one worktree; per-phase worktrees strand the phases (2026-09-06)
+
+**What happened.** Pass 101 ran three build phases as separate agents, each with
+`isolation: 'worktree'`. Phase 1 created `design/room-and-ledger` in its worktree; git
+refuses to check a branch out in a second worktree, so phases 2 and 3 each committed on
+their own `worktree-*` branch, both fast-forwards from phase 1 and divergent from each
+other. The verifier then tested the named branch, which held only phase 1, and reported
+"nothing landed". Nothing was lost, but integration cost a merge round.
+
+**The rule.** One worktree per ARC, not per agent: the first agent creates the worktree and
+the branch; every later phase receives that worktree PATH and works inside it (no
+`isolation` on those calls). A verifier that must not commit still works in the same path.
+If parallel phases are needed, they get parallel branches by design and the merge is a
+planned step with named conflict rules, never a surprise.
+
+**The gate.** The `workflow-authoring` house pattern in briefs: any multi-phase build brief
+names the worktree path in §0 and forbids `isolation: 'worktree'` on phase 2+. This entry is
+cited from `.claude/briefs/README.md`.

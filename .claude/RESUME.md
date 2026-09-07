@@ -21,7 +21,8 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
    Engagements as the top tier, receipts = 2 rows + 'See the rest →', 1.2MB. Viewer plays
    data: video (Clip Test: player 1 moved). IN FLIGHT: v6 (§16: copper row AT the finger,
    the word lights on arrival, full motion set) · **Pass 101** (`.claude/briefs/pass-101-…`):
-   the real site on branch `design/room-and-ledger` in a worktree, NO push/deploy.
+   the real site: 3 phases built on worktree branches (LESSONS #16); INTEGRATION + §5
+   verify in flight → `design/room-and-ledger`. NO push/deploy.
    NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.
 
 ## Ship gate (operator-owned)
