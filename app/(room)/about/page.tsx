@@ -152,68 +152,86 @@ export default function AboutPage() {
           </h2>
         </div>
 
-        {/* Pass-76. The second photograph the operator asked for, kept in this
-            section because the Guardicore exit is the receipt beside it — the
-            picture is that engagement. Same frame as the /work exhibit; see
-            that file's header for the crop and sticker-removal notes. */}
-        <figure className="rl-figure rl-figure--half" data-rl="media">
-          <Image
-            src="/guardicore-telaviv-session.jpg"
-            alt="A working session in Tel Aviv: Micah mid-discussion at a table of notes, phones and glasses."
-            width={770}
-            height={575}
-            sizes="(min-width: 900px) 620px, 100vw"
-          />
-        </figure>
+        {/* PASS-101 INTEGRATE, §18 Rule B. The photograph and the ledger were
+            two stacked full-width rows, and the photograph is a half: 559px at
+            x=32 with 817px of empty bone beside it, then the list underneath.
+            They are one block now — picture in cols 1-5, argument on the
+            column-6 seam at x=615 beside it, tops aligned — which is the same
+            vertical line /packages' closing paragraphs open on. Stacks below
+            900px, picture first. Nothing is rewritten; both elements are the
+            ones that were here. */}
+        <div className="rl-exhibit">
+          {/* Pass-76. The second photograph the operator asked for, kept in
+              this section because the Guardicore exit is the receipt beside it
+              — the picture is that engagement. Same frame as the /work
+              exhibit; see that file's header for the crop and sticker-removal
+              notes. */}
+          {/* NOT `.rl-figure--half` any more: that class declares its own
+              12-column grid and puts the picture in cols 1-5 OF ITSELF, which
+              inside this block's 559px cell would have rendered a 213px
+              thumbnail. The block above places the columns now. */}
+          <figure className="rl-figure rl-exhibit__fig" data-rl="media">
+            <Image
+              src="/guardicore-telaviv-session.jpg"
+              alt="A working session in Tel Aviv: Micah mid-discussion at a table of notes, phones and glasses."
+              width={770}
+              height={575}
+              sizes="(min-width: 900px) 40vw, 100vw"
+            />
+          </figure>
 
-        <ul className="rl-ledger rl-air-l" data-rl-group="known">
-          {/* Pass-67: was "average deal size moved $150K", the delta claim
+          <ul
+            className="rl-ledger rl-ledger--lane rl-exhibit__body"
+            data-rl-group="known"
+          >
+            {/* Pass-67: was "average deal size moved $150K", the delta claim
               the operator superseded on 2026-09-01 with an absolute of
               $1.2M. The case study was swept the same day; this page was
               missed, so a retired figure sat live for hours. LESSONS #3
               bans restating the $150K version. Removing the em-dash also
               brings this page under the one-per-page cap. */}
-          <li data-rl="rule">
-            <span className="term">
-              Positioning research that moves deal size.
-            </span>
-            <span className="stmt">
-              The Guardicore engagement that ended in the Akamai acquisition
-              began with a single rewritten sentence. The average enterprise
-              deal there was $1.2M.
-            </span>
-          </li>
-          {/* Pass-67: was "for an HR consultant returned 4× platform lift".
+            <li data-rl="rule">
+              <span className="term">
+                Positioning research that moves deal size.
+              </span>
+              <span className="stmt">
+                The Guardicore engagement that ended in the Akamai acquisition
+                began with a single rewritten sentence. The average enterprise
+                deal there was $1.2M.
+              </span>
+            </li>
+            {/* Pass-67: was "for an HR consultant returned 4× platform lift".
               Two defects. The sector label leaked a client the ledger
               anonymises, and it did so next to a redirect that used to name
               them. And 4× is the two-prioritised-platforms-beat-the-third
               figure, not the reach lift, so quoting it here read as a
               contradiction of the case study's 36×. Now the case study's
               own headline numbers, which trace. */}
-          {/* Pass-78: this credited ONE product with BOTH results. The
+            {/* Pass-78: this credited ONE product with BOTH results. The
               close rate was doubled by the RFP software (see
               /work/rfp-engine), not by the content engine, and
               content-engine.mdx makes no close-rate claim at all. Same
               author, two separate engagements. Now split, each clause
               naming the thing that produced its own number. "for the same
               author", not "next": the build order is not on record. */}
-          <li data-rl="rule">
-            <span className="term">GTM systems that compound.</span>
-            <span className="stmt">
-              For one industry author, a content engine took monthly reach from
-              8,000 to 290,000 in five months. The RFP software I built for the
-              same author doubled their close rate inside six months.
-            </span>
-          </li>
-          <li data-rl="rule">
-            <span className="term">End-to-end product builds.</span>
-            <span className="stmt">
-              Ordani, HIPAA-compliant practice management for birth workers,
-              with active paying users in beta. I founded it and I write the
-              code. Public release coming.
-            </span>
-          </li>
-        </ul>
+            <li data-rl="rule">
+              <span className="term">GTM systems that compound.</span>
+              <span className="stmt">
+                For one industry author, a content engine took monthly reach
+                from 8,000 to 290,000 in five months. The RFP software I built
+                for the same author doubled their close rate inside six months.
+              </span>
+            </li>
+            <li data-rl="rule">
+              <span className="term">End-to-end product builds.</span>
+              <span className="stmt">
+                Ordani, HIPAA-compliant practice management for birth workers,
+                with active paying users in beta. I founded it and I write the
+                code. Public release coming.
+              </span>
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section className="rl-wrap rl-sec-air" aria-labelledby="rl-now-title">

@@ -1586,6 +1586,61 @@ a.rl-prfx:focus-visible .who {
   }
 }
 
+/* THE EXHIBIT BLOCK — a photograph and the section's argument on one seam.
+ *
+ * PASS-101 INTEGRATE, MEASURED on /about at 1440: the "What I'm known for"
+ * photograph is a `.rl-figure--half` with NO figcaption, so the caption lane
+ * the class declares (cols 6-13) had nothing in it and the picture sat alone
+ * in a 1376px row — 559px of photograph at x=32 and 817px of empty bone
+ * beside it, the largest hole left on the ported pages. The ledger under it
+ * then ran the full width, so the section read as a picture with a void, then
+ * a list.
+ *   §18 Rule B is the fix and it is already the page's grammar: "every
+ * right-hand lane in the light half starts at x = 600 (cols 6-12, 776px)".
+ * The photograph keeps cols 1-5 and the section's argument opens on the
+ * column-6 seam beside it at x = 615.3, tops aligned — the same vertical
+ * line /packages' closing paragraphs and the receipts' captions open on.
+ *   Below 900px the seam has no room and the block stacks, picture first. */
+.rl-exhibit {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gap);
+  align-items: start;
+}
+.rl-exhibit > .rl-exhibit__fig {
+  grid-column: 1 / 6;
+}
+.rl-exhibit > .rl-exhibit__body {
+  grid-column: 6 / 13;
+}
+@media (max-width: 899px) {
+  .rl-exhibit {
+    display: block;
+  }
+  /* #rl-root-prefixed on purpose, and MEASURED at 390 before it was: the
+   * `#rl-root :is(... ul ...) { margin: 0 }` reset is (1,0,1) and a bare
+   * `.rl-exhibit > .rl-exhibit__body` at (0,2,0) lost to it, so the ledger
+   * sat flush against the photograph's bottom edge (gap 0px). The same trap
+   * the rl-air-* block above records. */
+  #rl-root .rl-exhibit > .rl-exhibit__body {
+    margin-top: 48px;
+  }
+}
+
+/* A ledger IN the lane keeps its own measures instead of being halved.
+ * MEASURED: `.rl-ledger > li` splits its row into two equal tracks, which is
+ * right across the 1376px content (two ~676px columns, both inside the 24ch
+ * term and 46ch statement caps the type was set to). Inside the 793px lane
+ * the same split gives 384px tracks — 40% under BOTH caps, so the term wraps
+ * to three lines and the statement to five, and the "opens past the section's
+ * own midline" reading the two-column rule exists for is gone. In the lane
+ * the row stacks: term over statement, each at its own designed measure. */
+@media (min-width: 900px) {
+  #rl-root .rl-ledger--lane > li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 /* ============================================================
  * 12. THE MOTION ENGINE (§16.3 items 3, 4, 5)
  *
