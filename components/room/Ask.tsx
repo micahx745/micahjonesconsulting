@@ -7,6 +7,9 @@
 // The floating 56px arrow is deleted; the chips carry the arrow. The reply
 // promise leaves the foot and sits right-aligned in the field's right third at
 // 19px espresso, max 26ch, baseline-aligned to the headline's last line."
+// Amended Pass-101: 24px/1.3 weight 500, max 22ch. Espresso on copper is
+// 4.4:1 — AA for LARGE text only, and 19px regular is not large. The styling
+// is in app/room.css; nothing here changes but the record.
 //
 // The 720px floor left ~280px of dead copper under the chips with the whole
 // right half of the field empty, and the floating glyph was a third arrow

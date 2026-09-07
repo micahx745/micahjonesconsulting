@@ -1275,6 +1275,8 @@ html.lit .rl-home .eng .chip {
    56px arrow is deleted; the chips carry the arrow. The reply promise leaves
    the foot and sits right-aligned in the field's right third at 19px espresso,
    max 26ch, baseline-aligned to the headline's last line. Two chips, Rule C."
+     AMENDED (Pass-101): the promise runs 24px/1.3 weight 500, max 22ch. See
+   the note on .promise below.
      WHAT IT REPLACED: a 720px min-height that left ~280px of dead copper under
    the chips with the whole right half of the field empty, and a third arrow
    language — a 56px glyph floating off the headline's last word while every
@@ -1300,15 +1302,29 @@ html.lit .rl-home .eng .chip {
   max-width: 9ch;
 }
 /* the reply promise, in the field's right third, on the headline's last
-   baseline. It is the same live string the foot used to carry. */
+   baseline. It is the same live string the foot used to carry.
+     §18 amendment (Pass-101): 19px espresso on copper measures 4.4:1, which
+   clears WCAG AA only as LARGE text — and 19px regular is not large. The size
+   goes to 24px/1.3 at weight 500, which is large text at every width, and the
+   measure tightens to 22ch so the block still sits inside the right third. It
+   does NOT shrink at <=899: it wraps to more lines instead, because a smaller
+   size there would drop back under the large-text threshold. */
 .rl-home .ask .promise {
   grid-column: 9 / 13;
   justify-self: end;
   text-align: right;
-  font-size: 19px;
-  line-height: 1.35;
-  max-width: 26ch;
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.3;
+  max-width: 22ch;
   color: var(--color-rl-espresso);
+  /* align-items:end bottom-aligns the BOXES, and the display headline's
+     line box carries more descender room than Hanken's does, so the promise's
+     last line sat 7.67px ABOVE the headline's at 1440 (measured). This drops
+     it back onto that baseline; it is a desktop-only rule, undone below 1440
+     where the two lanes stack. */
+  margin-bottom: -8px;
 }
 .rl-home .ask .chips {
   grid-column: 1 / 13;
@@ -2131,6 +2147,8 @@ html.rl-js .rl-home .ask .promise {
   .rl-home .ask .promise {
     text-align: left;
     max-width: none;
+    /* the baseline nudge is a desktop rule; the lanes stack here. */
+    margin-bottom: 0;
   }
   .rl-home .ask .chips {
     margin-top: 0;
