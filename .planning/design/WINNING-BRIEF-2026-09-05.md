@@ -693,8 +693,10 @@ follows the same shape.
 - **The ask.** min-height 0, padding 120px; the field is its content. The floating 56px
   arrow is deleted; the chips carry the arrow. The reply promise (`I read every message
   and reply inside one business day.`) leaves the foot and sits right-aligned in the
-  field's right third at 19px espresso, max 26ch, baseline-aligned to the headline's last
-  line. Two chips, Rule C.
+  field's right third at 24px/1.3 Hanken 500 espresso (large text: espresso on copper is
+  4.4:1, which passes at the 3:1 large-text bar; at 19px it measured 4.39 and failed AA —
+  ruled 2026-09-06 on the branch), max 22ch, baseline-aligned to the headline's last line.
+  Two chips, Rule C.
 - **The foot.** A 1px bone-15% hairline across the top. Three columns on the grid,
   align-items:start: cols 1–4 `Micah Jones` at 24px Hanken 500 + the email at 17px 60%;
   cols 6–8 the four nav labels (`Record` · `Playbook` · `Packages from $500` · `Name the
