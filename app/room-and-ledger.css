@@ -1882,8 +1882,16 @@ html.rl-js [data-rl="media"].rl-in {
   font-weight: 500;
   letter-spacing: 0.04em;
 }
+/* PASS-101 polish, MEASURED: this said `var(--accent-copper-deep)`, and no
+ * such custom property exists -- the token is --color-accent-copper-deep. An
+ * invalid var() in `fill` computes to the initial value, so the chart's one
+ * emphasised label rendered in PURE BLACK, rgb(0,0,0), the one off-palette
+ * colour on the page. The label takes the ground's own ink token at full
+ * opacity: espresso rgb(13,13,15) on bone, which is the register the other
+ * three labels already use, ranked by opacity (1 against .78) rather than by
+ * a second colour. The copper line under it is what carries the accent. */
 #rl-root .cw-wallchart__lbl--rules {
-  fill: var(--accent-copper-deep);
+  fill: var(--color-rl-espresso);
   opacity: 1;
 }
 #rl-root .cw-wallchart__cap {
