@@ -20,9 +20,10 @@ Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-
    receipts, every section recomposed; 72/72 + independent) PUBLISHED · **Pass 101** (`.claude/briefs/pass-101-…`):
    the real site on `design/room-and-ledger` (worktree `.claude/worktrees/p101-integrate`):
    integrated + §18 ported + polish + fix-2 (token alias, skip link, case-study foot,
-   /about + /packages seams); close round (promise 24px, axe 0) in flight. Lighthouse
+   /about + /packages seams, promise 24px); 46 commits ahead, 12 routes axe-clean,
+   verify-room 61/61, build green (tip 501c12b). Lighthouse
    mobile 88 / LCP 4.0s (pre-existing). NO push/deploy — `git push -u origin
-   design/room-and-ledger` is HIS. LESSONS: main #17 vs branch #17/#18, renumber at merge.
+   design/room-and-ledger` is HIS.
    NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.
 
 ## Ship gate (operator-owned)
