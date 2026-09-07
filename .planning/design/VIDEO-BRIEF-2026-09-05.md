@@ -192,6 +192,26 @@ The camera does not move.
 If the mouth reads as mush, change "and talks" to "and listens". A listening beat loops
 better and is the truer register for a clip behind a headline.
 
+### Clip A, third generation wanted (2026-09-06, after v6)
+
+With the copper row at the fingertip (§16.2), the fingertip's height in the second-
+generation clip (38% down the frame, chin level) puts `I build the` across his face at
+desktop, and the veil that grounds the copper row hides the hand on the hold frame. The
+composition wants the point LOWER: tip at 55–62% of the frame height, so the copper row sits
+below the face and both headline rows clear it. Same settings as §4 (Kling 3 Pro, 5 s, audio
+off, cfg 0.5 then 0.65, colour frame `A-whiteboard-16x9.jpg` as the start image):
+
+```
+A man sits at a laptop. He looks at the camera, lowers his right hand beside the laptop
+and points down and to the left, toward the bottom left corner of the frame, and holds
+the point with his hand below his chest. The whiteboard stays still. The camera does not
+move. Same facial proportions, eye spacing, jaw shape and hairline throughout.
+```
+
+Judge: the tip must end below the chin line and inside the frame at a 4:3 centre crop; the
+face and hand both clear. Until it exists, v6 ships the current clip with the point on the
+word and the headline across the face.
+
 ### Clip C, the workshop table (added 2026-09-06)
 
 Source `video/sources/S3-group-clean.jpg` (1024×780, real photograph: him arms folded at
