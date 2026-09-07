@@ -611,6 +611,32 @@ html.lit .rl-home .bar.dark {
   display: flex;
   flex-direction: column;
 }
+
+/* PASS-101 POLISH — Round 9 revisited, with the arithmetic written down.
+   Stacked, the register's own content is 402px against a 783px film at 1440,
+   so the column ended 381px above the film's foot: one void, at the bottom,
+   where the film is still running. Round 9 was right that pinning the quote
+   with margin-top:auto is worse — that puts the WHOLE 421px into ONE seam.
+   The third answer is to spend it evenly.
+     The column has four blocks (three register rows and the quote) and
+   therefore three seams. Even distribution is (film - content) / 3. The rows
+   live inside .lead, so .lead has to absorb exactly TWO of the three shares:
+   flex-grow 0.6667 takes two thirds of the free space into the block (its own
+   space-between splits that across the two inner seams) and leaves the last
+   third to the column's space-between for the seam above the quote. The
+   base gap and the quote's own margin are zeroed here so the three seams are
+   the same number and not that number plus 28 or 12.
+     MEASURED at 1440: three seams of 140px and the quote's foot ON the film's
+   foot (tail void 0), against 0/0/40 and a 381px tail before. The rows keep
+   flex-grow 0 / basis auto -- they take their own height (SS14.7), the growth
+   is in the seams, not in the rows.
+     NOT REACHED: the 120px bar this polish round asked for. At cols 1-7 the
+   arithmetic floor is 381/3 = 127 and the block's own hairline geometry puts
+   it at 140; the two ways down from there both break a ruling. A 4:5 film in
+   cols 1-6 (the alternative the round named) measures 664x830 -- TALLER, not
+   shorter -- for 214px seams, and it takes `not consultant.` 88px past the
+   square's right edge (SS14.7) and the first paragraph's foot 22px off the film
+   (SS14.2). Reported rather than forced. */
 /* §14.7: the rows take their OWN height. Stretched to equal thirds of the
    square they opened 30-40px of dead space inside two of the three rows. */
 .rl-home .opside .lead span {
@@ -641,6 +667,25 @@ html.lit .rl-home .bar.dark {
   font-size: 21px;
   line-height: 1.35;
   color: var(--color-rl-bone);
+}
+/* Declared here, after .sig's own margin, because a media query adds no
+   specificity: the same selector later in the file would win. Bounded at
+   1280 because that is where the section is two columns at all: at 1279 and
+   below .opstage and .opside both take 1 / -1 and stack, the column has no
+   film height to fill, and zeroing the gap there would just delete the 40px
+   that separates the register from the quote. */
+@media (min-width: 1280px) {
+  .rl-home .opside {
+    justify-content: space-between;
+    gap: 0;
+  }
+  .rl-home .opside .lead {
+    flex: 0.6667 1 auto;
+    justify-content: space-between;
+  }
+  .rl-home .opside .sig {
+    margin-top: 0;
+  }
 }
 
 /* ================= 03 HOW I WORK: the ledger =========================
