@@ -261,6 +261,24 @@
   }
 }
 
+/* PASS-101 polish — the closing block's two columns end together.
+ * MEASURED on /about at 1440: the argument column's content ran 509px and the
+ * photograph beside it 682px, so the block closed 173px ragged. §18 wants
+ * neither ragged feet nor a picture cropped to fit a text column, so the
+ * ARGUMENT spends the difference: the column becomes a flex column and its
+ * three seams take a third of the overhang each on top of their own air
+ * (48/24/48 -> 106/82/106 at 1440), which is the same move the operator
+ * section makes with its register. The columns then close on one line.
+ * Opt-in, because it is only right where the right column is TALLER: on /call
+ * the form is the tall side and the left column has nothing to spend. */
+@media (min-width: 900px) {
+  #rl-root .rl-two--fill > .rl-two__l {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
 /* The four air steps the ported pages use between blocks. Named rather than
  * written inline so the rhythm is one decision in one place: 24 inside a
  * block, 48 between blocks, 64 before a ledger, and the section air (--s)

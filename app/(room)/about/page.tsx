@@ -140,11 +140,22 @@ export default function AboutPage() {
       </section>
 
       <section className="rl-wrap rl-sec-air" aria-labelledby="rl-known-title">
-        {/* Pass-76. The second photograph the operator asked for, placed
-            here rather than in the intro because the Guardicore exit is the
-            receipt directly above it — the picture is that engagement. Same
-            frame as the /work exhibit; see that file's header for the crop
-            and sticker-removal notes. */}
+        {/* PASS-101 polish: the head comes FIRST. The photograph used to open
+            the section, and a half-width picture at the top of a bone section
+            put 602px between the espresso band's foot and this heading at
+            1440, most of it empty bone to the picture's right. The section air
+            is 120px and the head is what claims it; the photograph is now the
+            exhibit under its own heading. */}
+        <div className="rl-sec rl-sec--wide">
+          <h2 id="rl-known-title" className="rl-d two" data-rl="head">
+            What I&rsquo;m known for
+          </h2>
+        </div>
+
+        {/* Pass-76. The second photograph the operator asked for, kept in this
+            section because the Guardicore exit is the receipt beside it — the
+            picture is that engagement. Same frame as the /work exhibit; see
+            that file's header for the crop and sticker-removal notes. */}
         <figure className="rl-figure rl-figure--half" data-rl="media">
           <Image
             src="/guardicore-telaviv-session.jpg"
@@ -155,13 +166,7 @@ export default function AboutPage() {
           />
         </figure>
 
-        <div className="rl-sec rl-sec--wide rl-air-l">
-          <h2 id="rl-known-title" className="rl-d two" data-rl="head">
-            What I&rsquo;m known for
-          </h2>
-        </div>
-
-        <ul className="rl-ledger" data-rl-group="known">
+        <ul className="rl-ledger rl-air-l" data-rl-group="known">
           {/* Pass-67: was "average deal size moved $150K", the delta claim
               the operator superseded on 2026-09-01 with an absolute of
               $1.2M. The case study was swept the same day; this page was
@@ -217,7 +222,11 @@ export default function AboutPage() {
             Currently
           </h2>
         </div>
-        <div className="rl-two">
+        {/* PASS-101 polish: --fill. The portrait is 682px against 509px of
+            argument, so this block used to close 173px ragged. The text column
+            spends the difference across its own seams rather than the picture
+            being cropped to the text's height. */}
+        <div className="rl-two rl-two--fill">
           <div className="rl-two__l">
             {/* Origin line (operator, 2026-08-30, his words polished per his
                 instruction): infant mortality + giving birth workers their
