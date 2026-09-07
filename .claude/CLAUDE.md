@@ -2,9 +2,19 @@
 
 This project uses the **premium-web** Claude Code plugin (installed at `~/Code/premium-web-harness`). Read `.claude/brand.json` before making any UI decision.
 
-## Two modes
+## Route groups and modes
 
-- Foyer pages (`app/(foyer)/`) — warm cream paper `#F5EFE4`, ink `#1A1816`. Hospitality feel. Home / About / Work With Me / Contact / Work index.
+**AMENDED Pass-101 phase 2 — `app/(room)/` is the third group, and it owns `/`.** The home
+moved out of `(foyer)` because the `(foyer)` layout mounts the Color Worlds chrome —
+`<Grain>`, `<Nav>`, `<WorldSwitcher>`, `<ScrollReveal>` — and Room and Ledger replaces all
+four: the ground travels on one fixed `.rl-sheet` driven by `--p`, the navigation is the
+section-00 bar that arrives at the seam, and the reveals are the §16.3 set. Hiding that
+chrome with CSS would have left four live components and a second nav in the accessibility
+tree. `(room)` carries `.rl-home` on its wrapper, which is the scope every rule in
+`app/room.css` hangs off; `RoomMotion` adds `js` to it when scripting is on and reduced
+motion is off. `(foyer)` keeps every route phase 3 has yet to port.
+
+- Foyer pages (`app/(foyer)/`) — warm cream paper `#F5EFE4`, ink `#1A1816`. Hospitality feel. About / Work With Me / Contact / Work index. (The home left this group in Pass-101 phase 2.)
 - Theater pages (`app/(theater)/`) — obsidian ground `#0D0D0F`, bone `#EAE6DD`. Cinematic feel. `/work/[slug]` case studies.
 - Mode is route-determined. NO `useTheme()`, NO `<ThemeProvider>`, NO toggle. Group layouts stamp `data-mode="foyer"` or `data-mode="theater"` on a wrapper `<div>`; Tailwind v4 reads the attribute via `[data-mode="..."]` selectors in `app/globals.css`.
 
