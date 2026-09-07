@@ -9,8 +9,8 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
 
 ## Design explorations (2026-09-05) — mocks, nothing live changed
 1–2. Earlier mocks (a398fb1a, 1d43593f) superseded by 4.
-3. Video: `design/video/` (B-loop, A2-hold). `COMPOSITE-BRIEF-2026-09-06.md`: Nano Banana
-   Pro; RSA composite C2b done + prompt; boardroom = him + AI clients; desk scene.
+3. Video: `design/video/`. `COMPOSITE-BRIEF-2026-09-06.md`: Nano Banana Pro; RSA composite
+   C2b done + prompt; boardroom = him + AI clients; desk scene.
 4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
    film as the hero ground, no header on screen one, one display size, Anybody wide/light,
    no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
@@ -18,23 +18,23 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
    https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
    Astra (§12) · his reviews (§14, §15). v4: 16:9 hero stage, words AT the finger (≤14px),
    operator overlay, no years/figures. v5 (§15) PUBLISHED: manual + objections recomposed, how-I-work ledger (no cards),
-   Engagements as the top tier, receipts = 2 rows + 'See the rest →', clips play on first
-   gesture, 1.2MB. Clip Test artifact 41d552b6 awaits his answer (data: media in viewer?).
-   NEXT: the wording round (Reddit data + copy-editor + ledger); sub-pages = live-site branch.
+   Engagements as the top tier, receipts = 2 rows + 'See the rest →', 1.2MB. Viewer plays
+   data: video (Clip Test: player 1 moved). IN FLIGHT: v6 (§16: copper row AT the finger,
+   the word lights on arrival, full motion set) · **Pass 101** (`.claude/briefs/pass-101-…`):
+   the real site on branch `design/room-and-ledger` in a worktree, NO push/deploy.
+   NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.
 
 ## Ship gate (operator-owned)
-1. **Stripe webhook + `whsec_` in Production + one live $500 buy/refund.** Blocks the flag.
-2. `PLAYBOOK_ON_SALE=1` + redeploy = launch. Not before 1.
+1. Stripe webhook + `whsec_` in Production + one live $500 buy/refund. 2. Then
+`PLAYBOOK_ON_SALE=1` + redeploy = launch.
 
 ## Housekeeping (one Opus pass): XR-1/2/3/6/7 (2026-09-04 cross-review). LESSONS #5:
 auto-deploys moved both domains 5× with no alias; confirm www first.
 
 ## Next
-99: landing offer + packages reframe. 100: home spear, Search Console, `/work` ItemList,
-sitemap lastmod. His: offer name/price · launch date.
+99: landing offer + packages reframe. 100: home spear, Search Console, sitemap lastmod.
 
 ## Standing traps
-Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys, check parity ·
-`grep -oiF` false zeroes, python utf-8 · strip `<script>` first · count `<img>` not substrings ·
-copy-lint hook rejects docs that QUOTE banned words · `vh` in a canvas frame is the frame ·
-no charset = mojibake · a review is a reader, not an oracle.
+Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys · `grep -oiF`
+false zeroes, python utf-8 · copy-lint hook rejects docs that QUOTE banned words · scratchpad
+copy.py shadows stdlib (run verifiers with `python -P`) · a review is a reader, not an oracle.
