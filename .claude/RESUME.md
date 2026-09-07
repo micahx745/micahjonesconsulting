@@ -1,40 +1,42 @@
-# RESUME — micahjonesconsulting (2026-09-05)
+# RESUME — micahjonesconsulting (2026-09-06)
 
 ## READ THIS FIRST
-Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-09-04.md`.
-**Passes 97 + 98 LIVE on both domains, verified.** Deploy approved — Operator,
-2026-09-04, verbatim: "deploy it". Live verify `448cbb2`; cross-review `6eb543e`; Codex on
-`gpt-6-astra` ultra (`381e519`). **The book chat shares this tree.** Stage
-by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATERIALS.md`.
 
-## Design explorations (2026-09-05) — mocks, nothing live changed
-1–2. Earlier mocks (a398fb1a, 1d43593f) superseded by 4.
-3. Video: `design/video/`. `COMPOSITE-BRIEF-2026-09-06.md`: Nano Banana Pro; RSA composite
-   C2b done + prompt; boardroom = him + AI clients; desk scene.
-4. **"Room and Ledger"**, `WINNING-BRIEF-2026-09-05.md` (§11 = post-verify rulings):
-   film as the hero ground, no header on screen one, one display size, Anybody wide/light,
-   no mono, espresso→bone→copper. Built `design/winning/` (template + build.py + verify.py),
-   48/48 checks, two verifiers, published:
-   https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
-   Astra (§12) · his reviews (§14, §15). v4: 16:9 hero stage, words AT the finger (≤14px),
-   operator overlay, no years/figures. v5 (§15) PUBLISHED: manual + objections recomposed, how-I-work ledger (no cards),
-   Engagements as the top tier, receipts = 2 rows + 'See the rest →', 1.2MB. Viewer plays
-   data: video (Clip Test: player 1 moved). IN FLIGHT: v6 (§16: copper row AT the finger,
-   the word lights on arrival, full motion set) · **Pass 101** (`.claude/briefs/pass-101-…`):
-   the real site on branch `design/room-and-ledger` in a worktree, NO push/deploy.
-   NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.
+Fable 5.1 main, **Opus default subagent**. Direction: `.planning/PHASE-MAP-2026-09-04.md`.
+**Passes 97 + 98 LIVE on both domains** (operator 2026-09-04: "deploy it"; verify `448cbb2`).
+**The book chat shares this tree.** Stage by path.
+
+## Pass 101 — "Room and Ledger" on the real site
+
+Branch `design/room-and-ledger`, worktrees, **NO push, NO deploy**. Brief
+`.claude/briefs/pass-101-room-and-ledger-site.md`; ruling `WINNING-BRIEF-2026-09-05` §14–16.
+
+- **Phase 1 DONE** (`313709a` `9ad2181` `03b3c36`): Anybody + Hanken, mono retired,
+  Bricolage deprecated; tokens, width ladder, label style; both clips into `public/video/`.
+- **Phase 3 DONE** (`936bca8`…`0252b34`): the other pages. New group `app/(room)/` — same
+  URLs, no Color Worlds chrome — carrying the bar, the foot and §16.3 items 2/3/4/5/7 (one
+  IntersectionObserver, zero @keyframes, pre-state behind `html.rl-js`, so scripting-off
+  and reduced-motion both render the finished frame). `/packages` cards + Engagements tier ·
+  `/work` receipts index · `/call` + `/about` register, clip B as a ground · `/playbook`
+  §15.2 at page scale · `/work/[slug]` type + grounds only, TitleCard stays. Live copy,
+  prices, links and the Stripe / booking / `PLAYBOOK_ON_SALE` paths untouched.
+  Verified: build green, prettier clean, 0 stranded animations, no h-overflow, zero
+  Bricolage/JetBrains computed, **axe 16 → 0** (8 routes × 2 widths); shots in
+  `.planning/qa/pass-101/`. Lighthouse mobile 91–94, but **LCP 3.1–3.5s vs the 1800ms
+  target — the display headline, not the film** (/packages has no video, same LCP).
+- **Phase 2 (the home) NOT on the branch** at this write; phase 3 used none of its names
+  (`components/room/{Bar,Room,…}`), so the two merge clean.
+- **NEXT:** the wording round (§15.8). One departure to settle: /packages' Engagements
+  figure reads "From $5K a month" where the sentence read "start at $5K a month".
 
 ## Ship gate (operator-owned)
+
 1. Stripe webhook + `whsec_` in Production + one live $500 buy/refund. 2. Then
-`PLAYBOOK_ON_SALE=1` + redeploy = launch.
-
-## Housekeeping (one Opus pass): XR-1/2/3/6/7 (2026-09-04 cross-review). LESSONS #5:
-auto-deploys moved both domains 5× with no alias; confirm www first.
-
-## Next
-99: landing offer + packages reframe. 100: home spear, Search Console, sitemap lastmod.
+   `PLAYBOOK_ON_SALE=1` + redeploy = launch.
 
 ## Standing traps
+
 Stripe prefixes · Vercel env only on a NEW deploy · every push auto-deploys · `grep -oiF`
-false zeroes, python utf-8 · copy-lint hook rejects docs that QUOTE banned words · scratchpad
-copy.py shadows stdlib (run verifiers with `python -P`) · a review is a reader, not an oracle.
+false zeroes, python utf-8 · copy-lint rejects docs QUOTING banned words · scratchpad
+`copy.py` shadows stdlib (`python -P`) · a review is a reader, not an oracle · **a stale
+`next start` on a held port serves OLD chunk names and reads as "the CSS did not load"**.
