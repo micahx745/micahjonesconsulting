@@ -17,9 +17,9 @@ by path. Its brief: `.planning/handoff/NEXT-CHAT-PROMPT-BOOK.md` + `04-BOOK-MATE
    https://claude.ai/code/artifact/be9096fa-284f-4a73-ae9e-5e86a7172015
    Astra (§12) · his reviews (§14, §15). v4: 16:9 hero stage, words AT the finger (≤14px),
    operator overlay, no years/figures. v5 (§15) PUBLISHED: manual + objections recomposed, how-I-work ledger (no cards),
-   Engagements as the top tier, receipts = 2 rows + 'See the rest →', 1.2MB. Viewer plays
-   data: video (Clip Test: player 1 moved). IN FLIGHT: v6 (§16: copper row AT the finger,
-   the word lights on arrival, full motion set) · **Pass 101** (`.claude/briefs/pass-101-…`):
+ Viewer plays data: video. v6 (§16: copper row AT the finger, lights at
+   2.54s, motion set) and v7 (§18: border on the list, one seam x=600, one chip, three
+   receipts, every section recomposed; 72/72 + independent) PUBLISHED · **Pass 101** (`.claude/briefs/pass-101-…`):
    the real site: 3 phases built on worktree branches (LESSONS #17); INTEGRATION + §5
    verify in flight → `design/room-and-ledger`. NO push/deploy.
    NEXT: the wording round (Reddit data + copy-editor + ledger) on the branch's pages.

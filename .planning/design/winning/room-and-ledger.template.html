@@ -16,6 +16,7 @@
     --ink-80: color-mix(in oklab, var(--ink) 80%, transparent);
     --ink-72: color-mix(in oklab, var(--ink) 72%, transparent);
     --ink-60: color-mix(in oklab, var(--ink) 60%, transparent);
+    --ink-40: color-mix(in oklab, var(--ink) 40%, transparent);
     --hair:   color-mix(in oklab, var(--ink) 15%, transparent);
     --hair-12: color-mix(in oklab, var(--ink) 12%, transparent);
     --hair-10: color-mix(in oklab, var(--ink) 10%, transparent);
@@ -48,16 +49,16 @@
        hence the spread). 0.0591 is the value at the poster size, which is the one that has
        to land. */
     --capk: 0.0591;
-    /* SS16.2 SEND-BACK (verify round 10). "The copper row's cap-top sits 4px under the
-       fingertip ... the hand emerges from the dark and its tip touches the 'g'." Pinned to
-       the CAP line those two clauses cannot both be true: `go-to-market.` carries no
-       capital, and the leading `g` is a lowercase whose ink begins at the x-height. Pinned
-       that way the tip measured 16.0px clear of the g's ink at 1280, 16.0 at 1440 and 15.0
-       at 1920 -- hovering over the glyph's shoulder, touching nothing. The two clauses
-       resolve on ONE reading and only one: the row's own leading-glyph ink top is what sits
-       4px under the tip, which is also what "solid from fingertip_y + 4px (THE COPPER ROW'S
-       GROUND)" names -- the veil goes solid exactly where the copper ink starts, so the
-       finger's last lit pixel and the g's first copper pixel are the same row.
+    /* SS16.2 (verify round 10). "The copper row's cap-top sits 4px under the fingertip ...
+       the hand emerges from the dark and its tip touches the 'g'." Pinned to the CAP line
+       those two clauses cannot both be true: `go-to-market.` carries no capital, and the
+       leading `g` is a lowercase whose ink begins at the x-height. Pinned that way the tip
+       measured 16.0px clear of the g's ink at 1280, 16.0 at 1440 and 15.0 at 1920 --
+       hovering over the glyph's shoulder, touching nothing. The two clauses resolve on ONE
+       reading and only one: the row's own leading-glyph ink top is what sits 4px under the
+       tip, which is also what "solid from fingertip_y + 4px (THE COPPER ROW'S GROUND)"
+       names -- the veil goes solid exactly where the copper ink starts, so the finger's
+       last lit pixel and the g's first copper pixel are the same row.
          --xk is that distance: an .d line box's top to the INK TOP of a leading lowercase
        `g`, as a fraction of font-size. MEASURED in Chromium (Anybody 300, wdth 125,
        line-height .92, the row painted black on white and scanned column 0 -> the g's own
@@ -77,6 +78,13 @@
     --g: 32px;          /* page gutter */
     --gap: 24px;        /* column gap */
     --s: 120px;         /* SS14.4: section entry air, 120 at >=900 and 64 below */
+
+    /* SS18 RULE B -- ONE SEAM. Every right-hand lane in the light half opens on the same
+       vertical line: the how-I-work sentences, the manual's copy column, the objections
+       list and the receipts' captions. The line is pinned at x = 600 at 1440, so as a
+       fraction of the content box it is (600 - 32) / 1376 = 41.2791%, and it scales with
+       the content at every other width. Nothing else in the light half sets a left edge. */
+    --seam: 41.2791%;
   }
   html.lit { --ink: var(--espresso); }
 
@@ -119,9 +127,10 @@
   .d.two { font-size: var(--d2); font-variation-settings: "wdth" 115; line-height: 0.98; }
   .cu { color: var(--copper); }
 
-  /* SS14.4: the section head is a display line again, not a 14px label. The eyebrow keeps
-     the label style; everything else in the head is the poster. */
-  .sec { display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+  /* SS14.4: the section head is a display line, not a 14px label. The eyebrow keeps the
+     label style; everything else in the head is the poster. SS18 puts the eyebrow 20px
+     above the head in every section that carries one. */
+  .sec { display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
          margin-bottom: 48px; }
   .sec .eyebrow { display: flex; gap: 24px; flex-wrap: wrap; }
   .sec h2 { max-width: 20ch; }
@@ -132,28 +141,56 @@
 
   .wrap { box-sizing: border-box; width: 100%; padding-left: var(--g); padding-right: var(--g); }
   .grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
+  /* SS18 RULE B, as a two-lane grid: the left lane runs to the seam, the right lane opens
+     on it. Used by how-I-work, the receipts, the manual and the objections. */
+  .lanes { display: grid; grid-template-columns: var(--seam) minmax(0, 1fr); column-gap: 0; }
 
-  /* ---- the chip pair ---- */
-  .chips { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .chip { display: inline-flex; align-items: stretch; height: 44px; }
-  .chip .t { display: inline-flex; align-items: center; padding: 0 20px; background: var(--bone); color: var(--espresso);
-             font-family: var(--display); font-size: 14px; font-weight: 500; font-variation-settings: "wdth" 80;
-             text-transform: uppercase; letter-spacing: 0.04em; line-height: 1; }
-  .chip .a { display: inline-flex; align-items: center; justify-content: center; width: 44px;
-             background: var(--copper); color: var(--bone); font-family: var(--display); font-size: 24px; line-height: 1; }
-  .chip.quiet .t { background: color-mix(in oklab, var(--ink) 12%, transparent); color: var(--ink); }
-  .chip .t, .chip .a { transition: background 300ms var(--e), color 300ms var(--e); }
-  .chip:hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
-  .chip.quiet:hover .t { background: color-mix(in oklab, var(--ink) 20%, transparent); }
-  html.lit .chip:not(.quiet) .t { background: var(--espresso); color: var(--bone); }
-  html.lit .chip:not(.quiet):hover .t { background: color-mix(in oklab, var(--espresso) 86%, var(--bone)); }
-  html.lit .room .chip:not(.quiet) .t { background: var(--bone); color: var(--espresso); }
-  html.lit .room .chip:not(.quiet):hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
+  /* ---- SS18 RULE C: ONE CHIP SHAPE, EVERYWHERE ------------------------------------
+     A single block, 48px tall, 8px radius, the label 19px Hanken 500 centred, the arrow an
+     INLINE glyph 10px after the last word (it keeps the SS16.3-7 slide). No bolted square,
+     no second rectangle, no lift. Espresso fill with bone type on bone grounds; bone fill
+     with espresso type on espresso grounds; hover swaps the ground to copper in 300ms. */
+  .chip {
+    box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center;
+    height: 48px; padding: 0 20px; border-radius: 8px; border: 1px solid transparent;
+    background: var(--espresso); color: var(--bone);
+    font-family: var(--text); font-size: 19px; font-weight: 500; line-height: 1;
+    letter-spacing: -0.01em; white-space: nowrap;
+    transition: background 300ms var(--e), color 300ms var(--e), border-color 300ms var(--e);
+  }
+  .chip .gl { display: inline-block; margin-left: 10px; transition: transform 200ms var(--e); }
+  .chip.quiet { background: none; border-color: var(--ink-40); color: var(--ink); }
+  .chips { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  /* the dark grounds invert the fill; the light half is the default above. */
+  .room .chip, .op .chip, .eng .chip, .foot .chip { background: var(--bone); color: var(--espresso); }
+  .room .chip.quiet, .op .chip.quiet, .foot .chip.quiet { background: none; color: var(--bone); border-color: color-mix(in srgb, #F5EFE4 40%, transparent); }
+  .chip:hover, .chip:focus-visible,
+  a:hover > .chip, a:focus-visible > .chip { background: var(--copper); color: var(--bone); border-color: var(--copper); }
+  .chip:hover .gl, .chip:focus-visible .gl,
+  a:hover > .chip .gl, a:focus-visible > .chip .gl,
+  .card:hover .chip .gl, .card:focus-within .chip .gl,
+  .eng:hover .chip .gl, .eng:focus-visible .chip .gl { transform: translateX(6px); }
 
-  /* ---- 00 the bar ---- */
+  /* the two 999px pills. They are NOT chips: one is a bar control at 32px and one is the
+     ledger's way out at 40px, and Rule C's 48px block is the thing they are not. */
+  .pill { box-sizing: border-box; display: inline-flex; align-items: center; height: 40px;
+          padding: 0 20px; border: 1px solid var(--ink-40); border-radius: 999px;
+          color: var(--ink); transition: border-color 300ms var(--e), color 300ms var(--e); }
+  .pill .gl { display: inline-block; margin-left: 10px; transition: transform 200ms var(--e); }
+  .pill:hover, .pill:focus-visible { border-color: var(--copper); color: var(--copper); }
+  .pill:hover .gl, .pill:focus-visible .gl { transform: translateX(6px); }
+  /* the Audit's second device: an inline pill on the name line. */
+  .mini { display: inline-flex; align-items: center; height: 22px; padding: 0 10px;
+          border: 1px solid var(--copper); border-radius: 999px; color: var(--copper);
+          font-family: var(--display); font-size: 12px; font-weight: 500;
+          font-variation-settings: "wdth" 80; text-transform: uppercase;
+          letter-spacing: 0.04em; line-height: 1; }
+
+  /* ---- 00 the bar (SS18: auto | 1fr centred | auto) ---- */
   .bar {
     position: fixed; top: 0; left: 0; right: 0; height: 40px; z-index: 30;
-    box-sizing: border-box; display: flex; align-items: center; justify-content: space-between;
+    box-sizing: border-box; display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
     padding: 0 var(--g); background: var(--espresso); border-bottom: 1px solid var(--hair);
     color: var(--ink); opacity: 0; pointer-events: none;
     transition: opacity 180ms var(--e);
@@ -175,7 +212,10 @@
      animation owns is a filter that is a no-op on colour: `opacity(0.999)` takes the bar's
      measured spread from 173 to 17, i.e. to the ground's own, i.e. to the rest of the page. */
   .bar { filter: opacity(0.999); }
-  .bar a { display: inline-flex; align-items: center; height: 100%; }
+  /* SS18: the three middle labels are centred in one 1fr track on one rhythm, instead of
+     four different space-between gaps across five items of unequal width. */
+  .bar .mid { display: flex; align-items: center; justify-content: center; gap: 56px; }
+  .bar a { display: inline-flex; align-items: center; }
   .bar a:hover .l, .bar a:hover { color: var(--ink); }
   .bar .ar { color: var(--ink); margin-left: 0.4em; }
   .bar.dark, html.lit .bar.dark {
@@ -192,6 +232,7 @@
     --ink-80: color-mix(in oklab, #F5EFE4 80%, transparent);
     --ink-72: color-mix(in oklab, #F5EFE4 72%, transparent);
     --ink-60: color-mix(in oklab, #F5EFE4 60%, transparent);
+    --ink-40: color-mix(in oklab, #F5EFE4 40%, transparent);
     --hair:   color-mix(in oklab, #F5EFE4 15%, transparent);
     --hair-12: color-mix(in oklab, #F5EFE4 12%, transparent);
     --hair-10: color-mix(in oklab, #F5EFE4 10%, transparent);
@@ -199,103 +240,63 @@
   }
 
   /* ================= 01 THE ROOM: the stage, and the words where the finger ends ========
-     SS14.1. The film is no longer a fixed full-viewport sheet; it is a 16:9 STAGE whose
-     box matches the source frame exactly, so the fingertip's source percentage is also its
-     screen percentage. Nothing here is bottom-anchored to the viewport any more. */
-  /* the copy block is out of flow, so the room's own height is the stage plus this pad.
-     MEASURED: at 1440 and up the block ends inside the stage (proof row foot 740 of 810),
-     so 24px is enough air before the operator section's own 120; from 1280 down the block
-     runs past the stage's foot -- 13px at 1280, 63px at 1024, 85px at 900 -- and the pad
-     has to carry it or the proof row lands on the operator film. */
+     SS14.1. The film is a 16:9 STAGE whose box matches the source frame exactly, so the
+     fingertip's source percentage is also its screen percentage. SS16.2 puts the COPPER
+     row's ink under the tip. SS18 changes exactly two things in this section: the proof
+     line leaves the chip row for the block's own left edge 24px under the chips, and the
+     full-width hairline over the chips is deleted -- with the proof line moved off the
+     right margin it spanned nothing. */
   .room { position: relative; box-sizing: border-box; background: var(--espresso);
           padding-bottom: 0; }
-  .stagewrap { position: relative; width: 100%; aspect-ratio: 16 / 9; }
+  /* SS18, "stage padding-bottom 56px", taken literally after round 12's send-back. The
+     wrap used to BE the 16:9 box, so 56px declared on the copy closed nothing: the copy
+     is out of flow inside a box whose height is fixed by the ratio, and 149px of film the
+     veil has already taken to solid sat under the proof line -- the "air that reads as a
+     hole" HOME-CRITIQUE S01.3 measured at ~140px.
+       Now the wrap is a CLIPPING box whose height is its content: the copy, in flow,
+     ending on its own 56px. The 16:9 stage is absolutely positioned inside it at the top,
+     so the film's box -- and every --fx/--fy percentage SS16.2 measured against it -- is
+     untouched; what changes is how much of that box reaches the screen. The copy's top
+     offset moves from `top` (a percentage of the wrap's height, which now depends on the
+     copy) to a container unit: the stage is 56.25cqw tall, so the fingertip's 38.2407% of
+     it is 21.5104cqw exactly, at every width. */
+  .stagewrap { position: relative; width: 100%; overflow: hidden;
+               container-type: inline-size; }
+  /* The film has to CLOSE at the crop line, wherever the copy puts it: the SS16.2 veil's
+     own last stop is written in percentages of the 16:9 box and now falls below the cut,
+     which would leave a hard edge at ~0.63 alpha. 160px of bottom-anchored fade, under
+     the copy (z-index 2) and over the film, ends the frame instead of cutting it. */
+  .stagewrap::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+                      height: 160px; z-index: 1; pointer-events: none;
+                      background: linear-gradient(to bottom,
+                        rgba(13,13,15,0) 0%, rgba(13,13,15,1) 100%); }
   /* the clip is on the INNER box only: the copy block is allowed to run past the stage's
      foot onto the espresso below it, which is where SS14.1 sends whatever does not fit. */
-  .stage { position: absolute; inset: 0; overflow: hidden; background: var(--espresso); }
+  .stage { position: absolute; left: 0; top: 0; width: 100%; aspect-ratio: 16 / 9;
+           overflow: hidden; background: var(--espresso); }
   /* MEASURED: the clip is graded down so far that under the SS14.1 veil (.55 at the
      fingertip's y) the pointing hand read as a 17-level step off the wall -- the gesture the
      whole composition is built on was invisible at 1x. The grade is applied to the FILM, not
      to the veil, so SS14.1's three stops are untouched; it roughly doubles that step.
-       ROUND 11 SEND-BACK. brightness(1.18) contrast(1.30) put the wall behind `I build the`
-     at 215/255 before the veil, which composites at the .55 plateau to 104 and carries bone
-     at 4.47:1 at 360 -- under SS16.2's own 4.5 gate on two of the three frames (it cleared
-     by 0.04 everywhere else, which is not a margin, it is a coin toss). The fix is a LEVELS
-     move, not a dimmer: the grade is re-cut about the same picture so the wall lands lower
-     while the slope through the midtones goes UP, which is the number the gesture lives on.
        brightness(1.02) contrast(1.81): the transfer is out = in * 1.8462 - 0.405, so
          - the wall behind row 1 (source 165) lands at 199 instead of 215 -> 4.89:1 at 360,
            4.97 at 390, 5.04 at 1440. Every frame, every width, with 0.39 of margin.
          - the slope through the midtones rises 20% (1.534 -> 1.846), so every step in the
            film -- the arm against the wall above all -- is 20% larger before the veil.
          - nothing clips at either end that matters: the source frame's own maximum is 191
-           (measured on A2-poster-last.jpg) and this transfer whites out only above 194.
-       Verified with the independent verifier's own measure (brightest 2% of the wall behind
-     the letterforms, ink mask from the normal render, sampled on the type-hidden render). */
+           (measured on A2-poster-last.jpg) and this transfer whites out only above 194. */
   .stage video, .stage .still { filter: brightness(1.02) contrast(1.81); }
   .stage video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
   .stage .still { display: none; }
-  /* THE VEIL, re-tuned to the stage: clear above 25%, .55 at the fingertip's own y, solid
-     espresso from the headline down.
-     CORRECTED after verify round 3. SS14.1 says "solid espresso from the headline's
-     cap-top down" and pins the cap-top 12px under the fingertip -- which makes the
-     FINGERTIP the last lit pixel in the frame by construction. MEASURED on
-     A2-poster-last.jpg: the pointing finger runs source y 400..450 and the hand, the fist
-     and the wrist run y 450..610, i.e. ENTIRELY below that stop. At the hold frame (the
-     state every desktop visitor sees, since clip A plays once and holds) all that survived
-     was a 100px sliver of the index finger's top edge over solid espresso -- a smudge, not
-     a gesture. So the solid stop moves down by exactly ONE headline row, to the CAPS of
-     the second row (`go-to-market.`), which is the row whose colour actually needs the
-     flat ground: copper measures 4.40:1 on espresso and would not hold over film. The
-     first row is bone, and bone measures >= 5.7:1 over the brightest graded wall at the
-     .55 stop -- so the bone row is the OVERLAY the operator asked for, and the hand,
-     wrist and arm stay inside the lit part of the frame under it.
-       --drop is the fingertip -> copper cap-top distance; every stop between is expressed
-     as a fraction of it, so the ramp keeps its shape at every width. */
-  /* SS16.2 RE-CUT. The words move UP one row -- the COPPER row's cap-top is now the 4px
-     stop under the fingertip and `I build the` sits on the row ABOVE it, over the film --
-     so the veil is re-cut around two pinned stops and nothing else: .55 at fingertip_y
-     minus 12px, and SOLID from fingertip_y plus 4px, which is the copper row's ground.
-     Everything inside the copper row's own box is therefore flat espresso, and the veil
-     reopens under it. (SS14.1's "clear above 25%" is superseded
-     here: the bone row's own box now opens at 22.4% of the stage at 1280/1440 and 26.3%
-     at 1920, so the veil has to be at its .55 plateau BEFORE that row -- MEASURED, the
-     graded wall behind `I build the` peaks at 215/255 across frames 0/48/96, which at .55
-     composites to 104 and carries bone at 4.9:1. The plateau starts at 18%.) */
-  /* SS16.2 SEND-BACK (verify round 10). The stop above was written as ".55 at fingertip_y
-     - 12px, solid from fingertip_y + 4px, solid to the foot", and the last clause is the
-     one SS16.2 never wrote. Measured on the built page: 1.4% of the hand-and-arm silhouette
-     survived at 1280, 1.7% at 1440, 2.5% at 1920 -- and 100% of that sat AT OR ABOVE the
-     tip. The whole finger, fist, wrist and forearm were painted out; at the hold frame,
-     which is the state every desktop visitor sits on, there was no hand in the picture at
-     all. That is the exact "a smudge, not a gesture" failure SS14 diagnosed in v3, and it
-     cannot be what "the hand emerges from the dark" means.
-       SS16.2 pins TWO numbers and gives the reason for the second: ".55 at fingertip_y
-     - 12px, solid from fingertip_y + 4px (THE COPPER ROW'S GROUND)". The solid is there to
-     be the copper row's ground -- copper measures 4.40:1 on espresso and needs the brightest
-     channel under it at 16 or less, so the band it stands on has to be flat. When the row
-     ends, the reason ends. So the veil holds solid across exactly the copper row's own box
-     -- ink top (= fingertip_y + 4px) to line box foot, --rowfoot -- and then reopens over
-     0.30 of the display size to a .70 floor, which is where the wrist, the forearm, the
-     table and the laptop come back into the frame. The arm now runs down out of the dark,
-     passes behind the copper line, and the tip re-emerges above it on the "g".
-       The floor was .70, and ROUND 11 takes it to .55 -- the SAME number SS16.2 pins above
-     the tip, so the veil now opens and closes on one value instead of two. The reason is the
-     verifier's second finding: at .70 the arm read a median 15 levels off the wall at 1440
-     and 6 at 360, which is a silhouette you have to be told is there. A veil is a flat
-     multiplier on contrast, so the step under it is the film's own step times (1 - alpha):
-     .70 kept 30% of it, .55 keeps 45%. Measured, with the round-11 grade: the arm's median
-     step goes 15.5 -> 21 at 1440, 8 -> 9.5 at 390 and 6 -> 8 at 360, and its third quartile
-     33 -> 35, 30 -> 31 and 30 -> 29. The cost is measured too and it is nothing: the bone
-     sentence over that band reads 9.83:1 at 1440 (it was 10.43), the proof line the same.
-       What does NOT move on the phone is the median, and the reason is structural rather
-     than a miss: SS16.2 holds the veil SOLID across the copper row's own box, and that box
-     is 19% of a 270px stage at 360 against 13% of an 810px one at 1440, so half the rows the
-     arm crosses at the phone are inside a band the brief itself blacks out. Reported, not
-     tuned around. The last stop takes the veil back
-     to solid at the stage's foot so the film closes into the espresso instead of being cut
-     off by it. The .55 plateau starts at 18% (was 20%) because the bone row's box top now
-     opens at 20.7-21.3% instead of 22.4%, and that row's ink starts at its box top. */
+  /* THE VEIL (SS16.2, round 11). Two pinned stops and nothing else: .55 at fingertip_y
+     - 12px, and SOLID from fingertip_y + 4px, which is the copper row's own ground. The
+     solid holds across exactly the copper row's box (ink top -> line-box foot, --rowfoot)
+     and then reopens over 0.30 of the display size back to .55, which is where the wrist,
+     the forearm, the table and the laptop come back into the frame. The arm runs down out
+     of the dark, passes behind the copper line, and the tip re-emerges above it on the "g".
+       The .55 plateau starts at 18% because the bone row's own box opens at 20.7-21.3%,
+     and that row's ink starts at its box top. The last stop takes the veil back to solid at
+     the stage's foot so the film closes into the espresso instead of being cut off by it. */
   .stage .veil { position: absolute; inset: 0; background: linear-gradient(to bottom,
       rgba(13,13,15,0) 0%,
       rgba(13,13,15,0.03) 7%,
@@ -309,195 +310,134 @@
       rgba(13,13,15,0.55) 88%,
       rgba(13,13,15,1) 100%); }
 
-  /* SS14.7. The block is positioned by the FINGERTIP on BOTH axes now. v4 pinned the
-     left edge at the 32px gutter, which put the tip 209px to the RIGHT of the "I" at 1440 --
-     the finger pointed past the words instead of at them. The "I" now sits one hand's width
-     (48px) LEFT of the tip and the row's ink-top 4px under it, so the tip lands on the
-     glyph's own shoulder. `top` sets the line box, not the ink, so the measured ink offset
-     is subtracted back out. The sentence and the chips inherit this left
-     edge; the proof row stays flush right (SS14.7). */
-  /* SS16.2: the 4px stop belongs to the COPPER row now, so the block's own top is one
-     display row higher -- a .d row box is line-height .92 of --d. SEND-BACK, round 10: what
-     gets subtracted back out is --xk, the leading `g`'s own INK top, not --capk, the cap
-     line. Pinned to the cap line the tip sat 15-16px clear of the g and touched nothing;
-     pinned to the ink the g's first copper pixel and the veil's solid stop are the same row,
-     which is the row the finger's light dies on. `I build the` sits over the film on the row
-     above, and `go-to-market.` stands on the veil's solid ground. */
-  .hero-copy { position: absolute; z-index: 2; left: calc(var(--fx) - 48px); right: var(--g);
-               top: calc(var(--fy) + 4px - 0.92 * var(--d) - var(--xk) * var(--d));
-               display: flex; flex-direction: column;
-    /* the stage is 56.25vw tall and the block's top is 0.382407 of that (+12px, less the
-       ink offset), so the block's own floor 40px above the stage's foot is
-       56.25vw - 21.5104vw - 4px + (0.92 + xk)*d - 40px. It is a MIN-height, not a height: where
-       the block is taller than the stage (1280 and down) it still runs past the foot onto
-       the espresso, which is where SS14.1 sends it, and the clearance gate still sees it. */
-               min-height: calc(34.7396vw + 0.92 * var(--d) + var(--xk) * var(--d)
-                                - 44px); }
+  /* SS14.7 / SS16.2. The block is positioned by the FINGERTIP on BOTH axes: the copper
+     row's "g" sits one hand's width (48px) LEFT of the tip with its ink-top 4px under it,
+     and `I build the` is the row above, over the film. `top` sets the line box, not the
+     ink, so the measured ink offset is subtracted back out.
+       SS18: the block is no longer stretched to the stage's foot. It stacks -- headline,
+     sentence, chips, proof -- and ends where its content ends, 56px of its own air under
+     the last line; the film below it is film, not a hole. */
+  .hero-copy { position: relative; z-index: 2; box-sizing: border-box;
+               --fypx: 21.5104cqw;   /* 38.2407% of the stage's own 56.25cqw height */
+               margin-left: calc(var(--fx) - 48px); margin-right: var(--g);
+               padding-top: calc(var(--fypx) + 4px - 0.92 * var(--d) - var(--xk) * var(--d));
+               padding-bottom: 56px;
+               display: flex; flex-direction: column; }
   .hero-copy h1 { margin-bottom: 28px; }
-  .hero-copy .lede { margin-bottom: 28px; }
-  /* SS14.1 puts the sentence, the chips and the proof row below the headline inside the
-     stage. Left as a stack they ended a third of the way down a 810px stage and the rest
-     read as a black bar taped under a photograph. The base row is pushed to the block's
-     floor instead and carries a hairline: the stage now closes on a rule with the record
-     at its right end, and the space between is the composition, not a leftover. */
-  .hero-copy .base-row { margin-top: auto; padding-top: 22px; border-top: 1px solid var(--hair);
-                         display: flex; align-items: baseline; justify-content: space-between;
-                         gap: 20px 32px; flex-wrap: wrap; }
-  .hero-copy .lede { font-size: 23px; max-width: 44ch; }
-  .hero-copy .proof { display: flex; gap: 8px; flex-wrap: wrap; }
-  .hero-copy .proof .l.now { color: var(--bone); }
+  .hero-copy .lede { margin-bottom: 28px; font-size: 23px; max-width: 44ch; }
+  /* SS18: `Four exits, $5B+ combined.` moves off the chip row's right end and onto the
+     headline's own left edge, 24px under the chips, in the label style at 60% bone. */
+  .hero-copy .proof { margin-top: 24px; }
 
   /* ================= 02 OPERATOR: the overlay ==========================================
-     SS14.2. Clip B is a SQUARE stage in the left seven columns; the heading sits OVER its
-     lower third on a veil, the first paragraph directly under the heading still on the
-     film, and the argument's second half sits in the right five columns, top-aligned. */
+     SS14.2 + SS18. Clip B is a 4:5 PORTRAIT filling the left seven columns (a square
+     beside a 500px column was a 410px hole); the heading sits over its lower third at the
+     FILM'S OWN left edge, on a veil that goes solid at the heading's cap-top; and the first
+     paragraph leaves the film to become the right column's first row. Both columns start
+     on one top line and each ends where its content ends. */
   .op { position: relative; box-sizing: border-box; background: var(--espresso);
         padding-top: var(--s); padding-bottom: var(--s); }
   .opgrid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px;
-            align-items: stretch; }
-  /* a size container so the heading over the film can be sized in the FILM's units: at
-     --d2 'not consultant.' measures ~800px against a 719px type column and its full stop
-     ran off the film onto the espresso, a hand's width from the right column's first line. */
-  .opstage { grid-column: 1 / 8; position: relative; width: 100%; aspect-ratio: 1 / 1;
+            align-items: start; }
+  /* a size container so the heading over the film can be sized in the FILM's units. */
+  .opstage { grid-column: 1 / 8; position: relative; width: 100%; aspect-ratio: 4 / 5;
              container-type: inline-size; }
-  .opfilm { position: absolute; inset: 0; overflow: hidden; background: var(--espresso); }
+  /* SS18 RULE A: the border goes on the list, never on the picture. The film carries a
+     radius and nothing else. */
+  .opfilm { position: absolute; inset: 0; overflow: hidden; background: var(--espresso);
+            border-radius: 8px; }
   /* MEASURED on B-poster.jpg (1440x1440): the source's own lower third is already dark --
      row medians fall 87 (64%) -> 52 (68%) -> 35 (72%) -> 19 (88%) -- so the type that
      SS14.2 puts over the lower third had nothing left to sit on. Two corrections, both on
-     the FILM so SS14.2's veil stops are untouched: a grade, and a 1.30 zoom about a near-
-     top origin, which slides the bright band of the table and the hands DOWN into the
-     lower third (display 67% now samples source y ~765, median 87, max 123) and tightens
-     the frame on him. Horizontal crop is 11.5%..88.5% -- his face and both hands stay in. */
+     the FILM so the veil's stops are untouched: a grade, and a 1.30 zoom about a near-top
+     origin, which slides the bright band of the table and the hands DOWN into the lower
+     third and tightens the frame on him. In the 4:5 box the source is scaled to the box's
+     HEIGHT, so 80% of its width is visible before the zoom and 61.5% after: source x
+     276..1163 of 1440, which holds his face and both hands (measured). */
   .opfilm video, .opfilm .still { transform: scale(1.30); transform-origin: 50% 6%;
                                   filter: brightness(1.45) contrast(1.20); }
   .opfilm video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
   .opfilm .still { display: none; }
-  /* .6 at the half line, solid by 70% of the square: SS14.2's two pinned stops.
-     CORRECTED after verify round 3: the ramp used to reach .96 by 65.5%, so the heading's
-     cap-top (67.2%) stood on what was visually flat black -- a caption under a photograph,
-     not type over film. The stops between the two pins now hold the veil at .84 through
-     67% and spend the last 3% getting to solid, so the first row of the heading has live
-     film behind it and the second descends into the espresso. */
+  /* SS18: the veil is SOLID from the heading's cap-top (--opcap), .6 five points above it.
+     Above that it is the same ramp as before, so the film carries its own top two thirds. */
   .opfilm .veil { position: absolute; inset: 0; background: linear-gradient(to bottom,
       rgba(13,13,15,0) 0%, rgba(13,13,15,0) 30%,
       rgba(13,13,15,0.10) 40%,
       rgba(13,13,15,0.26) 48%,
       rgba(13,13,15,0.45) 56%,
       rgba(13,13,15,0.6) 62%,
-      rgba(13,13,15,0.68) 68%,
-      rgba(13,13,15,0.74) 73%,
-      rgba(13,13,15,0.80) 77%,
-      rgba(13,13,15,0.92) 80%,
-      rgba(13,13,15,1) 82%, rgba(13,13,15,1) 100%); }
-  /* MEASURED (SS14.2): the heading at --d2 is 189px of a 783px square and the paragraph
-     is another 48, so a top-anchored block at the two-thirds line ran 12px past the film's
-     foot. Anchoring to the FOOT instead puts the block's top at 66.4% of the square (its
-     cap-top at 67.2%, below the line) and leaves 16px of film under the last line at every
-     width, because the square and the type both scale with the column. */
-  /* CORRECTED after verify round 3: bottom-anchored, the block's own height decided where
-     the type landed -- 67% of the square on the desktop and 76% on the phone, the second of
-     which is past the 70% line where SS14.2 takes the veil solid, so the phone read as a
-     caption under a photograph. The cap-top is anchored to the lower-third line itself at
-     BOTH ends of the ladder, which is where the veil still has live film under it. */
-  .opover { position: absolute; z-index: 2; left: 32px; right: 32px;
-            top: calc(67% - var(--capk) * var(--d2)); bottom: auto; }
-  /* .d.two carries line-height .98 at (0,2,0); this override has to out-specify it or the
-     block runs 12px long and the heading leaves the lower third. */
-  /* SS14.7: the heading stays at --d2 and drops to "wdth" 106 to fit the square. The
-     11.6cqw cap this replaces made 1440 a THIRD display size (90.8px against --d2 102.9);
-     the width axis is the lever, never the size. */
-  .opover h2.two { margin-bottom: 10px; margin-right: -32px; line-height: 0.92;
+      rgba(13,13,15,1) var(--opcap),
+      rgba(13,13,15,1) 100%); }
+  .op { --opcap: 67%; }
+  /* the heading's cap-top sits exactly on --opcap, at the FILM's own left edge. */
+  .opover { position: absolute; z-index: 2; left: 0; right: 0;
+            top: calc(var(--opcap) - var(--capk) * var(--d2)); bottom: auto; }
+  .opover h2.two { margin-bottom: 0; line-height: 0.92;
                    font-size: var(--d2); font-variation-settings: "wdth" 106; }
-  .opover p { font-size: 17px; line-height: 1.4; color: var(--bone); max-width: none; }
-  .opside .m-first { display: none; }
   .opside { grid-column: 8 / 13; display: flex; flex-direction: column; gap: 28px; }
   .opside p { font-size: 19px; line-height: 1.5; color: var(--bone); }
-  /* CORRECTED after verify round 3: with the paragraph top-aligned and the receipt pinned
-     to the film's foot, 1440 left ~430px of empty espresso between them. The argument's
-     three sentences are three text nodes already, so they become three ledger rows -- the
-     column now reads as a register that spans the square instead of a hole with a quote at
-     the bottom of it. */
-  /* round 9: the register no longer stretches to the square. flex:1 on the block plus
-     margin-top:auto on the quote pinned the quote to the film's FOOT and opened 421px of
-     empty espresso between the last row and it (measured at 1440). The rows take their
-     height, the quote FOLLOWS them, and the column simply ends where its content does. */
+  /* SS18: the paragraph that used to sit on the film is the column's FIRST row, at 21px,
+     above the three register rows. */
+  .opside .first { font-size: 21px; line-height: 1.4; }
+  /* SS18 ends this bullet with two words: "No hole." The film's size is not free -- SS18
+     pins it to cols 1-7 at 4:5 and SS14.7 pins the heading to --d2 at wdth 106, whose
+     "not consultant." row measures 720.3px of ink, so a 6-column film (664px) cannot hold
+     it and 7 columns (782.7px) at 4:5 is 978.3px tall by arithmetic, not by choice. The
+     hole was therefore never the film's: a 545px column carrying 489px of 21px copy beside
+     it is the defect. So the register is built to the film's scale. The three rows go to
+     28px -- the page's top body size, the receipts' name size -- on the ledger rhythm the
+     how-I-work steps already run (40px there at 21px type; 70px here at 28px on a column a
+     third as wide), and the receipt quote closes at 34px. HOME-CRITIQUE S03 licenses
+     "~140px" of difference as deliberate asymmetry; this column runs ~840px against the
+     film's 978px. Measured, not estimated: see the build log. */
   .opside .lead { flex: 0 0 auto; display: flex; flex-direction: column; }
-  /* SS14.7: the rows take their OWN height. Stretched to equal thirds of the square they
-     opened 30-40px of dead space inside two of the three register lines. */
-  .opside .lead span { flex: 0 0 auto; display: block; font-size: 21px; line-height: 1.45;
-                       padding: 24px 0; border-top: 1px solid var(--hair); }
+  .opside .lead span { flex: 0 0 auto; display: block; font-size: 28px; line-height: 1.45;
+                       padding: 70px 0; border-top: 1px solid var(--hair); }
   .opside .lead span:first-child { padding-top: 0; border-top: 0; }
   .opside .lead span:last-child { padding-bottom: 0; }
-  /* the paragraph stays top-aligned with the film (SS14.2). Round 9: the quote is NOT
-     pinned to the film's foot any more -- it comes 40px after the last register row, which
-     is the column's own 28px flex gap plus this 12px. */
+  /* the quote comes 40px after the last register row: the column's own 28px flex gap plus
+     this 12px. No row in this column opens a gap larger than that. */
   .opside .sig { margin-top: 12px; padding-top: 22px; border-top: 1px solid var(--hair);
                  display: flex; flex-direction: column; gap: 12px; }
-  .opside .sig q { quotes: none; font-size: 21px; line-height: 1.35; color: var(--bone); }
+  .opside .sig q { quotes: none; font-size: 34px; line-height: 1.3; color: var(--bone); }
 
   /* ================= 03 HOW I WORK: the ledger =========================================
-     SS15.4. Operator, on v4.1: "The cards to the right of diagnose and build etc look
-     horrible." The three framed panels are gone -- with them the redrawn page-6 SVG, the
-     two typographic plates, the sticky rail and the whole 12-column split. What is left is
-     the section the corpus's method sections actually run: a full-width ledger of three
-     rows, each an ordinal, the step name at the composed display size, and the step's one
-     sentence in the right half, with a hairline between. No frame, no image, no video, no
-     sticky. */
+     SS15.4 + SS18. A full-width ledger of three rows: the ordinal in a 28px cell at 60%
+     ink, the step name at the composed display size, and the step's one sentence opening on
+     the seam (Rule B). The head is `How I work.` alone, on one line, under the eyebrow
+     `Operating principles` -- both halves of the template's own string, and the middot that
+     used to glue them is gone. */
   .work { padding-top: var(--s); padding-bottom: var(--s); }
   .steps { list-style: none; margin: 0; padding: 0; }
-  /* the ordinal takes a 56px stub rather than a full twelfth: at 1440 a twelfth left it
-     stranded 100px from the name it numbers. The sentence still opens past the section's
-     own midline, which is what SS15.4 means by the right half. */
-  /* round 9: the row was baseline-aligned, so the sentence's first line hung off the NAME's
-     baseline -- 54px below the name's cap-top at 1440, level with the name's foot, reading
-     as a caption dropped under a display word instead of the second column of a ledger
-     line. The row is TOP-aligned; the sentence's own cap-top is then brought onto the
-     name's cap line by the padding below. */
-  .steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr) minmax(0, 1fr);
-              column-gap: var(--gap); row-gap: 12px; align-items: start;
+  .steps li { display: grid;
+              grid-template-columns: 28px calc(var(--seam) - 28px) minmax(0, 1fr);
+              column-gap: 0; row-gap: 12px; align-items: start;
               padding: 40px 0; border-top: 1px solid var(--hair); }
   .steps li:last-child { border-bottom: 1px solid var(--hair); }
-  /* v5 verify 3: baseline-aligned, a 14px ordinal beside a 103px name sits at the name's
-     FOOT and reads as a stray artifact. It goes on the name's CAP-LINE and to full ink, and
-     the stub drops 56px -> 40px so it stops standing 80px clear of the number it numbers.
-     The cap-top of a line box is (line-height - 0.92)/2 + --capk of the font size: 0.0891
-     of --d2 for the name at line-height 0.98, 0.3241 of 14px for the label at 1.45. */
-  .steps .n { grid-column: 1 / 2; align-self: start; color: var(--ink);
+  /* the ordinal goes on the name's CAP-LINE. The cap-top of a line box is
+     (line-height - 0.92)/2 + --capk of the font size: 0.0891 of --d2 for the name at
+     line-height 0.98, 0.3241 of 14px for the label at 1.45. */
+  .steps .n { grid-column: 1 / 2; align-self: start; color: var(--ink-60);
               padding-top: calc((var(--capk) + 0.03) * var(--d2)
                                 - (var(--capk) + 0.265) * 14px); }
-  .steps .nm { grid-column: 2 / 3; display: block; }
+  .steps .nm { grid-column: 2 / 3; display: block; padding-right: var(--gap); }
   .steps .s { grid-column: 3 / 4; font-size: 21px; line-height: 1.45; max-width: 46ch;
               color: var(--ink-80); }
-  /* SEND-BACK, round 9: keeping this head on ONE line cost it the section-head register --
-     it ran at wdth 88 on the desktop and 68 on the phone while every other head and every
-     step name stayed at 115, so the head was set NARROWER than the names under it and the
-     hierarchy inverted. The width axis goes back to 115 at every width and the head is
-     allowed to WRAP. The middot rule survives the wrap in the markup, not here: the
-     separator is tied to the word on BOTH sides with nbsp, so the only breakable spaces
-     left are the two outside that unit and the separator can neither end a line nor open
-     one. The 20ch cap stays off -- the content box is the measure. */
   .work .sec h2 { max-width: none; }
-  /* ================= 04 PACKAGES: three cards, then the top tier ========================
-     SS15.5. Operator: "The part showing pckages could look a little more prounonced and
-     visually enticing. Engagements is the highest paying form - so maybe make that special
-     looking instead of underwhelming but still connected with the packagers."
-     So the three cards stop being invisible: each gets a real ground (a 1px hairline box at
-     15% ink, 8px radius, 28px of interior), the package name comes off the 14px label and
-     onto 24px Hanken 500, and the price goes to 72px. The Audit's mark is a 2px COPPER TOP
-     RULE, not the full copper box of v4 -- a box around one of three peers is a badge; a
-     rule over it is a rank. SS14.7's gutter pin goes with the borderless card it was written
-     for: a bordered box hanging 25px into the page gutter is a mistake, so the row sits in
-     the content width and each card is (content - 48)/3, which is the geometry SS15.3 then
-     borrows for the objections. */
+
+  /* ================= 04 PACKAGES + ENGAGEMENTS: ONE CARD SYSTEM ========================
+     SS18. Three cards on equal thirds of the content, and Engagements as the fourth object
+     in the SAME system -- one border language, one radius, one padding, one chip. The
+     Audit carries exactly two devices: a 1px copper border on all four sides and an inline
+     `Start here` pill on the name line. The 2px top rule is gone from both. */
   .price { padding-top: var(--s); }
   .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;
            margin: 0; }
   .card { box-sizing: border-box; padding: 28px; display: flex; flex-direction: column;
           border: 1px solid var(--hair); border-radius: 8px; background: none;
           box-shadow: none; }
-  /* the 2px rule is 1px thicker than the hairline it replaces, so the interior is pulled
-     back by exactly that 1px and the three card interiors stay on one line. */
-  .card.mark { border-top: 2px solid var(--copper); padding-top: 27px; }
+  .card.mark { border-color: var(--copper); }
+  .card .nmrow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .card .nm { font-family: var(--text); font-weight: 500; font-size: 24px; line-height: 1.2;
               letter-spacing: -0.01em; color: var(--ink); }
   .card .pblock { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
@@ -507,166 +447,175 @@
               font-variant-numeric: tabular-nums; color: var(--ink); }
   .card .one { font-size: 17px; line-height: 1.5; color: var(--ink-72); margin-top: 20px; }
   .card .cta { margin-top: auto; padding-top: 28px; }
-  .card .cta .chip { height: 48px; width: 100%; }
-  /* v5 verify 3: the chip was condensed Anybody 300 at 24px under a 24px Hanken 500 name,
-     "six lines apart and ... belonging to different systems" inside one 443px box. The chip
-     takes the NAME's register -- same family, same weight, same tracking -- one step down in
-     size so it reads as the card's button and not as a second title. */
-  .card .cta .chip .t { flex: 1; justify-content: center; font-family: var(--text);
-                        font-size: 20px; font-weight: 500; letter-spacing: -0.01em;
-                        text-transform: none; white-space: nowrap; }
-  .card .cta .chip .a { width: 48px; }
-  /* the ground swaps to copper; the type does not move. 24px is large text, where copper
-     carries bone at 3.83:1 and espresso at 4.43:1 against the 3:1 bar. */
-  .card:hover .cta .chip .t, .card:focus-within .cta .chip .t { background: var(--copper); color: var(--bone); }
-  .card:hover .cta .chip .a, .card:focus-within .cta .chip .a { background: var(--copper); }
+  .card .cta .chip { width: 100%; }
+  .card:hover .chip, .card:focus-within .chip { background: var(--copper); color: var(--bone);
+                                                border-color: var(--copper); }
 
-  /* SS15.5: Engagements is the top tier, so it is not a fourth card and not the 104px strip
-     of v4 either. One espresso block the full width of the card row, 24px under it, carrying
-     the same 2px copper rule the Audit carries -- which is what connects the tier to the
-     packages -- and 220px of height, which is what separates it from them. */
-  /* v5 verify 3: as two space-between columns the block held "a wide band of empty espresso
-     across the middle" -- the head and the figure started level but ended 31px apart, so the
-     two columns opened gaps of 27px and 42px on the same 220px plate. It is a TABLE instead:
-     two rows of two cells, the head and the figure sharing a BASELINE on row one, the
-     descriptor and the chip sharing a foot on row two. Nothing floats, and the plate is
-     filled by its own content rather than by a minimum height. */
-  .eng { display: grid; grid-template-columns: minmax(0, 1fr) auto;
-         grid-template-rows: auto auto; column-gap: 40px; row-gap: 24px;
-         /* between 900 and 1279 the head is short enough that the 220px floor is taller
-            than the two rows; the leftover is padding around the PAIR, never a hole
-            between them, so the row gap stays 24px at every width. */
-         align-content: center;
-         box-sizing: border-box; margin-top: 24px; min-height: 220px; border-radius: 16px;
-         border-top: 2px solid var(--copper); background: var(--espresso); color: var(--bone);
-         padding: 34px 36px; }
-  /* the two halves keep their own boxes and BORROW the block's rows (subgrid), so row one
-     is the head and the figure and row two is the descriptor and the chip -- one shared
-     top edge and one shared foot across the plate, instead of two columns each opening
-     their own gap. */
-  .eng .side { display: grid; grid-row: 1 / 3; grid-template-rows: subgrid;
-               row-gap: 24px; align-items: baseline; min-width: 0; }
-  .eng .side.l-side { grid-column: 1; }
-  .eng .side.r { grid-column: 2; justify-items: end; text-align: right; }
-  .eng .hd  { grid-row: 1; min-width: 0; }
-  .eng .v   { grid-row: 1; }
-  .eng .dsc { grid-row: 2; align-self: end; min-width: 0; }
-  .eng .chip { grid-row: 2; align-self: end; }
-  /* SS15.5 pins the SIZE of "Engagements" at --d2 and nothing else; the width axis is the
-     lever that keeps it and the figure on one row down to 1280 (SS14.7's own precedent on
-     the operator heading). */
-  .eng .hd { font-size: var(--d2); font-variation-settings: "wdth" 96; line-height: 0.92;
-             color: var(--bone); }
-  .eng .dsc { font-size: 21px; line-height: 1.35; color: var(--bone); max-width: 34ch; }
-  .eng .v { font-family: var(--display); font-weight: 300; font-size: 64px; line-height: 1;
-            font-variation-settings: "wdth" 100; letter-spacing: -0.02em;
-            font-variant-numeric: tabular-nums; color: var(--bone); white-space: nowrap; }
-  /* the block is espresso on the BONE half of the page, so it needs the inverted chip --
-     and html.lit's own chip rule out-specifies a bare .eng .chip, which is why these three
-     carry the html prefix. MEASURED: without it the plate went espresso-on-espresso and
-     the chip lost its block. */
-  html .eng .chip .t, html.lit .eng .chip .t { background: var(--bone); color: var(--espresso); }
-  html .eng .chip .a, html.lit .eng .chip .a { background: var(--copper); color: var(--bone); }
-  html .eng:hover .chip .t, html.lit .eng:hover .chip .t,
-  html .eng:focus-visible .chip .t, html.lit .eng:focus-visible .chip .t {
-    background: color-mix(in oklab, var(--bone) 88%, var(--copper)); }
-  /* ================= 05 THE RECORD: consolidated ========================================
-     SS15.6. Operator: "consolidated the receipts part and show two and offer to see the
-     rest. guardicore RFP engine." So the index is TWO rows and a third row-shaped link. The
-     link keeps the row's geometry -- hairline, height, arrow at the right margin -- and
-     takes the quieter 21px so it reads as the way out of the ledger rather than a third
-     receipt. */
-  .prf, .prfx { position: relative; box-sizing: border-box; display: grid;
-         grid-template-columns: minmax(0, 560px) minmax(0, 1fr) 40px;
-         column-gap: 32px; align-items: baseline; min-height: 84px; padding: 26px 0;
-         border-bottom: 1px solid var(--hair-10); }
+  /* Engagements: special by GROUND, connected by GRAMMAR. Same radius, same padding, same
+     border box, same name size, the figure in the price's slot, one chip. */
+  .eng { box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr) auto;
+         column-gap: 40px; align-items: end; margin-top: 24px;
+         padding: 28px; border: 1px solid var(--espresso); border-radius: 8px;
+         background: var(--espresso); color: var(--bone); }
+  .eng .nm { display: block; font-family: var(--text); font-weight: 500; font-size: 24px;
+             line-height: 1.2; letter-spacing: -0.01em; color: var(--bone); }
+  .eng .pblock { display: block; padding: 18px 0 20px;
+                 border-bottom: 1px solid color-mix(in srgb, #F5EFE4 12%, transparent); }
+  .eng .pr { font-family: var(--display); font-weight: 300; font-size: 72px; line-height: 1;
+             font-variation-settings: "wdth" 106; letter-spacing: -0.02em;
+             font-variant-numeric: tabular-nums; color: var(--bone); white-space: nowrap; }
+  .eng .one { display: block; font-size: 17px; line-height: 1.5; margin-top: 20px;
+              color: color-mix(in srgb, #F5EFE4 72%, transparent); }
+  .eng .cta { display: block; }
+  .eng:hover .chip, .eng:focus-visible .chip { background: var(--copper); color: var(--bone);
+                                               border-color: var(--copper); }
+
+  /* ================= 05 THE RECORD: three rows and a way out ============================
+     SS17: "we should add the content ai part to the list so we have three."
+     SS18: one size for the name and the caption (28px), rank by colour and column; the
+     caption lane on the seam; the arrow in a 32px cell flush right; two 2px TRANSPARENT
+     borders held in reserve so the copper hover rule costs no layout shift (locomotive.ca,
+     measured); and the way out is a control, not a fourth row. */
   .proofsec { padding-top: var(--s); }
-  /* v5 verify 3: the rows carried bottom borders only, so the ledger's first row floated
-     while the manual's symptom lines opened on a rule. The index opens on one too. */
-  /* SS16.3-4: the ledger's opening rule moves onto a wrapper of its own, because the
-     row that used to carry it already spends both of its pseudo-elements (the drawn rule
-     and the copper hover wipe) and every rule in this section has to be able to draw. */
+  .proofsec .sec .eyebrow { width: 100%; justify-content: space-between; }
+  .prf { position: relative; box-sizing: border-box; display: grid;
+         grid-template-columns: var(--seam) minmax(0, 1fr) 32px;
+         column-gap: 0; align-items: center; height: 72px;
+         border-top: 2px solid transparent; border-bottom: 2px solid transparent; }
   .proofsec .ledger { border-top: 1px solid var(--hair-10); }
   .prf .who { font-family: var(--text); font-weight: 500; font-size: 28px; line-height: 1.15;
-              letter-spacing: -0.01em; color: var(--ink); }
-  .prfx .who { font-family: var(--text); font-weight: 500; font-size: 21px; line-height: 1.3;
-               color: var(--ink-80); }
-  .prf .cap { grid-column: 2; }
-  .prf .ar, .prfx .ar { grid-column: 3; justify-self: end; color: var(--ink);
+              letter-spacing: -0.01em; color: var(--ink); padding-right: var(--gap); }
+  .prf .cap { grid-column: 2; font-size: 28px; line-height: 1.2; color: var(--ink-60);
+              padding-right: var(--gap); }
+  .prf .ar { grid-column: 3; justify-self: end; color: var(--ink);
              font-family: var(--display); font-size: 19px; }
-  .prf::after, .prfx::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
-                height: 1px; background: var(--copper); transform: scaleX(0);
+  /* the hairline the row closes on, and the copper rule the hover draws -- both inside the
+     2px reserve, so nothing moves. */
+  .prf::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px;
+                height: 2px; background: var(--copper); transform: scaleX(0);
                 transform-origin: 0 50%; transition: transform 400ms var(--e); }
-  a.prf:hover::after, a.prf:focus-visible::after,
-  a.prfx:hover::after, a.prfx:focus-visible::after { transform: scaleX(1); }
-  a.prfx:hover .who, a.prfx:focus-visible .who { color: var(--ink); }
+  a.prf:hover::after, a.prf:focus-visible::after { transform: scaleX(1); }
+  .proofsec .out { margin-top: 32px; }
 
-  /* ================= 06 THE MANUAL ======================================================
-     SS15.2. Operator: "For the book the image didnt load." and the section read as a stack.
-     Recomposed: the cover fills columns 1-5 at 4:5 inside the dashed frame with the file
-     line under it, and every word moves to columns 6-12 -- label, the display line at --d2
-     (never --d: at the poster size it out-shouted the hero), the three symptoms as a
-     hairline ledger at 21px, the chapters paragraph, then the buy block. */
+  /* ================= 06 THE MANUAL =====================================================
+     SS18. RULE A: the dashed frame and its padding are deleted -- the cover is the object.
+     The copy column opens on the seam and runs one measure: eyebrow, head, the display
+     sentence demoted to a lede, the symptom ledger, the chapters paragraph, and then a BUY
+     LEDGER (Stripe Press, measured): one bordered box, three 48px rows on hairlines, each
+     with its label left, its value right and a copper arrow in a 44px ruled cell. The only
+     border in the section is on that list. */
   .manual { padding-top: var(--s); }
-  .manual .art { grid-column: 1 / 6; }
-  .manual .copy { grid-column: 6 / 13; display: flex; flex-direction: column;
+  .manual .art { grid-column: 1; width: calc(100% - var(--gap)); }
+  .manual .copy { grid-column: 2; display: flex; flex-direction: column;
                   align-items: flex-start; gap: 28px; }
   .manual .copy .sec { margin-bottom: 0; }
+  .manual .art .cov { display: block; width: 100%; aspect-ratio: 4 / 5; overflow: hidden;
+                      border-radius: 8px; background: #0B0A09; }
+  .manual .art .cov img { display: block; width: 100%; height: 100%; object-fit: cover;
+                          object-position: 50% 50%; }
+  .manual .art figcaption { display: flex; justify-content: space-between; gap: 16px;
+                            padding-top: 12px; }
+  .manual .lede2 { font-size: 28px; line-height: 1.25; color: var(--ink); }
   .manual .lines { display: flex; flex-direction: column; align-self: stretch; }
-  /* v5 verify 3: the ledger's hairlines stopped at a 46ch measure inside a 793px column,
-     so the head ran one width and everything under it another, and the column's right third
-     was empty. A ledger takes the COLUMN; the reading paragraph under it keeps its measure. */
   .manual .lines p { font-size: 21px; line-height: 1.35; color: var(--ink);
                      padding: 14px 0; border-top: 1px solid var(--hair); }
   .manual .lines p:last-child { border-bottom: 1px solid var(--hair); }
-  .manual .buy { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-  .manual .buy .v { font-family: var(--display); font-weight: 300; font-variation-settings: "wdth" 106;
-                    font-size: 64px; line-height: 1; letter-spacing: -0.02em; color: var(--ink);
-                    font-variant-numeric: tabular-nums; }
-  .manual .buy .v .l { display: block; margin-top: 10px; }
-  /* the frame's BORDER BOX is the column and the frame is 4:5; the cover fills its content
-     box. The source is 720x1018 (0.707), so a cover fit trims 5.8% off the top and the same
-     off the foot -- both inside the cover's own margins, measured.
-     SEND-BACK, round 9: the frame painted #0B0A09 across its whole padding box, so the dash
-     sat ON the black fill -- ink 15% over rgb(11,10,9) measured 1.00:1 and the frame was in
-     the CSSOM and invisible on screen. The FILL moves to an inner cover box and the padding
-     becomes 16px of BONE between the dash and the cover; the dash goes to ink 40%, which is
-     the step the hairline needs against paper. */
-  .manual .art .frame { box-sizing: border-box; aspect-ratio: 4 / 5;
-                        border: 1px dashed color-mix(in oklab, var(--ink) 40%, transparent);
-                        padding: 16px; background: none; }
-  .manual .art .frame .cov { display: block; width: 100%; height: 100%; background: #0B0A09; }
-  .manual .art .frame img { display: block; width: 100%; height: 100%; object-fit: cover;
-                            object-position: 50% 50%; }
-  .manual .art figcaption { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; }
+  .manual .body { max-width: none; }
+  .manual .buyledger { align-self: stretch; box-sizing: border-box;
+                       border: 1px solid var(--hair); }
+  .manual .brow { box-sizing: border-box; display: grid;
+                  grid-template-columns: minmax(0, 1fr) auto 44px; align-items: center;
+                  height: 48px; border-top: 1px solid var(--hair); }
+  .manual .brow:first-child { border-top: 0; }
+  .manual .brow .lb { padding-left: 16px; font-size: 19px; font-weight: 500;
+                      color: var(--ink); }
+  .manual .brow.pricerow .lb { font-family: var(--display); font-weight: 300; font-size: 24px;
+                               font-variation-settings: "wdth" 106;
+                               font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .manual .brow .vl { padding-right: 16px; }
+  .manual .brow .ar { display: flex; align-items: center; justify-content: center;
+                      align-self: stretch; border-left: 1px solid var(--hair);
+                      color: var(--copper); font-family: var(--display); font-size: 19px; }
+  .manual .brow .ar .gl { display: block; transition: transform 200ms var(--e); }
+  a.brow:hover .ar .gl, a.brow:focus-visible .ar .gl { transform: translateX(6px); }
 
-  /* ================= 07 THE FAQ ========================================================
-     SS15.3. Operator: "the objections part still look bad." Three equal columns in the price
-     cards' own geometry -- (content - 48)/3 on a 24px gap -- each opening on a hairline. */
+  /* ================= 07 THE OBJECTIONS =================================================
+     SS18. Two lanes: the head in the left lane with the count on its last baseline, the
+     list ONE column on the seam. Each row is a 24px copper arrow cell, the question at
+     24px, the answer under it, and the row closes on its own hairline. */
   .faq { padding-top: var(--s); padding-bottom: var(--s); }
-  .qs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-  .q { padding-top: 24px; border-top: 1px solid var(--hair); }
-  .q dt { font-family: var(--text); font-weight: 500; font-size: 24px; line-height: 1.2;
-          letter-spacing: -0.01em; color: var(--ink); text-wrap: balance; }
-  .q dd { font-size: 17px; line-height: 1.5; color: var(--ink-80); margin-top: 12px; }
-  /* ================= 08 THE ASK ======================================================== */
-  .ask { position: relative; z-index: 3; box-sizing: border-box; background: var(--copper); color: var(--espresso);
-         min-height: 720px; display: flex; align-items: center;
-         padding: 112px var(--g) 96px; }
-  .ask .block { display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
-  .ask .d { color: var(--espresso); max-width: 9ch; }
-  .ask .ar { font-size: 56px; vertical-align: baseline; margin-left: 22px; }
-  .ask .chip .t { background: var(--espresso); color: var(--bone); }
-  .ask .chip .a { background: var(--bone); color: var(--espresso); }
-  .ask .chip.quiet .t { box-sizing: border-box; background: var(--bone); color: var(--espresso); border: none; }
-  .ask .chip:hover .t { background: color-mix(in oklab, var(--espresso) 86%, var(--bone)); }
-  .ask .chip.quiet:hover .t { background: color-mix(in oklab, var(--bone) 88%, var(--espresso)); }
+  .faq .fhead .sec { margin-bottom: 40px; }
+  /* MEASURED, and it settles SS18's own conditional: `The objections, in your words.` at
+     --d2 on the section-head width axis (wdth 106) is 1410.6px at 1440 against a 1376px
+     content width, so it does NOT fit on one line and the else-branch fires -- two lines
+     with the count `03` right-aligned on the last baseline. The same measurement rules out
+     the cols 1-5 lane for this head: its first line alone is ~705px against a 568px lane,
+     and the only way into that lane is a width axis around 85, which would set this head
+     NARROWER than every other head on the page -- the hierarchy inversion the round-9
+     send-back already rejected on `How I work.`. So the head takes the content width and
+     the LIST takes the seam. */
+  /* the head takes the content width so the count lands at the content's own right edge,
+     which is what fills the right third the critique measured as a 490 x 210 void. */
+  .faq .fhead h2 { max-width: none; align-self: stretch; }
+  .faq h2 .rowend { display: flex; align-items: baseline; justify-content: space-between;
+                    gap: 24px; }
+  .faq h2 .count { flex: 0 0 auto; }
+  .qs { display: block; margin-left: var(--seam); }
+  .q { position: relative; display: grid; grid-template-columns: 24px minmax(0, 1fr);
+       column-gap: 8px; padding: 30px 0; border-bottom: 1px solid var(--hair); }
+  .q .qa { grid-column: 1; color: var(--copper); font-family: var(--display); font-size: 19px;
+           line-height: 1.2; }
+  .q dt { grid-column: 2; font-family: var(--text); font-weight: 500; font-size: 24px;
+          line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); }
+  .q dd { grid-column: 2; font-size: 17px; line-height: 1.5; color: var(--ink-80);
+          margin-top: 12px; max-width: 60ch; }
 
-  /* ================= 09 THE FOOT ======================================================= */
-  .foot { position: relative; z-index: 3; box-sizing: border-box; background: var(--espresso); color: var(--bone); padding: 72px var(--g) 64px; }
-  .foot .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; }
-  .foot .l { color: color-mix(in srgb, #F5EFE4 60%, transparent); }
-  .foot .l.now { color: var(--bone); }
+  /* ================= 08 THE ASK ========================================================
+     SS18. min-height 0 -- the field is its content. The floating arrow is deleted (the
+     chips carry the arrow) and the reply promise comes up out of the foot to fill the
+     right third. */
+  .ask { position: relative; z-index: 3; box-sizing: border-box; background: var(--copper);
+         color: var(--espresso); min-height: 0; padding: 120px var(--g); }
+  .ask .block { display: grid; grid-template-columns: minmax(0, 1fr) auto;
+                column-gap: 48px; align-items: end; }
+  .ask h2 { grid-column: 1; grid-row: 1; }
+  .ask .d { color: var(--espresso); max-width: 9ch; }
+  .ask .promise { grid-column: 2; grid-row: 1; justify-self: end; text-align: right;
+                  font-size: 19px; line-height: 1.4; max-width: 26ch; color: var(--espresso); }
+  .ask .chips { grid-column: 1; grid-row: 2; margin-top: 48px; }
+  .ask .chip { background: var(--espresso); color: var(--bone); }
+  .ask .chip.quiet { background: none; color: var(--espresso);
+                     border-color: color-mix(in srgb, #0D0D0F 40%, transparent); }
+  .ask .chip:hover, .ask .chip:focus-visible {
+    background: color-mix(in oklab, var(--espresso) 86%, var(--bone)); color: var(--bone);
+    border-color: transparent; }
+  .ask .chip.quiet:hover, .ask .chip.quiet:focus-visible {
+    background: color-mix(in oklab, var(--bone) 88%, var(--espresso)); color: var(--espresso);
+    border-color: transparent; }
+
+  /* ================= 09 THE FOOT =======================================================
+     SS18. A hairline across the top and three columns on the grid: identity, the pages the
+     bar drops at 390, and the manual. No copyright range. */
+  .foot { position: relative; z-index: 3; box-sizing: border-box; background: var(--espresso);
+          color: var(--bone); padding: 0 var(--g) 64px; }
+  .foot .grid { align-items: start; padding-top: 40px;
+                border-top: 1px solid color-mix(in srgb, #F5EFE4 15%, transparent); }
+  .foot .fa { grid-column: 1 / 5; }
+  .foot .fb { grid-column: 6 / 9; }
+  .foot .fc { grid-column: 10 / 13; }
+  .foot .fcol { display: flex; flex-direction: column; align-items: flex-start; }
+  .foot .who { font-family: var(--text); font-weight: 500; font-size: 24px; line-height: 1.2;
+               letter-spacing: -0.01em; color: var(--bone); }
+  .foot .em { font-size: 17px; line-height: 1.5; margin-top: 10px;
+              color: color-mix(in srgb, #F5EFE4 60%, transparent); }
+  .foot .nav { display: flex; flex-direction: column; gap: 12px; }
+  .foot .nav a { font-size: 17px; line-height: 1.2;
+                 color: color-mix(in srgb, #F5EFE4 80%, transparent); }
+  .foot .nav a:hover { color: var(--bone); }
+  .foot .fc .bk { font-size: 17px; line-height: 1.4; color: var(--bone); }
+  .foot .fc .pr { font-size: 17px; line-height: 1.4; margin-top: 6px;
+                  color: color-mix(in srgb, #F5EFE4 60%, transparent); }
+  .foot .fc .chip { margin-top: 20px; }
 
   /* ---- entrances: media (SS16.3-5, "media and the cover rise 10px") ---- */
   [data-rise] { transform: translateY(var(--rise, 0px)); transition: transform 500ms var(--e); }
@@ -680,13 +629,17 @@
      to the cursor, no scroll-jack, no marquee, no parallax on a photograph, and at most
      three keyframe rules -- this file declares ZERO of them (the at-rule's own name is kept
      out of this comment on purpose: a verifier greps the built file for the literal), because
-     every item below is a transition
-     between two DECLARED states.
+     every item below is a transition between two DECLARED states.
        Every rest state here is gated behind `html.js`, which the script adds only when
      scripting is on AND `prefers-reduced-motion` is not `reduce`. So the page with no
      JavaScript, and the page under reduced motion, is the FINISHED frame: opacity 1, no
      transform, no clip. That is the SS16.3 closing rule, enforced by construction rather
-     than by a second stylesheet. */
+     than by a second stylesheet.
+       SS18 changes nothing in this set except its objects: the arrow that slides on hover
+     is now the chip's own inline glyph (there is no bolted square to hold one), the
+     objections' hairline is at the foot of the row rather than its head, and the ask's
+     floating arrow -- item 8's second clause -- is deleted with the object, so the field
+     enters on the headline and the chips. */
 
   /* -- 1. THE MOMENT: the copper word lights when the fingertip arrives ---------------
      ARRIVAL, MEASURED on video/A2-hold-720.mp4 (1280x720, 24fps, 97 frames, 4.0417s).
@@ -718,48 +671,56 @@
      The BORDERS stay declared: they are the measured rule and they are the no-JS rule.
      Under .js their colour goes transparent and a pseudo-element paints the same 1px line
      on the same pixel, scaled from the left. Nothing moves and nothing reflows. */
-  .steps li, .manual .lines p, .q, .card .pblock, .prf, .prfx, .proofsec .ledger { position: relative; }
+  .steps li, .manual .lines p, .q, .card .pblock, .prf, .proofsec .ledger,
+  .manual .brow { position: relative; }
   .steps li::before, .steps li:last-child::after,
   .manual .lines p::before, .manual .lines p:last-child::after,
-  .q::before, .card .pblock::after, .prf::before, .prfx::before,
-  .proofsec .ledger::before {
+  .q::before, .card .pblock::after, .prf::before,
+  .proofsec .ledger::before, .manual .brow::before {
     content: ""; position: absolute; left: 0; right: 0; height: 1px; z-index: 1;
     background: var(--hair); transform-origin: 0 50%; pointer-events: none; }
-  .steps li::before, .manual .lines p::before, .q::before,
-  .proofsec .ledger::before { top: -1px; }
+  .steps li::before, .manual .lines p::before,
+  .proofsec .ledger::before, .manual .brow::before { top: -1px; }
+  /* row 1 sits on the box's own border-top; it has no rule of its own to draw. */
+  .manual .brow:first-child::before { content: none; }
   .steps li:last-child::after, .manual .lines p:last-child::after,
-  .card .pblock::after, .prf::before, .prfx::before { bottom: -1px; }
+  .card .pblock::after, .q::before, .prf::before { bottom: -1px; }
   .card .pblock::after { background: var(--hair-12); }
-  .prf::before, .prfx::before, .proofsec .ledger::before { background: var(--hair-10); }
+  .prf::before, .proofsec .ledger::before { background: var(--hair-10); }
 
   .js .steps li { border-top-color: transparent; }
   .js .steps li:last-child { border-bottom-color: transparent; }
   .js .manual .lines p { border-top-color: transparent; }
   .js .manual .lines p:last-child { border-bottom-color: transparent; }
-  .js .q { border-top-color: transparent; }
+  .js .q { border-bottom-color: transparent; }
+  .js .manual .brow { border-top-color: transparent; }
   .js .card .pblock { border-bottom-color: transparent; }
-  .js .prf, .js .prfx { border-bottom-color: transparent; }
   .js .proofsec .ledger { border-top-color: transparent; }
 
   .js .steps li::before, .js .steps li:last-child::after,
   .js .manual .lines p::before, .js .manual .lines p:last-child::after,
-  .js .q::before, .js .card .pblock::after, .js .prf::before, .js .prfx::before,
-  .js .proofsec .ledger::before { transform: scaleX(0); transition: transform 500ms var(--e); }
+  .js .q::before, .js .card .pblock::after, .js .prf::before,
+  .js .proofsec .ledger::before,
+  .js .manual .brow::before { transform: scaleX(0); transition: transform 500ms var(--e); }
 
   /* 60ms of stagger inside each section, in reading order */
   .js .steps li:nth-child(2)::before, .js .manual .lines p:nth-child(2)::before,
-  .js .q:nth-child(2)::before, .js .cards .card:nth-child(2) .pblock::after,
-  .js .ledger .prf:nth-of-type(1)::before { transition-delay: 60ms; }
+  .js .qs .q:nth-child(2)::before, .js .cards .card:nth-child(2) .pblock::after,
+  .js .ledger .prf:nth-of-type(2)::before { transition-delay: 60ms; }
   .js .steps li:nth-child(3)::before, .js .manual .lines p:nth-child(3)::before,
-  .js .q:nth-child(3)::before, .js .cards .card:nth-child(3) .pblock::after,
-  .js .ledger .prf:nth-of-type(2)::before { transition-delay: 120ms; }
-  .js .steps li:last-child::after, .js .manual .lines p:last-child::after,
-  .js .ledger .prfx::before { transition-delay: 180ms; }
+  .js .qs .q:nth-child(3)::before, .js .cards .card:nth-child(3) .pblock::after,
+  .js .ledger .prf:nth-of-type(3)::before { transition-delay: 120ms; }
+  .js .steps li:last-child::after, .js .manual .lines p:last-child::after {
+    transition-delay: 180ms; }
+  /* the buy ledger is the section's last object, so its two rules come after the three
+     symptom lines: the same 60ms step, continued. */
+  .js .manual .brow:nth-child(2)::before { transition-delay: 300ms; }
+  .js .manual .brow:nth-child(3)::before { transition-delay: 360ms; }
 
   .js #work.in .steps li::before, .js #work.in .steps li:last-child::after,
   .js #manual.in .lines p::before, .js #manual.in .lines p:last-child::after,
   .js #faq.in .q::before, .js #price.in .card .pblock::after,
-  .js #proof.in .prf::before, .js #proof.in .prfx::before,
+  .js #proof.in .prf::before, .js #manual.in .brow::before,
   .js #proof.in .ledger::before { transform: scaleX(1); }
 
   /* -- 5. cards and blocks rise -------------------------------------------------------- */
@@ -771,6 +732,14 @@
   .js .cards .card:nth-child(3), .js .qs .q:nth-child(3) { transition-delay: 140ms; }
   .js .eng { transition-delay: 210ms; }
   .js #price.in .card, .js #price.in .eng, .js #faq.in .q { opacity: 1; transform: none; }
+  /* SS18's two new objects join SS16.3-5 rather than sitting still inside sections that
+     move around them: the buy ledger is a block and rises after the symptom lines it
+     closes, and `See the rest` rises after the three receipt rows it follows. */
+  .js .manual .buyledger, .js .proofsec .out { opacity: 0; transform: translateY(20px);
+      transition: opacity 500ms var(--e), transform 500ms var(--e); }
+  .js .manual .buyledger { transition-delay: 240ms; }
+  .js .proofsec .out { transition-delay: 240ms; }
+  .js #manual.in .buyledger, .js #proof.in .out { opacity: 1; transform: none; }
 
   /* -- 6. the operator square ----------------------------------------------------------
      The film already carries the SS14.2 crop zoom (scale 1.30 about a near-top origin), so
@@ -785,16 +754,11 @@
 
   /* -- 7. hovers, everywhere -----------------------------------------------------------
      The chips' ground already swaps in 300ms. What is added: the arrow slides 6px right in
-     every chip and every ledger row, and the price cards' border turns copper. Nothing
-     here is coupled to the cursor's position -- these are :hover/:focus-visible states. */
-  .chip .a .gl { display: block; transition: transform 200ms var(--e); }
-  .chip:hover .a .gl, .chip:focus-visible .a .gl,
-  a:hover > .chip .a .gl, a:focus-visible > .chip .a .gl,
-  .eng:hover .chip .a .gl, .eng:focus-visible .chip .a .gl,
-  .card:hover .chip .a .gl, .card:focus-within .chip .a .gl { transform: translateX(6px); }
-  .prf .ar, .prfx .ar, .bar .ar { transition: transform 200ms var(--e); }
+     every chip, every pill and every ledger row, and the price cards' border turns copper.
+     Nothing here is coupled to the cursor's position -- these are :hover/:focus-visible
+     states. */
+  .prf .ar, .bar .ar { display: inline-block; transition: transform 200ms var(--e); }
   a.prf:hover .ar, a.prf:focus-visible .ar,
-  a.prfx:hover .ar, a.prfx:focus-visible .ar,
   .bar a:hover .ar, .bar a:focus-visible .ar { transform: translateX(6px); }
   .card { transition: border-color 300ms var(--e); }
   .card:hover, .card:focus-within { border-color: var(--copper); }
@@ -802,54 +766,56 @@
   /* -- 8. the ask ---------------------------------------------------------------------- */
   .js .ask h2 { opacity: 0; transform: translateY(30px);
       transition: opacity 600ms var(--e), transform 600ms var(--e); }
-  .js .ask .ar { opacity: 0; transform: translateX(-30px);
-      transition: opacity 600ms var(--e), transform 600ms var(--e); }
+  .js .ask .promise { opacity: 0; transform: translateY(30px); transition-delay: 60ms;
+      transition-property: opacity, transform; transition-duration: 600ms;
+      transition-timing-function: var(--e); }
   .js .ask .chips { opacity: 0; transform: translateY(30px); transition-delay: 120ms;
       transition-property: opacity, transform; transition-duration: 600ms;
       transition-timing-function: var(--e); }
-  .js #contact.in h2, .js #contact.in .ar, .js #contact.in .chips {
+  .js #contact.in h2, .js #contact.in .promise, .js #contact.in .chips {
       opacity: 1; transform: none; }
 
   /* -- 9. the ground travel and the rail-style lighting are UNCHANGED (SS16.3-9). ----- */
 
-  @media (max-width: 1439px) { .room { padding-bottom: 48px; } }
-
+  /* The `.room { padding-bottom: 48px | 120px }` compensations that used to live here
+     existed only because the out-of-flow copy ran past a fixed 16:9 wrap at those widths.
+     The wrap is content-sized now and carries its own 56px, so they would double the air. */
   @media (max-width: 1279px) {
-    .room { padding-bottom: 120px; }
-    .card .cta .chip .t { font-size: 19px; }
     .opgrid { gap: 32px; }
     .opstage { grid-column: 1 / -1; }
     .opside { grid-column: 1 / -1; }
-    /* SS15.5: the engagements figure gives up 12px so it and "Engagements" stay on one row
-       inside a 1216px content width. MEASURED, not guessed -- see the verifier's own
-       one-row report at 1280. */
-    .eng .v { font-size: 52px; }
-    .eng { column-gap: 28px; row-gap: 22px; padding: 30px 28px; }
-    .prf, .prfx { grid-template-columns: minmax(0, 460px) minmax(0, 1fr) 40px; column-gap: 24px; }
+    /* stacked, the column has no film to answer: the register returns to reading size. */
+    .opside .lead span { font-size: 21px; padding: 28px 0; }
+    .opside .sig q { font-size: 24px; line-height: 1.35; }
+    .eng .pr { font-size: 64px; }
+    /* MEASURED at 900: the foot's third column is 191px on the 12-column grid and the
+       manual chip's own label is 245px, so the chip hung 22px past the viewport -- the
+       page's only horizontal overflow between 360 and 1920. The three foot columns take
+       four columns each below 1280, which is 263px at 900. */
+    .foot .fa { grid-column: 1 / 5; }
+    .foot .fb { grid-column: 5 / 9; }
+    .foot .fc { grid-column: 9 / 13; }
   }
 
   @media (max-width: 1023px) {
-    .card .cta .chip .t { font-size: 17px; }
-    /* MEASURED: between 900 and 1023 the heading and the figure together needed 892 of an
-       856px content width and the block wrapped into an accidental third row. The figure
-       gives up 20px; the block keeps its one row and its 220px. */
-    .eng { column-gap: 24px; row-gap: 20px; padding: 28px 24px; }
-    .eng .v { font-size: 44px; }
-    .prf, .prfx { grid-template-columns: minmax(0, 1fr) 40px; row-gap: 8px; column-gap: 12px;
-           align-items: baseline; padding: 22px 0; }
-    .prf .who { grid-column: 1 / -1; font-size: 24px; }
-    .prfx .who { grid-column: 1; }
-    .prf .cap { grid-column: 1; }
-    .prf .ar, .prfx .ar { grid-column: 2; }
+    .card .chip, .eng .chip { font-size: 17px; padding: 0 14px; }
+    .eng .pr { font-size: 52px; }
+    .prf .who, .prf .cap { font-size: 24px; }
   }
 
   @media (max-width: 899px) {
     :root { --g: 20px; --gap: 16px; --s: 64px; }
-    .bar { height: 48px; opacity: 1; pointer-events: auto; }
-    .bar .hide-s { display: none; }
+    /* SS18: the bar is 52px so the 32px CTA pill keeps 10px of air above and below, and
+       the three middle labels -- `Packages from $500` with them -- are the ones that go.
+       The ask is what earns the persistent strip at this width. */
+    .bar { height: 52px; opacity: 1; pointer-events: auto; }
+    .bar .mid { display: none; }
+    .bar .cta { box-sizing: border-box; justify-self: end; height: 32px; padding: 0 12px;
+                border: 1px solid var(--copper); border-radius: 999px; }
+    .bar .cta .l { font-size: 12px; }
 
-    /* SS14.7, the ONLY permitted mobile composition, and it is now the SAME composition as
-       the desktop: the words are where the finger ends at every width. The stage is the 4:3
+    /* SS14.7, the ONLY permitted mobile composition, and it is the SAME composition as the
+       desktop: the words are where the finger ends at every width. The stage is the 4:3
        crop of the same source; the HEADLINE is overlaid on it; only the sentence, the chips
        and the proof row follow it in flow.
          The crop is object-position 0% 50%, so the visible source window starts at x 0. The
@@ -858,141 +824,89 @@
          x = 372 * (H/1080) = 0.3444444 * H       y = 413 * (H/1080) = 0.3824074 * H
        At 390 that is (100.6, 111.7) of a 390x292 stage -- 25.8% across, the 26% SS14.7
        measures. The window is H * 16/9 source px wide (1442 at 390, 1440 at 360), so the
-       face at source x 1010..1290 stays inside the frame at both. */
-    /* SEND-BACK, v5 verify 3: the stage began at y=0 under an opaque 48px bar, so 16% of
-       a 292px film was hidden and the measured hair silhouette on the first visible row
-       showed the crown of his head was inside the covered band -- he read as cut off flat
-       at the top of the phone. The stage starts BELOW the bar instead. SS14.1's "the bar
-       overlays the stage's top" is written for the desktop stage; nothing in SS14.1/14.7
-       puts the bar over the mobile crop, and the overlay is worth nothing if what it
-       overlays is the subject's head. Everything hung on the stage -- the headline at the
-       fingertip included -- is positioned inside the stage's own box and moves with it. */
-    .room { padding-bottom: 0; padding-top: 48px;
+       face at source x 1010..1290 stays inside the frame at both.
+         The stage starts BELOW the bar: SS14.1's "the bar overlays the stage's top" is
+       written for the desktop stage, and the overlay is worth nothing if what it overlays
+       is the subject's head. */
+    .room { padding-bottom: 0; padding-top: 52px;
             --H: min(75vw, 292px);
             --mfx: calc(0.3444444 * var(--H));
             --mfy: calc(0.3824074 * var(--H)); }
-    /* the stage returns to the flow; the headline is taken OUT of it and hung on the
-       stagewrap, which is the stage's own box while the copy block is static. */
-    .stagewrap { aspect-ratio: auto; }
+    /* the stage is in flow here and the copy follows it on the espresso, so there is no
+       crop and nothing to close: the veil's own last stop already takes the 4:3 film to
+       solid at its foot. */
+    .stagewrap::after { display: none; }
     .stage { position: relative; inset: auto; width: 100%; aspect-ratio: 4 / 3;
              max-height: 292px; }
     .stage video { object-position: 0% 50%; }
-    /* the veil is NOT overridden here any more: the desktop ramp is written in the stage's
-       own percentages plus --rowfoot, and --rowfoot is a function of --d, so the same
-       gradient goes solid on the copper row's ink at 292px exactly as it does at 810, holds
-       across that row's own box, and reopens under it. */
-    /* SS16.2 at <=899, the same rule: the COPPER row's ink-top is 4px under the tip and
-       `I build the` is the row above it. The stage already starts BELOW the 48px bar (the
-       .room's own padding-top), and the block is hung inside the stage's box, so row 1
-       clears the bar by construction -- MEASURED at 390 and 360 by the verifier. */
     /* ROUND 10: 40px was SS14.7's number, written when the glyph at the tip was the "I"
        of `I build the`. SS16.2 makes it the "g" of the COPPER row, and 40px at the 52px
-       floor is 0.77em -- past the g's own ink, which ends 17.5px into the row at the
-       phone's width axis, so the tip pointed at the "o". The offset becomes 0.42 x --d
-       (21.8px): the largest one that still lands the tip on the g's ink, because every
-       px of offset is a px the row loses to the width ladder below. In the FILM's own
-       scale that is one hand's width exactly as 48px is at 1440 -- the mobile crop runs
-       at 0.270 source px per screen px against the desktop stage's 0.750. */
+       floor is 0.77em -- past the g's own ink. The offset is 0.42 x --d (21.8px): the
+       largest one that still lands the tip on the g's ink. In the FILM's own scale that is
+       one hand's width exactly as 48px is at 1440. */
     .hero-copy h1 { position: absolute; z-index: 2; margin: 0;
                     left: calc(var(--mfx) - 0.42 * var(--d)); right: 12px;
                     top: calc(var(--mfy) + 4px - 0.92 * var(--d)
                               - var(--xk) * var(--d)); }
-    /* round 9: the top padding is spent. SS14.7 puts the sentence UNDER the stage at
-       <=899 and the stage's own box is pinned (a full-width 4:3 crop, 390x292, which is
-       what puts the fingertip at 25.8% of the stage width), so the only air between the
-       stage's foot and the sentence that this composition owns is this padding -- 12px of
-       it, now zero. SEND-BACK, round 10: the rest of what read as air on the phone was the
-       veil's solid tail INSIDE the stage -- a ~150px band of dead black between the
-       headline's foot and `Strategy and software`, which the verifier read as a hole rather
-       than as air. It is gone: the veil now reopens under the copper row's box at every
-       width, so the table, the arm and the room come back under the words. */
-    .hero-copy { position: static; left: auto; right: auto; top: auto;
-                 padding: 0 var(--g) 56px; }
+    .hero-copy { position: static; margin: 0; padding: 0 var(--g) 56px; }
     .hero-copy .lede { margin-bottom: 24px; }
-    .hero-copy .base-row { flex-direction: column; align-items: stretch; gap: 24px; }
 
-    /* SS14.2 at <=899: the film is a full-width square, the heading is over its lower
-       third, the paragraphs are under it. */
+    /* SS14.2 at <=899: the film is a full-width 4:5 portrait, the heading over its lower
+       third at the film's own left edge, the paragraphs under it. */
     .opgrid { display: block; }
-    /* SS14.2 names a FULL-WIDTH square at <=899 (390 -> 390x390). It was 350x350, inset by
-       the page gutter, which is a framed picture -- the one thing SS14.2 rules out. The
-       section's own gutter is pulled back off this one block. */
     .opstage { width: auto; margin-left: calc(-1 * var(--g)); margin-right: calc(-1 * var(--g)); }
-    /* CORRECTED after verify round 3. Bottom-anchored, the heading's cap-top landed at 76%
-       of the square -- 6% BELOW the 70% line where SS14.2 takes the veil solid, so there
-       was a band of flat black between the last film pixel and the type and it read as a
-       caption. It is anchored by the TOP instead, at the lower-third line itself, where the
-       veil is .84 and the graded film is still live behind the first row. The type keeps
-       the page gutter; the film does not. */
+    .opfilm { border-radius: 0; }
     .opover { left: var(--g); right: var(--g); }
-    /* the square is full-bleed here, so there is no inset to borrow back. */
-    .opover h2.two { margin-right: 0; }
-    .opover p { display: none; }
-    .opside .m-first { display: block; }
-    /* the square's own black tail under the heading IS the air between the film and the
-       paragraphs; a second 28px margin on top of it opened a hole. */
-    .opside { margin-top: 4px; gap: 20px; }
+    .opside { margin-top: 28px; gap: 20px; }
     .opside p { font-size: 17px; line-height: 1.45; }
+    .opside .first { font-size: 19px; }
     .opside .lead span { font-size: 18px; line-height: 1.45; padding: 18px 0; }
-    /* the phone column runs a 20px flex gap, so the quote's own margin carries the rest
-       of the same 40px. */
     .opside .sig { margin-top: 20px; }
 
     /* SS15.4: the ledger stacks. Each row keeps its hairline; the ordinal and the step name
        take the full width and the sentence follows them. */
-    /* round 9: the phone override is GONE. The head keeps the section-head width axis
-       (115) here too and wraps inside the content box; the nbsp unit round the separator
-       is what holds the middot rule, at 390 exactly as at 1440. */
     .steps li { grid-template-columns: minmax(0, 1fr); padding: 28px 0; row-gap: 8px; }
     .steps .n, .steps .nm, .steps .s { grid-column: 1 / 2; }
+    .steps .nm { padding-right: 0; }
     .steps .s { font-size: 19px; }
 
-    /* SS15.5: the cards KEEP their ground at every width -- a bordered box is the thing the
-       operator asked for, and the v4 left-rule variant existed only because the borderless
-       row hung into the gutter. They simply stack. */
+    /* SS18: the cards keep their ground and their one chip; they simply stack. */
+    .lanes { grid-template-columns: minmax(0, 1fr); }
+    .qs { margin-left: 0; }
+    .faq .fhead .sec { margin-bottom: 28px; }
     .cards { grid-template-columns: minmax(0, 1fr); gap: 20px; margin: 0; }
     .card { padding: 22px; }
-    .card.mark { padding-top: 21px; }
     .card .pr { font-size: 52px; }
-    .card .cta .chip .t { font-size: 19px; }
-    .hero-copy { min-height: 0; }
-    /* SS15.5: the top tier stacks into two rows and keeps its height and its rule. */
-    /* one column: the two halves stack, each keeping its own two rows. */
-    .eng { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto;
-           row-gap: 22px; padding: 26px 20px; }
-    .eng .side { grid-column: 1; row-gap: 22px; }
-    .eng .side.l-side { grid-row: 1 / 3; }
-    /* round 9: the chip takes the block's whole interior on the phone. justify-items:start
-       shrink-wrapped it to 192px of a 310px interior, so the top tier's one tap target sat
-       narrower than the package cards' chips under it. It stretches instead. */
-    .eng .side.r { grid-column: 1; grid-row: 3 / 5; justify-items: stretch; text-align: left; }
-    .eng .chip { width: 100%; }
-    .eng .chip .t { flex: 1; }
-    /* MEASURED: nowrap at 52px, "From $5K a month" is 404px against a 310px column at 390
-       and 280px at 360 -- it was the whole page's horizontal overflow. It is sized to fit
-       one line at 360 (273px at 40px / wdth 88) and the nowrap comes off as the net. */
-    .eng .v { font-size: 40px; font-variation-settings: "wdth" 88; white-space: normal; }
-    .eng .hd { font-variation-settings: "wdth" 106; }
+    .card .cta .chip, .eng .chip { width: 100%; }
+    .eng { grid-template-columns: minmax(0, 1fr); row-gap: 0; padding: 22px; }
+    .eng .pr { font-size: 44px; font-variation-settings: "wdth" 88; white-space: normal; }
+    .eng .cta { margin-top: 28px; }
 
-    /* SS15.3: the three objections stack, 40px apart. */
-    .qs { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-    .manual .copy, .manual .art { grid-column: 1 / -1; }
+    /* SS18 at <=899: the receipts stack the caption under the name and keep the arrow on
+       the name's own line. */
+    .prf { grid-template-columns: minmax(0, 1fr) 32px; height: auto; padding: 20px 0;
+           align-items: start; row-gap: 6px; }
+    .prf .who { grid-column: 1; font-size: 22px; padding-right: 0; }
+    .prf .cap { grid-column: 1; font-size: 17px; padding-right: 0; }
+    .prf .ar { grid-column: 2; grid-row: 1; align-self: start; }
+
+    .q { padding: 24px 0; }
+    .q dt { font-size: 22px; }
+    .manual .art, .manual .copy { grid-column: 1; }
+    .manual .art { width: 100%; }
     .manual .copy { margin-top: 40px; }
-    .manual .buy .v { font-size: 52px; }
-    .ask { min-height: 0; padding: 88px var(--g); }
-    .ask .block { gap: 40px; }
+    .manual .lede2 { font-size: 24px; }
+    .manual .brow .lb { font-size: 17px; }
+    .ask { padding: 88px var(--g); }
+    .ask .block { grid-template-columns: minmax(0, 1fr); }
+    .ask .promise { grid-column: 1; grid-row: 2; justify-self: start; text-align: left;
+                    margin-top: 32px; font-size: 17px; }
+    .ask .chips { grid-row: 3; margin-top: 32px; }
     .ask .d { font-size: 64px; }
-    .ask .ar { font-size: 0.42em; margin-left: 11px; }
-    .ask .chip { height: 48px; }
-    .foot .row { flex-direction: column; }
+    .foot .fa, .foot .fb, .foot .fc { grid-column: 1 / -1; }
+    .foot .fb, .foot .fc { margin-top: 32px; }
   }
 
-  /* SS15.2 send-back (verify round 8): at 390 the manual's file line stayed a two-column
-     row, so BOTH halves wrapped -- 'THE-80-PERCENT- / WALL.PDF' beside 'PDF + ZIP . EVERY
-     FUTURE / EDITION' -- four ragged fragments and a hyphen break under an otherwise clean
-     full-width cover. Under 700px the caption row stacks: two whole lines, left-aligned on
-     the cover's own left edge, neither of them wrapping. Measured: 173px and 240px of a
-     326px column at 390. Above 700px each half has >=310px and the spread row is right. */
   @media (max-width: 699px) {
     .manual .art figcaption { flex-direction: column; align-items: flex-start; gap: 6px; }
   }
@@ -1000,19 +914,15 @@
   @media (max-width: 599px) {
     .room .chips { flex-direction: column; align-items: stretch; gap: 12px; }
     .room .chips .chip { width: 100%; }
-    .room .chips .chip .t { flex: 1; }
+    .ask .chips { flex-direction: column; align-items: stretch; gap: 12px; }
+    .ask .chips .chip { width: 100%; }
   }
 
   /* THE WIDTH LADDER: --d is pinned at its 52px floor below 554px, so the width axis is the
-     only lever left on 'go-to-market.'. Measured, not guessed -- and re-measured for SS14.7,
-     which moves the headline's left edge off the gutter and onto the fingertip.
-       RE-MEASURED AGAIN, round 10: the phone's hand's-width offset went from 40px to
-     0.42 x --d (21.8px at the 52px floor) so the tip lands on the "g" instead of past it,
-     which hands the row 18.2px BACK at 390 -- but the ladder was cut against the old edge,
-     so every breakpoint moves. Each one is the viewport width at which
-     'go-to-market.' at 52px stops fitting (measured in Chromium, string width per axis
-     value, against (viewport - 12px right inset) - (0.3444444 x stage height - 0.42 x --d)
-     with 0.5px of slack). 390 lands on 94 and 360 on 90. */
+     only lever left on 'go-to-market.'. Measured, not guessed. Each breakpoint is the
+     viewport width at which 'go-to-market.' at 52px stops fitting (measured in Chromium,
+     string width per axis value, against (viewport - 12px right inset) - (0.3444444 x stage
+     height - 0.42 x --d) with 0.5px of slack). 390 lands on 94 and 360 on 90. */
   @media (max-width: 530px) { :root { --dw: 120; } }
   @media (max-width: 507px) { :root { --dw: 115; } }
   @media (max-width: 484px) { :root { --dw: 110; } }
@@ -1043,19 +953,21 @@
        finished frame here; what remains is to kill the transitions that are NOT gated --
        the ground travel, the bar, the hover wipes and the hover slides -- and to pin the
        hover transforms so nothing moves on a pointer either. */
-    .sheet, body, .bar, .prf::after, .prfx::after, .prfx .who, [data-rise],
-    .chip .t, .chip .a, .chip .a .gl, .prf .ar, .prfx .ar, .bar .ar, .card,
+    .sheet, body, .bar, .prf::after, [data-rise],
+    .chip, .chip .gl, .pill, .pill .gl, .prf .ar, .bar .ar, .card,
     .sec h2, .card .pblock::after, .steps li::before, .manual .lines p::before,
-    .q::before, .prf::before, .prfx::before, .proofsec .ledger::before,
-    .opfilm video, .opover .r, .ask h2, .ask .ar, .ask .chips,
+    .q::before, .prf::before, .proofsec .ledger::before, .manual .brow .ar .gl,
+    .manual .brow::before, .manual .buyledger, .proofsec .out,
+    .opfilm video, .opover .r, .ask h2, .ask .promise, .ask .chips,
     #h1 .cu, #h1 .r1 { transition: none !important; }
-    [data-rise], .chip .a .gl, .prf .ar, .prfx .ar, .bar .ar,
-    .ask h2, .ask .ar, .ask .chips, .opover .r, #h1 .r1 { transform: none !important; }
-    .chip:hover .a .gl, a.prf:hover .ar, a.prfx:hover .ar, .bar a:hover .ar {
-      transform: none !important; }
+    [data-rise], .chip .gl, .pill .gl, .prf .ar, .bar .ar, .manual .brow .ar .gl,
+    .manual .buyledger, .proofsec .out,
+    .ask h2, .ask .promise, .ask .chips, .opover .r, #h1 .r1 { transform: none !important; }
+    .chip:hover .gl, .pill:hover .gl, a.prf:hover .ar, .bar a:hover .ar,
+    a.brow:hover .ar .gl { transform: none !important; }
     .sec h2 { clip-path: none !important; }
-    #h1 .cu, .ask h2, .ask .ar, .ask .chips, .card, .eng, .q, .opover .r {
-      opacity: 1 !important; }
+    #h1 .cu, .ask h2, .ask .promise, .ask .chips, .card, .eng, .q, .opover .r,
+    .manual .buyledger, .proofsec .out { opacity: 1 !important; }
   }
 </style>
 
@@ -1069,10 +981,12 @@
 
 <nav class="bar" id="bar" aria-label="Site">
   <a class="l now" href="#room">Micah Jones</a>
-  <a class="l hide-s" href="#proof">Record</a>
-  <a class="l hide-s" href="#manual">Playbook</a>
-  <a class="l" href="#price">Packages from $500</a>
-  <a class="l hide-s" href="https://www.micahjonesconsulting.com/call?from=mock-bar">Name the problem <span class="ar">&#8594;</span></a>
+  <div class="mid">
+    <a class="l" href="#proof">Record</a>
+    <a class="l" href="#manual">Playbook</a>
+    <a class="l" href="#price">Packages from $500</a>
+  </div>
+  <a class="cta" href="https://www.micahjonesconsulting.com/call?from=mock-bar"><span class="l now">Name the problem <span class="ar">&#8594;</span></span></a>
 </nav>
 
 <div class="page" id="page">
@@ -1092,23 +1006,21 @@
       <div class="hero-copy" id="herocopy">
         <h1 class="d" id="h1"><span class="r r1"><span class="bl" style="display:inline-block;width:0;height:0;vertical-align:baseline"></span>I build the</span><span class="r cu">go-to-market.</span></h1>
         <p class="lede">Strategy and software, shipped by the same pair of hands. I find the gap between what you built and what buyers actually pay for.</p>
-        <div class="base-row">
-          <div class="chips" id="herochips">
-            <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-room"><span class="t">Name the problem</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
-            <a class="chip quiet" href="#price"><span class="t">See the packages</span></a>
-          </div>
-          <!-- Operator ruling 2026-09-06: no per-company caption in the hero.
-               ONE line, the freight template's own sentence, verbatim:
-               the-receipts.template.html:292. -->
-          <div class="proof" id="heroproof">
-            <span class="l now">Four exits, $5B+ combined.</span>
-          </div>
+        <div class="chips" id="herochips">
+          <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-room">Name the problem<span class="gl" aria-hidden="true">&#8594;</span></a>
+          <a class="chip quiet" href="#price">See the packages</a>
+        </div>
+        <!-- Operator ruling 2026-09-06: no per-company caption in the hero. ONE line, the
+             freight template's own sentence, verbatim: the-receipts.template.html:292.
+             SS18 moves it under the chips, onto the headline's own left edge. -->
+        <div class="proof" id="heroproof">
+          <span class="l">Four exits, $5B+ combined.</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- 02 operator, not consultant: clip B as a square stage, the heading OVER its lower third -->
+  <!-- 02 operator, not consultant: clip B as a 4:5 portrait, the heading OVER its lower third -->
   <section class="op wrap" id="operator" aria-label="Operator, not consultant">
     <div class="opgrid">
       <div class="opstage" id="opstage" data-anim="0.85" data-rise="10">
@@ -1121,11 +1033,10 @@
         </div>
         <div class="opover" id="opover">
           <h2 class="d two" id="oph2"><span class="r">Operator,</span><span class="r">not consultant.</span></h2>
-          <p>Most consultants don&#8217;t ship. Most builders don&#8217;t sell. I do both, on the same engagement, for the same fee.</p>
         </div>
       </div>
       <div class="opside">
-        <p class="m-first">Most consultants don&#8217;t ship. Most builders don&#8217;t sell. I do both, on the same engagement, for the same fee.</p>
+        <p class="first">Most consultants don&#8217;t ship. Most builders don&#8217;t sell. I do both, on the same engagement, for the same fee.</p>
         <p class="lead"><span>I joined Postmates, SurveyMonkey, Guardicore (Akamai) and Neuton.AI early.</span> <span>I built Ordani solo with Claude Code and Cursor: HIPAA-compliant, active paying users, in beta.</span> <span>I am taking new engagements now.</span></p>
         <div class="sig">
           <q>Micah does the work that most strategy decks promise and never deliver.</q>
@@ -1140,12 +1051,10 @@
   <!-- 03 how I work -->
   <section class="work wrap" id="work" data-anim="0.9" aria-label="How I work">
     <div class="sec">
-      <!-- SS14.4 pins this string. Round 9 puts the head back on the section-head width
-           axis (115), which means it wraps. The separator is tied to the word on BOTH
-           sides, so "principles&#183;How" is one unbreakable unit: the only breakable
-           spaces left are the one after "Operating" and the one after "How", and the
-           middot can neither end a line nor open one at any width. -->
-      <h2 class="d two" data-anim="0.85">Operating principles&nbsp;&#183;&nbsp;How I work.</h2>
+      <!-- SS18: the eyebrow and the head are the two halves of the template's own string.
+           The middot that glued them, and the nowrap unit that carried it, are gone. -->
+      <div class="eyebrow"><span class="l">Operating principles</span></div>
+      <h2 class="d two" data-anim="0.85">How I work.</h2>
     </div>
     <ol class="steps">
       <li>
@@ -1166,7 +1075,7 @@
     </ol>
   </section>
 
-  <!-- 04 packages: three cards, then one bar -->
+  <!-- 04 packages and engagements: one card system -->
   <section class="price wrap" id="price" data-anim="0.9" aria-label="Packages">
     <div class="sec">
       <div class="eyebrow"><span class="l">Fixed.</span></div>
@@ -1174,43 +1083,41 @@
     </div>
     <div class="cards" id="cards">
       <div class="card">
-        <span class="nm">The Unstick Session</span>
+        <div class="nmrow"><span class="nm">The Unstick Session</span></div>
         <div class="pblock"><span class="pr">$500</span></div>
         <p class="one">Ninety minutes live on your stuck build.</p>
-        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Unstick Session</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a></div>
+        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price">Buy the Unstick Session<span class="gl" aria-hidden="true">&#8594;</span></a></div>
       </div>
       <div class="card mark">
-        <span class="nm">The Audit</span>
-        <div class="pblock"><span class="pr">$2,500</span><span class="l">Start here</span></div>
+        <div class="nmrow"><span class="nm">The Audit</span><span class="mini">Start here</span></div>
+        <div class="pblock"><span class="pr">$2,500</span></div>
         <p class="one">I go through it top to bottom and hand you the written audit.</p>
-        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Audit</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a></div>
+        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price">Buy the Audit<span class="gl" aria-hidden="true">&#8594;</span></a></div>
       </div>
       <div class="card">
-        <span class="nm">The Sprint</span>
+        <div class="nmrow"><span class="nm">The Sprint</span></div>
         <div class="pblock"><span class="pr">$7,500</span></div>
         <p class="one">One week on one outcome, shipped.</p>
-        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price"><span class="t">Buy the Sprint</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a></div>
+        <div class="cta"><a class="chip" href="https://www.micahjonesconsulting.com/packages?from=mock-price">Buy the Sprint<span class="gl" aria-hidden="true">&#8594;</span></a></div>
       </div>
     </div>
-    <!-- SS15.5: the top tier. ONE <a>, no link inside it, the same 2px copper rule the
-         Audit carries. "Engagements" and the descriptor are the two halves of the freight
-         template's own line, split at its separator; nothing is composed. -->
+    <!-- SS18: the fourth object in the SAME system. One <a>, no link inside it.
+         "Engagements" and the descriptor are the two halves of the freight template's own
+         line, split at its separator; nothing is composed. -->
     <a class="eng" id="ebar" href="https://www.micahjonesconsulting.com/call?from=mock-engagements">
-      <span class="side l-side">
-        <span class="d two hd">Engagements</span>
-        <span class="dsc">advisory, project, retainer, or embedded.</span>
+      <span class="eside">
+        <span class="nm">Engagements</span>
+        <span class="pblock"><span class="pr">From $5K a month</span></span>
+        <span class="one">advisory, project, retainer, or embedded.</span>
       </span>
-      <span class="side r">
-        <span class="v">From $5K a month</span>
-        <span class="chip"><span class="t">Name the problem</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></span>
-      </span>
+      <span class="cta"><span class="chip">Name the problem<span class="gl" aria-hidden="true">&#8594;</span></span></span>
     </a>
   </section>
 
-  <!-- 05 the record: the index -->
+  <!-- 05 the record: three rows and a way out -->
   <section class="proofsec wrap" id="proof" data-anim="0.9" aria-label="The record">
     <div class="sec">
-      <div class="eyebrow"><span class="l">Record</span></div>
+      <div class="eyebrow"><span class="l">Record</span><span class="l">07</span></div>
       <h2 class="d two" data-anim="0.85">The receipts. Every line below is real.</h2>
     </div>
     <div class="ledger">
@@ -1224,51 +1131,60 @@
       <div class="cap">Millions in contracts won &#183; close rate doubled</div>
       <span class="ar" aria-hidden="true">&#8594;</span>
     </a>
-    <!-- SS15.6: the one operator-supplied string on the page, in his own words, registered
-         as such in both copy gates. -->
-    <a class="prfx" href="https://www.micahjonesconsulting.com/work?from=mock-proof">
-      <div class="who">See the rest</div>
+    <a class="prf" href="https://www.micahjonesconsulting.com/work/content-engine?from=mock-proof">
+      <div class="who">AI content engine for an industry author</div>
+      <div class="cap">Eight platforms carried the work.</div>
       <span class="ar" aria-hidden="true">&#8594;</span>
     </a>
     </div>
+    <!-- SS15.6/SS18: the one operator-supplied string on the page, in his own words. It is
+         a control now, not a fourth receipt. -->
+    <div class="out"><a class="pill l now" href="https://www.micahjonesconsulting.com/work?from=mock-proof">See the rest<span class="gl" aria-hidden="true">&#8594;</span></a></div>
   </section>
 
-  <!-- 06 the manual (SS15.2) -->
+  <!-- 06 the manual -->
   <section class="manual wrap" id="manual" data-anim="0.9" aria-label="The field manual">
-    <div class="grid">
+    <div class="lanes">
       <figure class="art">
-        <div class="frame" data-rise="10"><span class="cov"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover"></span></div>
-        <figcaption><span class="l meta">the-80-percent-wall.pdf</span><span class="l meta">PDF + ZIP &#183; every future edition</span></figcaption>
+        <span class="cov" data-rise="10"><img src="{{IMG_cover}}" alt="The 80% Wall, book cover"></span>
+        <figcaption><span class="l meta">the-80-percent-wall.pdf</span></figcaption>
       </figure>
       <div class="copy">
         <div class="sec">
           <div class="eyebrow"><span class="l">The 80% Wall</span></div>
-          <h2 class="d two" data-anim="0.85">The AI handed you the code. Now ship the company.</h2>
+          <h2 class="d two" data-anim="0.85">The 80% Wall.</h2>
         </div>
+        <p class="lede2">The AI handed you the code. Now ship the company.</p>
         <div class="lines">
           <p>It shipped. Nobody came.</p>
           <p>The demo looked done. Production turned out to be a different machine entirely.</p>
           <p>You kept running into the same thing. Fixed Tuesday, broken Friday, because the tool forgot.</p>
         </div>
         <p class="body">Ten chapters on what the AI leaves to you: the first ten users, auth, deploys, payments, compliance. Every chapter ends in a pre-flight card you run the same night.</p>
-        <div class="buy">
-          <div class="v">$99<span class="l">at launch</span></div>
-          <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="t">Get chapter one free</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
+        <div class="buyledger">
+          <a class="brow" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="lb">Get chapter one free</span><span class="vl"></span><span class="ar" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
+          <a class="brow pricerow" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="lb">$99</span><span class="vl l">at launch</span><span class="ar" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
+          <a class="brow" href="https://www.micahjonesconsulting.com/playbook?from=mock-manual"><span class="lb">PDF + ZIP &#183; every future edition</span><span class="vl"></span><span class="ar" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 07 the FAQ -->
+  <!-- 07 the objections -->
   <section class="faq wrap" id="faq" data-anim="0.9" aria-label="The objections">
-    <div class="sec">
-      <h2 class="d two" data-anim="0.85">The objections, in your words.</h2>
+    <div class="fwrap">
+      <div class="fhead">
+        <div class="sec">
+          <div class="eyebrow"><span class="l">Objections</span></div>
+          <h2 class="d two" data-anim="0.85"><span class="r">The objections,</span><span class="rowend"><span class="r">in your words.</span><span class="l count">03</span></span></h2>
+        </div>
+      </div>
+      <dl class="qs">
+        <div class="q"><span class="qa" aria-hidden="true">&#8594;</span><dt>Is this for me, if I vibe-coded it?</dt><dd>You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.</dd></div>
+        <div class="q"><span class="qa" aria-hidden="true">&#8594;</span><dt>What if it does not help?</dt><dd>Thirty days, full refund, no questions asked. Reply to the delivery email and I refund it.</dd></div>
+        <div class="q"><span class="qa" aria-hidden="true">&#8594;</span><dt>Hiring for a company rather than a build?</dt><dd>The engagements start at $5K a month. Tell me the problem and I will scope it.</dd></div>
+      </dl>
     </div>
-    <dl class="qs">
-      <div class="q"><dt>Is this for me, if I vibe-coded it?</dt><dd>You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.</dd></div>
-      <div class="q"><dt>What if it does not help?</dt><dd>Thirty days, full refund, no questions asked. Reply to the delivery email and I refund it.</dd></div>
-      <div class="q"><dt>Hiring for a company rather than a build?</dt><dd>The engagements start at $5K a month. Tell me the problem and I will scope it.</dd></div>
-    </dl>
   </section>
 
 </div>
@@ -1276,20 +1192,35 @@
 <!-- 08 the ask -->
 <section class="ask wrap" id="contact" data-anim="0.9" aria-label="Name the problem">
   <div class="block">
-    <h2 class="d"><a id="asklink" href="https://www.micahjonesconsulting.com/call?from=mock-ask">Name the problem.<span class="ar" aria-hidden="true">&#8594;</span></a></h2>
+    <h2 class="d"><a id="asklink" href="https://www.micahjonesconsulting.com/call?from=mock-ask">Name the problem.</a></h2>
+    <p class="promise">I read every message and reply inside one business day.</p>
     <div class="chips">
-      <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-ask"><span class="t">Book a free intro call</span><span class="a" aria-hidden="true"><span class="gl">&#8594;</span></span></a>
-      <a class="chip quiet" href="https://www.micahjonesconsulting.com/packages?from=mock-ask"><span class="t">See the packages</span></a>
+      <a class="chip" href="https://www.micahjonesconsulting.com/call?from=mock-ask">Book a free intro call<span class="gl" aria-hidden="true">&#8594;</span></a>
+      <a class="chip quiet" href="https://www.micahjonesconsulting.com/packages?from=mock-ask">See the packages</a>
     </div>
   </div>
 </section>
 
 <!-- 09 the foot -->
 <footer class="foot">
-  <div class="row">
-    <a class="l now" href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a>
-    <span class="l">I read every message and reply inside one business day.</span>
-    <span class="l">Micah Jones</span>
+  <div class="grid">
+    <div class="fcol fa">
+      <span class="who">Micah Jones</span>
+      <a class="em" href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a>
+    </div>
+    <div class="fcol fb">
+      <nav class="nav" aria-label="Pages">
+        <a href="#proof">Record</a>
+        <a href="#manual">Playbook</a>
+        <a href="#price">Packages from $500</a>
+        <a href="https://www.micahjonesconsulting.com/call?from=mock-foot">Name the problem</a>
+      </nav>
+    </div>
+    <div class="fcol fc">
+      <span class="bk">The 80% Wall</span>
+      <span class="pr"><span class="v">$99</span> <span class="u">at launch</span></span>
+      <a class="chip" href="https://www.micahjonesconsulting.com/playbook?from=mock-foot">Get chapter one free<span class="gl" aria-hidden="true">&#8594;</span></a>
+    </div>
   </div>
 </footer>
 
@@ -1349,8 +1280,7 @@
       if (!bar) return;
       var edge = bar.getBoundingClientRect().height || 40;
       /* SS16.3-2: the bar slides down and fades in AT THE SEAM, and "never again" --
-         so `on` is only ever added. It used to be toggled, which re-ran the entrance
-         every time the hero's chips passed the bar's edge going back up. */
+         so `on` is only ever added. */
       if (reduce || window.innerWidth <= 899) {
         bar.classList.add('on');
       } else if (chips) {
@@ -1418,11 +1348,7 @@
     /* SS15.1. Operator, twice: "i see no vids". Autoplay of a muted inline clip is allowed
        by policy, but a data-URI <video> can still be refused or deferred by a client, and
        the FIRST user gesture is the one moment a refusal can be undone. So: one handler,
-       four gesture kinds, passive and `once`, which plays the hero unless it has already
-       ended (clip A runs forward once and holds -- restarting a held clip would be the one
-       motion nobody asked for) and the operator clip only when it is >= 35% visible, which
-       is the same threshold the observer uses. Autoplay is untouched; this is the second
-       key to the same lock. */
+       four gesture kinds, passive and `once`. */
     var kicked = false;
     function kick() {
       if (kicked || reduce) return;
@@ -1437,9 +1363,7 @@
     /* SS16.3-1, the wiring. `timeupdate` is the trigger the brief names; `seeked` is
        the same test applied to a seek (which is how the verifier drives the clip), and
        `ended` plus the load-time check are the "already past it" case. The two fallback
-       timers exist because the rest state of this page is its FINISHED state: if a client
-       refuses to play a data-URI clip at all, the word still has to light and the row
-       still has to stand up. */
+       timers exist because the rest state of this page is its FINISHED state. */
     if (!reduce && filmVid) {
       var atTime = function () {
         if (filmVid.currentTime > 0) raiseRow();
