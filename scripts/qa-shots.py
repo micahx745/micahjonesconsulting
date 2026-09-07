@@ -3,13 +3,17 @@
 # PASS-101 PHASE 3 verification (brief §5.2, §5.6).
 #
 # Full-page screenshots of every restyled route at 390x844 and 1440x900 into
-# .planning/qa/pass-101/, plus two measured checks reported to stdout:
+# .planning/qa/pass-101/, plus four measured checks reported to stdout:
 #
-#   1. FONTS  — the computed font-family of every element on the page must not
-#      name JetBrains or Bricolage (brief §5 item 6). Reported per route.
-#   2. MOTION — with html.rl-js set, every [data-rl] element must have reached
-#      .rl-in by the time the page has been scrolled to its foot, i.e. the
-#      finished frame is actually reachable and nothing is stranded invisible.
+#   1. FONTS   — no element on the page may compute a font-family naming
+#      JetBrains or Bricolage (brief §5 item 6).
+#   2. MOTION  — with html.rl-js set, every [data-rl] element must have reached
+#      .rl-in by the time the page has been walked to its foot, i.e. the
+#      finished frame is reachable and nothing is stranded invisible.
+#   3. OVERFLOW — document scrollWidth must equal clientWidth. The page body
+#      never scrolls sideways.
+#   4. REDUCED MOTION — the same page under prefers-reduced-motion: reduce must
+#      carry NO html.rl-js, so no pre-state is ever matched.
 #
 # Usage: python scripts/qa-shots.py [base_url]
 import asyncio
@@ -31,63 +35,60 @@ ROUTES = [
 ]
 SIZES = [("390", 390, 844), ("1440", 1440, 900)]
 
-FONT_PROBE = """() => {
+WALK = """async () => {
+  const step = window.innerHeight * 0.8;
+  for (let y = 0; y < document.body.scrollHeight; y += step) {
+    window.scrollTo(0, y);
+    await new Promise((r) => setTimeout(r, 80));
+  }
+  window.scrollTo(0, 0);
+  await new Promise((r) => setTimeout(r, 500));
+}"""
+
+PROBE = """() => {
   const bad = [];
   for (const el of document.querySelectorAll('*')) {
     const f = getComputedStyle(el).fontFamily || '';
-    if (/JetBrains|Bricolage/i.test(f)) bad.push(el.tagName + '.' + el.className + ' :: ' + f);
+    if (/JetBrains|Bricolage/i.test(f)) bad.push(el.tagName + '.' + String(el.className).slice(0, 40));
   }
-  return bad.slice(0, 8);
-}"""
-
-MOTION_PROBE = """() => {
-  const all = [...document.querySelectorAll('#rl-root [data-rl]')];
-  const stranded = all.filter(el => !el.classList.contains('rl-in'));
+  const all = [...document.querySelectorAll('[data-rl]')];
   return {
-    js: document.documentElement.classList.contains('rl-js'),
-    total: all.length,
-    stranded: stranded.length,
+    badFonts: bad.slice(0, 6),
+    rlJs: document.documentElement.classList.contains('rl-js'),
+    animated: all.length,
+    stranded: all.filter((el) => !el.classList.contains('rl-in')).length,
     barIn: !!document.getElementById('rl-bar')?.classList.contains('rl-in'),
+    scrollWidth: document.documentElement.scrollWidth,
+    clientWidth: document.documentElement.clientWidth,
   };
 }"""
-
-OVERFLOW_PROBE = """() => ({
-  scrollWidth: document.documentElement.scrollWidth,
-  clientWidth: document.documentElement.clientWidth,
-})"""
 
 
 async def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    report = {}
+    report: dict[str, object] = {}
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         for label, w, h in SIZES:
             page = await browser.new_page(viewport={"width": w, "height": h})
             for name, route in ROUTES:
                 await page.goto(BASE + route, wait_until="networkidle")
-                # walk the page so every IntersectionObserver target fires
-                await page.evaluate(
-                    "async () => {"
-                    "  const step = window.innerHeight * 0.8;"
-                    "  for (let y = 0; y < document.body.scrollHeight; y += step) {"
-                    "    window.scrollTo(0, y);"
-                    "    await new Promise(r => setTimeout(r, 90));"
-                    "  }"
-                    "  window.scrollTo(0, 0);"
-                    "  await new Promise(r => setTimeout(r, 400));"
-                    "}"
-                )
-                key = f"{name}@{label}"
-                report[key] = {
-                    "fonts": await page.evaluate(FONT_PROBE),
-                    "motion": await page.evaluate(MOTION_PROBE),
-                    "overflow": await page.evaluate(OVERFLOW_PROBE),
-                }
+                await page.evaluate(WALK)
+                report[f"{name}@{label}"] = await page.evaluate(PROBE)
                 await page.screenshot(
                     path=str(OUT / f"{name}-{label}.png"), full_page=True
                 )
             await page.close()
+
+        # 4. the reduced-motion pass: one width, every route, no screenshots.
+        rm = await browser.new_context(
+            viewport={"width": 1440, "height": 900}, reduced_motion="reduce"
+        )
+        page = await rm.new_page()
+        for name, route in ROUTES:
+            await page.goto(BASE + route, wait_until="networkidle")
+            report[f"{name}@reduced"] = await page.evaluate(PROBE)
+        await rm.close()
         await browser.close()
     print(json.dumps(report, indent=2))
 

@@ -51,7 +51,15 @@
   --ink: var(--color-rl-espresso);
   --ink-80: color-mix(in oklab, var(--color-rl-espresso) 80%, transparent);
   --ink-72: color-mix(in oklab, var(--color-rl-espresso) 72%, transparent);
-  --ink-60: color-mix(in oklab, var(--color-rl-espresso) 60%, transparent);
+  /* THE QUIET INK IS NOT 60% ON THIS HALF. §2 sets the label style at "ink at
+   * 60%", and that figure was measured on the DARK half, where bone at 60%
+   * over espresso composites to about 7:1. On the LIGHT half the same 60%
+   * composites (in oklab, which is lighter than an sRGB blend at the same
+   * stop) to #787571 — axe measured 4.0:1 against bone at 14px, under the
+   * 4.5:1 bar, on every form label, register key and diff label on the site.
+   * 74% is the stop that clears it while staying visibly quieter than full
+   * ink. The dark-half sections below keep 60%, where it measures fine. */
+  --ink-60: color-mix(in oklab, var(--color-rl-espresso) 74%, transparent);
   --hair: color-mix(in oklab, var(--color-rl-espresso) 15%, transparent);
   --hair-12: color-mix(in oklab, var(--color-rl-espresso) 12%, transparent);
   --hair-10: color-mix(in oklab, var(--color-rl-espresso) 10%, transparent);
@@ -93,6 +101,15 @@
 #rl-root a {
   color: inherit;
   text-decoration: none;
+}
+/* ...EXCEPT the skip link, which sets its own pair. globals.css gives it
+ * --color-foyer-paper on --color-accent-copper-deep (5.4:1, the Phase 10 axe
+ * fix), and `#rl-root a` at (1,0,1) was out-specifying that `color` and
+ * inheriting espresso instead — 3.0:1 on the copper ground, and the ONE
+ * serious axe finding this pass introduced. Measured, then fixed here rather
+ * than by weakening the inherit rule the rest of the system depends on. */
+#rl-root a.skip-to-content {
+  color: var(--color-rl-bone);
 }
 #rl-root a:focus-visible,
 #rl-root button:focus-visible,
@@ -391,7 +408,10 @@ button:focus-visible .rl-ar {
   height: 100%;
 }
 .rl-bar .rl-l {
-  color: color-mix(in oklab, var(--color-rl-espresso) 60%, transparent);
+  /* 74%, not 60%, for the reason measured on --ink-60 above: this is 14px
+   * text on bone and 60% is 4.0:1. The dark variant below keeps 60% because
+   * bone at 60% on espresso measures about 7:1. */
+  color: color-mix(in oklab, var(--color-rl-espresso) 74%, transparent);
   white-space: nowrap;
   transition: color 200ms var(--e);
 }
@@ -1685,7 +1705,10 @@ html.rl-js [data-rl="media"].rl-in {
 }
 .rl-toc .tag em {
   font-style: normal;
-  color: var(--color-rl-copper);
+  /* "· free, below" is 14px text, where copper is 3.85:1 on bone and fails.
+   * Pitfall B1's deep copper (5.4:1) is the body-text emphasis colour, and
+   * axe measured this one too. */
+  color: var(--accent-copper-deep);
 }
 .rl-toc .page {
   justify-self: end;
@@ -1829,6 +1852,23 @@ html.rl-js [data-rl="media"].rl-in {
   border-top-width: 2px;
   padding-top: 19px;
 }
+/* The "before" column is quieter than the "after" one, and in Color Worlds
+ * that was done with opacity: 0.68 on the block, compounding with an
+ * opacity: 0.7 on the note inside it. axe measured the result at 2.35:1 and
+ * 2.22:1 against bone — two serious findings on /playbook at both widths.
+ *
+ * The system says quiet in INK, not in layer opacity, precisely so a value
+ * can be measured instead of multiplied. Both opacities go to 1 and the
+ * quietness moves onto the ink ramp. */
+#rl-root .cw-diff__col--before {
+  opacity: 1;
+}
+#rl-root .cw-diff__col--before .cw-diff__quote {
+  color: var(--ink-80);
+}
+#rl-root .cw-diff__note {
+  opacity: 1;
+}
 #rl-root .cw-diff__eyebrow,
 #rl-root .cw-diff__lbl {
   font-family: var(--font-rl-display);
@@ -1838,6 +1878,13 @@ html.rl-js [data-rl="media"].rl-in {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--ink-60);
+  /* the third compounding opacity in this component (0.72 on the label, on
+   * top of the column's own). Measured at 3.9:1 against bone even after the
+   * ink ramp was corrected. Quiet is carried by --ink-60 alone. */
+  opacity: 1;
+}
+#rl-root .cw-diff__col--after .cw-diff__lbl {
+  color: var(--accent-copper-deep);
 }
 #rl-root .cw-diff__quote {
   font-family: var(--font-rl-text);
@@ -1851,7 +1898,7 @@ html.rl-js [data-rl="media"].rl-in {
 #rl-root .cw-diff__cap {
   font-size: 17px;
   line-height: 1.5;
-  color: var(--ink-72);
+  color: var(--ink-80);
 }
 
 /* PlaybookSignupForm: the same hairline field and square chip the booking

@@ -38,6 +38,14 @@ export function WallChart() {
         width="340"
         height="168"
         role="img"
+        // PASS-101 PHASE 3, a11y. role="img" needs an accessible NAME, and
+        // this svg had only a DESCRIPTION: aria-describedby points at the
+        // <desc>, and the figure's aria-labelledby names the FIGURE, not the
+        // image inside it. axe reported svg-img-alt as serious on /playbook at
+        // both widths. The caption it already carries is the name, so the svg
+        // now points at the same id the figure does. Nothing about the drawing,
+        // its timing or its gates changed.
+        aria-labelledby="wallchart-cap"
         aria-describedby="wallchart-desc"
         focusable="false"
       >
