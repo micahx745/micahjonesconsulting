@@ -134,7 +134,12 @@ export default function PackagesPage() {
           <div className="rl-eyebrow">
             <span className="rl-l">Packages</span>
           </div>
-          <h1 id="rl-packages-title" className="rl-d" data-rl="head">
+          {/* PASS-101 polish: `two` (--d2), not the poster --d. §14.4 reserves
+              --d for the hero and the ask; every SECTION head is --d2, and a
+              page head is a section head. At --d this ran THREE lines at 1440
+              (905 / 1364 / 434px) and the third line was a 434px stub under a
+              1364px one. Measured after: two lines, no stub. */}
+          <h1 id="rl-packages-title" className="rl-d two" data-rl="head">
             Three fixed prices. Start this week.
           </h1>
         </div>

@@ -75,7 +75,10 @@ export default async function WorkIndexPage() {
         <div className="rl-eyebrow">
           <span className="rl-l">Record</span>
         </div>
-        <h1 id="rl-work-title" className="rl-d" data-rl="head">
+        {/* PASS-101 polish: --d2, not the poster --d (§14.4 — --d is the hero
+            and the ask). At --d this head wrapped to three lines at 1440
+            (1038 / 1249 / 502px), the last one a stub. */}
+        <h1 id="rl-work-title" className="rl-d two" data-rl="head">
           The receipts. Every line below is real.
         </h1>
       </div>

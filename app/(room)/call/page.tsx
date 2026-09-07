@@ -56,7 +56,9 @@ export default function BookPage() {
         <div className="rl-eyebrow">
           <span className="rl-l">The intro call</span>
         </div>
-        <h1 id="rl-book-title" className="rl-d" data-rl="head">
+        {/* PASS-101 polish: --d2, not the poster --d (§14.4). At --d this head
+            wrapped to three lines at 1440 (1183 / 737 / 678px). */}
+        <h1 id="rl-book-title" className="rl-d two" data-rl="head">
           Thirty minutes. Bring the problem.
         </h1>
       </div>
