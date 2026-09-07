@@ -1,0 +1,319 @@
+{
+ "checks": [
+  {
+   "id": "14.1-stage-16x9",
+   "pass": true,
+   "evidence": "1440: stage 1440.0x810.0 (16:9 wants 810.0), width==innerWidth(1440), object-fit=cover, object-position=50% 50%, source 1280x720 -> 1:1 mapping"
+  },
+  {
+   "id": "16.2-fingertip-to-g",
+   "pass": true,
+   "evidence": "tip -> nearest point of the \"g\" glyph box, the glyph LEFT of the tip, and the copper row's cap-top 4px UNDER the tip: 1280: tip (248, 275), g box [200 279 287 389], dx 0.0 dy 4.0, euclid 4.0px (<=60), g left of tip=True, cap-top +4.0px off the tip; 1440: tip (279, 310), g box [231 314 329 438], dx 0.0 dy 4.0, euclid 4.0px (<=60), g left of tip=True, cap-top +4.0px off the tip; 1920: tip (372, 413), g box [324 417 422 542], dx 0.0 dy 4.0, euclid 4.0px (<=60), g left of tip=True, cap-top +4.0px off the tip"
+  },
+  {
+   "id": "14.7-copper-row-inside-stage",
+   "pass": true,
+   "evidence": "'go-to-market.' right end vs the stage's right edge (SS14.7 wants >=32px): 1280: row ends 1202, stage ends 1280, 78px inside, 1 client rect; 1440: row ends 1358, stage ends 1440, 82px inside, 1 client rect; 1920: row ends 1456, stage ends 1920, 464px inside, 1 client rect"
+  },
+  {
+   "id": "14.7-sentence-and-chips-share-the-left-edge",
+   "pass": true,
+   "evidence": "1280: g at 200, sentence at 200, chips at 200, proof row ends 1248 (stage ends 1280, gutter 32); 1440: g at 231, sentence at 231, chips at 231, proof row ends 1408 (stage ends 1440, gutter 32); 1920: g at 324, sentence at 324, chips at 324, proof row ends 1888 (stage ends 1920, gutter 32)"
+  },
+  {
+   "id": "16.2-hero-lighting",
+   "pass": true,
+   "evidence": "SS16.2: the bone row is over the film on the veiled wall, the copper row is on the veil's solid ground. bone row min 4.86:1 (>=4.5); the copper row's ground from its cap-top (= fingertip_y + 4px, the stop SS16.2 pins) down is FLAT espresso -- brightest channel 15 of 255 (#0D0D0F is 15) -- carrying copper at 4.40:1, which is the brief's own measured copper-on-espresso figure | f0(t=0.00s) bone 4.86 | copper ground 4.40, brightest channel 15; f48(t=2.00s) bone 5.01 | copper ground 4.40, brightest channel 15; f96(t=3.99s) bone 4.94 | copper ground 4.40, brightest channel 15"
+  },
+  {
+   "id": "14.1-hero-clearance",
+   "pass": true,
+   "evidence": "hero block foot -> operator top: 1440: +40px clear (block runs -40px past the stage's foot), 1280: +88px clear (block runs -40px past the stage's foot), 1024: +160px clear (block runs -40px past the stage's foot), 900: +140px clear (block runs -20px past the stage's foot)"
+  },
+  {
+   "id": "16.2-veil-cut",
+   "pass": true,
+   "evidence": "1440, the veil measured directly (the film replaced by flat white, so alpha = (255 - pixel) / 242): 0.570 at fingertip_y - 12px (SS16.2 pins .55), 1.000 at fingertip_y + 4px (SS16.2 pins solid), 0.550 at the bone row's own box top (what carries that row at >=4.5:1), 0.550 40px above the tip, 1.000 40px below"
+  },
+  {
+   "id": "16.2-fingertip-emerges",
+   "pass": true,
+   "evidence": "1440, hold frame: inside the 18px of ramp still lit above the tip, the finger reads a median 20% darker than the wall on the same row (>=15%, the scale-free form of SS14.1's old 25-of-145 step), peaking at a 17-level absolute step; per-row (wall, finger, rel): [(91, 91, 0.0), (91, 91, 0.0), (77, 66, 0.14), (62, 50, 0.19), (48, 32, 0.32), (33, 20, 0.4)]. Below fingertip_y + 4px the veil is solid by SS16.2's own ruling, so the hand is in the dark there BY DESIGN and only the tip is lit."
+  },
+  {
+   "id": "14.2-op-square",
+   "pass": true,
+   "evidence": "square stage 782.7x782.7; heading top 702.3 is inside the lower third (starts 705.8) and its foot 891.6 is inside the film (966.7); overlay position=absolute"
+  },
+  {
+   "id": "14.2-op-columns",
+   "pass": true,
+   "evidence": "first paragraph 901.6..949.2 sits under the heading (891.6) and on the film (foot 966.7); right column top 184.0 vs film top 184.0 (top-aligned); section line present=True"
+  },
+  {
+   "id": "14.2-op-contrast",
+   "pass": true,
+   "evidence": "heading min 7.73:1 over the film (>=4.5) | f0(t=0.00s) 7.73; f48(t=2.00s) 7.85; f96(t=4.00s) 7.73"
+  },
+  {
+   "id": "14.7-op-heading-d2-wdth106",
+   "pass": true,
+   "evidence": "heading font-size 102.87 == --d2 102.87 at \"wdth\" 106; rows [('Operator,', 470.3, 534.3, 1), ('not consultant.', 720.3, 784.3, 1)] -- each one client rect, each ending inside the square (right edge 814.7)"
+  },
+  {
+   "id": "14.7-op-veil-62-82",
+   "pass": true,
+   "evidence": "the operator veil reaches .6 at 62.0% (SS14.7 wants 62) and solid at 82.0% (wants 82); every stop: [(0.0, 0.0), (0.0, 30.0), (0.1, 40.0), (0.26, 48.0), (0.45, 56.0), (0.6, 62.0), (0.68, 68.0), (0.74, 73.0), (0.8, 77.0), (0.92, 80.0), (1.0, 82.0), (1.0, 100.0)]"
+  },
+  {
+   "id": "14.7-op-rows-auto-height",
+   "pass": true,
+   "evidence": "the right column's three register rows take their own height: [84.9, 109.9, 55.4] (flex-grow/basis ['0/auto', '0/auto', '0/auto'] -- 0/auto is auto height; 1/0px was the stretched thirds SS14.7 removed)"
+  },
+  {
+   "id": "14.4-heads",
+   "pass": true,
+   "evidence": "--d2=102.9; 5 section heads all at --d2 [102.9, 102.9, 102.9, 102.9, 102.9]; index names [28, 28, 28]; FAQ q [24, 24, 24] / a [17, 17, 17]; captions [19, 19, 19]; section air [120, 120, 120, 120, 120]; hero --d=135.4, ask --d=135.4 (only these two)"
+  },
+  {
+   "id": "14.7-faq-full-stop",
+   "pass": true,
+   "evidence": "the FAQ head reads 'The objections, in your words.'"
+  },
+  {
+   "id": "14.7-captions-initial-capital",
+   "pass": true,
+   "evidence": "3 index captions, every one opening on a capital: ['Millions in revenue \u00b7 acqu', 'Millions in contracts won ', 'Videos, blogs, newsletters']"
+  },
+  {
+   "id": "15.4-work-head-one-axis-middot-interior",
+   "pass": true,
+   "evidence": "every section head on one width axis: {\"work\": \"\\\"wdth\\\" 115\", \"price\": \"\\\"wdth\\\" 115\", \"proof\": \"\\\"wdth\\\" 115\", \"manual\": \"\\\"wdth\\\" 115\", \"faq\": \"\\\"wdth\\\" 115\"} (round 9 wants wdth 115 on all five, the head free to wrap). Rows, glyph-grouped: 1920: 1 row(s) [('Operatingprinciples\u00b7HowIwork.', \"opens 'O' ends '.'\")]; 1440: 2 row(s) [('Operating', \"opens 'O' ends 'g'\"), ('principles\u00b7HowIwork.', \"opens 'p' ends '.'\")]; 1280: 2 row(s) [('Operating', \"opens 'O' ends 'g'\"), ('principles\u00b7HowIwork.', \"opens 'p' ends '.'\")]; 900: 2 row(s) [('Operating', \"opens 'O' ends 'g'\"), ('principles\u00b7HowIwork.', \"opens 'p' ends '.'\")]; 390: 3 row(s) [('Operating', \"opens 'O' ends 'g'\"), ('principles\u00b7How', \"opens 'p' ends 'w'\"), ('Iwork.', \"opens 'I' ends '.'\")]; 360: 3 row(s) [('Operating', \"opens 'O' ends 'g'\"), ('principles\u00b7How', \"opens 'p' ends 'w'\"), ('Iwork.', \"opens 'I' ends '.'\")]"
+  },
+  {
+   "id": "15.5-cards",
+   "pass": true,
+   "evidence": "1440: widths [442.7, 442.7, 442.7] (each wants (content - 48)/3 = 442.7 of a 1376 content); the row sits IN the content width (x 32.0 == the 32px gutter, width 1376.0); borders ['1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)'] -- 1px at 15% ink, which computes oklab(0.159987 0.00115423 -0.00401844 / 0.15); radius {'8px'}; padding ['28px', '27px 28px 28px', '28px']; name [24, 24, 24] at ['\"Hanken Grotesk\"', '\"Hanken Grotesk\"', '\"Hanken Grotesk\"'] / weight ['500', '500', '500']; price [72, 72, 72]; the chip is the full card interior [384.7, 384.7, 384.7] vs [384.7, 384.7, 384.7]; CTA tops spread 0.00px"
+  },
+  {
+   "id": "15.5-audit-top-rule",
+   "pass": true,
+   "evidence": "the Audit's four borders are ['2px rgb(200, 84, 43)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)'] -- a 2px copper rule on the TOP edge and the hairline on the other three, which is the rank SS15.5 asks for and not the full copper box of v4; the other two cards read ['1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)'] and ['1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)', '1px oklab(0.159987 0.00115423 -0.00401844 / 0.15)']"
+  },
+  {
+   "id": "14.7-chip-labels-are-the-live-buttons",
+   "pass": true,
+   "evidence": "the three card chips read ['Buy the Unstick Session', 'Buy the Audit', 'Buy the Sprint']; app/(foyer)/packages/page.tsx renders ['Buy the Unstick Session', 'Buy the Audit', 'Buy the Sprint'] (BuyButton appends the arrow, which the chip carries as its own glyph); each label fits its chip without clipping: [True, True, True]"
+  },
+  {
+   "id": "15.5-engagements",
+   "pass": true,
+   "evidence": "one <A> with 0 links inside it -> /call; 239px tall (>=220), 1376.0px wide == the cards row 1376.0, 24.0px below it; radius 16px; top border 2px rgb(200, 84, 43) and nothing on the other three (['0px', '0px', '0px']); ground rgb(13, 13, 15); 'Engagements' at 102.9 == --d2 102.9 on the LEFT (x 68 of a midline 720) with the descriptor at 21px; the figure at 64px and the chip 'Name the problem\u2192' on the RIGHT; every word run >= 16.97:1 and the one aria-hidden 24px arrow at 3.86:1 (SS11: copper's ceiling is 4.41 on espresso and 3.85 on bone, so large text takes the 3:1 bar). Runs: [('Engagements', 16.97, 102.874, False), ('advisory, project, retainer, or em', 16.97, 21, False), ('From $5K a month', 16.97, 64, False), ('Name the problem', 16.97, 14, False), ('\u2192', 3.86, 24, True)]"
+  },
+  {
+   "id": "15.3-objections-three-columns",
+   "pass": true,
+   "evidence": "1440: three columns on ONE row (tops [4393, 4393, 4393]) at [442.66, 442.67, 442.66] -- each (content - 48)/3 = 442.67 of a 1376 content, equal within 0.01px; hairline tops {'1px solid'}; questions [24, 24, 24] / answers [17, 17, 17]; column gap 24px"
+  },
+  {
+   "id": "15.2-manual",
+   "pass": true,
+   "evidence": "the cover DECODES in Chromium: naturalWidth 576 x 814, complete=True; the dashed frame (1px dashed) fills cols 1-5 -- 559.3 wide against the measured column span 559.3 -- at 4:5 (559.3 x 699.2 = 0.8000) with the cover filling its content box (525.3 of 525.3, object-fit cover); the copy holds cols 6-12 (792.7 vs 792.6) to the RIGHT of it; display line 102.9 == --d2 102.9; three symptom rows at [21, 21, 21] on {'1px solid'} hairlines (the last closing on a 1px rule); the buy figure '$99at launch' at 64px with the chip 'Get chapter one free\u2192' at 44px"
+  },
+  {
+   "id": "11-bar-over-ask",
+   "pass": true,
+   "evidence": "with the copper field under it the bar paints rgb(13, 13, 15) (dark=True); worst label contrast 6.44:1 (>=4.5). Not copper, not bone."
+  },
+  {
+   "id": "15.4-work-ledger",
+   "pass": true,
+   "evidence": "#work now holds 0 .panel, 0 <svg>, 0 <img>, 0 <video> and 0 sticky/fixed elements [] -- SS15.4 wants zero of each. Three full-width rows ([1376, 1376, 1376] of a 1376 content): ordinals ['01', '02', '03'] in the label style (['Anybody', 'Anybody', 'Anybody'] at [14, 14, 14], {'uppercase'}), the step names ['Diagnose', 'Build', 'Position'] at [102.9, 102.9, 102.9] == --d2 102.9, and each sentence at [21, 21, 21] on a [45.98, 45.98, 45.98] measure ({'540.96px'} = 46ch) starting at x [764, 764, 764] against the section's midline 720 (the right half); hairlines {'1px solid'}, the ledger closing on a 1px rule"
+  },
+  {
+   "id": "15.6-receipts-consolidated",
+   "pass": true,
+   "evidence": "exactly 3 .prf rows (SS17: three) -- ['Guardicore', 'RFP engine for an industry author', 'AI content engine for an industry author'] -- each a link carrying an arrow (True), names at [28, 28, 28] and captions at [19, 19, 19], zero captions ending in a full stop (tails ['nue \u00b7 acquired by Akamai', 'won \u00b7 close rate doubled', 'd fewer hours to produce']); then ONE row-shaped link 'See the rest' + '\u2192' to /work, sharing the rows' geometry ({'h': 84, 'rule': '1px solid', 'x': 32, 'w': 1376} vs {'h': 89, 'rule': '1px solid', 'x': 32, 'w': 1376}). The head is unchanged: 'The receipts. Every line below is real.'"
+  },
+  {
+   "id": "hero-rows-1440",
+   "pass": true,
+   "evidence": "'I build the' 750px in 1177px, 1 client rect; 'go-to-market.' 1127px in 1177px, 1 client rect"
+  },
+  {
+   "id": "media",
+   "pass": true,
+   "evidence": "[{\"id\": \"filmvid\", \"muted\": true, \"loop\": false, \"preload\": \"auto\", \"playsinline\": true, \"poster\": true, \"srcs\": 2, \"rs\": 4, \"types\": [\"video/webm\", \"video/mp4\"], \"urls\": [\"/video/a2-hold-720.webm\", \"/video/a2-hold-720.mp4\"]}, {\"id\": \"opvid\", \"muted\": true, \"loop\": true, \"preload\": \"auto\", \"playsinline\": true, \"poster\": true, \"srcs\": 2, \"rs\": 4, \"types\": [\"video/webm\", \"video/mp4\"], \"urls\": [\"/video/b-loop-720.webm\", \"/video/b-loop-720.mp4\"]}]"
+  },
+  {
+   "id": "14.8-renders-with-javascript-off",
+   "pass": true,
+   "evidence": "scripting DISABLED: the 16:9 stage is 1440x810 and the headline block starts at (231, 181) against the CSS-only fingertip (279, 310) -- 48px to its left and the copper row's cap-top at 313.7, +4.0px off the tip, from :root's measured percentages and nothing else; 2 headline rows, 3 cards, 3 ledger rows, 3 objection columns, 3 receipts (SS17: three) + 1 'see the rest' link, the engagements block 239px tall, the cover frame 559px wide, and the bar visible=True (the <noscript> rule opens it)"
+  },
+  {
+   "id": "15.1-gesture-plays-both",
+   "pass": true,
+   "evidence": "preload ['auto', 'auto'] on both; both clips paused by hand first (hero paused=True, operator paused=True, hero ended=False, operator square 100% visible -- past the 35% gate); after ONE synthetic wheel event the hero is playing (paused=False, t=1.21s) and the operator clip is playing (paused=False, t=3.73s)"
+  },
+  {
+   "id": "discipline",
+   "pass": true,
+   "evidence": "the Room and Ledger set declares 0 @keyframes and runs 0 animations inside .rl-home -- every item is a transition between two declared states. gsap=undefined, mix-blend-mode elements=0, banned faces=[], Anybody loaded=True. Site-wide the shared stylesheet still declares 9 (theater-ambient-drift, fade-out, fade-in, cw-hero-line-up, cw-pulse, wc-wipe, wc-climb, wc-stamp, wc-fade): legacy Color Worlds + WallChart, owned by the routes Pass-101 phase 3 ports, none of them reachable from this page. SS16.3's site-wide ceiling of 3 is met when those routes are ported."
+  },
+  {
+   "id": "14.3-proof-row",
+   "pass": true,
+   "evidence": "reads 'Four exits, $5B+ combined.'; nodes ['Four exits, $5B+ combined.'] (both verified substrings of the freight template)"
+  },
+  {
+   "id": "16.2-hero-mobile",
+   "pass": true,
+   "evidence": "390: stage 390x292 cropped 0% 50%; fingertip (100.6, 159.7) = 25.79% across (SS14.7 wants ~26) and 38.24% down; \"g\" box left edge 60.6, 14.0px from the tip (<=60, g left=True); rows [('I build the', 203.0, '126px gutter', 1), ('go-to-market.', 306.8, '23px gutter', 1)]; visible source window 0..1442 (the face at 1010..1290 is inside); headline box 113..208 inside the stage 48..340; the sentence starts 340, the stage ends 340; bar opacity 1, 48px tall, and the stage opens at y 48 CLEAR of it || 360: stage 360x270 cropped 0% 50%; fingertip (93.0, 151.2) = 25.83% across (SS14.7 wants ~26) and 38.24% down; \"g\" box left edge 53.0, 15.6px from the tip (<=60, g left=True); rows [('I build the', 190.5, '117px gutter', 1), ('go-to-market.', 288.1, '19px gutter', 1)]; visible source window 0..1440 (the face at 1010..1290 is inside); headline box 104..200 inside the stage 48..318; the sentence starts 318, the stage ends 318; bar opacity 1, 48px tall, and the stage opens at y 48 CLEAR of it"
+  },
+  {
+   "id": "no-hscroll-390-360",
+   "pass": true,
+   "evidence": "390: scrollWidth 390 <= innerWidth 390; 360: scrollWidth 360 <= innerWidth 360"
+  },
+  {
+   "id": "16.2-hero-lighting-390",
+   "pass": true,
+   "evidence": "390, the SS16.2 cut at the other end of the ladder: bone row min 4.86:1 (>=4.5); the copper row's ground from its cap-top down is flat espresso (brightest channel 15) at 4.40:1 | f0(t=0.00s) bone 4.86 | copper ground 4.40, brightest channel 15; f48(t=2.00s) bone 5.01 | copper ground 4.40, brightest channel 15; f96(t=3.99s) bone 4.94 | copper ground 4.40, brightest channel 15"
+  },
+  {
+   "id": "14.2-op-mobile-overlay",
+   "pass": true,
+   "evidence": "390: film 390x390 is the FULL width (390) and square; heading cap row starts 66.4% of the square and ends 85.0%, 32px inside its right edge; live film under the veil at the cap row reads +61 levels off the solid espresso (>=12, or the type is a caption under a photograph)"
+  },
+  {
+   "id": "15.5-cards-mobile",
+   "pass": true,
+   "evidence": "390: the three cards stack (tops [2253, 2586, 2919]) at the full 326px content width [326, 326, 326], keeping their 8px ground {'8px'}; the Audit's borders are ['2px rgb(200, 84, 43)', '1px oklab(0.953792 0.00204816 0.0158697 / 0.15)', '1px oklab(0.953792 0.00204816 0.0158697 / 0.15)', '1px oklab(0.953792 0.00204816 0.0158697 / 0.15)'] -- the SAME 2px copper TOP rule as the desktop, no box, no bleed (row margin 0px, x [32, 32, 32], right [358, 358, 358] of a 390px viewport); the engagements block stacks into 4 rows on 1 left edge(s), 299px tall and 326px wide; section air 64px"
+  },
+  {
+   "id": "15.3-objections-mobile",
+   "pass": true,
+   "evidence": "390: the three objections stack (tops [5954, 6190, 6373]) at the full 326px width [326, 326, 326], on [40, 40] gaps (SS15.3 wants 40)"
+  },
+  {
+   "id": "15.2-manual-mobile",
+   "pass": true,
+   "evidence": "390: the cover comes FIRST (its top 4431, the copy's 4960) at the full 326px width"
+  },
+  {
+   "id": "15.2-fileline-mobile",
+   "pass": true,
+   "evidence": "390: the manual's file line is column with 2 rows sharing 1 left edge(s), and each label occupies [1, 1] client rect(s) -- 1 each means neither wraps"
+  },
+  {
+   "id": "16.2-arrival",
+   "pass": true,
+   "evidence": "A2-hold-720.mp4 1280x720, 40 frames at 0.1s: the leftmost hand pixel settles at x=247; the FIRST frame within 6px of that is t=2.50s, and the page's own trigger constant is ARRIVAL=2.54. (SS16.3 estimated ~3.4s; the clip measures 2.50s -- the measurement is what ships.) Trace, 2.0s..3.0s: [(2.0, 481), (2.1, 481), (2.2, 475), (2.3, 417), (2.4, 365), (2.5, 249), (2.6, 243), (2.7, 243), (2.8, 243), (2.9, 242), (3.0, 243)]"
+  },
+  {
+   "id": "16.3-1-the-moment",
+   "pass": true,
+   "evidence": "with the clip paused at t=1.00s the copper row computes opacity 0.28 (rest state .28) and at t=3.04s (arrival + 0.5s) it computes 1, over a 0.26s fill; 'I build the' rests at translateY 24.0px over 0.6s and settles at 0.0px"
+  },
+  {
+   "id": "16.3-2-bar",
+   "pass": true,
+   "evidence": "the bar rests at translateY -12.0px and arrives at 0.0px over 0.24s, 0.24s (opacity and transform together); `on` is only ever ADDED by the script, so the entrance cannot run twice"
+  },
+  {
+   "id": "16.3-3-heads",
+   "pass": true,
+   "evidence": "5 section heads; each rests clipped from the left (inset(-30.8621px 100% -30.8621px 0px)) and settles open (inset(-30.8621px 0px)) over {'0.7s'}. The vertical inset is -0.3em in BOTH states: the .d.two line box is shorter than the font's em box and a literal inset(0) shears descenders"
+  },
+  {
+   "id": "16.3-4-hairlines",
+   "pass": true,
+   "evidence": "19 ledger rules -- the three how-I-work rows and the ledger's closing rule, the three manual symptoms and theirs, the three objection tops, the three card price rules, the THREE receipts (SS17), the way-out row and the ledger's opening rule -- all rest at scaleX {0.0} and settle at scaleX {1.0} over {'0.5s'}, staggered ['0s', '0.06s', '0.12s'] inside a section"
+  },
+  {
+   "id": "16.3-5-rises",
+   "pass": true,
+   "evidence": "three price cards rest at translateY [20, 20, 20] / opacity ['0', '0', '0'] on delays ['0s', '0.07s', '0.14s'] and settle at [0, 0, 0] / ['1', '1', '1']; the Engagements block rests at 20px on a 0.21s delay (after them); the three objection columns rest at [20, 20, 20] on ['0s', '0.07s', '0.14s']; the cover rests at 10px and settles at 0px"
+  },
+  {
+   "id": "16.3-6-operator",
+   "pass": true,
+   "evidence": "the square's film rests at scale 1.377 and settles to 1.300 over 1.2s (the SS14.2 crop zoom is 1.30, so the SS16.3 1.06 settle is applied on it: 1.30 x 1.06 = 1.378); the two heading rows rest at translateY [20, 20] on delays ['0s', '0.08s']"
+  },
+  {
+   "id": "16.3-7-hovers",
+   "pass": true,
+   "evidence": "on hover the chip's arrow slides to translateX 6.0px and a receipt row's arrow to 6.0px, both over 0.2s / 0.2s; the price card's border computes rgb(200, 84, 43) (copper) over 300ms. The chips' 300ms ground swap is unchanged and the receipts' copper wipe is untouched."
+  },
+  {
+   "id": "16.3-8-ask",
+   "pass": true,
+   "evidence": "the copper field's headline rests at translateY 30px / opacity 0 and the arrow at translateX -30px, both over 0.6s; the chips follow on a 0.12s delay and settle at opacity 1"
+  },
+  {
+   "id": "16.3-9-ground-unchanged",
+   "pass": true,
+   "evidence": "--p reads 0.0000 at the top of the room and 1.0000 over the ledger with html.lit=True; the sheet still travels over 0.7s. Nothing in SS16.3 touched it."
+  },
+  {
+   "id": "16.3-keyframes",
+   "pass": true,
+   "evidence": "zero @keyframes animations run anywhere inside .rl-home (SS16.3: every item in the set is a transition between two declared states, so none is needed). The shared stylesheet declares 9 for the routes phase 3 has yet to port; none is reachable from this page."
+  },
+  {
+   "id": "16.3-reduced-motion-off",
+   "pass": true,
+   "evidence": "under prefers-reduced-motion: reduce the script never adds html.js (js=False), so every SS16.3 rest state is absent: 16 transforms all identity (hover included), 14 opacities all 1, 5 clip-paths all `none`, and every remaining transition duration is 0s ({'0s'})"
+  },
+  {
+   "id": "16.3-no-js-finished-frame",
+   "pass": true,
+   "evidence": "with the `js` class off .rl-home and the <noscript> stylesheet unwrapped, js reads False and nothing declares a rest state: 15 transforms identity, 14 opacities 1 (the copper word included, at 1), 5 clip-paths `none`, 15 ledger rules at scaleX 1, the operator film at its plain 1.30 crop, and the bar at opacity 1"
+  },
+  {
+   "id": "16.3-no-js-render",
+   "pass": true,
+   "evidence": "the REAL java_script_enabled=False render at 1440: 1133 copper pixels sampled across the `go-to-market.` row (the word is at full strength with no script to light it) and the bar paints its espresso band on 180 of 180 sampled columns"
+  },
+  {
+   "id": "14.3-copy-gate",
+   "pass": true,
+   "evidence": "79 distinct text nodes, 0 misses ; provenance {\"verbatim\": 68, \"bar label\": 7, \"SS14.3 rewrite + SS14.7 initial capital\": 2, \"SS15.6 operator-supplied\": 1, \"verbatim + SS14.7 terminal full stop\": 1} (sources: freight template + content/work frontmatter + app/(foyer)/packages/page.tsx; exempt: the five bar labels). The two SS14.7 shape changes, in full: [[\"Millions in contracts won \\u00b7 close rate doubled\", \"SS14.3 rewrite + SS14.7 initial capital\"], [\"Millions in revenue \\u00b7 acquired by Akamai\", \"SS14.3 rewrite + SS14.7 initial capital\"], [\"The objections, in your words.\", \"verbatim + SS14.7 terminal full stop\"]]"
+  },
+  {
+   "id": "14.3-two-rewrites",
+   "pass": true,
+   "evidence": "the gate enumerates exactly 2 rewrites and both are used: '$14M in revenue' -> 'millions in revenue'; '$3M in contracts won' -> 'millions in contracts won' -- as rendered, with SS14.7's initial capital: ['Millions in contracts won \u00b7 close rate doubled', 'Millions in revenue \u00b7 acquired by Akamai']"
+  },
+  {
+   "id": "14.3-no-years",
+   "pass": true,
+   "evidence": "zero years in the rendered text"
+  },
+  {
+   "id": "14.3-no-figures",
+   "pass": true,
+   "evidence": "zero digit-bearing tokens outside the allow-list (prices ['$500', '$2,500', '$7,500', '$99', '$5K', '$5B+']; non-figure digit tokens ['80%', '80-percent', 'v0', '01', '02', '03', 'page 6'])"
+  },
+  {
+   "id": "no-data-uri-media",
+   "pass": true,
+   "evidence": "the served document is 48045 bytes and carries 0 data: URIs (SS7: data-URI video on the site is rejected). Both clips, both posters and the cover are FILES."
+  }
+ ],
+ "screenshots": [
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-1440-top.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-work.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-price.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-proof.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-manual.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-sec-faq.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-price.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-manual.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-faq.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl8-390-work.png",
+  "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\wf_0cc599f0-660-2\\.planning\\qa\\pass-101\\verify\\rl10-nojs-1440.png"
+ ],
+ "document_bytes": 48045,
+ "all_pass": true
+}
