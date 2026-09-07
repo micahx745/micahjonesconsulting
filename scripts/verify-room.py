@@ -2352,6 +2352,43 @@ def main(base):
             "light it) and the bar paints its espresso band on %d of 180 sampled columns"
             % (copper_px, bar_px))
 
+        # ---- SS18 RULE C, the gate for LESSONS #18 ---------------------------
+        # "One chip shape, everywhere" moved the ground, the radius and the type
+        # off `.chip .t` and onto `.chip` itself. That is a SPECIFICITY change
+        # before it is a design change: on the (room) pages `#rl-root a {color}`
+        # out-specifies a bare `.rl-chip`, and /about's live CTA rendered
+        # espresso type on an espresso ground -- a black slab with no label.
+        # Nothing else in this repo catches it: prettier cannot, the build
+        # cannot, the 60 checks above are home-scoped, and Lighthouse scored the
+        # page 100 with the slab on it. So: every chip on every ported route,
+        # its own colour against its own ground.
+        cctx = br.new_context(viewport={"width": 1440, "height": 900},
+                              device_scale_factor=1)
+        cp = cctx.new_page()
+        CHIP_JS = r"""()=>[...document.querySelectorAll('.chip,.rl-chip,.rl-buy')].map(e=>{
+            const cs=getComputedStyle(e);
+            let bg=cs.backgroundColor, q=e;
+            while(q && (bg==='rgba(0, 0, 0, 0)'||bg==='transparent')){
+              q=q.parentElement; if(!q) break; bg=getComputedStyle(q).backgroundColor;}
+            return {t:e.textContent.replace(/\s+/g,' ').trim().slice(0,30),
+                    color:cs.color, bg:bg||'rgb(245, 239, 228)'};})"""
+        chips, blind = [], []
+        for route in ("/", "/about", "/work", "/playbook", "/packages", "/call",
+                      "/work/guardicore"):
+            cp.goto(url.rstrip("/") + route)
+            cp.wait_for_timeout(1400)
+            for c in cp.evaluate(CHIP_JS):
+                r = ratio(lum(*parse_rgb(c["color"])), lum(*parse_rgb(c["bg"])))
+                chips.append((route, c["t"], round(r, 2)))
+                if r < 4.5:
+                    blind.append((route, c["t"], c["color"], c["bg"], round(r, 2)))
+        cctx.close()
+        chk("18-rule-c-every-chip-reads", not blind,
+            "SS18 Rule C, swept over 7 routes: %d chips, every one carrying its label "
+            "against its own ground at >= 4.5:1 (worst %.2f:1). LESSONS #18's gate."
+            % (len(chips), min(c[2] for c in chips) if chips else 0)
+            if not blind else "chips whose label does not read: %s" % blind)
+
         br.close()
 
     uniq = sorted(set(nodes))

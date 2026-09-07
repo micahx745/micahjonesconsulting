@@ -276,7 +276,7 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   to 2026-08-03 (`Code/reddit-research/data/corpus.jsonl`, gitignored; denominators
   asserted by every script in `Code/reddit-research/cuts/`). **607 asking posts / 567
   authors; "kept running" = 21 distinct asking authors** (`reddit-research/reference/
-  emergent-language.json`). **The playbook page's former second sentence appears in 0
+emergent-language.json`). **The playbook page's former second sentence appears in 0
   of the 4,464 posts** (`.planning/research/04-CUT-A-chapter-demand-map.md`, appendices
   A and B). The page moved the attested beat to first on 2026-09-04 (Pass-98). MAY say:
   those four facts as the author's own measurement. NEVER: a market-size claim from
@@ -284,7 +284,7 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   (`.planning/research/04-CUT-F-launch-rooms.md` §8); a Reddit user's words as an
   attributed quotation. ADDED 2026-09-04, same session as the book repo: the
   governing phrase file is the frozen snapshot `reddit-research/handoff/
-  emergent-language.json` (4,464 posts), not `reference/`, which was regenerated on
+emergent-language.json` (4,464 posts), not `reference/`, which was regenerated on
   a larger crawl; **Cut B** (`.planning/research/04-CUT-B-landing-page-posts.md`:
   35 asking posts / 34 authors say "landing page", 18 of 34 want a page that exists
   to convert or be reached, 4 want one built) licenses chapter 9's body line
@@ -686,3 +686,65 @@ malformed, and scope the claim to the files actually checked.
 **The gate.** `scripts/snapshot-live.py` now opens every output with `newline="\n"`, dumps the
 report at `indent=2`, and runs `pnpm exec prettier --write` on it before it exits. That last
 step is best effort, so a machine with no prettier still gets its snapshot.
+
+## #17 — A motion gate added on mount plays the animation backwards first (2026-09-06)
+
+**What happened.** Every §16.3 rest state on the home was gated on `.rl-home.js`, a class
+`RoomMotion` added inside a `useEffect` — that is, AFTER the first paint. An rAF trace of a
+real load: at t=84ms the class was absent and the hero's copper row painted at its finished
+opacity 1; at t=147ms the class landed; from t=179ms to t=412ms the row animated 1 → 0.992 →
+0.87 → 0.55 → 0.41 → 0.32 → 0.28, and then re-lit at ~2.8s when the fingertip arrived. The
+bar did the same, 0 → -12px. Every visitor saw the page's one signature moment run in
+reverse before it ran forward.
+
+The same wiring silently killed the other half of §16.3-1. `raiseRow()` landed in the same
+tick as the class, so `I build the` never rendered at `translateY(24px)` and the 600ms rise
+was a no-op — the transform read `none` from the first sampled frame onward.
+
+**What it cost.** Both defects shipped through a 60-check verifier that passed them, because
+`scripts/verify-room.py` samples the SETTLED state: it reads the declared rest/settled pair
+and confirms the pair exists. A pair can be perfectly declared and still be reached in the
+wrong order.
+
+**The lesson.** The sibling engine already had the answer written down. `SiteMotion.tsx`'s own
+header says the pre-state cannot be applied on mount, "or everything would paint, jump back
+and animate in — a flash of finished content", and the `(room)` layout stamps `html.rl-js` in
+a synchronous boot script during parse. The home was built second and did not read it. When
+one engine in a repo documents a rule in prose, the second engine is where that rule gets
+tested.
+
+Corollary: a check that samples a settled state cannot see a load ORDER. Anything whose
+correctness is "which frame did this happen on" needs a frame trace, not a computed style.
+
+**The gate.** Two. The home's gate moved to `html.rl-js`, stamped by the `(home)` layout's
+boot script before the first paint, with a 4s net that drops the class if `RoomMotion` never
+mounts. And `scripts/verify-room.py`'s `16.3-no-js-finished-frame` now removes `rl-js` and
+`rl-on` from `<html>` as well as `js` from the wrapper — removing only the second left every
+pre-state live, and the probe read the copper word mid-transition at 0.9996 while calling the
+frame finished.
+
+## #18 — A block moved onto its own element inherits the ancestor's colour (2026-09-06)
+
+**What happened.** §18 Rule C collapses three chip languages into one block. The
+implementation moved the ground, the radius and the type off `.chip .t` and onto `.chip`
+itself, so no call site had to be rewritten. On the `(room)` pages that made the chip an
+element whose `color` was no longer set by anything with enough specificity:
+`#rl-root a { color: ... }` (0,1,1 plus an id) out-specifies a bare `.rl-chip` (0,1,0). The
+result on /about was a chip painting espresso type on an espresso ground — a black slab with
+an invisible label, on a live CTA.
+
+**What it cost.** Nothing shipped: it was caught in the first screenshot after the change. But
+it is invisible to `prettier`, to `pnpm build`, to the 60-check room verifier, and to axe —
+axe's colour-contrast rule skips a node whose text and background are the same colour class
+in some configurations, and Lighthouse scored /about 100 with the slab on the page.
+
+**The lesson.** Moving a declaration up the tree changes which rules can reach it. Any refactor
+that relocates `color` or `background` between an element and its child is a specificity
+change first and a design change second — check the ancestors that set the same property with
+an id or an element selector in front of them.
+
+**The gate.** A route sweep, run from the same probe that takes the screenshots: for every
+`.chip`, `.rl-chip` and `.rl-buy` on `/`, `/about`, `/work`, `/playbook`, `/packages`, `/call`
+and a case study, assert `getComputedStyle(el).color !== getComputedStyle(el).backgroundColor`.
+Nine routes, 23 chips, zero matches. Cheap, and it fails loudly on exactly this class of
+mistake.
