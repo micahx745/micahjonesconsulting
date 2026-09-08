@@ -2618,6 +2618,18 @@ def main(base):
             % (len(chips), min(c[2] for c in chips) if chips else 0)
             if not blind else "chips whose label does not read: %s" % blind)
 
+        # PASS-103b / LESSONS #19: measure the rendered inline boundary, not
+        # source whitespace that the entity-bearing JSX text can lose.
+        price_page = br.new_page()
+        price_page.goto(url.rstrip("/") + "/playbook")
+        price_text = price_page.locator(".rl-reg > div").filter(
+            has=price_page.get_by_text("Price", exact=True)
+        ).locator("dd").inner_text()
+        chk("103b-playbook-price-space",
+            price_text == "$99 at launch \u00b7 $149 after",
+            "rendered Price row: %r" % price_text)
+        price_page.close()
+
         br.close()
 
     uniq = sorted(set(nodes))

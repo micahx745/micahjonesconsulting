@@ -748,3 +748,28 @@ an id or an element selector in front of them.
 and a case study, assert `getComputedStyle(el).color !== getComputedStyle(el).backgroundColor`.
 Nine routes, 23 chips, zero matches. Cheap, and it fails loudly on exactly this class of
 mistake.
+
+## #19 — Entity-bearing multiline JSX can lose an inline boundary space (2026-09-08)
+
+**What happened.** The /playbook Price row had a literal space after the `$99` span in
+source, followed by `at launch &middot; $149` and `after` on the next source line. The
+production HTML contained `$99</span>at launch · $149 after`, joining the price to the
+next word before the browser received it.
+
+**The mechanism.** A minimal probe through the installed Next 16.2.6 SWC transform and
+React's static renderer reproduced the loss: the entity-bearing multiline JSX text run
+compiled to `"at launch · $149 after"`, without its leading space. Keeping that run on
+one source line preserved the space. Replacing the entity with a plain slash while
+keeping the newline also preserved it. An explicit `{" "}` compiled to its own string
+child and survived both the entity and the newline. The compiled JavaScript and HTML
+for all four cases are recorded in `.planning/qa/pass-103b/compiler-run2-before.json`.
+
+**The lesson.** A visible inline boundary is a rendered-output requirement. Source
+whitespace alone does not prove it survives JSX compilation, especially when a text run
+mixes an entity with a source newline. Make the required separator an explicit JSX
+space, then inspect the built HTML and the rendered row.
+
+**The gate.** `scripts/verify-room.py` check `103b-playbook-price-space` requires the
+rendered Price row's `dd.inner_text()` to equal `$99 at launch · $149 after` exactly.
+The check failed on the original built page; the fix gives the separator its own
+`{" "}` child. This is the verifier's 62nd check.

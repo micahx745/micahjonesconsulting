@@ -849,7 +849,7 @@ export default function PlaybookPage() {
               <div data-rl="rule">
                 <dt>Price</dt>
                 <dd>
-                  <span className="rl-num">$99</span> at launch &middot; $149
+                  <span className="rl-num">$99</span>{" "}at launch &middot; $149
                   after
                 </dd>
               </div>
