@@ -59,6 +59,11 @@ $env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "GLM-5.3-Flash"
 # settings.json asks for "opus" subagents, which must not reach z.ai unmapped.
 $env:ANTHROPIC_DEFAULT_FABLE_MODEL = $Model
 $env:CLAUDE_CODE_SUBAGENT_MODEL    = $Model
+# LESSONS #20: Claude Code does not recognise "glm-5.3", so it assumes a 200k window and
+# autocompact THRASHES on a large brief (Pass 104b died this way with 105KB of specs).
+# Declare the real window. z.ai documents GLM-5.3 at 200k; raise this if that changes.
+$env:CLAUDE_CODE_MAX_CONTEXT_TOKENS = "200000"
+$env:CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT = "1"
 $env:API_TIMEOUT_MS                = "3000000"
 $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
 Remove-Item Env:ANTHROPIC_API_KEY -ErrorAction SilentlyContinue
