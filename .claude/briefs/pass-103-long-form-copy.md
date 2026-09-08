@@ -46,5 +46,14 @@ person or as a résumé, and does each case study open on the problem the buyer 
 `pnpm build` green, verify-room green, screenshots, Fable commits.
 
 ## 5. Return conditions
-A proposal that changes a ledgered fact · a page whose average sentence length rises ·
+A proposal that changes a ledgered fact · a page whose average sentence length rises above
+25 or by a full word (amended 2026-09-08, Fable ruling at Step D: `/work/rfp-engine` went
+11.83 → 11.88 because 34 words and three sentences were cut; a rise that comes from cutting
+is not the bloat this condition guards against) ·
 a case study that loses its citation-rendered number · the copy gate rejecting a ticked row.
+
+## 6. Execution record
+- 2026-09-08: editor (Codex xhigh) 120 rows → juror (Astra ultra, eight 390 shots) 57 ACCEPT /
+  9 REWORD / 1 REJECT → operator: "all" → applier (Codex xhigh, worktree) 57/57 applied,
+  build green, verify-room 61/61, 16 screenshots; Fable committed per page (ad4e11c…9a85226).
+  Reword round for the 9 rows and the /about paragraph order: pending the operator.
