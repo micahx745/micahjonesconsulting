@@ -7,8 +7,8 @@
 # Auth is the ChatGPT login already on this machine (`codex login status`); no key here.
 #
 # Usage:
-#   pwsh scripts/codex-exec.ps1 -Brief .claude/briefs/pass-102-wording.md -Dir .claude/worktrees/p101-integrate
-#   pwsh scripts/codex-exec.ps1 -Review -Prompt .planning/prompts/CODEX-ROOM-AND-LEDGER-REVIEW.md -Out .planning/reviews/x.md -Image a.png,b.png
+#   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/codex-exec.ps1 -Brief .claude/briefs/pass-102-wording.md -Dir .claude/worktrees/p101-integrate
+#   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/codex-exec.ps1 -Review -Prompt .planning/prompts/CODEX-ROOM-AND-LEDGER-REVIEW.md -Out .planning/reviews/x.md -Image a.png,b.png
 #   -Effort ultra (default for reviews) | xhigh (default for execution) | high
 #
 # Policy: never push, never deploy, never bypass a hook. Execution runs with
