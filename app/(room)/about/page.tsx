@@ -81,9 +81,9 @@ export default function AboutPage() {
               same fee.
             </p>
             <p>
-              I&rsquo;ve spent thirteen years inside B2B software companies as
-              the person who can sit on either side of the table: GTM strategy
-              in the morning, shipping product in the afternoon.
+              For thirteen years, I&rsquo;ve worked inside B2B software companies.
+              I plan how to sell the product in the morning and ship it in the
+              afternoon.
             </p>
 
             <h2 className="rl-l">Receipts</h2>
@@ -122,8 +122,8 @@ export default function AboutPage() {
                 <strong>Four companies I worked inside reached an exit.</strong>{" "}
                 Postmates (Uber, 2020). SurveyMonkey (IPO, 2018). Guardicore
                 (Akamai, 2021). Neuton.AI (technology acquired by Nordic
-                Semiconductor, 2025). SurveyMonkey and Guardicore carried my
-                name on the cap table; the disclosed deals total{" "}
+                Semiconductor, 2025). I held equity in SurveyMonkey and
+                Guardicore at exit. The disclosed deals total{" "}
                 <strong>$5B+</strong>.
               </li>
               {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
@@ -195,9 +195,9 @@ export default function AboutPage() {
                 Positioning research that moves deal size.
               </span>
               <span className="stmt">
-                The Guardicore engagement that ended in the Akamai acquisition
-                began with a single rewritten sentence. The average enterprise
-                deal there was $1.2M.
+                The Guardicore engagement began with a single rewritten sentence
+                and ended in the Akamai acquisition. The average enterprise deal
+                was $1.2M.
               </span>
             </li>
             {/* Pass-67: was "for an HR consultant returned 4× platform lift".
@@ -215,19 +215,19 @@ export default function AboutPage() {
               naming the thing that produced its own number. "for the same
               author", not "next": the build order is not on record. */}
             <li data-rl="rule">
-              <span className="term">GTM systems that compound.</span>
+              <span className="term">Software for marketing and contracts.</span>
               <span className="stmt">
-                For one industry author, a content engine took monthly reach
+                For one industry author, a content engine grew monthly reach
                 from 8,000 to 290,000 in five months. The RFP software I built
                 for the same author doubled their close rate inside six months.
               </span>
             </li>
             <li data-rl="rule">
-              <span className="term">End-to-end product builds.</span>
+              <span className="term">Products I build from start to finish.</span>
               <span className="stmt">
-                Ordani, HIPAA-compliant practice management for birth workers,
-                with active paying users in beta. I founded it and I write the
-                code. Public release coming.
+                I founded Ordani, HIPAA-compliant practice management for birth
+                workers, and I write the code. It has active paying users in
+                beta. Public release coming.
               </span>
             </li>
           </ul>
@@ -251,11 +251,11 @@ export default function AboutPage() {
                 hours back. Deliberately uncited prose; the CDC-cited figures
                 live in the Ordani case study via citations.ts. */}
             <p className="rl-lede" data-rl="rise">
-              Building <strong>Ordani</strong>. This country loses too many
-              mothers and infants, and the people working hardest to change that
-              were buried in the business side of the work. I built the tool
-              that hands them their hours back, so the work stays about the
-              mothers and the babies.
+              I&rsquo;m building <strong>Ordani</strong>. This country loses too many
+              mothers and infants. The people working hardest to change that
+              were buried in running their practices. I built a tool
+              that gives them their hours back, so they can focus on
+              mothers and babies.
             </p>
             {/* Pass-83 (review #25): "a limited number of" was scarcity with no
                 ledger behind it, and "advisory" narrowed the offer to the
@@ -268,12 +268,12 @@ export default function AboutPage() {
                 then described engagements in the abstract. No count: an invented
                 number reads as a tactic, and a real one has to be maintained. */}
             <p className="rl-body rl-air-m" data-rl="rise">
-              Alongside it:{" "}
+              I also take{" "}
               <a href="/services" className="rl-link">
                 engagements
               </a>{" "}
-              with teams where the sales side and the product side have stopped
-              talking to each other. I sit on both sides until they do. I am
+              with teams whose sales and product sides have stopped
+              talking. I work on both sides until they do. I am
               taking new engagements now.
             </p>
             {/* Internal link added 2026-09-02: an SEO pass found only two
@@ -286,7 +286,7 @@ export default function AboutPage() {
               <a href="/playbook" className="rl-link">
                 The 80% Wall
               </a>
-              , a field manual on the part of a build the AI leaves to you once
+              , a field manual on what AI leaves to you once
               the demo works.
             </p>
             <div className="rl-chips rl-air-m" data-rl="rise">
