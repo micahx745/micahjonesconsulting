@@ -67,3 +67,9 @@ a mechanism for §2 you cannot demonstrate in the compiled output.
 - Run 1 (Codex, 8 min): §2 mechanism demonstrated (SWC drops the leading space of a multi-line JSX
   text run that contains an entity), the price-row check added; stopped on the sandbox ffmpeg FAIL
   before §1/§3/§4. Run 2 continues from there.
+- Run 2 (Codex, 20 min): §1–§6 done; feature-row spread 102px → 0 at 1440; balance removed the
+  widows except two (playbook "apart" at 1440, the Guardicore NDA title at 390); LESSONS #19.
+  Fable committed 2530ef4, 387bfa0, f9a22d5, f3cca85. Independent verify-room outside the sandbox
+  (Sonnet leg, ffmpeg on PATH): 62 checks, 62 pass, 0 fail; 16.2-arrival measured 2.50s vs the
+  page's 2.54 constant; price row renders "$99 at launch · $149 after".
+- Left for 103c §4: the shorter cards' description hairline should stretch to the shared row.
