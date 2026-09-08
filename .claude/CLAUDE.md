@@ -50,6 +50,24 @@ top: the services-page rebuild, the popularity-badge claim, the title-card timin
 
 Full policy: `C:/Users/micah/.claude/MODEL_ROUTING.md`. The arc shape below is unchanged.
 
+**Amended 2026-09-07 — the executor tier (operator: "this consuming our usage at a fast
+rate … I got a z.ai account to use their frontier model to do some grunt work … And maybe
+Sonnet 5 too. But we need to produce at a fable 5.1 ultracode level").** Four tiers now:
+1. **Fable 5.1 (this session):** rulings, briefs, the JUDGE look at named checkpoints. It
+   does not run build/verify/screenshot loops and does not read whole transcripts.
+2. **GLM executor (a second Claude Code process via `scripts/claude-glm.ps1`, z.ai Coding
+   Plan):** executes `.claude/briefs/*.md` verbatim: builds, fix rounds, verify scripts,
+   encodes, screenshots, polish. Its usage is z.ai's quota, not this one. It never rules.
+3. **Opus (subagent, in-session):** only where taste or judgement inside execution matters
+   and the executor is not running: design-critique legs, the first port of a new pattern.
+4. **Sonnet 5 / Haiku (subagents, in-session):** research legs, lookups, mechanical
+   verifiers that re-measure a spec. Every Workflow verify/measure leg names `sonnet`
+   unless the leg has to look at screenshots as a juror (then `opus`).
+Secrets: the z.ai key lives in the user env var `ZAI_CODING_KEY`, set by the operator in
+his own shell; it never appears in a chat, a settings file, or a commit. The cross-review
+REST leg keeps its own pay-as-you-go key (`GLM_API_KEY`/`ZAI_API_KEY`, or the gitignored
+`.claude/.zai-key`) because the Coding Plan's usage policy forbids scripted calls.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing
