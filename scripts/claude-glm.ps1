@@ -26,7 +26,9 @@ param(
   [string]$Dir = (Get-Location).Path,
   [string]$Brief = "",
   [string]$Model = "glm-5.3",       # the plan's main model per docs.z.ai/devpack/tool/claude
-  [switch]$Smoke                     # one tiny call to prove the plan answers, then exit
+  [switch]$Smoke,                    # one tiny call to prove the plan answers, then exit
+  [switch]$Batch,                    # unattended: claude -p with permissions skipped (hooks still run)
+  [string]$PromptFile = ""           # with -Batch: the prompt to run, read from a file
 )
 
 # Key resolution: the user env var, else the gitignored key file the cross-review harness
@@ -65,6 +67,13 @@ Set-Location $Dir
 if ($Smoke) {
   Write-Host "claude-glm: smoke test on $Model via z.ai" -ForegroundColor DarkYellow
   & claude -p "Reply with the single word OK."
+  exit $LASTEXITCODE
+}
+if ($Batch) {
+  if ($PromptFile -eq "" -or -not (Test-Path $PromptFile)) { Write-Error "-Batch needs -PromptFile <file>."; exit 1 }
+  $text = Get-Content -Raw $PromptFile
+  Write-Host "claude-glm: BATCH on $Model via z.ai, in $Dir (permissions skipped; hooks and gates still run)" -ForegroundColor DarkYellow
+  & claude -p --dangerously-skip-permissions --output-format text $text
   exit $LASTEXITCODE
 }
 Write-Host "claude-glm: executor session on $Model via z.ai, in $Dir" -ForegroundColor DarkYellow
