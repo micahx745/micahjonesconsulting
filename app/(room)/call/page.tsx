@@ -71,7 +71,7 @@ export default function BookPage() {
           </p>
           <p className="rl-body rl-air-s" data-rl="rise">
             <strong>What you leave with:</strong> a diagnosis of what is stuck
-            and what work would fix it. I also tell you whether you need me at
+            and what work would fix it. I tell you whether you need me at
             all.
           </p>
           <dl className="rl-reg rl-air-m" data-rl-group="terms">

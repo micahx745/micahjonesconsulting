@@ -293,9 +293,9 @@ export default function PackagesPage() {
             under a card row that spans the full width, which left the page's
             last screen a narrow left column with an empty right 60%. */}
         <p className="rl-lede rl-seam rl-air-m" data-rl="rise">
-          Each one goes straight to checkout. The moment your card clears you
-          get a kickoff email: the intake questions, a link to book the call,
-          and the manual with its companion files attached.
+          Each package goes straight to checkout. My kickoff email arrives the
+          moment your card clears. It includes the intake questions and a link
+          to book the call. The manual and its companion files are attached.
         </p>
 
         <p className="rl-body rl-seam rl-air-s" data-rl="rise">

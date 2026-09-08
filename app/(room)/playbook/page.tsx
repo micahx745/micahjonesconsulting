@@ -467,10 +467,10 @@ export default function PlaybookPage() {
               </p>
             </div>
             <p className="rl-body rl-air-m">
-              The wall is not a talent problem. It is arithmetic: the
-              tool&rsquo;s memory runs out, and yours has to take over, on
-              paper, in the repo. This manual is that hand-off, one system per
-              chapter.
+              Finding users, production failures, and breaking changes are separate
+              problems. I cover each in this manual, one system per chapter.
+              When the tool&rsquo;s memory runs out, yours has to take over.
+              Write it down on paper, in the repo.
             </p>
           </div>
           <aside className="rail">
@@ -769,7 +769,7 @@ export default function PlaybookPage() {
               <li data-rl="rule">
                 <span className="term">Six prompt files</span>
                 <span className="stmt">
-                  for Claude Code and Cursor: a session opener, an architecture
+                  For Claude Code and Cursor: a session opener, an architecture
                   mapper, an invariant extractor, a diff reviewer, a payments
                   wiring prompt, and an outreach drafter.
                 </span>
@@ -781,7 +781,7 @@ export default function PlaybookPage() {
               <li data-rl="rule">
                 <span className="term">Nine templates</span>
                 <span className="stmt">
-                  , including three complete SPEC files: a
+                  Three complete SPEC files: a
                   booking app, a photographer gallery, and an internal ops
                   tracker. Also a starter invariants file, an architecture
                   sample, and a real env example.
