@@ -85,7 +85,7 @@ const PACKAGES_LD = {
       price: "2500",
       priceCurrency: "USD",
       description:
-        "Two-week fixed-scope audit: build, production, or traction. Written memo, prioritized fix sequence, debrief call.",
+        "Two-week fixed-scope audit: build, production, or traction. Written memo, what to fix in order, debrief call.",
     },
     {
       "@type": "Offer",

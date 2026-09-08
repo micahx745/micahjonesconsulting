@@ -43,7 +43,7 @@ const CATALOG = [
     name: "The Audit",
     amount: 250000,
     description:
-      "Two-week fixed-scope audit (Build, Production, or Traction): written memo, prioritized fix sequence, one-hour debrief.",
+      "Two-week fixed-scope audit (Build, Production, or Traction): written memo, what to fix in order, one-hour debrief.",
   },
   {
     lookupKey: "sprint-7500",
