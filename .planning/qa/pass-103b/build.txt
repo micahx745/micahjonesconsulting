@@ -1,0 +1,69 @@
+
+> micahjonesconsulting@0.1.0 build C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p101-integrate
+> tsx lib/copy-lint-cli.ts && node scripts/vendor-gate.mjs && node scripts/retired-phrases-gate.mjs && next build && node scripts/render-gate.mjs
+
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+vendor-gate: clean
+retired-phrases-gate: clean
+▲ Next.js 16.2.6 (Turbopack)
+- Experiments (use with caution):
+  ✓ viewTransition
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.7s
+  Running TypeScript ...
+  Finished TypeScript in 3.5s ...
+  Collecting page data using 27 workers ...
+node : ⚠ Using edge runtime on a page currently disables static generation for that page
+At line:2 char:1
++ node C:/Users/micah/AppData/Local/Temp/pass-102-corepack/v1/pnpm/10.1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (⚠ Using edge ru...n for that page:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 27 workers (0/23) ...
+  Generating static pages using 27 workers (5/23) 
+  Generating static pages using 27 workers (11/23) 
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 27 workers (17/23) 
+✓ Generating static pages using 27 workers (23/23) in 641ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /about/opengraph-image-1bqzyr
+├ ƒ /api/stripe/webhook
+├ ○ /call
+├ ○ /call/kickoff
+├ ƒ /call/opengraph-image-5r3xvx
+├ ○ /contact
+├ ○ /icon.svg
+├ ƒ /llms.txt
+├ ƒ /opengraph-image-12gd74
+├ ○ /packages
+├ ƒ /packages/opengraph-image-1kpiyr
+├ ○ /playbook
+├ ƒ /playbook/opengraph-image-6iczzm
+├ ○ /playbook/thanks
+├ ○ /robots.txt
+├ ○ /services
+├ ○ /services/thanks
+├ ○ /sitemap.xml
+├ ○ /work
+├ ● /work/[slug]
+│ ├ /work/guardicore
+│ ├ /work/ordani
+│ ├ /work/rfp-engine
+│ └ /work/content-engine
+├ ƒ /work/[slug]/opengraph-image-oti546
+└ ƒ /work/opengraph-image-5rjodw
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+render-gate: 15 routes — links resolve, fragments exist, metadata within limits.

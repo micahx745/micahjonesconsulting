@@ -1,0 +1,17 @@
+PASS exact source changes, unchanged tags/attributes/numbers, byte-identical Audit description
+PASS 11 Pass 102 and 57 Pass 103 applied rows: protected source preserved against HEAD
+PASS home source, room.css, and hand-positioned headings untouched
+PASS 12/12 routes: visible text and links preserved, overflow 0px, all h2/h3 balanced
+PASS 8/8 axe runs: zero violations before and after
+PASS 390px package card geometry identical before/after
+1440 feature y: [870.40625, 870.40625, 870.40625] spread: 0.0
+1440 button y: [1044.796875, 1044.796875, 1044.796875] spread: 0.0
+/about What I’m known for | 390: 1 -> 2 | 1440: 4 -> 4
+/about Software for marketing and contracts. | 390: 1 -> 2 | 1440: 1 -> 2
+/about Products I build from start to finish. | 390: 1 -> 4 | 1440: 1 -> 4
+/playbook One sentence, four rounds apart | 390: 1 -> 2 | 1440: 1 -> 1
+/playbook Chapter one, free | 390: 1 -> 2 | 1440: 1 -> 2
+/playbook Where the ten live | 390: 1 -> 2 | 1440: 2 -> 2
+/call Thirty minutes. Bring the problem. | 390: 1 -> 2 | 1440: 1 -> 3
+/work/guardicore Visibility + microsegmentation positioning framework | 390: 1 -> 1 | 1440: 2 -> 2
+/work/content-engine The content engine's output: videos, blogs, newsletters, and digital events | 390: 1 -> 2 | 1440: 2 -> 3

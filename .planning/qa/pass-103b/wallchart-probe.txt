@@ -1,0 +1,356 @@
+{
+  "after_fonts_3s": [
+    {
+      "cls": "cw-wallchart__wipe",
+      "animation": "0.42s cubic-bezier(0.165, 0.84, 0.44, 1) 0.4s both wc-wipe",
+      "playState": "running",
+      "transform": "matrix(1, 0, 0, 1, 338, 0)",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 820.0000000000001,
+          "timing": {
+            "delay": 400,
+            "direction": "normal",
+            "duration": 420,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 420,
+            "currentIteration": 0,
+            "endTime": 820.0000000000001,
+            "localTime": 820.0000000000001,
+            "progress": 1
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__rules",
+      "animation": "0.9s linear 0.7s both wc-climb",
+      "playState": "running",
+      "transform": "none",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1600,
+          "timing": {
+            "delay": 700,
+            "direction": "normal",
+            "duration": 900,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 900,
+            "currentIteration": 0,
+            "endTime": 1600,
+            "localTime": 1600,
+            "progress": 1
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__cross",
+      "animation": "0.16s cubic-bezier(0.165, 0.84, 0.44, 1) 1.4s both wc-stamp",
+      "playState": "running",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1559.9999999999998,
+          "timing": {
+            "delay": 1400,
+            "direction": "normal",
+            "duration": 160,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 160,
+            "currentIteration": 0,
+            "endTime": 1559.9999999999998,
+            "localTime": 1559.9999999999998,
+            "progress": 0.9999999999999994
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__lbl cw-wallchart__lbl--wall",
+      "animation": "0.2s cubic-bezier(0.165, 0.84, 0.44, 1) 1.46s both wc-fade",
+      "playState": "running",
+      "transform": "none",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1660,
+          "timing": {
+            "delay": 1460,
+            "direction": "normal",
+            "duration": 200,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 200,
+            "currentIteration": 0,
+            "endTime": 1660,
+            "localTime": 1660,
+            "progress": 1
+          }
+        }
+      ]
+    }
+  ],
+  "after_chart_in_view_3s": [
+    {
+      "cls": "cw-wallchart__wipe",
+      "animation": "0.42s cubic-bezier(0.165, 0.84, 0.44, 1) 0.4s both wc-wipe",
+      "playState": "running",
+      "transform": "matrix(1, 0, 0, 1, 338, 0)",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 820.0000000000001,
+          "timing": {
+            "delay": 400,
+            "direction": "normal",
+            "duration": 420,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 420,
+            "currentIteration": 0,
+            "endTime": 820.0000000000001,
+            "localTime": 820.0000000000001,
+            "progress": 1
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__rules",
+      "animation": "0.9s linear 0.7s both wc-climb",
+      "playState": "running",
+      "transform": "none",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1600,
+          "timing": {
+            "delay": 700,
+            "direction": "normal",
+            "duration": 900,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 900,
+            "currentIteration": 0,
+            "endTime": 1600,
+            "localTime": 1600,
+            "progress": 1
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__cross",
+      "animation": "0.16s cubic-bezier(0.165, 0.84, 0.44, 1) 1.4s both wc-stamp",
+      "playState": "running",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1559.9999999999998,
+          "timing": {
+            "delay": 1400,
+            "direction": "normal",
+            "duration": 160,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 160,
+            "currentIteration": 0,
+            "endTime": 1559.9999999999998,
+            "localTime": 1559.9999999999998,
+            "progress": 0.9999999999999994
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__lbl cw-wallchart__lbl--wall",
+      "animation": "0.2s cubic-bezier(0.165, 0.84, 0.44, 1) 1.46s both wc-fade",
+      "playState": "running",
+      "transform": "none",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1660,
+          "timing": {
+            "delay": 1460,
+            "direction": "normal",
+            "duration": 200,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 200,
+            "currentIteration": 0,
+            "endTime": 1660,
+            "localTime": 1660,
+            "progress": 1
+          }
+        }
+      ]
+    }
+  ],
+  "after_screenshot": [
+    {
+      "cls": "cw-wallchart__wipe",
+      "animation": "0.42s cubic-bezier(0.165, 0.84, 0.44, 1) 0.4s both wc-wipe",
+      "playState": "running",
+      "transform": "matrix(1, 0, 0, 1, 338, 0)",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 820.0000000000001,
+          "timing": {
+            "delay": 400,
+            "direction": "normal",
+            "duration": 420,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 420,
+            "currentIteration": 0,
+            "endTime": 820.0000000000001,
+            "localTime": 820.0000000000001,
+            "progress": 1
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__rules",
+      "animation": "0.9s linear 0.7s both wc-climb",
+      "playState": "running",
+      "transform": "none",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1600,
+          "timing": {
+            "delay": 700,
+            "direction": "normal",
+            "duration": 900,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 900,
+            "currentIteration": 0,
+            "endTime": 1600,
+            "localTime": 1600,
+            "progress": 1
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__cross",
+      "animation": "0.16s cubic-bezier(0.165, 0.84, 0.44, 1) 1.4s both wc-stamp",
+      "playState": "running",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1559.9999999999998,
+          "timing": {
+            "delay": 1400,
+            "direction": "normal",
+            "duration": 160,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 160,
+            "currentIteration": 0,
+            "endTime": 1559.9999999999998,
+            "localTime": 1559.9999999999998,
+            "progress": 0.9999999999999994
+          }
+        }
+      ]
+    },
+    {
+      "cls": "cw-wallchart__lbl cw-wallchart__lbl--wall",
+      "animation": "0.2s cubic-bezier(0.165, 0.84, 0.44, 1) 1.46s both wc-fade",
+      "playState": "running",
+      "transform": "none",
+      "opacity": "1",
+      "dash": "0px",
+      "animations": [
+        {
+          "state": "finished",
+          "time": 1660,
+          "timing": {
+            "delay": 1460,
+            "direction": "normal",
+            "duration": 200,
+            "easing": "linear",
+            "endDelay": 0,
+            "fill": "both",
+            "iterationStart": 0,
+            "iterations": 1,
+            "activeDuration": 200,
+            "currentIteration": 0,
+            "endTime": 1660,
+            "localTime": 1660,
+            "progress": 1
+          }
+        }
+      ]
+    }
+  ]
+}

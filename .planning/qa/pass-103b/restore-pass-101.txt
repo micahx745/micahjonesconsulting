@@ -1,0 +1,8 @@
+git : fatal: Unable to create 'C:/Users/micah/Code/micahjonesconsulting/.git/worktrees/p101-integrate/index.lock': 
+Permission denied
+At line:2 char:1
++ git checkout -- .planning/qa/pass-101 2>&1 | Tee-Object -FilePath .pl ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (fatal: Unable t...rmission denied:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

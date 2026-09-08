@@ -1,0 +1,3 @@
+app/(room)/packages/page.tsx:0
+lib/catalog.ts:0
+scripts/stripe-setup.mjs:0

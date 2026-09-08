@@ -1,0 +1,735 @@
+{
+  "source": {
+    "app/(room)/packages/page.tsx": "PASS: only the exact authorized replacement; tags, attributes, numbers unchanged",
+    "scripts/stripe-setup.mjs": "PASS: only the exact authorized replacement; tags, attributes, numbers unchanged",
+    "app/(room)/playbook/page.tsx": "PASS: only the exact authorized replacement; tags, attributes, numbers unchanged"
+  },
+  "audit_description_byte_identical": true,
+  "pass102_applied_rows": 11,
+  "pass103_applied_rows": 57,
+  "protected_source_files_checked": [
+    "app/(room)/about/page.tsx",
+    "app/(room)/call/page.tsx",
+    "app/(room)/packages/page.tsx",
+    "app/(room)/playbook/page.tsx",
+    "app/(room)/work/page.tsx",
+    "components/color-worlds/BookCallForm.tsx",
+    "components/room/Ask.tsx",
+    "components/room/Bar.tsx",
+    "components/room/Foot.tsx",
+    "components/room/HowIWork.tsx",
+    "components/room/Objections.tsx",
+    "components/room/Operator.tsx",
+    "components/room/Packages.tsx",
+    "components/room/Room.tsx",
+    "components/room/SiteBar.tsx",
+    "content/work/content-engine.mdx",
+    "content/work/guardicore.mdx",
+    "content/work/ordani.mdx",
+    "content/work/rfp-engine.mdx",
+    "lib/catalog.ts"
+  ],
+  "home_and_hand_positioned_headings_unchanged": true,
+  "routes": {
+    "/about@390": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/packages@390": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/playbook@390": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/call@390": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/work/guardicore@390": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": "not requested",
+      "axe_version": null
+    },
+    "/work/content-engine@390": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": "not requested",
+      "axe_version": null
+    },
+    "/about@1440": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/packages@1440": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/playbook@1440": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/call@1440": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": 0,
+      "axe_version": "4.13.0"
+    },
+    "/work/guardicore@1440": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": "not requested",
+      "axe_version": null
+    },
+    "/work/content-engine@1440": {
+      "text_and_links": "unchanged except authorized price space",
+      "overflow_px": 0,
+      "axe_violations": "not requested",
+      "axe_version": null
+    }
+  },
+  "cards_before_1440": [
+    {
+      "name": "The Unstick Session, $500",
+      "children": 5,
+      "display": "flex",
+      "rows": "none",
+      "span": "auto",
+      "rowGap": "normal",
+      "x": 32,
+      "y": 548.609375,
+      "width": 442.65625,
+      "height": 573.1875,
+      "featureY": 768.40625,
+      "buttonY": 1044.796875,
+      "childRects": [
+        [
+          61,
+          577.609375,
+          384.65625,
+          28.796875
+        ],
+        [
+          61,
+          606.40625,
+          384.65625,
+          111
+        ],
+        [
+          61,
+          717.40625,
+          384.65625,
+          51
+        ],
+        [
+          61,
+          768.40625,
+          384.65625,
+          146.390625
+        ],
+        [
+          61,
+          1016.796875,
+          384.65625,
+          76
+        ]
+      ]
+    },
+    {
+      "name": "The Audit, $2,500, start here",
+      "children": 5,
+      "display": "flex",
+      "rows": "none",
+      "span": "auto",
+      "rowGap": "normal",
+      "x": 498.65625,
+      "y": 548.609375,
+      "width": 442.671875,
+      "height": 573.1875,
+      "featureY": 870.40625,
+      "buttonY": 1044.796875,
+      "childRects": [
+        [
+          527.65625,
+          577.609375,
+          384.671875,
+          28.796875
+        ],
+        [
+          527.65625,
+          606.40625,
+          384.671875,
+          111
+        ],
+        [
+          527.65625,
+          717.40625,
+          384.671875,
+          153
+        ],
+        [
+          527.65625,
+          870.40625,
+          384.671875,
+          146.390625
+        ],
+        [
+          527.65625,
+          1016.796875,
+          384.671875,
+          76
+        ]
+      ]
+    },
+    {
+      "name": "The Sprint, $7,500",
+      "children": 5,
+      "display": "flex",
+      "rows": "none",
+      "span": "auto",
+      "rowGap": "normal",
+      "x": 965.328125,
+      "y": 548.609375,
+      "width": 442.65625,
+      "height": 573.1875,
+      "featureY": 768.40625,
+      "buttonY": 1044.796875,
+      "childRects": [
+        [
+          994.328125,
+          577.609375,
+          384.65625,
+          28.796875
+        ],
+        [
+          994.328125,
+          606.40625,
+          384.65625,
+          111
+        ],
+        [
+          994.328125,
+          717.40625,
+          384.65625,
+          51
+        ],
+        [
+          994.328125,
+          768.40625,
+          384.65625,
+          146.390625
+        ],
+        [
+          994.328125,
+          1016.796875,
+          384.65625,
+          76
+        ]
+      ]
+    }
+  ],
+  "cards_after_1440": [
+    {
+      "name": "The Unstick Session, $500",
+      "children": 5,
+      "display": "grid",
+      "rows": "subgrid [] [] [] [] [] []",
+      "span": "span 5",
+      "rowGap": "0px",
+      "x": 32,
+      "y": 548.609375,
+      "width": 442.65625,
+      "height": 573.1875,
+      "featureY": 870.40625,
+      "buttonY": 1044.796875,
+      "childRects": [
+        [
+          61,
+          577.609375,
+          384.65625,
+          28.796875
+        ],
+        [
+          61,
+          606.40625,
+          384.65625,
+          111
+        ],
+        [
+          61,
+          717.40625,
+          384.65625,
+          153
+        ],
+        [
+          61,
+          870.40625,
+          384.65625,
+          146.390625
+        ],
+        [
+          61,
+          1016.796875,
+          384.65625,
+          76
+        ]
+      ]
+    },
+    {
+      "name": "The Audit, $2,500, start here",
+      "children": 5,
+      "display": "grid",
+      "rows": "subgrid [] [] [] [] [] []",
+      "span": "span 5",
+      "rowGap": "0px",
+      "x": 498.65625,
+      "y": 548.609375,
+      "width": 442.671875,
+      "height": 573.1875,
+      "featureY": 870.40625,
+      "buttonY": 1044.796875,
+      "childRects": [
+        [
+          527.65625,
+          577.609375,
+          384.671875,
+          28.796875
+        ],
+        [
+          527.65625,
+          606.40625,
+          384.671875,
+          111
+        ],
+        [
+          527.65625,
+          717.40625,
+          384.671875,
+          153
+        ],
+        [
+          527.65625,
+          870.40625,
+          384.671875,
+          146.390625
+        ],
+        [
+          527.65625,
+          1016.796875,
+          384.671875,
+          76
+        ]
+      ]
+    },
+    {
+      "name": "The Sprint, $7,500",
+      "children": 5,
+      "display": "grid",
+      "rows": "subgrid [] [] [] [] [] []",
+      "span": "span 5",
+      "rowGap": "0px",
+      "x": 965.328125,
+      "y": 548.609375,
+      "width": 442.65625,
+      "height": 573.1875,
+      "featureY": 870.40625,
+      "buttonY": 1044.796875,
+      "childRects": [
+        [
+          994.328125,
+          577.609375,
+          384.65625,
+          28.796875
+        ],
+        [
+          994.328125,
+          606.40625,
+          384.65625,
+          111
+        ],
+        [
+          994.328125,
+          717.40625,
+          384.65625,
+          153
+        ],
+        [
+          994.328125,
+          870.40625,
+          384.65625,
+          146.390625
+        ],
+        [
+          994.328125,
+          1016.796875,
+          384.65625,
+          76
+        ]
+      ]
+    }
+  ],
+  "feature_spread_px": 0.0,
+  "button_spread_px": 0.0,
+  "mobile_card_geometry_identical": true,
+  "headings": [
+    {
+      "route": "/about",
+      "heading": "What I’m known for",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "What I’m known",
+          "for"
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 2,
+        "lines": [
+          "What I’m",
+          "known for"
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 4,
+        "lines": [
+          "What I’m known for"
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 4,
+        "lines": [
+          "What I’m known for"
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/about",
+      "heading": "Software for marketing and contracts.",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "Software for marketing and",
+          "contracts."
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 2,
+        "lines": [
+          "Software for marketing",
+          "and contracts."
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 1,
+        "lines": [
+          "Software for marketing and",
+          "contracts."
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 2,
+        "lines": [
+          "Software for marketing",
+          "and contracts."
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/about",
+      "heading": "Products I build from start to finish.",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "Products I build from start to",
+          "finish."
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 4,
+        "lines": [
+          "Products I build",
+          "from start to finish."
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 1,
+        "lines": [
+          "Products I build from start to",
+          "finish."
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 4,
+        "lines": [
+          "Products I build",
+          "from start to finish."
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/playbook",
+      "heading": "One sentence, four rounds apart",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "One sentence,",
+          "four rounds",
+          "apart"
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 2,
+        "lines": [
+          "One sentence,",
+          "four",
+          "rounds apart"
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 1,
+        "lines": [
+          "One sentence,",
+          "four rounds",
+          "apart"
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 1,
+        "lines": [
+          "One sentence,",
+          "four rounds",
+          "apart"
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/playbook",
+      "heading": "Chapter one, free",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "Chapter one,",
+          "free"
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 2,
+        "lines": [
+          "Chapter",
+          "one, free"
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 1,
+        "lines": [
+          "Chapter one,",
+          "free"
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 2,
+        "lines": [
+          "Chapter",
+          "one, free"
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/playbook",
+      "heading": "Where the ten live",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "Where the ten",
+          "live"
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 2,
+        "lines": [
+          "Where the",
+          "ten live"
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 2,
+        "lines": [
+          "Where the",
+          "ten live"
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 2,
+        "lines": [
+          "Where the",
+          "ten live"
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/call",
+      "heading": "Thirty minutes. Bring the problem.",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "Thirty minutes.",
+          "Bring the",
+          "problem."
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 2,
+        "lines": [
+          "Thirty",
+          "minutes. Bring",
+          "the problem."
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 1,
+        "lines": [
+          "Thirty minutes. Bring the",
+          "problem."
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 3,
+        "lines": [
+          "Thirty minutes.",
+          "Bring the problem."
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/work/guardicore",
+      "heading": "Visibility + microsegmentation positioning framework",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "Visibility +",
+          "microsegmentation",
+          "positioning",
+          "framework"
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 1,
+        "lines": [
+          "Visibility +",
+          "microsegmentation",
+          "positioning",
+          "framework"
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 2,
+        "lines": [
+          "Visibility + microsegmentation",
+          "positioning framework"
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 2,
+        "lines": [
+          "Visibility + microsegmentation",
+          "positioning framework"
+        ],
+        "wrap": "balance"
+      }
+    },
+    {
+      "route": "/work/content-engine",
+      "heading": "The content engine's output: videos, blogs, newsletters, and digital events",
+      "before_390": {
+        "last_line_words": 1,
+        "lines": [
+          "The content",
+          "engine's output:",
+          "videos, blogs,",
+          "newsletters,",
+          "and digital",
+          "events"
+        ],
+        "wrap": "wrap"
+      },
+      "after_390": {
+        "last_line_words": 2,
+        "lines": [
+          "The content",
+          "engine's output:",
+          "videos, blogs,",
+          "newsletters,",
+          "and",
+          "digital events"
+        ],
+        "wrap": "balance"
+      },
+      "before_1440": {
+        "last_line_words": 2,
+        "lines": [
+          "The content engine's output:",
+          "videos, blogs, newsletters, and",
+          "digital events"
+        ],
+        "wrap": "wrap"
+      },
+      "after_1440": {
+        "last_line_words": 3,
+        "lines": [
+          "The content engine's output:",
+          "videos, blogs, newsletters,",
+          "and digital events"
+        ],
+        "wrap": "balance"
+      }
+    }
+  ],
+  "all_pass": true
+}

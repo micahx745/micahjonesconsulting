@@ -1,0 +1,29 @@
+{
+  "backup": "C:\\Users\\micah\\AppData\\Local\\Temp\\pass-103b-original-sauxgmhp",
+  "hashes": {
+    ".planning/qa/pass-101/verify/rl10-nojs-1440.png": "a038e6cbd55e26a26f801ed9afe6b9f69f5d89fd15dc588daf225fac35925ddf",
+    ".planning/qa/pass-101/verify/rl8-1440-top.png": "35b43a017ec84066c3e156901d1339a935a610a89938667da2f9da21ade75a41",
+    ".planning/qa/pass-101/verify/rl8-390-faq.png": "b493ddf1f853091c13d606d763d5b3358b1f301d14f33d2d5bb801d883ca1c14",
+    ".planning/qa/pass-101/verify/rl8-390-manual.png": "41701def97f7c61b28b79ffc9a4933f8bef82267ce8bdbad90f31007d3509b5f",
+    ".planning/qa/pass-101/verify/rl8-390-price.png": "42fdcdb9d6e63353e9290bca279468b9945ee8500361ff59fcc5e2a0abc50d12",
+    ".planning/qa/pass-101/verify/rl8-390-work.png": "bae1ef3bc3cf586c15551a8dacd4274764702c58caf8edcbe6ce44395705cda9",
+    ".planning/qa/pass-101/verify/rl8-sec-faq.png": "c9671264c40aee6ad7b05c0ac82ccc513da745803b56f21cf4c27ca934a84429",
+    ".planning/qa/pass-101/verify/rl8-sec-manual.png": "3fd0114fa2e0a995faec58d1f5c3e7b755bd6717b45effc91b08af62fe1e9529",
+    ".planning/qa/pass-101/verify/rl8-sec-price.png": "cceacab30952901472df4736c48796e2d25222dafea672e26827dffbfe077063",
+    ".planning/qa/pass-101/verify/rl8-sec-proof.png": "ce06c8c9bba22205fc02e35055af83687b629e113967794c8327201af27b09db",
+    ".planning/qa/pass-101/verify/rl8-sec-work.png": "f604a0cd33f19ef38f0c72f6e282b1ecef608d158419b48cbb5c1ed0b0681aaf",
+    ".planning/qa/pass-101/verify/verify-room-result.json": "814ee70d753c757e122b9e26ce1a22df4821c7efff49c7837ca16fdf75f75848",
+    ".planning/qa/pass-101/verify/verify-room.txt": "df4b57e65982c76558a0cccde7f279613f8e4662606eaa0521b7d8356635c15e",
+    ".planning/qa/pass-101/verify/_b.png": "9a00dbeed600c5d5ba2ad509ce15d1f51cce7178fd3ac8246e968688f1458145",
+    ".planning/qa/pass-101/verify/_c.png": "894c7bb7a1b801a43bf882a83d6faf2c2baab082703c3127ac1a4980b1eb5eeb",
+    ".planning/qa/pass-101/verify/_finger.png": "db8a2d047ee897de8c1047bf8939bf38d8b2815cffca8872229c2c8eeebfb81a",
+    ".planning/qa/pass-101/verify/_mb.png": "6b3162ebe4193c2fbb06684a5116f2affdf846bf4181fb2f72ea68fd861d219a",
+    ".planning/qa/pass-101/verify/_mc.png": "e3a96db8fb2cad24ff40c627abd78af8282eb551e3ece2d54120959cf93fc9a1",
+    ".planning/qa/pass-101/verify/_o.png": "0a4733f0116c88d320ab01609fe22c4a55111a52430444620a125459bb0af440",
+    ".planning/qa/pass-101/verify/_op390.png": "70006b15860d2b88abb5e1b9d7a2225bb2e1df566adf6816828951c3a8b8c13e",
+    ".planning/qa/pass-101/verify/_veil.png": "a7eca22a6430c348214c6c2f706128285e02b12665f3971e5a365a2b500983f4",
+    "next-env.d.ts": "7ad303e40d4fddf44f156129e397511953a71481c5cfd86b1862649aaaf240cc"
+  },
+  "head": "543ddaad01095c37459d9d82c5dda032eb426b33",
+  "status": " M .planning/qa/pass-101/verify/rl10-nojs-1440.png\n M .planning/qa/pass-101/verify/rl8-1440-top.png\n M .planning/qa/pass-101/verify/rl8-390-faq.png\n M .planning/qa/pass-101/verify/rl8-390-manual.png\n M .planning/qa/pass-101/verify/rl8-390-price.png\n M .planning/qa/pass-101/verify/rl8-390-work.png\n M .planning/qa/pass-101/verify/rl8-sec-faq.png\n M .planning/qa/pass-101/verify/rl8-sec-manual.png\n M .planning/qa/pass-101/verify/rl8-sec-price.png\n M .planning/qa/pass-101/verify/rl8-sec-proof.png\n M .planning/qa/pass-101/verify/rl8-sec-work.png\n M .planning/qa/pass-101/verify/verify-room-result.json\n"
+}

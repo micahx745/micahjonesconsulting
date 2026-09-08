@@ -1,0 +1,35 @@
+PASS 133/133 Pass 101 files byte-identical to index
+PASS next-env.d.ts byte-identical to index
+PASS final WallChart: 6/6 animations finished before and after screenshot
+Final playbook capture viewport: {'width': 1440, 'height': 15708}
+PASS twelve final page PNGs present
+PASS only six intended tracked content changes
+$ git branch --show-current
+design/room-and-ledger
+exit: 0
+$ git diff --exit-code -- .planning/qa/pass-101 next-env.d.ts
+exit: 0
+$ git diff --check
+exit: 0
+$ git diff --stat
+ app/(room)/packages/page.tsx |  2 +-
+ app/(room)/playbook/page.tsx |  2 +-
+ app/room-and-ledger.css      | 19 +++++++++++++++++++
+ docs/LESSONS_LEARNED.md      | 25 +++++++++++++++++++++++++
+ scripts/stripe-setup.mjs     |  2 +-
+ scripts/verify-room.py       | 12 ++++++++++++
+ 6 files changed, 59 insertions(+), 3 deletions(-)
+exit: 0
+$ git status --short
+ M .planning/qa/pass-101/verify-final/verify-final.json
+ M .planning/qa/pass-101/verify/verify-room-result.json
+ M app/(room)/packages/page.tsx
+ M app/(room)/playbook/page.tsx
+ M app/room-and-ledger.css
+ M docs/LESSONS_LEARNED.md
+ M scripts/stripe-setup.mjs
+ M scripts/verify-room.py
+?? .planning/qa/pass-103b/
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+exit: 0

@@ -1,0 +1,15 @@
+
+> micahjonesconsulting@0.1.0 start C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p101-integrate
+> next start "--port" "3000"
+
+▲ Next.js 16.2.6
+- Local:         http://localhost:3000
+- Network:       http://192.168.4.60:3000
+✓ Ready in 146ms
+node : <claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+At line:2 char:1
++ node C:/Users/micah/AppData/Local/Temp/pass-102-corepack/v1/pnpm/10.1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (<claude-code-hi...ns-official" />:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

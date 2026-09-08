@@ -1,0 +1,23 @@
+﻿{
+  "entityMultiline": {
+    "source": "<dd><span>$99</span> at launch &middot; $149\n after</dd>",
+    "compiled": "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nconst _jsxruntime = require(\"react/jsx-runtime\");\nmodule.exports = /*#__PURE__*/ (0, _jsxruntime.jsxs)(\"dd\", {\n    children: [\n        /*#__PURE__*/ (0, _jsxruntime.jsx)(\"span\", {\n            children: \"$99\"\n        }),\n        \"at launch · $149 after\"\n    ]\n});\n",
+    "html": "<dd><span>$99</span>at launch · $149 after</dd>"
+  },
+  "entitySingleLine": {
+    "source": "<dd><span>$99</span> at launch &middot; $149 after</dd>",
+    "compiled": "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nconst _jsxruntime = require(\"react/jsx-runtime\");\nmodule.exports = /*#__PURE__*/ (0, _jsxruntime.jsxs)(\"dd\", {\n    children: [\n        /*#__PURE__*/ (0, _jsxruntime.jsx)(\"span\", {\n            children: \"$99\"\n        }),\n        \" at launch · $149 after\"\n    ]\n});\n",
+    "html": "<dd><span>$99</span> at launch · $149 after</dd>"
+  },
+  "plainMultiline": {
+    "source": "<dd><span>$99</span> at launch / $149\n after</dd>",
+    "compiled": "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nconst _jsxruntime = require(\"react/jsx-runtime\");\nmodule.exports = /*#__PURE__*/ (0, _jsxruntime.jsxs)(\"dd\", {\n    children: [\n        /*#__PURE__*/ (0, _jsxruntime.jsx)(\"span\", {\n            children: \"$99\"\n        }),\n        \" at launch / $149 after\"\n    ]\n});\n",
+    "html": "<dd><span>$99</span> at launch / $149 after</dd>"
+  },
+  "explicitSpace": {
+    "source": "<dd><span>$99</span>{\" \"}at launch &middot; $149\n after</dd>",
+    "compiled": "\"use strict\";\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nconst _jsxruntime = require(\"react/jsx-runtime\");\nmodule.exports = /*#__PURE__*/ (0, _jsxruntime.jsxs)(\"dd\", {\n    children: [\n        /*#__PURE__*/ (0, _jsxruntime.jsx)(\"span\", {\n            children: \"$99\"\n        }),\n        \" \",\n        \"at launch · $149 after\"\n    ]\n});\n",
+    "html": "<dd><span>$99</span> at launch · $149 after</dd>"
+  },
+  "builtPrice": "<dt>Price</dt><dd><span class=\"rl-num\">$99</span>at launch · $149 after</dd>"
+}

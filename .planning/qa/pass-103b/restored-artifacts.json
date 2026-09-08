@@ -1,0 +1,667 @@
+[
+  {
+    "path": ".planning/qa/pass-101/.gitignore",
+    "restored": false,
+    "sha256": "15bd6ce0dc74ae896fae320be588c2f78473d34dfac2eb12253219f21cdfab81"
+  },
+  {
+    "path": ".planning/qa/pass-101/about-1440-reduced-motion.png",
+    "restored": false,
+    "sha256": "263011acea275b72d2fe7fc4ce8b961596bb69fd1b60cf57c7de3c16402cb713"
+  },
+  {
+    "path": ".planning/qa/pass-101/about-1440.png",
+    "restored": false,
+    "sha256": "145fd5fd59d265ee0f9d6656bc009ce99aebef30f74bb75a497ee92ba60a24f6"
+  },
+  {
+    "path": ".planning/qa/pass-101/about-390.png",
+    "restored": false,
+    "sha256": "c892e94d5f1948ed8d27a1372f4734976b0f734e7ca6b6bff4d0303f0adbe292"
+  },
+  {
+    "path": ".planning/qa/pass-101/call-1440.png",
+    "restored": false,
+    "sha256": "a6c2c9b83d8b2677de8d1087478e3a10f91c78b87cdbfcba14107a04c3b92ed9"
+  },
+  {
+    "path": ".planning/qa/pass-101/call-390.png",
+    "restored": false,
+    "sha256": "8cd0ffa4fcef059f44355280e2c8659bddd24bdb15729698f87c683dca753b02"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/about-1440.png",
+    "restored": false,
+    "sha256": "d9564fd18358cdef30bb6adba8ed48fc031fc9f26d64007533925a9d6776eb7d"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/about-390.png",
+    "restored": false,
+    "sha256": "6b497d1e99ccb532f282277b9c6966326839bbddfc72ba8fadf9906fb92c3d96"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/about-exhibit-1440.png",
+    "restored": false,
+    "sha256": "63d7d7201957b82501562aeb75f37a69f54d6022c619dddee52f0057c774a475"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/foot-guardicore-1440.png",
+    "restored": false,
+    "sha256": "a7faf556b5c3debb270312d357aa8474f14844356cac5e3dc41c8ca77cdf0cb9"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/foot-packages-1440.png",
+    "restored": false,
+    "sha256": "5c00ffa2832e6a2dcec8ceb2d209ce945a03fe21fc8c29a5634631bc96da0580"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/home-1440.png",
+    "restored": false,
+    "sha256": "8b98b659d96fd5ebcf2b3c65b9e0f564254cfb90c6a7576019ab37a1aec82a4b"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/home-390.png",
+    "restored": false,
+    "sha256": "1b19a23af16e8f502ffae50f6ebc991e52acff69bdce585959adbed08beb0347"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/measure-results.json",
+    "restored": false,
+    "sha256": "237a13efea2c1664c0cf580d98127b9889519641d64a4399965ee3eae332ffdf"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/measure.py",
+    "restored": false,
+    "sha256": "77f81d956532178ec2633e3e3d9c64bf5b016aed12565cfbdc41bc5d7f09640c"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/packages-1440.png",
+    "restored": false,
+    "sha256": "7cbb638d32c7504d93f67dada0966f355b33897d2ae5ed5cc19bf29a861d006f"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/packages-390.png",
+    "restored": false,
+    "sha256": "982684dae87b718f6785a277e435878081cc950971227ecdf88d12e25cdc7bab"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/skip-link-home-focused-1440.png",
+    "restored": false,
+    "sha256": "4ce8f2416b0e2bd8f041fcd514ebfe7cbba7a21b1db78d7bae6df54bb17fbd89"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/skip-link-home-lit-1440.png",
+    "restored": false,
+    "sha256": "54a0177366db0fcfc4f597a7adff94ac99b4bb13c5cf2dfcd04f2eb4d9c3f328"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/work-guardicore-1440.png",
+    "restored": false,
+    "sha256": "6139b4f24fba56866b8011811e6cc0a21a9173d560af3787e53cdea6a585fcde"
+  },
+  {
+    "path": ".planning/qa/pass-101/fix2/work-guardicore-390.png",
+    "restored": false,
+    "sha256": "4cdc01400e05fe08f605798897ec8542dd738d0ddd1c420f01c4edd333b8fe54"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-1440-full.png",
+    "restored": false,
+    "sha256": "00aca7bfecb57ef7c84ca4fc4769d85fc1b9b66f307d6b2291faa7efaa7bb696"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-1440-hero.png",
+    "restored": false,
+    "sha256": "ad15530fb98e508b448ca41a6c55dcbfac6a17a0da5093463c610646e6f32f46"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-1440-ledger.png",
+    "restored": false,
+    "sha256": "774de00fef7e94e4ad1c3fba74a95fbbefa7524cc64df42417ee303272c229e5"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-1440-manual.png",
+    "restored": false,
+    "sha256": "6c7ff54a8b0ef9dfb6962009ae9570ad6094ae36953f6c54eb1a2fbac2c7bbd6"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-1440-objections.png",
+    "restored": false,
+    "sha256": "49f7e6657eb2cb063c1907d48810da0b6ff3ef48acdf796e4dcac8327c35892d"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-1440-packages.png",
+    "restored": false,
+    "sha256": "92252733a9a9ce54b6fcc82e5b656142588d9e7e5afb779bf0842a97f164ea5c"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-1440-receipts.png",
+    "restored": false,
+    "sha256": "af84e9347870537d574ab9cdac5b8d1d39a37b63f5ec789bbf2809c6dcdb5a39"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-390-full.png",
+    "restored": false,
+    "sha256": "ad837dd0c365a7a55972cefb60123d69bbd9773166856477d9f9c30d58c5f955"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-390-hero.png",
+    "restored": false,
+    "sha256": "dd033cddbbcd3c88ce0cf37911594c4eaf5e67d42fa9968876428329becab863"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-390-ledger.png",
+    "restored": false,
+    "sha256": "de0f4d8ff2c5d4d4ea364f592069e83df951869d2f3714c93d91349820b1811c"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-390-manual.png",
+    "restored": false,
+    "sha256": "1e85f3c1ab734456cf55f7891f027f3ffc243cab4a5134f76d86b76ecc388e0e"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-390-objections.png",
+    "restored": false,
+    "sha256": "0a9025737f9d7153dd5cb7c95705a52c1d5fc9103f9c1a3e6d6211c327003d5c"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-390-packages.png",
+    "restored": false,
+    "sha256": "5950ecb3c14d8d12b5ca448f6e3d8b731c17505ba4f18538db3ad92575fc8cf7"
+  },
+  {
+    "path": ".planning/qa/pass-101/home-390-receipts.png",
+    "restored": false,
+    "sha256": "ec143c292e38ea03c2fa259ce31c106558b151cbba6337e352e0c2bfb61d5a6d"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/about-1440.png",
+    "restored": false,
+    "sha256": "ada446754900edd9a454c46cdb4b9e57cce4083f6f28b1d1ba89597f73a42e44"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/about-390.png",
+    "restored": false,
+    "sha256": "cb2b7818da0178ac4ff497a41eae135ee122afdd59330e3d924a1e0b7a92872c"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/call-1440.png",
+    "restored": false,
+    "sha256": "690e4e4ba04b4c6bf4efb56b00f553e9f495ce3062ee7e1688077db8c3ce9dd0"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/call-390.png",
+    "restored": false,
+    "sha256": "c0751198f9a5495c970794b5bb581b57cfc67b607a0bd1a69f92512d7315fdf4"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/hero-finger-zoom-1440.png",
+    "restored": false,
+    "sha256": "f4a28ed20ecbaa1117dc68ef85ea019ef2e46780d48d9a9e5f2b0015a1a0bcc3"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/hero-firstscreen-1440.png",
+    "restored": false,
+    "sha256": "95ab558784bd4c8e66110fce0b59185ab406a26d4595ee492313928ad84e710a"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/hero-firstscreen-390.png",
+    "restored": false,
+    "sha256": "0645ceb2ff17df7461515aaf3207db04e9378bc3ce585cdc2b75ed1c1f9dace0"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/home-1440.png",
+    "restored": false,
+    "sha256": "508d0adb7f62b21e37dc14448bf8fc27c3578659c04c5159690c415171173ee9"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/home-390.png",
+    "restored": false,
+    "sha256": "b162a084a31f1c48ad53c76a4d569965525f764b62670257b34c7bba7e21ee1e"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/packages-1440.png",
+    "restored": false,
+    "sha256": "351c59e29585f24c3b86308998973d59371bc10d1716da21cb581b82cbd120e9"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/packages-390.png",
+    "restored": false,
+    "sha256": "bc7ee8cbd2639ef65e0ccc70a7403e372a73da055f2f8ebb433a833b46891f77"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/packages-cards.png",
+    "restored": false,
+    "sha256": "dfb702e31d6a5dbf85dca2167189db2a2b163efcf4c77390aa8fd2a7418a63bd"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/packages-eng.png",
+    "restored": false,
+    "sha256": "216a4a54f3d657d027742409421c893c7801abe3912a3c86b1c6869b3f3aab74"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/playbook-1440.png",
+    "restored": false,
+    "sha256": "132d4ca49958803fe14efd9a6e9e1b6915ad523886bc3e8fd480d592a7d7c3fe"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/playbook-390.png",
+    "restored": false,
+    "sha256": "6bb351697ad64edf793f431e318a8cb2ab36714a071e47c75f0ad922581e64a1"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/work-1440.png",
+    "restored": false,
+    "sha256": "a3302b4d7005eb428cb6e3a65f342693f015a9d19f0d9d6960cf6e9987704e6a"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/work-390.png",
+    "restored": false,
+    "sha256": "5c48f4000c1941cba23f5acbf65fa5445d83de35738b10ff8e2a9ba3c0f21a98"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/work-guardicore-1440.png",
+    "restored": false,
+    "sha256": "33a2d3c33be402126816b2bb57a6e51164c9d2b8d1ffa7af7d0bfb283dc03489"
+  },
+  {
+    "path": ".planning/qa/pass-101/p18-final/work-guardicore-390.png",
+    "restored": false,
+    "sha256": "c116ba21447b34f73b643d5258a86ffd738633fccb6428cc0436016e7dad06aa"
+  },
+  {
+    "path": ".planning/qa/pass-101/packages-1440-reduced-motion.png",
+    "restored": false,
+    "sha256": "d3ab23e5afabe86aeecd77e6e96e2d9aa2f702f98c30a1c39540349adac32b7f"
+  },
+  {
+    "path": ".planning/qa/pass-101/packages-1440.png",
+    "restored": false,
+    "sha256": "0ffa755ad83685328c72f3e961a012131bd0f83590952986e8f22691f13c6f73"
+  },
+  {
+    "path": ".planning/qa/pass-101/packages-390.png",
+    "restored": false,
+    "sha256": "4b44953062ca9d1d3c3effa0ccb31d437c068e36c4b3feca9f9c13556a03d65f"
+  },
+  {
+    "path": ".planning/qa/pass-101/playbook-1440.png",
+    "restored": false,
+    "sha256": "8cfbc8afdb3e568999a5eb1909eabb93d02c91c5f0a801e7b60390f3b8cc3889"
+  },
+  {
+    "path": ".planning/qa/pass-101/playbook-390.png",
+    "restored": false,
+    "sha256": "e5aaada9e9f4f3af032e896da83922a98226fc72e2ef562a18b1590f9ac2dbb8"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/about-1440.png",
+    "restored": false,
+    "sha256": "e96c5de2fe31bcfb5f041799437e86d873166e987978da34d8da45a513fcc5c0"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/about-390.png",
+    "restored": false,
+    "sha256": "b7049739b4468895fe4ac907f680dc8b77006bb50ddade17f010626acce65626"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/call-1440.png",
+    "restored": false,
+    "sha256": "5031a0fc6dcf2f97d5a362072af9fb718d78de1320c7567f5074db435b65e65c"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/call-390.png",
+    "restored": false,
+    "sha256": "64443c1fc325c68bfbe843d882778ad1c828a2e9527886798caa78af66b2bb99"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/home-1440.png",
+    "restored": false,
+    "sha256": "1dd825edf7bbafefcb94f170ef5d1c59652e72ed741dd3cb2821f4d551cdb7c3"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/home-390.png",
+    "restored": false,
+    "sha256": "a8f4e6360b52f2a0fda6321504a3880c06eb88b249e4a6dbfa3cfb35a2687ba2"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/packages-1440.png",
+    "restored": false,
+    "sha256": "52bbf8e35df4c707bb42e049cbc5e602676d3b5c75085542342d0840708fea5d"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/packages-390.png",
+    "restored": false,
+    "sha256": "f1ea03e5a4e31e16b689e324e84dd694c25db6ca8caad256ce3627eda09a3a05"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/work-1440.png",
+    "restored": false,
+    "sha256": "e45a93561584da6c18ecc22ac1dcb7b63dc61018ea93b010e3d435cc0384fce5"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/work-390.png",
+    "restored": false,
+    "sha256": "ebdef91112bb6731e1d4a51b4a9f2d4dc9d80b428dda229c41625e4640d65a62"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/work-guardicore-1440.png",
+    "restored": false,
+    "sha256": "7c7ba9a57c209e8464d8dd8c70cba3d3d778e4abd9c98396fa7165b9a350f4fd"
+  },
+  {
+    "path": ".planning/qa/pass-101/polish/work-guardicore-390.png",
+    "restored": false,
+    "sha256": "c116ba21447b34f73b643d5258a86ffd738633fccb6428cc0436016e7dad06aa"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/_frame0.png",
+    "restored": false,
+    "sha256": "83ee995d8e1577c367ac9058c3e73c590764c7fabbb5135fd8c8fe84808d207c"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/_frame1.png",
+    "restored": false,
+    "sha256": "72847b5a8b4564ce8a75514d4295c583f405f65a157f283449c786a3166125f2"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/_frame2.png",
+    "restored": false,
+    "sha256": "4b239ebc2df3fd4474fd73d2591c0c8ea465e8bea337d24726f2d3f65be92600"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/about-1440.png",
+    "restored": false,
+    "sha256": "f8fbb621318a2dfe26700ce536fcd34b273fee88417bc50fd046bf8e1b7e3e6d"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/about-390.png",
+    "restored": false,
+    "sha256": "b8af85e60d162b09ae112c9e22bfd54aab3e1b266cd565c0031c86835f9f9733"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/call-1440.png",
+    "restored": false,
+    "sha256": "690e4e4ba04b4c6bf4efb56b00f553e9f495ce3062ee7e1688077db8c3ce9dd0"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/call-390.png",
+    "restored": false,
+    "sha256": "c0751198f9a5495c970794b5bb581b57cfc67b607a0bd1a69f92512d7315fdf4"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/call-kickoff-1440.png",
+    "restored": false,
+    "sha256": "fa446f2d3b834c77091c9bce0f4389e0c1d275f079009a47c1b978b972d4f0c0"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/call-kickoff-390.png",
+    "restored": false,
+    "sha256": "0d0d07e32c8a5c1b2eb2aaa84acb66ebaf0e8321fae3d336fc31c023f05db7e2"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/contact-1440.png",
+    "restored": false,
+    "sha256": "172b2e39b911d53a84b171004c3acc37d7a8789a6728b88136df58b396faad2f"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/contact-390.png",
+    "restored": false,
+    "sha256": "80e6f0fe4b3655120757b1b121750cf3c417b4327053c2e99d61da8c853fcd76"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/home-1440-reduced-motion.png",
+    "restored": false,
+    "sha256": "e05198a6a107fc503c055edbaa817a035acf0a9922a4801de3aaf9742a45b5d2"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/home-1440.png",
+    "restored": false,
+    "sha256": "2f56b250ef4093f2ee68846c65024c93c13a495907bab6f0ebd1b4cc871f17ed"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/home-390.png",
+    "restored": false,
+    "sha256": "c70b33140eba8b87d9c2dd17d7a28c3bca4f2c4e55c081c021a3f910cd31d8d4"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/no-such-page-404-1440.png",
+    "restored": false,
+    "sha256": "488dd883673ee34d333def937b2bdb3bc49037cc68fc901dbbd5622f602c5c41"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/no-such-page-404-390.png",
+    "restored": false,
+    "sha256": "115d26123355aba79742e3ff9aa7ac1d227ff1c897278f7e89117f922061e36e"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/packages-1440.png",
+    "restored": false,
+    "sha256": "351c59e29585f24c3b86308998973d59371bc10d1716da21cb581b82cbd120e9"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/packages-390.png",
+    "restored": false,
+    "sha256": "bc7ee8cbd2639ef65e0ccc70a7403e372a73da055f2f8ebb433a833b46891f77"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/playbook-1440.png",
+    "restored": false,
+    "sha256": "132d4ca49958803fe14efd9a6e9e1b6915ad523886bc3e8fd480d592a7d7c3fe"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/playbook-390.png",
+    "restored": false,
+    "sha256": "6bb351697ad64edf793f431e318a8cb2ab36714a071e47c75f0ad922581e64a1"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/playbook-thanks-1440.png",
+    "restored": false,
+    "sha256": "ef8c501043805d3f3c73d4ef8168f76a1c520014e50a54b3a24533c45b1f062d"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/playbook-thanks-390.png",
+    "restored": false,
+    "sha256": "27959d1e9e451d264c7afc6051890a3e1962da084072a7f81df9307a5e9e3f7a"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/services-1440.png",
+    "restored": false,
+    "sha256": "a319ba6119a7ff2de846ed7d3307c7f106d451d01be3f7a57470e88321e8039a"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/services-390.png",
+    "restored": false,
+    "sha256": "9441f650121eefccc1960ed9c54be633937888645654fcd85e2669bc74997b10"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/services-thanks-1440.png",
+    "restored": false,
+    "sha256": "d371d0b60e8964a139a9bf6f9f683a4ddfea2787e4a8e317025c15bd0edac398"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/services-thanks-390.png",
+    "restored": false,
+    "sha256": "49ae9313c4ad63cc36231ecf3c6051629e0f23d9353f505e292683efa8f7b72e"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/verify-final.json",
+    "restored": true,
+    "sha256": "9273d093c94339b4ddebdc03d5cc539fcc967de9d6dfad6a7b2bc3d1769c284d"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-1440.png",
+    "restored": false,
+    "sha256": "a3302b4d7005eb428cb6e3a65f342693f015a9d19f0d9d6960cf6e9987704e6a"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-390.png",
+    "restored": false,
+    "sha256": "5c48f4000c1941cba23f5acbf65fa5445d83de35738b10ff8e2a9ba3c0f21a98"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-content-engine-1440.png",
+    "restored": false,
+    "sha256": "8769cfcf531e31bd03ebb15a18ba2fd2e83934bf7092d5aa46a04d11d6f9b428"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-content-engine-390.png",
+    "restored": false,
+    "sha256": "53910c82f4a1db555be9ad575efe77667011408bcd6ecaf7ce7302f4c1ec279e"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-guardicore-1440.png",
+    "restored": false,
+    "sha256": "33a2d3c33be402126816b2bb57a6e51164c9d2b8d1ffa7af7d0bfb283dc03489"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-guardicore-390.png",
+    "restored": false,
+    "sha256": "c116ba21447b34f73b643d5258a86ffd738633fccb6428cc0436016e7dad06aa"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-ordani-1440.png",
+    "restored": false,
+    "sha256": "0502ced1fe6887b90e06cf8a1be5471a92c69dc6d6b05816a1acf93875a0748f"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-ordani-390.png",
+    "restored": false,
+    "sha256": "5ff809097c3abf501b771bf666280177863c5d5e387fbf24ac19822bffe57071"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-rfp-engine-1440.png",
+    "restored": false,
+    "sha256": "7d27d846851c387602282d97dab504102f90f4953920c187f11bcc2d07b62dcf"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify-final/work-rfp-engine-390.png",
+    "restored": false,
+    "sha256": "70a84e12b0f4a99a3cfa6fc35a8ca6db7dd59a3d8432af9df4daf20ab21f64e0"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_b.png",
+    "restored": false,
+    "sha256": "9a00dbeed600c5d5ba2ad509ce15d1f51cce7178fd3ac8246e968688f1458145"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_c.png",
+    "restored": false,
+    "sha256": "894c7bb7a1b801a43bf882a83d6faf2c2baab082703c3127ac1a4980b1eb5eeb"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_finger.png",
+    "restored": false,
+    "sha256": "db8a2d047ee897de8c1047bf8939bf38d8b2815cffca8872229c2c8eeebfb81a"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_mb.png",
+    "restored": false,
+    "sha256": "6b3162ebe4193c2fbb06684a5116f2affdf846bf4181fb2f72ea68fd861d219a"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_mc.png",
+    "restored": false,
+    "sha256": "e3a96db8fb2cad24ff40c627abd78af8282eb551e3ece2d54120959cf93fc9a1"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_o.png",
+    "restored": false,
+    "sha256": "0a4733f0116c88d320ab01609fe22c4a55111a52430444620a125459bb0af440"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_op390.png",
+    "restored": false,
+    "sha256": "70006b15860d2b88abb5e1b9d7a2225bb2e1df566adf6816828951c3a8b8c13e"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/_veil.png",
+    "restored": false,
+    "sha256": "a7eca22a6430c348214c6c2f706128285e02b12665f3971e5a365a2b500983f4"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl10-nojs-1440.png",
+    "restored": true,
+    "sha256": "776d746c6c54b81db1865f6590709450bae594561412b560bea61f05c62bb52c"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-1440-top.png",
+    "restored": true,
+    "sha256": "b0f74075e845272b0883b4ff363d0eb9b5e5f063af5b7b75bebce5256b1dd8ff"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-390-faq.png",
+    "restored": true,
+    "sha256": "8ab80b259e7191e4860c6ecb2809243c17c0ce585ebfa19155594bcfc5a6df6c"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-390-manual.png",
+    "restored": true,
+    "sha256": "cfdc20c311f65f5bea28f67470ad8f83293384a363d0bfe5c689d5e83bf89922"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-390-price.png",
+    "restored": true,
+    "sha256": "b7501a38a751ed1e33f162f74a36e26697cfcd829142d333706545bfd8cda325"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-390-work.png",
+    "restored": true,
+    "sha256": "3eefcb90bd480dd4dad27e491867894970d9a1fcddd98585c4f40030bc865939"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-sec-faq.png",
+    "restored": true,
+    "sha256": "b72221f76fd049a8c4f10e7adf5e787e2dbc933b1ee335e91725193c710dc3f5"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-sec-manual.png",
+    "restored": true,
+    "sha256": "571364d7c3156a57a30d0407ca80de811cecdd7522151553e52dda668cfc1429"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-sec-price.png",
+    "restored": true,
+    "sha256": "1964b3dcfb476c8c5d3fff10c7e17830c037873b716f2c22254f7def4cf6ccbb"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-sec-proof.png",
+    "restored": true,
+    "sha256": "b56dd4fcdc1928c25d45d37ccf312ae3037dfe6216d139e5bfa058aee6971722"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/rl8-sec-work.png",
+    "restored": true,
+    "sha256": "65b3a253857a30c7444d4bd4d53bf152ffe75f5e301843edff47b293b195132c"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/verify-room-result.json",
+    "restored": true,
+    "sha256": "db88f569e9b4903700cd03186288ffc255174dd4b08e785a3a03f4e12372b13c"
+  },
+  {
+    "path": ".planning/qa/pass-101/verify/verify-room.txt",
+    "restored": false,
+    "sha256": "df4b57e65982c76558a0cccde7f279613f8e4662606eaa0521b7d8356635c15e"
+  },
+  {
+    "path": ".planning/qa/pass-101/work-1440.png",
+    "restored": false,
+    "sha256": "1984139ad73aef1c6b4b8c546fa7a823871c6d701891d2f6a7cb8360dcaee18f"
+  },
+  {
+    "path": ".planning/qa/pass-101/work-390.png",
+    "restored": false,
+    "sha256": "76fbb3beba2ec1f462ec8b1d3388d59b4a29c84d43c3780abb4a58587390478a"
+  },
+  {
+    "path": ".planning/qa/pass-101/work-guardicore-1440.png",
+    "restored": false,
+    "sha256": "407fdd512d8de37e30ceb4c8af761f0fdf0dc465711fc3fc54b5175073cdb4a6"
+  },
+  {
+    "path": ".planning/qa/pass-101/work-guardicore-390.png",
+    "restored": false,
+    "sha256": "5d496e5e537bc6b2d25618f09648f3a7746c219788b43b5ed2a2176e1d28b754"
+  }
+]

@@ -1,0 +1,10 @@
+'$99at launch · $149 after'
+python : Traceback (most recent call last):
+At line:12 char:6
++ '@ | python -P - 2>&1 | Tee-Object -FilePath .planning/qa/pass-103b/p ...
++      ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Traceback (most recent call last)::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  File "<stdin>", line 9, in <module>
+AssertionError: Price-row regression reproduced
