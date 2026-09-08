@@ -57,5 +57,13 @@ load at ≥ 900px) is in its finished frame; the Pass 103 playbook-1440 capture 
 with every command and number. DO NOT COMMIT. Do not push.
 
 ## 7. Return conditions
-Any change to a ticked string · a fingertip check failing · §3 needing markup changes beyond a class ·
+Any change to a ticked string · a fingertip check failing on a MEASURED frame (a `16.2-arrival`
+FAIL that reads "ffmpeg missing or clip absent" is the executor's sandbox, not the fingertip: note
+it, keep going, and Fable runs the final verify-room outside the sandbox where ffmpeg is on PATH;
+Fable ruling 2026-09-08 after the first run stopped on it) · §3 needing markup changes beyond a class ·
 a mechanism for §2 you cannot demonstrate in the compiled output.
+
+## 8. Execution record
+- Run 1 (Codex, 8 min): §2 mechanism demonstrated (SWC drops the leading space of a multi-line JSX
+  text run that contains an entity), the price-row check added; stopped on the sandbox ffmpeg FAIL
+  before §1/§3/§4. Run 2 continues from there.
