@@ -119,17 +119,17 @@ const CHAPTERS = [
     page: 3,
     free: true,
   },
-  { n: "02", title: "The spec is the moat", tag: "Drift, not bugs", page: 12 },
+  { n: "02", title: "The spec is the moat", tag: "When the build drifts", page: 12 },
   {
     n: "03",
     title: "The architecture you didn't draw",
-    tag: "Auth, data, storage, the arrows",
+    tag: "Auth, data, storage, and how they connect",
     page: 19,
   },
   {
     n: "04",
     title: "Deploy day",
-    tag: "Env vars, migrations, domains",
+    tag: "Environment variables, migrations, domains",
     page: 25,
   },
   {
@@ -147,7 +147,7 @@ const CHAPTERS = [
   {
     n: "07",
     title: "Compliance, when it matters",
-    tag: "HIPAA, GDPR, SOC 2, and when",
+    tag: "HIPAA, GDPR, SOC 2: when each matters",
     page: 44,
   },
   {
@@ -159,7 +159,7 @@ const CHAPTERS = [
   {
     n: "09",
     title: "The distribution loop",
-    tag: "Second-hand users, the loop",
+    tag: "Users who bring more users",
     page: 57,
   },
   {
@@ -183,11 +183,11 @@ const FAQS = [
   },
   {
     q: "Do I need to know how to code?",
-    a: "You need to read code and run a terminal. The AI writes; the manual teaches you to steer.",
+    a: "You need to read code and run a terminal. The AI writes; I show you how to steer.",
   },
   {
     q: "How is this different from a tutorial?",
-    a: "A tutorial shows one happy path. This is the failure modes, from someone who shipped through them.",
+    a: "A tutorial shows one happy path. I show what breaks and how I shipped through it.",
   },
   {
     q: "What if it does not help?",
@@ -195,7 +195,7 @@ const FAQS = [
   },
   {
     q: "Will it go stale?",
-    a: "The tools change monthly. The walls do not. Every future edition is included and goes to the same email.",
+    a: "The tools change monthly. The problems stay. Every future edition is included and goes to the same email.",
   },
 ] as const;
 
@@ -463,7 +463,7 @@ export default function PlaybookPage() {
               </p>
               <p data-rl="rule">
                 You kept running into the same thing. Fixed Tuesday, broken
-                Friday, because the tool forgot.
+                Friday. The tool forgot.
               </p>
             </div>
             <p className="rl-body rl-air-m">
@@ -563,8 +563,7 @@ export default function PlaybookPage() {
             <span className="rl-l">§ 0.3</span>
             <p className="rl-note">
               <span className="rl-l">Field note</span>
-              Nine line-drawn diagrams, each drawn for this book. No stock art
-              anywhere in it.
+              Nine line-drawn diagrams, all drawn for this book. No stock art.
             </p>
           </aside>
         </section>
@@ -648,8 +647,8 @@ export default function PlaybookPage() {
             <span className="rl-l">§ 0.5</span>
             <p className="rl-note">
               <span className="rl-l">Field note</span>
-              Thirteen entries like this one in the manual. All true, all dated.
-              None of them are anyone else&rsquo;s story.
+              Thirteen entries like this one in the manual. All true, all dated,
+              all mine.
             </p>
           </aside>
         </section>
@@ -715,7 +714,7 @@ export default function PlaybookPage() {
               </h2>
             </div>
             <p className="rl-lede">
-              The whole first chapter, not an excerpt. Leave your email and it
+              Get the whole first chapter. Leave your email and it
               arrives in about a minute.
             </p>
             <div className="rl-form rl-air-m">
@@ -726,8 +725,8 @@ export default function PlaybookPage() {
             <span className="rl-l">§ 0.7</span>
             <p className="rl-note">
               <span className="rl-l">Field note</span>
-              No sequence, no drip. One email with the PDF, and a second one the
-              day the manual ships.
+              One email with the PDF. A second on the
+              day the manual ships. No sequence, no drip.
             </p>
           </aside>
         </section>
@@ -782,7 +781,7 @@ export default function PlaybookPage() {
               <li data-rl="rule">
                 <span className="term">Nine templates</span>
                 <span className="stmt">
-                  , including three worked SPEC files written end to end: a
+                  , including three complete SPEC files: a
                   booking app, a photographer gallery, and an internal ops
                   tracker. Also a starter invariants file, an architecture
                   sample, and a real env example.
@@ -794,8 +793,8 @@ export default function PlaybookPage() {
             <span className="rl-l">§ 0.8</span>
             <p className="rl-note">
               <span className="rl-l">Field note</span>
-              The gallery and ops SPEC files appear in no chapter. They are
-              there because writing a spec is easier with one you can copy.
+              The gallery and ops SPEC files appear in no chapter. I included
+              them so you have a spec to copy.
             </p>
           </aside>
         </section>
@@ -896,8 +895,8 @@ export default function PlaybookPage() {
               <>
                 <p className="rl-l">The day it ships</p>
                 <p className="rl-body rl-air-s">
-                  Leave your email for chapter one now, and I&rsquo;ll tell you
-                  the day the full manual opens, at the launch price.
+                  Leave your email for chapter one. I&rsquo;ll tell you
+                  the day the full manual opens at the launch price.
                 </p>
                 <p className="rl-air-s">
                   <a href="#pb-free" className="rl-link">
