@@ -5,33 +5,33 @@ Fable 5.1 rules; executors run briefs (MODEL_ROUTING §7–§8). Direction:
 `.planning/PHASE-MAP-2026-09-04.md`. Passes 97+98 LIVE. The book chat shares this tree: stage by path.
 
 ## Room and Ledger (the new site) — state
-- Mock: `.planning/design/WINNING-BRIEF-2026-09-05.md` §1–§18; v7 at be9096fa.
-- SITE: branch `design/room-and-ledger` (worktree `.claude/worktrees/p101-integrate`), 50+
-  commits, 12 routes ported and axe-clean, verify-room 61/61, build green, tip abfc057.
-  Lighthouse mobile 88 / LCP 4.0s (pre-existing). NOT pushed: `git push -u origin
-  design/room-and-ledger` is HIS (Vercel preview). /services unported (1 a11y, also on main).
-- Clips: `design/video/` (B-loop, A2-hold); 3rd clip A wanted. Composites brief 2026-09-06.
+- SITE: branch `design/room-and-ledger` (worktree `.claude/worktrees/p101-integrate`), 12 routes
+  ported, axe-clean, verify-room 62/62, build green. Lighthouse mobile 88 / LCP 4.0s.
+  /services unported (1 a11y, also on main). Every re-push is HIS.
+- Clips: B-loop + A2-hold only; composites and a 3rd clip A are DROPPED (his 2026-09-08 call).
 - LESSONS numbering: main #17 vs branch #17–#19 → renumber at merge.
 
 ## Executor tier (2026-09-07)
-Codex/Astra (ChatGPT Pro, weekly reset, SPEND IT) = juror + executor (`scripts/codex-exec.ps1`) · GLM 5.3 = mechanical executor + reader/drafter
-(`scripts/claude-glm.ps1`, key ~/.claude/.zai-key, run via `powershell -File`; 5h window
-spent 2026-09-08) · Sonnet default in-session · Opus only if no executor · keys in his shell.
-Pass 102 DONE (12 rows, QA `.planning/qa/pass-102/`).
-Pass 103: 57/57 rows APPLIED (ad4e11c…9a85226); verify Workflow wf_dbe6bf5f-577 CLEAN.
-Pass 103b DONE + committed (2530ef4…f3cca85: JSON-LD/stripe mirror, "$99at" fix + LESSONS #19,
-card subgrid, headline balance); independent verify-room 62/62 with ffmpeg.
-WAITING ON HIS TICKS: `.planning/copy/PASS-103-REWORD-TICK-TABLE.md` (10 rows; 7 = /about
-reorder). Then `.claude/briefs/pass-103c-reword-apply.md` on Codex (no commit; Fable commits), then a
-Sonnet verify-room leg outside the sandbox.
-Parked (his): re-run scripts/stripe-setup.mjs (live Audit text stale). Later polish: rfp-engine
-tail spacing; content-engine stat wrap + lone middot; 2 widows balance can't fix.
+Codex/Astra (ChatGPT Pro, weekly reset, SPEND IT) = juror + executor (`scripts/codex-exec.ps1`;
+it CANNOT commit in a worktree) · GLM 5.3 = mechanical (`scripts/claude-glm.ps1`) · Sonnet =
+default leg · Opus only if no executor · keys stay in his shell.
+Pass 103 + 103b + 103c ALL APPLIED, verified, committed (branch tip: see git log). Preview PUSHED by him:
+micahjonesconsulting-git-design-room-and-ledger (Vercel, his login). Needs a re-push for 103c.
+HIS RULINGS 2026-09-08: (1) book NOT selling - hide it everywhere AND drop it from packages,
+"cleanest break"; page stays on disk, unlinked + noindex. Brief `pass-104a-book-blackout.md`
+written, NOT run. (2) Refunds: full only BEFORE the kickoff call; after it, prorated for work
+done; no refund question in the FAQ.
+(3) HOME REBUILD wanted - hero wasted black space, the $5B proof "super weak" (wants a sign
+that lights up as a 2nd beat after the copper word), operator section wasted space + video
+too big/pixelated (master is 1440x1440, served 720x720), how-I-work weak + no motion,
+packages must be "the most spectcular", objections Q+A weak. Design Workflow wf_0cc6cbf6-ff3 RUNNING -> Pass 104b brief.
 
 ## Ship gate (his)
-Stripe webhook + `whsec_` in Production + one live $500 buy/refund → `PLAYBOOK_ON_SALE=1`.
+Book is OFF (104a). Packages sell now; the live Stripe Audit description is stale until he
+re-runs `scripts/stripe-setup.mjs`.
 
 ## Next
-His reword ticks → 103c · his preview push · merge after his look · 99/100 SEO items.
+104a execute · 104b home rebuild from the synthesis · his re-push · merge after his look · 99/100 SEO items.
 
 ## Standing traps
 Every push auto-deploys · `grep -oiF` false zeroes · copy-lint hook rejects docs that QUOTE
