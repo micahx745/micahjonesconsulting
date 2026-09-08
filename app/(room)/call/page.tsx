@@ -45,7 +45,7 @@ const TERMS = [
   { k: "When", v: "Tue to Thu, 10am to 4pm Pacific" },
   {
     k: "After",
-    v: "A calendar invite by email. The video link comes from me before the call.",
+    v: "A calendar invite by email. I send the video link before the call.",
   },
 ];
 
@@ -66,8 +66,8 @@ export default function BookPage() {
       <div className="rl-two">
         <div className="rl-two__l">
           <p className="rl-lede" data-rl="rise">
-            No deck and no pitch. Bring the problem, and this call is where the
-            work starts. If you have notes, bring them. If not, I will ask.
+            No deck and no pitch. The work starts with your problem. Bring notes
+            if you have them. If not, I will ask.
           </p>
           <p className="rl-body rl-air-s" data-rl="rise">
             <strong>What you leave with:</strong> a diagnosis of what is stuck

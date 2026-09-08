@@ -73,7 +73,7 @@ export function BookCallForm() {
       <div className="cw-book__done" aria-live="polite">
         <p className="cw-book__donehead">Booked.</p>
         <p>
-          The calendar invite is in your inbox — reminders included. I&rsquo;ll
+          The calendar invite is in your inbox, with reminders. I&rsquo;ll
           reply with a video link before the call.
         </p>
       </div>
@@ -120,7 +120,7 @@ export function BookCallForm() {
       </div>
       {dayWarn && (
         <p className="cw-book__warn" aria-live="polite">
-          Calls run Tuesday through Thursday — pick one of those days.
+          Calls run Tuesday through Thursday. Pick one of those days.
         </p>
       )}
       <label className="cw-book__field">
