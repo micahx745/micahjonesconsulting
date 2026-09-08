@@ -198,6 +198,15 @@
   max-width: none;
 }
 
+/* PASS-103b: balance the ported section and card heads, including the
+ * theater's still cards. The home and its hand-positioned §14.7 headings
+ * are outside these wrappers; /about's operator h1 is deliberately omitted. */
+#rl-root :is(h2, h3, .rl-ledger .term, .rl-eng .hd, .rl-log .title, .rl-toc .title),
+#rl-root #rl-book-title,
+#rl-theater :is(h2, h3, .case-study-still__spec-title) {
+  text-wrap: balance;
+}
+
 .rl-lede {
   font-size: var(--lede);
   line-height: 1.35;
@@ -587,6 +596,16 @@ html.rl-js .rl-bar.rl-in {
   box-shadow: none;
   /* §16.3-7: the card's border turns copper on hover, 300ms. */
   transition: border-color 300ms var(--e);
+}
+/* PASS-103b: the five direct children share rows across the three packages.
+ * Keep the existing interior spacing; the parent's gap is between cards. */
+@media (min-width: 900px) {
+  #packages .rl-cards > .rl-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+    row-gap: 0;
+  }
 }
 #rl-root .rl-card:hover,
 #rl-root .rl-card:focus-within {
