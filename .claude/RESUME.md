@@ -19,19 +19,17 @@ Codex/Astra (ChatGPT Pro, weekly reset — SPEND IT) = juror + 2nd executor
 (`scripts/claude-glm.ps1`, key ~/.claude/.zai-key, run via `powershell -File`; 5h window
 spent 2026-09-08) · Sonnet default in-session · Opus only if no executor · keys only in his shell.
 Pass 102 DONE on the branch (12 rows, gates green, QA `.planning/qa/pass-102/`).
-Pass 103 (long-form copy): editor 120 rows → juror 57 ACCEPT / 9 REWORD / 1 REJECT →
-`.planning/copy/PASS-103-TICK-TABLE.md` (rows #1–#57, keyed PK/AB/OR/GC/RF/CE/PB/CA ids) SENT;
-WAITING ON HIS TICKS. Then: applier (Codex xhigh in the worktree; pattern = Pass 102 Step E,
-apply ticked rows verbatim from the edit tables, widen verify-room copy gate citing "PASS-103
-row N", build + verify-room green, DO NOT COMMIT) → Fable commits → screenshots 390/1440.
-Juror flags needing HIS ruling: /about still opens as a résumé (AB09–AB11 before AB03–AB06
-would fix it); Guardicore GC02 opening rejected.
+Pass 103 (long-form copy): 57/57 ticked rows APPLIED on the branch (Codex applier; Fable
+committed per page ad4e11c…9a85226; build green, verify-room 61/61, QA `.planning/qa/pass-103/`).
+Running 2026-09-08: verify Workflow wf_dbe6bf5f-577 (diff-vs-table, ledger, verifier rerun,
+screenshot read, critic) + Codex reword leg for the 9 REWORD rows + the /about paragraph
+order → `.planning/copy/PASS-103-REWORD-drafts.md` → juror → his ticks. Brief §5 bounded (ea725b6).
 
 ## Ship gate (his)
 Stripe webhook + `whsec_` in Production + one live $500 buy/refund → `PLAYBOOK_ON_SALE=1`.
 
 ## Next
-Pass 103 ticks → apply · his preview push · merge after his look · 99/100 SEO items.
+Pass 103 verify results → reword table to him · his preview push · merge after his look · 99/100 SEO items.
 
 ## Standing traps
 Every push auto-deploys · `grep -oiF` false zeroes · copy-lint hook rejects docs that QUOTE
