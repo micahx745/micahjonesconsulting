@@ -68,6 +68,15 @@ his own shell; it never appears in a chat, a settings file, or a commit. The cro
 REST leg keeps its own pay-as-you-go key (`GLM_API_KEY`/`ZAI_API_KEY`, or the gitignored
 `.claude/.zai-key`) because the Coding Plan's usage policy forbids scripted calls.
 
+**Amended 2026-09-07, same day — three executors and a juror (MODEL_ROUTING §8).** The
+operator added ChatGPT Pro (5× Codex usage, weekly reset) and a Kimi membership. Routing:
+**Codex / gpt-6-astra** is THE JUROR for every design and copy checkpoint (images attached,
+`scripts/codex-exec.ps1 -Review`) and the second executor for briefs needing judgement
+inside execution (`-Brief`, xhigh); **GLM 5.3** runs the mechanical rounds; **Kimi K3**
+(1M context) reads whole corpora and drafts copy from the attested phrase bank, and is the
+fourth cross-review lineage; **Sonnet** is the default in-session leg; **Opus** only when no
+executor is running; **Fable** rules, briefs, judges. Spend Codex: its quota resets weekly.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing
