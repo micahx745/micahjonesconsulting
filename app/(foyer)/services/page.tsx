@@ -459,18 +459,6 @@ export default function ServicesPage() {
               Book a free intro call <span aria-hidden>→</span>
             </a>
           </p>
-          {/* Pass-67: the bridge for the pre-production solo buyer, carried
-              over from /services/ai-engineering when that page was retired.
-              Pass-56 deleted the header that used to hold it, and this page
-              had linked to the book zero times since. */}
-          <p className="cw-sv-shapes__foot">
-            Pre-production and working solo? The{" "}
-            <a href="/playbook" className="cw-lede-link">
-              playbook
-            </a>{" "}
-            covers most of what the advisory shape does, for under $150 rather
-            than $5K a month.
-          </p>
         </section>
 
         {/* Pass-70: the two things a company buyer asks that this page did

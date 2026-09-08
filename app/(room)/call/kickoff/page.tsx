@@ -27,10 +27,8 @@
 import type { Metadata } from "next";
 import { BookCallForm } from "@/components/color-worlds/BookCallForm";
 
-// "Included with your package", never "Free": they paid. The refund line is
-// the one already live on /packages, /services/thanks and in the kickoff
-// email ("full refund any time before the kickoff, none after"), stated here
-// because this page is the boundary it turns on.
+// "Included with your package", never "Free": they paid. The refund line
+// follows the operator's Pass-104a ruling, recorded in LESSONS_LEARNED #3.
 
 export const metadata: Metadata = {
   title: "Book the kickoff call",
@@ -50,7 +48,10 @@ const KICKOFF_TERMS = [
     k: "After",
     v: "A calendar invite by email now. The video link comes from me before the call.",
   },
-  { k: "Refund", v: "Full refund any time before this call, none after." },
+  {
+    k: "Refund",
+    v: "Full refund any time before this call. After it, you pay for the work done and nothing more.",
+  },
 ];
 
 export default function BookKickoffPage() {

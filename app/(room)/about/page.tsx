@@ -124,18 +124,6 @@ export default function AboutPage() {
               with teams whose sales and product sides have stopped talking. I
               work on both sides until they do. I am taking new engagements now.
             </p>
-            {/* Internal link added 2026-09-02: an SEO pass found only two
-                contextual links into /playbook on the whole site, and none from
-                the author page, which is where a reader who trusts him goes
-                next. Phrased so it claims the book exists, not that it is
-                currently for sale. */}
-            <p className="rl-body rl-air-s" data-rl="rise">
-              I also wrote{" "}
-              <a href="/playbook" className="rl-link">
-                The 80% Wall
-              </a>
-              , a field manual on what AI leaves to you once the demo works.
-            </p>
           </div>
         </div>
       </section>

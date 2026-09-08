@@ -295,15 +295,13 @@ export default function PackagesPage() {
         <p className="rl-lede rl-seam rl-air-m" data-rl="rise">
           Each package goes straight to checkout. My kickoff email arrives the
           moment your card clears. It includes the intake questions and a link
-          to book the call. The manual and its companion files are attached.
+          to book the call.
         </p>
 
         <p className="rl-body rl-seam rl-air-s" data-rl="rise">
           Every package fee credits toward the next package or an engagement
-          started within 60 days. Full refund any time before kickoff. None
-          after, because the work has started. All three include The 80% Wall,
-          my field manual for people building on their own, and its companion
-          files. They arrive attached to the kickoff email the moment you buy.
+          started within 60 days. Full refund any time before the kickoff call.
+          After it, you pay for the work done and nothing more.
         </p>
       </section>
     </>

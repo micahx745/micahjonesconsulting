@@ -31,10 +31,9 @@ export default function PackageThanksPage() {
         </h2>
         <p className="cw-pb-sect__lede">
           The email has two steps: a few intake questions to answer by reply,
-          and the link to put the kickoff call on my real calendar. The book and
-          its companion files ride along, included with every package. Work
-          starts at kickoff, and the refund rule holds until then: full refund
-          any time before the call.
+          and the link to put the kickoff call on my real calendar. Work starts
+          at kickoff, and the refund rule holds until then: full refund any time
+          before the call.
         </p>
         {/* Pass-76. The kickoff link used to exist only inside the email,
             so the most motivated moment a buyer will ever have — the second
