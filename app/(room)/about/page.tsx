@@ -69,16 +69,16 @@ export default function AboutPage() {
                 <span className="r">not consultant.</span>
               </h1>
               <p>
-                Most consultants don&rsquo;t ship. Most builders don&rsquo;t
-                sell. I do both, on the same engagement, for the same fee.
+                I help you build it and sell it, on the same engagement, for the
+                same fee.
               </p>
             </div>
           </div>
 
           <div className="rl-opside">
             <p className="m-first">
-              Most consultants don&rsquo;t ship. Most builders don&rsquo;t sell.
-              I do both, on the same engagement, for the same fee.
+              I help you build it and sell it, on the same engagement, for the
+              same fee.
             </p>
             <p>
               I&rsquo;ve spent thirteen years inside B2B software companies as

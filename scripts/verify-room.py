@@ -123,7 +123,7 @@ ALLOWED_DIGIT_TOKENS = ["80%", "80-percent", "v0", "01", "02", "03", "page 6"]
 # exists to catch, and this one cannot be hard-coded.
 ALLOWED_DIGIT_TOKENS = ALLOWED_DIGIT_TOKENS + ["%02d" % i for i in range(100)]
 BAR_LABELS = ["Micah Jones", "Record", "Playbook", "Packages from $500",
-              "Name the problem", "\u2192"]
+              "Get a reality check", "\u2192"]  # PASS-102 row 1
 # SS15.6, verbatim: the receipts index is consolidated to two rows "and offer to see
 # the rest". The words are the operator's own and are recorded here as the ONE
 # operator-supplied string on the page. It reaches the DOM as two nodes (the words, and
@@ -139,6 +139,28 @@ BAR_LABELS = BAR_LABELS + ["Skip to content"]
 # name and the book's own title and price line are the foot's identity block. Nothing here
 # is composed -- what changed is which foot renders them.
 BAR_LABELS = BAR_LABELS + ["LinkedIn", "micah@micahjonesconsulting.com"]
+
+# Only the operator-ticked strings in .planning/copy/PASS-102-TICK-TABLE.md.
+# Row 6 is the unticked alternative to row 5 and is deliberately absent.
+PASS_102_COPY = [
+    ("Get a reality check", "PASS-102 row 1"),
+    ("Get a reality check.", "PASS-102 row 1"),
+    ("I help you build it and sell it, on the same engagement, for the same fee.",
+     "PASS-102 row 2"),
+    ("I stay until the way you describe it sells without me.", "PASS-102 row 3"),
+    ("I go through it top to bottom and tell you what’s broken, in writing.",
+     "PASS-102 row 4"),
+    ("Is this for me if I built it with AI coding tools?", "PASS-102 row 5"),
+    ("For people and small teams who built most of a product with AI tools and are stuck.",
+     "PASS-102 row 7"),
+    ("Debrief + what to do next", "PASS-102 row 8"),
+    ("A field manual for people building on their own", "PASS-102 row 9"),
+    ("The 80% Wall: now ship the company", "PASS-102 row 10"),
+    ("The 80% Wall: now ship the company — Micah Jones", "PASS-102 row 10"),
+    ("Tell me what you need to build or sell.", "PASS-102 row 11"),
+    ("a diagnosis of what is stuck and what work would fix it. "
+     "I also tell you whether you need me at all.", "PASS-102 row 12"),
+]
 
 RES = []
 
@@ -1973,6 +1995,9 @@ def main(base):
             cuOp:one('#h1 .cu','opacity'), cuDur:one('#h1 .cu','transitionDuration'),
             r1:one('#h1 .r1','transform'), r1Dur:one('#h1 .r1','transitionDuration'),
             bar:one('.bar','transform'), barDur:one('.bar','transitionDuration'),
+            barLabels:[...document.querySelectorAll('.bar a')].map(
+              e=>e.textContent.replace(/\u2192/g,'').replace(/\s+/g,' ').trim()),
+            askText:document.querySelector('.ask .d').textContent.trim(),
             barOp:one('.bar','opacity'),
             heads:all('.sec h2','clipPath'), headDur:all('.sec h2','transitionDuration'),
             stepRule:pall('.steps li','::before','transform'),
@@ -2072,13 +2097,16 @@ def main(base):
                tmat(r1_rest["t"])[1], r1_rest["d"], tmat(fin["r1"])[1]))
 
         # 2 the bar
+        # PASS-102 row 1: prove the five labels, including the new call label.
         chk("16.3-2-bar",
             abs(tmat(ini["bar"])[1] + 12) < 0.5 and tmat(fin["bar"])[1] == 0
+            and fin["barLabels"] == BAR_LABELS[:5]
             and abs(float(ini["barDur"].split(",")[0].rstrip("s")) - 0.24) < 0.01,
             "the bar rests at translateY %.1fpx and arrives at %.1fpx over %s (opacity and "
             "transform together); `on` is only ever ADDED by the script, so the entrance "
-            "cannot run twice"
-            % (tmat(ini["bar"])[1], tmat(fin["bar"])[1], ini["barDur"]))
+            "cannot run twice; PASS-102 row 1 bar labels: %s"
+            % (tmat(ini["bar"])[1], tmat(fin["bar"])[1], ini["barDur"],
+               fin["barLabels"]))
 
         # 3 section heads
         heads_hidden = all("100%" in c for c in ini["heads"])
@@ -2192,6 +2220,7 @@ def main(base):
         # promise, which SS18 baselines to the headline, rides up with the headline.
         chk("16.3-8-ask",
             abs(tmat(ini["askH"])[1] - 30) < 0.5 and float(ini["askHOp"]) == 0
+            and fin["askText"] == "Get a reality check."  # PASS-102 row 1
             and abs(tmat(ini["askPr"])[1] - 30) < 0.5 and float(ini["askPrOp"]) == 0
             and abs(tmat(ini["askChips"])[0] + 30) < 0.5
             and abs(tmat(ini["askChips"])[1] - 30) < 0.5
@@ -2203,11 +2232,12 @@ def main(base):
             "the copper field's headline rests at translateY %.0fpx / opacity %s over %s, "
             "the reply promise rides with it at translateY %.0fpx / opacity %s, and the "
             "chips -- which carry the arrow now that SS18 deleted the floating one -- enter "
-            "from translate(%.0f, %.0f) on a %s delay, settling at opacity %s"
+            "from translate(%.0f, %.0f) on a %s delay, settling at opacity %s; "
+            "PASS-102 row 1 headline: %r"
             % (tmat(ini["askH"])[1], ini["askHOp"], ini["askHDur"].split(",")[0],
                tmat(ini["askPr"])[1], ini["askPrOp"], tmat(ini["askChips"])[0],
                tmat(ini["askChips"])[1], ini["askChipsDelay"].split(",")[0],
-               fin["askChipsOp"]))
+               fin["askChipsOp"], fin["askText"]))
 
         # 9 the ground travel and the rail lighting are untouched
         mp.evaluate("()=>window.scrollTo(0,0)")
@@ -2401,9 +2431,12 @@ def main(base):
 
     def provenance(t):
         """Return the name of the rule that clears this string, or None."""
+        n = norm(t)
+        for approved, row in PASS_102_COPY:
+            if n == norm(approved):
+                return row
         if t.strip() in BAR_LABELS:
             return "bar label"
-        n = norm(t)
         if n and any(n in norm(o) for o in OPERATOR_COPY):
             return "SS15.6 operator-supplied"
         # SS14.7 permits exactly two SHAPE changes on an otherwise verbatim string, and

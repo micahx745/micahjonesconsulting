@@ -152,10 +152,9 @@ export default function PackagesPage() {
             were moved off in the polish pass. It takes the same seam they do:
             x = 615.3, 792.7px measure. Copy unchanged. */}
         <p className="rl-lede rl-seam" data-rl="rise">
-          For solo builders and small teams who got most of a product out of AI
-          tools and stalled on the last stretch. Pick one, buy it, and the work
-          starts within the week. No scoping call, no proposal, no quote to wait
-          for.
+          For people and small teams who built most of a product with AI tools
+          and are stuck. Pick one, buy it, and the work starts within the week.
+          No scoping call, no proposal, no quote to wait for.
         </p>
 
         <div className="rl-cards rl-air-m" data-rl-group="cards">
@@ -242,7 +241,7 @@ export default function PackagesPage() {
             <ul className="rl-list">
               <li>One outcome, agreed by email before day one</li>
               <li>Daily progress notes</li>
-              <li>Debrief + next-step map</li>
+              <li>Debrief + what to do next</li>
             </ul>
             <div className="cta">
               <BuyButton

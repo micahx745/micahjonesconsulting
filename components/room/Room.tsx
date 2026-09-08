@@ -54,7 +54,7 @@ export function Room() {
           <div className="base-row">
             <div className="chips" id="herochips">
               <Link className="chip" href="/call">
-                <span className="t">Name the problem</span>
+                <span className="t">Get a reality check</span>
                 <span className="a" aria-hidden="true">
                   <span className="gl">&#8594;</span>
                 </span>

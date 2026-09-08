@@ -37,7 +37,7 @@ const NAV = [
   { href: "/work", label: "Record" },
   { href: "/playbook", label: "Playbook" },
   { href: "/packages", label: "Packages from $500" },
-  { href: "/call", label: "Name the problem" },
+  { href: "/call", label: "Get a reality check" },
 ];
 
 export function Foot({

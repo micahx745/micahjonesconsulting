@@ -70,9 +70,9 @@ export default function BookPage() {
             work starts. If you have notes, bring them. If not, I will ask.
           </p>
           <p className="rl-body rl-air-s" data-rl="rise">
-            <strong>What you leave with:</strong> a named diagnosis of what is
-            stuck, the shape of the work that would fix it, and a straight
-            answer on whether you need me at all.
+            <strong>What you leave with:</strong> a diagnosis of what is stuck
+            and what work would fix it. I also tell you whether you need me at
+            all.
           </p>
           <dl className="rl-reg rl-air-m" data-rl-group="terms">
             {TERMS.map((t) => (

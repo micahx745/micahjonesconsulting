@@ -129,7 +129,7 @@ export default async function WorkIndexPage() {
           /services and /packages. No entity in the text after either </a>
           (LESSONS #6). */}
       <p className="rl-lede rl-air-m" data-rl="rise">
-        The next entry in this record could be yours.{" "}
+        Tell me what you need to build or sell.{" "}
         <a href="/services" className="rl-link">
           Engagements
         </a>{" "}
@@ -145,7 +145,7 @@ export default async function WorkIndexPage() {
           the bar's and the foot's own live string; nothing is written here. */}
       <div className="rl-chips rl-air-s" data-rl="rise">
         <a className="rl-chip" href="/call">
-          <span className="t">Name the problem</span>
+          <span className="t">Get a reality check</span>
           <span className="a" aria-hidden="true">
             <span>&#8594;</span>
           </span>

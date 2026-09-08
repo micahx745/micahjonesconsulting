@@ -1,0 +1,696 @@
+{
+  "approved_rows": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "source_files": {
+    "app/(room)/about/page.tsx": {
+      "rows": [
+        2
+      ],
+      "changes": [
+        {
+          "row": 2,
+          "old": "Most consultants don’t ship. Most builders don’t sell. I do both, on the same engagement, for the same fee.",
+          "new": "I help you build it and sell it, on the same engagement, for the same fee.",
+          "occurrences": 2
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "app/(room)/call/page.tsx": {
+      "rows": [
+        12
+      ],
+      "changes": [
+        {
+          "row": 12,
+          "old": "a named diagnosis of what is stuck, the shape of the work that would fix it, and a straight answer on whether you need me at all.",
+          "new": "a diagnosis of what is stuck and what work would fix it. I also tell you whether you need me at all.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "app/(room)/packages/page.tsx": {
+      "rows": [
+        7,
+        8
+      ],
+      "changes": [
+        {
+          "row": 7,
+          "old": "For solo builders and small teams who got most of a product out of AI tools and stalled on the last stretch.",
+          "new": "For people and small teams who built most of a product with AI tools and are stuck.",
+          "occurrences": 1
+        },
+        {
+          "row": 8,
+          "old": "Debrief + next-step map",
+          "new": "Debrief + what to do next",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "app/(room)/playbook/page.tsx": {
+      "rows": [
+        5,
+        9,
+        10
+      ],
+      "changes": [
+        {
+          "row": 5,
+          "old": "Is this for me, if I vibe-coded it?",
+          "new": "Is this for me if I built it with AI coding tools?",
+          "occurrences": 1
+        },
+        {
+          "row": 9,
+          "old": "A field manual for solo founders",
+          "new": "A field manual for people building on their own",
+          "occurrences": 1
+        },
+        {
+          "row": 10,
+          "old": "The 80% Wall: it shipped, nobody came",
+          "new": "The 80% Wall: now ship the company",
+          "occurrences": 2
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "app/(room)/work/page.tsx": {
+      "rows": [
+        1,
+        11
+      ],
+      "changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 1
+        },
+        {
+          "row": 11,
+          "old": "The next entry in this record could be yours.",
+          "new": "Tell me what you need to build or sell.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/Ask.tsx": {
+      "rows": [
+        1
+      ],
+      "changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/Bar.tsx": {
+      "rows": [
+        1
+      ],
+      "changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/Foot.tsx": {
+      "rows": [
+        1
+      ],
+      "changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/HowIWork.tsx": {
+      "rows": [
+        3
+      ],
+      "changes": [
+        {
+          "row": 3,
+          "old": "I stay until the narrative sells without me.",
+          "new": "I stay until the way you describe it sells without me.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/Objections.tsx": {
+      "rows": [
+        5
+      ],
+      "changes": [
+        {
+          "row": 5,
+          "old": "Is this for me, if I vibe-coded it?",
+          "new": "Is this for me if I built it with AI coding tools?",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/Operator.tsx": {
+      "rows": [
+        2
+      ],
+      "changes": [
+        {
+          "row": 2,
+          "old": "Most consultants don’t ship. Most builders don’t sell. I do both, on the same engagement, for the same fee.",
+          "new": "I help you build it and sell it, on the same engagement, for the same fee.",
+          "occurrences": 2
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/Packages.tsx": {
+      "rows": [
+        1,
+        4
+      ],
+      "changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 1
+        },
+        {
+          "row": 4,
+          "old": "I go through it top to bottom and hand you the written audit.",
+          "new": "I go through it top to bottom and tell you what’s broken, in writing.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/Room.tsx": {
+      "rows": [
+        1
+      ],
+      "changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    },
+    "components/room/SiteBar.tsx": {
+      "rows": [
+        1
+      ],
+      "changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_changes": true
+    }
+  },
+  "rendered": {
+    "/@390": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 5
+        },
+        {
+          "row": 2,
+          "old": "Most consultants don’t ship. Most builders don’t sell. I do both, on the same engagement, for the same fee.",
+          "new": "I help you build it and sell it, on the same engagement, for the same fee.",
+          "occurrences": 1
+        },
+        {
+          "row": 3,
+          "old": "I stay until the narrative sells without me.",
+          "new": "I stay until the way you describe it sells without me.",
+          "occurrences": 1
+        },
+        {
+          "row": 4,
+          "old": "I go through it top to bottom and hand you the written audit.",
+          "new": "I go through it top to bottom and tell you what’s broken, in writing.",
+          "occurrences": 1
+        },
+        {
+          "row": 5,
+          "old": "Is this for me, if I vibe-coded it?",
+          "new": "Is this for me if I built it with AI coding tools?",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 10.755102040816327,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/packages@390": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 7,
+          "old": "For solo builders and small teams who got most of a product out of AI tools and stalled on the last stretch.",
+          "new": "For people and small teams who built most of a product with AI tools and are stuck.",
+          "occurrences": 1
+        },
+        {
+          "row": 8,
+          "old": "Debrief + next-step map",
+          "new": "Debrief + what to do next",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 16.391304347826086,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/playbook@390": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 5,
+          "old": "Is this for me, if I vibe-coded it?",
+          "new": "Is this for me if I built it with AI coding tools?",
+          "occurrences": 1
+        },
+        {
+          "row": 9,
+          "old": "A field manual for solo founders",
+          "new": "A field manual for people building on their own",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 12.115789473684211,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/work@390": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 3
+        },
+        {
+          "row": 11,
+          "old": "The next entry in this record could be yours.",
+          "new": "Tell me what you need to build or sell.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 14.076923076923077,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/about@390": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 2,
+          "old": "Most consultants don’t ship. Most builders don’t sell. I do both, on the same engagement, for the same fee.",
+          "new": "I help you build it and sell it, on the same engagement, for the same fee.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 12,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/call@390": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 12,
+          "old": "a named diagnosis of what is stuck, the shape of the work that would fix it, and a straight answer on whether you need me at all.",
+          "new": "a diagnosis of what is stuck and what work would fix it. I also tell you whether you need me at all.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 14.76923076923077,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/@1440": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 5
+        },
+        {
+          "row": 2,
+          "old": "Most consultants don’t ship. Most builders don’t sell. I do both, on the same engagement, for the same fee.",
+          "new": "I help you build it and sell it, on the same engagement, for the same fee.",
+          "occurrences": 1
+        },
+        {
+          "row": 3,
+          "old": "I stay until the narrative sells without me.",
+          "new": "I stay until the way you describe it sells without me.",
+          "occurrences": 1
+        },
+        {
+          "row": 4,
+          "old": "I go through it top to bottom and hand you the written audit.",
+          "new": "I go through it top to bottom and tell you what’s broken, in writing.",
+          "occurrences": 1
+        },
+        {
+          "row": 5,
+          "old": "Is this for me, if I vibe-coded it?",
+          "new": "Is this for me if I built it with AI coding tools?",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 10.857142857142858,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/packages@1440": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 7,
+          "old": "For solo builders and small teams who got most of a product out of AI tools and stalled on the last stretch.",
+          "new": "For people and small teams who built most of a product with AI tools and are stuck.",
+          "occurrences": 1
+        },
+        {
+          "row": 8,
+          "old": "Debrief + next-step map",
+          "new": "Debrief + what to do next",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 16.608695652173914,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/playbook@1440": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 5,
+          "old": "Is this for me, if I vibe-coded it?",
+          "new": "Is this for me if I built it with AI coding tools?",
+          "occurrences": 1
+        },
+        {
+          "row": 9,
+          "old": "A field manual for solo founders",
+          "new": "A field manual for people building on their own",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 12.16842105263158,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/work@1440": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 3
+        },
+        {
+          "row": 11,
+          "old": "The next entry in this record could be yours.",
+          "new": "Tell me what you need to build or sell.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 14.461538461538462,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/about@1440": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 2,
+          "old": "Most consultants don’t ship. Most builders don’t sell. I do both, on the same engagement, for the same fee.",
+          "new": "I help you build it and sell it, on the same engagement, for the same fee.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 12.166666666666666,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    },
+    "/call@1440": {
+      "visible_changes": [
+        {
+          "row": 1,
+          "old": "Name the problem",
+          "new": "Get a reality check",
+          "occurrences": 2
+        },
+        {
+          "row": 12,
+          "old": "a named diagnosis of what is stuck, the shape of the work that would fix it, and a straight answer on whether you need me at all.",
+          "new": "a diagnosis of what is stuck and what work would fix it. I also tell you whether you need me at all.",
+          "occurrences": 1
+        }
+      ],
+      "only_approved_visible_changes": true,
+      "metadata_matches": true,
+      "title_matches": true,
+      "aria_matches": true,
+      "em_dashes": 0,
+      "average_sentence_words": 15.153846153846153,
+      "no_overflow": true,
+      "axe_before": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_after": {
+        "version": "4.10.2",
+        "violations": []
+      },
+      "axe_unchanged": true
+    }
+  },
+  "unticked_changes": [],
+  "all_pass": true
+}

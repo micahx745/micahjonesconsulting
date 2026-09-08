@@ -54,15 +54,15 @@ export function Operator() {
               <span className="r">not consultant.</span>
             </h2>
             <p>
-              Most consultants don&#8217;t ship. Most builders don&#8217;t sell.
-              I do both, on the same engagement, for the same fee.
+              I help you build it and sell it, on the same engagement, for the
+              same fee.
             </p>
           </div>
         </div>
         <div className="opside">
           <p className="m-first">
-            Most consultants don&#8217;t ship. Most builders don&#8217;t sell. I
-            do both, on the same engagement, for the same fee.
+            I help you build it and sell it, on the same engagement, for the
+            same fee.
           </p>
           <p className="lead">
             <span>

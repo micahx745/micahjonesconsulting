@@ -51,7 +51,7 @@ export function HowIWork() {
           <span className="l n">03</span>
           <span className="d two nm">Position</span>
           <span className="s">
-            I stay until the narrative sells without me.
+            I stay until the way you describe it sells without me.
           </span>
         </li>
       </ol>

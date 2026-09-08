@@ -30,12 +30,12 @@ export function Ask() {
       className="ask wrap"
       id="contact"
       data-anim="0.9"
-      aria-label="Name the problem"
+      aria-label="Get a reality check"
     >
       <div className="block">
         <h2 className="d">
           <Link id="asklink" href="/call">
-            Name the problem.
+            Get a reality check.
           </Link>
         </h2>
         <p className="promise">

@@ -90,11 +90,11 @@ export const metadata: Metadata = {
   // Pass-98: the title now carries the beat 29 of 325 r/buildinpublic bodies
   // wrote for themselves (8.9%), because a title is where search reads and a
   // reader recognises himself. 37 chars here, 51 rendered.
-  title: "The 80% Wall: it shipped, nobody came",
+  title: "The 80% Wall: now ship the company",
   description: DESCRIPTION,
   alternates: { canonical: "https://www.micahjonesconsulting.com/playbook" },
   openGraph: {
-    title: "The 80% Wall: it shipped, nobody came",
+    title: "The 80% Wall: now ship the company",
     description: DESCRIPTION,
     type: "website",
     url: "https://www.micahjonesconsulting.com/playbook",
@@ -178,7 +178,7 @@ const FAQS = [
   // This also retires "stalled between demo and production", a compound
   // phrasing with no count behind it.
   {
-    q: "Is this for me, if I vibe-coded it?",
+    q: "Is this for me if I built it with AI coding tools?",
     a: "You built something real with Cursor, Claude Code, Lovable, v0 or Bolt. It works. Nobody is using it yet, or the next change keeps breaking it. Then yes.",
   },
   {
@@ -350,7 +350,9 @@ export default function PlaybookPage() {
                   weak count against an unverified file, which is why it
                   changes a kicker and not the headline. */}
               <div className="rl-eyebrow">
-                <span className="rl-l">A field manual for solo founders</span>
+                <span className="rl-l">
+                  A field manual for people building on their own
+                </span>
               </div>
               <h1 id="rl-playbook-title" className="rl-d two" data-rl="head">
                 The AI handed you the code. Now ship the company.

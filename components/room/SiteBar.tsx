@@ -40,7 +40,7 @@ const ITEMS: {
   { href: "/work", label: "Record", hide: "s" },
   { href: "/playbook", label: "Playbook", hide: "s" },
   { href: "/packages", label: "Packages from $500", hide: "xs" },
-  { href: "/call", label: "Name the problem", arrow: true },
+  { href: "/call", label: "Get a reality check", arrow: true },
 ];
 
 export function SiteBar({ dark = false }: { dark?: boolean }) {

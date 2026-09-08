@@ -68,7 +68,8 @@ export function Packages() {
             <span className="pr">$2,500</span>
           </div>
           <p className="one">
-            I go through it top to bottom and hand you the written audit.
+            I go through it top to bottom and tell you what’s broken, in
+            writing.
           </p>
           <div className="cta">
             <Link className="chip" href="/packages">
@@ -110,7 +111,7 @@ export function Packages() {
         </span>
         <span className="side r">
           <span className="chip">
-            <span className="t">Name the problem</span>
+            <span className="t">Get a reality check</span>
             <span className="a" aria-hidden="true">
               <span className="gl">&#8594;</span>
             </span>

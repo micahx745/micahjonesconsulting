@@ -40,7 +40,7 @@ export function Bar() {
         </a>
       </div>
       <Link className="l cta" href="/call">
-        Name the problem{" "}
+        Get a reality check{" "}
         <span className="ar" aria-hidden="true">
           &#8594;
         </span>

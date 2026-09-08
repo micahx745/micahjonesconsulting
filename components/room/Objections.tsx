@@ -31,7 +31,7 @@ export function Objections() {
       </div>
       <dl className="qs">
         <div className="q">
-          <dt>Is this for me, if I vibe-coded it?</dt>
+          <dt>Is this for me if I built it with AI coding tools?</dt>
           <dd>
             You built something real with Cursor, Claude Code, Lovable, v0 or
             Bolt. It works. Nobody is using it yet, or the next change keeps
