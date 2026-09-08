@@ -2,9 +2,9 @@
 //
 // Pass-101 phase 2 (brief §2). The verified template
 // (.planning/design/winning/room-and-ledger.template.html, seven rounds) ported
-// section by section into components/room/*. Nine sections in the template's
+// section by section into components/room/*. Sections in the template's
 // own order: the bar (in the layout), the room, the operator, how I work,
-// packages, the record, the manual, the objections, the ask, the foot.
+// packages, the record, the objections, the ask, the foot (Pass 104a).
 //
 // RETIRED HERE: <Hero> (the rolling word and the pointer drift), and with it
 // the six Color Worlds sections the ruling dropped — the revenue-and-exits
@@ -22,7 +22,6 @@ import { Operator } from "@/components/room/Operator";
 import { HowIWork } from "@/components/room/HowIWork";
 import { Packages } from "@/components/room/Packages";
 import { Receipts } from "@/components/room/Receipts";
-import { Manual } from "@/components/room/Manual";
 import { Objections } from "@/components/room/Objections";
 import { Ask } from "@/components/room/Ask";
 import { Foot } from "@/components/room/Foot";
@@ -65,7 +64,6 @@ export default function Home() {
         <HowIWork />
         <Packages />
         <Receipts />
-        <Manual />
         <Objections />
       </div>
       <Ask />

@@ -38,7 +38,6 @@ const ITEMS: {
 }[] = [
   { href: "/", label: "Micah Jones" },
   { href: "/work", label: "Record", hide: "s" },
-  { href: "/playbook", label: "Playbook", hide: "s" },
   { href: "/packages", label: "Packages from $500", hide: "xs" },
   { href: "/call", label: "Get a reality check", arrow: true },
 ];

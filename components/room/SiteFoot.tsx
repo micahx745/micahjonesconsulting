@@ -6,12 +6,12 @@
 // the copyright range as a device that goes ("No copyright range (no years).")
 //
 // There is one foot now. This file is the (room) group's call into it: the
-// same three columns, on the .rl- class names this group's stylesheet uses,
+// same identity and navigation columns, on this group's .rl- class names,
 // and carrying the reply promise, which on these pages has no copper ask to
 // move to. See components/room/Foot.tsx for the ruling and the two departures
 // recorded against it.
 import { Foot } from "@/components/room/Foot";
 
 export function SiteFoot() {
-  return <Foot className="rl-foot" chipClass="rl-chip" promise />;
+  return <Foot className="rl-foot" promise />;
 }

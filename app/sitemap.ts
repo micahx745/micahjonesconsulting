@@ -86,12 +86,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.6,
     },
-    {
-      url: `${BASE_URL}/playbook`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
   ];
 
   // Skip stub case studies — they shouldn't be public-discoverable

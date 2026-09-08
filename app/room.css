@@ -1396,9 +1396,11 @@ html .rl-home .ask .chip.quiet:focus-visible {
   padding: 56px 0 64px;
   border-top: 1px solid color-mix(in srgb, #f5efe4 15%, transparent);
 }
+/* Pass 104a: identity and navigation each occupy half the existing grid.
+   The shared mobile rule below stacks both at full width. */
 .rl-home .foot .who,
 #rl-root .rl-foot .who {
-  grid-column: 1 / 5;
+  grid-column: 1 / 7;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1433,7 +1435,7 @@ html .rl-home .ask .chip.quiet:focus-visible {
 }
 .rl-home .foot .nav,
 #rl-root .rl-foot .nav {
-  grid-column: 6 / 9;
+  grid-column: 7 / 13;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

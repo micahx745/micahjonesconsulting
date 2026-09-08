@@ -35,18 +35,15 @@ import Link from "next/link";
 
 const NAV = [
   { href: "/work", label: "Record" },
-  { href: "/playbook", label: "Playbook" },
   { href: "/packages", label: "Packages from $500" },
   { href: "/call", label: "Get a reality check" },
 ];
 
 export function Foot({
   className = "foot",
-  chipClass = "chip",
   promise = false,
 }: {
   className?: string;
-  chipClass?: string;
   promise?: boolean;
 }) {
   return (
@@ -77,16 +74,6 @@ export function Foot({
             LinkedIn
           </a>
         </nav>
-        <div className="book">
-          <span className="ttl">The 80% Wall</span>
-          <span className="pr">$99 at launch</span>
-          <Link className={chipClass} href="/playbook">
-            <span className="t">Get chapter one free</span>
-            <span className="a" aria-hidden="true">
-              <span className="gl">&#8594;</span>
-            </span>
-          </Link>
-        </div>
       </div>
     </footer>
   );

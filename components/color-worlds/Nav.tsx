@@ -41,7 +41,6 @@ import { useEffect, useRef, useState } from "react";
 const NAV_LINKS = [
   { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
-  { href: "/playbook", label: "Playbook" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;

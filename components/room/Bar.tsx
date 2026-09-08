@@ -22,6 +22,8 @@
 // the live domain because it had no routes of its own (§15.7).
 import Link from "next/link";
 
+// Pass 104a: the remaining middle links re-center within the existing flex
+// track. No fixed slot remains where the book link was.
 export function Bar() {
   return (
     <nav className="bar" id="bar" aria-label="Site">
@@ -31,9 +33,6 @@ export function Bar() {
       <div className="mid">
         <a className="l hide-s" href="#proof">
           Record
-        </a>
-        <a className="l hide-s" href="#manual">
-          Playbook
         </a>
         <a className="l hide-s" href="#price">
           Packages from $500
