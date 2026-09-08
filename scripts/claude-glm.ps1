@@ -22,13 +22,24 @@
 param(
   [string]$Dir = (Get-Location).Path,
   [string]$Brief = "",
-  [string]$Model = "glm-5.3"        # the plan's main model per docs.z.ai/devpack/tool/claude
+  [string]$Model = "glm-5.3",       # the plan's main model per docs.z.ai/devpack/tool/claude
+  [switch]$Smoke                     # one tiny call to prove the plan answers, then exit
 )
 
-if (-not $env:ZAI_CODING_KEY) {
-  Write-Error "ZAI_CODING_KEY is not set for this user. Set it once with:`n  [Environment]::SetEnvironmentVariable('ZAI_CODING_KEY','<key>','User')`nthen open a new terminal."
+# Key resolution: the user env var, else the gitignored key file the cross-review harness
+# already reads (z.ai binds the Coding Plan to the account's existing API key, so no new
+# key is needed — confirmed by the operator's other session, 2026-09-07). Never printed.
+$key = $env:ZAI_CODING_KEY
+if (-not $key) {
+  foreach ($f in @("$HOME/.claude/.zai-key", (Join-Path (Get-Location).Path ".claude/.zai-key"))) {
+    if (Test-Path $f) { $key = (Get-Content -Raw $f).Trim(); if ($key) { break } }
+  }
+}
+if (-not $key) {
+  Write-Error "No z.ai key: set ZAI_CODING_KEY for this user, or place the key in ~/.claude/.zai-key (gitignored)."
   exit 1
 }
+$env:ZAI_CODING_KEY = $key
 
 # Child-process env only. Nothing here persists.
 $env:ANTHROPIC_AUTH_TOKEN          = $env:ZAI_CODING_KEY
@@ -45,6 +56,11 @@ $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
 Remove-Item Env:ANTHROPIC_API_KEY -ErrorAction SilentlyContinue
 
 Set-Location $Dir
+if ($Smoke) {
+  Write-Host "claude-glm: smoke test on $Model via z.ai" -ForegroundColor DarkYellow
+  & claude -p "Reply with the single word OK."
+  exit $LASTEXITCODE
+}
 Write-Host "claude-glm: executor session on $Model via z.ai, in $Dir" -ForegroundColor DarkYellow
 Write-Host "  Fable writes the brief and judges; this session executes it verbatim. No push, no deploy." -ForegroundColor DarkGray
 

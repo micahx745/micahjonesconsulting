@@ -1,4 +1,4 @@
-# Pass 102 — The wording round (executors: Kimi K3 reads and drafts · Codex/Astra judges · GLM applies)
+# Pass 102 — The wording round (executors: GLM 5.3 reads and drafts · Codex/Astra judges · GLM applies)
 
 Operator, 2026-09-06: "WE NEED TO have a round for all the wording … the wording round will
 be using the data from the other reddit data scraping sessions data." Fable ruled the shape;
@@ -26,14 +26,14 @@ until the operator approves the proposal table.
 - The ledger and the voice: `docs/LESSONS_LEARNED.md` §3, `.claude/brand.json`,
   `.claude/CLAUDE.md` Voice.
 
-## 2. Step A — the READER (Kimi K3, 1M context; fallback: Sonnet in chunks)
+## 2. Step A — the READER (GLM 5.3 via `scripts/claude-glm.ps1`, in chunks; fallback: Codex)
 Read every input in ONE pass. Produce `.planning/copy/PASS-102-READING.md`: for each page
 section, the buyer's situation in the buyers' own attested words (quote + thread id), the
 objection they raise, the phrase they use for the outcome, and the words they never use.
 Rank the 30 attested phrases by frequency across the intersection set. Flag any phrase in
 the killed list. No proposals yet.
 
-## 3. Step B — the DRAFTER (Kimi K3; fallback: Sonnet)
+## 3. Step B — the DRAFTER (GLM 5.3; fallback: Codex)
 For every current string, propose at most one rewrite, only where the reading shows the
 buyers say it differently, in `.planning/copy/PASS-102-PROPOSALS.md` as a table:
 `page · section · CURRENT (verbatim) · PROPOSED · attestation (phrase id + thread) · ledger
@@ -61,6 +61,12 @@ Commit per page.
 `pnpm build` tail · verify-room summary · a diff of every changed string against the ticked
 table (zero unticked changes) · em-dash count per page ≤ 1 · average sentence length per
 page ≤ 25 · zero banned words.
+
+## 7b. Execution record
+- 2026-09-07: Steps A–B ran first on Codex / gpt-6-astra at xhigh (the fallback) in the
+  branch worktree while the GLM executor was being wired; GLM 5.3 then produces an
+  independent reading + draft and Step C judges BOTH tables. Step C is always a separate
+  Astra run at ultra. (Kimi was named by mistake and withdrawn.)
 
 ## 8. Return conditions
 A proposal that changes a fact or a number · a ticked row the copy gate rejects · the
