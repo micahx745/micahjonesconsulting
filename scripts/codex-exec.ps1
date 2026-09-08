@@ -13,6 +13,12 @@
 #
 # Policy: never push, never deploy, never bypass a hook. Execution runs with
 # --sandbox workspace-write inside $Dir; reviews run read-only.
+#
+# KNOWN LIMIT (LESSONS #18, 2026-09-08): a git WORKTREE keeps its git dir under the main
+# repo's .git/worktrees/<name>/, which is OUTSIDE $Dir, so Codex's workspace-write sandbox
+# cannot create index.lock there and `git commit` fails with "Permission denied". In a
+# worktree Codex WRITES and the GLM executor (or Fable) COMMITS; in the main checkout or a
+# full clone Codex can commit itself.
 
 param(
   [string]$Brief = "",

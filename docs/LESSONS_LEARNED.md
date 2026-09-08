@@ -706,3 +706,20 @@ planned step with named conflict rules, never a surprise.
 **The gate.** The `workflow-authoring` house pattern in briefs: any multi-phase build brief
 names the worktree path in §0 and forbids `isolation: 'worktree'` on phase 2+. This entry is
 cited from `.claude/briefs/README.md`.
+
+
+## #18 — A worktree's git dir lives outside it, so a sandboxed agent cannot commit there (2026-09-08)
+
+**What happened.** Codex ran the Pass-102 drafter in the branch worktree under its
+workspace-write sandbox. Its files landed, but `git commit` failed: "Unable to create
+.git/worktrees/p101-integrate/index.lock: Permission denied". A worktree's `.git` is a
+file pointing at `<main repo>/.git/worktrees/<name>/`, which sits outside the worktree
+path the sandbox allows. The concurrent GLM run in the same worktree committed fine because
+Claude Code's permission mode is not a filesystem sandbox.
+
+**The rule.** In a worktree, a sandboxed executor writes and a non-sandboxed one commits
+(the GLM executor, or Fable by hand, staging only the files the brief names). If a sandboxed
+executor must commit, give it a full clone or the main checkout, never a worktree.
+
+**The gate.** `scripts/codex-exec.ps1` carries the limit in its header; every brief that
+names Codex as the executor in a worktree names who commits.
