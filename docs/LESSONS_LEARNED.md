@@ -785,3 +785,26 @@ space, then inspect the built HTML and the rendered row.
 rendered Price row's `dd.inner_text()` to equal `$99 at launch · $149 after` exactly.
 The check failed on the original built page; the fix gives the separator its own
 `{" "}` child. This is the verifier's 62nd check.
+
+## #20 — A brief an executor cannot hold is a brief that does not run (2026-09-08)
+
+**What happened.** Pass 104b was handed to the GLM executor with a 16KB brief pointing at two
+synthesis documents of 53KB and 36KB. The session died after thirteen minutes with
+"Autocompact is thrashing: the context refilled to the limit within 3 turns of the previous
+compact, 3 times in a row" and wrote nothing at all.
+
+**The mechanism, two causes stacked.** Claude Code does not recognise the model id `glm-5.3`,
+so it assumes the default 200k context window rather than the model's own. On top of that the
+pass asked one session to hold 105KB of specification before its first edit. Neither alone
+would have been fatal; together they left no room to work.
+
+**The lesson.** Size a brief to the executor that will run it, not to the completeness of the
+research behind it. A synthesis is a reference to be consulted per section, not a document to
+be read whole. Split specs by the section that consumes them and let each unit of work read
+only its own. The same discipline is why a pass is a sequence of committed units rather than
+one long run.
+
+**The gate.** `scripts/claude-glm.ps1` now sets `CLAUDE_CODE_MAX_CONTEXT_TOKENS` and
+`CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT` so the window is declared rather than
+guessed. Pass 104b's specs are split into `.planning/design/104b/<area>.md`, none over 20KB,
+and each section of the brief names only its own file.

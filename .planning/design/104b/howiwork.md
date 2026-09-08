@@ -1,0 +1,35 @@
+## 04 How I work (components/room/HowIWork.tsx, app/room.css 706–775)
+
+**PICK.** THE SPINE, WITH THE CONSTITUTION JURY'S SURGERY APPLIED AND THE T-ACCOUNT'S CONTENT GRAFTED IN A SECOND, GATED COMMIT. The spine ships in INK, not copper; the three copper node squares are DELETED; the doors are the ROWS themselves, not copper-on-type links; and the flush-right display alignment is dropped in favour of §18 Rule B's existing left-aligned geometry. What survives is the idea that made it worth an 8 from the buyer jury: one continuous vertical line, and a way out of every step.
+
+### Spec
+
+THE DIAGNOSIS, VERIFIED: HowIWork.tsx contains ZERO `<a>` elements. It is the only section on the page with no link, no arrow and no destination, so no amount of motion can make it "trigger someone to want to work with me". It is also the FIRST of three consecutive hairline-row stacks (how-I-work, receipts, objections), which is the "one composition applied regardless of content" tell §12 already recorded.
+
+WHAT IS CUT FROM THE OPTION AND WHY (all four are constitution findings, not taste): (a) three 7px filled COPPER SQUARES stamping on the rule are decorative markers and §3's copper list is exhaustive — the `→` glyph, the 1px seam rules, the row wipe, the ask field. A stamped square is the closest thing on this page to a bullet from an icon kit. DELETED. (b) the step links set in copper on espresso / copper-deep on bone are copper on TYPE, which §3 gives to the hero noun alone; the home declares no link token. REPLACED by the row-as-link with a copper arrow GLYPH, which is licensed and is already the objections' and the receipts' grammar. (c) a full-height COPPER rule beside display type is the second-loudest copper object on the page and competes with the hero's one lit word. The spine is `--hair` (ink 15%). (d) flush-right display type is a new alignment on a page that is flush-left everywhere. DROPPED.
+
+LAYOUT AT 1440 — GEOMETRY UNCHANGED FROM §18 RULE B, ONE ELEMENT ADDED. `.steps li` keeps `grid-template-columns: 28px minmax(0, calc(var(--lane) - 28px - var(--gap))) minmax(0, 1fr)`, `column-gap: var(--gap)`, `padding: 40px 0`, hairline top and a bottom hairline on `:last-child`. --lane is cols 1-5, so the sentence lane opens on the column-6 line at x = 32 + 559.33 + 24 = 615.33.
+1. THE SPINE: `.steps { position: relative }` and `.steps::before { content:''; position:absolute; left: calc(var(--lane) + var(--gap)); top:0; bottom:0; width:1px; background: var(--hair); transform-origin: 50% 0 }`. Rule B's line, finally drawn. It runs the full height of the three rows and no other section on the page has a vertical. GATE: its computed x must equal the computed left edge of the objections list and of the receipts' caption column at 1440, 1280, 900 and 390 — the element that finally draws Rule B must not be the element that breaks it.
+2. THE DOORS — ZERO NEW COPY. Each `<li>` wraps its contents in an `<a>` (the row is the link), and a 24px copper `→` cell sits at the right edge of the sentence lane on the name's cap line. Destinations, which also turn the section into the page's own table of contents: 01 Diagnose → `/call`; 02 Build → `#price`; 03 Position → `#proof`. The two in-page anchors are already handled by RoomMotion's Lenis click handler. No label string is added anywhere; the arrow is `aria-hidden`, and the accessible name is the row's own ordinal + name + sentence.
+3. Row rhythm and type are otherwise untouched: ordinal 14px label ink-60 in the 28px cell, name at --d2 in cols 2, sentence 21px/1.45 ink-80 max 46ch.
+
+LAYOUT AT 390. The spine rotates to the left gutter: `.steps::before { left: 0 }`, same 1px ink hairline, full height; each row indents 24px right of it (`padding-left: 24px`, single column). Order inside a row: ordinal (14px label, left), name at --d2 = 39.52px (`Diagnose` ≈164px in a 302px lane), sentence 19px/1.5, and the copper `→` right-aligned on the ordinal's line. Rows stay links; the tap target is the whole row, far above 44px. 40px between rows.
+
+MOTION — the trigger is the existing `#work` `data-anim="0.9"` → `#work.in`. No JS change, zero @keyframes.
+1. THE SPINE DRAWS DOWN: `transform: scaleY(0)` → `scaleY(1)`, `transform-origin: 50% 0`, 900ms var(--e), at 0ms. It descends as the section arrives. `/* motion-ok: §16.3-4, the seam draws once as the light arrives. */`
+2. THE ROW HAIRLINES draw `scaleX(0→1)` from the left, 500ms, 60ms stagger — item 4, and the EXISTING selectors `#work.in .steps li::before` / `:last-child::after` (room.css:1689-1690) are already wired. Do not remove them.
+3. THE NAMES LIGHT — a RESTORATION, not an invention: each `.nm` (with its ordinal) rests at opacity .42 and goes to 1 over 300ms, delays 0 / 90 / 180ms behind its own hairline. .42 is §16.3-9's rail value, written for this exact section and orphaned when §15.4 deleted the sticky rail. The sentence and the arrow follow their own name by 80ms: opacity 0→1 + `translateY(8px)→0`, 400ms.
+4. HOVER/FOCUS on a row: the `→` slides 6px right in 200ms (item 7, the house rule, already declared). Nothing lifts, nothing changes colour, nothing couples to the cursor.
+Rest state = finished frame: base CSS paints the spine at scaleY(1) and everything at opacity 1; all pre-states behind `html.rl-js`.
+
+COPY: commit 1 adds ZERO strings.
+
+COMMIT 2, GATED ON §15.8 (do not build before the operator clears the words): one CREDIT LINE per step in the sentence lane, 20px under the sentence, at 24px Hanken 500 full ink — what the buyer ends up HOLDING, beside what I do. This is the T-Account's content without its conceit. Drafts for the wording round, each under 25 words, first/second person, no banned word, no em-dash, no figure: 01 `You see the gap in writing, in a week.` · 02 `You get the thing shipped, not a plan for it.` · 03 `Your team sells it in your words, without me in the room.` Every one is a delivery promise and must clear the claims ledger before it enters the page.
+
+VERIFIER: `15.4-work-ledger` and `18-work-head-split-eyebrow-and-one-line` should both survive (the grid, the lane and the head are unchanged); add checks for the spine's x against the other two lanes, for three `<a>` with the three hrefs, and for the .42 rest value lighting to 1 after `#work.in`.
+
+
+### Grafted from the runners-up
+
+FROM THE T-ACCOUNT: its content thesis — "the buyer does not buy the method, he buys what he ends up holding" — as commit 2's credit line. REJECTED from it: the double-entry conceit itself (a T-account because the system is called Ledger is the system performing its own name), the ink-8% third stroke value (the page declares 15% strokes and 4% card borders; `--hair-12` already exists if a lighter rule is wanted), the 90°-rotated arrow (the house always points and slides right, §16.3-7), and the phone fold that repeats I DO / YOU GET on every row — a double entry that only exists above 900px is half an idea on a page judged at 390 first.
+FROM THE SPINE: the spine itself, the doors, and the observation that this section's geometry must stop matching the two stacks below it.
