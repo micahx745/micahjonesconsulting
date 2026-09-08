@@ -81,6 +81,7 @@ const DESCRIPTION =
   "You built it with AI and shipped it. Now get the first ten users. Ten chapters, 69 pages, 26 files, from the operator who shipped a HIPAA-compliant SaaS solo.";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   // Pass-74. The root layout appends " — Micah Jones" (14 chars), which pushed
   // the rendered title to 61 and the description to 204 — both past where
   // Google cuts. The em-dash became a colon: it buys the character the title

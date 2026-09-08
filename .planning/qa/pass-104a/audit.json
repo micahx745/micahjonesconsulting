@@ -1,0 +1,181 @@
+{
+  "routes": {
+    "/": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/packages": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/about": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/call": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/call/kickoff": {
+      "status": 200,
+      "robots": ["noindex, nofollow"],
+      "hits": [],
+      "links": []
+    },
+    "/services": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/services/thanks": {
+      "status": 200,
+      "robots": ["noindex, nofollow"],
+      "hits": [],
+      "links": []
+    },
+    "/contact": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/work": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/work/ordani": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/work/guardicore": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/work/rfp-engine": {
+      "status": 200,
+      "robots": [],
+      "hits": [],
+      "links": []
+    },
+    "/work/content-engine": {
+      "status": 200,
+      "robots": [],
+      "hits": [
+        "Monthly reach grew from 8,000 to 290,000 in five months, a 36× lift. The two platforms I backed outperformed the one I did not, as planned. Videos, blogs, newsletters, and digital events cost the author less money and fewer hours than before the engine. Their content lead has a 25-page playbook to execute without supervision. I stayed on retainer for the platform and algorithm shifts that come next."
+      ],
+      "links": []
+    },
+    "/playbook": {
+      "status": 200,
+      "robots": ["noindex, nofollow"],
+      "hits": [
+        "The 80% Wall: now ship the company — Micah Jones",
+        "Get chapter one free",
+        "Thirteen entries like this one in the manual. All true, all dated, all mine.",
+        "Chapter one, free",
+        "Send me chapter one →",
+        "One email with the PDF. A second on the day the manual ships. No sequence, no drip.",
+        "Leave your email for chapter one. I’ll tell you the day the full manual opens at the launch price.",
+        "Chapter one, free",
+        "Past the playbook?",
+        "The cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type.",
+        "Page fifty-one of the manual: three concentric rings, people you know in the middle, people they know around them, strangers at the edge, with the ask that fits each ring.",
+        "Page six of the manual: the wall chart, two lines crossing where unwritten rules outnumber what fits in the context window, above the three reasons the wall hits at 80%."
+      ],
+      "links": []
+    },
+    "/playbook/thanks": {
+      "status": 200,
+      "robots": ["noindex, nofollow"],
+      "hits": ["Check your inbox: The 80% Wall — Micah Jones", "The 80% Wall"],
+      "links": []
+    }
+  },
+  "checks": {
+    "/ no book links": true,
+    "/ no book copy": true,
+    "/packages no book links": true,
+    "/packages no book copy": true,
+    "packages exact refund": true,
+    "PK15 exact": true,
+    "/about no book links": true,
+    "/about no book copy": true,
+    "/call no book links": true,
+    "/call no book copy": true,
+    "/call/kickoff no book links": true,
+    "/call/kickoff no book copy": true,
+    "kickoff exact refund": true,
+    "kickoff no book promise": true,
+    "/services no book links": true,
+    "/services no book copy": true,
+    "/services/thanks no book links": true,
+    "/services/thanks no book copy": true,
+    "package thanks no book promise": true,
+    "/contact no book links": true,
+    "/contact no book copy": true,
+    "/work no book links": true,
+    "/work no book copy": true,
+    "/work/ordani no book links": true,
+    "/work/ordani no book copy": true,
+    "/work/guardicore no book links": true,
+    "/work/guardicore no book copy": true,
+    "/work/rfp-engine no book links": true,
+    "/work/rfp-engine no book copy": true,
+    "/work/content-engine no book links": true,
+    "/work/content-engine no book copy": true,
+    "/playbook noindex,nofollow": true,
+    "/playbook/thanks noindex,nofollow": true,
+    "sitemap no book": true,
+    "llms no book": true,
+    "unchanged components/room/Manual.tsx": true,
+    "unchanged app/(room)/playbook/thanks/page.tsx": true,
+    "unchanged app/robots.ts": true,
+    "unchanged lib/catalog.ts": true,
+    "unchanged lib/stripe.ts": true,
+    "unchanged lib/package-delivery.ts": true,
+    "unchanged lib/playbook-delivery.ts": true,
+    "unchanged lib/playbook-sale.ts": true,
+    "unchanged app/api/stripe/webhook/route.ts": true,
+    "unchanged app/actions/playbook-checkout.ts": true,
+    "unchanged app/actions/playbook-signup.ts": true,
+    "unchanged content/citations.ts": true,
+    "unchanged content/work/content-engine.mdx": true,
+    "unchanged content/work/guardicore.mdx": true,
+    "unchanged content/work/rfp-engine.mdx": true,
+    "book page robots only": true,
+    "assets and delivery unchanged": true,
+    "no changed numbers app/(foyer)/services/page.tsx": true,
+    "no changed numbers app/(foyer)/services/thanks/page.tsx": true,
+    "no changed numbers app/(home)/page.tsx": true,
+    "no changed numbers app/(room)/about/page.tsx": true,
+    "no changed numbers app/(room)/call/kickoff/page.tsx": true,
+    "no changed numbers app/(room)/packages/page.tsx": true,
+    "no changed numbers app/(room)/playbook/page.tsx": true,
+    "no changed numbers components/color-worlds/Nav.tsx": true,
+    "no changed numbers components/room/Bar.tsx": true,
+    "no changed numbers components/room/Foot.tsx": true,
+    "no changed numbers components/room/Objections.tsx": true,
+    "no changed numbers components/room/SiteBar.tsx": true,
+    "no changed numbers components/room/SiteFoot.tsx": true,
+    "no changed numbers content/work/ordani.mdx": true,
+    "remaining objections verbatim": true,
+    "ffmpeg missing and clip present": true,
+    "verifier Python syntax": true
+  },
+  "errors": []
+}

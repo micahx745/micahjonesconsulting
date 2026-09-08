@@ -1,0 +1,25 @@
+{
+  "command": "git grep -n -i -E \"80% Wall|chapter one|the manual|playbook\" -- .",
+  "matching_lines": 3142,
+  "groups": {
+    ".claude": 90,
+    ".env.example:27:# Contact form, beta and playbook signups, the booking invite, and the package": 1,
+    ".gitignore:58:product": 1,
+    ".gitignore:59:product": 1,
+    ".gitignore:60:product": 1,
+    ".gitignore:61:product": 1,
+    ".planning": 2511,
+    "": 7,
+    "Binary file .planning": 1,
+    "app": 150,
+    "components": 46,
+    "content": 1,
+    "docs": 38,
+    "lib": 31,
+    "next.config.ts:52:      ": 1,
+    "next.config.ts:59:      ": 1,
+    "product": 222,
+    "qa": 9,
+    "scripts": 29
+  }
+}

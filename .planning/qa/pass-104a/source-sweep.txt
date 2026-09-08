@@ -1,0 +1,86 @@
+app/(room)/playbook/opengraph-image.tsx:17: THE 80% WALL · FIELD MANUAL
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:94: The 80% Wall: now ship the company
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:98: The 80% Wall: now ship the company
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:217: The 80% Wall
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:218: The 80% Wall
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:251: The 80% Wall
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:280: The 80% Wall
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:331: The cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type.
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:416: Buy the manual · $99
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:420: Or read chapter one free
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:430: Get chapter one free
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:517: Page fifty-one of the manual: three concentric rings, people you know in the middle, people they know around them, strangers at the edge, with the ask that fits each ring.
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:550: Page six of the manual: the wall chart, two lines crossing where unwritten rules outnumber what fits in the context window, above the three reasons the wall hits at 80%.
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:651: Thirteen entries like this one in the manual. All true, all dated, all mine.
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:714: Chapter one, free
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:729: One email with the PDF. A second on the day the manual ships. No sequence, no drip.
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:877: The manual
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:880: Buy the manual · $99
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:890: Not today? Chapter one is free, above
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:899: Leave your email for chapter one. I&rsquo;ll tell you the day the full manual opens at the launch price.
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:904: Chapter one, free
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/page.tsx:924: Past the playbook?
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/thanks/page.tsx:14: Check your inbox: The 80% Wall
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/(room)/playbook/thanks/page.tsx:23: The 80% Wall
+  Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow.
+app/actions/playbook-signup.ts:62: Chapter 1 of The 80% Wall — why your build broke at 80%
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+app/actions/playbook-signup.ts:104: The 80% Wall <noreply@micahjonesconsulting.com>
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+app/actions/playbook-signup.ts:108: New playbook sampler signup. Chapter 1 was emailed to them.
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+app/actions/playbook-signup.ts:113: — micahjonesconsulting.com/playbook
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+components/color-worlds/PlaybookHeroMedia.tsx:26: The front cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type.
+  Unreachable: dormant component, no importing route.
+components/color-worlds/PlaybookSignupForm.tsx:58: Chapter one is on its way from micah@micahjonesconsulting.com. Nothing in a few minutes? Check spam.
+  Only within retained direct-URL book page; form was not submitted.
+components/color-worlds/PlaybookSignupForm.tsx:77: Send me chapter one →
+  Only within retained direct-URL book page; form was not submitted.
+components/room/Manual.tsx:50: The 80% Wall, book cover
+  Unreachable: component is no longer imported or rendered.
+components/room/Manual.tsx:66: The 80% Wall
+  Unreachable: component is no longer imported or rendered.
+components/room/Manual.tsx:69: The 80% Wall.
+  Unreachable: component is no longer imported or rendered.
+components/room/Manual.tsx:93: Get chapter one free
+  Unreachable: component is no longer imported or rendered.
+content/work/content-engine.mdx:48: Monthly reach grew from 8,000 to 290,000 in five months, a 36× lift. The two platforms I backed outperformed the one I did not, as planned. Videos, blogs, newsletters, and digital events cost the author less money and fewer hours than before the engine. Their content lead has a 25-page playbook to execute without supervision. I stayed on retainer for the platform and algorithm shifts that come next.
+  Reachable at /work/content-engine; client marketing playbook, unrelated to the book. Preserved factual claim.
+lib/catalog.ts:29: The 80% Wall
+  Server-only retained book SKU, no visible site entry point; checkout not invoked.
+lib/package-delivery.ts:65: Attached: The 80% Wall (my field manual) and its companion
+  Post-purchase email only, not website-rendered; delivery code expressly preserved. Still attaches the book and carries the old refund wording.
+lib/playbook-delivery.ts:42: The 80% Wall — your book and companion files
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+lib/playbook-delivery.ts:44: Thank you for buying The 80% Wall.
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+lib/playbook-delivery.ts:93: — micahjonesconsulting.com/playbook
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+lib/playbook-delivery.ts:113: The 80% Wall
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.
+lib/playbook-delivery.ts:143: The 80% Wall <noreply@micahjonesconsulting.com>
+  Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked.

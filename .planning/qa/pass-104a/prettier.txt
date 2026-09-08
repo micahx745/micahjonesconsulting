@@ -1,0 +1,10 @@
+Checking formatting...
+node.exe : [warn] app/(room)/packages/page.tsx
+At line:2 char:17
++ ... tion pnpm { & node "$env:TEMP/pass-102-corepack/v1/pnpm/10.12.1/bin/p ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([warn] app/(room)/packages/page.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[warn] app/(room)/playbook/page.tsx
+[warn] Code style issues found in 2 files. Run Prettier with --write to fix.

@@ -1,0 +1,8 @@
+git : warning: in the working copy of '.planning/qa/pass-101/verify/verify-room-result.json', CRLF will be replaced by 
+LF the next time Git touches it
+At line:2 char:101
++ ... .planning/qa/pass-104a/restoration.txt; git diff --check 2>&1 | Tee-O ...
++                                             ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

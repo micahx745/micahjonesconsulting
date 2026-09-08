@@ -1,0 +1,12 @@
+[
+  {
+    "file": "app/(room)/packages/page.tsx",
+    "headPass": false,
+    "currentPass": false
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "headPass": false,
+    "currentPass": false
+  }
+]

@@ -1,0 +1,20 @@
+ app/(foyer)/services/page.tsx        |  12 --
+ app/(foyer)/services/thanks/page.tsx |   7 +-
+ app/(home)/page.tsx                  |   6 +-
+ app/(room)/about/page.tsx            |  12 --
+ app/(room)/call/kickoff/page.tsx     |  11 +-
+ app/(room)/packages/page.tsx         |   8 +-
+ app/(room)/playbook/page.tsx         |   1 +
+ app/room.css                         |   6 +-
+ app/sitemap.ts                       |   6 -
+ components/color-worlds/Nav.tsx      |   1 -
+ components/room/Bar.tsx              |   5 +-
+ components/room/Foot.tsx             |  13 --
+ components/room/Objections.tsx       |   7 -
+ components/room/SiteBar.tsx          |   1 -
+ components/room/SiteFoot.tsx         |   4 +-
+ content/work/ordani.mdx              |   2 -
+ docs/LESSONS_LEARNED.md              |  12 ++
+ next-env.d.ts                        |   2 +-
+ scripts/verify-room.py               | 244 +++++++++--------------------------
+ 19 files changed, 96 insertions(+), 264 deletions(-)

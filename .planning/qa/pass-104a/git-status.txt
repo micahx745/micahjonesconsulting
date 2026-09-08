@@ -1,0 +1,21 @@
+ M app/(foyer)/services/page.tsx
+ M app/(foyer)/services/thanks/page.tsx
+ M app/(home)/page.tsx
+ M app/(room)/about/page.tsx
+ M app/(room)/call/kickoff/page.tsx
+ M app/(room)/packages/page.tsx
+ M app/(room)/playbook/page.tsx
+ M app/room.css
+ M app/sitemap.ts
+ M components/color-worlds/Nav.tsx
+ M components/room/Bar.tsx
+ M components/room/Foot.tsx
+ M components/room/Objections.tsx
+ M components/room/SiteBar.tsx
+ M components/room/SiteFoot.tsx
+ M content/work/ordani.mdx
+ M docs/LESSONS_LEARNED.md
+ M next-env.d.ts
+ M scripts/verify-room.py
+?? .planning/design/PASS-104B-SYNTHESIS.md
+?? .planning/qa/pass-104a/

@@ -1,0 +1,4 @@
+FAIL 104a-no-book-footer-/  / footer: no 80% Wall or $99; hits=['80% Wall', '$99']
+FAIL 104a-no-book-home-/  / home: no 80% Wall or $99; hits=['80% WALL', '80% Wall', '$99', '80% Wall', '$99']
+FAIL 104a-no-book-links-/  /: 4 links to /playbook or #manual
+RED CONFIRMED: all three blackout checks fail on the original build

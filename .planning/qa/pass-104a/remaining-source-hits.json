@@ -1,0 +1,260 @@
+[
+  {
+    "file": "app/(room)/playbook/opengraph-image.tsx",
+    "line": 17,
+    "text": "THE 80% WALL · FIELD MANUAL",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 94,
+    "text": "The 80% Wall: now ship the company",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 98,
+    "text": "The 80% Wall: now ship the company",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 217,
+    "text": "The 80% Wall",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 218,
+    "text": "The 80% Wall",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 251,
+    "text": "The 80% Wall",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 280,
+    "text": "The 80% Wall",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 331,
+    "text": "The cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type.",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 416,
+    "text": "Buy the manual · $99",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 420,
+    "text": "Or read chapter one free",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 430,
+    "text": "Get chapter one free",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 517,
+    "text": "Page fifty-one of the manual: three concentric rings, people you know in the middle, people they know around them, strangers at the edge, with the ask that fits each ring.",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 550,
+    "text": "Page six of the manual: the wall chart, two lines crossing where unwritten rules outnumber what fits in the context window, above the three reasons the wall hits at 80%.",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 651,
+    "text": "Thirteen entries like this one in the manual. All true, all dated, all mine.",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 714,
+    "text": "Chapter one, free",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 729,
+    "text": "One email with the PDF. A second on the day the manual ships. No sequence, no drip.",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 877,
+    "text": "The manual",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 880,
+    "text": "Buy the manual · $99",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 890,
+    "text": "Not today? Chapter one is free, above",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 899,
+    "text": "Leave your email for chapter one. I&rsquo;ll tell you the day the full manual opens at the launch price.",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 904,
+    "text": "Chapter one, free",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/page.tsx",
+    "line": 924,
+    "text": "Past the playbook?",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/thanks/page.tsx",
+    "line": 14,
+    "text": "Check your inbox: The 80% Wall",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/(room)/playbook/thanks/page.tsx",
+    "line": 23,
+    "text": "The 80% Wall",
+    "judgment": "Direct URL only; retained book page/metadata, no site entry link; noindex,nofollow."
+  },
+  {
+    "file": "app/actions/playbook-signup.ts",
+    "line": 62,
+    "text": "Chapter 1 of The 80% Wall — why your build broke at 80%",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "app/actions/playbook-signup.ts",
+    "line": 104,
+    "text": "The 80% Wall <noreply@micahjonesconsulting.com>",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "app/actions/playbook-signup.ts",
+    "line": 108,
+    "text": "New playbook sampler signup. Chapter 1 was emailed to them.",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "app/actions/playbook-signup.ts",
+    "line": 113,
+    "text": "— micahjonesconsulting.com/playbook",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "components/color-worlds/PlaybookHeroMedia.tsx",
+    "line": 26,
+    "text": "The front cover of The 80% Wall: an espresso spec-sheet page, the title stacked in bone and terracotta display type.",
+    "judgment": "Unreachable: dormant component, no importing route."
+  },
+  {
+    "file": "components/color-worlds/PlaybookSignupForm.tsx",
+    "line": 58,
+    "text": "Chapter one is on its way from micah@micahjonesconsulting.com. Nothing in a few minutes? Check spam.",
+    "judgment": "Only within retained direct-URL book page; form was not submitted."
+  },
+  {
+    "file": "components/color-worlds/PlaybookSignupForm.tsx",
+    "line": 77,
+    "text": "Send me chapter one →",
+    "judgment": "Only within retained direct-URL book page; form was not submitted."
+  },
+  {
+    "file": "components/room/Manual.tsx",
+    "line": 50,
+    "text": "The 80% Wall, book cover",
+    "judgment": "Unreachable: component is no longer imported or rendered."
+  },
+  {
+    "file": "components/room/Manual.tsx",
+    "line": 66,
+    "text": "The 80% Wall",
+    "judgment": "Unreachable: component is no longer imported or rendered."
+  },
+  {
+    "file": "components/room/Manual.tsx",
+    "line": 69,
+    "text": "The 80% Wall.",
+    "judgment": "Unreachable: component is no longer imported or rendered."
+  },
+  {
+    "file": "components/room/Manual.tsx",
+    "line": 93,
+    "text": "Get chapter one free",
+    "judgment": "Unreachable: component is no longer imported or rendered."
+  },
+  {
+    "file": "content/work/content-engine.mdx",
+    "line": 48,
+    "text": "Monthly reach grew from 8,000 to 290,000 in five months, a 36× lift. The two platforms I backed outperformed the one I did not, as planned. Videos, blogs, newsletters, and digital events cost the author less money and fewer hours than before the engine. Their content lead has a 25-page playbook to execute without supervision. I stayed on retainer for the platform and algorithm shifts that come next.",
+    "judgment": "Reachable at /work/content-engine; client marketing playbook, unrelated to the book. Preserved factual claim."
+  },
+  {
+    "file": "lib/catalog.ts",
+    "line": 29,
+    "text": "The 80% Wall",
+    "judgment": "Server-only retained book SKU, no visible site entry point; checkout not invoked."
+  },
+  {
+    "file": "lib/package-delivery.ts",
+    "line": 65,
+    "text": "Attached: The 80% Wall (my field manual) and its companion",
+    "judgment": "Post-purchase email only, not website-rendered; delivery code expressly preserved. Still attaches the book and carries the old refund wording."
+  },
+  {
+    "file": "lib/playbook-delivery.ts",
+    "line": 42,
+    "text": "The 80% Wall — your book and companion files",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "lib/playbook-delivery.ts",
+    "line": 44,
+    "text": "Thank you for buying The 80% Wall.",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "lib/playbook-delivery.ts",
+    "line": 93,
+    "text": "— micahjonesconsulting.com/playbook",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "lib/playbook-delivery.ts",
+    "line": 113,
+    "text": "The 80% Wall",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  },
+  {
+    "file": "lib/playbook-delivery.ts",
+    "line": 143,
+    "text": "The 80% Wall <noreply@micahjonesconsulting.com>",
+    "judgment": "Retained email/delivery flow, not website-rendered; only after direct book flow invocation. No actions invoked."
+  }
+]
