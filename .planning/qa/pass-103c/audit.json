@@ -1,0 +1,204 @@
+{
+  "source": {
+    "app/(room)/about/page.tsx": {
+      "only_approved_copy": true,
+      "tags_or_about_protected_attributes_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "app/(room)/call/page.tsx": {
+      "only_approved_copy": true,
+      "tags_or_about_protected_attributes_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "app/(room)/packages/page.tsx": {
+      "only_approved_copy": true,
+      "tags_or_about_protected_attributes_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "app/(room)/playbook/page.tsx": {
+      "only_approved_copy": true,
+      "tags_or_about_protected_attributes_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "content/work/guardicore.mdx": {
+      "only_approved_copy": true,
+      "tags_or_about_protected_attributes_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "content/work/rfp-engine.mdx": {
+      "only_approved_copy": true,
+      "tags_or_about_protected_attributes_unchanged": true,
+      "numbers_unchanged": true
+    }
+  },
+  "rendered": {
+    "/packages@390": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/about@390": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/guardicore@390": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/rfp-engine@390": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/playbook@390": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/call@390": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/packages@1440": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/about@1440": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/guardicore@1440": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/rfp-engine@1440": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/playbook@1440": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/call@1440": {
+      "approved_rendered_copy": true,
+      "links_unchanged": true,
+      "ids_unchanged": true,
+      "metadata_exact": true,
+      "axe_unchanged": true,
+      "em_dashes_at_most_one": true,
+      "average_at_most_25": true,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    }
+  },
+  "errors": [],
+  "gate_entries": 10,
+  "cards": [
+    {
+      "name": "The Unstick Session, $500",
+      "display": "grid",
+      "descriptionAlign": "stretch",
+      "descriptionBottom": 870.40625,
+      "descriptionBorder": 0,
+      "featuresTop": 870.40625,
+      "featuresBorder": 0,
+      "delta": 0
+    },
+    {
+      "name": "The Audit, $2,500, start here",
+      "display": "grid",
+      "descriptionAlign": "stretch",
+      "descriptionBottom": 870.40625,
+      "descriptionBorder": 0,
+      "featuresTop": 870.40625,
+      "featuresBorder": 0,
+      "delta": 0
+    },
+    {
+      "name": "The Sprint, $7,500",
+      "display": "grid",
+      "descriptionAlign": "stretch",
+      "descriptionBottom": 870.40625,
+      "descriptionBorder": 0,
+      "featuresTop": 870.40625,
+      "featuresBorder": 0,
+      "delta": 0
+    }
+  ],
+  "protected_sources_unchanged": true,
+  "all_pass": true
+}

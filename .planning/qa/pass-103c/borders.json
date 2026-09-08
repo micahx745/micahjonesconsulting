@@ -1,0 +1,170 @@
+[
+  {
+    "name": "The Unstick Session, $500",
+    "descriptionBottom": 870.40625,
+    "listTop": 870.40625,
+    "firstFeatureTop": 870.40625,
+    "description": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "153px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "list": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "146.391px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "firstFeature": {
+      "borderTop": "1px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "48.7969px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "descriptionBefore": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "none",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "auto",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "descriptionAfter": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "none",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "auto",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "The Audit, $2,500, start here",
+    "descriptionBottom": 870.40625,
+    "listTop": 870.40625,
+    "firstFeatureTop": 870.40625,
+    "description": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "153px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "list": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "146.391px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "firstFeature": {
+      "borderTop": "1px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "48.7969px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "descriptionBefore": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "none",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "auto",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "descriptionAfter": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "none",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "auto",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    }
+  },
+  {
+    "name": "The Sprint, $7,500",
+    "descriptionBottom": 870.40625,
+    "listTop": 870.40625,
+    "firstFeatureTop": 870.40625,
+    "description": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "153px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "list": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "146.391px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "firstFeature": {
+      "borderTop": "1px",
+      "borderBottom": "0px",
+      "content": "normal",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "48.7969px",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "descriptionBefore": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "none",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "auto",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    },
+    "descriptionAfter": {
+      "borderTop": "0px",
+      "borderBottom": "0px",
+      "content": "none",
+      "top": "auto",
+      "bottom": "auto",
+      "height": "auto",
+      "boxShadow": "none",
+      "background": "rgba(0, 0, 0, 0)"
+    }
+  }
+]

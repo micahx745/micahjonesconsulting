@@ -1,0 +1,69 @@
+[
+  {
+    "row": 1,
+    "status": "applied",
+    "file": "app/(room)/packages/page.tsx",
+    "current": "Each one goes straight to checkout. The moment your card clears you get a kickoff email: the intake questions, a link to book the call, and the manual with its companion files attached.",
+    "proposed": "Each package goes straight to checkout. My kickoff email arrives the moment your card clears. It includes the intake questions and a link to book the call. The manual and its companion files are attached."
+  },
+  {
+    "row": 2,
+    "status": "applied",
+    "file": "app/(room)/about/page.tsx",
+    "current": "Growth, GTM, and platform strategy roles across thirteen years of enterprise software.",
+    "proposed": "I plan how enterprise software companies find buyers and grow. I help decide what their platforms should do. This work spans thirteen years."
+  },
+  {
+    "row": 3,
+    "status": "applied",
+    "file": "content/work/guardicore.mdx",
+    "current": "$14M in revenue. Average enterprise deal size, $1.2M. A product built in Tel Aviv ended up deployed behind a global systemically important bank and a federal research agency. It reached a white-shoe Wall Street law firm and a major U.S. utility, too. Trillions in financial assets sit protected behind those deployments. The research showed the top-of-funnel honeypot message did not match why buyers signed, so the pitch moved to visibility and east-west microsegmentation. Akamai acquired Guardicore in 2021. The positioning carried into Akamai Guardicore Segmentation.",
+    "proposed": "$14M in revenue. Average enterprise deal size, $1.2M. A product built in Tel Aviv ended up deployed behind a global systemically important bank and a federal research agency. It reached a white-shoe Wall Street law firm and a major U.S. utility, too. Trillions in financial assets sit protected behind those deployments. The research I contributed showed why the top-of-funnel honeypot message missed buyers’ reasons for signing. The pitch moved to visibility and east-west microsegmentation. Akamai acquired Guardicore in 2021. The positioning carried into Akamai Guardicore Segmentation."
+  },
+  {
+    "row": 4,
+    "status": "applied",
+    "file": "content/work/rfp-engine.mdx",
+    "current": "01. I built it as real software, not templates. The platform knows the author's own body of work and weighs each new RFP against it, through retrieval. Every morning the author opens a report of live opportunities, each with a partial response already drafted. A head start instead of a blank page. Volume stopped being the bottleneck.",
+    "proposed": "01. I built software around the author's own body of work. Every morning the author opens a report of live opportunities. Each comes with a partial response already drafted. The software weighs each new RFP against that work through retrieval. The author gets a head start. Volume stopped being the bottleneck."
+  },
+  {
+    "row": 5,
+    "status": "applied",
+    "file": "app/(room)/playbook/page.tsx",
+    "current": "The wall is not a talent problem. It is arithmetic: the tool’s memory runs out, and yours has to take over, on paper, in the repo. This manual is that hand-off, one system per chapter.",
+    "proposed": "Finding users, production failures, and breaking changes are separate problems. I cover each in this manual, one system per chapter. When the tool’s memory runs out, yours has to take over. Write it down on paper, in the repo."
+  },
+  {
+    "row": 6,
+    "status": "applied",
+    "file": "app/(room)/call/page.tsx",
+    "current": "What you leave with: a diagnosis of what is stuck and what work would fix it. I also tell you whether you need me at all.",
+    "proposed": "What you leave with: a diagnosis of what is stuck and what work would fix it. I tell you whether you need me at all."
+  },
+  {
+    "row": 7,
+    "status": "applied"
+  },
+  {
+    "row": 8,
+    "status": "applied",
+    "file": "app/(room)/playbook/page.tsx",
+    "current": "for Claude Code and Cursor: a session opener, an architecture mapper, an invariant extractor, a diff reviewer, a payments wiring prompt, and an outreach drafter.",
+    "proposed": "For Claude Code and Cursor: a session opener, an architecture mapper, an invariant extractor, a diff reviewer, a payments wiring prompt, and an outreach drafter."
+  },
+  {
+    "row": 9,
+    "status": "applied",
+    "file": "app/(room)/playbook/page.tsx",
+    "current": ", including three complete SPEC files: a booking app, a photographer gallery, and an internal ops tracker. Also a starter invariants file, an architecture sample, and a real env example.",
+    "proposed": "Three complete SPEC files: a booking app, a photographer gallery, and an internal ops tracker. Also a starter invariants file, an architecture sample, and a real env example."
+  },
+  {
+    "row": 10,
+    "status": "applied",
+    "file": "app/(room)/about/page.tsx",
+    "current": "Thirteen years inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined. Oakland, CA.",
+    "proposed": "Thirteen years inside B2B software companies. I plan how to sell the product in the morning and ship it in the afternoon. Four exits behind my work, $5B+ combined. Oakland, CA."
+  }
+]
