@@ -10,10 +10,13 @@
 #   [Environment]::SetEnvironmentVariable('ZAI_CODING_KEY', '<your z.ai Coding Plan key>', 'User')
 #   then open a NEW terminal so the variable is visible.
 #
-# Usage:
-#   pwsh scripts/claude-glm.ps1                       # executor in the repo root
-#   pwsh scripts/claude-glm.ps1 -Dir .claude/worktrees/p101-integrate   # in a worktree
-#   pwsh scripts/claude-glm.ps1 -Brief .claude/briefs/pass-101-room-and-ledger-site.md
+# Usage (this machine has Windows PowerShell 5.1, not pwsh):
+#   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Smoke
+#   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Dir .claude/worktrees/p101-integrate -Brief .claude/briefs/pass-102-wording-round.md
+# Verified 2026-09-07: -Smoke answered "OK" on glm-5.3 through api.z.ai with the account's
+# existing key. One-time: run `claude` interactively once in the repo AND in each worktree
+# and accept the trust dialog, or non-interactive runs ignore .claude/settings.json's
+# permission allow-list and will stall on tool prompts.
 #
 # Policy: the Coding Plan key is for use inside coding tools only (docs.z.ai/devpack/
 # usage-policy). It is NOT the key the cross-review REST leg uses (that one is GLM_API_KEY /
@@ -44,6 +47,9 @@ $env:ZAI_CODING_KEY = $key
 # Child-process env only. Nothing here persists.
 $env:ANTHROPIC_AUTH_TOKEN          = $env:ZAI_CODING_KEY
 $env:ANTHROPIC_BASE_URL            = "https://api.z.ai/api/anthropic"
+# Explicit main model: without it Claude Code picks "opus[1m]" and the [1m] suffix reaches
+# z.ai as "glm-5.3[1m]" (an unrecognized-model warning; the call still succeeds).
+$env:ANTHROPIC_MODEL               = $Model
 $env:ANTHROPIC_DEFAULT_OPUS_MODEL  = $Model
 $env:ANTHROPIC_DEFAULT_SONNET_MODEL = $Model
 $env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "GLM-5.3-Flash"

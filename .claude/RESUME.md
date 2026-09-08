@@ -18,9 +18,8 @@ it"). The book chat shares this tree: stage by path.
 
 ## Executor tier (2026-09-07)
 Codex/Astra (ChatGPT Pro, weekly reset — SPEND IT) = juror + 2nd executor
-(`scripts/codex-exec.ps1`) · GLM 5.3 = mechanical executor (`scripts/claude-glm.ps1`, needs
-`ZAI_CODING_KEY`) · Kimi K3 1M = reader/drafter (`scripts/claude-kimi.ps1`, needs
-`KIMI_CODING_KEY`, api.kimi.com/coding) · Sonnet default in-session · Opus only if no
+(`scripts/codex-exec.ps1`) · GLM 5.3 = mechanical executor + reader/drafter (`scripts/claude-glm.ps1`; VERIFIED
+"OK" 2026-09-07 with the existing ~/.claude/.zai-key; run via `powershell -File`) · Sonnet default in-session · Opus only if no
 executor · keys only in his shell. NEXT BRIEF: `.claude/briefs/pass-102-wording-round.md`
 (Kimi reads+drafts → Astra judges → he ticks → GLM applies on the branch).
 
