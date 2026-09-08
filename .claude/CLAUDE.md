@@ -78,6 +78,12 @@ existing `~/.claude/.zai-key`) runs the mechanical rounds AND the reader/drafter
 **Fable** rules, briefs, judges. Spend Codex: its quota resets weekly. (Kimi was named and
 withdrawn the same day — the operator had confused it with GLM.)
 
+**Amended 2026-09-08 — Astra is rationed (MODEL_ROUTING §9).** Operator, verbatim: "lots of
+sol and only altra for qualty gates. altra is only top tier model we have - fable gone for few
+days. we are at 29% chatgpt usage and 6 dayd till reset". So: Astra judges, it does not execute;
+a long `codex exec` run of a brief is forbidden while the quota is shared. GLM 5.3 executes
+briefs, Sonnet does the measuring and verifying, Opus rules and briefs in Fable's absence.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing
