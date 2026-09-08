@@ -5,14 +5,17 @@
 // The email IS the fulfillment start: payment confirmation framing,
 // the refund rule (full before the kickoff call, prorated after; the
 // intake questions, the /book link for scheduling the kickoff call,
-// and the book + companion ZIP (included with every package, per the
-// /services fine print). Resend idempotency on the checkout session id
-// makes webhook retries safe, same as the book delivery.
+// and the /book link for scheduling. Resend idempotency on the checkout
+// session id makes webhook retries safe.
+//
+// PASS-104B, operator ruling 2026-09-08: the manual and its companion ZIP
+// are NO LONGER attached and are no longer named. He took the book off the
+// site and, asked whether buyers should still receive it, chose "stop
+// sending it". lib/book-pdf.ts and lib/companion-zip.ts stay on disk for
+// the book's own delivery path, which is unchanged and currently unreachable.
 import { Resend } from "resend";
 
-import { BOOK_FILENAME, BOOK_PDF_BASE64 } from "@/lib/book-pdf";
 import type { Sku } from "@/lib/catalog";
-import { COMPANION_FILENAME, COMPANION_ZIP_BASE64 } from "@/lib/companion-zip";
 
 const OWNER = "micah@micahjonesconsulting.com";
 const NOTIFICATION_TO = "micah@micahjonesconsulting.com";
@@ -62,16 +65,9 @@ export async function deliverPackageKickoff(
           "And your fee credits toward the next package or an engagement",
           "started within 60 days.",
           "",
-          "Attached: The 80% Wall (my field manual) and its companion",
-          "files — included with every package.",
-          "",
           "— Micah",
           "micahjonesconsulting.com/services",
         ].join("\n"),
-        attachments: [
-          { filename: BOOK_FILENAME, content: BOOK_PDF_BASE64 },
-          { filename: COMPANION_FILENAME, content: COMPANION_ZIP_BASE64 },
-        ],
       },
       { idempotencyKey: `package-kickoff-${sessionId}` },
     );
