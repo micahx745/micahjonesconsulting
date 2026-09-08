@@ -151,8 +151,6 @@ PASS_102_COPY = [
     ("I go through it top to bottom and tell you what’s broken, in writing.",
      "PASS-102 row 4"),
     ("Is this for me if I built it with AI coding tools?", "PASS-102 row 5"),
-    ("For people and small teams who built most of a product with AI tools and are stuck.",
-     "PASS-102 row 7"),
     ("Debrief + what to do next", "PASS-102 row 8"),
     ("A field manual for people building on their own", "PASS-102 row 9"),
     ("The 80% Wall: now ship the company", "PASS-102 row 10"),
@@ -160,6 +158,207 @@ PASS_102_COPY = [
     ("Tell me what you need to build or sell.", "PASS-102 row 11"),
     ("a diagnosis of what is stuck and what work would fix it. "
      "I also tell you whether you need me at all.", "PASS-102 row 12"),
+]
+
+# Only operator-ticked replacements in .planning/copy/PASS-103-TICK-TABLE.md.
+# The superseded PASS-102 row 7 entry above is removed. Home copy stays fixed.
+PASS_103_COPY = [
+    ("For people and small teams stuck after building most of a product with AI tools. Buy a package "
+     "and I start within the week. No scoping call, proposal, or quote to wait for.",
+     "PASS-103 row 1"),
+    ("Ninety minutes together on your stuck build. I send you a written plan the same day.",
+     "PASS-103 row 2"),
+    ("Prompts to fix it",
+     "PASS-103 row 3"),
+    ("Choose Build (architecture and code), Production (security and deploy), or Traction "
+     "(positioning and reaching buyers). I review it top to bottom and write the audit. Not sure "
+     "which? Start here. The memo tells you what to fix first. The fee credits toward what you book "
+     "next.",
+     "PASS-103 row 4"),
+    ("What to fix, in order",
+     "PASS-103 row 5"),
+    ("One week on one outcome: the repositioning, the production push, the AI feature. I ship it.",
+     "PASS-103 row 6"),
+    ("Every package fee credits toward the next package or an engagement started within 60 days. "
+     "Full refund any time before kickoff. None after, because the work has started. All three "
+     "include The 80% Wall, my field manual for people building on their own, and its companion "
+     "files. They arrive attached to the kickoff email the moment you buy.",
+     "PASS-103 row 7"),
+    ("Two-week fixed-scope audit (Build, Production, or Traction): written memo, what to fix in "
+     "order, one-hour debrief.",
+     "PASS-103 row 8"),
+    ("For thirteen years, I’ve worked inside B2B software companies. I plan how to sell the product "
+     "in the morning and ship it in the afternoon.",
+     "PASS-103 row 9"),
+    ("Four companies I worked inside reached an exit. Postmates (Uber, 2020). SurveyMonkey (IPO, "
+     "2018). Guardicore (Akamai, 2021). Neuton.AI (technology acquired by Nordic Semiconductor, "
+     "2025). I held equity in SurveyMonkey and Guardicore at exit. The disclosed deals total $5B+.",
+     "PASS-103 row 10"),
+    ("Positioning research that moves deal size. The Guardicore engagement began with a single "
+     "rewritten sentence and ended in the Akamai acquisition. The average enterprise deal was $1.2M.",
+     "PASS-103 row 11"),
+    ("Software for marketing and contracts. For one industry author, a content engine grew monthly "
+     "reach from 8,000 to 290,000 in five months. The RFP software I built for the same author "
+     "doubled their close rate inside six months.",
+     "PASS-103 row 12"),
+    ("Products I build from start to finish. I founded Ordani, HIPAA-compliant practice management "
+     "for birth workers, and I write the code. It has active paying users in beta. Public release "
+     "coming.",
+     "PASS-103 row 13"),
+    ("I’m building Ordani. This country loses too many mothers and infants. The people working "
+     "hardest to change that were buried in running their practices. I built a tool that gives them "
+     "their hours back, so they can focus on mothers and babies.",
+     "PASS-103 row 14"),
+    ("I also take engagements with teams whose sales and product sides have stopped talking. I work "
+     "on both sides until they do. I am taking new engagements now.",
+     "PASS-103 row 15"),
+    ("I also wrote The 80% Wall, a field manual on what AI leaves to you once the demo works.",
+     "PASS-103 row 16"),
+    ("A HIPAA-compliant CRM for birth workers. I founded and built the company. Active paying users "
+     "in beta, none lost to a competitor. Public release coming.",
+     "PASS-103 row 17"),
+    ("Birth workers (doulas, midwives, perinatal counselors) run their practices on group chats, "
+     "paper intakes, and Google Docs. Those tools were never built for HIPAA compliance. "
+     "Practitioners either break the law, pay $200 a month for software designed for dentists, or "
+     "build a system that breaks the first time a client churns.",
+     "PASS-103 row 18"),
+    ("In the United States, non-Hispanic Black women die from maternal causes at 44.8 per 100,000 "
+     "live births. That is 3.15 times the rate of non-Hispanic white women (14.2), per the CDC's "
+     "Maternal Mortality Rates in the United States, 2024 release. Doulas and midwives, "
+     "disproportionately Black women themselves, are one of the most evidence-supported "
+     "interventions against that gap. Their client data is sensitive, high-stakes, and almost never "
+     "properly protected. The market hasn't built for these workers because it doesn't see them. I "
+     "built ORDANI to close that gap.",
+     "PASS-103 row 19"),
+    ("01. I talked to 22 birth workers before writing a line of code. Four weeks of unpaid "
+     "conversations. I asked what they used, hated, would never give up, and would pay for. Three "
+     "patterns emerged. Every practitioner had been hacked or feared they had been. Nobody wanted a "
+     "\"platform\"; everybody wanted intake to stop eating their Sundays.",
+     "PASS-103 row 20"),
+    ("02. I designed intake as one progressive flow. Existing tools dump fifteen pages of medical "
+     "forms on a pregnant person at 1 a.m. I built a single conversational flow that adapts to the "
+     "practitioner's preferences and saves on every step. Intake completion went from a "
+     "self-reported 40% in beta-zero to a measured 91% in beta-one.",
+     "PASS-103 row 21"),
+    ("03. I built it HIPAA-compliant with birth workers, healthcare and cyber security experts. "
+     "Ordani has a small team around it: people who know the practices and people who know how to "
+     "protect their data. This case study does not publish how the protections work.",
+     "PASS-103 row 22"),
+    ("One intake replaces fifteen pages of forms, and 91% of clients complete it. The practitioner "
+     "sees the week's clients in a Tuesday-morning view instead of a spreadsheet and a group chat. "
+     "Those screens hold real client data, so I describe them rather than show them.",
+     "PASS-103 row 23"),
+    ("Birth workers pay for it today, and none have left for a competitor. The HIPAA-compliant CRM I "
+     "built for the doula market is in beta, with a public release coming.",
+     "PASS-103 row 24"),
+    ("$14M in revenue. I helped reposition a Tel Aviv security company for North American buyers "
+     "through research and data science. The pitch moved from honeypots to visibility and east-west "
+     "microsegmentation. Deployed behind a global systemically important bank, a federal research "
+     "agency, and a white-shoe Wall Street law firm.",
+     "PASS-103 row 25"),
+    ("The pitch led with honeypots, a feature competitors also shipped. It missed why enterprise "
+     "buyers signed six-figure deals.",
+     "PASS-103 row 26"),
+    ("03. Market research and data science. The repositioning was a team effort. I interviewed "
+     "customers, researched the market, and analyzed why the honeypot message missed the reasons "
+     "buyers signed. I brought the findings to leadership.",
+     "PASS-103 row 27"),
+    ("$3M in contracts won through software I built for an industry-authority author, government "
+     "contracts among them. It weighs every new RFP against the author's own work. Each morning, "
+     "they get a partial response already drafted. RFP-to-close rate doubled inside six months.",
+     "PASS-103 row 28"),
+    ("Every RFP response started from a blank page. A respected industry-authority author had the "
+     "body of work and inbound interest, but the RFP pipeline did not match. Opportunities arrived "
+     "through a single newsletter list and a few personal relationships. Volume was the bottleneck.",
+     "PASS-103 row 29"),
+    ("02. I put my judgment into the software. Earlier in my career I ran complex, "
+     "multi-million-dollar RFPs in enterprise cybersecurity procurement. I know what a buyer's "
+     "evaluation committee reads. I wrote that judgment into the software, so it applies to every "
+     "submission, not only the ones I touch. The specifics stay with the client.",
+     "PASS-103 row 30"),
+    ("03. It closed government contracts. The author won government contracts worth millions through "
+     "the platform. Total contracts closed through it: $3M. RFP-to-close rate doubled inside six "
+     "months.",
+     "PASS-103 row 31"),
+    ("$3M in contracts won through the platform, government contracts among them. RFP-to-close rate: "
+     "2× inside six months. Each morning, the author gets live opportunities with a partial response "
+     "already drafted. My judgment applies to every submission, even when I am not in the room. The "
+     "same engagement also produced the author's content engine, written up separately.",
+     "PASS-103 row 32"),
+    ("Monthly reach was flat at 8,000 across all platforms combined. A respected industry-authority "
+     "author had the work, audience, and inbound interest, but no system for marketing. Content went "
+     "out reactively: one post here, one talk there. Every video, blog post, newsletter, and digital "
+     "event took manual work, money, and hours.",
+     "PASS-103 row 33"),
+    ("01. The strategy document. I wrote a 25-page algorithm strategy for TikTok, Instagram, "
+     "YouTube, LinkedIn, X. Not \"post more.\" It set a weekly cadence, a content-pillar map, a "
+     "measurement frame, and the exact experiments for the first 90 days. The author could hand it "
+     "to a content lead to execute without supervision. It guided the next twelve months of "
+     "distribution work.",
+     "PASS-103 row 34"),
+    ("02. The bet. The work went out on eight platforms: LinkedIn, YouTube, Facebook, Instagram, "
+     "TikTok, X, Threads and Bluesky. I picked two to overinvest in and one to underinvest in. The "
+     "two got a weekly cadence because high-value buyers already read there. The underinvested "
+     "platform got a monthly cadence because it had little audience overlap with the buyer. I put "
+     "production time into the platforms that moved deals.",
+     "PASS-103 row 35"),
+    ("03. The content engine. I built an AI content engine for the videos, blogs, newsletters, and "
+     "digital events the strategy called for. It cut the author's cost and hours spent creating that "
+     "content. The same engagement also produced an RFP system, which has its own case study.",
+     "PASS-103 row 36"),
+    ("Monthly reach grew from 8,000 to 290,000 in five months, a 36× lift. The two platforms I "
+     "backed outperformed the one I did not, as planned. Videos, blogs, newsletters, and digital "
+     "events cost the author less money and fewer hours than before the engine. Their content lead "
+     "has a 25-page playbook to execute without supervision. I stayed on retainer for the platform "
+     "and algorithm shifts that come next.",
+     "PASS-103 row 37"),
+    ("You kept running into the same thing. Fixed Tuesday, broken Friday. The tool forgot.",
+     "PASS-103 row 38"),
+    ("Nine line-drawn diagrams, all drawn for this book. No stock art.",
+     "PASS-103 row 39"),
+    ("Thirteen entries like this one in the manual. All true, all dated, all mine.",
+     "PASS-103 row 40"),
+    ("02 The spec is the moat When the build drifts p. 12",
+     "PASS-103 row 41"),
+    ("03 The architecture you didn't draw Auth, data, storage, and how they connect p. 19",
+     "PASS-103 row 42"),
+    ("04 Deploy day Environment variables, migrations, domains p. 25",
+     "PASS-103 row 43"),
+    ("07 Compliance, when it matters HIPAA, GDPR, SOC 2: when each matters p. 44",
+     "PASS-103 row 44"),
+    ("09 The distribution loop Users who bring more users p. 57",
+     "PASS-103 row 45"),
+    ("Get the whole first chapter. Leave your email and it arrives in about a minute.",
+     "PASS-103 row 46"),
+    ("One email with the PDF. A second on the day the manual ships. No sequence, no drip.",
+     "PASS-103 row 47"),
+    ("Nine templates, including three complete SPEC files: a booking app, a photographer gallery, "
+     "and an internal ops tracker. Also a starter invariants file, an architecture sample, and a "
+     "real env example.",
+     "PASS-103 row 48"),
+    ("The gallery and ops SPEC files appear in no chapter. I included them so you have a spec to "
+     "copy.",
+     "PASS-103 row 49"),
+    ("Leave your email for chapter one. I’ll tell you the day the full manual opens at the launch "
+     "price.",
+     "PASS-103 row 50"),
+    ("You need to read code and run a terminal. The AI writes; I show you how to steer.",
+     "PASS-103 row 51"),
+    ("A tutorial shows one happy path. I show what breaks and how I shipped through it.",
+     "PASS-103 row 52"),
+    ("The tools change monthly. The problems stay. Every future edition is included and goes to the "
+     "same email.",
+     "PASS-103 row 53"),
+    ("No deck and no pitch. The work starts with your problem. Bring notes if you have them. If not, "
+     "I will ask.",
+     "PASS-103 row 54"),
+    ("A calendar invite by email. I send the video link before the call.",
+     "PASS-103 row 55"),
+    ("The calendar invite is in your inbox, with reminders. I’ll reply with a video link before the "
+     "call.",
+     "PASS-103 row 56"),
+    ("Calls run Tuesday through Thursday. Pick one of those days.",
+     "PASS-103 row 57"),
 ]
 
 RES = []
@@ -2432,7 +2631,7 @@ def main(base):
     def provenance(t):
         """Return the name of the rule that clears this string, or None."""
         n = norm(t)
-        for approved, row in PASS_102_COPY:
+        for approved, row in PASS_102_COPY + PASS_103_COPY:
             if n == norm(approved):
                 return row
         if t.strip() in BAR_LABELS:

@@ -1,0 +1,744 @@
+{
+  "source": {
+    "app/(room)/about/page.tsx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "app/(room)/call/page.tsx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "app/(room)/packages/page.tsx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "app/(room)/playbook/page.tsx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "components/color-worlds/BookCallForm.tsx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "content/work/content-engine.mdx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "content/work/guardicore.mdx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "content/work/ordani.mdx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "content/work/rfp-engine.mdx": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    },
+    "lib/catalog.ts": {
+      "only_approved_changes": true,
+      "tags_attributes_unchanged": true,
+      "comments_unchanged": true,
+      "numbers_unchanged": true
+    }
+  },
+  "rendered": {
+    "/packages@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 1,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 2,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 3,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 4,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 5,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 6,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 7,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 8,
+          "visible_occurrences": 0
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 16.391304347826086,
+      "average_after": 14.32,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/about@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 9,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 10,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 11,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 12,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 13,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 14,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 15,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 16,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 12,
+      "average_after": 10.333333333333334,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/ordani@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 17,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 18,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 19,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 20,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 21,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 22,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 23,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 24,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 14.818181818181818,
+      "average_after": 13.204545454545455,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/guardicore@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 25,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 26,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 27,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 10.244444444444444,
+      "average_after": 9.795454545454545,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/rfp-engine@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 28,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 29,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 30,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 31,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 32,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 11.833333333333334,
+      "average_after": 11.878787878787879,
+      "average_did_not_rise": false,
+      "no_overflow": true
+    },
+    "/work/content-engine@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 33,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 34,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 35,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 36,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 37,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 12.767441860465116,
+      "average_after": 11.951219512195122,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/playbook@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 38,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 39,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 40,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 41,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 42,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 43,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 44,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 45,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 46,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 47,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 48,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 49,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 50,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 51,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 52,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 53,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 12.115789473684211,
+      "average_after": 11.65979381443299,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/call@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 54,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 55,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 56,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 57,
+          "visible_occurrences": 0
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 14.76923076923077,
+      "average_after": 14.307692307692308,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/@390": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [],
+      "em_dashes": 0,
+      "average_before": 10.755102040816327,
+      "average_after": 10.755102040816327,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/packages@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 1,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 2,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 3,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 4,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 5,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 6,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 7,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 8,
+          "visible_occurrences": 0
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 16.608695652173914,
+      "average_after": 14.52,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/about@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 9,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 10,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 11,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 12,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 13,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 14,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 15,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 16,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 12.166666666666666,
+      "average_after": 10.484848484848484,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/ordani@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 17,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 18,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 19,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 20,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 21,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 22,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 23,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 24,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 15.318181818181818,
+      "average_after": 13.704545454545455,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/guardicore@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 25,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 26,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 27,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 10.644444444444444,
+      "average_after": 10.204545454545455,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/work/rfp-engine@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 28,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 29,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 30,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 31,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 32,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 12.333333333333334,
+      "average_after": 12.424242424242424,
+      "average_did_not_rise": false,
+      "no_overflow": true
+    },
+    "/work/content-engine@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 33,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 34,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 35,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 36,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 37,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 13.186046511627907,
+      "average_after": 12.390243902439025,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/playbook@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 38,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 39,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 40,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 41,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 42,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 43,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 44,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 45,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 46,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 47,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 48,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 49,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 50,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 51,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 52,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 53,
+          "visible_occurrences": 1
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 12.16842105263158,
+      "average_after": 11.711340206185566,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/call@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [
+        {
+          "row": 54,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 55,
+          "visible_occurrences": 1
+        },
+        {
+          "row": 56,
+          "visible_occurrences": 0
+        },
+        {
+          "row": 57,
+          "visible_occurrences": 0
+        }
+      ],
+      "em_dashes": 0,
+      "average_before": 15.153846153846153,
+      "average_after": 14.692307692307692,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    },
+    "/@1440": {
+      "only_approved_changes": true,
+      "links_unchanged": true,
+      "metadata_matches": true,
+      "rows": [],
+      "em_dashes": 0,
+      "average_before": 10.857142857142858,
+      "average_after": 10.857142857142858,
+      "average_did_not_rise": true,
+      "no_overflow": true
+    }
+  },
+  "errors": [
+    "/work/rfp-engine@390",
+    "/work/rfp-engine@1440"
+  ],
+  "gate_entries": 57,
+  "citations_unchanged": true,
+  "home_source_unchanged": true,
+  "all_pass": false
+}
