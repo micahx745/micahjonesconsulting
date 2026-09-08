@@ -20,9 +20,9 @@ it"). The book chat shares this tree: stage by path.
 Codex/Astra (ChatGPT Pro, weekly reset — SPEND IT) = juror + 2nd executor
 (`scripts/codex-exec.ps1`) · GLM 5.3 = mechanical executor + reader/drafter (`scripts/claude-glm.ps1`; VERIFIED
 "OK" 2026-09-07 with the existing ~/.claude/.zai-key; run via `powershell -File`) · Sonnet default in-session · Opus only if no
-executor · keys only in his shell. Pass 102: both drafts + Astra's verdicts + the TICK TABLE are on the branch
-(`.planning/copy/PASS-102-TICK-TABLE.md`, 12 accepted rows). WAITING ON HIS TICKS → Step E
-(GLM applies via `claude-glm.ps1 -Batch`). Headline stays per the juror.
+executor · keys only in his shell. Pass 102 DONE on the branch: 12 rows applied (23 substitutions, 14 files), gates green,
+QA in `.planning/qa/pass-102/`. Pass 103 (long-form copy edit, brief committed) Step A
+running on Codex → Astra judges → he ticks → applier → Fable commits. GLM 5h window spent.
 
 ## Ship gate (his)
 Stripe webhook + `whsec_` in Production + one live $500 buy/refund → `PLAYBOOK_ON_SALE=1`.
