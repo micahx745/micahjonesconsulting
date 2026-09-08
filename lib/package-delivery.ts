@@ -3,7 +3,7 @@
 // from the signature-verified Stripe webhook.
 //
 // The email IS the fulfillment start: payment confirmation framing,
-// the refund rule (full before kickoff, none after), the package's
+// the refund rule (full before the kickoff call, prorated after; the
 // intake questions, the /book link for scheduling the kickoff call,
 // and the book + companion ZIP (included with every package, per the
 // /services fine print). Resend idempotency on the checkout session id
@@ -58,9 +58,9 @@ export async function deliverPackageKickoff(
           "   in your inbox): https://www.micahjonesconsulting.com/call/kickoff",
           "",
           "The rules, restated: full refund any time before the kickoff",
-          "call, none after, because the work starts fast. And your fee",
-          "credits toward the next package or an engagement started",
-          "within 60 days.",
+          "call. After it, you pay for the work done and nothing more.",
+          "And your fee credits toward the next package or an engagement",
+          "started within 60 days.",
           "",
           "Attached: The 80% Wall (my field manual) and its companion",
           "files — included with every package.",

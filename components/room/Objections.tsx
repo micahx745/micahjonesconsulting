@@ -39,13 +39,6 @@ export function Objections() {
           </dd>
         </div>
         <div className="q">
-          <dt>What if it does not help?</dt>
-          <dd>
-            Thirty days, full refund, no questions asked. Reply to the delivery
-            email and I refund it.
-          </dd>
-        </div>
-        <div className="q">
           <dt>Hiring for a company rather than a build?</dt>
           <dd>
             The engagements start at $5K a month. Tell me the problem and I will

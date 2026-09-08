@@ -307,6 +307,18 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   author's own working time, not a customer, revenue, user or security fact. Twin
   row in the book repo's `docs/CLAIMS-LEDGER.md`, same session.
 
+- **PACKAGE AND ENGAGEMENT REFUNDS — operator, in chat, 2026-09-08 (Pass 104a).**
+  Exact words: "im not doing any refunds and that shouldnt be a question (only refund is
+  given if paid before a kick off call - if kick off call happens and no work is done
+  afterwards there is a prorated charge)". A full refund is available any time before
+  the kickoff call. After the call there is no refund; the charge is prorated
+  to the work actually done, and the buyer pays for that work and nothing more.
+  Surfaces: `/packages` terms, `/call/kickoff` Refund row, and the home's Objections
+  (the refund question is removed). Any future package or engagement policy copy,
+  including delivery emails and post-purchase pages, must follow this ruling.
+  NEVER: state a thirty-day refund, a money-back guarantee, or "no questions asked"
+  for any package or engagement.
+
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
 
