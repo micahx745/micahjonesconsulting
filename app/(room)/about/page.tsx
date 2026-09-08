@@ -40,12 +40,12 @@ export const metadata: Metadata = {
   // Short title; root template appends " — Micah Jones" once.
   title: "Operator, not consultant",
   description:
-    "Thirteen years inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined. Oakland, CA.",
+    "Thirteen years inside B2B software. I plan how to sell the product in the morning and ship it in the afternoon. Four exits, $5B+ combined. Oakland, CA.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
     title: "Operator, not consultant — Micah Jones",
     description:
-      "Thirteen years inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined.",
+      "Thirteen years inside B2B software. I plan how to sell the product in the morning and ship it in the afternoon. Four exits, $5B+ combined.",
     type: "profile",
     url: "https://www.micahjonesconsulting.com/about",
   },
@@ -80,61 +80,62 @@ export default function AboutPage() {
               I help you build it and sell it, on the same engagement, for the
               same fee.
             </p>
-            <p>
-              For thirteen years, I&rsquo;ve worked inside B2B software companies.
-              I plan how to sell the product in the morning and ship it in the
-              afternoon.
+            <h2 id="rl-now-title" className="rl-d two" data-rl="head">
+              Currently
+            </h2>
+            {/* Origin line (operator, 2026-08-30, his words polished per his
+                instruction): infant mortality + giving birth workers their
+                hours back. Deliberately uncited prose; the CDC-cited figures
+                live in the Ordani case study via citations.ts. */}
+            <p className="rl-lede" data-rl="rise">
+              I&rsquo;m building <strong>Ordani</strong>. This country loses too
+              many mothers and infants. The people working hardest to change
+              that were buried in running their practices. I built a tool that
+              gives them their hours back, so they can focus on mothers and
+              babies.
             </p>
-
-            <h2 className="rl-l">Receipts</h2>
-            {/* Next 16's RSC serializer drops the leading space of a text
-                node that follows an inline element WHEN that text contains
-                an HTML ENTITY, so this line shipped as "$20M+in client
-                revenue" — the first receipt on the page, live.
-
-                The documented fix was an explicit {" "} join, and the
-                comment here claimed one for three passes while the code
-                used a literal space. That is not carelessness: prettier
-                COLLAPSES `</strong>{" "}` + newline back into a literal
-                space whenever the result fits on one line, so the
-                prescribed fix silently un-applies itself on the next
-                format. That is why LESSONS #6 kept recurring.
-
-                The durable fix is to remove the TRIGGER. The entity is
-                what makes the serializer drop the space, so the en-dash is
-                written as a literal character. No entity, no drop, and
-                nothing for prettier to undo. Enforced by the render-gate
-                GLUE check, which reads the rendered bytes. */}
-            {/* Operator ruling 2026-09-02: the $20M+ HOLDS TO TODAY. The
-                closed range read as a practice that stopped in 2023, two
-                lines above a heading called "Currently". Ledgered in
-                LESSONS #3 as "since 2013", open-ended. */}
-            <ul className="lead" data-rl-group="register">
-              <li>
-                <strong>$20M+</strong> in client revenue since 2013.
-              </li>
-              {/* Four-exit update (operator, 2026-08-30): Postmates joins.
-                  Role split stays honest: two cap-table, one helped launch,
-                  one worked inside. $5B+ = disclosed deal values only
-                  (Uber $2.65B + SVMK IPO $2.33B + Akamai $600M; Neuton
-                  undisclosed) — sources in content/citations.ts. */}
-              <li>
-                <strong>Four companies I worked inside reached an exit.</strong>{" "}
-                Postmates (Uber, 2020). SurveyMonkey (IPO, 2018). Guardicore
-                (Akamai, 2021). Neuton.AI (technology acquired by Nordic
-                Semiconductor, 2025). I held equity in SurveyMonkey and
-                Guardicore at exit. The disclosed deals total{" "}
-                <strong>$5B+</strong>.
-              </li>
-              {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
-                  cut — named companies carried no figure. Guardicore and
-                  TechValidate stay named in the exits bullet above, where
-                  their figures live. */}
-              <li>
-                Growth, GTM, and platform strategy roles across thirteen years
-                of enterprise software.
+            <ul className="rl-ledger rl-ledger--lane" data-rl-group="currently">
+              <li data-rl="rule">
+                <span className="term">
+                  Products I build from start to finish.
+                </span>
+                <span className="stmt">
+                  I founded Ordani, HIPAA-compliant practice management for
+                  birth workers, and I write the code. It has active paying
+                  users in beta. Public release coming.
+                </span>
               </li>
             </ul>
+            {/* Pass-83 (review #25): "a limited number of" was scarcity with no
+                ledger behind it, and "advisory" narrowed the offer to the
+                talking shape when the lede two screens up says I ship on the
+                same engagement. Now the plain picture, and the page's only
+                link to what I sell. */}
+            {/* Capacity, operator 2026-09-03: "Im taking work. No need to put
+                specifics on how many." A referrer could not tell from this page
+                whether he was available at all - it said "Building Ordani" and
+                then described engagements in the abstract. No count: an invented
+                number reads as a tactic, and a real one has to be maintained. */}
+            <p className="rl-body" data-rl="rise">
+              I also take{" "}
+              <a href="/services" className="rl-link">
+                engagements
+              </a>{" "}
+              with teams whose sales and product sides have stopped talking. I
+              work on both sides until they do. I am taking new engagements now.
+            </p>
+            {/* Internal link added 2026-09-02: an SEO pass found only two
+                contextual links into /playbook on the whole site, and none from
+                the author page, which is where a reader who trusts him goes
+                next. Phrased so it claims the book exists, not that it is
+                currently for sale. */}
+            <p className="rl-body rl-air-s" data-rl="rise">
+              I also wrote{" "}
+              <a href="/playbook" className="rl-link">
+                The 80% Wall
+              </a>
+              , a field manual on what AI leaves to you once the demo works.
+            </p>
           </div>
         </div>
       </section>
@@ -151,6 +152,12 @@ export default function AboutPage() {
             What I&rsquo;m known for
           </h2>
         </div>
+
+        <p>
+          For thirteen years, I&rsquo;ve worked inside B2B software companies. I
+          plan how to sell the product in the morning and ship it in the
+          afternoon.
+        </p>
 
         {/* PASS-101 INTEGRATE, §18 Rule B. The photograph and the ledger were
             two stacked full-width rows, and the photograph is a half: 559px at
@@ -215,79 +222,71 @@ export default function AboutPage() {
               naming the thing that produced its own number. "for the same
               author", not "next": the build order is not on record. */}
             <li data-rl="rule">
-              <span className="term">Software for marketing and contracts.</span>
+              <span className="term">
+                Software for marketing and contracts.
+              </span>
               <span className="stmt">
                 For one industry author, a content engine grew monthly reach
                 from 8,000 to 290,000 in five months. The RFP software I built
                 for the same author doubled their close rate inside six months.
               </span>
             </li>
-            <li data-rl="rule">
-              <span className="term">Products I build from start to finish.</span>
-              <span className="stmt">
-                I founded Ordani, HIPAA-compliant practice management for birth
-                workers, and I write the code. It has active paying users in
-                beta. Public release coming.
-              </span>
-            </li>
           </ul>
         </div>
+        {/* W3 (D9/R13, operator-locked): Flexport/Cuebiq/Postmates
+                  cut — named companies carried no figure. Guardicore and
+                  TechValidate stay named in the exits bullet above, where
+                  their figures live. */}
+        <p className="rl-body rl-seam rl-air-m" data-rl="rise">
+          I plan how enterprise software companies find buyers and grow. I help
+          decide what their platforms should do. This work spans thirteen years.
+        </p>
       </section>
 
-      <section className="rl-wrap rl-sec-air" aria-labelledby="rl-now-title">
-        <div className="rl-sec rl-sec--wide">
-          <h2 id="rl-now-title" className="rl-d two" data-rl="head">
-            Currently
-          </h2>
-        </div>
+      <section className="rl-wrap rl-sec-air">
         {/* PASS-101 polish: --fill. The portrait is 682px against 509px of
             argument, so this block used to close 173px ragged. The text column
             spends the difference across its own seams rather than the picture
             being cropped to the text's height. */}
         <div className="rl-two rl-two--fill">
           <div className="rl-two__l">
-            {/* Origin line (operator, 2026-08-30, his words polished per his
-                instruction): infant mortality + giving birth workers their
-                hours back. Deliberately uncited prose; the CDC-cited figures
-                live in the Ordani case study via citations.ts. */}
-            <p className="rl-lede" data-rl="rise">
-              I&rsquo;m building <strong>Ordani</strong>. This country loses too many
-              mothers and infants. The people working hardest to change that
-              were buried in running their practices. I built a tool
-              that gives them their hours back, so they can focus on
-              mothers and babies.
-            </p>
-            {/* Pass-83 (review #25): "a limited number of" was scarcity with no
-                ledger behind it, and "advisory" narrowed the offer to the
-                talking shape when the lede two screens up says I ship on the
-                same engagement. Now the plain picture, and the page's only
-                link to what I sell. */}
-            {/* Capacity, operator 2026-09-03: "Im taking work. No need to put
-                specifics on how many." A referrer could not tell from this page
-                whether he was available at all - it said "Building Ordani" and
-                then described engagements in the abstract. No count: an invented
-                number reads as a tactic, and a real one has to be maintained. */}
+            <h2 className="rl-l">Receipts</h2>
+            {/* Next 16's RSC serializer drops the leading space of a text
+                node that follows an inline element WHEN that text contains
+                an HTML ENTITY, so this line shipped as "$20M+in client
+                revenue" — the first receipt on the page, live.
+
+                The documented fix was an explicit {" "} join, and the
+                comment here claimed one for three passes while the code
+                used a literal space. That is not carelessness: prettier
+                COLLAPSES `</strong>{" "}` + newline back into a literal
+                space whenever the result fits on one line, so the
+                prescribed fix silently un-applies itself on the next
+                format. That is why LESSONS #6 kept recurring.
+
+                The durable fix is to remove the TRIGGER. The entity is
+                what makes the serializer drop the space, so the en-dash is
+                written as a literal character. No entity, no drop, and
+                nothing for prettier to undo. Enforced by the render-gate
+                GLUE check, which reads the rendered bytes. */}
+            {/* Operator ruling 2026-09-02: the $20M+ HOLDS TO TODAY. The
+                closed range read as a practice that stopped in 2023, two
+                lines above a heading called "Currently". Ledgered in
+                LESSONS #3 as "since 2013", open-ended. */}
             <p className="rl-body rl-air-m" data-rl="rise">
-              I also take{" "}
-              <a href="/services" className="rl-link">
-                engagements
-              </a>{" "}
-              with teams whose sales and product sides have stopped
-              talking. I work on both sides until they do. I am
-              taking new engagements now.
+              <strong>$20M+</strong> in client revenue since 2013.
             </p>
-            {/* Internal link added 2026-09-02: an SEO pass found only two
-                contextual links into /playbook on the whole site, and none from
-                the author page, which is where a reader who trusts him goes
-                next. Phrased so it claims the book exists, not that it is
-                currently for sale. */}
-            <p className="rl-body rl-air-s" data-rl="rise">
-              I also wrote{" "}
-              <a href="/playbook" className="rl-link">
-                The 80% Wall
-              </a>
-              , a field manual on what AI leaves to you once
-              the demo works.
+            {/* Four-exit update (operator, 2026-08-30): Postmates joins.
+                  Role split stays honest: two cap-table, one helped launch,
+                  one worked inside. $5B+ = disclosed deal values only
+                  (Uber $2.65B + SVMK IPO $2.33B + Akamai $600M; Neuton
+                  undisclosed) — sources in content/citations.ts. */}
+            <p className="rl-body rl-air-m" data-rl="rise">
+              <strong>Four companies I worked inside reached an exit.</strong>{" "}
+              Postmates (Uber, 2020). SurveyMonkey (IPO, 2018). Guardicore
+              (Akamai, 2021). Neuton.AI (technology acquired by Nordic
+              Semiconductor, 2025). I held equity in SurveyMonkey and Guardicore
+              at exit. The disclosed deals total <strong>$5B+</strong>.
             </p>
             <div className="rl-chips rl-air-m" data-rl="rise">
               <a className="rl-chip" href="/work">
