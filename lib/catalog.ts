@@ -50,7 +50,7 @@ export const SKUS: Record<string, Sku> = {
     amount: 250000,
     kind: "package",
     description:
-      "Two-week fixed-scope audit (Build, Production, or Traction): written memo, prioritized fix sequence, one-hour debrief.",
+      "Two-week fixed-scope audit (Build, Production, or Traction): written memo, what to fix in order, one-hour debrief.",
     intake: [
       "Your app: what it is, who it's for, where it stands.",
       "Links: repo, live app, site (whatever the flavor needs).",

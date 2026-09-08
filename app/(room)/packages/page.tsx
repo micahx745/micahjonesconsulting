@@ -152,9 +152,9 @@ export default function PackagesPage() {
             were moved off in the polish pass. It takes the same seam they do:
             x = 615.3, 792.7px measure. Copy unchanged. */}
         <p className="rl-lede rl-seam" data-rl="rise">
-          For people and small teams who built most of a product with AI tools
-          and are stuck. Pick one, buy it, and the work starts within the week.
-          No scoping call, no proposal, no quote to wait for.
+          For people and small teams stuck after building most of a product with
+          AI tools. Buy a package and I start within the week. No scoping call,
+          proposal, or quote to wait for.
         </p>
 
         <div className="rl-cards rl-air-m" data-rl-group="cards">
@@ -169,12 +169,12 @@ export default function PackagesPage() {
               <span className="rl-l">90 minutes + same-day memo</span>
             </div>
             <p className="one">
-              Ninety minutes live on your stuck build. You leave with a written
+              Ninety minutes together on your stuck build. I send you a written
               plan the same day.
             </p>
             <ul className="rl-list">
               <li>What is wrong, in the order to fix it</li>
-              <li>The prompts to fix it with</li>
+              <li>Prompts to fix it</li>
               <li>Your tools, your repo</li>
             </ul>
             <div className="cta">
@@ -204,15 +204,15 @@ export default function PackagesPage() {
               <span className="rl-l">Two weeks + debrief call</span>
             </div>
             <p className="one">
-              Pick one flavor: Build (architecture and code), Production
-              (security and deploy), or Traction (positioning and go-to-market).
-              I go through it top to bottom and hand you the written audit. Not
-              sure which one? Start here: the memo tells you what to fix first,
-              and the fee credits toward what you book next.
+              Choose Build (architecture and code), Production (security and
+              deploy), or Traction (positioning and reaching buyers). I review it
+              top to bottom and write the audit. Not sure which? Start here. The
+              memo tells you what to fix first. The fee credits toward what you
+              book next.
             </p>
             <ul className="rl-list">
               <li>8-10 page audit memo</li>
-              <li>Prioritized fix sequence</li>
+              <li>What to fix, in order</li>
               <li>One-hour debrief call</li>
             </ul>
             <div className="cta">
@@ -235,8 +235,8 @@ export default function PackagesPage() {
               <span className="rl-l">One week, embedded</span>
             </div>
             <p className="one">
-              One week on one outcome, shipped: the repositioning, the
-              production push, the AI feature. Not a plan. The thing, done.
+              One week on one outcome: the repositioning, the
+              production push, the AI feature. I ship it.
             </p>
             <ul className="rl-list">
               <li>One outcome, agreed by email before day one</li>
@@ -299,11 +299,11 @@ export default function PackagesPage() {
         </p>
 
         <p className="rl-body rl-seam rl-air-s" data-rl="rise">
-          The rules, in plain terms: every package fee credits toward the next
-          package or an engagement started within 60 days. Full refund any time
-          before kickoff. None after, because by then the work has started. All
-          three include The 80% Wall, my field manual for solo builders, with
-          its companion files, attached to the kickoff email the moment you buy.
+          Every package fee credits toward the next package or an engagement
+          started within 60 days. Full refund any time before kickoff. None
+          after, because the work has started. All three include The 80% Wall,
+          my field manual for people building on their own, and its companion
+          files. They arrive attached to the kickoff email the moment you buy.
         </p>
       </section>
     </>
