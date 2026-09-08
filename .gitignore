@@ -62,3 +62,7 @@ product/playbook/review-package/*.zip
 
 # Snapshot raw HTML (regenerate with scripts/snapshot-live.py)
 .planning/snapshots/**/*.raw.html
+
+# provider keys the cross-review harness may read by reference (never committed)
+.claude/.zai-key
+.claude/.*-key
