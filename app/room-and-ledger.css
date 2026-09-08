@@ -606,6 +606,9 @@ html.rl-js .rl-bar.rl-in {
     grid-row: span 5;
     row-gap: 0;
   }
+  #packages .rl-cards > .rl-card > p {
+    align-self: stretch;
+  }
 }
 #rl-root .rl-card:hover,
 #rl-root .rl-card:focus-within {

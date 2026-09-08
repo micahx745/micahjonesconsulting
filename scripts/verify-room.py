@@ -156,8 +156,6 @@ PASS_102_COPY = [
     ("The 80% Wall: now ship the company", "PASS-102 row 10"),
     ("The 80% Wall: now ship the company — Micah Jones", "PASS-102 row 10"),
     ("Tell me what you need to build or sell.", "PASS-102 row 11"),
-    ("a diagnosis of what is stuck and what work would fix it. "
-     "I also tell you whether you need me at all.", "PASS-102 row 12"),
 ]
 
 # Only operator-ticked replacements in .planning/copy/PASS-103-TICK-TABLE.md.
@@ -332,10 +330,6 @@ PASS_103_COPY = [
      "PASS-103 row 46"),
     ("One email with the PDF. A second on the day the manual ships. No sequence, no drip.",
      "PASS-103 row 47"),
-    ("Nine templates, including three complete SPEC files: a booking app, a photographer gallery, "
-     "and an internal ops tracker. Also a starter invariants file, an architecture sample, and a "
-     "real env example.",
-     "PASS-103 row 48"),
     ("The gallery and ops SPEC files appear in no chapter. I included them so you have a spec to "
      "copy.",
      "PASS-103 row 49"),
@@ -359,6 +353,20 @@ PASS_103_COPY = [
      "PASS-103 row 56"),
     ("Calls run Tuesday through Thursday. Pick one of those days.",
      "PASS-103 row 57"),
+]
+
+# Operator-ticked cells in PASS-103-REWORD-TICK-TABLE.md; row 7 only moves existing copy.
+PASS_103_REWORD_COPY = [
+    ("Each package goes straight to checkout. My kickoff email arrives the moment your card clears. It includes the intake questions and a link to book the call. The manual and its companion files are attached.", "PASS-103 reword row 1"),
+    ("I plan how enterprise software companies find buyers and grow. I help decide what their platforms should do. This work spans thirteen years.", "PASS-103 reword row 2"),
+    ("$14M in revenue. Average enterprise deal size, $1.2M. A product built in Tel Aviv ended up deployed behind a global systemically important bank and a federal research agency. It reached a white-shoe Wall Street law firm and a major U.S. utility, too. Trillions in financial assets sit protected behind those deployments. The research I contributed showed why the top-of-funnel honeypot message missed buyers’ reasons for signing. The pitch moved to visibility and east-west microsegmentation. Akamai acquired Guardicore in 2021. The positioning carried into Akamai Guardicore Segmentation.", "PASS-103 reword row 3"),
+    ("01. I built software around the author's own body of work. Every morning the author opens a report of live opportunities. Each comes with a partial response already drafted. The software weighs each new RFP against that work through retrieval. The author gets a head start. Volume stopped being the bottleneck.", "PASS-103 reword row 4"),
+    ("Finding users, production failures, and breaking changes are separate problems. I cover each in this manual, one system per chapter. When the tool’s memory runs out, yours has to take over. Write it down on paper, in the repo.", "PASS-103 reword row 5"),
+    ("a diagnosis of what is stuck and what work would fix it. I tell you whether you need me at all.", "PASS-103 reword row 6"),
+    ("For Claude Code and Cursor: a session opener, an architecture mapper, an invariant extractor, a diff reviewer, a payments wiring prompt, and an outreach drafter.", "PASS-103 reword row 8"),
+    ("Three complete SPEC files: a booking app, a photographer gallery, and an internal ops tracker. Also a starter invariants file, an architecture sample, and a real env example.", "PASS-103 reword row 9"),
+    ("Thirteen years inside B2B software companies. I plan how to sell the product in the morning and ship it in the afternoon. Four exits behind my work, $5B+ combined. Oakland, CA.", "PASS-103 reword row 10"),
+    ("Thirteen years inside B2B software companies. I plan how to sell the product in the morning and ship it in the afternoon. Four exits behind my work, $5B+ combined.", "PASS-103 reword row 10"),
 ]
 
 RES = []
@@ -2643,7 +2651,7 @@ def main(base):
     def provenance(t):
         """Return the name of the rule that clears this string, or None."""
         n = norm(t)
-        for approved, row in PASS_102_COPY + PASS_103_COPY:
+        for approved, row in PASS_102_COPY + PASS_103_COPY + PASS_103_REWORD_COPY:
             if n == norm(approved):
                 return row
         if t.strip() in BAR_LABELS:
