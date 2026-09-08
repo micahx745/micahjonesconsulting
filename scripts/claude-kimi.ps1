@@ -29,14 +29,19 @@ if (-not $env:KIMI_CODING_KEY) {
   exit 1
 }
 
-Remove-Item Env:ANTHROPIC_API_KEY -ErrorAction SilentlyContinue
-Remove-Item Env:CLAUDE_CODE_SUBAGENT_MODEL -ErrorAction SilentlyContinue
-$env:ANTHROPIC_AUTH_TOKEN           = $env:KIMI_CODING_KEY
+# Per kimi.com/code/docs (third-party-tools/claude-code): a Kimi Code key rides
+# ANTHROPIC_API_KEY, and EVERY tier variable must be set or that scenario silently breaks.
+Remove-Item Env:ANTHROPIC_AUTH_TOKEN -ErrorAction SilentlyContinue
+$env:ANTHROPIC_API_KEY              = $env:KIMI_CODING_KEY
 $env:ANTHROPIC_BASE_URL             = "https://api.kimi.com/coding/"
 $env:ANTHROPIC_MODEL                = $Model
 $env:ANTHROPIC_DEFAULT_OPUS_MODEL   = $Model
 $env:ANTHROPIC_DEFAULT_SONNET_MODEL = $Model
 $env:ANTHROPIC_DEFAULT_HAIKU_MODEL  = $Model
+$env:ANTHROPIC_DEFAULT_FABLE_MODEL  = $Model
+$env:CLAUDE_CODE_SUBAGENT_MODEL     = $Model
+$env:CLAUDE_CODE_AUTO_COMPACT_WINDOW = if ($Model -eq "k3[1m]") { "1048576" } else { "262144" }
+$env:CLAUDE_CODE_MAX_CONTEXT_TOKENS  = $env:CLAUDE_CODE_AUTO_COMPACT_WINDOW
 $env:API_TIMEOUT_MS                 = "3000000"
 $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
 

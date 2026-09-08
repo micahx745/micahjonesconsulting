@@ -36,10 +36,13 @@ $env:ANTHROPIC_BASE_URL            = "https://api.z.ai/api/anthropic"
 $env:ANTHROPIC_DEFAULT_OPUS_MODEL  = $Model
 $env:ANTHROPIC_DEFAULT_SONNET_MODEL = $Model
 $env:ANTHROPIC_DEFAULT_HAIKU_MODEL = "GLM-5.3-Flash"
+# Every tier the harness can name resolves to the plan's models; the project's
+# settings.json asks for "opus" subagents, which must not reach z.ai unmapped.
+$env:ANTHROPIC_DEFAULT_FABLE_MODEL = $Model
+$env:CLAUDE_CODE_SUBAGENT_MODEL    = $Model
 $env:API_TIMEOUT_MS                = "3000000"
 $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
-# The executor never inherits the Fable session's subagent default.
-Remove-Item Env:CLAUDE_CODE_SUBAGENT_MODEL -ErrorAction SilentlyContinue
+Remove-Item Env:ANTHROPIC_API_KEY -ErrorAction SilentlyContinue
 
 Set-Location $Dir
 Write-Host "claude-glm: executor session on $Model via z.ai, in $Dir" -ForegroundColor DarkYellow
