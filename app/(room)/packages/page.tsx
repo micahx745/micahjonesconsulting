@@ -163,11 +163,11 @@ export default function PackagesPage() {
             aria-label="The Unstick Session, $500"
             data-rl="rise"
           >
-            <h2 className="nm">The Unstick Session</h2>
             <div className="pblock">
               <span className="pr rl-num">$500</span>
-              <span className="rl-l">90 minutes + same-day memo</span>
             </div>
+            <span className="rl-l pmeta">90 minutes + same-day memo</span>
+            <h2 className="nm">The Unstick Session</h2>
             <p className="one">
               Ninety minutes together on your stuck build. I send you a written
               plan the same day.
@@ -195,20 +195,20 @@ export default function PackagesPage() {
                 four sides and an inline `Start here` PILL on the name line.
                 It used to sit against the $2,500 baseline as a bare caption,
                 which read as a stray label on the price. */}
+            <div className="pblock">
+              <span className="pr rl-num">$2,500</span>
+            </div>
+            <span className="rl-l pmeta">Two weeks + debrief call</span>
             <span className="nmrow">
               <h2 className="nm">The Audit</h2>
               <span className="tag">Start here</span>
             </span>
-            <div className="pblock">
-              <span className="pr rl-num">$2,500</span>
-              <span className="rl-l">Two weeks + debrief call</span>
-            </div>
             <p className="one">
               Choose Build (architecture and code), Production (security and
-              deploy), or Traction (positioning and reaching buyers). I review it
-              top to bottom and write the audit. Not sure which? Start here. The
-              memo tells you what to fix first. The fee credits toward what you
-              book next.
+              deploy), or Traction (positioning and reaching buyers). I review
+              it top to bottom and write the audit. Not sure which? Start here.
+              The memo tells you what to fix first. The fee credits toward what
+              you book next.
             </p>
             <ul className="rl-list">
               <li>8-10 page audit memo</li>
@@ -229,14 +229,14 @@ export default function PackagesPage() {
             aria-label="The Sprint, $7,500"
             data-rl="rise"
           >
-            <h2 className="nm">The Sprint</h2>
             <div className="pblock">
               <span className="pr rl-num">$7,500</span>
-              <span className="rl-l">One week, embedded</span>
             </div>
+            <span className="rl-l pmeta">One week, embedded</span>
+            <h2 className="nm">The Sprint</h2>
             <p className="one">
-              One week on one outcome: the repositioning, the
-              production push, the AI feature. I ship it.
+              One week on one outcome: the repositioning, the production push,
+              the AI feature. I ship it.
             </p>
             <ul className="rl-list">
               <li>One outcome, agreed by email before day one</li>

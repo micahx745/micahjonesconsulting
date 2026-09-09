@@ -473,6 +473,37 @@ def bg_contrast(page, sel, png_path):
     return worst
 
 
+def bg_contrast_glyph_run(page, hide_sel, row_sel, png_path):
+    """Like bg_contrast, but for ONE glyph run inside a multi-row ancestor (PASS-104B §3's
+    stacked two-row heading at <=899): hiding only `row_sel` leaves the SIBLING row's own
+    ink able to bleed a stray anti-aliased pixel across the tight (line-height 0.92) gap
+    into this row's clip box, which reads as a false near-1:1 failure against the row's
+    own colour. Hiding the WHOLE ancestor's colour removes every row's ink at once, so the
+    box then measures only what is actually composited behind it (the film + veil)."""
+    info = page.evaluate("""(sel)=>{const e=document.querySelector(sel);
+        if(!e) return null; const r=e.getBoundingClientRect();
+        return {x:r.x,y:r.y,w:r.width,h:r.height,color:getComputedStyle(e).color};}""",
+        row_sel)
+    if not info or info["w"] < 2 or info["h"] < 2:
+        return None
+    page.evaluate("(sel)=>{document.querySelector(sel).style.color='transparent';}", hide_sel)
+    clip = {"x": max(0, info["x"]), "y": max(0, info["y"]),
+            "width": min(info["w"], page.viewport_size["width"] - max(0, info["x"])),
+            "height": min(info["h"], page.viewport_size["height"] - max(0, info["y"]))}
+    page.screenshot(path=png_path, clip=clip)
+    page.evaluate("(sel)=>{document.querySelector(sel).style.color='';}", hide_sel)
+    from PIL import Image
+    im = Image.open(png_path).convert("RGB")
+    fg = lum(*parse_rgb(info["color"]))
+    worst = 99.0
+    px = im.load()
+    w, h = im.size
+    for y in range(0, h, 2):
+        for x in range(0, w, 2):
+            worst = min(worst, ratio(fg, lum(*px[x, y])))
+    return worst
+
+
 FFMPEG = (r"C:\Users\micah\AppData\Local\Microsoft\WinGet\Packages"
           r"\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe"
           r"\ffmpeg-8.0.1-full_build\bin\ffmpeg.exe")
@@ -720,25 +751,6 @@ def hand_reads(page, png):
     return out
 
 
-def op_film_alive(page, png, top_pct):
-    """At the row where the operator heading's caps start, is there still film under the
-    veil? Compare the brightest pixel across that row with the flat espresso the veil paints
-    when it has gone solid (13)."""
-    from PIL import Image
-    page.evaluate("()=>{document.getElementById('opover').style.visibility='hidden';}")
-    page.wait_for_timeout(150)
-    b = page.evaluate("""()=>{const r=document.getElementById('opstage').getBoundingClientRect();
-        return {x:r.x,y:r.y,w:r.width,h:r.height};}""")
-    page.screenshot(path=png, clip={"x": max(0, b["x"]), "y": max(0, b["y"]),
-                                    "width": b["w"], "height": b["h"]})
-    page.evaluate("()=>{document.getElementById('opover').style.visibility='';}")
-    im = Image.open(png).convert("L")
-    px, W, H = im.load(), im.size[0], im.size[1]
-    y = min(H - 1, int(H * top_pct / 100))
-    row = [px[x, y] for x in range(0, W, 3)]
-    return max(row) - 13
-
-
 def set_frame(page, vid_id, frame, fps=24.0):
     return page.evaluate("""async ([id,f,fps])=>{
         const v=document.getElementById(id); if(!v) return null;
@@ -883,6 +895,81 @@ def main(base):
                          pt[W]["proofTop"] - pt[W]["chipsBottom"], pt[W]["proofFs"])
                       for W in (1280, 1440, 1920)))
 
+        # ---- PASS-104B §2: the sign (three new checks, brief §2's own list) ----
+        # The sign is a sibling of .hero-copy inside .stagewrap (not of #h1 inside
+        # .hero-copy), positioned off the SAME --fx constant as the headline, so
+        # "the sign's left edge equals the headline's" is asserted directly
+        # rather than through #h1's own descendant checks above.
+        sign_widths = (1280, 1440, 900)
+        sign_pt = {}
+        for W in sign_widths:
+            pg.set_viewport_size({"width": W, "height": 900})
+            pg.wait_for_timeout(400)
+            sign_pt[W] = pg.evaluate("""()=>{
+                const sign=document.querySelector('.sign');
+                const h1=document.getElementById('h1');
+                const rule=document.querySelector('.sign .rule');
+                const fig=document.querySelector('.sign .row .lg .fig');
+                const sr=sign.getBoundingClientRect(), hr=h1.getBoundingClientRect();
+                return {signX:sr.x, h1X:hr.x,
+                        ruleColor:getComputedStyle(rule).backgroundColor,
+                        figColor:getComputedStyle(fig).color};}""")
+        chk("14.9-sign-left-edge-matches-headline",
+            all(abs(v["signX"] - v["h1X"]) <= 1.5 for v in sign_pt.values()),
+            "the sign's own left edge vs the headline's, the ONLY left edge in the hero: "
+            + "; ".join("%d: sign %.1f, headline %.1f (<=1.5px)"
+                        % (W, sign_pt[W]["signX"], sign_pt[W]["h1X"]) for W in sign_widths))
+        chk("14.9-sign-rule-copper-figure-bone",
+            all(v["ruleColor"] == "rgb(200, 84, 43)"
+                and v["figColor"] == "rgb(245, 239, 228)" for v in sign_pt.values()),
+            "the rule is the licensed copper seam and the figure is BONE, never copper "
+            "(SS3: copper on type belongs to `go-to-market.` alone): "
+            + "; ".join("%d: rule %s (wants rgb(200, 84, 43)), figure %s (wants bone "
+                        "rgb(245, 239, 228))" % (W, sign_pt[W]["ruleColor"], sign_pt[W]["figColor"])
+                        for W in sign_widths))
+
+        # the light-travels chain, off #h1's own ARRIVAL trigger: seek the clip just past
+        # ARRIVAL (so timeupdate fires lightWord() and stamps #h1.on), then wait 900ms of
+        # REAL time -- the figure's own fill (delay 560ms + 260ms duration = 820ms) is the
+        # fastest-finishing part of the chain, so 900ms clears it with margin.
+        pg.set_viewport_size({"width": 1440, "height": 900})
+        pg.reload()
+        pg.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
+        pg.wait_for_timeout(600)
+        pg.evaluate("""async ()=>{const v=document.getElementById('filmvid'); v.pause();
+            v.currentTime=2.6;
+            await new Promise(r=>{const go=()=>{v.removeEventListener('seeked',go);r();};
+              v.addEventListener('seeked',go); setTimeout(r,300);});}""")
+        pg.wait_for_timeout(900)
+        fig_op = pg.evaluate(
+            "()=>getComputedStyle(document.querySelector('.sign .row .lg .fig')).opacity")
+        chk("14.9-sign-figure-opacity-1-after-arrival",
+            abs(float(fig_op) - 1.0) < 0.02,
+            "1440, clip seeked to 2.60s (past ARRIVAL=2.54) then 900ms of real time for the "
+            "figure's own 560ms-delay/260ms-fill to finish: computed opacity %s (wants 1)"
+            % fig_op)
+
+        # the same assertion with JavaScript disabled -- the finished-frame proof. Unlike
+        # page.evaluate(), locator.evaluate() still runs with java_script_enabled=False
+        # (confirmed against this Playwright build), so this reads real computed style
+        # rather than a bounding-box proxy.
+        njctx = br.new_context(viewport={"width": 1440, "height": 900},
+                               java_script_enabled=False, device_scale_factor=1)
+        njp = njctx.new_page()
+        njp.goto(url)
+        njp.wait_for_timeout(1500)
+        nj_fig_op = njp.locator(".sign .row .lg .fig").evaluate(
+            "el=>getComputedStyle(el).opacity")
+        nj_rule_clip = njp.locator(".sign .rule").evaluate(
+            "el=>getComputedStyle(el).clipPath")
+        njctx.close()
+        chk("14.9-sign-finished-frame-no-js",
+            abs(float(nj_fig_op) - 1.0) < 0.02 and "100%" not in nj_rule_clip,
+            "with scripting OFF (html.rl-js never lands) the sign renders its FINISHED "
+            "frame by construction, not by a second stylesheet: figure opacity %s (wants "
+            "1), rule clip-path %r (wants fully drawn, not the 100%%-inset pre-state)"
+            % (nj_fig_op, nj_rule_clip))
+
         # ---- 03 hero veil contrast at frames 0 / 48 / 96 ---------------------
         pg.set_viewport_size({"width": 1440, "height": 900})
         pg.wait_for_timeout(600)
@@ -954,97 +1041,129 @@ def main(base):
                [(int(a), int(b), round(c, 2)) for a, b, c in vis["rows"][::3]])
             if vis else "the fingertip band could not be sampled")
 
-        # ---- 05/06 operator overlay -----------------------------------------
+        # ---- 05/06 operator: the long table (PASS-104B §3) -------------------
+        # The square stage and its two-column register are gone. `#opstage` is
+        # now the full-bleed band; the paragraph that used to sit ON the film is
+        # off it (`.opthesis`); the old right-hand register is a horizontal
+        # three-track ledger (`.opledger .opl-track`) under the band; a quote
+        # row (`.opquote`) closes the section.
         pg.evaluate("()=>document.getElementById('operator').scrollIntoView()")
         pg.wait_for_timeout(900)
         opm = pg.evaluate("""()=>{
-            const s=document.getElementById('opstage'), o=document.getElementById('opover');
+            const band=document.getElementById('opstage');
             const h=document.getElementById('oph2');
-            const side=document.querySelector('.opside');
-            const lead=document.querySelector('.opside .lead');
-            const sig=document.querySelector('.opside .sig');
-            const p1=document.querySelector('.opover p');
-            const sr=s.getBoundingClientRect(), hr=h.getBoundingClientRect();
-            const p1r=p1?p1.getBoundingClientRect():null;
-            return {sw:sr.width,sh:sr.height,st:sr.top,sb:sr.bottom,
+            const thesis=document.querySelector('.opthesis');
+            const thesisP=document.querySelector('.opthesis p');
+            const ledger=document.querySelector('.opledger');
+            const tracks=[...document.querySelectorAll('.opl-track')];
+            const quote=document.querySelector('.opquote');
+            const br=band.getBoundingClientRect(), hr=h.getBoundingClientRect();
+            return {bw:br.width,bh:br.height,bt:br.top,bb:br.bottom,
                     ht:hr.top,hb:hr.bottom,
-                    p1t:p1r?p1r.top:null,p1b:p1r?p1r.bottom:null,
-                    sidet:side.getBoundingClientRect().top,
-                    leadt:lead.getBoundingClientRect().top,
-                    hasSig:!!sig, ov:getComputedStyle(o).position,
-                    hfs:parseFloat(getComputedStyle(h).fontSize),
-                    d2:parseFloat(getComputedStyle(document.documentElement)
-                        .getPropertyValue('--d2'))||null};}""")
-        third = opm["st"] + opm["sh"] * 2 / 3
+                    thesisTop: thesis?thesis.getBoundingClientRect().top:null,
+                    thesisText: thesisP?thesisP.textContent.trim():null,
+                    ledgerTop: ledger?ledger.getBoundingClientRect().top:null,
+                    trackCount: tracks.length,
+                    trackTops: tracks.map(t=>t.getBoundingClientRect().top),
+                    quoteTop: quote?quote.getBoundingClientRect().top:null,
+                    innerW: innerWidth};}""")
         chk("14.2-op-square",
-            abs(opm["sw"] - opm["sh"]) <= 1.5 and opm["ov"] == "absolute"
-            and opm["ht"] >= third - 12 and opm["hb"] <= opm["sb"] + 2,
-            "square stage %.1fx%.1f; heading top %.1f is inside the lower third (starts %.1f) "
-            "and its foot %.1f is inside the film (%.1f); overlay position=%s"
-            % (opm["sw"], opm["sh"], opm["ht"], third, opm["hb"], opm["sb"], opm["ov"]))
+            abs(opm["bw"] - opm["innerW"]) <= 1 and abs(opm["bh"] - 440) <= 1.5
+            and opm["ht"] >= opm["bt"] and opm["hb"] <= opm["bb"] + 2,
+            "the band is full-bleed %.1fx%.1f against a %dpx viewport (3.27:1 at 1440, "
+            "down 44%% from the old 782.67 square); heading %.1f..%.1f sits inside it "
+            "(%.1f..%.1f)"
+            % (opm["bw"], opm["bh"], opm["innerW"], opm["ht"], opm["hb"], opm["bt"], opm["bb"]))
         chk("14.2-op-columns",
-            opm["p1t"] is not None and opm["p1t"] >= opm["hb"] - 2
-            and opm["p1b"] <= opm["sb"] + 2 and abs(opm["leadt"] - opm["st"]) <= 4
-            and opm["hasSig"],
-            "first paragraph %.1f..%.1f sits under the heading (%.1f) and on the film "
-            "(foot %.1f); right column top %.1f vs film top %.1f (top-aligned); "
-            "section line present=%s"
-            % (opm["p1t"], opm["p1b"], opm["hb"], opm["sb"], opm["leadt"], opm["st"],
-               opm["hasSig"]))
+            opm["thesisTop"] is not None and opm["thesisTop"] >= opm["bb"] - 1
+            and opm["thesisText"] == ("I help you build it and sell it, on the same "
+                                       "engagement, for the same fee.")
+            and opm["trackCount"] == 3
+            and opm["ledgerTop"] is not None and opm["ledgerTop"] >= opm["thesisTop"]
+            and opm["quoteTop"] is not None and opm["quoteTop"] >= max(opm["trackTops"]),
+            "the two-column register is gone: the thesis (%.1f) sits OFF the band (foot "
+            "%.1f); the ledger (%.1f) is a %d-track horizontal row under it; the quote "
+            "(%.1f) closes the section"
+            % (opm["thesisTop"], opm["bb"], opm["ledgerTop"], opm["trackCount"], opm["quoteTop"]))
+
+        # the HARD GATE: composited luminance behind every glyph run of the
+        # heading at loop frames 0/96/192, >=3:1 (large text). This is the
+        # section's own stop condition -- if it fails, the veil's 84% stop
+        # raises in .05 steps, and if .70 does not clear it the band is NOT
+        # taken solid (that reverts the section to where it started).
         ob, det2 = 99, []
-        for fr in (0, 48, 96):
+        for fr in (0, 96, 192):
             t = set_frame(pg, "opvid", fr)
-            v = bg_contrast(pg, "#oph2", os.path.join(OUT, "_o.png"))
+            v1 = bg_contrast_glyph_run(pg, "#oph2", "#oph2 .r:nth-child(1)", os.path.join(OUT, "_oband1.png"))
+            v2 = bg_contrast_glyph_run(pg, "#oph2", "#oph2 .r:nth-child(2)", os.path.join(OUT, "_oband2.png"))
+            v = min(x for x in (v1, v2) if x is not None) if (v1 or v2) else None
             if v:
                 ob = min(ob, v)
-            det2.append("f%d(t=%.2fs) %.2f" % (fr, t or 0, v or 0))
-        chk("14.2-op-contrast", ob >= 4.5,
-            "heading min %.2f:1 over the film (>=4.5) | %s" % (ob, "; ".join(det2)))
+            det2.append("f%d(t=%.2fs) row1=%.2f row2=%.2f" % (fr, t or 0, v1 or 0, v2 or 0))
+        chk("14.2-op-band-contrast", ob >= 3.0,
+            "PASS-104B §3 hard gate: heading (large text, >=3:1) min %.2f:1 over the band "
+            "at loop frames 0/96/192 | %s" % (ob, "; ".join(det2)))
+
+        # re-pointed at the ledger: the claims sit on plain espresso now, not
+        # video, so this is an ordinary WCAG body-text check (>=4.5:1) rather
+        # than a per-frame sample.
+        trackContrasts = []
+        for i in range(1, 4):
+            v = bg_contrast(pg, f".opl-track:nth-child({i}) p",
+                             os.path.join(OUT, f"_optrack{i}.png"))
+            trackContrasts.append(v)
+        tc = min(x for x in trackContrasts if x is not None) if any(trackContrasts) else None
+        chk("14.2-op-contrast", tc is not None and tc >= 4.5,
+            "re-pointed at the ledger (PASS-104B §3): the three claims sit on plain "
+            "espresso now, not video; min %s:1 (>=4.5) | per-track %s"
+            % (("%.2f" % tc) if tc is not None else "-", trackContrasts))
 
         # ---- 05b/c/d SS14.7: the heading's size, the veil's stops, the rows -----
         opx = pg.evaluate(r"""()=>{
             const h=document.getElementById('oph2');
-            const sq=document.getElementById('opstage').getBoundingClientRect();
+            const band=document.getElementById('opstage').getBoundingClientRect();
             const cs=getComputedStyle(h);
             const d=parseFloat(getComputedStyle(document.getElementById('h1')).fontSize);
             const rows=[...h.querySelectorAll('.r')].map(r=>{
                 const q=document.createRange(); q.selectNodeContents(r);
                 const k=q.getBoundingClientRect();
                 return {t:r.textContent.trim(), inkRight:k.right, inkW:k.width,
-                        n:r.getClientRects().length};});
+                        top:k.top, n:r.getClientRects().length};});
             const veil=getComputedStyle(document.querySelector('.opfilm .veil')).backgroundImage;
-            const lead=[...document.querySelectorAll('.opside .lead span')].map(
-                e=>({h:e.getBoundingClientRect().height,
-                     flex:getComputedStyle(e).flexGrow+'/'+getComputedStyle(e).flexBasis}));
+            const tracks=[...document.querySelectorAll('.opl-track')].map(
+                e=>({h:e.getBoundingClientRect().height}));
             return {fs:parseFloat(cs.fontSize), d2:0.76*d, vs:cs.fontVariationSettings,
-                    sqRight:sq.right, sqLeft:sq.x, rows:rows, veil:veil, lead:lead};}""")
+                    bandRight:band.right, bandLeft:band.x, rows:rows, veil:veil,
+                    tracks:tracks, oneRow: rows.length===2 &&
+                        Math.abs(rows[0].top - rows[1].top) < 4};}""")
         chk("14.7-op-heading-d2-wdth106",
             abs(opx["fs"] - opx["d2"]) < 0.6 and '"wdth" 106' in (opx["vs"] or "")
             and all(r["n"] == 1 for r in opx["rows"])
-            and all(r["inkRight"] <= opx["sqRight"] + 0.5 for r in opx["rows"]),
-            "heading font-size %.2f == --d2 %.2f at %s; rows %s -- each one client rect, "
-            "each ending inside the square (right edge %.1f)"
+            and all(r["inkRight"] <= opx["bandRight"] + 0.5 for r in opx["rows"])
+            and opx["oneRow"],
+            "heading font-size %.2f == --d2 %.2f at %s; ONE row at >=900 (PASS-104B §3): "
+            "rows %s -- each one client rect, each ending inside the band (right edge %.1f)"
             % (opx["fs"], opx["d2"], opx["vs"],
                [(r["t"], round(r["inkW"], 1), round(r["inkRight"], 1), r["n"])
-                for r in opx["rows"]], opx["sqRight"]))
+                for r in opx["rows"]], opx["bandRight"]))
         stops = [(float(a), float(b)) for a, b in
                  re.findall(r"rgba?\(\s*13,\s*13,\s*15(?:,\s*([\d.]+))?\s*\)\s+([\d.]+)%",
                             opx["veil"].replace("rgb(13, 13, 15)", "rgba(13, 13, 15, 1)"))]
-        s60 = [p for a, p in stops if abs(a - 0.6) < 0.001]
-        s100 = [p for a, p in stops if a == 1.0]
+        s84 = [a for a, p in stops if abs(p - 84) < 0.6]
+        s100 = [a for a, p in stops if abs(p - 100) < 0.6]
         chk("14.7-op-veil-62-82",
-            bool(s60) and abs(s60[0] - 62) < 0.6 and bool(s100) and abs(min(s100) - 82) < 0.6,
-            "the operator veil reaches .6 at %s%% (SS14.7 wants 62) and solid at %s%% "
-            "(wants 82); every stop: %s"
-            % (s60[0] if s60 else "-", min(s100) if s100 else "-",
+            bool(s84) and abs(s84[0] - 0.55) < 0.02
+            and bool(s100) and abs(s100[0] - 0.62) < 0.02 and s100[0] < 1.0,
+            "PASS-104B §3: the scrim is NEVER solid -- alpha at the 84%% stop is %s "
+            "(wants .55) and at 100%% is %s (wants .62, always < 1.0, so the picture "
+            "stays legible to the bottom edge); every stop: %s"
+            % (s84[0] if s84 else "-", s100[0] if s100 else "-",
                [(a, p) for a, p in stops]))
-        hs = [round(r["h"], 1) for r in opx["lead"]]
+        hs = [round(t["h"], 1) for t in opx["tracks"]]
         chk("14.7-op-rows-auto-height",
-            len(set(hs)) > 1 and all(r["flex"].startswith("0/") for r in opx["lead"]),
-            "the right column's three register rows take their own height: %s "
-            "(flex-grow/basis %s -- 0/auto is auto height; 1/0px was the stretched thirds "
-            "SS14.7 removed)" % (hs, [r["flex"] for r in opx["lead"]]))
-
+            len(opx["tracks"]) == 3 and len(set(hs)) > 1,
+            "re-pointed at the ledger tracks (PASS-104B §3): the three horizontal tracks "
+            "take their own height, not a stretched third of the row: %s" % hs)
         # ---- 11 head sizes / air --------------------------------------------
         sizes = pg.evaluate("""()=>{
             const hd0=parseFloat(getComputedStyle(document.getElementById('h1')).fontSize);
@@ -1156,6 +1275,16 @@ def main(base):
         # with the borderless card it was written for: a bordered box hanging 25px into the
         # page gutter is a mistake, so the row sits in the content width and each card is
         # (content - 48)/3, which is the geometry SS15.3 then borrows for the objections.
+        # PASS-104B S5: the price section is now taller (--d2 prices, the seam, the band's
+        # own padding) than whatever scroll position the head-split loop above left the
+        # page at, so #price's own entrance (cards then, 210ms later, Engagements) is no
+        # longer guaranteed to have settled by the time cd/eb are read below -- a bare
+        # 400ms wait at the STALE scroll position previously caught the cards risen but
+        # Engagements still 20px into its OWN rise, reading a false 44px gapAbove where the
+        # rule is 24px. Scroll to the section itself and give both beats (210ms delay +
+        # 500ms transition = 710ms) room to finish before reading geometry.
+        pg.evaluate("()=>document.getElementById('price').scrollIntoView({block:'center'})")
+        pg.wait_for_timeout(1000)
         cd = pg.evaluate(r"""()=>{
             const cards=[].slice.call(document.querySelectorAll('.card'));
             const sec=document.querySelector('.price');
@@ -1208,6 +1337,7 @@ def main(base):
                  document.querySelector('.price').appendChild(d);
                  const v=getComputedStyle(d).color; d.remove(); return v;})(),
               rowX:+row.x.toFixed(1), rowW:+row.width.toFixed(1),
+              d2:0.76*parseFloat(getComputedStyle(document.getElementById('h1')).fontSize),
               content:content, gutter:gut, vw:window.innerWidth};}""")
         wexp = (cd["content"] - 48) / 3.0
         spread = max(cd["chipTops"]) - min(cd["chipTops"])
@@ -1215,9 +1345,11 @@ def main(base):
         # the border is color-mix(ink 15%), which computes to an rgba carrying alpha 0.15
         hair_ok = all(bd.startswith("1px") and "0.15" in bd
                       for i in (0, 2) for bd in cd["borders"][i])
+        # PASS-104B S5, item 1: the price is the poster, --d2 -- the section head's own
+        # size, read off the page the same way 18-engagements already reads eb["d2"].
         chk("15.5-cards",
             widths_eq and spread <= 2.0
-            and all(abs(f - 72) < 0.6 for f in cd["pr"])
+            and all(abs(f - cd["d2"]) < 0.6 for f in cd["pr"])
             and all(abs(f - 24) < 0.6 for f in cd["nameFs"])
             and all("Hanken" in f for f in cd["nameFam"])
             and all(w == "500" for w in cd["nameWt"])
@@ -1230,12 +1362,13 @@ def main(base):
             "1440: widths %s (each wants (content - 48)/3 = %.1f of a %.0f content); the row "
             "sits IN the content width (x %.1f == the %.0fpx gutter, width %.1f); borders %s "
             "-- 1px at 15%% ink, which computes %s; radius %s; padding %s; name %s at %s / "
-            "weight %s; price %s; the chip is the full card interior %s vs %s; CTA tops "
-            "spread %.2fpx"
+            "weight %s; price %s against --d2 %.2f; the chip is the full card interior %s vs "
+            "%s; CTA tops spread %.2fpx"
             % ([round(x, 1) for x in cd["w"]], wexp, cd["content"], cd["rowX"], cd["gutter"],
                cd["rowW"], cd["borders"][0], cd["hairPx"], set(cd["radius"]), cd["pad"],
                cd["nameFs"], [f.split(",")[0] for f in cd["nameFam"]], cd["nameWt"], cd["pr"],
-               [round(x, 1) for x in cd["chipW"]], [round(x, 1) for x in cd["inner"]], spread))
+               cd["d2"], [round(x, 1) for x in cd["chipW"]],
+               [round(x, 1) for x in cd["inner"]], spread))
         marked = [i for i, m in enumerate(cd["mark"]) if m]
         # SS18 REPLACES SS15.5's 2px COPPER TOP RULE. "The Audit carries exactly two
         # devices: a 1px copper border on all four sides and an inline `Start here` pill on
@@ -1319,8 +1452,9 @@ def main(base):
         # SS18: "Engagements is the fourth object in the SAME system: one block the width
         # of the three cards, 24px below, 8px radius, 28px padding, espresso ground,
         # `Engagements` at 24px Hanken 500 bone (not --d2), the descriptor at 17px, `From
-        # $5K a month` at 72px bone in the price's slot, one chip right; height by content.
-        # Special by ground, connected by grammar."
+        # $5K a month` at --d2 bone in the price's slot, one chip right; height by content.
+        # Special by ground, connected by grammar." PASS-104B S5, item 6: the figures are
+        # now --d2, the same register the cards use -- read the same way cd["d2"] is above.
         # So the three things SS15.5 used to assert are exactly the three SS18 deleted: the
         # 220px floor (which opened a band of empty espresso across the middle), the 16px
         # radius, and the 2px copper top rule. What replaces them is the CARD's grammar.
@@ -1335,7 +1469,7 @@ def main(base):
             and abs(eb["hdFs"] - 24) < 0.6 and "Hanken" in eb["hdFam"]
             and eb["hdWt"] == "500"
             and abs(eb["dscFs"] - 17) < 0.6
-            and abs(eb["vFs"] - 72) < 0.6
+            and abs(eb["vFs"] - eb["d2"]) < 0.6
             and eb["hdX"] < eb["mid"] and eb["chipRight"] > eb["mid"]
             and worst_word >= 4.5 and worst_glyph >= 3.0,
             "one <%s> with %d links inside it -> %s; %.1fpx wide == the cards row %.1f, "
@@ -1525,6 +1659,63 @@ def main(base):
                wk["nm"], [round(x, 1) for x in wk["nmFs"]], wk["d2"], wk["sFs"],
                wk["sCh"], set(wk["sMeasure"]), wk["sX"], wk["seam"], set(wk["rule"]),
                wk["lastRule"]))
+
+        # ---- PASS-104B SS4 how I work: the spine and the doors ----------------
+        # The spine is Rule B's line, finally drawn -- .steps::before at
+        # x = var(--lane) + var(--gap), the SAME x the objections list (.qs) and
+        # the receipts' caption column (.prf .cap) already open on. The gate:
+        # the element that finally draws Rule B must not be the element that
+        # breaks it. Also asserts the three doors (rows as <a>, zero new copy,
+        # the three destinations) and the .42 rest-to-1 name lighting.
+        spine = pg.evaluate(r"""()=>{
+            const steps=document.querySelector('.steps');
+            const stepsR=steps.getBoundingClientRect();
+            const cs=getComputedStyle(steps, '::before');
+            const spineX=+(stepsR.x+parseFloat(cs.left)).toFixed(1);
+            const qs=document.querySelector('.qs');
+            const qsX=qs?+qs.getBoundingClientRect().x.toFixed(1):null;
+            const cap=document.querySelector('.prf .cap');
+            const capX=cap?+cap.getBoundingClientRect().x.toFixed(1):null;
+            const rows=[].slice.call(document.querySelectorAll('.steps li'));
+            const links=rows.map(r=>r.querySelector('a'));
+            const arrows=rows.map(r=>r.querySelector('.ar'));
+            return {
+                spineBg:cs.backgroundColor,
+                spineX:spineX, qsX:qsX, capX:capX,
+                hrefs:links.map(a=>a?a.getAttribute('href'):null),
+                arCount:rows.reduce((n,r)=>n+r.querySelectorAll('.ar').length,0),
+                arColor:arrows[0]?getComputedStyle(arrows[0]).color:null,
+                nmOpacity:rows.map(r=>getComputedStyle(r.querySelector('.nm')).opacity),
+            };}""")
+        chk("18-work-spine-x-matches-objections-and-receipts",
+            spine["qsX"] is not None and spine["capX"] is not None
+            and abs(spine["spineX"] - spine["qsX"]) <= 1.5
+            and abs(spine["spineX"] - spine["capX"]) <= 1.5
+            and "200, 84, 43" not in spine["spineBg"],
+            "spine x %.1f vs .qs x %s and .prf .cap x %s (SS4 gate: all three open "
+            "on the column-6 seam); spine background %s (must not be copper)"
+            % (spine["spineX"], spine["qsX"], spine["capX"], spine["spineBg"]))
+        chk("18-work-doors-three-links-named-destinations",
+            spine["hrefs"] == ["/call", "#price", "#proof"]
+            and spine["arCount"] == 3
+            and spine["arColor"] and "200, 84, 43" in spine["arColor"],
+            "row hrefs %s (want /call, #price, #proof), %d copper arrow glyphs, "
+            "arrow color %s" % (spine["hrefs"], spine["arCount"], spine["arColor"]))
+        # nmOpacity above was read AFTER #work was already scrolled into view for an
+        # earlier check (SS18-work-head), so it reads the LIT value, not the rest
+        # value -- a fresh, unscrolled page is needed to see .42 before #work.in fires.
+        restp = ctx.new_page()
+        restp.goto(url)
+        restp.wait_for_function("document.fonts.check('300 20px Anybody')", timeout=30000)
+        restp.wait_for_timeout(600)
+        rest_nm = restp.evaluate(
+            r"""()=>[].slice.call(document.querySelectorAll('.steps .nm'))
+                .map(e=>getComputedStyle(e).opacity)""")
+        restp.close()
+        chk("18-work-names-rest-at-042",
+            all(abs(float(o) - 0.42) < 0.02 for o in rest_nm),
+            "html.rl-js pre-#work.in .nm opacity values %s on a freshly loaded, "
+            "unscrolled page (SS4: rest at .42 before lighting to 1)" % (rest_nm,))
 
         # ---- 15.6 the record index, consolidated -----------------------------
         # SS15.6 supersedes SS14.3's seven-row ledger: two receipts and a way out.
@@ -1919,22 +2110,31 @@ def main(base):
 
         pg.evaluate("()=>document.getElementById('operator').scrollIntoView({block:'start'})")
         pg.wait_for_timeout(1000)
-        mop = pg.evaluate("""()=>{const s=document.getElementById('opstage');
+        mop = pg.evaluate("""()=>{const band=document.getElementById('opstage');
             const h=document.getElementById('oph2');
-            const sr=s.getBoundingClientRect(), hr=h.getBoundingClientRect();
-            return {sw:sr.width,sh:sr.height,iw:innerWidth,
-                    top:(hr.top-sr.top)/sr.height*100, foot:(hr.bottom-sr.top)/sr.height*100,
-                    right:hr.right-sr.right};}""")
-        alive = op_film_alive(pg, os.path.join(OUT, "_op390.png"), mop["top"])
+            const rows=[...h.querySelectorAll('.r')];
+            const br=band.getBoundingClientRect();
+            return {bw:br.width,bh:br.height,iw:innerWidth,
+                    rowTops:rows.map(r=>Math.round(r.getBoundingClientRect().top)),
+                    right:Math.max(...rows.map(r=>r.getBoundingClientRect().right - br.right))};}""")
+        obm, det3 = 99, []
+        for fr in (0, 96, 192):
+            t = set_frame(pg, "opvid", fr)
+            v1 = bg_contrast_glyph_run(pg, "#oph2", "#oph2 .r:nth-child(1)", os.path.join(OUT, "_op390_1.png"))
+            v2 = bg_contrast_glyph_run(pg, "#oph2", "#oph2 .r:nth-child(2)", os.path.join(OUT, "_op390_2.png"))
+            v = min(x for x in (v1, v2) if x is not None) if (v1 or v2) else None
+            if v:
+                obm = min(obm, v)
+            det3.append("f%d(t=%.2fs) row1=%.2f row2=%.2f" % (fr, t or 0, v1 or 0, v2 or 0))
         chk("14.2-op-mobile-overlay",
-            abs(mop["sw"] - mop["iw"]) <= 1 and abs(mop["sw"] - mop["sh"]) <= 1.5
-            and 58 <= mop["top"] <= 72 and mop["foot"] <= 100 and mop["right"] <= 0.5
-            and alive >= 12,
-            "390: film %.0fx%.0f is the FULL width (%d) and square; heading cap row starts "
-            "%.1f%% of the square and ends %.1f%%, %.0fpx inside its right edge; live film "
-            "under the veil at the cap row reads %+d levels off the solid espresso "
-            "(>=12, or the type is a caption under a photograph)"
-            % (mop["sw"], mop["sh"], mop["iw"], mop["top"], mop["foot"], -mop["right"], alive))
+            abs(mop["bw"] - mop["iw"]) <= 1 and abs(mop["bh"] - 420) <= 1.5
+            and len(set(mop["rowTops"])) == 2 and mop["right"] <= 0.5 and obm >= 3.0,
+            "390 (PASS-104B §3): band %.0fx%.0f is the FULL width (%d) at 420px (down from "
+            "the old 390x390 square); heading is TWO rows (%s), %.0fpx inside the band's "
+            "right edge; the same hard gate at loop frames 0/96/192 clears >=3:1: min "
+            "%.2f:1 | %s"
+            % (mop["bw"], mop["bh"], mop["iw"], mop["rowTops"], -mop["right"], obm,
+               "; ".join(det3)))
 
         # ---- 15.5 / 15.2 / 15.3 at 390 --------------------------------------
         # SS15.5 replaces SS14.7's left-rule variant: the bordered card is the thing the
@@ -1974,9 +2174,14 @@ def main(base):
                     qGaps:qs.slice(1).map((x,i)=>Math.round(
                         x.getBoundingClientRect().top-qs[i].getBoundingClientRect().bottom)),
                     qW:qs.map(x=>Math.round(x.getBoundingClientRect().width)),
+                    pr:cs.map(c=>parseFloat(getComputedStyle(c.querySelector('.pr')).fontSize)),
+                    vFs:parseFloat(getComputedStyle(e.querySelector('.v')).fontSize),
                     air:parseFloat(getComputedStyle(sec).paddingTop)};}""")
         stacked = len(set(mcard["tops"])) == 3
         mk = mcard["borders"][1]
+        # PASS-104B S5: ADD, not edit -- this check carried no price assertion before.
+        # The three card figures and the Engagements figure sit on the packages' own
+        # 52px mobile rung (never --d2, which floors to 39.52 on a phone).
         chk("15.5-cards-mobile",
             stacked and all(w == mcard["inner"] for w in mcard["w"])
             and all(r == "8px" for r in mcard["radius"])
@@ -1986,6 +2191,8 @@ def main(base):
             and all(x >= mcard["gut"] - 0.5 for x in mcard["x"])
             and all(r <= mcard["iw"] - mcard["gut"] + 0.5 for r in mcard["right"])
             and mcard["rowMargin"].replace(" ", "") in ("0px", "0px0px0px0px")
+            and all(abs(f - 52) < 0.6 for f in mcard["pr"])
+            and abs(mcard["vFs"] - 52) < 0.6
             # SS18: the fourth card stacks like the three, and takes its height from
             # its content -- the 220px floor was what opened the empty band.
             and mcard["engH"] > 0 and mcard["engRows"] == 4
@@ -1995,11 +2202,13 @@ def main(base):
             "390: the three cards stack (tops %s) at the full %dpx content width %s, keeping "
             "their 8px ground %s; the Audit's borders are %s -- the SAME 1px copper border "
             "on four sides as the desktop, no bleed (row margin %s, x %s, right %s of a %dpx "
-            "viewport); the engagements block stacks into %d rows on %d left edge(s), %dpx "
+            "viewport); card figures %s and the Engagements figure %.1fpx all on the 52px "
+            "mobile rung; the engagements block stacks into %d rows on %d left edge(s), %dpx "
             "tall and %dpx wide; "
             "section air %.0fpx"
             % (mcard["tops"], mcard["inner"], mcard["w"], set(mcard["radius"]), mk,
                mcard["rowMargin"], mcard["x"], mcard["right"], mcard["iw"],
+               mcard["pr"], mcard["vFs"],
                mcard["engRows"], mcard["engCols"], mcard["engH"], mcard["engW"],
                mcard["air"]))
         # SS18 supersedes SS15.3's 40px gap: "Rows close on their own hairlines; no
@@ -2101,6 +2310,8 @@ def main(base):
             ledgerRule:pone('.proofsec .ledger','::before','transform'),
             priceRule:pall('.card .pblock','::after','transform'),
             priceDelay:pall('.card .pblock','::after','transitionDelay'),
+            priceSeam:one('.price .seam','transform'),
+            priceFigsOp:all('.card .pr, .eng .v','opacity'),
             cards:all('.card','transform'), cardOp:all('.card','opacity'),
             cardDelay:all('.card','transitionDelay'),
             cardDur:all('.card','transitionDuration'),
@@ -2110,8 +2321,13 @@ def main(base):
             qDelay:all('.q','transitionDelay'),
             opfilm:one('.opfilm video','transform'),
             opfilmDur:one('.opfilm video','transitionDuration'),
-            opRow:all('.opover .r','transform'), opRowOp:all('.opover .r','opacity'),
-            opRowDelay:all('.opover .r','transitionDelay'),
+            opVeil:one('.opfilm .veil','clipPath'),
+            opVeilDur:one('.opfilm .veil','transitionDuration'),
+            opHead:one('#oph2','transform'), opHeadOp:one('#oph2','opacity'),
+            opHeadDelay:one('#oph2','transitionDelay'),
+            opRow:all('.opband h2.two .r','transform'),
+            opRowOp:all('.opband h2.two .r','opacity'),
+            opRowDelay:all('.opband h2.two .r','transitionDelay'),
             askH:one('.ask h2','transform'), askHOp:one('.ask h2','opacity'),
             askHDur:one('.ask h2','transitionDuration'),
             askPr:one('.ask .promise','transform'),
@@ -2209,24 +2425,29 @@ def main(base):
             % (len(ini["heads"]), ini["heads"][0], fin["heads"][0], set(ini["headDur"])))
 
         # 4 the hairlines
+        # PASS-104B S5, item 4: the section-opening seam joins the drawn set --
+        # 13 -> 14. It is read with `one`, not `pall`, because there is exactly one.
         drawn0 = ([tmat(v)[2] for v in ini["stepRule"]] + [tmat(v)[2] for v in ini["qRule"]]
                   + [tmat(v)[2] for v in ini["prfRule"]] + [tmat(v)[2] for v in ini["priceRule"]]
                   # SS18 took `See the rest` out of the ledger and made it a pill, so it
                   # draws no rule. Pass 104a also removes the manual and one objection.
                   + [tmat(ini["ledgerRule"])[2],
-                     tmat(ini["stepLast"])[2]])
+                     tmat(ini["stepLast"])[2],
+                     tmat(ini["priceSeam"])[2]])
         drawn1 = ([tmat(v)[2] for v in fin["stepRule"]] + [tmat(v)[2] for v in fin["qRule"]]
                   + [tmat(v)[2] for v in fin["prfRule"]] + [tmat(v)[2] for v in fin["priceRule"]]
                   + [tmat(fin["ledgerRule"])[2],
-                     tmat(fin["stepLast"])[2]])
+                     tmat(fin["stepLast"])[2],
+                     tmat(fin["priceSeam"])[2]])
         chk("16.3-4-hairlines",
-            len(drawn0) == 13 and all(abs(v) < 0.001 for v in drawn0)
+            len(drawn0) == 14 and all(abs(v) < 0.001 for v in drawn0)
             and all(abs(v - 1) < 0.001 for v in drawn1)
             and all(abs(float(d.rstrip("s")) - 0.5) < 0.01 for d in ini["stepDur"])
             and [d.strip() for d in ini["stepDelay"]] == ["0s", "0.06s", "0.12s"],
             "%d ledger rules -- the three how-I-work rows and the ledger's closing rule, the "
             "two objection rules, the three card price "
-            "rules, the THREE receipts (SS17) and the ledger's opening rule -- all "
+            "rules, the THREE receipts (SS17), the ledger's opening rule and the packages "
+            "section-opening seam (PASS-104B S5) -- all "
             "rest at scaleX %s and settle at scaleX %s over %s, staggered %s inside a section"
             % (len(drawn0), set(round(v, 3) for v in drawn0),
                set(round(v, 3) for v in drawn1), set(ini["stepDur"]),
@@ -2253,20 +2474,115 @@ def main(base):
                [round(tmat(v)[1]) for v in ini["qs"]],
                [d.split(",")[0].strip() for d in ini["qDelay"]]))
 
-        # 6 the operator square
+        # 05-the-price-is-the-poster (PASS-104B S5, GATES item 5 -- new, not an edit).
+        # At 1440, every card figure and the Engagements figure computes to --d2 and
+        # reaches opacity 1 after #price.in; the figures are never copper (a figure set
+        # in copper is a kill); the seam is 1px, spans the content width, computes
+        # copper, and is the only NEW copper carrier in the section (the Audit's four
+        # borders and its pill border are the pre-existing two).
+        priceScan = mp.evaluate(r"""()=>{
+            const price=document.getElementById('price');
+            const cop='rgb(200, 84, 43)';
+            const figs=[...price.querySelectorAll('.card .pr, .eng .v')];
+            const seam=price.querySelector('.seam');
+            const gut=parseFloat(getComputedStyle(price).paddingLeft);
+            const content=price.getBoundingClientRect().width - 2*gut;
+            const sr=seam.getBoundingClientRect();
+            // every element the brief names as a pre-existing copper carrier
+            const named=[...price.querySelectorAll(
+                '.card.mark, .tag')];
+            const namedCopper=named.every(el=>{
+                const cs=getComputedStyle(el);
+                return [cs.borderTopColor,cs.borderRightColor,cs.borderBottomColor,
+                        cs.borderLeftColor].some(c=>c===cop);});
+            // every OTHER text-bearing element in the section: none reads copper
+            const others=[...price.querySelectorAll(
+                '.nm, .one, .dsc, .hd, .chip .t, .chip .a .gl')];
+            const strayCopper=others.filter(el=>getComputedStyle(el).color===cop)
+                .map(el=>el.className);
+            return {figColors:figs.map(f=>getComputedStyle(f).color),
+                    seamH:sr.height, seamW:sr.width, content:content,
+                    seamBg:getComputedStyle(seam).backgroundColor,
+                    namedCopper:namedCopper, strayCopper:strayCopper};}""")
+        cop = "rgb(200, 84, 43)"
+        figsNotCopper = not any(c == cop for c in priceScan["figColors"])
+        chk("05-the-price-is-the-poster",
+            # the figures rest dim and reach full light after #price.in, same
+            # lighting language as #h1 .cu (16.3-1)
+            all(abs(float(o) - 0.28) < 0.02 for o in ini["priceFigsOp"])
+            and all(float(o) == 1 for o in fin["priceFigsOp"])
+            and abs(tmat(ini["priceSeam"])[2]) < 0.001
+            and abs(tmat(fin["priceSeam"])[2] - 1) < 0.001
+            and figsNotCopper
+            and abs(priceScan["seamH"] - 1) < 0.6
+            and abs(priceScan["seamW"] - priceScan["content"]) <= 1.0
+            and priceScan["seamBg"] == cop
+            and priceScan["namedCopper"]
+            and not priceScan["strayCopper"],
+            "1440: the %d card/Engagements figures rest at opacity %s (the fill's own .28) "
+            "and reach %s after #price.in; none computes copper (%s); the seam is %.1fpx "
+            "tall, %.1fpx wide against a %.1fpx content box, background %s, and rests at "
+            "scaleX %s / settles at scaleX %s; the Audit's four borders and its pill border "
+            "are still copper (%s); no OTHER text run in the section (%d checked) reads "
+            "copper (%s)"
+            % (len(priceScan["figColors"]), ini["priceFigsOp"], fin["priceFigsOp"],
+               priceScan["figColors"], priceScan["seamH"], priceScan["seamW"],
+               priceScan["content"], priceScan["seamBg"], tmat(ini["priceSeam"])[2],
+               tmat(fin["priceSeam"])[2], priceScan["namedCopper"], 6,
+               priceScan["strayCopper"]))
+
+        # the no-JS finished frame: with scripting off, all four figures are already
+        # at opacity 1 and the seam is already fully drawn -- the same proof pattern
+        # as 14.9-sign-finished-frame-no-js above.
+        njpctx = br.new_context(viewport={"width": 1440, "height": 900},
+                                java_script_enabled=False, device_scale_factor=1)
+        njpp = njpctx.new_page()
+        njpp.goto(url)
+        njpp.wait_for_timeout(1200)
+        nj_price = njpp.locator("#price").evaluate(r"""(price)=>{
+            const figs=[...price.querySelectorAll('.card .pr, .eng .v')]
+                .map(f=>getComputedStyle(f).opacity);
+            const seam=getComputedStyle(price.querySelector('.seam')).transform;
+            return {figs:figs, seam:seam};}""")
+        njpctx.close()
+        chk("05-the-price-is-the-poster-no-js",
+            all(abs(float(o) - 1) < 0.02 for o in nj_price["figs"])
+            and nj_price["seam"] in ("none", "matrix(1, 0, 0, 1, 0, 0)"),
+            "with scripting OFF (html.rl-js never lands): the %d figures render their "
+            "FINISHED frame at opacity %s and the seam's transform is %r (no 100%%-style "
+            "pre-state left showing)"
+            % (len(nj_price["figs"]), nj_price["figs"], nj_price["seam"]))
+
+        # 6 the long table (PASS-104B §3, amended): the static crop zoom that
+        # used to sit on the film is gone with room.css:531-536, so the film's
+        # own settle returns to item 6's ORIGINAL numbers (1.06 -> 1, not the
+        # 1.378 -> 1.30 the old square's zoom compounded it to). At >=900 (this
+        # capture is at 1440) the heading is ONE row, rising as a single
+        # object 260ms after `.opstage.in`; the OLD two-row 0/80ms stagger
+        # (still live on `.opband h2.two .r`) only fires at <=899, so at 1440
+        # those rows carry no opacity/transform rule at all and read as the
+        # identity/1 finished frame by construction -- checked negatively here
+        # so a regression that re-enables the per-row rule at this width would
+        # be caught.
         chk("16.3-6-operator",
-            abs(tmat(ini["opfilm"])[2] - 1.378) < 0.005
-            and abs(tmat(fin["opfilm"])[2] - 1.30) < 0.005
+            abs(tmat(ini["opfilm"])[2] - 1.06) < 0.005
+            and abs(tmat(fin["opfilm"])[2] - 1.0) < 0.005
             and abs(float(ini["opfilmDur"].rstrip("s")) - 1.2) < 0.01
-            and all(abs(tmat(v)[1] - 20) < 0.5 for v in ini["opRow"])
-            and all(tmat(v)[1] == 0 for v in fin["opRow"])
-            and [d.split(",")[0].strip() for d in ini["opRowDelay"]] == ["0s", "0.08s"],
-            "the square's film rests at scale %.3f and settles to %.3f over %s (the SS14.2 "
-            "crop zoom is 1.30, so the SS16.3 1.06 settle is applied on it: 1.30 x 1.06 = "
-            "1.378); the two heading rows rest at translateY %s on delays %s"
+            and abs(tmat(ini["opHead"])[1] - 20) < 0.5
+            and float(ini["opHeadOp"]) == 0
+            and tmat(fin["opHead"])[1] == 0 and float(fin["opHeadOp"]) == 1
+            and ini["opHeadDelay"].split(",")[0].strip() == "0.26s"
+            and all(ident(v) for v in ini["opRow"])
+            and all(float(o) == 1 for o in ini["opRowOp"]),
+            "the band's film rests at scale %.3f and settles to %.3f over %s (item 6's "
+            "ORIGINAL numbers -- the crop zoom that used to compound this to 1.378->1.30 is "
+            "gone with room.css:531-536); the heading is ONE row at >=900: it rests at "
+            "translateY %.1fpx / opacity %s on a %s delay and settles to %.1fpx / opacity "
+            "%s; the per-row `.r` rule does not fire at this width (rest %s / %s)"
             % (tmat(ini["opfilm"])[2], tmat(fin["opfilm"])[2], ini["opfilmDur"],
-               [round(tmat(v)[1]) for v in ini["opRow"]],
-               [d.split(",")[0].strip() for d in ini["opRowDelay"]]))
+               tmat(ini["opHead"])[1], ini["opHeadOp"], ini["opHeadDelay"].split(",")[0].strip(),
+               tmat(fin["opHead"])[1], fin["opHeadOp"],
+               [round(tmat(v)[1], 1) for v in ini["opRow"]], ini["opRowOp"]))
 
         # 7 hovers
         mp.evaluate("()=>window.scrollTo(0,0)")
@@ -2369,15 +2685,16 @@ def main(base):
                                "document.querySelector('#herochips .chip .a .gl')).transform")
         rctx.close()
         rm_tf = ([rm["r1"], rm["bar"], rm["eng"], rm["askH"], rm["askPr"], rm["askChips"],
-                  rm_hover] + rm["cards"] + rm["qs"] + rm["opRow"])
+                  rm_hover, rm["opHead"]] + rm["cards"] + rm["qs"] + rm["opRow"])
         rm_op = ([rm["cuOp"], rm["barOp"], rm["askHOp"], rm["askPrOp"], rm["askChipsOp"],
-                  rm["engOp"]] + rm["cardOp"] + rm["qOp"] + rm["opRowOp"])
+                  rm["engOp"], rm["opHeadOp"]] + rm["cardOp"] + rm["qOp"] + rm["opRowOp"])
         rm_dur = ([rm["cuDur"], rm["r1Dur"], rm["sheetDur"], rm["glDur"], rm["arDur"]]
                   + rm["headDur"])
         chk("16.3-reduced-motion-off",
             rm["js"] is False and all(ident(v) for v in rm_tf)
             and all(float(o) == 1 for o in rm_op)
             and all(c == "none" for c in rm["heads"])
+            and rm["opVeil"] == "none"
             and all(float(d.split(",")[0].rstrip("s")) == 0 for d in rm_dur),
             "under prefers-reduced-motion: reduce the script never adds html.js (js=%s), so "
             "every SS16.3 rest state is absent: %d transforms all identity (hover included), "
@@ -2418,9 +2735,9 @@ def main(base):
         jp.wait_for_timeout(1400)
         nj = jp.evaluate(MOTION_JS)
         jctx.close()
-        nj_tf = ([nj["r1"], nj["bar"], nj["eng"], nj["askH"], nj["askPr"], nj["askChips"]] + nj["cards"] + nj["qs"] + nj["opRow"])
+        nj_tf = ([nj["r1"], nj["bar"], nj["eng"], nj["askH"], nj["askPr"], nj["askChips"], nj["opHead"]] + nj["cards"] + nj["qs"] + nj["opRow"])
         nj_op = ([nj["cuOp"], nj["barOp"], nj["askHOp"], nj["askPrOp"], nj["askChipsOp"],
-                  nj["engOp"]] + nj["cardOp"] + nj["qOp"] + nj["opRowOp"])
+                  nj["engOp"], nj["opHeadOp"]] + nj["cardOp"] + nj["qOp"] + nj["opRowOp"])
         nj_rules = ([tmat(v)[2] for v in nj["stepRule"]] + [tmat(v)[2] for v in nj["qRule"]]
                     + [tmat(v)[2] for v in nj["prfRule"]]
                     + [tmat(v)[2] for v in nj["priceRule"]]
@@ -2430,12 +2747,15 @@ def main(base):
             and all(float(o) == 1 for o in nj_op)
             and all(c == "none" for c in nj["heads"])
             and all(abs(v - 1) < 0.001 for v in nj_rules)
-            and abs(tmat(nj["opfilm"])[2] - 1.30) < 0.005,
+            and abs(tmat(nj["opfilm"])[2] - 1.0) < 0.005
+            and nj["opVeil"] == "none",
             "with the `js` class off .rl-home and the <noscript> stylesheet unwrapped, "
             "js reads %s and nothing declares a rest state: "
             "%d transforms identity, %d opacities 1 (the copper word included, at %s), %d "
             "clip-paths `none`, %d ledger rules at scaleX 1, the operator film at its plain "
-            "%.2f crop, and the bar at opacity %s"
+            "%.2f crop (PASS-104B §3: the static crop zoom is gone with room.css:531-536, "
+            "so the no-JS frame is the un-zoomed band, not the old 1.30 square crop), and "
+            "the bar at opacity %s"
             % (nj["js"], len(nj_tf), len(nj_op), nj["cuOp"], len(nj["heads"]),
                len(nj_rules), tmat(nj["opfilm"])[2], nj["barOp"]))
 

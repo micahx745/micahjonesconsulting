@@ -12,7 +12,17 @@
 // x = 600 ... Rows close on their own hairlines; no ragged feet."
 //
 // `Objections` already exists as a string (§18's copy note); nothing new is
-// written. §14.7 gives the head its terminal full stop.
+// written on the head. §14.7 gives the head its terminal full stop.
+//
+// PASS-104B §6, operator-approved 2026-09-08: "Three rows: keep one, add both
+// new." The two new rows replace the retired "Hiring for a company rather
+// than a build?" row (it duplicated the Engagements block two sections up);
+// the AI-tools row is kept, unchanged, and moves to the third slot. The
+// register restores §14.4's own ruling (28px/19px, up from the §18 recompose's
+// 24/17) and the section gains its one destination: a Rule C chip, verbatim
+// from Ask.tsx, pinned to the list's last hairline by the flex column below.
+import Link from "next/link";
+
 export function Objections() {
   return (
     <section
@@ -31,6 +41,28 @@ export function Objections() {
       </div>
       <dl className="qs">
         <div className="q">
+          <dt>
+            I built it with Claude Code and it works. Now I cannot change one
+            thing without rewriting half of it.
+          </dt>
+          <dd>
+            The tool does not change the work. I read the build top to bottom
+            and write down what is load bearing, what is broken, and what to
+            fix first. That is the Audit, $2,500.
+          </dd>
+        </div>
+        <div className="q">
+          <dt>
+            Last time I paid for help, it took so much back and forth that I
+            did most of it myself.
+          </dt>
+          <dd>
+            One person reads it, writes it and ships it, and that person is
+            me. No account manager, no status meeting, no brief for you to
+            write.
+          </dd>
+        </div>
+        <div className="q">
           <dt>Is this for me if I built it with AI coding tools?</dt>
           <dd>
             You built something real with Cursor, Claude Code, Lovable, v0 or
@@ -38,14 +70,15 @@ export function Objections() {
             breaking it. Then yes.
           </dd>
         </div>
-        <div className="q">
-          <dt>Hiring for a company rather than a build?</dt>
-          <dd>
-            The engagements start at $5K a month. Tell me the problem and I will
-            scope it.
-          </dd>
-        </div>
       </dl>
+      <div className="doorchip">
+        <Link className="chip" href="/call">
+          <span className="t">Book a free intro call</span>
+          <span className="a" aria-hidden="true">
+            <span className="gl">&#8594;</span>
+          </span>
+        </Link>
+      </div>
     </section>
   );
 }

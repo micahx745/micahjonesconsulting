@@ -1,16 +1,34 @@
 // components/room/Operator.tsx — section 02, operator not consultant.
 //
-// Pass-101 phase 2. §14.2: clip B is a SQUARE stage in the left seven columns,
-// the heading sits OVER its lower third on a veil, the first paragraph directly
-// under the heading still on the film, and the argument's second half sits in
-// the right five columns as a register of three rows (§14.7).
+// PASS-104B §3 ("Operator A: the long table"). The square stage and its
+// two-column register are gone. The film is a shallow full-bleed band
+// (100vw, 440px at >=900, 420px at <=899) with the heading set across it as
+// ONE display line at >=900 and two at <=899; the paragraph that used to sit
+// ON the film (the reason the veil had to reach solid) is off it, in an
+// espresso thesis line below the band; the old right-hand register is now a
+// horizontal three-track ledger under that; the quote closes the section on
+// its own drawn hairline.
 //
-// At <=899px the film is a full-width square, the heading is over its lower
-// third, and the paragraph that sits on the film above is hidden and repeated
-// under it (.m-first) so the phone gets the same sentence in a readable place.
+// Two fixes fix the "too big / pixelated" complaint at once: the CROP is now
+// baked into the encode (a 1440x640 crop of B-loop.mp4 at >=900, a
+// 1080x1350 crop at <=899 -- see .planning/design/104b/operator.md), so the
+// CSS zoom + filter pair that used to fake a square out of a 720x720 source
+// is gone (deleted by the PASS-104B §1 commit, ahead of this one), and the
+// band's height falls 44% (782.67 -> 440) while the picture's own area holds
+// (+3.6%).
 //
-// The clip loops (it is a ping-pong encode, so neither end shows a cut) and it
-// does NOT autoplay: RoomMotion starts it when the square is >= 35% visible.
+// `<source media="...">` is NOT honoured on `<video>` (PASS-104B fact 0.2),
+// so the responsive pair is swapped by a tiny inline parse-time script,
+// exactly the technique Room.tsx uses for the hero film: below 900px the
+// 1080x1350 "tall" pair stands (same bytes as before this pass); at >=900 the
+// script rewrites both `<source src>` to the 1440x640 "band" pair before the
+// browser requests either, and calls `.load()`.
+//
+// The clip loops (b-loop.mp4 is a ping-pong encode) and does NOT autoplay:
+// RoomMotion starts it once #opstage is >=35% visible, and pauses it off
+// screen -- unchanged from Pass-101.
+const OP_SOURCE_SWAP = `try{if(matchMedia('(min-width:900px)').matches){var v=document.getElementById('opvid');if(v){var s=v.getElementsByTagName('source');if(s[0])s[0].src='/video/b-band-1440.webm';if(s[1])s[1].src='/video/b-band-1440.mp4';v.poster='/video/b-band-poster.jpg';v.load();}}}catch(e){}`;
+
 export function Operator() {
   return (
     <section
@@ -18,73 +36,86 @@ export function Operator() {
       id="operator"
       aria-label="Operator, not consultant"
     >
-      <div className="opgrid">
-        <div className="opstage" id="opstage" data-anim="0.85" data-rise="10">
-          <div className="opfilm" aria-hidden="true">
-            {/* PASS-101 PERF, measured. Clip B is BELOW THE FOLD and it is the
-                heaviest file on the page: 260KB of webm plus an 88KB poster,
-                against the hero's 84KB + 80KB. At `preload="auto"` all four
-                downloaded before the first screen had painted — 512KB
-                competing for the same simulated bandwidth — and Lighthouse
-                mobile put LCP at 4.2s for it.
-                  `preload="none"` costs nothing this clip needs: it does not
-                autoplay, RoomMotion starts it on the IntersectionObserver's
-                own 35% threshold, and the gesture handler starts it on the
-                first wheel or tap. The poster is what stands in until then and
-                it still loads. The hero clip KEEPS preload="auto" — that one
-                is the first screen, and it is the clip the operator's "i see no
-                vids" was about. */}
-            <video
-              id="opvid"
-              muted
-              loop
-              playsInline
-              preload="none"
-              poster="/video/b-poster.jpg"
-            >
-              <source src="/video/b-loop-720.webm" type="video/webm" />
-              <source src="/video/b-loop-720.mp4" type="video/mp4" />
-            </video>
-            <div className="still" />
-            <div className="veil" />
-          </div>
-          <div className="opover" id="opover">
-            <h2 className="d two" id="oph2">
-              <span className="r">Operator,</span>
-              <span className="r">not consultant.</span>
-            </h2>
-            <p>
-              I help you build it and sell it, on the same engagement, for the
-              same fee.
-            </p>
-          </div>
+      <div
+        className="opband opstage"
+        id="opstage"
+        data-anim="0.85"
+        data-rise="10"
+      >
+        <div className="opfilm" aria-hidden="true">
+          {/* Below 900px this is the 1080x1350 "tall" crop (b-tall-1080),
+              aimed at his face and the near hand (object-position 58% 42%).
+              The swap script above rewrites it to the 1440x640 "band" crop
+              (b-band-1440, object-position 50% 42%: the table, the papers,
+              both hands and his face in three-quarter) at >=900. */}
+          <video
+            id="opvid"
+            muted
+            loop
+            playsInline
+            preload="none"
+            poster="/video/b-tall-poster.jpg"
+          >
+            <source src="/video/b-tall-1080.webm" type="video/webm" />
+            <source src="/video/b-tall-1080.mp4" type="video/mp4" />
+          </video>
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: OP_SOURCE_SWAP }}
+          />
+          <div className="still" />
+          <div className="veil" />
         </div>
-        <div className="opside">
-          <p className="m-first">
-            I help you build it and sell it, on the same engagement, for the
-            same fee.
+        {/* ONE row at >=900 (the two spans read inline, one sentence); two
+            rows at <=899 (§14.7's own mobile ladder). */}
+        <h2 className="d two" id="oph2">
+          <span className="r">Operator,</span>{" "}
+          <span className="r">not consultant.</span>
+        </h2>
+      </div>
+
+      {/* The one paragraph that used to sit ON the film -- the reason the
+          veil had to reach solid (17px body needs 4.5:1; the heading is
+          large text and needs only 3:1). Off the film, on espresso, and
+          promoted to 28px -- the size the rest of the page's theses run at. */}
+      <div className="opthesis">
+        <p>
+          I help you build it and sell it, on the same engagement, for the same
+          fee.
+        </p>
+      </div>
+
+      {/* The old two-column register, rotated: three tracks, one sentence
+          each, the second (Ordani) promoted to its own track instead of
+          being the middle clause of a paragraph -- the buyer jury's own
+          finding, not any option's. Zero new copy: the three sentences are
+          the existing `.opside .lead` spans, verbatim. */}
+      <div className="opledger">
+        <div className="opl-track">
+          <p>
+            I joined Postmates, SurveyMonkey, Guardicore (Akamai) and Neuton.AI
+            early.
           </p>
-          <p className="lead">
-            <span>
-              I joined Postmates, SurveyMonkey, Guardicore (Akamai) and
-              Neuton.AI early.
-            </span>{" "}
-            <span>
-              I built Ordani solo with Claude Code and Cursor: HIPAA-compliant,
-              active paying users, in beta.
-            </span>{" "}
-            <span>I am taking new engagements now.</span>
-          </p>
-          <div className="sig">
-            <q>
-              Micah does the work that most strategy decks promise and never
-              deliver.
-            </q>
-            <span className="l meta">
-              The author, name protected &#183; Receipt
-            </span>
-          </div>
         </div>
+        <div className="opl-track">
+          <p>
+            I built Ordani solo with Claude Code and Cursor: HIPAA-compliant,
+            active paying users, in beta.
+          </p>
+        </div>
+        <div className="opl-track">
+          <p>I am taking new engagements now.</p>
+        </div>
+      </div>
+
+      <div className="opquote">
+        <q>
+          Micah does the work that most strategy decks promise and never
+          deliver.
+        </q>
+        <span className="l meta">
+          The author, name protected &#183; Receipt
+        </span>
       </div>
     </section>
   );
