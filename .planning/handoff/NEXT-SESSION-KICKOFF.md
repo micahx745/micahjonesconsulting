@@ -18,6 +18,19 @@ Read, in this order:
 Work happens on branch `design/room-and-ledger` in the worktree
 `.claude/worktrees/p101-integrate`, NOT in the main checkout. A branch lives in one worktree.
 
+## 1b. FIRST, PROVE THE TOOLS EXIST (LESSONS #21)
+The launchers were on `main` only until 2026-09-08; a worktree sees its own branch's tree,
+so relative paths to them resolved to nothing and one session ran none of the executor tier.
+They are tracked on the branch now. Before you plan anything, run:
+
+```bash
+ls C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p101-integrate/scripts/*.ps1
+```
+
+You must see `claude-alt.ps1`, `claude-glm.ps1` and `codex-exec.ps1`. Read
+`.planning/handoff/EXECUTOR-TIER-CARD.md` for the exact command lines, with ABSOLUTE paths.
+Any executable a brief names is referenced by absolute path from here on.
+
 ## 2. Routing, and it is not optional (his ruling, 2026-09-08)
 Verbatim: "lots of sol and only altra for qualty gates. altra is only top tier model we have -
 fable gone for few days. we are at 29% chatgpt usage and 6 dayd till reset."
@@ -25,10 +38,10 @@ fable gone for few days. we are at 29% chatgpt usage and 6 dayd till reset."
 - **Astra / Codex: QUALITY GATES ONLY.** Jurying design and copy, the buyer read at a ship gate.
   NEVER a long `codex exec` execution of a brief. One was launched and killed on this ruling.
 - **Sonnet: the workhorse.** Execution legs, measurement, verification, sweeps.
-- **GLM 5.3** (`scripts/claude-glm.ps1`): executes briefs on z.ai's quota. Smoke-test first; its
+- **GLM 5.3** (`C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p101-integrate/scripts/claude-glm.ps1`): executes briefs on z.ai's quota. Smoke-test first; its
   five-hour window resets. LESSONS #20: it needs its context window declared, which the script
   now does, and it must not be handed more spec than it can hold.
-- **The second Claude account** (`scripts/claude-alt.ps1`): the operator completed the one-time
+- **The second Claude account** (`C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p101-integrate/scripts/claude-alt.ps1`): the operator completed the one-time
   login and workspace trust on 2026-09-08. It is a $20 plan, so its allowance is small — use it
   for a bounded mechanical leg, not an open-ended one.
 - Name `model:` on EVERY Agent and Workflow call. A fan-out that inherits the top tier is what
@@ -49,7 +62,7 @@ Pass 104b, the home rebuild, is six sections of seven applied and COMMITTED BUT 
    real risk, not a formality. Screenshots at 390 and 1440 into `.planning/qa/pass-104b/`.
 3. **Fix what verification finds**, then commit.
 4. **The one Astra spend of this pass:** the juror look at the rebuilt home at 390 and 1440,
-   `scripts/codex-exec.ps1 -Review` with the images attached. That is the quality gate his
+   `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p101-integrate/scripts/codex-exec.ps1 -Review` with the images attached. That is the quality gate his
    ruling reserves Astra for. Do it once, at the end, not before.
 5. Tell him to **re-push** for a fresh preview:
    `git -C .claude/worktrees/p101-integrate push origin design/room-and-ledger`
