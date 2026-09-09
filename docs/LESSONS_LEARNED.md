@@ -808,3 +808,25 @@ one long run.
 `CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT` so the window is declared rather than
 guessed. Pass 104b's specs are split into `.planning/design/104b/<area>.md`, none over 20KB,
 and each section of the brief names only its own file.
+
+## #21 — A handoff that names a tool by an unresolvable path is a broken handoff (2026-09-08)
+
+**What happened.** The session handoff told the next chat to run the executor tier:
+`scripts/claude-glm.ps1` for GLM, `scripts/codex-exec.ps1` for the Astra quality gate,
+`scripts/claude-alt.ps1` for the second Claude account. The next chat ran none of them and fell
+back to doing everything itself. The operator noticed before the harness did.
+
+**The mechanism.** All three launchers were committed to `main`. The work happens on branch
+`design/room-and-ledger` in a separate worktree, and a worktree is a checkout of ITS OWN branch:
+the branch had never tracked those files, so `scripts/` there held only `verify-room.py`. Every
+relative path in the handoff resolved to nothing. The receiving session had no way to know a
+tool existed, because from where it stood the tool did not.
+
+**The lesson.** A tool referenced by a brief must exist on the branch the brief runs on, or be
+referenced by an absolute path. "It is in the repo" is not true of a worktree — a worktree sees
+one branch's tree, not the repo's union. The same class of error as LESSONS #17 (a branch lives
+in one worktree) seen from the other side.
+
+**The gate.** The three launchers are now tracked on this branch. Any future handoff naming an
+executable states its ABSOLUTE path, and the kickoff document's first check is that each named
+tool resolves before the session plans around it.
