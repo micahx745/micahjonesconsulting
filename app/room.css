@@ -1372,6 +1372,16 @@ html.lit .rl-home .eng .chip {
 }
 .rl-home .faq .sec {
   grid-column: 1 / 6;
+  /* PASS-104B §6 fix: the head must be pinned to row 1 EXPLICITLY. .doorchip
+     below declares `grid-row: 1`, and an explicitly-placed item is positioned
+     before any auto-placed one -- so with .sec on `auto` the chip claimed row 1
+     cols 1-5 first and .sec (definite column, auto row) was pushed to row 2,
+     taking .qs with it. The grid computed `48px 620.969px`: the chip alone in a
+     48px row ABOVE the head, its bottom 621px clear of the list's last hairline,
+     which is the inverse of what §6 asks for. Both items now share row 1, the
+     row takes .qs's height, and .doorchip's `align-self: end` lands the chip on
+     the hairline. */
+  grid-row: 1;
   margin-bottom: 0;
 }
 .rl-home .qs {
@@ -1606,12 +1616,24 @@ html .rl-home .ask .chip.quiet:focus-visible {
 #rl-root .rl-foot .who a:hover {
   color: var(--color-rl-bone);
 }
+/* Pass 104b section 7. Pass 104a deleted the book block (cols 10-12) and widened
+   this column to 7/13, but left the links packed against the column's LEFT edge:
+   measured at 1440 the longest link ended at x=886.06 inside a row ending at
+   1408, so 521.94px -- 37.9% of the row -- carried no ink and the nav read as a
+   stranded middle column rather than a right-hand one. The links now hang from
+   the right gutter, which is the device the copper ask directly above already
+   uses for its promise (`justify-self:end; text-align:right` at 9/13) and the
+   one the receipts arrow's own rule defends: a straight right margin down the
+   rows beats three different glyph advances. The column keeps its 7/13 span so
+   `Packages from $500` still has room and never wraps. Stacked widths reset both
+   properties below -- there the column is full-bleed and left is correct. */
 .rl-home .foot .nav,
 #rl-root .rl-foot .nav {
   grid-column: 7 / 13;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
+  text-align: right;
   gap: 12px;
 }
 .rl-home .foot .nav a,
@@ -1669,6 +1691,13 @@ html.lit .rl-home .foot .chip,
   .rl-home .foot .book,
   #rl-root .rl-foot .book {
     grid-column: 1 / 13;
+  }
+  /* the nav hangs from the right gutter only while it is a COLUMN of the grid;
+     stacked full-bleed it returns to the left edge with everything else. */
+  .rl-home .foot .nav,
+  #rl-root .rl-foot .nav {
+    align-items: flex-start;
+    text-align: left;
   }
   .rl-home .foot .row,
   #rl-root .rl-foot .row {

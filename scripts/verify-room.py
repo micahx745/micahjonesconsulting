@@ -347,6 +347,17 @@ PASS_103_COPY = [
 ]
 
 # Operator-ticked cells in PASS-103-REWORD-TICK-TABLE.md; row 7 only moves existing copy.
+# PASS-104B section 6. The operator chose "Three rows: keep one, add both new" and
+# approved this copy verbatim (2026-09-08). The brief says "the three new strings";
+# two NEW ROWS carry a question AND an answer, so there are four, and all four are
+# quoted here exactly as the brief prints them.
+PASS_104B_COPY = [
+    ("I built it with Claude Code and it works. Now I cannot change one thing without rewriting half of it.", "PASS-104B operator-approved 2026-09-08"),
+    ("The tool does not change the work. I read the build top to bottom and write down what is load bearing, what is broken, and what to fix first. That is the Audit, $2,500.", "PASS-104B operator-approved 2026-09-08"),
+    ("Last time I paid for help, it took so much back and forth that I did most of it myself.", "PASS-104B operator-approved 2026-09-08"),
+    ("One person reads it, writes it and ships it, and that person is me. No account manager, no status meeting, no brief for you to write.", "PASS-104B operator-approved 2026-09-08"),
+]
+
 PASS_103_REWORD_COPY = [
     ("Each package goes straight to checkout. My kickoff email arrives the moment your card clears. It includes the intake questions and a link to book the call.", "PASS-104a supersedes PASS-103 reword row 1"),
     ("I plan how enterprise software companies find buyers and grow. I help decide what their platforms should do. This work spans thirteen years.", "PASS-103 reword row 2"),
@@ -1187,9 +1198,13 @@ def main(base):
         headsok = all(abs(h[1] - d2) < 1.0 for h in sizes["heads"]) and len(sizes["heads"]) == 4
         chk("14.4-heads", headsok
             and all(abs(n - 28) < 0.6 for n in sizes["names"])
-            # SS15.3 supersedes SS14.4 on the objections: 24px question, 17px answer.
-            and all(abs(n - 24) < 0.6 for n in sizes["q"])
-            and all(abs(n - 17) < 0.6 for n in sizes["a"])
+            # SS15.3 supersedes SS14.4 on the objections. PASS-104B S6 restores S14.4's
+            # own ruling on top of that: 28px/1.2 question, 19px/1.5 answer. The brief
+            # names this 24->28 / 17->19 edit for 18-objections-one-lane-from-the-seam
+            # and does NOT name it here, but this gate asserts the same two numbers, so
+            # it moves with them. The assertion stays exact -- nothing is loosened.
+            and all(abs(n - 28) < 0.6 for n in sizes["q"])
+            and all(abs(n - 19) < 0.6 for n in sizes["a"])
             # SS18: "caption from x = 600 at 28px 60% ink (one size; rank by colour and
             # column)". The 19px caption WAS the size rank SS18 replaced.
             and all(abs(n - 28) < 0.6 for n in sizes["caps"])
@@ -1518,18 +1533,21 @@ def main(base):
                     wantSeam:+(gut+5*col+5*gap).toFixed(1),
                     wantLane:+(7*col+6*gap).toFixed(1),
                     wantHead:+(5*col+4*gap).toFixed(1), content:content};}""")
-        stacked = len(set(fq["tops"])) == 2
+        # PASS-104B S6: three rows, so three distinct tops. This is the SECOND place
+        # inside the gate the brief names ("18-objections-one-lane-from-the-seam
+        # fq['n'] == 2 becomes 3") where the old count of two was written down.
+        stacked = len(set(fq["tops"])) == 3
         chk("18-objections-one-lane-from-the-seam",
-            fq["n"] == 2 and stacked
+            fq["n"] == 3 and stacked
             and max(fq["w"]) - min(fq["w"]) <= 1.0
             and abs(fq["listX"] - fq["wantSeam"]) <= 1.5
             and abs(fq["listW"] - fq["wantLane"]) <= 1.5
             and abs(fq["headW"] - fq["wantHead"]) <= 1.5
             and all(r == "1px solid" for r in fq["rule"])
-            and all(abs(x - 24) < 0.6 for x in fq["dt"])
-            and all(abs(x - 17) < 0.6 for x in fq["dd"])
+            and all(abs(x - 28) < 0.6 for x in fq["dt"])
+            and all(abs(x - 19) < 0.6 for x in fq["dd"])
             and "200, 84, 43" in fq["arrowColor"],
-            "1440: TWO rows in ONE column, stacked (tops %s), every row the lane's own "
+            "1440: THREE rows in ONE column, stacked (tops %s), every row the lane's own "
             "width %s; the lane opens at x %.1f -- the column-6 seam is %.1f (Rule B) -- and "
             "runs %.1f against the cols 6-12 span %.1f, with the head holding cols 1-5 "
             "(%.1f vs %.1f); each row closes on its own %s hairline; questions %s / answers "
@@ -1889,7 +1907,10 @@ def main(base):
         ftx = stg["x"] + stg["width"] * 0.19375
         fty = stg["y"] + stg["height"] * 0.382407
         chk("14.8-renders-with-javascript-off",
-            rows_n == 2 and cards_n == 3 and steps_n == 3 and qs_n == 2
+            # PASS-104B S6 makes the objections THREE rows. The brief names this 2->3
+            # count for 18-objections-mobile and does not name it here; same fact,
+            # same page, so it moves with it. Still an exact count.
+            rows_n == 2 and cards_n == 3 and steps_n == 3 and qs_n == 3
             and prf_n == 3 and more_n == 1 and barvis
             and abs(stg["width"] * 9 / 16 - stg["height"]) <= 1.5
             and h1b["x"] < ftx and ftx - h1b["x"] <= 60
@@ -2216,9 +2237,9 @@ def main(base):
         # next one -- the rule IS the separation. What is asserted is the stack, the full
         # width, and that consecutive rows meet on their shared hairline.
         chk("18-objections-mobile",
-            len(set(mcard["qTops"])) == 2 and all(w == mcard["inner"] for w in mcard["qW"])
+            len(set(mcard["qTops"])) == 3 and all(w == mcard["inner"] for w in mcard["qW"])
             and all(abs(g) <= 2 for g in mcard["qGaps"]),
-            "390: the two objections stack (tops %s) at the full %dpx width %s, each "
+            "390: the three objections stack (tops %s) at the full %dpx width %s, each "
             "closing on its own hairline with no gap between rows (%s)"
             % (mcard["qTops"], mcard["inner"], mcard["qW"], mcard["qGaps"]))
         set_frame(pg, "filmvid", 96)
@@ -2440,12 +2461,12 @@ def main(base):
                      tmat(fin["stepLast"])[2],
                      tmat(fin["priceSeam"])[2]])
         chk("16.3-4-hairlines",
-            len(drawn0) == 14 and all(abs(v) < 0.001 for v in drawn0)
+            len(drawn0) == 15 and all(abs(v) < 0.001 for v in drawn0)
             and all(abs(v - 1) < 0.001 for v in drawn1)
             and all(abs(float(d.rstrip("s")) - 0.5) < 0.01 for d in ini["stepDur"])
             and [d.strip() for d in ini["stepDelay"]] == ["0s", "0.06s", "0.12s"],
             "%d ledger rules -- the three how-I-work rows and the ledger's closing rule, the "
-            "two objection rules, the three card price "
+            "three objection rules, the three card price "
             "rules, the THREE receipts (SS17), the ledger's opening rule and the packages "
             "section-opening seam (PASS-104B S5) -- all "
             "rest at scaleX %s and settle at scaleX %s over %s, staggered %s inside a section"
@@ -2463,10 +2484,10 @@ def main(base):
             and abs(tmat(ini["eng"])[1] - 20) < 0.5
             and ini["engDelay"].split(",")[0].strip() == "0.21s"
             and all(abs(tmat(v)[1] - 20) < 0.5 for v in ini["qs"])
-            and [d.split(",")[0].strip() for d in ini["qDelay"]] == ["0s", "0.07s"],
+            and [d.split(",")[0].strip() for d in ini["qDelay"]] == ["0s", "0.07s", "0.14s"],
             "three price cards rest at translateY %s / opacity %s on delays %s and settle at "
             "%s / %s; the Engagements block rests at %.0fpx on a %s delay (after them); the "
-            "two objection rows rest at %s on %s"
+            "three objection rows rest at %s on %s"
             % ([round(tmat(v)[1]) for v in ini["cards"]], ini["cardOp"],
                [d.split(",")[0].strip() for d in ini["cardDelay"]],
                [round(tmat(v)[1]) for v in fin["cards"]], fin["cardOp"],
@@ -2847,7 +2868,8 @@ def main(base):
     def provenance(t):
         """Return the name of the rule that clears this string, or None."""
         n = norm(t)
-        for approved, row in PASS_102_COPY + PASS_103_COPY + PASS_103_REWORD_COPY:
+        for approved, row in (PASS_102_COPY + PASS_103_COPY + PASS_103_REWORD_COPY
+                              + PASS_104B_COPY):
             if n == norm(approved):
                 return row
         if t.strip() in BAR_LABELS:
