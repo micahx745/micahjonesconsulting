@@ -157,12 +157,47 @@ export default function ColorWorldsHome() {
         </SplitReveal>
         <p className="cw-sect-dek cw-reveal">
           I go through your build, your production, or your positioning top to
-          bottom. You get a written audit: an 8-10 page memo, a prioritized fix
-          sequence, and a one-hour debrief call.
+          bottom.
         </p>
-        <div className="cw-section-cta-wrap cw-reveal">
+        {/* Astra gate, 2026-09-09: this read as "a confident headline atop a
+            thin section", with the deliverables compressed into one paragraph
+            and the link "detached from the offer". The three things a buyer
+            receives now take their own ruled rows, on the LEDGER's own hairline
+            convention so the offer reads as the same family of object as the
+            receipts below it, and the link moves left directly beneath them.
+            Same three facts as the sentence they replace. Nothing added. */}
+        <ul className="cw-deliver">
+          <li
+            className="cw-deliver__row cw-reveal"
+            style={{ transitionDelay: "0ms" }}
+          >
+            <span className="cw-deliver__name">An 8-10 page memo</span>
+            <span className="cw-deliver__note">
+              What is load-bearing, what is broken, and what to fix first.
+            </span>
+          </li>
+          <li
+            className="cw-deliver__row cw-reveal"
+            style={{ transitionDelay: "80ms" }}
+          >
+            <span className="cw-deliver__name">A prioritized fix sequence</span>
+            <span className="cw-deliver__note">
+              The order to do it in, so you can start the morning it lands.
+            </span>
+          </li>
+          <li
+            className="cw-deliver__row cw-reveal"
+            style={{ transitionDelay: "160ms" }}
+          >
+            <span className="cw-deliver__name">A one-hour debrief call</span>
+            <span className="cw-deliver__note">
+              I walk you through it. You keep the memo either way.
+            </span>
+          </li>
+        </ul>
+        <div className="cw-section-cta-wrap cw-section-cta-wrap--left cw-reveal">
           <a href="/packages" className="cw-section-cta">
-            See the three packages{" "}
+            See what the Audit covers{" "}
             <span className="cw-section-cta__arr" aria-hidden>
               →
             </span>
@@ -488,10 +523,13 @@ export default function ColorWorldsHome() {
             <p className="cw-principle__num">01</p>
             <div>
               <p className="cw-principle__name">Diagnose</p>
-              <p className="cw-principle__artifact">Positioning audit memo.</p>
+              <p className="cw-principle__artifact">
+                Audit memo + fix sequence.
+              </p>
               <p className="cw-principle__text">
-                I find the gap between what you built and what buyers actually
-                pay for. You get it in writing.
+                I read the build top to bottom and write down what is
+                load-bearing, what is broken, and what to fix first. Positioning
+                too, when that is the gap.
               </p>
               <p className="cw-principle__proof">
                 <strong>Guardicore</strong>: message/buyer mismatch found ·{" "}

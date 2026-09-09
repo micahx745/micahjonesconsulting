@@ -1,39 +1,50 @@
-# RESUME — micahjonesconsulting (2026-09-08)
+# RESUME — micahjonesconsulting (2026-09-09)
 
-## READ THIS FIRST
-Fable/Opus rules; executors run briefs (MODEL_ROUTING §7–§8). Passes 97+98 LIVE.
-The book chat shares this tree: stage by path.
+## READ FIRST
 
-## Room and Ledger — state
-- SITE: branch `design/room-and-ledger` (worktree `.claude/worktrees/p101-integrate`), 12 routes,
-  axe-clean, build green. Lighthouse mobile 88. /services unported. Every re-push is HIS.
-- LESSONS: main #17 vs branch #17–#20 → renumber at merge.
+**The dark rebuild is REJECTED; the LIVE site is being evolved instead.** Work is on
+`design/live-evolve` (worktree `.claude/worktrees/p106-live`), forked from `main`.
+`design/room-and-ledger` is parked intact, not reverted. **Nothing pushed. Production
+untouched.**
 
-## Routing — HIS RULING 2026-09-08 (MODEL_ROUTING §9)
-Fable away days; ChatGPT 29% used, 6 days to reset. 2nd Claude acct LIVE
-(`scripts/claude-alt.ps1`, ~/.claude-alt, trusted 2026-09-08) but it is a $20 plan: small legs only. ASTRA = QUALITY GATES ONLY, never a long
-`codex exec` of a brief (a 104b run was launched and killed on this ruling). GLM 5.3
-(`claude-glm.ps1`; window RESETS, smoke-test it) EXECUTES. Sonnet measures. Opus rules.
-HIS RULINGS 2026-09-08: (1) Book OFF the site - DONE (104a, a857cca..ae13001); /playbook noindex, page kept on disk.
-(2) Refunds: full only BEFORE kickoff, prorated after; ledgered LESSONS #3; FAQ row deleted;
-buyer email corrected AND the manual no longer attached (his "stop sending it", ea5677a).
-(3) HOME REBUILD = Pass 104b. SECTIONS 1-6 APPLIED AND COMMITTED BUT UNVERIFIED (cc2f3fd,
-c710075, b2d1a0f, 8e6fcda): encodes, hero sign, operator band, the spine, the packages BAND
-(his lock reversal, recorded), three objections with his approved copy. LEFT TO DO: §7 the
-footer (nav is cols 7/13 but left-aligned, right third empty), then VERIFY EVERYTHING
-(build, verify-room, axe, Lighthouse mobile MUST stay >=86 - video is now ~3.9MB on disk and
-the phone gets 1.2MB), fix, commit, then ONE Astra juror look. Brief:
-`.claude/briefs/pass-104b-home-rebuild.md`. Specs: `.planning/design/104b/*.md`.
-HANDOFF: `.planning/handoff/NEXT-SESSION-KICKOFF.md` — paste it as the new chat's first message.
+**`pnpm build` FAILS here** on a Turbopack font-module error that also breaks untouched
+`main`. **`npx next build --webpack` succeeds** and is the local verification path.
+**Workflow ignores `CLAUDE_CODE_SUBAGENT_MODEL`** — name `model:` on every agent() call.
 
-## Ship gate (his)
-Book is OFF (104a). Packages sell now; the live Stripe Audit description is stale until he
-re-runs `scripts/stripe-setup.mjs`.
+## Pass 106 — done and verified
 
-## Next
-104a execute · 104b home rebuild from the synthesis · his re-push · merge after his look · 99/100 SEO items.
+`b9672c7` the evolution · `f83130f` gates · Astra's 1+3 applied after that.
+Plan: `.planning/design/PASS-106-APPLY-PLAN.md`. Research: `.planning/reviews/CHAT-105-*`.
 
-## Standing traps
-Every push auto-deploys · copy-lint rejects docs that QUOTE banned words · scratchpad copy.py
-shadows stdlib (`python -P`) · Bash heredocs collapse doubled backslashes · a branch lives in
-ONE worktree · Codex cannot commit in a worktree (#18) · verify-room overwrites pass-101 PNGs
+- **offer** (new, under the hero): "The Audit. $2,500. Two weeks." + three ruled
+  deliverable rows + a left audit-specific link. First price above the fold ever.
+- **receipts** moved up; **Clients/Three engagements CUT**; **How I work inverted**
+  (artifact large, verb small, named deal as proof); ledger gains Neuton.AI (no dollar
+  figure, never disclosed); hero gains a buyer line, loses a CTA; `/packages` Audit is a
+  hero card.
+
+**Astra gate: BETTER.** "Cutting 'Three engagements' removes a broad capabilities menu."
+Verified: tsc · copy-lint · vendor · retired-phrases · render-gate · webpack build ·
+**axe adds NO new violation** (production shows the same ones plus one this branch removes)
+· **Lighthouse mobile 94**.
+
+## NEXT — operator decisions
+
+1. **Astra's #2, yours to rule:** put **Ordani FIRST** in the receipts, ahead of
+   acquisition history. It is 8th today. Reordering changes which proof leads.
+2. Push `design/live-evolve` for a preview when you want one.
+3. Deferred earlier: retiring the hero `$5B+`/`$20M+` stat chips (ruling 1); the
+   rotating-word H1 stays (ruling 2).
+
+## OPEN
+
+- `.cw-lede-link` contrast on `/packages` and `/services` — fails on `main` too.
+- Global `settings.json` wildcard allow rules over-approve.
+- Stripe live $500 buy/refund, then `PLAYBOOK_ON_SALE=1` = launch.
+
+## Traps
+
+push to main auto-deploys · **capture VIEWPORT, not full_page, and wait 11s for the hero
+rotation** (a full-page frame made me report a clipped headline that does not exist, and
+Astra repeated it) · `python -P` · `grep -c` counts LINES · PS5.1 mangles quotes to native
+exes, use `git commit -F` · prettier reflows anchors, re-read before a second patch.
