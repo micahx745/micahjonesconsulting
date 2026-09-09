@@ -280,10 +280,63 @@ export default function ColorWorldsHome() {
             system works as of Pass-1, so the rows arrive in sequence. */}
         <div className="cw-ledger cw-reveal" role="list">
           <a
-            href="/work/guardicore"
+            href="/work/ordani"
             className="cw-lrow cw-lrow--link cw-reveal"
             role="listitem"
             style={{ transitionDelay: "60ms" }}
+          >
+            <span className="cw-lrow__co">
+              Ordani
+              <span className="cw-lrow__tag">
+                Founder, sole engineer · 2025–2026
+              </span>
+            </span>
+            <span className="cw-lrow__out">
+              <strong>Active paying users</strong> · none lost to a competitor
+            </span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
+          </a>
+          <a
+            href="/work/content-engine"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "120ms" }}
+          >
+            <span className="cw-lrow__co">
+              Industry author
+              <span className="cw-lrow__tag">Content engine · 2024–2025</span>
+            </span>
+            <span className="cw-lrow__out">
+              Monthly reach <strong>8K → 290K</strong> in five months
+            </span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
+          </a>
+          <a
+            href="/work/rfp-engine"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "150ms" }}
+          >
+            <span className="cw-lrow__co">
+              Industry author
+              <span className="cw-lrow__tag">RFP engine · 2024–2025</span>
+            </span>
+            <span className="cw-lrow__out">
+              <strong>$3M in contracts won</strong> · close rate doubled
+            </span>
+            <span className="cw-lrow__go" aria-hidden>
+              →
+            </span>
+          </a>
+          <a
+            href="/work/guardicore"
+            className="cw-lrow cw-lrow--link cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "165ms" }}
           >
             <span className="cw-lrow__co">
               Guardicore
@@ -300,11 +353,10 @@ export default function ColorWorldsHome() {
               →
             </span>
           </a>
-
           <div
             className="cw-lrow cw-reveal"
             role="listitem"
-            style={{ transitionDelay: "120ms" }}
+            style={{ transitionDelay: "175ms" }}
           >
             <span className="cw-lrow__co">
               SurveyMonkey Enterprise
@@ -315,11 +367,10 @@ export default function ColorWorldsHome() {
               through the Nasdaq listing
             </span>
           </div>
-
           <div
             className="cw-lrow cw-reveal"
             role="listitem"
-            style={{ transitionDelay: "150ms" }}
+            style={{ transitionDelay: "180ms" }}
           >
             <span className="cw-lrow__co">
               Postmates
@@ -330,26 +381,10 @@ export default function ColorWorldsHome() {
               <strong>acquired by Uber, $2.65B</strong>
             </span>
           </div>
-
-          {/* Pass-106 (credential pass). Neuton.AI completes the four-
-              exit set the hero, /about, and every metadata description
-              already claim ($5B+ combined, four exits) but this ledger
-              only ever seated three of. No case-study page exists, so —
-              same as SurveyMonkey and Postmates above — the row carries
-              no link; an unlinked row here reads as honesty, not
-              absence (established comment, above). No dollar figure:
-              the acquisition price was never disclosed
-              (content/citations.ts, EXITS_COMBINED_VALUE: "excluded
-              from sum"). Role is stated as "helped launch," explicitly
-              NOT a cap-table position (docs/LESSONS_LEARNED.md: "never
-              claim Neuton equity") — said plainly rather than left
-              silent, because every other row here shows a dollar or
-              equity outcome and a quiet gap would read as an omission,
-              not a fact. */}
           <div
             className="cw-lrow cw-reveal"
             role="listitem"
-            style={{ transitionDelay: "165ms" }}
+            style={{ transitionDelay: "200ms" }}
           >
             <span className="cw-lrow__co">
               Neuton.AI
@@ -360,18 +395,10 @@ export default function ColorWorldsHome() {
               a cap-table position
             </span>
           </div>
-
-          {/* Pass-106. The hero's "$5B+ combined / four exits" line
-              gets its detail cashed out above (research: "the same
-              number cashed out into named outcomes reads as a track
-              record"); this row is the demoted summary the brief asked
-              for, placed directly under the four rows it sums, in the
-              section already captioned "Every line below is real."
-              Figure unchanged — disclosed deals only, content/citations.ts. */}
           <div
             className="cw-lrow cw-reveal"
             role="listitem"
-            style={{ transitionDelay: "175ms" }}
+            style={{ transitionDelay: "300ms" }}
           >
             <span className="cw-lrow__co">
               Four exits
@@ -381,83 +408,6 @@ export default function ColorWorldsHome() {
               <strong>$5B+</strong> combined
             </span>
           </div>
-
-          {/* Pass-78. This was ONE row fusing two separate engagements for
-              the same author, linked to /work/content-engine. The $3M is not
-              on that page: it belongs to the RFP software and lives on
-              /work/rfp-engine. Under a heading that says "Every line below is
-              real. Ask about any of them.", the one receipt a skeptic clicks
-              to check led to a page that does not carry it. Now two rows, each
-              pointing at the study that proves its own number. Both figures
-              are the case studies' own indexLine values, verbatim. */}
-          <a
-            href="/work/content-engine"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "180ms" }}
-          >
-            <span className="cw-lrow__co">
-              Industry author
-              <span className="cw-lrow__tag">Content engine · 2024–2025</span>
-            </span>
-            <span className="cw-lrow__out">
-              Monthly reach <strong>8K → 290K</strong> in five months
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-
-          <a
-            href="/work/rfp-engine"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "200ms" }}
-          >
-            <span className="cw-lrow__co">
-              Industry author
-              <span className="cw-lrow__tag">RFP engine · 2024–2025</span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>$3M in contracts won</strong> · close rate doubled
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-
-          {/* Site copy review 2026-09-02 #21. The "Frontier AI · Embedded ·
-              2025– · specifics under NDA" row is gone. Under "Every line below
-              is real. Ask about any of them." it was the one row with no
-              number, no client and no page that proves it, and its arrow led
-              to /services. The ledger (LESSONS #3) carries no entry for the
-              AI engagements, so nothing here can be verified on request. The
-              AI work is carried by service 03 above and by /services. */}
-          <a
-            href="/work/ordani"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "300ms" }}
-          >
-            <span className="cw-lrow__co">
-              Ordani
-              <span className="cw-lrow__tag">
-                Founder, sole engineer · 2025–2026
-              </span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>Active paying users</strong> · none lost to a competitor
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-
-          {/* Closing row. Its label was "Total" until the 2026-09-02 site copy
-              review (#41): at the foot of rows dated 2024, 2025 and 2026 it
-              read as a sum that does not add. The $20M+ figure is a separate
-              fact about the consulting practice, so the row now names it as
-              one. The cw-lrow--tot weight stays so it still closes the table. */}
           <div
             className="cw-lrow cw-lrow--tot cw-reveal"
             role="listitem"
