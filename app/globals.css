@@ -1874,17 +1874,6 @@ body {
  * hero text against this veil (0.92, the tightest of the checked
  * worlds per the a11y comments elsewhere in this file). Verbatim body
  * face (--font-cw-body / Hanken Grotesk): this is prose, never mono. */
-[data-mode="cw"] .cw-hero-credential {
-  max-width: 620px;
-  margin-top: 28px;
-  font-family: var(--font-cw-body);
-  font-size: 14px;
-  line-height: 1.5;
-  opacity: 0.92;
-}
-[data-mode="cw"] .cw-hero-credential strong {
-  font-weight: 700;
-}
 /* .cw-chips/.cw-chip* fully removed with this patch. Confirmed by
  * repo-wide grep: those classes had no call site outside Hero.tsx.
  * --hero-scroll goes with them — it existed solely to feed .cw-chip's

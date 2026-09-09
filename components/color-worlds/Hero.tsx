@@ -375,14 +375,21 @@ export function Hero() {
           NEEDS_RULING: that staging is Pass-7's naked-type grammar,
           chosen after two rounds were rejected as "look weak" / "look
           ai" — confirm the demotion to plain prose before this ships. */}
-      <p
-        className="cw-hero-credential cw-reveal"
-        style={{ transitionDelay: "560ms" }}
-      >
-        Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore,
-        Neuton.AI. $5B+ combined. <strong>$20M+</strong> in client revenue since
-        2013.
-      </p>
+      {/* CREDENTIAL LINE REMOVED (Pass-107, operator 2026-09-09: "retire the
+          hero part that shows the exit and the other thing").
+
+          This REVERSES Pass-57 (operator 2026-09-01, "keep the exits thing and
+          the 20 mil"), which is the only reason the figures were still in the
+          hero at all. Recorded rather than argued: the earlier ruling is not
+          buried, it is superseded, and putting the line back is one revert.
+
+          Why it is safe to lose: nothing goes with it. The exit record inside
+          the receipts now carries all four deals with their counterparties,
+          years, disclosed figures, the $5.58B sum and the $5B+ under-claim, and
+          the ledger's closing row carries $20M+ in client revenue. Both figures
+          also remain in the metadata descriptions and the OG images. What the
+          hero loses is an ASSERTION made before anything has been shown, which
+          is the exact treatment both independent reviews called a badge. */}
     </header>
   );
 }
