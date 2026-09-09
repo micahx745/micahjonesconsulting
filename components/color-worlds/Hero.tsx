@@ -346,6 +346,20 @@ export function Hero() {
         <em>Strategy and software, shipped by the same pair of hands.</em>
       </p>
 
+      {/* Pass-106 (chat research CHAT-105-RESEARCH.md §4 "The opening"):
+          names the buyer directly under the positioning line — the read
+          the research flagged as missing ("makes the buyer assemble
+          'who it's for' themselves"). Deliberately quiet: smaller size,
+          lower opacity, no italic — .cw-sub carries the claim, this line
+          carries the address, so weight/size do the hierarchy instead of
+          two competing bold statements. Does NOT touch the H1 or the
+          rotating word — that swap is operator-locked, see file header
+          "I love the first hero"; see NEEDS-OPERATOR-RULING below. */}
+      <p className="cw-sub-buyer">
+        For builders whose AI-built product demos well and stalls before
+        production.
+      </p>
+
       {/* Pass-30 (Cowork review): the $149 playbook is OFF the enterprise
           front door entirely — it leaked onto an FIS buyer's first screen.
           It stays reachable from the /services self-select routing line.
@@ -354,6 +368,17 @@ export function Hero() {
       {/* W3 (D7, operator-locked 2026-08-11): ONE filled pill per page —
           "See the work" is home's primary (receipts-first posture).
           Hire-me and Book-a-call demote to the underlined-mono grammar. */}
+      {/* Pass-106 (chat research CHAT-105-RESEARCH.md §4 "The opening":
+          "Two buttons only"): cut "Hire me" (→ /services). The research
+          names /services' three-engagements framing directly: "abstract
+          and enterprise-flavoured; a stalled solo builder does not
+          self-identify as needing 'Frontier AI engineering.'" Hire-me
+          and Book-a-call were both "engage me" asks pointing at
+          different pages — cutting the one that leads to the page the
+          research flags as weak, keeping the one that answers "how do I
+          start" directly. /services is unchanged and still reachable
+          from the nav (Nav.tsx) and from three links further down this
+          same page — nothing about the route itself is touched. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
         <MagneticArea>
           <a href="#products" className="cw-cta">
@@ -363,9 +388,6 @@ export function Hero() {
             </span>
           </a>
         </MagneticArea>
-        <a href="/services" className="cw-mlink">
-          Hire me <span aria-hidden>→</span>
-        </a>
         {/* Pass-93, operator 2026-09-03: "Booking replaces the contact form for
             engagements", reversing Pass-82 for this lane. /contact stays in the
             nav for anyone who would rather write than take a slot. */}

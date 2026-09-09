@@ -120,8 +120,47 @@ export default function PackagesPage() {
           for.
         </p>
 
-        <section id="packages" className="cw-pkgs" aria-label="The packages">
-          <div className="cw-pkgs__grid">
+        {/* Pass-106 (audit section): the Audit stands alone now, above
+            the grid, per the audit research — one price, stated once, in
+            the largest type on the page (the 37signals ONCE model), not
+            a third of a three-column comparison table. The other two
+            packages are unchanged: same names, same prices, same
+            deliverables, same checkout, same fine print below. They only
+            stop sharing the Audit's visual weight. */}
+        <article
+          className="cw-pkg-hero"
+          aria-label="The Audit, $2,500, start here"
+        >
+          <span className="cw-pkg__tag">Start here</span>
+          <h2 className="cw-pkg-hero__name">The Audit</h2>
+          <p className="cw-pkg-hero__price">$2,500</p>
+          <p className="cw-pkg-hero__meta">Two weeks + debrief call</p>
+          <p className="cw-pkg-hero__body">
+            Pick one flavor: Build (architecture and code), Production (security
+            and deploy), or Traction (positioning and go-to-market). I go
+            through it top to bottom and hand you the written audit. Not sure
+            which one? Start here: the memo tells you what to fix first, and the
+            fee credits toward what you book next.
+          </p>
+          <ul className="cw-pkg-hero__list">
+            <li>8-10 page audit memo</li>
+            <li>Prioritized fix sequence</li>
+            <li>One-hour debrief call</li>
+          </ul>
+          <BuyButton
+            skuKey="audit-2500"
+            label="Buy the Audit"
+            className="cw-pkg-hero__cta"
+          />
+        </article>
+
+        <section
+          id="packages"
+          className="cw-pkgs cw-pkgs--secondary"
+          aria-label="Two other ways to work with me"
+        >
+          <p className="cw-pkgs__subhead">Two other ways to work with me</p>
+          <div className="cw-pkgs__grid cw-pkgs__grid--pair">
             <article className="cw-pkg" aria-label="The Unstick Session, $500">
               <h2 className="cw-pkg__name">The Unstick Session</h2>
               <p className="cw-pkg__price">$500</p>
@@ -136,30 +175,6 @@ export default function PackagesPage() {
                 <li>Your tools, your repo</li>
               </ul>
               <BuyButton skuKey="unstick-500" label="Buy the Unstick Session" />
-            </article>
-
-            <article
-              className="cw-pkg cw-pkg--lead"
-              aria-label="The Audit, $2,500, start here"
-            >
-              <span className="cw-pkg__tag">Start here</span>
-              <h2 className="cw-pkg__name">The Audit</h2>
-              <p className="cw-pkg__price">$2,500</p>
-              <p className="cw-pkg__meta">Two weeks + debrief call</p>
-              <p className="cw-pkg__body">
-                Pick one flavor: Build (architecture and code), Production
-                (security and deploy), or Traction (positioning and
-                go-to-market). I go through it top to bottom and hand you the
-                written audit. Not sure which one? Start here: the memo tells
-                you what to fix first, and the fee credits toward what you book
-                next.
-              </p>
-              <ul className="cw-pkg__list">
-                <li>8-10 page audit memo</li>
-                <li>Prioritized fix sequence</li>
-                <li>One-hour debrief call</li>
-              </ul>
-              <BuyButton skuKey="audit-2500" label="Buy the Audit" />
             </article>
 
             <article className="cw-pkg" aria-label="The Sprint, $7,500">
