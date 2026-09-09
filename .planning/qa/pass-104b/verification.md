@@ -940,3 +940,181 @@ Status: **done**. Every gate this section owns passes; the two fixes beyond the 
 literal edit list (the card-chip colour force, the Engagements border) are structural
 consequences of the operator's own ground reversal, documented above with before/after
 evidence, not scope creep.
+
+## Section 6 — objections: three rows, the register, and the door
+
+Measured against `pnpm start` on **:3101**. Port 3000 was held by a stale server for the
+whole of this leg, which is the RESUME standing trap; nothing here ever touched it.
+
+### The three rows carry the operator's approved copy, verbatim
+
+Brief §6 prints four strings (two NEW rows, each a question and an answer; the third row
+is the existing AI-tools row, unchanged). All four render verbatim, confirmed against
+`components/room/Objections.tsx` and against the served markup:
+
+1. Q "I built it with Claude Code and it works. Now I cannot change one thing without rewriting half of it."
+2. A "The tool does not change the work. I read the build top to bottom and write down what is load bearing, what is broken, and what to fix first. That is the Audit, $2,500."
+3. Q "Last time I paid for help, it took so much back and forth that I did most of it myself."
+4. A "One person reads it, writes it and ships it, and that person is me. No account manager, no status meeting, no brief for you to write."
+
+The replaced "Hiring for a company rather than a build?" row is gone, as §6 directs.
+
+### The register, as measured
+
+`14.4-heads` reads the computed sizes off the built page: **`.q dt` [28, 28, 28]** and
+**`.q dd` [19, 19, 19]**. That is §6's "24px to 28px/1.2" and "17px to 19px/1.5", landed.
+
+### The chip count, and a false reading that cost time
+
+§6 says to verify the chip label resolves twice before the commit. It does:
+
+    curl -s http://localhost:3101/ | grep -o 'Book a free intro call</span>' | wc -l
+    2
+
+**`grep -c` returns 1 here and that is wrong.** `grep -c` counts matching LINES, and this
+document is a handful of very long lines, so both occurrences sit on one line. That false
+reading led this session to briefly conclude the ask's label had drifted. It had not:
+`components/room/Ask.tsx:46` and `components/room/Objections.tsx:76` both carry it. Count
+occurrences with `grep -o` piped to `wc -l`, never `grep -c`, on this page.
+
+### THE DOOR — a real defect, found by looking at the render, fixed here
+
+§6: "`.faq .sec` becomes a full-height flex column and takes one Rule C chip at
+`margin-top: auto`, so its bottom edge aligns with the list's last hairline."
+
+It shipped doing the opposite. The chip rendered at the TOP of the left column, above the
+OBJECTIONS eyebrow. No gate caught it, because no gate measures the chip's position.
+
+Mechanism, measured before the fix:
+
+    gridRows            "48px 620.969px"     <- the grid had grown a SECOND row
+    secRow              "auto"
+    dcRow               "1"
+    dcAlign             "end"
+    doorchip            top 147.3, bottom 195.3
+    lastRowBottom       816.3
+    chipVsLastHairline  -621.0
+
+`.doorchip` declares `grid-row: 1`. An explicitly-placed grid item is positioned BEFORE
+any auto-placed one, so it claimed row 1 cols 1-5 first; `.sec` (definite column, auto
+row) could not fit there and was pushed to row 2, taking `.qs` with it. The chip ended up
+alone in its own 48px row above the head, 621px clear of the hairline it was meant to
+touch. The implementer's mechanism was sound (share the head's cell, `align-self: end`)
+but sharing a cell requires BOTH items to be explicitly placed.
+
+Fix: `.rl-home .faq .sec` is pinned to `grid-row: 1`. After:
+
+    gridRows            "620.969px"          <- one row
+    secRow              "1"
+    dcRow               "1"
+    dcAlign             "end"
+    doorchip            top 744.3, bottom 792.3
+    lastRowBottom       792.3
+    chipVsLastHairline  0.0
+
+Exact. Visual confirmation in `objections-104b-1440.png` and `objections-104b-390.png`.
+
+### Gate edits
+
+FIVE named verbatim by §6 and never applied until now:
+`18-objections-one-lane-from-the-seam` (`fq["n"]` 2 to 3, `dt` 24 to 28, `dd` 17 to 19),
+`18-objections-mobile` (`len(set(qTops))` 2 to 3), `16.3-4-hairlines` (`len(drawn0)` 14
+to 15), `16.3-5-rises` (`qDelay` gains `0.14s`), and the copy gate allowlist.
+
+Two notes on that list. §6 says "the three new strings"; two NEW ROWS carry a question AND
+an answer, so **four** strings were added as `PASS_104B_COPY`, each tagged
+"PASS-104B operator-approved 2026-09-08". And the named gate held the old count of two in
+a SECOND place, `stacked = len(set(fq["tops"])) == 2`, which moved with it.
+
+THREE the brief does NOT name. Flagged here, not buried:
+
+| Gate | Edit | Why it moved |
+| --- | --- | --- |
+| `14.4-heads` | `.q dt` 24 to 28, `.q dd` 17 to 19 | asserts the same register §6 orders, in a gate §6 did not enumerate |
+| `14.8-renders-with-javascript-off` | `qs_n` 2 to 3 | asserts the same row count §6 orders |
+| `18-objections-one-lane-from-the-seam` | `stacked` 2 to 3 | second copy of the count inside a gate §6 DOES name |
+
+Every one stays an exact-value assertion. Nothing was loosened, no check was deleted, and
+each carries an inline comment saying which §6 fact moved it. **These are the operator's
+to confirm or reverse.**
+
+## Section 7 — the footer
+
+### The defect, measured
+
+Pass 104a deleted the book block (cols 10-12) and widened `.foot .nav` to cols 7-13, but
+left the links packed at the column's LEFT edge. At 1440:
+
+| | before | after |
+| --- | --- | --- |
+| nav column | 732.00 to 1408.00 | unchanged |
+| ink right edge | **886.06** | **1408.00** |
+| empty gutter | **521.94px (37.9% of the row)** | **0.00px** |
+| ragged-left spread | 0.00px | 100.03px |
+
+The brief called it "the right third"; measured, it was slightly more than a third. The
+nav did not read as a right-hand column, it read as a stranded middle one.
+
+At 390 the two runs are **identical** (links at x=32, gutter 171.94px, spread 0.00) and
+`foot-before-390.png` and `foot-after-390.png` are the same size to the byte. The `<=899`
+block resets `align-items` and `text-align`, so the stacked foot is untouched.
+
+### Why right-alignment, and not the two-track split
+
+§7 offered either. Right-alignment wins on two grounds already in the system:
+
+- The copper ask **directly above the foot** uses exactly this device: `.ask .promise` is
+  `grid-column: 9 / 13; justify-self: end; text-align: right`.
+- The receipts arrow's own rule defends it in its comment: the glyph sits flush right so
+  "the ledger's right margin is a straight line down three rows rather than three
+  different glyph advances."
+
+A two-track split would have introduced a new device, and with only four links it reads as
+a sitemap. The column keeps its 7/13 span so `Packages from $500` never wraps.
+
+### The rule is SHARED, so both consumers were checked
+
+`Foot.tsx` serves the home (`.foot`) and the five `(room)` routes (`.rl-foot`, which also
+renders the reply promise, giving `.who` a third row). §7 asks only for the home. Both were
+captured: `foot-packages-1440.png`, `foot-packages-390.png`. The right-aligned nav still
+balances against the taller identity column.
+
+### OPEN ROW, not fixed here: the `.foot .book` CSS is dead
+
+`Foot.tsx` renders no `.book` element. Both call sites (`app/(home)/page.tsx` and
+`components/room/SiteFoot.tsx`) go through the same component, so every
+`.rl-home .foot .book` and `#rl-root .rl-foot .book` rule, and the `.book .ttl` / `.pr` /
+`.chip` rules under them, are unreachable. Left in place deliberately: §7 says "no new
+material, no new copy", and deleting dead CSS is a separate cleanup, not this pass's
+business. Named here so it is not rediscovered.
+
+## Section 8 — whole-pass gates
+
+All run against the CURRENT build (the door fix included) on :3101.
+
+| Gate | Result |
+| --- | --- |
+| `pnpm build` | green |
+| `npx prettier --check app/room.css` | clean |
+| `python -P scripts/verify-room.py http://localhost:3101/` | **85 checks, 84 pass, 1 fail** |
+| door proof (`door.py`) | `chipVsLastHairline` **0.0** |
+| axe-core 4.10.2, 3 routes x 2 widths x {rest, wheel-walked} | **0 violations at any impact, 12 of 12 scans** |
+| Lighthouse mobile Performance | **94** (floor 86) |
+| chip occurrences | **2** |
+
+The single verifier FAIL is `14.7-sentence-and-chips-share-the-left-edge`, which the
+RESUME records as section 2's own hero-sign consequence: a ruling, not a defect, left
+unfixed on purpose. It is the same one failure the pass carried at section 5.
+
+Lighthouse detail: FCP 2.3s, LCP 2.6s, Speed Index 2.6s, TBT 30ms, CLS 0.03, TTI 3.6s.
+The operator's stated risk, roughly 3.9MB of video on disk with a 1.2MB file going to the
+phone, did not cost the score. It measured 92 at sections 1 and 3, 88 at section 5, and 94
+now.
+
+axe method, both halves of which are standing traps: scan after `document.fonts.ready`
+plus 600ms (earlier and it invents contrast failures), then again after 40 wheel steps to
+the foot (without the walk it misses the failures a scrolled ground creates). Routes `/`,
+`/packages` and `/about`, because the footer rule is shared.
+
+**Sections 1 through 7 are applied, measured and green. What remains for the pass is the
+Astra juror read and the operator's push.**
