@@ -1,21 +1,46 @@
 # Recraft prompt — the four exits figure
 
-## Settings before you paste anything
+## Settings — checked against Recraft's docs, 2026-09-09
 
-- **Output: VECTOR / SVG.** Not raster. This is the single most important setting. Flat
-  separable paths animate in CSS, stay sharp at any size, weigh almost nothing, and read as
-  authored rather than rendered. A raster PNG cannot be animated in the way described below
-  and will look like a render no matter how good the prompt is.
-- **Style: "Vector Illustration"**, sub-style flat / bold-shape. Avoid anything named 3D,
-  realistic, glow, cinematic, or gradient-heavy.
-- **Aspect: 3:2 landscape** for a hero-region figure, or **1:1** if it sits in the chip
-  cluster's corner.
-- **Palette lock (these are the site's real tokens — paste them in the colour control):**
+**Model: Recraft V4.1 Pro Vector.** V4 shipped 2026-02-17, V4.1 on 2026-05-14 and is now
+2x faster and 13-16% cheaper than launch. The `_vector` variants emit GENUINE SVG path data
+as model output rather than auto-tracing a raster afterwards, which is the only reason to
+use Recraft here at all. Pro is 2048x2048 native.
+
+**Better still: Recraft V4 Styles Pro Vector, in `precise` mode.** It accepts 1-10
+REFERENCE IMAGES and locks onto their visual language — palette, shapes, linework, texture,
+rendering character — for every generation after. This is the strongest lever available for
+"a real artist did this", because it stops describing a style in words and hands it the
+style that already exists on the page.
+
+Feed it three images already in this repo:
+
+      .planning/qa/pass-106/before-1440-band01.png    the hero
+      .planning/qa/pass-106/after-1440-band03.png     the ledger
+      .planning/qa/pass-106/final-offer-1440.png      the offer section
+
+`precise` holds every detail; `flexible` matches the general vibe with more liberty. Use
+precise.
+
+**Aspect: 3:2 landscape** for a hero-region figure, or **1:1** if it sits in the chip
+cluster's corner.
+
+**Colour: state the RGB values IN THE PROMPT.** Recraft V4 has no separate palette-lock
+control; exact colours stated in the prompt is the documented method.
 
       #9E3C25   terracotta   the ground
-      #ECE3D0   bone         the lines and type
-      #2A1F18   espresso     shadow / depth
-      #C9982F   saffron      one accent only, used on the single number
+      #ECE3D0   bone         the bars and rule
+      #2A1F18   espresso     depth
+      #C9982F   saffron      one accent only, on the single numeral
+
+**CORRECTION to an earlier draft of this file: Recraft V4 documents no negative-prompt
+field.** The exclusions below go INSIDE the prompt as plain statements, not in a separate
+box. Also unsupported in V4: style creation, prompt-based editing, image sets, and
+artistic-level control — so iterate by regenerating, not by editing.
+
+**Export SVG, not Lottie.** Recraft offers Lottie and it is the wrong choice here: Lottie
+needs a JS runtime (`lottie-web`) on a site whose entire motion discipline is CSS
+transitions with GSAP quarantined to one file. The SVG animates for free.
 
 ## The prompt
 
@@ -30,16 +55,18 @@
 > asymmetric and generous, weighted to the left, with wide empty field on the right.
 > Confident, restrained, printed — like a page from a company report, not a slide.
 
-## Add this to the negative / "avoid" field
+## Append this to the SAME prompt — there is no negative field
 
-> 3D render, glossy, glass, neon, glow, bloom, lens flare, gradient mesh, drop shadow,
-> bevel, emboss, isometric, stock-vector people, flat-design mascots, icons, arrows,
-> upward-trending arrow, rocket, briefcase, handshake, skyline, dollar-sign clip art,
-> generic startup illustration, chart junk, legend, gridlines, watermark, text labels
+> No 3D rendering, no gloss, no glass, no neon, no glow, no bloom, no lens flare, no
+> gradient mesh, no drop shadows, no bevels, no embossing, no isometric perspective. No
+> people, no mascots, no icons. No arrows of any kind, no upward-trending arrow, no rocket,
+> no briefcase, no handshake, no skyline, no dollar-sign clip art. No legend, no gridlines,
+> no axis labels, no watermark, no text of any kind except the single numeral.
 
-The arrow/rocket exclusions matter — that family is the single strongest "AI made this"
-tell in business graphics, and image models reach for it constantly on any prompt about
-growth or exits.
+The arrow and rocket exclusions carry the most weight — that family is the single strongest
+"AI made this" tell in business graphics, and image models reach for it on almost any
+prompt containing growth or exits. State them explicitly and more than once if the first
+generations keep producing them.
 
 ## Why bars and one numeral, not a picture
 
