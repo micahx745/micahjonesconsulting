@@ -19,10 +19,18 @@ round `7d51d8e`…`1ebddea`, then the integrate QA `747ee52`.
   rather than shrink. Measured on the built page: 1440 → 24px/500/Hanken, 4.40:1, right edge
   1407.98 on the field's 1408.00, last line **0.33px** off the headline's (a measured
   desktop-only `margin-bottom:-8px`); 390 → 2 lines, scrollWidth 390 = innerWidth 390.
-- **Verified now:** build green · prettier clean · `verify-room.py` **61/61** · axe-core
-  4.10.2 after `fonts.ready` + 600ms + a Lenis wheel walk, **13 routes x 2 widths**:
-  **0 serious/critical on all 12 ported routes.** The prior run's one serious finding was
-  this promise.
+- **Verified now:** build green · prettier clean · `verify-room.py` **61/61**, STALE as of
+  Pass-104b (see below) · axe-core 4.10.2 after `fonts.ready` + 600ms + a Lenis wheel walk,
+  **13 routes x 2 widths**: **0 serious/critical on all 12 ported routes.** The prior run's
+  one serious finding was this promise.
+- **Pass-104b in progress on this same branch/worktree, section 5 of 8 (packages) done.**
+  `python -P scripts/verify-room.py http://localhost:3000/` now **85 checks, 84 pass, 1
+  fail** — the count moved (61→85) across sections 1-5; the one fail
+  (`14.7-sentence-and-chips-share-the-left-edge`) is section 2's own hero-sign consequence,
+  named and unfixed in `.planning/qa/pass-104b/verification.md`, not section 5's. axe: 0
+  serious/critical on `/` at 390 and 1440 (re-verified after section 5's edits) and on
+  `/packages` at both widths. Sections 6, 7, 8 (objections, footer, whole-pass gates) not
+  yet run by any leg as of this commit.
 - **NEW OPEN DEFECT:** `/services` shows **1 serious** contrast at both widths —
   `.cw-lede-link` (12px) once SCROLLED. `a9a57c6` fixed the top ground (5.94:1); scrolled,
   the ground darkens to `#2a1f18` where copper-deep is **1.95:1**. Fails on main too (old

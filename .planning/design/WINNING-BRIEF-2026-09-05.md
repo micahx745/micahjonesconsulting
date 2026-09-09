@@ -53,6 +53,14 @@ to 115, never the size. The verifier measures both.
   `background 700ms cubic-bezier(.4,0,0,1)`.
 - The ask section is the exception and the only place copper is a ground: a full-bleed
   copper field with espresso type. The foot after it is espresso with bone type.
+- **AMENDED, Pass-104b §5, 2026-09-08.** The packages section is a THIRD named exception.
+  Asked directly whether to ship the safe poster-only pick or reverse this rule for a
+  full-bleed espresso band under the three cards and Engagements, the operator chose,
+  verbatim: "Reverse the rule, build the band." It is an exception, not a repeal — no
+  other section may declare a ground on the strength of it. Recorded in full, with the
+  amendment's reasoning (the Audit's copper border moves from 3.85:1 on bone to 4.41:1 on
+  espresso) and the re-measured text-contrast ledger, in `.claude/CLAUDE.md` and
+  `.planning/qa/pass-104b/verification.md` under "Section 5 — packages."
 - Copper on type: the noun `go-to-market.` in the hero, and nowhere else. Copper otherwise
   only in the `→` glyph, the 1px seam rules, the row wipe and the ask field.
 

@@ -30,6 +30,28 @@ Copper `#C8542B`. Used everywhere across both modes. One exception: `ordani.sage
 
 The `design-tokens.sh` hook warns on any other hex literal.
 
+**AMENDED Pass-104b §5, 2026-09-08 — a THIRD exception to "no section declares a
+background."** WINNING-BRIEF-2026-09-05 §3 names two: the ask's full-bleed copper field
+and the foot's espresso ground. Asked directly whether to ship the safe poster-only pick
+for the home's packages section or reverse the rule for a full-bleed espresso band under
+the three cards and Engagements, the operator chose, verbatim: "Reverse the rule, build
+the band." The packages section (`#price` in `components/room/Packages.tsx` /
+`app/room.css`) is now that third exception. It is an exception, not a repeal — no other
+section may declare a ground on the strength of it.
+Why, on the record: the Audit's 1px copper card border moves from 3.85:1 on bone to
+4.41:1 on espresso, which was the second reason the operator gave for the reversal.
+Every card's ink-on-bone type inverts to bone-on-espresso by the same mechanism `.room`
+and `.op` already use (a local `--ink`/`--hair` override, not a second ground system);
+re-measured ratios (18px+ figures 16.97:1, 17px body 8.98–10.95:1, 14px label 6.44:1,
+copper-on-espresso 4.40:1) are in `.planning/qa/pass-104b/verification.md` under
+"Section 5 — packages." One side-effect this reversal creates and this pass fixes: the
+Engagements block ("the fourth object," same file) used to be distinguished from the
+rest of the section by ground alone (espresso block on a bone section) — its own border
+was `1px solid transparent` because the ground contrast did the work. On a uniformly
+espresso section that border is invisible against an identical ground, so it now takes
+the plain cards' own hairline (`var(--hair)`, not a new device) so it still reads as a
+box.
+
 ## One signature motion
 
 `<TitleCard />` on case-study hero (Phase 5). Foyer↔theater View Transition (Phase 2). NOTHING ELSE pins, sticks, parallax-scrolls, or follows the cursor without the `motion-engineer` agent's written approval.
