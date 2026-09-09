@@ -1,102 +1,108 @@
-# Pass 104b — re-verify after the door fix, and write the record
-Executor: GLM 5.3 (`scripts/claude-glm.ps1`). Ruler commits; you do not.
+# Pass 104b: re-verify after the door fix, and write the record
 
-## 0. State. Read this before anything.
-HEAD is `0ed6f52`. Sections 1-7 of `.claude/briefs/pass-104b-home-rebuild.md` are APPLIED.
-That commit fixed two things after the last measurements were taken:
-  a. §7 footer — `.foot .nav` right-aligned to the gutter (`align-items:flex-end` +
-     `text-align:right`, reset below 900px).
-  b. §6 door — `.rl-home .faq .sec` pinned to `grid-row: 1`, so the chip shares the
-     head's cell and `align-self:end` lands it on the list's last hairline.
-It also applied §6's five named gate edits plus three the brief does not name
-(`14.4-heads` q 24->28 / a 17->19, `14.8-renders-with-javascript-off` qs_n 2->3, and
-`stacked` inside `18-objections-one-lane-from-the-seam`). All are in `0ed6f52`'s message.
+Executor: GLM 5.3. The ruler commits; you do not commit and you do not push.
 
-**Every gate number below was measured BEFORE (b) landed. Your whole job is to re-measure
-against the current build and write the record. Nothing about the design is open.**
+NOTE ON THIS FILE. It is deliberately plain ASCII and contains no command flags.
+An earlier version embedded a shell command with flags in it, and the launcher
+parsed them as its own options (it died on "unknown option --no-sandbox"), which
+killed the run. Every command you need lives in ONE script. Do not retype flags.
 
-## 1. Do not touch these
-- `app/room.css` and `scripts/verify-room.py` — FINISHED. One writer per file; not you.
-  If a gate fails, REPORT it. Do not edit a gate to make it pass.
-- Any price, fact, ledgered number, or string a Pass 102/103/104a tick table names.
-- `.claude/RESUME.md` — the ruler writes it.
-- Do NOT commit. Do NOT push. Do NOT deploy.
+## 0. State
 
-## 2. The server is already up
-`pnpm start` is serving the CURRENT build on **http://localhost:3101/**.
-Port 3000 is held by a STALE server — never use it (RESUME standing trap).
-Only run `pnpm build` if you change code, and you are not changing code.
+HEAD is 21f123a. Sections 1 to 7 of the home rebuild are APPLIED and committed.
+Commit 0ed6f52 changed two things AFTER the last measurements were taken:
+  a. the footer nav is right-aligned to the gutter;
+  b. the objections door chip now shares the head's grid cell, so it lands on the
+     list's last hairline.
+It also applied five gate edits the home-rebuild brief names, plus three it does
+not name. All of that is spelled out in 0ed6f52's commit message.
 
-## 3. The four gates, with the output each must produce
-Run from the worktree root. `python -P` always: the scratchpad's `copy.py` shadows the stdlib.
+EVERY published gate number predates change (b). Your whole job is to re-measure
+against the current build and write the record. No design question is open.
 
-    python -P scripts/verify-room.py http://localhost:3101/
-EXPECT the last line `85 checks, 84 pass, 1 fail`, the single FAIL being
-`14.7-sentence-and-chips-share-the-left-edge` — a known ruling, not a defect, left unfixed
-on purpose. ANY other FAIL is a finding: quote it in full and stop.
-**Immediately afterwards run `git checkout -- .planning/qa/pass-101`** — the verifier
-overwrites baselines under `.planning/qa/pass-101/verify/`. This is a standing trap.
+## 1. Do not touch
 
-    axe-core 4.10.2, already unpacked at
-    C:/Users/micah/AppData/Local/Temp/claude/C--Users-micah-Code-the-80-percent-wall/9033e21b-ea02-47e9-a688-4737de8f4c16/scratchpad/package/axe.min.js
-Scan `/`, `/packages`, `/about` at 1440x900 and 390x844, TWICE each: once at rest, once
-after a Lenis wheel walk to the foot. Both traps are real — axe before
-`document.fonts.ready` invents contrast failures, and axe without a wheel walk MISSES the
-ones a scrolled ground creates. So: `goto` -> `await document.fonts.ready` -> wait 600ms ->
-inject axe -> scan -> 40 x `mouse.wheel(0,700)` with 60ms between -> wait 1200ms -> scan again.
-EXPECT **0 violations at any impact level, on all 12 scans.** A working script that does
-exactly this is at `C:/Users/micah/AppData/Local/Temp/claude/C--Users-micah-Code-the-80-percent-wall/9033e21b-ea02-47e9-a688-4737de8f4c16/scratchpad/axe-run.py`; run it, do not rewrite it.
+app/room.css and scripts/verify-room.py are FINISHED. One writer per file, and it
+is not you. If a gate fails, REPORT it; never edit a gate to make it pass.
+Do not touch .claude/RESUME.md, any price, any ledgered number, or any string a
+Pass 102, 103 or 104a tick table names. Do not commit. Do not push. Do not deploy.
 
-    npx --yes lighthouse http://localhost:3101/ --only-categories=performance \
-      --preset=perf --form-factor=mobile --screenEmulation.mobile --output=json \
-      --output-path=C:/Users/micah/AppData/Local/Temp/claude/C--Users-micah-Code-the-80-percent-wall/9033e21b-ea02-47e9-a688-4737de8f4c16/scratchpad/lh-final.json --chrome-flags="--headless=new --no-sandbox"
-EXPECT Performance **>= 86**. It measured 94 before the door fix. A score below 86 is a
-return condition: stop and report it.
-Write the output path INSIDE the scratchpad. `--output-path=/tmp/...` silently writes
-nothing on this machine; that already cost one run.
+## 2. The server is already running
 
-    python -P C:/Users/micah/AppData/Local/Temp/claude/C--Users-micah-Code-the-80-percent-wall/9033e21b-ea02-47e9-a688-4737de8f4c16/scratchpad/shots.py http://localhost:3101/
-Captures home full-page, `.faq` and `.foot` at both widths plus the `/packages` foot, all
-after `document.fonts.ready` + 3s per brief §8. Files land in `.planning/qa/pass-104b/`.
+The current build is served on http://localhost:3101/ and that is what you use.
+Port 3000 is held by a STALE server; never point anything at 3000. You are not
+changing code, so you do not need to build.
 
-## 4. The one measurement that proves the door fix
-    python -P C:/Users/micah/AppData/Local/Temp/claude/C--Users-micah-Code-the-80-percent-wall/9033e21b-ea02-47e9-a688-4737de8f4c16/scratchpad/door.py http://localhost:3101/
-EXPECT `gridRows` to be a SINGLE row (`620.969px`, not `48px 620.969px`), `secRow` `1`,
-`dcRow` `1`, and **`chipVsLastHairline` 0.0**. Quote all four in the record.
+## 3. Run the gates
 
-## 5. What you write
-Append to `.planning/qa/pass-104b/verification.md` — do not rewrite what is there.
+One command. It runs all six gates in order, with every flag baked in:
 
-**`## Section 6 — objections: three rows, the door`**, covering: the three rows render with
-the operator-approved copy (quote the four strings from brief §6 §"ROW 1"/"ROW 2" and confirm
-each appears verbatim); the 28/19 register as measured by `14.4-heads`; the chip appears
-TWICE in the served markup — verify with
-`curl -s http://localhost:3101/ | grep -o '<span class="t">Book a free intro call</span>' | wc -l`
-which must print `2` (**`grep -c` counts LINES, not occurrences, and returns 1 here — that
-false reading already misled one session**); the door defect and its fix with the before
-numbers (`48px 620.969px`, chip 621px clear) and the after (`chipVsLastHairline` 0.0); and
-the five named + three unnamed gate edits, naming the unnamed three as operator-owned.
+    bash C:/Users/micah/AppData/Local/Temp/claude/C--Users-micah-Code-the-80-percent-wall/9033e21b-ea02-47e9-a688-4737de8f4c16/scratchpad/run-gates.sh
 
-**`## Section 7 — the footer`**, covering: the before/after geometry at 1440
-(ink right edge 886.06 -> 1408.00, empty gutter 521.94px / 37.9% of the row -> 0.00px,
-ragged-left spread 0 -> 100.03px) and at 390 (unchanged: links at x=32, gutter 171.94px,
-spread 0 — quote that the two runs are identical); why right-alignment was chosen over a
-two-track split (the ask's `.promise` at `9/13` already uses `justify-self:end`, and the
-receipts arrow's rule defends a straight right margin); that the rule is SHARED with the
-five `(room)` routes through `Foot.tsx`, evidenced by `foot-packages-*.png`; and that
-`.foot .book` CSS is now DEAD — `Foot.tsx` renders no `.book` element — left in place
-because §7 says "no new material" and deleting it is a separate cleanup. Name it as an
-open row; do not delete it.
+What each gate must produce:
 
-**`## Section 8 — whole-pass gates`**: every command above with its real output.
+GATE 1, the room verifier. The last line must read "85 checks, 84 pass, 1 fail",
+and the single FAIL must be 14.7-sentence-and-chips-share-the-left-edge, a known
+ruling left unfixed on purpose. ANY other FAIL is a finding: quote it in full and
+stop. The script restores the pass-101 baselines afterwards because the verifier
+overwrites them. That restore is a standing trap; do not remove it.
 
-Every number is real probe output. No number is derived, estimated, or copied from this
-brief. If a probe cannot run, write UNVERIFIED and say why — never substitute a weaker one.
+GATE 2, the door fix. gridRows must be a SINGLE row of 620.969px, and NOT
+"48px 620.969px". secRow must be 1, dcRow must be 1, chipVsLastHairline must be
+0.0. Quote all four numbers in the record.
 
-## 6. Return conditions — stop and report, do not work around
-Any verifier FAIL other than `14.7` · Lighthouse mobile below 86 · any axe serious or
-critical · `chipVsLastHairline` not 0 · the chip count not 2 · a gate you would have to edit.
+GATE 3, axe-core 4.10.2. Three routes at two widths, scanned twice each: once at
+rest, once after a wheel walk to the foot. Expect ZERO violations at any impact
+level across all 12 scans. Both halves matter: axe run before fonts are ready
+invents contrast failures, and axe run without the wheel walk misses the failures
+that a scrolled ground creates.
 
-## 7. When you are done
-Print a summary block: each gate, its number, PASS or FAIL. List every file you wrote.
-Then STOP. You do not commit, and you do not push.
+GATE 4, Lighthouse mobile Performance. Must be 86 or higher. It measured 94 before
+the door fix. Below 86 is a return condition: stop and report it.
+
+GATE 5, the door chip must appear exactly TWICE in the served markup. The script
+counts occurrences, not lines. Record that "grep -c" counts LINES and returns 1
+here, and that the false reading already misled one session.
+
+GATE 6, screenshots into .planning/qa/pass-104b/ at both widths.
+
+## 4. What you write
+
+Append to .planning/qa/pass-104b/verification.md. Do not rewrite what is there.
+
+Section 6, the objections and the door. Confirm the three rows render the
+operator-approved copy verbatim, quoting the four strings. Give the 28 and 19
+register as measured. Give the chip count from GATE 5. Give the door defect with
+its before numbers (the grid computed "48px 620.969px" and the chip sat 621px
+clear of the hairline) and its after number (chipVsLastHairline 0.0). List the
+five named gate edits and the three unnamed ones, and say plainly that the three
+unnamed ones are the operator's to confirm or reverse.
+
+Section 7, the footer. At 1440 the ink right edge moved from 886.06 to 1408.00,
+the empty gutter from 521.94px (37.9 percent of the row) to 0.00px, and the
+ragged-left spread from 0 to 100.03px. At 390 the two runs are identical: links at
+x=32, gutter 171.94px, spread 0. Record why right-alignment beat a two-track
+split: the copper ask directly above already right-aligns its promise to the
+gutter, and the receipts arrow's own rule defends a straight right margin. Record
+that the rule is SHARED with the five room routes through Foot.tsx, evidenced by
+foot-packages-1440.png and foot-packages-390.png. Record that the .foot .book CSS
+is now DEAD, because Foot.tsx renders no book element, and that it was left in
+place because section 7 says "no new material" and deleting it is a separate
+cleanup. Name it as an open row. Do not delete it.
+
+Section 8, whole-pass gates: every gate above with its real output.
+
+Every number must be real probe output. Nothing derived, nothing estimated,
+nothing copied out of this brief. If a probe cannot run, write UNVERIFIED and say
+why. Never substitute a weaker probe and report success.
+
+## 5. Return conditions: stop and report, do not work around
+
+Any verifier FAIL other than 14.7. Lighthouse mobile below 86. Any axe serious or
+critical finding. chipVsLastHairline not 0. The chip count not 2. Any gate you
+would have to edit in order to get a pass.
+
+## 6. When you are done
+
+Print a summary block naming each gate, its number, and PASS or FAIL. List every
+file you wrote. Then STOP.
