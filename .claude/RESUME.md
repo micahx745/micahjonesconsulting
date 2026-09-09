@@ -3,42 +3,41 @@
 ## READ FIRST
 
 **The dark rebuild is REJECTED; the LIVE site is being evolved instead.** Work is on
-`design/live-evolve` (worktree `.claude/worktrees/p106-live`), forked from `main`.
-`design/room-and-ledger` is parked intact, not reverted. **Nothing pushed. Production
-untouched.**
+`design/live-evolve` (worktree `.claude/worktrees/p106-live`) off `main`.
+`design/room-and-ledger` is parked intact, not reverted.
 
-**`pnpm build` FAILS here** on a Turbopack font-module error that also breaks untouched
-`main`. **`npx next build --webpack` succeeds** and is the local verification path.
-**Workflow ignores `CLAUDE_CODE_SUBAGENT_MODEL`** — name `model:` on every agent() call.
+**`pnpm build` fails HERE only** — a Turbopack font error that also breaks untouched `main`;
+Vercel builds the same branch fine. Locally use `npx next build --webpack`. **Workflow
+ignores `CLAUDE_CODE_SUBAGENT_MODEL`** — name `model:` on every agent() call.
 
-## Pass 106 — done and verified
+## PUSHED — preview live, production untouched
 
-`b9672c7` the evolution · `f83130f` gates · Astra's 1+3 applied after that.
-Plan: `.planning/design/PASS-106-APPLY-PLAN.md`. Research: `.planning/reviews/CHAT-105-*`.
+`design/live-evolve` at `b515706`, Vercel `dpl_CiB6Hjs` READY, branch alias on vercel.app
+(Vercel login, or a 23h `_vercel_share` link — **never commit that token, repo is public**).
+Production still serves `main`.
 
-- **offer** (new, under the hero): "The Audit. $2,500. Two weeks." + three ruled
-  deliverable rows + a left audit-specific link. First price above the fold ever.
-- **receipts** moved up; **Clients/Three engagements CUT**; **How I work inverted**
-  (artifact large, verb small, named deal as proof); ledger gains Neuton.AI (no dollar
-  figure, never disclosed); hero gains a buyer line, loses a CTA; `/packages` Audit is a
-  hero card.
+## Pass 106 — what changed
 
-**Astra gate: BETTER.** "Cutting 'Three engagements' removes a broad capabilities menu."
-Verified: tsc · copy-lint · vendor · retired-phrases · render-gate · webpack build ·
-**axe adds NO new violation** (production shows the same ones plus one this branch removes)
-· **Lighthouse mobile 94**.
+- **offer** (new, under hero): "The Audit. $2,500. Two weeks." + three ruled deliverable
+  rows + a left, audit-specific link. First price above the fold ever.
+- **receipts moved up**, now lead with **Ordani**; **Clients/Three engagements CUT**;
+  **How I work inverted** (artifact large, verb small, named deal as proof).
+- **exit record** (new): four deals, sum **$5.58B**, under-claim **$5B+** — all rendered
+  from `content/citations.ts`, replacing the old one-row "$5B+ combined" badge.
+- hero gains a buyer line, loses a CTA. `/packages`: the Audit is a hero card.
+
+**Astra gate: BETTER.** All three of its changes applied. axe adds **no new violation**
+(production has the same ones, plus one this branch removes). **Lighthouse mobile 94.**
 
 ## NEXT — operator decisions
 
-1. **Astra's #2, yours to rule:** put **Ordani FIRST** in the receipts, ahead of
-   acquisition history. It is 8th today. Reordering changes which proof leads.
-2. Push `design/live-evolve` for a preview when you want one.
-3. Deferred earlier: retiring the hero `$5B+`/`$20M+` stat chips (ruling 1); the
-   rotating-word H1 stays (ruling 2).
+1. Look at the preview. Retire the hero `$5B+`/`$20M+` chips now the exit record carries
+   the number? (ruling 1, deferred; rotating H1 stays per ruling 2.)
+2. Merge to `main` = production. Yours.
 
 ## OPEN
 
-- `.cw-lede-link` contrast on `/packages` and `/services` — fails on `main` too.
+- `.cw-lede-link` contrast on `/packages` + `/services` — fails on `main` too.
 - Global `settings.json` wildcard allow rules over-approve.
 - Stripe live $500 buy/refund, then `PLAYBOOK_ON_SALE=1` = launch.
 
@@ -46,5 +45,7 @@ Verified: tsc · copy-lint · vendor · retired-phrases · render-gate · webpac
 
 push to main auto-deploys · **capture VIEWPORT, not full_page, and wait 11s for the hero
 rotation** (a full-page frame made me report a clipped headline that does not exist, and
-Astra repeated it) · `python -P` · `grep -c` counts LINES · PS5.1 mangles quotes to native
-exes, use `git commit -F` · prettier reflows anchors, re-read before a second patch.
+Astra repeated it back) · `python -P` · `grep -c` counts LINES · PS5.1 mangles quotes to
+native exes and has no heredoc, use `git commit -F <file>` · prettier reflows anchors ·
+**this page renders on MORE THAN ONE world** — a fixed accent or an opacity cannot carry
+contrast here; axe caught 19 failures that way.
