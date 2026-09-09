@@ -192,47 +192,6 @@ export function Hero() {
     };
   }, []);
 
-  // Chip drift (Pass-4) — scroll-linked, same philosophy as the service
-  // strip (D2): progress derives from the hero's own rect every scroll
-  // frame, written to --hero-scroll on the hero root; each chip's CSS
-  // multiplies it by its own --drift. User-driven, no idle loop; the
-  // reduced-motion guard means the var is never set and chips sit still.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduced) return;
-
-    const hero = heroRef.current;
-    if (!hero) return;
-
-    let raf = 0;
-    let pending = false;
-    function apply() {
-      const rect = hero!.getBoundingClientRect();
-      // 0 at load, 1 when the hero has fully scrolled past.
-      const progress = Math.min(
-        Math.max(-rect.top / Math.max(rect.height, 1), 0),
-        1,
-      );
-      hero!.style.setProperty("--hero-scroll", progress.toFixed(4));
-      pending = false;
-    }
-    function onScroll() {
-      if (!pending) {
-        pending = true;
-        raf = requestAnimationFrame(apply);
-      }
-    }
-    apply();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
   // Parallax — pointer-fine devices only; rAF-batched; tightened range.
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -396,45 +355,34 @@ export function Hero() {
         </a>
       </div>
 
-      {/* Pass-5: the proof chips as STAT OBJECTS (operator: v1 chips
-          "look weak"). Figure at display scale in the display face,
-          label in mono beneath — the SyncDepth/PeakHealth object
-          grammar, not a text pill. The four-exit story leads
-          (operator instruction 2026-08-30; $5B+ = disclosed deals
-          only, sources in content/citations.ts). Scroll counter-drift
-          unchanged: user-driven, dead under reduced motion.
-          Pass-57 (operator 2026-09-01: "cut down on the attributes…
-          keep the exits thing and the 20 mil"): TWO stats, anchored
-          bottom-right as a pair so the photo's face stays clear. */}
-      <ul className="cw-chips" aria-label="Track record at a glance">
-        <li
-          className="cw-chip cw-chip--lead cw-reveal"
-          style={
-            {
-              "--drift": "-22px",
-              transitionDelay: "500ms",
-            } as React.CSSProperties
-          }
-        >
-          <strong className="cw-chip__fig">$5B+</strong>
-          <span className="cw-chip__lbl">combined value of four exits</span>
-          <span className="cw-chip__sub">
-            Postmates · SurveyMonkey · Guardicore · Neuton.AI
-          </span>
-        </li>
-        <li
-          className="cw-chip cw-reveal"
-          style={
-            {
-              "--drift": "30px",
-              transitionDelay: "620ms",
-            } as React.CSSProperties
-          }
-        >
-          <strong className="cw-chip__fig">$20M+</strong>
-          <span className="cw-chip__lbl">client revenue</span>
-        </li>
-      </ul>
+      {/* Pass-106 (credential pass, CHAT-105-RESEARCH). The two-chip
+          floating stat pair is retired. Diagnosis: a number pinned to
+          the photo in display-face NAKED TYPE (.cw-chip__fig) IS the
+          badge grammar — the fix isn't moving figures off the photo
+          (everything in this hero sits on the photo), it's dropping
+          that display treatment for one sentence in the hero's own
+          body voice, same register as .cw-sub above it. The per-
+          company cash-out (acquirer, price, role) moves to THE LEDGER
+          (#products), which gains a fourth row for Neuton.AI to
+          complete the claim this line makes — see the page.tsx patch
+          in the same set. Both sentences below are copied verbatim
+          from shipped copy, not new language: the exits sentence
+          matches app/layout.tsx's own metadata description; the
+          revenue sentence matches about/page.tsx's revenue bullet.
+          Pass-57 (operator 2026-09-01, "keep the exits thing and the
+          20 mil") is why both figures stay IN THE HERO at all — this
+          patch keeps them, it only retires the stat-object staging.
+          NEEDS_RULING: that staging is Pass-7's naked-type grammar,
+          chosen after two rounds were rejected as "look weak" / "look
+          ai" — confirm the demotion to plain prose before this ships. */}
+      <p
+        className="cw-hero-credential cw-reveal"
+        style={{ transitionDelay: "560ms" }}
+      >
+        Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore,
+        Neuton.AI. $5B+ combined. <strong>$20M+</strong> in client revenue since
+        2013.
+      </p>
     </header>
   );
 }

@@ -1864,118 +1864,32 @@ body {
   z-index: 2;
 }
 
-/* Proof chips — stats as objects on the image, not paragraphs below it. */
-[data-mode="cw"] .cw-chips {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* THE CREDENTIAL, in-flow (Pass-106, replaces the retired .cw-chips
+ * stat-object pair — see the Hero.tsx patch in the same set). One
+ * sentence in the hero's own body voice, same column as .cw-h1/.cw-sub,
+ * not a separately-staged stat object. No new positioning system: it's
+ * a normal-flow child, so the existing `.cw-hero--photo > *:not(.cw-hero__ground)
+ * { position: relative; z-index: 2; }` rule already stacks it above the
+ * photo. Opacity matches .cw-sub's own value — the verified floor for
+ * hero text against this veil (0.92, the tightest of the checked
+ * worlds per the a11y comments elsewhere in this file). Verbatim body
+ * face (--font-cw-body / Hanken Grotesk): this is prose, never mono. */
+[data-mode="cw"] .cw-hero-credential {
+  max-width: 620px;
+  margin-top: 28px;
+  font-family: var(--font-cw-body);
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.92;
 }
-/* Pass-7 stat rail — third treatment. Card versions refused twice
- * ("look weak", "look ai"). The high-tier grammar (PeakHealth, the
- * Awwwards large-numbers pattern) is NAKED TYPE: display-face figures
- * set straight on the image, hairline rules, zero chrome. Contrast
- * comes from the hero veil's right-edge deepening, not from boxes. */
-[data-mode="cw"] .cw-chip {
-  color: var(--color-cw-bone);
-  text-align: right;
-  padding: 0;
-  background: none;
-  border: 0;
-}
-[data-mode="cw"] .cw-chip__fig {
-  display: block;
-  font-family: var(--font-cw-display);
+[data-mode="cw"] .cw-hero-credential strong {
   font-weight: 700;
-  font-size: clamp(36px, 3.6vw, 52px);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  color: var(--color-cw-bone);
-  font-variant-numeric: tabular-nums;
-  text-shadow: 0 2px 24px
-    color-mix(in srgb, var(--color-cw-espresso) 55%, transparent);
 }
-[data-mode="cw"] .cw-chip__lbl {
-  display: block;
-  margin-top: 7px;
-  font-family: var(--font-cw-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--color-cw-bone) 85%, transparent);
-}
-[data-mode="cw"] .cw-chip__sub {
-  display: block;
-  margin-top: 9px;
-  font-family: var(--font-cw-mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-  color: color-mix(in srgb, var(--color-cw-bone) 72%, transparent);
-}
-[data-mode="cw"] .cw-chip--lead .cw-chip__fig {
-  font-size: clamp(56px, 5.6vw, 84px);
-  color: var(--color-cw-saffron);
-}
-
-@media (min-width: 861px) {
-  /* One right-aligned rail, not a scatter — the scatter read as
-   * template. The rail spans the hero's right edge; each stat drifts
-   * a few px on scroll (--hero-scroll, user-driven, dead under reduce). */
-  /* Pass-57: two stats, one row, anchored bottom-right — the pair sits
-   * on the darkest part of the veil and leaves the face clear. */
-  [data-mode="cw"] .cw-hero--photo > .cw-chips {
-    position: absolute;
-    z-index: 2;
-    right: clamp(40px, 5vw, 88px);
-    bottom: clamp(40px, 8vh, 80px);
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    gap: 0;
-    pointer-events: none;
-  }
-  [data-mode="cw"] .cw-chip {
-    pointer-events: auto;
-    padding: 0;
-    transform: translateY(calc(var(--hero-scroll, 0) * var(--drift, 0px)));
-    will-change: transform;
-  }
-  [data-mode="cw"] .cw-chip + .cw-chip {
-    margin-left: 40px;
-    padding-left: 40px;
-    border-left: 1px solid
-      color-mix(in srgb, var(--color-cw-bone) 28%, transparent);
-  }
-}
-@media (max-width: 860px) {
-  /* Mobile: naked 2-up stat grid under the CTAs, hairline top rules. */
-  [data-mode="cw"] .cw-chips {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 24px;
-    margin-top: 32px;
-  }
-  [data-mode="cw"] .cw-chip {
-    text-align: left;
-    white-space: normal;
-    border-top: 1px solid
-      color-mix(in srgb, var(--color-cw-bone) 30%, transparent);
-    padding-top: 12px;
-  }
-  [data-mode="cw"] .cw-chip--lead {
-    grid-column: 1 / -1;
-  }
-  [data-mode="cw"] .cw-chip__fig {
-    font-size: 26px;
-  }
-  [data-mode="cw"] .cw-chip--lead .cw-chip__fig {
-    font-size: 38px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-mode="cw"] .cw-chip {
-    transform: none !important;
-  }
-}
+/* .cw-chips/.cw-chip* fully removed with this patch. Confirmed by
+ * repo-wide grep: those classes had no call site outside Hero.tsx.
+ * --hero-scroll goes with them — it existed solely to feed .cw-chip's
+ * scroll-drift transform (grep confirms no other reader); the
+ * useEffect that wrote it is removed in the companion Hero.tsx patch. */
 
 /* ORDANI PHOTO GROUND (Pass-7, D-R15) — the real product under a petrol
  * duotone veil, same stacking grammar as the hero (no blend modes,
