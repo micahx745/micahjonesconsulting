@@ -31,7 +31,7 @@ Numbers: `.planning/qa/pass-104b/verification.md`.
 - **Astra does NOT endorse the pass** (`ASTRA-104B-HOME.md`): hero sign reads as
   DECORATION not proof · operator band still soft at 1440 · packages band is NOT the
   loudest, the copper ask is. Nothing applied. It also flags the book 104a deliberately
-  removed, and names a nonexistent person; read change 3 with care.
+  removed, and misreads `Ordani` as a PERSON (change 3 wants footage of Micah).
 - **Three gate edits brief §6 does not name**: `14.4-heads` (24→28 / 17→19),
   `14.8-renders-with-javascript-off` (qs_n 2→3), `stacked` 2→3. Same facts §6 orders, in
   gates it did not enumerate; all stay exact-value. **Confirm or reverse.**
@@ -43,6 +43,6 @@ Numbers: `.planning/qa/pass-104b/verification.md`.
 ## Standing traps
 
 Every push auto-deploys · **stale `next start` on :3000 serves OLD chunks** · `python -P`
-(scratchpad `copy.py` shadows stdlib) · `verify-room.py` clobbers `.planning/qa/pass-101`,
-restore after each run · **`grep -c` counts LINES, not occurrences** · lighthouse
+(`copy.py` shadows stdlib) · `verify-room.py` clobbers `.planning/qa/pass-101`,
+restore after runs · **`grep -c` counts LINES, not occurrences** · lighthouse
 `--output-path=/tmp/…` writes nothing here · axe needs fonts.ready + a wheel walk.
