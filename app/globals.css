@@ -3732,6 +3732,151 @@ body {
   border-top: 1px solid currentColor;
   border-bottom: 2px solid currentColor;
 }
+
+/* CONTRAST FIX, axe 2026-09-09: the first version used saffron for the figures
+ * and opacity 0.6-0.9 for de-emphasis, and axe returned 19 serious failures at
+ * 1440 and 9 at 390. Two reasons, both mine. This block renders on MORE THAN
+ * ONE world -- the WorldSwitcher cross-fades the page palette, so it sits on
+ * terracotta #9E3C25 at one width and bone #ECE3D0 at another -- and neither a
+ * fixed accent nor an opacity can be reasoned about over a ground that moves.
+ * Saffron measured 2.56:1 on terracotta and 2.05:1 on bone; both fail AA even
+ * for large text. So: every colour is now `inherit`, every opacity is gone, and
+ * the whole hierarchy is carried by SIZE and WEIGHT. That is what the ledger
+ * rows beside this block already do, and it is what the juror said in the first
+ * place: weight and size doing different jobs, not colour. */
+/* THE EXIT RECORD (Pass-106) — replaces the ledger's single "Four exits ·
+ * $5B+ combined" summary row. Both reviews of this site said a lone number
+ * reads as a badge and the same number attached to named outcomes reads as a
+ * track record, so this shows the four deals, their counterparties, their
+ * years and their disclosed figures, then the sum, then the under-claim.
+ * Every value renders from content/citations.ts. Hairlines are the LEDGER's
+ * own (currentColor at 25%), every colour is inherited rather than declared
+ * (see the CONTRAST FIX note below — an accent was tried and failed AA), and
+ * the entrance is the site's existing .cw-reveal system: no new keyframe, no
+ * new token, no second mechanism. */
+[data-mode="cw"] .cw-exits {
+  margin-top: 56px;
+}
+[data-mode="cw"] .cw-exits__title {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 28px;
+  font-weight: 400;
+}
+[data-mode="cw"] .cw-exits__row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  padding-top: 26px;
+}
+[data-mode="cw"] .cw-exits__deal > p {
+  margin: 0;
+}
+[data-mode="cw"] .cw-exits__year {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px !important;
+}
+[data-mode="cw"] .cw-exits__co {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(19px, 1.7vw, 23px);
+  line-height: 1.15;
+}
+[data-mode="cw"] .cw-exits__ev {
+  font-size: 15px;
+  line-height: 1.45;
+  margin-top: 4px !important;
+}
+[data-mode="cw"] .cw-exits__val {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.1;
+  color: inherit;
+  margin-top: 14px !important;
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-exits__val--undisclosed {
+  font-family: var(--font-cw-body);
+  font-weight: 500;
+  font-size: clamp(15px, 1.3vw, 17px);
+  color: inherit;
+  /* aligns the word to the baseline the three figures share, so the row does
+     not look like it is missing a value — it looks like it declined one. */
+  margin-top: 24px !important;
+}
+[data-mode="cw"] .cw-exits__note {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 8px !important;
+  max-width: 26ch;
+}
+[data-mode="cw"] .cw-exits__rule {
+  height: 1px;
+  background: color-mix(in srgb, currentColor 25%, transparent);
+  margin: 34px 0 0;
+}
+[data-mode="cw"] .cw-exits__sum {
+  margin: 22px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+[data-mode="cw"] .cw-exits__sumrow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+[data-mode="cw"] .cw-exits__sumrow dt {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-exits__sumrow dd {
+  margin: 0;
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(17px, 1.5vw, 20px);
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-exits__total {
+  font-size: clamp(30px, 3.2vw, 46px) !important;
+  font-weight: 800;
+  color: inherit;
+  line-height: 1.05;
+}
+[data-mode="cw"] .cw-exits__sumrow--claim dd span {
+  font-family: var(--font-cw-body);
+  font-weight: 400;
+  font-size: 14px;
+}
+@media (max-width: 899px) {
+  [data-mode="cw"] .cw-exits__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px 24px;
+  }
+}
+@media (max-width: 560px) {
+  [data-mode="cw"] .cw-exits__row {
+    grid-template-columns: 1fr;
+  }
+  [data-mode="cw"] .cw-exits__sum {
+    align-items: flex-start;
+  }
+  [data-mode="cw"] .cw-exits__val--undisclosed {
+    margin-top: 10px !important;
+  }
+}
 [data-mode="cw"] .cw-lrow--tot .cw-lrow__out {
   font-size: 15px;
   opacity: 1;

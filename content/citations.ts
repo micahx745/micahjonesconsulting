@@ -30,7 +30,52 @@ export const CITATIONS = {
       "app/llms.txt/route.ts",
       "metadata descriptions (root, home, about) — /hire-me retired Pass-57",
       "opengraph images (home, about)",
+      "components/color-worlds/ExitRecord.tsx (Pass-106, renders DEALS below)",
     ],
+    // Pass-106: the same four deals as structured data, so <ExitRecord /> can
+    // RENDER the record instead of restating it. quotedStatistics above stays
+    // the citation of record, and every field here is read off it — no figure,
+    // date or acquirer lives in a component as a literal (Pitfall E2).
+    // `value: null` means the price was never disclosed, which is why Neuton
+    // contributes nothing to the sum and carries no figure on the page.
+    DEALS: [
+      {
+        company: "SurveyMonkey",
+        event: "Nasdaq IPO",
+        counterparty: "SVMK",
+        year: "2018",
+        value: "$2.33B",
+        note: "First-day market valuation, September 26.",
+      },
+      {
+        company: "Postmates",
+        event: "Acquired by",
+        counterparty: "Uber",
+        year: "2020",
+        value: "$2.65B",
+        note: "All-stock, closed December.",
+      },
+      {
+        company: "Guardicore",
+        event: "Acquired by",
+        counterparty: "Akamai",
+        year: "2021",
+        value: "$600M",
+        note: "Closed October.",
+      },
+      {
+        company: "Neuton.AI",
+        event: "Technology acquired by",
+        counterparty: "Nordic Semiconductor",
+        year: "2025",
+        value: null,
+        note: "Price never disclosed. Counted as zero.",
+      },
+    ],
+    // The arithmetic, stated so the page can show its work: the disclosed
+    // deals sum to this, and the site rounds DOWN to the claim it makes.
+    DISCLOSED_TOTAL: "$5.58B",
+    CLAIMED_FLOOR: "$5B+",
   },
   ORDANI_CDC_2024: {
     id: "ORDANI_CDC_2024",

@@ -58,6 +58,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Hero } from "@/components/color-worlds/Hero";
+import { ExitRecord } from "@/components/color-worlds/ExitRecord";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
@@ -395,19 +396,7 @@ export default function ColorWorldsHome() {
               a cap-table position
             </span>
           </div>
-          <div
-            className="cw-lrow cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "300ms" }}
-          >
-            <span className="cw-lrow__co">
-              Four exits
-              <span className="cw-lrow__tag">Disclosed value only</span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>$5B+</strong> combined
-            </span>
-          </div>
+
           <div
             className="cw-lrow cw-lrow--tot cw-reveal"
             role="listitem"
@@ -422,6 +411,8 @@ export default function ColorWorldsHome() {
             </span>
           </div>
         </div>
+
+        <ExitRecord />
       </section>
 
       {/* OPERATING PRINCIPLES — bone. Pass-21 (Claude Chat audit):
