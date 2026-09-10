@@ -1,51 +1,44 @@
-# RESUME — micahjonesconsulting (2026-09-09)
+# RESUME — micahjonesconsulting (2026-09-10)
 
 ## READ FIRST
 
-**The dark rebuild is REJECTED; the LIVE site is being evolved instead.** Work is on
-`design/live-evolve` (worktree `.claude/worktrees/p106-live`) off `main`.
-`design/room-and-ledger` is parked intact, not reverted.
+**Dark rebuild REJECTED; the LIVE site is being evolved.** Branch `design/live-evolve`
+(worktree `.claude/worktrees/p106-live`) off `main`. `design/room-and-ledger` parked.
+**`pnpm build` fails HERE only** (Turbopack font error, also on `main`; Vercel is fine).
+Use `npx next build --webpack`. **Workflow ignores `CLAUDE_CODE_SUBAGENT_MODEL`**: name
+`model:` on every agent() call.
 
-**`pnpm build` fails HERE only** — a Turbopack font error that also breaks untouched `main`;
-Vercel builds the same branch fine. Locally use `npx next build --webpack`. **Workflow
-ignores `CLAUDE_CODE_SUBAGENT_MODEL`** — name `model:` on every agent() call.
+## Operator 2026-09-10, verbatim
 
-## PUSHED — preview live, production untouched
+"Approved, three things: 1. Go with Astra's H1 recommendation — "I take AI-built products
+from demo to production." 2. Push `design/live-evolve`. 3. Do the buy-button treatment and
+the two-column composition". Constraints: the SUBHEAD carries the positioning claim so the
+exit record still corroborates; the filled pill derives from world tokens, no hex, no
+opacity on text, axe at rest AND scrolled, 1440 and 390.
 
-`design/live-evolve` at `b515706`, Vercel `dpl_CiB6Hjs` READY, branch alias on vercel.app
-(Vercel login, or a 23h `_vercel_share` link — **never commit that token, repo is public**).
-Production still serves `main`.
+## Done
 
-## Pass 106 — what changed
+Pass-108 `ec5548f`: packages back on `/services`, buckets nest in Engagements, home at 5
+sections; all 7 gates re-run here, not taken from GLM's report. Astra
+(`.planning/reviews/ASTRA-108-VERDICT.md`): packages + buckets RESOLVED, services wording
+PARTIAL, home NOT RESOLVED (40% of desktop idle; mono buy links under a filled "See the work").
 
-- **offer** (new, under hero): "The Audit. $2,500. Two weeks." + three ruled deliverable
-  rows + a left, audit-specific link. First price above the fold ever.
-- **receipts moved up**, now lead with **Ordani**; **Clients/Three engagements CUT**;
-  **How I work inverted** (artifact large, verb small, named deal as proof).
-- **exit record** (new): four deals, sum **$5.58B**, under-claim **$5B+** — all rendered
-  from `content/citations.ts`, replacing the old one-row "$5B+ combined" badge.
-- hero gains a buyer line, loses a CTA. `/packages`: the Audit is a hero card.
+## Pass 109 — IN PROGRESS
 
-**Astra gate: BETTER.** All three of its changes applied. axe adds **no new violation**
-(production has the same ones, plus one this branch removes). **Lighthouse mobile 94.**
+H1 swap + positioning sub; buy pill `fill: var(--cw-fg)` / label `var(--cw-bg)` = 5.27 /
+12.59 / 8.28 / 12.59:1 across the 4 worlds (accent-fill fails bone 2.39, petrol 2.05);
+`#offer` and `.cw-sv-open` two-column. Owed: axe-matrix gate + LESSONS #19 (the trap bit 3x
+and was never ledgered).
 
-## NEXT — operator decisions
+## OPEN — operator's
 
-1. Look at the preview. Retire the hero `$5B+`/`$20M+` chips now the exit record carries
-   the number? (ruling 1, deferred; rotating H1 stays per ruling 2.)
-2. Merge to `main` = production. Yours.
-
-## OPEN
-
-- `.cw-lede-link` contrast on `/packages` + `/services` — fails on `main` too.
-- Global `settings.json` wildcard allow rules over-approve.
-- Stripe live $500 buy/refund, then `PLAYBOOK_ON_SALE=1` = launch.
+Postmates/Neuton "why positioning" copy (needs provenance) · Neuton tag 2025 vs 2020 ·
+"Frontier AI engineering" legacy wording · Astra #4 pricing legibility, #5 name Guardicore
+· `.cw-lede-link` contrast (fails on main) · merge to `main` · Stripe live $500 test.
 
 ## Traps
 
-push to main auto-deploys · **capture VIEWPORT, not full_page, and wait 11s for the hero
-rotation** (a full-page frame made me report a clipped headline that does not exist, and
-Astra repeated it back) · `python -P` · `grep -c` counts LINES · PS5.1 mangles quotes to
-native exes and has no heredoc, use `git commit -F <file>` · prettier reflows anchors ·
-**this page renders on MORE THAN ONE world** — a fixed accent or an opacity cannot carry
-contrast here; axe caught 19 failures that way.
+push to main auto-deploys · capture VIEWPORT, settle 12s · `python -P` · `grep -c` counts
+LINES · PS5.1 mangles quotes, `git commit -F` · devtools `resize_page` floors at 500, use
+`emulate 390x844x2,mobile,touch` · axe at rest AND scrolled: MORE THAN ONE world renders
+here, so no fixed text colour, no opacity on text.
