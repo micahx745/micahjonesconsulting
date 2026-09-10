@@ -2185,43 +2185,31 @@ body {
   animation: cw-hero-line-up 0.35s 0.07s cubic-bezier(0.16, 1, 0.3, 1) both; /* motion-ok: load-reveal duration reduced, not raised */
 }
 
-/* Hero — restored display H1 (Pass-12).
- * Pass-9 had dropped this to a Bricolage 600 mixed-case editorial
- * register at clamp(36, 5.5vw, 88) — operator called the result
- * "cheap." Restoring the original display authority: weight 800,
- * ALL CAPS, clamp(52, 12.5vw, 196). The rotating italic word lives
- * inside .cw-roll on the second line ("I build the [PRODUCT.]" etc.)
- * — see .cw-roll rules below.
+/* Hero display H1. Pass-12 restored the display authority (weight 800, ALL
+ * CAPS) after the operator called a 600 mixed-case lede "cheap"; that register
+ * stays. Pass-109 (operator 2026-09-10) replaced the rotating word with one
+ * sentence, "I take AI-built products / from demo to production.", so the size
+ * is set for two lines of ~24 characters instead of a short stem plus one word.
  *
  * Per-line stagger driven by --reveal-i custom prop set in Hero.tsx
  * useEffect on mount. CSS owns the from/to states via the
- * cw-hero-line-up keyframe — survives View-Transitions snapshot
- * capture (Pass-8 lesson). The .cw-h1--lede / .cw-hero--lede class
- * variants from Pass-9 are gone with this restore. */
+ * cw-hero-line-up keyframe, which survives View-Transitions snapshot
+ * capture (Pass-8 lesson). */
 [data-mode="cw"] .cw-h1 {
   font-family: var(--font-cw-display);
   font-weight: 800;
   line-height: 0.86;
   letter-spacing: -0.03em;
-  font-size: clamp(52px, 12.5vw, 196px);
+  font-size: clamp(46px, 6.2vw, 124px);
   text-transform: uppercase;
   margin: 0;
 }
-/* Visual-QA fix (audit 2026-08-11): the 52px clamp FLOOR forces
- * 52px at ≤416px viewports, where "go-to-market." / "data platform."
- * exceed the available line and wrap into the roll mask's clipped
- * second line (the Cowork review's clip finding — real after all;
- * it sat exactly at the wrap boundary). Mobile-only size override:
- * 11.5vw with a 34px floor keeps every rotation word on one line
- * down to 320px. Desktop is untouched. */
+/* Under 520px the sentence runs to about five lines. Sized so the longest unit
+ * that cannot break, "PRODUCTION." (~7em), stays inside a line (100vw - 56px)
+ * wide, the same measured constraint the rotation's longest word used. */
 @media (max-width: 519px) {
   [data-mode="cw"] .cw-h1 {
-    /* Sized from the measured constraint: the longest rotation word
-     * ("data platform.") renders at ~7.73× the font-size, inside a
-     * line that is (100vw − 55px) wide. (100vw − 56px)/7.8 keeps it
-     * one-line with ~1% margin at every width (verified 320/375/390/
-     * 414: max fs 34.3 at 320, 43.3 at 390). */
-    font-size: clamp(28px, calc((100vw - 56px) / 7.8), 50px);
+    font-size: clamp(30px, calc((100vw - 56px) / 8), 46px);
   }
 }
 [data-mode="cw"] .cw-h1 .cw-line {
@@ -2230,6 +2218,7 @@ body {
 }
 [data-mode="cw"] .cw-h1 .cw-line > span {
   display: block;
+  text-wrap: balance;
 }
 [data-mode="cw"].cw-js-reveals .cw-h1 .cw-line > span {
   /* P1-3 (review): entrance tightened from 0.85s to 0.35s; stagger delay
@@ -2247,24 +2236,17 @@ body {
   }
 }
 
-/* Rolling word — bone color + italic. Distinction from the rest of
- * the headline comes from italic + motion, not from color contrast.
- * Reviewer's recommendation: operator > designer. */
-[data-mode="cw"] .cw-roll {
-  color: inherit;
+/* The turn of the sentence, "from demo to production.", in the italic the
+ * rolling word used to carry (Pass-109). Distinction by italic, not colour:
+ * this line crosses the photo and every world, so colour stays inherit. */
+[data-mode="cw"] .cw-h1 .cw-line--turn {
   font-style: italic;
-  position: relative;
-  display: inline-block;
-  height: 1em;
-  overflow: hidden;
-  vertical-align: bottom;
 }
-[data-mode="cw"] .cw-roll .cw-stack {
-  display: block;
-}
-[data-mode="cw"] .cw-roll .cw-stack span {
-  display: block;
-  height: 1em;
+/* Pass-109: holds a hyphenated compound together ("AI-built" in the H1,
+ * "go-to-market" in the sub) so no line ever ends on its hyphen. At 390
+ * the sub broke "go-to-" / "market" inside the positioning claim. */
+[data-mode="cw"] .cw-nowrap {
+  white-space: nowrap;
 }
 
 [data-mode="cw"] .cw-sub {
@@ -2293,27 +2275,6 @@ body {
   font-style: italic;
   font-weight: 700;
   color: inherit;
-}
-
-/* Pass-106: buyer-naming line under .cw-sub (chat research §4 "The
- * opening" — name who this is for, without touching the H1). Smaller
- * and quieter than .cw-sub so weight/size carry the hierarchy, not a
- * second bold claim competing with the first. No new @keyframes, no
- * new JS ref — visible from first paint like the rest of the baseline
- * HTML per the file's own progressive-enhancement note. */
-[data-mode="cw"] .cw-sub-buyer {
-  max-width: 560px;
-  margin: 14px 0 0;
-  font-size: clamp(15px, 1.3vw, 17px);
-  line-height: 1.5;
-  /* 0.92, not the 0.72 first drafted. The only precedent for 0.72 on this
-   * photo is .cw-chip__sub, which sits in the DARKEST part of the veil;
-   * this line sits beside .cw-sub in a lighter region, where 0.72 was
-   * never measured. 0.92 is .cw-sub's own verified floor in exactly this
-   * region. The hierarchy against .cw-sub is carried by SIZE (15-17px
-   * against 17-21px) and by dropping the italic, which is the research's
-   * own point (f): weight and size doing different jobs, not opacity. */
-  opacity: 0.92;
 }
 
 [data-mode="cw"] .cw-cta-row {
@@ -2374,6 +2335,89 @@ body {
 }
 [data-mode="cw"] .cw-cta--ghost:hover .cw-arr {
   transform: translateY(3px);
+}
+
+/* ================================================================
+ * Pass-109: .cw-buy, the purchase pill (Astra #2, operator-approved
+ * 2026-09-10: "Do the buy-button treatment").
+ *
+ * The one rule that matters: fill with --cw-fg, label with --cw-bg. NEVER
+ * --cw-accent. WorldSwitcher writes all three onto the root, so this pill sits
+ * on whichever world is centred, and fg/bg is the one pair every world already
+ * guarantees, because it is the body-text pair. Measured, label-on-fill, which
+ * here equals fill-on-ground:
+ *     terracotta 5.27:1 . bone 12.59:1 . petrol 8.28:1 . espresso 12.59:1
+ * The accent fill .cw-cta uses, with its fixed bone label, measures 2.39:1 on
+ * bone and 2.05:1 on petrol: the bone-on-saffron transient Pass-108's axe run
+ * caught on this hero at 390.
+ * No hex literal and no opacity anywhere in this block, hover and focus
+ * included: hover moves only the arrow, focus draws a ring in --cw-fg, and the
+ * quiet variant's hover inverts the same pair.
+ * Gate: scripts/axe-worlds.mjs scans every world at 1440 and 390.
+ * ================================================================ */
+[data-mode="cw"] .cw-buy {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--cw-fg);
+  color: var(--cw-bg);
+  border: 2px solid var(--cw-fg);
+  border-radius: 999px;
+  padding: 16px 30px;
+  transition: transform 0.15s ease; /* motion-ok: press feedback only; no colour transition to sample mid-fade */
+}
+[data-mode="cw"] .cw-buy > [aria-hidden] {
+  display: inline-block;
+  transition: transform 0.25s; /* motion-ok: arrow nudge, the .cw-cta idiom */
+}
+[data-mode="cw"] .cw-buy:hover > [aria-hidden],
+[data-mode="cw"] .cw-buy:focus-visible > [aria-hidden] {
+  transform: translateX(6px);
+}
+[data-mode="cw"] .cw-buy:focus-visible {
+  outline: 2px solid var(--cw-fg);
+  outline-offset: 4px;
+}
+[data-mode="cw"] .cw-buy:active {
+  transform: translateY(1px);
+}
+[data-mode="cw"] .cw-buy[aria-busy="true"] {
+  cursor: progress;
+}
+/* The quieter purchase: an outline in the ground's own text colour. Used where
+ * one package is recommended over its neighbours, so the hierarchy follows the
+ * "Start here" tag instead of three equal fills. */
+[data-mode="cw"] .cw-buy--quiet {
+  background: transparent;
+  color: var(--cw-fg);
+}
+[data-mode="cw"] .cw-buy--quiet:hover,
+[data-mode="cw"] .cw-buy--quiet:focus-visible {
+  background: var(--cw-fg);
+  color: var(--cw-bg);
+}
+/* Price and duration beside the hero pill. Data, so mono is permitted
+ * (CLAUDE.md: labels, codes, data). color: inherit, no opacity. */
+[data-mode="cw"] .cw-buy-group {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+}
+[data-mode="cw"] .cw-buy-meta {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
 }
 
 /* ================================================================
@@ -2703,6 +2747,43 @@ body {
 [data-mode="cw"] .cw-offer-next {
   margin-top: 32px;
   max-width: 62ch;
+}
+
+/* Pass-109 (Astra #3, operator-approved 2026-09-10): the offer composed across
+ * the desktop grid. At 1440 the old single column stopped near x=860 and left
+ * about 40% of the screen idle for the section's whole height, which Astra read
+ * as "an incomplete desktop layout, not confident editorial restraint". Left:
+ * name, price, premise, purchase. Right: deliverables and the kickoff line.
+ * The purchase is its own grid area so one column still ends on it. */
+[data-mode="cw"] .cw-offer__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "lead" "detail" "act";
+}
+[data-mode="cw"] .cw-offer__lead {
+  grid-area: lead;
+}
+[data-mode="cw"] .cw-offer__detail {
+  grid-area: detail;
+}
+[data-mode="cw"] .cw-offer__act {
+  grid-area: act;
+  margin-top: 44px;
+}
+@media (min-width: 1024px) {
+  [data-mode="cw"] .cw-offer__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "lead detail"
+      "act detail";
+    column-gap: clamp(56px, 6vw, 120px);
+    align-items: start;
+  }
+  [data-mode="cw"] .cw-offer__detail .cw-deliver {
+    margin-top: 0;
+    max-width: none;
+  }
 }
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-deliver__row {
@@ -3067,10 +3148,26 @@ body {
     color 0.2s,
     border-color 0.2s;
 }
-:is([data-mode="cw"], [data-mode="theater"]) .cw-mlink:hover,
-:is([data-mode="cw"], [data-mode="theater"]) .cw-mlink:focus-visible {
+[data-mode="theater"] .cw-mlink:hover,
+[data-mode="theater"] .cw-mlink:focus-visible {
   color: var(--cw-accent, var(--color-cw-saffron));
   border-bottom-color: var(--cw-accent, var(--color-cw-saffron));
+}
+/* Pass-109 (review, contrast lens): on a WorldSwitcher page this hover used
+ * to swap to --cw-accent: espresso on the terracotta hero, 2.39:1, saffron on
+ * petrol, 4.03:1. "See the work" moved into this grammar in this pass, so the
+ * hero had two links doing it, and the generic focus ring (also --cw-accent)
+ * sat at 2.39:1 against the 3:1 a focus indicator needs. The link keeps its
+ * own colour and the rule thickens; the ring follows the text colour, so
+ * every state is the fg/bg pair (LESSONS #19). Theater keeps its saffron. */
+[data-mode="cw"] .cw-mlink:hover,
+[data-mode="cw"] .cw-mlink:focus-visible {
+  color: inherit;
+  border-bottom-color: currentColor;
+  box-shadow: 0 1px 0 currentColor;
+}
+[data-mode="cw"] .cw-mlink:focus-visible {
+  outline-color: currentColor;
 }
 
 /* W3 (P1-7/R18): the logistics page footer — contact, LinkedIn,
@@ -4077,7 +4174,8 @@ body {
     filter: none !important;
   }
   [data-mode="cw"] .cw-cta,
-  [data-mode="cw"] .cw-cta--ghost {
+  [data-mode="cw"] .cw-cta--ghost,
+  [data-mode="cw"] .cw-buy {
     border-color: ButtonText !important;
     background: ButtonFace !important;
     color: ButtonText !important;
@@ -6107,41 +6205,26 @@ body {
   font-weight: 600;
   white-space: nowrap;
 }
+/* Pass-109: a td with display:flex stops being a table cell, so its bottom
+ * rule is drawn at its own height instead of the row's. With a pill in it the
+ * price column's rules sat 16-40px off the rest of each row at 768. The cell
+ * stays a table cell; the pill under the price is the flex box instead. */
 [data-mode="cw"] .cw-sv-table tbody td.cw-sv-table__price--buy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
   white-space: normal;
 }
+[data-mode="cw"] .cw-sv-table__price--buy .cw-buy {
+  display: flex;
+  width: max-content;
+  margin-top: 12px;
+}
+/* Pass-109: the table's purchases are .cw-buy pills (the Audit filled, the
+ * other two .cw-buy--quiet), replacing the mono underline Astra read as
+ * "secondary navigation". The old hover here swapped to --cw-accent, which is
+ * the cross-fade trap; it is gone with the rest. This rule only sizes the pill
+ * for a table cell. */
 [data-mode="cw"] .cw-sv-table__buy {
-  appearance: none;
-  background: none;
-  border: none;
-  border-bottom: 1px solid currentColor;
-  border-radius: 0;
-  cursor: pointer;
-  font-family: var(--font-cw-mono);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: inherit;
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  padding: 4px 0 2px;
-  transition:
-    color 0.2s,
-    border-color 0.2s;
-}
-[data-mode="cw"] .cw-sv-table__buy:hover,
-[data-mode="cw"] .cw-sv-table__buy:focus-visible {
-  color: var(--cw-accent, var(--color-cw-saffron));
-  border-bottom-color: var(--cw-accent, var(--color-cw-saffron));
-}
-[data-mode="cw"] .cw-sv-table__buy[aria-busy="true"] {
-  cursor: progress;
+  font-size: 15px;
+  padding: 11px 20px;
 }
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-sv-table thead {
@@ -7058,4 +7141,48 @@ body {
   [data-mode="cw"] .cw-sv-open {
     margin-bottom: 0;
   }
+}
+
+/* Pass-109 (Astra #3, operator-approved 2026-09-10): the opening composed
+ * across the desktop grid. The 640px cap left most of the screen empty above
+ * the service rows. The case-study receipt, which sat under the sell line as a
+ * 15px box, becomes the right column: the evidence beside the claim it backs.
+ * Everything inherits colour; the hover thickens the rule instead of swapping
+ * to the fixed terracotta .cw-door__case uses, which would fail on espresso. */
+@media (min-width: 1024px) {
+  [data-mode="cw"] .cw-sv-open {
+    max-width: none;
+  }
+  [data-mode="cw"] .cw-sv-open__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    column-gap: clamp(56px, 6vw, 120px);
+    align-items: end;
+  }
+}
+[data-mode="cw"] .cw-sv-open__proof {
+  margin: 0 0 28px;
+}
+[data-mode="cw"] .cw-sv-open__proof-lbl {
+  font-family: var(--font-cw-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+  margin: 0 0 12px;
+}
+[data-mode="cw"] .cw-sv-open .cw-sv-open__case {
+  max-width: none;
+  margin-top: 0;
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: clamp(20px, 1.9vw, 27px);
+  line-height: 1.25;
+  padding: 26px 28px;
+}
+[data-mode="cw"] .cw-sv-open .cw-sv-open__case:hover,
+[data-mode="cw"] .cw-sv-open .cw-sv-open__case:focus-visible {
+  color: inherit;
+  border-color: currentColor;
+  box-shadow: inset 0 0 0 1px currentColor;
 }

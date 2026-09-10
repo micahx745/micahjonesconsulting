@@ -16,29 +16,27 @@ the two-column composition". Constraints: the SUBHEAD carries the positioning cl
 exit record still corroborates; the filled pill derives from world tokens, no hex, no
 opacity on text, axe at rest AND scrolled, 1440 and 390.
 
-## Done
+## Pass 109 — COMMITTED + PUSHED (branch head), preview only
 
-Pass-108 `ec5548f`: packages back on `/services`, buckets nest in Engagements, home at 5
-sections; all 7 gates re-run here, not taken from GLM's report. Astra
-(`.planning/reviews/ASTRA-108-VERDICT.md`): packages + buckets RESOLVED, services wording
-PARTIAL, home NOT RESOLVED (40% of desktop idle; mono buy links under a filled "See the work").
-
-## Pass 109 — IN PROGRESS
-
-H1 swap + positioning sub; buy pill `fill: var(--cw-fg)` / label `var(--cw-bg)` = 5.27 /
-12.59 / 8.28 / 12.59:1 across the 4 worlds (accent-fill fails bone 2.39, petrol 2.05);
-`#offer` and `.cw-sv-open` two-column. Owed: axe-matrix gate + LESSONS #19 (the trap bit 3x
-and was never ledgered).
+H1 + sub "I also position products and build the go-to-market that sells them."; roll
+retired. `.cw-buy` fill `--cw-fg` / label `--cw-bg` on hero, offer, services table;
+`#offer` + `.cw-sv-open` two-column; `.cw-mlink` hover/focus off accent. NEW GATE
+`scripts/axe-worlds.mjs` + LESSONS #19: 92 scans, 4 worlds, 0 outside KNOWN. Review
+workflow 5 confirmed (fixed), 5 refuted. Astra (`ASTRA-109-VERDICT.md`): overwhelming
+RESOLVED, H1/sub YES, buying dominant YES; its one open item (390 Audit order) captured and
+measured. Production untouched: `main` is the operator's.
 
 ## OPEN — operator's
 
-Postmates/Neuton "why positioning" copy (needs provenance) · Neuton tag 2025 vs 2020 ·
-"Frontier AI engineering" legacy wording · Astra #4 pricing legibility, #5 name Guardicore
-· `.cw-lede-link` contrast (fails on main) · merge to `main` · Stripe live $500 test.
+Doors panel 1.38:1 + Ordani submit 2.05:1 (gate KNOWN, task chip) · cw focus ring is
+`--cw-accent`, 2.39:1 (task chip) · axe-worlds to a blocking hook + a static lint for accent
+in :hover/:focus · Postmates/Neuton "why positioning" copy (needs provenance) · Neuton tag
+2025 vs 2020 · "Frontier AI engineering" · Astra #4 pricing, #5 name Guardicore ·
+`.cw-lede-link` 4.4:1 · merge to `main` · Stripe live $500 test.
 
 ## Traps
 
-push to main auto-deploys · capture VIEWPORT, settle 12s · `python -P` · `grep -c` counts
-LINES · PS5.1 mangles quotes, `git commit -F` · devtools `resize_page` floors at 500, use
-`emulate 390x844x2,mobile,touch` · axe at rest AND scrolled: MORE THAN ONE world renders
-here, so no fixed text colour, no opacity on text.
+push to main auto-deploys · capture VIEWPORT, settle first · `python -P` · Git Bash
+rewrites "/" args: `MSYS_NO_PATHCONV=1` · never read an exit code through a pipe · PS5.1
+mangles quotes, `git commit -F` · axe at rest AND scrolled: MORE THAN ONE world renders
+here, so no fixed text colour, no opacity on text, no `--cw-accent` under text.

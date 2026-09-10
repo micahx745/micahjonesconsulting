@@ -158,84 +158,99 @@ export default function ColorWorldsHome() {
         aria-labelledby="cw-offer-title"
       >
         <p className="cw-kicker cw-reveal">Start here</p>
-        <SplitReveal as="h2" id="cw-offer-title" className="cw-secttitle">
-          The Audit
-        </SplitReveal>
-        <div className="cw-offer-stats cw-reveal">
-          <p className="cw-offer-stats__price">$2,500</p>
-          <p className="cw-offer-stats__meta">
-            Two weeks. Starts within the week.
-          </p>
-        </div>
-        <p className="cw-sect-dek cw-reveal">
-          I go through your build, your production, or your positioning top to
-          bottom.
-        </p>
-        {/* Astra gate, 2026-09-09: this read as "a confident headline atop a
+        {/* Pass-109 (Astra #3, operator-approved 2026-09-10): the offer is
+            composed across the desktop grid instead of running down one column
+            beside an idle 40% of the screen. Left: the name, the price, the
+            premise and the purchase. Right: what arrives, and when. The
+            purchase is its own grid area, so on one column it still comes last,
+            after the deliverables, as it did before. It is a .cw-buy pill now
+            (Astra #2): same words and the same /packages destination as the
+            mono link it replaces. No copy added. */}
+        <div className="cw-offer__grid">
+          <div className="cw-offer__lead">
+            <SplitReveal as="h2" id="cw-offer-title" className="cw-secttitle">
+              The Audit
+            </SplitReveal>
+            <div className="cw-offer-stats cw-reveal">
+              <p className="cw-offer-stats__price">$2,500</p>
+              <p className="cw-offer-stats__meta">
+                Two weeks. Starts within the week.
+              </p>
+            </div>
+            <p className="cw-sect-dek cw-reveal">
+              I go through your build, your production, or your positioning top
+              to bottom.
+            </p>
+          </div>
+          <div className="cw-offer__detail">
+            {/* Astra gate, 2026-09-09: this read as "a confident headline atop a
             thin section", with the deliverables compressed into one paragraph
             and the link "detached from the offer". The three things a buyer
             receives now take their own ruled rows, on the LEDGER's own hairline
             convention so the offer reads as the same family of object as the
             receipts below it, and the link moves left directly beneath them.
             Same three facts as the sentence they replace. Nothing added. */}
-        <ul className="cw-deliver">
-          <li
-            className="cw-deliver__row cw-reveal"
-            style={{ transitionDelay: "0ms" }}
-          >
-            <span className="cw-deliver__name">
-              <span className="cw-deliver__num" aria-hidden="true">
-                01
-              </span>{" "}
-              An 8-10 page memo
-            </span>
-            <span className="cw-deliver__note">
-              What is load-bearing, what is broken, and what to fix first.
-            </span>
-          </li>
-          <li
-            className="cw-deliver__row cw-reveal"
-            style={{ transitionDelay: "80ms" }}
-          >
-            <span className="cw-deliver__name">
-              <span className="cw-deliver__num" aria-hidden="true">
-                02
-              </span>{" "}
-              A prioritized fix sequence
-            </span>
-            <span className="cw-deliver__note">
-              The order to do it in, so you can start the morning it lands.
-            </span>
-          </li>
-          <li
-            className="cw-deliver__row cw-reveal"
-            style={{ transitionDelay: "160ms" }}
-          >
-            <span className="cw-deliver__name">
-              <span className="cw-deliver__num" aria-hidden="true">
-                03
-              </span>{" "}
-              A one-hour debrief call
-            </span>
-            <span className="cw-deliver__note">
-              I walk you through it. You keep the memo either way.
-            </span>
-          </li>
-        </ul>
-        <p
-          className="cw-deliver__note cw-offer-next cw-reveal"
-          style={{ transitionDelay: "220ms" }}
-        >
-          The moment you buy, a kickoff email lands: intake questions, a link to
-          book the debrief, and The 80% Wall, my field manual, attached.
-        </p>
-        <div className="cw-section-cta-wrap cw-section-cta-wrap--left cw-reveal">
-          <a href="/packages" className="cw-section-cta">
-            Start the Audit{" "}
-            <span className="cw-section-cta__arr" aria-hidden>
-              →
-            </span>
-          </a>
+            <ul className="cw-deliver">
+              <li
+                className="cw-deliver__row cw-reveal"
+                style={{ transitionDelay: "0ms" }}
+              >
+                <span className="cw-deliver__name">
+                  <span className="cw-deliver__num" aria-hidden="true">
+                    01
+                  </span>{" "}
+                  An 8-10 page memo
+                </span>
+                <span className="cw-deliver__note">
+                  What is load-bearing, what is broken, and what to fix first.
+                </span>
+              </li>
+              <li
+                className="cw-deliver__row cw-reveal"
+                style={{ transitionDelay: "80ms" }}
+              >
+                <span className="cw-deliver__name">
+                  <span className="cw-deliver__num" aria-hidden="true">
+                    02
+                  </span>{" "}
+                  A prioritized fix sequence
+                </span>
+                <span className="cw-deliver__note">
+                  The order to do it in, so you can start the morning it lands.
+                </span>
+              </li>
+              <li
+                className="cw-deliver__row cw-reveal"
+                style={{ transitionDelay: "160ms" }}
+              >
+                <span className="cw-deliver__name">
+                  <span className="cw-deliver__num" aria-hidden="true">
+                    03
+                  </span>{" "}
+                  A one-hour debrief call
+                </span>
+                <span className="cw-deliver__note">
+                  I walk you through it. You keep the memo either way.
+                </span>
+              </li>
+            </ul>
+            <p
+              className="cw-deliver__note cw-offer-next cw-reveal"
+              style={{ transitionDelay: "220ms" }}
+            >
+              The moment you buy, a kickoff email lands: intake questions, a
+              link to book the debrief, and The 80% Wall, my field manual,
+              attached.
+            </p>
+          </div>
+          <div className="cw-offer__act cw-reveal">
+            <a href="/packages" className="cw-buy">
+              Start the Audit{" "}
+              <span className="cw-arr" aria-hidden>
+                →
+              </span>
+            </a>
+          </div>
         </div>
       </section>
 

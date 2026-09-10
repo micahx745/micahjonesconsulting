@@ -1,0 +1,413 @@
+[
+  {
+    "vp": "390",
+    "route": "/",
+    "shot": "home-hero",
+    "file": ".planning\\qa\\pass-109\\home-hero-390.png",
+    "world": "#9E3C25",
+    "scrollY": 0,
+    "overflowX": false,
+    "h1": {
+      "fontSize": "41.75px",
+      "text": "I take AI-built products from demo to production.",
+      "lines": [
+        {
+          "text": "I take AI-built products",
+          "lineBoxes": 2,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 350
+        },
+        {
+          "text": "from demo to production.",
+          "lineBoxes": 2,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 350
+        }
+      ]
+    },
+    "pills": [
+      {
+        "label": "Start the Audit →",
+        "quiet": false,
+        "bg": "rgb(236, 227, 208)",
+        "fg": "rgb(158, 60, 37)",
+        "w": 221,
+        "h": 56,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "390",
+    "route": "/",
+    "shot": "home-offer",
+    "file": ".planning\\qa\\pass-109\\home-offer-390.png",
+    "world": "#9E3C25",
+    "scrollY": 754,
+    "overflowX": false,
+    "h1": {
+      "fontSize": "41.75px",
+      "text": "I take AI-built products from demo to production.",
+      "lines": [
+        {
+          "text": "I take AI-built products",
+          "lineBoxes": 2,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 350
+        },
+        {
+          "text": "from demo to production.",
+          "lineBoxes": 2,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 350
+        }
+      ]
+    },
+    "pills": []
+  },
+  {
+    "vp": "390",
+    "route": "/",
+    "shot": "home-offer-act",
+    "file": ".planning\\qa\\pass-109\\home-offer-act-390.png",
+    "world": "#2A1F18",
+    "scrollY": 1660,
+    "overflowX": false,
+    "h1": {
+      "fontSize": "41.75px",
+      "text": "I take AI-built products from demo to production.",
+      "lines": [
+        {
+          "text": "I take AI-built products",
+          "lineBoxes": 2,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 350
+        },
+        {
+          "text": "from demo to production.",
+          "lineBoxes": 2,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 350
+        }
+      ]
+    },
+    "pills": [
+      {
+        "label": "Start the Audit →",
+        "quiet": false,
+        "bg": "rgb(236, 227, 208)",
+        "fg": "rgb(42, 31, 24)",
+        "w": 221,
+        "h": 56,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "390",
+    "route": "/services",
+    "shot": "svc-open",
+    "file": ".planning\\qa\\pass-109\\svc-open-390.png",
+    "world": "#ECE3D0",
+    "scrollY": 0,
+    "overflowX": false,
+    "h1": null,
+    "pills": []
+  },
+  {
+    "vp": "390",
+    "route": "/services",
+    "shot": "svc-packages",
+    "file": ".planning\\qa\\pass-109\\svc-packages-390.png",
+    "world": "#ECE3D0",
+    "scrollY": 4351,
+    "overflowX": false,
+    "h1": null,
+    "pills": [
+      {
+        "label": "Buy the Unstick Session →",
+        "quiet": true,
+        "bg": "rgba(0, 0, 0, 0)",
+        "fg": "rgb(42, 31, 24)",
+        "w": 246,
+        "h": 43,
+        "overflowsParent": false
+      },
+      {
+        "label": "Buy the Audit →",
+        "quiet": false,
+        "bg": "rgb(42, 31, 24)",
+        "fg": "rgb(236, 227, 208)",
+        "w": 169,
+        "h": 43,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "768",
+    "route": "/",
+    "shot": "home-hero",
+    "file": ".planning\\qa\\pass-109\\home-hero-768.png",
+    "world": "#9E3C25",
+    "scrollY": 0,
+    "overflowX": false,
+    "h1": {
+      "fontSize": "47.616px",
+      "text": "I take AI-built products from demo to production.",
+      "lines": [
+        {
+          "text": "I take AI-built products",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 688
+        },
+        {
+          "text": "from demo to production.",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 688
+        }
+      ]
+    },
+    "pills": [
+      {
+        "label": "Start the Audit →",
+        "quiet": false,
+        "bg": "rgb(236, 227, 208)",
+        "fg": "rgb(158, 60, 37)",
+        "w": 221,
+        "h": 56,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "768",
+    "route": "/",
+    "shot": "home-offer",
+    "file": ".planning\\qa\\pass-109\\home-offer-768.png",
+    "world": "#9E3C25",
+    "scrollY": 934,
+    "overflowX": false,
+    "h1": {
+      "fontSize": "47.616px",
+      "text": "I take AI-built products from demo to production.",
+      "lines": [
+        {
+          "text": "I take AI-built products",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 688
+        },
+        {
+          "text": "from demo to production.",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 688
+        }
+      ]
+    },
+    "pills": [
+      {
+        "label": "Start the Audit →",
+        "quiet": false,
+        "bg": "rgb(236, 227, 208)",
+        "fg": "rgb(158, 60, 37)",
+        "w": 221,
+        "h": 56,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "768",
+    "route": "/services",
+    "shot": "svc-open",
+    "file": ".planning\\qa\\pass-109\\svc-open-768.png",
+    "world": "#ECE3D0",
+    "scrollY": 6,
+    "overflowX": false,
+    "h1": null,
+    "pills": []
+  },
+  {
+    "vp": "768",
+    "route": "/services",
+    "shot": "svc-packages",
+    "file": ".planning\\qa\\pass-109\\svc-packages-768.png",
+    "world": "#ECE3D0",
+    "scrollY": 3665,
+    "overflowX": false,
+    "h1": null,
+    "pills": [
+      {
+        "label": "Buy the Unstick Session →",
+        "quiet": true,
+        "bg": "rgba(0, 0, 0, 0)",
+        "fg": "rgb(42, 31, 24)",
+        "w": 246,
+        "h": 43,
+        "overflowsParent": false
+      },
+      {
+        "label": "Buy the Audit →",
+        "quiet": false,
+        "bg": "rgb(42, 31, 24)",
+        "fg": "rgb(236, 227, 208)",
+        "w": 169,
+        "h": 43,
+        "overflowsParent": false
+      },
+      {
+        "label": "Buy the Sprint →",
+        "quiet": true,
+        "bg": "rgba(0, 0, 0, 0)",
+        "fg": "rgb(42, 31, 24)",
+        "w": 175,
+        "h": 43,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "1440",
+    "route": "/",
+    "shot": "home-hero",
+    "file": ".planning\\qa\\pass-109\\home-hero-1440.png",
+    "world": "#9E3C25",
+    "scrollY": 0,
+    "overflowX": false,
+    "h1": {
+      "fontSize": "89.28px",
+      "text": "I take AI-built products from demo to production.",
+      "lines": [
+        {
+          "text": "I take AI-built products",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 1360
+        },
+        {
+          "text": "from demo to production.",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 1360
+        }
+      ]
+    },
+    "pills": [
+      {
+        "label": "Start the Audit →",
+        "quiet": false,
+        "bg": "rgb(236, 227, 208)",
+        "fg": "rgb(158, 60, 37)",
+        "w": 221,
+        "h": 56,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "1440",
+    "route": "/",
+    "shot": "home-offer",
+    "file": ".planning\\qa\\pass-109\\home-offer-1440.png",
+    "world": "#9E3C25",
+    "scrollY": 810,
+    "overflowX": false,
+    "h1": {
+      "fontSize": "89.28px",
+      "text": "I take AI-built products from demo to production.",
+      "lines": [
+        {
+          "text": "I take AI-built products",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 1360
+        },
+        {
+          "text": "from demo to production.",
+          "lineBoxes": 1,
+          "clippedX": false,
+          "clippedY": true,
+          "width": 1360
+        }
+      ]
+    },
+    "pills": [
+      {
+        "label": "Start the Audit →",
+        "quiet": false,
+        "bg": "rgb(236, 227, 208)",
+        "fg": "rgb(158, 60, 37)",
+        "w": 221,
+        "h": 56,
+        "overflowsParent": false
+      }
+    ]
+  },
+  {
+    "vp": "1440",
+    "route": "/services",
+    "shot": "svc-open",
+    "file": ".planning\\qa\\pass-109\\svc-open-1440.png",
+    "world": "#ECE3D0",
+    "scrollY": 6,
+    "overflowX": false,
+    "h1": null,
+    "pills": []
+  },
+  {
+    "vp": "1440",
+    "route": "/services",
+    "shot": "svc-packages",
+    "file": ".planning\\qa\\pass-109\\svc-packages-1440.png",
+    "world": "#ECE3D0",
+    "scrollY": 3076,
+    "overflowX": false,
+    "h1": null,
+    "pills": [
+      {
+        "label": "Buy the Unstick Session →",
+        "quiet": true,
+        "bg": "rgba(0, 0, 0, 0)",
+        "fg": "rgb(42, 31, 24)",
+        "w": 246,
+        "h": 43,
+        "overflowsParent": false
+      },
+      {
+        "label": "Buy the Audit →",
+        "quiet": false,
+        "bg": "rgb(42, 31, 24)",
+        "fg": "rgb(236, 227, 208)",
+        "w": 169,
+        "h": 43,
+        "overflowsParent": false
+      },
+      {
+        "label": "Buy the Sprint →",
+        "quiet": true,
+        "bg": "rgba(0, 0, 0, 0)",
+        "fg": "rgb(42, 31, 24)",
+        "w": 175,
+        "h": 43,
+        "overflowsParent": false
+      }
+    ]
+  }
+]

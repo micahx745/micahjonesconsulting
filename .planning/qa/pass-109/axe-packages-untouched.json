@@ -1,0 +1,183 @@
+{
+  "base": "http://localhost:3100",
+  "axeVersion": "4.13.0",
+  "when": "2026-09-10T23:25:15.978Z",
+  "runs": [
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "rest/full",
+      "world": "#ECE3D0",
+      "checked": null,
+      "moved": false,
+      "n": 1
+    },
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "y=0",
+      "world": "#ECE3D0",
+      "checked": 14,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "y=450",
+      "world": "#ECE3D0",
+      "checked": 18,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "y=807 centre:bone",
+      "world": "#ECE3D0",
+      "checked": 27,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "y=900",
+      "world": "#ECE3D0",
+      "checked": 31,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "y=1350",
+      "world": "#ECE3D0",
+      "checked": 29,
+      "moved": false,
+      "n": 1
+    },
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "y=1614",
+      "world": "#ECE3D0",
+      "checked": 25,
+      "moved": false,
+      "n": 1
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "rest/full",
+      "world": "#ECE3D0",
+      "checked": null,
+      "moved": false,
+      "n": 1
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=0",
+      "world": "#ECE3D0",
+      "checked": 10,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=422",
+      "world": "#ECE3D0",
+      "checked": 12,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=844",
+      "world": "#ECE3D0",
+      "checked": 17,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=1071 centre:bone",
+      "world": "#ECE3D0",
+      "checked": 19,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=1266",
+      "world": "#ECE3D0",
+      "checked": 19,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=1688",
+      "world": "#ECE3D0",
+      "checked": 15,
+      "moved": false,
+      "n": 0
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=2110",
+      "world": "#ECE3D0",
+      "checked": 14,
+      "moved": false,
+      "n": 1
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "y=2142",
+      "world": "#ECE3D0",
+      "checked": 14,
+      "moved": false,
+      "n": 1
+    }
+  ],
+  "findings": [
+    {
+      "route": "/packages",
+      "vp": "1440",
+      "stop": "rest/full",
+      "world": "#ECE3D0",
+      "rule": "color-contrast",
+      "impact": "serious",
+      "target": ".cw-lede-link",
+      "html": "<a href=\"/services\" class=\"cw-lede-link\">The engagements</a>",
+      "fg": "#a64d36",
+      "bg": "#ece3d0",
+      "ratio": 4.4,
+      "needed": "4.5:1",
+      "known": false
+    },
+    {
+      "route": "/packages",
+      "vp": "390",
+      "stop": "rest/full",
+      "world": "#ECE3D0",
+      "rule": "color-contrast",
+      "impact": "serious",
+      "target": ".cw-lede-link",
+      "html": "<a href=\"/services\" class=\"cw-lede-link\">The engagements</a>",
+      "fg": "#a64d36",
+      "bg": "#ece3d0",
+      "ratio": 4.4,
+      "needed": "4.5:1",
+      "known": false
+    }
+  ]
+}

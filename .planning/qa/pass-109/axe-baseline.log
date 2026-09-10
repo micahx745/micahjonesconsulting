@@ -1,0 +1,30 @@
+axe-worlds: / @1440  15 stops  worlds seen: #9E3C25, #2A1F18, #1A4548, #ECE3D0
+axe-worlds: / @390  19 stops  worlds seen: #9E3C25, #2A1F18, #1A4548, #ECE3D0
+axe-worlds: /services @1440  11 stops  worlds seen: #ECE3D0, #2A1F18
+axe-worlds: /services @390  16 stops  worlds seen: #ECE3D0, #2A1F18
+  NEW    / @1440 y=4500 world=#1A4548 color-contrast button[type="submit"]  #ece3d0 on #c9982f = 2.05:1 (needs 4.5:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door--build > .cw-door__kicker  #262a25 on #1a4548 = 1.38:1 (needs 4.5:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door--build > .cw-door__title  #2a1f18 on #1a4548 = 1.52:1 (needs 3:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door--build > .cw-door__body  #28231d on #1a4548 = 1.47:1 (needs 4.5:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door__cta[href$="playbook"]  #c9982f on #1a4548 = 4.03:1 (needs 4.5:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door__cta[href$="packages"]  #c9982f on #1a4548 = 4.03:1 (needs 4.5:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__kicker  #4a271c on #9e3c25 = 1.95:1 (needs 4.5:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__title  #2a1f18 on #9e3c25 = 2.39:1 (needs 3:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__body  #362219 on #9e3c25 = 2.23:1 (needs 4.5:1)
+  NEW    / @1440 y=5400 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__cta  #c9982f on #9e3c25 = 2.56:1 (needs 4.5:1)
+  NEW    / @1440 y=5850 world=#9E3C25 color-contrast .cw-door__cta[href$="playbook"]  #c9982f on #1a4548 = 4.03:1 (needs 4.5:1)
+  NEW    / @1440 y=5850 world=#9E3C25 color-contrast .cw-door__cta[href$="packages"]  #c9982f on #1a4548 = 4.03:1 (needs 4.5:1)
+  NEW    / @1440 y=5850 world=#9E3C25 color-contrast .cw-door--sell > .cw-door__cta  #c9982f on #9e3c25 = 2.56:1 (needs 4.5:1)
+  NEW    / @390 y=5064 world=#1A4548 color-contrast button[type="submit"]  #ece3d0 on #c9982f = 2.05:1 (needs 4.5:1)
+  NEW    / @390 y=6752 world=#ECE3D0 color-contrast .cw-door--build > .cw-door__kicker  #262a25 on #1a4548 = 1.38:1 (needs 4.5:1)
+  NEW    / @390 y=6752 world=#ECE3D0 color-contrast .cw-door--build > .cw-door__title  #2a1f18 on #1a4548 = 1.52:1 (needs 3:1)
+  NEW    / @390 y=6752 world=#ECE3D0 color-contrast .cw-door--build > .cw-door__body  #28231d on #1a4548 = 1.47:1 (needs 4.5:1)
+  NEW    / @390 y=6752 world=#ECE3D0 color-contrast .cw-door__cta[href$="playbook"]  #c9982f on #1a4548 = 4.03:1 (needs 4.5:1)
+  NEW    / @390 y=6752 world=#ECE3D0 color-contrast .cw-door__cta[href$="packages"]  #c9982f on #1a4548 = 4.03:1 (needs 4.5:1)
+  NEW    / @390 y=6752 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__kicker  #4a271c on #9e3c25 = 1.95:1 (needs 4.5:1)
+  NEW    / @390 y=6752 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__title  #2a1f18 on #9e3c25 = 2.39:1 (needs 3:1)
+  NEW    / @390 y=7174 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__body  #362219 on #9e3c25 = 2.23:1 (needs 4.5:1)
+  NEW    / @390 y=7174 world=#ECE3D0 color-contrast .cw-door--sell > .cw-door__cta  #c9982f on #9e3c25 = 2.56:1 (needs 4.5:1)
+  NEW    /services @1440 rest/full world=#ECE3D0 color-contrast .cw-lede-link  #a64d36 on #ece3d0 = 4.4:1 (needs 4.5:1)
+  NEW    /services @390 rest/full world=#ECE3D0 color-contrast .cw-lede-link  #a64d36 on #ece3d0 = 4.4:1 (needs 4.5:1)
+axe-worlds: axe-core 4.13.0, 65 scans, 25 serious/critical finding(s), 25 not in KNOWN

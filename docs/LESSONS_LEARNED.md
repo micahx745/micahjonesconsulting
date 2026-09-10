@@ -723,3 +723,55 @@ executor must commit, give it a full clone or the main checkout, never a worktre
 
 **The gate.** `scripts/codex-exec.ps1` carries the limit in its header; every brief that
 names Codex as the executor in a worktree names who commits.
+
+## #19 — On a cross-faded page, a colour checked against one world is a guess (2026-09-10)
+
+**What happened.** Every foyer page that mounts WorldSwitcher writes `--cw-bg`, `--cw-fg`
+and `--cw-accent` onto the root as each section crosses the viewport centre, so every
+element on the page sits on whichever world is centred at that moment. Twice in one day a
+colour choice passed the look it was designed against and failed on another world: saffron
+figures and 0.6-0.9 opacity on the exit record (19 serious axe failures at 1440, 9 at 390),
+then `opacity: 0.82` on `.cw-deliver__note` in `#offer` (3 more). Both were fixed by hand and
+neither produced a gate. Pass-108's axe run then reported a bone-on-saffron pair at 2.05:1
+and attributed it to the hero pill as a load transient. The first run of the gate below,
+against Pass-108's own commit, could not reproduce that on the hero. It found the pair on
+`OrdaniBetaForm`'s submit button in the petrol world instead, at both widths and at rest,
+and found the home doors panel failing the same way: fixed door fills under text that
+inherits the world's colours, 1.38:1 at worst. Pass-109 then needed a filled buy button on
+exactly this page.
+
+**Root cause.** The page has one ground and four palettes, and every static check samples
+one of them: a screenshot, a contrast sum against the world a section "belongs" to, a
+single axe run at rest. `--cw-accent` is the worst token because it is the only one whose
+contrast against `--cw-fg` is not guaranteed: 12.59:1 on terracotta, 2.39:1 on bone, 2.05:1
+on petrol. A fixed fill under inherited text is the same mistake from the other side.
+
+**The rule.** On a WorldSwitcher page, text is `inherit` or `--cw-fg`. A fill that carries
+text is `--cw-fg` with a `--cw-bg` label, the body-text pair and the only pair every world
+guarantees (5.27 / 12.59 / 8.28 / 12.59:1 across terracotta, bone, petrol, espresso). Never
+`--cw-accent` behind or under text, never a fixed palette token or hex under inherited text,
+never `opacity` on text. Hierarchy is size and weight. `.cw-buy` (Pass-109) is the reference
+implementation.
+
+**The gate.** `scripts/axe-worlds.mjs`. For each route at 1440 and 390 it runs the full WCAG
+A/AA rule set at rest, then colour contrast on the in-viewport text at every half-viewport
+stop down the page and at a stop that centres every `[data-world]` section, each result
+labelled with the world the root is actually showing. The centring stops exist because its
+own first post-change run stepped straight over the bone section at 1440 and still printed
+a pass; a targeted world that never takes effect now fails the run (exit 3). It fails on
+any serious or critical finding that was not already failing before the change.
+Its first run, against `b1ff9b5` before any Pass-109 change, found 25 findings, all
+pre-existing: the doors panel, the form button, and `.cw-lede-link` on /services. Those are
+its KNOWN list, each entry carrying its reason, and each is an open item, not an accepted
+one. Run it against `next start` before every commit that touches colour, opacity or a
+`.cw-*` fill on a WorldSwitcher page. Two traps it now refuses: from Git Bash, MSYS rewrote
+the route "/" into "C:/Program Files/Git/" on the first run (set `MSYS_NO_PATHCONV=1`, or pass
+no routes), and a pipe through `tail` reported that crash as exit 0, so read the script's own
+exit code. It is a manual gate, not yet a blocking hook, because it needs a running server
+and Chrome, which a commit hook cannot assume. Graduating it is queued in RESUME. It
+cannot see `:hover` or `:focus-visible`, because axe measures the resting state: the
+Pass-109 review found `.cw-mlink`'s hover and focus swapping to `--cw-accent` (2.39:1 on
+the terracotta hero), which no run of this gate could have caught. Until a static lint for
+accent in `:hover`/`:focus` rules exists (queued), those states are checked by reading the
+CSS against the rule above. The same review made KNOWN match exact targets only, after a
+substring match was shown able to hide a new submit button behind the parked one.

@@ -34,9 +34,12 @@
 //   - A Packages table (id="packages") restores the three real, fixed
 //     prices with working Buy actions, in the shapes table's own
 //     grammar, between "How engagements work" and the price
-//     objections. The Buy action is .cw-sv-table__buy, a button-safe
-//     variant of the page's one secondary-link grammar, not a second
-//     filled pill (the espresso foot keeps the page's one, W3).
+//     objections. Pass-109 (Astra #2, operator-approved 2026-09-10:
+//     "Do the buy-button treatment"): each Buy action is a .cw-buy
+//     pill, the Audit filled and the other two outlined, because the
+//     mono underline it replaced read as secondary navigation. That
+//     supersedes W3's one-filled-pill rule on this page for purchases:
+//     the Audit and the espresso foot's call pill are the two fills.
 import type { Metadata } from "next";
 import { BuyButton } from "@/components/BuyButton";
 import { MagneticArea } from "@/components/motion/MagneticArea";
@@ -326,20 +329,37 @@ export default function ServicesPage() {
           className="cw-sv-open"
           aria-labelledby="cw-sv-open-title"
         >
-          <p className="cw-services__kicker">For companies</p>
-          <h2 id="cw-sv-open-title" className="cw-sv-open__name">
-            Engagements
-          </h2>
-          <p className="cw-sv-open__price">From $5K a month</p>
-          <p className="cw-sv-open__body">
-            Strategy and software from the same person, so nothing is lost in
-            the hand-off. Pick the problem; I name the shape on the call.
-          </p>
-          <a href="/work/guardicore" className="cw-door__case">
-            See how I helped a foreign company break into the North American
-            market and get acquired
-            <span aria-hidden> &rarr;</span>
-          </a>
+          {/* Pass-109 (Astra #3, operator-approved 2026-09-10): the opening
+              is composed across the desktop grid. The 640px cap left most of
+              the screen empty above the service rows. The case-study receipt
+              that sat under the sell line as a 15px box becomes the right
+              column: the evidence, beside the claim it backs. Same link, same
+              words, same destination; "Proof" is the label the three services
+              below already use for their own receipts. */}
+          <div className="cw-sv-open__grid">
+            <div className="cw-sv-open__lead">
+              <p className="cw-services__kicker">For companies</p>
+              <h2 id="cw-sv-open-title" className="cw-sv-open__name">
+                Engagements
+              </h2>
+              <p className="cw-sv-open__price">From $5K a month</p>
+              <p className="cw-sv-open__body">
+                Strategy and software from the same person, so nothing is lost
+                in the hand-off. Pick the problem; I name the shape on the call.
+              </p>
+            </div>
+            <div className="cw-sv-open__proof">
+              <p className="cw-sv-open__proof-lbl">Proof</p>
+              <a
+                href="/work/guardicore"
+                className="cw-door__case cw-sv-open__case"
+              >
+                See how I helped a foreign company break into the North American
+                market and get acquired
+                <span aria-hidden> &rarr;</span>
+              </a>
+            </div>
+          </div>
           <p className="cw-sv-svc-group__lead">
             Three areas of work, inside Engagements. Pick one, or run all three
             together.
@@ -475,11 +495,11 @@ export default function ServicesPage() {
             This restores all three real prices, in the Shapes table's own
             grammar, with a working Buy action on each row. Names, prices
             and descriptions are the same three offers as PACKAGES_LD in
-            app/(foyer)/packages/page.tsx, not a rewrite. The Buy action is
+            app/(foyer)/packages/page.tsx, not a rewrite. The Buy action was
             .cw-sv-table__buy, a button-safe cut of the page's one
-            secondary-link grammar (.cw-mlink) — not a second filled pill;
-            the espresso foot below keeps the page's one (W3, globals.css
-            "exactly one filled pill"). */}
+            secondary-link grammar (.cw-mlink). Pass-109 made it a .cw-buy
+            pill (the Audit filled, the other two outlined) on the operator's
+            approval of Astra #2; see the file header. */}
         <section
           id="packages"
           className="cw-sv-sec cw-sv-pkgs"
@@ -522,7 +542,7 @@ export default function ServicesPage() {
                   <BuyButton
                     skuKey="unstick-500"
                     label="Buy the Unstick Session"
-                    className="cw-sv-table__buy"
+                    className="cw-buy cw-buy--quiet cw-sv-table__buy"
                   />
                 </td>
               </tr>
@@ -543,7 +563,7 @@ export default function ServicesPage() {
                   <BuyButton
                     skuKey="audit-2500"
                     label="Buy the Audit"
-                    className="cw-sv-table__buy"
+                    className="cw-buy cw-sv-table__buy"
                   />
                 </td>
               </tr>
@@ -562,7 +582,7 @@ export default function ServicesPage() {
                   <BuyButton
                     skuKey="sprint-7500"
                     label="Buy the Sprint"
-                    className="cw-sv-table__buy"
+                    className="cw-buy cw-buy--quiet cw-sv-table__buy"
                   />
                 </td>
               </tr>

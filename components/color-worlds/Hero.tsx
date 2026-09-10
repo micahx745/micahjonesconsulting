@@ -1,5 +1,16 @@
 // components/color-worlds/Hero.tsx
 //
+// Pass-109 (operator 2026-09-10, approving Astra's H1: "I take AI-built
+// products from demo to production."). THE ROTATING WORD IS RETIRED. Recorded,
+// not buried: the rotation was operator-locked twice (Pass-12 "I love the first
+// hero", then D1's one-shot ruling), and this approval supersedes both. The
+// headline now states the offer in one sentence (DESIGN_BAR R7). The sub
+// carries the positioning claim explicitly, because the exit record below is
+// positioning and go-to-market work, and a headline narrowed to AI delivery
+// would otherwise orphan its own receipts (the operator's constraint on the
+// approval). Everything below about the roll is history; one revert of the
+// Pass-109 commit restores it.
+//
 // Hero — restore the rotating-word display H1 (Pass-12).
 //
 // Background: the original Color Worlds hero ran "I build the
@@ -43,35 +54,19 @@
 //
 // CTAs: dual CTA per operator brand. Primary "Book a call" wrapped
 // in MagneticArea — operators converting calls want the spring. Ghost
-// "See how I work ↓" anchors to #clients.
+// "See how I work ↓" anchors to #clients. (History: the CTA row's own
+// Pass-106 and Pass-109 comments below are the current ones.)
 "use client";
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
-// Pass-31 (Cowork round 2): every word now reads as a clean sentence
-// after the fixed stem "I build the ___". Dropped "position." / "launch."
-// (awkward after "the"). Added "data platform." + "RFP engine." — they
-// name the real RAG RFP-scanning software and signal data/fintech +
-// procurement range, pulling the enterprise-data category by general
-// credibility, never naming a buyer, never presuming a problem.
-const ROLLING_WORDS = [
-  "go-to-market.",
-  "product.",
-  "data platform.",
-  "RFP engine.",
-] as const;
-
 export function Hero() {
   const subRef = useRef<HTMLParagraphElement | null>(null);
   const ctaRowRef = useRef<HTMLDivElement | null>(null);
   const lineRefs = useRef<HTMLSpanElement[]>([]);
-  const rollRef = useRef<HTMLSpanElement | null>(null);
-  // Pass-69: the .cw-roll box itself, so its width can ease with the roll.
-  const rollBoxRef = useRef<HTMLSpanElement | null>(null);
   const h1Ref = useRef<HTMLHeadingElement | null>(null);
-  const heroRef = useRef<HTMLElement | null>(null);
 
   function captureLine(el: HTMLSpanElement | null) {
     if (el && !lineRefs.current.includes(el)) lineRefs.current.push(el);
@@ -95,101 +90,6 @@ export function Hero() {
 
     subRef.current?.classList.add("is-in");
     ctaRowRef.current?.classList.add("is-in");
-  }, []);
-
-  // Rolling word — one-shot on first view (D1). Starts the first time the hero
-  // crosses 20% visible, steps once at the original 1900ms cadence, and lands
-  // back on "go-to-market." (no loop, nothing to pause or resume).
-  //
-  // Pass-69 — ONE WORD IN THE DOM AT A TIME.
-  //
-  // The stack used to hold all four words plus a duplicate, so the h1's text
-  // content read "I build the go-to-market, product, and data platforms.
-  // go-to-market.product.data platform.RFP engine.go-to-market." to anything
-  // reading text rather than looking at pixels. Screen readers were always
-  // fine (the stack is aria-hidden and there is a cw-sr-only sentence beside
-  // it), but every crawler saw that.
-  //
-  // Now the server renders ONE word. Each step appends the next word below the
-  // 1em overflow-hidden window, translates the stack up by exactly 1em, then
-  // drops the consumed word and resets the transform with no transition. So:
-  // one word in the initial HTML, one word at rest, two only during a 600ms
-  // transition. The motion is unchanged because the mechanic is unchanged.
-  //
-  // The roll's width is driven explicitly, because with one child the
-  // inline-block would otherwise snap between word widths at cleanup instead
-  // of easing with the roll.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduced) return;
-
-    const stack = rollRef.current;
-    const roll = rollBoxRef.current;
-    const hero = heroRef.current;
-    if (!stack || !roll || !hero) return;
-
-    let started = false;
-    const timeouts: number[] = [];
-    const EASE = "cubic-bezier(.7,0,.2,1)";
-
-    function step(i: number) {
-      const current = stack!.firstElementChild as HTMLElement | null;
-      if (!current) return;
-      // Land back on the first word, the way the duplicate used to.
-      const word = ROLLING_WORDS[(i + 1) % ROLLING_WORDS.length]!;
-
-      const next = document.createElement("span");
-      next.textContent = word;
-      stack!.appendChild(next);
-
-      // Width first, so the box eases instead of snapping when the old word
-      // is dropped. Read it before any transition is attached.
-      const target = next.getBoundingClientRect().width;
-
-      requestAnimationFrame(() => {
-        roll!.style.transition = `width .6s ${EASE}`; // motion-ok: matches the pre-existing 600ms roll duration
-        roll!.style.width = `${target}px`;
-        stack!.style.transition = `transform .6s ${EASE}`; // motion-ok: pre-existing rolling-word duration, unchanged
-        stack!.style.transform = "translateY(-1em)";
-      });
-
-      const cleanup = window.setTimeout(() => {
-        current.remove();
-        stack!.style.transition = "none"; // motion-ok: instant reset of a finished step, never animated
-        stack!.style.transform = "none";
-      }, 640);
-      timeouts.push(cleanup);
-    }
-
-    function runSequence() {
-      if (started) return;
-      started = true;
-      // Lock the starting width so the first step has something to ease from.
-      roll!.style.width = `${roll!.getBoundingClientRect().width}px`;
-      for (let i = 0; i < ROLLING_WORDS.length; i++) {
-        timeouts.push(window.setTimeout(() => step(i), (i + 1) * 1900));
-      }
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry?.isIntersecting) {
-          runSequence();
-          io.disconnect();
-        }
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(hero);
-
-    return () => {
-      io.disconnect();
-      timeouts.forEach((t) => window.clearTimeout(t));
-    };
   }, []);
 
   // Parallax — pointer-fine devices only; rAF-batched; tightened range.
@@ -237,7 +137,6 @@ export function Hero() {
 
   return (
     <header
-      ref={heroRef}
       className="cw-hero cw-hero--photo"
       data-section
       data-world="terracotta"
@@ -264,59 +163,46 @@ export function Hero() {
         <div className="cw-hero__veil" />
       </div>
 
+      {/* Pass-109: two semantic lines, the second in the italic register the
+          rolling word used to carry. Each may wrap on a narrow screen;
+          "AI-built" is held together so the hyphen never ends a line. The h1's
+          text is one clean sentence for crawlers and screen readers alike ("I
+          take AI-built products from demo to production."), so the cw-sr-only
+          continuation went with the roll. Pass-68's trailing-space rule still
+          applies: the two block lines run together as text. */}
       <h1 className="cw-h1 cw-shift" ref={h1Ref}>
         <span className="cw-line">
-          {/* Pass-68: trailing space. The two lines are separate block spans,
-              so visually they stack, but as TEXT they ran together and every
-              crawler read "I build thego-to-market". A real defect regardless
-              of what happens to the rotation itself. */}
-          <span ref={captureLine}>I build the </span>
-        </span>
-        <span className="cw-line">
           <span ref={captureLine}>
-            {/* Pass-69: the roll comes FIRST and the screen-reader line
-                continues from it, so the h1 reads as prose to anything
-                consuming text: "I build the go-to-market. Also product, data
-                platforms, and RFP engines." It used to be the other way
-                round, which left the visible word stranded after a complete
-                sentence. The roll stays aria-hidden so a screen reader hears
-                this once instead of re-announcing on every step. */}
-            <span className="cw-roll" aria-hidden ref={rollBoxRef}>
-              {/* Pass-69: ONE word server-rendered. The effect above appends
-                  the next word for the duration of each 600ms step and drops
-                  the consumed one, so the h1's text is a clean sentence in the
-                  initial HTML and again at rest. */}
-              <span className="cw-stack" ref={rollRef}>
-                <span>{ROLLING_WORDS[0]}</span>
-              </span>
-            </span>
-            <span className="cw-sr-only">
-              {" "}
-              Also product, data platforms, and RFP engines.
-            </span>
+            I take <span className="cw-nowrap">AI-built</span> products{" "}
           </span>
+        </span>
+        <span className="cw-line cw-line--turn">
+          <span ref={captureLine}>from demo to production.</span>
         </span>
       </h1>
 
-      {/* Wave 1 (D-R13): the operator-locked positioning line IS the sub,
-          alone. Pass-4: the proof deck is now the chip cluster on the
-          photo (the band it once deferred to is gone). */}
+      {/* Pass-109: the SUBHEAD carries the positioning claim, explicitly. The
+          operator's constraint on approving the new H1: the exit record
+          (Guardicore, SurveyMonkey, Postmates, Neuton.AI) is positioning and
+          go-to-market work, not demo-to-production work, so without this line
+          the receipts below would stop corroborating the claim above them. Its
+          first sentence keeps the old headline's own words ("I build the
+          go-to-market") and names PRODUCTS, not "them". The first draft said
+          "Then I position them", which bound the claim to the H1's "AI-built
+          products", and three of the four exits (Guardicore, SurveyMonkey,
+          Postmates) are not AI products (Pass-109 review, copy lens). Its
+          second is the operator-locked
+          positioning line (Wave 1, D-R13), kept verbatim, now after the claim
+          instead of alone. The Pass-106 buyer line is gone: it said the buyer's
+          product "demos well and stalls before production", which the H1 now
+          says outright, and a third block of prose under the headline was part
+          of what read as overwhelming. */}
       <p className="cw-sub" ref={subRef}>
-        <em>Strategy and software, shipped by the same pair of hands.</em>
-      </p>
-
-      {/* Pass-106 (chat research CHAT-105-RESEARCH.md §4 "The opening"):
-          names the buyer directly under the positioning line — the read
-          the research flagged as missing ("makes the buyer assemble
-          'who it's for' themselves"). Deliberately quiet: smaller size,
-          lower opacity, no italic — .cw-sub carries the claim, this line
-          carries the address, so weight/size do the hierarchy instead of
-          two competing bold statements. Does NOT touch the H1 or the
-          rotating word — that swap is operator-locked, see file header
-          "I love the first hero"; see NEEDS-OPERATOR-RULING below. */}
-      <p className="cw-sub-buyer">
-        For builders whose AI-built product demos well and stalls before
-        production.
+        <em>
+          I also position products and build the{" "}
+          <span className="cw-nowrap">go-to-market</span> that sells them.
+        </em>{" "}
+        Strategy and software, shipped by the same pair of hands.
       </p>
 
       {/* Pass-30 (Cowork review): the $149 playbook is OFF the enterprise
@@ -338,15 +224,31 @@ export function Hero() {
           start" directly. /services is unchanged and still reachable
           from the nav (Nav.tsx) and from three links further down this
           same page — nothing about the route itself is touched. */}
+      {/* Pass-109 (Astra #2, operator-approved 2026-09-10: "Do the buy-button
+          treatment"). Buying gets the strongest action on the page. The one
+          filled pill moves from "See the work" to "Start the Audit", with the
+          price and duration beside it so the click is informed, and "See the
+          work" drops to the underlined-mono grammar Book-a-call already uses.
+          This supersedes W3/D7 above ("See the work" as home's primary). D7's
+          intent survives: every filled pill on this page is the SAME action, and
+          it goes where the offer section's own "Start the Audit" goes,
+          /packages, which opens on the Audit card. Colour is --cw-fg / --cw-bg,
+          never --cw-accent: see .cw-buy in globals.css for the four worlds. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
-        <MagneticArea>
-          <a href="#products" className="cw-cta">
-            See the work{" "}
-            <span className="cw-arr" aria-hidden>
-              ↓
-            </span>
-          </a>
-        </MagneticArea>
+        <span className="cw-buy-group">
+          <MagneticArea>
+            <a href="/packages" className="cw-buy">
+              Start the Audit{" "}
+              <span className="cw-arr" aria-hidden>
+                →
+              </span>
+            </a>
+          </MagneticArea>
+          <span className="cw-buy-meta">$2,500 · two weeks</span>
+        </span>
+        <a href="#products" className="cw-mlink">
+          See the work <span aria-hidden>↓</span>
+        </a>
         {/* Pass-93, operator 2026-09-03: "Booking replaces the contact form for
             engagements", reversing Pass-82 for this lane. /contact stays in the
             nav for anyone who would rather write than take a slot. */}
