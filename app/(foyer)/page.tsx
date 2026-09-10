@@ -499,6 +499,34 @@ export default function ColorWorldsHome() {
                     held through the Nasdaq listing
                   </span>
                 </div>
+                <div
+                  className="cw-lrow cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "60ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Postmates
+                    <span className="cw-lrow__tag">Product analyst · 2020</span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    Market and fraud analysis in the wide-open era ·{" "}
+                    <strong>acquired by Uber, $2.65B</strong>
+                  </span>
+                </div>
+                <div
+                  className="cw-lrow cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "120ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Neuton.AI
+                    <span className="cw-lrow__tag">Helped launch · 2025</span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    Technology <strong>acquired by Nordic Semiconductor</strong>{" "}
+                    · not a cap-table position
+                  </span>
+                </div>
               </div>
             </div>
           </li>
@@ -515,11 +543,19 @@ export default function ColorWorldsHome() {
             a little much" — the dare becomes an invitation, and the
             title drops into the site's own register (the protect-listed
             "I'll send the receipts" line). */}
-        {/* THE FULL RECORD — closes the fused section. Postmates and
-            Neuton.AI don't narrate one stage without straining the fit,
-            and the Consulting total aggregates every client since 2013,
-            so it can only close the whole record — both explained in the
-            row-to-stage rationale for this pass. Otherwise unchanged from
+        {/* THE FULL RECORD — closes the fused section.
+            CORRECTED (operator, 2026-09-10): the drafting agent put
+            Postmates and Neuton.AI here on the reasoning that neither
+            "narrates one stage without straining the fit". The operator
+            says both are POSITION, and he is the only person who could
+            know: Postmates sold everything, so the work was cutting the
+            promise back to a core menu it could actually deliver, and
+            Neuton.AI was a foreign company needing North American
+            positioning for an AI product in 2020, which is the same shape
+            as Guardicore and ended the same way. Both rows moved up under
+            03 Position. The Consulting total stays here because it
+            aggregates every client since 2013, so it can only close the
+            whole record. Otherwise unchanged from
             Pass-2/Pass-18; only the heading level moved (h2 → h3), since
             "How I work." above is now the section's one accessible name. */}
         <p className="cw-kicker cw-reveal" style={{ marginTop: "56px" }}>
@@ -532,35 +568,6 @@ export default function ColorWorldsHome() {
           Every line below is real. Ask about any of them.
         </p>
         <div className="cw-ledger cw-reveal" role="list">
-          <div
-            className="cw-lrow cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "0ms" }}
-          >
-            <span className="cw-lrow__co">
-              Postmates
-              <span className="cw-lrow__tag">Product analyst · 2020</span>
-            </span>
-            <span className="cw-lrow__out">
-              Market and fraud analysis in the wide-open era ·{" "}
-              <strong>acquired by Uber, $2.65B</strong>
-            </span>
-          </div>
-          <div
-            className="cw-lrow cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "60ms" }}
-          >
-            <span className="cw-lrow__co">
-              Neuton.AI
-              <span className="cw-lrow__tag">Helped launch · 2025</span>
-            </span>
-            <span className="cw-lrow__out">
-              Technology <strong>acquired by Nordic Semiconductor</strong> · not
-              a cap-table position
-            </span>
-          </div>
-
           <div
             className="cw-lrow cw-lrow--tot cw-reveal"
             role="listitem"
