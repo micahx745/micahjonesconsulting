@@ -18,7 +18,27 @@
 //
 // Receipts use ledger phrasings only (docs/LESSONS_LEARNED.md #3).
 // Zero animation on this page beyond the site's palette shift.
+//
+// Pass-109 (operator: packages "arent even in services page anymore,
+// most important thing"; the three services "does not connect with
+// the engagements... makes me think they are separate"; page "does
+// not compel action"). Three fixes, all structural:
+//   - The three services are now wrapped in one .cw-sv-svc-group
+//     under Engagements, with a lead line naming that a client can
+//     run all three together, and a soft internal divider instead of
+//     a full-strength rule between them, so they read as contents of
+//     Engagements, not peer chapters.
+//   - Each service's index (01/02/03) is now a large light-weight
+//     display numeral -- SIZE and WEIGHT carry the break, no opacity,
+//     no new colour, this page still renders on more than one world.
+//   - A Packages table (id="packages") restores the three real, fixed
+//     prices with working Buy actions, in the shapes table's own
+//     grammar, between "How engagements work" and the price
+//     objections. The Buy action is .cw-sv-table__buy, a button-safe
+//     variant of the page's one secondary-link grammar, not a second
+//     filled pill (the espresso foot keeps the page's one, W3).
 import type { Metadata } from "next";
+import { BuyButton } from "@/components/BuyButton";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
@@ -320,56 +340,66 @@ export default function ServicesPage() {
             market and get acquired
             <span aria-hidden> &rarr;</span>
           </a>
+          <p className="cw-sv-svc-group__lead">
+            Three areas of work, inside Engagements. Pick one, or run all three
+            together.
+          </p>
         </section>
 
-        {SERVICES.map((service) => (
-          <section
-            key={service.slug}
-            id={service.slug}
-            className="cw-sv-svc"
-            aria-labelledby={`cw-service-${service.slug}-title`}
-          >
-            <div className="cw-sv-svc__lead">
-              <p className="cw-sv-svc__num">{service.n}</p>
-              <h3
-                id={`cw-service-${service.slug}-title`}
-                className="cw-sv-svc__title"
-              >
-                {service.title}
-              </h3>
-              <p className="cw-sv-svc__pain">{service.pain}</p>
-            </div>
-            <div className="cw-sv-svc__detail">
-              <p className="cw-sv-svc__lbl">What lands</p>
-              <ul className="cw-sv-svc__list">
-                {service.outcomes.map((o) => (
-                  <li key={o}>{o}</li>
-                ))}
-              </ul>
-              <p className="cw-sv-svc__lbl">Proof</p>
-              {service.receipts.map((r, i) => (
-                <p
-                  key={r.text}
-                  className={
-                    i === 0
-                      ? "cw-sv-receipt"
-                      : "cw-sv-receipt cw-sv-receipt--minor"
-                  }
+        <div
+          className="cw-sv-svc-group"
+          role="group"
+          aria-label="What Engagements covers"
+        >
+          {SERVICES.map((service) => (
+            <section
+              key={service.slug}
+              id={service.slug}
+              className="cw-sv-svc"
+              aria-labelledby={`cw-service-${service.slug}-title`}
+            >
+              <div className="cw-sv-svc__lead">
+                <p className="cw-sv-svc__num">{service.n}</p>
+                <h3
+                  id={`cw-service-${service.slug}-title`}
+                  className="cw-sv-svc__title"
                 >
-                  {r.text}
-                  {r.href ? (
-                    <>
-                      {" "}
-                      <a href={r.href} className="cw-sv-receipt__link">
-                        {r.label} <span aria-hidden>→</span>
-                      </a>
-                    </>
-                  ) : null}
-                </p>
-              ))}
-            </div>
-          </section>
-        ))}
+                  {service.title}
+                </h3>
+                <p className="cw-sv-svc__pain">{service.pain}</p>
+              </div>
+              <div className="cw-sv-svc__detail">
+                <p className="cw-sv-svc__lbl">What lands</p>
+                <ul className="cw-sv-svc__list">
+                  {service.outcomes.map((o) => (
+                    <li key={o}>{o}</li>
+                  ))}
+                </ul>
+                <p className="cw-sv-svc__lbl">Proof</p>
+                {service.receipts.map((r, i) => (
+                  <p
+                    key={r.text}
+                    className={
+                      i === 0
+                        ? "cw-sv-receipt"
+                        : "cw-sv-receipt cw-sv-receipt--minor"
+                    }
+                  >
+                    {r.text}
+                    {r.href ? (
+                      <>
+                        {" "}
+                        <a href={r.href} className="cw-sv-receipt__link">
+                          {r.label} <span aria-hidden>→</span>
+                        </a>
+                      </>
+                    ) : null}
+                  </p>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
 
         {/* How engagements work — one table for all three services. */}
         <section
@@ -435,6 +465,118 @@ export default function ServicesPage() {
           </p>
         </section>
 
+        {/* Pass-109 (operator: "the packages arent even in services page
+            anymore. Most important thing"). Pass-108 moved the fixed-price
+            packages to their own address and left only a link at the foot
+            of the price objections below. The nav has no /packages item
+            (components/color-worlds/Nav.tsx), so /services is the only
+            page most visitors reach looking for a price, and it named a
+            number for exactly one thing: engagements, from $5K a month.
+            This restores all three real prices, in the Shapes table's own
+            grammar, with a working Buy action on each row. Names, prices
+            and descriptions are the same three offers as PACKAGES_LD in
+            app/(foyer)/packages/page.tsx, not a rewrite. The Buy action is
+            .cw-sv-table__buy, a button-safe cut of the page's one
+            secondary-link grammar (.cw-mlink) — not a second filled pill;
+            the espresso foot below keeps the page's one (W3, globals.css
+            "exactly one filled pill"). */}
+        <section
+          id="packages"
+          className="cw-sv-sec cw-sv-pkgs"
+          aria-labelledby="cw-sv-pkgs-title"
+        >
+          <p className="cw-services__kicker">Or start smaller</p>
+          <h2 id="cw-sv-pkgs-title" className="cw-service__title">
+            Three fixed prices. Start this week.
+          </h2>
+          <p className="cw-services__intro">
+            No scoping call, no proposal. Buy one and the work starts within the
+            week. Every fee credits toward the next package or an engagement
+            started within 60 days.
+          </p>
+          <table className="cw-sv-table">
+            <caption className="sr-only">
+              The three fixed-price packages compared by what you get and price
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Package</th>
+                <th scope="col">What you get</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" className="cw-sv-table__name">
+                  The Unstick Session
+                </th>
+                <td data-th="What you get">
+                  90-minute working call on a stuck AI-assisted build plus a
+                  same-day written fix plan.
+                </td>
+                <td
+                  data-th="Price"
+                  className="cw-sv-table__price cw-sv-table__price--buy"
+                >
+                  $500
+                  <BuyButton
+                    skuKey="unstick-500"
+                    label="Buy the Unstick Session"
+                    className="cw-sv-table__buy"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="cw-sv-table__name">
+                  The Audit
+                  <span className="cw-sv-table__tag">Start here</span>
+                </th>
+                <td data-th="What you get">
+                  Two-week fixed-scope audit: build, production, or traction.
+                  Written memo, prioritized fix sequence, debrief call.
+                </td>
+                <td
+                  data-th="Price"
+                  className="cw-sv-table__price cw-sv-table__price--buy"
+                >
+                  $2,500
+                  <BuyButton
+                    skuKey="audit-2500"
+                    label="Buy the Audit"
+                    className="cw-sv-table__buy"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" className="cw-sv-table__name">
+                  The Sprint
+                </th>
+                <td data-th="What you get">
+                  One week embedded on one outcome, shipped.
+                </td>
+                <td
+                  data-th="Price"
+                  className="cw-sv-table__price cw-sv-table__price--buy"
+                >
+                  $7,500
+                  <BuyButton
+                    skuKey="sprint-7500"
+                    label="Buy the Sprint"
+                    className="cw-sv-table__buy"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="cw-sv-shapes__foot">
+            Full details, the refund terms, and the field manual that comes with
+            all three.{" "}
+            <a href="/packages" className="cw-mlink">
+              See the packages <span aria-hidden>→</span>
+            </a>
+          </p>
+        </section>
+
         {/* Pass-70: the two things a company buyer asks that this page did
             not answer. The price note first, because "Scoped on the call" on
             three of four shapes reads as evasive to someone deciding whether
@@ -467,22 +609,10 @@ export default function ServicesPage() {
             person, I say so on the call.
           </p>
 
-          {/* Pass-108: the page's one mention of the Audit (problem 6).
-              Grounded in /packages' own fine print (cw-pkgs__fine): "every
-              package fee credits toward the next package or an engagement
-              started within 60 days." This states that same fact from the
-              other direction, for the reader an engagement asks too much of
-              right now — not a second competing door, one line in the
-              objection section it belongs in. */}
-          <h2 className="cw-sv-objection__h">Not ready to commit</h2>
-          <p>
-            The Audit is the lower-commitment way in: $2,500, two weeks, fixed
-            scope, a written memo. If it turns into an engagement within 60
-            days, I credit the fee toward it.{" "}
-            <a href="/packages" className="cw-mlink">
-              See the Audit <span aria-hidden>→</span>
-            </a>
-          </p>
+          {/* Pass-109: "Not ready to commit" moved out of this paragraph
+              and into the standalone Packages section above (id=
+              "packages"), where all three prices sit next to a working Buy
+              action instead of one sentence at the foot of the page. */}
         </section>
 
         {/* Pass-70: the packages moved to their own page, /packages. A solo

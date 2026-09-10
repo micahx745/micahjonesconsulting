@@ -558,10 +558,23 @@ export default function ColorWorldsHome() {
             whole record. Otherwise unchanged from
             Pass-2/Pass-18; only the heading level moved (h2 → h3), since
             "How I work." above is now the section's one accessible name. */}
-        <p className="cw-kicker cw-reveal" style={{ marginTop: "56px" }}>
+        {/* DENSITY FIX (home-pace pass, 2026-09-10): was 56px -- the same
+            unit .cw-exits uses below for its own internal break.
+            Doubled so the shift out of the three-stage loop into the
+            closing tally reads as a full pause, not a half one; paired
+            with cw-secttitle--sub above so the register change is
+            visible in both space and size, not space alone. */}
+        <p className="cw-kicker cw-reveal" style={{ marginTop: "112px" }}>
           The record
         </p>
-        <SplitReveal as="h3" id="cw-products-title" className="cw-secttitle">
+        {/* DENSITY FIX (home-pace pass, 2026-09-10): cw-secttitle--sub, see
+            app/globals.css -- this closing subhead no longer renders at
+            the same scale as "How I work." above it in this section. */}
+        <SplitReveal
+          as="h3"
+          id="cw-products-title"
+          className="cw-secttitle cw-secttitle--sub"
+        >
           The receipts.
         </SplitReveal>
         <p className="cw-sect-dek cw-reveal">

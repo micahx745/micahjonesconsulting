@@ -2544,6 +2544,20 @@ body {
   margin: 0;
 }
 
+/* DENSITY FIX (home-pace pass, 2026-09-10): .cw-secttitle is a class-
+ * based scale, not a tag-based one (see the fuse-pass comment at
+ * app/(foyer)/page.tsx L280) -- so "The receipts." (h3) was rendering
+ * exactly as large as "How I work." (h2), two headline-scale words
+ * inside one <section>. This modifier gives a closing subhead its own
+ * smaller step on the same display face, so only one element per
+ * section reads as THE headline. Semantics (h2 vs h3, aria-labelledby)
+ * are untouched -- this only changes size, never the tag or the
+ * accessible name. */
+[data-mode="cw"] .cw-secttitle--sub {
+  font-size: clamp(26px, 3.6vw, 46px);
+  max-width: 20ch;
+}
+
 /* Clients hover-reveal list */
 [data-mode="cw"] .cw-worklist {
   margin-top: 64px;
@@ -2811,12 +2825,20 @@ body {
   margin: 0 0 12px;
 }
 
+/* DENSITY FIX (home-pace pass, 2026-09-10): this paragraph rendered in
+ * the display face at near-headline size, so every stage carried TWO
+ * headline-weight lines (.cw-principle__artifact above it, then this)
+ * before anything receded. It now uses the body face at .cw-sect-dek's
+ * own register -- the site's established "supporting copy" scale -- so
+ * the artifact line stays the one thing a scanning eye reads as a
+ * headline per stage. color: inherit throughout, no opacity added
+ * (CONTRAST FIX above still holds). */
 [data-mode="cw"] .cw-principle__text {
-  font-family: var(--font-cw-display);
-  font-weight: 500;
-  font-size: clamp(20px, 2.4vw, 30px);
-  line-height: 1.3;
-  letter-spacing: -0.012em;
+  font-family: var(--font-cw-body);
+  font-weight: 400;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.55;
+  letter-spacing: normal;
   margin: 0 0 14px;
   max-width: 52ch;
   text-transform: none;
@@ -2843,6 +2865,29 @@ body {
 [data-mode="cw"] .cw-principle__proof strong {
   font-weight: 600;
   opacity: 1;
+}
+
+/* DENSITY FIX (home-pace pass, 2026-09-10): a ledger nested inside a
+ * stage was rendering at the exact same weight as the section's own
+ * closing "receipts" ledger below it -- full 2px opening rule, 24px row
+ * padding, an 18-22px display-weight company name -- so the eye never
+ * recedes between "here is the stage" and "here is its proof". Scoped
+ * to .cw-principle .cw-ledger only: the closing ledger is a direct
+ * child of the section, not of .cw-principle (see the JSX), so it is
+ * untouched, and so is every other page -- .cw-ledger/.cw-lrow render
+ * nowhere but this one section (grepped). Border reuses the ledger's
+ * OWN existing hairline mix (25%, the same token .cw-lrow already uses
+ * for its row divider); no new color, no opacity added to text. */
+[data-mode="cw"] .cw-principle .cw-ledger {
+  margin-top: 18px;
+  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+}
+[data-mode="cw"] .cw-principle .cw-lrow {
+  padding: 16px 0;
+}
+[data-mode="cw"] .cw-principle .cw-lrow__co {
+  font-size: clamp(15px, 1.3vw, 17px);
+  font-weight: 500;
 }
 
 /* ================================================================
@@ -5848,6 +5893,21 @@ body {
   margin-bottom: 20px;
 }
 
+/* Pass-109: the group lead — ties the three services visually to
+ * Engagements (operator: "a client can pick all three... it does not
+ * connect with the engagements... makes me think they are separate").
+ * Sits inside .cw-sv-open, right after the case-study link.
+ * Pass-108 correction: this is a 13-word sentence, not a label, so it
+ * renders as body prose (CLAUDE.md: mono is for labels, codes and
+ * data only). Body face, no uppercase, sized like .cw-sv-open__body. */
+[data-mode="cw"] .cw-sv-svc-group__lead {
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 28px 0 0;
+}
+
 /* One service, compact: lead column + detail column */
 [data-mode="cw"] .cw-sv-svc {
   display: grid;
@@ -5855,6 +5915,13 @@ body {
   gap: 28px 64px;
   padding: 44px 0 52px;
   border-top: 1px solid currentColor;
+}
+/* Inside the group, only the first service keeps the full-strength
+ * rule from Engagements above; the two dividers after it are soft,
+ * so the three read as one list under Engagements, not three peer
+ * chapters. */
+[data-mode="cw"] .cw-sv-svc-group .cw-sv-svc:not(:first-of-type) {
+  border-top-color: color-mix(in srgb, currentColor 22%, transparent);
 }
 [data-mode="cw"] .cw-sv-svc:last-of-type {
   border-bottom: 1px solid currentColor;
@@ -5866,13 +5933,20 @@ body {
     padding: 36px 0 44px;
   }
 }
+/* Pass-109: 01/02/03 promoted from a 12px mono label to a large,
+ * light-weight display numeral — SIZE and WEIGHT carry the break
+ * between services (this page still renders on more than one world,
+ * so no opacity, no new colour: the exact pattern that produced 19
+ * axe failures once). Answers "does not compel action... find the
+ * specific mechanisms" with a real structural anchor at the top of
+ * each service instead of a near-invisible eyebrow. */
 [data-mode="cw"] .cw-sv-svc__num {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.9;
-  margin: 0 0 14px;
+  font-family: var(--font-cw-display);
+  font-weight: 300;
+  font-size: clamp(44px, 5.5vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
 }
 [data-mode="cw"] .cw-sv-svc__title {
   font-family: var(--font-cw-display);
@@ -5958,6 +6032,25 @@ body {
     margin-top: 80px;
   }
 }
+
+/* Pass-109: the packages table — the Shapes table's own grammar,
+ * restoring the three fixed prices Pass-108 removed from this page
+ * (operator: "the packages arent even in services page anymore. Most
+ * important thing"). Two columns of body text only (What you get,
+ * Price), so both go full width on mobile rather than sharing the
+ * Shapes table's two-per-row grid built for its four columns. */
+[data-mode="cw"] .cw-sv-pkgs {
+  margin-top: 128px;
+  max-width: none;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-sv-pkgs {
+    margin-top: 80px;
+  }
+  [data-mode="cw"] .cw-sv-pkgs .cw-sv-table tbody td {
+    grid-column: 1 / -1;
+  }
+}
 [data-mode="cw"] .cw-sv-table {
   width: 100%;
   border-collapse: collapse;
@@ -6013,6 +6106,42 @@ body {
 [data-mode="cw"] .cw-sv-table__price {
   font-weight: 600;
   white-space: nowrap;
+}
+[data-mode="cw"] .cw-sv-table tbody td.cw-sv-table__price--buy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  white-space: normal;
+}
+[data-mode="cw"] .cw-sv-table__buy {
+  appearance: none;
+  background: none;
+  border: none;
+  border-bottom: 1px solid currentColor;
+  border-radius: 0;
+  cursor: pointer;
+  font-family: var(--font-cw-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: inherit;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 0 2px;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+[data-mode="cw"] .cw-sv-table__buy:hover,
+[data-mode="cw"] .cw-sv-table__buy:focus-visible {
+  color: var(--cw-accent, var(--color-cw-saffron));
+  border-bottom-color: var(--cw-accent, var(--color-cw-saffron));
+}
+[data-mode="cw"] .cw-sv-table__buy[aria-busy="true"] {
+  cursor: progress;
 }
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-sv-table thead {
@@ -6896,7 +7025,7 @@ body {
  * was rejected here).
  * ============================================================ */
 [data-mode="cw"] .cw-sv-open {
-  margin: 0 0 96px;
+  margin: 0;
   max-width: 640px;
 }
 [data-mode="cw"] .cw-sv-open__name {
@@ -6927,6 +7056,6 @@ body {
 }
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-sv-open {
-    margin-bottom: 64px;
+    margin-bottom: 0;
   }
 }
