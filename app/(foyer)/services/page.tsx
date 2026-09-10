@@ -26,7 +26,7 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "Services: what I do, and how to hire me",
   description:
-    "Three services, two ways to buy them: an engagement from $5K a month, or a fixed-price package at $500, $2,500 or $7,500. One operator, not an agency.",
+    "Engagements from $5K a month: advisory, project, retainer, or embedded. Not ready to commit? Start with the $2,500 Audit instead. One operator, not an agency.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/services" },
 };
 
@@ -276,88 +276,50 @@ export default function ServicesPage() {
           Services
         </h1>
 
-        {/* Pass-76b. Each door used to be ONE <a> wrapping everything, with a
-            flat proof line in the foot: "Guardicore: $80M in pipeline, $14M in
-            revenue." Operator: those read "weak and out of place" — a stat
-            with nowhere to go, sitting under the thing you actually came to
-            click. They are now the door's second action: a real link into the
-            case study that proves the claim, written as the thing the reader
-            would want to find out.
+        {/* Pass-108 (services rebuild, operator: "still looks weird
+            structurally and does not entice me to want to buy"). The
+            two-column doors fork is gone. Both audiences it split between
+            already self-select before they reach this page: the home
+            page's "Running a growing business" door sends companies here
+            (app/(foyer)/page.tsx, the doors-band section), and its own
+            "Audit" link plus "Building solo" door send everyone else to
+            /packages. Asking the same visitor to classify themselves a
+            second time, against two sentences and a link with no price or
+            scope in sight, was the page's own root defect: it routed
+            instead of selling, and the one number a buyer needs first,
+            "From $5K a month," rendered at 12px mono in a door's foot, the
+            smallest text on a page whose job is selling.
 
-            That forced the restructure. A link inside a link is invalid HTML,
-            so the card is a <div> and the title, the case link and the CTA are
-            three explicit links. The whole-card click target goes away; three
-            honest targets beat one that hides two destinations. */}
-        <nav className="cw-doors" aria-label="Two ways to hire me">
-          <div className="cw-door">
-            <span className="cw-door__kicker">For companies</span>
-            <a href="#engagements" className="cw-door__name">
-              Engagements
-            </a>
-            <span className="cw-door__body">
-              Advisory, project, retainer, or embedded. Scoped together once you
-              tell me the problem.
-            </span>
-            <span className="cw-door__foot">
-              <span className="cw-door__price">From $5K a month</span>
-              <a href="/work/guardicore" className="cw-door__case">
-                See how I helped a foreign company break into the North American
-                market and get acquired
-                <span aria-hidden> &rarr;</span>
-              </a>
-              <a href="#engagements" className="cw-door__go">
-                The three services <span aria-hidden>&rarr;</span>
-              </a>
-            </span>
-          </div>
-          <div className="cw-door">
-            <span className="cw-door__kicker">
-              For solo builders and small teams
-            </span>
-            <a href="/packages" className="cw-door__name">
-              Packages
-            </a>
-            <span className="cw-door__body">
-              Three fixed prices. Pick one, buy it, and the work starts this
-              week.
-            </span>
-            <span className="cw-door__foot">
-              <span className="cw-door__price">$500 · $2,500 · $7,500</span>
-              {/* Pass-78: was "...solo, from first commit to paying users".
-                  The page it opens never says solo, and its one sentence about
-                  who built it says Ordani has a SMALL TEAM around it (birth
-                  workers, healthcare and cyber security people) — a Pass-63
-                  operator ruling that stays. So the button promised one-person
-                  delivery and the click landed on the opposite. The ledger's
-                  own framing is that he founded it and writes the code, which
-                  is what home and /about already say. That is the claim the
-                  button now makes. */}
-              <a href="/work/ordani" className="cw-door__case">
-                See how I built a HIPAA-compliant product from first commit to
-                paying users, writing the code myself
-                <span aria-hidden> &rarr;</span>
-              </a>
-              <a href="/packages" className="cw-door__go">
-                The three packages <span aria-hidden>&rarr;</span>
-              </a>
-            </span>
-          </div>
-        </nav>
-
-        {/* The three services, compact. */}
+            The opening is now one section: the price stated once, at
+            display size, directly above the same sell line and the same
+            case-study receipt the old "Engagements" door carried,
+            unchanged. It flows straight into the three named services
+            below (pain, three outcomes, a receipt each, already selling)
+            instead of routing away from them, so the "See the three
+            services" jump link is gone too: the reader reaches that
+            content by scrolling, not clicking. The old .cw-doors/.cw-door
+            CSS stays in globals.css untouched — the home page's own
+            doors-band reuses the bare .cw-door class, so deleting those
+            rules would risk a page outside this pass's scope. */}
         <section
           id="engagements"
-          className="cw-sv-sec"
-          aria-labelledby="cw-sv-eng-title"
+          className="cw-sv-open"
+          aria-labelledby="cw-sv-open-title"
         >
-          <p className="cw-services__kicker">Engagements</p>
-          <h2 id="cw-sv-eng-title" className="cw-service__title">
-            Three services, one pair of hands.
+          <p className="cw-services__kicker">For companies</p>
+          <h2 id="cw-sv-open-title" className="cw-sv-open__name">
+            Engagements
           </h2>
-          <p className="cw-services__intro">
+          <p className="cw-sv-open__price">From $5K a month</p>
+          <p className="cw-sv-open__body">
             Strategy and software from the same person, so nothing is lost in
             the hand-off. Pick the problem; I name the shape on the call.
           </p>
+          <a href="/work/guardicore" className="cw-door__case">
+            See how I helped a foreign company break into the North American
+            market and get acquired
+            <span aria-hidden> &rarr;</span>
+          </a>
         </section>
 
         {SERVICES.map((service) => (
@@ -481,7 +443,10 @@ export default function ServicesPage() {
             a price, so this says WHEN the number arrives instead of what it
             is. A real range would be stronger and only the operator can set
             it. */}
-        <section className="cw-sv-objection" aria-label="How pricing works">
+        <section
+          className="cw-sv-objection"
+          aria-label="Pricing and getting started"
+        >
           <h2 className="cw-sv-objection__h">On the price</h2>
           <p>
             Advisory is the only shape with a standing rate, because it is the
@@ -500,6 +465,23 @@ export default function ServicesPage() {
             foundational work that decides what the engagement is actually for.
             Something named ships in month one. When the work is bigger than one
             person, I say so on the call.
+          </p>
+
+          {/* Pass-108: the page's one mention of the Audit (problem 6).
+              Grounded in /packages' own fine print (cw-pkgs__fine): "every
+              package fee credits toward the next package or an engagement
+              started within 60 days." This states that same fact from the
+              other direction, for the reader an engagement asks too much of
+              right now — not a second competing door, one line in the
+              objection section it belongs in. */}
+          <h2 className="cw-sv-objection__h">Not ready to commit</h2>
+          <p>
+            The Audit is the lower-commitment way in: $2,500, two weeks, fixed
+            scope, a written memo. If it turns into an engagement within 60
+            days, I credit the fee toward it.{" "}
+            <a href="/packages" className="cw-mlink">
+              See the Audit <span aria-hidden>→</span>
+            </a>
           </p>
         </section>
 

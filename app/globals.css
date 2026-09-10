@@ -2451,6 +2451,44 @@ body {
   opacity: 0.92;
 }
 
+/* Pass-107 (audit offer restructure): price and duration used to sit
+ * inside .cw-secttitle at the same 800-weight display size as the name
+ * itself — unreadable as three separate facts. They now sit on their
+ * own line, sized down from the headline but still their own unit.
+ * color: inherit throughout, no fixed accent — the WorldSwitcher rule
+ * — hierarchy is size and weight only, the same device .cw-exits__val
+ * already proves safe across worlds. */
+[data-mode="cw"] .cw-offer-stats {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  margin: 28px 0 0;
+}
+[data-mode="cw"] .cw-offer-stats__price {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1;
+  color: inherit;
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+/* CHECKER FIX (Pass-107): .cw-offer-stats__meta and .cw-deliver__num were drafted
+ * with opacity: 0.9 on text. That is the exact category that produced 19 axe
+ * failures in this same #offer section hours ago, because the WorldSwitcher
+ * cross-fades the ground under it. The value has precedent elsewhere on the page
+ * and might well have held, but "might well have held" is not a contrast
+ * argument. Both now differentiate by size and weight only, the way
+ * .cw-offer-stats__price, the ledger rows and the exit record already do. */
+[data-mode="cw"] .cw-offer-stats__meta {
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase; /* a11y: matches .cw-kicker/.cw-principle__num — terracotta is the tightest world at 0.89 */
+  margin: 0;
+}
+
 /* Lede-sub link (e.g. "Visit ordani.com →") below the lede. */
 [data-mode="cw"] .cw-lede-sub {
   margin: 18px 0 0;
@@ -2627,10 +2665,30 @@ body {
   font-size: clamp(19px, 1.7vw, 23px);
   line-height: 1.2;
 }
+/* Pass-107: order numerals on the three deliverable rows — same mono/
+ * opacity treatment as .cw-principle__num, so the set reads as a
+ * sequence rather than three interchangeable bullets. */
+[data-mode="cw"] .cw-deliver__num {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em; /* a11y: matches .cw-principle__num — terracotta is the tightest world at 0.89 */
+  margin-right: 10px;
+}
+/* No opacity here. THIRD time this trap has bitten in one day: this block sits in
+ * the #offer section, whose ground the WorldSwitcher cross-fades, and axe measured
+ * these three notes failing at 1440 with opacity 0.82. Size carries the hierarchy. */
 [data-mode="cw"] .cw-deliver__note {
   font-size: clamp(15px, 1.3vw, 17px);
   line-height: 1.5;
-  opacity: 0.82;
+}
+/* Pass-107: spacing wrapper for the after-purchase line below the
+ * deliverable rows. Reuses .cw-deliver__note's type treatment — it is
+ * exactly that register, supporting, not a headline — and only adds
+ * the gap above it plus a measure so it doesn't run the section's full
+ * width. */
+[data-mode="cw"] .cw-offer-next {
+  margin-top: 32px;
+  max-width: 62ch;
 }
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-deliver__row {
@@ -6820,4 +6878,55 @@ body {
   font-size: clamp(16px, 1.5vw, 18px);
   line-height: 1.6;
   margin: 0;
+}
+
+/* ============================================================
+ * Pass-108 — /services rebuild: one opening, not a fork (.cw-sv-open)
+ *
+ * Replaces the two-column doors fork. The old .cw-doors/.cw-door rules
+ * above are left in place: the home page's own .cw-doors-band reuses the
+ * bare .cw-door class, so deleting them here would risk a page outside
+ * this pass's scope. The fork made a buyer classify themselves before the
+ * page had told them anything, and its price line ("From $5K a month")
+ * rendered at 12px mono in the door's foot — the smallest text on a page
+ * whose job is selling. Same fix the exit record already made on this
+ * page's neighbors: state the number once, at display size, color:
+ * inherit throughout (this page still renders on more than one world; see
+ * the exit record's own CONTRAST FIX note above for why a fixed accent
+ * was rejected here).
+ * ============================================================ */
+[data-mode="cw"] .cw-sv-open {
+  margin: 0 0 96px;
+  max-width: 640px;
+}
+[data-mode="cw"] .cw-sv-open__name {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(40px, 5.5vw, 68px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: inherit;
+  margin: 0 0 8px;
+}
+[data-mode="cw"] .cw-sv-open__price {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.1;
+  color: inherit;
+  margin: 0 0 24px;
+}
+[data-mode="cw"] .cw-sv-open__body {
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.7vw, 21px);
+  line-height: 1.5;
+  max-width: 46ch;
+  color: inherit;
+  margin: 0 0 28px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-sv-open {
+    margin-bottom: 64px;
+  }
 }

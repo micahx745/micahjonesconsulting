@@ -18,21 +18,26 @@
 // on its own.
 //   Hero          → terracotta (Pass-21: rotating words pipeline→position
 //                               + system→engine; sub names 14 practices)
-//   The receipts  → espresso (Pass-106: moved here from between Ordani
-//                             and Two doors — this is the section that
-//                             used to be labeled "Shipped"/"Work that
-//                             shipped." in this comment; Pass-2's LEDGER
-//                             table. Hero's own "See the work ↓" CTA
-//                             already targets #products, this section's
-//                             id, so that CTA now lands on the very next
-//                             screen instead of scrolling past Clients,
-//                             How I work and Ordani first.)
-//   How I work    → bone   (Pass-21: NEW Operating Principles section
-//                           per Claude Chat audit — missing-surface gap.
-//                           Three named stages: Diagnose / Build /
-//                           Position. Pass-106: now sits between The
-//                           receipts and Ordani; Services no longer has
-//                           a section of its own on this page.)
+//   How I work    → espresso (Pass-21: NEW Operating Principles section
+//                             per Claude Chat audit — missing-surface gap;
+//                             three named stages, Diagnose / Build /
+//                             Position. FUSE PASS (operator, verbatim:
+//                             "attach the receipts part to that too...
+//                             one smooth motion of I offer this and here
+//                             is an example of that"): THE RECEIPTS
+//                             section (id="products", Pass-2's LEDGER,
+//                             moved here Pass-106) is folded into this
+//                             one — each stage carries the ledger rows
+//                             that prove it, the rows that fit no stage
+//                             plus the Consulting total close the
+//                             section, then Exit Record. World moves
+//                             bone -> espresso: one fewer section, so the
+//                             remaining transitions run rarer and bigger
+//                             (D-R3). id stays "products" (Hero's "See
+//                             the work ↓" CTA targets it); id="how-i-work"
+//                             is retired, unreferenced anywhere else
+//                             (grepped). Full row-to-stage map is on the
+//                             section tag itself, below.)
 //   Ordani        → petrol (Pass-21: lede rewritten problem-first per
 //                           Claude Chat audit)
 //   Two doors     → bone   (Pass-5/6: builder vs growing-business self-
@@ -154,8 +159,14 @@ export default function ColorWorldsHome() {
       >
         <p className="cw-kicker cw-reveal">Start here</p>
         <SplitReveal as="h2" id="cw-offer-title" className="cw-secttitle">
-          The Audit. $2,500. Two weeks.
+          The Audit
         </SplitReveal>
+        <div className="cw-offer-stats cw-reveal">
+          <p className="cw-offer-stats__price">$2,500</p>
+          <p className="cw-offer-stats__meta">
+            Two weeks. Starts within the week.
+          </p>
+        </div>
         <p className="cw-sect-dek cw-reveal">
           I go through your build, your production, or your positioning top to
           bottom.
@@ -172,7 +183,12 @@ export default function ColorWorldsHome() {
             className="cw-deliver__row cw-reveal"
             style={{ transitionDelay: "0ms" }}
           >
-            <span className="cw-deliver__name">An 8-10 page memo</span>
+            <span className="cw-deliver__name">
+              <span className="cw-deliver__num" aria-hidden="true">
+                01
+              </span>{" "}
+              An 8-10 page memo
+            </span>
             <span className="cw-deliver__note">
               What is load-bearing, what is broken, and what to fix first.
             </span>
@@ -181,7 +197,12 @@ export default function ColorWorldsHome() {
             className="cw-deliver__row cw-reveal"
             style={{ transitionDelay: "80ms" }}
           >
-            <span className="cw-deliver__name">A prioritized fix sequence</span>
+            <span className="cw-deliver__name">
+              <span className="cw-deliver__num" aria-hidden="true">
+                02
+              </span>{" "}
+              A prioritized fix sequence
+            </span>
             <span className="cw-deliver__note">
               The order to do it in, so you can start the morning it lands.
             </span>
@@ -190,15 +211,27 @@ export default function ColorWorldsHome() {
             className="cw-deliver__row cw-reveal"
             style={{ transitionDelay: "160ms" }}
           >
-            <span className="cw-deliver__name">A one-hour debrief call</span>
+            <span className="cw-deliver__name">
+              <span className="cw-deliver__num" aria-hidden="true">
+                03
+              </span>{" "}
+              A one-hour debrief call
+            </span>
             <span className="cw-deliver__note">
               I walk you through it. You keep the memo either way.
             </span>
           </li>
         </ul>
+        <p
+          className="cw-deliver__note cw-offer-next cw-reveal"
+          style={{ transitionDelay: "220ms" }}
+        >
+          The moment you buy, a kickoff email lands: intake questions, a link to
+          book the debrief, and The 80% Wall, my field manual, attached.
+        </p>
         <div className="cw-section-cta-wrap cw-section-cta-wrap--left cw-reveal">
           <a href="/packages" className="cw-section-cta">
-            See what the Audit covers{" "}
+            Start the Audit{" "}
             <span className="cw-section-cta__arr" aria-hidden>
               →
             </span>
@@ -234,205 +267,43 @@ export default function ColorWorldsHome() {
           lands before any pitch, per the same research. It was cut from
           its old location, not duplicated — see the note left there. */}
 
-      {/* THE RECEIPTS — espresso. Pass-106 (research CHAT-105): relocated
-          here, directly after Hero, so proof of real work lands before
-          any pitch — this used to sit between Ordani and Two doors, and
-          was labeled "SHIPPED" in this comment there. Section copy below
-          is unchanged from that version: single-word header + 3-sentence
-          dek that doubles as proof. Hero's own "See the work ↓" CTA
-          already targeted #products (this section's id), so that CTA
-          now lands on the very next screen instead of scrolling past
-          Clients, How I work and Ordani first. */}
+      {/* HOW I WORK + THE RECEIPTS — fused, espresso. Operator, verbatim:
+          "after the hero we need to offer a section on how I work and
+          attach the receipts part to that too. Make it one smooth motion
+          of I offer this and here is an example of that." These were two
+          adjacent sections (Pass-106 order: THE RECEIPTS then OPERATING
+          PRINCIPLES); now one <section>. "How I work." is the only <h2>
+          (id cw-howiwork-title carries aria-labelledby); each stage below
+          carries the ledger rows that prove it — see the row-to-stage
+          rationale in the pass notes/brief. Rows that fit no stage, plus
+          the Consulting total, close the section under "The receipts."
+          (now an <h3> — cw-secttitle is a class-based scale, not
+          tag-based, so it renders at the same size); Exit Record closes
+          last, as before.
+
+          id stays "products": Hero's "See the work ↓" CTA
+          (components/color-worlds/Hero.tsx) targets #products and nothing
+          else references #how-i-work (grepped) — this is the
+          zero-blast-radius choice. World moves bone → espresso: one fewer
+          section makes the remaining palette transitions rarer and bigger
+          (D-R3, already this file's own principle), and every element in
+          both merged sections already carries color: inherit, sized and
+          weighted rather than coloured (the 2026-09-09 axe/CONTRASTFIX fix
+          above .cw-exits in globals.css), so neither the ledger rows nor
+          the principle type depend on which world renders them.
+
+          Per-row transitionDelay is recomputed, not copied: the old
+          values staggered ONE flat list; the receipts are now three small
+          groups plus a closing group, each entering the viewport at its
+          own scroll position, so the old cadence no longer describes
+          anything. Each group restarts at 0ms with the site's own
+          short-stagger convention (cw-deliver, cw-principles:
+          0/80/160ms). */}
       <section
         className="cw-block"
         id="products"
         data-section
         data-world="espresso"
-        aria-labelledby="cw-products-title"
-      >
-        {/* Pass-2 (redesign D-R14 synthesis): the card grid becomes THE
-            LEDGER — the direction the operator picked across four style
-            rounds. A record table reads as an audited document: the most
-            credible register available to an enterprise buyer, and the
-            format a procurement team forwards. Title breaks the
-            abstract-noun+period drumbeat (attack plan §6 item 5) with a
-            full assertion no competitor can copy. */}
-        <p className="cw-kicker cw-reveal">The record</p>
-        <SplitReveal as="h2" id="cw-products-title" className="cw-secttitle">
-          The receipts.
-        </SplitReveal>
-        {/* Pass-18 (operator): "every figure is defensible on request is
-            a little much" — the dare becomes an invitation, and the
-            title drops into the site's own register (the protect-listed
-            "I'll send the receipts" line). */}
-        <p className="cw-sect-dek cw-reveal">
-          Every line below is real. Ask about any of them.
-        </p>
-
-        {/* THE LEDGER. Replaces the W2 weighted card grid AND absorbs the
-            cw-shipped-also credit line (its 2013–2023 / $20M+ claim is now
-            the total row). Trace rule (LESSONS #2) checked: $80M/$14M in
-            guardicore.mdx, 8K→290K in content-engine.mdx, doubled in rfp-engine.mdx,
-            the paying-users claim in ordani.mdx. The SurveyMonkey row has no
-            case-study page, so it carries no link — an unlinked row in a
-            ledger reads as honesty, not absence. Per the W2 operator lock,
-            the home surface says "SurveyMonkey Enterprise", never
-            TechValidate. Rows keep .cw-reveal + stagger — the reveal
-            system works as of Pass-1, so the rows arrive in sequence. */}
-        <div className="cw-ledger cw-reveal" role="list">
-          <a
-            href="/work/ordani"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "60ms" }}
-          >
-            <span className="cw-lrow__co">
-              Ordani
-              <span className="cw-lrow__tag">
-                Founder, sole engineer · 2025–2026
-              </span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>Active paying users</strong> · none lost to a competitor
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-          <a
-            href="/work/content-engine"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "120ms" }}
-          >
-            <span className="cw-lrow__co">
-              Industry author
-              <span className="cw-lrow__tag">Content engine · 2024–2025</span>
-            </span>
-            <span className="cw-lrow__out">
-              Monthly reach <strong>8K → 290K</strong> in five months
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-          <a
-            href="/work/rfp-engine"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "150ms" }}
-          >
-            <span className="cw-lrow__co">
-              Industry author
-              <span className="cw-lrow__tag">RFP engine · 2024–2025</span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>$3M in contracts won</strong> · close rate doubled
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-          <a
-            href="/work/guardicore"
-            className="cw-lrow cw-lrow--link cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "165ms" }}
-          >
-            <span className="cw-lrow__co">
-              Guardicore
-              <span className="cw-lrow__tag">2018–2021</span>
-            </span>
-            <span
-              className="cw-lrow__out"
-              aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"
-            >
-              <strong>$14M in revenue</strong> ·{" "}
-              <strong>acquired by Akamai</strong>
-            </span>
-            <span className="cw-lrow__go" aria-hidden>
-              →
-            </span>
-          </a>
-          <div
-            className="cw-lrow cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "175ms" }}
-          >
-            <span className="cw-lrow__co">
-              SurveyMonkey Enterprise
-              <span className="cw-lrow__tag">Enterprise sales · 2018</span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>$1M+</strong> toward the IPO · cap-table position held
-              through the Nasdaq listing
-            </span>
-          </div>
-          <div
-            className="cw-lrow cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "180ms" }}
-          >
-            <span className="cw-lrow__co">
-              Postmates
-              <span className="cw-lrow__tag">Product analyst · 2020</span>
-            </span>
-            <span className="cw-lrow__out">
-              Market and fraud analysis in the wide-open era ·{" "}
-              <strong>acquired by Uber, $2.65B</strong>
-            </span>
-          </div>
-          <div
-            className="cw-lrow cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "200ms" }}
-          >
-            <span className="cw-lrow__co">
-              Neuton.AI
-              <span className="cw-lrow__tag">Helped launch · 2025</span>
-            </span>
-            <span className="cw-lrow__out">
-              Technology <strong>acquired by Nordic Semiconductor</strong> · not
-              a cap-table position
-            </span>
-          </div>
-
-          <div
-            className="cw-lrow cw-lrow--tot cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "360ms" }}
-          >
-            <span className="cw-lrow__co">
-              Consulting
-              <span className="cw-lrow__tag">All clients · since 2013</span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>$20M+ in client revenue</strong>
-            </span>
-          </div>
-        </div>
-
-        <ExitRecord />
-      </section>
-
-      {/* OPERATING PRINCIPLES — bone. Pass-21 (Claude Chat audit):
-          new surface added per the missing-surface gap call. Originally
-          sat between Services (what I do) and Ordani (proof I can ship),
-          explaining HOW the work happens. Premium boutique pattern:
-          short statements that give buyers language to repeat
-          internally when they're selling the operator to their CEO.
-
-          AMENDED Pass-106 (research CHAT-105): the CLIENTS/Services
-          section above is cut and THE RECEIPTS section (proof) moved up
-          ahead of this one, so this section now sits between The
-          receipts and Ordani, not between Services and Ordani. "What I
-          do" is answered by the nav and by Hero's "Hire me" link now,
-          not by a section of this page. */}
-      <section
-        className="cw-block"
-        id="how-i-work"
-        data-section
-        data-world="bone"
         aria-labelledby="cw-howiwork-title"
       >
         <p className="cw-kicker cw-reveal">Operating principles</p>
@@ -444,18 +315,21 @@ export default function ColorWorldsHome() {
             principle gets a stage name (.cw-principle__name) and a
             deliverable line (.cw-principle__artifact) in addition to
             the existing .cw-principle__text. The 1fr text column in the
-            .cw-principle grid stacks the three children naturally — the
-            grid rule (auto 1fr) is unchanged. Stagger stays 0/80/160ms.
+            .cw-principle grid stacks its children naturally — the grid
+            rule (auto 1fr) is unchanged; it now stacks a fourth child,
+            the attached ledger group, when a stage carries one.
 
             AMENDED Pass-106 (buyer research, CHAT-105-RESEARCH.md): a
             verb read as a task, not a sale. Inverted the hierarchy so
             .cw-principle__name is now the small stage label and
             .cw-principle__artifact is now the dominant headline, the
-            deliverable's own name. A new .cw-principle__proof line
-            names the deal behind each step: Guardicore into Akamai for
-            steps 01 and 03, Ordani for step 02. Every fact in it is
-            already ledgered elsewhere on this page. Markup order
-            inside the child <div> is now name, artifact, text, proof. */}
+            deliverable's own name. .cw-principle__proof names the deal
+            behind each step.
+
+            AMENDED [fuse pass]: the proof line used to be "a pointer to
+            [a receipt] that already exists" elsewhere on the page (its
+            own prior comment, app/globals.css). It now sits directly
+            above the receipt it points to. */}
         <ol className="cw-principles">
           <li
             className="cw-principle cw-reveal"
@@ -476,6 +350,40 @@ export default function ColorWorldsHome() {
                 <strong>Guardicore</strong>: message/buyer mismatch found ·{" "}
                 <strong>$14M in revenue</strong>
               </p>
+              {/* THE LEDGER. Was one contiguous list under "The receipts.";
+                  the fuse pass splits it across the three stages below plus
+                  the closing record, so this note — Trace rule (LESSONS
+                  #2) checked: $80M/$14M in guardicore.mdx, 8K→290K in
+                  content-engine.mdx, doubled in rfp-engine.mdx, the
+                  paying-users claim in ordani.mdx — now sits at the first
+                  row a reader reaches rather than above the old single
+                  block. The SurveyMonkey row still has no case-study page,
+                  so it still carries no link; per the W2 operator lock the
+                  home surface still says "SurveyMonkey Enterprise", never
+                  TechValidate. Rows keep .cw-reveal + stagger throughout. */}
+              <div className="cw-ledger cw-reveal" role="list">
+                <a
+                  href="/work/guardicore"
+                  className="cw-lrow cw-lrow--link cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "0ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Guardicore
+                    <span className="cw-lrow__tag">2018–2021</span>
+                  </span>
+                  <span
+                    className="cw-lrow__out"
+                    aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"
+                  >
+                    <strong>$14M in revenue</strong> ·{" "}
+                    <strong>acquired by Akamai</strong>
+                  </span>
+                  <span className="cw-lrow__go" aria-hidden>
+                    →
+                  </span>
+                </a>
+              </div>
             </div>
           </li>
           <li
@@ -496,6 +404,64 @@ export default function ColorWorldsHome() {
                 <strong>Ordani</strong>: HIPAA-compliant · active paying users,
                 in beta
               </p>
+              <div className="cw-ledger cw-reveal" role="list">
+                <a
+                  href="/work/ordani"
+                  className="cw-lrow cw-lrow--link cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "0ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Ordani
+                    <span className="cw-lrow__tag">
+                      Founder, sole engineer · 2025–2026
+                    </span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    <strong>Active paying users</strong> · none lost to a
+                    competitor
+                  </span>
+                  <span className="cw-lrow__go" aria-hidden>
+                    →
+                  </span>
+                </a>
+                <a
+                  href="/work/content-engine"
+                  className="cw-lrow cw-lrow--link cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "60ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Industry author
+                    <span className="cw-lrow__tag">
+                      Content engine · 2024–2025
+                    </span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    Monthly reach <strong>8K → 290K</strong> in five months
+                  </span>
+                  <span className="cw-lrow__go" aria-hidden>
+                    →
+                  </span>
+                </a>
+                <a
+                  href="/work/rfp-engine"
+                  className="cw-lrow cw-lrow--link cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "120ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Industry author
+                    <span className="cw-lrow__tag">RFP engine · 2024–2025</span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    <strong>$3M in contracts won</strong> · close rate doubled
+                  </span>
+                  <span className="cw-lrow__go" aria-hidden>
+                    →
+                  </span>
+                </a>
+              </div>
             </div>
           </li>
           <li
@@ -516,9 +482,101 @@ export default function ColorWorldsHome() {
                 <strong>Guardicore</strong>: repositioning carried through ·{" "}
                 <strong>Akamai acquisition</strong>, 2021
               </p>
+              <div className="cw-ledger cw-reveal" role="list">
+                <div
+                  className="cw-lrow cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "0ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    SurveyMonkey Enterprise
+                    <span className="cw-lrow__tag">
+                      Enterprise sales · 2018
+                    </span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    <strong>$1M+</strong> toward the IPO · cap-table position
+                    held through the Nasdaq listing
+                  </span>
+                </div>
+              </div>
             </div>
           </li>
         </ol>
+
+        {/* Pass-2 (redesign D-R14 synthesis): the card grid becomes THE
+            LEDGER — the direction the operator picked across four style
+            rounds. A record table reads as an audited document: the most
+            credible register available to an enterprise buyer, and the
+            format a procurement team forwards. Title breaks the
+            abstract-noun+period drumbeat (attack plan §6 item 5) with a
+            full assertion no competitor can copy. */}
+        {/* Pass-18 (operator): "every figure is defensible on request is
+            a little much" — the dare becomes an invitation, and the
+            title drops into the site's own register (the protect-listed
+            "I'll send the receipts" line). */}
+        {/* THE FULL RECORD — closes the fused section. Postmates and
+            Neuton.AI don't narrate one stage without straining the fit,
+            and the Consulting total aggregates every client since 2013,
+            so it can only close the whole record — both explained in the
+            row-to-stage rationale for this pass. Otherwise unchanged from
+            Pass-2/Pass-18; only the heading level moved (h2 → h3), since
+            "How I work." above is now the section's one accessible name. */}
+        <p className="cw-kicker cw-reveal" style={{ marginTop: "56px" }}>
+          The record
+        </p>
+        <SplitReveal as="h3" id="cw-products-title" className="cw-secttitle">
+          The receipts.
+        </SplitReveal>
+        <p className="cw-sect-dek cw-reveal">
+          Every line below is real. Ask about any of them.
+        </p>
+        <div className="cw-ledger cw-reveal" role="list">
+          <div
+            className="cw-lrow cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "0ms" }}
+          >
+            <span className="cw-lrow__co">
+              Postmates
+              <span className="cw-lrow__tag">Product analyst · 2020</span>
+            </span>
+            <span className="cw-lrow__out">
+              Market and fraud analysis in the wide-open era ·{" "}
+              <strong>acquired by Uber, $2.65B</strong>
+            </span>
+          </div>
+          <div
+            className="cw-lrow cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "60ms" }}
+          >
+            <span className="cw-lrow__co">
+              Neuton.AI
+              <span className="cw-lrow__tag">Helped launch · 2025</span>
+            </span>
+            <span className="cw-lrow__out">
+              Technology <strong>acquired by Nordic Semiconductor</strong> · not
+              a cap-table position
+            </span>
+          </div>
+
+          <div
+            className="cw-lrow cw-lrow--tot cw-reveal"
+            role="listitem"
+            style={{ transitionDelay: "180ms" }}
+          >
+            <span className="cw-lrow__co">
+              Consulting
+              <span className="cw-lrow__tag">All clients · since 2013</span>
+            </span>
+            <span className="cw-lrow__out">
+              <strong>$20M+ in client revenue</strong>
+            </span>
+          </div>
+        </div>
+
+        <ExitRecord />
       </section>
 
       {/* ORDANI — petrol — live product, NOT a side project.
