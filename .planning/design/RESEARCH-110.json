@@ -1,0 +1,492 @@
+[
+ {
+  "references": [
+   {
+    "name": "Linear",
+    "url": "https://linear.app/pricing",
+    "fetched": true,
+    "pattern": "Four tiers (Free/Basic/Business/Enterprise). Price is bare and oversized (\"$10 per user/month\"); Enterprise shows bare \"Custom\" + \"Annual billing only\" in the exact same type slot the number would occupy. Feature lines are plain text, no icons. No tier is visually crowned — hierarchy comes only from position and price size.",
+    "why_premium": "Total restraint: zero badges, zero icons, the unpriced tier given equal typographic weight instead of looking like a downsell.",
+    "take": "Give the three scoped engagement shapes' \"Scoped on the call\" the identical size/weight/position as Advisory's \"From $5K a month\" — never shrink or grey the unpriced line."
+   },
+   {
+    "name": "Vercel",
+    "url": "https://vercel.com/pricing",
+    "fetched": true,
+    "pattern": "Three tiers, Enterprise = bare \"Custom.\" The full feature comparison lives in tables below the cards, not repeated inside each card — cards themselves stay short.",
+    "why_premium": "Keeps the box itself uncluttered; depth is available but not forced into the box.",
+    "take": "Keep each engagement/package card to a short headline inclusion list; if a fuller comparison is ever wanted, push it below the boxes, not into them."
+   },
+   {
+    "name": "Stripe",
+    "url": "https://stripe.com/pricing",
+    "fetched": true,
+    "pattern": "Two-tier top level: priced Standard, unpriced Custom. Custom's copy leans entirely on named benefit categories (\"IC+ pricing,\" \"Volume discounts\") instead of a number. Feature blocks are category-grouped with bolded titles.",
+    "why_premium": "The unpriced tier is sold on named specifics, not a placeholder — it doesn't read empty.",
+    "take": "Pair each scoped engagement shape's \"Scoped on the call\" line with 2-3 named factors that determine scope, the way Stripe names discount types instead of leaving a bare word."
+   },
+   {
+    "name": "Framer",
+    "url": "https://www.framer.com/pricing/",
+    "fetched": true,
+    "pattern": "Enterprise repeats the word \"Custom\" across multiple feature rows inside the card, not only at the price line — reinforcing bespoke framing throughout, not just at the top.",
+    "why_premium": "The unpriced card doesn't read like a stub with one headline and nothing else — the framing is consistent top to bottom.",
+    "take": "Echo the scoped framing once inside each unpriced card's inclusion list too (e.g. a line reading \"Timeline — scoped on the call\"), not only in the headline."
+   },
+   {
+    "name": "Attio",
+    "url": "https://attio.com/pricing",
+    "fetched": true,
+    "pattern": "\"Popular\" as a small text label on the Pro tier; plain-bulleted inclusion lists with no icons; Enterprise reads bare \"Custom\" + \"Billed annually,\" no numeral anywhere on that card.",
+    "why_premium": "The recommended marker is typographic, not a graphic sticker.",
+    "take": "Confirms the site's existing \"Recommended\" tag on Embedded is the right device — keep it a plain text label, not a colored badge; keep package inclusion lists as plain lines, no icons."
+   },
+   {
+    "name": "Raycast",
+    "url": "https://www.raycast.com/pro",
+    "fetched": true,
+    "pattern": "Feature rows are written as full sentences, not clipped noun-phrase fragments; \"New\" text tags mark recent additions; hairline dividers separate feature clusters within one tier.",
+    "why_premium": "Sentences read as considered copy; fragments read as a template dump.",
+    "take": "Write Package inclusion lines as complete sentences (the Audit hero screenshot already does this: \"I walk you through it. You keep the memo either way.\") — extend that same sentence-based voice to Unstick and Sprint cards."
+   },
+   {
+    "name": "Basecamp",
+    "url": "https://basecamp.com/pricing",
+    "fetched": true,
+    "pattern": "Flat all-inclusive pricing framed as an explicit company trait (\"another Basecamp exclusive\"); each tier gets one short editorial sentence of who it's for (\"the sweet spot\") rather than only numeric differentiation.",
+    "why_premium": "Differentiation is narrative as well as numeric — the boxes feel authored, not auto-generated from a spreadsheet.",
+    "take": "Give each Package one short first-person sentence of who it's for, matching the Audit hero's existing \"I go through your build, your production, or your positioning top to bottom.\""
+   },
+   {
+    "name": "Ahrefs",
+    "url": "https://ahrefs.com/pricing",
+    "fetched": true,
+    "pattern": "Hierarchical \"All [Tier] features, plus:\" grouping between tiers, thin rule dividers between feature clusters, zero icons anywhere on the page.",
+    "why_premium": "Progressive framing implies accumulated value without needing icons or color to signal it.",
+    "take": "Even though a buyer picks only one Package, one sentence noting what the Audit adds over the Unstick Session, and the Sprint over the Audit, gives the three boxes a sense of scale without implying they stack."
+   },
+   {
+    "name": "Retool",
+    "url": "https://retool.com/pricing",
+    "fetched": true,
+    "pattern": "\"Everything in [lower], plus…\" progressive copy; Enterprise has zero on-card price and routes to a dedicated pricing page instead; checkmark/dash marks are reserved for the full comparison matrix below, never used inside the cards.",
+    "why_premium": "Icon marks are banished from the card itself — the card stays pure typography.",
+    "take": "Reinforces: no check/dash icons inside the engagement or package cards themselves, consistent with this site's no-icon-kit rule; if a comparison matrix is ever wanted, it lives in its own section."
+   },
+   {
+    "name": "Designjoy",
+    "url": "https://designjoy.co",
+    "fetched": true,
+    "pattern": "Single plan, plain-text inclusion rows each ending in the word \"Included\" — but paired with a struck-through \"was $5,995\" and \"Lifetime Discount – Limited Time\" urgency language.",
+    "why_premium": "N/A — flagged as the negative example: the urgency device is the one thing on this otherwise-clean page that reads like hustle marketing rather than a premium consultancy.",
+    "take": "Borrow the plain-text \"Included\"-ending line style for Package boxes; explicitly do NOT borrow the strikethrough/urgency pricing — it collides with this site's own no-urgency rule (R17)."
+   },
+   {
+    "name": "Superside",
+    "url": "https://www.superside.com/pricing",
+    "fetched": true,
+    "pattern": "Three named engagement shapes (Dedicated/Flex/High-Impact Projects) with zero prices shown on the cards themselves; minimum spend floors (\"$15,000 monthly minimum,\" \"$30,000 a month on a 12-month term\") are disclosed only in FAQ copy below, not on the card.",
+    "why_premium": "The card names the shape and its purpose; the number, when it exists at all, is kept one layer down so the card reads confident rather than like a quote form.",
+    "take": "Direct model for Project/Retainer/Embedded: name the shape and what kind of work it covers on the card face; keep any floor or minimum (if the operator ever wants one stated) off the card and in a details layer, the way Advisory alone keeps the one public anchor price."
+   },
+   {
+    "name": "Design Pickle",
+    "url": "https://www.designpickle.com/pricing/",
+    "fetched": true,
+    "pattern": "No tiers at all — fully consultative model, copy states plainly \"You get the number on the call\"; features are grouped by capability category rather than by price tier.",
+    "why_premium": "The absence of a number is framed as a deliberate process step, not a gap in the page.",
+    "take": "Useful precedent for language: frame \"scoped on the call\" as a considered step in how engagements work, not as a placeholder for missing information."
+   },
+   {
+    "name": "Pilot",
+    "url": "https://pilot.com/pricing",
+    "fetched": true,
+    "pattern": "Tabbed service categories, each with its own tier set; unpriced \"Custom\" tiers carry a one-line \"Best for:\" descriptor immediately before the Contact Sales CTA.",
+    "why_premium": "The \"Best for\" line does the qualifying work a buyer needs before they click, without a price.",
+    "take": "Directly answers the operator's pick-one-area rule for Packages: add one explicit line per box (e.g. covers one area only, buyer picks build, production, or positioning) as its own visible row, not buried in a paragraph — mirroring Pilot's \"Best for:\" placement, using only verified facts."
+   },
+   {
+    "name": "Notion",
+    "url": "https://www.notion.com/pricing",
+    "fetched": true,
+    "pattern": "\"Recommended\" appears as a plain text label directly under the tier name — no ribbon, no colored sticker. Enterprise is unpriced (\"Custom pricing,\" \"Contact Sales\"). The CTA verb changes only for the unpriced tier.",
+    "why_premium": "The recommended marker and the unpriced tier both stay inside the same typographic system as everything else on the page.",
+    "take": "Validates keeping \"Recommended\" (already the copy for Embedded) as same-weight text, no new visual component; keep CTA verb the only thing that changes between priced and scoped cards."
+   },
+   {
+    "name": "Superhuman",
+    "url": "https://superhuman.com/plans/mail",
+    "fetched": true,
+    "pattern": "\"Most popular\" label on the middle tier; the unpriced Enterprise tier reads conversationally — \"Let's talk!\" — rather than a cold \"Custom,\" paired with a Contact Sales CTA. Short bullet fragments inside cards, a full checkmark matrix reserved for below.",
+    "why_premium": "The conversational unpriced label matches a founder-voice brand rather than a corporate one.",
+    "take": "This site's first-person voice rules favor Superhuman's conversational register over a bare \"Custom\" — the operator's own words already lean this way (\"scoped on the call\"), so keep that phrasing rather than adopting a cold \"Custom\" label."
+   },
+   {
+    "name": "Clay",
+    "url": "https://clay.com/pricing",
+    "fetched": true,
+    "pattern": "Four vertical cards, \"Recommended\" text badge on Growth, checkmark/dash reserved for the matrix below the cards (never inside them), Enterprise reads bare \"Custom\" with \"Get a demo\" as primary CTA and \"or buy now\" as a quieter secondary text link beside it.",
+    "why_premium": "The primary/secondary CTA pairing gives each card one dominant action plus one quiet alternate, without a second button competing for weight.",
+    "take": "Maps directly onto this site's existing .cw-buy / .cw-buy--quiet pair — use .cw-buy for the one primary action per card and .cw-buy--quiet only where a genuine secondary path exists (e.g. a quiet 'see full details' link beside the primary buy button)."
+   }
+  ],
+  "recurring_patterns": [
+   "The price is oversized, isolated, and left-aligned as the box's visual anchor — never embedded in a sentence. Cadence (\"/month,\" \"per user/month\") is small, muted type set beside or below it, never competing with the number (Linear, Attio, Notion, Vercel, Clay).",
+   "Custom/scoped tiers replace the number with one confident word or short phrase (\"Custom,\" \"Let's talk!\") set at the exact same size and position the price would occupy — equal visual weight to a dollar figure, never smaller or greyed down (Vercel, Notion, Framer, Clay, Superhuman Enterprise).",
+   "The recommended tier is marked with a small text label (\"Popular,\" \"Recommended,\" \"Most popular\") plus a subtle structural cue — never a ribbon, starburst, or bright sticker (Notion, Attio, Clay, Superhuman).",
+   "Inclusion lists are typography-led: plain text rows with no icon kit, or a restrained checkmark/dash pair reserved for a full comparison table below the cards — never a checkmark glued to every card row (Ahrefs, Stripe, Superside, Design Pickle, Retool, Clay).",
+   "Paid tiers use progressive framing — \"Everything in [lower], plus…\" — so a box reads as an accumulation rather than a redundant re-listing of the same inventory (Retool, Ahrefs's plus-grouping, Basecamp's tier narrative).",
+   "CTA verb matches the tier's nature: self-serve priced tiers get an action verb (\"Get started,\" \"Start free trial\"); unpriced tiers get a conversation verb (\"Talk to sales,\" \"Contact sales,\" \"Get a demo,\" \"Book a consultation\") — the CTA shape alone tells a buyer which tiers are self-serve and which require a call (near-universal across all 16 sites).",
+   "Scoped-without-a-number tiers still carry proof of scale nearby — a floor, a minimum, or a qualifying line — disclosed once, off the card face, so 'custom' reads calibrated rather than evasive (Superside's monthly minimums, Pilot's 'Starts at,' Design Pickle's 'you get the number on the call').",
+   "Cards are flat single-panel surfaces on one background — a hairline border at most, no drop-shadow stacking, no card-in-card nesting, generous padding that leaves the price and CTA as the only bolded elements (Linear, Vercel, Attio, Clay, Notion)."
+  ],
+  "cheap_tells": [
+   "Icon-kit checkmarks or circles glued to every inclusion line — the most template-coded device in the set; Pilot's CFO tier is the one place among the 16 that uses this and it reads the most generic of anything fetched.",
+   "A loud 'MOST POPULAR' ribbon, diagonal banner, or bright contrasting fill slapped on one card instead of a quiet text label plus a hairline weight change.",
+   "Strikethrough 'was $X now $Y' urgency pricing with limited-time language on a professional-services page — Designjoy is the one reference here that does this, and it is the single element that undercuts an otherwise clean page; it also directly collides with this site's own no-urgency rule.",
+   "Mixing a plain line-item price table with card-style boxes on the same site — inconsistent box anatomy reads as assembled in pieces rather than designed as one system (this is the operator's own stated complaint about the current /services page).",
+   "Rendering 'Custom' or 'Contact us' smaller, lighter, or greyed-out relative to the priced tiers — it reads as an afterthought or downsell, when the unpriced tier is usually the highest-value offer and should carry equal or greater visual confidence."
+  ],
+  "recommendation": "Four Engagement boxes (Advisory priced, Project / Retainer / Embedded scoped):\n\nLayout: one row of four at 1440 (stack at 768/390), deliberately not a symmetric equal-width grid — DESIGN_BAR R6 bans that. Weight it: Advisory (the priced anchor) can run wider or lead the row; Embedded (already \"Recommended\") can sit visually heavier than Project/Retainer, breaking the four-equal-tiles pattern the operator would otherwise get by default.\n\nCard anatomy, in order: (1) shape name in JetBrains Mono label size, top-left — the site's cleared \"narrow third\" use case. (2) Price line in the same oversized Bricolage Grotesque weight for all four cards: Advisory reads \"From $5K a month\"; Project/Retainer/Embedded read \"Scoped on the call\" at identical size/weight/position — per pattern #1/#2 above, never shrink the unpriced line. (3) One first-person sentence of who each shape is for (Basecamp/Design-Pickle pattern), drawn from what's already established on the page (e.g. Advisory: \"Strategy and software from the same person, so nothing is lost in the hand-off\"). (4) 4-6 inclusion lines as complete sentences, plain text, no icons, separated by hairline color-mix dividers — built only from verified facts (any engagement can cover one, two, or all three areas; the shape is named on the call). Anything beyond that — specific deliverables, cadence promises, team size — is a NEW COMMITMENT to flag for operator approval, not to invent. (5) One qualifying line on the scoped cards echoing Stripe/Superside: scope and cadence are set on the call, not \"figure it out later.\"\n\nRecommended marking: keep Embedded's \"Recommended\" as a plain Mono text label under its shape name (Notion/Clay/Attio pattern) — no badge graphic, no color fill.\n\nCTA: Advisory gets a filled .cw-buy button (it has a public number, so it can carry the more direct action verb). Project/Retainer/Embedded get .cw-buy--quiet outline buttons with a conversational verb in the site's own first-person voice (e.g. \"Talk to me about it\") rather than a corporate \"Contact sales\" — this matches Superhuman's \"Let's talk!\" register translated into this site's voice, and keeps the one-CTA-style-per-page rule (R17) intact since quiet vs. filled is the site's existing two-state system, not a second style.\n\nThree Package boxes (Unstick $500 / Audit $2,500 / Sprint $7,500):\n\nThe Audit's existing hero-style detail layout (screenshot: svc-open-1440.png — oversized price, numbered 01/02/03 inclusion rows with dividers, single filled CTA) is already the premium bar the operator is asking for. The fix is not a new design — it's retiring the plain PACKAGE/WHAT-YOU-GET/PRICE line-item table (svc-packages-1440.png) and giving Unstick and Sprint that same card treatment instead of a shared table row.\n\nCard anatomy per box: bare oversized price (\"$500\"/\"$2,500\"/\"$7,500\") with a small mono cadence tag beside it (\"90-minute call\" / \"two weeks\" / \"one week\") — mirrors Linear/Attio's price-plus-small-cadence-tag split. Inclusion lines as complete sentences pulled only from the verified facts: Unstick — the working call, the same-day written fix plan, \"what is wrong, in the order to fix it,\" \"the prompts to fix it with,\" \"your tools, your repo\"; Audit — 8-10 page memo, prioritized fix sequence, one-hour debrief, the kickoff email with intake questions and The 80% Wall attached, keep-the-memo-either-way; Sprint — one outcome agreed by email before day one, daily progress notes, debrief plus next-step map.\n\nAdd the operator's requested pick-one-area line as its own visible row on each box (not folded into a paragraph) — e.g. \"Covers one area: build, production, or positioning. You pick.\" — following Pilot's \"Best for:\" placement pattern but stating only the actual constraint, not inventing a persona.\n\nState the fee-credit fact once per box, in small type at the bottom, rather than as a separate sentence per box — this pre-empts the same \"small pointless sentences\" complaint the operator raised about Receipts.\n\nKeep the existing \"Buy the [Package]\" .cw-buy filled-button pattern already proven on the Audit hero; extend that exact button style to Unstick and Sprint instead of their current plain outline pills in the table view.\n\nCross-cutting: no icon checkmarks anywhere in either set of boxes (hard site rule); \"Recommended\"/\"START HERE\" stay text labels, never colored badges; card surfaces stay flat on the active Color World's --cw-bg with a hairline --cw-fg border only, radius ≤16px, no shadows, no nested cards (R5); all box text inherits --cw-fg, never --cw-accent as text (Color Worlds rule); nothing in either set gets a strikethrough, countdown, or \"limited time\" framing (R17 plus the Designjoy cheap-tell above)."
+ },
+ {
+  "cheap_tells": [
+   "Digit-by-digit odometer/count-up animation on every stat — zero of the 13 real operator, consultant, or agency sites fetched this session animate their headline numbers; it reads as generic SaaS-dashboard, not track record.",
+   "A client logo carousel standing in for a track record (FE International, Fletch PMM, Instrument, April Dunford, Tiny all default to this) — it's the exact crutch the operator is asking this site to avoid by using named numbers instead.",
+   "Self-aware honesty framing next to the number itself ('every line below is real', 'we don't inflate this') — no fetched site does this; stating the figure once, flatly, is what reads as confident. Flagging your own honesty reads as compensating for a doubt nobody had yet.",
+   "Showing a 'public claim' number and a 'true/disclosed' number side by side as two competing rows — it invites the reader to audit the arithmetic instead of just believing the one number you're willing to stand behind.",
+   "Narrating an acquisition date as a sentence ('acquired in March of that year...') instead of a bare data point or nothing at all — real sites (FE International, Tiny) give a plain year at most, never a clause.",
+   "Circling or animating more than one stat on a page — every fetched agency stat-grid (Tiny, Acquisition.com) that avoided ornament used it on nothing; the instant a mark is applied to more than one number it stops being a signature and starts being a template."
+  ],
+  "recurring_patterns": [
+   "The headline number appears exactly once, in running prose or a plain stat line, and the copy moves on without re-justifying it — FE International: 'completed over 1,500 transactions with a combined value of over $50 billion,' stated once, no follow-up.",
+   "Where a stat grid exists at all (Tiny: 21 companies / 20-year track record / $260M+ annual revenue / 100M+ people use our products; Acquisition.com: $250M+ portfolio revenue / 10,000 businesses advised / 81 NPS / 97.1% retention), it renders in plain bold display type — no animation, no circle, no per-item date sentence, just large type and whitespace.",
+   "Named specifics beat an unsupported aggregate: sites with real company names, real multiples, real (or plainly 'undisclosed') figures (FE International, Tiny, Acquisition.com) read heavier than sites that only assert reach in the abstract (Sahil Bloom's subscriber count, Julian Shapiro's 'ran growth for Webflow' with no number attached) — the thin ones lean harder on testimonials or logos to compensate.",
+   "Hand-drawn/annotated number marks show up in this category as a design-community genre (Dribbble tag pages) rather than something live on any of the 13 real sites fetched — which means HandCircle is a genuinely uncommon, distinctive move for a consultant site, not table stakes. Its rarity is the argument for keeping it rationed to exactly one figure rather than normalizing it across the section.",
+   "Sites that pair a number with meta-commentary about its own truthfulness, or that show their addition work in public, read less confident than sites that simply state the number and stop — nobody fetched here shows their arithmetic on the page."
+  ],
+  "recommendation": "RATIONALE FIRST: across 13 real, live-fetched premium operator/consultant/investor/agency sites, the sites that felt most confident (Tiny, Acquisition.com, FE International) share one move — a number stated once, at large plain scale, with no animation and no self-commentary — while the sites that reach for logo walls or testimonial carousels (Fletch PMM, Instrument, April Dunford) are visibly compensating for not having a number like yours to lead with. This site already has the harder, better asset (four real named exits, disclosed figures, a rounded-down public claim). The fix is mostly subtraction.\n\n1) THE HERO FIGURE — $20M+ in client revenue\n- Pull it out of the ledger row entirely. Delete the \"Consulting / All clients · since 2013\" wrapper (`app/(foyer)/page.tsx` lines 598-612) — the operator's own instruction: don't say it came from consulting work.\n- Render it as a bare, large, standalone figure near the top of the closing block — Bricolage Grotesque display weight, sized the way the current clamp(80px, …, 168px) container already is. It is the loudest thing in the section besides the section title.\n- Keep HandCircle on this figure and only this figure (already built, already approved by the operator — \"i liked the design where the 20 million was circled\"). Rationing it to one instance is what keeps it a signature mark rather than a template; per the pattern above, no real site in the sample circles more than zero numbers, so circling more than one here would overspend the device.\n- Drop any qualifying clause under it. No \"from consulting work,\" no source footnote. State it and move on, the FE International way.\n\n2) THE FOUR EXITS + COMBINED TOTAL (ExitRecord.tsx)\n- Cut the section dek \"Every line below is real. Ask about any of them.\" entirely (page.tsx line 596) — flagged cringe by the operator, and confirmed by research: no fetched site editorializes about its own honesty; the named specificity does that job by itself.\n- Per deal (ExitRecord.tsx lines 61-78): drop the bare `{d.year}` from the visible card face — that's the \"dates/months sentence\" the operator is rejecting, even at just a numeral, it's overhead the reader doesn't need. Keep company (bold), the outcome line (event + counterparty), and the figure or \"Undisclosed.\" If a temporal anchor still feels necessary later, it belongs as a small mono aside no larger than a data label (cleared under CLAUDE.md's JetBrains Mono \"narrow third\" rule for labels/data) — never its own clause.\n- Collapse the closing `<dl className=\"cw-exits__sum\">` (lines 86-104) from two competing rows (Disclosed total $5.58B / Stated on this site $5B+, the conservative floor) into ONE line: the public claim only, \"$5B+ combined,\" set at the largest scale in the block. The operator named this directly: \"the stated amount on the site is pointless.\" The under-claim discipline ($5.58B rounds down to $5B+) is genuinely the most trust-building fact in the file per the code comments — keep it recorded in `content/citations.ts` for anyone who asks about it directly, since the site's own line elsewhere already invites that (\"Ask about any of them\" survives at the case-study/ledger level even if it's cut from this dek) — but it doesn't need to be demonstrated arithmetically on the page. State the number once and stop, the Tiny/FE International way.\n- Layout: keep the four names in an asymmetric row per DESIGN_BAR R6 (vary column width or baseline stagger — not a symmetric four-up icon-grid template). Color Worlds fg/bg governs all text color as already built; JetBrains Mono stays reserved for the per-deal dollar figures only.\n\n3) COUNT-UP SPEC — recommend against adding it, with a spec in case the operator still wants it after seeing the plain redesign\n- Why against: zero of the 13 fetched sites in this exact category (operator/consultant/investor/agency track-record pages) use a digit-ticking count-up. It's the one device research found no premium precedent for — it reads as SaaS-dashboard vanity-metric, which is adjacent to the \"cheap,\" \"not built by a professional\" verdict the operator has already given a prior redesign.\n- It would also be additive motion on a figure that already carries motion: HandCircle's own stroke-draw already runs ~1.1s primary + a delayed 0.95s overshoot pass — well past DESIGN_BAR R15's 400ms entrance cap. That pairing (existing brief plus R15) means the draw itself is already operating as an exception, the same category as the /playbook WallChart (runs once, terminates, no scroll/hover coupling, base state is the finished frame). Stacking a second, independent motion (count-up) onto the same figure risks reading as two animations competing rather than one gesture — the WallChart precedent was approved specifically because it is one animation, not a bundle.\n- If the operator still wants it after seeing the number rendered plain-and-circled: scope it as its own named exception request to the motion-engineer, on the same reasoning HandCircle already cleared, and hand over this spec —\n  • Duration: 700–900ms (not the 1.5–2.5s slot-machine pace common to SaaS dashboards — keep it a fast confirmation, not a performance)\n  • Easing: the house curve already in use, cubic-bezier(0.22, 0.8, 0.28, 1) — same curve HandCircle's own stroke-dashoffset transition uses, so the two motions share one signature rather than introducing a second\n  • Trigger: same IntersectionObserver pattern as HandCircle (threshold 0.3, `unobserve` after firing once) — and sequence it to start together with (or just before) the circle's draw-in, so the number settles and the mark lands on a finished value, not a still-moving one\n  • Reduced motion: `prefers-reduced-motion: reduce` → render the final value immediately with no ticking, mirroring HandCircle's own `reduced ? \"0\" : …` branch exactly\n  • Rendering: count the numeral only (0 → 20); keep the \"M+\" suffix static so it doesn't reflow or flicker mid-count; the no-JS/SSR fallback is the finished \"$20M+\" glyph, count-up is progressive enhancement only, never the only way to read the figure\n- Net recommendation: ship the plain, uncircled-except-once, unanimated-except-the-existing-HandCircle version first. It already matches what the 13 real sites in this category do at their most confident. Treat the count-up as a separate, operator-approved add-on, not a default part of this pass.",
+  "references": [
+   {
+    "name": "Tiny (tiny.com)",
+    "url": "https://tiny.com",
+    "fetched": true,
+    "pattern": "Four stats — 21 Companies / 20 Year Track Record / $260M+ Annual Revenue / 100M+ People Use Our Products — rendered in plain bold typography with no circles, underlines, or animation; relies on a rotating client-logo carousel elsewhere for further proof.",
+    "take": "This is the closest real analog to what the receipts section should become: large plain numerals, no ornament except the one figure you're already circling. Skip the logo-carousel half of their approach — the operator explicitly wants numbers, not logos."
+   },
+   {
+    "name": "Acquisition.com",
+    "url": "https://www.acquisition.com",
+    "fetched": true,
+    "pattern": "A headline claim ('scaled a portfolio to over $250m+ in annual revenue') plus a four-stat grid (10,000 Businesses Advised / 81 NPS / 97.1% Retention / 12,000 Workshop Participants) in clean static typography, no animation, no hand marks — paired with a legal disclaimer that results aren't typical.",
+    "take": "Confirms the pattern: state the aggregate once, support it with a small set of plain secondary numbers, stop. Use as the model for how the $5B+ combined line should sit relative to the four named deals."
+   },
+   {
+    "name": "FE International",
+    "url": "https://feinternational.com",
+    "fetched": true,
+    "pattern": "States its aggregate exactly once in running prose — 'completed over 1,500 transactions with a combined value of over $50 billion' — then moves into a deal-logo carousel and testimonials; no animation, no repeated framing of the number.",
+    "take": "This is the strongest evidence against the two-row 'Disclosed total / Stated on this site' display currently in ExitRecord.tsx — say the number once and let it stand, don't show your rounding work on the page."
+   },
+   {
+    "name": "Nathan Barry (nathanbarry.com)",
+    "url": "https://nathanbarry.com",
+    "fetched": true,
+    "pattern": "Label-value stat pairs ($45M+ ARR, $5M+ annual profit, $10M+ profit shared) presented as plain text with no animation or hand-drawn treatment — no logo wall either, just named specifics.",
+    "take": "Good precedent for dropping decoration on secondary numbers; keep all embellishment concentrated on the one hero figure as this site already does."
+   },
+   {
+    "name": "Dan Martell (danmartell.com)",
+    "url": "https://www.danmartell.com",
+    "fetched": true,
+    "pattern": "Deliberately avoids a hero number — the only quantified reference ('$100M business') is dismissed in the same sentence as 'all bullshit without the WHY'; leads with struggle narrative instead of credential-stacking.",
+    "take": "Not a model to follow (this site's whole point is the numbers), but useful negative case: proves that even operators who HAVE a number sometimes choose not to lead with it, which argues for keeping the presentation understated rather than triumphant when you do show yours."
+   },
+   {
+    "name": "Julian Shapiro (julian.com)",
+    "url": "https://www.julian.com",
+    "fetched": true,
+    "pattern": "No stats, no ledger, no logo wall — credibility is built entirely through the depth of the written guides, with achievements mentioned only in passing prose.",
+    "take": "Confirms numbers aren't mandatory for premium-reading operator sites, but this site has a stronger asset (real named exits) than Julian's essay-only approach — use it, just don't over-decorate it."
+   },
+   {
+    "name": "Fletch PMM (fletchpmm.com)",
+    "url": "https://www.fletchpmm.com",
+    "fetched": true,
+    "pattern": "Leans entirely on a client-logo carousel (PagerDuty, Notion, GitLab, etc.) plus 40+ testimonial quotes with embedded percentage stats — no standalone number treatment at all.",
+    "take": "This is the exact crutch the operator wants this site to avoid ('we shouldn't list it like that... no logo wall'). Useful as the clearest counter-example of the pattern this site is intentionally not following."
+   },
+   {
+    "name": "Instrument (instrument.com)",
+    "url": "https://www.instrument.com",
+    "fetched": true,
+    "pattern": "Client Roster logo list (Nike, Google, Netflix, Spotify, etc.) plus an awards list — zero quantified outcomes anywhere on the page.",
+    "take": "Another confirmation that logo walls are the default fallback when a site doesn't have (or doesn't choose to show) real numbers — reinforces that this site's numbers-first approach is the more premium, harder-to-fake move."
+   },
+   {
+    "name": "Buck (buck.co)",
+    "url": "https://www.buck.co",
+    "fetched": true,
+    "pattern": "No stats or metrics anywhere on the homepage — pure portfolio-of-work showcase (named client projects, no figures).",
+    "take": "Confirms an agency can read premium on creative caliber alone with zero numbers; not directly applicable here since this site's differentiator IS the numbers, but supports keeping any numbers spare rather than dashboard-like."
+   },
+   {
+    "name": "April Dunford (aprildunford.com)",
+    "url": "https://www.aprildunford.com",
+    "fetched": true,
+    "pattern": "Client logo wall plus named executive testimonials; the only quantified claim ('worked with more than 200 companies') sits inside body copy, no hero treatment.",
+    "take": "Same logo-wall default as Fletch/Instrument — reinforces that this site's named-exits approach, done right, is the rarer and more premium move in this exact category (positioning/GTM consultant)."
+   },
+   {
+    "name": "Sahil Bloom (sahilbloom.com)",
+    "url": "https://sahilbloom.com",
+    "fetched": true,
+    "pattern": "Audience size ('join 800,000+ others') appears only inside newsletter-signup copy, never as an isolated hero stat; minimalist, mostly typographic homepage.",
+    "take": "Confirms numbers-in-passing-prose (vs. isolated badge) is a legitimate premium register — useful as a fallback tone if any secondary figure on the page needs a lighter touch than the hero $20M+ figure."
+   },
+   {
+    "name": "Justin Welsh (justinwelsh.me)",
+    "url": "https://www.justinwelsh.me",
+    "fetched": true,
+    "pattern": "'$15M Solo Business' and '$1B in valuation' appear embedded in editorial copy (a resource title, an about-page bio line) — never isolated, never animated, no hand marks.",
+    "take": "Best editorial-register precedent in the sample: numbers folded into confident prose rather than staged as standalone graphics. If the $20M+ figure ever needs a lighter secondary mention elsewhere on the site (not the hero instance), this is the tone to match."
+   },
+   {
+    "name": "Pieter Levels (levels.io)",
+    "url": "https://levels.io",
+    "pattern": "Revenue figures for individual products appear conversationally inside blog-post-style content (e.g., specific MRR numbers stated once in a sentence) — no dashboard, no ledger, no logo wall, deliberately anti-corporate.",
+    "fetched": true,
+    "take": "Confirms that even builders with strong real numbers often choose plain-text disclosure over any visual staging at all — supports erring toward restraint on the secondary/per-deal figures in ExitRecord, saving all visual weight for the one hero figure."
+   }
+  ]
+ },
+ {
+  "references": [
+   {
+    "name": "HubSpot — Pricing (Hub switcher)",
+    "url": "https://www.hubspot.com/pricing",
+    "fetched": true,
+    "pattern": "A top-level product tab set (Marketing / Sales / Service / Content / Data / Revenue) is the dimension picker. Choosing a Hub swaps the ENTIRE tier grid below — different tier names, different prices, different feature lists per Hub. Each tier renders as a card: name, price, 3-5 bullets, one CTA.",
+    "take": "This is the closest SaaS analog to 'pick a dimension, the whole offer changes' — but it is the wrong shape for Micah's Engagements, because Engagements are explicitly NOT mutually exclusive (operator: pick one, two, or all three). It IS the right shape for the idea of a dimension switch in general — just apply the exclusivity only where the business rule is actually exclusive (Packages), never to Engagements."
+   },
+   {
+    "name": "Pilot.com — Pricing (service-line tabs)",
+    "url": "https://pilot.com/pricing",
+    "fetched": true,
+    "pattern": "Tabs for Bookkeeping / Tax / CFO / COO. Selecting a tab shows that service line's own card-based tiers (Essentials / Core / Custom). Tax is explicitly marked 'Must be purchased with Pilot Bookkeeping' — the site states the combination rule in plain text right on the price line, not buried in an FAQ.",
+    "take": "The single most directly relevant reference: a service business with distinct disciplines, presented as tabs, with combination rules stated inline rather than assumed. Micah's page should do the same thing Pilot does with that 'must be purchased with' line — state the Packages combination rule ('this package covers one area; Engagements can cover all three') in one visible sentence next to the picker, not just in a paragraph elsewhere on the page."
+   },
+   {
+    "name": "Squarespace — Pricing",
+    "url": "https://www.squarespace.com/pricing",
+    "fetched": true,
+    "pattern": "Unified plan cards (Personal/Business/Commerce/Commerce Advanced) with a billing-frequency toggle, then a full line-item comparison table BELOW the cards for people who want the detail.",
+    "take": "Validates a two-layer structure: premium boxes for the decision, a plain comparison table beneath for the skeptic who wants every line. Micah's page can keep a compact 'compare all four shapes' or 'compare all three packages' table below the boxes without contradicting the operator's 'boxes not line items' instruction — the boxes are what a buyer decides from; a table is optional backup, not the primary presentation."
+   },
+   {
+    "name": "Notion — Pricing",
+    "url": "https://www.notion.com/pricing",
+    "fetched": true,
+    "pattern": "Four plan cards, one marked 'Recommended' with a small label (not a ribbon/banner). Each card: name, price, one-line audience tagline, an 'Includes:' bullet list. Detailed feature comparison lives in a separate table below.",
+    "take": "The 'Recommended' treatment is a single small text label, not a colored ribbon or badge pill — this is the register Micah's page already uses (Embedded's 'Recommended' tag, Audit's 'Start here' tag) and should keep using for the box conversion, not upgrade to a louder ribbon."
+   },
+   {
+    "name": "Framer — Pricing",
+    "url": "https://www.framer.com/pricing",
+    "fetched": true,
+    "pattern": "Four minimal plan boxes: name, one-line audience description ('Creative personal sites,' 'Growing professional sites'), price, a short feature list, one CTA. No icons, no ribbons, clean typographic hierarchy carrying the whole design.",
+    "take": "This is the visual register Micah's site already has permission to use under DESIGN_BAR (hierarchy from type/space, not decoration). It's proof that a premium pricing box does not need icons, gradients, or shadows — size, weight, and a one-line description per tier do the work. Direct model for the Engagement and Package box copy."
+   },
+   {
+    "name": "DesignJoy — designjoy.co",
+    "url": "https://designjoy.co",
+    "fetched": true,
+    "pattern": "A single solo-operator productized-service box: one price, an explicit scarcity mechanic stated as fact not urgency ('one request at a time'), and a plain list of what's included. No comparison grid because there's only one offer.",
+    "take": "Directly relevant precedent for a one-person consultancy pricing itself with confidence: the box lists everything you get as declarative fact ('unlimited brands,' 'up to 2 users'), never as a sales pitch. Model this tone for what goes inside each Package box — a flat list of inclusions, no adjectives."
+   },
+   {
+    "name": "Superside — Pricing",
+    "url": "https://www.superside.com/pricing",
+    "fetched": true,
+    "pattern": "Three subscription-shape boxes (Dedicated / Flex / High-impact Projects) described by WHEN they fit rather than by feature checklists, followed by separate use-case sections below. High-impact Projects is explicitly the fixed-scope, fixed-timeline shape sitting next to the two open-ended ones.",
+    "take": "Superside's three boxes map almost exactly onto Micah's four shapes (ongoing vs project vs embedded), and its box copy leads with 'when this fits' rather than a feature list — the same pattern Micah's SHAPES data already uses ('when' field). Confirms the box conversion should keep 'when it fits' as the lead sentence in each box, feature bullets second."
+   },
+   {
+    "name": "Toptal — toptal.com",
+    "url": "https://www.toptal.com/",
+    "fetched": true,
+    "pattern": "A category picker (Developer / Designer / Finance Expert / etc.) sits BEFORE any pricing or engagement detail — it routes the conversation, but the picked category does not fork into different fixed-price SKUs; it flows into the same 3-step 'talk to an expert' funnel regardless of pick.",
+    "take": "Useful negative-space lesson: Toptal's picker changes context and copy but NOT price or checkout mechanics — same funnel either way. This is the exact shape Micah's Package area-picker should take for now: the pick changes what the page says back to the buyer (confirmation copy, intake framing) without requiring a new price or a new Stripe SKU per area."
+   },
+   {
+    "name": "Stripe — Pricing",
+    "url": "https://stripe.com/pricing",
+    "fetched": true,
+    "pattern": "A category-grouped product index (Global payments / Money management / Revenue & finance automation / More) where each product keeps its own self-contained pricing block, expandable in place rather than swapping the whole page.",
+    "take": "Shows the alternative to a hard tab-switch: reveal-in-place rather than replace-the-page. Relevant if Micah ever wants the three areas to expand inline detail under the shapes grid without a full page-state change — lower-risk than a JS-heavy tab swap on a mostly-static Next.js page."
+   },
+   {
+    "name": "Intercom — Pricing",
+    "url": "https://www.intercom.com/pricing",
+    "fetched": true,
+    "pattern": "Two pricing registers on one page: seat-based tiered plans as boxes, and a usage-based standalone product as a separate simpler box below — each register visually distinct but not competing, with add-ons broken out as their own small cards.",
+    "take": "Validates having two structurally different offer types (Engagements = open scope, Packages = fixed scope) on one page as boxes, as long as each register is visually self-contained with its own heading and its own box grammar — exactly the plan for /services' 'How engagements work' and 'Packages' sections."
+   },
+   {
+    "name": "Kit (ConvertKit) — Pricing",
+    "url": "https://kit.com/pricing",
+    "fetched": true,
+    "pattern": "An interactive input (subscriber-count slider) sits above three tier cards; adjusting it doesn't change WHICH tiers show, only reinforces which tier fits. 'Most Popular' and 'Recommended' badges mark two of three cards.",
+    "take": "Caution case: two competing badges on three cards reads as noisy. Micah's page should keep exactly one weighted marker per box group (Embedded='Recommended' among shapes, Audit='Start here' among packages) — not double-badge any single box, and not badge more than one box per group."
+   },
+   {
+    "name": "Vercel — Pricing",
+    "url": "https://vercel.com/pricing",
+    "fetched": true,
+    "pattern": "Three plan boxes (Hobby/Pro/Enterprise) followed by a very long, densely tabulated feature-by-feature comparison spanning nine categories — information-dense over premium-feeling.",
+    "take": "Negative reference: this is what 'boxes plus exhaustive tables' looks like when the balance tips toward developer-tool density rather than premium confidence. Useful as the line NOT to cross — Micah's optional comparison table (if any) should stay to the 3-4 rows already on the page, not grow into a feature matrix."
+   },
+   {
+    "name": "W3C ARIA Authoring Practices — Radio Group Pattern",
+    "url": "https://www.w3.org/WAI/ARIA/apg/patterns/radio/",
+    "fetched": true,
+    "pattern": "Canonical accessible radio-group markup: native `<input type=radio>` inside a `<fieldset>` with a `<legend>` is preferred over ARIA roles when native elements are available; arrow keys move selection, Tab enters/exits the group once, each option needs a visible focus and checked state.",
+    "take": "This is the exact mechanism for the Packages area-picker: a real `<fieldset><legend>Which area is this package for?</legend>` wrapping three native radio inputs styled as pills (matching the site's existing pill/label typographic system), not a div-based custom widget. Gets keyboard support and screen-reader semantics for free without a JS accessibility library."
+   }
+  ],
+  "recurring_patterns": [
+   "A 'dimension that changes the offer' pattern always does ONE of two things, never both at once: it either (a) HARD-SWITCHES the whole tier grid below it (HubSpot, Pilot.com — used when the categories are mutually exclusive lines of business), or (b) just reframes copy/context while the underlying funnel and price stay identical (Toptal — used when the categories aren't really different SKUs yet). Micah's two sections need different modes: Packages need mode (a)-flavored exclusivity in COPY ('one area only') without needing mode (a)'s backend SKU-forking yet — closer to Toptal's version.",
+   "Every premium pricing-box reference (Framer, Notion, DesignJoy, Superside) puts exactly ONE small text label on ONE box per group ('Recommended', 'Most Popular', 'Start here') — never zero, never two, never a colored ribbon. Badge discipline reads as premium; badge noise (Kit's double-badge) reads as templated.",
+   "Boxes-plus-optional-table is the dominant premium structure (Squarespace, Notion, Vercel): the box row is the decision surface, a plain table below is backup detail for line-item nitpickers — this satisfies the operator's 'boxes not line items' instruction while still letting a careful buyer compare every field if they scroll for it.",
+   "Where a service business combines open-ended engagement with fixed-scope one-off work (Superside's 'High-impact Projects' next to 'Dedicated'/'Flex'; Pilot's bookkeeping-plus-add-on model), the fixed-scope box always states its combination/exclusivity rule as one explicit sentence live on the pricing surface, not deferred to an FAQ or footer paragraph.",
+   "Every reference site's box copy leads with WHO/WHEN it fits (a sentence, not a feature list) before any bullet list of inclusions — matching Micah's SHAPES data model, which already has a `when` field that the current table under-uses (small text, buried column) relative to how prominently these references treat it (the lead sentence in the box)."
+  ],
+  "cheap_tells": [
+   "Three or four identical rounded-corner cards in a perfectly symmetric row, each with a centered icon and a 3-line blurb — the generic SaaS-tutorial default DESIGN_BAR R6 explicitly bans; the box conversion must keep the existing asymmetry (Embedded/Audit already weighted larger or tagged) rather than flattening all boxes to equal width/height.",
+   "A colored ribbon or ribbon-corner 'Most Popular' badge (diagonal banner, contrasting fill) — reads as e-commerce template; the site's own convention is a small plain-text tag ('Recommended', 'Start here') and should stay that quiet.",
+   "Checkmark icon bullets (any lucide/heroicons-style check glyph) inside the box inclusion lists — explicitly banned by the project's 'type and photographs only, no icon kits' rule; use an em dash or plain text list marker instead.",
+   "A gradient or glow highlight ring around the 'featured' box to draw the eye — DESIGN_BAR R4 bans glow/halo decoration; weight is carried by size and the existing tag text only.",
+   "Double-badging one box ('Most Popular' AND 'Best Value') or badging more than one box per group — reads as manipulative upsell pressure (Kit's pattern) and violates R17's one-CTA-style/no-pressure rule in spirit.",
+   "A slider, stepper, or animated counter on the area-picker (subscriber-count-slider style, Kit) — overbuilt for a 3-option exclusive choice; a plain three-pill radio group is the right weight and matches R15's punctuation-not-decoration motion rule.",
+   "Urgency copy on the picker or boxes ('Only one slot left this month', a countdown) — R17 bans scarcity devices outright; the existing 'start within the week' facts are capacity statements, not urgency, and should stay that way.",
+   "Making the required area-pick a modal/popup gate before showing packages — R17 bans popups; the picker must be inline on the page, not an interstitial."
+  ],
+  "recommendation": "Full read of app/(foyer)/services/page.tsx done (SERVICES, SHAPES, the two `<table className=\\\"cw-sv-table\\\">` blocks, the objection-handling copy) plus the Pass-109 screenshots. Proposed section-by-section IA for /services:\n\n1. ENGAGEMENTS HERO (id=\\\"engagements\\\") — keep as-is. It already states the one public anchor price ($5K/mo) at display size with the sell line and proof; nothing here is broken.\n\n2. THREE AREAS — CONSOLIDATE INTO A CAPTION, NOT A CHAPTER. The operator's own words ('the three areas... are basically describing the work that takes place within the 4 shapes... I think I need to consolidate this') mean the three heavy SERVICES blocks (n=01/02/03, each with a pain line, 3 outcomes, and 2-4 receipts) should stop being a parallel chapter competing with the shapes/packages boxes for the top of the page. Replace the current `.cw-sv-svc-group` block with a single compact caption line directly above the shapes box-grid: 'Any shape below can cover Positioning & GTM, Product Building, or AI Engineering — one of them, or all three.' Move the deep proof (receipts) OUT of this position and down to a trimmed 'Proof, by area' strip near the page's bottom (one receipt per area — the strongest one only, e.g. Guardicore for 01 — not the current 2-4), positioned after the boxes so it reinforces the offer instead of delaying it. This is the single biggest fix for 'does not compel action': a visitor now reaches priced, boxed offers within one scroll of the hero instead of wading through three prose chapters first.\n\n3. HOW ENGAGEMENTS WORK (id=\\\"shapes\\\") — CONVERT THE `<table>` TO 4 PREMIUM BOXES. Each SHAPES[i] becomes a box whose lead sentence is the existing `when` field (matches the Superside/Framer pattern of leading with fit, not features), followed by a short plain-text inclusion list (2-3 lines, no icons — an em dash marker, not a checkmark), then `time` and `price` as the box's numeric footer in the existing mono-for-data register. Keep Embedded's 'Recommended' tag as the ONE weighting device that breaks R6 symmetry — give it a visually larger or leading box rather than an equal 4-up grid (HubSpot/Notion/Framer all mark exactly one tier this way, never a colored ribbon). Put a one-line caption directly under Advisory's own box — not fifty lines away in 'On the price' — resolving the standing-rate confusion exactly where the eye lands: something like 'Advisory is the only shape that runs month to month; the other three are scoped once, per project.' Then delete that same explanation from the 'On the price' paragraph below so it isn't stated twice (Pilot.com's pattern: the combination/pricing-shape rule lives on the price surface itself, not deferred to prose).\n\n4. PACKAGES (id=\\\"packages\\\") — CONVERT THE SECOND `<table>` TO 3 PREMIUM BOXES, WITH A REQUIRED AREA PICKER ABOVE THEM. Structure:\n   - A `<fieldset>` with a `<legend>` reading something like 'Which area is this for? Packages cover one.' containing three native `<input type=\\\"radio\\\" name=\\\"package-area\\\">` styled as pills matching the site's existing tag/pill typography (W3C ARIA APG radio pattern — native elements get keyboard/arrow-key nav and screen-reader semantics for free; no custom JS widget needed).\n   - Selecting an option is REQUIRED before any Buy button is enabled (disabled state + `aria-describedby` pointing at the fieldset); an unselected attempt to buy moves focus to the fieldset and shows an inline `role=\\\"alert\\\"` message — never a popup (R17).\n   - Once picked, a one-line confirmation renders and persists ('You've picked: AI Engineering') so all three boxes read in that context.\n   - CHECKOUT NOTE (explicit staging, per the brief): BuyButton currently calls `createPackageCheckout(skuKey)` with no other argument (components/BuyButton.tsx → app/actions/package-checkout.ts), so there is no channel today to carry the area pick into Stripe. For this pass, keep it that way — the picker is front-end only, changing page copy and the confirmation line, NOT the skuKey or the checkout call. Say so honestly in the confirmation copy ('I'll confirm this again in the kickoff intake') since Package facts already establish that a kickoff email with intake questions follows every purchase — the picker previews that step rather than replacing it. Wiring the pick into Stripe (extending `createPackageCheckout` to accept an optional `focusArea` and writing it to `session.metadata`, touching `app/actions/package-checkout.ts` and `lib/catalog.ts`) is a NEW COMMITMENT to flag for the operator, not something to build now — this matches the brief's own note that backend Stripe work comes last.\n   - Box design mirrors the shapes boxes (same grammar, so the page reads as one system): each box's lead line becomes 'What you get' as a flat inclusion list per DesignJoy's declarative register, price as the mono footer, Buy pill unchanged (.cw-buy filled for Audit, .cw-buy--quiet outline for the other two — Pass-109's rule already correct, keep it). Audit's 'Start here' tag remains the ONE weighted box in this group, matching the one-badge-per-group rule the Kit reference warns against violating.\n\n5. PROOF, BY AREA — the trimmed one-receipt-per-area strip relocated from step 2, positioned here as closing reinforcement rather than opening bulk.\n\n6. ON THE PRICE / WHY ONE PERSON — keep, but delete the now-redundant first paragraph (moved into the Advisory box caption in step 3). 'Why one person' stays untouched.\n\n7. ESPRESSO FOOTER CTA — unchanged.\n\nNet effect: 'boxes not line items' is satisfied for both Engagements and Packages using the site's own existing typographic/tag vocabulary (no icons, no ribbons, no shadows — Framer/Notion/DesignJoy register); the standing-rate confusion is resolved in place rather than requiring a scroll; the three areas stop reading as a competing fourth offer and instead read as a caption over the shapes plus a closing proof strip; and the package buyer is structurally forced (accessible required radio group, native semantics) to pick one area on the page itself, with the Stripe wiring correctly deferred and named as a separate operator decision rather than quietly built in."
+ },
+ {
+  "references": [
+   {
+    "name": "Linear",
+    "url": "https://linear.app",
+    "fetched": true,
+    "pattern": "Each feature module = one cropped/fade-masked UI screenshot directly above a headline+body block, single column, never more than one screenshot per module; a horizontal feature-card row (icon, headline, body) overflows the right edge of the viewport for swipe access rather than stacking vertically.",
+    "why_premium": "Restraint: one clear visual per scroll-stop, crop instead of shrink, horizontal affordance used only where it genuinely saves vertical space.",
+    "take": "Ordani should show one product screenshot per module, cropped in place rather than shown full-height, exactly like Linear's feature blocks."
+   },
+   {
+    "name": "Stripe",
+    "url": "https://stripe.com",
+    "fetched": true,
+    "pattern": "Each feature is one bordered, rounded panel containing a composed illustration (device + UI panel side by side) with the headline inside the same panel; one panel per scroll-stop, generous internal padding, no photo stacking.",
+    "why_premium": "The UI fragment is composited into a single self-contained card rather than a raw wide screenshot, so it stays legible at 375px without shrinking.",
+    "take": "Frame the Ordani screenshot inside one bordered card with its caption/label inside the card, not as a separate stacked figcaption block."
+   },
+   {
+    "name": "Arc (Browser Company)",
+    "url": "https://arc.net",
+    "fetched": true,
+    "pattern": "Hero browser-window screenshot is cropped top AND bottom by a wavy/deckle-edge mask so it bleeds off both container edges — reads as a deliberate 'peek' at natural scale, not a shrunk full screenshot.",
+    "why_premium": "Cropping communicates 'there's more, this is a glimpse' — avoids ever showing a shrunk, illegible full app window.",
+    "take": "Crop the Ordani screenshot at natural/near-native scale rather than scaling a full dashboard down to fit 375px."
+   },
+   {
+    "name": "Raycast",
+    "url": "https://raycast.com",
+    "fetched": true,
+    "pattern": "Self-contained app-window screenshot per module (visible window chrome, cropped bottom edge), followed by an asymmetric grid of small feature tiles (not a symmetric 3-up).",
+    "why_premium": "One screenshot, one message per screen; the tile grid that follows is intentionally asymmetric, not a repeated same-size grid.",
+    "take": "If Ordani keeps any secondary tiles, they should be asymmetric/weighted, never the current equal-size 3-up band."
+   },
+   {
+    "name": "Ramp",
+    "url": "https://ramp.com",
+    "fetched": true,
+    "pattern": "A tiny floating notification chip (3 lines of real UI copy) is composited above/overlapping a hero product photo, inside one bordered card — no full dashboard screenshot appears on mobile at all.",
+    "why_premium": "Shows a legible fragment of the real product experience rather than a whole illegible dashboard.",
+    "take": "A small, legible UI fragment (one client-record row, one calendar entry) can do more work on mobile than a full Ordani dashboard screenshot."
+   },
+   {
+    "name": "Mercury",
+    "url": "https://mercury.com",
+    "fetched": true,
+    "pattern": "The dashboard screenshot is shown at its natural/legible scale and allowed to bleed off the right edge of the 375px viewport rather than being scaled down to fit — text inside stays readable.",
+    "why_premium": "Prioritizes legibility over completeness; the visitor sees enough to trust it's real software.",
+    "take": "If the Ordani screenshot is wider than the text column, let it bleed off one edge at readable scale rather than shrinking it to fit."
+   },
+   {
+    "name": "Attio",
+    "url": "https://attio.com",
+    "fetched": true,
+    "pattern": "A horizontal tab strip ('Build pipeline / Convert leads / Run sales mo…') overflows off the right edge; selecting a tab swaps which single screenshot displays below — one screenshot on screen at a time, more reachable via horizontal swipe, not vertical scroll.",
+    "why_premium": "Multiple product views are made available without forcing a long vertical scroll through all of them.",
+    "take": "If Ordani needs to show more than one view of the product, a horizontal swap/strip is the way to do it — not a vertical stack."
+   },
+   {
+    "name": "Framer",
+    "url": "https://framer.com",
+    "fetched": true,
+    "pattern": "Each feature is a dark, rounded-border panel containing one screenshot/demo area with headline+body text BELOW it inside the same card; modules stack vertically but each is visually self-contained (bordered), so scrolling feels like flipping cards, not an endless photo dump.",
+    "why_premium": "The border and padding turn a screenshot into a discrete 'card' with a beginning and end, breaking the sense of continuous photo-scroll fatigue.",
+    "take": "Give the Ordani screenshot its own bordered card (matching the site's existing hairline-border treatment) so it reads as one deliberate unit, not one photo among several."
+   },
+   {
+    "name": "Superhuman",
+    "url": "https://superhuman.com",
+    "fetched": true,
+    "pattern": "An inbox screenshot is cropped by a fixed-aspect container and bled off the right edge on a decorative gradient backdrop, with a small floating 'Ask AI' panel composited on top at an offset — a two-layer collage instead of one flat full screenshot.",
+    "why_premium": "Depth via layering two small legible elements beats trying to fit one large screenshot into a small frame.",
+    "take": "A layered composite (screenshot + one small floating detail) can read as more premium than a single flat crop, if budget allows."
+   },
+   {
+    "name": "Notion",
+    "url": "https://notion.com",
+    "fetched": true,
+    "pattern": "Two rounded-corner 'device-frame' screenshots are fanned/overlapped at a slight offset within one container, cropped by the container width — a layered stack rather than two separate stacked blocks.",
+    "why_premium": "Overlap implies more content exists without spending extra vertical space to show it.",
+    "take": "If Ordani ever needs two screenshots, overlapping/fanning them in one frame costs far less mobile scroll than stacking two separate full-width images."
+   },
+   {
+    "name": "Cursor",
+    "url": "https://cursor.com",
+    "fetched": true,
+    "pattern": "Two app-window screenshots (window-chrome dots visible) are offset and overlapped, full-bleed edge-to-edge with no side margin, oversized relative to viewport so text stays legible and edges are simply cropped by the section boundary.",
+    "why_premium": "Full-bleed + overlap reads as an immersive 'here's the real tool' moment rather than a thumbnail.",
+    "take": "Full-bleed (edge-to-edge, no side padding) is an option for the Ordani screenshot on mobile if Micah wants more visual weight than the site's current bordered-card treatment."
+   },
+   {
+    "name": "Vercel",
+    "url": "https://vercel.com",
+    "fetched": true,
+    "pattern": "A small self-contained UI card (an 'Ask AI' chat panel, ~5 lines of real copy) floats over a faded partner-logo backdrop — legible at any width because it was never a whole-app screenshot to begin with.",
+    "why_premium": "Shows exactly enough of the product to feel real and specific without needing dashboard-scale space.",
+    "take": "For a beta product with paying users, one small legible UI fragment (a client record, one calendar entry) says 'this is real software' as effectively as a full dashboard would, at a fraction of the mobile-scroll cost."
+   }
+  ],
+  "recurring_patterns": [
+   "One screenshot per scroll-stop/module — never 2+ same-size images stacked in a row (Linear, Stripe, Framer, Raycast, Vercel)",
+   "Crop or bleed at native scale rather than shrinking a wide screenshot to fit 375px, which makes UI text illegible (Arc, Attio, Mercury, Cursor)",
+   "Small composited UI fragments (one notification, one chat panel, one row group) substitute for whole dashboard screenshots and stay legible at phone width (Ramp, Superhuman, Vercel)",
+   "Horizontal affordance (tab strip or card row that overflows the viewport edge) replaces vertical stacking whenever more than one view needs to be reachable (Linear, Attio)",
+   "The screenshot sits inside a bordered/rounded 'card' with its own padding, so it reads as one deliberate unit rather than one photo among several loose stacked images (Stripe, Framer)",
+   "Layered/offset overlap of two screenshots in a single frame implies more content without doubling the vertical footprint (Notion, Cursor, Superhuman)"
+  ],
+  "cheap_tells": [
+   "Three or more same-size photographs stacked in a single mobile column — reads as a stock photo gallery instead of a product pitch (this is exactly what .cw-ord-band does today at max-width:760px)",
+   "A full dashboard screenshot shrunk to fit 375px so its UI text becomes illegible",
+   "Literal skeuomorphic browser-chrome (macOS traffic-light dots) added purely for decoration — sits closer to an icon kit than this project's 'type and photographs/screenshots only' rule tolerates",
+   "A scroll-jacked/pinned reveal on a section the operator explicitly wants to feel restrained ('without all the cheap gimmicks') — OrdaniSticky.tsx's GSAP pin has no written motion-engineer exception on file, unlike WallChart's",
+   "A symmetric same-size 3-up grid of photos, which DESIGN_BAR R6 already forbids independent of the mobile-scroll problem"
+  ],
+  "recommendation": "Cut the Ordani section from 4 stacked lifestyle photos to 1 product screenshot as the lead visual, at both breakpoints, and stop treating the section as a photo gallery. (1) Replace .cw-ordani-split__fig's photo with a real, sanitized Ordani UI screenshot (e.g. a client record or intake view), framed in the site's existing plain hairline-border treatment (1px color-mix(currentColor 30%, transparent), no browser chrome) with the same JetBrains Mono figcaption style already in use — this is the single highest-leverage change, since none of the current 4 images are actually the product. (2) Drop .cw-ord-band's remaining 3 same-size photos from the home page entirely, or cut to 1; if more than one supporting photo must stay, use a CSS-only horizontal scroll-snap strip instead of a vertical stack so mobile visitors flick past in one gesture rather than scrolling through 4 separate ~350px blocks. Push any cut photography into /work/ordani, where a reader has opted into the longer case-study scroll. This also resolves an existing DESIGN_BAR R6 violation — the current 3-up grid is a symmetric same-size grid of like items, which R6 already forbids. (3) On mobile this takes the section from roughly 1,400px of pure photo-scrolling down to ~350–400px; on desktop, keep the text-left/visual-right split but swap in the same one-screenshot card rather than restoring a photo band, so the discipline holds at both breakpoints. (4) Separately, retire OrdaniSticky.tsx's GSAP scroll-pin. It only ever runs at ≥760px (mobile already no-ops it via its own matchMedia, so this doesn't touch the mobile complaint), but it violates two explicit hard rules with no recorded exception — CLAUDE.md's GSAP-import quarantine to components/TitleCard.tsx only, and 'nothing else pins ... without the motion-engineer agent's written approval' (WallChart on /playbook has a dated, written exception on file; OrdaniSticky does not). Replace it with the same .cw-reveal fade-up every other section already uses — the component's own mount effect currently strips .cw-reveal specifically to make room for the GSAP timeline, so reverting that and deleting the component is a simplification, not new work. (5) New commitment for operator approval, not invented here: this redesign needs 1–2 real screenshots captured from the actual Ordani app with any client PII replaced by placeholder/demo data — I read only the marketing site's current image band, not the Ordani product itself, so no such asset exists yet in this repo."
+ }
+]
