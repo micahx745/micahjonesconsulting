@@ -20,29 +20,29 @@ Sol when GLM is capped, Astra judges, Fable/Opus rule only (≤15 calls/arc). Su
 5 Case studies: neutralize (drop Hennessy + "foreign"; acquisition non-causal).
 6 Ordani: lifestyle-only approved; section unchanged.
 7 Book: "the book should not be mentioned or shown on the site yet. im still working on it".
-  NEW ITEM, scope TBC: /playbook, buy path, ALL1 (conflicts with 2), nav, OG, llms.txt.
+  Same day: ALL1 + kickoff attachment dropped; /playbook 404 (no redirect); own pass first.
 8 `$5B+`: keep.
 9 Rename: "AI engineering" (/services + llms.txt).
 
 ## State
 
-Pass-110/111a pushed (7d2c9b4); handoff 114afa1 unpushed. GLM 429 at boot, reset
-2026-09-12 06:26:46 z.ai. Codex CLI 0.153.4 ok. This chat: default config dir, Opus;
+Pass-110/111a pushed (7d2c9b4); handoff + rulings unpushed. GLM 429 at boot, reset
+2026-09-12 06:26:46 z.ai. Codex CLI ok. This chat: default config dir, Opus;
 Sonnet-medium recommended. Vercel MCP + connectors need OAuth.
 
 ## NEXT
 
-Clarify ruling 7 vs ALL1 → brief `.claude/briefs/111b-services.md` → GLM
-executes after reset (Sol until then) → Astra one look → judge.
+Pass-112 brief WRITTEN: `.claude/briefs/pass-112-book-off-the-site.md`. Dispatch GLM
+(`-Batch` pointer prompt) after the 06:26 reset → judge look (≤5) → then 111b brief.
 
 ## Waiting on the operator
 
-Ruling-7 scope · A4/S3 text · merge to `main` · Stripe $500 live test · §9a.
+A4/S3 text · deactivate Stripe playbook-99 · merge to `main` · $500 live test · §9a.
 
 ## OPEN
 
-Vendor/retired gate self-tests (#21) · case-study body low under rail (Astra d) ·
-`claude-glm.ps1 -Brief` sends literal `$Brief`: use `-Batch` + pointer prompt.
+Vendor gate self-test (#21) · case-study body low under rail (Astra d) ·
+`claude-glm.ps1 -Brief` sends literal `$Brief`: use `-Batch` + pointer.
 
 ## Traps
 
