@@ -149,7 +149,7 @@ export default async function WorkIndexPage() {
                   <p className="cw-wk-item__meta">
                     <span>{s.role}</span>
                     <span aria-hidden> &middot; </span>
-                    <span>{s.year}</span>
+                    <span className="cw-nowrap">{s.year}</span>
                   </p>
                   <span className="cw-wk-item__cta">
                     Read the case study <span aria-hidden>→</span>

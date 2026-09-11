@@ -62,9 +62,12 @@
 // presented as a live product with beta signup.
 import type { Metadata } from "next";
 import Image from "next/image";
+import { BuyButton } from "@/components/BuyButton";
 import { Hero } from "@/components/color-worlds/Hero";
 import { ExitRecord } from "@/components/color-worlds/ExitRecord";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
+import { PriceBox } from "@/components/color-worlds/PriceBox";
+import { RevenueFigure } from "@/components/color-worlds/RevenueFigure";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
@@ -157,100 +160,44 @@ export default function ColorWorldsHome() {
         data-world="terracotta"
         aria-labelledby="cw-offer-title"
       >
-        <p className="cw-kicker cw-reveal">Start here</p>
-        {/* Pass-109 (Astra #3, operator-approved 2026-09-10): the offer is
-            composed across the desktop grid instead of running down one column
-            beside an idle 40% of the screen. Left: the name, the price, the
-            premise and the purchase. Right: what arrives, and when. The
-            purchase is its own grid area, so on one column it still comes last,
-            after the deliverables, as it did before. It is a .cw-buy pill now
-            (Astra #2): same words and the same /packages destination as the
-            mono link it replaces. No copy added. */}
+        {/* Pass-111a: one purchase path. The hero points here; the box buys. */}
         <div className="cw-offer__grid">
-          <div className="cw-offer__lead">
-            <SplitReveal as="h2" id="cw-offer-title" className="cw-secttitle">
-              The Audit
-            </SplitReveal>
-            <div className="cw-offer-stats cw-reveal">
-              <p className="cw-offer-stats__price">$2,500</p>
-              <p className="cw-offer-stats__meta">
-                Two weeks. Starts within the week.
-              </p>
-            </div>
-            <p className="cw-sect-dek cw-reveal">
-              I go through your build, your production, or your positioning top
-              to bottom.
-            </p>
+          <SplitReveal as="h2" id="cw-offer-title" className="cw-secttitle">
+            Two weeks to know what to fix first.
+          </SplitReveal>
+          <div className="cw-offer__box cw-reveal">
+            <PriceBox
+              id="home-audit"
+              tag="Start here"
+              lead
+              name="The Audit"
+              price={{ fig: "$2,500" }}
+              term="Two weeks · starts within the week"
+              fit="I go through your build, your production, or your positioning top to bottom."
+              list={[
+                "An 8-10 page memo: what works, what is broken, and what to fix first.",
+                "A prioritized fix sequence, so you can start the morning it lands.",
+                "A one-hour debrief call where I walk you through it. You keep the memo either way.",
+                "A kickoff email the moment you buy: intake questions, a link to book the debrief, and The 80% Wall, my field manual, attached.",
+              ]}
+              area="Covers one area: your build, your production, or your positioning. You pick it at checkout."
+              cta={
+                <BuyButton
+                  skuKey="audit-2500"
+                  label="Buy the Audit"
+                  className="cw-buy"
+                />
+              }
+              fine="The rules, in plain terms: every package fee credits toward the next package or an engagement started within 60 days. Full refund any time before kickoff. None after, because by then the work has started."
+              as="h3"
+            />
           </div>
-          <div className="cw-offer__detail">
-            {/* Astra gate, 2026-09-09: this read as "a confident headline atop a
-            thin section", with the deliverables compressed into one paragraph
-            and the link "detached from the offer". The three things a buyer
-            receives now take their own ruled rows, on the LEDGER's own hairline
-            convention so the offer reads as the same family of object as the
-            receipts below it, and the link moves left directly beneath them.
-            Same three facts as the sentence they replace. Nothing added. */}
-            <ul className="cw-deliver">
-              <li
-                className="cw-deliver__row cw-reveal"
-                style={{ transitionDelay: "0ms" }}
-              >
-                <span className="cw-deliver__name">
-                  <span className="cw-deliver__num" aria-hidden="true">
-                    01
-                  </span>{" "}
-                  An 8-10 page memo
-                </span>
-                <span className="cw-deliver__note">
-                  What works, what is broken, and what to fix first.
-                </span>
-              </li>
-              <li
-                className="cw-deliver__row cw-reveal"
-                style={{ transitionDelay: "80ms" }}
-              >
-                <span className="cw-deliver__name">
-                  <span className="cw-deliver__num" aria-hidden="true">
-                    02
-                  </span>{" "}
-                  A prioritized fix sequence
-                </span>
-                <span className="cw-deliver__note">
-                  The order to do it in, so you can start the morning it lands.
-                </span>
-              </li>
-              <li
-                className="cw-deliver__row cw-reveal"
-                style={{ transitionDelay: "160ms" }}
-              >
-                <span className="cw-deliver__name">
-                  <span className="cw-deliver__num" aria-hidden="true">
-                    03
-                  </span>{" "}
-                  A one-hour debrief call
-                </span>
-                <span className="cw-deliver__note">
-                  I walk you through it. You keep the memo either way.
-                </span>
-              </li>
-            </ul>
-            <p
-              className="cw-deliver__note cw-offer-next cw-reveal"
-              style={{ transitionDelay: "220ms" }}
-            >
-              The moment you buy, a kickoff email lands: intake questions, a
-              link to book the debrief, and The 80% Wall, my field manual,
-              attached.
-            </p>
-          </div>
-          <div className="cw-offer__act cw-reveal">
-            <a href="/packages" className="cw-buy">
-              Start the Audit{" "}
-              <span className="cw-arr" aria-hidden>
-                →
-              </span>
-            </a>
-          </div>
+          <a
+            href="/services#packages"
+            className="cw-mlink cw-offer__packages-link"
+          >
+            See all three packages <span aria-hidden>→</span>
+          </a>
         </div>
       </section>
 
@@ -385,7 +332,7 @@ export default function ColorWorldsHome() {
                 >
                   <span className="cw-lrow__co">
                     Guardicore
-                    <span className="cw-lrow__tag">2018–2021</span>
+                    <span className="cw-lrow__tag cw-nowrap">2018–2021</span>
                   </span>
                   <span
                     className="cw-lrow__out"
@@ -429,7 +376,8 @@ export default function ColorWorldsHome() {
                   <span className="cw-lrow__co">
                     Ordani
                     <span className="cw-lrow__tag">
-                      Founder, sole engineer · 2025–2026
+                      Founder, sole engineer ·{" "}
+                      <span className="cw-nowrap">2025–2026</span>
                     </span>
                   </span>
                   <span className="cw-lrow__out">
@@ -449,7 +397,8 @@ export default function ColorWorldsHome() {
                   <span className="cw-lrow__co">
                     Industry author
                     <span className="cw-lrow__tag">
-                      Content engine · 2024–2025
+                      Content engine ·{" "}
+                      <span className="cw-nowrap">2024–2025</span>
                     </span>
                   </span>
                   <span className="cw-lrow__out">
@@ -467,7 +416,9 @@ export default function ColorWorldsHome() {
                 >
                   <span className="cw-lrow__co">
                     Industry author
-                    <span className="cw-lrow__tag">RFP engine · 2024–2025</span>
+                    <span className="cw-lrow__tag">
+                      RFP engine · <span className="cw-nowrap">2024–2025</span>
+                    </span>
                   </span>
                   <span className="cw-lrow__out">
                     <strong>$3M in contracts won</strong> · close rate doubled
@@ -579,38 +530,14 @@ export default function ColorWorldsHome() {
             closing tally reads as a full pause, not a half one; paired
             with cw-secttitle--sub above so the register change is
             visible in both space and size, not space alone. */}
-        <p className="cw-kicker cw-reveal" style={{ marginTop: "112px" }}>
-          The record
-        </p>
-        {/* DENSITY FIX (home-pace pass, 2026-09-10): cw-secttitle--sub, see
-            app/globals.css -- this closing subhead no longer renders at
-            the same scale as "How I work." above it in this section. */}
         <SplitReveal
           as="h3"
           id="cw-products-title"
-          className="cw-secttitle cw-secttitle--sub"
+          className="cw-secttitle cw-secttitle--sub cw-receipts__title"
         >
           The receipts.
         </SplitReveal>
-        <p className="cw-sect-dek cw-reveal">
-          Every line below is real. Ask about any of them.
-        </p>
-        <div className="cw-ledger cw-reveal" role="list">
-          <div
-            className="cw-lrow cw-lrow--tot cw-reveal"
-            role="listitem"
-            style={{ transitionDelay: "180ms" }}
-          >
-            <span className="cw-lrow__co">
-              Consulting
-              <span className="cw-lrow__tag">All clients · since 2013</span>
-            </span>
-            <span className="cw-lrow__out">
-              <strong>$20M+ in client revenue</strong>
-            </span>
-          </div>
-        </div>
-
+        <RevenueFigure />
         <ExitRecord />
       </section>
 
@@ -660,8 +587,22 @@ export default function ColorWorldsHome() {
           Built for the people who show up for mothers.
         </p>
 
-        <div className="cw-ordani-split">
-          <div className="cw-ordani-split__text">
+        <div className="cw-ord-grid">
+          <figure className="cw-ord-lead cw-reveal">
+            <Image
+              src="/ordani-intake.jpg"
+              alt="A doula sits with a pregnant client on a couch, writing on a notepad as they talk."
+              width={1600}
+              height={1068}
+              sizes="(min-width: 1100px) 760px, 100vw"
+            />
+            <figcaption>
+              The intake, on paper <span aria-hidden>·</span> what Ordani
+              replaces
+            </figcaption>
+          </figure>
+
+          <div className="cw-ord-copy">
             {/* Pass-82, operator ruling 2026-09-02: "soften it to what's
                 defensible". Two claims came out.
 
@@ -721,58 +662,43 @@ export default function ColorWorldsHome() {
             </div>
           </div>
 
-          <figure className="cw-ordani-split__fig cw-reveal">
-            <Image
-              src="/ordani-intake.jpg"
-              alt="A doula sits with a pregnant client on a couch, writing on a notepad as they talk."
-              width={1600}
-              height={1068}
-              sizes="(min-width: 1100px) 420px, 100vw"
-              className="cw-ordani-split__img"
-            />
-            <figcaption className="cw-ordani-split__cap">
-              The intake, on paper <span aria-hidden>·</span> what Ordani
-              replaces
-            </figcaption>
-          </figure>
-        </div>
-
-        <div className="cw-ord-band cw-reveal">
-          <figure>
-            <Image
-              src="/ordani-work.jpg"
-              alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
-              width={900}
-              height={698}
-              sizes="(min-width: 900px) 33vw, 100vw"
-            />
-            <figcaption>
-              Labor support <span aria-hidden>·</span> the work the software
-              protects
-            </figcaption>
-          </figure>
-          <figure>
-            <Image
-              src="/ordani-hands.jpg"
-              alt="Two hands working along a client's lower leg on a draped table."
-              width={1100}
-              height={733}
-              sizes="(min-width: 900px) 33vw, 100vw"
-            />
-            <figcaption>
-              Bodywork <span aria-hidden>·</span> between appointments
-            </figcaption>
-          </figure>
-          <figure>
-            <Image
-              src="/ordani-newborn.jpg"
-              alt="A parent holds a newborn in a nursery chair."
-              width={1100}
-              height={734}
-              sizes="(min-width: 900px) 33vw, 100vw"
-            />
-            <figcaption>The reason the record has to be right</figcaption>
-          </figure>
+          <div className="cw-ord-strip cw-reveal">
+            <figure>
+              <Image
+                src="/ordani-work.jpg"
+                alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
+                width={900}
+                height={698}
+                sizes="(min-width: 1100px) 240px, (min-width: 768px) 33vw, 100vw"
+              />
+              <figcaption>
+                Labor support <span aria-hidden>·</span> the work the software
+                protects
+              </figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/ordani-hands.jpg"
+                alt="Two hands working along a client's lower leg on a draped table."
+                width={1100}
+                height={733}
+                sizes="(min-width: 1100px) 240px, (min-width: 768px) 33vw, 100vw"
+              />
+              <figcaption>
+                Bodywork <span aria-hidden>·</span> between appointments
+              </figcaption>
+            </figure>
+            <figure>
+              <Image
+                src="/ordani-newborn.jpg"
+                alt="A parent holds a newborn in a nursery chair."
+                width={1100}
+                height={734}
+                sizes="(min-width: 1100px) 240px, (min-width: 768px) 33vw, 100vw"
+              />
+              <figcaption>The reason the record has to be right</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -845,7 +771,7 @@ export default function ColorWorldsHome() {
             a system your team runs without me.
           </p>
           <span className="cw-door__cta">
-            See the three engagements <span aria-hidden>→</span>
+            See the engagements <span aria-hidden>→</span>
           </span>
         </a>
       </section>

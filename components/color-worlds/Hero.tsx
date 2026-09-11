@@ -235,13 +235,14 @@ export function Hero() {
           /packages, which opens on the Audit card. Colour is --cw-fg / --cw-bg,
           never --cw-accent: see .cw-buy in globals.css for the four worlds.
           Pass-110, operator 2026-09-11: the price and duration beside the
-          pill were cut as pointless. */}
+          pill were cut as pointless. Pass-111a gives the hero one purchase
+          path: this link reaches #offer, and the box there buys. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
         <MagneticArea>
-          <a href="/packages" className="cw-buy">
+          <a href="#offer" className="cw-buy">
             Start the Audit{" "}
             <span className="cw-arr" aria-hidden>
-              →
+              ↓
             </span>
           </a>
         </MagneticArea>
@@ -284,13 +285,13 @@ export function Hero() {
           hero at all. Recorded rather than argued: the earlier ruling is not
           buried, it is superseded, and putting the line back is one revert.
 
-          Why it is safe to lose: nothing goes with it. The exit record inside
-          the receipts now carries all four deals with their counterparties,
-          years, disclosed figures, the $5.58B sum and the $5B+ under-claim, and
-          the ledger's closing row carries $20M+ in client revenue. Both figures
-          also remain in the metadata descriptions and the OG images. What the
-          hero loses is an ASSERTION made before anything has been shown, which
-          is the exact treatment both independent reviews called a badge. */}
+          Why it is safe to lose: nothing goes with it. The receipts carry both
+          figures: the circled $20M+ and the four exits with their outcomes and
+          disclosed values (Pass-111a cut the years and the summed total). Both
+          figures also remain in the metadata descriptions and the OG images.
+          What the hero loses is an ASSERTION made before anything has been
+          shown, which is the exact treatment both independent reviews called a
+          badge. */}
     </header>
   );
 }

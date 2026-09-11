@@ -46,6 +46,7 @@ export const CITATIONS = {
         year: "2018",
         value: "$2.33B",
         note: "First-day market valuation, September 26.",
+        outcome: "IPO, first-day value",
       },
       {
         company: "Postmates",
@@ -54,6 +55,7 @@ export const CITATIONS = {
         year: "2020",
         value: "$2.65B",
         note: "All-stock, closed December.",
+        outcome: "Acquired by Uber",
       },
       {
         company: "Guardicore",
@@ -62,6 +64,7 @@ export const CITATIONS = {
         year: "2021",
         value: "$600M",
         note: "Closed October.",
+        outcome: "Acquired by Akamai",
       },
       {
         company: "Neuton.AI",
@@ -70,6 +73,7 @@ export const CITATIONS = {
         year: "2025",
         value: null,
         note: "Price never disclosed. Counted as zero.",
+        outcome: "Technology acquired by Nordic Semiconductor",
       },
     ],
     // The arithmetic, stated so the page can show its work: the disclosed

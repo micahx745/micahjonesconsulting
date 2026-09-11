@@ -37,6 +37,8 @@ interface HandCircleProps {
   variant?: 1 | 2;
   /** Animation delay in seconds. */
   delay?: number;
+  /** Render the final frame immediately, with no transition. */
+  instant?: boolean;
   /** Subtle SVG turbulence filter for ink-on-paper texture. Default true.
    *  Drops out under forced-colors mode (filter doesn't render). */
   grain?: boolean;
@@ -63,6 +65,7 @@ export function HandCircle({
   width = 3.0,
   variant = 1,
   delay = 0,
+  instant = false,
   grain = true,
   className = "",
 }: HandCircleProps) {
@@ -72,6 +75,17 @@ export function HandCircle({
   const filterId = `hand-grain-${uid}`;
 
   useEffect(() => {
+    if (instant) {
+      [primaryRef.current, overshootRef.current].forEach((el) => {
+        if (!el) return;
+        const len = el.getTotalLength();
+        el.style.strokeDasharray = `${len}`;
+        el.style.strokeDashoffset = "0";
+        el.style.transition = "none";
+      });
+      return;
+    }
+
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -106,7 +120,7 @@ export function HandCircle({
     );
     if (primaryRef.current) observer.observe(primaryRef.current);
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, instant]);
 
   const path = PATHS[variant];
 

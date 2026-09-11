@@ -1,0 +1,16 @@
+shot .planning\qa\pass-111a\home-hero-1440.png  status=200 found=true world=#9E3C25 overflowX=false  box=934 leftcol=934  ordaniImgH=785
+shot .planning\qa\pass-111a\home-hero-390.png  status=304 found=true world=#9E3C25 overflowX=false  box=1047 leftcol=1269  ordaniImgH=234
+shot .planning\qa\pass-111a\home-offer-1440.png  status=304 found=true world=#9E3C25 overflowX=false  box=934 leftcol=934  ordaniImgH=785
+shot .planning\qa\pass-111a\home-offer-1024.png  status=304 found=true world=#9E3C25 overflowX=false  box=1023 leftcol=1023  ordaniImgH=1244
+shot .planning\qa\pass-111a\home-offer-768.png  status=304 found=true world=#9E3C25 overflowX=false  box=585 leftcol=821  ordaniImgH=903
+shot .planning\qa\pass-111a\home-offer-390.png  status=304 found=true world=#9E3C25 overflowX=false  box=1047 leftcol=1269  ordaniImgH=234
+shot .planning\qa\pass-111a\home-receipts-1440.png  status=304 found=true world=#2A1F18 overflowX=false  box=934 leftcol=934  ordaniImgH=785
+shot .planning\qa\pass-111a\home-receipts-390.png  status=304 found=true world=#2A1F18 overflowX=false  box=1047 leftcol=1269  ordaniImgH=234
+shot .planning\qa\pass-111a\home-exits-1440.png  status=304 found=true world=#2A1F18 overflowX=false  box=934 leftcol=934  ordaniImgH=785
+shot .planning\qa\pass-111a\home-exits-768.png  status=304 found=true world=#2A1F18 overflowX=false  box=585 leftcol=821  ordaniImgH=903
+shot .planning\qa\pass-111a\home-exits-390.png  status=304 found=true world=#2A1F18 overflowX=false  box=1047 leftcol=1269  ordaniImgH=234
+shot .planning\qa\pass-111a\home-ordani-1440.png  status=304 found=true world=#1A4548 overflowX=false  box=934 leftcol=934  ordaniImgH=785
+shot .planning\qa\pass-111a\home-ordani-390.png  status=304 found=true world=#1A4548 overflowX=false  box=1047 leftcol=1269  ordaniImgH=234
+shot .planning\qa\pass-111a\work-index-1440.png  status=200 found=true world=#2A1F18 overflowX=false
+shot .planning\qa\pass-111a\work-postmates-1440.png  status=200 found=true world=null overflowX=false
+shot .planning\qa\pass-111a\work-neuton-1440.png  status=200 found=true world=null overflowX=false

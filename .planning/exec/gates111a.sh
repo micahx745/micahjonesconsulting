@@ -2,6 +2,12 @@
 # Pass-111a gate battery. Every flag lives HERE so no prompt ever carries one.
 # Each gate prints its own real exit code; nothing is piped away before it is read.
 set -u
+# bash reads a running script from disk by byte offset, so an edit made while it
+# runs re-executes whatever lands at the old offset (Pass-111a: an edit during the
+# shots step re-ran axe-worlds). Always run from a private copy.
+if [ -z "${GATES_COPY:-}" ]; then
+  c="$(mktemp)"; cp "$0" "$c"; GATES_COPY=1 exec bash "$c" "$@"
+fi
 cd "C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live" || exit 1
 export MSYS_NO_PATHCONV=1
 Q=.planning/qa/pass-111a
@@ -11,8 +17,8 @@ echo "=== tsc ==="; npx tsc --noEmit; echo "tsc exit: $?"
 echo "=== copy-lint ==="; npx tsx lib/copy-lint-cli.ts; echo "copy-lint exit: $?"
 echo "=== vendor ==="; node scripts/vendor-gate.mjs; echo "vendor exit: $?"
 echo "=== retired phrases ==="; node scripts/retired-phrases-gate.mjs; echo "retired exit: $?"
-echo "=== accent states ==="; node scripts/accent-states-lint.mjs; echo "accent-states exit: $?"
-echo "=== gsap quarantine ==="; node scripts/gsap-quarantine-gate.mjs; echo "gsap exit: $?"
+echo "=== accent states ==="; node scripts/accent-states-lint.mjs --self-test; echo "accent self-test exit: $?"; node scripts/accent-states-lint.mjs; echo "accent-states exit: $?"
+echo "=== gsap quarantine ==="; node scripts/gsap-quarantine-gate.mjs --self-test; echo "gsap self-test exit: $?"; node scripts/gsap-quarantine-gate.mjs; echo "gsap exit: $?"
 echo "=== new-block colour grep (expect NO lines) ==="
 python -P - <<'PY'
 import re
@@ -40,8 +46,8 @@ PY
 echo "=== load-bearing sweep (expect only banned.ts, brand.json, LESSONS, briefs) ==="
 grep -rniE "load[- ]bearing" app content components lib public | cut -c1-140
 echo "=== prettier ==="
-npx prettier --write app/globals.css "app/(foyer)/page.tsx" components/color-worlds/Hero.tsx components/color-worlds/PriceBox.tsx components/color-worlds/RevenueFigure.tsx components/color-worlds/ExitRecord.tsx components/hand/HandCircle.tsx content/citations.ts scripts/gsap-quarantine-gate.mjs
-npx prettier --check app/globals.css "app/(foyer)/page.tsx" components/color-worlds/Hero.tsx components/color-worlds/PriceBox.tsx components/color-worlds/RevenueFigure.tsx components/color-worlds/ExitRecord.tsx components/hand/HandCircle.tsx content/citations.ts scripts/gsap-quarantine-gate.mjs; echo "prettier-check exit: $?"
+npx prettier --write app/globals.css "app/(foyer)/page.tsx" components/color-worlds/Hero.tsx components/color-worlds/PriceBox.tsx components/color-worlds/RevenueFigure.tsx components/color-worlds/ExitRecord.tsx components/hand/HandCircle.tsx content/citations.ts scripts/gsap-quarantine-gate.mjs scripts/layout-gate.mjs package.json
+npx prettier --check app/globals.css "app/(foyer)/page.tsx" components/color-worlds/Hero.tsx components/color-worlds/PriceBox.tsx components/color-worlds/RevenueFigure.tsx components/color-worlds/ExitRecord.tsx components/hand/HandCircle.tsx content/citations.ts scripts/gsap-quarantine-gate.mjs scripts/layout-gate.mjs package.json; echo "prettier-check exit: $?"
 echo "=== build (webpack; pnpm build FAILS on this machine with a font error) ==="
 npx next build --webpack > "$Q/build.log" 2>&1; b=$?
 grep -Ei "compiled|error|failed" "$Q/build.log" | head -8; echo "build exit: $b"
@@ -62,6 +68,10 @@ echo "  \$20M+ on /: $(curl -s http://localhost:3200/ | grep -c '\$20M+')   \$5.
 echo "=== axe-worlds on / /services /packages ==="
 AXE_OUT="$Q/axe.json" node scripts/axe-worlds.mjs http://localhost:3200 > "$Q/axe.log" 2>&1; a=$?
 cat "$Q/axe.log"; echo "axe-worlds exit: $a"
+echo "=== layout gate (words split across lines, pricing boxes vs viewport, grid fill) ==="
+node scripts/layout-gate.mjs --self-test; echo "layout self-test exit: $?"
+node scripts/layout-gate.mjs http://localhost:3200 > "$Q/layout.log" 2>&1; l=$?
+cat "$Q/layout.log"; echo "layout-gate exit: $l"
 echo "=== captures + measurements ==="
 node .planning/exec/shots111a.mjs http://localhost:3200 "$Q"; echo "shots exit: $?"
 echo "=== ALL GATES RUN ==="

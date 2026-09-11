@@ -207,6 +207,11 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   part too" instruction applies to **/playbook ONLY**. The home ledger's "Enterprise sales ·
   2021" tag and the case study's "Enterprise sales manager" Role row are the REAL title and
   STAY. Do not sweep them; a future review that flags them is reporting a false positive.
+- The home exit record renders each exit's own disclosed value and outcome and **no
+  aggregate** (Pass-111a, 2026-09-11). Astra ruled the row "Combined, disclosed deals, $5.58B"
+  a trust risk, because it added SurveyMonkey's first-day IPO value to two acquisition prices
+  and called all three deals, so it was cut. The **$5B+** floor remains in metadata and OG
+  images and carries the same mix; whether it stays is the operator's call (asked 2026-09-11).
 - Ordani: **"hundreds of paying birth workers", none lost to a competitor** (operator
   update 2026-08-31: NO public user count. The paying framing replaces the 200 figure on
   EVERY public surface incl. metadata, JSON-LD, llms.txt, mdx dek/indexLine; 200 stays
@@ -789,3 +794,77 @@ flags any property whose value reaches the accent, follows custom properties to 
 point, expands nesting branch by branch, counts unscoped rules as in scope, and proves all
 of that on a planted probe (`--self-test`, 16 cases and 3 near-miss negatives) at the start
 of every build, so a later edit that weakens it fails the build before it lints.
+
+## #20 — A layout can pass every gate and still break between the widths anyone looked at (2026-09-11)
+
+**What happened.** Pass-111a's first battery passed render, copy, axe in all four worlds and
+the no-overflow check at every width. Its captures still showed three defects. SURVEYMONKEY
+split mid-word at 390: `overflow-wrap: anywhere` turned an overflow into a break inside the
+word, so the overflow check had nothing to see. The home Audit pricing box was 524x933 on a
+1440x900 screen and 361x1022 on 1024x768: the grid gave it 5/12 of the width, under the 640px
+its own two-column layout needs, so it stacked into a column taller than the screen. The
+Ordani grid kept an old `max-width: 1100px` and stopped 260px short of the page's right edge
+at 1440.
+
+**Root cause.** Every gate measured what it was written for: colour, links, overflow, copy.
+None measured a word against its lines, a box against the screen, or a grid against its
+container, and captures at two widths are samples, not a sweep.
+
+**The rule.** A display name never relies on `overflow-wrap: anywhere` to fit; size it or lay
+it out so it fits whole. A number range never splits (it goes in `.cw-nowrap`). A pricing box
+sits beside other content only where it gets the width its own layout needs, and is never
+taller than the viewport from 1024px up. A section grid spans its container unless a comment
+says why not.
+
+**The gate.** `scripts/layout-gate.mjs`, run in the battery beside axe-worlds. It needs a
+server and Chrome, so it is not in `pnpm build`. Six routes at 1440, 1280, 1024, 768, 390 and
+360. `words`: no word breaks between two letters, no number range splits, and nothing splits
+in display type or in a one-word mono label. `boxes`: no `.cw-pbox` taller than the viewport
+from 1024px. `fill`: the named grids span their container. Its first run flagged 14 hyphen
+breaks in running prose and tables, which are ordinary typesetting, so the rule was narrowed
+twice before it was trusted: a gate with standing false positives gets switched off (#13).
+What remained was real: date ranges split at 360 in the home receipts tags and the /work
+index, now in `.cw-nowrap`. It self-tests on a planted page (6 defects, 7 near misses) before
+each run.
+
+## #21 — A gate nobody attacked is a claim (2026-09-11)
+
+**What happened.** Two passes running, an executor wrote a gate that printed clean and missed
+the thing it existed for. Pass-110: GLM's accent-state lint was a property whitelist, broken
+seven ways by the review (#19). Pass-111a: Sol's GSAP quarantine gate never matched
+`@gsap/react`, the package both allowlisted files use, and missed a dynamic `import("gsap")`,
+`require("gsap")` and `export * from "gsap"`. It would also have failed the build on an
+import written inside a comment. Neither executor caught either one, and neither did the
+ruling tier's read of the diff. The review workflow's gate lens did, by writing each bypass
+and running it.
+
+**Root cause.** A gate is judged by its first run, and its first run is clean by
+construction: it is written against a tree with no violations in it. "Prints clean" proves
+nothing until something planted is caught.
+
+**The rule.** Every new gate ships with a `--self-test`: planted uses it must catch and near
+misses it must pass, run in `pnpm build` before the real scan, so an edit that weakens the
+gate fails the build first. A review of any pass that adds a gate gives the gate its own lens,
+and that lens writes bypasses instead of reading code.
+
+**The gate.** `scripts/gsap-quarantine-gate.mjs` was rewritten. It strips comments, then any
+specifier naming `gsap`, `gsap/<sub>` or `@gsap/<pkg>` in an import, an export-from, a
+side-effect import, a dynamic import or a require is a violation, across app, components,
+lib, content and hooks in every JS and TS extension. Its self-test plants 13 uses and 7 near
+misses and runs in `pnpm build`, as the accent lint's does. `scripts/layout-gate.mjs` (#20)
+self-tests on a planted page. `vendor-gate.mjs` and `retired-phrases-gate.mjs` predate the
+rule and have no self-test yet; that is queued in RESUME.
+
+## #22 — A battery script edited while it runs re-runs part of itself (2026-09-11)
+
+**What happened.** During the Pass-111a verification, `.planning/exec/gates111a.sh` was
+edited to add two gates while it was still in its capture step. bash reads a running script
+from disk by byte offset. When the capture step ended, it resumed at the old offset inside
+the new file and started axe-worlds again, and would have gone on to re-run the captures
+against a server another gate was using. The only signs were a log that stopped at
+`shots exit: 0` and a task that never ended.
+
+**The rule.** Never edit a script while it runs. A battery runs from a private copy.
+
+**The gate.** `gates111a.sh` now copies itself to a temp file and `exec`s the copy on start
+(the `GATES_COPY` guard). Every later battery script opens with the same guard.

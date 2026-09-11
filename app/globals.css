@@ -836,6 +836,20 @@ body {
   font-weight: 500;
 }
 
+/* Pass-111a verify: under 640px a three-item tools list wraps, and the
+ * separator dots were left at a line end and a line start (/work/postmates
+ * at 390). Phones get one item per line and no dots. */
+@media (max-width: 639px) {
+  [data-mode="theater"] .case-study__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  [data-mode="theater"] .case-study__dot {
+    display: none;
+  }
+}
+
 /* MDX body — typography for h1, h2, p, ul inside the case study.
  * Pass-22 (CW-18 Slice 1): max-width + margin: 0 auto removed; the
  * parent .case-study__layout grid provides column width and
@@ -2016,38 +2030,6 @@ body {
   margin: 0 0 12px;
 }
 
-[data-mode="cw"] .cw-ordani-split {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: start;
-  max-width: 1100px;
-}
-@media (min-width: 1100px) {
-  [data-mode="cw"] .cw-ordani-split {
-    grid-template-columns: minmax(0, 1fr) 420px;
-  }
-}
-[data-mode="cw"] .cw-ordani-split__fig {
-  margin: 0;
-  max-width: 480px;
-}
-[data-mode="cw"] .cw-ordani-split__img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
-}
-[data-mode="cw"] .cw-ordani-split__cap {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.9;
-  margin-top: 12px;
-  display: block;
-}
-
 /* THE TWO DOORS (Pass-6 — operator refused the card version: "they look
  * weak"). No cards, no borders: the SEAM as doorways. Two full-bleed
  * color panels — petrol for the build-side door (solo builders),
@@ -2497,22 +2479,6 @@ body {
  * color: inherit throughout, no fixed accent — the WorldSwitcher rule
  * — hierarchy is size and weight only, the same device .cw-exits__val
  * already proves safe across worlds. */
-[data-mode="cw"] .cw-offer-stats {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 18px 28px;
-  margin: 28px 0 0;
-}
-[data-mode="cw"] .cw-offer-stats__price {
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(32px, 4vw, 56px);
-  line-height: 1;
-  color: inherit;
-  font-variant-numeric: tabular-nums;
-  margin: 0;
-}
 /* CHECKER FIX (Pass-107): .cw-offer-stats__meta and .cw-deliver__num were drafted
  * with opacity: 0.9 on text. That is the exact category that produced 19 axe
  * failures in this same #offer section hours ago, because the WorldSwitcher
@@ -2520,13 +2486,6 @@ body {
  * and might well have held, but "might well have held" is not a contrast
  * argument. Both now differentiate by size and weight only, the way
  * .cw-offer-stats__price, the ledger rows and the exit record already do. */
-[data-mode="cw"] .cw-offer-stats__meta {
-  font-family: var(--font-cw-mono);
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase; /* a11y: matches .cw-kicker/.cw-principle__num — terracotta is the tightest world at 0.89 */
-  margin: 0;
-}
 
 /* Lede-sub link (e.g. "Visit ordani.com →") below the lede. */
 [data-mode="cw"] .cw-lede-sub {
@@ -2693,54 +2652,17 @@ body {
 [data-mode="cw"] .cw-section-cta-wrap--left {
   justify-content: flex-start;
 }
-[data-mode="cw"] .cw-deliver {
-  list-style: none;
-  margin: 40px 0 0;
-  padding: 0;
-  max-width: 820px;
-}
-[data-mode="cw"] .cw-deliver__row {
-  display: grid;
-  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: 6px 32px;
-  align-items: baseline;
-  padding: 22px 0;
-  border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-}
-[data-mode="cw"] .cw-deliver__row:first-child {
-  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-}
-[data-mode="cw"] .cw-deliver__name {
-  font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: clamp(19px, 1.7vw, 23px);
-  line-height: 1.2;
-}
 /* Pass-107: order numerals on the three deliverable rows — same mono/
  * opacity treatment as .cw-principle__num, so the set reads as a
  * sequence rather than three interchangeable bullets. */
-[data-mode="cw"] .cw-deliver__num {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em; /* a11y: matches .cw-principle__num — terracotta is the tightest world at 0.89 */
-  margin-right: 10px;
-}
 /* No opacity here. THIRD time this trap has bitten in one day: this block sits in
  * the #offer section, whose ground the WorldSwitcher cross-fades, and axe measured
  * these three notes failing at 1440 with opacity 0.82. Size carries the hierarchy. */
-[data-mode="cw"] .cw-deliver__note {
-  font-size: clamp(15px, 1.3vw, 17px);
-  line-height: 1.5;
-}
 /* Pass-107: spacing wrapper for the after-purchase line below the
  * deliverable rows. Reuses .cw-deliver__note's type treatment — it is
  * exactly that register, supporting, not a headline — and only adds
  * the gap above it plus a measure so it doesn't run the section's full
  * width. */
-[data-mode="cw"] .cw-offer-next {
-  margin-top: 32px;
-  max-width: 62ch;
-}
 
 /* Pass-109 (Astra #3, operator-approved 2026-09-10): the offer composed across
  * the desktop grid. At 1440 the old single column stopped near x=860 and left
@@ -2751,37 +2673,275 @@ body {
 [data-mode="cw"] .cw-offer__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: "lead" "detail" "act";
+  grid-template-areas: "title" "box" "link";
+  gap: 32px;
 }
-[data-mode="cw"] .cw-offer__lead {
-  grid-area: lead;
+[data-mode="cw"] .cw-offer__grid > .cw-secttitle {
+  grid-area: title;
 }
-[data-mode="cw"] .cw-offer__detail {
-  grid-area: detail;
+[data-mode="cw"] .cw-offer__box {
+  grid-area: box;
+  min-width: 0;
 }
-[data-mode="cw"] .cw-offer__act {
+[data-mode="cw"] .cw-offer__packages-link {
+  grid-area: link;
+  width: max-content;
+}
+
+/* Pass-111a: one typographic pricing primitive. Every colour follows the
+ * active world; hierarchy comes from scale, weight, frames and hairlines. */
+[data-mode="cw"] .cw-pbox {
+  container-type: inline-size;
+  height: 100%;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  border-radius: 12px;
+}
+[data-mode="cw"] .cw-pbox--lead {
+  border: 2px solid currentColor;
+}
+[data-mode="cw"] .cw-pbox__in {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: clamp(24px, 2.2vw, 36px);
+}
+[data-mode="cw"] .cw-pbox--lead .cw-pbox__in {
+  padding: calc(clamp(24px, 2.2vw, 36px) - 1px);
+}
+[data-mode="cw"] .cw-pbox__in > *,
+[data-mode="cw"] .cw-pbox__list {
+  margin: 0;
+}
+[data-mode="cw"] .cw-pbox__label {
+  grid-area: label;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16px !important;
+}
+[data-mode="cw"] .cw-pbox__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+[data-mode="cw"] .cw-pbox__tag::before {
+  content: "";
+  width: 38px;
+  height: 1.5px;
+  background: currentColor;
+}
+[data-mode="cw"] .cw-pbox__name {
+  grid-area: name;
+  font-family: var(--font-cw-display);
+  font-size: clamp(26px, 2.3vw, 34px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-pbox__price {
+  grid-area: price;
+  margin-top: 20px !important;
+  line-height: 1;
+}
+[data-mode="cw"] .cw-pbox__fig {
+  font-family: var(--font-cw-display);
+  font-size: clamp(44px, 3.9vw, 56px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-pbox__from,
+[data-mode="cw"] .cw-pbox__per {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+[data-mode="cw"] .cw-pbox__per {
+  display: block;
+  margin-top: 6px;
+}
+[data-mode="cw"] .cw-pbox__term {
+  grid-area: term;
+  margin-top: 12px !important;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  /* Pass-111a verify: at 1440 the term left "WEEK" alone on its own line. */
+  text-wrap: balance;
+}
+[data-mode="cw"] .cw-pbox__fit {
+  grid-area: fit;
+  align-self: start;
+  max-width: 34ch;
+  margin-top: 18px !important;
+  font-family: var(--font-cw-body);
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+[data-mode="cw"] .cw-pbox__list {
+  grid-area: list;
+  list-style: none;
+  padding: 22px 0 0;
+  margin-top: 26px !important;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+[data-mode="cw"] .cw-pbox__list li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+[data-mode="cw"] .cw-pbox__list li:last-child {
+  border-bottom: 0;
+}
+[data-mode="cw"] .cw-pbox__list li::before {
+  content: "";
+  flex: 0 0 12px;
+  height: 2px;
+  margin-top: 0.72em;
+  background: currentColor;
+}
+[data-mode="cw"] .cw-pbox__area {
+  grid-area: area;
+  margin-top: 20px !important;
+  padding-top: 16px;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+[data-mode="cw"] .cw-pbox__act {
   grid-area: act;
-  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  margin-top: auto !important;
+  padding-top: 26px;
 }
-@media (min-width: 1024px) {
-  [data-mode="cw"] .cw-offer__grid {
+[data-mode="cw"] .cw-pbox__act .cw-buy {
+  width: 100%;
+  justify-content: center;
+  padding: 13px 16px;
+  font-size: 15px;
+}
+[data-mode="cw"] .cw-pbox__fine {
+  grid-area: fine;
+  margin-top: 14px !important;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+/* Pass-111a Astra gate: on a phone the home Audit box stacked the four
+ * deliverables before its button. In the single-column box the one-area rule
+ * and the button now follow the fit line and the list comes after them. From
+ * 640px the grid areas place everything. DOM order is unchanged, so a screen
+ * reader still reads the list first, and the button is the box's only stop. */
+@container (max-width: 639px) {
+  [data-mode="cw"] .cw-offer__box .cw-pbox__area {
+    order: 1;
+  }
+  [data-mode="cw"] .cw-offer__box .cw-pbox__act {
+    order: 2;
+  }
+  [data-mode="cw"] .cw-offer__box .cw-pbox__list {
+    order: 3;
+  }
+  [data-mode="cw"] .cw-offer__box .cw-pbox__fine {
+    order: 4;
+    margin-top: 22px !important;
+  }
+}
+[data-mode="cw"] .cw-pkg__cta-error {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+[data-mode="cw"] .cw-pband--pkgs .cw-pbox__name {
+  min-height: 1.96em;
+}
+@container (min-width: 640px) {
+  [data-mode="cw"] .cw-pbox__in {
+    display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto auto auto 1fr auto auto;
     grid-template-areas:
-      "lead detail"
-      "act detail";
-    column-gap: clamp(56px, 6vw, 120px);
-    align-items: start;
+      "label list"
+      "name list"
+      "price list"
+      "term list"
+      "fit list"
+      "act area"
+      "fine fine";
+    column-gap: 40px;
   }
-  [data-mode="cw"] .cw-offer__detail .cw-deliver {
-    margin-top: 0;
-    max-width: none;
+  [data-mode="cw"] .cw-pbox__label,
+  [data-mode="cw"] .cw-pbox__price,
+  [data-mode="cw"] .cw-pbox__term,
+  [data-mode="cw"] .cw-pbox__fit,
+  [data-mode="cw"] .cw-pbox__list,
+  [data-mode="cw"] .cw-pbox__area,
+  [data-mode="cw"] .cw-pbox__act {
+    margin-top: 0 !important;
+  }
+  [data-mode="cw"] .cw-pbox__label {
+    margin-bottom: 16px !important;
+  }
+  [data-mode="cw"] .cw-pbox__price {
+    margin-top: 20px !important;
+  }
+  [data-mode="cw"] .cw-pbox__term {
+    margin-top: 12px !important;
+  }
+  [data-mode="cw"] .cw-pbox__fit {
+    margin-top: 18px !important;
+  }
+  [data-mode="cw"] .cw-pbox__list {
+    padding-top: 22px;
+  }
+  [data-mode="cw"] .cw-pbox__area {
+    align-self: end;
+  }
+  [data-mode="cw"] .cw-pbox__act {
+    align-self: end;
+    padding-top: 26px;
   }
 }
-@media (max-width: 760px) {
-  [data-mode="cw"] .cw-deliver__row {
-    grid-template-columns: 1fr;
-    gap: 6px;
+/* Pass-111a verify: the box sits beside the title only where it is wide
+ * enough (640px) for its own two-column layout. At 7fr/5fr it was 524px wide
+ * and 933px tall at 1440x900, taller than the screen, and 1022px tall at
+ * 1024x768. Below 1280 the title stacks over a full-width box instead. */
+@media (min-width: 1280px) {
+  [data-mode="cw"] .cw-offer__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-areas:
+      "title box"
+      "link box";
+    column-gap: clamp(56px, 6vw, 120px);
+    row-gap: 32px;
+    align-items: center;
   }
 }
 @media (max-width: 760px) {
@@ -2998,7 +3158,6 @@ body {
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0 0 28px;
 }
 [data-mode="cw"] .cw-services__title {
@@ -3014,7 +3173,6 @@ body {
   font-family: var(--font-cw-body);
   font-size: clamp(17px, 1.7vw, 21px);
   line-height: 1.5;
-  opacity: 0.85;
   margin: 0;
   max-width: 60ch;
 }
@@ -3736,10 +3894,6 @@ body {
   opacity: 1;
   transform: translateX(4px);
 }
-[data-mode="cw"] .cw-lrow--tot {
-  border-top: 1px solid currentColor;
-  border-bottom: 2px solid currentColor;
-}
 
 /* CONTRAST FIX, axe 2026-09-09: the first version used saffron for the figures
  * and opacity 0.6-0.9 for de-emphasis, and axe returned 19 serious failures at
@@ -3762,6 +3916,46 @@ body {
  * (see the CONTRAST FIX note below — an accent was tried and failed AA), and
  * the entrance is the site's existing .cw-reveal system: no new keyframe, no
  * new token, no second mechanism. */
+[data-mode="cw"] .cw-receipts__title {
+  margin-top: 112px;
+}
+[data-mode="cw"] .cw-rec__num {
+  margin: 40px 0 0;
+  font-family: var(--font-cw-display);
+  font-size: clamp(88px, 17vw, 240px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-rec__wrap {
+  position: relative;
+  display: inline-grid;
+}
+[data-mode="cw"] .cw-rec__ghost,
+[data-mode="cw"] .cw-rec__tick {
+  grid-area: 1 / 1;
+}
+[data-mode="cw"] .cw-rec__ghost {
+  visibility: hidden;
+}
+[data-mode="cw"] .cw-rec__tick {
+  justify-self: start;
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-rec__tick::before {
+  content: "$20M+";
+}
+[data-mode="cw"] .cw-rec__lbl {
+  margin: 18px 0 0;
+  font-family: var(--font-cw-mono);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
 [data-mode="cw"] .cw-exits {
   margin-top: 56px;
 }
@@ -3771,123 +3965,114 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   margin: 0 0 28px;
-  font-weight: 400;
+  font-weight: 500;
 }
 [data-mode="cw"] .cw-exits__row {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 32px;
-  border-top: 1px solid color-mix(in srgb, currentColor 25%, transparent);
-  padding-top: 26px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid currentColor;
 }
-[data-mode="cw"] .cw-exits__deal > p {
+[data-mode="cw"] .cw-exits__deal p {
   margin: 0;
-}
-[data-mode="cw"] .cw-exits__year {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  margin-bottom: 10px !important;
 }
 [data-mode="cw"] .cw-exits__co {
   font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: clamp(19px, 1.7vw, 23px);
-  line-height: 1.15;
+  font-size: clamp(20px, 2.2vw, 32px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
-[data-mode="cw"] .cw-exits__ev {
-  font-size: 15px;
-  line-height: 1.45;
-  margin-top: 4px !important;
+[data-mode="cw"] .cw-exits__baseline {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 14px;
 }
 [data-mode="cw"] .cw-exits__val {
   font-family: var(--font-cw-display);
+  font-size: clamp(20px, 1.9vw, 28px);
   font-weight: 800;
-  font-size: clamp(26px, 2.6vw, 38px);
-  line-height: 1.1;
-  color: inherit;
-  margin-top: 14px !important;
+  line-height: 1;
+  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
 [data-mode="cw"] .cw-exits__val--undisclosed {
-  font-family: var(--font-cw-body);
-  font-weight: 500;
-  font-size: clamp(15px, 1.3vw, 17px);
-  color: inherit;
-  /* aligns the word to the baseline the three figures share, so the row does
-     not look like it is missing a value — it looks like it declined one. */
-  margin-top: 24px !important;
-}
-[data-mode="cw"] .cw-exits__note {
-  font-size: 13px;
-  line-height: 1.5;
-  margin-top: 8px !important;
-  max-width: 26ch;
-}
-[data-mode="cw"] .cw-exits__rule {
-  height: 1px;
-  background: color-mix(in srgb, currentColor 25%, transparent);
-  margin: 34px 0 0;
-}
-[data-mode="cw"] .cw-exits__sum {
-  margin: 22px 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 6px;
-}
-[data-mode="cw"] .cw-exits__sumrow {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-}
-[data-mode="cw"] .cw-exits__sumrow dt {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-[data-mode="cw"] .cw-exits__sumrow dd {
-  margin: 0;
-  font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(17px, 1.5vw, 20px);
-  font-variant-numeric: tabular-nums;
 }
-[data-mode="cw"] .cw-exits__total {
-  font-size: clamp(30px, 3.2vw, 46px) !important;
-  font-weight: 800;
-  color: inherit;
-  line-height: 1.05;
-}
-[data-mode="cw"] .cw-exits__sumrow--claim dd span {
+[data-mode="cw"] .cw-exits__outcome {
   font-family: var(--font-cw-body);
+  font-size: 16px;
   font-weight: 400;
-  font-size: 14px;
+  line-height: 1.45;
 }
 @media (max-width: 899px) {
-  [data-mode="cw"] .cw-exits__row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 30px 24px;
+  [data-mode="cw"] .cw-exits__deal {
+    min-width: 0;
+    padding: 28px 16px 0 0;
+  }
+  [data-mode="cw"] .cw-exits__deal:nth-child(2n) {
+    padding-right: 0;
+    padding-left: 16px;
+    border-left: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  }
+  [data-mode="cw"] .cw-exits__deal:nth-child(3),
+  [data-mode="cw"] .cw-exits__deal:nth-child(4) {
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
   }
 }
-@media (max-width: 560px) {
+/* Pass-111a verify: under 480px the two-up grid left each name 158px and
+ * SURVEYMONKEY broke mid-word. Phones get a ledger: one deal per row, name
+ * left, figure right in line with the total below, outcome underneath. */
+@media (max-width: 479px) {
   [data-mode="cw"] .cw-exits__row {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
-  [data-mode="cw"] .cw-exits__sum {
-    align-items: flex-start;
+  [data-mode="cw"] .cw-exits__deal,
+  [data-mode="cw"] .cw-exits__deal:nth-child(2n),
+  [data-mode="cw"] .cw-exits__deal:nth-child(3),
+  [data-mode="cw"] .cw-exits__deal:nth-child(4) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px 16px;
+    margin-top: 0;
+    padding: 20px 0;
+    border-left: 0;
+    border-top: 0;
   }
-  [data-mode="cw"] .cw-exits__val--undisclosed {
-    margin-top: 10px !important;
+  [data-mode="cw"] .cw-exits__deal + .cw-exits__deal {
+    border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  }
+  [data-mode="cw"] .cw-exits__baseline {
+    display: contents;
+  }
+  [data-mode="cw"] .cw-exits__outcome {
+    flex-basis: 100%;
   }
 }
-[data-mode="cw"] .cw-lrow--tot .cw-lrow__out {
-  font-size: 15px;
-  opacity: 1;
+@media (min-width: 900px) {
+  [data-mode="cw"] .cw-exits__row {
+    grid-template-columns:
+      minmax(0, 1.25fr) minmax(0, 1.15fr) minmax(0, 1fr)
+      minmax(0, 0.95fr);
+  }
+  [data-mode="cw"] .cw-exits__deal {
+    min-width: 0;
+    padding: 28px 24px 0 0;
+  }
+  [data-mode="cw"] .cw-exits__deal + .cw-exits__deal {
+    padding-left: 24px;
+    border-left: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  }
 }
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-lrow {
@@ -6173,7 +6358,6 @@ body {
   font-size: 16px;
   line-height: 1.6;
   max-width: 60ch;
-  opacity: 0.9;
 }
 [data-mode="cw"] .cw-sv .cw-pkgs {
   margin-top: 128px;
@@ -6664,39 +6848,69 @@ body {
  * becomes a lead frame plus a three-up band. Full colour with a hairline
  * border, matching the frame that was already here. Zero motion.
  * ============================================================ */
-[data-mode="cw"] .cw-ord-band {
+[data-mode="cw"] .cw-ord-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2.2vw, 28px);
-  margin-top: clamp(48px, 6vw, 80px);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "lead" "copy" "strip";
+  gap: clamp(32px, 5vw, 72px);
   max-width: 1100px;
 }
-@media (max-width: 760px) {
-  [data-mode="cw"] .cw-ord-band {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    margin-top: 40px;
-  }
-}
-[data-mode="cw"] .cw-ord-band figure {
+[data-mode="cw"] .cw-ord-lead {
+  grid-area: lead;
   margin: 0;
 }
-[data-mode="cw"] .cw-ord-band img {
+[data-mode="cw"] .cw-ord-copy {
+  grid-area: copy;
+}
+[data-mode="cw"] .cw-ord-lead img,
+[data-mode="cw"] .cw-ord-strip img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
   border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
 }
-[data-mode="cw"] .cw-ord-band figcaption {
+[data-mode="cw"] .cw-ord-lead img {
+  height: auto;
+}
+[data-mode="cw"] .cw-ord-strip {
+  grid-area: strip;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 12px;
+}
+[data-mode="cw"] .cw-ord-strip figure {
+  margin: 0;
+}
+[data-mode="cw"] .cw-ord-strip img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+[data-mode="cw"] .cw-ord-lead figcaption,
+[data-mode="cw"] .cw-ord-strip figcaption {
   font-family: var(--font-cw-mono);
-  font-size: 10.5px;
+  font-size: 12px;
+  line-height: 1.6;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  opacity: 0.78;
   margin-top: 10px;
-  line-height: 1.6;
+}
+@media (max-width: 767px) {
+  [data-mode="cw"] .cw-ord-strip {
+    display: none;
+  }
+}
+/* Pass-111a verify: side by side, the grid spans the page like every other
+ * section. Capped at 1100px it left a 260px empty band right of the photos
+ * at 1440, the only section that stopped short of the nav's right edge. */
+@media (min-width: 1100px) {
+  [data-mode="cw"] .cw-ord-grid {
+    max-width: none;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "copy lead"
+      "copy strip";
+    align-items: start;
+  }
 }
 
 /* Pass-65 — the Ordani section closes tighter than the site's 130px rhythm.

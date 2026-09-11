@@ -1,0 +1,9 @@
+You are the EXECUTOR for Pass 111a in this repository. It is a git worktree: you cannot commit here and you must not try.
+
+Read .claude/RESUME.md first. Then read the brief at .claude/briefs/pass-111a-boxes-receipts-ordani.md, read every file in its read list, and implement its sections 1 through 8 exactly as written, including the precedence rule between the direction, the critique and the brief.
+
+Section 9 needs a production build, a running server and a headless browser, which this sandbox may not allow. Do not start servers or browsers and do not run next build. The ruling tier runs the build, the world gate, the measurements in sections 2e and 4c, and the captures after you. Run only these static checks and report their real output and exit codes: npx tsc --noEmit; node scripts/accent-states-lint.mjs --self-test; node scripts/accent-states-lint.mjs; node scripts/gsap-quarantine-gate.mjs (the gate you write in section 5, including its proof run); then npx prettier --write on every file you changed.
+
+Never push, never deploy. Never change a price, a fact, a link or a live string beyond what the brief specifies. The two case-study drafts in .planning/drafts are moved unchanged.
+
+Finish with a report: every file you changed, created or deleted; every static check with its real output; and anything in the brief you could not do, with the reason.

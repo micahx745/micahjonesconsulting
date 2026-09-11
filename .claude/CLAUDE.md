@@ -114,7 +114,7 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - Do not add Framer Motion. Component-level enter/exit uses CSS transitions + `:hover` via Tailwind utilities.
 - Do not install `@studio-freight/react-lenis` — retired package. Install `lenis` and import from `lenis/react`.
 - Do not set `syncTouch: true` on Lenis — iOS gets native momentum, which is correct.
-- Do not import `gsap` outside `components/TitleCard.tsx`.
+- Do not import `gsap` outside `components/TitleCard.tsx`. Enforced by `scripts/gsap-quarantine-gate.mjs`; `components/color-worlds/SplitReveal.tsx` is a recorded pre-existing exception (Pass-111a), not a precedent.
 - Do not write `tailwind.config.ts` — v4 has no JS config.
 - Do not put `mdx-components.tsx` inside `app/` — silent render failure.
 - Do not add `noindex` to `/work/ordani` "out of abundance of caution" (Pitfall E3). `robots.txt` deliberately allows ALL crawlers including the AI bots — `app/robots.ts` reasons it in its header — so do not "fix" it to block them without an operator ruling. (Prose corrected 2026-09-04 to match live code; the block it used to describe never shipped.)
