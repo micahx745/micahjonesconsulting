@@ -10,6 +10,7 @@
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/codex-exec.ps1 -Brief .claude/briefs/pass-102-wording.md -Dir .claude/worktrees/p101-integrate
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/codex-exec.ps1 -Review -Prompt .planning/prompts/CODEX-ROOM-AND-LEDGER-REVIEW.md -Out .planning/reviews/x.md -Image a.png,b.png
 #   -Effort ultra (default for reviews) | xhigh (default for execution) | high
+#   -Model gpt-6-astra (default: the juror) | gpt-5.6-sol (drafting, research; MODEL_ROUTING §9c)
 #
 # Policy: never push, never deploy, never bypass a hook. Execution runs with
 # --sandbox workspace-write inside $Dir; reviews run read-only.
@@ -27,7 +28,8 @@ param(
   [string]$Out = "",
   [string]$Image = "",
   [string]$Dir = (Get-Location).Path,
-  [string]$Effort = ""
+  [string]$Effort = "",
+  [string]$Model = "gpt-6-astra"   # gpt-5.6-sol for drafting and research legs (MODEL_ROUTING §9c)
 )
 
 if (-not $Review -and $Brief -eq "") { Write-Error "Give -Brief <path> to execute, or -Review -Prompt <path>."; exit 1 }
@@ -39,12 +41,12 @@ if ($Image -ne "") { foreach ($i in $Image.Split(",")) { $imgArgs += @("-i", $i.
 if ($Review) {
   if ($Prompt -eq "") { Write-Error "-Review needs -Prompt <file>."; exit 1 }
   $outArgs = @(); if ($Out -ne "") { $outArgs = @("-o", $Out) }
-  Write-Host "codex-exec: REVIEW on gpt-6-astra @ $Effort, read-only, in $Dir" -ForegroundColor DarkYellow
-  Get-Content -Raw $Prompt | & codex exec -m gpt-6-astra -c "model_reasoning_effort=$Effort" --sandbox read-only -C $Dir @imgArgs @outArgs -
+  Write-Host "codex-exec: REVIEW on $Model @ $Effort, read-only, in $Dir" -ForegroundColor DarkYellow
+  Get-Content -Raw $Prompt | & codex exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox read-only -C $Dir @imgArgs @outArgs -
   exit $LASTEXITCODE
 }
 
 $text = "You are the EXECUTOR. Read .claude/RESUME.md, then execute the brief at $Brief verbatim: every step, every verification command with its expected output. Commit as each unit lands with the brief's commit subjects and the trailer 'Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>'. Never push, never deploy, never bypass a hook (amend a superseded rule with a quoted reason instead), never change a price, fact, link or live string. Stop and report on any return condition named in the brief. Before you stop, rewrite .claude/RESUME.md as one current-state file of at most 2.5KB."
-Write-Host "codex-exec: EXECUTE $Brief on gpt-6-astra @ $Effort, workspace-write, in $Dir" -ForegroundColor DarkYellow
-& codex exec -m gpt-6-astra -c "model_reasoning_effort=$Effort" --sandbox workspace-write -C $Dir $text
+Write-Host "codex-exec: EXECUTE $Brief on $Model @ $Effort, workspace-write, in $Dir" -ForegroundColor DarkYellow
+& codex exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox workspace-write -C $Dir $text
 exit $LASTEXITCODE
