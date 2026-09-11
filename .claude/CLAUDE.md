@@ -40,8 +40,8 @@ grunt work."
 
 So: **Fable 5.1 is the main model and stays there.** It rules, writes briefs, and judges at
 the named checkpoints. It does not run build, deploy, playwright or screenshot loops.
-**Opus is the default subagent** (`CLAUDE_CODE_SUBAGENT_MODEL=opus` in
-`.claude/settings.json`, overriding the user-global `sonnet`) and does the majority of the
+**Opus was the default subagent** (`CLAUDE_CODE_SUBAGENT_MODEL=opus` in
+`.claude/settings.json` until 2026-09-11; it is `sonnet` now, see the last amendment) and did the majority of the
 work: execution briefs, verification, sweeps, research legs. Still name `model:` on every
 Agent and Workflow call: `opus` for execution and verification, `sonnet`/`haiku` only for
 trivial lookups, `fable` never from a subagent (the main model IS Fable; fan-out inheriting
@@ -83,6 +83,14 @@ sol and only altra for qualty gates. altra is only top tier model we have - fabl
 days. we are at 29% chatgpt usage and 6 dayd till reset". So: Astra judges, it does not execute;
 a long `codex exec` run of a brief is forbidden while the quota is shared. GLM 5.3 executes
 briefs, Sonnet does the measuring and verifying, Opus rules and briefs in Fable's absence.
+
+**Amended 2026-09-11: Claude usage is the bucket to conserve (MODEL_ROUTING §9d).** Operator,
+verbatim: "Biggest thing is making sure we dont burn thru usage on this account while still
+leveraging fable and opus in critical areas. the other Ais especially glm 5.3 will be very
+helpful in this." So: GLM 5.3 executes; Sol (`gpt-5.6-sol`, ChatGPT) drafts, and executes when
+GLM is capped; Astra judges at quality gates; Fable or Opus rule only on critical calls (design
+direction, copy rulings, briefs, the final judge look, money, public claims, production). The
+subagent default is now `sonnet`. A new chat starts from `.planning/handoff/NEXT-SESSION-KICKOFF.md`.
 
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
