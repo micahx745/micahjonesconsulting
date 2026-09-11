@@ -27,8 +27,8 @@ Sol when GLM is capped, Astra judges, Fable/Opus rule only (≤15 calls/arc). Su
 ## State
 
 Pass-110/111a pushed (7d2c9b4); handoff + rulings unpushed. GLM 429 at boot, reset
-2026-09-12 06:26:46 z.ai. Codex CLI ok. This chat: default config dir, Opus;
-Sonnet-medium recommended. Vercel MCP + connectors need OAuth.
+2026-09-12 06:26:46 z.ai. This chat: default config dir, on Opus;
+Sonnet-medium recommended. Vercel MCP needs OAuth.
 
 ## NEXT
 
