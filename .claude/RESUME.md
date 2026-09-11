@@ -2,38 +2,51 @@
 
 ## READ FIRST
 
-**Dark rebuild REJECTED; the LIVE site is being evolved.** Branch `design/live-evolve`
-(worktree `.claude/worktrees/p106-live`), ahead of `main`, merges clean.
-**`pnpm build` fails HERE only** (Turbopack font error; Vercel is fine): use
-`npx next build --webpack`. **Workflow ignores `CLAUDE_CODE_SUBAGENT_MODEL`**: name `model:`.
-Routing is MODEL_ROUTING §9d (2026-09-11): Claude usage is the bucket to conserve. GLM 5.3
-executes, Sol drafts and executes when GLM is capped, Astra judges, Fable/Opus rule only.
-The project subagent default is now `sonnet` (`.claude/settings.json`).
+Dark rebuild REJECTED; the LIVE site is evolved on `design/live-evolve` (worktree
+`.claude/worktrees/p106-live`), ahead of `main`. `pnpm build` fails HERE only: use
+`npx next build --webpack`. Routing = MODEL_ROUTING §9d: conserve Claude. GLM 5.3 executes,
+Sol when GLM is capped, Astra judges, Fable/Opus rule only (≤15 calls/arc). Subagent default
+`sonnet`; name `model:` on every Agent/Workflow call.
+
+## Rulings 2026-09-11 (operator, question box; verbatim where quoted)
+
+1 Pricing: Advisory-only floor; strip the every-engagement $5K claim (metadata, /packages).
+2 Promises: ALL approved (A1-A3, P1-P3, R1-R2, E1-E3, ALL1, U1-U3, AU1, S1-S2). A4 + S3
+  await his text.
+3 Area pick: wire through (`metadata.area` every package, server-validated, replaces Audit's
+  Stripe dropdown, in kickoff email). NC-X3 yes: `/call?shape=` prefills the note.
+4 $20M+ count-up: EXCEPTION APPROVED (dated R13/R15 override; home only, once, skip under
+  reduced motion, finished no-JS state). Record in DESIGN_BAR + brand.json first.
+5 Case studies: neutralize (drop Hennessy + "foreign"; acquisition non-causal).
+6 Ordani: lifestyle-only approved; section unchanged.
+7 Book: "the book should not be mentioned or shown on the site yet. im still working on it".
+  NEW ITEM, scope TBC: /playbook, buy path, ALL1 (conflicts with 2), nav, OG, llms.txt.
+8 `$5B+`: keep. No sweep.
+9 Rename: "AI engineering" (/services + llms.txt).
 
 ## State
 
-- Pass-110 and Pass-111a COMMITTED and PUSHED (operator 2026-09-11, verbatim: "yeah push").
-  Remote `design/live-evolve` at 7d2c9b4; Vercel preview build: success. `main` untouched.
-- HANDOFF READY for a new chat on the operator's other account. Kickoff:
-  `.planning/handoff/NEXT-SESSION-KICKOFF.md` (Astra wrote it, Sol fact-checked it, fixes
-  applied). Decision queue: `.planning/handoff/DECISIONS-2026-09-11.md` (Sol drafted, Sol
-  fact-checked, 9 decisions). The new chat presents the queue only after it has booted and
-  proved its tools. GLM capped until 2026-09-12 06:26:46 (z.ai time).
+Pass-110/111a pushed (7d2c9b4); handoff 114afa1 unpushed. GLM 429 at boot, reset
+2026-09-12 06:26:46 z.ai. Codex CLI 0.153.4 ok. This chat: default config dir, Opus;
+Sonnet-medium recommended. Vercel MCP + connectors need OAuth.
+
+## NEXT
+
+Clarify ruling 7 vs ALL1 → brief `.claude/briefs/111b-services.md` → GLM
+executes after reset (Sol until then) → Astra one look → judge.
 
 ## Waiting on the operator
 
-Decisions 1-9 in DECISIONS-2026-09-11.md; 1-3 block Pass-111b (the /services rebuild).
-Merge to `main` · Stripe live $500 test · the two MODEL_ROUTING §9a support questions.
+Ruling-7 scope · A4/S3 text · merge to `main` · Stripe $500 live test · §9a.
 
 ## OPEN
 
-Self-tests for vendor/retired gates (#21) · case-study body starts low under the rail (Astra
-d) · `claude-glm.ps1 -Brief` sends a literal `$Brief`: use `-Batch` with a pointer prompt.
+Vendor/retired gate self-tests (#21) · case-study body low under rail (Astra d) ·
+`claude-glm.ps1 -Brief` sends literal `$Brief`: use `-Batch` + pointer prompt.
 
 ## Traps
 
-push to main auto-deploys · capture VIEWPORT, settle first · `python -P` · Git Bash: set
-`MSYS_NO_PATHCONV=1` for "/" args · never read an exit code through a pipe · never edit a
-running script (#22) · PS 5.1 splits native args at embedded quotes: commit via a Git Bash
-heredoc or `-F` · GLM `-Batch`: a pointer prompt only · MORE THAN ONE world renders here: no
-fixed text colour, no opacity on text, no `--cw-accent` under text.
+push to main auto-deploys · capture VIEWPORT after settle · `python -P` · Git Bash:
+`MSYS_NO_PATHCONV=1` for "/" args · no exit codes through a pipe · never edit a running
+script (#22) · PS 5.1 splits args at quotes: heredoc or `-F` · >1 world renders:
+no fixed text colour, no opacity on text, no `--cw-accent` under text.
