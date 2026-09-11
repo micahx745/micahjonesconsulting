@@ -1346,12 +1346,14 @@ body {
 }
 
 /* Focus-visible — single rule for all interactive elements in cw mode.
- * Uses the accent color so it picks up the current world's identity.
- * WCAG 2.4.7 — visible focus indicator is non-negotiable. */
+ * Pass-110: follows the text colour (--cw-fg), not the accent — the
+ * accent ring sat at 2.39:1 against the 3:1 a focus indicator needs
+ * (the Pass-109 .cw-mlink finding; LESSONS #19). WCAG 2.4.7 — visible
+ * focus indicator is non-negotiable. */
 [data-mode="cw"] a:focus-visible,
 [data-mode="cw"] button:focus-visible,
 [data-mode="cw"] input:focus-visible {
-  outline: 2px solid var(--cw-accent);
+  outline: 2px solid var(--cw-fg);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -1407,10 +1409,13 @@ body {
   text-transform: uppercase;
 }
 [data-mode="cw"] .cw-about a,
+/* Pass-110 review (contrast lens): the underline is the only thing that marks
+ * these links, since their text inherits the paragraph colour, and in the
+ * accent it read 2.39:1 on espresso. It follows the text now (LESSONS #19). */
 [data-mode="cw"] .cw-work-list a {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--cw-accent);
+  text-decoration-color: currentColor;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
 }
@@ -1456,9 +1461,13 @@ body {
   opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
   margin: 0;
 }
+/* Pass-110: hover keeps the title's own colour and underlines instead —
+ * the old accent swap is invisible to the resting-state axe gate and
+ * unguaranteed across worlds (LESSONS #19). */
 [data-mode="cw"] .cw-work-item:hover .cw-work-item__title {
-  color: var(--cw-accent);
-  transition: color 200ms ease;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
 }
 
 /* SR-only — screen-reader-visible, visually-hidden. Used by Hero for
@@ -2043,9 +2052,12 @@ body {
  * weak"). No cards, no borders: the SEAM as doorways. Two full-bleed
  * color panels — petrol for the build-side door (solo builders),
  * terracotta for the sell-side door (growing businesses) — big display
- * type, mono kickers, saffron arrows. Entrance stagger lives in the JSX
+ * type, mono kickers, arrows inheriting the bone ground (Pass-110: was
+ * saffron, 2.56:1 on terracotta; the panels' labels are bone throughout,
+ * LESSONS #19). Entrance stagger lives in the JSX
  * (door 2 carries transitionDelay 100ms via .cw-reveal); the transforms
- * below are hover microstates. */
+ * below are hover microstates. The hover keeps filter brightness(1.08):
+ * bone on the brightened terracotta still reads 4.68:1 (Pass-110 check). */
 [data-mode="cw"] .cw-doors-band {
   display: grid;
   grid-template-columns: 1fr;
@@ -2065,18 +2077,17 @@ body {
 }
 [data-mode="cw"] .cw-door--build {
   background: var(--color-cw-petrol);
-  color: #e9f2f0;
+  color: var(--color-cw-bone);
 }
 [data-mode="cw"] .cw-door--sell {
   background: var(--color-cw-terracotta);
-  color: #fbf0e7;
+  color: var(--color-cw-bone);
 }
 [data-mode="cw"] .cw-door__kicker {
   font-family: var(--font-cw-mono);
   font-size: 10.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0.85;
   margin: 0;
 }
 [data-mode="cw"] .cw-door__title {
@@ -2093,7 +2104,6 @@ body {
 [data-mode="cw"] .cw-door__body {
   font-size: 16px;
   line-height: 1.55;
-  opacity: 0.88;
   margin: 0;
   max-width: 38ch;
 }
@@ -2104,7 +2114,7 @@ body {
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-cw-saffron);
+  color: inherit;
 }
 [data-mode="cw"] .cw-door__cta span {
   display: inline-block;
@@ -2404,21 +2414,6 @@ body {
   background: var(--cw-fg);
   color: var(--cw-bg);
 }
-/* Price and duration beside the hero pill. Data, so mono is permitted
- * (CLAUDE.md: labels, codes, data). color: inherit, no opacity. */
-[data-mode="cw"] .cw-buy-group {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px 18px;
-}
-[data-mode="cw"] .cw-buy-meta {
-  font-family: var(--font-cw-mono);
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: inherit;
-}
 
 /* ================================================================
  * Pass-27 (operator cowork review): hero editorial colophon.
@@ -2537,25 +2532,23 @@ body {
 [data-mode="cw"] .cw-lede-sub {
   margin: 18px 0 0;
 }
+/* Pass-110 (LESSONS #19): was color/border --cw-accent — saffron on
+ * petrol reads 3.79:1 at 12px. Inherited text with a currentColor rule;
+ * hover thickens via box-shadow, never opacity on text. The old
+ * .cw-ordani-zone color override (bone) died with the section's rename
+ * and is deleted — inherit carries every world now. */
 [data-mode="cw"] .cw-lede-link {
   font-family: var(--font-cw-mono);
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cw-accent);
+  color: inherit;
   text-decoration: none;
-  border-bottom: 1.5px solid var(--cw-accent);
+  border-bottom: 1.5px solid currentColor;
   padding-bottom: 2px;
-  transition: opacity 0.2s ease;
-}
-/* a11y: in the petrol Ordani zone the accent resolves to saffron at
- * 3.79:1 — below the 4.5:1 text bar at 12px. Bone is 8.28:1 there
- * (the underline stays accent — decorative). */
-[data-mode="cw"] .cw-ordani .cw-lede-link {
-  color: var(--color-cw-bone);
 }
 [data-mode="cw"] .cw-lede-link:hover {
-  opacity: 0.75;
+  box-shadow: 0 1px 0 currentColor;
 }
 
 [data-mode="cw"] .cw-kicker {
@@ -2813,10 +2806,13 @@ body {
     color 0.2s,
     border-color 0.2s;
 }
+/* Pass-110: the fg/bg grammar on hover too (LESSONS #19) — colour stays,
+ * the rule thickens. */
 [data-mode="cw"] .cw-section-cta:hover,
 [data-mode="cw"] .cw-section-cta:focus-visible {
-  color: var(--cw-accent);
-  border-bottom-color: var(--cw-accent);
+  color: inherit;
+  border-bottom-color: currentColor;
+  box-shadow: 0 1px 0 currentColor;
 }
 [data-mode="cw"] .cw-section-cta__arr {
   display: inline-block;
@@ -3122,10 +3118,12 @@ body {
     border-color 0.2s,
     transform 0.25s;
 }
+/* Pass-110: same fg/bg grammar as .cw-section-cta's states (LESSONS #19). */
 [data-mode="cw"] .cw-service__anchor-link:hover,
 [data-mode="cw"] .cw-service__anchor-link:focus-visible {
-  color: var(--cw-accent);
-  border-bottom-color: var(--cw-accent);
+  color: inherit;
+  border-bottom-color: currentColor;
+  box-shadow: 0 1px 0 currentColor;
 }
 
 /* W3 (D7, operator-locked 2026-08-11): the ONE secondary-action
@@ -3206,7 +3204,8 @@ body {
 }
 [data-mode="cw"] .cw-pagefoot__row a:hover,
 [data-mode="cw"] .cw-pagefoot__row a:focus-visible {
-  color: var(--cw-accent);
+  color: inherit;
+  box-shadow: 0 1px 0 currentColor;
 }
 
 /* W2 (P0-2/D4, 2026-08-11): the uniform four-up .cw-tiers card grid is
@@ -3220,7 +3219,7 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 [data-mode="cw"] .cw-spec-scroll:focus-visible {
-  outline: 2px solid var(--cw-accent);
+  outline: 2px solid var(--cw-fg);
   outline-offset: 2px;
 }
 [data-mode="cw"] .cw-spec {
@@ -3605,78 +3604,10 @@ body {
   opacity: 0.5;
 }
 
-/* ORDANI band */
-[data-mode="cw"] .cw-ordani {
-  padding: 130px 40px;
-  position: relative;
-}
-@media (max-width: 760px) {
-  [data-mode="cw"] .cw-ordani {
-    padding: 90px 20px;
-  }
-}
-[data-mode="cw"] .cw-ordani .cw-tagrow {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-/* Pass-12: middle-dot separators between tagrow stat pills. The
- * tagrow now carries three traction signals (Live beta · 14
- * practices · Hundreds of users). The `span + span` pattern skips
- * the first span so the row reads as "A · B · C", not "· A · B · C". */
-[data-mode="cw"] .cw-ordani .cw-tagrow > span + span::before {
-  content: "·";
-  margin-right: 2px;
-  opacity: 0.45;
-}
-[data-mode="cw"] .cw-ordani .cw-live {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-[data-mode="cw"] .cw-ordani .cw-live::before {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--cw-accent);
-  box-shadow: 0 0 0 0 var(--cw-accent);
-  animation: cw-pulse 2s infinite;
-}
-@keyframes cw-pulse {
-  0% {
-    /* Sunflower pulse — was lime rgba(203,255,53). */
-    box-shadow: 0 0 0 0 rgba(255, 181, 17, 0.6);
-  }
-  70% {
-    box-shadow: 0 0 0 12px rgba(255, 181, 17, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 181, 17, 0);
-  }
-}
-[data-mode="cw"] .cw-ordani h2 {
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(64px, 16vw, 230px);
-  line-height: 0.84;
-  letter-spacing: -0.035em;
-  text-transform: uppercase;
-  margin: 0;
-}
-[data-mode="cw"] .cw-ordani .cw-lede {
-  max-width: 560px;
-  margin: 34px 0 0;
-  font-size: clamp(17px, 1.8vw, 22px);
-  line-height: 1.45;
-  opacity: 0.9;
-}
+/* ORDANI band — Pass-110: every rule scoped under .cw-ordani died when
+ * the section was renamed .cw-ord (grep: no element carries the token;
+ * the OrdaniSticky querySelectors for .cw-tagrow/.cw-note match nothing
+ * rendered). Deleted with the pulse keyframes they alone referenced. */
 /* W4 (P2-7): form container de-scoped from .cw-ordani (see input note
  * below) so the playbook signup gets the same flex layout. */
 [data-mode="cw"] .cw-signup {
@@ -3706,48 +3637,22 @@ body {
   color: inherit;
   opacity: 0.55;
 }
-/* Generic submit — world accent fill; the Ordani zone's gold/petrol
- * override below still wins inside .cw-ordani. */
+/* Generic submit — Pass-110 (LESSONS #19): the accent fill painted a
+ * bone label on saffron in the petrol world (2.05:1). Now the body-text
+ * pair every world guarantees: --cw-fg fill, --cw-bg label (the .cw-buy
+ * idiom). The .cw-ordani override below had been dead since the section
+ * was renamed .cw-ord; both it and the other .cw-ordani rules are
+ * deleted this pass. */
 [data-mode="cw"] .cw-signup button {
   font-family: var(--font-cw-display);
   font-weight: 600;
   font-size: 17px;
-  background: var(--cw-accent);
-  color: var(--color-cw-bone);
+  background: var(--cw-fg);
+  color: var(--cw-bg);
   border: none;
   border-radius: 46px;
   padding: 16px 30px;
   cursor: pointer;
-}
-[data-mode="cw"] .cw-ordani .cw-signup button {
-  font-family: var(--font-cw-display);
-  font-weight: 600;
-  font-size: 17px;
-  background: var(--cw-accent);
-  /* a11y: petrol-on-saffron measured 4.03:1; espresso is 6.13:1 */
-  color: var(--color-cw-espresso);
-  border: none;
-  border-radius: 46px;
-  padding: 16px 30px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-[data-mode="cw"] .cw-ordani .cw-note {
-  font-family: var(--font-cw-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
-  margin-top: 16px;
-}
-[data-mode="cw"] .cw-ordani .cw-signup .cw-msg {
-  flex-basis: 100%;
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.9; /* a11y: raised so blended small text clears 4.5:1 in every palette world (terracotta is the tightest at 0.89) */
-  margin-top: 4px;
 }
 
 /* THE LEDGER (Pass-2, redesign). Replaces the product-card grid and the
@@ -4051,10 +3956,13 @@ body {
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+/* Pass-110 review (contrast lens): the rule under these footer links was the
+ * accent, 2.39:1 on terracotta, and it is their only link cue. currentColor
+ * is the text colour, the pair every world guarantees (LESSONS #19). */
 [data-mode="cw"] .cw-footrow a {
   color: var(--cw-fg);
   text-decoration: none;
-  border-bottom: 1.5px solid var(--cw-accent);
+  border-bottom: 1.5px solid currentColor;
   padding-bottom: 2px;
 }
 
@@ -4992,10 +4900,6 @@ body {
   [data-mode="cw"] .cw-block {
     padding-top: 72px;
     padding-bottom: 72px;
-  }
-  [data-mode="cw"] .cw-ordani {
-    padding-top: 56px;
-    padding-bottom: 56px;
   }
   [data-mode="cw"] .cw-foot {
     padding-top: 72px;
@@ -6608,132 +6512,16 @@ body {
 }
 
 /* ============================================================
- * Pass-61 — /services opens on the choice (.cw-doors)
- * Brief: .claude/briefs/pass-61-page-openings.md
- *
- * The header above these was deleted: a kicker reading SERVICES, the page
- * title at 88px, and an intro sentence that was the doors' own copy said
- * once in prose and again in boxes. The doors are the page now.
- *
- * Form: a two-column dinner menu. ONE 1px rule between them, no boxes, no
- * radius, no shadow. Each column ends on a receipt so the choice is made
- * against evidence. Zero motion beyond the existing link hover.
+ * Pass-110 — the /services doors died in Pass-108; their CSS died here.
+ * The fork was replaced by .cw-sv-open (below), but these rules kept
+ * matching the HOME doors-band, which reuses the bare .cw-door class:
+ * color:inherit plus 0.72/0.9 opacity painted espresso-family text on
+ * the petrol and terracotta door fills — 1.38:1, the worst finding of
+ * Pass-109's world gate. Grep proves no element carries .cw-doors,
+ * __name, __go, __foot or __price anywhere. Deleted 2026-09-11.
+ * .cw-door__case below SURVIVES: /services' proof card (Pass-109
+ * grid) still carries that class.
  * ============================================================ */
-[data-mode="cw"] .cw-doors {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 70vh;
-  margin: 0 0 128px;
-  align-items: stretch;
-}
-[data-mode="cw"] .cw-door {
-  display: flex;
-  flex-direction: column;
-  color: inherit;
-  text-decoration: none;
-  padding: 8px 56px 8px 0;
-}
-/* The rule IS the divider — a border on the second column only. */
-[data-mode="cw"] .cw-door + .cw-door {
-  border-left: 1px solid color-mix(in srgb, currentColor 26%, transparent);
-  padding: 8px 0 8px 56px;
-}
-@media (max-width: 860px) {
-  [data-mode="cw"] .cw-doors {
-    grid-template-columns: 1fr;
-    min-height: 0;
-    margin-bottom: 80px;
-  }
-  [data-mode="cw"] .cw-door {
-    padding: 0 0 36px;
-  }
-  /* Stacked, the divider becomes horizontal so PACKAGES is not pushed off
-   * a 390 screen by a full-height first column. */
-  [data-mode="cw"] .cw-door + .cw-door {
-    border-left: 0;
-    border-top: 1px solid color-mix(in srgb, currentColor 26%, transparent);
-    padding: 36px 0 0;
-  }
-}
-
-/* Pass-76. Operator: the two doors "doesn't seem even - looks off slightly."
- *
- * The columns were already equal height and the foot already bottom-pinned, so
- * the bottoms lined up and the tops did not. "For companies" is one line;
- * "For solo builders and small teams" wraps to two. That one extra line pushed
- * PACKAGES a full line below ENGAGEMENTS, and at clamp(44px, 7vw, 92px) a
- * one-line offset between two display words is impossible to unsee.
- *
- * Subgrid makes the four rows — kicker, name, body, foot — share their tracks
- * across both doors, so each row is as tall as its taller side and every
- * element starts on the same baseline. Fixing it with a min-height on the
- * kicker would have worked at exactly one viewport width.
- *
- * Kept inside @supports and above the stacked breakpoint: the existing flex
- * column stays the fallback, and stacked doors have nothing to align to. */
-@supports (grid-template-rows: subgrid) {
-  @media (min-width: 861px) {
-    [data-mode="cw"] .cw-doors {
-      grid-template-rows: auto auto 1fr auto;
-    }
-    [data-mode="cw"] .cw-door {
-      display: grid;
-      grid-template-rows: subgrid;
-      grid-row: span 4;
-    }
-  }
-}
-
-[data-mode="cw"] .cw-door__kicker {
-  display: block;
-  font-family: var(--font-cw-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.72;
-  margin-bottom: 20px;
-}
-[data-mode="cw"] .cw-door__name {
-  display: block;
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(44px, 7vw, 92px);
-  line-height: 0.94;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  /* Pass-76b: the card stopped being an <a> so it could hold more than one
-   * destination. The title carries the link now. */
-  color: inherit;
-  text-decoration: none;
-}
-[data-mode="cw"] .cw-door__name:hover,
-[data-mode="cw"] .cw-door__name:focus-visible {
-  color: var(--color-cw-terracotta);
-}
-[data-mode="cw"] .cw-door__body {
-  display: block;
-  font-family: var(--font-cw-body);
-  font-size: clamp(17px, 1.7vw, 21px);
-  line-height: 1.5;
-  max-width: 32ch;
-  opacity: 0.9;
-}
-
-/* The foot is pinned so both columns' receipts sit on the same baseline. */
-[data-mode="cw"] .cw-door__foot {
-  display: block;
-  margin-top: auto;
-  padding-top: 40px;
-}
-[data-mode="cw"] .cw-door__price {
-  display: block;
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
 /* Pass-76b. Was .cw-door__receipt: a flat stat with a border-top and nowhere
  * to go, sitting directly above the CTA. Operator read it as weak and out of
  * place, which it was — two competing proof elements in one foot, one of them
@@ -6762,21 +6550,6 @@ body {
   [data-mode="cw"] .cw-door__case {
     transition: none;
   }
-}
-[data-mode="cw"] .cw-door__go {
-  display: inline-block;
-  margin-top: 22px;
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 4px;
-}
-[data-mode="cw"] .cw-door:hover .cw-door__go,
-[data-mode="cw"] .cw-door:focus-visible .cw-door__go {
-  color: var(--color-cw-terracotta);
-  border-bottom-color: var(--color-cw-terracotta);
 }
 
 /* The opening now carries the page's top padding; the old header did. */
@@ -7095,10 +6868,9 @@ body {
 /* ============================================================
  * Pass-108 — /services rebuild: one opening, not a fork (.cw-sv-open)
  *
- * Replaces the two-column doors fork. The old .cw-doors/.cw-door rules
- * above are left in place: the home page's own .cw-doors-band reuses the
- * bare .cw-door class, so deleting them here would risk a page outside
- * this pass's scope. The fork made a buyer classify themselves before the
+ * Replaces the two-column doors fork. (Pass-110 later deleted the old
+ * .cw-doors/.cw-door rules above; only .cw-door__case survives, carried
+ * by this page's proof card.) The fork made a buyer classify themselves before the
  * page had told them anything, and its price line ("From $5K a month")
  * rendered at 12px mono in the door's foot — the smallest text on a page
  * whose job is selling. Same fix the exit record already made on this

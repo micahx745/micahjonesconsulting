@@ -230,7 +230,7 @@ by looking. Grade per page; report R-numbers.
 - 18–20 pass = studio-grade (commands the tier)
 - 15–17 = competent but not commanding
 - ≤14 = template tier, regardless of polish elsewhere
-- **Load-bearing criteria: R1, R4, R6, R12, R20.** Failing any TWO of these caps the grade at
+- **Core criteria: R1, R4, R6, R12, R20.** Failing any TWO of these caps the grade at
   template tier no matter the total.
 
 ---

@@ -202,7 +202,7 @@ export default function ColorWorldsHome() {
                   An 8-10 page memo
                 </span>
                 <span className="cw-deliver__note">
-                  What is load-bearing, what is broken, and what to fix first.
+                  What works, what is broken, and what to fix first.
                 </span>
               </li>
               <li
@@ -357,9 +357,9 @@ export default function ColorWorldsHome() {
                 Audit memo + fix sequence.
               </p>
               <p className="cw-principle__text">
-                I read the build top to bottom and write down what is
-                load-bearing, what is broken, and what to fix first. Positioning
-                too, when that is the gap.
+                I read the build top to bottom and write down what works, what
+                is broken, and what to fix first. Positioning too, when that is
+                the gap.
               </p>
               <p className="cw-principle__proof">
                 <strong>Guardicore</strong>: message/buyer mismatch found ·{" "}

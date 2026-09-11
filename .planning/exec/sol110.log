@@ -1,0 +1,1824 @@
+OpenAI Codex v0.153.4
+--------
+workdir: C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+model: gpt-5.6-sol
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: high
+reasoning summaries: none
+session id: 01a09181-d25c-7e63-8966-95cc07b97dcf
+--------
+user
+# Drafting leg: two new case studies, Postmates and Neuton.AI
+
+You are a drafter. You write two MDX files as DRAFTS in your reply. You do not edit the repo.
+A reviewer checks every sentence against the facts below before anything is committed.
+
+Repo (read-only): C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live
+Read first, in this order:
+1. lib/case-study-schema.ts, the frontmatter schema every case study must pass.
+2. content/work/guardicore.mdx, the template: its frontmatter fields, its section rhythm,
+   its sentence length, how it states a number with its mechanism.
+3. app/(foyer)/page.tsx, the receipts ledger: search for "Postmates" and "Neuton". Every claim
+   the home page makes about either company MUST appear in your case study (LESSONS #2: a
+   summary card is a compression of its case study, never a second story).
+4. docs/LESSONS_LEARNED.md entry #3, the verified-facts ledger. Obey every NEVER in it.
+5. .claude/brand.json voice rules and lib/banned.ts, the banned words.
+
+## The operator asked for these, verbatim (2026-09-11)
+
+"postmates and neuton ai are positioning" and "Yea add it as other case studies and or work".
+
+## Facts you may use. Nothing else.
+
+POSTMATES
+- The operator's title: "product analyst at postmates is the title" (operator, 2026-09-02).
+  The home ledger renders it as "Product analyst" with the year 2020.
+- Joined early (the ledger renders all four exits as "early").
+- Acquired by Uber in 2020 for $2.65B (content/citations.ts).
+- Umbrella phrasing for the four exits: "worked inside" or "behind my work". NEVER "helped
+  build" for Postmates: it was employment, not a build claim.
+- The operator's own account, verbatim (2026-09-10): "postmates they sold everything (lots of
+  fraud would happen like someone would do a custom order of a hundred gallons of hennessy in
+  the Bronx) helped them cut down and focus on a core offerings rather than the promise to
+  deliver everything."
+
+NEUTON.AI
+- Role: "helped launch". NEVER claim equity or a cap-table position.
+- Acquired by Nordic Semiconductor in 2025; the price was never disclosed. The year tag is
+  2025 (operator, 2026-09-11: "for neuton 2025").
+- Joined early.
+- The operator's own account, verbatim (2026-09-10): "neuton ai - foreign company like
+  guardicore needing help with North american positioning of an AI product (2020 early AI
+  days) that led to them selling this company".
+
+## Voice
+
+First person singular ("I", never "we"). Sentences average 25 words or fewer; none over 35.
+Active voice, except for outcomes ("Acquired by Uber in 2020" stays). Named numbers only
+where the facts give them. No banned word from lib/banned.ts, and never "load-bearing". No
+em-dashes at all. Plain, specific, confident; no hype.
+
+## What to write
+
+For each company, one complete MDX file: frontmatter that passes the schema (title, dek, role,
+tools, year, status, titleCardWords of 3 to 6 words, client, order, feature, indexLine, and
+any other field the schema requires), then a body that follows guardicore.mdx's section
+rhythm but is SHORTER, because there are fewer facts. Build each story as: the situation, the
+positioning problem, what I did, what changed, the outcome. Where the facts do not say
+something, do not fill it in. A short, true case study beats a long one.
+
+## Then list, separately, for the reviewer
+
+1. Every sentence that restates the operator's own account more strongly than he said it,
+   especially any causal claim (for example that the positioning "led to" the sale), with a
+   weaker wording that stays true.
+2. Every detail that could be sensitive to publish about a former employer, such as the
+   Postmates fraud example, flagged for the operator's explicit yes before it ships.
+3. Any schema field you could not fill from the facts, with what you put there and why.
+4. The exact sentences on the home page about each company, and where each one appears in
+   your draft.
+
+Return the two MDX files in fenced code blocks labelled with their target paths
+(content/work/postmates.mdx and content/work/neuton.mdx), then the four lists.
+
+codex
+I’m using the brainstorming skill to shape the two drafts within the supplied fact boundary. I’ll read the required schema, template, ledger, lessons, and voice constraints in exactly the requested order, then return MDX only in the reply without touching the repo.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 'C:\\Users\\micah\\.codex\\skills\\using-superpowers\\SKILL.md'; Get-Content -Raw 'C:\\Users\\micah\\.codex\\skills\\brainstorming\\SKILL.md'" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 264ms:
+---
+name: using-superpowers
+description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions
+---
+
+<EXTREMELY-IMPORTANT>
+If you think there is even a 1% chance a skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
+
+IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
+
+This is not negotiable. This is not optional. You cannot rationalize your way out of this.
+</EXTREMELY-IMPORTANT>
+
+## How to Access Skills
+
+**In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to youâ€”follow it directly. Never use the Read tool on skill files.
+
+**In other environments:** Check your platform's documentation for how skills are loaded.
+
+# Using Skills
+
+## The Rule
+
+**Invoke relevant or requested skills BEFORE any response or action.** Even a 1% chance a skill might apply means that you should invoke the skill to check. If an invoked skill turns out to be wrong for the situation, you don't need to use it.
+
+```dot
+digraph skill_flow {
+    "User message received" [shape=doublecircle];
+    "Might any skill apply?" [shape=diamond];
+    "Invoke Skill tool" [shape=box];
+    "Announce: 'Using [skill] to [purpose]'" [shape=box];
+    "Has checklist?" [shape=diamond];
+    "Create TodoWrite todo per item" [shape=box];
+    "Follow skill exactly" [shape=box];
+    "Respond (including clarifications)" [shape=doublecircle];
+
+    "User message received" -> "Might any skill apply?";
+    "Might any skill apply?" -> "Invoke Skill tool" [label="yes, even 1%"];
+    "Might any skill apply?" -> "Respond (including clarifications)" [label="definitely not"];
+    "Invoke Skill tool" -> "Announce: 'Using [skill] to [purpose]'";
+    "Announce: 'Using [skill] to [purpose]'" -> "Has checklist?";
+    "Has checklist?" -> "Create TodoWrite todo per item" [label="yes"];
+    "Has checklist?" -> "Follow skill exactly" [label="no"];
+    "Create TodoWrite todo per item" -> "Follow skill exactly";
+}
+```
+
+## Red Flags
+
+These thoughts mean STOPâ€”you're rationalizing:
+
+| Thought | Reality |
+|---------|---------|
+| "This is just a simple question" | Questions are tasks. Check for skills. |
+| "I need more context first" | Skill check comes BEFORE clarifying questions. |
+| "Let me explore the codebase first" | Skills tell you HOW to explore. Check first. |
+| "I can check git/files quickly" | Files lack conversation context. Check for skills. |
+| "Let me gather information first" | Skills tell you HOW to gather information. |
+| "This doesn't need a formal skill" | If a skill exists, use it. |
+| "I remember this skill" | Skills evolve. Read current version. |
+| "This doesn't count as a task" | Action = task. Check for skills. |
+| "The skill is overkill" | Simple things become complex. Use it. |
+| "I'll just do this one thing first" | Check BEFORE doing anything. |
+| "This feels productive" | Undisciplined action wastes time. Skills prevent this. |
+| "I know what that means" | Knowing the concept â‰  using the skill. Invoke it. |
+
+## Skill Priority
+
+When multiple skills could apply, use this order:
+
+1. **Process skills first** (brainstorming, debugging) - these determine HOW to approach the task
+2. **Implementation skills second** (frontend-design, mcp-builder) - these guide execution
+
+"Let's build X" â†’ brainstorming first, then implementation skills.
+"Fix this bug" â†’ debugging first, then domain-specific skills.
+
+## Skill Types
+
+**Rigid** (TDD, debugging): Follow exactly. Don't adapt away discipline.
+
+**Flexible** (patterns): Adapt principles to context.
+
+The skill itself tells you which.
+
+## User Instructions
+
+Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
+
+---
+name: brainstorming
+description: "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+---
+
+# Brainstorming Ideas Into Designs
+
+## Overview
+
+Help turn ideas into fully formed designs and specs through natural collaborative dialogue.
+
+Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design in small sections (200-300 words), checking after each section whether it looks right so far.
+
+## The Process
+
+**Understanding the idea:**
+- Check out the current project state first (files, docs, recent commits)
+- Ask questions one at a time to refine the idea
+- Prefer multiple choice questions when possible, but open-ended is fine too
+- Only one question per message - if a topic needs more exploration, break it into multiple questions
+- Focus on understanding: purpose, constraints, success criteria
+
+**Exploring approaches:**
+- Propose 2-3 different approaches with trade-offs
+- Present options conversationally with your recommendation and reasoning
+- Lead with your recommended option and explain why
+
+**Presenting the design:**
+- Once you believe you understand what you're building, present the design
+- Break it into sections of 200-300 words
+- Ask after each section whether it looks right so far
+- Cover: architecture, components, data flow, error handling, testing
+- Be ready to go back and clarify if something doesn't make sense
+
+## After the Design
+
+**Documentation:**
+- Write the validated design to `docs/plans/YYYY-MM-DD-<topic>-design.md`
+- Use elements-of-style:writing-clearly-and-concisely skill if available
+- Commit the design document to git
+
+**Implementation (if continuing):**
+- Ask: "Ready to set up for implementation?"
+- Use superpowers:using-git-worktrees to create isolated workspace
+- Use superpowers:writing-plans to create detailed implementation plan
+
+## Key Principles
+
+- **One question at a time** - Don't overwhelm with multiple questions
+- **Multiple choice preferred** - Easier to answer than open-ended when possible
+- **YAGNI ruthlessly** - Remove unnecessary features from all designs
+- **Explore alternatives** - Always propose 2-3 approaches before settling
+- **Incremental validation** - Present design in sections, validate each
+- **Be flexible** - Go back and clarify when something doesn't make sense
+
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 'lib/case-study-schema.ts'" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 157ms:
+// lib/case-study-schema.ts
+//
+// Phase 7 â€” CASE-01. Zod schema for case-study MDX frontmatter.
+//
+// This is the single source of truth for what a content/work/*.mdx file
+// must declare in its YAML frontmatter block. The schema is invoked from:
+//   - lib/case-studies.ts (runtime read for index/OG) â€” CASE-10
+//   - lib/copy-lint-runner.ts (build-time validation) â€” CASE-02
+//   - mdx-frontmatter.sh harness hook (write-boundary belt-and-suspenders)
+//
+// Required fields (per blueprint Â§9 ORDANI draft + ARCHITECTURE Â§7.3):
+//   title              â€” display title (e.g., "ORDANI")
+//   dek                â€” Source Serif 4 italic subtitle under the TitleCard
+//   role               â€” Micah's role on the project (e.g., "Solo build")
+//   tools              â€” array of tool names (e.g., ["Next.js", "Supabase"])
+//   year               â€” string or number (allows ranges like "2025-2026")
+//   status             â€” enum: shipped | in-flight | archived | stub
+//   titleCardWords     â€” 3 to 6 short words for the pinned vertical stack
+//
+// Optional:
+//   heroStill          â€” path to hero still rendered between Dek and body
+//   client             â€” client name when not solo
+//
+// Source: REQUIREMENTS.md CASE-01; blueprint Â§9 ORDANI frontmatter block;
+//         ARCHITECTURE.md Â§7.3 (architecture-recommended Zod shape, extended
+//         here with status enum + client? per Phase 7 spec).
+import { z } from "zod";
+
+export const CASE_STUDY_STATUSES = [
+  "shipped",
+  "in-flight",
+  "archived",
+  "stub",
+] as const;
+export type CaseStudyStatus = (typeof CASE_STUDY_STATUSES)[number];
+
+export const caseStudyFrontmatterSchema = z.object({
+  /** Display title rendered in the page <title> + chrome â€” e.g., "ORDANI". */
+  title: z.string().min(1, "title is required"),
+
+  /** Source Serif 4 italic subtitle below the TitleCard. One sentence. */
+  dek: z.string().min(1, "dek is required"),
+
+  /** Micah's role (e.g., "Solo â€” research, design, build, ship"). */
+  role: z.string().min(1, "role is required"),
+
+  /** Tool stack â€” array of strings. Renders as a comma-separated metadata line. */
+  tools: z.array(z.string().min(1)).min(1, "at least one tool is required"),
+
+  /** Year of work. String allows ranges like "2025-2026"; number allows single years. */
+  year: z.union([z.string().min(1), z.number().int()]),
+
+  /** Status enum â€” drives sort order in lib/case-studies.ts. */
+  status: z.enum(CASE_STUDY_STATUSES),
+
+  /** 3 to 6 short words for the TitleCard vertical word stack. */
+  titleCardWords: z
+    .array(z.string().min(1, "word must be non-empty"))
+    .min(3, "titleCardWords requires at least 3 words")
+    .max(6, "titleCardWords supports at most 6 words"),
+
+  /** Optional path to hero still rendered between Dek and MDX body. */
+  heroStill: z.string().optional(),
+
+  /** Optional client name. Omit if solo. */
+  client: z.string().optional(),
+
+  /** W3 (P1-5/R11): the ONE figure-bearing line for index surfaces.
+   *  Every number in it must also appear in this case study's body
+   *  (LESSONS #2 â€” the card is a compression of the study, never a
+   *  second story). Falls back to the dek's first sentence. */
+  indexLine: z.string().optional(),
+
+  /** Pass-58: up to three stat objects for the /work index and the
+   *  case page's "at a glance" strip. Same rule as indexLine â€” every
+   *  figure must also appear in the study body (LESSONS #2). */
+  stats: z
+    .array(
+      z.object({
+        fig: z.string().min(1),
+        lbl: z.string().min(1),
+      }),
+    )
+    .max(3)
+    .optional(),
+
+  /** Pass-61: hand-set position in the /work index, ascending. The default
+   *  sort is status then year-descending, which put the name-protected author
+   *  engagement above the Akamai acquisition â€” the strongest receipt buried by
+   *  an accident of chronology. Order is an editorial decision, so it is
+   *  written down rather than derived. Studies without it sort last. */
+  order: z.number().int().positive().optional(),
+
+  /** Pass-61: the /work index opens on ONE study presented as a catalogue lot.
+   *  `feature` carries that opening's two pieces: the figure set at hero scale
+   *  and the line beneath it. Only the study with order 1 uses it. LESSONS #2
+   *  still binds â€” every number here must also appear in this study's body. */
+  feature: z
+    .object({
+      fig: z.string().min(1),
+      line: z.string().min(1),
+    })
+    .optional(),
+});
+
+export type CaseStudyFrontmatter = z.infer<typeof caseStudyFrontmatterSchema>;
+
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 'content/work/guardicore.mdx'" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 102ms:
+---
+title: Guardicore (Akamai)
+dek: $14M in revenue. The research and data science behind repositioning a Tel Aviv security company for North American buyers. From honeypot-led to visibility and east-west microsegmentation. Deployed behind a global systemically important bank, a federal research agency, and a white-shoe Wall Street law firm.
+role: Revenue and positioning
+tools:
+  - Pipeline origination
+  - Market & customer research
+  - Data analysis
+  - Microsegmentation pilot
+year: 2018â€“2021
+status: shipped
+titleCardWords:
+  - PIPELINE.
+  - RESEARCH.
+  - NARRATIVE.
+  - ACQUIRED.
+client: Guardicore (acquired by Akamai)
+order: 1
+feature:
+  fig: $14M
+  line: in revenue for a Tel Aviv security company breaking into North America. Acquired by Akamai in 2021.
+indexLine: $14M in revenue. Average enterprise deal size, $1.2M. Acquired by Akamai in 2021.
+stats:
+  - fig: $14M
+    lbl: revenue
+  - fig: $1.2M
+    lbl: average enterprise deal size
+  - fig: "2021"
+    lbl: acquired by Akamai
+---
+
+## The problem
+
+Guardicore built its product in Tel Aviv. The buyers it needed sat in North American banks, agencies and utilities, and in 2018 the company had to reach them from the other side of the world. The security market was saturated with honeypots in 2018â€“2020. Customers had no real visibility into their networks, only the perimeter. North-south firewall traffic was well-defended. The lateral east-west traffic between workloads was a blind spot, and that blind spot was where ransomware lived.
+
+The existing positioning leaned into the honeypot capability, a feature competitors also shipped. The top-of-funnel message did not match the reason enterprise buyers were signing six-figure deals at the bottom. The pipeline existed, but it had to be built.
+
+## What I did
+
+**01. Revenue.** The work produced $14M in revenue at a $1.2M average enterprise deal size. I picked the target accounts, ran the outbound outreach, briefed executives, and qualified the leads. I sat in the deals.
+
+**02. MSSP partners.** I helped sign the managed-security and reseller partners that extended the platform's reach. Partner reps carried the same repositioned story the direct team did.
+
+**03. Market research and data science.** The repositioning was a team effort. I interviewed customers, researched the market, and ran the data analysis that showed where the honeypot message and the reason buyers signed came apart. I brought the findings to leadership.
+
+<CaseStudyStill
+  src="/guardicore-telaviv.jpg"
+  width={1200}
+  height={1448}
+  alt="Working session with the Guardicore team around a table in Tel Aviv"
+/>
+
+**04. The microsegmentation pilot.** From those findings, I ran a microsegmentation pilot with a top-10 North American bank. The two anchors held: visibility first, then east-west microsegmentation. That story carried into the Akamai acquisition.
+
+<CaseStudyStill
+  alt="Visibility + microsegmentation positioning framework"
+  placeholderEyebrow="Protected by NDA"
+/>
+
+## Outcome
+
+$14M in revenue. Average enterprise deal size, $1.2M. A product built in Tel Aviv ended up deployed behind a global systemically important bank and a federal research agency. It reached a white-shoe Wall Street law firm and a major U.S. utility, too. Trillions in financial assets sit protected behind those deployments. The research showed the top-of-funnel honeypot message did not match why buyers signed, so the pitch moved to visibility and east-west microsegmentation. Akamai acquired Guardicore in 2021. The positioning carried into Akamai Guardicore Segmentation.
+
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Select-String -LiteralPath 'app/(foyer)/page.tsx' -Pattern 'Postmates','Neuton' -Context 8,10 | ForEach-Object { "'$_.Context.PreContext; $_.Line; $_.Context.PostContext; '"'' }" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 131ms:
+                  </span>
+                </div>
+                <div
+                  className="cw-lrow cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "60ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Postmates
+                    <span className="cw-lrow__tag">Product analyst · 2020</span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    Market and fraud analysis in the wide-open era ·{" "}
+                    <strong>acquired by Uber, $2.65B</strong>
+                  </span>
+                </div>
+                <div
+                  className="cw-lrow cw-reveal"
+                  role="listitem"
+
+                  </span>
+                </div>
+                <div
+                  className="cw-lrow cw-reveal"
+                  role="listitem"
+                  style={{ transitionDelay: "120ms" }}
+                >
+                  <span className="cw-lrow__co">
+                    Neuton.AI
+                    <span className="cw-lrow__tag">Helped launch · 2025</span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    Technology <strong>acquired by Nordic Semiconductor</strong>{" "}
+                    · not a cap-table position
+                  </span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+            abstract-noun+period drumbeat (attack plan §6 item 5) with a
+            full assertion no competitor can copy. */}
+        {/* Pass-18 (operator): "every figure is defensible on request is
+            a little much" — the dare becomes an invitation, and the
+            title drops into the site's own register (the protect-listed
+            "I'll send the receipts" line). */}
+        {/* THE FULL RECORD — closes the fused section.
+            CORRECTED (operator, 2026-09-10): the drafting agent put
+            Postmates and Neuton.AI here on the reasoning that neither
+            "narrates one stage without straining the fit". The operator
+            says both are POSITION, and he is the only person who could
+            know: Postmates sold everything, so the work was cutting the
+            promise back to a core menu it could actually deliver, and
+            Neuton.AI was a foreign company needing North American
+            positioning for an AI product in 2020, which is the same shape
+            as Guardicore and ended the same way. Both rows moved up under
+            03 Position. The Consulting total stays here because it
+            aggregates every client since 2013, so it can only close the
+            whole record. Otherwise unchanged from
+
+            a little much" — the dare becomes an invitation, and the
+            title drops into the site's own register (the protect-listed
+            "I'll send the receipts" line). */}
+        {/* THE FULL RECORD — closes the fused section.
+            CORRECTED (operator, 2026-09-10): the drafting agent put
+            Postmates and Neuton.AI here on the reasoning that neither
+            "narrates one stage without straining the fit". The operator
+            says both are POSITION, and he is the only person who could
+            know: Postmates sold everything, so the work was cutting the
+            promise back to a core menu it could actually deliver, and
+            Neuton.AI was a foreign company needing North American
+            positioning for an AI product in 2020, which is the same shape
+            as Guardicore and ended the same way. Both rows moved up under
+            03 Position. The Consulting total stays here because it
+            aggregates every client since 2013, so it can only close the
+            whole record. Otherwise unchanged from
+            Pass-2/Pass-18; only the heading level moved (h2 → h3), since
+            "How I work." above is now the section's one accessible name. */}
+        {/* DENSITY FIX (home-pace pass, 2026-09-10): was 56px -- the same
+
+            "I'll send the receipts" line). */}
+        {/* THE FULL RECORD — closes the fused section.
+            CORRECTED (operator, 2026-09-10): the drafting agent put
+            Postmates and Neuton.AI here on the reasoning that neither
+            "narrates one stage without straining the fit". The operator
+            says both are POSITION, and he is the only person who could
+            know: Postmates sold everything, so the work was cutting the
+            promise back to a core menu it could actually deliver, and
+            Neuton.AI was a foreign company needing North American
+            positioning for an AI product in 2020, which is the same shape
+            as Guardicore and ended the same way. Both rows moved up under
+            03 Position. The Consulting total stays here because it
+            aggregates every client since 2013, so it can only close the
+            whole record. Otherwise unchanged from
+            Pass-2/Pass-18; only the heading level moved (h2 → h3), since
+            "How I work." above is now the section's one accessible name. */}
+        {/* DENSITY FIX (home-pace pass, 2026-09-10): was 56px -- the same
+            unit .cw-exits uses below for its own internal break.
+            Doubled so the shift out of the three-stage loop into the
+
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$lines = Get-Content -LiteralPath '"'app/(foyer)/page.tsx'; for ("'$i = 680; $i -le 780; $i++) { if ($i -le $lines.Length) { '"'{0}: {1}' -f "'$i, $lines[$i-1] } }' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 129ms:
+680:                 missing entirely: active paying users, in beta, public release
+681:                 coming. The mortality line is purpose-framed ("lower"), never
+682:                 an outcome claim, and stays.
+683: 
+684:                 To put the money claim back: one sentence on the real mechanism
+685:                 and a named figure, ledgered in LESSONS #3 with a date. */}
+686:             {/* LESSONS #6, sharpened: every apostrophe in this paragraph is a
+687:                 LITERAL character, never &rsquo;. Next 16's RSC serializer
+688:                 drops the space before a text node that follows an inline
+689:                 element when that text node contains an HTML entity ANYWHERE
+690:                 in it â€” not just next to the tag. This paragraph shipped as
+691:                 "So I built Ordani.Itâ€™s" because of the &rsquo; in
+692:                 "workersâ€™ pockets", four lines further on. Removing only the
+693:                 nearby entity did not fix it; the whole node has to be clean.
+694:                 Do not "tidy" these back into entities, and do not put a
+695:                 {/* comment *\/} inside the <p>: an expression container splits
+696:                 the text node and moves the problem rather than fixing it.
+697:                 The render-gate GLUE check reads the rendered bytes. */}
+698:             <p className="cw-lede cw-reveal">
+699:               Birth workers run their practices on group chats and paper
+700:               intakes. HIPAA is the law. <em>So I built Ordani.</em> It has
+701:               active paying users today, it is in beta, and a public release is
+702:               coming. The mission is bigger: lower infant mortality, by giving
+703:               the people who care for mothers and babies better tools than
+704:               paperwork.
+705:             </p>
+706:             <div className="cw-section-cta-wrap cw-reveal">
+707:               <a href="/work/ordani" className="cw-section-cta">
+708:                 See how it was built{" "}
+709:                 <span className="cw-section-cta__arr" aria-hidden>
+710:                   â†’
+711:                 </span>
+712:               </a>
+713:             </div>
+714:             {/* Waitlist restored (operator ask). Same OrdaniBetaForm as
+715:                 before Pass-12 â€” wired to Resend + the beta flow. */}
+716:             <div className="cw-ordani-wait cw-reveal" id="waitlist">
+717:               <p className="cw-ordani-wait__lbl">
+718:                 Know a birth worker? Join the waitlist.
+719:               </p>
+720:               <OrdaniBetaForm />
+721:             </div>
+722:           </div>
+723: 
+724:           <figure className="cw-ordani-split__fig cw-reveal">
+725:             <Image
+726:               src="/ordani-intake.jpg"
+727:               alt="A doula sits with a pregnant client on a couch, writing on a notepad as they talk."
+728:               width={1600}
+729:               height={1068}
+730:               sizes="(min-width: 1100px) 420px, 100vw"
+731:               className="cw-ordani-split__img"
+732:             />
+733:             <figcaption className="cw-ordani-split__cap">
+734:               The intake, on paper <span aria-hidden>Â·</span> what Ordani
+735:               replaces
+736:             </figcaption>
+737:           </figure>
+738:         </div>
+739: 
+740:         <div className="cw-ord-band cw-reveal">
+741:           <figure>
+742:             <Image
+743:               src="/ordani-work.jpg"
+744:               alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
+745:               width={900}
+746:               height={698}
+747:               sizes="(min-width: 900px) 33vw, 100vw"
+748:             />
+749:             <figcaption>
+750:               Labor support <span aria-hidden>Â·</span> the work the software
+751:               protects
+752:             </figcaption>
+753:           </figure>
+754:           <figure>
+755:             <Image
+756:               src="/ordani-hands.jpg"
+757:               alt="Two hands working along a client's lower leg on a draped table."
+758:               width={1100}
+759:               height={733}
+760:               sizes="(min-width: 900px) 33vw, 100vw"
+761:             />
+762:             <figcaption>
+763:               Bodywork <span aria-hidden>Â·</span> between appointments
+764:             </figcaption>
+765:           </figure>
+766:           <figure>
+767:             <Image
+768:               src="/ordani-newborn.jpg"
+769:               alt="A parent holds a newborn in a nursery chair."
+770:               width={1100}
+771:               height={734}
+772:               sizes="(min-width: 900px) 33vw, 100vw"
+773:             />
+774:             <figcaption>The reason the record has to be right</figcaption>
+775:           </figure>
+776:         </div>
+777:       </section>
+778: 
+779:       {/* THE RECEIPTS section (id="products", the LEDGER table) MOVED
+780:           from here to Pass-106 (research CHAT-105 â€” receipts earn belief
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg -n -C 30 \"Postmates|Neuton\\.AI|Joined early|early\" 'app/(foyer)/page.tsx'" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ exited 1 in 1424ms:
+rg : The term 'rg' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:2 char:1
++ rg -n -C 30 "Postmates|Neuton\.AI|Joined early|early" 'app/(foyer)/pa ...
++ ~~
+    + CategoryInfo          : ObjectNotFound: (rg:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$lines = Get-Content -LiteralPath '"'app/(foyer)/page.tsx'; "'$hits = Select-String -LiteralPath '"'app/(foyer)/page.tsx' -Pattern 'Postmates','Neuton.AI','early'; "'$hits | ForEach-Object { '"'{0}: {1}' -f "'$_.LineNumber, $_.Line.Trim() }; $start=920; $end=1040; for ($i=$start; $i -le $end; $i++) { if ($i -le $lines.Length) { '"'{0}: {1}' -f "'$i,$lines[$i-1] } }' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 147ms:
+523: Postmates
+537: Neuton.AI
+563: Postmates and Neuton.AI here on the reasoning that neither
+566: know: Postmates sold everything, so the work was cutting the
+568: Neuton.AI was a foreign company needing North American
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$lines = Get-Content -LiteralPath '"'app/(foyer)/page.tsx'; for ("'$i=460; $i -le 585; $i++) { if ($i -le $lines.Length) { '"'{0}: {1}' -f "'$i,$lines[$i-1] } }' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 113ms:
+460:                   </span>
+461:                 </a>
+462:                 <a
+463:                   href="/work/rfp-engine"
+464:                   className="cw-lrow cw-lrow--link cw-reveal"
+465:                   role="listitem"
+466:                   style={{ transitionDelay: "120ms" }}
+467:                 >
+468:                   <span className="cw-lrow__co">
+469:                     Industry author
+470:                     <span className="cw-lrow__tag">RFP engine Â· 2024â€“2025</span>
+471:                   </span>
+472:                   <span className="cw-lrow__out">
+473:                     <strong>$3M in contracts won</strong> Â· close rate doubled
+474:                   </span>
+475:                   <span className="cw-lrow__go" aria-hidden>
+476:                     â†’
+477:                   </span>
+478:                 </a>
+479:               </div>
+480:             </div>
+481:           </li>
+482:           <li
+483:             className="cw-principle cw-reveal"
+484:             style={{ transitionDelay: "160ms" }}
+485:           >
+486:             <p className="cw-principle__num">03</p>
+487:             <div>
+488:               <p className="cw-principle__name">Position</p>
+489:               <p className="cw-principle__artifact">
+490:                 The story the market repeats.
+491:               </p>
+492:               <p className="cw-principle__text">
+493:                 I stay until the narrative sells without me. That takes longer
+494:                 than a launch week.
+495:               </p>
+496:               <p className="cw-principle__proof">
+497:                 <strong>Guardicore</strong>: repositioning carried through Â·{" "}
+498:                 <strong>Akamai acquisition</strong>, 2021
+499:               </p>
+500:               <div className="cw-ledger cw-reveal" role="list">
+501:                 <div
+502:                   className="cw-lrow cw-reveal"
+503:                   role="listitem"
+504:                   style={{ transitionDelay: "0ms" }}
+505:                 >
+506:                   <span className="cw-lrow__co">
+507:                     SurveyMonkey Enterprise
+508:                     <span className="cw-lrow__tag">
+509:                       Enterprise sales Â· 2018
+510:                     </span>
+511:                   </span>
+512:                   <span className="cw-lrow__out">
+513:                     <strong>$1M+</strong> toward the IPO Â· cap-table position
+514:                     held through the Nasdaq listing
+515:                   </span>
+516:                 </div>
+517:                 <div
+518:                   className="cw-lrow cw-reveal"
+519:                   role="listitem"
+520:                   style={{ transitionDelay: "60ms" }}
+521:                 >
+522:                   <span className="cw-lrow__co">
+523:                     Postmates
+524:                     <span className="cw-lrow__tag">Product analyst Â· 2020</span>
+525:                   </span>
+526:                   <span className="cw-lrow__out">
+527:                     Market and fraud analysis in the wide-open era Â·{" "}
+528:                     <strong>acquired by Uber, $2.65B</strong>
+529:                   </span>
+530:                 </div>
+531:                 <div
+532:                   className="cw-lrow cw-reveal"
+533:                   role="listitem"
+534:                   style={{ transitionDelay: "120ms" }}
+535:                 >
+536:                   <span className="cw-lrow__co">
+537:                     Neuton.AI
+538:                     <span className="cw-lrow__tag">Helped launch Â· 2025</span>
+539:                   </span>
+540:                   <span className="cw-lrow__out">
+541:                     Technology <strong>acquired by Nordic Semiconductor</strong>{" "}
+542:                     Â· not a cap-table position
+543:                   </span>
+544:                 </div>
+545:               </div>
+546:             </div>
+547:           </li>
+548:         </ol>
+549: 
+550:         {/* Pass-2 (redesign D-R14 synthesis): the card grid becomes THE
+551:             LEDGER â€” the direction the operator picked across four style
+552:             rounds. A record table reads as an audited document: the most
+553:             credible register available to an enterprise buyer, and the
+554:             format a procurement team forwards. Title breaks the
+555:             abstract-noun+period drumbeat (attack plan Â§6 item 5) with a
+556:             full assertion no competitor can copy. */}
+557:         {/* Pass-18 (operator): "every figure is defensible on request is
+558:             a little much" â€” the dare becomes an invitation, and the
+559:             title drops into the site's own register (the protect-listed
+560:             "I'll send the receipts" line). */}
+561:         {/* THE FULL RECORD â€” closes the fused section.
+562:             CORRECTED (operator, 2026-09-10): the drafting agent put
+563:             Postmates and Neuton.AI here on the reasoning that neither
+564:             "narrates one stage without straining the fit". The operator
+565:             says both are POSITION, and he is the only person who could
+566:             know: Postmates sold everything, so the work was cutting the
+567:             promise back to a core menu it could actually deliver, and
+568:             Neuton.AI was a foreign company needing North American
+569:             positioning for an AI product in 2020, which is the same shape
+570:             as Guardicore and ended the same way. Both rows moved up under
+571:             03 Position. The Consulting total stays here because it
+572:             aggregates every client since 2013, so it can only close the
+573:             whole record. Otherwise unchanged from
+574:             Pass-2/Pass-18; only the heading level moved (h2 â†’ h3), since
+575:             "How I work." above is now the section's one accessible name. */}
+576:         {/* DENSITY FIX (home-pace pass, 2026-09-10): was 56px -- the same
+577:             unit .cw-exits uses below for its own internal break.
+578:             Doubled so the shift out of the three-stage loop into the
+579:             closing tally reads as a full pause, not a half one; paired
+580:             with cw-secttitle--sub above so the register change is
+581:             visible in both space and size, not space alone. */}
+582:         <p className="cw-kicker cw-reveal" style={{ marginTop: "112px" }}>
+583:           The record
+584:         </p>
+585:         {/* DENSITY FIX (home-pace pass, 2026-09-10): cw-secttitle--sub, see
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Select-String -LiteralPath 'app/(foyer)/page.tsx' -Pattern 'four exits','exits','acquired','joined' -Context 3,5 | ForEach-Object { 'MATCH ' + "'$_.LineNumber; $_.Context.PreContext; $_.Line; $_.Context.PostContext; '"'' }" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 135ms:
+MATCH 14
+// (named "Shipped" in the old version of this list, id="products") moves
+// up to sit directly after Hero. Two doors has been real since Pass-5/6
+// and is added to this list for the first time here — this comment had
+// already drifted from the JSX body before Pass-106: Revenue+exits, cut
+// at Pass-4, stayed listed for many passes after it left the page, and
+// Two doors was never listed at all. Cross-check this list against the
+// actual <section data-world="..."> tags below rather than trusting it
+// on its own.
+//   Hero          → terracotta (Pass-21: rotating words pipeline→position
+
+MATCH 78
+    absolute: "Micah Jones — Strategy and software, shipped by one person",
+  },
+  description:
+    "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue.",
+  alternates: { canonical: "https://www.micahjonesconsulting.com" },
+  openGraph: {
+    title: "Micah Jones — Strategy and software, shipped by one person",
+    description:
+      "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with paying users.",
+
+MATCH 83
+  openGraph: {
+    title: "Micah Jones — Strategy and software, shipped by one person",
+    description:
+      "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with paying users.",
+    type: "website",
+    url: "https://www.micahjonesconsulting.com",
+    siteName: "Micah Jones",
+  },
+  twitter: {
+
+MATCH 92
+    card: "summary_large_image",
+    title: "Micah Jones — Strategy and software, shipped by one person",
+    description:
+      "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Now building Ordani.",
+  },
+};
+
+// CLIENT_OFFERS DELETED (Pass-106, research CHAT-105) — the trio read as
+// abstract service categories, not the buyer's own words for his
+
+MATCH 122
+          [data-scroll-track] effect in Hero.tsx that drove it went with it. */}
+
+      {/* REVENUE BAND DELETED (Pass-4). Its three claims ($20M+, three
+          exits, trillions) moved ONTO the hero photo as proof chips —
+          the reference language (D-R15) puts stats on the image, not in
+          a band below it. The per-exit detail (Guardicore→Akamai etc.)
+          lives in THE LEDGER with figures and links, so the band's
+          three-entry index was already a duplicate. ~90 rendered words
+          leave the page with it. */}
+
+MATCH 307
+          (D-R3, already this file's own principle), and every element in
+          both merged sections already carries color: inherit, sized and
+          weighted rather than coloured (the 2026-09-09 axe/CONTRASTFIX fix
+          above .cw-exits in globals.css), so neither the ledger rows nor
+          the principle type depend on which world renders them.
+
+          Per-row transitionDelay is recomputed, not copied: the old
+          values staggered ONE flat list; the receipts are now three small
+          groups plus a closing group, each entering the viewport at its
+
+MATCH 392
+                  </span>
+                  <span
+                    className="cw-lrow__out"
+                    aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"
+                  >
+                    <strong>$14M in revenue</strong> ·{" "}
+                    <strong>acquired by Akamai</strong>
+                  </span>
+                  <span className="cw-lrow__go" aria-hidden>
+
+MATCH 395
+                    aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"
+                  >
+                    <strong>$14M in revenue</strong> ·{" "}
+                    <strong>acquired by Akamai</strong>
+                  </span>
+                  <span className="cw-lrow__go" aria-hidden>
+                    →
+                  </span>
+                </a>
+
+MATCH 528
+                  </span>
+                  <span className="cw-lrow__out">
+                    Market and fraud analysis in the wide-open era ·{" "}
+                    <strong>acquired by Uber, $2.65B</strong>
+                  </span>
+                </div>
+                <div
+                  className="cw-lrow cw-reveal"
+                  role="listitem"
+
+MATCH 541
+                    <span className="cw-lrow__tag">Helped launch · 2025</span>
+                  </span>
+                  <span className="cw-lrow__out">
+                    Technology <strong>acquired by Nordic Semiconductor</strong>{" "}
+                    · not a cap-table position
+                  </span>
+                </div>
+              </div>
+            </div>
+
+MATCH 577
+            Pass-2/Pass-18; only the heading level moved (h2 → h3), since
+            "How I work." above is now the section's one accessible name. */}
+        {/* DENSITY FIX (home-pace pass, 2026-09-10): was 56px -- the same
+            unit .cw-exits uses below for its own internal break.
+            Doubled so the shift out of the three-stage loop into the
+            closing tally reads as a full pause, not a half one; paired
+            with cw-secttitle--sub above so the register change is
+            visible in both space and size, not space alone. */}
+        <p className="cw-kicker cw-reveal" style={{ marginTop: "112px" }}>
+
+
+codex
+The schema confirms only eight fields are mandatory; `client`, `indexLine`, `order`, and `feature` are optional but requested here. The home ledger adds specific role, year, analysis, acquisition, and cap-table language that each draft must mirror.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$lines = Get-Content -LiteralPath '"'docs/LESSONS_LEARNED.md'; "'$start = ($lines | Select-String -Pattern '"'"'^##?'"\\s+3[\\.:)]|"'^###'"\\s+3[\\.:)]|LESSON[S]? #3|#3').LineNumber | Select-Object -First 1; if (-not "'$start) { $start = 1 }; $next = $null; for ($i=$start+1; $i -le $lines.Length; $i++) { if ($lines[$i-1] -match '"'"'^##?'"\\s+') { "'$next=$i; break } }; if (-not $next) { $next=[Math]::Min($lines.Length+1,$start+220) }; for ($i=$start; $i -lt $next; $i++) { '"'{0}: {1}' -f "'$i,$lines[$i-1] }' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 180ms:
+37: ## #3 â€” Verified-facts ledger; never resurrect corrected claims (2026-06-09 â†’ 06-18)
+38: 
+39: **What happened:** Early copy shipped wrong or inflated numbers, corrected by the operator in
+40: stages. The wrong versions keep trying to come back via stale docs and reviewer memory.
+41: 
+42: **The ledger (operator-confirmed, current):**
+43: 
+44: - Guardicore: **$80M pipeline generated, $14M revenue**, enterprise sales manager (no team
+45:   led). NEVER: "$15M pipeline", "trained the sales team", "built the channel".
+46:   Operator-supplied 2026-09-01, both now live on the case study: **average enterprise deal
+47:   size $1.2M** (this SUPERSEDES the earlier "average deal size moved up by $150K", which was
+48:   cut on 2026-09-01 as unledgered and is not the same claim â€” one is an absolute, the other a
+49:   delta; never restate the $150K version), and **"Trillions in financial assets sit protected
+50:   behind those deployments"**. The trillions line was cut the same morning as unverifiable and
+51:   RESTORED hours later on operator confirmation that it describes the value of financial assets
+52:   protected behind the work. It is approved; do not re-cut it in a future honesty sweep.
+53: - Guardicore **PIPELINE NUMBER RETIRED FROM PUBLIC SURFACES â€” operator 2026-09-03**,
+54:   verbatim: "just drop the pipelione number site wide. put the rev number. dont want to be
+55:   specific on roles. i know recruitors might not like that but i prefer it."
+56:   The $80M pipeline figure remains a TRUE ledger fact and is NOT withdrawn; it simply no
+57:   longer renders anywhere public. WHY: a persona review found the case study said "I
+58:   generated $80M in pipeline and $14M in revenue" beside "so the account executives spent
+59:   their time on real deals", so the site's largest number was also its least attributed -
+60:   a reader could not tell whether it was originated pipeline, closed quota, or the team's
+61:   book. The operator chose to drop the ambiguous number rather than resolve the attribution.
+62:   PUBLIC FIGURES NOW: **$14M in revenue** and **$1.2M average enterprise deal size**, plus
+63:   the 2021 Akamai acquisition. Swept 2026-09-03 to zero rendered instances across the home
+64:   metadata and ledger row, /services proof, /work metadata and hero, llms.txt, and the case
+65:   study's dek, feature, indexLine, stats, step 01 and Outcome.
+66:   ROLE: the case study's `role` is now **"Revenue and positioning"**, not a job title. This
+67:   SUPERSEDES the earlier "use the real one (enterprise sales manager) or none" for this
+68:   surface - he picked none, knowingly, and accepted the recruiter cost in the same sentence.
+69:   The home ledger tag is now the year range alone. NEVER restore "$80M" or a Guardicore job
+70:   title to a public surface without a new dated ruling.
+71: - Guardicore **GEOGRAPHY â€” ledgered 2026-09-02 (Pass-78)**: the product was built in
+72:   **Tel Aviv**; the buyers were **North American** enterprises. PROVENANCE, three
+73:   independent sources: (1) the operator's own /services door copy, written 2026-09-02,
+74:   verbatim "See how i helped a foreign company break into the north american market and
+75:   get sold"; (2) the photo caption shipped on three surfaces since Pass-76, "Working
+76:   session with the Guardicore team - Tel Aviv"; (3) public record, Akamai acquired the
+77:   Israeli company in 2021. DERIVED VALUES that move with it: the /work lot line, the
+78:   case-study dek, the meta description and the "The problem" opener all now state it.
+79:   WHY IT WAS ADDED: the door promised that story and the case study never told it -
+80:   "Israel" and "foreign" rendered ZERO times on /work/guardicore, "Tel Aviv" only in a
+81:   photo caption, "North American" only as a customer descriptor. The strongest receipt
+82:   on the site failed at the click. Say "Tel Aviv" or "a foreign company"; do NOT write a
+83:   nationality claim about the founders, which the ledger does not carry.
+84: 
+85: - Consulting revenue **$20M+, SINCE 2013 and OPEN-ENDED** (operator 2026-09-02: "20 mil holds
+86:   to today"). SUPERSEDES every closed "(2013â€“2023)" rendering, which read as a practice that
+87:   stopped three years ago â€” on /about it sat two lines above a heading called "Currently".
+88:   Swept 2026-09-02 to /about, the home ledger row, the JSON-LD in layout.tsx and llms.txt.
+89:   NEVER re-close the range. The footer's "Â© 2013â€“2026" is a copyright line, not this claim.
+90: - Content engine **DISTRIBUTION â€” operator-supplied 2026-09-02**, verbatim: "it face
+91:   facebook, tiktok, linkedin, insta, twitter, threads, bleusky. a bunch of places got
+92:   content". Seven platforms: LinkedIn, Facebook, Instagram, TikTok, X, Threads, Bluesky.
+93:   Two carried the weekly cadence, one was deliberately underinvested. **RETIRED the same
+94:   day: the "4Ã—" stat ("two platforms over the third")**. It had NO ledger entry, and once
+95:   seven platforms were named "the third" referred to nothing; rewording it to "the rest"
+96:   would have silently changed what the number compared against (4Ã— over one platform is
+97:   not 4Ã— over six). The bet's OUTCOME is kept qualitatively ("the two platforms I backed
+98:   outperformed the one I did not"), which the narrative supports. Do not restore the 4Ã—
+99:   without a source and a date.
+100: - **CONSULTING-ERA POSITIONING RECEIPTS â€” operator-supplied 2026-09-03.** Both clients
+101:   stay ANONYMOUS, matching how the case studies already refer to them.
+102:   BIRTH WORKER: repositioned from birth support alone to the full arc of care around it.
+103:   **Organic bookings up 30%**, and inquiries arriving across her whole range rather than one
+104:   service. Operator verbatim: "organic bookings went up 30% and her inquires went from 100%
+105:   normal birth support - to a diverse set of customers (abortion, prepping to get pregnant,
+106:   miscarriage support, etc)". THE SERVICE LIST IS DELIBERATELY NOT ITEMISED ON THE SITE:
+107:   naming abortion and miscarriage care on a consulting marketing page creates exposure for
+108:   HER practice that the proof does not need, and the breadth is the point. Itemise only on a
+109:   new operator instruction.
+110:   INDUSTRY AUTHOR: repositioned toward the buyers who award contracts; the $3M already
+111:   ledgered is the result that followed. Same person as the RFP-engine and content-engine
+112:   studies. **The operator named them in conversation on 2026-09-03; the site anonymises them
+113:   and must continue to.** Never publish the name or anything that resolves to it.
+114: - Content engine **EIGHT platforms, not seven â€” operator 2026-09-03: "We did ship on
+115:   YouTube"**. LinkedIn, YouTube, Facebook, Instagram, TikTok, X, Threads, Bluesky. This
+116:   SUPERSEDES the seven-platform line written 2026-09-02 and reconciles the strategy document
+117:   (which named YouTube) with what shipped. The stat reads "Eight".
+118: - **RETIRED 2026-09-03, operator "Cut it":** "The two largest engagements that closed were
+119:   both six-figure retainers" on /work/rfp-engine. Never in the ledger, unverifiable from
+120:   outside, and sitting beside two figures that are ledgered. Do not restore it.
+121: - **CAP TABLE NAMED â€” operator confirmed 2026-09-03.** SurveyMonkey and Guardicore both
+122:   carried his name on the cap table; he held equity, not only salary, when each exited.
+123:   /about said "Two carried my name on the cap table" without saying which, which a
+124:   procurement reader flagged as unverifiable. Both are already named in the same sentence,
+125:   so naming them costs nothing and removes a bare count. Neuton is still explicitly NOT a
+126:   cap-table position; Postmates was employment.
+127:   NOTE ON HOW THIS WAS CONFIRMED: asked about the line he replied "what does that even mean?
+128:   what is the congtext of this". The claim was therefore explained to him in plain terms - an
+129:   equity stake at exit, materially more than "I worked there" - and only then confirmed. An
+130:   equity claim is the riskiest class of line on a personal site; do not restate it from the
+131:   ledger alone if it is ever questioned again.
+132: - Ordani **start year 2025** (operator 2026-09-03). The home ledger row said "2026" while
+133:   /work and the case study said "2025-2026". Home now matches.
+134: - Playbook **companion pack: 26 ZIP entries = README + 10 checklists + 6 prompts + 9
+135:   templates.** The page says "Nine templates". CORRECTION, 2026-09-04 (Pass-98): the
+136:   2026-09-03 adjudication recorded above said ten templates and 27 files in the archive,
+137:   and both halves were wrong. It counted the README as a template and then also added it
+138:   again as a 27th file. The probe is the archive itself, not a document:
+139:   `python -c "import zipfile;print(zipfile.ZipFile('product/playbook/output/the-80-percent-wall-companion.zip').namelist())"`
+140:   returns 26 names, 9 of them under `templates/`. The spec row "Companion files 26" was
+141:   right all along and is unchanged. Re-run the namelist whenever the pack changes; never
+142:   reconcile two written numbers against each other.
+143: - **WEEK ONE of an engagement â€” operator 2026-09-03**: "First week would be a scoping
+144:   meeting and audit - foundational work to set up the engagement for success." The site had
+145:   only ever answered MONTH one ("something named ships in month one"), which is not the
+146:   question a buyer at $5K a month asks first. Now on /services under "Why one person".
+147: - **CAPACITY â€” operator 2026-09-03**: "Im taking work. No need to put specifics on how many."
+148:   /about now says "I am taking new engagements now" and carries NO COUNT, deliberately. An
+149:   invented number reads as a tactic and a real one has to be maintained. Do not add one.
+150: - **THIRTEEN YEARS, not "a decade" â€” operator 2026-09-03.** The site said "a decade" in two
+151:   places on /about while the footer and the revenue line both say since 2013, so it undersold
+152:   by three years on the page where a buyer assesses depth. SUPERSEDES "a decade" everywhere.
+153: - **REPLY PROMISE: one business day, everywhere â€” operator 2026-09-03.** The site had three
+154:   versions of one promise: "usually within one business day" (/contact), "within one business
+155:   day" (/packages) and "inside two business days" (the footer on EVERY page). Standardised to
+156:   one business day, footers included. Zero "two business days" remain.
+157: - SurveyMonkey: enterprise sales, **$1M+ toward the IPO**. NEVER: "customer-evidence engine",
+158:   "anchored the Nasdaq IPO".
+159: - Exits: **FOUR companies he worked inside reached an exit** (operator update 2026-08-30:
+160:   "considering i was apart of four exits - postmates, surveymonkey, guardicore, neuton ai" â€”
+161:   SUPERSEDES the three-exit entry below). **EMPLOYER RULED 2026-09-03, operator verbatim: "I worked at SurveyMonkey"** - not
+162:   TechValidate. The site had named one exit FOUR ways (SurveyMonkey on home and
+163:   /services, "TechValidate (held through the SurveyMonkey IPO)" on /about,
+164:   "TechValidate (SurveyMonkey)" on /playbook), which a cross-reading reviewer read as
+165:   the site being unable to decide. Standardised to SurveyMonkey on every surface
+166:   2026-09-03, including the JSON-LD alumniOf and llms.txt. Do not reintroduce
+167:   TechValidate. Role split: SurveyMonkey
+168:   (IPO 2018, cap table), Guardicoreâ†’Akamai (2021, cap table), Neuton.AIâ†’Nordic Semiconductor
+169:   (2025, "helped launch", NOT cap table â€” never claim Neuton equity), Postmatesâ†’Uber (2020,
+170:   **role CONFIRMED by the operator 2026-09-02, HOLD LIFTED: "product analyst at postmates is
+171:   the title"**. Renders on the home ledger as "Product analyst Â· 2020", which is where he was
+172:   asked about it and which he confirmed. The row had carried that tag since Pass-7 on a commit
+173:   message's word; it is now a ledgered fact with a date. Years beyond 2020 still not supplied). Umbrella phrasing: "worked inside" or "behind my work", never
+174:   "helped build" for the four-count (Postmates was employment, not a build claim).
+175:   **$5B+ combined** = DISCLOSED deals only: Uberâ€“Postmates $2.65B + SVMK first-day IPO value
+176:   $2.33B + Akamaiâ€“Guardicore $600M = $5.58B; Neuton undisclosed, contributes $0. Sources
+177:   pinned in content/citations.ts (EXITS_COMBINED_VALUE). NEVER: "Two exits". RETIRED (swept
+178:   to zero rendered instances 2026-08-30): "Three companies I helped build reached an exit".
+179:   **JOINING STAGE â€” operator-supplied 2026-09-02**, verbatim: "postmates was earlysih,
+180:   surveymonkey earlyish, guardicore super early, neuto ai super early. name drop". So:
+181:   Postmates and SurveyMonkey EARLYISH; Guardicore and Neuton.AI VERY EARLY. **RULED
+182:   2026-09-02: render as plain "early" for ALL FOUR** (operator: "just say early for all those
+183:   companies mentioned"), after it was flagged that Guardicore ships as 2018-2021 on his own
+184:   case study against a 2015 founding, so "very early" was checkable and shaky. The per-company
+185:   distinction stays recorded here as fact; the PUBLIC rendering is the flat "early". This
+186:   authorises
+187:   naming the four companies on public surfaces WITH their joining stage. It does NOT authorise
+188:   founder, founding-team, co-founder, or employee-number claims for any of them, and it does
+189:   not authorise years beyond those already ledgered. (The Postmates ROLE hold was lifted
+190:   separately on 2026-09-02 - see that entry above.) First rendered on /playbook (Pass-68).
+191:   **NAME THE COMPANY, NOT THE JOB â€” operator 2026-09-02, verbatim: "remove the sales part
+192:   too"**. He does not want "Enterprise cybersecurity sales at Guardicore" on the page. The
+193:   standing concern is recorded rather than silently dropped: an unqualified "cybersecurity
+194:   background" beside a book chapter called "The security pre-flight" implies a technical
+195:   security role the ledger does not support. The resolution is to state NO role at all and
+196:   lean on the ledger's own umbrella verb, "worked inside". A bare name-drop makes no role
+197:   claim, so it cannot make a false one. Any future copy that reintroduces a Guardicore job
+198:   title must use the real one (enterprise sales manager) or none.
+199:   **SCOPE RULED 2026-09-02, operator verbatim: "just the playbook"**. The "remove the sales
+200:   part too" instruction applies to **/playbook ONLY**. The home ledger's "Enterprise sales Â·
+201:   2021" tag and the case study's "Enterprise sales manager" Role row are the REAL title and
+202:   STAY. Do not sweep them; a future review that flags them is reporting a false positive.
+203: - Ordani: **"hundreds of paying birth workers", none lost to a competitor** (operator
+204:   update 2026-08-31: NO public user count. The paying framing replaces the 200 figure on
+205:   EVERY public surface incl. metadata, JSON-LD, llms.txt, mdx dek/indexLine; 200 stays
+206:   internal-only. Swept to zero same day.)
+207:   VENDOR GATE (same date): Ordani surfaces never name infrastructure vendors â€” the case
+208:   study had named the database vendor inside a security-architecture sentence on a HIPAA
+209:   product. Tools list is capability nouns; body says "in the database".
+210:   SECURITY-DETAIL GATE (operator 2026-09-01: "dont make specific security stuff on the app -
+211:   hippa compliant app built by a team of birth workers and cyber security experts"). The
+212:   vendor gate above stopped at vendor NAMES; this extends it to MECHANISMS. Ordani surfaces
+213:   never describe how the protections work: no row-level policies, no encryption placement, no
+214:   audit-log or export-gating description. Approved framing is **HIPAA-compliant, built with
+215:   birth workers and cyber security experts** â€” the 22 practitioner interviews and the two paid
+216:   independent reviewers (one healthcare, one cyber security) are the team, and both are
+217:   already true. Swept from content/work/ordani.mdx the same day (tools list, step 03, "What it
+218:   became"); it was the only surface carrying mechanism detail. Publishing your control design
+219:   on a product holding real patient data is a gift to an attacker, and a buyer reads its
+220:   absence as competence.
+221:   SUPERSEDED 2026-09-01 (operator: "drop the user amounts across the website for ordani, just
+222:   say it has active paying users, it's in beta, we're releasing to public soon"). Every user
+223:   count is now OFF every public surface: no "200", no "hundreds". Approved phrasing is
+224:   **"active paying users"**, framed as **in beta with a public release coming**. "None lost to
+225:   a competitor" survives. Swept to zero rendered instances the same day across the case study,
+226:   home, about, services, playbook, root metadata and llms.txt. The counts stay internal only.
+227:   Historical entry: **used by 200 birth workers, none lost to a competitor**
+228:   (operator update 2026-08-15 â€” SUPERSEDES the earlier "fourteen practices / eight
+229:   active weekly at six months" entry, which described the closed beta and had gone
+230:   stale on the live site). The earlier ledger line BANNED "Hundreds of users active";
+231:   that ban is lifted by the same operator instruction that set the new number, and is
+232:   recorded here rather than silently dropped. Still NEVER: "Zero churn". The closed-beta
+233:   history (shipped to fourteen practitioners at launch) remains true AS HISTORY inside
+234:   the case study; do not restate it as current usage. Framed as a real company ("a
+235:   company I founded and built"), not a solo side project â€” except /playbook, where
+236:   "built solo with AI tools" is the intended proof for that audience.
+237:   Operator gave the exact figure 2026-08-15: **200**. The interim "hundreds"
+238:   wording is retired â€” the voice rule wants named numbers, and "200 birth
+239:   workers" is both truer and harder-hitting than "hundreds".
+240: - Customers: anonymized descriptors only (top-10 North American bank, global systemically
+241:   important bank, white-shoe Wall Street law firm). NEVER name TD Bank / Deutsche Bank /
+242:   NIH / Davis Polk / Peoples Natural Gas.
+243:   RETIRED 2026-09-01 (operator "go", buyer-review finding): **"world's largest public
+244:   biomedical-research funder"** â€” an anonymised descriptor with exactly one possible answer
+245:   is not anonymised. Superseded on every surface by **"a federal research agency"**. Swept
+246:   to zero rendered instances the same day (guardicore.mdx dek + Outcome were the only two).
+247:   Do not reintroduce the old phrasing; the same test applies to any future descriptor â€”
+248:   if a reader can name the organisation from it, it is a name.
+249: - The HR/industry-author engagement: ONE author; reach 8Kâ†’290K; RFP-to-close doubled; two
+250:   six-figure retainers; **$3M in contracts won through the RFP platform, including a top
+251:   university and a county government** (operator-supplied 2026-08-31, anonymized per the
+252:   customer rule); the RAG RFP-scanning platform (real custom software). NEVER: the
+253:   three fabricated end-clients (see #2).
+254:   TRUE BUT UNPUBLISHED as of 2026-09-01 (operator "go", buyer-review finding): **"including
+255:   a top university and a county government"** stays in this ledger as a fact and is now CUT
+256:   from the rendered page. The client is described publicly as "name protected", and that
+257:   detail plus the sector framing narrowed them to a guessable person. "$3M in contracts won"
+258:   is what ships. Same call retired the two-six-figure-retainers bullet from the Outcome list
+259:   (the retainer fact still appears once, in the Approach section). A ledger fact being
+260:   confirmed is not the same as it being publishable â€” this row is the standing example.
+261: 
+262: - HIPAA: Ordani is **HIPAA-compliant** (operator confirmation 2026-08-31: "HIPAA compliant is
+263:   true", ruling on the app). "HIPAA-grade" was the pre-confirmation hedge; swept to
+264:   "HIPAA-compliant" everywhere (site + playbook chapter) same day. NEVER revert to "-grade".
+265: 
+266: - VENDOR GATE is now MECHANICAL (2026-08-31, second recurrence: operator caught /playbook author
+267:   block naming three infra vendors; sweep also found the ch.4 blurb and ordani.mdx's "specializes
+268:   in Postgres" reviewer line). scripts/vendor-gate.mjs blocks `pnpm build` when any rendered
+269:   Ordani-mentioning file names an infra vendor/engine. Dev tools (Claude Code, Cursor) permitted.
+270: 
+271: - **RESEARCH CORPUS, the four facts the book's chapter 9 cites â€” operator "proceed"
+272:   2026-09-04.** Written in the same session as the book repo's `docs/CLAIMS-LEDGER.md`
+273:   row of the same title (split hazard). **4,464 posts** with 250+ character bodies from
+274:   **ten subreddits** (SaaS, buildinpublic, microsaas, startups, EntrepreneurRideAlong,
+275:   nextjs, cursor, ClaudeAI, webdev, ChatGPTCoding), 3,842 authors, windows 2025-09-23
+276:   to 2026-08-03 (`Code/reddit-research/data/corpus.jsonl`, gitignored; denominators
+277:   asserted by every script in `Code/reddit-research/cuts/`). **607 asking posts / 567
+278:   authors; "kept running" = 21 distinct asking authors** (`reddit-research/reference/
+279:   emergent-language.json`). **The playbook page's former second sentence appears in 0
+280:   of the 4,464 posts** (`.planning/research/04-CUT-A-chapter-demand-map.md`, appendices
+281:   A and B). The page moved the attested beat to first on 2026-09-04 (Pass-98). MAY say:
+282:   those four facts as the author's own measurement. NEVER: a market-size claim from
+283:   them; a rate ("8.9%", "1.0%") â€” the fetches disagree tenfold on rates
+284:   (`.planning/research/04-CUT-F-launch-rooms.md` Â§8); a Reddit user's words as an
+285:   attributed quotation. ADDED 2026-09-04, same session as the book repo: the
+286:   governing phrase file is the frozen snapshot `reddit-research/handoff/
+287:   emergent-language.json` (4,464 posts), not `reference/`, which was regenerated on
+288:   a larger crawl; **Cut B** (`.planning/research/04-CUT-B-landing-page-posts.md`:
+289:   35 asking posts / 34 authors say "landing page", 18 of 34 want a page that exists
+290:   to convert or be reached, 4 want one built) licenses chapter 9's body line
+291:   "founder after founder who asked for help with a page"; the corpus is twelve
+292:   10-day windows across 2025-09-23 â†’ 2026-08-03, so the book says "ten months",
+293:   never "a year".
+294: - **PLAYBOOK PRICE â€” operator 2026-09-04**, verbatim: "Price stays $99 launch / $149
+295:   after unless I say otherwise. The $149 trigger is open; it moves p.42 and the
+296:   site's spec card together." $99 at launch, $149 after; the increase date is NOT
+297:   ruled. Surfaces that move together: the /playbook spec card and price lines, the
+298:   book's chapter-8 sampler colophon, the dormant chapter-1 colophon, chapter 6's
+299:   build-log entry ("the $149 button"). Twin row in the book repo's
+300:   `docs/CLAIMS-LEDGER.md`, same session.
+301: 
+302: - **ORDANI BUILD TIME, "six weeks" â€” provenance recorded 2026-09-04, operator
+303:   confirmation pending at the book's ship gate.** The book's chapter 2 build-log entry
+304:   (2026-05-19) says the author spent six weeks polishing Ordani's interface toward an
+305:   unlocked reference. Provenance: the UI-006 post-mortem of 2026-05-19 in the Ordani
+306:   repo, cited in the operator's marketing playbook ("UI-006 burned 6+ weeks"). The
+307:   author's own working time, not a customer, revenue, user or security fact. Twin
+308:   row in the book repo's `docs/CLAIMS-LEDGER.md`, same session.
+309: 
+310: **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy â€”
+311: not just the diff.
+312: 
+313: Why the change (2026-08-15): the diff-only version was scoped too narrowly and let
+314: violations survive indefinitely. On this date a diff-grep caught "Two exits" in
+315: `app/llms.txt/route.ts` only because an unrelated edit happened to touch that line. A
+316: full-tree sweep then found the same banned claim in THREE more live surfaces that no
+317: diff had touched in months: both OG images (what renders on every social share) and the
+318: root `metadata.description` (what renders in search results). The site had been
+319: under-claiming â€” two exits instead of three â€” everywhere a machine or a stranger looked.
+320: 
+321: Sweep, and expect zero:
+322: 
+323: ```bash
+324: for p in "Two exits" "\$15M pipeline" "trained the sales team" "built the channel"          "customer-evidence engine" "anchored the Nasdaq" "Zero churn"          "Hundreds of users active" "TD Bank" "Deutsche Bank" "NIH" "Davis Polk"          "Peoples Natural Gas"; do
+325:   grep -rin "$p" app content lib components --include="*.ts*" --include="*.mdx"
+326: done
+327: ```
+328: 
+329: Also applies to COMMENTS, not just rendered copy. Four banned strings were sitting in
+330: code comments as historical narration; they render nowhere, but they are exactly the
+331: vector this lesson exists to stop â€” stale prose is how a corrected claim comes back.
+332: They are now written so the banned string does not appear verbatim.
+333: 
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw '.claude/brand.json'; Get-Content -Raw 'lib/banned.ts'" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 126ms:
+{
+  "name": "house-lights",
+  "domain": "micahjonesconsulting.com",
+  "audience": {
+    "primary": "Founders of $5-50M companies who care about how their brand actually looks; and Black HR consultants, doulas, birth workers, and equity practitioners â€” the people Micah's work serves.",
+    "secondary": "Design-engineering peers and potential collaborators."
+  },
+  "palette": [
+    {
+      "id": "foyer-paper",
+      "value": "#F5EFE4"
+    },
+    {
+      "id": "foyer-ink",
+      "value": "#1A1816"
+    },
+    {
+      "id": "foyer-ink-soft",
+      "value": "#3A3631"
+    },
+    {
+      "id": "theater-ground",
+      "value": "#0D0D0F"
+    },
+    {
+      "id": "theater-surface",
+      "value": "#16161A"
+    },
+    {
+      "id": "theater-ink",
+      "value": "#EAE6DD"
+    },
+    {
+      "id": "theater-ink-soft",
+      "value": "#9C988F"
+    },
+    {
+      "id": "accent-copper",
+      "value": "#C8542B"
+    },
+    {
+      "id": "accent-copper-deep",
+      "value": "#8E3A1E"
+    },
+    {
+      "id": "ordani-sage",
+      "value": "#5E7158",
+      "scope": "/work/ordani only"
+    },
+    {
+      "id": "rule-foyer",
+      "value": "#D9D2C4"
+    },
+    {
+      "id": "rule-theater",
+      "value": "#2A2A30"
+    }
+  ],
+  "typography": {
+    "display": {
+      "family": "Inter Display (Inter weight 700-800)",
+      "foundry": "system",
+      "weights": [600, 700, 800],
+      "license": null
+    },
+    "body": {
+      "family": "Inter",
+      "foundry": "system",
+      "weights": [400, 500, 600],
+      "license": null
+    },
+    "serif": {
+      "family": "Source Serif 4",
+      "foundry": "system",
+      "weights": [400, 500],
+      "axes": ["opsz"],
+      "license": null
+    },
+    "mono": null
+  },
+  "voice": {
+    "person": "first-singular",
+    "sentence_max": 25,
+    "banned": [
+      "unlock",
+      "drive",
+      "leverage",
+      "elevate",
+      "synergy",
+      "transformative",
+      "game-changing",
+      "best-in-class",
+      "at the intersection of",
+      "seamless",
+      "seamlessly",
+      "cutting-edge",
+      "revolutionary",
+      "world-class",
+      "next-generation",
+      "holistic",
+      "robust",
+      "innovative",
+      "dive deep",
+      "circle back",
+      "low-hanging fruit",
+      "move the needle",
+      "make an impact",
+      "delight users",
+      "craft experiences",
+      "passionate about",
+      "obsessed with",
+      "journey",
+      "solutions",
+      "empower",
+      "most chosen",
+      "most popular",
+      "best-selling",
+      "bestseller",
+      "fastest-growing"
+    ],
+    "preferred_verbs": [
+      "build",
+      "ship",
+      "rewrite",
+      "cut",
+      "tune",
+      "bet",
+      "show"
+    ]
+  },
+  "motion": {
+    "signature": {
+      "id": "title-card",
+      "description": "Case-study hero title: 96px Inter Display 700+ pinned vertical word stack, GSAP scroll-resolve to caption + first still cross-fade. ~600ms hold.",
+      "files": ["components/TitleCard.tsx", "app/globals.css"]
+    },
+    "view_transition": {
+      "id": "foyer-theater-dim",
+      "description": "600ms ease-in-out cross-fade between cream paper and theater ground on foyerâ†”theater navigation. Reduced-motion kill-switch in app/globals.css.",
+      "files": ["app/layout.tsx", "app/globals.css"]
+    },
+    "figure": {
+      "id": "wall-chart",
+      "description": "The book's page-6 figure drawn once on load in the /playbook hero: dashed context-window line wiped in, saffron unwritten-rules line climbing on an ease-in-quad, an 80ms hold at the crossing while the marker stamps, then a break-through on ease-out. ~1.26s of visible motion, CSS only, no loop, no scroll or input coupling. Approved in writing by the motion-engineer 2026-09-01 as a FIGURE animation, NOT a second signature interaction: it is the artifact playing, not the site responding to the visitor. Granted an explicit exception to the R15 400ms entrance cap on that basis. Base CSS is the finished frame; motion applies only at >=900px with no reduced-motion preference. Scoped to /playbook.",
+      "files": ["components/color-worlds/WallChart.tsx", "app/globals.css"]
+    },
+    "banned": [
+      "cursor.*follow|MouseFollower",
+      "scroll-snap-type:\\s*y\\s+mandatory",
+      "marquee|<Marquee",
+      "font-mono|font-family:\\s*ui-monospace",
+      "syncTouch:\\s*true"
+    ]
+  },
+  "performance": {
+    "lcp_ms": 1800,
+    "inp_ms": 200,
+    "cls": 0.05,
+    "lighthouse_min": 95,
+    "max_image_kb": 500,
+    "audit_url": "http://localhost:3000"
+  },
+  "pages": [
+    "/",
+    "/work",
+    "/work/[slug]",
+    "/about",
+    "/work-with-me",
+    "/contact"
+  ],
+  "content": {
+    "case_study_framework": [
+      "title-card",
+      "dek",
+      "problem",
+      "why-it-matters",
+      "approachÃ—4",
+      "what-it-became",
+      "outcome",
+      "pull-quote"
+    ]
+  }
+}
+
+// Source: blueprint Â§8 top-9 banned words + harness slop-words.txt defaults + research extensions.
+// Total: 35 words/phrases. Used by lib/copy-lint.ts (build-time scanner) and harness copy-lint.sh hook.
+//
+// Conventions:
+//   - All entries are lowercase.
+//   - Single words match with word-boundary regex (\b...\b).
+//   - Multi-word phrases match literally (case-insensitive).
+//   - Add new entries here; do not splinter into multiple files.
+export const BANNED_WORDS = [
+  // Top 9 from blueprint Â§8
+  "unlock",
+  "drive",
+  "leverage",
+  "elevate",
+  "synergy",
+  "transformative",
+  "game-changing",
+  "best-in-class",
+  "at the intersection of",
+
+  // Harness slop-words.txt defaults (cross-loaded for build-time scanner parity)
+  "seamless",
+  "seamlessly",
+  "cutting-edge",
+  "revolutionary",
+  "world-class",
+  "next-generation",
+  "holistic",
+  "robust",
+  "innovative",
+  "dive deep",
+  "circle back",
+  "low-hanging fruit",
+  "move the needle",
+  "make an impact",
+  "delight users",
+  "craft experiences",
+  "passionate about",
+  "obsessed with",
+  "journey",
+  "solutions",
+  "empower",
+  // LESSONS #10 (2026-09-01): unverifiable popularity claims. A "Most chosen"
+  // tag nearly shipped on /services with no sales data behind it. Preference
+  // words ("Recommended") are fine; frequency/rank claims need a ledger fact.
+  "most chosen",
+  "most popular",
+  "best-selling",
+  "bestseller",
+  "fastest-growing",
+] as const;
+
+export type BannedWord = (typeof BANNED_WORDS)[number];
+
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-ChildItem -LiteralPath 'content/work' -Filter '*.mdx' | ForEach-Object { "'$path=$_.FullName; $content=Get-Content -LiteralPath $path; $title=($content | Select-String '"'"'^title:'"' | Select-Object -First 1).Line; "'$order=($content | Select-String '"'"'^order:'"' | Select-Object -First 1).Line; "'$status=($content | Select-String '"'"'^status:'"' | Select-Object -First 1).Line; '{0} | {1} | {2} | {3}' -f "'$_.Name,$title,$order,$status }; Select-String -LiteralPath '"'content/citations.ts' -Pattern 'Postmates','Neuton','Nordic','2.65' -Context 2,4" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 165ms:
+content-engine.mdx | title: AI content engine for an industry author | order: 4 | status: shipped
+guardicore.mdx | title: Guardicore (Akamai) | order: 1 | status: shipped
+ordani.mdx | title: ORDANI | order: 2 | status: in-flight
+passioneer.mdx | title: Passioneer |  | status: stub
+rfp-engine.mdx | title: RFP engine for an industry author | order: 3 | status: shipped
+
+  content\citations.ts:9:
+  content\citations.ts:10:export const CITATIONS = {
+> content\citations.ts:11:  // Four-exit combined value (operator instruction 2026-08-30: Postmates
+> content\citations.ts:12:  // joins the exit record). "$5B+" = DISCLOSED deals only; Neuton.AI's
+  content\citations.ts:13:  // acquisition price was never made public and contributes $0 to the sum.
+  content\citations.ts:14:  EXITS_COMBINED_VALUE: {
+  content\citations.ts:15:    id: "EXITS_COMBINED_VALUE",
+  content\citations.ts:16:    title: "Combined disclosed exit value across four companies",
+  content\citations.ts:17:    publisher: "SEC filings + acquirer press releases",
+> content\citations.ts:18:    url: 
+"https://techcrunch.com/2020/12/01/uber-officially-completes-postmates-acquisition/",
+  content\citations.ts:19:    accessedAt: "2026-08-30",
+  content\citations.ts:20:    quotedStatistics: [
+> content\citations.ts:21:      "$2.65B — Uber acquires Postmates, all-stock, closed December 2020 (SEC Form 425/S-4)",
+  content\citations.ts:22:      "$2.33B — SurveyMonkey (SVMK) first-day market valuation, Nasdaq IPO, September 26 
+2018",
+  content\citations.ts:23:      "$600M — Akamai acquires Guardicore, closed October 2021 (Akamai IR press release)",
+> content\citations.ts:24:      "undisclosed — Nordic Semiconductor acquires Neuton.AI technology, 2025 (excluded from 
+sum)",
+  content\citations.ts:25:      "$5.58B disclosed total; site claims the conservative floor '$5B+'",
+  content\citations.ts:26:    ],
+  content\citations.ts:27:    citedIn: [
+  content\citations.ts:28:      "components/color-worlds/Hero.tsx (proof chips)",
+  content\citations.ts:37:    // the citation of record, and every field here is read off it — no figure,
+  content\citations.ts:38:    // date or acquirer lives in a component as a literal (Pitfall E2).
+> content\citations.ts:39:    // `value: null` means the price was never disclosed, which is why Neuton
+  content\citations.ts:40:    // contributes nothing to the sum and carries no figure on the page.
+  content\citations.ts:41:    DEALS: [
+  content\citations.ts:42:      {
+  content\citations.ts:43:        company: "SurveyMonkey",
+  content\citations.ts:49:      },
+  content\citations.ts:50:      {
+> content\citations.ts:51:        company: "Postmates",
+  content\citations.ts:52:        event: "Acquired by",
+  content\citations.ts:53:        counterparty: "Uber",
+  content\citations.ts:54:        year: "2020",
+> content\citations.ts:55:        value: "$2.65B",
+  content\citations.ts:56:        note: "All-stock, closed December.",
+  content\citations.ts:57:      },
+  content\citations.ts:58:      {
+  content\citations.ts:59:        company: "Guardicore",
+  content\citations.ts:65:      },
+  content\citations.ts:66:      {
+> content\citations.ts:67:        company: "Neuton.AI",
+  content\citations.ts:68:        event: "Technology acquired by",
+> content\citations.ts:69:        counterparty: "Nordic Semiconductor",
+  content\citations.ts:70:        year: "2025",
+  content\citations.ts:71:        value: null,
+  content\citations.ts:72:        note: "Price never disclosed. Counted as zero.",
+  content\citations.ts:73:      },
+
+
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$draft = @'"'
+POSTMATES
+Postmates promised to deliver everything. As a product analyst, I handled market and fraud analysis while helping narrow that promise around core offerings. Acquired by Uber in 2020 for "'$2.65B.
+I joined Postmates early as a product analyst in 2020. The company sold everything, with a promise to deliver everything. Fraud was common within that wide-open model. One custom order requested 100 gallons of Hennessy in the Bronx. The positioning problem was the breadth of the promise. Postmates needed to focus on core offerings rather than promise delivery of everything.
+I worked on market and fraud analysis across the wide-open model. I helped Postmates cut back the promise and focus on its core offerings.
+The promise shifted from delivering everything toward a narrower position around core offerings. Acquired by Uber in 2020 for $2.65B. Postmates was one of four companies behind my work that reached an exit.
+NEUTON
+I helped launch a foreign AI company by positioning its product for North America in 2020. Nordic Semiconductor acquired the technology in 2025; the price was never disclosed.
+I joined Neuton.AI early in 2020, during the early days of AI products. As a foreign company, it needed help positioning the product for North America.
+I worked on a North American position for the AI product. I helped launch Neuton.AI with that market position in place.
+The positioning work came before Nordic Semiconductor acquired Neuton.AI'"'s technology in 2025. The price was never disclosed. I held no cap-table position. Neuton.AI was one of four companies behind my work that reached an exit.
+'@; "'$banned = Select-String -LiteralPath '"'lib/banned.ts' -Pattern '"'^'"\\s*\"(["'^"]+)"'"' | ForEach-Object { "'$_.Matches[0].Groups[1].Value }; '"'BANNED HITS'; foreach ("'$term in $banned) { if ($draft -match ('"'(?i)\\b' + [regex]::Escape("'$term) + '"'\\b')) { "'$term } }; '"'EM DASH COUNT'; ([regex]::Matches("'$draft,'"'—')).Count; 'WE COUNT'; ([regex]::Matches("'$draft,'"'(?i)\\bwe\\b')).Count; 'SENTENCE WORD COUNTS'; "'$draft -split '"'(?<=[."'!?])'"\\s+' | ForEach-Object { "'$s=$_.Trim(); if ($s) { $wc=([regex]::Matches($s,"'"\\b[\\w"'$.-]+'"\\b\")).Count; if ("'$wc -gt 25) { "$wc | $s" } } }' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+ succeeded in 136ms:
+BANNED HITS
+EM DASH COUNT
+0
+WE COUNT
+0
+SENTENCE WORD COUNTS
+
+codex
+No repo files were changed. I used the brainstorming skill to keep both drafts short and evidence-bound.
+
+### `content/work/postmates.mdx`
+
+```mdx
+---
+title: Postmates (Uber)
+dek: Postmates promised to deliver everything. As a product analyst, I worked on market and fraud analysis while helping narrow that promise around core offerings. Acquired by Uber in 2020 for $2.65B.
+role: Product analyst
+tools:
+  - Market analysis
+  - Fraud analysis
+  - Product positioning
+year: 2020
+status: shipped
+titleCardWords:
+  - EARLY.
+  - EVERYTHING.
+  - ANALYSIS.
+  - FOCUS.
+  - ACQUIRED.
+client: Postmates
+order: 5
+feature:
+  fig: $2.65B
+  line: acquisition by Uber in 2020, after work to narrow the promise around core offerings.
+indexLine: Market and fraud analysis in the wide-open era. Acquired by Uber in 2020 for $2.65B.
+---
+
+## The problem
+
+I joined Postmates early as a product analyst in 2020. The company sold everything, with a promise to deliver everything.
+
+Fraud was common within that wide-open model. One custom order requested 100 gallons of Hennessy in the Bronx.
+
+The positioning problem was the breadth of the promise. Postmates needed to focus on core offerings rather than promise delivery of everything.
+
+## What I did
+
+**01. Analysis.** I worked on market and fraud analysis across the wide-open model.
+
+**02. Positioning.** I helped Postmates cut back the promise and focus on its core offerings.
+
+## Outcome
+
+The promise shifted from delivering everything toward a narrower position around core offerings. Acquired by Uber in 2020 for $2.65B.
+
+Postmates was one of four companies behind my work that reached an exit.
+```
+
+### `content/work/neuton.mdx`
+
+```mdx
+---
+title: Neuton.AI
+dek: I helped launch a foreign AI company by positioning its product for North America in 2020. Nordic Semiconductor acquired the technology in 2025; the price was never disclosed.
+role: Helped launch
+tools:
+  - North American positioning
+  - Product launch
+year: 2025
+status: shipped
+titleCardWords:
+  - EARLY.
+  - AI.
+  - POSITIONING.
+  - LAUNCH.
+  - ACQUIRED.
+client: Neuton.AI
+order: 6
+feature:
+  fig: "2025"
+  line: technology acquired by Nordic Semiconductor. The price was never disclosed.
+indexLine: Helped launch through North American positioning in 2020. Technology acquired by Nordic Semiconductor in 2025; the price was never disclosed.
+---
+
+## The problem
+
+I joined Neuton.AI early in 2020, during the early days of AI products. As a foreign company, it needed help positioning the product for North America.
+
+## What I did
+
+**01. Positioning.** I worked on a North American position for the AI product.
+
+**02. Launch.** I helped launch Neuton.AI with that market position in place.
+
+## Outcome
+
+The positioning work came before Nordic Semiconductor acquired Neuton.AI's technology in 2025. The price was never disclosed.
+
+I held no cap-table position. Neuton.AI was one of four companies behind my work that reached an exit.
+```
+
+## 1. Stronger restatements and causal claims
+
+None.
+
+The Neuton draft deliberately says, “The positioning work came before Nordic Semiconductor acquired Neuton.AI's technology in 2025.” This preserves sequence without claiming that the positioning caused the acquisition.
+
+The Postmates draft also presents the positioning change and acquisition separately.
+
+## 2. Details requiring explicit publication approval
+
+- Postmates: “Fraud was common within that wide-open model.”
+- Postmates: The custom order for 100 gallons of Hennessy in the Bronx. This is the most sensitive detail.
+- Postmates: The internal shift from delivering everything toward core offerings.
+- Postmates: The claim that the operator personally helped narrow the promise.
+- Neuton.AI: Describing the client publicly as a foreign company.
+- Neuton.AI: Disclosing the 2020 North American positioning engagement.
+- Neuton.AI: Stating that the positioning preceded the acquisition.
+- Neuton.AI: “I held no cap-table position.” This already appears on the home page, but it remains a personal financial disclosure.
+
+## 3. Schema fields not directly supplied
+
+No requested field is empty. These values required editorial judgment:
+
+- `tools`: No software tools were supplied. I used evidence-backed activity names, following the Guardicore precedent.
+- `order`: I used `5` and `6` because the existing ordered studies occupy positions `1` through `4`.
+- `status`: I used `shipped` because both engagements and their stated outcomes are complete.
+- `titleCardWords`: These are editorial summaries drawn only from supplied facts.
+- `feature`: The schema comment says only the study with `order: 1` uses this field. I included it because the brief explicitly requested it, although these values may not render.
+- Neuton.AI `year`: I used `2025` as instructed, while the body identifies `2020` as the positioning and launch period.
+
+## 4. Home-page copy and draft locations
+
+Postmates renders:
+
+- “Postmates”
+  - Draft: `title` and `client`.
+- “Product analyst · 2020”
+  - Draft: `role`, `year`, and the first sentence under “The problem.”
+- “Market and fraud analysis in the wide-open era · acquired by Uber, $2.65B”
+  - Draft: `indexLine`.
+  - Market and fraud analysis also appears in the `dek` and step 01.
+  - The wide-open model appears under “The problem” and step 01.
+  - The acquisition appears in the `dek`, `feature`, `indexLine`, and “Outcome.”
+
+Neuton.AI renders:
+
+- “Neuton.AI”
+  - Draft: `title` and `client`.
+- “Helped launch · 2025”
+  - Draft: `role`, `year`, `dek`, step 02, and “Outcome.”
+- “Technology acquired by Nordic Semiconductor · not a cap-table position”
+  - Draft: `dek`, `feature`, `indexLine`, and “Outcome.”
+  - The cap-table clarification appears explicitly in “Outcome.”
+
+Both ledger rows appear under “Position” and “The story the market repeats.” Each draft therefore names the positioning problem and includes a numbered positioning step. The surrounding home-page statement about staying until a narrative sells is general practice copy, not a company-specific fact.
+tokens used
+56,235
+No repo files were changed. I used the brainstorming skill to keep both drafts short and evidence-bound.
+
+### `content/work/postmates.mdx`
+
+```mdx
+---
+title: Postmates (Uber)
+dek: Postmates promised to deliver everything. As a product analyst, I worked on market and fraud analysis while helping narrow that promise around core offerings. Acquired by Uber in 2020 for $2.65B.
+role: Product analyst
+tools:
+  - Market analysis
+  - Fraud analysis
+  - Product positioning
+year: 2020
+status: shipped
+titleCardWords:
+  - EARLY.
+  - EVERYTHING.
+  - ANALYSIS.
+  - FOCUS.
+  - ACQUIRED.
+client: Postmates
+order: 5
+feature:
+  fig: $2.65B
+  line: acquisition by Uber in 2020, after work to narrow the promise around core offerings.
+indexLine: Market and fraud analysis in the wide-open era. Acquired by Uber in 2020 for $2.65B.
+---
+
+## The problem
+
+I joined Postmates early as a product analyst in 2020. The company sold everything, with a promise to deliver everything.
+
+Fraud was common within that wide-open model. One custom order requested 100 gallons of Hennessy in the Bronx.
+
+The positioning problem was the breadth of the promise. Postmates needed to focus on core offerings rather than promise delivery of everything.
+
+## What I did
+
+**01. Analysis.** I worked on market and fraud analysis across the wide-open model.
+
+**02. Positioning.** I helped Postmates cut back the promise and focus on its core offerings.
+
+## Outcome
+
+The promise shifted from delivering everything toward a narrower position around core offerings. Acquired by Uber in 2020 for $2.65B.
+
+Postmates was one of four companies behind my work that reached an exit.
+```
+
+### `content/work/neuton.mdx`
+
+```mdx
+---
+title: Neuton.AI
+dek: I helped launch a foreign AI company by positioning its product for North America in 2020. Nordic Semiconductor acquired the technology in 2025; the price was never disclosed.
+role: Helped launch
+tools:
+  - North American positioning
+  - Product launch
+year: 2025
+status: shipped
+titleCardWords:
+  - EARLY.
+  - AI.
+  - POSITIONING.
+  - LAUNCH.
+  - ACQUIRED.
+client: Neuton.AI
+order: 6
+feature:
+  fig: "2025"
+  line: technology acquired by Nordic Semiconductor. The price was never disclosed.
+indexLine: Helped launch through North American positioning in 2020. Technology acquired by Nordic Semiconductor in 2025; the price was never disclosed.
+---
+
+## The problem
+
+I joined Neuton.AI early in 2020, during the early days of AI products. As a foreign company, it needed help positioning the product for North America.
+
+## What I did
+
+**01. Positioning.** I worked on a North American position for the AI product.
+
+**02. Launch.** I helped launch Neuton.AI with that market position in place.
+
+## Outcome
+
+The positioning work came before Nordic Semiconductor acquired Neuton.AI's technology in 2025. The price was never disclosed.
+
+I held no cap-table position. Neuton.AI was one of four companies behind my work that reached an exit.
+```
+
+## 1. Stronger restatements and causal claims
+
+None.
+
+The Neuton draft deliberately says, “The positioning work came before Nordic Semiconductor acquired Neuton.AI's technology in 2025.” This preserves sequence without claiming that the positioning caused the acquisition.
+
+The Postmates draft also presents the positioning change and acquisition separately.
+
+## 2. Details requiring explicit publication approval
+
+- Postmates: “Fraud was common within that wide-open model.”
+- Postmates: The custom order for 100 gallons of Hennessy in the Bronx. This is the most sensitive detail.
+- Postmates: The internal shift from delivering everything toward core offerings.
+- Postmates: The claim that the operator personally helped narrow the promise.
+- Neuton.AI: Describing the client publicly as a foreign company.
+- Neuton.AI: Disclosing the 2020 North American positioning engagement.
+- Neuton.AI: Stating that the positioning preceded the acquisition.
+- Neuton.AI: “I held no cap-table position.” This already appears on the home page, but it remains a personal financial disclosure.
+
+## 3. Schema fields not directly supplied
+
+No requested field is empty. These values required editorial judgment:
+
+- `tools`: No software tools were supplied. I used evidence-backed activity names, following the Guardicore precedent.
+- `order`: I used `5` and `6` because the existing ordered studies occupy positions `1` through `4`.
+- `status`: I used `shipped` because both engagements and their stated outcomes are complete.
+- `titleCardWords`: These are editorial summaries drawn only from supplied facts.
+- `feature`: The schema comment says only the study with `order: 1` uses this field. I included it because the brief explicitly requested it, although these values may not render.
+- Neuton.AI `year`: I used `2025` as instructed, while the body identifies `2020` as the positioning and launch period.
+
+## 4. Home-page copy and draft locations
+
+Postmates renders:
+
+- “Postmates”
+  - Draft: `title` and `client`.
+- “Product analyst · 2020”
+  - Draft: `role`, `year`, and the first sentence under “The problem.”
+- “Market and fraud analysis in the wide-open era · acquired by Uber, $2.65B”
+  - Draft: `indexLine`.
+  - Market and fraud analysis also appears in the `dek` and step 01.
+  - The wide-open model appears under “The problem” and step 01.
+  - The acquisition appears in the `dek`, `feature`, `indexLine`, and “Outcome.”
+
+Neuton.AI renders:
+
+- “Neuton.AI”
+  - Draft: `title` and `client`.
+- “Helped launch · 2025”
+  - Draft: `role`, `year`, `dek`, step 02, and “Outcome.”
+- “Technology acquired by Nordic Semiconductor · not a cap-table position”
+  - Draft: `dek`, `feature`, `indexLine`, and “Outcome.”
+  - The cap-table clarification appears explicitly in “Outcome.”
+
+Both ledger rows appear under “Position” and “The story the market repeats.” Each draft therefore names the positioning problem and includes a numbered positioning step. The surrounding home-page statement about staying until a narrative sells is general practice copy, not a company-specific fact.

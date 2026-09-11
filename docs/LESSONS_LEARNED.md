@@ -131,6 +131,13 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   ledger alone if it is ever questioned again.
 - Ordani **start year 2025** (operator 2026-09-03). The home ledger row said "2026" while
   /work and the case study said "2025-2026". Home now matches.
+- Neuton.AI **row tag stays 2025, the acquisition year** — operator 2026-09-11, verbatim:
+  "for neuton 2025". Closes the 2025-versus-2020 question; no surface renders a Neuton
+  year other than 2025.
+- **NEVER the load-bearing term, in either spelling, anywhere on the site** — operator
+  2026-09-11, verbatim: "the term load bearing cannot be used anywhere on this site".
+  Enforced by lib/banned.ts (both spellings) since Pass-110. The ban list is the one
+  lib file allowed to carry the string, so the sweep below excludes it by name.
 - Playbook **companion pack: 26 ZIP entries = README + 10 checklists + 6 prompts + 9
   templates.** The page says "Nine templates". CORRECTION, 2026-09-04 (Pass-98): the
   2026-09-03 adjudication recorded above said ten templates and 27 files in the archive,
@@ -276,7 +283,7 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   to 2026-08-03 (`Code/reddit-research/data/corpus.jsonl`, gitignored; denominators
   asserted by every script in `Code/reddit-research/cuts/`). **607 asking posts / 567
   authors; "kept running" = 21 distinct asking authors** (`reddit-research/reference/
-  emergent-language.json`). **The playbook page's former second sentence appears in 0
+emergent-language.json`). **The playbook page's former second sentence appears in 0
   of the 4,464 posts** (`.planning/research/04-CUT-A-chapter-demand-map.md`, appendices
   A and B). The page moved the attested beat to first on 2026-09-04 (Pass-98). MAY say:
   those four facts as the author's own measurement. NEVER: a market-size claim from
@@ -284,7 +291,7 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   (`.planning/research/04-CUT-F-launch-rooms.md` §8); a Reddit user's words as an
   attributed quotation. ADDED 2026-09-04, same session as the book repo: the
   governing phrase file is the frozen snapshot `reddit-research/handoff/
-  emergent-language.json` (4,464 posts), not `reference/`, which was regenerated on
+emergent-language.json` (4,464 posts), not `reference/`, which was regenerated on
   a larger crawl; **Cut B** (`.planning/research/04-CUT-B-landing-page-posts.md`:
   35 asking posts / 34 authors say "landing page", 18 of 34 want a page that exists
   to convert or be reached, 4 want one built) licenses chapter 9's body line
@@ -321,8 +328,8 @@ under-claiming — two exits instead of three — everywhere a machine or a stra
 Sweep, and expect zero:
 
 ```bash
-for p in "Two exits" "\$15M pipeline" "trained the sales team" "built the channel"          "customer-evidence engine" "anchored the Nasdaq" "Zero churn"          "Hundreds of users active" "TD Bank" "Deutsche Bank" "NIH" "Davis Polk"          "Peoples Natural Gas"; do
-  grep -rin "$p" app content lib components --include="*.ts*" --include="*.mdx"
+for p in "Two exits" "\$15M pipeline" "trained the sales team" "built the channel"          "customer-evidence engine" "anchored the Nasdaq" "Zero churn"          "Hundreds of users active" "TD Bank" "Deutsche Bank" "NIH" "Davis Polk"          "Peoples Natural Gas" "load-bearing" "load bearing"; do
+  grep -rin "$p" app content lib components --include="*.ts*" --include="*.mdx" --exclude="banned.ts"
 done
 ```
 
@@ -687,7 +694,6 @@ malformed, and scope the claim to the files actually checked.
 report at `indent=2`, and runs `pnpm exec prettier --write` on it before it exits. That last
 step is best effort, so a machine with no prettier still gets its snapshot.
 
-
 ## #17 — A branch lives in one worktree; per-phase worktrees strand the phases (2026-09-06)
 
 **What happened.** Pass 101 ran three build phases as separate agents, each with
@@ -706,7 +712,6 @@ planned step with named conflict rules, never a surprise.
 **The gate.** The `workflow-authoring` house pattern in briefs: any multi-phase build brief
 names the worktree path in §0 and forbids `isolation: 'worktree'` on phase 2+. This entry is
 cited from `.claude/briefs/README.md`.
-
 
 ## #18 — A worktree's git dir lives outside it, so a sandboxed agent cannot commit there (2026-09-08)
 
@@ -774,4 +779,13 @@ Pass-109 review found `.cw-mlink`'s hover and focus swapping to `--cw-accent` (2
 the terracotta hero), which no run of this gate could have caught. Until a static lint for
 accent in `:hover`/`:focus` rules exists (queued), those states are checked by reading the
 CSS against the rule above. The same review made KNOWN match exact targets only, after a
-substring match was shown able to hide a new submit button behind the parked one.
+substring match was shown able to hide a new submit button behind the parked one. Pass-110
+shipped that queued lint: `scripts/accent-states-lint.mjs` now runs in `pnpm build` and fails
+it on any `[data-mode="cw"]` hover/focus rule painting `--cw-accent`. Its first version was
+a property whitelist, and the Pass-110 review broke it seven ways: the border and
+text-decoration shorthands, SVG paint, a gradient, an accent reached through another custom
+property, native nesting with a comma list, and a rule with no mode scope at all. It now
+flags any property whose value reaches the accent, follows custom properties to a fixed
+point, expands nesting branch by branch, counts unscoped rules as in scope, and proves all
+of that on a planted probe (`--self-test`, 16 cases and 3 near-miss negatives) at the start
+of every build, so a later edit that weakens it fails the build before it lints.

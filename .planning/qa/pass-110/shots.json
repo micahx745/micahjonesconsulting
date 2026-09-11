@@ -1,0 +1,74 @@
+[
+  {
+    "route": "/",
+    "name": "home-hero",
+    "v": "1440",
+    "found": true,
+    "world": "#9E3C25",
+    "file": ".planning\\qa\\pass-110\\home-hero-1440.png"
+  },
+  {
+    "route": "/",
+    "name": "home-hero",
+    "v": "390",
+    "found": true,
+    "world": "#9E3C25",
+    "file": ".planning\\qa\\pass-110\\home-hero-390.png"
+  },
+  {
+    "route": "/",
+    "name": "home-doors",
+    "v": "1440",
+    "found": true,
+    "world": "#ECE3D0",
+    "file": ".planning\\qa\\pass-110\\home-doors-1440.png"
+  },
+  {
+    "route": "/",
+    "name": "home-doors",
+    "v": "390",
+    "found": true,
+    "world": "#ECE3D0",
+    "file": ".planning\\qa\\pass-110\\home-doors-390.png"
+  },
+  {
+    "route": "/",
+    "name": "home-ordani-form",
+    "v": "1440",
+    "found": true,
+    "world": "#1A4548",
+    "file": ".planning\\qa\\pass-110\\home-ordani-form-1440.png"
+  },
+  {
+    "route": "/",
+    "name": "home-ordani-form",
+    "v": "390",
+    "found": true,
+    "world": "#1A4548",
+    "file": ".planning\\qa\\pass-110\\home-ordani-form-390.png"
+  },
+  {
+    "route": "/services",
+    "name": "svc-proof",
+    "v": "1440",
+    "found": true,
+    "world": "#ECE3D0",
+    "file": ".planning\\qa\\pass-110\\svc-proof-1440.png"
+  },
+  {
+    "route": "/services",
+    "name": "svc-lede-link",
+    "v": "1440",
+    "found": true,
+    "world": "#ECE3D0",
+    "file": ".planning\\qa\\pass-110\\svc-lede-link-1440.png"
+  },
+  {
+    "route": "/playbook",
+    "name": "playbook-signup",
+    "v": "1440",
+    "found": true,
+    "world": "#ECE3D0",
+    "file": ".planning\\qa\\pass-110\\playbook-signup-1440.png"
+  }
+]

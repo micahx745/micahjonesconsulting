@@ -114,37 +114,16 @@ const VIEWPORTS = [
 // swallowed any future submit button's failure (Pass-109 review, gate lens).
 // Now a new element never collides with a parked one: if a sibling appears and
 // axe has to qualify a parked selector, both surface as NEW, loudly.
-// Baseline: HEAD b1ff9b5, before any Pass-109 change, 2026-09-10: 25 findings,
-// all below. /packages entries come from a scan of a page Pass-109 did not
-// touch (empty diff, none of its changed classes used there). Each is an OPEN
-// item, not an accepted one; delete its line in the commit that fixes it.
+// Baseline: HEAD b1ff9b5, before any Pass-109 change, 2026-09-10: 25 findings.
+// Pass-110 (2026-09-11) cleared all three parked groups — the home doors
+// panel (bone labels on the fixed fills, leftover /services rules deleted),
+// the Ordani beta submit button (--cw-fg fill, --cw-bg label), and
+// .cw-lede-link (inherit + currentColor rule) — so KNOWN is empty. An entry
+// here is an OPEN item, never an accepted one; delete its line in the commit
+// that fixes it, and never add one to let a change through.
 const known = (route, reason, targets) =>
   targets.map((target) => ({ route, rule: "color-contrast", target, reason }));
-const KNOWN = [
-  // Home doors panel: fixed door fills (terracotta, petrol) under text that
-  // inherits the world's colours; 1.38:1 at worst. The LESSONS #19 trap, from
-  // the fill side.
-  ...known("/", "doors panel, fixed fill under inherited text", [
-    ".cw-door--build > .cw-door__kicker",
-    ".cw-door--build > .cw-door__title",
-    ".cw-door--build > .cw-door__body",
-    ".cw-door--sell > .cw-door__kicker",
-    ".cw-door--sell > .cw-door__title",
-    ".cw-door--sell > .cw-door__body",
-    ".cw-door--sell > .cw-door__cta",
-    '.cw-door__cta[href$="playbook"]',
-    '.cw-door__cta[href$="packages"]',
-  ]),
-  // OrdaniBetaForm's submit: bone on saffron in the petrol world, 2.05:1.
-  // Pass-108 misattributed this pair to the hero pill.
-  ...known("/", "Ordani beta submit, bone on saffron 2.05:1", [
-    'button[type="submit"]',
-  ]),
-  // 4.4:1 against 4.5:1; a RESUME OPEN item, reported failing on main too.
-  ...known("/services", ".cw-lede-link 4.4:1, RESUME OPEN", [".cw-lede-link"]),
-  // Same element and ratio on /packages, a page Pass-109 did not touch.
-  ...known("/packages", ".cw-lede-link 4.4:1, RESUME OPEN", [".cw-lede-link"]),
-];
+const KNOWN = [];
 
 const isKnown = (v) =>
   KNOWN.some(

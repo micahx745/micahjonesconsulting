@@ -1,0 +1,56 @@
+▲ Next.js 16.2.6 (webpack)
+- Experiments (use with caution):
+  ✓ viewTransition
+
+  Creating an optimized production build ...
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Parsing of C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\node_modules\.pnpm\@next+mdx@16.2.6_@mdx-js+lo_b09429d94f286dac325bd247b04ca310\node_modules\@next\mdx\mdx-js-loader.js for build dependencies failed at 'import(process.platform === 'win32' ? pathToFileURL(path) : path)'.
+<w> Build dependencies behind this expression are ignored and might cause incorrect cache invalidation.
+✓ Compiled successfully in 3.4s
+  Running TypeScript ...
+  Finished TypeScript in 2.8s ...
+  Collecting page data using 26 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 26 workers (0/23) ...
+  Generating static pages using 26 workers (5/23) 
+  Generating static pages using 26 workers (11/23) 
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 26 workers (17/23) 
+✓ Generating static pages using 26 workers (23/23) in 1072ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /about/opengraph-image-10qg6g
+├ ƒ /api/stripe/webhook
+├ ○ /call
+├ ○ /call/kickoff
+├ ○ /contact
+├ ○ /icon.svg
+├ ƒ /llms.txt
+├ ƒ /opengraph-image-1o6u9y
+├ ○ /packages
+├ ○ /playbook
+├ ƒ /playbook/opengraph-image-63v67u
+├ ○ /playbook/thanks
+├ ○ /robots.txt
+├ ○ /services
+├ ○ /services/thanks
+├ ○ /sitemap.xml
+├ ○ /work
+├ ● /work/[slug]
+│ ├ /work/guardicore
+│ ├ /work/ordani
+│ ├ /work/rfp-engine
+│ └ /work/content-engine
+├ ƒ /work/[slug]/opengraph-image-oti546
+└ ƒ /work/opengraph-image-xevl18
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

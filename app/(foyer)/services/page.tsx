@@ -354,8 +354,8 @@ export default function ServicesPage() {
                 href="/work/guardicore"
                 className="cw-door__case cw-sv-open__case"
               >
-                See how I helped a foreign company break into the North American
-                market and get acquired
+                See how I helped Guardicore, a Tel Aviv security company, break
+                into the North American market and get acquired by Akamai
                 <span aria-hidden> &rarr;</span>
               </a>
             </div>

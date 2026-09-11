@@ -1,6 +1,6 @@
 // app/api/stripe/webhook/route.ts
 //
-// The load-bearing wall (chapter 6, § 06.3). This is the ONLY place a
+// The wall everything rests on (chapter 6, § 06.3). This is the ONLY place a
 // purchase is granted: Stripe calls here, the signature is verified
 // against STRIPE_WEBHOOK_SECRET, and the verified event drives the
 // delivery email (book PDF + companion ZIP). The /playbook/thanks page

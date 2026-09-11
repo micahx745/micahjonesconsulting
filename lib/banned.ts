@@ -1,5 +1,5 @@
 // Source: blueprint §8 top-9 banned words + harness slop-words.txt defaults + research extensions.
-// Total: 35 words/phrases. Used by lib/copy-lint.ts (build-time scanner) and harness copy-lint.sh hook.
+// Total: 37 words/phrases. Used by lib/copy-lint.ts (build-time scanner) and harness copy-lint.sh hook.
 //
 // Conventions:
 //   - All entries are lowercase.
@@ -48,6 +48,10 @@ export const BANNED_WORDS = [
   "best-selling",
   "bestseller",
   "fastest-growing",
+  // Operator 2026-09-11 (Pass-110, LESSONS #3 ledger): the term is banned
+  // everywhere on the site, both spellings.
+  "load-bearing",
+  "load bearing",
 ] as const;
 
 export type BannedWord = (typeof BANNED_WORDS)[number];

@@ -233,19 +233,18 @@ export function Hero() {
           intent survives: every filled pill on this page is the SAME action, and
           it goes where the offer section's own "Start the Audit" goes,
           /packages, which opens on the Audit card. Colour is --cw-fg / --cw-bg,
-          never --cw-accent: see .cw-buy in globals.css for the four worlds. */}
+          never --cw-accent: see .cw-buy in globals.css for the four worlds.
+          Pass-110, operator 2026-09-11: the price and duration beside the
+          pill were cut as pointless. */}
       <div className="cw-cta-row" ref={ctaRowRef}>
-        <span className="cw-buy-group">
-          <MagneticArea>
-            <a href="/packages" className="cw-buy">
-              Start the Audit{" "}
-              <span className="cw-arr" aria-hidden>
-                →
-              </span>
-            </a>
-          </MagneticArea>
-          <span className="cw-buy-meta">$2,500 · two weeks</span>
-        </span>
+        <MagneticArea>
+          <a href="/packages" className="cw-buy">
+            Start the Audit{" "}
+            <span className="cw-arr" aria-hidden>
+              →
+            </span>
+          </a>
+        </MagneticArea>
         <a href="#products" className="cw-mlink">
           See the work <span aria-hidden>↓</span>
         </a>

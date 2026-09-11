@@ -1,0 +1,63 @@
+=== tsc ===
+tsc exit: 0
+=== copy-lint ===
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+copy-lint exit: 0
+=== vendor ===
+vendor-gate: clean
+vendor exit: 0
+=== retired phrases ===
+retired-phrases-gate: clean
+retired exit: 0
+=== accent states ===
+accent-states-lint: clean
+accent-states exit: 0
+=== load-bearing sweep (expect only banned.ts, brand.json, LESSONS) ===
+lib/banned.ts:53:  "load-bearing",
+lib/banned.ts:54:  "load bearing",
+docs/LESSONS_LEARNED.md:137:- **NEVER the load-bearing term, in either spelling, anywhere on the site** — operator
+docs/LESSONS_LEARNED.md:138:  2026-09-11, verbatim: "the term load bearing cannot be used anywhere on this site".
+docs/LESSONS_LEARNED.md:331:for p in "Two exits" "\$15M pipeline" "trained the sales team" "built the channel"          "customer-evidence e
+.claude/brand.json:120:      "load-bearing",
+.claude/brand.json:121:      "load bearing"
+=== prettier (write, then check) ===
+[90mapp/globals.css[39m 213ms (unchanged)
+app/(foyer)/page.tsx 71ms
+app/(foyer)/services/page.tsx 36ms
+[90mcomponents/color-worlds/Hero.tsx[39m 10ms (unchanged)
+[90mscripts/axe-worlds.mjs[39m 34ms (unchanged)
+scripts/accent-states-lint.mjs 7ms
+[90mlib/banned.ts[39m 2ms (unchanged)
+[90mapp/api/stripe/webhook/route.ts[39m 6ms (unchanged)
+Checking formatting...
+All matched files use Prettier code style!
+prettier-check exit: 0
+=== build (webpack; pnpm build FAILS on this machine with a font error) ===
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Parsing of C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\node_modules\.pnpm\@next+mdx@16.2.6_@mdx-js+lo_b09429d94f286dac325bd247b04ca310\node_modules\@next\mdx\mdx-js-loader.js for build dependencies failed at 'import(process.platform === 'win32' ? pathToFileURL(path) : path)'.
+✓ Compiled successfully in 4.5s
+build exit: 0
+=== restart server on 3200 ===
+=== render-gate ===
+render-gate: 15 routes — links resolve, fragments exist, metadata within limits.
+render-gate exit: 0
+=== axe-worlds on / /services /packages (the world gate) ===
+axe-worlds: / @1440  18 stops  terracotta=#9E3C25, espresso=#2A1F18, petrol=#1A4548, bone=#ECE3D0  (cannot reach centre: terracotta)
+axe-worlds: / @390  23 stops  terracotta=#9E3C25, espresso=#2A1F18, petrol=#1A4548, bone=#ECE3D0  (cannot reach centre: terracotta)
+axe-worlds: /services @1440  13 stops  bone=#ECE3D0, espresso=#2A1F18
+axe-worlds: /services @390  18 stops  bone=#ECE3D0, espresso=#2A1F18
+axe-worlds: /packages @1440  6 stops  bone=#ECE3D0
+axe-worlds: /packages @390  8 stops  bone=#ECE3D0
+axe-worlds: axe-core 4.13.0, 92 scans, 0 serious/critical finding(s), 0 not in KNOWN
+axe-worlds exit: 0
+=== captures ===
+shot .planning\qa\pass-110\home-hero-1440.png  found=true  world=#9E3C25
+shot .planning\qa\pass-110\home-hero-390.png  found=true  world=#9E3C25
+shot .planning\qa\pass-110\home-doors-1440.png  found=true  world=#ECE3D0
+shot .planning\qa\pass-110\home-doors-390.png  found=true  world=#ECE3D0
+shot .planning\qa\pass-110\home-ordani-form-1440.png  found=true  world=#1A4548
+shot .planning\qa\pass-110\home-ordani-form-390.png  found=true  world=#1A4548
+shot .planning\qa\pass-110\svc-proof-1440.png  found=true  world=#ECE3D0
+shot .planning\qa\pass-110\svc-lede-link-1440.png  found=true  world=#ECE3D0
+shot .planning\qa\pass-110\playbook-signup-1440.png  found=true  world=#ECE3D0
+shots exit: 0
+=== ALL GATES RUN ===
