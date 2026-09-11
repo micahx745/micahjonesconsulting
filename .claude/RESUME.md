@@ -18,7 +18,8 @@ executes briefs, Sol `gpt-5.6-sol` drafts, Astra judges, Claude rules and verifi
   cut; the phone Audit button sits above the list). New gates: `scripts/layout-gate.mjs`
   (battery) and the GSAP gate's self-test (build). LESSONS #20-22. `sol111a.log` (4.1MB)
   is left out of git on purpose.
-- Next: pushing needs the operator's yes. Pass-111b waits on answers 1-3.
+- PUSH approved, operator 2026-09-11, verbatim: "yeah push" (`design/live-evolve`, a
+  preview branch; `main` is untouched). Pass-111b waits on answers 1-3.
 
 ## Waiting on the operator (asked 2026-09-11)
 
