@@ -1,52 +1,41 @@
 # RESUME — micahjonesconsulting (2026-09-11)
 
 ## READ FIRST
+Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
+`.claude/worktrees/p106-live`), ahead of `main`. `pnpm build` fails HERE only:
+use `npx next build --webpack`. Battery gotcha found Pass-112: tsc runs BEFORE
+build and reads the PREVIOUS build's `.next/types` — after deleting routes it
+reports phantom TS2307s; re-run tsc after a fresh build before believing it.
 
-Dark rebuild REJECTED; the LIVE site is evolved on `design/live-evolve` (worktree
-`.claude/worktrees/p106-live`), ahead of `main`. `pnpm build` fails HERE only: use
-`npx next build --webpack`. Routing = MODEL_ROUTING §9d: conserve Claude. GLM 5.3 executes,
-Sol when GLM is capped, Astra judges, Fable/Opus rule only (≤15 calls/arc). Subagent default
-`sonnet`; name `model:` on every Agent/Workflow call.
+## Pass-112 EXECUTED, STOPPED BEFORE COMMIT — one ruling needed
+Sections 1-5 done in the worktree (deletions staged via git rm; edits, gate,
+battery files uncommitted; nothing pushed). ALL battery checks green EXCEPT
+the retired-phrases gate: exit 1, `app/api/stripe/webhook/route.ts:28` — the
+import `"@/lib/playbook-delivery"` contains the substring `/playbook`. Brief
+§0 keeps the webhook `book` branch (refunds); §3 pins exemptions to
+catalog.ts + playbook-delivery.ts only. Deterministic false positive, node-
+verified. Self-test 15 planted / 15 near misses, exit 0.
+Fix options: (a) EXEMPT_FILES += the webhook route — RECOMMENDED, same
+money-path rationale as the other two + add an import-path self-test fixture;
+(b) boundary-match the phrase "/playbook" (not followed by "-"); (c) dynamic
+import inside the webhook branch — worst, rewrites money code for a gate.
+Then: rerun self-test + gate → §7 commit (subject/body per brief; explicit
+paths; -F message file) → RESUME commit → judge look §9 (≤5 calls) → 111b.
+Battery rest: tsc 0 post-build (2 in-battery = stale types), copy-lint 0,
+vendor 0, accent/gsap x2 0, prettier 0, build 0 + 0 playbook in log, 404
+404, served mentions 0 on 10 routes, nav 4, render 0, axe 0, layout 0,
+shots 0 (14 PNGs, viewport-sized, `home-nav-open-390` shows 4 items).
 
-## Rulings 2026-09-11 (operator, question box; verbatim where quoted)
-
-1 Pricing: Advisory-only floor; strip the every-engagement $5K claim (metadata, /packages).
-2 Promises: ALL approved (A1-A3, P1-P3, R1-R2, E1-E3, ALL1, U1-U3, AU1, S1-S2). A4 + S3
-  await his text.
-3 Area pick: wire through (`metadata.area` every package, server-validated, replaces Audit's
-  Stripe dropdown, in kickoff email). NC-X3 yes: `/call?shape=` prefills the note.
-4 $20M+ count-up: EXCEPTION APPROVED (dated R13/R15 override; home only, once, skip under
-  reduced motion, finished no-JS state). Record in DESIGN_BAR + brand.json first.
-5 Case studies: neutralize (drop Hennessy + "foreign"; acquisition non-causal).
-6 Ordani: lifestyle-only approved; section unchanged.
-7 Book: "the book should not be mentioned or shown on the site yet. im still working on it".
-  Same day: ALL1 + kickoff attachment dropped; /playbook 404 (no redirect); own pass first.
-8 `$5B+`: keep.
-9 Rename: "AI engineering" (/services + llms.txt).
-
-## State
-
-Pass-110/111a pushed (7d2c9b4); handoff + rulings unpushed. GLM 429 at boot, reset
-2026-09-12 06:26:46 z.ai. This chat: default config dir, on Opus;
-Sonnet-medium recommended. Vercel MCP needs OAuth.
-
-## NEXT
-
-Pass-112 brief WRITTEN: `.claude/briefs/pass-112-book-off-the-site.md`. Dispatch GLM
-(`-Batch` pointer prompt) after the 06:26 reset → judge look (≤5) → then 111b brief.
+## Rulings 2026-09-11
+#7 book off site is now in LESSONS #3 + the gate. Others unchanged: pricing
+floor, promises, area pick, $20M+ exception, case studies, $5B+, rename.
 
 ## Waiting on the operator
-
-A4/S3 text · deactivate Stripe playbook-99 · merge to `main` · $500 live test · §9a.
-
-## OPEN
-
-Vendor gate self-test (#21) · case-study body low under rail (Astra d) ·
-`claude-glm.ps1 -Brief` sends literal `$Brief`: use `-Batch` + pointer.
+Gate-fix ruling (a/b/c above) · A4/S3 text · deactivate Stripe playbook-99 ·
+merge to `main` · $500 live test · §9a.
 
 ## Traps
-
-push to main auto-deploys · capture VIEWPORT after settle · `python -P` · Git Bash:
-`MSYS_NO_PATHCONV=1` for "/" args · no exit codes through a pipe · never edit a running
-script (#22) · PS 5.1 splits args at quotes: heredoc or `-F` · >1 world renders:
-no fixed text colour, no opacity on text, no `--cw-accent` under text.
+push to main auto-deploys · never edit a running script (#22) · Git Bash:
+`MSYS_NO_PATHCONV=1` · no exit codes through a pipe · md docs were never
+prettier-clean — never `--write` them · >1 world renders: no fixed text
+colour, no opacity on text.
