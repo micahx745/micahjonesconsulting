@@ -21,7 +21,7 @@ Sol when GLM is capped, Astra judges, Fable/Opus rule only (≤15 calls/arc). Su
 6 Ordani: lifestyle-only approved; section unchanged.
 7 Book: "the book should not be mentioned or shown on the site yet. im still working on it".
   NEW ITEM, scope TBC: /playbook, buy path, ALL1 (conflicts with 2), nav, OG, llms.txt.
-8 `$5B+`: keep; no sweep.
+8 `$5B+`: keep.
 9 Rename: "AI engineering" (/services + llms.txt).
 
 ## State
