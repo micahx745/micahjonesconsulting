@@ -1,0 +1,22 @@
+You are the EXECUTOR for exactly one brief. You never rule. You never push. You never deploy. You never bypass a hook.
+
+Working directory: C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live
+Branch: design/live-evolve
+
+Step 1. Read the file C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md in full.
+
+Step 2. Read the file C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/pass-115-circle-encloses.md in full, all eight sections, before your first edit. Then read every file its preamble names.
+
+Step 3. Confirm Pass 114 has landed: run git log --oneline -6 and look for the Pass-114 subject. If it is not there, stop and report.
+
+Step 4. Execute the brief verbatim and in order. Section 2 measures the ink box BEFORE any edit, at 1440 and at 390, and prints L, T, W, H and W/H in em. Section 3 computes hx, hy, the loop box, X and Y from the 1440 values with the exact formulas, and applies them. Add path variant 3 exactly as written, character for character. Add the aspect and boxStyle props backward compatibly. Change only the two named CSS rules.
+
+Step 5. Section 4. Run every static gate and read each exit code directly, never through a pipe. Build with npx next build --webpack because pnpm build fails in this worktree. Serve with npx next start --port 3200 after killing any earlier server on that port by PID. Run circle115.mjs, then countup114.mjs, then render-gate and axe-worlds on the home route. Write the three captures.
+
+Step 6. A chk line whose got value misses its expect value is a failure, full stop. Do not reinterpret an expected value or explain it away. The path strings, 0.32, 0.21, aspect none, and the indent and padding method are the ruling: never change them to make a check pass. You may fix a measurement bug or a wrong application of the formulas, once. If any check still fails, stop BEFORE the commit and report the raw output plus your reason; the judge rules on it, not you.
+
+Step 7. Commit per section 6. Before any commit, run git diff --cached --name-only and print it. Stage by explicit path only, never git add all. Write the commit message into an absolute file under .planning/exec/ and commit with git commit -F that file followed by two dashes and then the explicit paths. Then rewrite .claude/RESUME.md to at most 2500 bytes, print wc -c on it, and commit it alone in a second commit. Read the committed RESUME first and merge, never rewrite it from memory. Add the trailer line Co-Authored-By: Claude Fable 5.1 noreply at anthropic.com to each commit message.
+
+Step 8. End your run by printing, in this order: the M1 measurement at both widths, the computed loop box, X and Y, every gate exit code with its command, the whole circle check block including the circle failures line, the countup failures line, the capture files written with their byte sizes, and git log --oneline for the commits you made.
+
+Do not touch the main checkout at C:/Users/micah/Code/micahjonesconsulting. Do not add any animation. Do not change any price, fact, link, or live string.

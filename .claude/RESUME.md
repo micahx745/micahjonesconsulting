@@ -16,15 +16,13 @@ CLS 0, final value at 1202ms, once only, finished frame without JS; LOW-7 held.
 One disclosed mechanism addition: arriving in view while still waiting settles
 instantly (a single jump never crosses the arm root; assertion 7 needed it).
 
-## PARKED FOR OPERATOR: the hand circle (Astra, one look, 2026-09-12)
-Q1 authored proof or ticker: PASS (reads as a deliberate reveal).
-Q2 circle lands on the number: FAIL. The dollar sign breaks the oval top and
-bottom, the plus sits outside the right stroke, biased left at 390. Geometry is
-PRE-114 (Pass-111a, live now): 114 left wrap, ghost and HandCircle markup as-is.
-A fix is a new pass (resize + recentre, clearance at 1440 and 390): his call.
-Review file: .planning/reviews/astra-114-countup.md
+## NOW: Pass-115, the circle (brief .claude/briefs/pass-115-circle-encloses.md)
+Astra 114 Q2 FAILED the loop (pre-114 geometry). Operator 2026-09-12, verbatim:
+"fix the circle then push". Ruling: rounded hand loop variant 3 sized in em from
+the measured ink box, figure indented so the loop edge sits on the column edge.
+GLM executes; judge + one Astra look; then push design/live-evolve ONLY.
 
-## NEXT: his push ruling on 113 + 114 (main auto-deploys), then CARD 1.
+## Main ff to production: separate operator go-ahead (push to main deploys).
 ## LIVE: main = a71788a, dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains,
 CARD 1 19/19. Local main behind origin: operator pulls. 112 pushed (b5de535).
 ## Waiting on operator: Stripe playbook-99 off + LIVE Audit description to
