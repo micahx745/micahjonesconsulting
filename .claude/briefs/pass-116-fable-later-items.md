@@ -184,3 +184,33 @@ The before and after C12/C13/C14 blocks, `circle failures`, `countup failures`,
 `card1 failures` for localhost, and the captures `home-exits-1440` and
 `work-postmates-body-1440`. Then one Astra look at the two copy captures. Deploying is a
 separate operator go-ahead.
+
+## 7. Judge ruling after the bite gate (2026-09-12)
+
+The executor stopped correctly: C12 hidden bit (0.632) and C14 bit (3 hidden frames); C13
+passed on the unchanged build. Its diagnosis is right for the path §3 named: every link
+leaving `/` is a plain `<a>` (`components/color-worlds/Nav.tsx:197`), so leaving the home
+page is a full document load and Back restores that document without a remount.
+
+The defect is still reachable. Case-study pages link home through `ViewTransitionLink`, a
+`next/link` wrapper (`app/(theater)/work/[slug]/page.tsx:287`, class
+`case-study__nav-link`), which is a client navigation. Back and Forward between two client
+entries in one document remount `RevenueFigure`, and the unchanged build replays the count.
+Item B stands. **C13 is re-specified as follows; C12 and C14 stand as written.**
+
+**C13 once per load (re-specified).** Viewport 1440x900, reduced motion off, the
+executor's `docLoads` counter installed through `evaluateOnNewDocument`.
+1. Load `/work/postmates` (full load, `docLoads` 1). Click `a.case-study__nav-link[href="/"]`.
+   Wait for path `/` plus 800ms. Confirm `docLoads` is still 1, else invalid and counted.
+2. Run the real play (arm zone, hold 250ms, centre, poll 3200ms). Sanity: the first
+   non-final text seen is `$0M`, which proves a live mounted instance played; else invalid,
+   counted.
+3. `window.scrollTo(0, 0)`, wait 300ms. `page.goBack()`, wait for path `/work/postmates`
+   plus 800ms. `page.goForward()`, wait for path `/` plus 800ms. Confirm `docLoads` is still
+   1 (same document, client navigation both ways), else invalid and counted. Confirm the
+   wrap's top is below the fold, else scroll to 0 once and re-check; still not below, invalid.
+4. Arm zone, hold 250ms, centre, poll every 50ms for 3200ms:
+   `C13 texts after client back and forward: got [...], expect ["$20M+"]`.
+
+Resume at §3 step 1: re-run `--p116` on the unchanged build. All three of C12 hidden, C13
+and C14 must FAIL. Then continue with the rest of the brief unchanged.

@@ -1,0 +1,20 @@
+You are the EXECUTOR for exactly one brief, resuming a stopped run. You never rule. You never push. You never deploy. You never bypass a hook.
+
+Working directory: C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live
+Branch: design/live-evolve
+
+Step 1. Read C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md and then the brief C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/pass-116-fable-later-items.md in full, all eight sections. Section 7 is the judge's ruling on your stopped run and it re-specifies C13.
+
+Step 2. Your previous run already added C12, C13 and C14 to .planning/exec/circle115.mjs behind --p116, uncommitted. Keep C12 and C14 exactly as they are. Rewrite only C13 to match section 7 exactly, including the docLoads checks and the invalid conditions.
+
+Step 3. The existing .next build is still the unchanged shipped code. Stop any server on port 3200 with PowerShell Stop-Process by PID, start npx next start --port 3200, and run node .planning/exec/circle115.mjs --p116. C12 hidden, C13 and C14 must each FAIL. If any of them passes or reports invalid, stop, edit no component, and report the raw block. Restore any rewritten .planning/qa/pass-115 captures with git checkout.
+
+Step 4. Then continue with the brief exactly as written from section 3 step 2 onward: apply sections 1 and 2 character for character, run every static gate reading each exit code directly and never through a pipe, build with npx next build --webpack, restart the server by PID, run circle115.mjs with --out .planning/qa/pass-116 and --p116, countup114.mjs, git checkout the pass-114 PNGs, render-gate, axe-worlds on the home route, and card1-115.sh against http://localhost:3200. Write the captures.
+
+Step 5. A chk line whose got value misses its expect value is a failure, full stop. Do not reinterpret an expected value. Never change a threshold, a copy string, a timing, or a section 2 method to pass. You may fix a measurement bug in a script once. If any check still fails, stop BEFORE the commit and report the raw output plus your reason; the judge rules on it.
+
+Step 6. Commit per section 5, with the failing C12, C13 and C14 lines from step 3 and the passing lines after the fix in the body. Before any commit, run git diff --cached --name-only and print it. Stage by explicit path only. Write the message into an absolute file under .planning/exec/ and commit with git commit -F that file followed by two dashes and the explicit paths. Then rewrite .claude/RESUME.md to at most 2500 bytes, merged from the committed file, print wc -c, and commit it alone. Add the trailer Co-Authored-By: Claude Fable 5.1 noreply at anthropic.com to each message.
+
+Step 7. End by printing: the C12, C13 and C14 lines from the unchanged build, every gate exit code with its command, the final circle block with its failures line, the countup failures line, the card1 localhost block with its failures line, the captures with byte sizes, the words UNVERIFIED IN RENDER for HandUnderline, and git log --oneline for your commits.
+
+Do not touch the main checkout. Do not change any price, fact, link, or live string beyond the two copy strings in section 1.
