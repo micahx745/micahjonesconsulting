@@ -548,3 +548,77 @@ colour rule changed; they did not.
 `.planning/exec/pass111b-executor.log`, `.planning/exec/glm111b.log` and
 `.planning/qa/pass-111b/` to the list. Do not stage the `commit-msg-*.txt` scratch files or
 any Pass-112 leftovers. Do not push.
+
+## 15. Fix-list from the Astra verdict + judge look 2 (2026-09-11, on commit 65680e0)
+
+Astra: FIX (`.planning/reviews/ASTRA-111B-VERDICT.md`). The judge confirmed its first
+finding on `sv-shapes-1440` (the Project figure spills past its box) and the dead space
+above the shape CTAs, and found one more on `sv-pkgs-1440`. Rulings, in order. Everything
+here is mechanical unless marked OPERATOR. Where this section conflicts with §2 or §14,
+this section wins.
+
+**A1. The figure spill (Astra 1).** At `≥1360px`, every figure in the shapes band shares one
+size: `[data-mode="cw"] .cw-pband--shapes .cw-pbox__fig { font-size: 44px; }`. Not
+Project alone; a band with one smaller figure reads as a mistake. The packages band keeps
+its size. Same-day gate: `scripts/layout-gate.mjs` gains a `spill` rule: for every element
+matching `.cw-pbox__fig, .cw-pbox__name, .cw-pbox__price`, its `getBoundingClientRect().right`
+must be ≤ its closest `.cw-pbox`'s `.right - 1`, at every route and width the gate already
+loads. Its `--self-test` plants one box with a 400px nowrap figure in a 300px box (must be
+caught) and one whose figure ends exactly at the padding edge (must pass). Print the new
+counts.
+
+**A2. Dead space above the shape CTAs (Astra 5, scoped).** Apply Astra's spacing to
+`/services` boxes only, via `[data-mode="cw"] .cw-sv .cw-pbox`: inner padding 24px (lead
+23px, so borders stay aligned); `.cw-pbox__list` margin-top 16px, padding-top 0; list items
+8px vertical padding; `.cw-pbox__act` padding-top 20px. The home box is untouched. The
+height gate stays ≤800 at 1440 and 1280; report the 14 heights again; the 700 target is
+reported, not gated.
+
+**A3. "Why one person" heading (Astra 3).** `.cw-sv-objection__h` becomes a heading, not a
+kicker: display family (Bricolage), 24px, weight 800, line-height 1.1, normal tracking,
+`text-transform: none`, and NO opacity (that `opacity: .75` on text was a LESSONS #19
+violation sitting in a pre-existing rule). Words unchanged.
+
+**A4. Fit paragraph leading (Astra 4).** `.cw-pbox__fit` `line-height: 1.5` (R3). Applies
+to every box, including home.
+
+**A5. The band footer rule (judge).** `.cw-pband__foot` spans the band: `max-width: none;
+width: 100%` inside `.cw-sv-pkgs`. On `sv-pkgs-1440` the rule stops around 810px while the
+band is 1360px wide.
+
+**A6. Repetition inside the copy the brief approved (Astra 6). Copy rulings by the ruling
+tier; the operator's approved promises are kept, only restatements go:**
+- Project `term` becomes `Scoped and priced on the call` (same as Retainer and Embedded).
+  P1 "A fixed price for the agreed scope." stays as the box's first bullet; the term no
+  longer says it twice.
+- Shared row item 4 becomes `You get me, directly, for the whole engagement.` (the opening
+  sell line already says "strategy and software from the same person").
+- Unstick `list` becomes exactly three lines: `A written fix plan: what is wrong, in the order to fix it, and for builds the prompts to fix it with.` · `The call is recorded and the recording comes with the plan.` · `One follow-up question by email within 7 days.` (the term and the fit already carry "90 minutes" and "same day").
+- Sprint `list` item 2 becomes `Daily progress notes and a mid-week check-in call.` (the term and the fit already carry "one week" and "one outcome").
+- Packages H2 becomes `Or start smaller. Three fixed prices.` (the legend carries "a package covers one").
+- Advisory A2 stays: a decision answered between sessions is a different promise from a reply within a business day.
+- "Why one person" keeps its week-one and month-one sentences: it is the objection block, and the brief kept it verbatim.
+
+**A7. What arrives after payment, for every package (Astra 2, resolved without new
+commitments).** The kickoff email is one mechanism for all three SKUs
+(`lib/package-delivery.ts`), so it is stated once, in the band footer row, and removed from
+the Audit list. Footer row becomes exactly:
+`The moment your card clears you get a kickoff email: the intake questions and a link to book the call. Every fee credits toward the next package, or toward an engagement started within 60 days. Full refund any time before kickoff, none after. I reply within one business day.` then `{" "}` and the unchanged `Full details on the packages page →` link.
+Audit `list` loses its last line (`A kickoff email the moment you buy: …`) and is three lines.
+
+**A8. Served checks and captures.** Update `gates111b.sh`'s served block: the `cw-pbox__fig`
+`$5K` pattern is unchanged; add `chk "kickoff line in the band footer" "$(printf '%s' "$SV" | grep -c 'The moment your card clears you get a kickoff email')" 1` and `chk "Three fixed prices, one area each (expect gone)" "$(printf '%s' "$SV" | grep -c 'one area each')" 0`. `shots111b.mjs`: add `["/services", "sv-foot", ".cw-pband__foot", ["1440"]]` and `["/services", "sv-why", ".cw-sv-objection__h", ["1440", "390"]]` (28 PNGs).
+
+**OPERATOR (Astra 7, parked, not for this pass):** the retained R1/R2/R7/R13/R17 conflicts
+Astra lists in "Retained literal bar conflicts" (mono on prose links, the type-size ladder,
+the opening's two sentences, the Guardicore proof's lack of a figure, `.cw-cta` on the
+foot). Each needs either a dated exception in DESIGN_BAR or its own pass.
+
+**Rerun** (Git Bash, `MSYS_NO_PATHCONV=1`, exit codes read directly): tsc · copy-lint ·
+retired gate · accent lint · colour grep over the new selectors · prettier `--check` on the
+§13 list · build · server · render-gate · served block (`failures: 0`) · axe-worlds on
+`/ /services /packages` (a colour rule changed: A3) · layout-gate `--self-test` then the run
+(expect the new `spill` rule clean, 0 NEW) · `shots111b.mjs` (28 PNGs, 14 heights ≤800,
+both prefill prints).
+
+**Commit** per §9: `Pass-111b fix round 2: figure size and spill gate, box spacing, heading, leading, footer rule, repetition trims (Astra FIX 2026-09-11)`, explicit paths, then RESUME alone. Do not push.
