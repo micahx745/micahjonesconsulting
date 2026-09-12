@@ -26,7 +26,7 @@
 // HandCircle as a sibling absolutely positioned over it.
 "use client";
 
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, type CSSProperties } from "react";
 
 interface HandCircleProps {
   color?: string;
@@ -34,7 +34,15 @@ interface HandCircleProps {
    *  new $20M+ figure scale at clamp 80-168px). */
   width?: number;
   /** Path variant — slight irregularities of the same idea. */
-  variant?: 1 | 2;
+  variant?: 1 | 2 | 3;
+  /** Pass-115: "none" maps the viewBox linearly onto the box (the existing
+   *  vectorEffect="non-scaling-stroke" keeps the stroke width uniform);
+   *  default "meet" keeps the path's designed shape. */
+  aspect?: "meet" | "none";
+  /** Pass-115: merged OVER the default inline style object, so a caller
+   *  can replace inset/width/height (e.g. size the loop from the measured
+   *  ink box, in em). Backward compatible: absent = default box. */
+  boxStyle?: CSSProperties;
   /** Animation delay in seconds. */
   delay?: number;
   /** Render the final frame immediately, with no transition. */
@@ -62,12 +70,19 @@ const PATHS = {
       "M 92 6 C 48 10, 12 18, 10 32 C 9 50, 52 56, 96 55 C 142 54, 172 48, 170 28 C 168 12, 128 6, 96 6",
     overshoot: "M 96 6 C 130 6, 168 12, 170 28",
   },
+  3: {
+    primary:
+      "M 100 0.5 C 12 -0.5, 0 2, 0 31 C 0 57, 10 60, 88 60 C 171 60, 180 57, 180 29 C 180 2, 170 0, 92 0.5",
+    overshoot: "M 116 1.5 C 46 0.5, 2.5 0.5, 2 12",
+  },
 };
 
 export function HandCircle({
   color = "var(--color-accent-copper)",
   width = 3.0,
   variant = 1,
+  aspect = "meet",
+  boxStyle,
   delay = 0,
   instant = false,
   play,
@@ -165,7 +180,7 @@ export function HandCircle({
     <svg
       className={`hand-circle ${className}`.trim()}
       viewBox="0 0 180 60"
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio={aspect === "none" ? "none" : "xMidYMid meet"}
       aria-hidden
       style={{
         position: "absolute",
@@ -174,6 +189,7 @@ export function HandCircle({
         height: "128%",
         overflow: "visible",
         pointerEvents: "none",
+        ...boxStyle,
       }}
     >
       {grain ? (

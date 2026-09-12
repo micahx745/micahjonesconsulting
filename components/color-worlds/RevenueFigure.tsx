@@ -130,8 +130,19 @@ export function RevenueFigure() {
             ref={tickRef}
             dangerouslySetInnerHTML={{ __html: FINAL_TEXT }}
           />
+          {/* Pass-115 (.claude/briefs/pass-115-circle-encloses.md): the loop
+              box is sized in em from the measured $20M+ ink box (M1: L 0.021,
+              T -0.001, W 2.825, H 0.875; hx 0.28, hy 0.184), variant 3. */}
           <HandCircle
-            variant={1}
+            variant={3}
+            aspect="none"
+            boxStyle={{
+              inset: "auto",
+              left: "-0.259em",
+              top: "-0.185em",
+              width: "3.385em",
+              height: "1.243em",
+            }}
             color="currentColor"
             play={play}
             instant={instant}

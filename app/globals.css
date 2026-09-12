@@ -3929,10 +3929,12 @@ body {
   line-height: 0.88;
   letter-spacing: -0.035em;
   font-variant-numeric: tabular-nums;
+  padding-block: 0.184em; /* Pass-115: vertical room for the loop's hy overhang */
 }
 [data-mode="cw"] .cw-rec__wrap {
   position: relative;
   display: inline-grid;
+  margin-left: 0.26em; /* Pass-115: loop's outer left edge lands on the column edge */
 }
 [data-mode="cw"] .cw-rec__ghost,
 [data-mode="cw"] .cw-rec__tick {
