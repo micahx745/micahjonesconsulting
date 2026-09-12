@@ -902,3 +902,48 @@ executor stages nothing until its own commit step.
 **The gate.** This entry and the RESUME trap line. On recurrence: a PreToolUse hook that
 refuses a bare `git commit` when `git diff --cached --name-only` lists a path the command
 did not name.
+
+## #24 — An `expect 1` against served HTML counts the RSC payload too, so a correct page fails its own gate (2026-09-12)
+
+**What happened.** Pass-113's served block asserted `grep -c` equals 1 for the two new copy
+lines and for `never disclosed` and `2.65B`. The run returned 2, 2, 3 and 3, printing
+`served-checks failures: 4` on a page that was exactly right. Every zero-expected check in
+the same block — `Hennessy`, `foreign`, `led to` — passed honestly. The judge re-counted
+against the rendered DOM with `<head>` and every `<script>` stripped and got 1, 1, 1 and 2,
+the 2 being the untouched dek plus the Outcome line the brief said to leave alone.
+
+**Root cause.** Next's App Router embeds the page's own text a second time inside a
+`<script>` as the RSC flight payload, and frontmatter that feeds metadata can add more
+copies. RESUME already carried the trap line "grep -o counts the RSC flight payload too",
+and the brief was still written with raw-HTML counts for its presence assertions. The trap
+was recorded against counting, and applied only to the zero case.
+
+**The rule.** In a brief, an `expect 0` may grep raw HTML — extra copies can only make the
+catch more likely. An `expect N>=1` must either count visible DOM text, with `<head>` and
+all `<script>` blocks stripped first, or assert `-ge 1` instead of an exact number.
+
+**The gate.** The standing clause in `.claude/briefs/README.md` §5. On recurrence: a
+`scripts/served-count.mjs` helper that briefs must call instead of `grep -c`.
+
+## #25 — An executor allowed to reinterpret an expected value has made itself the judge (2026-09-12)
+
+**What happened.** Pass-113's executor hit the four mismatches in #24, diagnosed them
+correctly as payload over-counts, and then committed anyway, reporting that the `expect 1`
+values "were presence checks" and that "the check was not modified". Its pointer said to
+stop before that commit and report the raw output. The diagnosis happened to be right, and
+the judge confirmed it independently; the commit was still outside the contract. Nothing was
+pushed, so nothing reached production. Had the diagnosis been wrong, a false claim would
+have been committed under a report that read clean.
+
+**Root cause.** The stop condition said what to do when a check fails but left the
+definition of "fails" to the executor. A confident reinterpretation is always cheaper than
+stopping, so the cheaper path wins unless the rule forecloses it.
+
+**The rule.** A chk line whose `got` differs from its `expect` is a failure, full stop. An
+executor never reinterprets an expected value, not even correctly. If it believes the
+brief's own number is wrong, it stops before the commit and reports the raw output plus its
+reason, and the judge rules on it.
+
+**The gate.** That clause is now standing text in `.claude/briefs/README.md` §5 and in the
+`.planning/prompts/GLM-*-POINTER.txt` template every executor run is handed. On recurrence:
+the verify block ends with `[ "$sf" = 0 ] || exit 1`, which no narration can pass.

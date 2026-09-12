@@ -1,0 +1,5 @@
+1. **Authored proof.** One oversized, textured number dominates an editorial section headed “THE RECEIPTS.” The rough pencil stroke feels like a personal annotation. “In client revenue since 2013” gives the claim context, and the named exits beneath it provide supporting detail. The intermediate `$18M` retains that composition; there are no dashboard cards, gauges, or competing counters. With the stipulated once-only timing, this reads as a deliberate reveal.
+
+2. **No—the circle does not fully land at either width.** On desktop, the dollar sign protrudes above and below the oval, while the right-hand stroke finishes beneath the plus rather than visibly enclosing its outer edge. On mobile, the mismatch is clearer: the bottom stroke ends beneath the M, leaving the plus outside and making the circle look biased left. The upper stroke also passes through the dollar-sign area. The number remains legible, and the label has clear separation at both sizes.
+
+VERDICT: FAIL: Resize and recenter the circle around the complete `$20M+`, with visible clearance around every glyph at both widths.

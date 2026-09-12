@@ -1,0 +1,26 @@
+You are the EXECUTOR for exactly one brief. You never rule. You never push. You never deploy. You never bypass a hook.
+
+Working directory: C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live
+Branch: design/live-evolve
+
+Step 1. Read the file C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md in full.
+
+Step 2. Read the file C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/pass-114-countup-exception.md in full, all eight sections, before your first edit. Then read every file its preamble names, in this order: .planning/design/DIRECTION-110.md section 5.1, .planning/design/CRITIQUE-110.md entry LOW 7, docs/DESIGN_BAR.md rules R13 and R15, the motion block of .claude/brand.json, components/color-worlds/RevenueFigure.tsx, components/hand/HandCircle.tsx, the cw rec rules in app/globals.css, and the One signature motion section of .claude/CLAUDE.md.
+
+Step 3. Confirm Pass 113 has landed. Run git log --oneline -3 and look for a Pass 113 subject. If it is not there, stop and report that Pass 113 has not landed.
+
+Step 4. Execute the brief verbatim, in its own order: section 1 records the exception in docs and config FIRST, then section 2 implements the code. Section 1 appends one sub bullet under R13 and one under R15 in docs/DESIGN_BAR.md exactly as written, adds the countup key to the motion block of .claude/brand.json exactly as written, and adds the recorded exception paragraph to .claude/CLAUDE.md exactly as written.
+
+Step 5. Section 2 is the implementation. Honor these constraints exactly. The tick text is written only through tickRef current textContent and React never manages its children, so the constant html value means a re render never touches it. That is CRITIQUE LOW 7 and it is not optional. Never set React state per frame. The finished frame is what SSR and no JS render. The wrap is an inline grid sized by a hidden ghost so the count never shifts layout. HandCircle gains an optional play boolean and stays backward compatible when play is undefined. RevenueFigure must not import gsap.
+
+Step 6. Run every static gate in section 4 and read each exit code directly, never through a pipe: tsc, copy lint, retired phrases gate, accent lint, gsap gate, prettier --check on the two components and app/globals.css, and the build. Build with npx next build --webpack because pnpm build fails in this worktree. Never prettier an mdx or md file.
+
+Step 7. Write .planning/exec/countup114.mjs and run it against a server on port 3200 started with npx next start --port 3200. It uses puppeteer-core from C:/tmp/p101tools with Chrome at C:/Program Files/Google/Chrome/Application/chrome.exe. Implement all seven numbered assertions in section 4 exactly as specified, printing one chk line per assertion and a final countup failures line. Assertion 4 must first assert the figure is below the fold and say so and fail if it is not. Write the captures home rec mid 1440, home rec done 1440, and home rec done 390 into .planning/qa/pass-114/. Then run render gate and axe worlds on the home route and read both exit codes.
+
+Step 8. Commit per section 6. Before any commit, run git diff --cached --name-only and print it. Stage by explicit path only, never git add all. Write the commit message into an absolute file under .planning/exec/ and commit with git commit -F that file followed by two dashes and then the explicit paths. Then rewrite .claude/RESUME.md to at most 2500 bytes, print wc -c on it, and commit it alone in a second commit. Read the committed RESUME first and merge, never rewrite it from memory. Add the trailer line Co Authored By: Claude Fable 5.1 noreply at anthropic.com to each commit message.
+
+Step 9. If any expected result is not met, make one honest fix attempt at the mechanism. If it still fails, stop before that commit and report the failing check with its raw output. Never retry a command verbatim. Never weaken an assertion to make it pass. Never change the easing or the durations: the ruling is the DIRECTION spec. A chk line whose got value differs from its expect value is a failure, full stop. Do not reinterpret an expected value as a presence check or explain it away. If you believe the brief itself states a wrong expected value, stop BEFORE the commit and report the raw output plus your reason; the judge rules on it, not you. Pass 113 committed past four such lines and that is the behavior this rule forbids.
+
+Step 10. End your run by printing, in this order: every gate exit code with its command, the whole countup check block including the countup failures line, the list of capture files written with their byte sizes, and git log --oneline for the commits you made.
+
+Do not touch the main checkout at C:/Users/micah/Code/micahjonesconsulting. Do not add a second animated element. Do not change any price, fact, link, or live string.

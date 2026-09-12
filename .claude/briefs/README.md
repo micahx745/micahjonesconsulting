@@ -45,6 +45,15 @@ a brief and the commit that executes it are greppable together.
 
 A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the quality.
 
+### Two standing clauses in every Verification section (2026-09-12, LESSONS #24 and #25)
+
+- **Count what renders.** `expect 0` may grep raw served HTML. `expect N>=1` must count
+  visible DOM text with `<head>` and every `<script>` stripped first, or assert `-ge 1`.
+  A raw `curl | grep -c` also counts the RSC flight payload, so a correct page fails.
+- **The executor never reinterprets an expected value.** A chk line whose `got` differs
+  from its `expect` is a failure. If the executor believes the brief's number is wrong, it
+  stops before the commit and reports the raw output plus its reason; the judge rules.
+
 ## Budget this enforces
 
 ≤15 top-tier tool calls per arc: DIRECT ≤10, each JUDGE return ≤5. Read-only shell is free
