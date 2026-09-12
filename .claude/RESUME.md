@@ -18,14 +18,14 @@ self-test 17 planted / 19 near misses, scan clean, tsc 0, prettier 0.
 Battery was fully green on this exact tree: build 0 + 0 playbook in log,
 404 404, 0 mentions on 10 routes, nav 4, render/axe/layout/shots 0.
 JUDGED PASS (Opus, 4 calls): doors + open nav captures correct, every exact string
-landed, gate re-run clean by the judge. Push of 95141f3/4ffb3a8 needs his OK → 111b.
+landed, gate re-run clean. Push approved (operator 2026-09-11: "push it and move to next thing").
 
 ## Rulings 2026-09-11
 #7 book off site is in LESSONS #3 + the gate. Others unchanged: pricing
 floor, promises, area pick, $20M+ exception, case studies, $5B+, rename.
 
 ## Waiting on the operator
-Push 112 (3 commits ahead) · A4/S3 text · deactivate Stripe playbook-99 (LIVE+TEST)
+A4/S3 text · deactivate Stripe playbook-99 (LIVE+TEST)
 + drop PLAYBOOK_ON_SALE from Vercel env · merge to `main` · $500 live test.
 
 ## Traps
