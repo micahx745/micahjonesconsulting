@@ -8,22 +8,23 @@ ROUTING = MODEL_ROUTING §9e (operator, 2026-09-11 evening): Sonnet + Sol do the
 grunt work; Opus + Astra hold quality; Fable almost never; GLM is overflow only.
 Name `model: "sonnet"` on every Agent leg.
 
-## Pass-111b: COMMITTED, not pushed (65680e0)
-Brief `.claude/briefs/pass-111b-services-boxes-and-rail.md` §0-13 (prior
-session) + §14 judge fix round (this session), both in one commit: client-side
-`/call?shape=` prefill (BookCallForm useEffect/useRef, no useSearchParams,
-route stays static), 135-char /services metadata description, package lists
-trimmed to 4 lines each, `.cw-pband--pkgs` 3-col moved to ≥1360px matching
-shapes, height gate now 14 boxes (7 × 1440/1280) ≤800px (max seen 771px).
-Gate results, this run: tsc/copy-lint/vendor/retired/accent/gsap/colour-grep/
-prettier all exit 0; build exit 0; served-checks failures: 0; render-gate
-exit 0 (15 routes, /call reprerendered); axe-worlds exit 0 (93 scans, 0
-findings); layout-gate exit 0 (36 loads, 0 findings, 0 NEW); shots111b.mjs
-exit 0 (25 PNGs, both /call prefill assertions pass — "Shape: Embedded." and
-""); helper checks `true false AI engineering null` as expected.
-NEXT: independent Sonnet diff review → Astra one look (sv-shapes-1440,
-sv-pkgs-1440, sv-areas-1440, sv-shapes-390) → Opus judge ≤5 → push on
-operator OK.
+## Pass-111b fix round 2: COMMITTED, not pushed (9c3416f §15c ruling; ae9a00d fix)
+Brief §15 (A1-A8: figure spill+gate, box spacing, heading, leading, footer
+rule, repetition trims, kickoff line once) + §15b (G1 normalize, G2 health
+floors) + §15c (ruling: the G2 60000/60000 floor was the ruling tier's
+miscalibration, not the executor's — real /services 56591B, real / 59702B,
+both independent of this round; floors now 40000/20000/20000/40000/1500).
+Gates: tsc/copy-lint/vendor/retired/accent/gsap self-tests+real all exit 0;
+colour-grep/prettier/build/render-gate exit 0; axe-worlds exit 0 (90 scans,
+0 findings — A3 changed a colour rule); layout-gate self-test+run exit 0
+(36 loads, 0 findings, new spill rule clean on every real page); shots
+exit 0 (28 PNGs, both /call prefill asserts pass); helper checks `true
+false AI engineering null`; served-checks failures: 0 (§15c floors).
+14 heights, all under the 700 target (cap 800): @1440 shapes
+630/630/630/630, pkgs 623/623/623. @1280 shapes 532/532/508/508, pkgs
+375/377/347.
+NEXT: Opus judge look 3 on sv-shapes-1440 / sv-pkgs-1440 / sv-why-1440 →
+push on operator OK.
 
 ## Pass-112 DONE, PUSHED (b5de535): the book is off the site
 ## Rulings 2026-09-11: see brief 111b §0; 4 (count-up) + 5 (case studies) next.
