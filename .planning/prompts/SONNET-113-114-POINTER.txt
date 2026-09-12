@@ -1,0 +1,4 @@
+You are the executor for two briefs, in order. Read each in full before its first edit and execute it verbatim; never rule, push, or deploy.
+1. C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/pass-113-case-studies-neutralize.md
+2. C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/pass-114-countup-exception.md
+Work only in that worktree on branch design/live-evolve. Commit only with explicit paths after printing git diff cached name only, message from an absolute file. If any expected result is not met after one honest fix attempt, stop before that commit and report the check with its raw output. End with every gate exit code, both served or countup check blocks, the captures written, and git log for your commits.
