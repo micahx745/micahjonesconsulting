@@ -411,3 +411,70 @@ fix-list here, not to a second execution pass on Astra.
 
 A4 notice terms · S3 Sprint remedy · update the LIVE Stripe Audit product description to the
 three area names (the setup script skips existing prices) · push · merge to `main`.
+
+## 13. Fix-list from the Sol plan review (2026-09-11, `.planning/reviews/SOL-111B-BRIEF-REVIEW.md`, premises re-verified by the ruling tier)
+
+Where this section conflicts with an earlier section, this section wins.
+
+**Premises corrected**
+- §1.2: `#shapes` currently carries `aria-labelledby="cw-sv-shapes-title"`. Replace that attribute with `aria-label="The four engagement shapes"` in the same edit that deletes the H2.
+- §4: `[data-mode="cw"] .cw-pband--pkgs .cw-pbox__name { min-height: 1.96em }` already exists (`globals.css:2882`). Do not add a second copy. No other `.cw-pband` rule exists; add the grid rules.
+- §1 last line: `SERVICES_LD`'s `@graph` follows the array order, so it reorders with §6. That is intended.
+- §2.8 `lib/catalog.ts`: `scripts/stripe-setup.mjs` carries its own hard-coded catalog. Apply the same new Audit description string there (lines ~42-46) and change its Unstick description to `90 minutes live on whatever is stuck plus a same-day written fix plan. Kickoff scheduling by email after checkout.` The LIVE Stripe products are not touched by either edit (section 12).
+- §5: the self-test prints computed counts; there is nothing to "update". Add the planted lines and the two near misses only.
+
+**Ambiguities settled**
+- §3.6 error line: render `<p className="cw-pick__err" role="alert">{error}</p>` with no `hidden`; `error` starts as `""` and the guard sets it to the §2.5 string. This overrides DIRECTION §2.1's `hidden`.
+- §3.6: every `BuyButton` inside `PackageBand` receives `area={area ?? undefined}` and `guard`. The home box and `/packages` buttons receive neither.
+- §3.6: on radio change validate with `isAreaValue(v)` before `setArea(v)`; ignore anything else.
+- §3.1: `areaLabel` returns the matching label, otherwise `null`.
+- §6 proof indices, after the reorder: AI engineering → `receipts[0]`, Product building → `receipts[0]`, Positioning & GTM → `receipts[2]`.
+- §7: record and assert ALL seven `.cw-pbox` heights at 1440, each ≤ 700px.
+- §7 prettier: run `--write` then `--check` on this explicit list only: `app/(foyer)/services/page.tsx app/(foyer)/packages/page.tsx app/(foyer)/page.tsx app/(foyer)/work/page.tsx app/(foyer)/call/page.tsx app/llms.txt/route.ts components/color-worlds/PriceBox.tsx components/color-worlds/PackageBand.tsx components/color-worlds/BookCallForm.tsx components/BuyButton.tsx app/actions/package-checkout.ts app/api/stripe/webhook/route.ts lib/package-delivery.ts lib/catalog.ts scripts/retired-phrases-gate.mjs scripts/stripe-setup.mjs app/globals.css .planning/exec/shots111b.mjs`. Never markdown, never the `.sh`.
+- §3.7: `shape` may arrive as `string[]`; accept only a `string` in the allowed set.
+
+**Breakage fixed**
+- §3.2: `metadata: { product: sku.lookupKey }` (there is no `product` variable).
+- §7 battery: escape every `$` inside double-quoted echo labels (`\$5K`), or the `set -u` shell aborts. Use double quotes, not single, around URLs that contain `$S`.
+- §7 served checks, replaced in full:
+
+```
+sf=0
+chk () { echo "  $1: got $2, expect $3"; [ "$2" = "$3" ] || sf=$((sf+1)); }
+chkmin () { echo "  $1: got $2, expect >=$3"; [ "$2" -ge "$3" ] || sf=$((sf+1)); }
+S=http://localhost:3200
+SV=$(curl -s "$S/services"); PK=$(curl -s "$S/packages"); WK=$(curl -s "$S/work"); HM=$(curl -s "$S/"); LL=$(curl -s "$S/llms.txt")
+chk "box figures showing \$5K on /services"      "$(printf '%s' "$SV" | grep -o 'cw-pbox__fig[^<]*\$5K' | wc -l | tr -d ' ')" 1
+chk "cw-pbox__from spans on /services"           "$(printf '%s' "$SV" | grep -o 'cw-pbox__from' | wc -l | tr -d ' ')" 1
+chk "Engagements from \$5K (services+packages+work+llms)" "$(printf '%s%s%s%s' "$SV" "$PK" "$WK" "$LL" | grep -ci 'Engagements from \$5K')" 0
+chk "start at \$5K anywhere"                     "$(printf '%s%s%s%s' "$SV" "$PK" "$WK" "$LL" | grep -ci 'start at \$5K')" 0
+chk "standing rate on /services"                 "$(printf '%s' "$SV" | grep -ci 'standing rate')" 0
+chk "Scoped as a figure on /services"            "$(printf '%s' "$SV" | grep -o 'cw-pbox__fig[^>]*>Scoped' | wc -l | tr -d ' ')" 0
+chk "Frontier on /services + / + llms"           "$(printf '%s%s%s' "$SV" "$HM" "$LL" | grep -c Frontier)" 0
+chk "End-to-end product building (services+llms)" "$(printf '%s%s' "$SV" "$LL" | grep -c 'End-to-end product building')" 0
+chkmin "AI engineering on /services"             "$(printf '%s' "$SV" | grep -o 'AI engineering' | wc -l | tr -d ' ')" 3
+chk "cw-pbox articles on /services"              "$(printf '%s' "$SV" | grep -oE 'class="cw-pbox["  ]' | wc -l | tr -d ' ')" 7
+chk "pkg-area radios on /services"               "$(printf '%s' "$SV" | grep -o 'name="pkg-area"' | wc -l | tr -d ' ')" 3
+chk "Ask about links on /services"               "$(printf '%s' "$SV" | grep -o 'href="/call?shape=' | wc -l | tr -d ' ')" 4
+chk "tables left on /services"                   "$(printf '%s' "$SV" | grep -c '<table')" 0
+chk "\$5K on /packages"                          "$(printf '%s' "$PK" | grep -c '\$5K')" 0
+chk "build, production, or traction on /packages" "$(printf '%s' "$PK" | grep -ci 'build, production, or traction')" 0
+chk "/call?shape=advisory prefill"               "$(curl -s "$S/call?shape=advisory" | grep -c 'Shape: Advisory.')" 1
+chk "/call?shape=bogus prefill"                  "$(curl -s "$S/call?shape=bogus" | grep -c 'Shape:')" 0
+chk "book mentions on /services"                 "$(printf '%s' "$SV" | grep -ciE '80% wall|/playbook|field manual')" 0
+echo "served-checks failures: $sf"
+```
+
+  The battery's final line is `ALL GATES RUN`; the pass is judged on each gate's own exit code and on `served-checks failures: 0`.
+- §7 shots: 25 PNGs (21 from the plan, 4 from the two scripted states at two widths).
+- §2.8 `$5K` in the retained metadata strings is expected; the served check above counts box figures, not the head.
+
+**Surfaces added (Sol found them; verified live)**
+- `app/(foyer)/work/page.tsx` `.cw-wk__cross` (~178-187) becomes: `The next entry in this record could be yours.{" "}<a href="/services" className="cw-lede-link">Engagements</a>{" "}scoped on a call;{" "}<a href="/packages" className="cw-lede-link">packages</a>{" "}at $500, $2,500 and $7,500.`
+- `app/llms.txt/route.ts`: line 27 becomes `- Engagements for companies: advisory from \$5K a month; project, retainer and embedded priced on a free 30-minute call`. Reorder the three area lines (~22-24) to AI engineering, Product building, Positioning & GTM, with the two renamed titles; keep each line's text after the dash.
+- `app/(foyer)/packages/page.tsx` `PACKAGES_LD`: the Audit `description` becomes `Two-week fixed-scope audit of one area: AI engineering, product building, or positioning and GTM. Written memo, prioritized fix sequence, debrief call.`; the Unstick `description` becomes `90-minute working call on whatever is stuck plus a same-day written fix plan.` Apply the same two replacements to the `PACKAGES_LD` copy inside `app/(foyer)/services/page.tsx` if the strings are present there (grep `build, production, or traction`).
+- `components/color-worlds/Hero.tsx` and `app/(foyer)/page.tsx` mention "Frontier AI engineering" in comments only; leave those.
+
+**Not adopted**
+- "Non-first-person sentences" in §2: the voice rule is first person, never "we"; list lines are fragments and pass. No change.
+- "The ledger does not support the new commitments": §2.8 writes the approval record into the ledger in this same commit; that is the support.
