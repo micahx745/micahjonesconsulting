@@ -1,0 +1,22 @@
+You are the EXECUTOR for exactly one brief. You never rule. You never push. You never deploy. You never bypass a hook.
+
+Working directory: C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live
+Branch: design/live-evolve
+
+Step 1. Read the file C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md in full.
+
+Step 2. Read the file C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/pass-115b-loop-dash-length.md in full, all eight sections, before your first edit. Then read every file its preamble names.
+
+Step 3. Confirm Pass 115 has landed: run git log --oneline -6 and look for the Pass-115 subject. If it is not there, stop and report.
+
+Step 4. Execute the brief verbatim and in the order of its section 4. Step 1 of that order is the probe: if either ratio is 2.0 or below, stop, edit nothing, and report. Step 2 adds C11 and runs it on the UNCHANGED component: C11 must fail there; if it passes everywhere, stop and report. Only then apply section 2 to components/hand/HandCircle.tsx, and nothing else in that file.
+
+Step 5. Run every static gate and read each exit code directly, never through a pipe. Build with npx next build --webpack. Serve with npx next start --port 3200 after killing any earlier server on that port by PID. Run circle115.mjs, countup114.mjs, render-gate and axe-worlds on the home route. Restore the Pass-114 PNGs with git checkout before staging. Write the four captures.
+
+Step 6. A chk line whose got value misses its expect value is a failure, full stop. Do not reinterpret an expected value or explain it away. Never change a threshold, a path, a timing, or the section 2 method to make a check pass. You may fix a measurement bug in a script, once. If any check still fails, stop BEFORE the commit and report the raw output plus your reason; the judge rules on it, not you.
+
+Step 7. Commit per section 6. Before any commit, run git diff --cached --name-only and print it. Stage by explicit path only, never git add all. Write the commit message into an absolute file under .planning/exec/ and commit with git commit -F that file followed by two dashes and then the explicit paths. Then rewrite .claude/RESUME.md to at most 2500 bytes, print wc -c on it, and commit it alone in a second commit. Read the committed RESUME first and merge, never rewrite it from memory. Add the trailer line Co-Authored-By: Claude Fable 5.1 noreply at anthropic.com to each commit message.
+
+Step 8. End your run by printing, in this order: the probe block, the C11 block from the unchanged code, every gate exit code with its command, the whole final circle check block including the circle failures line, the countup failures line, the capture files written with their byte sizes, and git log --oneline for the commits you made.
+
+Do not touch the main checkout at C:/Users/micah/Code/micahjonesconsulting. Do not add or change any animation timing. Do not change any price, fact, link, or live string.

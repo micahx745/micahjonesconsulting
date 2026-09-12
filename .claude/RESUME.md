@@ -8,7 +8,7 @@ ROUTING (operator 2026-09-12): conserve THIS account. GLM (claude-glm.ps1
 -Batch) executes briefs; Astra (codex-exec.ps1 -Review) judges gates; Claude
 judges and records only. 113 + 114 + 115 ran entirely off the Claude account.
 
-## Pass-115 (032ce79): EXECUTED, AWAITING JUDGE + ASTRA; NOT PUSHED
+## Pass-115 (032ce79): geometry PASS, JUDGE FAILED THE RENDER; NOT PUSHED
 Brief .claude/briefs/pass-115-circle-encloses.md. Variant-3 loop (rounded,
 aspect="none") sized in em from the measured ink box; wrap margin-left 0.26em
 (loop edge on the column edge); num padding-block 0.184em. M1@1440: L .021
@@ -20,11 +20,11 @@ found: puppeteer screenshot({clip}) renders an UNSCROLLED surface (crop full
 frames instead); DOMRect serializes {} through evaluate (toJSON it).
 countup rerun overwrote pass-114 PNGs; restored.
 
-## NEXT: judge per brief §7 (<=3 calls: circle block, countup line, the two
-rec-done captures), then ONE Astra look (prompt ASTRA-115-CIRCLE-REVIEW.md) —
-114's Q2 plus "does the indent read as intentional". PASS -> push
-design/live-evolve ONLY (operator: "fix the circle then push"). Main ff to
-production stays a separate operator go-ahead.
+## NOW: Pass-115b on GLM (brief pass-115b-loop-dash-length.md)
+Capture shows no loop (top + bottom strokes, sides missing; 114 had it too).
+Hypothesis: dasharray=getTotalLength (user units) under non-scaling-stroke
+(dashes in screen px). 115b probes first, adds C11 pixel coverage (must fail
+before, pass after), then fixes. Then judge, ONE Astra look, push branch only.
 
 ## LIVE: main = a71788a, dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains,
 CARD 1 19/19. Local main behind origin: operator pulls. 112 pushed (b5de535).
