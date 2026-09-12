@@ -622,3 +622,23 @@ retired gate · accent lint · colour grep over the new selectors · prettier `-
 both prefill prints).
 
 **Commit** per §9: `Pass-111b fix round 2: figure size and spill gate, box spacing, heading, leading, footer rule, repetition trims (Astra FIX 2026-09-11)`, explicit paths, then RESUME alone. Do not push.
+
+### 15b. From the independent Sonnet diff review (`.planning/reviews/SONNET-111B-DIFF-REVIEW.md`): no blockers; two gate weaknesses, both fixed in this round
+
+**G1. The retired-phrases gate matches raw substrings.** Double spaces, `&nbsp;`, `&#8209;`
+and a `{" "}` JSX join all slip past it. Add a `normalize(line)` step before matching that:
+decodes `&nbsp;`, `&#160;`, `&#8209;`, `&#8211;`, `&ndash;` and `&#x2011;` to a plain space or
+hyphen; replaces `{" "}` and `{' '}` with a space; collapses any run of whitespace to one
+space. Apply it line by line (line numbers stay true). For the two-line JSX split
+(`Frontier AI{" "}` / `engineering` on the next line), also scan each pair of adjacent
+non-comment lines joined by one space, reporting the first line's number. Self-test:
+plant `Engagements from  $5K a month` (double space), `start&nbsp;at $5K a month`,
+`standing&#8209;rate`, `Frontier AI{" "}engineering` on one line and across two lines, all
+must be caught; near miss: `Frontier AI` on one line and `engineering` two lines later must
+pass. Print the new counts.
+
+**G2. Zero-count served checks pass on an error page.** In `gates111b.sh`, before the `chk`
+lines, add a health assertion per fetched route: HTTP status 200 and body length above a
+floor (`/services` 60000 bytes, `/packages` 30000, `/work` 30000, `/` 60000, `/llms.txt`
+1500). Each failure counts in `sf`. Also add one positive check on `/packages`:
+`chk "Buy buttons on /packages" "$(printf '%s' "$PK" | grep -o 'Buy the ' | wc -l | tr -d ' ')" 3`.
