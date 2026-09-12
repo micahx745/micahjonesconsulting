@@ -18,7 +18,7 @@ a71788a / dpl_4C7z. Local main checkout behind origin: operator pulls.
 Shipped: 113 case studies neutralized · 114 $20M+ count-up · 115 loop redrawn +
 indent · 115b loop dash in screen px (LESSONS #26).
 
-## Pass-116 (0917b8d) DONE, judged PASS, pushed to branch, NOT DEPLOYED
+## Pass-116 (0917b8d) PASS, on branch, NOT DEPLOYED
 Fable's 6 later items fixed: layout-effect mount decision (no loop blink),
 hidden dash S 4S (resize-proof), playedThisLoad module flag (no replay on client
 back/forward), Postmates line = "That promise invited fraud.", Neuton tag =
