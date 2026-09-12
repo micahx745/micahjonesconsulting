@@ -22,6 +22,8 @@ The `design-tokens.sh` hook warns on any other hex literal.
 
 **No figure animation is mounted.** The one that existed, `<WallChart />` in the `/playbook` hero, left with the book in Pass-112 (operator 2026-09-11: the book is not shown on the site yet). `motion.figure` in `brand.json` stays as the record of the 2026-09-01 approval. A new animated figure is the second-signature line; the answer there is no.
 
+**One recorded count-up exception** (`motion.countup` in `brand.json`): the home `$20M+` figure counts once and its circle draws in after it, 2.65s total, on `/` only, skipped under reduced motion, finished frame without JS. Operator override of R13 and R15 on 2026-09-11 (decision 4), against the harness's recommendation to keep it static. It is not a second signature and not a precedent; the motion-engineer's standing answer to any further animated figure or counter remains no.
+
 `motion-discipline.sh` blocks cursor followers, scroll-jacking, marquees, mono aesthetic, and (Phase 1 addition) `syncTouch: true` on Lenis.
 
 ## Model routing — reset 2026-09-04

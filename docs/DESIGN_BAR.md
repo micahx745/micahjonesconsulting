@@ -200,6 +200,7 @@ by looking. Grade per page; report R-numbers.
 - **R13 — No logo wall without outcomes; any client or company named is attached to a specific
   figure-bearing result. No testimonial carousel, no star ratings, no generated avatars, no
   animated counters.**
+  - Exception (operator 2026-09-11, decision 4): the home page's own $20M+ figure counts once from $0M to $20M+ over 1.2s, on / only, once per load, skipped under reduced motion, finished frame as the no-JS render. It is a single authored proof moment, not a stat ticker, and not a precedent.
 - **R14 — At least one proof block contains a named metric WITH mechanism** (what was done → the
   number that changed) that a skeptical CFO could interrogate — e.g., the $80M pipeline / $14M
   revenue Guardicore result stated with its how.
@@ -208,6 +209,7 @@ by looking. Grade per page; report R-numbers.
 
 - **R15 — Motion is punctuation:** nothing animates idly (no pulsing dots, marquees, looping
   gradients); entrance effects, if any, run once, ≤400ms, ease-out, transform/opacity only.
+  - Exception (operator 2026-09-11, decision 4): the same $20M+ count and its circle run 2.65s total, once, never on scroll after start. Recorded in brand.json motion.countup.
 - **R16 — Copy passes the specificity test:** zero instances of hype vocabulary (stream·line,
   em·power, supercharge, world·class, seam·less, cutting·edge, enterprise-grade, award-winning, or
   anything on the repo copy-lint banned list — dots stripped when grepping); zero emoji bullets;

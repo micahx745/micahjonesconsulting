@@ -147,6 +147,11 @@
       "files": ["components/color-worlds/WallChart.tsx", "app/globals.css"],
       "removed": "2026-09-11 Pass-112: WallChart.tsx deleted with the book. Kept as the record of the approval."
     },
+    "countup": {
+      "id": "revenue-countup",
+      "description": "Home /: the $20M+ figure counts from $0M to $20M+ over 1200ms (ease 1-(1-t)^3) once the figure is half in view, and the hand circle draws in from 0.6s, finishing at 2.65s. Runs once per load, on / only. Skipped (finished frame) under prefers-reduced-motion, without JS, on a deep link, and when the figure is already in view at load. Never couples to scroll after it starts. Operator exception to R13 and R15, 2026-09-11, decision 4; not a second signature.",
+      "files": ["components/color-worlds/RevenueFigure.tsx", "components/hand/HandCircle.tsx", "app/globals.css"]
+    },
     "banned": [
       "cursor.*follow|MouseFollower",
       "scroll-snap-type:\\s*y\\s+mandatory",

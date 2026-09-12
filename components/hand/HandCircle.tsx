@@ -39,6 +39,10 @@ interface HandCircleProps {
   delay?: number;
   /** Render the final frame immediately, with no transition. */
   instant?: boolean;
+  /** Controlled draw (Pass-114 RevenueFigure). undefined = the existing
+   *  in-view observer runs unchanged; false = both paths hidden;
+   *  true = draw in (primary, then overshoot) after `delay`. */
+  play?: boolean;
   /** Subtle SVG turbulence filter for ink-on-paper texture. Default true.
    *  Drops out under forced-colors mode (filter doesn't render). */
   grain?: boolean;
@@ -66,6 +70,7 @@ export function HandCircle({
   variant = 1,
   delay = 0,
   instant = false,
+  play,
   grain = true,
   className = "",
 }: HandCircleProps) {
@@ -75,17 +80,6 @@ export function HandCircle({
   const filterId = `hand-grain-${uid}`;
 
   useEffect(() => {
-    if (instant) {
-      [primaryRef.current, overshootRef.current].forEach((el) => {
-        if (!el) return;
-        const len = el.getTotalLength();
-        el.style.strokeDasharray = `${len}`;
-        el.style.strokeDashoffset = "0";
-        el.style.transition = "none";
-      });
-      return;
-    }
-
     const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -97,9 +91,52 @@ export function HandCircle({
       el.style.strokeDashoffset = reduced ? "0" : `${len}`;
       if (reduced) return;
       requestAnimationFrame(() => {
-        el.style.transition = `stroke-dashoffset 1100ms cubic-bezier(0.22, 0.8, 0.28, 1) ${delay + extraDelay}s`;
+        // The 1100ms stroke pair is the approved count-up circle (Pass-114
+        // operator exception, 2026-09-11 decision 4; brand.json
+        // motion.countup) — an R13/R15 override, not a precedent.
+        el.style.transition = `stroke-dashoffset 1100ms cubic-bezier(0.22, 0.8, 0.28, 1) ${delay + extraDelay}s`; // motion-ok: Pass-114 count-up circle, operator exception 2026-09-11 decision 4 (R13/R15 override, brand.json motion.countup)
         el.style.strokeDashoffset = "0";
       });
+    }
+
+    // Controlled mode (Pass-114): the parent owns when the pen moves.
+    if (play !== undefined) {
+      if (instant || reduced) {
+        // Final frame, no transition.
+        [primaryRef.current, overshootRef.current].forEach((el) => {
+          if (!el) return;
+          const len = el.getTotalLength();
+          el.style.transition = "none";
+          el.style.strokeDasharray = `${len}`;
+          el.style.strokeDashoffset = "0";
+        });
+      } else if (!play) {
+        // Both paths hidden until the count starts.
+        [primaryRef.current, overshootRef.current].forEach((el) => {
+          if (!el) return;
+          const len = el.getTotalLength();
+          el.style.transition = "none";
+          el.style.strokeDasharray = `${len}`;
+          el.style.strokeDashoffset = `${len}`;
+        });
+      } else {
+        // Primary stroke from `delay`, overshoot 0.95s behind it — with
+        // delay 0.6 that is 0.6s-1.7s and 1.55s-2.65s (Pass-114 spec).
+        drawIn(primaryRef.current, 0);
+        drawIn(overshootRef.current, 0.95);
+      }
+      return;
+    }
+
+    if (instant) {
+      [primaryRef.current, overshootRef.current].forEach((el) => {
+        if (!el) return;
+        const len = el.getTotalLength();
+        el.style.strokeDasharray = `${len}`;
+        el.style.strokeDashoffset = "0";
+        el.style.transition = "none";
+      });
+      return;
     }
 
     const observer = new IntersectionObserver(
@@ -120,7 +157,7 @@ export function HandCircle({
     );
     if (primaryRef.current) observer.observe(primaryRef.current);
     return () => observer.disconnect();
-  }, [delay, instant]);
+  }, [delay, instant, play]);
 
   const path = PATHS[variant];
 

@@ -3945,9 +3945,11 @@ body {
   justify-self: start;
   white-space: nowrap;
 }
-[data-mode="cw"] .cw-rec__tick::before {
-  content: "$20M+";
-}
+/* Pass-114: the tick's "$20M+" now renders from the component's constant
+ * HTML (dangerouslySetInnerHTML) instead of a ::before, because the count
+ * writes textContent through a ref and React never manages the children
+ * (CRITIQUE-110 LOW-7). The cell is still sized by the hidden ghost, so
+ * the counting text never shifts layout. */
 [data-mode="cw"] .cw-rec__lbl {
   margin: 18px 0 0;
   font-family: var(--font-cw-mono);
