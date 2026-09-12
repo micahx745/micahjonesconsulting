@@ -1,4 +1,4 @@
-# RESUME — micahjonesconsulting (2026-09-11)
+# RESUME — micahjonesconsulting (2026-09-12)
 
 ## READ FIRST
 Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
@@ -8,22 +8,20 @@ ROUTING = MODEL_ROUTING §9e (operator, 2026-09-11 evening): Sonnet + Sol do the
 grunt work; Opus + Astra hold quality; Fable almost never; GLM is overflow only.
 Name `model: "sonnet"` on every Agent leg.
 
-## NOW: Pass-113 + 114 dispatched to a Sonnet chat on the OTHER account (his choice)
-Briefs 5bee4d2: pass-113-case-studies-neutralize.md (decision 5) then
-pass-114-countup-exception.md (decision 4). Pointer: .planning/prompts/
-SONNET-113-114-POINTER.txt. That session commits (explicit paths), never pushes.
-THEN here: judge ≤3 each (served block + work-neuton-1440; countup block + rec captures)
-→ Astra one look at the count-up → push on his OK → main ff when he says.
-One writer per file: this session touches nothing under app/ components/ content/ until
-the other session reports.
+## Pass-113 DONE (49242dd), other-account Sonnet executor — judge next
+Copy neutralized (postmates Hennessy line; neuton dek + body), gate +3 phrases
+(+ "foreign key" near miss), LESSONS #3 bullet, captures in qa/pass-113. Judge
+≤3: served block + work-neuton-1440. CAVEAT: the block prints 4 "failures",
+ALL over-counts — raw grep -c counts RSC payload lines; DOM decomposition
+(.planning/exec/decompose-113.mjs) shows each new line exactly once visible,
+retired strings 0 everywhere. Pass-114 NOT started (same executor, next).
 
 ## LIVE 2026-09-12: main = a71788a (ff from design/live-evolve, 124 commits, Pass-101..111b)
 Production dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains; CARD 1 markers 19/19 each.
-Local main checkout is BEHIND origin/main: operator pulls. Pass-111b judged PASS; briefs
-§0-15c are the record.
+Local main checkout is BEHIND origin/main: operator pulls. Pass-111b judged PASS.
 
 ## Pass-112 DONE, PUSHED (b5de535): the book is off the site
-## Rulings 2026-09-11: see brief 111b §0; 4 (count-up) + 5 (case studies) next.
+## Rulings 2026-09-11: brief 111b §0; 5 DONE (Pass-113); 4 (count-up) = Pass-114 next.
 ## Waiting on operator: Stripe playbook-99 off + LIVE Audit description → area
 names · $500 live test (checkout changed) · A4/S3 text · five parked bar items · §9a.
 
