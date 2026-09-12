@@ -40,6 +40,20 @@
 //                              attaches nothing, until a NEW dated ruling in
 //                              LESSONS #3 (Pass-112).
 //
+//   Pass-111b (operator 2026-09-11, three rulings, LESSONS #3):
+//   "Engagements from $5K a month" /
+//   "start at $5K a month" /
+//   "standing rate"             ADVISORY-ONLY FLOOR (decision 1). "From $5K
+//                              a month" is Advisory's price and no other
+//                              shape's; the scoped shapes are priced on the
+//                              call with no public floor. No page-level
+//                              price line on /services. Near miss that must
+//                              NOT hit: "advisory from $5K a month".
+//   "Frontier AI engineering" / THE RENAME (decision 9). The third area is
+//   "End-to-end product        "AI engineering"; the second is "Product
+//   building"                  building". Near miss that must NOT hit:
+//                              "AI engineering" alone.
+//
 // SCOPE. app/, content/ and lib/ — the rendered tree. Not node_modules, not
 // product/ (the book is frozen copy with its own gate), not .planning/ and
 // not docs/ (both are records of what was retired, and quoting a retired
@@ -87,6 +101,13 @@ const PHRASES = [
   "/playbook",
   "field manual",
   "the playbook",
+  // Pass-111b (operator 2026-09-11): advisory-only floor (decision 1) and
+  // the rename (decision 9).
+  "Engagements from $5K a month",
+  "start at $5K a month",
+  "standing rate",
+  "Frontier AI engineering",
+  "End-to-end product building",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);
@@ -239,6 +260,16 @@ function selfTest() {
       file: "app/layout.tsx",
       src: `        alumniOf: ["Flexport"],`,
       why: 'alumniOf: ["Flexport"] in app/layout.tsx',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        "advisory from $5K a month",`,
+      why: '"advisory from $5K a month" (Advisory\'s own price, not the retired page-level line)',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        <span>AI engineering</span>`,
+      why: '"AI engineering" alone (the renamed area, not the retired "Frontier AI engineering")',
     },
   ];
 

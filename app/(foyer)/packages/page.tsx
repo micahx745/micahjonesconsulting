@@ -55,7 +55,7 @@ const PACKAGES_LD = {
       price: "500",
       priceCurrency: "USD",
       description:
-        "90-minute working call on a stuck AI-assisted build plus a same-day written fix plan.",
+        "90-minute working call on whatever is stuck plus a same-day written fix plan.",
     },
     {
       "@type": "Offer",
@@ -63,7 +63,7 @@ const PACKAGES_LD = {
       price: "2500",
       priceCurrency: "USD",
       description:
-        "Two-week fixed-scope audit: build, production, or traction. Written memo, prioritized fix sequence, debrief call.",
+        "Two-week fixed-scope audit of one area: AI engineering, product building, or positioning and GTM. Written memo, prioritized fix sequence, debrief call.",
     },
     {
       "@type": "Offer",
@@ -137,11 +137,10 @@ export default function PackagesPage() {
           <p className="cw-pkg-hero__price">$2,500</p>
           <p className="cw-pkg-hero__meta">Two weeks + debrief call</p>
           <p className="cw-pkg-hero__body">
-            Pick one flavor: Build (architecture and code), Production (security
-            and deploy), or Traction (positioning and go-to-market). I go
-            through it top to bottom and hand you the written audit. Not sure
-            which one? Start here: the memo tells you what to fix first, and the
-            fee credits toward what you book next.
+            Pick one area at checkout: AI engineering, product building, or
+            positioning and GTM. I go through it top to bottom and hand you the
+            written audit. Not sure which one? Start here: the memo tells you
+            what to fix first, and the fee credits toward what you book next.
           </p>
           <ul className="cw-pkg-hero__list">
             <li>8-10 page audit memo</li>
@@ -222,7 +221,8 @@ export default function PackagesPage() {
           <a href="/services" className="cw-lede-link">
             The engagements
           </a>{" "}
-          start at $5K a month. Tell me the problem and I will scope it.
+          are scoped and priced on the call. Tell me the problem and I will name
+          the shape.
         </p>
 
         <PageFooter />

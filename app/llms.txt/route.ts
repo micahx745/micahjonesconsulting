@@ -19,12 +19,12 @@ export function GET() {
 ## What I do
 
 Strategy and software, shipped by the same pair of hands. Three services:
+- AI engineering — retrieval, agents, orchestration and evals built for real load, not the demo
+- Product building — strategy, design, code, security and launch from one pair of hands
 - Positioning & GTM — customer interviews and sales-call analysis that name the question enterprise buyers are actually asking
-- End-to-end product building — strategy, design, code, security and launch from one pair of hands
-- Frontier AI engineering — retrieval, agents, orchestration and evals built for real load, not the demo
 
 Two ways to buy them:
-- Engagements for companies (advisory, project, retainer, embedded), from \$5K a month, scoped on a free 30-minute call
+- Engagements for companies: advisory from \$5K a month; project, retainer and embedded priced on a free 30-minute call
 - Fixed-price packages for solo builders and small teams: \$500, \$2,500 and \$7,500
 
 ## Background

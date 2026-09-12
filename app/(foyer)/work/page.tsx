@@ -180,7 +180,7 @@ export default async function WorkIndexPage() {
           <a href="/services" className="cw-lede-link">
             Engagements
           </a>{" "}
-          from $5K a month;{" "}
+          scoped on a call;{" "}
           <a href="/packages" className="cw-lede-link">
             packages
           </a>{" "}

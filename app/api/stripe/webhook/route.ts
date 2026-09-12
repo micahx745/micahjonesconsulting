@@ -23,7 +23,7 @@
 // expose.
 import type Stripe from "stripe";
 
-import { SKUS } from "@/lib/catalog";
+import { areaLabel, SKUS } from "@/lib/catalog";
 import { deliverPackageKickoff } from "@/lib/package-delivery";
 import { deliverPlaybook, notifyRefund } from "@/lib/playbook-delivery";
 import { getStripe } from "@/lib/stripe";
@@ -91,13 +91,25 @@ export async function POST(req: Request): Promise<Response> {
           );
           break;
         }
-        const flavor =
+        // Pass-111b: the area arrives as metadata when the page's picker
+        // made the pick, else the "area" custom field, else the legacy
+        // Audit "flavor" field. Resolved once, as a label or null.
+        const area =
+          session.metadata?.area ??
+          session.custom_fields?.find((f) => f.key === "area")?.dropdown
+            ?.value ??
           session.custom_fields?.find((f) => f.key === "flavor")?.dropdown
-            ?.value ?? null;
+            ?.value ??
+          null;
         const delivered =
           sku.kind === "book"
             ? await deliverPlaybook(email, sessionId)
-            : await deliverPackageKickoff(email, sessionId, sku, flavor);
+            : await deliverPackageKickoff(
+                email,
+                sessionId,
+                sku,
+                areaLabel(area),
+              );
         if (!delivered.ok) {
           // Non-2xx makes Stripe retry — the retry is the recovery
           // path for a transient email failure, and idempotency makes

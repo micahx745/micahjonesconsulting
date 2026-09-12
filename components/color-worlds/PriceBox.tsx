@@ -13,7 +13,7 @@ interface PriceBoxProps {
   term?: string;
   fit: ReactNode;
   list: string[];
-  area: ReactNode;
+  area?: ReactNode;
   cta: ReactNode;
   fine?: string;
   as?: "h2" | "h3";
@@ -57,7 +57,7 @@ export function PriceBox({
               <span className="cw-pbox__from">{price.from}</span>{" "}
             </>
           ) : null}
-          <span className="cw-pbox__fig">{price.fig}</span>
+          <span className="cw-pbox__fig cw-nowrap">{price.fig}</span>
           {price.per ? (
             <>
               {" "}
@@ -72,7 +72,7 @@ export function PriceBox({
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <p className="cw-pbox__area">{area}</p>
+        {area ? <p className="cw-pbox__area">{area}</p> : null}
         <div className="cw-pbox__act">{cta}</div>
         {fine ? <p className="cw-pbox__fine">{fine}</p> : null}
       </div>

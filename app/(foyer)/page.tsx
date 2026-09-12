@@ -181,7 +181,7 @@ export default function ColorWorldsHome() {
                 // Pass-112 (operator 2026-09-11): the book is off the site until it ships.
                 "A kickoff email the moment you buy: the intake questions and a link to book the debrief.",
               ]}
-              area="Covers one area: your build, your production, or your positioning. You pick it at checkout."
+              area="Covers one area: AI engineering, product building, or positioning and GTM. You pick it at checkout."
               cta={
                 <BuyButton
                   skuKey="audit-2500"

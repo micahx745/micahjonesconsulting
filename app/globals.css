@@ -7172,3 +7172,257 @@ body {
   border-color: currentColor;
   box-shadow: inset 0 0 0 1px currentColor;
 }
+
+/* ============================================================
+ * Pass-111b — /services as boxes, the area rail, the rename
+ * (.cw-pband*, .cw-pick*, .cw-areas, .cw-area*)
+ *
+ * Every colour here follows LESSONS #19: text is inherit, the only
+ * fill that carries text is the world's own fg/bg pair, never the
+ * accent under or behind text, never faded text, never a raw colour
+ * literal or a fixed palette token in these blocks. The pick swaps
+ * copy instantly: no transition, no reveal (motion: none).
+ *
+ * The .cw-sv-table* rules above stay until a measured purge.
+ * .cw-pband--pkgs .cw-pbox__name { min-height: 1.96em } already
+ * exists with the Pass-111a box rules; the wide box variant stays
+ * @container-selected — no second mechanism here.
+ * ============================================================ */
+/* DIRECTION §1.8: the page widens so four boxes fit; prose blocks
+ * keep their own caps (.cw-sv-sec 760px, objections 62ch). No 100vw
+ * math — it includes the Windows scrollbar. */
+[data-mode="cw"] .cw-sv {
+  max-width: 1440px;
+}
+
+[data-mode="cw"] .cw-pband {
+  display: grid;
+  gap: 16px;
+}
+/* Shapes: 4 columns at 1360+, 2x2 from 768, one column below. */
+@media (min-width: 1360px) {
+  [data-mode="cw"] .cw-pband--shapes {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.3fr);
+  }
+}
+@media (min-width: 768px) and (max-width: 1359px) {
+  [data-mode="cw"] .cw-pband--shapes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+/* Packages: three columns at 1360+ (matches the shapes band; Pass-111b
+ * §14 M3+M4), one column below — the packages stack in the wide
+ * @container-selected variant between 768 and 1359. */
+@media (min-width: 1360px) {
+  [data-mode="cw"] .cw-pband--pkgs {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
+  }
+}
+
+/* The shared-promises row under the shapes band: one ruled block,
+ * not a box (CRITIQUE H1). The ul also carries .cw-pbox__list for
+ * its marker; these rules only add the column split and spacing. */
+[data-mode="cw"] .cw-pband__incl {
+  border-top: 1px solid currentColor;
+  padding: 32px 0 8px;
+  margin-top: 40px;
+}
+[data-mode="cw"] .cw-pband__incl-h {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.1;
+  margin: 0;
+}
+[data-mode="cw"] .cw-pband__incl-list {
+  margin-top: 12px;
+}
+@media (min-width: 768px) {
+  [data-mode="cw"] .cw-pband__incl-list {
+    columns: 2;
+    column-gap: 40px;
+  }
+}
+
+/* The areas: three unboxed columns under one h3, inside #shapes
+ * (CRITIQUE M3). No numerals, no Proof label. */
+[data-mode="cw"] .cw-areas {
+  margin-top: 64px;
+  max-width: none;
+}
+[data-mode="cw"] .cw-areas__h {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.1;
+  margin: 0;
+}
+[data-mode="cw"] .cw-areas__grid {
+  margin-top: 32px;
+  border-top: 1px solid currentColor;
+  padding-top: 32px;
+}
+@media (min-width: 769px) {
+  [data-mode="cw"] .cw-areas__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+  [data-mode="cw"] .cw-area + .cw-area {
+    border-left: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+    padding-left: 32px;
+  }
+}
+@media (max-width: 768px) {
+  [data-mode="cw"] .cw-area + .cw-area {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  }
+}
+[data-mode="cw"] .cw-area__name {
+  font-family: var(--font-cw-display);
+  font-weight: 800;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+[data-mode="cw"] .cw-area__pain {
+  font-family: var(--font-cw-body);
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 14px 0 0;
+}
+[data-mode="cw"] .cw-area__list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+[data-mode="cw"] .cw-area__list li {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.5;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+[data-mode="cw"] .cw-area__list li:last-child {
+  border-bottom: 0;
+}
+/* The .cw-pbox__list marker, reused (a short rule of the kicker-bar
+ * family); declared here so .cw-area__list stands alone in markup. */
+[data-mode="cw"] .cw-area__list li::before {
+  content: "";
+  flex: 0 0 12px;
+  height: 2px;
+  margin-top: 0.72em;
+  background: currentColor;
+}
+[data-mode="cw"] .cw-area__proof {
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 20px;
+}
+
+/* The package area picker (DIRECTION §2.1). A selector, not a CTA:
+ * 12px radius, 1.5px currentColor frame, 52px min-height segments.
+ * The input is clipped, never display: none, so it stays focusable. */
+[data-mode="cw"] .cw-pick {
+  margin: 0 0 40px;
+  padding: 0;
+  border: 0;
+}
+[data-mode="cw"] .cw-pick__legend {
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  padding: 0;
+}
+[data-mode="cw"] .cw-pick__opts {
+  display: grid;
+  border: 1.5px solid currentColor;
+  border-radius: 12px;
+  overflow: hidden;
+}
+@media (min-width: 640px) {
+  [data-mode="cw"] .cw-pick__opts {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+}
+[data-mode="cw"] .cw-pick__opt {
+  position: relative;
+  display: block;
+  min-height: 52px;
+  padding: 14px 18px;
+  font-family: var(--font-cw-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.45;
+}
+@media (min-width: 640px) {
+  [data-mode="cw"] .cw-pick__opt + .cw-pick__opt {
+    border-left: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  }
+}
+@media (max-width: 639px) {
+  [data-mode="cw"] .cw-pick__opt + .cw-pick__opt {
+    border-top: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  }
+}
+[data-mode="cw"] .cw-pick__opt input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-pick__opt:has(input:checked) {
+  background: var(--cw-fg);
+  color: var(--cw-bg);
+  font-weight: 700;
+}
+[data-mode="cw"] .cw-pick__opt:hover:not(:has(input:checked)) {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+[data-mode="cw"] .cw-pick__opts:has(:focus-visible) {
+  outline: 2px solid var(--cw-fg);
+  outline-offset: 4px;
+}
+[data-mode="cw"] .cw-pick__opt:has(input:focus-visible) span {
+  text-decoration: underline 2px;
+  text-underline-offset: 4px;
+}
+/* Always in the DOM, text injected on demand (CRITIQUE LOW-5). */
+[data-mode="cw"] .cw-pick__err {
+  margin: 12px 0 0;
+  font-family: var(--font-cw-body);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  color: inherit;
+}
+[data-mode="cw"] .cw-pick__err:empty {
+  display: none;
+}
+
+/* The band footer row: one ruled row under the packages band. */
+[data-mode="cw"] .cw-pband__foot {
+  border-top: 1px solid currentColor;
+  padding-top: 32px;
+  margin-top: 24px;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 90ch;
+}

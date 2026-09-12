@@ -22,7 +22,7 @@ export async function deliverPackageKickoff(
   buyerEmail: string,
   sessionId: string,
   sku: Sku,
-  flavor: string | null,
+  area: string | null,
 ): Promise<DeliveryResult> {
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
@@ -46,7 +46,7 @@ export async function deliverPackageKickoff(
         replyTo: OWNER,
         subject: `${sku.name} — you're in. Two steps to kickoff.`,
         text: [
-          `Payment received: ${sku.name}, ${dollars}.${flavor ? ` Flavor: ${flavor}.` : ""}`,
+          `Payment received: ${sku.name}, ${dollars}.${area ? ` Area: ${area}.` : ""}`,
           "",
           "Two steps and the work starts:",
           "",
@@ -86,7 +86,7 @@ export async function deliverPackageKickoff(
     `${sku.name} sold (${dollars}) — ${buyerEmail}`,
     [
       `Buyer:   ${buyerEmail}`,
-      `Package: ${sku.name} (${sku.lookupKey})${flavor ? ` — ${flavor}` : ""}`,
+      `Package: ${sku.name} (${sku.lookupKey})${area ? ` — ${area}` : ""}`,
       `Session: ${sessionId}`,
       `At:      ${new Date().toISOString()}`,
       "",

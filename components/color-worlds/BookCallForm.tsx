@@ -7,8 +7,19 @@
 // calendar-source sync is the planned follow-up.
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { submitBooking } from "@/app/actions/book-call";
+
+// Pass-111b §14 M2a: /call?shape=<slug> prefills the note client-side, so
+// /call stays a static prerendered page (await searchParams de-opted it —
+// ruled out). Never useSearchParams: it de-opts the static render without a
+// Suspense boundary.
+const SHAPE_NAMES: Record<string, string> = {
+  advisory: "Advisory",
+  project: "Project",
+  retainer: "Retainer",
+  embedded: "Embedded",
+};
 
 const SLOTS = Array.from({ length: 12 }, (_, i) => {
   const minutes = 10 * 60 + i * 30;
@@ -32,12 +43,23 @@ export function BookCallForm() {
   );
   const [error, setError] = useState("");
   const [dayWarn, setDayWarn] = useState(false);
+  const noteRef = useRef<HTMLTextAreaElement>(null);
 
   const { min, max } = useMemo(() => {
     const t = new Date();
     const minD = new Date(t.getTime() + 86400_000);
     const maxD = new Date(t.getTime() + 60 * 86400_000);
     return { min: toDateInputValue(minD), max: toDateInputValue(maxD) };
+  }, []);
+
+  // Runs once on mount: a valid ?shape= prefills the empty note textarea.
+  useEffect(() => {
+    const shape = new URLSearchParams(window.location.search).get("shape");
+    const label = shape ? SHAPE_NAMES[shape] : undefined;
+    const el = noteRef.current;
+    if (label && el && el.value === "") {
+      el.value = `Shape: ${label}.`;
+    }
   }, []);
 
   function onDateChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -127,7 +149,7 @@ export function BookCallForm() {
         <span className="cw-book__lbl">
           What should we talk about? (optional)
         </span>
-        <textarea name="note" rows={3} maxLength={1000} />
+        <textarea ref={noteRef} name="note" rows={3} maxLength={1000} />
       </label>
       <button
         type="submit"

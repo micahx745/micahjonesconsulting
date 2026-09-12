@@ -1,0 +1,387 @@
+{
+  "shots": [
+    {
+      "route": "/services",
+      "name": "sv-open",
+      "v": "1440",
+      "status": 200,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-open-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-open",
+      "v": "390",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-open-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-shapes",
+      "v": "1440",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-shapes-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-shapes",
+      "v": "1280",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-shapes-1280.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1280,
+      "clientWidth": 1280,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-shapes",
+      "v": "1024",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-shapes-1024.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-shapes",
+      "v": "768",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-shapes-768.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-shapes",
+      "v": "390",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-shapes-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-incl",
+      "v": "1440",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-incl-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-incl",
+      "v": "390",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-incl-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-areas",
+      "v": "1440",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-areas-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-areas",
+      "v": "768",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-areas-768.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-areas",
+      "v": "390",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-areas-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-pick",
+      "v": "1440",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-pick-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-pick",
+      "v": "768",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-pick-768.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-pick",
+      "v": "390",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-pick-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-pkgs",
+      "v": "1440",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-pkgs-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-pkgs",
+      "v": "1024",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-pkgs-1024.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1024,
+      "clientWidth": 1024,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-pkgs",
+      "v": "768",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-pkgs-768.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 768,
+      "clientWidth": 768,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-pkgs",
+      "v": "390",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-pkgs-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    {
+      "route": "/packages",
+      "name": "pk-cross",
+      "v": "1440",
+      "status": 200,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\pk-cross-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/call?shape=embedded",
+      "name": "call-prefill",
+      "v": "1440",
+      "status": 200,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\call-prefill-1440.png",
+      "world": "#2A1F18",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false,
+      "notePrefill": "Shape: Embedded."
+    },
+    {
+      "route": "/services",
+      "name": "sv-guard",
+      "v": "1440",
+      "status": 200,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-guard-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false,
+      "errText": "Pick an area first, then buy.",
+      "errVisible": true,
+      "focusOnFirstRadio": true
+    },
+    {
+      "route": "/services",
+      "name": "sv-guard",
+      "v": "390",
+      "status": 200,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-guard-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false,
+      "errText": "Pick an area first, then buy.",
+      "errVisible": true,
+      "focusOnFirstRadio": true
+    },
+    {
+      "route": "/services",
+      "name": "sv-picked",
+      "v": "1440",
+      "status": 200,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-picked-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false,
+      "politeText": "Packages now show Product building.",
+      "auditFit": "I go through your architecture, code, and deploy top to bottom."
+    },
+    {
+      "route": "/services",
+      "name": "sv-picked",
+      "v": "390",
+      "status": 200,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-picked-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false,
+      "politeText": "Packages now show Product building.",
+      "auditFit": "I go through your architecture, code, and deploy top to bottom."
+    }
+  ],
+  "boxHeights": [
+    {
+      "id": "shape-advisory",
+      "h": 764,
+      "v": "1440"
+    },
+    {
+      "id": "shape-project",
+      "h": 764,
+      "v": "1440"
+    },
+    {
+      "id": "shape-retainer",
+      "h": 764,
+      "v": "1440"
+    },
+    {
+      "id": "shape-embedded",
+      "h": 764,
+      "v": "1440"
+    },
+    {
+      "id": "pkg-unstick",
+      "h": 771,
+      "v": "1440"
+    },
+    {
+      "id": "pkg-audit",
+      "h": 771,
+      "v": "1440"
+    },
+    {
+      "id": "pkg-sprint",
+      "h": 771,
+      "v": "1440"
+    },
+    {
+      "id": "shape-advisory",
+      "h": 600,
+      "v": "1280"
+    },
+    {
+      "id": "shape-project",
+      "h": 600,
+      "v": "1280"
+    },
+    {
+      "id": "shape-retainer",
+      "h": 576,
+      "v": "1280"
+    },
+    {
+      "id": "shape-embedded",
+      "h": 576,
+      "v": "1280"
+    },
+    {
+      "id": "pkg-unstick",
+      "h": 387,
+      "v": "1280"
+    },
+    {
+      "id": "pkg-audit",
+      "h": 397,
+      "v": "1280"
+    },
+    {
+      "id": "pkg-sprint",
+      "h": 373,
+      "v": "1280"
+    }
+  ]
+}

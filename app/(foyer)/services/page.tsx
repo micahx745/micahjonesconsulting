@@ -7,49 +7,34 @@
 // cells), primary CTA at the very bottom, proof buried in "Anchor:"
 // parentheticals. Fix: one decision per screen.
 //
-//   1. Header + TWO DOORS — route the buyer first: engagements (for
-//      companies, scoped on a free call) or packages (fixed price).
-//   2. Three services, compact: pain line + three outcomes + one
-//      receipt in display type with the case-study link. No tables.
-//   3. How engagements work — ONE table (four shapes) for all three
-//      services, replacing three 4-column matrices.
-//   4. Packages (Pass-47 cards kept; intro tightened).
-//   5. Espresso foot: the free intro call — the page's one filled pill.
+// Pass-111b (operator 2026-09-11, four rulings; brief
+// .claude/briefs/pass-111b-services-boxes-and-rail.md). The page sells
+// four true things once each:
+//   - ONE PRICE: "From $5K a month" is Advisory's and nothing else's
+//     (decision 1), so it lives in the Advisory box and nowhere above
+//     it. The scoped shapes lead with their live term at figure size.
+//   - WHAT EACH SHAPE PROMISES: the approved commitments (decision 2)
+//     differentiate the four boxes; the shared promises moved to one
+//     ruled "Every engagement includes" row under the band.
+//   - WHICH AREA: the three areas render under the shapes, and the
+//     package pick travels as Stripe metadata.area (decision 3).
+//   - THE RENAME: "AI engineering" (decision 9); "Product building".
+// The tables, the .cw-sv-svc-group chapters, the "On the price"
+// objection and the page-level price line are gone with them.
 //
 // Receipts use ledger phrasings only (docs/LESSONS_LEARNED.md #3).
 // Zero animation on this page beyond the site's palette shift.
-//
-// Pass-109 (operator: packages "arent even in services page anymore,
-// most important thing"; the three services "does not connect with
-// the engagements... makes me think they are separate"; page "does
-// not compel action"). Three fixes, all structural:
-//   - The three services are now wrapped in one .cw-sv-svc-group
-//     under Engagements, with a lead line naming that a client can
-//     run all three together, and a soft internal divider instead of
-//     a full-strength rule between them, so they read as contents of
-//     Engagements, not peer chapters.
-//   - Each service's index (01/02/03) is now a large light-weight
-//     display numeral -- SIZE and WEIGHT carry the break, no opacity,
-//     no new colour, this page still renders on more than one world.
-//   - A Packages table (id="packages") restores the three real, fixed
-//     prices with working Buy actions, in the shapes table's own
-//     grammar, between "How engagements work" and the price
-//     objections. Pass-109 (Astra #2, operator-approved 2026-09-10:
-//     "Do the buy-button treatment"): each Buy action is a .cw-buy
-//     pill, the Audit filled and the other two outlined, because the
-//     mono underline it replaced read as secondary navigation. That
-//     supersedes W3's one-filled-pill rule on this page for purchases:
-//     the Audit and the espresso foot's call pill are the two fills.
 import type { Metadata } from "next";
-import { BuyButton } from "@/components/BuyButton";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
+import { PackageBand } from "@/components/color-worlds/PackageBand";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
+import { PriceBox } from "@/components/color-worlds/PriceBox";
 
 export const metadata: Metadata = {
   title: "Services: what I do, and how to hire me",
   description:
-    "Engagements from $5K a month: advisory, project, retainer, or embedded. Not ready to commit? Start with the $2,500 Audit instead. One operator, not an agency.",
+    "Advisory from $5K a month; project, retainer, or embedded priced on the call. Not ready to commit? Start with the $2,500 Audit instead.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/services" },
 };
 
@@ -67,9 +52,80 @@ interface Service {
   outcomes: string[];
   receipts: Receipt[];
   serviceType: string;
+  /** Index into receipts: the one receipt the areas block renders (Pass-111b). */
+  proof: number;
 }
 
+// Pass-111b §6: reordered to AI engineering, Product building,
+// Positioning & GTM (the areas render in this order); titles renamed
+// per decision 9. The n field is data-only now; SERVICES_LD follows
+// this order.
 const SERVICES: Service[] = [
+  {
+    slug: "ai-engineering",
+    n: "03",
+    title: "AI engineering",
+    pain: "Your AI works in the notebook. Production is a different stack. I run that stack.",
+    // Pass-67: outcomes 2 and 3 absorb the one idea worth keeping from the
+    // retired /services/ai-engineering page — its definition of what
+    // "production-grade" actually means. Folded into the existing three rather
+    // than added as a fourth, so all three services keep the same shape.
+    outcomes: [
+      "Retrieval, agents, and orchestration built for real load, not the demo.",
+      "Evals that fire on every change and catch failures before your customers do.",
+      "Prompt deployment as its own pipeline, and a written bar for what ships. Your team runs it after I leave.",
+    ],
+    receipts: [
+      {
+        text: "For an industry author: software that reads every new RFP each morning and drafts the first pass at a response. RFP-to-close rate doubled; $3M in contracts won.",
+        href: "/work/rfp-engine",
+        label: "Read the case study",
+      },
+      // Site copy review 2026-09-02 #21: the second receipt, "Current AI
+      // engagements are under NDA.", is gone. It sat under a label that says
+      // Proof and proved nothing, diluting the RFP receipt above it.
+    ],
+    serviceType: "AI Engineering Consulting",
+    proof: 0,
+  },
+  {
+    slug: "product-building",
+    n: "02",
+    title: "Product building",
+    // Review #18 (2026-09-02): this line sold the demo-to-production gap,
+    // which is service 03's line and the /playbook's pitch, so 02 and 03 read
+    // as the same service. 02's proof (Ordani, the content engine) is whole
+    // product building. The reviewer proposed ending on "I am the team"; that
+    // collides with /work/ordani's "small team" sentence (Pass-63, kept) the
+    // same way the Packages door's "solo" did (Pass-78). The licensed claim is
+    // that he founded it and writes the code, so the line ends on building.
+    pain: "You have the idea, the budget, and customers waiting. What you do not have is the team to build it. I build it.",
+    outcomes: [
+      "Strategy, design, code, security, and launch, all mine. Nothing gets handed to a second team.",
+      "A production build, not a prototype: auth, data, deploy, and the compliance posture written down.",
+      "A roadmap with the trade-offs named, agreed with the founder before the first sprint.",
+    ],
+    receipts: [
+      {
+        text: "Ordani: a HIPAA-compliant CRM I founded and built. Active paying users in beta, none lost to a competitor, and a public release coming.",
+        href: "/work/ordani",
+        label: "Read the case study",
+      },
+      {
+        // Pass-78. Two defects. "website" is a deliverable NEITHER case study
+        // mentions (zero hits in content-engine.mdx and rfp-engine.mdx), so it
+        // was the one unsupported claim in a Proof block. And this was the only
+        // receipt on the page with a live case study and no link to it, while
+        // the receipt below it links out. Now it names what the study names and
+        // goes where the number is proved.
+        text: "An industry author: I built the content engine that took their monthly reach from 8,000 to 290,000 in five months.",
+        href: "/work/content-engine",
+        label: "Read the case study",
+      },
+    ],
+    serviceType: "Product Development Consulting",
+    proof: 0,
+  },
   {
     slug: "positioning-gtm",
     n: "01",
@@ -109,109 +165,7 @@ const SERVICES: Service[] = [
       },
     ],
     serviceType: "Go-to-Market Strategy Consulting",
-  },
-  {
-    slug: "product-building",
-    n: "02",
-    title: "End-to-end product building",
-    // Review #18 (2026-09-02): this line sold the demo-to-production gap,
-    // which is service 03's line and the /playbook's pitch, so 02 and 03 read
-    // as the same service. 02's proof (Ordani, the content engine) is whole
-    // product building. The reviewer proposed ending on "I am the team"; that
-    // collides with /work/ordani's "small team" sentence (Pass-63, kept) the
-    // same way the Packages door's "solo" did (Pass-78). The licensed claim is
-    // that he founded it and writes the code, so the line ends on building.
-    pain: "You have the idea, the budget, and customers waiting. What you do not have is the team to build it. I build it.",
-    outcomes: [
-      "Strategy, design, code, security, and launch, all mine. Nothing gets handed to a second team.",
-      "A production build, not a prototype: auth, data, deploy, and the compliance posture written down.",
-      "A roadmap with the trade-offs named, agreed with the founder before the first sprint.",
-    ],
-    receipts: [
-      {
-        text: "Ordani: a HIPAA-compliant CRM I founded and built. Active paying users in beta, none lost to a competitor, and a public release coming.",
-        href: "/work/ordani",
-        label: "Read the case study",
-      },
-      {
-        // Pass-78. Two defects. "website" is a deliverable NEITHER case study
-        // mentions (zero hits in content-engine.mdx and rfp-engine.mdx), so it
-        // was the one unsupported claim in a Proof block. And this was the only
-        // receipt on the page with a live case study and no link to it, while
-        // the receipt below it links out. Now it names what the study names and
-        // goes where the number is proved.
-        text: "An industry author: I built the content engine that took their monthly reach from 8,000 to 290,000 in five months.",
-        href: "/work/content-engine",
-        label: "Read the case study",
-      },
-    ],
-    serviceType: "Product Development Consulting",
-  },
-  {
-    slug: "ai-engineering",
-    n: "03",
-    title: "Frontier AI engineering",
-    pain: "Your AI works in the notebook. Production is a different stack. I run that stack.",
-    // Pass-67: outcomes 2 and 3 absorb the one idea worth keeping from the
-    // retired /services/ai-engineering page — its definition of what
-    // "production-grade" actually means. Folded into the existing three rather
-    // than added as a fourth, so all three services keep the same shape.
-    outcomes: [
-      "Retrieval, agents, and orchestration built for real load, not the demo.",
-      "Evals that fire on every change and catch failures before your customers do.",
-      "Prompt deployment as its own pipeline, and a written bar for what ships. Your team runs it after I leave.",
-    ],
-    receipts: [
-      {
-        text: "For an industry author: software that reads every new RFP each morning and drafts the first pass at a response. RFP-to-close rate doubled; $3M in contracts won.",
-        href: "/work/rfp-engine",
-        label: "Read the case study",
-      },
-      // Site copy review 2026-09-02 #21: the second receipt, "Current AI
-      // engagements are under NDA.", is gone. It sat under a label that says
-      // Proof and proved nothing, diluting the RFP receipt above it.
-    ],
-    serviceType: "AI Engineering Consulting",
-  },
-];
-
-// The four engagement shapes — the same four for every service, so
-// they are stated ONCE. Advisory's public anchor price stays (Pass-47,
-// operator-locked); the rest are scoped on the intro call. Embedded is
-// the operator-locked weighted shape.
-interface Shape {
-  name: string;
-  when: string;
-  time: string;
-  price: string;
-  lead?: boolean;
-}
-
-const SHAPES: Shape[] = [
-  {
-    name: "Advisory",
-    when: "You want a second operator in the room for the big decisions, a few hours a month.",
-    time: "4-6 hours a month, ongoing",
-    price: "From $5K a month",
-  },
-  {
-    name: "Project",
-    when: "One defined outcome with a start, an end, and a named deliverable.",
-    time: "6-20 weeks",
-    price: "Scoped on the call",
-  },
-  {
-    name: "Retainer",
-    when: "I stay on after the project ships: the launch, the first customers, and what they break.",
-    time: "6 months, then month to month",
-    price: "Scoped on the call",
-  },
-  {
-    name: "Embedded",
-    when: "I act as your head of GTM, product, or AI engineering for the window.",
-    time: "3-8 months, 3+ days a week",
-    price: "Scoped on the call",
-    lead: true,
+    proof: 2,
   },
 ];
 
@@ -260,6 +214,38 @@ const SERVICES_LD = {
   ],
 };
 
+// Pass-111b §2.1: the approved per-shape commitments (operator
+// 2026-09-11, decision 2). A4 (notice terms) and S3 (the Sprint
+// remedy) are NOT approved and are not written.
+const ADVISORY_LIST = [
+  "Two working sessions a month, booked when you need them.",
+  "Send me a decision between sessions and get my read within one business day.",
+  "A short written note after each session: what we decided and what happens next.",
+];
+const PROJECT_LIST = [
+  "A fixed price for the agreed scope.",
+  "A written progress note every week.",
+  "A handover at the end: documentation and a walkthrough, so your team runs it without me.",
+];
+const RETAINER_LIST = [
+  "Same-day response on anything that breaks in production.",
+  "A monthly written review of what shipped and what is next.",
+];
+const EMBEDDED_LIST = [
+  "In your standups and leadership meetings as part of the team.",
+  "A roadmap I own and report on to the CEO.",
+  "Before I leave: help hiring the permanent head of the function, and a handover plan.",
+];
+
+const INCLUSIONS = [
+  "Week one is a scoping session and an audit of where things stand, so the work starts on the right problem.",
+  "Something named ships in month one.",
+  "The scope and the price in writing before anything starts. No discovery fee.",
+  "Me, directly: strategy and software from the same person, with no hand-off.",
+  "A reply within one business day.",
+  "Any one of the three areas below, two of them, or all three.",
+];
+
 export default function ServicesPage() {
   return (
     <main className="cw-services cw-sv">
@@ -278,71 +264,26 @@ export default function ServicesPage() {
         data-world="bone"
         aria-labelledby="cw-services-title"
       >
-        {/* Pass-61 opening (brief: .claude/briefs/pass-61-page-openings.md).
-            The kicker, the 88px "What I do, and how to hire me." and the intro
-            are GONE. The intro was the doors' own copy said once in prose and
-            again in boxes, and the page opened with its own name — the same
-            three elements /work, /book and /about all opened with, which is
-            what read as machine-made.
-
-            The doors ARE the page now: two full-height columns split by ONE
-            rule, no boxes, no radius, no shadow. The form is a two-column
-            dinner menu — tasting menu on the left, a la carte on the right.
-            One card, two prices, two paths, which is the most hospitable
-            decision shape there is, and the constitution asks foyer pages for
-            hospitality. Each column ends on a receipt, so the choice is made
-            against evidence rather than adjectives.
-
-            The h1 survives as screen-reader-only text: the visible headline is
-            now the two column names, but the document still needs one h1. */}
         <h1 id="cw-services-title" className="sr-only">
           Services
         </h1>
 
-        {/* Pass-108 (services rebuild, operator: "still looks weird
-            structurally and does not entice me to want to buy"). The
-            two-column doors fork is gone. Both audiences it split between
-            already self-select before they reach this page: the home
-            page's "Running a growing business" door sends companies here
-            (app/(foyer)/page.tsx, the doors-band section), and its own
-            "Audit" link plus "Building solo" door send everyone else to
-            /packages. Asking the same visitor to classify themselves a
-            second time, against two sentences and a link with no price or
-            scope in sight, was the page's own root defect: it routed
-            instead of selling, and the one number a buyer needs first,
-            "From $5K a month," rendered at 12px mono in a door's foot, the
-            smallest text on a page whose job is selling.
-
-            The opening is now one section: the price stated once, at
-            display size, directly above the same sell line and the same
-            case-study receipt the old "Engagements" door carried,
-            unchanged. It flows straight into the three named services
-            below (pain, three outcomes, a receipt each, already selling)
-            instead of routing away from them, so the "See the three
-            services" jump link is gone too: the reader reaches that
-            content by scrolling, not clicking. The old .cw-doors/.cw-door
-            CSS stays in globals.css untouched — the home page's own
-            doors-band reuses the bare .cw-door class, so deleting those
-            rules would risk a page outside this pass's scope. */}
+        {/* The opening: kicker, Engagements, the sell line and the
+            Guardicore proof card (Pass-108/109). Pass-111b deleted the
+            page-level "From $5K a month" line and the "Three areas of
+            work, inside Engagements" lead: one price, once, and it is
+            Advisory's (decision 1). */}
         <section
           id="engagements"
           className="cw-sv-open"
           aria-labelledby="cw-sv-open-title"
         >
-          {/* Pass-109 (Astra #3, operator-approved 2026-09-10): the opening
-              is composed across the desktop grid. The 640px cap left most of
-              the screen empty above the service rows. The case-study receipt
-              that sat under the sell line as a 15px box becomes the right
-              column: the evidence, beside the claim it backs. Same link, same
-              words, same destination; "Proof" is the label the three services
-              below already use for their own receipts. */}
           <div className="cw-sv-open__grid">
             <div className="cw-sv-open__lead">
               <p className="cw-services__kicker">For companies</p>
               <h2 id="cw-sv-open-title" className="cw-sv-open__name">
                 Engagements
               </h2>
-              <p className="cw-sv-open__price">From $5K a month</p>
               <p className="cw-sv-open__body">
                 Strategy and software from the same person, so nothing is lost
                 in the hand-off. Pick the problem; I name the shape on the call.
@@ -360,254 +301,153 @@ export default function ServicesPage() {
               </a>
             </div>
           </div>
-          <p className="cw-sv-svc-group__lead">
-            Three areas of work, inside Engagements. Pick one, or run all three
-            together.
-          </p>
         </section>
 
-        <div
-          className="cw-sv-svc-group"
-          role="group"
-          aria-label="What Engagements covers"
-        >
-          {SERVICES.map((service) => (
-            <section
-              key={service.slug}
-              id={service.slug}
-              className="cw-sv-svc"
-              aria-labelledby={`cw-service-${service.slug}-title`}
-            >
-              <div className="cw-sv-svc__lead">
-                <p className="cw-sv-svc__num">{service.n}</p>
-                <h3
-                  id={`cw-service-${service.slug}-title`}
-                  className="cw-sv-svc__title"
-                >
-                  {service.title}
-                </h3>
-                <p className="cw-sv-svc__pain">{service.pain}</p>
-              </div>
-              <div className="cw-sv-svc__detail">
-                <p className="cw-sv-svc__lbl">What lands</p>
-                <ul className="cw-sv-svc__list">
-                  {service.outcomes.map((o) => (
-                    <li key={o}>{o}</li>
-                  ))}
-                </ul>
-                <p className="cw-sv-svc__lbl">Proof</p>
-                {service.receipts.map((r, i) => (
-                  <p
-                    key={r.text}
-                    className={
-                      i === 0
-                        ? "cw-sv-receipt"
-                        : "cw-sv-receipt cw-sv-receipt--minor"
-                    }
-                  >
-                    {r.text}
-                    {r.href ? (
-                      <>
-                        {" "}
-                        <a href={r.href} className="cw-sv-receipt__link">
-                          {r.label} <span aria-hidden>→</span>
-                        </a>
-                      </>
-                    ) : null}
-                  </p>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-
-        {/* How engagements work — one table for all three services. */}
+        {/* Pass-111b: the shapes as boxes. No section head — the
+            Engagements H2 and sell line above introduce them (CRITIQUE
+            H5). The scoped shapes lead with their live term at figure
+            size, not the word "Scoped" three times (CRITIQUE H2). */}
         <section
           id="shapes"
           className="cw-sv-sec cw-sv-shapes"
-          aria-labelledby="cw-sv-shapes-title"
+          aria-label="The four engagement shapes"
         >
-          <p className="cw-services__kicker">How engagements work</p>
-          <h2 id="cw-sv-shapes-title" className="cw-service__title">
-            Four shapes. The same four for every service.
-          </h2>
-          <p className="cw-services__intro">
-            You bring the problem. I choose the shape with you on the call, and
-            put the scope and price in writing before anything starts.
-          </p>
-          <table className="cw-sv-table">
-            <caption className="sr-only">
-              The four engagement shapes compared by fit, time, and price
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">Shape</th>
-                <th scope="col">When it fits</th>
-                <th scope="col">Time</th>
-                <th scope="col">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SHAPES.map((s) => (
-                <tr key={s.name}>
-                  <th scope="row" className="cw-sv-table__name">
-                    {s.name}
-                    {s.lead ? (
-                      <span className="cw-sv-table__tag">Recommended</span>
-                    ) : null}
-                  </th>
-                  <td data-th="When it fits">{s.when}</td>
-                  <td data-th="Time">{s.time}</td>
-                  <td data-th="Price" className="cw-sv-table__price">
-                    {s.price}
-                  </td>
-                </tr>
+          <div className="cw-pband cw-pband--shapes">
+            <PriceBox
+              as="h3"
+              id="shape-advisory"
+              name="Advisory"
+              price={{ from: "From", fig: "$5K", per: "a month" }}
+              term="4-6 hours a month, ongoing"
+              fit="You want a second operator in the room for the big decisions."
+              list={ADVISORY_LIST}
+              cta={
+                <a href="/call?shape=advisory" className="cw-buy cw-buy--quiet">
+                  Ask about Advisory <span aria-hidden>→</span>
+                </a>
+              }
+            />
+            <PriceBox
+              as="h3"
+              id="shape-project"
+              name="Project"
+              price={{ fig: "6-20 weeks" }}
+              term="Fixed price, in writing after the call"
+              fit="One defined outcome with a start, an end, and a named deliverable."
+              list={PROJECT_LIST}
+              cta={
+                <a href="/call?shape=project" className="cw-buy cw-buy--quiet">
+                  Ask about a project <span aria-hidden>→</span>
+                </a>
+              }
+            />
+            <PriceBox
+              as="h3"
+              id="shape-retainer"
+              name="Retainer"
+              price={{ fig: "6 months", per: "then month to month" }}
+              term="Scoped and priced on the call"
+              fit="I stay on after the project ships: the launch, the first customers, and what they break."
+              list={RETAINER_LIST}
+              cta={
+                <a href="/call?shape=retainer" className="cw-buy cw-buy--quiet">
+                  Ask about a retainer <span aria-hidden>→</span>
+                </a>
+              }
+            />
+            <PriceBox
+              as="h3"
+              id="shape-embedded"
+              lead
+              name="Embedded"
+              price={{ fig: "3-8 months", per: "3+ days a week" }}
+              term="Scoped and priced on the call"
+              fit="I act as your head of GTM, product, or AI engineering for the window."
+              list={EMBEDDED_LIST}
+              cta={
+                <a href="/call?shape=embedded" className="cw-buy">
+                  Ask about Embedded <span aria-hidden>→</span>
+                </a>
+              }
+            />
+          </div>
+
+          {/* The shared promises, stated once (CRITIQUE H1): one ruled
+              row, not a line repeated in four boxes. */}
+          <div className="cw-pband__incl" aria-labelledby="sv-incl-title">
+            <h3 id="sv-incl-title" className="cw-pband__incl-h">
+              Every engagement includes
+            </h3>
+            <ul className="cw-pband__incl-list cw-pbox__list">
+              {INCLUSIONS.map((item) => (
+                <li key={item}>{item}</li>
               ))}
-            </tbody>
-          </table>
-          <p className="cw-sv-shapes__foot">
-            Not sure which shape? That is what the call is for.{" "}
-            <a href="/call" className="cw-mlink">
-              Book a free intro call <span aria-hidden>→</span>
-            </a>
-          </p>
-          {/* Pass-112 (operator 2026-09-11): the book is off the site until
-              it ships. The Pass-67 bridge paragraph that was here linked
-              /playbook. */}
+            </ul>
+          </div>
+
+          {/* The three areas (decision 9's names), rendered from the
+              SERVICES array: pain and outcomes verbatim, one receipt
+              each (CRITIQUE M3), no numerals, no "Proof" label. */}
+          <div className="cw-areas" aria-labelledby="sv-areas-title">
+            <h3 id="sv-areas-title" className="cw-areas__h">
+              Three areas of work
+            </h3>
+            <div className="cw-areas__grid">
+              {SERVICES.map((service) => {
+                const r = service.receipts[service.proof];
+                return (
+                  <article key={service.slug} className="cw-area">
+                    <h4 className="cw-area__name">{service.title}</h4>
+                    <p className="cw-area__pain">{service.pain}</p>
+                    <ul className="cw-area__list">
+                      {service.outcomes.map((o) => (
+                        <li key={o}>{o}</li>
+                      ))}
+                    </ul>
+                    <p className="cw-area__proof">
+                      {r?.text}
+                      {r?.href ? (
+                        <>
+                          {" "}
+                          <a href={r.href} className="cw-mlink">
+                            Read the case study <span aria-hidden>→</span>
+                          </a>
+                        </>
+                      ) : null}
+                    </p>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
         </section>
 
-        {/* Pass-109 (operator: "the packages arent even in services page
-            anymore. Most important thing"). Pass-108 moved the fixed-price
-            packages to their own address and left only a link at the foot
-            of the price objections below. The nav has no /packages item
-            (components/color-worlds/Nav.tsx), so /services is the only
-            page most visitors reach looking for a price, and it named a
-            number for exactly one thing: engagements, from $5K a month.
-            This restores all three real prices, in the Shapes table's own
-            grammar, with a working Buy action on each row. Names, prices
-            and descriptions are the same three offers as PACKAGES_LD in
-            app/(foyer)/packages/page.tsx, not a rewrite. The Buy action was
-            .cw-sv-table__buy, a button-safe cut of the page's one
-            secondary-link grammar (.cw-mlink). Pass-109 made it a .cw-buy
-            pill (the Audit filled, the other two outlined) on the operator's
-            approval of Astra #2; see the file header. */}
+        {/* Pass-111b: the packages as boxes behind the area picker
+            (PackageBand owns the picker, the band and the footer row).
+            No kicker — "For companies" is the page's one kicker
+            (CRITIQUE H6). */}
         <section
           id="packages"
           className="cw-sv-sec cw-sv-pkgs"
           aria-labelledby="cw-sv-pkgs-title"
         >
-          <p className="cw-services__kicker">Or start smaller</p>
           <h2 id="cw-sv-pkgs-title" className="cw-service__title">
-            Three fixed prices. Start this week.
+            Or start smaller. Three fixed prices, one area each.
           </h2>
           <p className="cw-services__intro">
             No scoping call, no proposal. Buy one and the work starts within the
-            week. Every fee credits toward the next package or an engagement
-            started within 60 days.
+            week.
           </p>
-          <table className="cw-sv-table">
-            <caption className="sr-only">
-              The three fixed-price packages compared by what you get and price
-            </caption>
-            <thead>
-              <tr>
-                <th scope="col">Package</th>
-                <th scope="col">What you get</th>
-                <th scope="col">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" className="cw-sv-table__name">
-                  The Unstick Session
-                </th>
-                <td data-th="What you get">
-                  90-minute working call on a stuck AI-assisted build plus a
-                  same-day written fix plan.
-                </td>
-                <td
-                  data-th="Price"
-                  className="cw-sv-table__price cw-sv-table__price--buy"
-                >
-                  $500
-                  <BuyButton
-                    skuKey="unstick-500"
-                    label="Buy the Unstick Session"
-                    className="cw-buy cw-buy--quiet cw-sv-table__buy"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" className="cw-sv-table__name">
-                  The Audit
-                  <span className="cw-sv-table__tag">Start here</span>
-                </th>
-                <td data-th="What you get">
-                  Two-week fixed-scope audit: build, production, or traction.
-                  Written memo, prioritized fix sequence, debrief call.
-                </td>
-                <td
-                  data-th="Price"
-                  className="cw-sv-table__price cw-sv-table__price--buy"
-                >
-                  $2,500
-                  <BuyButton
-                    skuKey="audit-2500"
-                    label="Buy the Audit"
-                    className="cw-buy cw-sv-table__buy"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" className="cw-sv-table__name">
-                  The Sprint
-                </th>
-                <td data-th="What you get">
-                  One week embedded on one outcome, shipped.
-                </td>
-                <td
-                  data-th="Price"
-                  className="cw-sv-table__price cw-sv-table__price--buy"
-                >
-                  $7,500
-                  <BuyButton
-                    skuKey="sprint-7500"
-                    label="Buy the Sprint"
-                    className="cw-buy cw-buy--quiet cw-sv-table__buy"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p className="cw-sv-shapes__foot">
-            Full details and the refund terms.{" "}
-            <a href="/packages" className="cw-mlink">
-              See the packages <span aria-hidden>→</span>
-            </a>
-          </p>
+          <PackageBand />
         </section>
 
-        {/* Pass-70: the two things a company buyer asks that this page did
-            not answer. The price note first, because "Scoped on the call" on
-            three of four shapes reads as evasive to someone deciding whether
-            to spend thirty minutes. NOTE: the review proposed a "$5K to $25K"
-            range. That ceiling is not in the fact ledger and I will not invent
-            a price, so this says WHEN the number arrives instead of what it
-            is. A real range would be stronger and only the operator can set
-            it. */}
+        {/* Pass-111b deleted "On the price" (decision 1: the advisory-only
+            floor and the scoped-on-the-call facts now live in the boxes).
+            "Why one person" stays verbatim. */}
         <section
           className="cw-sv-objection"
           aria-label="Pricing and getting started"
         >
-          <h2 className="cw-sv-objection__h">On the price</h2>
-          <p>
-            Advisory is the only shape with a standing rate, because it is the
-            only one with a standing shape: a few hours a month, ongoing. The
-            other three are sized to one piece of work, so the number comes out
-            of the call. You get it in writing, with the scope, before anything
-            starts. No proposal theatre and no discovery fee.
-          </p>
-
           <h2 className="cw-sv-objection__h">Why one person</h2>
           <p>
             An agency gives you a team and a relay race between them. A
@@ -618,17 +458,7 @@ export default function ServicesPage() {
             Something named ships in month one. When the work is bigger than one
             person, I say so on the call.
           </p>
-
-          {/* Pass-109: "Not ready to commit" moved out of this paragraph
-              and into the standalone Packages section above (id=
-              "packages"), where all three prices sit next to a working Buy
-              action instead of one sentence at the foot of the page. */}
         </section>
-
-        {/* Pass-70: the packages moved to their own page, /packages. A solo
-            builder after a $500 session was loading this page and scrolling
-            past enterprise advisory, four engagement shapes and three
-            case-study receipts to reach them. The door above goes there now. */}
       </section>
 
       {/* The ONE palette shift on /services — espresso, the site's

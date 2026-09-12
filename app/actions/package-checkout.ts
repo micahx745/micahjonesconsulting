@@ -3,8 +3,12 @@
 // Hosted Stripe Checkout for the self-serve packages (Pass-52). Same
 // chapter-6 shape as the book checkout: hosted page only, nothing
 // granted here or on the thanks page — the signature-verified webhook
-// sends the kickoff email. The Audit captures its flavor as a Stripe
-// custom field so the kickoff email needs one less round-trip.
+// sends the kickoff email.
+//
+// Pass-111b (decision 3): the page's area pick travels as
+// metadata.area, server-validated here. With no pick, EVERY package
+// SKU (not only the Audit) asks the same question as a required
+// "Which area?" dropdown, so the area is captured on every Buy path.
 //
 // Not yet linked from /services: the cards keep their mailto CTAs
 // until the pay-yourself-live ritual passes at go-live (the
@@ -13,7 +17,7 @@
 
 import { headers } from "next/headers";
 
-import { AUDIT_FLAVORS, SKUS } from "@/lib/catalog";
+import { AREAS, isAreaValue, SKUS } from "@/lib/catalog";
 import { getPriceId, getStripe } from "@/lib/stripe";
 
 type Result = { ok: true; url: string } | { ok: false; error: string };
@@ -24,7 +28,10 @@ const FALLBACK = {
   error: `Checkout isn't open yet. Email ${OWNER} and I'll take care of you directly.`,
 };
 
-export async function createPackageCheckout(skuKey: string): Promise<Result> {
+export async function createPackageCheckout(
+  skuKey: string,
+  area?: string,
+): Promise<Result> {
   const sku = SKUS[skuKey];
   if (!sku || sku.kind !== "package") {
     // eslint-disable-next-line no-console
@@ -52,6 +59,10 @@ export async function createPackageCheckout(skuKey: string): Promise<Result> {
     const proto = h.get("x-forwarded-proto") ?? "https";
     const origin = `${proto}://${host}`;
 
+    // Server-validated area pick (Pass-111b): metadata when the page's
+    // picker made one, the required dropdown when it did not.
+    const hasArea = isAreaValue(area);
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [{ price: priceId, quantity: 1 }],
@@ -59,26 +70,28 @@ export async function createPackageCheckout(skuKey: string): Promise<Result> {
       // Pass-70: the packages moved to their own page; a cancelled checkout
       // used to land back on /services, which no longer shows them.
       cancel_url: `${origin}/packages`,
-      // Shared Stripe account: this tag is what our webhook delivers
+      // Shared Stripe account: these tags are what our webhook delivers
       // against (see app/api/stripe/webhook/route.ts).
-      metadata: { product: sku.lookupKey },
-      ...(sku.lookupKey === "audit-2500"
-        ? {
+      metadata: hasArea
+        ? { product: sku.lookupKey, area }
+        : { product: sku.lookupKey },
+      ...(hasArea
+        ? {}
+        : {
             custom_fields: [
               {
-                key: "flavor",
-                label: { type: "custom" as const, custom: "Audit flavor" },
+                key: "area",
+                label: { type: "custom" as const, custom: "Which area?" },
                 type: "dropdown" as const,
                 dropdown: {
-                  options: AUDIT_FLAVORS.map((f) => ({
-                    label: f,
-                    value: f.toLowerCase(),
+                  options: AREAS.map((a) => ({
+                    label: a.label,
+                    value: a.value,
                   })),
                 },
               },
             ],
-          }
-        : {}),
+          }),
     });
 
     if (!session.url) {

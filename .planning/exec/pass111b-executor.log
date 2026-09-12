@@ -1,0 +1,13 @@
+Pass-111b executor log (2026-09-11)
+
+The GLM batch run (glm111b.log / glm111b.err) died at startup on harness
+permission-rule warnings and made no edits; execution was redirected to the
+main Claude session, which ran the brief verbatim:
+
+- Inputs read: the brief (incl. section 13), DIRECTION-110 sections
+  1.8/1.9/2.1/8, CRITIQUE-110, DESIGN_BAR, brand.json, the Next.js docs
+  for searchParams (Promise, string|string[]) and server actions.
+- Sections 1-7 executed in order; battery gates111b.sh from Git Bash with
+  MSYS_NO_PATHCONV=1, every exit code read directly.
+- Full transcript: this session's claude transcript; gate output:
+  .planning/qa/pass-111b/ (build.log, axe.log, layout.log, shots.json, PNGs).

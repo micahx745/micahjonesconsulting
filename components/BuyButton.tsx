@@ -22,18 +22,25 @@ export function BuyButton({
   skuKey,
   label,
   className = "cw-pkg__cta",
+  area,
+  guard,
 }: {
   skuKey: string;
   label: string;
   className?: string;
+  /** The picked area, forwarded to the checkout as Stripe metadata (Pass-111b). */
+  area?: string;
+  /** Returns false to block checkout (e.g. no area picked); the caller shows its own error. */
+  guard?: () => boolean;
 }) {
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
 
   function go() {
+    if (guard && !guard()) return;
     setError(null);
     startTransition(async () => {
-      const res = await createPackageCheckout(skuKey);
+      const res = await createPackageCheckout(skuKey, area);
       if (res.ok) {
         window.location.href = res.url;
         return;

@@ -50,7 +50,7 @@ export const SKUS: Record<string, Sku> = {
     amount: 250000,
     kind: "package",
     description:
-      "Two-week fixed-scope audit (Build, Production, or Traction): written memo, prioritized fix sequence, one-hour debrief.",
+      "Two-week fixed-scope audit of one area (AI engineering, product building, or positioning and GTM): written memo, prioritized fix sequence, one-hour debrief.",
     intake: [
       "Your app: what it is, who it's for, where it stands.",
       "Links: repo, live app, site (whatever the flavor needs).",
@@ -76,5 +76,21 @@ export const PACKAGE_SKUS = Object.values(SKUS).filter(
   (s) => s.kind === "package",
 );
 
-/** The Audit's flavor choice, captured as a Stripe custom field. */
-export const AUDIT_FLAVORS = ["Build", "Production", "Traction"] as const;
+/** The three areas a package covers. Values are the Stripe-facing keys (kept from the
+ *  old Audit dropdown so past sessions still parse); labels are what the buyer reads. */
+export const AREAS = [
+  { value: "production", label: "AI engineering" },
+  { value: "build", label: "Product building" },
+  { value: "traction", label: "Positioning & GTM" },
+] as const;
+export type AreaValue = (typeof AREAS)[number]["value"];
+
+/** True only for a known Stripe-facing area key. */
+export function isAreaValue(v: unknown): v is AreaValue {
+  return typeof v === "string" && AREAS.some((a) => a.value === v);
+}
+
+/** The buyer-facing label for an area key, or null when there is none. */
+export function areaLabel(v: string | null | undefined): string | null {
+  return AREAS.find((a) => a.value === v)?.label ?? null;
+}

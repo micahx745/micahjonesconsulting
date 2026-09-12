@@ -36,14 +36,14 @@ const CATALOG = [
     name: "The Unstick Session",
     amount: 50000,
     description:
-      "90 minutes live on your stuck build plus a same-day written fix plan. Kickoff scheduling by email after checkout.",
+      "90 minutes live on whatever is stuck plus a same-day written fix plan. Kickoff scheduling by email after checkout.",
   },
   {
     lookupKey: "audit-2500",
     name: "The Audit",
     amount: 250000,
     description:
-      "Two-week fixed-scope audit (Build, Production, or Traction): written memo, prioritized fix sequence, one-hour debrief.",
+      "Two-week fixed-scope audit of one area (AI engineering, product building, or positioning and GTM): written memo, prioritized fix sequence, one-hour debrief.",
   },
   {
     lookupKey: "sprint-7500",

@@ -326,6 +326,10 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   link to /playbook on any rendered surface, metadata, share image or llms.txt, until a new
   dated ruling here. Gate: scripts/retired-phrases-gate.mjs (Pass-112).
 
+- **Advisory-only floor** (operator 2026-09-11, decision 1). "From $5K a month" is Advisory's price and no other shape's; Project, Retainer and Embedded are scoped and priced on the call with no public floor. NEVER: "Engagements from $5K a month", "start at $5K a month", "standing rate", or any page-level price line on /services. Gate: retired-phrases-gate (Pass-111b).
+- **Shape and package commitments approved as true** (operator 2026-09-11, decision 2): Advisory A1-A3, Project P1-P3, Retainer R1-R2, Embedded E1-E3, Unstick U1-U3, Audit AU1, Sprint S1-S2, wording as in .claude/briefs/pass-111b-services-boxes-and-rail.md §2. A4 (notice terms) and S3 (the Sprint remedy) are NOT approved; do not write them. ALL1 fell with the book (Pass-112).
+- **"AI engineering"** is the third area's name (operator 2026-09-11, decision 9); "Product building" is the second's. NEVER: "Frontier AI engineering", "End-to-end product building", "Demo to production" as an area name. Gate: retired-phrases-gate (Pass-111b).
+
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
 
