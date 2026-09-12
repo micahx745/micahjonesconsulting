@@ -8,12 +8,19 @@ ROUTING = MODEL_ROUTING §9e (operator, 2026-09-11 evening): Sonnet + Sol do the
 grunt work; Opus + Astra hold quality; Fable almost never; GLM is overflow only.
 Name `model: "sonnet"` on every Agent leg.
 
+## NOW: Pass-113 + 114 dispatched to a Sonnet chat on the OTHER account (his choice)
+Briefs 5bee4d2: pass-113-case-studies-neutralize.md (decision 5) then
+pass-114-countup-exception.md (decision 4). Pointer: .planning/prompts/
+SONNET-113-114-POINTER.txt. That session commits (explicit paths), never pushes.
+THEN here: judge ≤3 each (served block + work-neuton-1440; countup block + rec captures)
+→ Astra one look at the count-up → push on his OK → main ff when he says.
+One writer per file: this session touches nothing under app/ components/ content/ until
+the other session reports.
+
 ## LIVE 2026-09-12: main = a71788a (ff from design/live-evolve, 124 commits, Pass-101..111b)
-Production dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains; CARD 1 markers 19/19 on each
-(/playbook 404, 0 book mentions, 7 boxes, $5K once, 0 Frontier, 3 radios, 4 Ask-about).
-Baseline before: dpl_8ty3VzkBbu7ZU8WCFoX6Td4wC1pM. No re-alias was needed. The local main
-checkout (C:/Users/micah/Code/micahjonesconsulting) is BEHIND origin/main: operator pulls.
-Pass-111b: 65680e0 + ae9a00d, judged PASS; briefs §0-15c are the record.
+Production dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains; CARD 1 markers 19/19 each.
+Local main checkout is BEHIND origin/main: operator pulls. Pass-111b judged PASS; briefs
+§0-15c are the record.
 
 ## Pass-112 DONE, PUSHED (b5de535): the book is off the site
 ## Rulings 2026-09-11: see brief 111b §0; 4 (count-up) + 5 (case studies) next.
