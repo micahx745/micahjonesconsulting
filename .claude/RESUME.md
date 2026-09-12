@@ -12,9 +12,10 @@ Name `model: "sonnet"` on every Agent leg.
 Pass 65680e0 + fix round 2 ae9a00d (Astra FIX ruled in brief §15/15b/15c). Every gate
 exit 0; served-checks failures 0 (§15c floors 40000/20000/20000/40000/1500); spill
 rule clean on 36 loads; 28 PNGs; heights ≤630 @1440, ≤532 @1280. Judge PASS.
-Preview is behind Vercel SSO: deployed served checks UNVERIFIED until user env
-VERCEL_AUTOMATION_BYPASS_SECRET exists (read by reference, never printed). Merge to
-main only AFTER that check passes (his ruling). Then rulings 4 + 5 briefs.
+Preview is behind Vercel SSO (Vercel default; no prior pass probed previews). MERGE
+APPROVED (operator 2026-09-12, verbatim: "ok use old method"): ff-merge to main, push,
+production verified on BOTH domains per CARD 1 (marker greps + data-dpl-id match), fix
+forward if anything is wrong. Then rulings 4 + 5 briefs.
 
 ## Pass-112 DONE, PUSHED (b5de535): the book is off the site
 ## Rulings 2026-09-11: see brief 111b §0; 4 (count-up) + 5 (case studies) next.
