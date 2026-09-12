@@ -77,6 +77,27 @@ const PATHS = {
   },
 };
 
+function screenLength(el: SVGPathElement): number {
+  const userLength = el.getTotalLength();
+  let length = userLength;
+  if (el.getAttribute("vector-effect") === "non-scaling-stroke") {
+    const ctm = el.getScreenCTM();
+    if (ctm) {
+      length = 0;
+      let previous: DOMPoint | null = null;
+      for (let i = 0; i < 200; i++) {
+        const p = el.getPointAtLength((i / 199) * userLength);
+        const mapped = new DOMPoint(p.x, p.y).matrixTransform(ctm);
+        if (previous) {
+          length += Math.hypot(mapped.x - previous.x, mapped.y - previous.y);
+        }
+        previous = mapped;
+      }
+    }
+  }
+  return Math.ceil(length) + 2;
+}
+
 export function HandCircle({
   color = "var(--color-accent-copper)",
   width = 3.0,
@@ -101,10 +122,22 @@ export function HandCircle({
 
     function drawIn(el: SVGPathElement | null, extraDelay: number) {
       if (!el) return;
-      const len = el.getTotalLength();
-      el.style.strokeDasharray = `${len}`;
-      el.style.strokeDashoffset = reduced ? "0" : `${len}`;
-      if (reduced) return;
+      if (reduced) {
+        el.style.transition = "none";
+        el.style.strokeDasharray = "none";
+        el.style.strokeDashoffset = "0";
+        return;
+      }
+      const S = screenLength(el);
+      el.style.strokeDasharray = `${S} ${S}`;
+      el.style.strokeDashoffset = `${S}`;
+      el.addEventListener(
+        "transitionend",
+        () => {
+          el.style.strokeDasharray = "none";
+        },
+        { once: true },
+      );
       requestAnimationFrame(() => {
         // The 1100ms stroke pair is the approved count-up circle (Pass-114
         // operator exception, 2026-09-11 decision 4; brand.json
@@ -120,19 +153,18 @@ export function HandCircle({
         // Final frame, no transition.
         [primaryRef.current, overshootRef.current].forEach((el) => {
           if (!el) return;
-          const len = el.getTotalLength();
           el.style.transition = "none";
-          el.style.strokeDasharray = `${len}`;
+          el.style.strokeDasharray = "none";
           el.style.strokeDashoffset = "0";
         });
       } else if (!play) {
         // Both paths hidden until the count starts.
         [primaryRef.current, overshootRef.current].forEach((el) => {
           if (!el) return;
-          const len = el.getTotalLength();
+          const S = screenLength(el);
           el.style.transition = "none";
-          el.style.strokeDasharray = `${len}`;
-          el.style.strokeDashoffset = `${len}`;
+          el.style.strokeDasharray = `${S} ${S}`;
+          el.style.strokeDashoffset = `${S}`;
         });
       } else {
         // Primary stroke from `delay`, overshoot 0.95s behind it — with
@@ -146,10 +178,9 @@ export function HandCircle({
     if (instant) {
       [primaryRef.current, overshootRef.current].forEach((el) => {
         if (!el) return;
-        const len = el.getTotalLength();
-        el.style.strokeDasharray = `${len}`;
-        el.style.strokeDashoffset = "0";
         el.style.transition = "none";
+        el.style.strokeDasharray = "none";
+        el.style.strokeDashoffset = "0";
       });
       return;
     }

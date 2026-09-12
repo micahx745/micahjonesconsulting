@@ -15,19 +15,32 @@
 
 import { createRequire } from "node:module";
 import { mkdirSync } from "node:fs";
+import { resolve } from "node:path";
 
 const require2 = createRequire("C:/tmp/p101tools/package.json");
 const puppeteer = require2("puppeteer-core");
 
 const ROOT =
   "C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live";
-const OUT = `${ROOT}/.planning/qa/pass-115`;
+const OUT_INDEX = process.argv.indexOf("--out");
+const OUT_GIVEN = OUT_INDEX !== -1;
+if (
+  OUT_GIVEN &&
+  (!process.argv[OUT_INDEX + 1] || process.argv[OUT_INDEX + 1].startsWith("--"))
+) {
+  console.error("--out requires a directory");
+  process.exit(2);
+}
+const OUT = OUT_GIVEN
+  ? resolve(process.cwd(), process.argv[OUT_INDEX + 1])
+  : `${ROOT}/.planning/qa/pass-115`;
 mkdirSync(OUT, { recursive: true });
 
 const S = "http://localhost:3200";
 const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const FINAL = "$20M+";
 const M1_ONLY = process.argv.includes("--m1-only");
+const PROBE = process.argv.includes("--probe");
 
 let failures = 0;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -45,13 +58,229 @@ const browser = await puppeteer.launch({
   ],
 });
 
-async function freshPage(vp) {
+async function freshPage(vp, { reduced = true } = {}) {
   const page = await browser.newPage();
   await page.setViewport(vp);
-  await page.emulateMediaFeatures([
-    { name: "prefers-reduced-motion", value: "reduce" },
-  ]);
+  if (reduced) {
+    await page.emulateMediaFeatures([
+      { name: "prefers-reduced-motion", value: "reduce" },
+    ]);
+  }
   return page;
+}
+
+async function centreOnFigure(page) {
+  await page.evaluate(() => {
+    const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+    window.scrollTo(
+      0,
+      Math.max(0, r.top + window.scrollY + r.height / 2 - window.innerHeight / 2),
+    );
+  });
+}
+
+async function waitHydrated(page) {
+  await page.waitForFunction(
+    () => document.documentElement.classList.contains("lenis"),
+    { timeout: 15000 },
+  );
+}
+
+async function checkStrokeCoverage(page, state, inkHeight, dsf) {
+  const geometry = await page.evaluate((deviceScaleFactor) => {
+    const paths = [...document.querySelectorAll(".cw-rec .hand-circle path")];
+    const tick = document.querySelector(".cw-rec__tick");
+    const oldVisibility = tick.style.visibility;
+    tick.style.visibility = "hidden";
+    const sample = (el, count) => {
+      const len = el.getTotalLength();
+      const ctm = el.getScreenCTM();
+      const points = [];
+      for (let i = 0; i < count; i++) {
+        const p = el.getPointAtLength((i / (count - 1)) * len);
+        const mapped = new DOMPoint(p.x, p.y).matrixTransform(ctm);
+        points.push([
+          mapped.x * deviceScaleFactor,
+          mapped.y * deviceScaleFactor,
+        ]);
+      }
+      return points;
+    };
+    const primary = sample(paths[0], 200);
+    const overshoot = sample(paths[1], 80);
+    const all = [...primary, ...overshoot];
+    return {
+      primary,
+      overshoot,
+      loopLeft: Math.min(...all.map((p) => p[0])),
+      loopTop: Math.min(...all.map((p) => p[1])),
+      oldVisibility,
+    };
+  }, dsf);
+
+  let shot;
+  try {
+    shot = await page.screenshot({ encoding: "base64" });
+  } finally {
+    await page.evaluate((visibility) => {
+      document.querySelector(".cw-rec__tick").style.visibility = visibility;
+    }, geometry.oldVisibility);
+  }
+
+  const decoder = await browser.newPage();
+  await decoder.goto("about:blank");
+  const coverage = await decoder.evaluate(
+    async (dataUrl, geometry, inkHeight, dsf) => {
+      const img = new Image();
+      img.src = dataUrl;
+      await img.decode();
+      const canvas = document.createElement("canvas");
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0);
+      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      const width = canvas.width;
+      const height = canvas.height;
+      const bgX = Math.round(geometry.loopLeft);
+      const bgY = Math.round(geometry.loopTop - 0.4 * inkHeight * dsf);
+      const rs = [];
+      const gs = [];
+      const bs = [];
+      for (let y = bgY - 10; y < bgY + 10; y++) {
+        for (let x = bgX - 10; x < bgX + 10; x++) {
+          if (x < 0 || x >= width || y < 0 || y >= height) continue;
+          const i = (y * width + x) * 4;
+          rs.push(pixels[i]);
+          gs.push(pixels[i + 1]);
+          bs.push(pixels[i + 2]);
+        }
+      }
+      const median = (values) => {
+        values.sort((a, b) => a - b);
+        return values[(values.length - 1) >> 1];
+      };
+      const bg = [median(rs), median(gs), median(bs)];
+      const radius = 3 * dsf;
+      const covered = (point) => {
+        const cx = Math.round(point[0]);
+        const cy = Math.round(point[1]);
+        const reach = Math.ceil(radius);
+        for (let dy = -reach; dy <= reach; dy++) {
+          for (let dx = -reach; dx <= reach; dx++) {
+            if (dx * dx + dy * dy > radius * radius) continue;
+            const x = cx + dx;
+            const y = cy + dy;
+            if (x < 0 || x >= width || y < 0 || y >= height) continue;
+            const i = (y * width + x) * 4;
+            const diff = Math.max(
+              Math.abs(pixels[i] - bg[0]),
+              Math.abs(pixels[i + 1] - bg[1]),
+              Math.abs(pixels[i + 2] - bg[2]),
+            );
+            if (diff > 40) return true;
+          }
+        }
+        return false;
+      };
+      const ratio = (points) =>
+        points.filter((point) => covered(point)).length / points.length;
+      return {
+        primary: ratio(geometry.primary),
+        overshoot: ratio(geometry.overshoot),
+      };
+    },
+    `data:image/png;base64,${shot}`,
+    geometry,
+    inkHeight,
+    dsf,
+  );
+  await decoder.close();
+
+  const primaryOk = coverage.primary >= 0.97;
+  const overshootOk = coverage.overshoot >= 0.9;
+  if (!primaryOk) failures++;
+  if (!overshootOk) failures++;
+  console.log(
+    `C11 stroke coverage primary [${state}]: got ${f3(coverage.primary)}, expect >= 0.97${primaryOk ? "" : "  <-- FAIL"}`,
+  );
+  console.log(
+    `C11 stroke coverage overshoot [${state}]: got ${f3(coverage.overshoot)}, expect >= 0.90${overshootOk ? "" : "  <-- FAIL"}`,
+  );
+}
+
+async function runPlayedState(inkHeight) {
+  const page = await freshPage(
+    { width: 1440, height: 900, deviceScaleFactor: 1 },
+    { reduced: false },
+  );
+  await page.goto(`${S}/`, { waitUntil: "networkidle0", timeout: 60000 });
+  await waitHydrated(page);
+  const pre = await page.evaluate(() => {
+    const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+    return {
+      top: r.top,
+      height: r.height,
+      absTop: r.top + window.scrollY,
+      innerHeight: window.innerHeight,
+    };
+  });
+  if (pre.top <= pre.innerHeight) {
+    failures += 2;
+    console.log(
+      `C11 stroke coverage primary [played]: got 0.000, expect >= 0.97  <-- FAIL`,
+    );
+    console.log(
+      `C11 stroke coverage overshoot [played]: got 0.000, expect >= 0.90  <-- FAIL`,
+    );
+    await page.close();
+    return;
+  }
+  await sleep(500);
+  const stageA = pre.absTop - (pre.innerHeight + 0.75 * pre.innerHeight);
+  await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, stageA));
+  await sleep(250);
+  const centre = pre.absTop + pre.height / 2 - pre.innerHeight / 2;
+  await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, centre));
+  await sleep(3200);
+  await page.evaluate(() => document.fonts.ready);
+  await checkStrokeCoverage(page, "played", inkHeight, 1);
+  if (OUT_GIVEN) {
+    await page.screenshot({ path: `${OUT}/home-rec-played-1440.png` });
+    console.log(`     capture: home-rec-played-1440.png`);
+  }
+  await page.close();
+}
+
+if (PROBE) {
+  const page = await freshPage({ width: 1440, height: 900, deviceScaleFactor: 1 });
+  await page.goto(`${S}/`, { waitUntil: "networkidle0", timeout: 60000 });
+  await page.evaluate(() => document.fonts.ready);
+  await centreOnFigure(page);
+  await sleep(400);
+  const probe = await page.evaluate(() =>
+    [...document.querySelectorAll(".cw-rec .hand-circle path")].map((el) => {
+      const user = el.getTotalLength();
+      const ctm = el.getScreenCTM();
+      let screen = 0;
+      let previous = null;
+      for (let i = 0; i < 400; i++) {
+        const p = el.getPointAtLength((i / 399) * user);
+        const mapped = new DOMPoint(p.x, p.y).matrixTransform(ctm);
+        if (previous) screen += Math.hypot(mapped.x - previous.x, mapped.y - previous.y);
+        previous = mapped;
+      }
+      return { user, screen, ratio: screen / user };
+    }),
+  );
+  probe.forEach(({ user, screen, ratio }, i) => {
+    console.log(
+      `P1 path${i}: user=${user.toFixed(2)} screen=${screen.toFixed(2)} ratio=${ratio.toFixed(2)}`,
+    );
+  });
+  await page.close();
+  await browser.close();
+  process.exit(0);
 }
 
 // ---------------------------------------------------------------- §2, M1
@@ -356,6 +585,13 @@ for (const W of WIDTHS) {
     console.log(`${name}: got ${got}, expect ${expect}${ok ? "" : "  <-- FAIL"}`);
   }
 
+  await checkStrokeCoverage(
+    page,
+    W.name === "1440" ? "reduced" : "reduced-390",
+    r.ink.h,
+    W.dsf,
+  );
+
   // ------------------------------------------------------------ captures
   await page.evaluate(() => document.fonts.ready);
   if (W.name === "1440") {
@@ -389,6 +625,7 @@ for (const W of WIDTHS) {
     console.log(`     capture: home-rec-done-390.png (2x)`);
   }
   await page.close();
+  if (W.name === "1440") await runPlayedState(r.ink.h);
 }
 
 const ratios = Object.values(m1).map((r) => r.em.W / r.em.H);

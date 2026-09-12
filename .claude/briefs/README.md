@@ -53,6 +53,9 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
 - **The executor never reinterprets an expected value.** A chk line whose `got` differs
   from its `expect` is a failure. If the executor believes the brief's number is wrong, it
   stops before the commit and reports the raw output plus its reason; the judge rules.
+- **Measure the render, not the model** (LESSONS #26). Any check on a drawn mark confirms ink
+  in a screenshot of the finished frame, and is run once on the broken code first to prove it
+  bites. Pass-115 passed ten geometric checks on a loop the browser never painted.
 
 ## Budget this enforces
 

@@ -947,3 +947,28 @@ reason, and the judge rules on it.
 **The gate.** That clause is now standing text in `.claude/briefs/README.md` §5 and in the
 `.planning/prompts/GLM-*-POINTER.txt` template every executor run is handed. On recurrence:
 the verify block ends with `[ "$sf" = 0 ] || exit 1`, which no narration can pass.
+
+## #26 — Ten geometric checks passed a loop that never rendered (2026-09-12)
+
+**What happened.** Pass-115 redrew the home `$20M+` hand loop and passed C1 to C10 at both
+widths: corners enclosed, clearance, column alignment, centring. The judge opened the capture
+and there was no loop, only a top stroke and a separate bottom stroke with both sides missing.
+The Pass-114 capture showed the same broken arcs, so the defect was older than either pass and
+was part of what Astra had failed as "the circle does not land".
+
+**Root cause.** `HandCircle` set `strokeDasharray` and `strokeDashoffset` to `getTotalLength()`,
+a length in SVG user units, while its paths carry `vectorEffect="non-scaling-stroke"`, under
+which Chrome lays dashes out in screen pixels. Pass-115b's probe measured the screen length at
+4.61 times the user length at 1440, so one "full" dash covered part of the stroke and the rest
+drew as gap. Every check measured the path model through `getPointAtLength`; none looked at a
+pixel, so a mark the browser did not paint passed.
+
+**The rule.** A check on anything drawn measures the render, not the model: sample the mark and
+confirm ink exists at those points in a screenshot of the finished frame, and prove the check
+bites by running it once on the broken code first. Dash lengths under non-scaling-stroke are
+computed in screen pixels, and a finished stroke clears its dash.
+
+**The gate.** C11 in `.planning/exec/circle115.mjs`: rendered stroke coverage, primary at least
+0.97 and overshoot at least 0.90, in reduced, played and 390 states. It read 0.590 and 0.660 on
+the unfixed build and 1.000 after. `components/hand/HandUnderline.tsx` carries the same dash
+pattern and is unmounted; mounting it requires the same fix first.
