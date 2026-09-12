@@ -478,3 +478,73 @@ echo "served-checks failures: $sf"
 **Not adopted**
 - "Non-first-person sentences" in §2: the voice rule is first person, never "we"; list lines are fragments and pass. No change.
 - "The ledger does not support the new commitments": §2.8 writes the approval record into the ledger in this same commit; that is the support.
+
+## 14. Fix-list from judge look 1 (2026-09-11, on the uncommitted first execution)
+
+Context: GLM answered 429 at startup (window reset 2026-09-12 11:55:40 z.ai). A concurrent
+Claude session executed §1-7 + §13 in-session and stopped before commit with five misses,
+recorded in `.claude/RESUME.md` and `.planning/exec/pass111b-executor.log`. Rulings on each,
+in order. Whoever runs this section: the tree already holds the first execution; edit it,
+do not redo it. Then rerun ONLY the gates named in "Rerun" and commit per §9.
+
+**M1. Served counts of 2 (RSC flight payload repeats the substrings).** Not a defect.
+Change the two patterns to match the HTML attribute form only:
+`grep -o 'class="cw-pbox__fig cw-nowrap">\$5K'` (expect 1) and
+`grep -o 'class="cw-pbox__from"'` (expect 1). Add to Traps in RESUME (already there).
+
+**M2a. `/call` de-prerendered by `await searchParams`.** Ruling: the prefill moves to the
+client and `/call` stays static.
+- Revert `app/(foyer)/call/page.tsx` to its committed form (`git checkout -- "app/(foyer)/call/page.tsx"`), so it renders `<BookCallForm />` with no props.
+- `components/color-worlds/BookCallForm.tsx`: no `defaultNote` prop. Add a `useRef` on the
+  note `<textarea>` and a `useEffect` that runs once: read
+  `new URLSearchParams(window.location.search).get("shape")`; if it is exactly one of
+  `advisory | project | retainer | embedded` and the textarea is empty, set
+  `ref.current.value` to `Shape: Advisory.` (capitalised label). Never `useSearchParams`
+  (it de-opts the static render without a Suspense boundary).
+- Served checks: DELETE the two `/call?shape=` curl lines (the prefill is client-side now).
+  Replace with a browser assertion inside `shots111b.mjs` on the existing
+  `call-prefill-1440` capture: after settle, `textarea[name="note"]`'s `.value` must equal
+  `Shape: Embedded.`; and a second load of `/call?shape=bogus` must leave it `""`. Print both.
+
+**M2b. Metadata description 189 chars > 160.** Replace the whole `/services` `description`
+string (and the `openGraph.description` if it carries the same clause) with exactly:
+`Advisory from $5K a month; project, retainer, or embedded priced on the call. Not ready to commit? Start with the $2,500 Audit instead.` (135 characters). Any other sentence that
+followed in the old string is dropped.
+
+**M3 + M4. Box heights: packages 845px at 1440 and 825px at 1280 (viewport 800); shapes
+764px.** Ruling: the package lists are too long, and three columns at 1280 is too narrow.
+- Trim the package `list` arrays to exactly these four lines each (approved commitments
+  merged, nothing invented):
+  - Unstick: `A 90-minute working call on the thing that is stuck.` ·
+    `A written fix plan the same day: what is wrong, in the order to fix it, and for builds the prompts to fix it with.` ·
+    `The call is recorded and the recording comes with the plan.` ·
+    `One follow-up question by email within 7 days.`
+  - Audit: `An 8-10 page memo: what works, what is broken, and what to fix first.` ·
+    `A prioritized fix sequence, so you can start the morning it lands.` ·
+    `A one-hour debrief call where I walk you through it, and a 30-day follow-up call after. You keep the memo either way.` ·
+    `A kickoff email the moment you buy: the intake questions and a link to book the debrief.`
+  - Sprint: `One outcome, agreed by email before day one.` ·
+    `One week embedded on that outcome, with daily progress notes and a mid-week check-in call.` ·
+    `The work lands in your repo and tools, with a handover note.` ·
+    `A debrief and a map of the next steps.`
+- `.cw-pband--pkgs`: the three-column rule moves from `≥1200px` to `≥1360px`, matching the
+  shapes band. Between 768 and 1359 the packages stack in the wide variant.
+- Height expectation, replacing §13's "each ≤ 700px": at 1440 and at 1280 every `.cw-pbox`
+  is ≤ 800px (the layout-gate viewport rule with margin). The shapes at 764 pass. Report all
+  seven heights at both widths. CRITIQUE H1's 700 stays a target, not a gate.
+
+**M5.** Already fixed in the tree (CSS comment reworded; `boxHeights` scope). Keep.
+
+**Rerun** (Git Bash, `MSYS_NO_PATHCONV=1`, exit codes read directly): tsc · copy-lint ·
+retired-phrases gate · prettier `--check` on the §13 list plus `components/color-worlds/BookCallForm.tsx` ·
+`npx next build --webpack` · server on 3200 · render-gate (expect 0 findings: `/call` is
+prerendered again) · the served-check block with M1's patterns and M2a's deletions (expect
+`served-checks failures: 0`) · layout-gate (expect 0 NEW) · `shots111b.mjs` (25 PNGs, the
+two prefill prints, 14 heights ≤ 800). axe-worlds and the self-tests need no rerun unless a
+colour rule changed; they did not.
+
+**Commit** per §9 with explicit paths; add `components/color-worlds/PackageBand.tsx`,
+`.planning/exec/gates111b.sh`, `.planning/exec/shots111b.mjs`,
+`.planning/exec/pass111b-executor.log`, `.planning/exec/glm111b.log` and
+`.planning/qa/pass-111b/` to the list. Do not stage the `commit-msg-*.txt` scratch files or
+any Pass-112 leftovers. Do not push.
