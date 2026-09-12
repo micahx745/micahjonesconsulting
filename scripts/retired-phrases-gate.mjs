@@ -54,6 +54,16 @@
 //   building"                  building". Near miss that must NOT hit:
 //                              "AI engineering" alone.
 //
+//   Pass-113 (operator 2026-09-11, decision 5, LESSONS #3):
+//   "Hennessy" /                THE CASE STUDIES ARE NEUTRALIZED. The
+//   "foreign company" /         Hennessy order is off the Postmates study;
+//   "foreign AI company"        Neuton.AI is "entering North America", never
+//                              "foreign"; the acquisitions keep their own
+//                              sentence, never "led to". NOT the bare word
+//                              "foreign" (legitimate in code). Near miss
+//                              that must NOT hit: "foreign key" on a .ts
+//                              line.
+//
 // SCOPE. app/, content/ and lib/ — the rendered tree. Not node_modules, not
 // product/ (the book is frozen copy with its own gate), not .planning/ and
 // not docs/ (both are records of what was retired, and quoting a retired
@@ -122,6 +132,12 @@ const PHRASES = [
   "standing rate",
   "Frontier AI engineering",
   "End-to-end product building",
+  // Pass-113 (operator 2026-09-11, decision 5): the case studies are
+  // neutralized. Not the bare word "foreign"; it has legitimate uses in
+  // code.
+  "Hennessy",
+  "foreign company",
+  "foreign AI company",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);
@@ -337,6 +353,14 @@ function selfTest() {
       file: "app/selftest/page.tsx",
       src: `        <span>AI engineering</span>`,
       why: '"AI engineering" alone (the renamed area, not the retired "Frontier AI engineering")',
+    },
+    // Pass-113 near miss: the bare word "foreign" is only banned in the
+    // retired company phrasings, so a code string like a constraint name
+    // must not hit.
+    {
+      file: "lib/selftest.ts",
+      src: "const constraint = 'foreign key';",
+      why: '"foreign key" on a .ts line (the bare word, not a retired phrase)',
     },
     // G1 near miss: "Frontier AI" and "engineering" are real, but a line of
     // unrelated content sits between them, so the two-line join (adjacent
