@@ -236,3 +236,73 @@ commit.
 
 Deactivate `playbook-99` in LIVE and TEST Stripe. Remove `PLAYBOOK_ON_SALE` from the Vercel
 env. Push. Merge to `main`. Pass-111b: the A4 and S3 wording.
+
+## 11. Fix-list (judge look 1, 2026-09-11)
+
+Two findings from the first run. Do only these, then section 7.
+
+**F1. The gate flags an import specifier.** `app/api/stripe/webhook/route.ts:28` is
+`import { deliverPlaybook, notifyRefund } from "@/lib/playbook-delivery";`. A module
+specifier never renders. Ruling: blank module specifiers before matching, the way comments
+are blanked.
+
+- In `scripts/retired-phrases-gate.mjs` add `stripSpecifiers(src)` and call it inside
+  `scanSource` right after `stripComments`. It replaces the quoted string that follows
+  `from`, a side-effect `import`, a dynamic `import(` or a `require(` with an empty quoted
+  string, keeping the line count:
+  `src.replace(/(\b(?:from|import|require)\s*\(?\s*)(["'])[^"'\n]*\2/g, "$1$2$2")`.
+  A one-line header comment says why: specifiers are code, not copy.
+- Self-test, NEAR MISSES added (must not hit):
+  `import { deliverPlaybook, notifyRefund } from "@/lib/playbook-delivery";`,
+  `export * from "@/lib/playbook-delivery";`,
+  `const m = await import("@/lib/playbook-delivery");`,
+  `const n = require("@/lib/playbook-delivery");`.
+  PLANTED added (must still hit): `` `${BASE_URL}/playbook` `` in a `.ts` template literal,
+  and `href: "/playbook"` in a `.tsx` object literal. Update the printed counts.
+- Rerun and read each exit code directly:
+  `node scripts/retired-phrases-gate.mjs --self-test` prints
+  `retired-phrases-gate self-test: N planted caught, M near misses passed` (N = 17, M = 19)
+  and exits 0; `node scripts/retired-phrases-gate.mjs` prints `retired-phrases-gate: clean`
+  and exits 0; `npx tsc --noEmit` exits 0;
+  `npx prettier --write scripts/retired-phrases-gate.mjs` then `--check` exits 0.
+  The build, server and browser gates already passed on this exact tree and the gate script
+  is not in the served output: do NOT rerun them.
+
+**F2. The deletions are already on origin.** While the first run was staging its `git rm`,
+the main session committed `.claude/RESUME.md` and the shared index carried the nineteen
+deletions into `ec84b07`, which was then pushed. So the Pass-112 commit contains the edits,
+not the deletions. Record the incident as LESSONS #23 with exactly this text, appended after
+#22:
+
+```
+## #23 — A shared index commits what another process staged (2026-09-11)
+
+**What happened.** Pass-112 ran on the GLM executor while the main session, on the
+operator's "push it", staged `.claude/RESUME.md` by explicit path and committed. The
+executor had already `git rm`'d nineteen book files into the same index, so the RESUME
+commit (`ec84b07`) carried the deletions and was pushed. The preview at that commit has no
+`/playbook` route and still links to it from the nav, the sitemap and four pages;
+`render-gate` fails that build. Production was not touched.
+
+**Root cause.** `git add <path>` scopes the add; `git commit` commits the whole index. Two
+processes on one worktree share one index, so "stage by explicit path" (MODEL_ROUTING §6)
+protects the add and not the commit.
+
+**The rule.** While an executor shares the worktree, the main session commits only with an
+explicit pathspec (`git commit -F <msg> -- <paths>`) after reading
+`git diff --cached --name-only`, and an unexpected staged entry stops the commit. An
+executor stages nothing until its own commit step.
+
+**The gate.** This entry and the RESUME trap line. On recurrence: a PreToolUse hook that
+refuses a bare `git commit` when `git diff --cached --name-only` lists a path the command
+did not name.
+```
+
+**Commit (section 7, amended).** `git add` these explicit paths and nothing else:
+`.claude/CLAUDE.md .claude/brand.json "app/(foyer)/about/page.tsx" "app/(foyer)/packages/page.tsx" "app/(foyer)/page.tsx" "app/(foyer)/services/page.tsx" "app/(foyer)/services/thanks/page.tsx" app/sitemap.ts components/color-worlds/Nav.tsx content/work/ordani.mdx docs/LESSONS_LEARNED.md docs/PACKAGES-RUNBOOK.md lib/package-delivery.ts package.json scripts/retired-phrases-gate.mjs .planning/exec/gates112.sh .planning/exec/shots112.mjs .planning/exec/glm112.log .planning/prompts/GLM-112-POINTER.txt .planning/qa/pass-112 .claude/briefs/pass-112-book-off-the-site.md`.
+Print `git diff --cached --name-only` and confirm it lists only those paths (the qa folder
+expands to its files). Commit with `git commit -F <absolute message file>`; subject as in
+section 7; body notes that the file deletions landed in `ec84b07`. Then rewrite
+`.claude/RESUME.md` (whole file, at most 2500 bytes, `wc -c` printed) adding one Traps line:
+`shared index: commit with an explicit pathspec after reading git diff --cached (#23)`, and
+commit it as `git commit -F <msg> -- .claude/RESUME.md`. Do not push.
