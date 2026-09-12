@@ -23,7 +23,7 @@ false AI engineering null`; served-checks failures: 0 (§15c floors).
 14 heights, all under the 700 target (cap 800): @1440 shapes
 630/630/630/630, pkgs 623/623/623. @1280 shapes 532/532/508/508, pkgs
 375/377/347.
-Judge look 3 PASS. Push approved (operator 2026-09-12, verbatim: "push").
+Judge PASS; PUSHED 83af8f7 (operator 2026-09-12 "push"). Preview is behind Vercel SSO: served checks against the deployed URL are UNVERIFIED until the operator stores a bypass secret as user env VERCEL_AUTOMATION_BYPASS_SECRET (read by reference, never printed). Merge to main AFTER that check passes (his ruling).
 push on operator OK.
 
 ## Pass-112 DONE, PUSHED (b5de535): the book is off the site
