@@ -17,10 +17,15 @@ the column edge. 115b loop dash in screen px: probe ratio 4.61; C11 coverage
 count-up (114 Q1) and on the loop + indent (115b).
 Operator verbatim 2026-09-12: "fix the circle then push".
 
-## NEXT (operator decisions)
-Main fast-forward to production is a SEPARATE go-ahead (push to main deploys),
-then CARD 1 on both aliases. Preview of the branch: Vercel builds on push.
-HandUnderline.tsx has the same dash bug; unmounted, fix before mounting it.
+## MERGE APPROVED 2026-09-12, verbatim: "Go ahead and merge to main" + chose
+"One Fable look, then merge". Fable (subagent, one look): VERDICT SHIP, A/B/C none.
+Method = a71788a's: ff origin/main to design/live-evolve, push auto-deploys,
+verify BOTH domains (scratchpad card1-115.sh + circle115 C1-C11 on prod).
+Fable later (non-blocking): loop may blink 1 frame on in-view refresh (move
+decision to layout effect) · hidden dash length stale if resized before play ·
+client back-nav replays count (once per load vs visit?) · postmates line has no
+named number · home card HELPED LAUNCH 2025 pairs launch verb with exit year.
+HandUnderline.tsx carries the same dash bug; unmounted.
 
 ## LIVE: main = a71788a, dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains,
 CARD 1 19/19. Local main behind origin: operator pulls. 112 pushed (b5de535).
