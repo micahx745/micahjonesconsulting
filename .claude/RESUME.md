@@ -3,36 +3,31 @@
 ## READ FIRST
 Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
 `.claude/worktrees/p106-live`), ahead of `main`. `pnpm build` fails HERE only:
-use `npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`:
-after deleting routes it reports phantom TS2307s; re-run after a fresh build.
-Routing §9d: GLM executes (z.ai), Sol drafts/reviews (ChatGPT), Astra one look
-per pass, Opus rules/briefs/judges (≤15 calls/arc). Name `model:` on every leg.
+use `npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`.
+ROUTING = MODEL_ROUTING §9e (operator, 2026-09-11 evening): Sonnet + Sol do the
+grunt work; Opus + Astra hold quality; Fable almost never; GLM is overflow only.
+Name `model: "sonnet"` on every Agent leg.
 
-## Pass-111b IN FLIGHT: /services as boxes, the area on the rail, the rename
-Brief `.claude/briefs/pass-111b-services-boxes-and-rail.md` (1d32e95). Sol plan
-review running → `.planning/reviews/SOL-111B-BRIEF-REVIEW.md`. Then: fold its
-findings into a §13 fix-list → GLM executes (`-Batch` + pointer prompt) → judge
-(≤5 calls, §11) → ONE Astra review with four captures → fix-list → push (his OK).
+## Pass-111b: first execution in the tree, UNCOMMITTED; §14 fix round dispatched
+Brief `.claude/briefs/pass-111b-services-boxes-and-rail.md` (§0-13 executed by a
+concurrent Claude session after GLM 429'd; reset 2026-09-12 11:55:40 z.ai). It
+stopped before commit on 5 misses; Opus ruled on them in §14 (f2f5908): client-side
+`/call` prefill, 135-char metadata, four-line package lists, packages 3-col at
+≥1360, height gate ≤800 at 1440 and 1280. NOW: a Sonnet leg applies §14, reruns
+the named gates, commits per §9 (explicit paths, no push). THEN: an independent
+Sonnet leg reads the diff against the brief → Astra one look (sv-shapes-1440,
+sv-pkgs-1440, sv-areas-1440, sv-shapes-390) → Opus judge ≤5 → push on his OK.
 
 ## Pass-112 DONE, PUSHED (b5de535): the book is off the site
-Judged PASS. The 19 deletions rode the shared index into ec84b07 (LESSONS #23);
-edits, gate (+4 phrases, EXEMPT_FILES, stripSpecifiers, self-test 17/19) in 95141f3.
-
-## Rulings 2026-09-11 (all nine, question box)
-1 Advisory-only floor · 2 all promises approved (A4/S3 await text) · 3 wire the area
-through + NC-X3 yes · 4 count-up exception APPROVED (not built) · 5 neutralize the
-two case studies (not built) · 6 Ordani lifestyle-only · 7 book off site (done) ·
-8 keep $5B+ · 9 "AI engineering". Rulings 4 and 5 are the passes after 111b.
-
-## Waiting on the operator
-A4/S3 text · deactivate Stripe playbook-99 (LIVE+TEST) + drop PLAYBOOK_ON_SALE from
-Vercel · LIVE Stripe Audit description → the three area names · merge to `main` ·
-$500 live test · §9a support questions.
+## Rulings 2026-09-11: see brief 111b §0; 4 (count-up) + 5 (case studies) next.
+## Waiting on operator: A4/S3 text · Stripe playbook-99 off · LIVE Audit
+description → area names · merge to `main` · $500 live test · §9a questions.
 
 ## Traps
-push to main auto-deploys · shared index: commit with an explicit pathspec after
-reading git diff --cached (#23) · never edit a running script (#22) · Git Bash:
-`MSYS_NO_PATHCONV=1` · no exit codes through a pipe · md docs were never
-prettier-clean: never `--write` them · >1 world renders: no fixed text colour, no
-opacity on text, no accent under text · GLM pointer prompts: no quotes, no dashes ·
-bash heredocs eat backticks inside double quotes: use the Write tool for RESUME.
+push to main auto-deploys · shared index: explicit pathspec after reading
+diff --cached (#23) · never edit a running script (#22) · Git Bash:
+MSYS_NO_PATHCONV=1 · no exit codes through a pipe · md docs never prettiered ·
+>1 world: no fixed text colour, no opacity on text, no accent under text ·
+grep -o counts the RSC flight payload too: match `class="…"` when counting DOM ·
+bash heredocs here mangle backticks/quotes: Write a scratch file, then cat >> ·
+GLM pointer prompts: no quotes, no dashes.

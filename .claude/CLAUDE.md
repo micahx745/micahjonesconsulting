@@ -83,6 +83,14 @@ GLM is capped; Astra judges at quality gates; Fable or Opus rule only on critica
 direction, copy rulings, briefs, the final judge look, money, public claims, production). The
 subagent default is now `sonnet`. A new chat starts from `.planning/handoff/NEXT-SESSION-KICKOFF.md`.
 
+**Amended 2026-09-11, evening: two vendors, two tiers each (MODEL_ROUTING §9e).** Operator,
+verbatim: "Use claude models and chatgpt. Lower models do grunt work frontier top models of
+each make sure we are deliovering quality. Make sure to really not use too much fable". So:
+Sonnet (Claude) and Sol (ChatGPT) do the grunt work: executing briefs, fix rounds, builds,
+gates, captures, research, commits. Opus and Astra hold the quality gates: briefs, rulings,
+the judge look, design and copy verdicts. Fable is reserved for the rare ruling Opus should
+not make alone. GLM is overflow, not the default. Every Agent leg names `model: "sonnet"`.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing
