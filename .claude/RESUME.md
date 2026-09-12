@@ -4,38 +4,36 @@
 Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
 `.claude/worktrees/p106-live`), ahead of `main`. `pnpm build` fails HERE only:
 use `npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`.
-ROUTING = MODEL_ROUTING §9e: Sonnet + Sol grunt; Opus + Astra quality; Fable
-rare; GLM overflow. Name `model: "sonnet"` on every Agent leg.
+ROUTING (operator 2026-09-12): conserve THIS account. GLM (claude-glm.ps1 -Batch)
+executes briefs; Astra (codex-exec.ps1 -Review) judges gates; Claude judges and
+records only. 113 + 114 ran entirely on GLM.
 
-## Pass-114 DONE (0c9c031) — judge next; count-up is LIVE on `/`
-Operator exception (2026-09-11 decision 4) recorded FIRST: DESIGN_BAR R13+R15
-sub-bullets, brand.json motion.countup, CLAUDE.md paragraph. RevenueFigure
-"use client" (LOW-7 honored: tick = constant __html, textContent-only writes,
-ghost-sized grid, CLS 0); HandCircle +play, backward compatible, no gsap; the
-tick ::before rule is gone (constant HTML replaced it). ONE MECHANISM ADDITION
-past the brief's letter: a jump from above the arm zone never crosses the
-extended root, so flick-past also finishes when the figure arrives in view
-still waiting (assertion 7 failed without it — circle stuck hidden; raw output
-in the run). countup114.mjs 7/7 chk PASS, failures 0; gates + render-gate +
-axe-worlds / all exit 0. Judge: qa/pass-114 captures (mid-1440, done-1440,
-done-390) + the chk block; Astra reads them per brief §7.
+## Pass-113 (49242dd) + Pass-114 (0c9c031): DONE, JUDGED PASS, NOT PUSHED
+113: Hennessy, foreign, led-to all 0 on served pages + llms.txt; each new line
+once in visible DOM (judge re-counted with scripts stripped); diff = brief.
+114: count-up on / ; every gate + render-gate + axe exit 0; countup114.mjs 7/7,
+CLS 0, final value at 1202ms, once only, finished frame without JS; LOW-7 held.
+One disclosed mechanism addition: arriving in view while still waiting settles
+instantly (a single jump never crosses the arm root; assertion 7 needed it).
 
-## Pass-113 executed (49242dd) — judge still pending (its 4 grep "failures"
-are RSC-payload over-counts; decompose-113.mjs shows each line once, retired 0)
+## PARKED FOR OPERATOR: the hand circle (Astra, one look, 2026-09-12)
+Q1 authored proof or ticker: PASS (reads as a deliberate reveal).
+Q2 circle lands on the number: FAIL. The dollar sign breaks the oval top and
+bottom, the plus sits outside the right stroke, biased left at 390. Geometry is
+PRE-114 (Pass-111a, live now): 114 left wrap, ghost and HandCircle markup as-is.
+A fix is a new pass (resize + recentre, clearance at 1440 and 390): his call.
+Review file: .planning/reviews/astra-114-countup.md
 
-## LIVE 2026-09-12: main = a71788a; production dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk
-on BOTH domains; CARD 1 markers 19/19 each. Local main behind origin: operator
-pulls. Pass-111b judged PASS. Pass-112 DONE, PUSHED (b5de535).
-## Rulings 2026-09-11 (brief 111b §0): 5 DONE (113); 4 DONE (114).
-## Waiting on operator: Stripe playbook-99 off + LIVE Audit description → area
-names · $500 live test (checkout changed) · A4/S3 text · five parked bar
-items · §9a.
+## NEXT: his push ruling on 113 + 114 (main auto-deploys), then CARD 1.
+## LIVE: main = a71788a, dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains,
+CARD 1 19/19. Local main behind origin: operator pulls. 112 pushed (b5de535).
+## Waiting on operator: Stripe playbook-99 off + LIVE Audit description to
+area names · 500 dollar live test · A4/S3 text · five parked bar items · §9a.
 
 ## Traps
-push to main auto-deploys · shared index: explicit pathspec after reading
-diff --cached (#23) · never edit a running script (#22) · Git Bash:
-MSYS_NO_PATHCONV=1 · no exit codes through a pipe · md docs never prettiered ·
->1 world: no fixed text colour, no opacity on text, no accent under text ·
-grep -o counts RSC flight payload too · bash heredocs mangle backticks ·
-GLM pointer prompts: no quotes/dashes · TaskStop leaves the node child alive
-on Windows: netstat -ano then taskkill /PID before restarting `next start`.
+push to main auto-deploys · commit by explicit pathspec after diff --cached
+(#23) · never edit a running script (#22) · MSYS_NO_PATHCONV=1 · no exit codes
+through a pipe · md never prettiered · served expect>=1 counts RSC payload (#24)
+· executor never reinterprets an expect (#25) · GLM pointers: no quotes ·
+PowerShell *> logs are UTF-16, iconv before grep · detached GLM wrapper may not
+write its exit file, trust git log · kill next start by PID before restarting.
