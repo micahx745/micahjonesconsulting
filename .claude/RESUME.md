@@ -18,10 +18,15 @@ a71788a / dpl_4C7z. Local main checkout behind origin: operator pulls.
 Shipped: 113 case studies neutralized · 114 $20M+ count-up · 115 loop redrawn +
 indent · 115b loop dash in screen px (LESSONS #26).
 
-## Later (Fable, non-blocking): loop may blink 1 frame on in-view refresh ·
-hidden dash stale if resized before play · client back-nav replays the count ·
-postmates fraud line has no named number · home card HELPED LAUNCH 2025 pairs
-launch verb with exit year · HandUnderline.tsx has the same dash bug (unmounted).
+## Pass-116 (0917b8d) DONE, judged PASS, pushed to branch, NOT DEPLOYED
+Fable's 6 later items fixed: layout-effect mount decision (no loop blink),
+hidden dash S 4S (resize-proof), playedThisLoad module flag (no replay on client
+back/forward), Postmates line = "That promise invited fraud.", Neuton tag =
+"Helped launch · exit 2025", HandUnderline dash (UNVERIFIED IN RENDER, unmounted).
+C12/C13/C14 failed on shipped build, pass after; circle/countup/card1 local 0;
+Astra PASS (copy). NEXT: his go-ahead to ff main (deploys), then card1-115.sh on
+both domains + circle115 --p116 on prod. GLM weekly limit out until ~09-14 evening.
+
 ## Waiting on operator: Stripe playbook-99 off + LIVE Audit description to
 area names · 500 dollar live test · A4/S3 text · five parked bar items · §9a.
 
@@ -29,6 +34,6 @@ area names · 500 dollar live test · A4/S3 text · five parked bar items · §9
 push to main auto-deploys · explicit pathspec after diff --cached (#23) · no
 exit codes through a pipe · md never prettiered · served expect>=1 counts RSC
 payload (#24) · executor never reinterprets an expect (#25) · measure the
-render (#26) · prod CSS hrefs carry ?dpl=: match .css[^"]* · screenshot clip
+render (#26) · per-load state in module scope, client-nav paths asserted (#27) · prod CSS hrefs carry ?dpl=: match .css[^"]* · screenshot clip
 renders unscrolled · stop next start with Stop-Process · countup114 rewrites
 pass-114 PNGs: git checkout them · PowerShell *> logs are UTF-16.
