@@ -487,7 +487,9 @@ export default function ColorWorldsHome() {
                 >
                   <span className="cw-lrow__co">
                     Neuton.AI
-                    <span className="cw-lrow__tag">Helped launch · 2025</span>
+                    <span className="cw-lrow__tag">
+                      Helped launch · exit 2025
+                    </span>
                   </span>
                   <span className="cw-lrow__out">
                     Technology <strong>acquired by Nordic Semiconductor</strong>{" "}

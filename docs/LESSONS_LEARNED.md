@@ -330,6 +330,7 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
 - **Shape and package commitments approved as true** (operator 2026-09-11, decision 2): Advisory A1-A3, Project P1-P3, Retainer R1-R2, Embedded E1-E3, Unstick U1-U3, Audit AU1, Sprint S1-S2, wording as in .claude/briefs/pass-111b-services-boxes-and-rail.md §2. A4 (notice terms) and S3 (the Sprint remedy) are NOT approved; do not write them. ALL1 fell with the book (Pass-112).
 - **"AI engineering"** is the third area's name (operator 2026-09-11, decision 9); "Product building" is the second's. NEVER: "Frontier AI engineering", "End-to-end product building", "Demo to production" as an area name. Gate: retired-phrases-gate (Pass-111b).
 - **Postmates and Neuton.AI neutralized** (operator 2026-09-11, decision 5: "Neutralize"). The Hennessy order is off the Postmates study; Neuton.AI is described as entering North America, not as "foreign"; the acquisitions stay in their own sentence, never "led to". NEVER: "Hennessy", "foreign company", "foreign AI company", or a causal link between the positioning work and either sale. Gate: retired-phrases-gate (Pass-113).
+- **Postmates fraud line carries no example, Neuton row names its year** (operator 2026-09-12, "fix the later items from fable"). The Postmates study reads "That promise invited fraud." with no second sentence; the home Neuton row tag is "Helped launch · exit 2025". The 2025 row tag is unchanged and still the acquisition year. NEVER: a fraud example on the Postmates study, or a bare "Helped launch · 2025" that reads as a 2025 launch. Gate: card1-115.sh markers (Pass-116).
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
@@ -972,3 +973,29 @@ computed in screen pixels, and a finished stroke clears its dash.
 0.97 and overshoot at least 0.90, in reduced, played and 390 states. It read 0.590 and 0.660 on
 the unfixed build and 1.000 after. `components/hand/HandUnderline.tsx` carries the same dash
 pattern and is unmounted; mounting it requires the same fix first.
+
+## #27 — Three motion defects the geometry never showed, and a check aimed at a path that could not reach one (2026-09-12)
+
+**What happened.** Fable's pre-merge look on 115b named three latent defects in the shipped
+count-up: a hidden-loop frame on a refresh with the figure in view, a hidden dash sized at arm
+time that shows its tail after a resize, and the count replaying on a return to `/`. Pass-116
+wrote C12, C13 and C14 and ran them on the shipped build first. C12 (0.632 ink while hidden)
+and C14 (3 hidden frames) bit. C13 passed: it navigated through the header's plain `<a>`, a
+full document load, so Back restored a document that never remounted. The executor stopped
+there as instructed. The judge found the reachable path, the case study's `ViewTransitionLink`
+home plus Back and Forward inside one document, and C13 then replayed `$0M` to `$20M+`.
+
+**Root cause.** A parent that decides in `useEffect` lets a controlled child paint its
+pre-decision state first; a length measured once goes stale when the layout changes before it
+is used; and "once per load" was implemented as "once per mount". The first C13 was
+specified from the header link without checking which links on the site are client
+navigations.
+
+**The rule.** A mount decision that changes what paints runs in a layout effect (with the
+server guard). A length captured for later use is either re-measured at use or given margin
+for the layout's full range. Per-load state lives in module scope, not component state. A
+navigation check first establishes, by reading the link components, which paths are client
+navigations, and asserts it (`docLoads` stays 1).
+
+**The gate.** C12, C13 and C14 behind `--p116` in `.planning/exec/circle115.mjs`, each proven
+failing on the shipped build before the fix and passing after.

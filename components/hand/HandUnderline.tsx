@@ -9,6 +9,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { screenLength } from "@/components/hand/strokeLength";
 
 interface HandUnderlineProps {
   /** Color CSS var. Default copper. */
@@ -51,18 +52,34 @@ export function HandUnderline({
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = `${len}`;
-    path.style.strokeDashoffset = reduced ? "0" : `${len}`;
+    if (reduced) {
+      path.style.strokeDasharray = "none";
+      path.style.strokeDashoffset = "0";
+      return;
+    }
 
-    if (reduced) return;
+    const S = screenLength(path);
+    path.style.strokeDasharray = `${S} ${S * 4}`;
+    path.style.strokeDashoffset = `${S}`;
 
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            path.style.transition = `stroke-dashoffset 850ms cubic-bezier(0.22, 0.8, 0.28, 1) ${delay}s`;
-            path.style.strokeDashoffset = "0";
+            const S2 = screenLength(path);
+            path.style.strokeDasharray = `${S2} ${S2}`;
+            path.style.strokeDashoffset = `${S2}`;
+            path.addEventListener(
+              "transitionend",
+              () => {
+                path.style.strokeDasharray = "none";
+              },
+              { once: true },
+            );
+            requestAnimationFrame(() => {
+              path.style.transition = `stroke-dashoffset 850ms cubic-bezier(0.22, 0.8, 0.28, 1) ${delay}s`;
+              path.style.strokeDashoffset = "0";
+            });
             observerRef.current?.unobserve(entry.target);
           }
         });

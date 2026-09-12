@@ -27,6 +27,7 @@
 "use client";
 
 import { useEffect, useId, useRef, type CSSProperties } from "react";
+import { screenLength } from "@/components/hand/strokeLength";
 
 interface HandCircleProps {
   color?: string;
@@ -76,27 +77,6 @@ const PATHS = {
     overshoot: "M 116 1.5 C 46 0.5, 2.5 0.5, 2 12",
   },
 };
-
-function screenLength(el: SVGPathElement): number {
-  const userLength = el.getTotalLength();
-  let length = userLength;
-  if (el.getAttribute("vector-effect") === "non-scaling-stroke") {
-    const ctm = el.getScreenCTM();
-    if (ctm) {
-      length = 0;
-      let previous: DOMPoint | null = null;
-      for (let i = 0; i < 200; i++) {
-        const p = el.getPointAtLength((i / 199) * userLength);
-        const mapped = new DOMPoint(p.x, p.y).matrixTransform(ctm);
-        if (previous) {
-          length += Math.hypot(mapped.x - previous.x, mapped.y - previous.y);
-        }
-        previous = mapped;
-      }
-    }
-  }
-  return Math.ceil(length) + 2;
-}
 
 export function HandCircle({
   color = "var(--color-accent-copper)",
@@ -163,7 +143,7 @@ export function HandCircle({
           if (!el) return;
           const S = screenLength(el);
           el.style.transition = "none";
-          el.style.strokeDasharray = `${S} ${S}`;
+          el.style.strokeDasharray = `${S} ${S * 4}`;
           el.style.strokeDashoffset = `${S}`;
         });
       } else {

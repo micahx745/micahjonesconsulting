@@ -11,11 +11,14 @@
 // never per frame.
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { HandCircle } from "@/components/hand/HandCircle";
 
 const FINAL_TEXT = "$20M+";
 const COUNT_MS = 1200;
+const useIsoLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+let playedThisLoad = false;
 
 export function RevenueFigure() {
   const tickRef = useRef<HTMLSpanElement | null>(null);
@@ -25,7 +28,12 @@ export function RevenueFigure() {
   const [instant, setInstant] = useState(false);
   const [play, setPlay] = useState(false);
 
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
+    if (playedThisLoad) {
+      stateRef.current = "done";
+      setInstant(true);
+      return;
+    }
     const tick = tickRef.current;
     const wrap = wrapRef.current;
     if (!tick || !wrap) return;
@@ -89,6 +97,7 @@ export function RevenueFigure() {
         entries.forEach((entry) => {
           if (entry.isIntersecting && stateRef.current === "armed") {
             stateRef.current = "playing";
+            playedThisLoad = true;
             setPlay(true);
             const start = performance.now();
             const step = (now: number) => {

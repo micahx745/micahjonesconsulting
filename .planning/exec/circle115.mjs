@@ -9,6 +9,9 @@
 //   prints C1..C10. Ends with `circle failures: N` over both widths; exits 1
 //   if N is not 0. Also writes the three §4 captures into
 //   .planning/qa/pass-115/.
+// --p116 (Pass-116 brief §3): runs C1..C11 AND then C12..C14 (reduced motion
+//   OFF for all three), which count toward `circle failures`. Without the
+//   flag, C1..C11 only, unchanged.
 //
 // Puppeteer-core from C:/tmp/p101tools; Chrome at the system path; server on
 // :3200. The ink decode runs in a separate about:blank page (brief §2).
@@ -41,6 +44,7 @@ const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const FINAL = "$20M+";
 const M1_ONLY = process.argv.includes("--m1-only");
 const PROBE = process.argv.includes("--probe");
+const P116 = process.argv.includes("--p116");
 
 let failures = 0;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -249,6 +253,402 @@ async function runPlayedState(inkHeight) {
     await page.screenshot({ path: `${OUT}/home-rec-played-1440.png` });
     console.log(`     capture: home-rec-played-1440.png`);
   }
+  await page.close();
+}
+
+// ------------------------------------------- Pass-116 (§3): C12, C13, C14
+// Behind --p116, reduced motion OFF. Each counts toward `circle failures`.
+
+// C12 helper: primary-path stroke coverage by the C11 method (screenshot +
+// ink decode), counted over ONLY the samples inside the viewport — C12
+// measures with the loop partly off-screen, so the C11 background sample
+// point (above the loop's top-left) is clamped into the frame here.
+async function viewportPrimaryCoverage(page, dsf) {
+  const geometry = await page.evaluate((deviceScaleFactor) => {
+    const paths = [...document.querySelectorAll(".cw-rec .hand-circle path")];
+    const tick = document.querySelector(".cw-rec__tick");
+    const oldVisibility = tick.style.visibility;
+    tick.style.visibility = "hidden";
+    const sample = (el, count) => {
+      const len = el.getTotalLength();
+      const ctm = el.getScreenCTM();
+      const points = [];
+      for (let i = 0; i < count; i++) {
+        const p = el.getPointAtLength((i / (count - 1)) * len);
+        const mapped = new DOMPoint(p.x, p.y).matrixTransform(ctm);
+        points.push([
+          mapped.x * deviceScaleFactor,
+          mapped.y * deviceScaleFactor,
+        ]);
+      }
+      return points;
+    };
+    const primary = sample(paths[0], 200);
+    const vw = window.innerWidth * deviceScaleFactor;
+    const vh = window.innerHeight * deviceScaleFactor;
+    const inside = primary.filter(
+      (p) => p[0] >= 0 && p[0] <= vw && p[1] >= 0 && p[1] <= vh,
+    );
+    const anchor = inside.length ? inside : primary;
+    return {
+      inside,
+      sampleLeft: Math.min(...anchor.map((p) => p[0])),
+      sampleTop: Math.min(...anchor.map((p) => p[1])),
+      oldVisibility,
+    };
+  }, dsf);
+
+  let shot;
+  try {
+    shot = await page.screenshot({ encoding: "base64" });
+  } finally {
+    await page.evaluate((visibility) => {
+      document.querySelector(".cw-rec__tick").style.visibility = visibility;
+    }, geometry.oldVisibility);
+  }
+
+  const decoder = await browser.newPage();
+  await decoder.goto("about:blank");
+  const ratio = await decoder.evaluate(
+    async (dataUrl, geometry, dsf) => {
+      const img = new Image();
+      img.src = dataUrl;
+      await img.decode();
+      const canvas = document.createElement("canvas");
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0);
+      const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      const width = canvas.width;
+      const height = canvas.height;
+      const bgX = Math.max(
+        12,
+        Math.min(width - 13, Math.round(geometry.sampleLeft)),
+      );
+      const bgY = Math.max(
+        12,
+        Math.min(height - 13, Math.round(geometry.sampleTop) - 12 * dsf),
+      );
+      const rs = [];
+      const gs = [];
+      const bs = [];
+      for (let y = bgY - 10; y < bgY + 10; y++) {
+        for (let x = bgX - 10; x < bgX + 10; x++) {
+          if (x < 0 || x >= width || y < 0 || y >= height) continue;
+          const i = (y * width + x) * 4;
+          rs.push(pixels[i]);
+          gs.push(pixels[i + 1]);
+          bs.push(pixels[i + 2]);
+        }
+      }
+      const median = (values) => {
+        values.sort((a, b) => a - b);
+        return values[(values.length - 1) >> 1];
+      };
+      const bg = [median(rs), median(gs), median(bs)];
+      const radius = 3 * dsf;
+      const covered = (point) => {
+        const cx = Math.round(point[0]);
+        const cy = Math.round(point[1]);
+        const reach = Math.ceil(radius);
+        for (let dy = -reach; dy <= reach; dy++) {
+          for (let dx = -reach; dx <= reach; dx++) {
+            if (dx * dx + dy * dy > radius * radius) continue;
+            const x = cx + dx;
+            const y = cy + dy;
+            if (x < 0 || x >= width || y < 0 || y >= height) continue;
+            const i = (y * width + x) * 4;
+            const diff = Math.max(
+              Math.abs(pixels[i] - bg[0]),
+              Math.abs(pixels[i + 1] - bg[1]),
+              Math.abs(pixels[i + 2] - bg[2]),
+            );
+            if (diff > 40) return true;
+          }
+        }
+        return false;
+      };
+      if (!geometry.inside.length) return -1;
+      return (
+        geometry.inside.filter((point) => covered(point)).length /
+        geometry.inside.length
+      );
+    },
+    `data:image/png;base64,${shot}`,
+    geometry,
+    dsf,
+  );
+  await decoder.close();
+  return ratio;
+}
+
+async function runC12() {
+  console.log("--- C12 resize while armed (900x900 -> 1400x900) ---");
+  const page = await freshPage(
+    { width: 900, height: 900, deviceScaleFactor: 1 },
+    { reduced: false },
+  );
+  await page.goto(`${S}/`, { waitUntil: "networkidle0", timeout: 60000 });
+  await waitHydrated(page);
+  await sleep(500);
+  const pre = await page.evaluate(() => {
+    const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+    return {
+      absTop: r.top + window.scrollY,
+      height: r.height,
+      innerHeight: window.innerHeight,
+    };
+  });
+  // Arm zone: the wrap's top at 1.5x innerHeight.
+  await page.evaluate(
+    (y) => window.scrollTo(0, y),
+    Math.max(0, pre.absTop - 1.5 * pre.innerHeight),
+  );
+  await sleep(300);
+  const armed = await page.evaluate(
+    () => document.querySelector(".cw-rec__tick").textContent,
+  );
+  if (armed !== "$0M") {
+    failures++;
+    console.log(
+      `C12 hidden after resize: got (invalid: tick at arm reads ${JSON.stringify(armed)}, not "$0M"), expect <= 0.02  <-- FAIL`,
+    );
+    await page.close();
+    return;
+  }
+  await page.setViewport({ width: 1400, height: 900, deviceScaleFactor: 1 });
+  await sleep(400);
+  // 30% of the wrap's height showing at the bottom edge.
+  const post = await page.evaluate(() => {
+    const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+    return {
+      absTop: r.top + window.scrollY,
+      height: r.height,
+      innerHeight: window.innerHeight,
+    };
+  });
+  await page.evaluate(
+    (y) => window.scrollTo(0, y),
+    Math.max(0, post.absTop + 0.3 * post.height - post.innerHeight),
+  );
+  await sleep(200);
+  const hiddenRatio = await viewportPrimaryCoverage(page, 1);
+  const hiddenOk = hiddenRatio >= 0 && hiddenRatio <= 0.02;
+  if (!hiddenOk) failures++;
+  console.log(
+    `C12 hidden after resize: got ${hiddenRatio < 0 ? "(no samples in viewport)" : f3(hiddenRatio)}, expect <= 0.02${hiddenOk ? "" : "  <-- FAIL"}`,
+  );
+  // Centre it and let the play run out.
+  await centreOnFigure(page);
+  await sleep(3200);
+  await page.evaluate(() => document.fonts.ready);
+  const drawnRatio = await viewportPrimaryCoverage(page, 1);
+  const drawnOk = drawnRatio >= 0.97;
+  if (!drawnOk) failures++;
+  console.log(
+    `C12 drawn after play: got ${f3(drawnRatio)}, expect >= 0.97${drawnOk ? "" : "  <-- FAIL"}`,
+  );
+  await page.close();
+}
+
+async function runC13() {
+  console.log("--- C13 once per load (client back and forward) ---");
+  const page = await freshPage(
+    { width: 1440, height: 900, deviceScaleFactor: 1 },
+    { reduced: false },
+  );
+  // Count full document loads in this tab. Client navigations do not run
+  // this hook; sessionStorage makes a true reload increment instead of reset.
+  await page.evaluateOnNewDocument(() => {
+    if (window === window.top) {
+      const key = "__p116DocLoads";
+      const count = Number(sessionStorage.getItem(key) || "0") + 1;
+      sessionStorage.setItem(key, String(count));
+      window.__docLoads = count;
+    }
+  });
+  const invalid = (detail) => {
+    failures++;
+    console.log(`     C13 invalid: ${detail}  <-- FAIL`);
+  };
+  const readWrap = () =>
+    page.evaluate(() => {
+      const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+      return {
+        top: r.top,
+        absTop: r.top + window.scrollY,
+        height: r.height,
+        innerHeight: window.innerHeight,
+      };
+    });
+  const startPoll = () =>
+    page.evaluate(() => {
+      window.__c13 = [];
+      window.__c13int = setInterval(() => {
+        const t = document.querySelector(".cw-rec__tick");
+        if (t) window.__c13.push(t.textContent);
+      }, 50);
+    });
+  const stopPoll = () =>
+    page.evaluate(() => {
+      clearInterval(window.__c13int);
+      return window.__c13 || [];
+    });
+
+  // Full load at the case study, then client-navigate home through Next Link.
+  await page.goto(`${S}/work/postmates`, {
+    waitUntil: "networkidle0",
+    timeout: 60000,
+  });
+  let docLoads = await page.evaluate(() => window.__docLoads || 0);
+  if (docLoads !== 1) invalid(`initial docLoads=${docLoads}, expect 1`);
+  await page.click('a.case-study__nav-link[href="/"]');
+  await page.waitForFunction(() => location.pathname === "/", {
+    timeout: 15000,
+  });
+  await sleep(800);
+  await waitHydrated(page);
+  docLoads = await page.evaluate(() => window.__docLoads || 0);
+  if (docLoads !== 1) invalid(`docLoads after client home=${docLoads}, expect 1`);
+
+  // Real play: arm zone, hold 250ms, centre, poll every 50ms for 3200ms.
+  const pre = await readWrap();
+  await startPoll();
+  const stageA = pre.absTop - 1.75 * pre.innerHeight;
+  await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, stageA));
+  await sleep(250);
+  const centre = pre.absTop + pre.height / 2 - pre.innerHeight / 2;
+  await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, centre));
+  await sleep(3200);
+  const firstSamples = await stopPoll();
+  const firstNonFinal = firstSamples.find((text) => text !== FINAL) ?? "(none)";
+  if (firstNonFinal !== "$0M") {
+    invalid(
+      `first play first non-final=${JSON.stringify(firstNonFinal)}, expect "$0M"`,
+    );
+  }
+
+  // Back and Forward traverse the two client entries in the same document.
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await sleep(300);
+  await page.goBack({ timeout: 15000 }).catch(() => null);
+  await page.waitForFunction(() => location.pathname === "/work/postmates", {
+    timeout: 15000,
+  });
+  await sleep(800);
+  await page.goForward({ timeout: 15000 }).catch(() => null);
+  await page.waitForFunction(() => location.pathname === "/", {
+    timeout: 15000,
+  });
+  await sleep(800);
+  docLoads = await page.evaluate(() => window.__docLoads || 0);
+  if (docLoads !== 1) {
+    invalid(`docLoads after client back and forward=${docLoads}, expect 1`);
+  }
+
+  let back = await readWrap();
+  if (!(back.top > back.innerHeight)) {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    back = await readWrap();
+  }
+  if (!(back.top > back.innerHeight))
+    invalid(
+      `wrap top ${Math.round(back.top)} not below the fold ${back.innerHeight}`,
+    );
+
+  // Arm zone, hold 250ms, centre, poll the tick every 50ms for 3200ms.
+  await startPoll();
+  const stageA2 = back.absTop - 1.75 * back.innerHeight;
+  await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, stageA2));
+  await sleep(250);
+  const centre2 = back.absTop + back.height / 2 - back.innerHeight / 2;
+  await page.evaluate((y) => window.scrollTo(0, y), Math.max(0, centre2));
+  await sleep(3200);
+  const samples = await stopPoll();
+  const texts = [...new Set(samples)];
+  const ok = texts.length === 1 && texts[0] === FINAL;
+  if (!ok) failures++;
+  console.log(
+    `C13 texts after client back and forward: got ${JSON.stringify(texts)}, expect ["$20M+"]${ok ? "" : "  <-- FAIL"}`,
+  );
+  await page.close();
+}
+
+async function runC14() {
+  console.log("--- C14 no hidden frame on an in-view refresh (6x CPU) ---");
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+  const cdp = page.createCDPSession
+    ? await page.createCDPSession()
+    : await (await page.target()).createCDPSession();
+  await cdp.send("Emulation.setCPUThrottlingRate", { rate: 6 });
+  // Poller on every new document: on every animation frame from
+  // DOMContentLoaded for 1500ms, read the first loop path's inline dash
+  // pair. A frame is hidden when the dasharray is neither empty nor none
+  // and the offset is above 0.
+  await page.evaluateOnNewDocument(() => {
+    window.__hiddenFrames = 0;
+    window.__c14Frames = 0;
+    window.__c14Seen = [];
+    const read = () => {
+      const p = document.querySelector(".cw-rec .hand-circle path");
+      if (!p) return;
+      const da = p.style.strokeDasharray;
+      const doffRaw = p.style.strokeDashoffset;
+      const off = parseFloat(doffRaw);
+      window.__c14Frames++;
+      window.__c14Seen.push(`${da || "(empty)"}|${doffRaw || "(empty)"}`);
+      if (da !== "" && da !== "none" && off > 0) window.__hiddenFrames++;
+    };
+    document.addEventListener("DOMContentLoaded", () => {
+      const t0 = performance.now();
+      const frame = () => {
+        read();
+        if (performance.now() - t0 < 1500) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    });
+  });
+  await page.goto(`${S}/#cw-products-title`, {
+    waitUntil: "networkidle0",
+    timeout: 60000,
+  });
+  let mode = "anchor #cw-products-title";
+  let info = await page.evaluate(() => {
+    const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+    return { top: r.top, innerHeight: window.innerHeight };
+  });
+  if (!(info.top < info.innerHeight)) {
+    // Same fallback as countup114 chk3: centre, then reload (the
+    // evaluateOnNewDocument poller re-installs on the new document).
+    mode = "fallback centre + reload";
+    await page.evaluate(() => {
+      const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+      window.scrollTo(
+        0,
+        Math.max(0, r.top + window.scrollY + r.height / 2 - window.innerHeight / 2),
+      );
+    });
+    await page.reload({ waitUntil: "networkidle0", timeout: 60000 });
+  }
+  await sleep(2200); // poller window is 1500ms from DOMContentLoaded
+  const result = await page.evaluate(() => {
+    const r = document.querySelector(".cw-rec__wrap").getBoundingClientRect();
+    return {
+      hidden: window.__hiddenFrames ?? -1,
+      frames: window.__c14Frames ?? -1,
+      top: r.top,
+      innerHeight: window.innerHeight,
+    };
+  });
+  const inView = result.top < result.innerHeight;
+  const ok = inView && result.hidden === 0;
+  if (!ok) failures++;
+  console.log(
+    `C14 hidden frames on in-view load: got ${result.hidden}, expect 0${ok ? "" : "  <-- FAIL"}${inView ? "" : ` (invalid: figure top ${Math.round(result.top)} not in view)`} [${mode}, ${result.frames} frames sampled]`,
+  );
+  await cdp.detach();
   await page.close();
 }
 
@@ -634,6 +1034,12 @@ if (ratios.length === 2 && Math.abs(ratios[0] - ratios[1]) > 0.03) {
   console.log(
     `W/H differs between widths by ${f3(ratioDiff)} (> 0.03) — continuing (numbers are font-relative and should match)`,
   );
+}
+
+if (P116 && !M1_ONLY && !PROBE) {
+  await runC12();
+  await runC13();
+  await runC14();
 }
 
 if (!M1_ONLY) {
