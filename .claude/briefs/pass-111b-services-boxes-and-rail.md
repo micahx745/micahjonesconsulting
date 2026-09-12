@@ -642,3 +642,13 @@ lines, add a health assertion per fetched route: HTTP status 200 and body length
 floor (`/services` 60000 bytes, `/packages` 30000, `/work` 30000, `/` 60000, `/llms.txt`
 1500). Each failure counts in `sf`. Also add one positive check on `/packages`:
 `chk "Buy buttons on /packages" "$(printf '%s' "$PK" | grep -o 'Buy the ' | wc -l | tr -d ' ')" 3`.
+
+### 15c. Ruling on the fix-round-2 stop (2026-09-11): the G2 floors were miscalibrated by the ruling tier
+
+The executor stopped correctly: `/services` measured 56,591 bytes and `/` 59,702 against
+a 60,000 floor that section 15b set without measuring. An error page is under 5,000 bytes,
+so the guard keeps its meaning at a lower number. Floors are now: `/services` 40000, `/`
+40000, `/packages` 20000, `/work` 20000, `/llms.txt` 1500. The executor applies this one
+change to `gates111b.sh`, reruns ONLY the served-check block against the running server
+(or restarts it), expects `served-checks failures: 0`, then commits per section 15 and
+rewrites RESUME. No other rerun is needed: no page changed since the battery passed.
