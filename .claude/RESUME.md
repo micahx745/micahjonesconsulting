@@ -4,27 +4,23 @@
 Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
 `.claude/worktrees/p106-live`), ahead of `main`. `pnpm build` fails HERE only:
 use `npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`.
-ROUTING (operator 2026-09-12): conserve THIS account. GLM (claude-glm.ps1
--Batch) executes briefs; Astra (codex-exec.ps1 -Review) judges gates; Claude
-judges and records only. 113 + 114 + 115 ran entirely off the Claude account.
+ROUTING (operator 2026-09-12): conserve THIS account. GLM (claude-glm.ps1 -Batch)
+executes briefs; Sol (codex exec -m gpt-5.6-sol, workspace-write) writes when GLM
+is capped and the judge runs build/server/browser; Astra (codex-exec -Review)
+judges gates; Claude rules, judges, records.
 
-## Pass-115 (032ce79): geometry PASS, JUDGE FAILED THE RENDER; NOT PUSHED
-Brief .claude/briefs/pass-115-circle-encloses.md. Variant-3 loop (rounded,
-aspect="none") sized in em from the measured ink box; wrap margin-left 0.26em
-(loop edge on the column edge); num padding-block 0.184em. M1@1440: L .021
-T -.001 W 2.825 H .875, W/H 3.229 (390: 3.245); hx .28 hy .184; box -.259 /
--.185 / 3.385 / 1.243em. All gates 0; circle115.mjs C1-C10 both widths
-circle failures: 0; countup114 7/7 failures: 0 (dashoffset 0px @3000ms, CLS
-0); render-gate 0; axe / 0 serious. Captures .planning/qa/pass-115/. Traps
-found: puppeteer screenshot({clip}) renders an UNSCROLLED surface (crop full
-frames instead); DOMRect serializes {} through evaluate (toJSON it).
-countup rerun overwrote pass-114 PNGs; restored.
+## DONE 2026-09-12, judged PASS, PUSHED design/live-evolve (NOT main)
+113 (49242dd) case studies neutralized. 114 (0c9c031) $20M+ count-up.
+115 (032ce79) loop variant 3 sized in em from the ink box, figure indented to
+the column edge. 115b loop dash in screen px: probe ratio 4.61; C11 coverage
+0.590 before, 1.000 after; circle failures 0; countup 7/7. Astra PASS on the
+count-up (114 Q1) and on the loop + indent (115b).
+Operator verbatim 2026-09-12: "fix the circle then push".
 
-## NOW: Pass-115b on GLM (brief pass-115b-loop-dash-length.md)
-Capture shows no loop (top + bottom strokes, sides missing; 114 had it too).
-Hypothesis: dasharray=getTotalLength (user units) under non-scaling-stroke
-(dashes in screen px). 115b probes first, adds C11 pixel coverage (must fail
-before, pass after), then fixes. Then judge, ONE Astra look, push branch only.
+## NEXT (operator decisions)
+Main fast-forward to production is a SEPARATE go-ahead (push to main deploys),
+then CARD 1 on both aliases. Preview of the branch: Vercel builds on push.
+HandUnderline.tsx has the same dash bug; unmounted, fix before mounting it.
 
 ## LIVE: main = a71788a, dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk on BOTH domains,
 CARD 1 19/19. Local main behind origin: operator pulls. 112 pushed (b5de535).
@@ -33,8 +29,9 @@ area names · 500 dollar live test · A4/S3 text · five parked bar items · §9
 
 ## Traps
 push to main auto-deploys · commit by explicit pathspec after diff --cached
-(#23) · never edit a running script (#22) · MSYS_NO_PATHCONV=1 · no exit codes
-through a pipe · md never prettiered · served expect>=1 counts RSC payload (#24)
-· executor never reinterprets an expect (#25) · GLM pointers: no quotes ·
-PowerShell *> logs are UTF-16, iconv before grep · detached GLM wrapper may not
-write its exit file, trust git log · kill next start by PID before restarting.
+(#23) · never edit a running script (#22) · no exit codes through a pipe · md
+never prettiered · served expect>=1 counts RSC payload (#24) · executor never
+reinterprets an expect (#25) · measure the render, not the model (#26) ·
+PowerShell *> logs are UTF-16 · screenshot clip renders unscrolled: crop full
+frames · kill next start with Stop-Process (taskkill //F breaks under
+MSYS_NO_PATHCONV) · countup114 rewrites pass-114 PNGs: git checkout them.
