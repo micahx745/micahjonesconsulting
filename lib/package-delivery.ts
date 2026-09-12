@@ -8,11 +8,10 @@
 // and the book + companion ZIP (included with every package, per the
 // /services fine print). Resend idempotency on the checkout session id
 // makes webhook retries safe, same as the book delivery.
+// Pass-112 (operator 2026-09-11): the book and ZIP are no longer attached.
 import { Resend } from "resend";
 
-import { BOOK_FILENAME, BOOK_PDF_BASE64 } from "@/lib/book-pdf";
 import type { Sku } from "@/lib/catalog";
-import { COMPANION_FILENAME, COMPANION_ZIP_BASE64 } from "@/lib/companion-zip";
 
 const OWNER = "micah@micahjonesconsulting.com";
 const NOTIFICATION_TO = "micah@micahjonesconsulting.com";
@@ -62,16 +61,9 @@ export async function deliverPackageKickoff(
           "credits toward the next package or an engagement started",
           "within 60 days.",
           "",
-          "Attached: The 80% Wall (my field manual) and its companion",
-          "files — included with every package.",
-          "",
           "— Micah",
           "micahjonesconsulting.com/services",
         ].join("\n"),
-        attachments: [
-          { filename: BOOK_FILENAME, content: BOOK_PDF_BASE64 },
-          { filename: COMPANION_FILENAME, content: COMPANION_ZIP_BASE64 },
-        ],
       },
       { idempotencyKey: `package-kickoff-${sessionId}` },
     );
@@ -98,7 +90,7 @@ export async function deliverPackageKickoff(
       `Session: ${sessionId}`,
       `At:      ${new Date().toISOString()}`,
       "",
-      "Kickoff email sent (intake + /book link + book/ZIP).",
+      "Kickoff email sent (intake + /call/kickoff link).",
       "Runbook: docs/PACKAGES-RUNBOOK.md — log the buyer, watch for the",
       "intake reply, credit-bridge expiry is purchase date + 60 days.",
     ],

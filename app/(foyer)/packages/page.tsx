@@ -9,8 +9,9 @@
 // page first. Packages now have their own address, their own opening, and the
 // door on /services points here instead of at an anchor.
 //
+// Pass-112 (operator 2026-09-11): the book is off the site until it ships.
 // Prices are operator-locked (2026-09-01): $500 / $2,500 / $7,500, the 60-day
-// credit bridge, refund before kickoff only, the book included with all three.
+// credit bridge, refund before kickoff only, the book no longer included (Pass-112).
 //
 // Pass-92: the CTAs are Stripe checkout now. They were mailto while the rail
 // sat test-only; the operator confirmed the live key on 2026-09-03 and asked
@@ -204,17 +205,15 @@ export default function PackagesPage() {
               lib/package-delivery.ts already points. */}
           <p className="cw-pkg-page__next">
             Each one goes straight to checkout. The moment your card clears you
-            get a kickoff email: the intake questions, a link to book the call,
-            and the manual with its companion files attached.
+            get a kickoff email: the intake questions and a link to book the
+            call.
           </p>
 
           <p className="cw-pkgs__fine">
             The rules, in plain terms: every package fee credits toward the next
             package or an engagement started within 60 days. Full refund any
             time before kickoff. None after, because by then the work has
-            started. All three include The 80% Wall, my field manual for solo
-            builders, with its companion files, attached to the kickoff email
-            the moment you buy.
+            started.
           </p>
         </section>
 

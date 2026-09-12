@@ -38,10 +38,10 @@ import { useEffect, useRef, useState } from "react";
 // No fragment links in the primary nav — a menu that scrolls you to
 // the middle of a page reads as broken. /about was previously
 // unreachable from any link (orphaned); it earns the fourth slot.
+// Pass-112 (operator 2026-09-11): the book is off the site until it ships.
 const NAV_LINKS = [
   { href: "/services", label: "Services" },
   { href: "/work", label: "Work" },
-  { href: "/playbook", label: "Playbook" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;

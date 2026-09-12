@@ -86,12 +86,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.6,
     },
-    {
-      url: `${BASE_URL}/playbook`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.85,
-    },
+    // Pass-112 (operator 2026-09-11): the book is off the site until it
+    // ships. The /playbook entry that was here is gone with the route.
   ];
 
   // Skip stub case studies — they shouldn't be public-discoverable

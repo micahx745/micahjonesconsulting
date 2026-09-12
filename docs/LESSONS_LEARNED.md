@@ -319,6 +319,13 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   author's own working time, not a customer, revenue, user or security fact. Twin
   row in the book repo's `docs/CLAIMS-LEDGER.md`, same session.
 
+- **The book is not mentioned or shown on the site** (operator 2026-09-11, verbatim: "the
+  book should not be mentioned or shown on the site yet. im still working on it"). Same day:
+  no line about it on any page, /playbook removed (404, no redirect), the kickoff email no
+  longer attaches the PDF or ZIP. NEVER: "The 80% Wall", "field manual", "the playbook", or a
+  link to /playbook on any rendered surface, metadata, share image or llms.txt, until a new
+  dated ruling here. Gate: scripts/retired-phrases-gate.mjs (Pass-112).
+
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
 
@@ -868,3 +875,25 @@ against a server another gate was using. The only signs were a log that stopped 
 
 **The gate.** `gates111a.sh` now copies itself to a temp file and `exec`s the copy on start
 (the `GATES_COPY` guard). Every later battery script opens with the same guard.
+
+## #23 — A shared index commits what another process staged (2026-09-11)
+
+**What happened.** Pass-112 ran on the GLM executor while the main session, on the
+operator's "push it", staged `.claude/RESUME.md` by explicit path and committed. The
+executor had already `git rm`'d nineteen book files into the same index, so the RESUME
+commit (`ec84b07`) carried the deletions and was pushed. The preview at that commit has no
+`/playbook` route and still links to it from the nav, the sitemap and four pages;
+`render-gate` fails that build. Production was not touched.
+
+**Root cause.** `git add <path>` scopes the add; `git commit` commits the whole index. Two
+processes on one worktree share one index, so "stage by explicit path" (MODEL_ROUTING §6)
+protects the add and not the commit.
+
+**The rule.** While an executor shares the worktree, the main session commits only with an
+explicit pathspec (`git commit -F <msg> -- <paths>`) after reading
+`git diff --cached --name-only`, and an unexpected staged entry stops the commit. An
+executor stages nothing until its own commit step.
+
+**The gate.** This entry and the RESUME trap line. On recurrence: a PreToolUse hook that
+refuses a bare `git commit` when `git diff --cached --name-only` lists a path the command
+did not name.

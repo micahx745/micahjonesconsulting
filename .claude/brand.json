@@ -144,7 +144,8 @@
     "figure": {
       "id": "wall-chart",
       "description": "The book's page-6 figure drawn once on load in the /playbook hero: dashed context-window line wiped in, saffron unwritten-rules line climbing on an ease-in-quad, an 80ms hold at the crossing while the marker stamps, then a break-through on ease-out. ~1.26s of visible motion, CSS only, no loop, no scroll or input coupling. Approved in writing by the motion-engineer 2026-09-01 as a FIGURE animation, NOT a second signature interaction: it is the artifact playing, not the site responding to the visitor. Granted an explicit exception to the R15 400ms entrance cap on that basis. Base CSS is the finished frame; motion applies only at >=900px with no reduced-motion preference. Scoped to /playbook.",
-      "files": ["components/color-worlds/WallChart.tsx", "app/globals.css"]
+      "files": ["components/color-worlds/WallChart.tsx", "app/globals.css"],
+      "removed": "2026-09-11 Pass-112: WallChart.tsx deleted with the book. Kept as the record of the approval."
     },
     "banned": [
       "cursor.*follow|MouseFollower",

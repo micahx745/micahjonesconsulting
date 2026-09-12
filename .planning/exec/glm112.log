@@ -1,0 +1,40 @@
+claude-glm: BATCH on glm-5.3 via z.ai, in C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live (permissions skipped; hooks and gates still run)
+Execution complete. Sections 1–5 ran in full; **section 7 (commit) did not run** — one section-6 expected result was not met, so per your instruction I stopped before the commit and am reporting it. No commits were made, nothing pushed, nothing deployed; the main checkout was never touched.
+
+## The failed check — retired-phrases gate, exit 1
+
+Expected: `exit 0`, printing `retired-phrases-gate: clean`. Actual output:
+
+```
+retired-phrases-gate: app\api\stripe\webhook\route.ts:28: "/playbook" — retired copy (LESSONS #3 ledger, LESSONS #15)
+
+retired-phrases-gate: 1 finding(s). These phrases were retired by a dated operator ruling. Restore one only with a NEW dated ruling in LESSONS #3, and update this gate in the same commit — never route around it.
+retired exit: 1
+```
+
+**Root cause** — a contradiction inside the brief, verified with node before the battery ran: line 28 of the webhook route is `import { deliverPlaybook, notifyRefund } from "@/lib/playbook-delivery";`, and the module path contains the literal substring `/playbook`. Section 0 pins that import in place (the webhook's `book` branch stays so refunds of past $99 sales still arrive), while section 3 pins the phrase list (`"/playbook"`) and the exemption set to exactly `lib/catalog.ts` + `lib/playbook-delivery.ts`. The collision is deterministic — the gate can never print clean under both constraints. **Fix options needing a ruling:** (a) add `app/api/stripe/webhook/route.ts` to `EXEMPT_FILES` — recommended; it's the same money-path-renders-nowhere rationale as the existing two exemptions, ideally with an import-path fixture added to the self-test; (b) boundary-match the phrase (`/playbook` not followed by `-`); (c) dynamic import inside the webhook's book branch — worst option, rewrites production money code to satisfy a gate.
+
+## Everything else — all green
+
+- **Deletions (§1):** all 13 files + 9 PNGs removed via `git rm`. Post-deletion grep: 3 comment lines plus one non-comment line — `lib/playbook-delivery.ts:95`, the Resend idempotency key `` `playbook-sale-note-${sessionId}` `` — a substring collision, not a reference to any deleted module, in a file §0 preserves verbatim. No live references remain (tsc corroborates).
+- **Copy (§2):** all 15 surfaces edited with the exact strings; one dated Pass-112 comment per touched code file. Two interpretation notes: `ordani.mdx` got no comment (the brief's "file ends after `</PullQuote>` with one newline" is the more specific rule; no comment precedent exists in content MDX); the three md docs were excluded from prettier because they were already failing prettier before this pass — a `--write` would have reformatted unrelated history.
+- **Gate (§3):** four phrases added, `EXEMPT_FILES` skip, `--self-test` wired into `package.json` build before the real scan, exactly as `accent-states-lint.mjs` is.
+- **§4:** no CSS, tokens, classes, or motion touched.
+- **§5:** `gates112.sh` + `shots112.mjs` written per spec; battery ran from Git Bash with `MSYS_NO_PATHCONV=1`, every exit code read directly.
+- **tsc note:** the battery's tsc showed exit 2 — all six errors were in `.next/types/` shims from the *previous* build still referencing the deleted routes (tsc runs before the build in the battery). Post-build re-run: **exit 0**. Artifact, not a defect.
+- **Shots:** 14 PNGs in `.planning/qa/pass-112`, each exactly viewport-sized (1440×900; 390×844 @2x → 780×1688), all `found=true`, zero horizontal overflow; `home-nav-open-390` captured with the menu open.
+- `.claude/RESUME.md` rewritten recording the stopped state (2367 bytes, uncommitted — committing is what was stopped).
+
+```
+GATE EXIT CODES    tsc 0 (post-build; 2 in-battery = stale .next/types) · copy-lint 0 · vendor 0
+                   retired self-test 0 · retired gate 1 ✗ · accent self-test 0 · accent 0
+                   gsap self-test 0 · gsap 0 · prettier-check 0 · build 0 · render-gate 0
+                   axe-worlds 0 · layout self-test 0 · layout-gate 0 · shots 0
+404 RESULTS        /playbook: 404 · /playbook/thanks: 404
+SERVED MENTIONS    / : 0 · /services : 0 · /packages : 0 · /about : 0 · /services/thanks : 0
+                   /work/ordani : 0 · /call : 0 · /call/kickoff : 0 · /llms.txt : 0 · /sitemap.xml : 0
+NAV ITEM COUNT     4
+SELF TEST LINE     retired-phrases-gate self-test: 15 planted caught, 15 near misses passed
+GIT LOG            No commits made — HEAD unchanged: c3d7126 RESUME: under the byte cap
+                   (worktree holds the pass: deletions staged, edits + gates112.sh/shots112.mjs + RESUME.md uncommitted)
+```

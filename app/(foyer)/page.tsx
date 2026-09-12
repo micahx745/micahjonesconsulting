@@ -178,7 +178,8 @@ export default function ColorWorldsHome() {
                 "An 8-10 page memo: what works, what is broken, and what to fix first.",
                 "A prioritized fix sequence, so you can start the morning it lands.",
                 "A one-hour debrief call where I walk you through it. You keep the memo either way.",
-                "A kickoff email the moment you buy: intake questions, a link to book the debrief, and The 80% Wall, my field manual, attached.",
+                // Pass-112 (operator 2026-09-11): the book is off the site until it ships.
+                "A kickoff email the moment you buy: the intake questions and a link to book the debrief.",
               ]}
               area="Covers one area: your build, your production, or your positioning. You pick it at checkout."
               cta={
@@ -716,10 +717,7 @@ export default function ColorWorldsHome() {
           vibe coders and something to preach to small businesses"). Two
           register-matched doorways at the bottom of the page — audience B
           got the whole page above; A and C each get one door in their own
-          voice. NOTE: the playbook door touches the Pass-30 lock (playbook
-          off the enterprise front door) — that lock was about the FIRST
-          screen; this sits five screens down. Flagged to the operator
-          either way. */}
+          voice. */}
       {/* Pass-6 (operator: "the cards look weak"): doors are no longer
           cards. They are the SEAM — two full-bleed color panels, edge to
           edge, no borders. Builders get the petrol (build-side) panel,
@@ -745,13 +743,10 @@ export default function ColorWorldsHome() {
             The demo took a weekend. The last 20% is eating your month.
           </h2>
           <p className="cw-door__body">
-            That last 20% is my daily work. I wrote the field manual for it.
-            Want me on your build? Three fixed prices start at $500.
+            That last 20% is my daily work. Want me on your build? Three fixed
+            prices start at $500.
           </p>
           <div className="cw-door__ctas">
-            <a href="/playbook" className="cw-door__cta">
-              Read the playbook <span aria-hidden>→</span>
-            </a>
             <a href="/packages" className="cw-door__cta">
               See the three packages <span aria-hidden>→</span>
             </a>

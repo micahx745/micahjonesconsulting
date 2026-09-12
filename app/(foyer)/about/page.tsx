@@ -212,15 +212,8 @@ export default function AboutPage() {
             other. I sit on both sides until they do. I am taking new
             engagements now.
           </p>
-          {/* Internal link added 2026-09-02: an SEO pass found only two
-              contextual links into /playbook on the whole site, and none from
-              the author page, which is where a reader who trusts him goes
-              next. Phrased so it claims the book exists, not that it is
-              currently for sale. */}
-          <p>
-            I also wrote <a href="/playbook">The 80% Wall</a>, a field manual on
-            the part of a build the AI leaves to you once the demo works.
-          </p>
+          {/* Pass-112 (operator 2026-09-11): the book is off the site until
+              it ships. The paragraph that was here linked /playbook. */}
           <p>
             <a href="/work">See the case studies →</a>
           </p>

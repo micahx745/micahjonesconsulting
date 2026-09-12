@@ -29,12 +29,13 @@ export default function PackageThanksPage() {
         <h2 id="pk-thanks-title" className="cw-pb-h2">
           What happens next
         </h2>
+        {/* Pass-112 (operator 2026-09-11): the book is off the site until
+            it ships. The sentence about the book riding along is gone. */}
         <p className="cw-pb-sect__lede">
           The email has two steps: a few intake questions to answer by reply,
-          and the link to put the kickoff call on my real calendar. The book and
-          its companion files ride along, included with every package. Work
-          starts at kickoff, and the refund rule holds until then: full refund
-          any time before the call.
+          and the link to put the kickoff call on my real calendar. Work starts
+          at kickoff, and the refund rule holds until then: full refund any time
+          before the call.
         </p>
         {/* Pass-76. The kickoff link used to exist only inside the email,
             so the most motivated moment a buyer will ever have — the second

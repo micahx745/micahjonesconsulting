@@ -2,8 +2,8 @@
 
 Operator-locked 2026-09-01: The Unstick Session $500 · The Audit $2,500
 (Build / Production / Traction) · The Sprint $7,500. Credit bridge on.
-Refund: full before kickoff, none after. All three include The 80% Wall
-(book + companion ZIP).
+Refund: full before kickoff, none after. No attachments (the book left the
+site in Pass-112, operator 2026-09-11).
 
 ## The funnel
 
@@ -30,7 +30,7 @@ verified). When a package email lands at micah@:
 3. Deliver per package: Unstick = the call + same-day memo; Audit =
    memo + fix sequence + debrief inside two weeks; Sprint = the
    outcome + daily notes + debrief.
-4. Send the book + companion ZIP with the kickoff confirmation.
+4. (Removed Pass-112: nothing is attached to the kickoff.)
 5. Log the buyer in the pipeline file; at debrief, make the credit-
    bridge offer explicitly: "your $X applies to <next rung> for 60
    days."
@@ -47,7 +47,7 @@ largest single prior fee.
 Verified live on the test rig (Audit $2,500, card 4242): checkout with
 the flavor dropdown captured at purchase -> Stripe's own webhook
 delivery -> kickoff email to the buyer (intake + /book link + book/ZIP
-attached) + sale note to hello@ -> refund -> "Refund: The Audit" echo.
+no attachment) + sale note to hello@ -> refund -> "Refund: The Audit" echo.
 What was built on the shared rail:
 - lib/catalog.ts is the SKU source of truth (4 SKUs; scripts/
   stripe-setup.mjs mirrors it and created the three test prices)
@@ -55,7 +55,7 @@ What was built on the shared rail:
   custom field); /services/thanks (noindex) is the success page
 - metadata.product gates each (shared-account rule)
 - webhook delivery email = kickoff email: receipt framing, intake
-  questions, /book link, book + companion attached
+  questions, /book link (no attachment)
 - /services cards swap mailto CTAs for checkout buttons ONLY after the
   pay-yourself-live ritual passes (money UI ships last)
 - the same go-live decision as the book: shared Stripe account vs
