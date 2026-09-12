@@ -3,39 +3,34 @@
 ## READ FIRST
 Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
 `.claude/worktrees/p106-live`), ahead of `main`. `pnpm build` fails HERE only:
-use `npx next build --webpack`. Battery gotcha found Pass-112: tsc runs BEFORE
-build and reads the PREVIOUS build's `.next/types` — after deleting routes it
-reports phantom TS2307s; re-run tsc after a fresh build before believing it.
+use `npx next build --webpack`. tsc gotcha: it reads the PREVIOUS build's
+`.next/types` — after deleting routes it reports phantom TS2307s; re-run
+after a fresh build before believing it.
 
-## Pass-112 EXECUTED, STOPPED BEFORE COMMIT — one ruling needed
-Sections 1-5 done in the worktree (deletions staged via git rm; edits, gate,
-battery files uncommitted; nothing pushed). ALL battery checks green EXCEPT
-the retired-phrases gate: exit 1, `app/api/stripe/webhook/route.ts:28` — the
-import `"@/lib/playbook-delivery"` contains the substring `/playbook`. Brief
-§0 keeps the webhook `book` branch (refunds); §3 pins exemptions to
-catalog.ts + playbook-delivery.ts only. Deterministic false positive, node-
-verified. Self-test 15 planted / 15 near misses, exit 0.
-Fix options: (a) EXEMPT_FILES += the webhook route — RECOMMENDED, same
-money-path rationale as the other two + add an import-path self-test fixture;
-(b) boundary-match the phrase "/playbook" (not followed by "-"); (c) dynamic
-import inside the webhook branch — worst, rewrites money code for a gate.
-Then: rerun self-test + gate → §7 commit (subject/body per brief; explicit
-paths; -F message file) → RESUME commit → judge look §9 (≤5 calls) → 111b.
-Battery rest: tsc 0 post-build (2 in-battery = stale types), copy-lint 0,
-vendor 0, accent/gsap x2 0, prettier 0, build 0 + 0 playbook in log, 404
-404, served mentions 0 on 10 routes, nav 4, render 0, axe 0, layout 0,
-shots 0 (14 PNGs, viewport-sized, `home-nav-open-390` shows 4 items).
+## Pass-112 COMMITTED — the book is off the site
+Ruling 2026-09-11: not mentioned, not shown until it ships. The 19 file
+deletions rode the shared index into `ec84b07` (pushed; that preview fails
+render-gate — recorded as LESSONS #23). Edits + gate + battery committed in
+`95141f3` (subject "Pass-112: the book comes off the site"). Gate
+`retired-phrases-gate.mjs`: 4 phrases, EXEMPT_FILES money path (catalog.ts,
+playbook-delivery.ts), `stripSpecifiers` blanks module specifiers (judge F1);
+self-test 17 planted / 19 near misses, scan clean, tsc 0, prettier 0.
+Battery was fully green on this exact tree: build 0 + 0 playbook in log,
+404 404, 0 mentions on 10 routes, nav 4, render/axe/layout/shots 0.
+NEXT: judge look §9 (≤5 calls; wants home-doors 390/1440, home-nav-open-390,
+home-nav-1440, mention counts, self-test line, `git diff --stat`) → 111b.
 
 ## Rulings 2026-09-11
-#7 book off site is now in LESSONS #3 + the gate. Others unchanged: pricing
+#7 book off site is in LESSONS #3 + the gate. Others unchanged: pricing
 floor, promises, area pick, $20M+ exception, case studies, $5B+, rename.
 
 ## Waiting on the operator
-Gate-fix ruling (a/b/c above) · A4/S3 text · deactivate Stripe playbook-99 ·
-merge to `main` · $500 live test · §9a.
+Judge §9 sign-off · A4/S3 text · deactivate Stripe playbook-99 (LIVE+TEST)
++ drop PLAYBOOK_ON_SALE from Vercel env · merge to `main` · $500 live test.
 
 ## Traps
-push to main auto-deploys · never edit a running script (#22) · Git Bash:
-`MSYS_NO_PATHCONV=1` · no exit codes through a pipe · md docs were never
-prettier-clean — never `--write` them · >1 world renders: no fixed text
-colour, no opacity on text.
+push to main auto-deploys · shared index: commit with an explicit pathspec
+after reading git diff --cached (#23) · never edit a running script (#22) ·
+Git Bash: `MSYS_NO_PATHCONV=1` · no exit codes through a pipe · md docs
+were never prettier-clean — never `--write` them · >1 world renders: no
+fixed text colour, no opacity on text.
