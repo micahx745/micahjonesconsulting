@@ -1,7 +1,7 @@
 axe-worlds: / @1440  18 stops  terracotta=#9E3C25, espresso=#2A1F18, petrol=#1A4548, bone=#ECE3D0  (cannot reach centre: terracotta)
 axe-worlds: / @390  20 stops  terracotta=#9E3C25, espresso=#2A1F18, petrol=#1A4548, bone=#ECE3D0  (cannot reach centre: terracotta)
-axe-worlds: /services @1440  12 stops  bone=#ECE3D0, espresso=#2A1F18
-axe-worlds: /services @390  24 stops  bone=#ECE3D0, espresso=#2A1F18
+axe-worlds: /services @1440  11 stops  bone=#ECE3D0, espresso=#2A1F18
+axe-worlds: /services @390  22 stops  bone=#ECE3D0, espresso=#2A1F18
 axe-worlds: /packages @1440  6 stops  bone=#ECE3D0
 axe-worlds: /packages @390  7 stops  bone=#ECE3D0
-axe-worlds: axe-core 4.13.0, 93 scans, 0 serious/critical finding(s), 0 not in KNOWN
+axe-worlds: axe-core 4.13.0, 90 scans, 0 serious/critical finding(s), 0 not in KNOWN

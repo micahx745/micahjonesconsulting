@@ -1,0 +1,146 @@
+=== tsc ===
+tsc exit: 0
+=== copy-lint ===
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+copy-lint exit: 0
+=== vendor ===
+vendor-gate: clean
+vendor exit: 0
+=== retired self-test ===
+retired-phrases-gate self-test: 27 planted caught, 22 near misses passed
+retired self-test exit: 0
+=== retired phrases ===
+retired-phrases-gate: clean
+retired exit: 0
+=== accent states ===
+accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms
+accent self-test exit: 0
+accent-states-lint: clean
+accent-states exit: 0
+=== gsap quarantine ===
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+gsap self-test exit: 0
+gsap-quarantine-gate: clean (86 files)
+gsap exit: 0
+=== colour grep over every NEW selector (.cw-pband/.cw-pick/.cw-areas/.cw-area and children; 1 = no findings) ===
+colour grep exit: 1 (expect 1)
+=== prettier (the Pass-111b touched list only; never markdown, never the .sh) ===
+[90mapp/(foyer)/services/page.tsx[39m 67ms (unchanged)
+[90mapp/(foyer)/packages/page.tsx[39m 13ms (unchanged)
+[90mapp/(foyer)/page.tsx[39m 28ms (unchanged)
+[90mapp/(foyer)/work/page.tsx[39m 13ms (unchanged)
+[90mapp/(foyer)/call/page.tsx[39m 4ms (unchanged)
+[90mapp/llms.txt/route.ts[39m 2ms (unchanged)
+[90mcomponents/color-worlds/PriceBox.tsx[39m 5ms (unchanged)
+components/color-worlds/PackageBand.tsx 12ms
+[90mcomponents/color-worlds/BookCallForm.tsx[39m 15ms (unchanged)
+[90mcomponents/BuyButton.tsx[39m 6ms (unchanged)
+[90mapp/actions/package-checkout.ts[39m 5ms (unchanged)
+[90mapp/api/stripe/webhook/route.ts[39m 8ms (unchanged)
+[90mlib/package-delivery.ts[39m 4ms (unchanged)
+[90mlib/catalog.ts[39m 3ms (unchanged)
+scripts/retired-phrases-gate.mjs 22ms
+[90mscripts/stripe-setup.mjs[39m 3ms (unchanged)
+[90mapp/globals.css[39m 194ms (unchanged)
+[90m.planning/exec/shots111b.mjs[39m 16ms (unchanged)
+Checking formatting...
+All matched files use Prettier code style!
+prettier-check exit: 0
+=== build (webpack; pnpm build FAILS on this machine with a font error) ===
+✓ Compiled successfully in 3.2s
+build exit: 0
+=== restart server on 3200 ===
+=== served checks (brief §13, replaced in full) ===
+=== route health (G2) ===
+  /services health: status 200 (expect 200), length 56591 (expect >=60000)
+  /packages health: status 200 (expect 200), length 30822 (expect >=30000)
+  /work health: status 200 (expect 200), length 38020 (expect >=30000)
+  / health: status 200 (expect 200), length 59702 (expect >=60000)
+  /llms.txt health: status 200 (expect 200), length 2544 (expect >=1500)
+  box figures showing $5K on /services: got 1, expect 1
+  cw-pbox__from spans on /services: got 1, expect 1
+  Engagements from $5K (services+packages+work+llms): got 0, expect 0
+  start at $5K anywhere: got 0, expect 0
+  standing rate on /services: got 0, expect 0
+  Scoped as a figure on /services: got 0, expect 0
+  Frontier on /services + / + llms: got 0, expect 0
+  End-to-end product building (services+llms): got 0, expect 0
+  AI engineering on /services: got 7, expect >=3
+  cw-pbox articles on /services: got 7, expect 7
+  pkg-area radios on /services: got 3, expect 3
+  Ask about links on /services: got 4, expect 4
+  tables left on /services: got 0, expect 0
+  $5K on /packages: got 0, expect 0
+  build, production, or traction on /packages: got 0, expect 0
+  book mentions on /services: got 0, expect 0
+  Buy buttons on /packages: got 6, expect 3
+  kickoff line in the band footer: got 1, expect 1
+  Three fixed prices, one area each (expect gone): got 0, expect 0
+served-checks failures: 3
+=== render-gate ===
+render-gate: 15 routes — links resolve, fragments exist, metadata within limits.
+render-gate exit: 0
+=== axe-worlds on / /services /packages ===
+axe-worlds: / @1440  18 stops  terracotta=#9E3C25, espresso=#2A1F18, petrol=#1A4548, bone=#ECE3D0  (cannot reach centre: terracotta)
+axe-worlds: / @390  20 stops  terracotta=#9E3C25, espresso=#2A1F18, petrol=#1A4548, bone=#ECE3D0  (cannot reach centre: terracotta)
+axe-worlds: /services @1440  11 stops  bone=#ECE3D0, espresso=#2A1F18
+axe-worlds: /services @390  22 stops  bone=#ECE3D0, espresso=#2A1F18
+axe-worlds: /packages @1440  6 stops  bone=#ECE3D0
+axe-worlds: /packages @390  7 stops  bone=#ECE3D0
+axe-worlds: axe-core 4.13.0, 90 scans, 0 serious/critical finding(s), 0 not in KNOWN
+axe-worlds exit: 0
+=== layout gate (default routes already include /services) ===
+layout-gate self-test: 7 planted defects caught, 8 near misses clean
+layout self-test exit: 0
+layout-gate: 36 page loads across 6 routes, 0 finding(s), 0 not in KNOWN
+layout-gate exit: 0
+=== captures ===
+shot .planning\qa\pass-111b\sv-open-1440.png  status=200 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-open-390.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-shapes-1440.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-shapes-1280.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-shapes-1024.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-shapes-768.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-shapes-390.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-incl-1440.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-incl-390.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-areas-1440.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-areas-768.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-areas-390.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-pick-1440.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-pick-768.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-pick-390.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-pkgs-1440.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-pkgs-1024.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-pkgs-768.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-pkgs-390.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\pk-cross-1440.png  status=200 found=true world=#ECE3D0 overflowX=false
+call-prefill embedded value: "Shape: Embedded." (expect "Shape: Embedded.")
+shot .planning\qa\pass-111b\call-prefill-1440.png  status=200 found=true world=#2A1F18 overflowX=false
+shot .planning\qa\pass-111b\sv-foot-1440.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-why-1440.png  status=304 found=true world=#ECE3D0 overflowX=false
+shot .planning\qa\pass-111b\sv-why-390.png  status=304 found=true world=#ECE3D0 overflowX=false
+call-prefill bogus value: "" (expect "")
+box shape-advisory height at 1440: 630px (cap 800, target 700)
+box shape-project height at 1440: 630px (cap 800, target 700)
+box shape-retainer height at 1440: 630px (cap 800, target 700)
+box shape-embedded height at 1440: 630px (cap 800, target 700)
+box pkg-unstick height at 1440: 623px (cap 800, target 700)
+box pkg-audit height at 1440: 623px (cap 800, target 700)
+box pkg-sprint height at 1440: 623px (cap 800, target 700)
+box shape-advisory height at 1280: 532px (cap 800, target 700)
+box shape-project height at 1280: 532px (cap 800, target 700)
+box shape-retainer height at 1280: 508px (cap 800, target 700)
+box shape-embedded height at 1280: 508px (cap 800, target 700)
+box pkg-unstick height at 1280: 375px (cap 800, target 700)
+box pkg-audit height at 1280: 377px (cap 800, target 700)
+box pkg-sprint height at 1280: 347px (cap 800, target 700)
+shot .planning\qa\pass-111b\sv-guard-1440.png  guard err="Pick an area first, then buy." visible=true focusOnFirstRadio=true overflowX=false
+shot .planning\qa\pass-111b\sv-guard-390.png  guard err="Pick an area first, then buy." visible=true focusOnFirstRadio=true overflowX=false
+shot .planning\qa\pass-111b\sv-picked-1440.png  polite="Packages now show Product building." auditFit ok=true overflowX=false
+shot .planning\qa\pass-111b\sv-picked-390.png  polite="Packages now show Product building." auditFit ok=true overflowX=false
+shots exit: 0
+=== helper checks (expect: true false AI engineering null) ===
+true false AI engineering null
+helper-check exit: 0
+=== ALL GATES RUN ===

@@ -241,7 +241,7 @@ const INCLUSIONS = [
   "Week one is a scoping session and an audit of where things stand, so the work starts on the right problem.",
   "Something named ships in month one.",
   "The scope and the price in writing before anything starts. No discovery fee.",
-  "Me, directly: strategy and software from the same person, with no hand-off.",
+  "You get me, directly, for the whole engagement.",
   "A reply within one business day.",
   "Any one of the three areas below, two of them, or all three.",
 ];
@@ -332,7 +332,7 @@ export default function ServicesPage() {
               id="shape-project"
               name="Project"
               price={{ fig: "6-20 weeks" }}
-              term="Fixed price, in writing after the call"
+              term="Scoped and priced on the call"
               fit="One defined outcome with a start, an end, and a named deliverable."
               list={PROJECT_LIST}
               cta={
@@ -432,7 +432,7 @@ export default function ServicesPage() {
           aria-labelledby="cw-sv-pkgs-title"
         >
           <h2 id="cw-sv-pkgs-title" className="cw-service__title">
-            Or start smaller. Three fixed prices, one area each.
+            Or start smaller. Three fixed prices.
           </h2>
           <p className="cw-services__intro">
             No scoping call, no proposal. Buy one and the work starts within the

@@ -1,0 +1,27 @@
+=== served checks (brief §13, replaced in full; §15c floors) ===
+=== route health (G2, §15c floors: 40000/20000/20000/40000/1500) ===
+  /services health: status 200 (expect 200), length 56591 (expect >=40000)
+  /packages health: status 200 (expect 200), length 30822 (expect >=20000)
+  /work health: status 200 (expect 200), length 38020 (expect >=20000)
+  / health: status 200 (expect 200), length 59702 (expect >=40000)
+  /llms.txt health: status 200 (expect 200), length 2544 (expect >=1500)
+  box figures showing $5K on /services: got 1, expect 1
+  cw-pbox__from spans on /services: got 1, expect 1
+  Engagements from $5K (services+packages+work+llms): got 0, expect 0
+  start at $5K anywhere: got 0, expect 0
+  standing rate on /services: got 0, expect 0
+  Scoped as a figure on /services: got 0, expect 0
+  Frontier on /services + / + llms: got 0, expect 0
+  End-to-end product building (services+llms): got 0, expect 0
+  AI engineering on /services: got 7, expect >=3
+  cw-pbox articles on /services: got 7, expect 7
+  pkg-area radios on /services: got 3, expect 3
+  Ask about links on /services: got 4, expect 4
+  tables left on /services: got 0, expect 0
+  $5K on /packages: got 0, expect 0
+  build, production, or traction on /packages: got 0, expect 0
+  book mentions on /services: got 0, expect 0
+  Buy buttons on /packages: got 3, expect 3
+  kickoff line in the band footer: got 1, expect 1
+  Three fixed prices, one area each (expect gone): got 0, expect 0
+served-checks failures: 0

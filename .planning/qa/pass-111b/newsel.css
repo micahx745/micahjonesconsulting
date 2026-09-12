@@ -42,6 +42,17 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) minmax(0, 1fr);
   }
 }
+/* Pass-111b §15 A1 (Astra 1): one figure size for every shape box at
+ * 1360+. The clamp() on .cw-pbox__fig reads viewport width, not the
+ * narrower column it actually sits in, so Project's "6-20 weeks" spilled
+ * past its box at the clamp's 56px ceiling. Not Project alone: a band
+ * with one smaller figure reads as a mistake. The packages band (wider
+ * columns) keeps the clamp. */
+@media (min-width: 1360px) {
+  [data-mode="cw"] .cw-pband--shapes .cw-pbox__fig {
+    font-size: 44px;
+  }
+}
 
 /* The shared-promises row under the shapes band: one ruled block,
  * not a box (CRITIQUE H1). The ul also carries .cw-pbox__list for
@@ -249,4 +260,35 @@
   font-size: 16px;
   line-height: 1.6;
   max-width: 90ch;
+}
+
+/* Pass-111b §15 A2 (Astra 5, scoped to /services only): the box's own
+ * clamp() padding and the Pass-111a spacing rules left too much air above
+ * the CTA. Tightened on /services (the .cw-sv ancestor) only; the home
+ * Audit box (no .cw-sv ancestor) is untouched. Selectors carry higher
+ * specificity than the rules they override, so no !important chase. */
+[data-mode="cw"] .cw-sv .cw-pbox__in {
+  padding: 24px;
+}
+[data-mode="cw"] .cw-sv .cw-pbox--lead .cw-pbox__in {
+  padding: 23px;
+}
+[data-mode="cw"] .cw-sv .cw-pbox__list {
+  margin-top: 16px !important;
+  padding-top: 0;
+}
+[data-mode="cw"] .cw-sv .cw-pbox__list li {
+  padding: 8px 0;
+}
+[data-mode="cw"] .cw-sv .cw-pbox__act {
+  padding-top: 20px;
+}
+
+/* Pass-111b §15 A5 (judge): .cw-pband__foot's own 90ch cap (above) read as
+ * a stray prose line under a 1360px-wide band — the rule stopped around
+ * 810px on sv-pkgs-1440 while the band it sits under is 1360px wide. It
+ * spans the band instead. */
+[data-mode="cw"] .cw-sv-pkgs .cw-pband__foot {
+  max-width: none;
+  width: 100%;
 }

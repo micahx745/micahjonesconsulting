@@ -77,10 +77,24 @@
 //
 // SELF-TEST (--self-test, LESSONS #21): the exact scan pipeline —
 // stripComments, stripSpecifiers, applyExemptions, the EXEMPT_FILES skip,
-// the phrase match — runs over an in-memory fixture list, so a regex
-// regression that turns the
+// normalize, the phrase match — runs over an in-memory fixture list, so a
+// regex regression that turns the
 // gate blind fails the build instead of shipping. Wired in package.json
 // before the real scan, same as accent-states-lint.mjs.
+//
+// NORMALIZE (G1, Sonnet 111b independent diff review, Check C). The match
+// is a raw per-line substring test, so a double space, an HTML entity
+// standing in for a space or hyphen, or a `{" "}` JSX join all slip past it
+// character-for-character even though none of them changes what a reader
+// sees. normalize() runs before the match, per line so reported line
+// numbers stay true: it decodes &nbsp;/&#160;/&#8209;/&#8211;/&ndash;/
+// &#x2011; to a plain space, folds a `{" "}`/`{' '}` JSX join to a space,
+// then collapses any run of whitespace to one. A second pass joins each
+// adjacent pair of (already normalized) lines with one space and matches
+// phrases that appear only in the join, never in either line alone — the
+// two-line form of the same JSX split — reporting the pair's first line.
+// Two lines with a line between them are never joined, so an unrelated
+// "Frontier AI" ... "engineering" two lines apart still passes.
 //
 // Runs in `pnpm build` before next build. Exit 1 with file:line on any find.
 import { readFileSync, readdirSync, statSync } from "node:fs";
@@ -147,6 +161,18 @@ function applyExemptions(src, file) {
   );
 }
 
+// G1 (Sonnet 111b review): fold the constructs a raw substring match can't
+// see into their plain-text equivalent, one line at a time so reported line
+// numbers stay true. &nbsp;/&#160; and the hyphen-family entities all
+// collapse to a single space here — the gate only needs to recognise the
+// same words, not preserve which separator character rendered them.
+function normalize(line) {
+  return line
+    .replace(/&nbsp;|&#160;|&#8209;|&#8211;|&ndash;|&#x2011;/gi, " ")
+    .replace(/\{["']\s*["']\}/g, " ")
+    .replace(/\s+/g, " ");
+}
+
 // One file's raw source -> findings. The real scan and the self-test both
 // go through here, so they cannot drift apart.
 function scanSource(raw, file) {
@@ -155,13 +181,27 @@ function scanSource(raw, file) {
     stripSpecifiers(stripComments(raw, file.endsWith(".mdx"))),
     file,
   );
+  const lines = src.split("\n").map(normalize);
   const findings = [];
-  src.split("\n").forEach((line, i) => {
+  lines.forEach((line, i) => {
     const hits = PHRASES.filter((p) =>
       line.toLowerCase().includes(p.toLowerCase()),
     );
     if (hits.length) findings.push({ line: i + 1, hits });
   });
+  // The two-line form of a `{" "}` JSX split: the join reads as the banned
+  // phrase, neither line alone does. Only adjacent lines join, so a match
+  // spread across a line with unrelated content in between is not this.
+  for (let i = 0; i < lines.length - 1; i++) {
+    const a = lines[i].trim().toLowerCase();
+    const b = lines[i + 1].trim().toLowerCase();
+    const joined = `${a} ${b}`;
+    const hits = PHRASES.filter((p) => {
+      const pl = p.toLowerCase();
+      return joined.includes(pl) && !a.includes(pl) && !b.includes(pl);
+    });
+    if (hits.length) findings.push({ line: i + 1, hits });
+  }
   return findings;
 }
 
@@ -204,6 +244,33 @@ function selfTest() {
       file: "app/selftest/page.tsx",
       src: `        { href: "/playbook", label: "Manual" },`,
       why: 'href: "/playbook" in a tsx object literal',
+    },
+    // G1 (Sonnet 111b review): the four substring evasions it found, plus
+    // the two-line form of the same JSX-split evasion.
+    {
+      file: "app/selftest/page.tsx",
+      src: `        "Engagements from  $5K a month",`,
+      why: 'double space: "Engagements from  $5K a month"',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        "start&nbsp;at $5K a month",`,
+      why: 'nbsp entity: "start&nbsp;at $5K a month"',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        "standing&#8209;rate",`,
+      why: 'numeric hyphen entity: "standing&#8209;rate"',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        <span>Frontier AI{" "}engineering</span>`,
+      why: 'jsx split same line: Frontier AI{" "}engineering',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        <span>Frontier AI{" "}\n          engineering</span>`,
+      why: 'jsx split two lines: Frontier AI{" "} / engineering',
     },
   ];
   const nearMisses = [
@@ -270,6 +337,14 @@ function selfTest() {
       file: "app/selftest/page.tsx",
       src: `        <span>AI engineering</span>`,
       why: '"AI engineering" alone (the renamed area, not the retired "Frontier AI engineering")',
+    },
+    // G1 near miss: "Frontier AI" and "engineering" are real, but a line of
+    // unrelated content sits between them, so the two-line join (adjacent
+    // lines only) must not bridge them.
+    {
+      file: "app/selftest/page.tsx",
+      src: `        <span>Frontier AI</span>\n        <p>unrelated line</p>\n        <span>engineering</span>`,
+      why: '"Frontier AI" and "engineering" two lines apart (not adjacent)',
     },
   ];
 

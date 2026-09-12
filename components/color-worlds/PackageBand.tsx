@@ -27,8 +27,7 @@ import { PriceBox } from "@/components/color-worlds/PriceBox";
 import { AREAS, areaLabel, isAreaValue, type AreaValue } from "@/lib/catalog";
 
 const UNSTICK_LIST = [
-  "A 90-minute working call on the thing that is stuck.",
-  "A written fix plan the same day: what is wrong, in the order to fix it, and for builds the prompts to fix it with.",
+  "A written fix plan: what is wrong, in the order to fix it, and for builds the prompts to fix it with.",
   "The call is recorded and the recording comes with the plan.",
   "One follow-up question by email within 7 days.",
 ];
@@ -37,12 +36,11 @@ const AUDIT_LIST = [
   "An 8-10 page memo: what works, what is broken, and what to fix first.",
   "A prioritized fix sequence, so you can start the morning it lands.",
   "A one-hour debrief call where I walk you through it, and a 30-day follow-up call after. You keep the memo either way.",
-  "A kickoff email the moment you buy: the intake questions and a link to book the debrief.",
 ];
 
 const SPRINT_LIST = [
   "One outcome, agreed by email before day one.",
-  "One week embedded on that outcome, with daily progress notes and a mid-week check-in call.",
+  "Daily progress notes and a mid-week check-in call.",
   "The work lands in your repo and tools, with a handover note.",
   "A debrief and a map of the next steps.",
 ];
@@ -218,9 +216,10 @@ export function PackageBand() {
       </div>
 
       <p className="cw-pband__foot">
-        Every fee credits toward the next package, or toward an engagement
-        started within 60 days. Full refund any time before kickoff, none after.
-        I reply within one business day.{" "}
+        The moment your card clears you get a kickoff email: the intake
+        questions and a link to book the call. Every fee credits toward the next
+        package, or toward an engagement started within 60 days. Full refund any
+        time before kickoff, none after. I reply within one business day.{" "}
         <a href="/packages" className="cw-mlink">
           Full details on the packages page <span aria-hidden>→</span>
         </a>

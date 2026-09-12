@@ -21,6 +21,11 @@
 //          passes. Measured with a Range per character.
 //   boxes  from 1024px wide, no .cw-pbox is taller than the viewport.
 //   fill   the grids in FILL span their container's content box.
+//   spill  (Pass-111b §15 A1, Astra 1) no .cw-pbox__fig, .cw-pbox__name or
+//          .cw-pbox__price crosses its own .cw-pbox's right edge (minus a
+//          1px margin). A clamp() sized off the viewport, not the column,
+//          let Project's "6-20 weeks" spill past its box while three other
+//          boxes in the same band fit.
 //
 // WHAT IT CANNOT SEE: a word that is split into several text nodes (per-letter
 // spans, or an inline element inside a word) is measured one node at a time.
@@ -112,7 +117,7 @@ const KNOWN = [];
 
 // Runs in the page. Self-contained: puppeteer serialises it by source.
 function probe(fill) {
-  const out = { words: [], boxes: [], fill: [] };
+  const out = { words: [], boxes: [], fill: [], spill: [] };
   const label = (el) => {
     const c = typeof el.className === "string" ? el.className.trim() : "";
     return el.tagName.toLowerCase() + (c ? "." + c.split(/\s+/)[0] : "");
@@ -219,6 +224,27 @@ function probe(fill) {
       }
     }
   }
+
+  // spill (Pass-111b §15 A1): a figure/name/price sized off the viewport
+  // rather than its own column can cross its box's right edge while the
+  // box itself never overflows, so neither the words check (no text-node
+  // break) nor a plain overflow check would see it.
+  for (const el of document.querySelectorAll(
+    ".cw-pbox__fig, .cw-pbox__name, .cw-pbox__price",
+  )) {
+    const box = el.closest(".cw-pbox");
+    if (!box || hidden(el)) continue;
+    const er = el.getBoundingClientRect();
+    if (!er.width) continue;
+    const br = box.getBoundingClientRect();
+    if (er.right > br.right - 1) {
+      const key = `${box.id || ".cw-pbox"} ${label(el)}`;
+      out.spill.push({
+        key,
+        msg: `${label(el)} right edge ${Math.round(er.right)} crosses ${box.id || ".cw-pbox"} right edge ${Math.round(br.right)} (-1px margin)`,
+      });
+    }
+  }
   return out;
 }
 
@@ -258,6 +284,12 @@ if (SELF_TEST) {
     <div class="box"><div class="cw-offer__grid">full</div></div>
     <article class="cw-pbox" id="planted-tall"></article>
     <article class="cw-pbox" id="planted-ok" style="height: 100px"></article>
+    <article class="cw-pbox" id="spill-bad" style="height: 100px; width: 300px; padding: 0;">
+      <div class="cw-pbox__fig" style="display: inline-block; white-space: nowrap; width: 400px; font-size: 16px;">bad</div>
+    </article>
+    <article class="cw-pbox" id="spill-ok" style="height: 100px; width: 300px; padding: 10px; box-sizing: border-box;">
+      <div class="cw-pbox__name" style="display: block; width: 280px; font-size: 16px;">ok</div>
+    </article>
   </body></html>`;
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800, deviceScaleFactor: 1 });
@@ -269,6 +301,7 @@ if (SELF_TEST) {
     words: keys(res.words),
     boxes: keys(res.boxes),
     fill: keys(res.fill),
+    spill: keys(res.spill),
   };
   const want = {
     words: [
@@ -279,11 +312,12 @@ if (SELF_TEST) {
     ],
     boxes: ["planted-tall"],
     fill: [".cw-ord-grid"],
+    spill: ["spill-bad div.cw-pbox__fig"],
   };
   const ok = JSON.stringify(got) === JSON.stringify(want);
   console.log(
     ok
-      ? "layout-gate self-test: 6 planted defects caught, 7 near misses clean"
+      ? "layout-gate self-test: 7 planted defects caught, 8 near misses clean"
       : `layout-gate self-test: FAILED\n  want ${JSON.stringify(want)}\n  got  ${JSON.stringify(got)}`,
   );
   process.exit(ok ? 0 : 1);
@@ -317,7 +351,7 @@ try {
       await sleep(SETTLE_MS);
       const res = await page.evaluate(probe, FILL);
       loads++;
-      for (const check of ["words", "boxes", "fill"]) {
+      for (const check of ["words", "boxes", "fill", "spill"]) {
         for (const f of res[check])
           findings.push({ route, vp: name, check, ...f });
       }

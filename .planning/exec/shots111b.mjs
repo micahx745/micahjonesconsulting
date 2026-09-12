@@ -51,6 +51,10 @@ const PLAN = [
   ["/services", "sv-pkgs", ".cw-pband--pkgs", ["1440", "1024", "768", "390"]],
   ["/packages", "pk-cross", ".cw-pkg-page__cross", ["1440"]],
   ["/call?shape=embedded", "call-prefill", "textarea", ["1440"]],
+  // Pass-111b §15 A8 (Astra FIX round 2): the band footer rule (A5) and the
+  // "Why one person" heading (A3) both changed this round.
+  ["/services", "sv-foot", ".cw-pband__foot", ["1440"]],
+  ["/services", "sv-why", ".cw-sv-objection__h", ["1440", "390"]],
 ];
 
 const browser = await puppeteer.launch({

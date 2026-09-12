@@ -44,8 +44,19 @@ echo "=== served checks (brief §13, replaced in full) ==="
 sf=0
 chk () { echo "  $1: got $2, expect $3"; [ "$2" = "$3" ] || sf=$((sf+1)); }
 chkmin () { echo "  $1: got $2, expect >=$3"; [ "$2" -ge "$3" ] || sf=$((sf+1)); }
+health () { echo "  $1: status $2 (expect 200), length $3 (expect >=$4)"; { [ "$2" = "200" ] && [ "$3" -ge "$4" ]; } || sf=$((sf+1)); }
 S=http://localhost:3200
 SV=$(curl -s "$S/services"); PK=$(curl -s "$S/packages"); WK=$(curl -s "$S/work"); HM=$(curl -s "$S/"); LL=$(curl -s "$S/llms.txt")
+# G2 (Sonnet 111b review, Check C): a chk line that expects 0 also passes on
+# an error page (a 500 or a truncated body also greps to 0). Assert real
+# content on every fetched route BEFORE any zero-count chk line runs, so a
+# broken route fails here instead of passing the served block silently.
+echo "=== route health (G2) ==="
+health "/services health" "$(curl -s -o /dev/null -w '%{http_code}' "$S/services")" "${#SV}" 40000
+health "/packages health" "$(curl -s -o /dev/null -w '%{http_code}' "$S/packages")" "${#PK}" 20000
+health "/work health"     "$(curl -s -o /dev/null -w '%{http_code}' "$S/work")" "${#WK}" 20000
+health "/ health"         "$(curl -s -o /dev/null -w '%{http_code}' "$S/")" "${#HM}" 40000
+health "/llms.txt health" "$(curl -s -o /dev/null -w '%{http_code}' "$S/llms.txt")" "${#LL}" 1500
 chk "box figures showing \$5K on /services"      "$(printf '%s' "$SV" | grep -o 'class="cw-pbox__fig cw-nowrap">\$5K' | wc -l | tr -d ' ')" 1
 chk "cw-pbox__from spans on /services"           "$(printf '%s' "$SV" | grep -o 'class="cw-pbox__from"' | wc -l | tr -d ' ')" 1
 chk "Engagements from \$5K (services+packages+work+llms)" "$(printf '%s%s%s%s' "$SV" "$PK" "$WK" "$LL" | grep -ci 'Engagements from \$5K')" 0
@@ -62,6 +73,16 @@ chk "tables left on /services"                   "$(printf '%s' "$SV" | grep -c 
 chk "\$5K on /packages"                          "$(printf '%s' "$PK" | grep -c '\$5K')" 0
 chk "build, production, or traction on /packages" "$(printf '%s' "$PK" | grep -ci 'build, production, or traction')" 0
 chk "book mentions on /services"                 "$(printf '%s' "$SV" | grep -ciE '80% wall|/playbook|field manual')" 0
+# G2 (Sonnet 111b review): a real positive assertion on /packages — the
+# served block otherwise has only expect-0 lines for $PK, which also pass on
+# a broken page. Match the rendered button only: a plain 'Buy the ' grep
+# also hits the RSC flight payload's serialized props (LESSONS Trap: grep -o
+# counts the flight payload too), doubling 3 real buttons to 6.
+chk "Buy buttons on /packages"                   "$(printf '%s' "$PK" | grep -o 'aria-busy="false">Buy the ' | wc -l | tr -d ' ')" 3
+# A8 (Astra FIX round 2): the kickoff mechanism is now stated once, in the
+# band footer, and the packages H2 dropped "one area each" (A6).
+chk "kickoff line in the band footer"            "$(printf '%s' "$SV" | grep -c 'The moment your card clears you get a kickoff email')" 1
+chk "Three fixed prices, one area each (expect gone)" "$(printf '%s' "$SV" | grep -c 'one area each')" 0
 # Pass-111b §14 M2a: the /call?shape= prefill is client-side now (BookCallForm
 # useEffect), so a curl of the prerendered HTML cannot see it. The two prefill
 # assertions moved to shots111b.mjs's browser check on call-prefill-1440.

@@ -255,6 +255,42 @@
     },
     {
       "route": "/services",
+      "name": "sv-foot",
+      "v": "1440",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-foot-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-why",
+      "v": "1440",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-why-1440.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
+      "name": "sv-why",
+      "v": "390",
+      "status": 304,
+      "found": true,
+      "file": ".planning\\qa\\pass-111b\\sv-why-390.png",
+      "world": "#ECE3D0",
+      "scrollWidth": 390,
+      "clientWidth": 390,
+      "overflowX": false
+    },
+    {
+      "route": "/services",
       "name": "sv-guard",
       "v": "1440",
       "status": 200,
@@ -315,72 +351,72 @@
   "boxHeights": [
     {
       "id": "shape-advisory",
-      "h": 764,
+      "h": 630,
       "v": "1440"
     },
     {
       "id": "shape-project",
-      "h": 764,
+      "h": 630,
       "v": "1440"
     },
     {
       "id": "shape-retainer",
-      "h": 764,
+      "h": 630,
       "v": "1440"
     },
     {
       "id": "shape-embedded",
-      "h": 764,
+      "h": 630,
       "v": "1440"
     },
     {
       "id": "pkg-unstick",
-      "h": 771,
+      "h": 623,
       "v": "1440"
     },
     {
       "id": "pkg-audit",
-      "h": 771,
+      "h": 623,
       "v": "1440"
     },
     {
       "id": "pkg-sprint",
-      "h": 771,
+      "h": 623,
       "v": "1440"
     },
     {
       "id": "shape-advisory",
-      "h": 600,
+      "h": 532,
       "v": "1280"
     },
     {
       "id": "shape-project",
-      "h": 600,
+      "h": 532,
       "v": "1280"
     },
     {
       "id": "shape-retainer",
-      "h": 576,
+      "h": 508,
       "v": "1280"
     },
     {
       "id": "shape-embedded",
-      "h": 576,
+      "h": 508,
       "v": "1280"
     },
     {
       "id": "pkg-unstick",
-      "h": 387,
+      "h": 375,
       "v": "1280"
     },
     {
       "id": "pkg-audit",
-      "h": 397,
+      "h": 377,
       "v": "1280"
     },
     {
       "id": "pkg-sprint",
-      "h": 373,
+      "h": 347,
       "v": "1280"
     }
   ]
