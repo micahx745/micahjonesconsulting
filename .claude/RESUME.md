@@ -8,15 +8,22 @@ ROUTING = MODEL_ROUTING §9e (operator, 2026-09-11 evening): Sonnet + Sol do the
 grunt work; Opus + Astra hold quality; Fable almost never; GLM is overflow only.
 Name `model: "sonnet"` on every Agent leg.
 
-## Pass-111b: first execution in the tree, UNCOMMITTED; §14 fix round dispatched
-Brief `.claude/briefs/pass-111b-services-boxes-and-rail.md` (§0-13 executed by a
-concurrent Claude session after GLM 429'd; reset 2026-09-12 11:55:40 z.ai). It
-stopped before commit on 5 misses; Opus ruled on them in §14 (f2f5908): client-side
-`/call` prefill, 135-char metadata, four-line package lists, packages 3-col at
-≥1360, height gate ≤800 at 1440 and 1280. NOW: a Sonnet leg applies §14, reruns
-the named gates, commits per §9 (explicit paths, no push). THEN: an independent
-Sonnet leg reads the diff against the brief → Astra one look (sv-shapes-1440,
-sv-pkgs-1440, sv-areas-1440, sv-shapes-390) → Opus judge ≤5 → push on his OK.
+## Pass-111b: COMMITTED, not pushed (65680e0)
+Brief `.claude/briefs/pass-111b-services-boxes-and-rail.md` §0-13 (prior
+session) + §14 judge fix round (this session), both in one commit: client-side
+`/call?shape=` prefill (BookCallForm useEffect/useRef, no useSearchParams,
+route stays static), 135-char /services metadata description, package lists
+trimmed to 4 lines each, `.cw-pband--pkgs` 3-col moved to ≥1360px matching
+shapes, height gate now 14 boxes (7 × 1440/1280) ≤800px (max seen 771px).
+Gate results, this run: tsc/copy-lint/vendor/retired/accent/gsap/colour-grep/
+prettier all exit 0; build exit 0; served-checks failures: 0; render-gate
+exit 0 (15 routes, /call reprerendered); axe-worlds exit 0 (93 scans, 0
+findings); layout-gate exit 0 (36 loads, 0 findings, 0 NEW); shots111b.mjs
+exit 0 (25 PNGs, both /call prefill assertions pass — "Shape: Embedded." and
+""); helper checks `true false AI engineering null` as expected.
+NEXT: independent Sonnet diff review → Astra one look (sv-shapes-1440,
+sv-pkgs-1440, sv-areas-1440, sv-shapes-390) → Opus judge ≤5 → push on
+operator OK.
 
 ## Pass-112 DONE, PUSHED (b5de535): the book is off the site
 ## Rulings 2026-09-11: see brief 111b §0; 4 (count-up) + 5 (case studies) next.
