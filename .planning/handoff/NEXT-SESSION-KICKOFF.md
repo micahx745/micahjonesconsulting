@@ -70,11 +70,12 @@ plugins, or skills. The operator owns model switches; recommend, never launch.
 Present these in one message, each with its recommendation and the ruling you need. Do not
 decide operator-owned facts. No page work, builds, research fan-out, or QA before he rules.
 
-From `DECISIONS-2026-09-11.md` (decisions 1–5 and 9 are settled and shipped):
-- **6.** Real Ordani screens with demo data and no PII, or approve the lifestyle-only section.
-- **7.** Reword the two book lines that use the banned term and republish the paid PDF (this
-  also retires `public/playbook/spread-money.png`). The book is off the site since Pass-112.
-- **8.** Keep, qualify, or remove `$5B+` (live in `app/llms.txt/route.ts`; LESSONS #3 holds the math).
+From `DECISIONS-2026-09-11.md`: all nine are ruled (1–5 and 9 shipped). Ruled 2026-09-12,
+do not re-present:
+- **6.** Micah supplies real Ordani screens later ("I will do that later"). Section unchanged.
+- **7.** Book work runs in a separate chat ("book work will take place in other chat"). The
+  spread image is already gone: `/playbook/spread-money.png` is 404 on both domains.
+- **8.** `$5B+` stays ("keep"). Recorded in LESSONS #3.
 
 Standing operator-owned items (RESUME):
 - Stripe: turn off playbook-99; update the LIVE Audit product description to the area names

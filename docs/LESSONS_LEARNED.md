@@ -210,8 +210,11 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
 - The home exit record renders each exit's own disclosed value and outcome and **no
   aggregate** (Pass-111a, 2026-09-11). Astra ruled the row "Combined, disclosed deals, $5.58B"
   a trust risk, because it added SurveyMonkey's first-day IPO value to two acquisition prices
-  and called all three deals, so it was cut. The **$5B+** floor remains in metadata and OG
-  images and carries the same mix; whether it stays is the operator's call (asked 2026-09-11).
+  and called all three deals, so it was cut. The **$5B+** floor carries the same mix and is
+  **KEPT: operator 2026-09-12, verbatim "keep"** (decision 8, asked 2026-09-11 with a
+  recommendation to drop). It stays, on its mixed basis, in root, home and about metadata,
+  the home, about and work OG images, the /about body and llms.txt. Do not drop or
+  requalify it in a future honesty sweep without a new dated ruling.
 - Ordani: **"hundreds of paying birth workers", none lost to a competitor** (operator
   update 2026-08-31: NO public user count. The paying framing replaces the 200 figure on
   EVERY public surface incl. metadata, JSON-LD, llms.txt, mdx dek/indexLine; 200 stays
