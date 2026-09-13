@@ -23,8 +23,9 @@ Evolve the live site. Do not resume Pass-104b or the rejected dark rebuild.
 ## 1. Boot once, cheaply
 
 Work only in `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live`, branch
-`design/live-evolve`. The main checkout `C:/Users/micah/Code/micahjonesconsulting` is behind
-origin and has Micah's uncommitted files; do not touch it or switch checkouts.
+`design/live-evolve`. The main checkout `C:/Users/micah/Code/micahjonesconsulting` tracks
+`main` (fast-forwarded to `79534b8` on 2026-09-12 at Micah's ask) and holds his uncommitted
+`next-env.d.ts` and `copy.json`; do not work there or switch checkouts.
 Read only these, in order. Do not explore code, history, or transcripts.
 
 1. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md` (current state).

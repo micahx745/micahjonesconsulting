@@ -13,8 +13,11 @@ writes while GLM is capped, the judge runs build/server/browser; Astra
 Re-probed 2026-09-12 (second session): both domains serve dpl_BuNe; card1-115.sh
 41 PASS, failures 0. origin/main..branch differs in records only. Shipped
 113-116 (git log). circle115 C1-C14 last run on prod 09-12 at this dpl, not
-re-run. HandUnderline dash fixed, UNVERIFIED IN RENDER (unmounted). Main
-checkout 76 behind origin/main with his 2 uncommitted files: he pulls.
+re-run. HandUnderline dash fixed, UNVERIFIED IN RENDER (unmounted).
+APPROVED 2026-09-12, verbatim: "push and take care of 2" = push this branch;
+main checkout fast-forwarded a85a890 -> 79534b8, DONE (now 0/0; was 76
+behind, no dep change). His next-env.d.ts (dev types path) and copy.json (09-05
+copy report) left untouched. Revert: git reset --keep a85a890 in main checkout.
 
 ## Rulings 2026-09-12, queue 6-8 (kickoff updated)
 6 Ordani screens: "I will do that later". He supplies; section unchanged.
