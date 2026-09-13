@@ -24,8 +24,8 @@ hidden dash S 4S (resize-proof), playedThisLoad module flag (no replay on client
 back/forward), Postmates line = "That promise invited fraud.", Neuton tag =
 "Helped launch · exit 2025", HandUnderline dash (UNVERIFIED IN RENDER, unmounted).
 C12/C13/C14 failed on shipped build, pass after; circle/countup/card1 local 0;
-Astra PASS (copy). NEXT: his go-ahead to ff main (deploys), then card1-115.sh on
-both domains + circle115 --p116 on prod. GLM weekly limit out until ~09-14 evening.
+Astra PASS (copy). MERGE APPROVED 2026-09-12, verbatim: "yes merge to main".
+ff main, then card1-115.sh both domains + circle115 --p116 on prod. GLM weekly limit out until ~09-14 evening.
 
 ## Waiting on operator: Stripe playbook-99 off + LIVE Audit description to
 area names · 500 dollar live test · A4/S3 text · five parked bar items · §9a.

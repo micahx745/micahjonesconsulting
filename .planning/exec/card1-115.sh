@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # CARD 1 production markers for the 113 + 114 + 115 + 115b merge. Presence counts use -ge 1
 # on raw HTML (LESSONS #24); absence counts use -eq 0 on raw HTML.
-BASE_DPL="dpl_4C7zkovDAMCv2H9jFQWj4iFiHTCk"
+BASE_DPL="dpl_BfViKgzf8bHDU5AwneqWDpsTUDLz"
 if [ -n "${1:-}" ]; then
   BASES=("${1%/}")
   CHECK_DPL=0
