@@ -5,27 +5,20 @@ Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
 `.claude/worktrees/p106-live`). `pnpm build` fails HERE only: use
 `npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`.
 ROUTING (operator 2026-09-12): conserve THIS account. GLM (claude-glm.ps1 -Batch)
-executes briefs; Sol (codex exec -m gpt-5.6-sol) writes when GLM is capped, the
+executes briefs (WEEKLY limit out to ~09-14 eve); Sol (codex exec -m gpt-5.6-sol) writes when GLM is capped, the
 judge runs build/server/browser; Astra (codex-exec -Review) judges gates; Opus
-rules, judges, records; Fable only on his ask (one look, 124k tokens).
+rules, judges, records; Fable only on his ask.
 
-## LIVE 2026-09-12: main = 429e55a (ff), dpl_BfViKgzf8bHDU5AwneqWDpsTUDLz
-BOTH domains. Approval verbatim: "Go ahead and merge to main" + "One Fable look,
-then merge". Fable SHIP; Astra PASS x2. CARD 1 markers 35/35, card1 failures 0
-(.planning/exec/card1-115.sh). Loop on prod: circle115 C1-C11 both domains,
-circle failures 0, stroke coverage 1.000 reduced/played/390. Previous prod
-a71788a / dpl_4C7z. Local main checkout behind origin: operator pulls.
-Shipped: 113 case studies neutralized · 114 $20M+ count-up · 115 loop redrawn +
-indent · 115b loop dash in screen px (LESSONS #26).
-
-## Pass-116 (0917b8d) PASS, on branch, NOT DEPLOYED
-Fable's 6 later items fixed: layout-effect mount decision (no loop blink),
-hidden dash S 4S (resize-proof), playedThisLoad module flag (no replay on client
-back/forward), Postmates line = "That promise invited fraud.", Neuton tag =
-"Helped launch · exit 2025", HandUnderline dash (UNVERIFIED IN RENDER, unmounted).
-C12/C13/C14 failed on shipped build, pass after; circle/countup/card1 local 0;
-Astra PASS (copy). MERGE APPROVED 2026-09-12, verbatim: "yes merge to main".
-ff main, then card1-115.sh both domains + circle115 --p116 on prod. GLM weekly limit out until ~09-14 evening.
+## LIVE 2026-09-12: main = 79534b8 (ff), dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw
+BOTH domains. Pass-116 approval verbatim: "yes merge to main". card1-115.sh
+41/41, card1 failures 0; circle115 --p116 C1-C14 both domains, circle failures
+0 (C12 hidden 0.000, C13 no replay, C14 0 hidden frames). Prev prod 429e55a /
+dpl_BfVi (113-115b, Fable SHIP, Astra PASS x2). Local main behind: he pulls.
+Shipped today: 113 case studies neutralized, 114 the $20M+ count-up, 115/115b
+loop redrawn and indented with its dash in screen px, 116 Fable's later items
+(no blink, resize-proof hidden dash, once per load, Postmates "That promise
+invited fraud.", Neuton tag "Helped launch · exit 2025").
+HandUnderline dash fixed but UNVERIFIED IN RENDER (unmounted).
 
 ## Waiting on operator: Stripe playbook-99 off + LIVE Audit description to
 area names · 500 dollar live test · A4/S3 text · five parked bar items · §9a.

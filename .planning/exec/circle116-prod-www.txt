@@ -1,0 +1,44 @@
+--- 1440x900 (dpr 1) ---
+M1 1440: L=0.023em T=-0.002em W=2.821em H=0.875em W/H=3.224
+     (F=240px ink=68061px inkBox=677.000x210.000px at 108.000,325.000)
+C1 corners inside loop: got 4, expect 4
+C2 min corner clearance: got 17.000px, expect >= 10.500px
+C3 overshoot points inside ink box: got 0, expect 0
+C4 loop left to column edge: got 0.241px, expect <= 3px
+C5 loop inside viewport: got true, expect true
+C6 title clearance: got 41.395px, expect >= 12px
+C7 label clearance: got 19.422px, expect >= 8px
+C8 centre x offset: got 0.000, expect <= 0.02
+C9 centre y offset: got 0.005, expect <= 0.04
+C10 tick text: got "$20M+", expect "$20M+"
+C11 stroke coverage primary [reduced]: got 1.000, expect >= 0.97
+C11 stroke coverage overshoot [reduced]: got 1.000, expect >= 0.90
+     capture: home-rec-done-1440.png
+     capture: home-receipts-1440.png (756px tall)
+C11 stroke coverage primary [played]: got 1.000, expect >= 0.97
+C11 stroke coverage overshoot [played]: got 1.000, expect >= 0.90
+     capture: home-rec-played-1440.png
+--- 390x844 (dpr 2) ---
+M1 390: L=0.024em T=-0.009em W=2.852em H=0.881em W/H=3.239
+     (F=88px ink=37086px inkBox=251.000x77.500px at 45.000,363.500)
+C1 corners inside loop: got 4, expect 4
+C2 min corner clearance: got 5.614px, expect >= 3.875px
+C3 overshoot points inside ink box: got 0, expect 0
+C4 loop left to column edge: got 0.096px, expect <= 3px
+C5 loop inside viewport: got true, expect true
+C6 title clearance: got 40.519px, expect >= 12px
+C7 label clearance: got 18.516px, expect >= 8px
+C8 centre x offset: got 0.006, expect <= 0.02
+C9 centre y offset: got 0.009, expect <= 0.04
+C10 tick text: got "$20M+", expect "$20M+"
+C11 stroke coverage primary [reduced-390]: got 1.000, expect >= 0.97
+C11 stroke coverage overshoot [reduced-390]: got 1.000, expect >= 0.90
+     capture: home-rec-done-390.png (2x)
+--- C12 resize while armed (900x900 -> 1400x900) ---
+C12 hidden after resize: got 0.000, expect <= 0.02
+C12 drawn after play: got 1.000, expect >= 0.97
+--- C13 once per load (client back and forward) ---
+C13 texts after client back and forward: got ["$20M+"], expect ["$20M+"]
+--- C14 no hidden frame on an in-view refresh (6x CPU) ---
+C14 hidden frames on in-view load: got 0, expect 0 [anchor #cw-products-title, 36 frames sampled]
+circle failures: 0
