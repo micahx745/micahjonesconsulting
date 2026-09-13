@@ -20,6 +20,8 @@ loop redrawn and indented with its dash in screen px, 116 Fable's later items
 invited fraud.", Neuton tag "Helped launch · exit 2025").
 HandUnderline dash fixed but UNVERIFIED IN RENDER (unmounted).
 
+## NEXT CHAT boots from .planning/handoff/NEXT-SESSION-KICKOFF.md (2026-09-12).
+Open queue there: decisions 6-8 + the standing items below. Present, then wait.
 ## Waiting on operator: Stripe playbook-99 off + LIVE Audit description to
 area names · 500 dollar live test · A4/S3 text · five parked bar items · §9a.
 

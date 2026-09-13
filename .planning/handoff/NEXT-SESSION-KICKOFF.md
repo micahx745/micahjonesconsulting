@@ -1,116 +1,142 @@
-# Kickoff: micahjonesconsulting, 2026-09-11
+# Kickoff: micahjonesconsulting, after 2026-09-12
 
-Boot this chat on Micah's other Claude account. Conserve Claude usage. Establish readiness, then present his decisions and wait.
-This prompt and the September 11 operator ruling (MODEL_ROUTING §9d) supersede any older routing instruction they conflict with, and `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/EXECUTOR-TIER-CARD.md`. §9b's bucket check and §6's cap still apply.
-Do not resume Pass-104b or the rejected dark rebuild. Evolve the live site.
+Boot cheaply, prove the tools, report readiness, present Micah's open queue, then wait.
+This file supersedes the 2026-09-11 kickoff. The 2026-09-12 routing ruling (section 5) and
+`C:/Users/micah/.claude/MODEL_ROUTING.md` §9e are the routing law; the latest ruling wins.
+Evolve the live site. Do not resume Pass-104b or the rejected dark rebuild.
+
+## 0. Where the site stands (verified on production 2026-09-12)
+
+- Production: `main` = `79534b8`, deployment `dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw` on BOTH
+  `https://www.micahjonesconsulting.com` and `https://micahjonesconsulting.vercel.app`.
+- Branch `design/live-evolve` = `35351fc` (records only past main), pushed.
+- Shipped 2026-09-12, each judged, Astra-gated, and verified on both live domains:
+  - Pass-113: Postmates and Neuton.AI studies neutralized.
+  - Pass-114: the home `$20M+` count-up (operator exception to DESIGN_BAR R13/R15).
+  - Pass-115/115b: the hand loop redrawn around the whole number, figure indented to the
+    column edge, dash measured in screen pixels (Fable SHIP before merge).
+  - Pass-116: Fable's six later items (no loop blink, resize-proof hidden dash, once per
+    load, Postmates "That promise invited fraud.", Neuton tag "Helped launch · exit 2025").
+- Open verification debt: `components/hand/HandUnderline.tsx` has the dash fix but is
+  UNVERIFIED IN RENDER because nothing mounts it. Whoever mounts it runs C11-style coverage.
 
 ## 1. Boot once, cheaply
 
-Work only in `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live`, branch `design/live-evolve`. Touch another repo, such as the book repo, only when Micah rules on that specific task.
-The main checkout is `C:/Users/micah/Code/micahjonesconsulting`. A branch belongs to one worktree. Do not switch checkouts.
-Read only the following boot sources. Do not explore code, history, transcripts, references, or other projects.
+Work only in `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live`, branch
+`design/live-evolve`. The main checkout `C:/Users/micah/Code/micahjonesconsulting` is behind
+origin and has Micah's uncommitted files; do not touch it or switch checkouts.
+Read only these, in order. Do not explore code, history, or transcripts.
 
-1. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md`. This is current state.
+1. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md` (current state).
 2. `C:/Users/micah/.claude/CLAUDE.md` and `C:/Users/micah/.claude/ULTRACODE_OPERATING_PATTERNS.md`.
-3. `C:/Users/micah/.claude/MODEL_ROUTING.md`, §§6, 8, 9, 9a, 9b, 9c, 9d. The latest ruling wins. Sol means `gpt-5.6-sol`, never Sonnet.
-4. `C:/Users/micah/.claude/projects/C--Users-micah-Code-micahjonesconsulting/memory/MEMORY.md`. Read the index only.
-5. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/docs/LESSONS_LEARNED.md`, #19 through #22 only.
-6. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/DECISIONS-2026-09-11.md`. Hold the queue until step 4.
+3. `C:/Users/micah/.claude/MODEL_ROUTING.md` §§6, 8, 9, 9a–9e.
+4. `C:/Users/micah/.claude/projects/C--Users-micah-Code-micahjonesconsulting/memory/MEMORY.md` (index only).
+5. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/docs/LESSONS_LEARNED.md` #3 (the ledger) and #23–#27.
+6. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/README.md` (three standing Verification clauses).
+7. `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/DECISIONS-2026-09-11.md` §§6–8 only. Hold them for section 4.
 
-Honor the auto-loaded project rules in `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/CLAUDE.md`, `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/CLAUDE.md`, and `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/AGENTS.md`. Read only if absent from context.
-Their older Fable-resident, Opus-executor defaults do not override §9d. Do not revive obsolete palettes from prose.
+The project rules auto-load (`CLAUDE.md`, `.claude/CLAUDE.md`, `AGENTS.md` in the worktree).
+Their older Fable-resident prose does not override the 2026-09-12 ruling.
 
-Credentials, settings, MCP servers, plugins, skills, memory, and history are per config directory.
-Do not assume the other account loads anything from `C:/Users/micah/.claude`. Read the absolute paths above explicitly.
-Inspect the current config-directory value and this session's exposed tools and skills. Do not read credentials or copy settings.
-A separate directory such as `C:/Users/micah/.claude-alt` is not proof of identity, model access, or usable quota.
-Workspace trust is interactive and per config directory. Without it, a noninteractive executor ignores the project's permission allow-list.
-Report missing capabilities. Never silently skip a gate, install a replacement, or start another account to fill the gap.
+## 2. Prove the tools exist (PowerShell)
 
-## 2. Prove the tools exist
-
-Run these in PowerShell. List all three launchers. Do not use the old card's paths.
 ```powershell
 Set-Location -LiteralPath 'C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live'
-Get-Item -LiteralPath 'C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/claude-glm.ps1','C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/codex-exec.ps1','C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/claude-alt.ps1' | Select-Object -ExpandProperty FullName
-& 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe' -NoProfile -ExecutionPolicy Bypass -File 'C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/claude-glm.ps1' -Dir 'C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live' -Model glm-5.3 -Smoke
-$glmSmokeExit = $LASTEXITCODE
-Write-Output "GLM smoke exit: $glmSmokeExit"
-& 'C:/Program Files/Git/cmd/git.exe' -C 'C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live' status --short --branch
-& 'C:/Program Files/Git/cmd/git.exe' -C 'C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live' log -3 --oneline --decorate
-(Get-Command codex).Source
+& 'C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe' -NoProfile -ExecutionPolicy Bypass -File 'C:/Users/micah/Code/micahjonesconsulting/scripts/claude-glm.ps1' -Smoke
+Write-Output "GLM smoke exit: $LASTEXITCODE"
+& 'C:/Program Files/Git/cmd/git.exe' status --short --branch
+& 'C:/Program Files/Git/cmd/git.exe' log -3 --oneline --decorate
+codex login status
 codex --version
 ```
-Expect `design/live-evolve` at `7d2c9b4` or a later handoff commit, tracking the preview branch.
-Pass-110 and Pass-111a are committed and pushed. Pass-111b, the /services rebuild, awaits decisions 1 through 3.
-After the handoff commit, expect only `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/exec/sol111a.log` untracked.
-Report any deviation. Preserve unexpected work. Do not reset, clean, switch branches, or infer remote health from local refs.
-GLM must answer OK without an error. On a quota error, record its reset message and use Sol for eligible work.
-GLM has five-hour windows. Recheck after the reported reset. Do not loop retries or assume the previous cap still holds.
-At handoff (2026-09-11) GLM answered 429 with a reset at 2026-09-12 06:26:46, z.ai time.
-Launcher presence is not a successful executor call. `codex --version` proves the Codex CLI resolves without spending quota; leave Sol and Astra model calls untested during boot. Do not launch the alternate Claude executor.
 
-## 3. Report readiness in at most 10 lines
+Expect `design/live-evolve` at `35351fc` or a later handoff commit, 0 behind origin; `main`
+at `79534b8`. Expect ONE tracked modification (`.planning/qa/pass-112/server.log`, pre-existing)
+and about 70 untracked scratch files under `.planning/exec/`. Preserve them; never clean.
 
-Include this report and the decision queue in your first response. Do not stop between them to request permission.
-Read your own statusline. Report the actual model, effort, and visible usage. Say unknown for anything it does not expose.
-Report the working directory, branch, HEAD, dirty files, launcher presence, GLM response, and which executors actually answered.
-Report missing or unverified MCP servers, plugins, skills, memory, and workspace trust. Distinguish accessible files from loaded capabilities.
-Recommend Sonnet at medium effort, if offered, for the daily coordination loop. Verify the other account's available models; do not assume its old plan.
-Recommend GLM for execution, Sol for drafting and fallback execution, and brief Fable or Opus visits for critical rulings.
-The operator owns model switches. If the current tier differs, state the recommendation without launching work.
+GLM (z.ai) hit its WEEKLY limit on 2026-09-12: reset `2026-09-15 11:57:18` z.ai time, about
+2026-09-14 20:57 Pacific. A 429 before then is expected; record it and route to Sol. After the
+reset, GLM's five-hour window applies again. Do not loop retries. `codex --version` and login
+status prove Codex resolves without spending quota. Do not launch the alternate Claude account.
 
-## 4. Present the decisions, then wait
+## 3. Readiness report, at most 10 lines
 
-After the readiness report, present the entire queue from `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/DECISIONS-2026-09-11.md` in one message.
-Keep its numbering. Put blockers 1 through 3 first. Give each decision's recommendation, reason, and requested ruling. Separate recommendations from approved facts.
-Carry forward any explicit later rulings in the resume. Do not reopen settled decisions or decide operator-owned facts yourself.
-If the decision file is missing, report that the handoff is incomplete. Do not reconstruct its recommendations from stale material.
-Wait for Micah. No page work, research fan-out, builds, screenshots, or QA loops before he rules.
+Model and effort from your statusline (say unknown if not shown), working directory, branch,
+HEAD, dirty files, GLM response with its reset time, Codex login, and any missing MCP servers,
+plugins, or skills. The operator owns model switches; recommend, never launch.
 
-## Routing after Micah rules
+## 4. Present the open queue, then wait
 
-- Name the bucket before every fan-out: z.ai, ChatGPT, or this Claude account. Explain why that bucket should pay (§9b). Claude is scarce (§9d).
-- Keep Sonnet coordination short. GLM 5.3 executes locked briefs, fixes, builds, captures, and verification on z.ai. One writer per file.
-- Use `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/claude-glm.ps1` with explicit `-Dir`, `-Model glm-5.3`, `-Batch`, and `-PromptFile`.
-- Do not use GLM's `-Brief` mode. Its current quoting sends literal `$Brief` instead of the path.
-- The GLM prompt file contains only a short pointer to an absolute brief path. No embedded quotes or dash-prefixed options. Keep flags and substantial instructions in the referenced file.
-- Use `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/codex-exec.ps1` for Sol and Astra. Always name `-Model`, `-Effort`, and absolute `-Dir`.
-- Sol drafts/researches with `-Review -Model gpt-5.6-sol -Effort high -Prompt` and `-Out`. Sol executes with `-Brief -Model gpt-5.6-sol -Effort high` when GLM is capped.
-- Astra is quality gates only, about one consolidated look per pass: `-Review -Model gpt-6-astra -Effort ultra`, with the evidence and images. Never use Astra for execution.
-- Use absolute paths for every prompt, brief, output, image, and executable. Read the selected launcher's parameters before its first real dispatch. Never rely on its stale default model or sample paths.
-- Codex cannot commit from this worktree (its git dir sits outside the sandbox, LESSONS #18). Do not give it browser or server work either: its sandbox has never been shown to allow them, and Pass-111a ran those gates outside Codex. GLM or the main session owns commits, builds and browser gates. Say so in every Codex brief, whatever the wrapper's own text says.
-- If GLM is down, Sol still drafts and edits. Use only a bounded Sonnet/Haiku verification leg where capable, or report the browser/server gate pending. No top-tier fallback loop.
-- The project's default subagent is now `sonnet` (`.claude/settings.json`, 2026-09-11). Name the model on EVERY Agent and Workflow call anyway. Workflow ignores the environment default. Never allow fan-out to inherit Fable or Opus. Avoid width without independent work.
-- Switch to Fable, if available, or Opus for design direction, copy rulings, briefs, the final judge look, and anything touching money, public claims, or production.
-- Cap Fable and Opus at 15 tool calls combined per arc. Budget DIRECT at most 10 and reserve at most 5 for JUDGE. Count across model switches and delegated top-tier work.
-- No build, screenshot, axe, or verification loops on either top tier. Write the ruling, leave the execution loop to GLM/Sol, then return for the named judgment.
-- Follow §6's brief contract in full (`C:/Users/micah/.claude/MODEL_ROUTING.md` §6): first the ruling in one paragraph with its one-line reason, then exact approved copy, existing layout tokens, motion limits, commands with expected results, rejected choices, return conditions, and parked decisions.
-- Store and commit the brief under `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/briefs/`. Update the resume before a context/model change. Clear between arcs.
-- Executors implement approved decisions. They never rule, push, or deploy. Verify their results against the brief before accepting them.
+Present these in one message, each with its recommendation and the ruling you need. Do not
+decide operator-owned facts. No page work, builds, research fan-out, or QA before he rules.
 
-## Gates and standing traps
+From `DECISIONS-2026-09-11.md` (decisions 1–5 and 9 are settled and shipped):
+- **6.** Real Ordani screens with demo data and no PII, or approve the lifestyle-only section.
+- **7.** Reword the two book lines that use the banned term and republish the paid PDF (this
+  also retires `public/playbook/spread-money.png`). The book is off the site since Pass-112.
+- **8.** Keep, qualify, or remove `$5B+` (live in `app/llms.txt/route.ts`; LESSONS #3 holds the math).
 
-Before the first UI or copy edit, read `C:/Users/micah/.claude/playbooks/website-dev.md` and `C:/Users/micah/.claude/playbooks/marketing.md`.
-Before UI work, read `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/docs/DESIGN_BAR.md` and `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/brand.json`.
-Before code changes, read the relevant installed Next.js guide under `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/node_modules/next/dist/docs/`.
-Use `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/exec/gates111a.sh` as a template, not a blind rerun. Adapt routes, evidence destinations, and process ownership for the new pass.
-The local build workaround is `& 'C:/Program Files/nodejs/npx.cmd' next build --webpack`. The normal pnpm build fails here only.
-That direct build skips the package script's surrounding checks. Preserve every check and self-test from `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/package.json`, including the render gate.
-`C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/axe-worlds.mjs` and `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/layout-gate.mjs` require Chrome and a running production server: `& 'C:/Program Files/nodejs/npx.cmd' next start --port 3100`. Both gates default to `http://localhost:3100`; on any other port, pass the same base URL to each.
-The browser gates also need `C:/Program Files/Google/Chrome/Application/chrome.exe` and dependencies under `C:/tmp/p101tools`. Treat missing dependencies as setup failures.
-Read every gate's own exit code. The template's final message or exit status is not an aggregate pass.
-On cross-faded pages, use inherited/world foreground text, no opacity on text, no fixed fill under inherited text, and no accent under text (#19). Run the world and layout gates (#20).
-Every new gate ships a `--self-test` with planted failures and near misses (#21). Never edit a running script. Retain the private-copy guard (#22).
-Capture the VIEWPORT after the page settles. Use `C:/Python314/python.exe` with `-P`.
-In `C:/Program Files/Git/bin/bash.exe`, set `MSYS_NO_PATHCONV=1` for "/" arguments. Capture exit codes before any pipe.
-PowerShell 5.1 splits native arguments at embedded double quotes. Send commit messages through a Git Bash heredoc or Git's `commit -F` with an absolute message-file path.
-Rewrite `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.claude/RESUME.md` after every task and before context switches. Keep it at most 2,500 bytes. Measure bytes before every commit. Preserve concurrent handoff work.
-Every push, deploy, merge to main, and spend belongs to Micah. Earlier push approval is not standing approval. Every push to main auto-deploys production.
-The two Anthropic support questions in §9a remain Micah's. Do not contact support or assume concurrent-account capacity is approved.
+Standing operator-owned items (RESUME):
+- Stripe: turn off playbook-99; update the LIVE Audit product description to the area names
+  (it may still say "prioritized fix sequence"; only Micah can see the live record).
+- Run the live $500 purchase and refund test (checkout changed since test mode was verified).
+- Supply the A4/S3 text; rule on the five parked bar items.
+- MODEL_ROUTING §9a: the two Anthropic support questions stay Micah's.
+
+## 5. Routing after Micah rules
+
+Operator 2026-09-12, verbatim: "make sure we are not using all our claude usage in just a few
+days ... i do not want to sacrifice on quality." How that ran all day, and should keep running:
+- **Claude (this account) rules, briefs, judges, records.** No multi-agent Claude workflows or
+  fan-out; name `model:` on any Agent call. Fable only when Micah asks (one pre-merge look cost
+  about 124k tokens).
+- **GLM 5.3 executes briefs** when its quota is live: `C:/Users/micah/Code/micahjonesconsulting/scripts/claude-glm.ps1 -Dir <worktree>
+  -Batch -PromptFile <abs pointer>`, launched detached (`Start-Process ... -PassThru`) and
+  watched by PID. The pointer file carries no quotes and names the absolute brief path.
+- **Sol writes when GLM is out:** `codex exec -m gpt-5.6-sol -c model_reasoning_effort=high
+  --sandbox workspace-write -C <worktree> -` with the prompt on stdin. Its sandbox cannot
+  build, serve, run a browser, or commit (LESSONS #18), so the main session runs the build,
+  server, puppeteer checks, and commits, in the brief's order.
+- **Astra judges quality gates only**, one look per pass: `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/scripts/codex-exec.ps1
+  -Review -Model gpt-6-astra -Prompt <abs> -Out <abs> -Image <abs,abs> -Dir <worktree>`.
+- Every brief lives in `.claude/briefs/` and follows `README.md`, including its three standing
+  clauses. Every push, merge to main, and deploy needs Micah's words that day, quoted in RESUME.
+
+## 6. Gates that exist now
+
+- Build `npx next build --webpack`. Serve `npx next start --port 3200`. Stop the server with
+  PowerShell `Stop-Process` on the PID from `Get-NetTCPConnection -LocalPort 3200`.
+- Static: `npx tsc --noEmit`, `npx tsx lib/copy-lint-cli.ts`,
+  `node scripts/retired-phrases-gate.mjs`, `node scripts/accent-states-lint.mjs`,
+  `node scripts/gsap-quarantine-gate.mjs`, `npx prettier --check <changed ts/tsx/css>`.
+- Served: `node scripts/render-gate.mjs`, `node scripts/axe-worlds.mjs http://localhost:3200 /`.
+- The `$20M+` figure: `node .planning/exec/circle115.mjs --p116 --out <dir>` runs C1–C14
+  (geometry, rendered stroke coverage, resize, once per load, no hidden frame). Also `--probe`.
+  `node .planning/exec/countup114.mjs` runs the count-up contract (7 checks); it REWRITES the
+  Pass-114 PNGs, so run `git checkout -- .planning/qa/pass-114/` after it.
+- Copy markers: `bash .planning/exec/card1-115.sh` checks both live domains and deployment ids
+  (set `BASE_DPL` to the CURRENT live id before a deploy); `bash .planning/exec/card1-115.sh
+  http://localhost:3200` checks one base.
+- Production copies of circle115: sed its `const S` line to a live domain into a `.tmp.mjs` next
+  to the original, run, delete.
+
+## 7. Traps learned 2026-09-12
+
+- Served `grep -c` counts the RSC payload too; exact counts need visible DOM text (#24).
+- An executor never reinterprets an expected value; it stops before committing (#25).
+- Measure the render, not the model, and prove each check fails on broken code first (#26).
+- Header links are plain anchors (full loads); case-study home links are client navigations.
+  A navigation check asserts which kind it uses (#27).
+- Production CSS hrefs carry `?dpl=`; match `.css[^"]*`, not `.css"`.
+- Puppeteer `screenshot({clip})` renders unscrolled here; take a full frame and crop.
+- `taskkill //F` breaks under `MSYS_NO_PATHCONV=1`; stop servers with PowerShell `Stop-Process`.
+- PowerShell `*>` logs are UTF-16; decode with `iconv -f UTF-16` before grep.
+- Long single tool writes can truncate mid-file late in a session; write in short parts.
+- Commit only by explicit pathspec after reading `git diff --cached --name-only` (#23).
 
 ## Micah: open the next chat
 
-Open the Claude desktop app's Code tab, logged into your other account.
-Select `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live` as the working directory and accept its trust prompt if shown.
-Pick Sonnet first, at medium effort if offered. Paste this as the first message. If Sonnet is unavailable, use the cheapest offered model that can coordinate tools; reserve Fable/Opus for the critical calls above.
+In the Claude desktop app's Code tab, choose the p106-live worktree as the working directory.
+Pick Sonnet (or Opus for a ruling-heavy day), then paste:
+
+`Read C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/NEXT-SESSION-KICKOFF.md and follow it exactly.`
