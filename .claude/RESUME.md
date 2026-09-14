@@ -26,7 +26,8 @@ copy report) left untouched. Revert: git reset --keep a85a890 in main checkout.
 
 ## Waiting on operator
 Ordani screens · Stripe playbook-99 off + LIVE Audit description to area names ·
-500 dollar live test · A4/S3 text · five parked bar items · §9a.
+500 dollar live test · A4/S3 text · five bar items (/services R1 R2 R7 R13
+R17: ASTRA-111B-VERDICT.md:25-26, FIX 7; still live 09-14) · §9a.
 
 ## Traps
 push to main auto-deploys · explicit pathspec after diff --cached (#23) · no
