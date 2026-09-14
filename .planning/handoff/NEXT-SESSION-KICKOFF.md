@@ -7,8 +7,10 @@ Evolve the live site. Do not resume Pass-104b or the rejected dark rebuild.
 
 ## 0. Where the site stands (verified on production 2026-09-12)
 
-- Production: `main` = `79534b8`, deployment `dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw` on BOTH
-  `https://www.micahjonesconsulting.com` and `https://micahjonesconsulting.vercel.app`.
+- Production (updated 2026-09-14): `main` = `50185da`, deployment
+  `dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC` on BOTH `https://www.micahjonesconsulting.com` and
+  `https://micahjonesconsulting.vercel.app` (Pass-117, /services type ladder). `.claude/RESUME.md`
+  is current state and outranks this file.
 - Branch `design/live-evolve` = `35351fc` (records only past main), pushed.
 - Shipped 2026-09-12, each judged, Astra-gated, and verified on both live domains:
   - Pass-113: Postmates and Neuton.AI studies neutralized.
