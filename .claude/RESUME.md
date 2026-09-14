@@ -16,8 +16,10 @@ Approvals 2026-09-14: "measure, go with your recommendations, and push";
 "yes to the Guardicore line". Commit 8c684b6 LOCAL, not pushed. Local prod
 build: type117 0 failures (prod before 16), axe 0/91, layout 0, render ok,
 card1 0. Astra SHIP (.planning/reviews/ASTRA-117-VERDICT.md), judge PASS.
-NEXT on his words: push branch, merge to main (deploys), then on BOTH live
-domains: type117.mjs <domain>, card1-115.sh with BASE_DPL=dpl_BuNe...
+APPROVED 2026-09-14, verbatim: "push and merge to main". Fast-forward main
+79534b8 -> branch head (site code: services page.tsx + globals.css only).
+REVERT: Vercel promote dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw (never force-push
+main). Then BOTH domains: type117.mjs, card1 with BASE_DPL=dpl_BuNe. IN FLIGHT.
 
 ## Speed (measured 09-14, Lighthouse mobile prod)
 / 89 (LCP 3050, CLS 0.145 from h1.cw-h1.cw-shift 2 of 3); /services 97
