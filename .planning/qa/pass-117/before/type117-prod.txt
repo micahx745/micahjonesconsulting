@@ -1,0 +1,56 @@
+== https://www.micahjonesconsulting.com/services at 390
+        11px  cw-sv-open__proof-lbl
+        12px  cw-menubtn cw-services__kicker cw-pbox__term cw-mlink span cw-pbox__tag
+        15px  cw-buy span
+        16px  cw-pbox__from cw-pbox__per li cw-area__proof span cw-pband__foot
+        17px  cw-sv-open__body cw-area__pain cw-services__intro cw-pick__legend
+        19px  cw-pbox__fit cw-cta cw-arr
+        20px  cw-door__case span cw-pband__incl-h cw-areas__h
+        22px  cw-wordmark cw-area__name
+        24px  cw-sv-objection__h
+        26px  cw-pbox__name
+        28px  cw-services__foot-title
+        32px  cw-service__title
+        40px  cw-sv-open__name
+        44px  cw-pbox__fig
+  FAIL T1 sizes 390: got 11,12,15,16,17,19,20,22,24,26,28,32,40,44 (want 12,16,22,32,44)
+  FAIL T2 adjacent steps >=15% 390: got 11/12 15/16 16/17 17/19 19/20 20/22 22/24 24/26 26/28 28/32 40/44 (want none)
+  FAIL T4 mono prose in main 390: got 10 [cw-pbox__term: 4-6 hours a month, ongoing | cw-pbox__term: Scoped and priced on the call | cw-pbox__term: Scoped and priced on the call] (want 0)
+  FAIL T5 .cw-cta in main 390: got 1 (want 0)
+  FAIL T6 one visible .cw-buy style 390: got 7 buttons, 1 style(s) ["Bricolage Grotesque"|15px|700|999px|2px|none] (want >=8 buttons, 1 style)
+  FAIL T7 R13 proof line 390: got "See how I helped Guardicore, a Tel Aviv security company, break into the North American market and get acquired by Akamai" (want "See how I helped Guardicore, a Tel Aviv security company, break into the North American market with $14M in revenue and get acquired by Akamai")
+  PASS T8 no page spill 390: got 0
+  PASS T9 no text past its frame 390: got none
+  FAIL T10 every role at its size 390: got 89 checked, 52 off [cw-sv-open__proof-lbl 11!=12 | cw-pbox__term 12!=16 | cw-pbox__fit 19!=16 | cw-buy cw-buy--quiet 15!=16] (want >=60 checked, 0 off)
+  FAIL T11 terms and links not mono 390: got 11 (want 0)
+== https://www.micahjonesconsulting.com/services at 1440
+        11px  cw-sv-open__proof-lbl
+        12px  a cw-services__kicker cw-pbox__term cw-mlink span cw-pbox__tag
+        15px  cw-buy span
+        16px  cw-pbox__from cw-pbox__per li cw-area__proof span cw-pband__foot
+        17px  cw-area__pain cw-pick__legend
+        18px  p
+        19px  cw-pbox__fit cw-services__foot-intro cw-cta cw-arr
+        21px  cw-sv-open__body cw-services__intro
+        22px  cw-wordmark
+     23.04px  cw-pband__incl-h cw-areas__h
+        24px  cw-sv-objection__h
+        27px  cw-door__case span
+      28.8px  cw-area__name
+     33.12px  cw-pbox__name
+        44px  cw-pbox__fig
+        48px  cw-services__foot-title
+        56px  cw-service__title cw-pbox__fig
+        68px  cw-sv-open__name
+  FAIL T1 sizes 1440: got 11,12,15,16,17,18,19,21,22,23.04,24,27,28.8,33.12,44,48,56,68 (want 12,16,22,44,68)
+  FAIL T2 adjacent steps >=15% 1440: got 11/12 15/16 16/17 17/18 18/19 19/21 21/22 22/23.04 23.04/24 24/27 27/28.8 44/48 (want none)
+  PASS T3 largest >= 4x body 1440: got 4.25
+  FAIL T4 mono prose in main 1440: got 10 [cw-pbox__term: 4-6 hours a month, ongoing | cw-pbox__term: Scoped and priced on the call | cw-pbox__term: Scoped and priced on the call] (want 0)
+  FAIL T5 .cw-cta in main 1440: got 1 (want 0)
+  FAIL T6 one visible .cw-buy style 1440: got 7 buttons, 1 style(s) ["Bricolage Grotesque"|15px|700|999px|2px|none] (want >=8 buttons, 1 style)
+  FAIL T7 R13 proof line 1440: got "See how I helped Guardicore, a Tel Aviv security company, break into the North American market and get acquired by Akamai" (want "See how I helped Guardicore, a Tel Aviv security company, break into the North American market with $14M in revenue and get acquired by Akamai")
+  PASS T8 no page spill 1440: got 0
+  PASS T9 no text past its frame 1440: got none
+  FAIL T10 every role at its size 1440: got 89 checked, 52 off [cw-sv-open__proof-lbl 11!=12 | cw-pbox__term 12!=16 | cw-pbox__fit 19!=16 | cw-buy cw-buy--quiet 15!=16] (want >=60 checked, 0 off)
+  FAIL T11 terms and links not mono 1440: got 11 (want 0)
+type117 failures: 16

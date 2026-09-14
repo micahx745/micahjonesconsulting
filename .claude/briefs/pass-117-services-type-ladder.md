@@ -11,9 +11,11 @@ Written 2026-09-14 by the ruling tier (Opus 5). Branch `design/live-evolve`, wor
 - **BLOCKING: do not start until `.claude/RESUME.md` records the operator's yes on the exact
   §2.1 string.** He approved "add the $14M figure" and was promised the exact line to approve.
 - Already done by the ruling tier, not by the executor: the R7 exception in
-  `docs/DESIGN_BAR.md`, and the gate `.planning/exec/type117.mjs`. Its bite proof on production
-  (dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw, 2026-09-14): `type117 failures: 12` (T1, T2, T4, T5, T6,
-  T7 fail at both widths; T3, T8, T9 pass). A gate proven to bite; do not edit it.
+  `docs/DESIGN_BAR.md`, and the gate `.planning/exec/type117.mjs` (round 2, see §10.5). Its bite proof on production
+  (dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw, 2026-09-14): `type117 failures: 16` (T1, T2, T4, T5, T6,
+  T7, T10, T11 fail at both widths; T3, T8, T9 pass), output in
+  `.planning/qa/pass-117/before/type117-prod.txt`. A gate proven to bite; do not edit it.
+- **§10 (the Sol plan-review fix-list) overrides earlier sections where they conflict.**
 
 ## 1. The ruling
 
@@ -226,3 +228,46 @@ Explicit pathspec after reading `git diff --cached --name-only` (LESSONS #23):
 
 Subject: `Pass-117: /services type ladder, terms and links out of mono, one CTA style, Guardicore proof figure (DESIGN_BAR R1 R2 R13 R17)`.
 Body: the §5 outputs that matter (type117 failures line, axe, card1). Do not push.
+
+## 10. Fix-list from the Sol plan review
+
+Source: `.planning/reviews/SOL-117-BRIEF-REVIEW.md` (gpt-5.6-sol, 2026-09-14). The ruling tier
+re-verified every premise against the repo before adopting it. Where this section conflicts with
+an earlier section, this section wins.
+
+10.1 (Sol 1) The §0 block stands: execution waits for the operator's yes on §2.1. Not a defect.
+
+10.2 (Sol 2) The three §5.2 `grep -c` lines: the check is the printed count. grep exits 1 when it
+prints `0`; for these three lines only, that exit code is not a failure.
+
+10.3 (Sol 3) Server lifecycle, exact. In the PowerShell tool, with the location set to the worktree:
+- start: `Start-Process -FilePath 'npx.cmd' -ArgumentList 'next','start','--port','3200' -RedirectStandardOutput '.planning/exec/server117.log' -RedirectStandardError '.planning/exec/server117.err' -PassThru | Select-Object -ExpandProperty Id`
+- ready: in Git Bash, re-run `curl -s -o /dev/null -w '%{http_code}' http://localhost:3200/services`
+  until it prints `200`. If it has not after 60 seconds, stop and report both log files.
+- stop: `Get-NetTCPConnection -LocalPort 3200 -State Listen | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force }`,
+  then `Get-NetTCPConnection -LocalPort 3200 -State Listen -ErrorAction SilentlyContinue` prints nothing.
+
+10.4 (Sol 4) The §5.2 name check becomes `git diff --name-only -- . ':(exclude).planning'` →
+exactly `app/(foyer)/services/page.tsx` and `app/globals.css`. `.planning/qa/pass-112/server.log`
+was modified before this pass; never stage it.
+
+10.5 (Sol 5, 6, 7) The ruling tier rewrote `.planning/exec/type117.mjs` (round 2). It scans the
+whole `[data-mode="cw"]` wrapper, so the nav is measured (it is a sibling of `main`, not inside
+it), minus the closed overlay dialog. T6 and T7 count only visible elements, and T7 strips only
+the trailing arrow. T9 covers 14 classes, including `.cw-buy` and `.cw-pbox__term`. T10 pins every
+§1 role to its size (89 elements on production). T11 checks that terms and links are not mono.
+Sol 7 (opacity is ignored) is kept on purpose: counting text regardless of opacity keeps sections
+that have not revealed yet in scope. Re-proven on production: `type117 failures: 16`. Expected
+after the pass: every T1 to T11 line PASS at both widths and `type117 failures: 0`.
+
+10.6 (Sol 8) Captures. Replace the §5.4 `type117` line and the `shots111b.mjs` line with one run:
+`node .planning/exec/type117.mjs http://localhost:3200 --shots .planning/qa/pass-117` → last line
+`type117 failures: 0`, exit 0, and 8 PNGs `sv117-{open,shapes,pkgs,foot}-{390,1440}.png` in
+`.planning/qa/pass-117`. The production before-set is `.planning/qa/pass-117/before/`. Eyes on
+(LESSONS #26): open `sv117-foot-390.png`. The foot button must be a pill in the same style as the
+box buttons (not the copper `.cw-cta`), and "Back to home" must not be uppercase mono. Say what you
+saw in the report.
+
+10.7 (Sol 9 to 13) Confirmed: all 26 selectors match /services, the appended rules win the cascade
+(0,3,1 over 0,3,0), no first-load text falls outside the ladder, the §3.2 and §3.3 line references
+are right, and no standing gate expects the old state. No change.

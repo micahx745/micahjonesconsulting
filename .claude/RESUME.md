@@ -19,8 +19,9 @@ from h1.cw-h1.cw-shift in 2 of 3), /services 97 (LCP 2563). Home fails bar.
 READY briefs: pass-117-services-type-ladder.md (R1 R2 R13 R17 on /services;
 R7 exception now in DESIGN_BAR; gate type117.mjs bites on prod, 12 failures)
 BLOCKED on his yes to its §2.1 Guardicore line. pass-118a-perf-diagnosis.md
-(measure only, Sonnet or GLM). Sol plan review of 117 running ->
-.planning/reviews/SOL-117-BRIEF-REVIEW.md: fold its fix-list before executing.
+(measure only, Sonnet or GLM). Sol plan review of 117 FOLDED as brief §10
+(4 wrong premises + 4 risks fixed; gate round 2 bites on prod, 16 failures;
+before-captures in .planning/qa/pass-117/before).
 
 ## Waiting on operator
 117 §2.1 line yes · Ordani screens · Stripe playbook-99 off + LIVE Audit
