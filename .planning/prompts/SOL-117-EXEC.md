@@ -2,33 +2,29 @@ You are the executor for one brief. You place code exactly as written; you do no
 reword, or improve anything. Working directory: the worktree
 C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live (branch design/live-evolve).
 
+Round 2. Round 1 stopped correctly at its first command: this machine's PowerShell blocks
+npx.ps1, so shell commands are now run by the judge in Git Bash, not by you. The judge already
+ran brief §5.1 (`npx prettier --check` on both files): exit 0, "All matched files use Prettier
+code style!".
+
 Read the brief first, all of it: .claude/briefs/pass-117-services-type-ladder.md
 Section 10 overrides earlier sections where they conflict. The §0 block is satisfied: the
-operator approved the §2.1 string on 2026-09-14 ("yes to the Guardicore line"), recorded in
-.claude/RESUME.md.
+operator approved the §2.1 string on 2026-09-14 ("yes to the Guardicore line").
 
-Do ONLY these steps, in order, and stop at the first mismatch:
+Make ONLY these three file edits, with your file-editing tool. Run NO shell commands at all
+(no npx, no prettier, no git, no grep, no build):
 
-1. §5.1: run `npx prettier --check "app/(foyer)/services/page.tsx" app/globals.css`. Record the
-   exit code. If it is not 0, stop and report.
-2. §3.1: append the CSS block, byte for byte, at the very end of app/globals.css.
-3. §3.2: in app/(foyer)/services/page.tsx, change the proof link text so the link reads the §2.1
-   string exactly. Keep href, both class names and the arrow span unchanged.
-4. §3.3: same file, replace the MagneticArea element and the .cw-cta link inside it with the
-   exact JSX in §3.3, and delete the MagneticArea import line.
-5. Run `npx prettier --write "app/(foyer)/services/page.tsx" app/globals.css`, then
-   `npx prettier --check "app/(foyer)/services/page.tsx" app/globals.css` (expect exit 0).
-6. Run and record the raw output of each of these (§5.2 with §10.2 and §10.4):
-   - git diff --name-only -- . ':(exclude).planning'        (expect exactly the two files)
-   - git diff -U0 app/globals.css | grep -c '^@@'           (expect 1)
-   - git diff -U0 app/globals.css | grep -cE '^\+.*(#[0-9a-fA-F]{3,8}\b|!important)'   (expect 0)
-   - grep -c MagneticArea "app/(foyer)/services/page.tsx"   (expect 0)
-   - grep -c 'className="cw-cta"' "app/(foyer)/services/page.tsx"   (expect 0)
-   For the three grep -c lines the printed count is the check; grep exits 1 when it prints 0.
-7. Print `git diff -- "app/(foyer)/services/page.tsx"` in full.
+1. §3.1: append the CSS block from the brief, byte for byte, at the very end of app/globals.css,
+   after the current last rule (`.cw-sv-pkgs .cw-pband__foot`), separated by one blank line.
+2. §3.2: in app/(foyer)/services/page.tsx, change the proof link text (the two text lines inside
+   the `cw-door__case cw-sv-open__case` anchor) so the link reads the §2.1 string exactly:
+   See how I helped Guardicore, a Tel Aviv security company, break into the North American market with $14M in revenue and get acquired by Akamai
+   Wrap the text across lines the way the surrounding JSX does (lines under 80 characters).
+   Keep href, both class names and the `<span aria-hidden> &rarr;</span>` unchanged.
+3. §3.3: same file, replace the `<MagneticArea>` element and the `.cw-cta` link inside it with the
+   exact JSX from brief §3.3 (the comment and the `cw-buy` anchor), and delete the line that
+   imports MagneticArea. Keep the `cw-mlink` "Back to home" link after it unchanged.
 
-Do NOT build, start a server, run a browser, stage, commit, or push. Do not touch any other file,
-including the gate .planning/exec/type117.mjs. If any expected value differs from what you get,
-do not reinterpret it: stop and report the raw output and your reason.
+Do not touch any other file or any other line. Do not stage, commit, or push.
 
-Final report: each step number with PASS or FAIL and the raw output, then the page.tsx diff.
+Final report: the three step numbers with DONE or NOT DONE and one line each on what you changed.

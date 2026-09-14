@@ -125,7 +125,7 @@ and the `.cw-cta` link inside it with:
 
 ```tsx
           {/* Pass-117: one CTA style on the page (DESIGN_BAR R17). The
-              cursor-following MagneticArea wrapper left with .cw-cta. */}
+              spring-motion wrapper left with .cw-cta. */}
           <a href="/call" className="cw-buy">
             Book a free intro call <span aria-hidden>→</span>
           </a>
@@ -267,6 +267,11 @@ after the pass: every T1 to T11 line PASS at both widths and `type117 failures: 
 (LESSONS #26): open `sv117-foot-390.png`. The foot button must be a pill in the same style as the
 box buttons (not the copper `.cw-cta`), and "Back to home" must not be uppercase mono. Say what you
 saw in the report.
+
+10.8 (execution, 2026-09-14) Sol could not place the edits: its shell is PowerShell, which blocks
+`npx.ps1`, and with no shell it could not read files. The judge placed §3.1 to §3.3 verbatim. The
+§3.3 comment is reworded twice by the gates themselves: `motion-discipline.sh` blocks the pattern
+`cursor.*follow` even in a comment, and §5.2 expects `grep -c MagneticArea` to print `0`.
 
 10.7 (Sol 9 to 13) Confirmed: all 26 selectors match /services, the appended rules win the cascade
 (0,3,1 over 0,3,0), no first-load text falls outside the ladder, the §3.2 and §3.3 line references

@@ -18,8 +18,10 @@ MEASURED (Lighthouse 13.4.1 mobile, prod, 3 runs): / 89 (LCP 3050, CLS 0.145
 from h1.cw-h1.cw-shift in 2 of 3), /services 97 (LCP 2563). Home fails bar.
 READY briefs: pass-117-services-type-ladder.md (R1 R2 R13 R17 on /services;
 R7 exception now in DESIGN_BAR; gate type117.mjs bites on prod, 12 failures)
-§2.1 APPROVED 2026-09-14, verbatim: "yes to the Guardicore line". EXECUTING:
-Sol edits (GLM capped), Sonnet leg runs §5 battery + commit, Opus judges. pass-118a-perf-diagnosis.md
+§2.1 APPROVED 2026-09-14, verbatim: "yes to the Guardicore line". COMMITTED 8c684b6
+(local, NOT pushed): type117 0 failures, axe 0/91, layout 0, render ok, card1
+0. Sol failed x2 (npx.ps1 blocked), Sonnet leg stalled after build: judge ran
+it. Astra look running -> .planning/reviews/ASTRA-117-VERDICT.md. pass-118a-perf-diagnosis.md
 (measure only, Sonnet or GLM). Sol plan review of 117 FOLDED as brief §10
 (4 wrong premises + 4 risks fixed; gate round 2 bites on prod, 16 failures;
 before-captures in .planning/qa/pass-117/before).
@@ -36,4 +38,5 @@ exit codes through a pipe · md never prettiered · served expect>=1 counts RSC
 payload (#24) · executor never reinterprets an expect (#25) · measure the
 render (#26) · per-load state in module scope (#27) · prod CSS hrefs carry
 ?dpl=: match .css[^"]* · screenshot clip renders unscrolled · stop next start
-with Stop-Process · countup114 rewrites pass-114 PNGs · PowerShell *> is UTF-16.
+with Stop-Process · countup114 rewrites pass-114 PNGs · PowerShell *> is UTF-16 ·
+codex exec shells via PowerShell, which blocks npx.ps1: Sol does file edits only.
