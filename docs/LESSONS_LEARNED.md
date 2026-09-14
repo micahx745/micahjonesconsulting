@@ -1002,3 +1002,24 @@ navigations, and asserts it (`docLoads` stays 1).
 
 **The gate.** C12, C13 and C14 behind `--p116` in `.planning/exec/circle115.mjs`, each proven
 failing on the shipped build before the fix and passing after.
+
+## #28 — A gate scoped by guessed containers, and a capture named for a section it never framed (2026-09-14)
+
+**What happened.** The first Pass-117 gate scanned `header *, main *` for type sizes. On this
+site the nav is neither: `components/color-worlds/Nav.tsx` renders a `<nav>` that
+`app/(foyer)/layout.tsx` places beside `<main>`. The wordmark and nav links were never measured, so
+a broken nav size would have passed T1. The same review found that `.planning/exec/shots111b.mjs`
+names a capture `sv-foot` but centres `.cw-pband__foot`, the packages band's footer row, not
+`.cw-services__foot`. Pass-111b's "foot" look was never a look at the foot. Sol's plan review
+caught both; nothing shipped on either.
+
+**Root cause.** The scope came from what a page usually contains, not from this route's layout
+tree. The capture's name came from the intent, not from its selector.
+
+**The rule.** A DOM gate's scope is read off the group layout and the components it mounts, and
+is stated in the script's header. A capture is opened and looked at once before it is used as
+evidence, and its name matches what it frames.
+
+**The gate.** `type117.mjs` round 2 scans the whole `[data-mode="cw"]` wrapper minus the closed
+overlay dialog, and pins each role's size (T10). A fourth standing clause in
+`.claude/briefs/README.md` §5 covers scope and captures.

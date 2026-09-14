@@ -45,7 +45,7 @@ a brief and the commit that executes it are greppable together.
 
 A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the quality.
 
-### Two standing clauses in every Verification section (2026-09-12, LESSONS #24 and #25)
+### Standing clauses in every Verification section (LESSONS #24, #25, #26, #28)
 
 - **Count what renders.** `expect 0` may grep raw served HTML. `expect N>=1` must count
   visible DOM text with `<head>` and every `<script>` stripped first, or assert `-ge 1`.
@@ -56,6 +56,9 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
 - **Measure the render, not the model** (LESSONS #26). Any check on a drawn mark confirms ink
   in a screenshot of the finished frame, and is run once on the broken code first to prove it
   bites. Pass-115 passed ten geometric checks on a loop the browser never painted.
+- **Scope from the layout, look at the capture** (LESSONS #28). A DOM gate's scope is read off
+  the route's group layout (the nav here is a sibling of `main`) and stated in the script. A
+  capture is opened once before it counts as evidence, and its name matches what it frames.
 
 ## Budget this enforces
 
