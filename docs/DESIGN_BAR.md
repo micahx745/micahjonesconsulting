@@ -181,6 +181,7 @@ by looking. Grade per page; report R-numbers.
 - **R7 — The hero is left-aligned or deliberately asymmetric and states the offer in ONE
   grammatical sentence readable in ~2 seconds** — an assertion that would fit on a business card,
   not an explanation. No badge-pill + headline + subhead + dual-button center stack.
+  - Exception (operator 2026-09-14, "go with your recommendations"): /services opens with the heading "Engagements" and two sentences, not one assertion. The home hero states the offer in one sentence (Pass-109); /services is a second-level page whose opening introduces the four engagement shapes. /services only, and not a precedent for any hero.
 - **R8 — Vertical rhythm varies:** at least one full-bleed or intentionally quiet/short section;
   section paddings are not uniform down the page; major section gaps are generous (on the order of
   15vh+), not a constant 96px.

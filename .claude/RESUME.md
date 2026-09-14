@@ -1,33 +1,32 @@
-# RESUME — micahjonesconsulting (2026-09-12)
+# RESUME — micahjonesconsulting (2026-09-14)
 
 ## READ FIRST
 Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
 `.claude/worktrees/p106-live`). `pnpm build` fails HERE only: use
 `npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`.
 ROUTING (operator 2026-09-12): conserve THIS account. GLM executes briefs
-(WEEKLY cap: 429 until 2026-09-15 11:57 z.ai); Sol (codex exec -m gpt-5.6-sol)
-writes while GLM is capped, the judge runs build/server/browser; Astra
-(codex-exec -Review) judges gates; Opus rules, judges, records; Fable on his ask.
+(weekly cap resets 2026-09-15 11:57 z.ai, ~09-14 20:57 Pacific); Sol writes
+while GLM is capped, the judge runs build/server/browser; Astra (codex-exec
+-Review) judges gates; Opus rules, judges, records; Fable on his ask.
 
 ## LIVE: main = 79534b8, dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw BOTH domains
-Re-probed 2026-09-12 (second session): both domains serve dpl_BuNe; card1-115.sh
-41 PASS, failures 0. origin/main..branch differs in records only. Shipped
-113-116 (git log). circle115 C1-C14 last run on prod 09-12 at this dpl, not
-re-run. HandUnderline dash fixed, UNVERIFIED IN RENDER (unmounted).
-APPROVED 2026-09-12, verbatim: "push and take care of 2" = push this branch;
-main checkout fast-forwarded a85a890 -> 79534b8, DONE (now 0/0; was 76
-behind, no dep change). His next-env.d.ts (dev types path) and copy.json (09-05
-copy report) left untouched. Revert: git reset --keep a85a890 in main checkout.
+Re-probed 09-14. Main checkout ff'd to 79534b8 (09-12). HandUnderline dash
+fixed, UNVERIFIED IN RENDER (unmounted).
 
-## Rulings 2026-09-12, queue 6-8 (kickoff updated)
-6 Ordani screens: "I will do that later". He supplies; section unchanged.
-7 Book lines: "book work will take place in other chat". Spread png already 404.
-8 $5B+: "keep". Ledgered in LESSONS #3.
+## APPROVED 2026-09-14, verbatim: "measure, go with your recommendations, and push"
+MEASURED (Lighthouse 13.4.1 mobile, prod, 3 runs): / 89 (LCP 3050, CLS 0.145
+from h1.cw-h1.cw-shift in 2 of 3), /services 97 (LCP 2563). Home fails bar.
+READY briefs: pass-117-services-type-ladder.md (R1 R2 R13 R17 on /services;
+R7 exception now in DESIGN_BAR; gate type117.mjs bites on prod, 12 failures)
+BLOCKED on his yes to its §2.1 Guardicore line. pass-118a-perf-diagnosis.md
+(measure only, Sonnet or GLM). Sol plan review of 117 running ->
+.planning/reviews/SOL-117-BRIEF-REVIEW.md: fold its fix-list before executing.
 
 ## Waiting on operator
-Ordani screens · Stripe playbook-99 off + LIVE Audit description to area names ·
-500 dollar live test · A4/S3 text · five bar items (/services R1 R2 R7 R13
-R17: ASTRA-111B-VERDICT.md:25-26, FIX 7; still live 09-14) · §9a.
+117 §2.1 line yes · Ordani screens · Stripe playbook-99 off + LIVE Audit
+description to area names · 500 dollar live test · A4/S3 text · §9a ·
+Speed Insights field LCP/CLS · 117 §8 follow-ups (mono links on home/404,
+MagneticArea on home hero).
 
 ## Traps
 push to main auto-deploys · explicit pathspec after diff --cached (#23) · no
