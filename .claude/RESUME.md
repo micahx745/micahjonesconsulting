@@ -5,38 +5,32 @@ Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
 `.claude/worktrees/p106-live`). `pnpm build` fails HERE only: use
 `npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`.
 ROUTING (operator 2026-09-12): conserve THIS account. GLM executes briefs
-(weekly cap resets 2026-09-15 11:57 z.ai, ~09-14 20:57 Pacific); Sol writes
-while GLM is capped, the judge runs build/server/browser; Astra (codex-exec
--Review) judges gates; Opus rules, judges, records; Fable on his ask.
+(weekly cap resets ~09-14 20:57 Pacific); Sol edits only (PowerShell blocks
+npx.ps1); Astra judges gates; Opus rules, judges, records; Fable on his ask.
 
 ## LIVE: main = 79534b8, dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw BOTH domains
-Re-probed 09-14. Main checkout ff'd to 79534b8 (09-12). HandUnderline dash
-fixed, UNVERIFIED IN RENDER (unmounted).
+Re-probed 09-14. Main checkout ff'd to 79534b8. HandUnderline UNVERIFIED.
 
-## APPROVED 2026-09-14, verbatim: "measure, go with your recommendations, and push"
-MEASURED (Lighthouse 13.4.1 mobile, prod, 3 runs): / 89 (LCP 3050, CLS 0.145
-from h1.cw-h1.cw-shift in 2 of 3), /services 97 (LCP 2563). Home fails bar.
-READY briefs: pass-117-services-type-ladder.md (R1 R2 R13 R17 on /services;
-R7 exception now in DESIGN_BAR; gate type117.mjs bites on prod, 12 failures)
-§2.1 APPROVED 2026-09-14, verbatim: "yes to the Guardicore line". COMMITTED 8c684b6
-(local, NOT pushed): type117 0 failures, axe 0/91, layout 0, render ok, card1
-0. Sol failed x2 (npx.ps1 blocked), Sonnet leg stalled after build: judge ran
-it. Astra look running -> .planning/reviews/ASTRA-117-VERDICT.md. pass-118a-perf-diagnosis.md
-(measure only, Sonnet or GLM). Sol plan review of 117 FOLDED as brief §10
-(4 wrong premises + 4 risks fixed; gate round 2 bites on prod, 16 failures;
-before-captures in .planning/qa/pass-117/before).
+## Pass-117 (/services R1 R2 R13 R17; R7 exception) — SHIP, AWAITS HIS WORDS
+Approvals 2026-09-14: "measure, go with your recommendations, and push";
+"yes to the Guardicore line". Commit 8c684b6 LOCAL, not pushed. Local prod
+build: type117 0 failures (prod before 16), axe 0/91, layout 0, render ok,
+card1 0. Astra SHIP (.planning/reviews/ASTRA-117-VERDICT.md), judge PASS.
+NEXT on his words: push branch, merge to main (deploys), then on BOTH live
+domains: type117.mjs <domain>, card1-115.sh with BASE_DPL=dpl_BuNe...
+
+## Speed (measured 09-14, Lighthouse mobile prod)
+/ 89 (LCP 3050, CLS 0.145 from h1.cw-h1.cw-shift 2 of 3); /services 97
+(LCP 2563). Brief pass-118a-perf-diagnosis.md READY, measure only, idle box.
 
 ## Waiting on operator
-Ordani screens · Stripe playbook-99 off + LIVE Audit
-description to area names · 500 dollar live test · A4/S3 text · §9a ·
-Speed Insights field LCP/CLS · 117 §8 follow-ups (mono links on home/404,
-MagneticArea on home hero).
+push+merge 117 · Ordani screens · Stripe playbook-99 off + LIVE Audit
+description · 500 dollar live test · A4/S3 text · §9a · Speed Insights field
+numbers · 117 §8 follow-ups (mono links home/404, spring CTA on home hero).
 
 ## Traps
-push to main auto-deploys · explicit pathspec after diff --cached (#23) · no
-exit codes through a pipe · md never prettiered · served expect>=1 counts RSC
-payload (#24) · executor never reinterprets an expect (#25) · measure the
-render (#26) · per-load state in module scope (#27) · prod CSS hrefs carry
-?dpl=: match .css[^"]* · screenshot clip renders unscrolled · stop next start
-with Stop-Process · countup114 rewrites pass-114 PNGs · PowerShell *> is UTF-16 ·
-codex exec shells via PowerShell, which blocks npx.ps1: Sol does file edits only.
+push to main auto-deploys · explicit pathspec after diff --cached (#23) ·
+served expect>=1 counts RSC payload (#24) · never reinterpret an expect (#25)
+· measure the render (#26) · scope gates from the layout (#28) · prod CSS
+hrefs carry ?dpl= · stop next start with Stop-Process · motion hook bans
+cursor.*follow even in comments · background Sonnet legs can stall silently.
