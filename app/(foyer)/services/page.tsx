@@ -25,7 +25,6 @@
 // Receipts use ledger phrasings only (docs/LESSONS_LEARNED.md #3).
 // Zero animation on this page beyond the site's palette shift.
 import type { Metadata } from "next";
-import { MagneticArea } from "@/components/motion/MagneticArea";
 import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PackageBand } from "@/components/color-worlds/PackageBand";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
@@ -296,7 +295,8 @@ export default function ServicesPage() {
                 className="cw-door__case cw-sv-open__case"
               >
                 See how I helped Guardicore, a Tel Aviv security company, break
-                into the North American market and get acquired by Akamai
+                into the North American market with $14M in revenue and get
+                acquired by Akamai
                 <span aria-hidden> &rarr;</span>
               </a>
             </div>
@@ -483,14 +483,11 @@ export default function ServicesPage() {
           you need, I say so on the call.
         </p>
         <div className="cw-services__foot-cta-row">
-          <MagneticArea>
-            <a href="/call" className="cw-cta">
-              Book a free intro call{" "}
-              <span className="cw-arr" aria-hidden>
-                →
-              </span>
-            </a>
-          </MagneticArea>
+          {/* Pass-117: one CTA style on the page (DESIGN_BAR R17). The
+              spring-motion wrapper left with .cw-cta. */}
+          <a href="/call" className="cw-buy">
+            Book a free intro call <span aria-hidden>→</span>
+          </a>
           <a href="/" className="cw-mlink">
             <span aria-hidden>←</span> Back to home
           </a>

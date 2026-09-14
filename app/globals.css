@@ -7478,3 +7478,54 @@ body {
   max-width: none;
   width: 100%;
 }
+
+/* ================================================================
+ * Pass-117 (operator 2026-09-14): the /services type ladder.
+ * DESIGN_BAR R1, R2 and R17, scoped to main.cw-sv so the home page,
+ * /packages and the case studies keep their own sizes.
+ *   L1 12px mono labels . L2 16px body . L3 22px
+ *   L4 32px at 390, 44px at 1440 . L5 44px at 390, 68px at 1440
+ * Gate: .planning/exec/type117.mjs
+ * ================================================================ */
+[data-mode="cw"] main.cw-sv .cw-pbox__list li,
+[data-mode="cw"] main.cw-sv .cw-pbox__per,
+[data-mode="cw"] main.cw-sv .cw-pbox__from,
+[data-mode="cw"] main.cw-sv .cw-pbox__fit,
+[data-mode="cw"] main.cw-sv .cw-area__list li,
+[data-mode="cw"] main.cw-sv .cw-area__pain,
+[data-mode="cw"] main.cw-sv .cw-area__proof,
+[data-mode="cw"] main.cw-sv .cw-pick__legend,
+[data-mode="cw"] main.cw-sv .cw-sv-objection p,
+[data-mode="cw"] main.cw-sv .cw-services__foot-intro,
+[data-mode="cw"] main.cw-sv .cw-buy {
+  font-size: 16px;
+}
+[data-mode="cw"] main.cw-sv .cw-pbox__term,
+[data-mode="cw"] main.cw-sv .cw-mlink {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: normal;
+  text-transform: none;
+}
+[data-mode="cw"] main.cw-sv .cw-sv-open__proof-lbl {
+  font-size: 12px;
+}
+[data-mode="cw"] main.cw-sv .cw-sv-open__body,
+[data-mode="cw"] main.cw-sv .cw-services__intro,
+[data-mode="cw"] main.cw-sv .cw-sv-open__case,
+[data-mode="cw"] main.cw-sv .cw-pband__incl-h,
+[data-mode="cw"] main.cw-sv .cw-areas__h,
+[data-mode="cw"] main.cw-sv .cw-area__name,
+[data-mode="cw"] main.cw-sv .cw-sv-objection__h,
+[data-mode="cw"] main.cw-sv .cw-pbox__name {
+  font-size: 22px;
+}
+[data-mode="cw"] main.cw-sv .cw-pbox__fig,
+[data-mode="cw"] main.cw-sv .cw-services__foot-title {
+  font-size: clamp(32px, 3.06vw, 44px);
+}
+[data-mode="cw"] main.cw-sv .cw-sv-open__name,
+[data-mode="cw"] main.cw-sv .cw-service__title {
+  font-size: clamp(44px, 4.73vw, 68px);
+}
