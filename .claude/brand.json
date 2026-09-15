@@ -57,26 +57,31 @@
     }
   ],
   "typography": {
+    "_note": "The live Color Worlds faces, as lib/fonts.ts loads them (Pass-37). Corrected 2026-09-14 in Pass-118 on the operator's ruling (\"go with 1\"): this block still described the pre-Pass-37 Inter and Source Serif stack, so hooks reading it disagreed with .claude/CLAUDE.md. foundry stays \"system\" (Google Fonts through next/font, no licence file), which keeps font-license.sh's Klim check in force.",
     "display": {
-      "family": "Inter Display (Inter weight 700-800)",
+      "family": "Bricolage Grotesque",
       "foundry": "system",
+      "source": "next/font/google",
       "weights": [600, 700, 800],
-      "license": null
+      "axes": ["opsz"],
+      "license": "OFL"
     },
     "body": {
-      "family": "Inter",
+      "family": "Hanken Grotesk",
       "foundry": "system",
+      "source": "next/font/google",
+      "weights": [400, 500, 600, 700],
+      "license": "OFL"
+    },
+    "serif": null,
+    "mono": {
+      "family": "JetBrains Mono",
+      "foundry": "system",
+      "source": "next/font/google",
       "weights": [400, 500, 600],
-      "license": null
-    },
-    "serif": {
-      "family": "Source Serif 4",
-      "foundry": "system",
-      "weights": [400, 500],
-      "axes": ["opsz"],
-      "license": null
-    },
-    "mono": null
+      "license": "OFL",
+      "use": "Labels, section codes and data only: the DESIGN_BAR R1 narrow third. Never body copy or headings."
+    }
   },
   "voice": {
     "person": "first-singular",

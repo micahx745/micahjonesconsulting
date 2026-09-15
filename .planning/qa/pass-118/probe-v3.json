@@ -1,0 +1,2347 @@
+{
+  "base": "http://localhost:3200",
+  "startedAt": "2026-09-15T04:22:12.263Z",
+  "conditions": {
+    "q1-A": [
+      {
+        "load": 1,
+        "cls": 0.000601,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2028.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2434.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1680,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2537.2000000029802,
+        "fontsTime": 2554.10000000149
+      },
+      {
+        "load": 2,
+        "cls": 0.000601,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2057.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2449.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1544,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2547.2000000029802,
+        "fontsTime": 2560.89999999851
+      },
+      {
+        "load": 3,
+        "cls": 0.000601,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2055.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2460,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1580,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2559.60000000149,
+        "fontsTime": 2575
+      },
+      {
+        "load": 4,
+        "cls": 0.000902,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2042.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2452.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1532,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2552.10000000149,
+        "fontsTime": 2568.60000000149
+      },
+      {
+        "load": 5,
+        "cls": 0.000601,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2081.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2463.4,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1592,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2560.2999999970198,
+        "fontsTime": 2575.39999999851
+      },
+      {
+        "load": 6,
+        "cls": 0.000902,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2025.4,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2438.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1520,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2538.8000000044703,
+        "fontsTime": 2553.2000000029802
+      },
+      {
+        "load": 7,
+        "cls": 0.000601,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2043.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2446.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1588,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2550.39999999851,
+        "fontsTime": 2564.60000000149
+      },
+      {
+        "load": 8,
+        "cls": 0.000902,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2045.9,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2444.6,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1524,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2540.1999999955297,
+        "fontsTime": 2553.60000000149
+      },
+      {
+        "load": 9,
+        "cls": 0.000902,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2032.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2444.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1520,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2545.10000000149,
+        "fontsTime": 2560.1999999955297
+      },
+      {
+        "load": 10,
+        "cls": 0.000902,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2042.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 2441.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1552,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2541.7999999970198,
+        "fontsTime": 2557.39999999851
+      }
+    ],
+    "q1-B": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1560,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2003.5999999940395,
+        "fontsTime": 1554.5
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1516,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2011.8000000044703,
+        "fontsTime": 1527.5
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1560,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 1994.1999999955297,
+        "fontsTime": 1552.5999999940395
+      },
+      {
+        "load": 4,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1552,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 1991.7999999970198,
+        "fontsTime": 1542.5
+      },
+      {
+        "load": 5,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1572,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 1983.6999999955297,
+        "fontsTime": 1574.2999999970198
+      },
+      {
+        "load": 6,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1576,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2003.7999999970198,
+        "fontsTime": 1574.6000000014901
+      },
+      {
+        "load": 7,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1564,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 1993.3999999985099,
+        "fontsTime": 1565.6000000014901
+      },
+      {
+        "load": 8,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1552,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 1968.6000000014901,
+        "fontsTime": 1542.1000000014901
+      },
+      {
+        "load": 9,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1568,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2003.5,
+        "fontsTime": 1585
+      },
+      {
+        "load": 10,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1556,
+          "size": 23643,
+          "nodeName": "p.cw-sub.is-in"
+        },
+        "classTime": 2004.1999999955297,
+        "fontsTime": 1564.1999999955297
+      }
+    ],
+    "q1-C": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1758.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1961.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1599.8,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1762.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1961.8,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1647.4,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1754.7,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1979.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1623.9,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 4,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1745.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1956.8,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1652.1,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 5,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1756.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1979.7,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1659.2,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 6,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1737.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1966.1,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1630.9,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 7,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1775.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1984,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1659.4,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 8,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1756.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1994,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1695.5,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 9,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1772,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1974.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1695.3,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 10,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 1744.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.00060080926706009,
+            "time": 1970.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 45
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1653.5,
+          "size": 23643,
+          "nodeName": "p.cw-sub"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      }
+    ],
+    "q1-D": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2036.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2524,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2432.10000000149,
+        "fontsTime": 2512.60000000149
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2033,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2520,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2434.5,
+        "fontsTime": 2516.5
+      },
+      {
+        "load": 3,
+        "cls": 0.000301,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2026.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2528,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2503.39999999851,
+        "fontsTime": 2514.5
+      },
+      {
+        "load": 4,
+        "cls": 0.000301,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2111.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2500,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2404.60000000149,
+        "fontsTime": 2482.10000000149
+      },
+      {
+        "load": 5,
+        "cls": 0.000301,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2032.5,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2504,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2421.10000000149,
+        "fontsTime": 2501.2000000029802
+      },
+      {
+        "load": 6,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2040,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2504,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2406.7000000029802,
+        "fontsTime": 2488.39999999851
+      },
+      {
+        "load": 7,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2040.8,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2524,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2421,
+        "fontsTime": 2508.3000000044703
+      },
+      {
+        "load": 8,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2037,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2508,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2417.2999999970198,
+        "fontsTime": 2499.5999999940395
+      },
+      {
+        "load": 9,
+        "cls": 0.000301,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2062.3,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2504,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2416.7999999970198,
+        "fontsTime": 2494.2999999970198
+      },
+      {
+        "load": 10,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0003013479245834656,
+            "time": 2022.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 419.3125,
+                  "width": 373,
+                  "height": 46.640625
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 2516,
+          "size": 26020,
+          "nodeName": "span"
+        },
+        "classTime": 2415.7999999970198,
+        "fontsTime": 2496.39999999851
+      }
+    ],
+    "q2-A": [
+      {
+        "load": 1,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1944,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1108,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1679.4000000059605,
+        "fontsTime": 1941.8000000044703
+      },
+      {
+        "load": 2,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1938.4,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1112,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1752.1999999955297,
+        "fontsTime": 1941.3999999985099
+      },
+      {
+        "load": 3,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1957.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1116,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1696.2000000029802,
+        "fontsTime": 1961.8000000044703
+      },
+      {
+        "load": 4,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1959.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1132,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1685.7999999970198,
+        "fontsTime": 1958.2999999970198
+      },
+      {
+        "load": 5,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1950.6,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1136,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1750,
+        "fontsTime": 1948.7000000029802
+      }
+    ],
+    "q2-B": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1136,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1384.7000000029802,
+        "fontsTime": 1124.5
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1132,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1370.1000000014901,
+        "fontsTime": 1127.2000000029802
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1124,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1371,
+        "fontsTime": 1126.7000000029802
+      },
+      {
+        "load": 4,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1120,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1373,
+        "fontsTime": 1111.6999999955297
+      },
+      {
+        "load": 5,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1120,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1353.0999999940395,
+        "fontsTime": 1106.2999999970198
+      }
+    ],
+    "q2-C": [
+      {
+        "load": 1,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1408.6,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 791.4,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 2,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1428.5,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 803.3,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 3,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1424.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 822.9,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 4,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1429.3,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 810.8,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 5,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1441.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 815.2,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      }
+    ],
+    "q2-D": [
+      {
+        "load": 1,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1957.5,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1112,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1759.5,
+        "fontsTime": 1960.9000000059605
+      },
+      {
+        "load": 2,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1960.3,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1164,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1711.6000000014901,
+        "fontsTime": 1963.8999999985099
+      },
+      {
+        "load": 3,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 2000.6,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1128,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1663.3000000044703,
+        "fontsTime": 2004
+      },
+      {
+        "load": 4,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1955.6,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1096,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1750.2999999970198,
+        "fontsTime": 1958.5
+      },
+      {
+        "load": 5,
+        "cls": 0.000275,
+        "shifts": [
+          {
+            "value": 0.0002745663982799829,
+            "time": 1961.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "#text",
+                "previousRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 515.609375,
+                  "width": 372,
+                  "height": 26
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1104,
+          "size": 50020,
+          "nodeName": "a.cw-door__case.cw-sv-open__case"
+        },
+        "classTime": 1781.1000000014901,
+        "fontsTime": 1964.1999999955297
+      }
+    ]
+  }
+}

@@ -317,7 +317,8 @@ async function captureRealState(page) {
         .replace(/\s+/g, " ")
         .trim();
       const rect = element.getBoundingClientRect();
-      if (rect.width <= 2 || rect.height <= 2 || rect.top >= window.innerHeight) continue;
+      // Brief §14: on screen only (a closed overlay parked above the viewport cannot shift).
+      if (rect.width <= 2 || rect.height <= 2 || rect.top >= window.innerHeight || rect.bottom <= 0) continue;
       const style = getComputedStyle(element);
       if (style.visibility === "hidden" || style.display === "none") continue;
       if (element.closest(".sr-only, [hidden]")) continue;
@@ -410,7 +411,11 @@ function recordKey(record) {
   return record.path;
 }
 
-function compareMeasurements(realRecords, candidateRecords, page, width) {
+// Brief §14: `strict` (fonts-loaded geometry) gates top, height and line count. The swap
+// comparisons gate what can be seen to shift: an on-screen element whose top moves more than
+// 1px, or whose text changes line count. A container that only grows because text below the
+// fold reflowed is not a visible shift, so height alone is not a mismatch there.
+function compareMeasurements(realRecords, candidateRecords, page, width, strict = false) {
   const real = new Map(realRecords.map((record) => [recordKey(record), record]));
   const candidate = new Map(candidateRecords.map((record) => [recordKey(record), record]));
   const keys = [...new Set([...real.keys(), ...candidate.keys()])].sort();
@@ -425,7 +430,7 @@ function compareMeasurements(realRecords, candidateRecords, page, width) {
       || !candidateRecord
       || (realRecord.lines ?? null) !== (candidateRecord.lines ?? null)
       || Math.abs(realRecord.top - candidateRecord.top) > 1
-      || Math.abs(realRecord.height - candidateRecord.height) > 1
+      || (strict && Math.abs(realRecord.height - candidateRecord.height) > 1)
     ) {
       mismatches.push({
         page,

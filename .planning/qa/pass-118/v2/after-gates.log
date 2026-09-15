@@ -1,0 +1,10 @@
+verify-after exit: 0 verify total mismatches: 95
+geometry-after exit: 0
+compare exit: 0 geometry diffs: 0 moved sideways: 0 
+probe exit: 0
+type117 exit: 0 type117 failures: 0
+render exit: 0
+axe exit: 0 axe-worlds: axe-core 4.13.0, 91 scans, 0 serious/critical finding(s), 0 not in KNOWN
+layout exit: 0 layout-gate: 36 page loads across 6 routes, 0 finding(s), 0 not in KNOWN
+card1 exit: 0 card1 failures: 0
+CHAIN-DONE

@@ -11,7 +11,7 @@
 //   hero differently from the real faces, so the swap reflowed it. Bricolage and
 //   Hanken set adjustFontFallback: false and name tuned fallbacks declared in
 //   app/globals.css (size-adjust measured by .planning/exec/fallback118.mjs).
-//   JetBrains Mono keeps the generated fallback.
+//   JetBrains Mono uses a Courier New fallback at 100% (same advance).
 import {
   Bricolage_Grotesque,
   Hanken_Grotesk,
@@ -69,6 +69,7 @@ export const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600"],
   variable: "--font-jetbrains",
   display: "swap",
-  adjustFontFallback: true,
+  adjustFontFallback: false,
+  fallback: ["JetBrains Mono Tuned Fallback"],
   preload: false,
 });
