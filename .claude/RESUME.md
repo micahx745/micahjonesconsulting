@@ -19,10 +19,10 @@ checkout is behind again (he pulls). HandUnderline UNVERIFIED (unmounted).
 / 89 (LCP 3050, CLS 0.145 from h1.cw-h1.cw-shift 2 of 3); /services 97
 (LCP 2563). Brief pass-118a-perf-diagnosis.md (§8 amendment: CDP timeline).
 RUNNING, operator 2026-09-14 verbatim: "run that on claude and chatgpt -".
-DONE: mechanism = web-font swap (home CLS 0.290 all loads, 0.000 fonts
-blocked; survives JS off + reduced motion); reveal does not hold LCP; fonts
-~0.23s, JS 0.25-0.57s. PERF-118A-FINDINGS.md. Probe's own CLS line wrong
-(dropped hadRecentInput shifts). Sol independent read RUNNING.
+DONE, Sol-checked (round 2): web-font arrivals in steps (home CLS 0.290
+all loads, 0 fonts blocked; survives JS off + reduced motion); reveal does
+not hold LCP; count-up untested; fonts ~0.23s, JS 0.25-0.57s. LESSONS #29.
+NEXT: his call on the Pass-118 fix (recommend tuned fallback metrics).
 
 ## Waiting on operator
 Ordani screens · Stripe playbook-99 off + LIVE Audit

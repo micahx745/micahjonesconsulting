@@ -1,0 +1,23 @@
+1. **CORRECTION** — The displayed values reproduce `probe.json` using `perf118a-tables.mjs`, but that script selects the lower middle value for 10 loads, not the conventional median. Recomputed: q1-A = 0.289798619 on every load, 30 flagged shifts; q1-B = 0 throughout, no shifts; q1-C = 0.120518628 / 0.292383021 / 0.296655056, 22 flagged; q2-A = 0.037075600 throughout, 15 flagged.
+
+   Correct conventional medians differ as follows: q1-A shift/class/LCP = 2194/2918/2190, not 2189/2917/2184; q1-B class/LCP = 2310/1954, not 2309/1952; q1-C shift/LCP = 1974/1939, not 1963/1935; q1-D shift/class/fonts/LCP = 2172/2844/2666/2166, not 2170/2843/2665/2164. All six Lighthouse rows match their JSON reports to shown rounding.
+
+2. **CORRECTION** — Counting the flagged shifts is justified as an emulated-lab estimate: `perf118a.mjs` sends no click, tap, key, mouse, or scroll input—only device/touch emulation and navigation—and every natural shift is flagged, whereas the deliberately injected bite shifts were counted normally. Lighthouse independently includes the same home event: score 0.147024101 and `h1.cw-h1` in both probe q1-A and `home-devtools-1.json`, whose audit explicitly says “Web font loaded.”
+
+   However, 0.290 is not the probe’s standards-filtered CLS; every stored `cls` is 0. The claim that Lighthouse is lower because of session windows is false: q1-A load 1’s three shifts occur at 2167.4, 2427.5, and 2643.0ms—one 476ms window—and sum to 0.289798619. Lighthouse instead observed different later scores, 0.026230198 and 0.008280340, totaling 0.181534640 with the matching 0.147 event.
+
+3. **CONFIRMED** — Web-font arrival is the best-supported cause. Blocking font requests removes every shift; shifts survive JavaScript-off and reduced-motion; both Lighthouse culprit audits attribute the shifts to font files. q1-C’s anomalies are different batching, not a demonstrated second cause.
+
+   In loads 4 and 6, the `div.cw-cta-row` −31.453px “top source” shares its event with the H1 moving +31.453px and shrinking 38.266px; another event 39/37ms later completes the same final geometry. Load 8 batches the whole change into one 0.120518628 event: H1 +59.953px/−38.266px height, sub −24.641px height, plus text-link/menu changes. No image or hero-photo source appears; JS is disabled; identical emulation produces zero shifts when fonts are blocked.
+
+4. **CONFIRMED** — The timing is consistent with several individual font swaps followed by `document.fonts.ready`, not with `fontsTime` marking the first swap. In q1-A, the largest shift precedes `fontsTime` by 393.5–506.1ms, but the final shift precedes it by only 16.0–22.7ms. In q2-A those ranges are 552.1–570.0ms and 15.3–18.7ms. `perf118a.mjs` records `document.fonts.ready.then(...)`, despite the brief calling it `loadingdone`.
+
+   The largest shift and LCP are usually close: q1-A shift-minus-LCP is 0.3–15.1ms in nine loads, with load 1 an outlier at −128.6ms. The root reveal class arrives 651.9–743.6ms after that shift on `/` and 592.7–613.8ms afterward on `/services`.
+
+5. **CORRECTION** — The reveal conclusion is supported only for these page-load runs, though timing makes it fairly strong: the reveal class lands after LCP, and baseline/reduced-motion distributions overlap. Home LCP spreads are A 2156–2328ms versus D 2144–2228ms; conventional medians are 2190 and 2166ms (−24ms). Services spreads are A 1628–1644ms versus D 1624–1672ms; medians 1628 and 1648ms (+20ms).
+
+   Font-blocked and JS-off effects are larger and non-overlapping: home B 1920–2012ms, C 1839.1–2059.5ms; services B 1364–1404ms, C 1035.1–1131.2ms. These support condition-level delays, but 10/5 independent loads do not isolate which JavaScript work causes them. The `$20M+` animation was not exercised because the probe never scrolled, so its triggered behavior was not tested.
+
+6. **CORRECTION** — The findings misdescribe q1-A load 1: the H1 moves down 12.313px, the CTA moves up 12.328px, but `p.cw-sub` moves down 12.313px while shrinking 24.641px—not up. The q1-C source summary also omits load 8’s H1 +59.953px category. Finally, “the 105.43% fallback does not hold Bricolage 800” is a plausible inference, not isolated by these measurements; and the probe failed to retain the requested LCP text preview, leaving only generic `span` until Lighthouse identifies “FROM DEMO TO PRODUCTION.”
+
+Font arrivals—not reveal motion—reflow hero and services text in differently batched steps; font availability also delays text LCP, while JavaScript adds a separate, unisolated delay, especially on `/services`.

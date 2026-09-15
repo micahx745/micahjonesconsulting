@@ -3,7 +3,7 @@
 // no input is sent in these runs, and Lighthouse counts the same shift (0.147 on /).
 import { readFileSync } from "node:fs";
 const p = JSON.parse(readFileSync(".planning/qa/pass-118a/probe.json", "utf8"));
-const med = (a) => { const s = [...a].sort((x, y) => x - y); return s.length ? s[Math.floor((s.length - 1) / 2)] : "n/a"; };
+const med = (a) => { const s = [...a].sort((x, y) => x - y); if (!s.length) return "n/a"; const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
 const num = (v) => (typeof v === "number" ? v : null);
 console.log("| cond | loads | CLS all shifts min/med/max | loads >0.05 | flagged-input shifts | top source (dy) | shift t med | class t med | fonts t med | LCP med | LCP node |");
 console.log("|---|---|---|---|---|---|---|---|---|---|---|");
