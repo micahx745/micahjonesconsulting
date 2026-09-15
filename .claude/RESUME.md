@@ -22,7 +22,8 @@ RUNNING, operator 2026-09-14 verbatim: "run that on claude and chatgpt -".
 DONE, Sol-checked (round 2): web-font arrivals in steps (home CLS 0.290
 all loads, 0 fonts blocked; survives JS off + reduced motion); reveal does
 not hold LCP; count-up untested; fonts ~0.23s, JS 0.25-0.57s. LESSONS #29.
-NEXT: his call on the Pass-118 fix (recommend tuned fallback metrics).
+Operator 2026-09-14, verbatim: "go with 1" (tuned fallbacks). Brief
+pass-118-tuned-font-fallbacks.md written; Sol plan review RUNNING.
 
 ## Waiting on operator
 Ordani screens · Stripe playbook-99 off + LIVE Audit
