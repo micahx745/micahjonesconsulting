@@ -8,7 +8,7 @@ gates; Opus rules. Detached executors hang at next build: run build/measure
 chains in the main session's background.
 
 ## LIVE 2026-09-15: main = c2ffb36, dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23 BOTH
-Pass-118 fallbacks live (/ CLS 0.001, was 0.290). Revert: Vercel promote
+Pass-118 fallbacks live. Revert: Vercel promote
 dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. Operator must PULL the main checkout.
 
 ## NOW: Pass-120 /work + /work/[slug], DIRECT (brainstorming, no edits)
@@ -16,12 +16,15 @@ Micah 2026-09-15 goal, verbatim gist: "1. Each story is compelling, enticing
 ... Great SEO (after this ... a blogs page) ... unnamed work stories need to
 be amped up ... i did alot of work for those jobs" "2. Design of the overall
 page and ... individual pages (all same design)". Scope now = index + all
-six study pages. Look on prod: .planning/qa/pass-120. Rulings so far:
-each study written for its own buyer; amp RFP engine, content engine,
-birth worker (new study), unsited work; he tells, no docs (so type-led, no
-stills). HIS METHOD: I dramatize, he confirms. Draft 1 =
-.planning/drafts/pass-120/rfp-engine-DRAFT.md, tags C1-C26 + L1-L5 await
-his answers. Only confirmed tags reach content/ (LESSONS #2).
+six study pages. Prod look: .planning/qa/pass-120. Rulings: each study
+written for its own buyer; amp RFP engine, content engine, birth worker
+(new study), unsited work; he tells, no docs (type-led, no stills).
+METHOD: I dramatize, he confirms; only confirmed tags reach content/
+(LESSONS #2). Draft 1 .planning/drafts/pass-120/rfp-engine-DRAFT.md
+(C1 answered: live in 3 days; C/L/T tags open). ASTRA ultra: REVISE
+(.planning/reviews/ASTRA-120-RFP.md) - one worked example beats asserted
+depth; no universal scoring order (FAR 15.304); the two author studies
+together identify the client; define what $3M and "doubled" count.
 Prod ledger findings: /work Neuton meta renders "Helped launch · 2025" (the
 09-12 NEVER; card1 gate checks home only). Unledgered: Ordani "sole
 engineer", RFP "government included" + "inside six months", "Five months".

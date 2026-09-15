@@ -33,7 +33,7 @@ waiting every morning. The close rate doubled.
 
 - **Client:** an industry-authority author, name protected
 - **My role:** strategist and sole builder **[L1]**
-- **Build time:** about ten weeks to the first live morning report **[C1]**
+- **Build time:** live and sending RFPs in three days **[C1 answered 2026-09-15]**
 - **What I built:** RFP discovery, bid/no-bid scoring, a searchable library of the author's
   work, and response drafting **[C2]**
 - **Results:** $3M in contracts won. RFP-to-close rate doubled, from about one in eight to one in
@@ -66,6 +66,9 @@ every submission, not only the ones I touch.
 
 ## What I built
 
+It was live in three days. Day three, it was finding real RFPs and sending them to us **[C1]**.
+The scoring, the library and the drafting came after that **[T1]**.
+
 **01. Discovery.** Every night the software checks federal, state and local procurement portals
 **[C12]** and pulls each new RFP in the author's field.
 
@@ -87,6 +90,35 @@ buyer will score it **[C18]**.
 
 **06. The handoff.** I trained the author's team to review and finish each draft **[C19]**. For
 the first year I tuned the scoring after every win and every loss **[C20]**.
+
+## How it works, without the blueprint
+
+The specifics stay with the client. Here is the shape of it.
+
+- **One opportunity, one record.** Portals repost the same solicitation with amendments and new
+  deadlines. The engine folds reposts and amendments into one record, so the author never reads
+  the same RFP twice **[T2]**.
+- **The requirements come out before anything is written.** The engine extracts the submission
+  instructions and the evaluation criteria first: what to send, in what order, and how each
+  section is scored **[T3]**.
+- **Hard gates before soft judgment.** Eligibility is a filter, not a score. Certifications,
+  set-asides, bonding, deadlines: anything disqualifying ends the opportunity before a person
+  spends a minute on it **[T4]**.
+- **Every passage carries its provenance.** The library is indexed by argument rather than by
+  page, and each passage keeps its source, its date and its outcome. A draft can state what the
+  author did and point at where it happened **[T5]**.
+- **The model may not invent a credential.** Where the library cannot support a claim, the draft
+  leaves the gap and lists it for the author instead of writing something plausible **[T6]**.
+- **Past bids are the test set.** The author's own wins and losses became the evaluation set:
+  would the scorer have flagged the winners, and would the drafts have answered every scored
+  requirement? That harness is how I tuned it, and it runs again whenever the prompts change
+  **[T7]**.
+- **The loop closes on outcomes.** Every award and every rejection feeds back into the scoring
+  **[T8]**.
+
+The hard part was never the writing. Any model writes fluent proposal prose. The hard part was
+making it refuse: refuse to bid where the author could not win, and refuse to claim what the
+author had not done **[T9]**.
 
 ## The calls I made
 
@@ -123,8 +155,8 @@ reviews and submits every response **[C21]**.
 author's own library, and a person finished every response **[C21]**. Committees score against
 the requirements, so each draft follows them in order **[C16]**.
 
-**How long does custom RFP software take to build?** This one took about ten weeks to its first
-live report **[C1]**.
+**How long does custom RFP software take to build?** This one was live and sending real RFPs in
+three days **[C1]**. Scoring, the library and drafting followed **[T1]**.
 
 ---
 
@@ -145,7 +177,16 @@ publishable, true but private, or false.
 | L3 | Government contracts among the $3M | Search term; the stakes | |
 | L4 | Close rate doubled "inside six months" | Speed of result | |
 | L5 | The author's quote | Social proof | |
-| C1 | About ten weeks to the first live report | Answers "how long", a common search | |
+| C1 | Live and sending RFPs in three days | Answers "how long", a common search | ANSWERED: three days |
+| T1 | Scoring, library and drafting came after those three days | Sequence of the build | |
+| T2 | Reposts and amendments fold into one record | Depth: a real portal problem | |
+| T3 | Requirements and evaluation criteria extracted first | Depth: the expert move | |
+| T4 | Eligibility is a hard filter, not a score | Depth: certifications, set-asides, bonding | |
+| T5 | Library indexed by argument, each passage keeps source, date, outcome | Depth: why drafts can cite | |
+| T6 | The model leaves a gap rather than invent a credential | Depth: the trust guarantee | |
+| T7 | Past wins and losses used as an evaluation set for tuning | Depth: the part experts respect | |
+| T8 | Awards and rejections feed back into scoring | Depth: it improves | |
+| T9 | "The hard part was making it refuse" | The closing line of the section | |
 | C2 | Four parts: discovery, scoring, library, drafting | Makes the work visible | |
 | C3 | Close rate from one in eight to one in four | Gives "doubled" a baseline | |
 | C4 | First drafts in hours instead of days | Shows the time saved | |
