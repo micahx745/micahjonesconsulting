@@ -22,8 +22,10 @@ Operator must PULL the main checkout (hooks read its stale brand.json).
 Prod: first paint = LCP after all async JS runs (396ms /, 276ms /services);
 home-only cost is GSAP via SplitReveal (5 below-fold titles). Brief
 pass-119-gsap-after-load.md: GSAP after load+idle. Sol review folded (§10);
-Sol wrote chunks119/reveal119/lh119-summary; GLM EXECUTING pid 33164 from
-10:37 (log .planning/exec/glm119.log), commits locally, no push. LCP<=1.8s sim not claimed (shared framework JS).
+Sol wrote chunks119/reveal119/lh119-summary; RESULT: works (0 initial GSAP chunks,
+reveals R1-R4 PASS, gates clean) but / LCP 3510 -> 3559ms sim: gate FAIL; hero
+image/fonts blocked also no change. NOT SHIPPED: patch in .planning/qa/pass-119,
+SplitReveal restored. Suspect: hero sub reveal on LCP element (motion). ASK HIM. LCP<=1.8s sim not claimed (shared framework JS).
 
 ## Open (mine)
 Stand-in glyphs render mixed case in headless fonts-blocked captures, prod
@@ -41,4 +43,6 @@ expect (#25) · measure the render (#26) · scope gates from layout (#28) · lab
 CLS counts hadRecentInput shifts (#29) · probe overwrites 118a probe.json:
 git checkout it · never run build and server start in parallel · Git Bash
 converts /path in env vars: export MSYS_NO_PATHCONV=1 · gate table steps on
-the probe exit code · hooks resolve brand.json from the MAIN checkout.
+the probe exit code · hooks resolve brand.json from the MAIN checkout · detached executors
+(Sonnet agent, GLM claude -p) hang at next build here: run build chains in
+the main session background shell.

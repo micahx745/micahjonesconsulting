@@ -1,0 +1,1 @@
+render-gate: 15 routes — links resolve, fragments exist, metadata within limits.

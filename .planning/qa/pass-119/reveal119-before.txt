@@ -1,0 +1,5 @@
+FAIL R1: loadEventEnd=286ms gsap=205ms 04763798-1b6c3714f6e9675e.js
+PASS R2: cw-offer-title chars=29 bad=none; cw-howiwork-title chars=9 bad=none; cw-products-title chars=12 bad=none; cw-ordani-title chars=6 bad=none; cw-build-title chars=15 bad=none
+PASS R3: cw-offer-title chars=0; cw-howiwork-title chars=0; cw-products-title chars=0; cw-ordani-title chars=0; cw-build-title chars=0
+FAIL R4: cw-offer-title bottom=-4347 chars=29; cw-howiwork-title bottom=-3743 chars=9; cw-products-title bottom=-2143 chars=12; cw-ordani-title bottom=-1165 chars=6; cw-build-title bottom=816 chars=15
+reveal119 failures: 2

@@ -1,0 +1,34 @@
+== http://localhost:3200/services at 390
+        12px  cw-menubtn cw-services__kicker cw-sv-open__proof-lbl cw-pbox__tag cw-services__foot-kicker a
+        16px  cw-pbox__from cw-pbox__per cw-pbox__term cw-pbox__fit li cw-buy
+        22px  cw-wordmark cw-sv-open__body cw-door__case span cw-pbox__name cw-pband__incl-h
+        32px  cw-pbox__fig cw-services__foot-title
+        44px  cw-sv-open__name cw-service__title
+  PASS T1 sizes 390: got 12,16,22,32,44
+  PASS T2 adjacent steps >=15% 390: got none
+  PASS T4 mono prose in main 390: got 0
+  PASS T5 .cw-cta in main 390: got 0
+  PASS T6 one visible .cw-buy style 390: got 8 buttons, 1 style(s) ["Bricolage Grotesque"|16px|700|999px|2px|none]
+  PASS T7 R13 proof line 390: got "See how I helped Guardicore, a Tel Aviv security company, break into the North American market with $14M in revenue and get acquired by Akamai"
+  PASS T8 no page spill 390: got 0
+  PASS T9 no text past its frame 390: got none
+  PASS T10 every role at its size 390: got 90 checked, 0 off []
+  PASS T11 terms and links not mono 390: got 0
+== http://localhost:3200/services at 1440
+        12px  a cw-services__kicker cw-sv-open__proof-lbl cw-pbox__tag cw-services__foot-kicker span
+        16px  cw-pbox__from cw-pbox__per cw-pbox__term cw-pbox__fit li cw-buy
+        22px  cw-wordmark cw-sv-open__body cw-door__case span cw-pbox__name cw-pband__incl-h
+        44px  cw-pbox__fig cw-services__foot-title
+        68px  cw-sv-open__name cw-service__title
+  PASS T1 sizes 1440: got 12,16,22,44,68
+  PASS T2 adjacent steps >=15% 1440: got none
+  PASS T3 largest >= 4x body 1440: got 4.25
+  PASS T4 mono prose in main 1440: got 0
+  PASS T5 .cw-cta in main 1440: got 0
+  PASS T6 one visible .cw-buy style 1440: got 8 buttons, 1 style(s) ["Bricolage Grotesque"|16px|700|999px|2px|none]
+  PASS T7 R13 proof line 1440: got "See how I helped Guardicore, a Tel Aviv security company, break into the North American market with $14M in revenue and get acquired by Akamai"
+  PASS T8 no page spill 1440: got 0
+  PASS T9 no text past its frame 1440: got none
+  PASS T10 every role at its size 1440: got 90 checked, 0 off []
+  PASS T11 terms and links not mono 1440: got 0
+type117 failures: 0

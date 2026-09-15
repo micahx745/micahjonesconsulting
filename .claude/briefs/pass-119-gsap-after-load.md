@@ -184,7 +184,37 @@ median performance after within 1 point of before.
 
 10.6 (Sol 6) Lighthouse, as run (Git Bash), for LABEL `before` in 5.1 and `after` in 5.3:
 `mkdir -p .planning/exec/lh119 && for r in home services; do u=http://localhost:3200/; [ $r = services ] && u=http://localhost:3200/services; for i in 1 2 3; do node C:/tmp/p101tools/node_modules/lighthouse/cli/index.js "$u" --only-categories=performance --output=json --output-path=".planning/exec/lh119/LABEL-$r-$i.json" --chrome-path="C:/Program Files/Google/Chrome/Application/chrome.exe" --chrome-flags="--headless=new" --quiet; done; done`
-with LABEL replaced by the word. Then `node .planning/exec/lh119-summary.mjs` prints, per label and
+with LABEL replaced by the word. (See §11 for the result.) Then `node .planning/exec/lh119-summary.mjs` prints, per label and
 route, the three runs and medians of performance, LCP, FCP and TBT, and the three gate lines of 10.5
 with PASS or FAIL. Sol writes `chunks119.mjs`, `reveal119.mjs` and `lh119-summary.mjs` from this brief;
 the executor does not change them.
+
+## 11. Result and ruling (2026-09-15): the lever works and does not move LCP; not shipped
+
+Execution: GLM hung on its first build tool call (build finished 10:39, the call never returned; stopped
+11:22). The judge ran §5 as background shell chains; Sol wrote the SplitReveal change (one TypeScript
+narrowing fix and one stale header line by the judge).
+
+Measured on the local webpack build (evidence in `.planning/qa/pass-119/`):
+- `chunks119`: initial GSAP chunks on `/` 2 before, 0 after; `/services` 0 and 0.
+- `reveal119`: before FAIL R1 (GSAP 205ms, load 286ms), PASS R2, PASS R3, FAIL R4 (titles above the
+  viewport split); after PASS R1 (load 251ms, GSAP 403ms), PASS R2, PASS R3, PASS R4.
+- Gates after: type117 0, render clean, axe 0 serious/critical in 91 scans, layout 0, card1 0,
+  circle115 (the `$20M+` figure) 0, tsc and gsap-quarantine (with self-test) exit 0.
+- Lighthouse simulated, 3 runs: `/` median performance 89 before and 89 after, LCP 3510ms before and
+  3559ms after; `/services` 93 and 93, LCP 2944 and 2942. `lh119 gate failures: 1` (the `/` LCP gate).
+- Discriminating runs on the after build, `/`, 3 each: hero image blocked LCP median 3485ms; web fonts
+  blocked 3657ms. Neither the GSAP chunks, the hero photograph nor the fonts hold `/`'s simulated LCP.
+
+What the runs do show: observed (unthrottled) FCP equals LCP on both routes and lands after hydration
+(322ms `/`, 236ms `/services`). `/`'s LCP element is `p.cw-sub`, which `ScrollReveal` hides on mount
+(`.cw-js-reveals .cw-sub { opacity: 0 }`, `globals.css:2253`) and fades back in over 0.6s after a 0.15s
+delay once `.is-in` lands. That reveal on the LCP element, and the hero's other load reveals, are the
+remaining untested suspect. Testing it changes approved motion, so it is the operator's call.
+
+Ruling: the §1 hypothesis is refuted by its own gate, so this change is not shipped. The code is kept as
+`.planning/qa/pass-119/splitreveal-after-load.patch` and `components/color-worlds/SplitReveal.tsx` is
+restored to production's version. Parked for the operator: (a) read Vercel Speed Insights field LCP
+before any more lab work, since real first paint is about 0.3s; (b) if the lab score matters, a measured
+experiment that turns off the hero sub and CTA-row load reveal (a motion change); (c) ship the patch
+anyway as a pure JavaScript reduction (about 115KB off `/`'s first load, no measured LCP gain).

@@ -1,0 +1,140 @@
+diff --git a/components/color-worlds/SplitReveal.tsx b/components/color-worlds/SplitReveal.tsx
+index 9c16fcc..146a014 100644
+--- a/components/color-worlds/SplitReveal.tsx
++++ b/components/color-worlds/SplitReveal.tsx
+@@ -5,8 +5,9 @@
+ //
+ // Splits the wrapped text into per-character spans, hides them below
+ // the baseline, then plays a staggered slide-up when the element
+-// enters the viewport. Uses gsap.context (via @gsap/react useGSAP)
+-// for automatic cleanup on unmount.
++// enters the viewport. Cleanup runs through gsap.matchMedia().revert()
++// on unmount.
++// Pass-119: GSAP now loads after load and idle so it cannot delay first paint.
+ //
+ // Why SplitText for SECTION TITLES specifically:
+ //   - The hero already has its own line-slide reveal. Char-reveal there
+@@ -18,15 +19,48 @@
+ // Respects prefers-reduced-motion via gsap.matchMedia.
+ "use client";
+ 
+-import { useRef } from "react";
+-import { useGSAP } from "@gsap/react";
+-import { gsap } from "gsap";
+-import { SplitText } from "gsap/SplitText";
+-import { ScrollTrigger } from "gsap/ScrollTrigger";
++import { useEffect, useRef } from "react";
+ import type { ElementType, ReactNode } from "react";
+ 
+-if (typeof window !== "undefined") {
+-  gsap.registerPlugin(SplitText, ScrollTrigger, useGSAP);
++interface LoadedGsap {
++  gsap: typeof import("gsap").gsap;
++  SplitText: typeof import("gsap/SplitText").SplitText;
++  ScrollTrigger: typeof import("gsap/ScrollTrigger").ScrollTrigger;
++}
++
++let gsapLoaderPromise: Promise<LoadedGsap> | null = null;
++
++function loadGsap(): Promise<LoadedGsap> {
++  if (gsapLoaderPromise) return gsapLoaderPromise;
++
++  gsapLoaderPromise = new Promise<void>((resolve) => {
++    const waitForIdle = () => {
++      if ("requestIdleCallback" in window) {
++        window.requestIdleCallback(() => resolve(), { timeout: 2000 });
++        return;
++      }
++
++      setTimeout(resolve, 1);
++    };
++
++    if (document.readyState === "complete") {
++      waitForIdle();
++    } else {
++      window.addEventListener("load", waitForIdle, { once: true });
++    }
++  }).then(async () => {
++    const [{ gsap }, { SplitText }, { ScrollTrigger }] = await Promise.all([
++      import("gsap"),
++      import("gsap/SplitText"),
++      import("gsap/ScrollTrigger"),
++    ]);
++
++    gsap.registerPlugin(SplitText, ScrollTrigger);
++
++    return { gsap, SplitText, ScrollTrigger };
++  });
++
++  return gsapLoaderPromise;
+ }
+ 
+ interface SplitRevealProps {
+@@ -59,14 +93,28 @@ export function SplitReveal({
+ }: SplitRevealProps) {
+   const containerRef = useRef<HTMLElement | null>(null);
+ 
+-  useGSAP(
+-    () => {
+-      const el = containerRef.current;
+-      if (!el) return;
++  useEffect(() => {
++    let cancelled = false;
++    let mm: gsap.MatchMedia | null = null;
+ 
+-      const mm = gsap.matchMedia();
++    loadGsap().then(({ gsap, SplitText, ScrollTrigger }) => {
++      if (cancelled || !containerRef.current) return;
++
++      const el = containerRef.current;
++      mm = gsap.matchMedia();
+ 
+       mm.add("(prefers-reduced-motion: no-preference)", () => {
++        const startMatch = /^top\s+(\d+(?:\.\d+)?)%$/.exec(start);
++        const triggerPercent = startMatch?.[1];
++
++        if (
++          triggerPercent !== undefined &&
++          el.getBoundingClientRect().top <=
++            (window.innerHeight * Number(triggerPercent)) / 100
++        ) {
++          return;
++        }
++
+         const split = SplitText.create(el, {
+           type: "chars,words",
+           // Wrap each char in an inline-block so transforms work.
+@@ -79,7 +127,7 @@ export function SplitReveal({
+           opacity: 0,
+         });
+ 
+-        gsap.to(split.chars, {
++        const tween = gsap.to(split.chars, {
+           yPercent: 0,
+           opacity: 1,
+           // Shortened from 0.85s to 0.65s per Pass-6 review — fast
+@@ -96,6 +144,7 @@ export function SplitReveal({
+         });
+ 
+         return () => {
++          tween.kill();
+           split.revert();
+         };
+       });
+@@ -104,9 +153,13 @@ export function SplitReveal({
+         // No motion — leave the text as-is, already visible per default
+         // CSS. Nothing to do.
+       });
+-    },
+-    { scope: containerRef },
+-  );
++    });
++
++    return () => {
++      cancelled = true;
++      mm?.revert();
++    };
++  }, [stagger, delay, start]);
+ 
+   return (
+     <Tag

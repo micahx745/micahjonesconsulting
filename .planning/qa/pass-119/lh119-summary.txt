@@ -1,0 +1,21 @@
+before / run 1: performance=89 LCP=3504ms FCP=1958ms TBT=11ms
+before / run 2: performance=90 LCP=3510ms FCP=1809ms TBT=13ms
+before / run 3: performance=89 LCP=3530ms FCP=1959ms TBT=13ms
+before / median: performance=89 LCP=3510ms FCP=1958ms TBT=13ms
+before /services run 1: performance=93 LCP=2944ms FCP=1958ms TBT=18ms
+before /services run 2: performance=93 LCP=2946ms FCP=1959ms TBT=19ms
+before /services run 3: performance=93 LCP=2944ms FCP=1960ms TBT=17ms
+before /services median: performance=93 LCP=2944ms FCP=1959ms TBT=18ms
+after / run 1: performance=89 LCP=3563ms FCP=1808ms TBT=17ms
+after / run 2: performance=91 LCP=3271ms FCP=1958ms TBT=7ms
+after / run 3: performance=89 LCP=3559ms FCP=1956ms TBT=19ms
+after / median: performance=89 LCP=3559ms FCP=1956ms TBT=17ms
+after /services run 1: performance=93 LCP=2945ms FCP=1959ms TBT=19ms
+after /services run 2: performance=93 LCP=2940ms FCP=1961ms TBT=12ms
+after /services run 3: performance=93 LCP=2942ms FCP=1960ms TBT=14ms
+after /services median: performance=93 LCP=2942ms FCP=1960ms TBT=14ms
+FAIL / median LCP after < before: after=3559ms before=3510ms
+PASS / median TBT after <= before + 10: after=17ms before=13ms limit=23ms
+PASS /services median performance within 1 point: after=93 before=93 difference=0
+target / median performance >= 95: NOT MET (89)
+lh119 gate failures: 1
