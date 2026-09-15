@@ -187,3 +187,73 @@ Explicit pathspec after `git diff --cached --name-only` (LESSONS #23):
 Subject: `Pass-118: tuned font fallbacks (Bricolage <SB>%, Hanken <SH>%): the swap keeps every hero line`.
 Body: the tuner's chosen lines, both tables' q1-A and q2-A rows before and after, and the gate lines.
 Do not push.
+
+## 10. Fix-list from the Sol plan review
+
+Source: `.planning/reviews/SOL-118-BRIEF-REVIEW.md` (gpt-5.6-sol, 2026-09-14). Items 10-15 there
+confirmed, from `node_modules/next` source, the premises the fix depends on: `adjustFontFallback:
+false` plus `fallback` drops the generated face in a production build; the §3.2 rescale matches
+`server/font-utils.js`; the `:root:root` override reaches every consumer; nothing depends on the
+generated names; the probe can reproduce the swap on localhost; no standing gate collides. Where
+this section conflicts with an earlier one, it wins.
+
+10.1 (Sol 1) Wording. Every "CLS" in this brief that cites 0.290 or the §5 probe thresholds means
+the probe's all-shift lab estimate from `perf118a-tables.mjs`, not a standards-filtered CLS.
+Reports say "all-shift CLS". The Lighthouse numbers remain Lighthouse CLS.
+
+10.2 (Sol 2) `lib/fonts.ts` also replaces lines 9-11 (the Pitfall A1 comment) with exactly:
+
+```ts
+// IMPORTANT — PITFALL A1 (revised Pass-118, 2026-09-14):
+//   next/font's generated Arial fallbacks (adjustFontFallback: true) wrapped the
+//   hero differently from the real faces, so the swap reflowed it. Bricolage and
+//   Hanken set adjustFontFallback: false and name tuned fallbacks declared in
+//   app/globals.css (size-adjust measured by .planning/exec/fallback118.mjs).
+//   JetBrains Mono keeps the generated fallback.
+```
+
+10.3 (Sol 3) The fallback-metric cause is a hypothesis until the §3.3 bite passes. `bite
+mismatches: 0` stops the pass before any edit.
+
+10.4 (Sol 4) Viewports, exactly: 390x844 (deviceScaleFactor 1, mobile, touch); 412x823
+(deviceScaleFactor 1.75, mobile, touch); 768x1024 (1, desktop); 1440x900 (1, desktop). Scroll is
+0. "First viewport" means `getBoundingClientRect().top < window.innerHeight` in CSS pixels.
+
+10.5 (Sol 5) An element is measured when it has at least one direct child text node with non-empty
+trimmed text, its box is wider and taller than 2px, its computed `visibility` is not `hidden` and
+`display` is not `none`, it is not inside `.sr-only` or `[hidden]`, and its first computed font
+family (quotes stripped) is the face under test. Nested text spans are measured as their own
+elements. Line count: `Range.selectNodeContents(el)`, `getClientRects()` with width > 0.5, count
+distinct `Math.round(top)`. Box height: `getBoundingClientRect().height` rounded to 0.1. The REAL
+state's element list is the membership for that page and width; in search mode the same DOM nodes
+are re-measured. Across page loads (verify, geometry) an element's key is its structural path from
+`body`: tag names with `:nth-of-type(n)` at each step and no class names, since the next/font class
+hashes change between builds.
+
+10.6 (Sol 6) Candidate lifecycle: for each S, create `new FontFace("Cand" + Math.round(S * 100),
+'local("Arial")', { sizeAdjust, ascentOverride, descentOverride, lineGapOverride: "0%" })`, add it
+to `document.fonts`, `await face.load()`, set the variable to that unique family, wait two
+`requestAnimationFrame` ticks, measure, then delete the face from `document.fonts`. If any face's
+status is not `loaded`, print `candidate face failed to load from local Arial` and exit 1. Ties:
+equal longest feasible runs → the run whose midpoint is closest to 100; a midpoint between 0.25 steps
+rounds down; equal best-S counts → fewer mismatches wins, then the S closest to 100.
+
+10.7 (Sol 7) Modes, each running only what it names:
+- default: bite, search for both faces, combined check, and `geometry-before.json` (the REAL state
+  on the current build).
+- `--after`: only the REAL-state dump to `geometry-after.json`.
+- `--compare`: no browser; compares the two geometry files by structural key and prints
+  `geometry diffs: N`.
+- `--verify --label before|after`: fonts blocked against fonts loaded on every route in 10.8, writes
+  `verify-<label>.json`, prints `verify <route> <width> mismatches: N` lines and
+  `verify total mismatches: N`.
+
+10.8 (Sol 8) The variables are global, so swap parity is also checked beyond the two tuned pages.
+Routes for `--verify`: `/`, `/services`, `/packages`, `/about`, `/work`, `/contact`,
+`/work/guardicore`, `/call`, at all four widths. Run `--verify --label before` in §5.1 (current
+build) and `--verify --label after` in §5.3. Gates: `/` and `/services` read 0 mismatches after at
+every width, and no route and width reads more mismatches after than before. The tuned search stays
+on `/` and `/services`.
+
+10.9 (Sol 9) Android is unchanged and parked (§8); the 10.6 load check makes a missing local Arial
+fail loudly on the tuning machine.
