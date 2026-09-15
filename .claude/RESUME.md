@@ -21,9 +21,10 @@ v1 FAILED 4 gates (arrow shrank, ch shrank, mono row wrap). §13-§15 = v2:
 two-face Bricolage 80.75 / Hanken 73.00 (legacy face keeps "0" and arrows),
 v3b DONE + committed 9ebe88f: / all-shift CLS 0.001 (was 0.290), /services 0,
 /call 0.005 (was 0.091), /packages 0.030 (0.028); geometry 0; all gates clean.
-brief §17. Astra look RUNNING (.planning/reviews/ASTRA-118-VERDICT.md). Then
-his push+merge words, then §5.4 on prod. OPEN: stand-in glyphs render mixed
-case in headless capture on prod too (not this pass) - investigate later.
+brief §17. Astra SHIP (ASTRA-118-VERDICT.md). AWAITS his push+merge
+words, then §5.4 on prod. OPEN: stand-in glyphs render mixed
+case in headless capture on prod too (not this pass) - investigate later
+(Astra: severe for readability).
 
 ## Waiting on operator
 Pass-118 deploy · Ordani screens · Stripe playbook-99 off + LIVE Audit
