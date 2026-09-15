@@ -21,8 +21,9 @@ Operator must PULL the main checkout (hooks read its stale brand.json).
 ## Pass-119 LCP (operator 2026-09-15, verbatim: "do the LCP pass")
 Prod: first paint = LCP after all async JS runs (396ms /, 276ms /services);
 home-only cost is GSAP via SplitReveal (5 below-fold titles). Brief
-pass-119-gsap-after-load.md: GSAP after load+idle. Sol plan review RUNNING;
-GLM executes after. LCP<=1.8s sim not claimed (shared framework JS).
+pass-119-gsap-after-load.md: GSAP after load+idle. Sol review folded (§10);
+Sol wrote chunks119/reveal119/lh119-summary; GLM EXECUTING pid 33164 from
+10:37 (log .planning/exec/glm119.log), commits locally, no push. LCP<=1.8s sim not claimed (shared framework JS).
 
 ## Open (mine)
 Stand-in glyphs render mixed case in headless fonts-blocked captures, prod
