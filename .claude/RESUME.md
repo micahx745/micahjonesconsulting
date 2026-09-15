@@ -18,6 +18,12 @@ home devtools CLS 0.001 (0.182), perf 82-83 (71-72); simulate 94/94/93
 (89/88/94); /services 97. LCP NOT improved (home 3.1s sim): next perf pass.
 Operator must PULL the main checkout (hooks read its stale brand.json).
 
+## Pass-119 LCP (operator 2026-09-15, verbatim: "do the LCP pass")
+Prod: first paint = LCP after all async JS runs (396ms /, 276ms /services);
+home-only cost is GSAP via SplitReveal (5 below-fold titles). Brief
+pass-119-gsap-after-load.md: GSAP after load+idle. Sol plan review RUNNING;
+GLM executes after. LCP<=1.8s sim not claimed (shared framework JS).
+
 ## Open (mine)
 Stand-in glyphs render mixed case in headless fonts-blocked captures, prod
 too (Astra: severe for readability): check in a real browser, own pass.
