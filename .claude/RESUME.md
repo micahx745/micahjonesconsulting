@@ -17,7 +17,9 @@ Bricolage 78.5-83.5 -> 81.00; Hanken plateau 74.5-76 -> 75.25; next/font's
 101/105% were 25-30% too wide. Two ch widths -> em (fit 19.04em, sv-open body
 25.76em, Hanken 0 = 0.56em). Brief §11-§12. Edits in lib/fonts.ts +
 app/globals.css; static PASS, build+tsc PASS, served CSS carries tuned stack.
-AFTER-GATES RUNNING (log .planning/exec/after118.log; server 3200). Gates:
+v1 FAILED 4 gates (arrow shrank, ch shrank, mono row wrap); §13 = v2 (Courier
+mono fallback, two-face Bricolage/Hanken, whole-element tuner). v2 search +
+prod before-baselines RUNNING (log .planning/exec/v2chain118.log). Gates:
 verify / and /services 0 at all widths, no route > before (total 95 before);
 geometry diffs 0; probe q1-A/q2-A all-shift CLS <= 0.05 every load; type117,
 render, axe, layout, card1 clean. Then commit, Astra look, his deploy words.
