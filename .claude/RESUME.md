@@ -11,11 +11,13 @@ chains in the main session's background.
 Pass-118 fallbacks live (/ CLS 0.001, was 0.290). Revert: Vercel promote
 dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. Operator must PULL the main checkout.
 
-## NOW: Pass-120 /work, DIRECT, waiting on Micah's rulings
-Look done on prod 2026-09-15: captures + text in .planning/qa/pass-120
-(script .planning/exec/capture120.mjs). Presented page, findings, 4
-directions (rec: B, engagements + exits ledger), questions. No site edits
-until he rules; then .claude/briefs/pass-120-work-page.md.
+## NOW: Pass-120 /work + /work/[slug], DIRECT (brainstorming, no edits)
+Micah 2026-09-15 goal, verbatim gist: "1. Each story is compelling, enticing
+... Great SEO (after this ... a blogs page) ... unnamed work stories need to
+be amped up ... i did alot of work for those jobs" "2. Design of the overall
+page and ... individual pages (all same design)". Scope now = index + all
+six study pages. Look on prod: .planning/qa/pass-120. Asking him one
+question at a time; then design doc, then brief pass-120.
 Prod ledger findings: /work Neuton meta renders "Helped launch · 2025" (the
 09-12 NEVER; card1 gate checks home only). Unledgered: Ordani "sole
 engineer", RFP "government included" + "inside six months", "Five months".
