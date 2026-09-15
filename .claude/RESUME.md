@@ -19,11 +19,11 @@ Bricolage 78.5-83.5 -> 81.00; Hanken plateau 74.5-76 -> 75.25; next/font's
 app/globals.css; static PASS, build+tsc PASS, served CSS carries tuned stack.
 v1 FAILED 4 gates (arrow shrank, ch shrank, mono row wrap). §13-§15 = v2:
 two-face Bricolage 80.75 / Hanken 73.00 (legacy face keeps "0" and arrows),
-BUILT: verify 95 (prod 463), geometry diffs 0; probe/gates finishing. His
-ruling "go with 1": brand.json typography corrected to live fonts (§16).
-Hook still reads the MAIN checkout's brand.json (behind), so the Courier New
-mono face was appended by shell (disclosed). v3 = v2 + mono: rebuild + all
-§5.3 gates NEXT, then commit, Astra, his deploy words.
+v3b DONE + committed 9ebe88f: / all-shift CLS 0.001 (was 0.290), /services 0,
+/call 0.005 (was 0.091), /packages 0.030 (0.028); geometry 0; all gates clean.
+brief §17. Astra look RUNNING (.planning/reviews/ASTRA-118-VERDICT.md). Then
+his push+merge words, then §5.4 on prod. OPEN: stand-in glyphs render mixed
+case in headless capture on prod too (not this pass) - investigate later.
 
 ## Waiting on operator
 Pass-118 deploy · Ordani screens · Stripe playbook-99 off + LIVE Audit
@@ -35,4 +35,5 @@ push to main auto-deploys · pathspec commits (#23) · never reinterpret an
 expect (#25) · measure the render (#26) · scope gates from layout (#28) · lab
 CLS counts hadRecentInput shifts (#29) · probe overwrites 118a probe.json:
 git checkout it · never run build and server start in parallel · the copy
-and motion hooks scan briefs and docs too (banned words, cursor phrases).
+and motion hooks scan briefs and docs too (banned words, cursor phrases) · Git Bash converts /path in env vars too: export
+MSYS_NO_PATHCONV=1 · gate a tables step on the probe exit code (stale reads).

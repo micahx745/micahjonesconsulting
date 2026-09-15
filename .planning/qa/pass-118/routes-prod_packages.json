@@ -1,0 +1,752 @@
+{
+  "base": "https://www.micahjonesconsulting.com",
+  "startedAt": "2026-09-15T16:10:33.900Z",
+  "conditions": {
+    "q2-A": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1719.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 2136.8,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1832,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 2188.3000000000466,
+        "fontsTime": 2153.9000000000233
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1708.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 2001.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1696,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 2164.70000000007,
+        "fontsTime": 2133.600000000093
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1672.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 2021.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1648,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 2188.1999999999534,
+        "fontsTime": 2155.5
+      }
+    ],
+    "q2-B": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1324,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 1477.3000000000466,
+        "fontsTime": 1325.5999999999767
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1404,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 1569.2999999999302,
+        "fontsTime": 1403.5
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1348,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 1497.6000000000931,
+        "fontsTime": 1337.7000000000698
+      }
+    ],
+    "q2-C": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1046.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 1237.3,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1038.2,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1034.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 1242.3,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1026.6,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1033.3,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 1250,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1040.2,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      }
+    ],
+    "q2-D": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1731.7,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 2102.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1728,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 2266.0999999999767,
+        "fontsTime": 2232.9000000000233
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1620.7,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 2003.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1616,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 2170.5,
+        "fontsTime": 2138.6999999999534
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.027053290432477874,
+            "time": 1644.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "article.cw-pkg-hero",
+                "previousRect": {
+                  "x": 20,
+                  "y": 478.5,
+                  "width": 372,
+                  "height": 344.5
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 427.5,
+                  "width": 372,
+                  "height": 395.5
+                },
+                "dy": -51,
+                "dh": 51
+              },
+              {
+                "nodeName": "span.cw-pkg__tag",
+                "previousRect": {
+                  "x": 44,
+                  "y": 469.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "currentRect": {
+                  "x": 44,
+                  "y": 418.5,
+                  "width": 120.890625,
+                  "height": 23
+                },
+                "dy": -51,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 2017.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1640,
+          "size": 65450,
+          "nodeName": "p.cw-services__intro"
+        },
+        "classTime": 2182.20000000007,
+        "fontsTime": 2147.5
+      }
+    ]
+  }
+}

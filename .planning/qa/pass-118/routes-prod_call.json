@@ -1,0 +1,1742 @@
+{
+  "base": "https://www.micahjonesconsulting.com",
+  "startedAt": "2026-09-15T16:13:39.614Z",
+  "conditions": {
+    "q2-A": [
+      {
+        "load": 1,
+        "cls": 0.028059,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 1703.7,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02805896266090132,
+            "time": 2292.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1824,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 2345.6999999999534,
+        "fontsTime": 2308.0999999999767
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 1556.1,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02805896266090132,
+            "time": 2116.7,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1560,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 2167.5999999999767,
+        "fontsTime": 2133
+      },
+      {
+        "load": 3,
+        "cls": 0.028059,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 1544.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02805896266090132,
+            "time": 2134,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1544,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 2185.5,
+        "fontsTime": 2151.9000000000233
+      }
+    ],
+    "q2-B": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1288,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 1481.4000000000233,
+        "fontsTime": 1289.1999999999534
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1292,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 1483.0999999999767,
+        "fontsTime": 1284.4000000000233
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1332,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 1488.5,
+        "fontsTime": 1313.1999999999534
+      }
+    ],
+    "q2-C": [
+      {
+        "load": 1,
+        "cls": 0.090597,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 983.9,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02750435707408585,
+            "time": 1214.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 571.984375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -35.359,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 1277.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 986.2,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 2,
+        "cls": 0.090597,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 943.4,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02750435707408585,
+            "time": 1180.5,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 571.984375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -35.359,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 1238.9,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 945.3,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 3,
+        "cls": 0.090597,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 960.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02750435707408585,
+            "time": 1174.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 571.984375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -35.359,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.0005052908994176398,
+            "time": 1254.3,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 979.9,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      }
+    ],
+    "q2-D": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 1556.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02805896266090132,
+            "time": 2111.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1560,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 2165.1999999999534,
+        "fontsTime": 2126.6999999999534
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 1552.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02805896266090132,
+            "time": 2138.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1556,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 2188.3000000000466,
+        "fontsTime": 2154.1999999999534
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.06258721861579164,
+            "time": 1594.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 563.0625,
+                  "width": 372,
+                  "height": 259.9375
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -75.094,
+                "dh": -3.812
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 18,
+                  "y": 372.078125,
+                  "width": 374,
+                  "height": 142.984375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -25.5,
+                "dh": -49.594
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "dy": 792.094,
+                "dh": 30.906
+              },
+              {
+                "nodeName": "dt",
+                "previousRect": {
+                  "x": 19,
+                  "y": 682.4375,
+                  "width": 91,
+                  "height": 46.375
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 607.34375,
+                  "width": 91,
+                  "height": 23.1875
+                },
+                "dy": -75.094,
+                "dh": -23.187
+              }
+            ]
+          },
+          {
+            "value": 0.02805896266090132,
+            "time": 2168.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "dl.cw-bk__terms",
+                "previousRect": {
+                  "x": 20,
+                  "y": 487.96875,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 452.609375,
+                  "width": 373,
+                  "height": 256.125
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__leave",
+                "previousRect": {
+                  "x": 19,
+                  "y": 346.578125,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 311.21875,
+                  "width": 373,
+                  "height": 93.390625
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-bk__dek",
+                "previousRect": {
+                  "x": 19,
+                  "y": 250.078125,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 214.71875,
+                  "width": 373,
+                  "height": 76.5
+                },
+                "dy": -35.359,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-bk__form",
+                "previousRect": {
+                  "x": 20,
+                  "y": 792.09375,
+                  "width": 372,
+                  "height": 30.90625
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 756.734375,
+                  "width": 372,
+                  "height": 66.265625
+                },
+                "dy": -35.359,
+                "dh": 35.359
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1596,
+          "size": 44520,
+          "nodeName": "p.cw-bk__leave"
+        },
+        "classTime": 2220.4000000000233,
+        "fontsTime": 2184.600000000093
+      }
+    ]
+  }
+}
