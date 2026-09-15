@@ -29,21 +29,20 @@ Prod ledger findings: /work Neuton meta renders "Helped launch · 2025" (the
 09-12 NEVER; card1 gate checks home only). Unledgered: Ordani "sole
 engineer", RFP "government included" + "inside six months", "Five months".
 
-## Pass-119 LCP: PARKED ("lets park this for later")
-Patch in .planning/qa/pass-119; waits on Speed Insights p75 for / and
-/services (<2.5s closes it). Brief §11.
+## Pass-119 LCP: PARKED. Patch .planning/qa/pass-119; waits on his Speed
+Insights p75 for / and /services (<2.5s closes it). Brief §11.
 
 ## Open (mine)
 Stand-in glyphs mixed case in headless captures: check in a real browser.
 117 §8: mono links home/404, spring CTA on home hero.
 
 ## Waiting on operator
-/work rulings · Speed Insights p75 · Ordani screens · Stripe playbook-99 off
-+ LIVE Audit description · 500 dollar live test · A4/S3 text · §9a.
+/work story facts + rulings · Speed Insights p75 · Ordani screens · Stripe
+playbook-99 off + LIVE Audit copy · 500 dollar live test · A4/S3 · §9a.
 
 ## Traps
-push to main auto-deploys · pathspec commits (#23) · never reinterpret an
-expect (#25) · measure the render (#26) · scope gates from layout (#28) · lab
-CLS counts hadRecentInput shifts (#29) · probe overwrites 118a probe.json ·
-never build while serving · export MSYS_NO_PATHCONV=1 (env vars too) · gate
-table steps on probe exit codes · hooks read the MAIN checkout's brand.json.
+push to main deploys · pathspec commits (#23) · never reinterpret an expect
+(#25) · measure the render (#26) · scope gates from layout (#28) · lab CLS
+counts hadRecentInput (#29) · probe overwrites 118a probe.json · never build
+while serving · MSYS_NO_PATHCONV=1 · gate steps on probe exit codes · hooks
+read the MAIN checkout's brand.json.

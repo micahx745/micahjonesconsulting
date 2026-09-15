@@ -138,6 +138,12 @@ const PHRASES = [
   "Hennessy",
   "foreign company",
   "foreign AI company",
+  // Pass-120 (operator 2026-09-15): the content engine's client is described
+  // as a social activist, and the operator ruled out one wording by name:
+  // "the content one will be a social acitivit (do not want to say anti
+  // racism)". Both spellings.
+  "anti-racism",
+  "anti racism",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);

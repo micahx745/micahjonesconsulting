@@ -274,6 +274,21 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   (the retainer fact still appears once, in the Approach section). A ledger fact being
   confirmed is not the same as it being publishable — this row is the standing example.
 
+- **TWO CLIENTS, NOT ONE — operator 2026-09-15**, verbatim: "well i want to split it up since
+  its two separate contracts. the content one will be a social acitivit (do not want to say anti
+  racism) and the other one can stay with a award winning author/ Leadership consultant also for
+  gov and corps". This SUPERSEDES the 2026-09-03 row above that records the RFP engine and the
+  content engine as the same person, and the Pass-60 framing of one engagement split in two.
+  PUBLIC DESCRIPTORS, both still anonymous: the RFP engine's client is **an award-winning author
+  and leadership consultant who teaches government bodies and corporations**; the content
+  engine's client is **a social activist**. DERIVED VALUES that move with it: the two live
+  cross-link sentences ("The same engagement also produced...") in `content/work/rfp-engine.mdx`
+  and `content/work/content-engine.mdx` are now FALSE and come out; the reach figures (8K→290K,
+  36×, eight platforms) belong to the activist; the $3M, the doubled close rate and the retainer
+  rows belong to the consultant; every ledger row above that bundles them describes two
+  engagements. NEVER: "anti-racism" or "anti racism" on any surface (same instruction), and
+  never a descriptor from which a reader can name either client — Astra's 2026-09-15 read found
+  the two studies identified one client jointly, which splitting does not by itself cure.
 - HIPAA: Ordani is **HIPAA-compliant** (operator confirmation 2026-08-31: "HIPAA compliant is
   true", ruling on the app). "HIPAA-grade" was the pre-confirmation hedge; swept to
   "HIPAA-compliant" everywhere (site + playbook chapter) same day. NEVER revert to "-grade".
