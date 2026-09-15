@@ -13,7 +13,10 @@ Pass-118 tuned font fallbacks, verified on prod: / all-shift CLS 0.001 x10
 Revert: Vercel promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. Operator must PULL
 the main checkout (hooks read its stale brand.json).
 
-## Pass-119 LCP (operator 2026-09-15: "do the LCP pass") — NOT SHIPPED
+## NEXT: the /work page (Micah 2026-09-15: "The next thing i want to work on is the
+work page"). New chat boots from .planning/handoff/NEXT-SESSION-KICKOFF.md §7.
+
+## Pass-119 LCP — PARKED by Micah 2026-09-15 ("lets park this for later")
 GSAP-after-load works (0 initial GSAP chunks, reveals R1-R4 PASS, gates clean)
 but / LCP sim 3510 -> 3559ms (gate FAIL); hero image or fonts blocked: no
 change. Patch kept in .planning/qa/pass-119; SplitReveal restored. First paint
@@ -29,7 +32,7 @@ Astra: severe): check in a real browser. 117 §8: mono links home/404,
 spring CTA on home hero.
 
 ## Waiting on operator
-Speed Insights p75 LCP/INP/CLS for / and /services · Ordani screens · Stripe playbook-99 off + LIVE Audit
+Speed Insights p75 (parked 119) · Ordani screens · Stripe playbook-99 off + LIVE Audit
 description · 500 dollar live test · A4/S3 text · §9a.
 
 ## Traps
