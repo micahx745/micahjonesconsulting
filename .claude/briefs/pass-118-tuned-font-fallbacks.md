@@ -257,3 +257,17 @@ on `/` and `/services`.
 
 10.9 (Sol 9) Android is unchanged and parked (§8); the 10.6 load check makes a missing local Arial
 fail loudly on the tuning machine.
+
+## 11. Judge ruling after the first tuner run (2026-09-14): the sweep floor was wrong
+
+First run on the local before-build: `bite mismatches: 4` (the tuner sees the reflow);
+`Bricolage feasible runs: 80.00-83.50 chosen: 81.75`; `Hanken feasible: none; best S=80.00 with
+15 mismatches`, every mismatch a candidate taking MORE lines than the real face. Both results sit
+on the sweep's lower bound. Direct measurement (`.planning/exec/ratio118.mjs`, text width in the
+real face against Arial at the same size, weight, spacing and case) gives the width-parity
+size-adjust: Hanken 72.26-76.77% (sub line 74.65%, list items 75.57-76.77%, /services opening
+72.26%); Bricolage 72.78-86.21% (optical sizing narrows large text: hero 72.78-78.53%, names and
+buttons 79.43-86.21%). next/font's generated 100.94% and 105.43% are 25-30% too wide for these
+faces. So §3.3's range becomes S from 60.00 to 115.00 in 0.25 steps for both faces; nothing else
+changes. The `ch` hypothesis was checked and rejected: `.cw-sub` is capped at 620px and the box list
+items have no `ch` width, yet both mismatched.

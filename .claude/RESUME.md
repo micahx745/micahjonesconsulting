@@ -23,7 +23,11 @@ DONE, Sol-checked (round 2): web-font arrivals in steps (home CLS 0.290
 all loads, 0 fonts blocked; survives JS off + reduced motion); reveal does
 not hold LCP; count-up untested; fonts ~0.23s, JS 0.25-0.57s. LESSONS #29.
 Operator 2026-09-14, verbatim: "go with 1" (tuned fallbacks). Brief
-pass-118-tuned-font-fallbacks.md written; Sol plan review RUNNING.
+pass-118-tuned-font-fallbacks.md + §10 (Sol review folded). Sol wrote
+fallback118.mjs. Local before: all-shift CLS 0.290 5/5, 0 fonts blocked.
+Run 1: bite 4 OK; Bricolage 80-83.5 (floor-pinned); Hanken none. Measured
+parity: Hanken 72-77%, Bricolage 73-86% (next/font 101/105% is 25-30% wide).
+Brief §11: sweep 60-115; rerun RUNNING. verify-before total 95 (8 routes).
 
 ## Waiting on operator
 Ordani screens · Stripe playbook-99 off + LIVE Audit
