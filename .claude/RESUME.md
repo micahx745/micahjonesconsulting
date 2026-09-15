@@ -17,7 +17,9 @@ checkout is behind again (he pulls). HandUnderline UNVERIFIED (unmounted).
 
 ## Speed (measured 09-14, Lighthouse mobile prod)
 / 89 (LCP 3050, CLS 0.145 from h1.cw-h1.cw-shift 2 of 3); /services 97
-(LCP 2563). Brief pass-118a-perf-diagnosis.md READY, measure only, idle box.
+(LCP 2563). Brief pass-118a-perf-diagnosis.md (§8 amendment: CDP timeline).
+RUNNING, operator 2026-09-14 verbatim: "run that on claude and chatgpt -".
+Sol writes perf118a.mjs -> Sonnet runs it + LH devtools -> Sol reads numbers.
 
 ## Waiting on operator
 Ordani screens · Stripe playbook-99 off + LIVE Audit

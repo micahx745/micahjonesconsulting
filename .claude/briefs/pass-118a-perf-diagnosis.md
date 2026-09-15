@@ -92,6 +92,30 @@ pathspec after `git diff --cached --name-only` (LESSONS #23):
 `git commit -F <msg> -- .planning/exec/perf118a.mjs .planning/reviews/PERF-118A-FINDINGS.md .planning/qa/pass-118a/probe.json`
 Subject: `Pass-118a: speed diagnosis on / and /services (measure only)`. Do not push.
 
+## 8. Amendment before execution (ruling tier, 2026-09-14). Overrides §2 and §3 where they conflict
+
+Operator 2026-09-14, verbatim: "run that on claude and chatgpt -". Split: Sol (gpt-5.6-sol) writes
+`.planning/exec/perf118a.mjs`; a Sonnet leg runs it and the Lighthouse runs; Sol then reads the
+numbers independently (`.planning/reviews/SOL-118A-READ.md`); the ruling tier reconciles.
+
+8.1 Condition C (JavaScript off) cannot use a page-side `PerformanceObserver`: with scripts
+disabled it never runs. Every condition reads layout shifts and LCP from the Chrome DevTools
+Protocol instead: switch on the `PerformanceTimeline` domain for the event types `layout-shift`
+and `largest-contentful-paint`, and listen for `PerformanceTimeline.timelineEventAdded`
+(`layoutShiftDetails.value`, `hadRecentInput`, `sources[].previousRect/currentRect/nodeId`;
+`lcpDetails.renderTime`, `loadTime`, `size`, `nodeId`). Resolve each `nodeId` (a backend node id)
+with `DOM.describeNode({ backendNodeId })` into `tag#id.class1.class2`. Times are reported in ms
+since the navigation's own start (for C, since the moment `page.goto` was called).
+8.2 The root-class mutation time and `document.fonts` loadingdone come from page script, so they
+are recorded for A, B and D and written `"not reported"` for C.
+8.3 Q1 loads record LCP as well as CLS, so Q2's `/` rows reuse the Q1 loads; Q2 adds 5 loads per
+condition on `/services` only.
+8.4 The script prints one progress line per load (`q1 A 3/10 cls=0.000 lcp=1234`) so a stalled
+run is visible, and writes `.planning/qa/pass-118a/probe.json` at the end of each condition, not
+only at the end.
+8.5 Flags: `--bite` (§3 only), `--q1`, `--q2`, `--loads N` (overrides the per-question count),
+`--base URL` (default `https://www.micahjonesconsulting.com`).
+
 ## 7. Parked operator decisions
 
 - Field data: Vercel Speed Insights shows real-visitor LCP and CLS for these pages. Only the
