@@ -1,0 +1,4 @@
+bite load 1: cls=0.243 top-source=header#top.cw-hero.cw-hero--photo
+bite load 2: cls=0.243 top-source=header#top.cw-hero.cw-hero--photo
+bite load 3: cls=0.243 top-source=header#top.cw-hero.cw-hero--photo
+bite: PASS

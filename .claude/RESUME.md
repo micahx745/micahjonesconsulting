@@ -19,7 +19,9 @@ checkout is behind again (he pulls). HandUnderline UNVERIFIED (unmounted).
 / 89 (LCP 3050, CLS 0.145 from h1.cw-h1.cw-shift 2 of 3); /services 97
 (LCP 2563). Brief pass-118a-perf-diagnosis.md (§8 amendment: CDP timeline).
 RUNNING, operator 2026-09-14 verbatim: "run that on claude and chatgpt -".
-Sol writes perf118a.mjs -> Sonnet runs it + LH devtools -> Sol reads numbers.
+Sol wrote perf118a.mjs (bite PASS: cls 0.243 x3); probe q1+q2 then LH
+devtools x6 RUNNING in background (log .planning/exec/perf118a-run.log);
+next: Sonnet compiles tables, Sol reads numbers, Opus rules mechanism.
 
 ## Waiting on operator
 Ordani screens · Stripe playbook-99 off + LIVE Audit
