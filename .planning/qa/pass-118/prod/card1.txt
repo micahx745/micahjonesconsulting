@@ -1,0 +1,44 @@
+== https://www.micahjonesconsulting.com
+  PASS dpl id is new: got dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23
+  PASS status /: got 200
+  PASS status /work: got 200
+  PASS status /work/postmates: got 200
+  PASS status /work/neuton: got 200
+  PASS status /llms.txt: got 200
+  PASS Hennessy anywhere: got 0
+  PASS foreign on neuton+work+llms: got 0
+  PASS led to on neuton: got 0
+  PASS postmates fraud line: got 2
+  PASS removed fraud sentence: got 0
+  PASS new neuton line: got 2
+  PASS neuton row tag: got 1
+  PASS old neuton tag: got 0
+  PASS postmates 2.65B: got 3
+  PASS rec sr-only text: got 1
+  PASS tick SSR renders $20M+: got 1
+  PASS loop variant 3 path in SSR: got 1
+  PASS css padding-block .184em: got 1
+  PASS css margin-left .26em: got 1
+== https://micahjonesconsulting.vercel.app
+  PASS dpl id is new: got dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23
+  PASS status /: got 200
+  PASS status /work: got 200
+  PASS status /work/postmates: got 200
+  PASS status /work/neuton: got 200
+  PASS status /llms.txt: got 200
+  PASS Hennessy anywhere: got 0
+  PASS foreign on neuton+work+llms: got 0
+  PASS led to on neuton: got 0
+  PASS postmates fraud line: got 2
+  PASS removed fraud sentence: got 0
+  PASS new neuton line: got 2
+  PASS neuton row tag: got 1
+  PASS old neuton tag: got 0
+  PASS postmates 2.65B: got 3
+  PASS rec sr-only text: got 1
+  PASS tick SSR renders $20M+: got 1
+  PASS loop variant 3 path in SSR: got 1
+  PASS css padding-block .184em: got 1
+  PASS css margin-left .26em: got 1
+  PASS both domains same deployment: got dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23 vs dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23
+card1 failures: 0

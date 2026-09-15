@@ -1046,3 +1046,46 @@ why two tools disagree cites the raw events.
 **The gate.** `.planning/exec/perf118a-tables.mjs` counts every shift, prints the flagged count,
 and uses a conventional median. Findings are checked by a second vendor's read of the raw data
 before a ruling (`.planning/reviews/SOL-118A-READ.md`).
+
+## #30 — A fallback tuned for letters also resized every glyph and every ch box it serves (2026-09-14)
+
+**What happened.** Pass-118 v1 narrowed the Bricolage and Hanken fallbacks (Arial at 81% and
+75.25%) to match the real faces' letter widths. It cut `/services` layout shift from 0.037 to 0.001
+and failed four gates. The "→" after the `/services` proof link was 5.38px narrower with fonts
+loaded, because U+2192 is outside every real face's `unicode-range` and always renders in the
+fallback. `/call` wrapped a new line during the swap, because `ch` resolves from the "0" of the face
+that renders it (0.561em in next/font's fallback, 0.560em in Hanken, 0.418em in v1). And the home
+shift stayed at 0.146: the JetBrains Mono fallback, which the brief had excluded on a 0.001 reading,
+was 32% too wide and pushed a link onto its own row. The tuner could not see that, because it
+measured text line counts and a flex row changing height is not a line count.
+
+**Root cause.** A fallback face is not only the stand-in for letters. It also renders every
+character the web font lacks and sets the length of `ch`, so changing its metrics changes glyphs and
+boxes that never swap. The exclusion of a face was ruled from a source reading instead of from what
+moved.
+
+**The rule.** A tuned fallback is two faces under one family: the first keeps the generated metrics
+for every character, the second carries the tuned metrics on the real face's served ranges minus
+U+0030. A monospace face falls back to a monospace font with the same advance. A swap check measures
+every on-screen element's position, not only text lines, and fonts-loaded geometry must not move.
+
+**The gate.** `.planning/exec/fallback118.mjs --compare` (fonts-loaded geometry, strict) and
+`--verify` (fonts blocked against loaded, whole-element), both run before and after, plus the
+probe. Production 2026-09-15: home layout shift 0.001 on 10 of 10 loads (was 0.290).
+
+## #31 — Three harness traps from the Pass-118 runs (2026-09-14 and 15)
+
+**What happened.** (1) `motion-discipline.sh` kept blocking the operator-approved mono fallback
+after `.claude/brand.json` was corrected, because it resolves brand.json from the session's project
+directory, the main checkout, which was behind origin. (2) A route probe ran as
+`P118PATH=/packages node ...` and Git Bash rewrote the variable to `C:/Program Files/Git/packages`,
+so every load failed. (3) The same chain then printed tables from the committed probe file the
+failed run never replaced, which read as a result until the exit codes were checked.
+
+**The rule.** A hook that reads project config reads the main checkout's copy; a config fix made in
+a worktree does not reach it until main carries it and the checkout pulls, and any write made around
+the hook in the meantime is disclosed in the commit. Git Bash chains export `MSYS_NO_PATHCONV=1`
+before any `/path` value, including environment variables. A step that reads a probe's output runs
+only when that probe exited 0.
+
+**The gate.** The three trap lines in `.claude/RESUME.md`, and the route chain's `rc` check.

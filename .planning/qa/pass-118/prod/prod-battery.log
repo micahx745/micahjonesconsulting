@@ -1,0 +1,14 @@
+https://www.micahjonesconsulting.com css: tuned-B 4 tuned-H 4 tuned-M 4 generated 0
+type117 https://www.micahjonesconsulting.com exit 0 type117 failures: 0
+https://micahjonesconsulting.vercel.app css: tuned-B 4 tuned-H 4 tuned-M 4 generated 0
+type117 https://micahjonesconsulting.vercel.app exit 0 type117 failures: 0
+card1 exit 0   PASS dpl id is new: got dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23   PASS dpl id is new: got dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23  card1 failures: 0
+apex: 200 at https://www.micahjonesconsulting.com/services after 1 redirect(s)
+probe exit 0
+ q1-A | 10 | 0.001 / 0.001 / 0.001 | 0 | 20 | 2312 
+ q2-A | 5 | 0.000 / 0.000 / 0.000 | 0 | 5 | 1668 
+LH home devtools: 82/LCP 3412/CLS 0.001 | 83/LCP 3395/CLS 0.001 | 82/LCP 3388/CLS 0.001
+LH home simulate: 94/LCP 3121/CLS 0.000 | 94/LCP 3047/CLS 0.000 | 93/LCP 3198/CLS 0.000
+LH services devtools: 92/LCP 2705/CLS 0.000 | 91/LCP 2747/CLS 0.000 | 92/LCP 2723/CLS 0.000
+LH services simulate: 97/LCP 2560/CLS 0.000 | 97/LCP 2562/CLS 0.000 | 97/LCP 2561/CLS 0.000
+CHAIN-DONE
