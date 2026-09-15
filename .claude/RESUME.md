@@ -18,8 +18,10 @@ GSAP-after-load works (0 initial GSAP chunks, reveals R1-R4 PASS, gates clean)
 but / LCP sim 3510 -> 3559ms (gate FAIL); hero image or fonts blocked: no
 change. Patch kept in .planning/qa/pass-119; SplitReveal restored. First paint
 = LCP after hydration on both routes; suspect: ScrollReveal hides the LCP
-element p.cw-sub then fades it in (motion). ASKED HIM: field data / reveal
-experiment / ship patch as JS cut. Brief §11.
+element p.cw-sub then fades it in (motion). HIS RULING 2026-09-15: "1" = field data
+first. Not reachable here: PSI keyless 429 quota, Vercel Web Analytics API 404,
+no Speed Insights tool. He reads Vercel > Speed Insights p75 (mobile) for /
+and /services; <2.5s LCP = close Pass-119. Brief §11.
 
 ## Open (mine)
 Stand-in glyphs mixed case in headless fonts-blocked captures (prod too;
@@ -27,8 +29,8 @@ Astra: severe): check in a real browser. 117 §8: mono links home/404,
 spring CTA on home hero.
 
 ## Waiting on operator
-Pass-119 direction · Ordani screens · Stripe playbook-99 off + LIVE Audit
-description · 500 dollar live test · A4/S3 text · §9a · Speed Insights.
+Speed Insights p75 LCP/INP/CLS for / and /services · Ordani screens · Stripe playbook-99 off + LIVE Audit
+description · 500 dollar live test · A4/S3 text · §9a.
 
 ## Traps
 push to main auto-deploys · pathspec commits (#23) · never reinterpret an
