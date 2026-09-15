@@ -140,3 +140,51 @@ shows a visible difference. Deploy on the operator's words, then production Ligh
 - LCP <= 1800ms in the simulated run needs work on the framework bundle both routes share (client
   components in the layouts, the view-transition runtime). Each option changes design, motion or
   architecture. Field LCP from Vercel Speed Insights is the better arbiter of whether it is worth it.
+
+## 10. Fix-list from the Sol plan review (overrides earlier sections where they conflict)
+
+Source: `.planning/reviews/SOL-119-BRIEF-REVIEW.md` (gpt-5.6-sol, 2026-09-15). Items 7-13 confirmed:
+removing the static imports takes GSAP out of `/`'s initial graph (TitleCard is imported only by
+the theater route); the dynamic paths and named exports are valid for gsap 3.15.0; SplitText ships
+in the standard package; the quarantine gate allows dynamic imports in `SplitReveal.tsx`;
+`top <= innerHeight * N / 100` matches ScrollTrigger's `top N%` crossing and no home title starts in
+the first viewport; killing the tween then `split.revert()` is complete and Strict-Mode safe; the
+local before and after runs are comparable to each other.
+
+10.1 (Sol 1) Reduced motion stays live, as today. The loader runs for every visitor after `load` and
+idle, with no `.matches` early return. Once loaded, the effect uses `gsap.matchMedia()` exactly as
+today: the `(prefers-reduced-motion: no-preference)` branch runs the already-passed check, then the
+unchanged split, set and to, and returns the cleanup; the `(prefers-reduced-motion: reduce)` branch is
+empty. Unmount calls `mm.revert()` (it reverts the split and kills the tween). A preference change
+after mount therefore behaves as it does today.
+
+10.2 (Sol 2) R1, exactly: record every network response from navigation start with puppeteer's
+`response` event; a response is GSAP when its URL ends in `.js` (query ignored) and its body
+(`await response.text()`) contains `GreenSock`. Record `load` as `performance.timing.loadEventEnd`
+relative to `navigationStart`, and each response's arrival time on the same clock. R1 passes when no
+GSAP response arrives before `loadEventEnd` and at least one arrives within 5000ms after it. On the
+5.1 baseline R1 is expected to FAIL (GSAP arrives before load); record that.
+
+10.3 (Sol 3) R2, exactly: 1500ms after a title is scrolled with `scrollIntoView({ block: "center" })`,
+every `.cw-split__char` inside it has computed `opacity` equal to `"1"` and a computed `transform` that
+is `none` or a matrix whose translation `m42` is within 0.5 of 0 (`new DOMMatrixReadOnly(transform)`).
+
+10.4 (Sol 4) `reveal119.mjs` setup: viewport 1440x900, deviceScaleFactor 1, not mobile, one fresh
+browser context per check. R1, R2 and R4 emulate `prefers-reduced-motion: no-preference`; R3 emulates
+`reduce`. R4 installs, with `evaluateOnNewDocument`, a `DOMContentLoaded` listener that calls
+`window.scrollTo(0, document.documentElement.scrollHeight)`, then waits 4000ms after `load`; every home
+title whose `getBoundingClientRect().bottom < 0` has zero `.cw-split__char`. The five titles are the
+elements with ids `cw-offer-title`, `cw-howiwork-title`, `cw-products-title`, `cw-ordani-title`,
+`cw-build-title`. Print `PASS` or `FAIL` per check with its numbers and `reveal119 failures: N`; exit 1
+when N > 0.
+
+10.5 (Sol 5) "`/` median performance >= 95" is a target to report, not a gate. The gates are: `/`
+median LCP after lower than before; `/` median TBT after no higher than before plus 10ms; `/services`
+median performance after within 1 point of before.
+
+10.6 (Sol 6) Lighthouse, as run (Git Bash), for LABEL `before` in 5.1 and `after` in 5.3:
+`mkdir -p .planning/exec/lh119 && for r in home services; do u=http://localhost:3200/; [ $r = services ] && u=http://localhost:3200/services; for i in 1 2 3; do node C:/tmp/p101tools/node_modules/lighthouse/cli/index.js "$u" --only-categories=performance --output=json --output-path=".planning/exec/lh119/LABEL-$r-$i.json" --chrome-path="C:/Program Files/Google/Chrome/Application/chrome.exe" --chrome-flags="--headless=new" --quiet; done; done`
+with LABEL replaced by the word. Then `node .planning/exec/lh119-summary.mjs` prints, per label and
+route, the three runs and medians of performance, LCP, FCP and TBT, and the three gate lines of 10.5
+with PASS or FAIL. Sol writes `chunks119.mjs`, `reveal119.mjs` and `lh119-summary.mjs` from this brief;
+the executor does not change them.
