@@ -2784,7 +2784,8 @@ body {
 [data-mode="cw"] .cw-pbox__fit {
   grid-area: fit;
   align-self: start;
-  max-width: 34ch;
+  /* Pass-118: 34ch in em at Hanken's 0.56em zero, so the font swap cannot resize the box. */
+  max-width: 19.04em;
   margin-top: 18px !important;
   font-family: var(--font-cw-body);
   font-size: 19px;
@@ -7129,7 +7130,8 @@ body {
   font-family: var(--font-cw-body);
   font-size: clamp(17px, 1.7vw, 21px);
   line-height: 1.5;
-  max-width: 46ch;
+  /* Pass-118: 46ch in em at Hanken's 0.56em zero, so the font swap cannot resize the box. */
+  max-width: 25.76em;
   color: inherit;
   margin: 0 0 28px;
 }
@@ -7528,4 +7530,29 @@ body {
 [data-mode="cw"] main.cw-sv .cw-sv-open__name,
 [data-mode="cw"] main.cw-sv .cw-service__title {
   font-size: clamp(44px, 4.73vw, 68px);
+}
+
+/* ================================================================
+ * Pass-118 (operator 2026-09-14): tuned font fallbacks.
+ * next/font's generated Arial stand-ins wrapped the hero differently
+ * from the real faces, so the swap reflowed it (home CLS 0.290 in
+ * the probe, 0 with fonts blocked). size-adjust measured on this
+ * site by .planning/exec/fallback118.mjs; vertical overrides keep
+ * next/font's metrics rescaled to the new size-adjust.
+ * ================================================================ */
+@font-face {
+  font-family: "Bricolage Tuned Fallback";
+  src: local("Arial");
+  size-adjust: 81%;
+  ascent-override: 114.81%;
+  descent-override: 33.33%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Hanken Tuned Fallback";
+  src: local("Arial");
+  size-adjust: 75.25%;
+  ascent-override: 132.89%;
+  descent-override: 40.27%;
+  line-gap-override: 0%;
 }

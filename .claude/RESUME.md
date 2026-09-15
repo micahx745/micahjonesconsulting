@@ -1,42 +1,35 @@
 # RESUME — micahjonesconsulting (2026-09-14)
 
 ## READ FIRST
-Dark rebuild REJECTED; LIVE evolved on `design/live-evolve` (worktree
-`.claude/worktrees/p106-live`). `pnpm build` fails HERE only: use
-`npx next build --webpack`. tsc reads the PREVIOUS build's `.next/types`.
-ROUTING (operator 2026-09-12): conserve THIS account. GLM executes briefs
-(weekly cap resets ~09-14 20:57 Pacific); Sol edits only (PowerShell blocks
-npx.ps1); Astra judges gates; Opus rules, judges, records; Fable on his ask.
+LIVE evolves on `design/live-evolve` (worktree `.claude/worktrees/p106-live`).
+Build `npx next build --webpack`. ROUTING (operator 2026-09-12): conserve THIS
+account. Sol edits/writes scripts (PowerShell blocks npx.ps1, so Sol runs no
+npx); the judge runs builds/servers/browsers in background shells; Astra judges
+gates; Opus rules. Background Sonnet legs have stalled silently: avoid.
 
-## LIVE 2026-09-14: main = 50185da (ff), dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC BOTH
-Pass-117 shipped: /services R1 R2 R13 R17 fixed, R7 exception. Approval
-verbatim: "push and merge to main". On BOTH domains: type117 failures 0,
-card1 failures 0 (dpl new vs dpl_BuNe), apex 308 -> www once. Astra SHIP,
-judge PASS. Revert: Vercel promote dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw. Main
-checkout is behind again (he pulls). HandUnderline UNVERIFIED (unmounted).
+## LIVE 2026-09-14: main = 50185da, dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC BOTH
+Pass-117 shipped (/services type ladder; type117 0 + card1 0 on both domains).
+Revert: Vercel promote dpl_BuNe67xzMiEGEEi4hKSXCSyHdrsw. Main checkout behind.
 
-## Speed (measured 09-14, Lighthouse mobile prod)
-/ 89 (LCP 3050, CLS 0.145 from h1.cw-h1.cw-shift 2 of 3); /services 97
-(LCP 2563). Brief pass-118a-perf-diagnosis.md (§8 amendment: CDP timeline).
-RUNNING, operator 2026-09-14 verbatim: "run that on claude and chatgpt -".
-DONE, Sol-checked (round 2): web-font arrivals in steps (home CLS 0.290
-all loads, 0 fonts blocked; survives JS off + reduced motion); reveal does
-not hold LCP; count-up untested; fonts ~0.23s, JS 0.25-0.57s. LESSONS #29.
-Operator 2026-09-14, verbatim: "go with 1" (tuned fallbacks). Brief
-pass-118-tuned-font-fallbacks.md + §10 (Sol review folded). Sol wrote
-fallback118.mjs. Local before: all-shift CLS 0.290 5/5, 0 fonts blocked.
-Run 1: bite 4 OK; Bricolage 80-83.5 (floor-pinned); Hanken none. Measured
-parity: Hanken 72-77%, Bricolage 73-86% (next/font 101/105% is 25-30% wide).
-Brief §11: sweep 60-115; rerun RUNNING. verify-before total 95 (8 routes).
+## Pass-118 tuned font fallbacks (operator "go with 1") — UNCOMMITTED EDITS
+Pass-118a: home swap CLS (all-shift 0.290; fonts blocked 0). Tuner run 2:
+Bricolage 78.5-83.5 -> 81.00; Hanken plateau 74.5-76 -> 75.25; next/font's
+101/105% were 25-30% too wide. Two ch widths -> em (fit 19.04em, sv-open body
+25.76em, Hanken 0 = 0.56em). Brief §11-§12. Edits in lib/fonts.ts +
+app/globals.css; static PASS, build+tsc PASS, served CSS carries tuned stack.
+AFTER-GATES RUNNING (log .planning/exec/after118.log; server 3200). Gates:
+verify / and /services 0 at all widths, no route > before (total 95 before);
+geometry diffs 0; probe q1-A/q2-A all-shift CLS <= 0.05 every load; type117,
+render, axe, layout, card1 clean. Then commit, Astra look, his deploy words.
 
 ## Waiting on operator
-Ordani screens · Stripe playbook-99 off + LIVE Audit
+Pass-118 deploy · Ordani screens · Stripe playbook-99 off + LIVE Audit
 description · 500 dollar live test · A4/S3 text · §9a · Speed Insights field
 numbers · 117 §8 follow-ups (mono links home/404, spring CTA on home hero).
 
 ## Traps
-push to main auto-deploys · explicit pathspec after diff --cached (#23) ·
-served expect>=1 counts RSC payload (#24) · never reinterpret an expect (#25)
-· measure the render (#26) · scope gates from the layout (#28) · prod CSS
-hrefs carry ?dpl= · stop next start with Stop-Process · motion hook bans
-cursor.*follow even in comments · background Sonnet legs can stall silently.
+push to main auto-deploys · pathspec commits (#23) · never reinterpret an
+expect (#25) · measure the render (#26) · scope gates from layout (#28) · lab
+CLS counts hadRecentInput shifts (#29) · probe overwrites 118a probe.json:
+git checkout it · never run build and server start in parallel · the copy
+and motion hooks scan briefs and docs too (banned words, cursor phrases).

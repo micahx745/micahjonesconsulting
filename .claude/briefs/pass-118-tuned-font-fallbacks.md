@@ -271,3 +271,85 @@ buttons 79.43-86.21%). next/font's generated 100.94% and 105.43% are 25-30% too 
 faces. So §3.3's range becomes S from 60.00 to 115.00 in 0.25 steps for both faces; nothing else
 changes. The `ch` hypothesis was checked and rejected: `.cw-sub` is capped at 620px and the box list
 items have no `ch` width, yet both mismatched.
+
+## 12. Judge ruling after the second tuner run (2026-09-14): the chosen values, and two `ch` widths
+
+Second run, sweep 60-115: `bite mismatches: 4`; `Bricolage feasible runs: 78.50-83.50 chosen:
+81.00`; `Hanken feasible: none; best S=76.00 with 7 mismatches`. Per-width counts from
+`fallback118.json`: Hanken is 0 on `/` at every width and on `/services` at 390 and 412 for every
+S from 74.50 to 76.00, and `/services` at 768 and 1440 holds 2-3 and 4 mismatches for EVERY S from
+70.00 to 76.00. A count that does not move with S is not a width mismatch. The seven elements are
+`.cw-sv-open__body` (`max-width: 46ch`, `globals.css:7132`) and `.cw-pbox__fit` (`max-width: 34ch`,
+`globals.css:2787`) and the list items beside them: `ch` resolves from the fallback's own "0" during
+the swap, so the box shrinks with the stand-in and no size-adjust can hold the wrap. (§11 rejected
+`ch` on two other elements; it was right about those and wrong in general.)
+
+Rulings:
+- `<SB>` = 81.00 (middle of 78.50-83.50). `<SH>` = 75.25, the middle of the 74.50-76.00 plateau, not
+  the tie rule's 76.00, which sits on the plateau's edge (76.50 reads 9). Overrides by the §3.2
+  formula: `<AB>` 114.81, `<DB>` 33.33, `<AH>` 132.89, `<DH>` 40.27.
+- The two `ch` widths become the same length in `em`, measured on the real face
+  (`.planning/exec/zero118.mjs`: Hanken 400's "0" is 0.56em; `.cw-sv-open__body` 566.72px at 22px,
+  `.cw-pbox__fit` 304.64px at 16px). In place, nothing else on either rule changes:
+  `globals.css:2787` `max-width: 34ch;` → `max-width: 19.04em;` and `globals.css:7132`
+  `max-width: 46ch;` → `max-width: 25.76em;`, each with a one-line comment. Rendered width with fonts
+  loaded is identical (34 x 0.56 = 19.04, 46 x 0.56 = 25.76). No media rule sets either width.
+- §5.2's hunk check becomes `git diff -U0 app/globals.css | grep -c '^@@'` → `3`.
+- The §10.8 gate stands as written: `/` and `/services` at 0 verify mismatches at every width after,
+  and no route worse than before (`verify total mismatches: 95` before). Other routes keep their
+  own `ch` widths in this pass.
+
+## 13. Judge ruling after the first after-build (2026-09-14): v2 of the fallback design
+
+The v1 build (single tuned face per family, S 81.00 and 75.25, two `ch` widths in `em`) passed
+type117, render, axe, layout and card1, cut `/services` all-shift CLS from 0.037 to 0.001, and cut
+probe LCP on `/` from 2190 to 1386 and on `/services` from 1628 to 1052. It failed four gates:
+1. `geometry diffs: 4`, all the `/services` proof link's "→" span, 5.38px narrower with fonts
+   loaded. U+2192 is outside every real face's `unicode-range` (they carry U+2191 and U+2193), so
+   the arrow always renders in the fallback, which v1 shrank from 105.43% to 81%. Every "→" on the
+   site changed size.
+2. `/call` 768 and 1440 got one mismatch worse ("Tue to Thu, 10am to 4pm Pacific" wraps while
+   fonts load). `ch` resolves from the "0" of the face that renders it: next/font's Arial at
+   100.94% gives 0.561em, Hanken's real "0" is 0.560em, v1's tuned face gives 0.418em. Every
+   `ch`-sized box on the site shrinks by a quarter during the swap in v1.
+3. `/services` 768: one list item still wraps during the swap.
+4. `/` all-shift CLS 0.146 on 10 of 10 loads. `.planning/exec/ctarow118.mjs` shows the cause:
+   JetBrains Mono. With fonts blocked the hero's mono links measure 169.5px ("See the work") and
+   285.1px ("Book a free intro call") against 128.6px and 228.7px loaded, so "See the work" takes
+   its own row and `.cw-cta-row` is 169.8px tall against 112.8px. §1 excluded JetBrains Mono on a
+   0.001 source reading; the row was listed in 118a as a moved element and misread as a
+   Bricolage or Hanken effect. That exclusion is withdrawn. The text-element scope of §3.3 and
+   §10.5 could not see a flex row changing height (the LESSONS #28 class of gap).
+
+Rulings, v2. They replace §3.1, §3.2 and the tuner scope where they conflict.
+- JetBrains Mono gets a tuned fallback: `local("Courier New")` at `size-adjust: 100%`,
+  `ascent-override: 102%`, `descent-override: 30%`, `line-gap-override: 0%`. Measured
+  (`.planning/exec/mono118.mjs`): JetBrains Mono against Courier New width parity 99.95-99.99% on
+  every mono label, "0" 60.00 against 60.02 at 100px. The overrides are next/font's generated
+  JetBrains values (75.79% and 22.29% at 134.59%) rescaled to 100%. `lib/fonts.ts`:
+  `adjustFontFallback: false`, `fallback: ["JetBrains Mono Tuned Fallback"]`, and the Pitfall A1
+  comment's last line becomes "JetBrains Mono uses a Courier New fallback at 100% (same advance)."
+- Bricolage and Hanken each get TWO faces under their tuned family name, in this order: first a
+  legacy face with next/font's generated values and no `unicode-range` (Bricolage: Arial 105.43%,
+  88.21%, 25.61%; Hanken: Arial 100.94%, 99.07%, 30.02%), then the tuned face with the §3.2 values
+  and a `unicode-range` equal to the union of that real family's served ranges with U+0030
+  removed. The later rule is checked first for a character both cover (CSS Fonts 4), so letters
+  and digits other than 0 use the tuned metrics, while "0" (so `ch` keeps its length) and every
+  character the real face lacks (such as "→") keep today's fallback metrics. Ranges, from the
+  served CSS on 2026-09-14:
+  - both families: `U+0000-002F, U+0031-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD, U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF, U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303, U+0309, U+0323, U+1EA0-1EF9`
+  - Hanken adds: `U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F`
+- The two `ch`→`em` conversions stay: they render identically and remove the last 0.2% gap between
+  the legacy "0" and Hanken's.
+- The tuner's scope widens from text elements to EVERY element whose top is in the first viewport
+  (still excluding `.sr-only`, `[hidden]` and boxes of 2px or less). A mismatch is a top or height
+  more than 1px apart, or a text element's line count differing. Left and width changes are
+  reported, not gated. This applies to the search, the combined check, `--verify` and `--compare`.
+- The search re-runs on the v1 after-build (it has the `em` widths) with the two-face candidate
+  for the face under test; the other two families stay real. JetBrains Mono is not searched; the
+  combined check includes it at 100%.
+- Before-baselines come from production (the live site is exactly the pre-118 state):
+  `--verify --label before --base https://www.micahjonesconsulting.com` and
+  `--geometry --label before --base https://www.micahjonesconsulting.com`; after-runs use
+  localhost on the v2 build. Geometry with fonts loaded must read `geometry diffs: 0`; the gates of
+  §10.8 and the probe gate (`/` and `/services` all-shift CLS <= 0.05 on every load) stand.

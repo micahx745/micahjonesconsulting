@@ -6,9 +6,12 @@
 // faces — Bricolage Grotesque (display), Hanken Grotesk (body),
 // JetBrains Mono (labels) — the Color Worlds system, nothing else.
 //
-// IMPORTANT — PITFALL A1:
-//   adjustFontFallback: true asks Next.js to inject size-adjust / ascent-override
-//   metrics into the generated @font-face rule, which neutralizes CLS on first paint.
+// IMPORTANT — PITFALL A1 (revised Pass-118, 2026-09-14):
+//   next/font's generated Arial fallbacks (adjustFontFallback: true) wrapped the
+//   hero differently from the real faces, so the swap reflowed it. Bricolage and
+//   Hanken set adjustFontFallback: false and name tuned fallbacks declared in
+//   app/globals.css (size-adjust measured by .planning/exec/fallback118.mjs).
+//   JetBrains Mono keeps the generated fallback.
 import {
   Bricolage_Grotesque,
   Hanken_Grotesk,
@@ -32,7 +35,8 @@ export const bricolage = Bricolage_Grotesque({
   weight: "variable",
   variable: "--font-bricolage",
   display: "swap",
-  adjustFontFallback: true,
+  adjustFontFallback: false,
+  fallback: ["Bricolage Tuned Fallback"],
   preload: true,
 });
 
@@ -50,7 +54,8 @@ export const hankenGrotesk = Hanken_Grotesk({
   weight: ["400", "500", "600", "700"],
   variable: "--font-hanken",
   display: "swap",
-  adjustFontFallback: true,
+  adjustFontFallback: false,
+  fallback: ["Hanken Tuned Fallback"],
   preload: true,
 });
 

@@ -1,0 +1,2565 @@
+{
+  "base": "http://localhost:3200",
+  "startedAt": "2026-09-15T02:51:15.243Z",
+  "conditions": {
+    "q1-A": [
+      {
+        "load": 1,
+        "cls": 0.289799,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2033,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2079.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 2468.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1512,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2570.39999999851,
+        "fontsTime": 2587
+      },
+      {
+        "load": 2,
+        "cls": 0.289799,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2045.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2104.4,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 2460,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1364,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2563.10000000149,
+        "fontsTime": 2580.89999999851
+      },
+      {
+        "load": 3,
+        "cls": 0.289799,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2035.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2098.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 2513,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1400,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2618.89999999851,
+        "fontsTime": 2633.6999999955297
+      },
+      {
+        "load": 4,
+        "cls": 0.289799,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2054,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2091.9,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 2473.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1512,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2576.8000000044703,
+        "fontsTime": 2595.9000000059605
+      },
+      {
+        "load": 5,
+        "cls": 0.289799,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2025.7,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2073.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 2449,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row.is-in",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub.is-in",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1376,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2551.5,
+        "fontsTime": 2566.3000000044703
+      }
+    ],
+    "q1-B": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1364,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2002.2999999970198,
+        "fontsTime": 1362.3999999985099
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1368,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 1994.7000000029802,
+        "fontsTime": 1369.2000000029802
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1448,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2058.60000000149,
+        "fontsTime": 1440.9000000059605
+      },
+      {
+        "load": 4,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1364,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2013.8999999985099,
+        "fontsTime": 1369.3000000044703
+      },
+      {
+        "load": 5,
+        "cls": 0,
+        "shifts": [],
+        "lcp": {
+          "time": 1404,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": 2079.5,
+        "fontsTime": 1413
+      }
+    ],
+    "q1-C": [
+      {
+        "load": 1,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 1707.8,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 1751,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 1972.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1438.8,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 2,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0010967562826411517,
+            "time": 1731.9,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 596.34375,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 596.34375,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14702410128608104,
+            "time": 1776.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 2001.2,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1462.9,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 3,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.0010967562826411517,
+            "time": 1697.8,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 596.34375,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 596.34375,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14702410128608104,
+            "time": 1740.1,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 1960.1,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1431.2,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 4,
+        "cls": 0.141678,
+        "shifts": [
+          {
+            "value": 0.0010967562826411517,
+            "time": 1710.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 596.34375,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 596.34375,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14702410128608104,
+            "time": 1756.4,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 1964.9,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1427.7,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      },
+      {
+        "load": 5,
+        "cls": 0,
+        "shifts": [
+          {
+            "value": 0.1506150911202651,
+            "time": 1751.6,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 1974.1,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1511.4,
+          "size": 37194,
+          "nodeName": "span"
+        },
+        "classTime": "not reported",
+        "fontsTime": "not reported"
+      }
+    ],
+    "q1-D": [
+      {
+        "load": 1,
+        "cls": 0.148121,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2029.6,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2069.9,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1360,
+          "size": 36964,
+          "nodeName": "span"
+        },
+        "classTime": 2411.60000000149,
+        "fontsTime": 2489.3000000044703
+      },
+      {
+        "load": 2,
+        "cls": 0.150615,
+        "shifts": [
+          {
+            "value": 0.1506150911202651,
+            "time": 2063.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              },
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1376,
+          "size": 36964,
+          "nodeName": "span"
+        },
+        "classTime": 2417.1999999955297,
+        "fontsTime": 2502.2999999970198
+      },
+      {
+        "load": 3,
+        "cls": 0.148121,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2013,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2047.8,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1436,
+          "size": 36964,
+          "nodeName": "span"
+        },
+        "classTime": 2403.10000000149,
+        "fontsTime": 2489.10000000149
+      },
+      {
+        "load": 4,
+        "cls": 0.289799,
+        "shifts": [
+          {
+            "value": 0.14702410128608104,
+            "time": 2032.6,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          },
+          {
+            "value": 0.0010967562826411517,
+            "time": 2074.1,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 641.015625,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 584.015625,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 584.015625,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14167776119238895,
+            "time": 2461.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 202.609375,
+                  "width": 372,
+                  "height": 153.0625
+                },
+                "dy": 47.641,
+                "dh": -38.266
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 507.59375,
+                  "width": 372,
+                  "height": 112.796875
+                },
+                "dy": 9.375,
+                "dh": -57
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 393.671875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 9.375,
+                "dh": 0
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1404,
+          "size": 36964,
+          "nodeName": "span"
+        },
+        "classTime": 2558.0999999940395,
+        "fontsTime": 2566.1999999955297
+      },
+      {
+        "load": 5,
+        "cls": 0.148121,
+        "shifts": [
+          {
+            "value": 0.0010967562826411517,
+            "time": 2024.2,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 292.109375,
+                  "y": 12.5,
+                  "width": 99.890625,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 324.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 287.046875,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 230.640625,
+                  "y": 653.34375,
+                  "width": 18.078125,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              },
+              {
+                "nodeName": "span",
+                "previousRect": {
+                  "x": 179.546875,
+                  "y": 596.34375,
+                  "width": 10,
+                  "height": 18
+                },
+                "currentRect": {
+                  "x": 138.453125,
+                  "y": 596.34375,
+                  "width": 11,
+                  "height": 18
+                },
+                "dy": 0,
+                "dh": 0
+              }
+            ]
+          },
+          {
+            "value": 0.14702410128608104,
+            "time": 2069.5,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "nodeName": "h1.cw-h1.cw-shift",
+                "previousRect": {
+                  "x": 20,
+                  "y": 142.65625,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 154.96875,
+                  "width": 372,
+                  "height": 191.328125
+                },
+                "dy": 12.313,
+                "dh": 0
+              },
+              {
+                "nodeName": "div.cw-cta-row",
+                "previousRect": {
+                  "x": 20,
+                  "y": 510.546875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "currentRect": {
+                  "x": 20,
+                  "y": 498.21875,
+                  "width": 372,
+                  "height": 169.796875
+                },
+                "dy": -12.328,
+                "dh": 0
+              },
+              {
+                "nodeName": "p.cw-sub",
+                "previousRect": {
+                  "x": 19,
+                  "y": 371.984375,
+                  "width": 373,
+                  "height": 98.5625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 384.296875,
+                  "width": 373,
+                  "height": 73.921875
+                },
+                "dy": 12.313,
+                "dh": -24.641
+              }
+            ]
+          }
+        ],
+        "lcp": {
+          "time": 1408,
+          "size": 36964,
+          "nodeName": "span"
+        },
+        "classTime": 2407.3000000044703,
+        "fontsTime": 2491.5
+      }
+    ]
+  }
+}
