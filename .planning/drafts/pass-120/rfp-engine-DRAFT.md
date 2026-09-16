@@ -135,10 +135,15 @@ person finished every response. Eligibility, pricing and submission checks staye
 **What was working after three days?** Real RFPs arriving, scored for fit. The library, the
 drafting and the tuning came after.
 
-## If your firm wins work through proposals
+## If your experts read the same document every week
 
-I build custom AI from a team's own source material and decision rules. If your experts have to
-read, judge and answer the same kind of document every week, that is the engagement **[?10]**.
+Your AI works in the notebook. Production is a different stack, and that is the stack I run. I
+build the retrieval, the scoring and the drafting on your own material, with evals that fire on
+every change, and your team runs it after I leave.
+
+[Matched to the AI engineering block on /services, which carries this study as its proof: its
+pain line, its "real load, not the demo" outcome, its evals line, and its "your team runs it
+after I leave" close.]
 
 ---
 
@@ -170,4 +175,4 @@ multi-million-dollar RFP work in enterprise cybersecurity procurement. The clien
 | ?W2 | It matched two engagements, with dates and outcomes | The walkthrough's body |
 | ?W3 | The same RFP wanted a credential they did not hold | The gap |
 | ?W4 | The draft marked the gap and named what was missing | The payoff |
-| ?10 | The closing offer sentence | Must match what /services promises |
+| ?10 | CLOSED: the close now uses the AI engineering block's own promises | |

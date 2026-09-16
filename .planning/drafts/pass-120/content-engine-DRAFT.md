@@ -70,10 +70,11 @@ one to underinvest in, on purpose. The two got the weekly cadence, because that 
 people who buy this work were already reading **[?5]**. Production time went where it converted.
 
 **04. The video pipeline.** The activist records something quickly, with no editing and no crew.
-The engine takes that raw video and returns a finished one, ready to publish. I built it in
-Remotion, so each video is assembled in code rather than by hand in an editor **[?6]**. The same
-source video also produces the blog post and the rest of the marketing flow for the idea it
-argues: the posts, the newsletter, and the promotion for the product or event behind it.
+The engine takes that raw video and returns a finished one, ready to publish. I started from an
+open source video tool and extended it well past what it does out of the box, so each video is
+assembled in code instead of by hand in an editor **[?6]**. The same source video also produces
+the blog post and the rest of the marketing flow for the idea it argues: the posts, the
+newsletter, and the copy that sells the product or event behind it.
 
 **05. Their words, not a model's.** Drafts are built from what the activist has already published
 and said, so the language stays theirs **[?7]**.
@@ -118,9 +119,15 @@ pipeline does the rest **[?6]**.
 
 ## If your message is stuck in the room
 
-If your work convinces people in person and disappears online, the gap is production, not
-message. I build the engine that carries it, out of your own words, and your team keeps it
-**[?11]**.
+You have the audience, the message and the demand. What you do not have is the team to build the
+machine that carries it. I build it: strategy, design, code and launch, with nothing handed to a
+second team, and your people run it after I leave.
+
+[Matched to the Product building block on /services, which carries this study as its proof: its
+pain line ("You have the idea, the budget, and customers waiting... I build it") and its
+"nothing gets handed to a second team" outcome. Say the word if you would rather this study sat
+under AI engineering instead; the receipt on /services currently files it under Product
+building.]
 
 ---
 
@@ -144,14 +151,12 @@ Nothing went wrong with the engine, so no failure story.
 | ?3 | A talk took days to prepare and was seen once | The waste, concretely |
 | ?4 | You audited past posts for what travelled | Shows the work before the strategy |
 | ?5 | The two platforms are where buyers already read | Why that bet, not a coin flip |
-| ?6 | Remotion, videos assembled in code, no editor | The detail an engineer respects. Say if I should not name the tool |
+| ?6 | An open source video tool, extended well past its defaults, videos assembled in code | The detail an engineer respects. Per your 2026-09-15 answer the tool is described, never named |
 | ?7 | Drafts built only from their published words | Why it sounds like them |
 | ?8 | Weekly queue, review step, publishing windows | The production line |
 | ?9 | Each piece points at something they sell | The revenue mechanism, and the strongest claim on the page |
 | ?10 | A person approves every piece | Trust |
-| ?11 | "Your team keeps it" | Must match what /services promises |
+| ?11 | CLOSED: the close now uses the Product building block's own promises | |
 
-## Also worth having
-
-One moment from the five months: the piece that broke out, or the platform that surprised you.
-One concrete scene makes a page people remember, and this story has none yet.
+Per Micah 2026-09-15: no single piece of content gets called out, and the video tool is
+described rather than named.
