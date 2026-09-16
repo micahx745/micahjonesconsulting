@@ -1,214 +1,173 @@
-# RFP engine: dramatized draft for Micah's fact check
+# RFP engine: draft 2, after Micah's answers and the Astra review
 
-Pass-120. NOT site copy. Nothing here moves into `content/work/rfp-engine.mdx` until Micah has
-answered every tag below.
+Pass-120. NOT site copy. Nothing moves into `content/work/rfp-engine.mdx` until the open tags are
+answered.
 
-**How to read it.** Untagged text is already on the live page. **[C#]** marks a detail I added to
-make the story land; it may be wrong. **[L#]** marks something already live that was never
-recorded in the facts ledger. Reply with the number and yes, no, or the real version, for
-example "C4 no, it was more like 20 a month".
+**Legend.** Plain text is confirmed by Micah on 2026-09-15 or already in the ledger. **[?#]**
+marks what is still unconfirmed. Reply with the number and yes, no, or the real version.
 
-**Written for:** an organization that wants AI built on its own expertise (the AI engineering
-area on /services).
+**Client:** an award-winning author and leadership consultant who teaches government bodies and
+corporations. Name protected. A different client from the content engine (ruling 2026-09-15), so
+the old "the same engagement also produced" line comes out.
 
-**Search terms it aims at:** AI RFP software, RFP response automation, custom RAG software,
-government RFP responses, AI proposal writing, bid/no-bid decisions. Chosen from the subject:
-no keyword tool is connected, so there is no search-volume data behind this list.
+**Written for:** an organization that wants custom AI built on its own expertise.
+
+**Search terms:** AI RFP software, RFP response automation, bid/no-bid scoring, custom RAG
+software, government RFP responses, compliance matrix. No keyword tool is connected, so no volume
+data sits behind this list.
 
 ---
 
 ## Search title and description
 
-- **Title:** AI RFP software that won $3M in contracts
-- **Description:** Custom AI RFP software for an industry author: it weighs every new RFP against
-  their body of work and drafts the response. $3M won, close rate doubled.
+- **Title:** Custom AI RFP software: $3M in signed contracts
+- **Description:** I built RFP discovery, scoring and drafting around one expert's own body of
+  work. $3M signed, and the close rate doubled from one in eight to one in four.
 
 ## Dek
 
-$3M in contracts won through AI software I built for an industry author. It finds the RFPs worth
-answering, weighs each one against the author's own body of work, and has a drafted head start
-waiting every morning. The close rate doubled.
+$3M in signed contracts, won through AI software I built for an award-winning author and
+leadership consultant. It finds the RFPs worth answering, weighs each one against twenty years of
+their own work, and has a drafted response waiting by morning. Their close rate went from one in
+eight to one in four.
 
 ## At a glance
 
-- **Client:** an industry-authority author, name protected
-- **My role:** strategist and sole builder **[L1]**
-- **Build time:** live and sending RFPs in three days **[C1 answered 2026-09-15]**
-- **What I built:** RFP discovery, bid/no-bid scoring, a searchable library of the author's
-  work, and response drafting **[C2]**
-- **Results:** $3M in contracts won. RFP-to-close rate doubled, from about one in eight to one in
-  four **[C3]**. First drafts in hours instead of days **[C4]**.
+- **Client:** an award-winning author and leadership consultant who teaches government bodies and
+  corporations. Name protected.
+- **My role:** strategist and sole builder.
+- **First real RFPs delivered:** day three.
+- **What I built:** discovery, bid/no-bid scoring, a library of their work with provenance, and
+  response drafting.
+- **Results:** $3M in signed contracts across eleven awards. Close rate from one in eight to one
+  in four inside six months. Responses out per month: two or three, then eight to ten.
 
-## The contract nobody saw
+## Three responses a month was the ceiling
 
-The project started with a contract the author never saw. A public buyer awarded work squarely in
-the author's field to someone else, and the author heard about it after the deadline **[C5]**.
-The expertise was there. The RFP had never reached anyone who could answer it.
+The client had twenty years of published work behind them: books, keynotes and training programs.
+Public buyers were funding exactly that expertise. Most of those requests never reached them.
 
-The author had spent twenty years **[C6]** building a body of work buyers trusted: books,
-keynotes and training programs **[C7]**. New opportunities still arrived through a single
-newsletter list and a few personal relationships. Everything else sat on procurement portals and
-bid boards nobody checked **[C8]**.
+New opportunities arrived through a single newsletter list and a few personal relationships.
+Everything else sat on federal, state and local procurement portals that nobody was watching
+**[?1]**.
 
-The RFPs that did arrive started from a blank page. One response took three to five working
-days **[C9]**, so the author could answer two or three a month **[C10]** and passed on the rest.
-Volume was the bottleneck, and every pass was a contract someone else could win.
+Every response started from a blank page. One took three to five working days, so two or three
+went out a month and the rest were passed. Volume was the ceiling, and each pass was a contract
+someone else won.
 
-## The product is the judgment
+## Real RFPs by day three
 
-The hard part was never the retrieval. Earlier in my career I ran complex, multi-million-dollar
-RFPs in enterprise cybersecurity procurement **[L2]**. I know what a buyer's evaluation committee
-actually reads. They score against the requirements first, then past performance, then price
-**[C11]**. A strong expert loses when the committee has to hunt for the answer.
+Day three, the software was live and sending real opportunities. Scoring, the library and the
+drafting came after that **[?2]**.
 
-A strategy deck would have described that judgment. I wrote it into the software, so it fires on
-every submission, not only the ones I touch.
+**01. Discovery.** It checks federal, state and local procurement portals every night **[?3]** and
+pulls each new RFP in the client's field.
 
-## What I built
+**02. One record per solicitation.** Portals repost the same solicitation, and amendments change
+it. Duplicates collapse into one record, and an amendment gets flagged for review rather than
+quietly replacing what the client already read.
 
-It was live in three days. Day three, it was finding real RFPs and sending them to us **[C1]**.
-The scoring, the library and the drafting came after that **[T1]**.
+**03. The library, with provenance.** I put more than 300 pieces of the client's work into a
+searchable library: books, articles, talks, past proposals and client results **[?4]**. Every
+passage keeps its source, its date and how that engagement ended. This is the retrieval layer,
+RAG, and the provenance is the point: a draft can name real work instead of describing work in
+general.
 
-**01. Discovery.** Every night the software checks federal, state and local procurement portals
-**[C12]** and pulls each new RFP in the author's field.
+**04. Bid/no-bid scoring.** Each RFP gets scored before a person reads it: eligibility, deadline,
+required certifications, and how far the scope overlaps proven work **[?5]**.
 
-**02. A library of the author's own work.** I turned more than 300 pieces of the author's work
-**[C13]** into a searchable library: books, articles, talks, past proposals and client results
-**[C14]**. This is the retrieval layer, known as RAG. The drafts quote what the author has
-actually done instead of what a language model guesses.
+**05. Drafting against the buyer's own criteria.** Each solicitation states how it will be
+scored, and evaluation factors differ from one to the next. The draft follows that solicitation's
+stated criteria rather than a house template **[?6]**.
 
-**03. Bid/no-bid scoring.** Every RFP gets a score before anyone reads it: eligibility, deadline,
-required certifications, and how closely the scope matches past work **[C15]**. The author sees
-the few worth chasing, not the hundred that are not.
+**06. Gaps instead of invention.** Where the library cannot support a claim, the draft leaves a
+marked gap and says what is missing. It does not write a sentence that merely sounds right.
 
-**04. The requirements checklist.** The software pulls every requirement out of the RFP document
-into a checklist, so nothing the committee scores for goes missing **[C16]**.
+**07. Outcomes tune the scoring.** Every award and every rejection adjusts the weights, so the
+scoring keeps learning from real results.
 
-**05. The morning report.** Every morning the author opens a report of live opportunities, each
-with a partial response already drafted in the author's voice **[C17]** and mapped to how that
-buyer will score it **[C18]**.
+Nothing submits itself. A person reads and approves every response before it goes out **[?7]**.
 
-**06. The handoff.** I trained the author's team to review and finish each draft **[C19]**. For
-the first year I tuned the scoring after every win and every loss **[C20]**.
+## One requirement, start to finish
 
-## How it works, without the blueprint
+A buyer asks for proof of similar work delivered in the last five years **[?W1]**. The engine
+pulls two engagements out of the library that match the scope, each with its date and how it
+ended **[?W2]**, and drafts the answer around them in the client's own language.
 
-The specifics stay with the client. Here is the shape of it.
+The same RFP asks for a credential the client does not hold **[?W3]**. Nothing in twenty years of
+their work supports it. The draft leaves a marked gap and names what is missing **[?W4]**, so the
+client can answer it honestly, bring in a partner who has it, or skip the bid.
 
-- **One opportunity, one record.** Portals repost the same solicitation with amendments and new
-  deadlines. The engine folds reposts and amendments into one record, so the author never reads
-  the same RFP twice **[T2]**.
-- **The requirements come out before anything is written.** The engine extracts the submission
-  instructions and the evaluation criteria first: what to send, in what order, and how each
-  section is scored **[T3]**.
-- **Hard gates before soft judgment.** Eligibility is a filter, not a score. Certifications,
-  set-asides, bonding, deadlines: anything disqualifying ends the opportunity before a person
-  spends a minute on it **[T4]**.
-- **Every passage carries its provenance.** The library is indexed by argument rather than by
-  page, and each passage keeps its source, its date and its outcome. A draft can state what the
-  author did and point at where it happened **[T5]**.
-- **The model may not invent a credential.** Where the library cannot support a claim, the draft
-  leaves the gap and lists it for the author instead of writing something plausible **[T6]**.
-- **Past bids are the test set.** The author's own wins and losses became the evaluation set:
-  would the scorer have flagged the winners, and would the drafts have answered every scored
-  requirement? That harness is how I tuned it, and it runs again whenever the prompts change
-  **[T7]**.
-- **The loop closes on outcomes.** Every award and every rejection feeds back into the scoring
-  **[T8]**.
+That gap is the part I care about. A model that writes something plausible there costs a client
+their credibility with a buyer they wanted for years.
 
-The hard part was never the writing. Any model writes fluent proposal prose. The hard part was
-making it refuse: refuse to bid where the author could not win, and refuse to claim what the
-author had not done **[T9]**.
+## What the replay found
 
-## The calls I made
+Before the software scored a live RFP, I ran thirty to fifty of the client's past bids back
+through it. The pattern held: every win matched two or more of their proven capabilities, and
+every loss matched one or none. Capability overlap became the heaviest weight in the score.
 
-- **Nothing submits itself.** A person reads and approves every response before it goes out
-  **[C21]**. A committee can tell when nobody read the proposal.
-- **One expert, not a generic tool.** The software knows one body of work deeply, which is why
-  the drafts sound like the author **[C22]**.
-- **Winnable, not every.** The goal was never to answer every RFP. It was to answer every RFP
-  the author could win **[C23]**.
+That is also the honest answer to a fair question. A better filter raises a win rate on its own,
+so the scoring had to earn its weights against bids whose outcomes were already known.
 
 ## What changed
 
-- $3M in contracts won through the platform, across eleven contracts **[C24]**, government
-  contracts among them **[L3]**.
-- RFP-to-close rate doubled inside six months **[L4]**.
-- The author now answers eight to ten RFPs a month, up from two or three **[C25]**.
+- $3M in signed contracts through the platform, across eleven awards, government contracts among
+  them.
+- The close rate went from one in eight to one in four of submitted proposals, inside six months.
+- Responses out went from two or three a month to eight to ten.
+- First drafts arrive in hours instead of days **[?8]**.
 - The judgment that used to fire only when I was in the room now fires on every submission.
 
-> "Micah does the work that most strategy decks promise and never deliver." The author, name
-> protected **[L5]**
-
-## If your team lives on proposals
-
-If your firm wins work through RFPs and every response still starts from a blank page, this is
-the kind of system I build in an AI engineering engagement **[C26]**.
+> "Micah does the work that most strategy decks promise and never deliver." The client, name
+> protected
 
 ## Questions buyers ask
 
-**What is AI RFP software?** Software that finds relevant requests for proposals, scores whether
-each one is worth a bid, and drafts a first response from your own past work. A person still
-reviews and submits every response **[C21]**.
+**What did this RFP engine automate?** Finding relevant solicitations, scoring whether each one
+is worth a bid, and drafting a first response from the client's own published work. A person
+reviews and submits every response **[?7]**.
 
-**Can AI write a government RFP response?** It can draft one. Here the software drafted from the
-author's own library, and a person finished every response **[C21]**. Committees score against
-the requirements, so each draft follows them in order **[C16]**.
+**Can AI write a government RFP response?** It can draft one. Here the draft came from the
+client's own library and followed that solicitation's stated evaluation criteria **[?6]**, and a
+person finished every response. Eligibility, pricing and submission checks stayed human **[?9]**.
 
-**How long does custom RFP software take to build?** This one was live and sending real RFPs in
-three days **[C1]**. Scoring, the library and drafting followed **[T1]**.
+**What was working after three days?** Real RFPs arriving, scored for fit. The library, the
+drafting and the tuning came after.
+
+## If your firm wins work through proposals
+
+I build custom AI from a team's own source material and decision rules. If your experts have to
+read, judge and answer the same kind of document every week, that is the engagement **[?10]**.
 
 ---
 
-## Identity check
+## Confirmed on 2026-09-15 (no longer in question)
 
-On 2026-09-01 you cut "a top university and a county government" from this study because the
-detail narrowed down who the author is. These tags carry the same risk, even if they are true:
-**C6** (twenty years), **C7** (books, keynotes, training), **C12** (federal, state and local
-portals), **C24** (eleven contracts) and **L3** (government). Tell me for each one: true and
-publishable, true but private, or false.
+Signed contract value for the $3M. One in eight to one in four, on submitted proposals, inside
+six months. Two or three responses a month before, three to five days each; eight to ten a month
+now. Eleven awards. More than 300 pieces in the library. Twenty years of published work. Books,
+keynotes and training programs. Federal, state and local portals. Day three for the first real
+RFPs. Thirty to fifty past bids in the replay, and the capability-overlap pattern that came out
+of it. One record per solicitation with amendments flagged. Provenance on every passage. Gaps
+instead of invention. Outcomes tuning the scoring. Sole builder. The earlier
+multi-million-dollar RFP work in enterprise cybersecurity procurement. The client's quote.
 
-## Your answers
+## Still open
 
-| Tag | Detail | Why it is there | Happened? |
-|---|---|---|---|
-| L1 | "Sole builder" | Shows the whole build was yours | |
-| L2 | Ran multi-million-dollar RFPs in enterprise cybersecurity | The reason the judgment is real | |
-| L3 | Government contracts among the $3M | Search term; the stakes | |
-| L4 | Close rate doubled "inside six months" | Speed of result | |
-| L5 | The author's quote | Social proof | |
-| C1 | Live and sending RFPs in three days | Answers "how long", a common search | ANSWERED: three days |
-| T1 | Scoring, library and drafting came after those three days | Sequence of the build | |
-| T2 | Reposts and amendments fold into one record | Depth: a real portal problem | |
-| T3 | Requirements and evaluation criteria extracted first | Depth: the expert move | |
-| T4 | Eligibility is a hard filter, not a score | Depth: certifications, set-asides, bonding | |
-| T5 | Library indexed by argument, each passage keeps source, date, outcome | Depth: why drafts can cite | |
-| T6 | The model leaves a gap rather than invent a credential | Depth: the trust guarantee | |
-| T7 | Past wins and losses used as an evaluation set for tuning | Depth: the part experts respect | |
-| T8 | Awards and rejections feed back into scoring | Depth: it improves | |
-| T9 | "The hard part was making it refuse" | The closing line of the section | |
-| C2 | Four parts: discovery, scoring, library, drafting | Makes the work visible | |
-| C3 | Close rate from one in eight to one in four | Gives "doubled" a baseline | |
-| C4 | First drafts in hours instead of days | Shows the time saved | |
-| C5 | The missed contract that started it | Opening scene | |
-| C6 | Twenty years of work | The stakes; identity risk | |
-| C7 | Books, keynotes, training programs | What the library held; identity risk | |
-| C8 | Portals and bid boards nobody checked | Why RFPs went unseen | |
-| C9 | Three to five days per response | The pain, in numbers | |
-| C10 | Two or three responses a month before | The baseline | |
-| C11 | Committees score requirements, then past performance, then price | Your expertise, stated | |
-| C12 | Federal, state and local portals, checked nightly | Search terms; identity risk | |
-| C13 | More than 300 pieces in the library | Scale of the work | |
-| C14 | Books, articles, talks, proposals, client results | What went into the library | |
-| C15 | Scoring on eligibility, deadline, certifications, fit | Search term "bid/no-bid" | |
-| C16 | Requirements pulled into a checklist | Search term; your judgment | |
-| C17 | Drafts in the author's voice | The drafts sound human | |
-| C18 | Drafts mapped to how the buyer scores | Your judgment, visible | |
-| C19 | You trained the author's team | More of your work | |
-| C20 | A year of tuning after every win and loss | More of your work | |
-| C21 | A person approves every response | Trust; answers the AI-writing worry | |
-| C22 | Built for one expert, not a generic tool | Why it works | |
-| C23 | Winnable RFPs, not every RFP | Your call, stated | |
-| C24 | Eleven contracts | Makes $3M concrete; identity risk | |
-| C25 | Eight to ten responses a month now | The after, in numbers | |
-| C26 | "If your team lives on proposals" close | Points the buyer to AI engineering | |
+| Tag | Detail | Why it is there |
+|---|---|---|
+| ?1 | Nobody was watching the portals before | The reason the RFPs went unseen |
+| ?2 | Scoring, library and drafting came after day three | Order of the build |
+| ?3 | The check runs nightly | Frequency; say daily or weekly if that is truer |
+| ?4 | Library holds books, articles, talks, past proposals, client results | What went in |
+| ?5 | Scores on eligibility, deadline, certifications, scope overlap | The scoring inputs |
+| ?6 | Drafts follow each solicitation's own stated criteria | Replaces my wrong claim that committees always score requirements, then past performance, then price. Evaluation factors vary per solicitation (FAR 15.304), and a procurement reader would have caught that |
+| ?7 | A person approves every response, nothing auto-submits | Trust |
+| ?8 | First drafts in hours instead of days | Needs a real comparison or it goes |
+| ?9 | Eligibility, pricing and submission checks stayed human | Astra's request: say what stayed human |
+| ?W1 | The requirement is proof of similar work in the last five years | The walkthrough's setup |
+| ?W2 | It matched two engagements, with dates and outcomes | The walkthrough's body |
+| ?W3 | The same RFP wanted a credential they did not hold | The gap |
+| ?W4 | The draft marked the gap and named what was missing | The payoff |
+| ?10 | The closing offer sentence | Must match what /services promises |
