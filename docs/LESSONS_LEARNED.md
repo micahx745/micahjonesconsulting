@@ -318,8 +318,24 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   opportunities from buyers who did not already know the client, including outside their home
   state. NEVER: that contracts came through friends, or any framing that the business was built
   on friendships; never "California" (identity). The /services "repositioned toward the buyers
-  who award contracts" line is an OPEN operator decision (asked 2026-09-16): keep, soften, or cut.
+  who award contracts" line: ANSWERED 2026-09-16, his pick "Replace with reach beyond their
+  network". The receipt becomes: "An author and leadership consultant: software that finds and
+  drafts RFPs from buyers outside their existing network. $3M in signed contracts, close rate
+  doubled."
   Fable's craft fix #6 (a "00. The reposition" step) is REJECTED on this entry.
+- **ORDANI'S PROBLEM WAS SIX TOOLS, NOT A HACK — operator 2026-09-16**, verbatim, answering whether
+  "every practitioner had been hacked": "they did not think they got hacked. I think the biggest
+  issue was that nobody realized they needed platform. Either paying for half dozen softwares that
+  do work well to run your business. Again dramatize this and think what a reallly amazing story
+  would be and then i can tell you if it happened like that". The live line "every practitioner had
+  been hacked or scared into thinking they had been" (content/work/ordani.mdx:48) is FALSE and
+  comes out in the Pass-120 sweep. NEVER: any claim that practitioners were hacked or feared they
+  had been. TRUE: nobody realized they needed a platform; practices ran on about half a dozen
+  separate tools. A dramatized replacement (tags O4-O8) awaits his check.
+- **GUARDICORE "A MAJOR U.S. UTILITY" IS TRUE — operator 2026-09-16**, "True, keep it and ledger
+  it". Added to the approved anonymised customer descriptors beside the global systemically
+  important bank, the federal research agency and the white-shoe Wall Street law firm.
+- **RFP "FIRST DRAFTS IN HOURS INSTEAD OF DAYS" IS TRUE — operator 2026-09-16**, "True, keep it".
 - **BIRTH WORKER VOLUME — operator 2026-09-16**, verbatim: "Organic bookings grew maybe more
   than 30. She would average 1-3 a month and now she gets 5-10 inquiries. C oming from high
   quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on

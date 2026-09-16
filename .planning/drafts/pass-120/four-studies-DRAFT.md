@@ -22,14 +22,14 @@ GTM, which already carries this study as its proof.
 **Search terms:** enterprise security positioning, east-west traffic visibility,
 microsegmentation, entering the North American enterprise market, category repositioning.
 
-**Title:** Security repositioning: $14M and an acquisition
+**Title:** Repositioning Guardicore: $14M, then Akamai
 **Description:** A Tel Aviv security company was selling a feature the market already had. I
-found what North American banks were actually buying, moved the story, and sold $14M.
+found what North American banks were buying, moved the story, and sold $14M.
 
 ## Dek
 
-$14M in revenue at a $1.2M average enterprise deal, for a security company built in Tel Aviv
-whose buyers sat in North American banks. I ran the research that found what those buyers were
+$14M in revenue, sourced and closed, at a $1.2M average enterprise deal, for a security company
+built in Tel Aviv whose buyers sat in North American banks. I ran the research that found what those buyers were
 actually signing for, moved the story from honeypots to east-west visibility, and sat in the
 deals. Akamai acquired the company in 2021.
 
@@ -51,8 +51,8 @@ Meanwhile the thing enterprises could not do was see their own networks. North-s
 and out through the firewall, was well defended. The lateral east-west traffic between workloads
 was a blind spot, and that blind spot was where ransomware lived.
 
-So the top-of-funnel message described a feature the market already had, while the deals closing
-at the bottom were being signed for something else. The product was built an ocean away from the
+So the top-of-funnel message described a feature the market already had, while buyers at the
+bottom of the funnel were signing for something else. The product was built an ocean away from the
 buyers who needed it **[G1]**.
 
 ## What the customers said that the deck did not
@@ -97,8 +97,8 @@ The two anchors held under a real network, with a real security team pushing on 
 ## Questions buyers ask
 
 **Why would positioning change revenue?** It changes which buyer takes the meeting and what they
-think they are solving. Here the pitch described a feature while the contracts were being signed
-for an outcome.
+think they are solving. Here the pitch described a feature while buyers were signing the
+contracts for an outcome.
 
 [The glossary question, "what is east-west traffic", is cut per Fable: a crawler's question, not
 a buyer's. The body already explains it, and the blog is where that explanation belongs.]
@@ -117,9 +117,9 @@ actually asking, then the positioning shift and the sales narrative your team ru
 Product building, which already carries this study.
 
 **Search terms:** HIPAA-compliant CRM, practice management for birth workers, doula software,
-progressive intake, building a HIPAA product solo.
+progressive intake.
 
-**Title:** ORDANI: a HIPAA-compliant CRM for birth workers
+**Title:** ORDANI: HIPAA-compliant CRM for birth workers
 **Description:** Birth workers run practices on group chats and paper intakes. I founded and
 built ORDANI, where intake completion went from 40% to a measured 91%.
 
@@ -138,14 +138,20 @@ release coming.
 - **Results:** intake completion 40% to 91%. Active paying users in beta, none lost to a
   competitor.
 
-## The tools were never built for them
+## Six apps and a Sunday night
 
-Birth workers, doulas, midwives and perinatal counselors, run entire practices on group chats,
-paper intakes and Google Docs. HIPAA is the law for all of it. Compliance takes infrastructure,
-and none of those tools have it.
+Birth workers, doulas, midwives and perinatal counselors, were not running their practices on
+nothing. They were running them on half a dozen tools **[O4]**: a scheduler, an invoicing app, a
+form builder for intake, a notes app, a payments app, and a group chat holding it together
+**[O5]**.
 
-That leaves three options: break the law, pay $200 a month for software designed for dentists, or
-hand-roll a system that breaks the first time a client churns.
+Each one did its own job. None of them talked to the others, so the practitioner became the
+integration, copying the same client's details from one app into the next on a Sunday night
+**[O6]**. The monthly bill for six subscriptions added up to a system nobody had designed.
+
+Nobody I spoke to was shopping for a platform. Nobody had ever offered them one built for their
+work, so they did not know to want it **[O7]**. And HIPAA is the law for all of it: every copy of
+a client's details in another app was one more place that data lived **[O8]**.
 
 ## Why it matters
 
@@ -159,9 +165,8 @@ protected. The market has not shipped for these workers because the market does 
 
 **01. I talked to birth workers before writing a line of code.** Four weeks of unpaid
 conversations: what they used, what they hated, what they would never give up, what they would
-pay for. Three patterns came back. Every practitioner had been hacked or had been frightened into
-thinking they had. Nobody wanted a "platform". Everybody wanted intake to stop eating their
-Sundays.
+pay for. Two patterns came back. Nobody asked for a platform, because nobody had been offered one
+that understood their work **[O7]**. And everybody wanted intake to stop eating their Sundays.
 
 **02. I made intake one flow instead of a form wall.** The tools they had dropped fifteen pages
 of medical forms on a pregnant person at one in the morning. I built a single conversational flow
@@ -169,8 +174,9 @@ that adapts to the practitioner's preferences and saves at every step. Completio
 self-reported 40% to a measured 91%.
 
 **03. I built it HIPAA-compliant, and not on my own judgment.** An app holding this data has to
-be shaped by the people who understand both halves of it: the birth workers whose practice lives
-inside it, and people who work in healthcare and in cyber security. Ordani has a small team
+be shaped by the people who understand both halves of it. That means the birth workers whose
+practice lives inside it, and people who work in healthcare and in cyber security. Ordani has a
+small team
 around it for that reason. How the protections work is not something a HIPAA product publishes,
 so this page does not.
 
@@ -186,9 +192,9 @@ client data, so this page describes them rather than shows them.
 
 ## Questions buyers ask
 
-**Can one person build a HIPAA product?** One person can build it. Nobody should decide alone
-what "compliant" means, which is why practitioners, healthcare people and security people shaped
-it **[O1]**.
+**Can one person build a HIPAA product?** One person can write the code. Nobody should decide
+alone what "compliant" means, which is why birth workers, healthcare people and security people
+shaped it **[O1]**.
 
 **Why not adapt an existing CRM?** Because the workflow is the product. Intake at one in the
 morning on a phone is not a dentist's front desk **[O2]**.
@@ -223,20 +229,22 @@ tying me to places... You can state the IPO years that is okay but nothing perso
 
 Descriptions, one line each:
 
-- **SurveyMonkey.** $1M+ in enterprise sales into the accounts that carried the 2018 IPO
-  **[S2]**.
+- **SurveyMonkey.** $1M+ in enterprise sales toward the 2018 IPO.
 - **Postmates.** Market and fraud analysis in the deliver-anything era, and the case for
   narrowing the promise to the core offerings. A promise that covers everything cannot be
   priced, policed or sold.
 - **Guardicore.** $14M in revenue, sourced and closed, after the research moved the pitch from
-  honeypots to east-west visibility. This row links to the study.
+  honeypots to east-west visibility.
 - **Neuton.AI.** North American positioning for an AI product years before anyone was queuing to
   buy AI. I held no cap-table position.
 
 **Ledger rules this block obeys.** The Neuton row never renders as a bare "Helped launch · 2025":
-the role and the 2020 sit in their own columns, and 2025 belongs to the acquisition. No causal
-line between the positioning work and either sale. The exit count sits directly above the rows
-that evidence it, the same shape /about uses.
+2025 belongs to the acquisition. No causal line between the positioning work and either sale. The
+exit count sits directly above the rows that evidence it, the same shape /about uses.
+
+**Build notes (not copy):** Link the Guardicore company name to the study. The CDC figures in
+ORDANI render from content/citations.ts, never as literals (Pitfall E2). Both retired slugs 301
+to /work#record in next.config.
 
 **Why this shape** (Fable, ruling 4, and Micah's answer): a page that cannot say what he did, for
 how long, or what changed says "I was near an exit" at hero scale. A row states the same fact at
@@ -259,6 +267,12 @@ is the line to reuse.
 | O1 | The FAQ answer about one person building a HIPAA product |
 | O2 | The FAQ answer about why an existing CRM does not fit |
 | O3 | The beta paragraph with every count removed (operator 2026-09-15: "lets not number how many users or paying collectives") |
+| O4 | Practices ran on about half a dozen separate tools (operator 2026-09-16: "paying for half dozen softwares") |
+| O5 | The six named by category: scheduler, invoicing, intake form builder, notes, payments, group chat (no vendor names, per the vendor gate) |
+| O6 | The practitioner re-typed client details between apps, on Sunday nights |
+| O7 | Nobody knew they needed a platform, because nobody had built one for their work (operator 2026-09-16: "nobody realized they needed platform") |
+| O8 | Every extra copy of client data was one more place it lived (a risk statement, not a mechanism) |
+| (cut) | "Every practitioner had been hacked" is FALSE (operator 2026-09-16); "$200 a month for software designed for dentists" went with the three-options sentence it sat in |
 | S2 | Whether the /services wording, "$1M+ in enterprise sales toward the 2018 IPO", is the row's line |
 
 **Settled 2026-09-15:** $14M is sourced and closed. Postmates and Neuton are rows, not pages,

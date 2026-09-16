@@ -20,7 +20,7 @@ data sits behind this list.
 
 ## Search title and description
 
-- **Title:** Custom AI RFP software: $3M in signed contracts
+- **Title:** AI RFP software: $3M in signed contracts
 - **Description:** I built RFP discovery, scoring and drafting around one expert's own body of
   work. $3M signed, and the close rate doubled from one in eight to one in four.
 
@@ -47,12 +47,12 @@ eight to one in four.
 The client had twenty years of published work behind them: books, keynotes and training programs.
 Public buyers were funding exactly that expertise. Most of those requests never reached them.
 
-New opportunities arrived through a single newsletter list and a few personal relationships.
+New opportunities arrived through a single newsletter list and the client's existing network.
 Everything else sat on federal, state and local procurement portals that nobody was watching
 **[?1]**.
 
 Every response started from a blank page. One took three to five working days, so two or three
-went out a month and the rest were passed. Volume was the ceiling, and each pass was a contract
+went out a month and the client passed on the rest. Volume was the ceiling, and each pass was a contract
 someone else won.
 
 ## Real RFPs by day three
@@ -112,11 +112,12 @@ so the scoring had to earn its weights against bids whose outcomes were already 
 
 ## What changed
 
-- $3M in signed contracts through the platform, across eleven awards, government contracts among
-  them.
+- $3M in signed contracts through the platform, across eleven awards.
+- Contracts started arriving from buyers outside the client's existing network and outside their
+  home state **[?11]**.
 - The close rate went from one in eight to one in four of submitted proposals, inside six months.
 - Responses out went from two or three a month to eight to ten.
-- First drafts arrive in hours instead of days **[?8]**.
+- First drafts arrive in hours instead of days.
 - The judgment that used to fire only when I was in the room now fires on every submission.
 
 > "Micah does the work that most strategy decks promise and never deliver." The client, name
@@ -137,9 +138,10 @@ drafting and the tuning came after.
 
 ## If your experts read the same document every week
 
-Your AI works in the notebook. Production is a different stack, and that is the stack I run. I
-build the retrieval, the scoring and the drafting on your own material, with evals that fire on
-every change, and your team runs it after I leave.
+Your AI works in the notebook. Production is a different stack, and I run that stack. I build the
+retrieval, the scoring and the drafting on your own material, for real load and not the demo,
+with evals that fire on every change and catch failures before your customers do. Your team runs
+it after I leave.
 
 [Matched to the AI engineering block on /services, which carries this study as its proof: its
 pain line, its "real load, not the demo" outcome, its evals line, and its "your team runs it
@@ -169,7 +171,9 @@ multi-million-dollar RFP work in enterprise cybersecurity procurement. The clien
 | ?5 | Scores on eligibility, deadline, certifications, scope overlap | The scoring inputs |
 | ?6 | Drafts follow each solicitation's own stated criteria | Replaces my wrong claim that committees always score requirements, then past performance, then price. Evaluation factors vary per solicitation (FAR 15.304), and a procurement reader would have caught that |
 | ?7 | A person approves every response, nothing auto-submits | Trust |
-| ?8 | First drafts in hours instead of days | Needs a real comparison or it goes |
+| ?8 | CLOSED 2026-09-16: true, kept | |
+| ?11 | Contracts from buyers outside the existing network and home state | Operator 2026-09-15: opportunities "outside of california and ones not connected to existing network". Never "friends", never "California" |
+| (fix 6) | REJECTED 2026-09-16: no repositioning step; nothing changed in who the client sold to | Ledger #3, THE RFP CLIENT WAS NOT REPOSITIONED |
 | ?9 | Eligibility, pricing and submission checks stayed human | Astra's request: say what stayed human |
 | W1-W4 | CONFIRMED 2026-09-15: the walkthrough stands as written | |
 | ?10 | CLOSED: the close now uses the AI engineering block's own promises | |

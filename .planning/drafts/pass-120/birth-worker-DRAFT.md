@@ -24,14 +24,14 @@ connected, so no volume data sits behind this list.
 
 - **Title:** Repositioning a birth worker's practice
 - **Description:** Her clients booked one service out of everything she could do. I repositioned
-  the practice around the full arc of care. Inquiries went from one to three a month to five to ten.
+  the practice around the full arc of care. Now five to ten inquiries a month.
 
 ## Dek
 
 Every inquiry asked her for the same thing, and it was one service out of everything she could
 do. I repositioned the practice from birth support alone to the full arc of care around it.
-Inquiries went from one to three a month to five to ten, from better-fit clients, and they started
-arriving across her whole range.
+Inquiries went from one to three a month to five to ten, and they started arriving across her whole
+range.
 
 ## At a glance
 
@@ -39,17 +39,17 @@ arriving across her whole range.
 - **My role:** positioning **[B1]**
 - **The work:** reading her own inquiries, talking to past clients, naming the range, and
   rewriting the surfaces a stranger reads first **[B2]**
-- **Results:** inquiries from one to three a month to five to ten. Organic bookings up more than
-  30%. Requests across her whole range instead of one service.
+- **Results:** inquiries from one to three a month to five to ten. Organic bookings up 30%.
+  Requests across her whole range instead of one service.
 
 ## Her practice was bigger than her booking form
 
-She was booked for births. That is what people asked for, and that is what her page offered
+Clients booked her for births. That is what people asked for, and that is what her page offered
 **[B3]**. The care she gave in the months around a birth was work she had trained for and
 practised for years **[B4]**, and almost nobody asked for it, because nothing told them they
 could.
 
-This is the most common positioning problem I see in a practice of one. The market's picture of
+This is a positioning problem I see again and again in a practice of one. The market's picture of
 you is narrower than your skill, and it stays that way until you change what a stranger reads
 first.
 
@@ -75,7 +75,7 @@ reposition is the first conversation in the new frame **[B9]**.
 ## What changed
 
 - Inquiries went from one to three a month to five to ten, from better-fit clients **[B14]**.
-- Organic bookings rose by more than 30%.
+- Organic bookings up 30%.
 - Inquiries stopped being one service and started arriving across her whole range.
 - She keeps running it. The language is hers now, not a document I left behind **[B11]**.
 
@@ -89,22 +89,16 @@ of engagements like this one **[B12]**.
 **What does repositioning actually change?** What a stranger reads first, and what they think
 they can ask you for. Here it moved the inquiries from one service to a whole practice.
 
-**Does positioning work for a practice of one?** That is where it moves fastest. There is no
+**Does positioning work for a practice of one?** That is often where it moves quickest: there is no
 committee between the decision and the page.
 
-**How long before bookings move?** Here, [X] **[B13]**.
+**How long before bookings move?** Here, the new inquiries started inside the first few weeks of the new introduction and script [B13].
 
 ## If your buyers only ask for one of the things you do
 
-Customer interviews and the analysis that names the question your buyers are actually asking. A
-positioning shift and a narrative you can run without me.
-
-[Matched to the Positioning & GTM block on /services, which already carries this receipt.
-FINDING for Micah: that block's pain line is "You built it. Enterprise teams still aren't buying.
-The gap is positioning, not features." A solo practitioner who clicks through from this study
-lands on a page written for enterprise software. Either this study's close points somewhere else,
-or /services needs a second line for practices. Your call, and it is a page-level decision, not a
-copy fix.]
+I read what your buyers ask for, talk to the people you have already served, and name the offer
+they are actually buying. Then I rewrite what a stranger reads first, and you run it without me.
+The same method, at enterprise scale, is [the Guardicore story](/work/guardicore).
 
 ---
 

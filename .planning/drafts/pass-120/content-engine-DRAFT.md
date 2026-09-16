@@ -21,10 +21,9 @@ No keyword tool is connected, so no volume data sits behind this list.
 
 ## Search title and description
 
-- **Title:** AI content engine: 800,000 impressions a month
-- **Description:** I wrote the platform strategy and built the AI content engine for a social
-  activist: one rough video in, a week of publishable work out. Monthly impressions peaked at
-  800,000.
+- **Title:** AI content engine: up to 800,000 impressions
+- **Description:** I built the AI content engine that turns one rough video into a week of
+  content for a social activist. Monthly impressions peaked at 800,000.
 
 ## Dek
 
@@ -48,7 +47,7 @@ In person, the work landed. Online, the same message reached a few thousand peop
 every platform combined **[?1]**.
 
 Content went out weekly-ish, made by hand by an assistant and the activist themselves. Every
-video, blog post, newsletter and digital event was built one at a time, and each one cost money
+video, blog post, newsletter and digital event came one at a time, and each one cost money
 and hours **[?2]**. A talk that took days to prepare was seen by the room and then by nobody
 **[?3]**.
 
@@ -60,10 +59,10 @@ and nothing turned attention into income.
 **01. I measured before I wrote anything.** I went through what had already been published and
 sorted it by what travelled and what died **[?4]**. The pattern set the strategy, not my taste.
 
-**02. The strategy document, 25 pages.** Platform by platform: TikTok, Instagram, YouTube,
-LinkedIn and X. Not "post more". A weekly cadence, a content-pillar map, a measurement frame, and
-the exact experiments to run in the first 90 days. I wrote it so their content lead could run it
-without supervision. It became the operating system for the next twelve months.
+**02. The strategy document, 25 pages.** Platform by platform. Not "post more". A weekly cadence,
+a content-pillar map, a measurement frame, and the exact experiments to run in the first 90 days.
+I wrote it so their content lead could run it without supervision. It became the operating system
+their content lead still runs.
 
 **03. The bet.** The work went out on eight platforms: LinkedIn, YouTube, Facebook, Instagram,
 TikTok, X, Threads and Bluesky. I did not treat them equally. I picked two to overinvest in and
@@ -73,11 +72,11 @@ people who buy this work were already reading **[?5]**. Production time went whe
 **04. The video pipeline.** The activist records something quickly, with no editing and no crew.
 The engine takes that raw video and returns a finished one, ready to publish. I started from an
 open source video tool and extended it well past what it does out of the box, so each video is
-assembled in code instead of by hand in an editor **[?6]**. The same source video also produces
-the blog post and the rest of the marketing flow for the idea it argues: the posts, the
+assembled in code instead of by hand in an editor **[?6]**. The same source video also produces the
+blog post and the rest of the marketing flow for the idea it argues. That means the posts, the
 newsletter, and the copy that sells the product or event behind it.
 
-**05. Their words, not a model's.** Drafts are built from what the activist has already published
+**05. Their words, not a model's.** The engine drafts from what the activist has already published
 and said, so the language stays theirs **[?7]**.
 
 **06. The production line.** A weekly queue, a review step, and a publishing window per platform
@@ -89,12 +88,12 @@ change". Algorithm shifts, new platform launches, policy changes: that is the re
 
 ## The part most content work skips
 
-Reach is not the product. Revenue is. The engine was built so each piece of content pointed at
-something the activist sells, and so one recording could carry an idea all the way from a clip to
-a page that asks for the sale **[?9]**.
+Reach is not the product. Revenue is. I built the engine so each piece of content pointed at
+something the activist sells. One recording can carry an idea all the way from a clip to a page
+that asks for the sale **[?9]**.
 
-That is what changed the business. Before, the income came from one stream. After, four: book
-sales, services and consulting, speaking engagements, and courses.
+That is what changed the business. Before, the income came from one stream. After, four: books,
+services, speaking and courses.
 
 ## What changed
 
@@ -103,7 +102,7 @@ sales, services and consulting, speaking engagements, and courses.
   outperformed the one I did not, as planned.
 - One income stream became four: books, services, speaking, courses.
 - More content at a higher quality, with less money and fewer hours going into producing it.
-- A 25-page playbook sits with their content lead, who runs it without supervision.
+- A 25-page strategy sits with their content lead, who runs it without supervision.
 - I stayed on retainer for the platform and algorithm shifts that come next.
 
 ## Questions buyers ask
@@ -121,14 +120,8 @@ pipeline does the rest **[?6]**.
 ## If your message is stuck in the room
 
 You have the audience, the message and the demand. What you do not have is the team to build the
-machine that carries it. I build it: strategy, design, code and launch, with nothing handed to a
-second team, and your people run it after I leave.
-
-[Matched to the Product building block on /services, which carries this study as its proof: its
-pain line ("You have the idea, the budget, and customers waiting... I build it") and its
-"nothing gets handed to a second team" outcome. Say the word if you would rather this study sat
-under AI engineering instead; the receipt on /services currently files it under Product
-building.]
+machine that carries it. I build it: strategy, design, code, security and launch, all mine. Then I
+train the person who runs it and stay on retainer for the platform shifts that follow.
 
 ---
 
