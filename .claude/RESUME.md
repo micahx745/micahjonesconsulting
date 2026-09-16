@@ -24,7 +24,8 @@ descriptors: restore both in the brief.
 HIS 09-16 RULINGS: Direction B. TitleCard pinned stack RETIRED, 600ms settle
 entrance on a hero naming client + result (SIGNED; rewrite brand.json
 motion.signature). NO captions on Pass-120 photos or the hero clip ("maybe
-nothing needs a caption"). Method line: "reword with help from fable".
+nothing needs a caption"). METHOD LINE picked (ledger #3): "I find what your
+buyers are actually paying for, then build the system that sells exactly that."
 NEXT: Fable method-line options -> his pick; build-surface map; brief
 pass-120 (content + sweep + B template + settle + clip + 301s).
 

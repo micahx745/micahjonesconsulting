@@ -359,6 +359,13 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   Each study keeps a date for sorting and structured data: the date the page was published,
   NEVER a tenure year. No year renders beside a role on any surface. Event years (IPO 2018, Uber
   2020, Akamai 2021, Nordic Semiconductor 2025) stay where they describe the company's event.
+- **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
+  (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
+  from fable". EXACT approved copy, one sentence, once, on /work only:
+  **"I find what your buyers are actually paying for, then build the system that sells exactly
+  that."** Fable's truth check holds it above all five studies; for the RFP engine the finding was
+  the software scoring bids against the expert's own work, never a repositioning (see THE RFP CLIENT
+  WAS NOT REPOSITIONED). Do not reword without a new dated ruling.
 - **PASS-120 DRAFT DETAILS CONFIRMED — operator 2026-09-16**, by per-study popups ("tick anything
   that did NOT happen"). CONFIRMED as written: RFP engine ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?9 ?11 (portals
   nobody watched, nightly checks, day three was discovery only, the library's contents, the
