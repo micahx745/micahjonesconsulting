@@ -21,16 +21,17 @@ No keyword tool is connected, so no volume data sits behind this list.
 
 ## Search title and description
 
-- **Title:** AI content engine: 8,000 to 290,000 a month
+- **Title:** AI content engine: 800,000 impressions a month
 - **Description:** I wrote the platform strategy and built the AI content engine for a social
-  activist: one rough video in, a week of publishable work out. Reach grew 36× in five months.
+  activist: one rough video in, a week of publishable work out. Monthly impressions peaked at
+  800,000.
 
 ## Dek
 
 A social activist whose message landed in every room and nowhere online. I wrote the platform
 strategy, then built an AI engine that turns one rough video into the week's work: finished
-videos, the blog post, and the whole marketing flow for the idea it argues. Monthly reach went
-from 8,000 to 290,000 in five months, and one income stream became four.
+videos, the blog post, and the whole marketing flow for the idea it argues. Monthly impressions went
+from a few thousand to a peak of 800,000, and one income stream became four.
 
 ## At a glance
 
@@ -38,13 +39,13 @@ from 8,000 to 290,000 in five months, and one income stream became four.
 - **My role:** strategist and builder.
 - **What I built:** the platform strategy, the AI content engine, the video pipeline, and the
   handoff to their content lead.
-- **Results:** 8,000 to 290,000 monthly reach in five months, a 36× lift, across eight platforms.
-  One income stream became four: books, services, speaking and courses.
+- **Results:** a peak of 800,000 impressions in a month, up from a few thousand, across eight
+  platforms. One income stream became four: books, services, speaking and courses.
 
 ## The room was full and the internet was empty
 
-In person, the work landed. Online, the same message reached 8,000 people a month across every
-platform combined **[?1]**.
+In person, the work landed. Online, the same message reached a few thousand people a month across
+every platform combined **[?1]**.
 
 Content went out weekly-ish, made by hand by an assistant and the activist themselves. Every
 video, blog post, newsletter and digital event was built one at a time, and each one cost money
@@ -97,7 +98,7 @@ sales, services and consulting, speaking engagements, and courses.
 
 ## What changed
 
-- Monthly reach grew from 8,000 to 290,000 in five months, a 36× lift.
+- Monthly impressions grew from a few thousand a month to a peak of 800,000 in a month **[?12]**.
 - Eight platforms carried the work, and two carried the weekly cadence. The two I backed
   outperformed the one I did not, as planned.
 - One income stream became four: books, services, speaking, courses.
@@ -133,11 +134,11 @@ building.]
 
 ## Confirmed on 2026-09-15 (no longer in question)
 
-The client is a social activist, anonymous, a different client from the RFP engine. Reach 8,000 to
-290,000 in five months, a 36× lift. Eight platforms, two on the weekly cadence, one deliberately
+The client is a social activist, anonymous, a different client from the RFP engine. Eight platforms, two on the weekly cadence, one deliberately
 underinvested. The 25-page strategy and the handoff to a content lead. The retainer. Before: a
-weekly-ish cadence made by an assistant and the activist. The Remotion video pipeline: a rough
-video in, finished video plus blog post plus the marketing flow for that idea out. Revenue: one
+weekly-ish cadence made by an assistant and the activist. The video pipeline (an open source
+tool extended well past its defaults, never named on the page): a rough video in, finished video
+plus blog post plus the marketing flow for that idea out. Revenue: one
 income stream became four (books, services, speaking, courses), stated as a count and not as
 dollars. No volume numbers for the current cadence: more content, higher quality, less overhead.
 Nothing went wrong with the engine, so no failure story.
@@ -157,6 +158,7 @@ Nothing went wrong with the engine, so no failure story.
 | ?9 | Each piece points at something they sell | The revenue mechanism, and the strongest claim on the page |
 | ?10 | A person approves every piece | Trust |
 | ?11 | CLOSED: the close now uses the Product building block's own promises | |
+| ?12 | The period: 800,000 impressions in a peak month, and how long after the cadence started | Operator 2026-09-15: "up to 800.000 impressions in a month", and the old 8,000-to-290,000 pair is retired because he cannot source the 290,000. No multiplier anywhere: "I dont want to make that number seem comically larger than the previous impressions tho" |
 
 Per Micah 2026-09-15: no single piece of content gets called out, and the video tool is
 described rather than named.

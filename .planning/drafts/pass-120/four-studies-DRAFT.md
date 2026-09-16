@@ -36,7 +36,7 @@ deals. Akamai acquired the company in 2021.
 ## At a glance
 
 - **Client:** Guardicore, acquired by Akamai
-- **My role:** revenue and positioning, 2018 to 2021
+- **My role:** revenue and positioning
 - **The work:** customer research and data analysis, the repositioning, target accounts and
   outbound, executive briefings, managed-security partners, and a microsegmentation pilot
 - **Results:** $14M in revenue, sourced and closed. $1.2M average enterprise deal. Acquired by
@@ -44,8 +44,8 @@ deals. Akamai acquired the company in 2021.
 
 ## Everyone was selling honeypots
 
-Between 2018 and 2020 the security market was saturated with deception. Honeypots were a feature
-several vendors shipped, and Guardicore led with theirs.
+In the years before the acquisition, the security market was saturated with deception. Honeypots
+were a feature several vendors shipped, and Guardicore led with theirs.
 
 Meanwhile the thing enterprises could not do was see their own networks. North-south traffic, in
 and out through the firewall, was well defended. The lateral east-west traffic between workloads
@@ -132,9 +132,9 @@ release coming.
 ## At a glance
 
 - **Client:** ORDANI, my company
-- **My role:** founder and sole engineer, 2025 to 2026
-- **The work:** 22 practitioner interviews, a progressive intake flow, a HIPAA-compliant build
-  shaped with birth workers and cyber security experts, and a closed beta of fourteen
+- **My role:** founder and sole engineer
+- **The work:** practitioner interviews, a progressive intake flow, a HIPAA-compliant build
+  shaped with birth workers and cyber security experts, and a closed beta
 - **Results:** intake completion 40% to 91%. Active paying users in beta, none lost to a
   competitor.
 
@@ -157,7 +157,7 @@ protected. The market has not shipped for these workers because the market does 
 
 ## What I did
 
-**01. I talked to 22 birth workers before writing a line of code.** Four weeks of unpaid
+**01. I talked to birth workers before writing a line of code.** Four weeks of unpaid
 conversations: what they used, what they hated, what they would never give up, what they would
 pay for. Three patterns came back. Every practitioner had been hacked or had been frightened into
 thinking they had. Nobody wanted a "platform". Everybody wanted intake to stop eating their
@@ -174,9 +174,9 @@ inside it, and people who work in healthcare and in cyber security. Ordani has a
 around it for that reason. How the protections work is not something a HIPAA product publishes,
 so this page does not.
 
-**04. I shipped to a closed beta of fourteen practitioners.** Free for the first year in exchange
-for weekly feedback calls. Six months in, eight were active every week, six had referred a peer,
-and none had left. That beta is where today's paying practitioners started.
+**04. I shipped to a closed beta first.** Free for the first year in exchange for weekly feedback
+calls. By the end of it, practitioners were using it every week, referring peers, and none had
+left. That beta is where today's paying practitioners started **[O3]**.
 
 ## What it became
 
@@ -210,15 +210,16 @@ for each one. those are good ones for potential tech and enterprise clients"). B
 **Heading:** Also on the record
 **Line above the rows:** Four of the companies I worked inside reached an exit.
 
-Four rows, ordered by exit year. Each carries at most four data points (R11: company, role,
-years, what happened) plus one line of description.
+Four rows, ordered by exit year. Each carries three data points (R11: company, role, what
+happened) plus one line of description. NO tenure years anywhere: operator 2026-09-15, "No years
+tying me to places... You can state the IPO years that is okay but nothing personal."
 
-| Company | Role | Years | What happened |
-|---|---|---|---|
-| SurveyMonkey | Enterprise sales | to 2018 **[S1]** | IPO, 2018 |
-| Postmates | Product analyst | 2020 | Acquired by Uber, $2.65B |
-| Guardicore | Revenue and positioning | 2018 to 2021 | Acquired by Akamai |
-| Neuton.AI | Helped launch | 2020 | Technology acquired by Nordic Semiconductor, 2025 |
+| Company | Role | What happened |
+|---|---|---|
+| SurveyMonkey | Enterprise sales | IPO, 2018 |
+| Postmates | Product analyst | Acquired by Uber, $2.65B, 2020 |
+| Guardicore | Revenue and positioning | Acquired by Akamai, 2021 |
+| Neuton.AI | Helped launch | Technology acquired by Nordic Semiconductor, 2025 |
 
 Descriptions, one line each:
 
@@ -229,8 +230,8 @@ Descriptions, one line each:
   priced, policed or sold.
 - **Guardicore.** $14M in revenue, sourced and closed, after the research moved the pitch from
   honeypots to east-west visibility. This row links to the study.
-- **Neuton.AI.** North American positioning for an AI product in 2020, years before anyone was
-  queuing to buy AI. I held no cap-table position.
+- **Neuton.AI.** North American positioning for an AI product years before anyone was queuing to
+  buy AI. I held no cap-table position.
 
 **Ledger rules this block obeys.** The Neuton row never renders as a bare "Helped launch · 2025":
 the role and the 2020 sit in their own columns, and 2025 belongs to the acquisition. No causal
@@ -241,8 +242,8 @@ that evidence it, the same shape /about uses.
 how long, or what changed says "I was near an exit" at hero scale. A row states the same fact at
 its true weight, and a reader who wants tech and enterprise pedigree gets all four in one glance.
 
-**Open:** **[S1]** the years he was at SurveyMonkey, and **[S2]** whether "$1M+ in enterprise
-sales toward the 2018 IPO" (the /services wording) is the line to reuse.
+**Open:** **[S2]** whether "$1M+ in enterprise sales toward the 2018 IPO" (the /services wording)
+is the line to reuse.
 
 ---
 
@@ -257,7 +258,7 @@ sales toward the 2018 IPO" (the /services wording) is the line to reuse.
 | G5 | You were selling microsegmentation before the product was finished, once leadership backed the focus (your 2026-09-15 answer; wording mine) |
 | O1 | The FAQ answer about one person building a HIPAA product |
 | O2 | The FAQ answer about why an existing CRM does not fit |
-| S1 | The years at SurveyMonkey for its row |
+| O3 | The beta paragraph with every count removed (operator 2026-09-15: "lets not number how many users or paying collectives") |
 | S2 | Whether the /services wording, "$1M+ in enterprise sales toward the 2018 IPO", is the row's line |
 
 **Settled 2026-09-15:** $14M is sourced and closed. Postmates and Neuton are rows, not pages,
