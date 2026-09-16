@@ -23,16 +23,28 @@ they differ.
 1. `.claude/RESUME.md`.
 2. `C:/Users/micah/.claude/CLAUDE.md`, `C:/Users/micah/.claude/ULTRACODE_OPERATING_PATTERNS.md`.
 3. Brief section 1 in full (`sed -n '1,160p' .claude/briefs/pass-120-work-page.md`; it ends at the
-   line `# 2. Final copy and the content model`), then only the section you are executing.
-4. `docs/LESSONS_LEARNED.md` #3 rows dated 2026-09-15 and 2026-09-16, and #23, #25, #26, #28, #32, #33.
-5. `docs/DESIGN_BAR.md` R2, R11, R12 (with its 2026-09-16 exception), R15, R16, R17.
+   line `# 2. Final copy and the content model`). Do NOT read sections 2 to 6 at boot. Read each one
+   in full when you reach it in section 3's order below; find its line range with
+   `grep -n '^# \|^## ' .claude/briefs/pass-120-work-page.md`. Step 1 needs only section 2.0.
+4. `docs/LESSONS_LEARNED.md`: `grep -n '2026-09-1[56]' docs/LESSONS_LEARNED.md` for the ledger rows
+   dated 2026-09-15 and 16 (read each bullet in full), then `grep -n '^## #' docs/LESSONS_LEARNED.md`
+   and read #23, #25, #26, #28, #31, #32 and #33 by their line ranges. Not the whole file.
+5. `docs/DESIGN_BAR.md`: `grep -n 'R2 —\|R11 —\|R12 —\|R15 —\|R16 —\|R17 —' docs/DESIGN_BAR.md` and
+   read those six rules with their dated exceptions.
 
 ## 2. Routing for the build
 
 - ChatGPT (Astra, Sol) is out of quota until 2026-09-19 12:17. Micah's rule, 2026-09-16: things
-  that would go to Astra go to Fable, not overused: one Fable look per judge checkpoint.
-- The main session runs every `next build`, `next start` and measuring chain itself as background
-  shell commands (detached executors have hung at `next build` on this machine: LESSONS, RESUME).
+  that would go to Astra go to Fable, not overused. Concretely, of section 1.4's four return
+  conditions: (1) first preview = ONE Fable look; (2) copy on the page = the main session with
+  `curl -s` against the ledger, no Fable; (3) ship gate = ONE Fable look (buyer read and identity
+  read together); (4) = the `motion-engineer` agent's written approval. Two Fable looks in total,
+  unless a look returns a fix-list whose fixes change the page, then one re-look at that checkpoint.
+- The main session runs every build, server and measuring chain itself as background shell commands
+  (detached executors have hung at `next build` on this machine: LESSONS, RESUME).
+- THE BUILD COMMAND: brief section 6 §6.1 exactly, which runs the gates in `package.json:6` order one
+  at a time with their expected outputs and then `npx next build --webpack`. Never plain
+  `pnpm build` (the root CLAUDE.md's line predates the webpack switch; RESUME and §6.1 win).
 - Code is written by in-session agents on DISJOINT files, one writer per file, every Agent or
   Workflow leg naming its model (`opus` where the brief leaves judgement inside execution, `sonnet`
   for mechanical placement and measuring). The main session reads every diff before it commits.
@@ -57,8 +69,16 @@ they differ.
    `70 planted caught, 32 near misses passed`, O12).
 6. §6 verification: static gates, one build, one server on 3200, the served checks, captures,
    Lighthouse reported against the production /work baseline measured first (A4).
-7. STOP at return condition 1 (§1.4): the Fable first-preview look. Then copy on the page, then the
-   ship gate, the motion-engineer's written approval, and Micah's words that day before any push.
+7. STOP at return condition 1 (§1.4): run the Fable first-preview look, apply its confirmed fixes,
+   and report to Micah with the captures. Continue to conditions 2, 3 and 4 in the same session only
+   after he says to. The session never pushes, merges or deploys on its own: that needs his words
+   that day, quoted in RESUME, and the O16 date check.
+
+## 3b. What in RESUME touches this build
+
+Of RESUME's "Waiting on operator" list, only two items touch Pass-120: the release date (O16) and
+the colleagues' okay for the clip (his to hold; not a build blocker). Ordani screens, Stripe
+playbook-99, the $500 test, A4/S3, §9a and Pass-119 are unrelated parked items: never block on them.
 
 ## 3a. Working with Micah (how the DIRECT session ran; keep it the same)
 
