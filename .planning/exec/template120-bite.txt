@@ -1,0 +1,272 @@
+/work/guardicore @1440 reduced
+  PASS U0 status: got 200
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [7,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","The work","Results"])
+  PASS U11 Name protected: got 0
+  FAIL U12 band photograph: got [] (want "guardicore-telaviv-session")
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#positioning-gtm|Positioning & GTM →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/rfp-engine"],"AI engineering"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/guardicore @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [7,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","The work","Results"])
+  PASS U11 Name protected: got 0
+  FAIL U12 band photograph: got [] (want "guardicore-telaviv-session")
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#positioning-gtm|Positioning & GTM →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/rfp-engine"],"AI engineering"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/guardicore @1440 motion js=true
+  FAIL M1 settle animations js=true: got [] (want "bad line count")
+  FAIL M2 finished frame js=true: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=true: got "missing" (want "opacity,transform")
+  FAIL M4 settle runs on a client navigation into a study: got "no .cs-next__entry" (want "a Next entry to click")
+/work/guardicore @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  FAIL M2 finished frame js=false: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=false: got "missing" (want "opacity,transform")
+/work/rfp-engine @1440 reduced
+  PASS U0 status: got 200
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [6,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","First real RFPs delivered","What I built","Results"])
+  FAIL U11 Name protected: got 0 (want 1)
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  FAIL U15 exhibit: got [0,[],0] (want [1,["The request","What the engine did"],2])
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#ai-engineering|AI engineering →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/ordani"],"Product building"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/rfp-engine @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [6,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","First real RFPs delivered","What I built","Results"])
+  FAIL U11 Name protected: got 0 (want 1)
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  FAIL U15 exhibit: got [0,[],0] (want [1,["The request","What the engine did"],2])
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#ai-engineering|AI engineering →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/ordani"],"Product building"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/rfp-engine @1440 motion js=true
+  FAIL M1 settle animations js=true: got [] (want "bad line count")
+  FAIL M2 finished frame js=true: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=true: got "missing" (want "opacity,transform")
+/work/rfp-engine @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  FAIL M2 finished frame js=false: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=false: got "missing" (want "opacity,transform")
+/work/ordani @1440 reduced
+  PASS U0 status: got 200
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(94, 113, 88)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [6,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","The work","Results"])
+  PASS U11 Name protected: got 0
+  PASS U12 band photograph: got []
+  FAIL U13 chapter breaks, no caption: got [0,0] (want [1,0])
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(94, 113, 88)")
+  FAIL U18 close link: got [] (want ["/services#product-building|Product building →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/content-engine"],"Product building"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/ordani @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(94, 113, 88)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [6,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","The work","Results"])
+  PASS U11 Name protected: got 0
+  PASS U12 band photograph: got []
+  FAIL U13 chapter breaks, no caption: got [0,0] (want [1,0])
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(94, 113, 88)")
+  FAIL U18 close link: got [] (want ["/services#product-building|Product building →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/content-engine"],"Product building"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/ordani @1440 motion js=true
+  FAIL M1 settle animations js=true: got [] (want "bad line count")
+  FAIL M2 finished frame js=true: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=true: got "missing" (want "opacity,transform")
+/work/ordani @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  FAIL M2 finished frame js=false: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=false: got "missing" (want "opacity,transform")
+/work/content-engine @1440 reduced
+  PASS U0 status: got 200
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [6,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","What I built","Results"])
+  FAIL U11 Name protected: got 0 (want 1)
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#product-building|Product building →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/birth-worker"],"Positioning & GTM"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/content-engine @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgba(0, 0, 0, 0)" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got ["\"\"","\"\""] (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [6,false] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","What I built","Results"])
+  FAIL U11 Name protected: got 0 (want 1)
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#product-building|Product building →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/birth-worker"],"Positioning & GTM"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  PASS U21 no console or page errors: got []
+/work/content-engine @1440 motion js=true
+  FAIL M1 settle animations js=true: got [] (want "bad line count")
+  FAIL M2 finished frame js=true: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=true: got "missing" (want "opacity,transform")
+/work/content-engine @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  FAIL M2 finished frame js=false: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=false: got "missing" (want "opacity,transform")
+/work/birth-worker @1440 reduced
+  FAIL U0 status: got 404 (want 200)
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got "missing" (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [0,"missing"] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","The work","Results"])
+  FAIL U11 Name protected: got 0 (want 1)
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#positioning-gtm|Positioning & GTM →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/guardicore"],"Positioning & GTM"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 ()"] (want [])
+/work/birth-worker @390 reduced
+  FAIL U0 status: got 404 (want 200)
+  FAIL U1 band ground: got "missing" (want "rgb(18, 16, 14)")
+  FAIL U2 paper body: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "missing" (want "rgb(245, 239, 228)")
+  FAIL U4 band meets paper: got "missing" (want 0)
+  FAIL U5 band rule accent: got "missing" (want "rgb(189, 90, 45)")
+  FAIL U6 fixed atmosphere off: got "missing" (want ["none","none"])
+  FAIL U7 band grain: got "missing" (want "\"\"")
+  FAIL U8 retired template gone: got [0,"missing"] (want [0,false])
+  FAIL U9 band head: got [false,7,false] (want [true,">0",true])
+  FAIL U10 at-a-glance keys: got [] (want ["Client","My role","The work","Results"])
+  FAIL U11 Name protected: got 0 (want 1)
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  FAIL U16 steps: got [0,0] (want [">=1",0])
+  FAIL U17 numeral colour: got "missing" (want "rgb(138, 61, 36)")
+  FAIL U18 close link: got [] (want ["/services#positioning-gtm|Positioning & GTM →"])
+  FAIL U19 Next entry: got [[],"missing"] (want [["/work/guardicore"],"Positioning & GTM"])
+  FAIL U20 All work: got [] (want ["/work|All work"])
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 ()"] (want [])
+/work/birth-worker @1440 motion js=true
+  FAIL M1 settle animations js=true: got [] (want "bad line count")
+  FAIL M2 finished frame js=true: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=true: got "missing" (want "opacity,transform")
+/work/birth-worker @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  FAIL M2 finished frame js=false: got [] (want "every line 1/none")
+  FAIL M3 keyframes animate opacity and transform only js=false: got "missing" (want "opacity,transform")
+template120 failures: 196

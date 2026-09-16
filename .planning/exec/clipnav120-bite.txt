@@ -1,0 +1,9 @@
+FAIL N1 clip ended after the first load: got false (want true)
+FAIL N2 play events after the first load: got 0 (want 1)
+PASS N3 reached /work/rfp-engine: got true
+FAIL N4 same document after the entry click (client navigation): got false (want true)
+FAIL N5 Back reached /work with a video element: got false (want true)
+PASS N6 same document after Back: got true
+FAIL N7 no second play event in this document: got 0 (want 1)
+FAIL N8 the remounted video never played: got {"played":-1,"paused":null} (want {"played":0,"paused":true})
+clipnav120 failures: 6

@@ -1,0 +1,12 @@
+ordani-claims-gate: product\playbook\src\chapter-01.typ:33: "hundreds of birth workers" — retired user count — use "active paying users", in beta
+ordani-claims-gate: product\playbook\src\chapter-01.typ:240: "hundreds of birth workers" — retired user count — use "active paying users", in beta
+ordani-claims-gate: product\playbook\src\chapter-03.typ:81: "row-level security" within 8 lines of Ordani (line 84) — Ordani surfaces never describe how the protections work (LESSONS #3 SECURITY-DETAIL GATE)
+ordani-claims-gate: product\playbook\src\chapter-03.typ:85: "enforced in the database" within 8 lines of Ordani (line 84) — Ordani surfaces never describe how the protections work (LESSONS #3 SECURITY-DETAIL GATE)
+ordani-claims-gate: product\playbook\src\chapter-05.typ:70: "auth.uid" within 8 lines of Ordani (line 78) — Ordani surfaces never describe how the protections work (LESSONS #3 SECURITY-DETAIL GATE)
+ordani-claims-gate: product\playbook\src\chapter-05.typ:73: "auth.uid" within 8 lines of Ordani (line 78) — Ordani surfaces never describe how the protections work (LESSONS #3 SECURITY-DETAIL GATE)
+ordani-claims-gate: product\playbook\src\chapter-05.typ:80: "enforced in the database" within 8 lines of Ordani (line 78) — Ordani surfaces never describe how the protections work (LESSONS #3 SECURITY-DETAIL GATE)
+ordani-claims-gate: product\playbook\src\chapter-07.typ:77: "enforced in the database" within 8 lines of Ordani (line 75) — Ordani surfaces never describe how the protections work (LESSONS #3 SECURITY-DETAIL GATE)
+ordani-claims-gate: product\playbook\src\chapter-08.typ:61: "Hundreds of birth workers" — retired user count — use "active paying users", in beta
+ordani-claims-gate: product\playbook\src\chapter-10.typ:165: "Hundreds of birth workers" — retired user count — use "active paying users", in beta
+
+ordani-claims-gate: 10 finding(s). Counts: say "active paying users", in beta, public release coming. Mechanisms: teach them generically, but cut Ordani's name from the surrounding sentence — never route around this gate.

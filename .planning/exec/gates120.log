@@ -1,0 +1,88 @@
+== G1: node_modules/.bin/tsx lib/copy-lint-cli.ts
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+(rc=0)
+== G2: node scripts/vendor-gate.mjs
+vendor-gate: clean
+(rc=0)
+== G3: node scripts/retired-phrases-gate.mjs --self-test
+retired-phrases-gate self-test: 70 planted caught, 32 near misses passed
+(rc=0)
+== G4: node scripts/retired-phrases-gate.mjs
+retired-phrases-gate: clean
+(rc=0)
+== G5: node scripts/accent-states-lint.mjs --self-test
+accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms
+(rc=0)
+== G6: node scripts/accent-states-lint.mjs
+accent-states-lint: clean
+(rc=0)
+== G7: node scripts/gsap-quarantine-gate.mjs --self-test
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+(rc=0)
+== G8: node scripts/gsap-quarantine-gate.mjs
+gsap-quarantine-gate: clean (85 files)
+(rc=0)
+== G9: npx next build --webpack
+▲ Next.js 16.2.6 (webpack)
+- Experiments (use with caution):
+  ✓ viewTransition
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 10.1s
+  Running TypeScript ...
+  Finished TypeScript in 2.8s ...
+  Collecting page data using 23 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 23 workers (0/22) ...
+  Generating static pages using 23 workers (5/22) 
+  Generating static pages using 23 workers (10/22) 
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 23 workers (16/22) 
+✓ Generating static pages using 23 workers (22/22) in 1088ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /about/opengraph-image-10qg6g
+├ ƒ /api/stripe/webhook
+├ ○ /call
+├ ○ /call/kickoff
+├ ○ /contact
+├ ○ /icon.svg
+├ ƒ /llms.txt
+├ ƒ /opengraph-image-1o6u9y
+├ ○ /packages
+├ ○ /robots.txt
+├ ○ /services
+├ ○ /services/thanks
+├ ○ /sitemap.xml
+├ ○ /work
+├ ● /work/[slug]
+│ ├ /work/guardicore
+│ ├ /work/rfp-engine
+│ ├ /work/ordani
+│ └ [+2 more paths]
+├ ƒ /work/[slug]/opengraph-image-oti546
+└ ƒ /work/opengraph-image-xevl18
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+== G10: node scripts/render-gate.mjs
+render-gate: 14 routes — links resolve, fragments exist, metadata within limits.
+(rc=0)
+== G11: npx tsc --noEmit
+
+(rc=0)
+== G12: node -e console.log(require("fs").readdirSync(".next/server/app/work").filter(f=>f.endsWith(".html")).sort().join(" "))
+birth-worker.html content-engine.html guardicore.html ordani.html rfp-engine.html
+(rc=0)
+== G13: node scripts/layout-gate.mjs --self-test
+layout-gate self-test: 7 planted defects caught, 8 near misses clean
+(rc=0)
