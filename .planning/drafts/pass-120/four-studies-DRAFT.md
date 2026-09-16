@@ -59,8 +59,8 @@ buyers who needed it **[G1]**.
 
 I interviewed customers, researched the market, and ran the data analysis on what closed against
 what the pitch promised. The two came apart in the same place every time: buyers were not buying
-deception. They were buying sight of the traffic between their own workloads, and then the
-ability to cut it down **[G2]**.
+deception. They could not see anything inside their own environments, and visibility was the
+thing they signed for.
 
 I brought that to leadership with the analysis behind it, and the story moved: visibility first,
 then east-west microsegmentation.
@@ -196,9 +196,6 @@ client data, so this page describes them rather than shows them.
 alone what "compliant" means, which is why birth workers, healthcare people and security people
 shaped it **[O1]**.
 
-**Why not adapt an existing CRM?** Because the workflow is the product. Intake at one in the
-morning on a phone is not a dentist's front desk **[O2]**.
-
 ## If you have the idea and no team
 
 You have the idea, the budget, and customers waiting. What you do not have is the team to build
@@ -265,7 +262,7 @@ is the line to reuse.
 | G4 | The pilot ran against a real network with the bank's own security team |
 | G5 | You were selling microsegmentation before the product was finished, once leadership backed the focus (your 2026-09-15 answer; wording mine) |
 | O1 | The FAQ answer about one person building a HIPAA product |
-| O2 | The FAQ answer about why an existing CRM does not fit |
+| O2 | CUT 2026-09-16: the operator did not follow the line ("diont ge this line"), so a buyer would not either |
 | O3 | The beta paragraph with every count removed (operator 2026-09-15: "lets not number how many users or paying collectives") |
 | O4 | Practices ran on about half a dozen separate tools (operator 2026-09-16: "paying for half dozen softwares") |
 | O5 | The six named by category: scheduler, invoicing, intake form builder, notes, payments, group chat (no vendor names, per the vendor gate) |

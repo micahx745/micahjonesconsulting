@@ -27,8 +27,10 @@ GATE DONE: .planning/reviews/FABLE-120-CRAFT.md; fixes applied+verified
 confirmed; live "hacked" line FALSE. Birth worker rebuilt (2f4a149):
 positioning+site+marketing+booking+direct Medicaid claims, bookings 1-3 ->
 5-10/mo, vendor never named (gated). Year: hidden publish date, none shown.
-NEXT: sequencing ruling (sweep first?), batch-confirm open tags, then
-brief(s) pass-120, then design.
+HIS 09-16: "Ship everything together" (corrected claims stay live till
+then, his call). ALL draft tags confirmed by popup except G2 (visibility
+was the main pain) and ORDANI FAQ O2 (cut). NEXT: content brief
+pass-120a (no ship alone), design arc, one release.
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services
 (<2.5s closes it). Patch .planning/qa/pass-119, brief §11.

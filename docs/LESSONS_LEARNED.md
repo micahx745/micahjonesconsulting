@@ -359,6 +359,24 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   Each study keeps a date for sorting and structured data: the date the page was published,
   NEVER a tenure year. No year renders beside a role on any surface. Event years (IPO 2018, Uber
   2020, Akamai 2021, Nordic Semiconductor 2025) stay where they describe the company's event.
+- **PASS-120 DRAFT DETAILS CONFIRMED — operator 2026-09-16**, by per-study popups ("tick anything
+  that did NOT happen"). CONFIRMED as written: RFP engine ?1 ?2 ?3 ?4 ?5 ?6 ?7 ?9 ?11 (portals
+  nobody watched, nightly checks, day three was discovery only, the library's contents, the
+  score's inputs, drafts following each solicitation's stated criteria, a person approving every
+  response, eligibility/pricing/submission kept human, buyers from outside the existing network
+  and home state); content engine ?1-?10 and ?12 (a few thousand a month before, cost per piece,
+  the talk seen once, the audit of past posts, backing where buyers read, five months of cadence
+  before the peak month, drafts from their own words, the weekly queue and review, every piece
+  pointed at a sale, a person approving each piece, videos assembled in code from an extended
+  open source tool); birth worker B3-B9, B11-B13, B15-B18; Guardicore G1, G3, G4 (G5 was his own
+  words); ORDANI O1 and O3; the Postmates and Neuton.AI record-row descriptions.
+  CORRECTED: Guardicore G2. Verbatim: "buyers main pain point was visbility - they did not see
+  anyhthing in their environments." The line that buyers wanted to see the traffic "and then the
+  ability to cut it down" is replaced: they could not see anything inside their own environments,
+  and visibility was what they signed for. Visibility is the MAIN pain; segmentation is not to be
+  framed as co-equal in the buyer's motive.
+  CUT: ORDANI FAQ O2 ("the workflow is the product... not a dentist's front desk"), verbatim
+  "diont ge this line".
 - **BIRTH WORKER VOLUME — operator 2026-09-16**, verbatim: "Organic bookings grew maybe more
   than 30. She would average 1-3 a month and now she gets 5-10 inquiries. C oming from high
   quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on
