@@ -21,8 +21,8 @@ they differ.
 
 1. `.claude/RESUME.md`.
 2. `C:/Users/micah/.claude/CLAUDE.md`, `C:/Users/micah/.claude/ULTRACODE_OPERATING_PATTERNS.md`.
-3. Brief section 1 in full (`sed -n '1,150p' .claude/briefs/pass-120-work-page.md`), then only the
-   section you are executing.
+3. Brief section 1 in full (`sed -n '1,160p' .claude/briefs/pass-120-work-page.md`; it ends at the
+   line `# 2. Final copy and the content model`), then only the section you are executing.
 4. `docs/LESSONS_LEARNED.md` #3 rows dated 2026-09-15 and 2026-09-16, and #23, #25, #26, #28, #32, #33.
 5. `docs/DESIGN_BAR.md` R2, R11, R12 (with its 2026-09-16 exception), R15, R16, R17.
 
@@ -36,6 +36,11 @@ they differ.
   Workflow leg naming its model (`opus` where the brief leaves judgement inside execution, `sonnet`
   for mechanical placement and measuring). The main session reads every diff before it commits.
 - Commit by explicit pathspec after `git diff --cached --name-only` (#23). Never `git add -A`.
+- Multi-agent Workflows are approved for this arc (Micah invoked them on 2026-09-16). Shape that
+  worked: parallel writers on disjoint files -> an independent verifier that reads the diff and
+  re-runs the checks -> the main session spot-reads before committing. Verifiers have been wrong
+  twice this arc (a mock judge cut event years Micah allows; an editor skipped overrides while
+  reporting none skipped): check every reviewer premise against the ledger before applying it.
 
 ## 3. Execution order (the brief's own order, with section 1's overrides)
 
@@ -54,6 +59,23 @@ they differ.
 7. STOP at return condition 1 (§1.4): the Fable first-preview look. Then copy on the page, then the
    ship gate, the motion-engineer's written approval, and Micah's words that day before any push.
 
+## 3a. Working with Micah (how the DIRECT session ran; keep it the same)
+
+- Ask him questions with the AskUserQuestion popup, never a wall of text: at most four questions
+  per popup, a recommended option first and marked (Recommended), each option's description saying
+  what happens if he picks it. He answers in the popup and often types context into Other: read
+  that text literally, it frequently changes the question.
+- Write every answer that settles a fact, a wording or a claim into LESSONS #3 (design rulings into
+  DESIGN_BAR) in the same turn, verbatim and dated, BEFORE any agent or build leg launches (#32).
+- Settled and not to be re-raised: no captions on photos or the clip ("not everything needs a
+  caption"); the AI clip ships as the /work hero under the R12 exception; Direction B; the settle
+  entrance; the method line.
+- Plain words. Lead with what happened and what he needs to decide; file:line only where he will
+  click it. When something he asked for conflicts with a written rule, say so once with the rule,
+  then follow his ruling.
+- He wants to see visuals before approving visual work: captures at 390 and 1440, sent with
+  SendUserFile (display render), not described.
+
 ## 4. Stop conditions (from the brief; never reinterpret, #25)
 
 Any chk line whose output differs from its expected value; any hook refusal; any ffmpeg error or
@@ -64,7 +86,9 @@ anything section 1 does not settle. Stop, report the raw output, and let the jud
 
 push to main deploys · pathspec commits (#23) · measure the render (#26) · scope gates from the
 layout (#28) · ledger every operator answer before a leg launches (#32) · retired figures in every
-spelling (#33) · never build while serving · `MSYS_NO_PATHCONV=1` in Git Bash · long inline scripts
+spelling (#33) · hooks read the MAIN checkout's `.claude/brand.json`, so a motion-discipline refusal
+after the worktree's brand.json is edited is #31, not a real ban: stop and report, never route
+around it · release date: O16 · never build while serving · `MSYS_NO_PATHCONV=1` in Git Bash · long inline scripts
 or heredocs with nested quotes break the Bash tool: write a script file · `python3` is a stub that hangs.
 
 ## Micah: open the build session

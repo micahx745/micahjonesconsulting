@@ -17,7 +17,8 @@ together"): /work (Direction B, AI hero clip per R12 exception, method
 line), five studies incl. new birth-worker, Postmates + Neuton 308 to
 /work#record, live claims sweep. Branch fix already in: $80M aria-label
 (8f6034c, #33). Release date for publishedAt: NOT YET RECORDED (build stops
-and asks). Nothing pushed; branch is ahead of origin.
+and asks). PUSH OF design/live-evolve APPROVED 2026-09-16, verbatim: "push
+the branch" (branch only; main untouched, no deploy).
 
 ## Return conditions (brief §1.4)
 Fable first-preview look at 390/1440 · copy vs ledger by curl · ship gate

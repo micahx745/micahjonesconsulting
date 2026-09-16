@@ -105,6 +105,13 @@ merges to main or deploys without the operator's words that day, quoted in RESUM
   in this record could be yours...") stays, outside `#record`. `llms.txt` keeps "Thirteen years" as a
   duration (section 5 §5.8 item 1).
 
+- **O16 the release date, without a stall.** At the content step, ask Micah once (a popup) for the
+  planned release date and record his answer in RESUME and the ledger. If he has none yet, write
+  `publishedAt` as the literal `2026-09-16` in all five studies AND add a ship-gate check to section
+  6's ship conditions: before any push to `main`, every study's `publishedAt` equals the deploy day
+  recorded in RESUME; if not, update the five values in one commit and rebuild. Never ship a date
+  that is not the release day (A1).
+
 ## 1.3 The rejected list
 
 - **The generated clip with a caption or disclosure.** Operator 2026-09-16: "no captions not
