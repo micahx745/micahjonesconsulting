@@ -11,13 +11,13 @@ Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. He must PULL main checkout.
 
 ## NOW: Pass-120 DIRECT DONE. BRIEF COMMITTED, BUILD NEXT (new session)
 Brief: .claude/briefs/pass-120-work-page.md (2a47a28, 5,523 lines; §1
-overrides O1-O15 win over §2-6). Kickoff for the build session:
+overrides O1-O16 win over §2-6). Kickoff for the build session:
 .planning/handoff/NEXT-SESSION-KICKOFF.md. One release ("ship everything
 together"): /work (Direction B, AI hero clip per R12 exception, method
 line), five studies incl. new birth-worker, Postmates + Neuton 308 to
 /work#record, live claims sweep. Branch fix already in: $80M aria-label
-(8f6034c, #33). Release date for publishedAt: NOT YET RECORDED (build stops
-and asks). PUSH OF design/live-evolve APPROVED 2026-09-16, verbatim: "push
+(8f6034c, #33). Release date for publishedAt: NOT YET RECORDED (O16: ask once,
+else 2026-09-16 + ship-gate check). PUSH OF design/live-evolve APPROVED 2026-09-16, verbatim: "push
 the branch" (branch only; main untouched, no deploy).
 
 ## Return conditions (brief §1.4)

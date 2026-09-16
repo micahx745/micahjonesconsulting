@@ -9,12 +9,13 @@ they differ.
 - Production unchanged: `main` = `c2ffb36`, `dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23` on both domains.
   Revert target: promote `dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC`. Never force-push `main`.
 - Branch `design/live-evolve` in worktree `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live`
-  carries the whole DIRECT arc, unpushed past `origin/design/live-evolve`: rulings, ledger, drafts,
-  research, mocks, and the brief. Pushing the branch needs Micah's words that day.
+  carries the whole DIRECT arc: rulings, ledger, drafts, research, mocks, and the brief. It was
+  pushed to `origin/design/live-evolve` on 2026-09-16 on Micah's words ("push the branch"). Every
+  later push, and anything touching `main`, needs his words that day.
 - One source fix already on the branch: the home ledger aria-label no longer reads the retired $80M
   figure (`8f6034c`, LESSONS #33).
 - THE BRIEF: `.claude/briefs/pass-120-work-page.md` (5,523 lines). Section 1 rules over sections 2
-  to 6; read section 1 first and apply its overrides O1 to O15 wherever a later section disagrees.
+  to 6; read section 1 first and apply its overrides O1 to O16 wherever a later section disagrees.
 - Operator ruling 2026-09-16: "Ship everything together". One release; nothing deploys piecemeal.
 
 ## 1. Boot, in order (do not explore beyond this)
@@ -46,7 +47,7 @@ they differ.
 
 1. §2.0 the premium-web `mdx-frontmatter.sh` hook edit (approved, A2); record it in RESUME.
 2. §2.1 to §2.2 schema and every consumer in ONE commit; §2.3 the five studies (publishedAt = the
-   release date, A1: if RESUME has no release date recorded, stop and ask); §2.4 to §2.7 record block,
+   release date: follow O16 exactly, ask Micah once by popup, never stall); §2.4 to §2.7 record block,
    entries, method line, CDC figures, llms.txt (§2.7 owns the study lines, O4).
 3. §3 and §4 the study template and the settle entrance; `globals.css` edit order per O11; the paper
    ground is bone (O8); brand.json in one step (O11); DESIGN_BAR R2 and R16 exceptions (O7, O10);
