@@ -369,6 +369,13 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   judge and ruled in .claude/briefs/pass-120-work-page.md §1.2: the Guardicore band still is the
   clip's frame 0; the clip crossfades back to frame 0 at its end; studies take an R2 exception at
   56/18.
+- **RELEASE DAY FOR publishedAt — operator 2026-09-16**, build session, asked once by popup per
+  brief O16 ("What day do you plan to release the /work rewrite?"), verbatim: "ASAP WE ARE JUST
+  hiding dates and years i worked stuff and keeping it in the hidden background for seo". No date
+  given, so O16's no-date path applies: all five studies carry `publishedAt: "2026-09-16"`, and
+  before any push to `main` every study's publishedAt must equal the deploy day recorded in RESUME;
+  if not, the five values change in one commit and the site rebuilds. The field stays hidden (JSON-LD
+  and sort only), never a tenure year, never rendered.
 - **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
   (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
   from fable". EXACT approved copy, one sentence, once, on /work only:
