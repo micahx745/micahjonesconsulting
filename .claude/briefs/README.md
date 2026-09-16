@@ -59,6 +59,10 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
 - **Scope from the layout, look at the capture** (LESSONS #28). A DOM gate's scope is read off
   the route's group layout (the nav here is a sibling of `main`) and stated in the script. A
   capture is opened once before it counts as evidence, and its name matches what it frames.
+- **No `grep -i` with `-F` in a check** (LESSONS #34). Git Bash's GNU grep 3.0 aborts on that
+  pair (exit 134, no output), and `| wc -l` then prints `0`, so every `expect 0` passes without
+  looking. Lowercase both sides (`tr '[:upper:]' '[:lower:]'`) and use `grep -F`, or use
+  `grep -i` on an escaped pattern. `node .planning/exec/grep-if-gate.mjs` finds the pair.
 
 ## Budget this enforces
 

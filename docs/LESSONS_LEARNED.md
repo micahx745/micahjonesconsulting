@@ -1281,3 +1281,28 @@ recorded as done until each form has been grepped.
 **The gate.** `scripts/retired-phrases-gate.mjs` now blocks "$80M" and "80 million" in the rendered
 tree, and the aria-label reads "14 million dollars in revenue, acquired by Akamai" to match what is
 on screen. On recurrence: the gate derives the spelled-out form of every dollar figure it carries.
+
+## #34 — A zero-count check whose grep crashed printed 0 and passed (2026-09-16)
+
+**What happened.** The Pass-120 brief's served sweep (`s5-render.sh`, brief line 4924) counts
+retired phrases with `curl | grep -oiF -- "$2" | wc -l`, and its card1 spec (line 5392) with
+`grep -ciF`. Writing `card1-120.sh`, the L6a leg saw every absence count come back empty and
+traced it: GNU grep 3.0 in Git Bash aborts on `-i` together with `-F` (exit 134, no output).
+Reproduced by the main session: `printf 'abc Client Revenue xyz\n' | grep -oiF -- "client revenue"`
+prints nothing, PIPESTATUS `0 134`; `grep -oi` on the same input prints the match. Behind
+`| wc -l`, the crash reads as `0`, so every `expect 0` in that helper would have passed on a page
+that still carried the retired claim. Caught before any served run; no earlier pass used the pair
+(grep over `.planning/exec`, `scripts` and `.claude/briefs` on 2026-09-16).
+
+**Root cause.** A pipeline's exit status is the last command's. The check trusted a count without
+asking whether the command that produced it ran, and a flag pair that works on most machines was
+never run once on this one.
+
+**The rule.** A check never combines `grep -i` with `-F` on this machine. A zero-count check proves
+it can count: it either runs once against a planted positive, or it reads the grep's own exit status
+(`PIPESTATUS`), before its 0 counts as a pass.
+
+**The gate.** `.planning/exec/grep-if-gate.mjs` (self-test 5 planted, 6 near misses) finds the pair
+in `.planning/exec`, `scripts` and `.claude/briefs`; the standing clause in `.claude/briefs/README.md`
+names it. On 2026-09-16 it reports exactly the two brief lines above, which the Pass-120 build runs
+in a corrected form and holds for the judge. On recurrence: the gate joins `package.json` `build`.

@@ -15,7 +15,7 @@ fi
 sf=0
 chk () { if eval "$3"; then echo "  PASS $1: got $2"; else echo "  FAIL $1: got $2 (want $4)"; sf=$((sf+1)); fi; }
 get () { curl -sL "$1" | sed 's/<!-- -->//g'; }
-# The spec's `grep -ciF` aborts (exit 134, no count) in Git Bash's GNU grep 3.0 on every -i -F
+# The spec's `grep -ciF` aborts (exit 134, no count) in Git Bash's GNU grep 3.0 on every -i -F (grep-if-ok: a warning, LESSONS #34)
 # combination, which would print an empty count. Same match, done as: lowercase both sides with
 # tr, then grep -cF (fixed strings, so $ stays literal; the strings here are ASCII apart from –).
 lc () { tr '[:upper:]' '[:lower:]'; }
