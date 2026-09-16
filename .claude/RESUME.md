@@ -24,7 +24,10 @@ confirmed; $3M = signed, 1-in-8 to 1-in-4, day 3, 11 awards, 300+ pieces,
 never named; one video to video+blog+marketing flow; one income stream
 became four; no failure story, no single-piece callout), birth-worker
 (new study, tags B1-B13). Closes match the /services block that carries
-each study. ASTRA on RFP v1: REVISE, applied (.planning/reviews).
+each study. ASTRA on RFP v1: REVISE, applied (.planning/reviews). ASTRA
+ON ALL SEVEN DIED: ChatGPT quota exhausted until 2026-09-19 12:17, no
+output file; partials in .planning/exec/astra120all.log. Codex/Sol both
+out till then; substitute juror = GLM (z.ai) + Opus.
 FINDING for him: Positioning & GTM's pain line is enterprise-only, so a
 practitioner clicking from the birth-worker study lands wrong.
 Next: his open tags, then the four other studies, then design.
@@ -33,7 +36,7 @@ Next: his open tags, then the four other studies, then design.
 (<2.5s closes it). Patch .planning/qa/pass-119, brief §11.
 
 ## Open (mine)
-Stand-in glyphs mixed case in headless captures: check in a real browser.
+Stand-in glyphs mixed case in headless captures: real-browser check.
 117 §8: mono links home/404, spring CTA on home hero.
 
 ## Waiting on operator
@@ -41,7 +44,7 @@ Stand-in glyphs mixed case in headless captures: check in a real browser.
 playbook-99 off + Audit copy · 500 dollar live test · A4/S3 · §9a.
 
 ## Traps
-push to main deploys · pathspec commits (#23) · never reinterpret an expect
+ChatGPT bucket empty till 09-19 · push to main deploys · pathspec commits (#23) · never reinterpret an expect
 (#25) · measure the render (#26) · scope gates from layout (#28) · lab CLS
 counts hadRecentInput (#29) · never build while serving · gate steps on probe
 exit codes · MSYS_NO_PATHCONV=1 · hooks read the MAIN brand.json.
