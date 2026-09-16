@@ -1,0 +1,77 @@
+{
+  "url": "https://sky.money",
+  "slug": "b-clay-sky",
+  "desktop": {
+    "height": 6293,
+    "frames": 7
+  },
+  "info": {
+    "title": "Sky.money | Put Stablecoins to Work with sUSDS, Vaults & SKY",
+    "h1": {
+      "text": "Stablecoins aren’t built to sit still",
+      "font": "Circularpro",
+      "size": "82px",
+      "weight": "500",
+      "lh": "82px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "How hard your stablecoins work is up to you",
+      "font": "Circularpro",
+      "size": "48px",
+      "weight": "500",
+      "lh": "48px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "sUSDS",
+      "font": "Circularpro",
+      "size": "28px",
+      "weight": "500",
+      "lh": "28px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "We do not use cookies of this type.",
+      "font": "sans-serif",
+      "size": "15px",
+      "weight": "600",
+      "lh": "24px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 82,
+      "text": "Stablecoins",
+      "font": "Circularpro"
+    },
+    "ground": "rgb(42, 25, 125)",
+    "ink": "rgb(255, 255, 255)",
+    "images": 30,
+    "videos": [],
+    "headings": [
+      "H1: Stablecoins aren’t built to sit still",
+      "H1: ‍",
+      "H2: How hard your stablecoins work is up to you",
+      "H3: sUSDS",
+      "H1: ‍",
+      "H3: Fixed Yield",
+      "H3: Vaults",
+      "H3: stUSDS",
+      "H3: Sky Ecosystem Rewards",
+      "H2: 1:1 USDC to USDS conversion. Both ways",
+      "H2: SKY: Vote, Stake, Borrow",
+      "H2: Sky.money Highlights",
+      "H3: Where Does sUSDS Yield Come From?",
+      "H3: The New Sky Money App",
+      "H3: What Are Sky Ecosystem Rewards?",
+      "H2: Your stablecoins don’t have to sit still",
+      "H2: Put your stablecoins to work",
+      "H2: Follow Sky"
+    ],
+    "scrollHeight": 6293
+  },
+  "mobile": {
+    "height": 9351,
+    "frames": 12
+  }
+}

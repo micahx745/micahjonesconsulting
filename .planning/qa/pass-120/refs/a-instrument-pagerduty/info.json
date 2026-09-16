@@ -1,0 +1,58 @@
+{
+  "url": "https://www.instrument.com/work/pagerduty",
+  "slug": "a-instrument-pagerduty",
+  "desktop": {
+    "height": 12629,
+    "frames": 15
+  },
+  "info": {
+    "title": "PagerDuty Case Study | Instrument",
+    "h1": null,
+    "h2": {
+      "text": "RELATED CASE STUDIES",
+      "font": "Instrument-Sans",
+      "size": "12px",
+      "weight": "400",
+      "lh": "16px",
+      "tt": "uppercase"
+    },
+    "h3": {
+      "text": "Our Role",
+      "font": "Instrument-Sans",
+      "size": "28px",
+      "weight": "400",
+      "lh": "32px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "We use cookies to track website performance. View our Privacy Policy for details",
+      "font": "Instrument-Sans",
+      "size": "15px",
+      "weight": "400",
+      "lh": "24px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 184,
+      "text": "PagerDuty",
+      "font": "Instrument-Serif"
+    },
+    "ground": "rgb(255, 255, 255)",
+    "ink": "rgb(7, 7, 8)",
+    "images": 12,
+    "videos": [],
+    "headings": [
+      "H3: Our Role",
+      "H2: RELATED CASE STUDIES",
+      "H2: Keep up to date with our quarterly newsletter, “Liner Notes.”",
+      "H2: GET IN TOUCH",
+      "H2: SEE MORE",
+      "H2: FOLLOW ALONG"
+    ],
+    "scrollHeight": 12629
+  },
+  "mobile": {
+    "height": 12302,
+    "frames": 12
+  }
+}

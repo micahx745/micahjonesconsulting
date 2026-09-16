@@ -1,0 +1,84 @@
+{
+  "url": "https://www.harvey.ai/",
+  "slug": "b-basementstudio-harvey",
+  "desktop": {
+    "height": 9917,
+    "frames": 12
+  },
+  "info": {
+    "title": "Harvey | AI software for legal and professional services",
+    "h1": {
+      "text": "Build a Frontier Legal Organization",
+      "font": "HarveySerifFont",
+      "size": "72px",
+      "weight": "400",
+      "lh": "75.6px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "2,400+ Legal Organizations Build on :Harvey:",
+      "font": "HarveySerifFont",
+      "size": "32px",
+      "weight": "400",
+      "lh": "33.6px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "Overview →",
+      "font": "HarveySansFont",
+      "size": "14px",
+      "weight": "500",
+      "lh": "18.2px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "A unified view of how Harvey's products work together to support your entire pra",
+      "font": "HarveySansFont",
+      "size": "14px",
+      "weight": "400",
+      "lh": "18.2px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 72,
+      "text": "Build a Frontier Legal Organization",
+      "font": "HarveySerifFont"
+    },
+    "ground": "rgb(15, 14, 13)",
+    "ink": "rgb(255, 255, 255)",
+    "images": 110,
+    "videos": [],
+    "headings": [
+      "H3: Overview →",
+      "H3: Agents →",
+      "H3: Vault →",
+      "H3: Knowledge →",
+      "H3: Spaces →",
+      "H3: Command Center →",
+      "H3: Contract Intelligence →",
+      "H3: Harvey Mobile →",
+      "H3: Ecosystem →",
+      "H3: Introducing Memory NEW →",
+      "H3: Innovation →",
+      "H3: Litigation →",
+      "H3: Transactional →",
+      "H3: In-House →",
+      "H3: Law Firms →",
+      "H3: Mid-Sized Firms →",
+      "H3: A New Era of Collaboration for Legal and Professional Services →",
+      "H3: Blog →",
+      "H3: Resources Hub →",
+      "H3: Press Kit →",
+      "H3: Research →",
+      "H3: ROI Calculator Law Firm →",
+      "H3: ROI Calculator In House →",
+      "H3: Harvey Academy →",
+      "H3: About →"
+    ],
+    "scrollHeight": 9917
+  },
+  "mobile": {
+    "height": 14697,
+    "frames": 12
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "url": "https://worksinprogress.co/issue/the-housing-theory-of-everything/",
+  "slug": "c-worksinprogress-housing",
+  "desktop": {
+    "height": 18624,
+    "frames": 15
+  },
+  "info": {
+    "title": "The housing theory of everything - Works in Progress Magazine",
+    "h1": {
+      "text": "The housing theory of everything",
+      "font": "Editor-Bold",
+      "size": "48px",
+      "weight": "400",
+      "lh": "62.4px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "Western housing shortages do not just prevent many from ever affording their own",
+      "font": "Editor-Regular",
+      "size": "32px",
+      "weight": "400",
+      "lh": "40px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "Urban expansion in the age of liberalism",
+      "font": "Editor-Bold",
+      "size": "20px",
+      "weight": "400",
+      "lh": "26px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "Cookie banners are ugly, annoying, and make the internet worse. Unfortunately, w",
+      "font": "\"GT America Mono Light\"",
+      "size": "12px",
+      "weight": "400",
+      "lh": "19.2px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 48,
+      "text": "The housing theory of everything",
+      "font": "Editor-Bold"
+    },
+    "ground": "rgb(255, 247, 244)",
+    "ink": "rgb(0, 0, 0)",
+    "images": 15,
+    "videos": [],
+    "headings": [
+      "H1: The housing theory of everything",
+      "H2: Western housing shortages do not just prevent many from ever affording",
+      "H2: The obvious effects of expensive housing",
+      "H2: The hidden effects of expensive housing",
+      "H2: Scratching the surface",
+      "H3: Urban expansion in the age of liberalism",
+      "H3: How to redraw a city",
+      "H3: Why Britain doesn’t build"
+    ],
+    "scrollHeight": 18624
+  },
+  "mobile": {
+    "height": 30018,
+    "frames": 12
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "url": "https://wearecollins.com/case-studies/mailchimp/",
+  "slug": "a-collins-mailchimp",
+  "desktop": {
+    "height": 5099,
+    "frames": 6
+  },
+  "info": {
+    "title": "Mailchimp | COLLINS",
+    "h1": {
+      "text": "Mailchimp",
+      "font": "\"Portrait Text\"",
+      "size": "72px",
+      "weight": "400",
+      "lh": "72px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "Augments",
+      "font": "\"Portrait Text\"",
+      "size": "36px",
+      "weight": "400",
+      "lh": "37.8px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "",
+      "font": "Graphik",
+      "size": "16px",
+      "weight": "400",
+      "lh": "20.8px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "Unlocking the potential of a quiet powerhouse.",
+      "font": "Graphik",
+      "size": "17.92px",
+      "weight": "400",
+      "lh": "21.504px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 72,
+      "text": "Mailchimp",
+      "font": "\"Portrait Text\""
+    },
+    "ground": "rgba(0, 0, 0, 0)",
+    "ink": "rgb(20, 7, 0)",
+    "images": 40,
+    "videos": [],
+    "headings": [
+      "H1: Mailchimp",
+      "H2: Augments",
+      "H2: Augments",
+      "H2: ",
+      "H3: ",
+      "H3: ",
+      "H3: ",
+      "H3: ",
+      "H3: ",
+      "H2: "
+    ],
+    "scrollHeight": 5099
+  },
+  "mobile": {
+    "height": 4185,
+    "frames": 5
+  }
+}

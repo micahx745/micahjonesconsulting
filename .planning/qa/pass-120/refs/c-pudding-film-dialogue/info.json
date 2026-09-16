@@ -1,0 +1,37 @@
+{
+  "url": "https://pudding.cool/2017/03/film-dialogue/",
+  "slug": "c-pudding-film-dialogue",
+  "desktop": {
+    "height": 5886,
+    "frames": 7
+  },
+  "info": {
+    "title": "The Largest Ever Analysis of Film Dialogue by Gender: 2,000 scripts, 25,000 actors, 4 million lines",
+    "h1": null,
+    "h2": null,
+    "h3": null,
+    "p": {
+      "text": "THE PUDDING",
+      "font": "futura-pt",
+      "size": "15px",
+      "weight": "500",
+      "lh": "normal",
+      "tt": "uppercase"
+    },
+    "biggest_above_fold": {
+      "sz": 198,
+      "text": "Film Dialogue",
+      "font": "futura-pt"
+    },
+    "ground": "rgba(0, 0, 0, 0)",
+    "ink": "rgb(0, 0, 0)",
+    "images": 0,
+    "videos": [],
+    "headings": [],
+    "scrollHeight": 5886
+  },
+  "mobile": {
+    "height": 8771,
+    "frames": 11
+  }
+}

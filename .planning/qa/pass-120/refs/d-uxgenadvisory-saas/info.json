@@ -1,0 +1,70 @@
+{
+  "url": "https://saas.uxgenadvisory.com/case-studies/",
+  "slug": "d-uxgenadvisory-saas",
+  "desktop": {
+    "height": 1983,
+    "frames": 3
+  },
+  "info": {
+    "title": "SaaS UX Case Studies | Activation, Onboarding & Retention Outcomes | UXGen Advisory",
+    "h1": {
+      "text": "SaaS UX Case Studies",
+      "font": "Inter",
+      "size": "48px",
+      "weight": "600",
+      "lh": "48px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "From 3.2% to 8.5% Trial-to-Paid: Fixing a Time-to-Value Breakdown in a Complex A",
+      "font": "Inter",
+      "size": "36px",
+      "weight": "600",
+      "lh": "40px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "1. Information We Collect",
+      "font": "Inter",
+      "size": "18px",
+      "weight": "600",
+      "lh": "28px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "These case studies show how UXGen Advisory diagnoses activation friction, simpli",
+      "font": "Inter",
+      "size": "18px",
+      "weight": "400",
+      "lh": "28px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 48,
+      "text": "SaaS UX Case Studies",
+      "font": "Inter"
+    },
+    "ground": "rgb(15, 23, 42)",
+    "ink": "rgb(248, 250, 252)",
+    "images": 1,
+    "videos": [],
+    "headings": [
+      "H1: SaaS UX Case Studies",
+      "H2: From 3.2% to 8.5% Trial-to-Paid: Fixing a Time-to-Value Breakdown in a",
+      "H2: Stop Churning Your Trial Users",
+      "H2: Privacy Policy",
+      "H3: 1. Information We Collect",
+      "H3: 2. Client Data & NDA Guarantee",
+      "H3: 3. Contact Us",
+      "H2: Terms of Service",
+      "H3: 1. Scope of Advisory Services",
+      "H3: 2. Governing Law",
+      "H2: Request a SaaS UX Audit"
+    ],
+    "scrollHeight": 1983
+  },
+  "mobile": {
+    "height": 2571,
+    "frames": 4
+  }
+}

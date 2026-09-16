@@ -1,0 +1,79 @@
+{
+  "url": "https://www.harpalsingh.com/work",
+  "slug": "d-harpalsingh-work",
+  "desktop": {
+    "height": 15433,
+    "frames": 15
+  },
+  "info": {
+    "title": "Interim/Fractional Chief Product Officer (CPO) Case Studies — Harpal Singh",
+    "h1": {
+      "text": "Case Studies — Interim Chief Product Officer (CPO)",
+      "font": "\"Crimson Text\"",
+      "size": "57.288px",
+      "weight": "400",
+      "lh": "70.8423px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "CPO as a Service",
+      "font": "\"Crimson Text\"",
+      "size": "45.192px",
+      "weight": "400",
+      "lh": "57.5927px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "Results",
+      "font": "\"Crimson Text\"",
+      "size": "36.552px",
+      "weight": "400",
+      "lh": "47.5688px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "Over the past decade, I've held product leadership positions with 13 tech scaleu",
+      "font": "\"Source Sans Pro\"",
+      "size": "22.728px",
+      "weight": "400",
+      "lh": "31.8192px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 57.288,
+      "text": "Case Studies — Interim Chief Product Officer (CPO)",
+      "font": "\"Crimson Text\""
+    },
+    "ground": "rgb(255, 255, 255)",
+    "ink": "rgb(17, 17, 17)",
+    "images": 5,
+    "videos": [],
+    "headings": [
+      "H2: CPO as a Service",
+      "H1: Case Studies — Interim Chief Product Officer (CPO)",
+      "H2: Ada Health — Grew Ada’s Consumer and Enterprise business by building a",
+      "H2: Lendis — Transformed a tech-enabled business into a product business",
+      "H2: Untold — Transformed an internal cloud tool into a standalone B2B VFX ",
+      "H2: Selligent — Re-architected product after an AI startup acquisition",
+      "H2: Epica.ai — Aqua-hired data science team and increased revenue by 10x",
+      "H2: SharpCloud — Untangled a complex low-code/no-code platform into a trea",
+      "H2: Investment Bank — Created product vision and strategy for the Chinese ",
+      "H2: intu — Digital Transformation of a FTSE 100 organisation",
+      "H2: Debut — refined business model and value proposition ",
+      "H2: Automata — Achieved Product/Market Fit for robotic automation solution",
+      "H2: RiskHub — Replatforming RiskHub’s compliance data management system",
+      "H1: Case Studies — Fractional Chief Product Officer (CPO)",
+      "H2: ScienceMagic — Launched a venture studio and advised brands on strateg",
+      "H3: Results",
+      "H2: Group of Humans — Fractional leadership with explorers, storytellers a",
+      "H2: Poder.ai — Data Marketplace in partnership with IOTA foundation",
+      "H2: You will be in great company",
+      "H2: Ready to discuss your business?"
+    ],
+    "scrollHeight": 15433
+  },
+  "mobile": {
+    "height": 20179,
+    "frames": 12
+  }
+}

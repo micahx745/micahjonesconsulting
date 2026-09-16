@@ -1,0 +1,84 @@
+{
+  "url": "https://www.brex.com",
+  "slug": "b-studiofreight-brex",
+  "desktop": {
+    "height": 9079,
+    "frames": 11
+  },
+  "info": {
+    "title": "Brex: The Modern Finance Software Platform | Spend Smarter",
+    "h1": {
+      "text": "Finance built for speed and control. ",
+      "font": "inter",
+      "size": "72px",
+      "weight": "500",
+      "lh": "72px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "Modern cards, banking, expenses, accounting, and more — in 120+ countries. ",
+      "font": "inter",
+      "size": "20px",
+      "weight": "500",
+      "lh": "24px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "Everything you need to boost spending power and control — and eliminate manual w",
+      "font": "inter",
+      "size": "20px",
+      "weight": "500",
+      "lh": "24px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "Summer Release 2026: Deeper connections, sharper controls. See 30+ features now ",
+      "font": "inter",
+      "size": "12px",
+      "weight": "400",
+      "lh": "18px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 72,
+      "text": "Finance built for speed and control. ",
+      "font": "inter"
+    },
+    "ground": "rgba(0, 0, 0, 0)",
+    "ink": "rgb(0, 0, 0)",
+    "images": 60,
+    "videos": [],
+    "headings": [
+      "H1: Finance built for speed and control. ",
+      "H2: Modern cards, banking, expenses, accounting, and more — in 120+ countr",
+      "H2: Finance built for speed and control.",
+      "H2: Modern cards, banking, expenses, accounting, and more — in 120+ countr",
+      "H2: Trusted by 35,000+ top companies. ",
+      "H2: The card is just the start. ",
+      "H3: Everything you need to boost spending power and control — and eliminat",
+      "H3: Corporate cards ",
+      "H3: Expense management ",
+      "H3: Travel ",
+      "H3: Bill pay ",
+      "H3: Banking and treasury ",
+      "H2: Solutions for every stage of growth. ",
+      "H3: Startups ",
+      "H3: Mid-size companies ",
+      "H3: Enterprises ",
+      "H2: Supercharge your financial operations. ",
+      "H3: Maximize every resource with AI-powered controls, payments, and accoun",
+      "H3: Control spend before it happens. ",
+      "H3: Make doing your expenses easy. ",
+      "H3: Maximize your spending power. ",
+      "H3: Pay vendors faster and easier. ",
+      "H3: Accelerate accounting with AI. ",
+      "H2: Save and earn more, only with Brex. ",
+      "H3: AI-powered automation "
+    ],
+    "scrollHeight": 9082
+  },
+  "mobile": {
+    "height": 13226,
+    "frames": 12
+  }
+}

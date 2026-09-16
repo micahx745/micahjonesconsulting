@@ -1,0 +1,37 @@
+{
+  "url": "https://danmall.com/posts/spine/",
+  "slug": "d-danmall-spine",
+  "desktop": {
+    "height": 10813,
+    "frames": 13
+  },
+  "info": {
+    "title": "“Spine”, an article by Dan Mall",
+    "h1": null,
+    "h2": null,
+    "h3": null,
+    "p": {
+      "text": "Learn",
+      "font": "\"Mark Pro Bold\"",
+      "size": "18px",
+      "weight": "400",
+      "lh": "27px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 120,
+      "text": "SPINE",
+      "font": "\"Bueno Bold\""
+    },
+    "ground": "rgb(0, 0, 0)",
+    "ink": "rgb(0, 0, 0)",
+    "images": 18,
+    "videos": [],
+    "headings": [],
+    "scrollHeight": 10813
+  },
+  "mobile": {
+    "height": 14279,
+    "frames": 12
+  }
+}

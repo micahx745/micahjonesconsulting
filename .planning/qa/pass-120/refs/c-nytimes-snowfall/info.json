@@ -1,0 +1,121 @@
+{
+  "url": "https://www.nytimes.com/projects/2012/snow-fall/index.html",
+  "slug": "c-nytimes-snowfall",
+  "desktop": {
+    "height": 9881,
+    "frames": 11
+  },
+  "info": {
+    "title": "Snow Fall: The Avalanche at Tunnel Creek - Multimedia Feature - NYTimes.com",
+    "h1": {
+      "text": "Snow Fall",
+      "font": "nyt-cheltenham",
+      "size": "62px",
+      "weight": "200",
+      "lh": "64px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "The Avalanche at Tunnel Creek",
+      "font": "nyt-cheltenham",
+      "size": "26px",
+      "weight": "200",
+      "lh": "28.6px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "Snow Fall",
+      "font": "nyt-cheltenham",
+      "size": "21px",
+      "weight": "200",
+      "lh": "21px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "T he snow burst through the trees with no warning but a last-second whoosh of so",
+      "font": "georgia",
+      "size": "15px",
+      "weight": "400",
+      "lh": "22px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 76,
+      "text": "T",
+      "font": "nyt-cheltenham"
+    },
+    "ground": "rgba(0, 0, 0, 0)",
+    "ink": "rgb(0, 0, 0)",
+    "images": 41,
+    "videos": [
+      {
+        "autoplay": false,
+        "loop": false,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": false,
+        "loop": false,
+        "muted": false,
+        "poster": false
+      },
+      {
+        "autoplay": false,
+        "loop": false,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": false,
+        "loop": false,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": false,
+        "loop": false,
+        "muted": false,
+        "poster": false
+      },
+      {
+        "autoplay": false,
+        "loop": false,
+        "muted": true,
+        "poster": true
+      }
+    ],
+    "headings": [
+      "H3: Snow Fall",
+      "H1: Snow Fall",
+      "H2: The Avalanche at Tunnel Creek",
+      "H3: Tunnel Creek",
+      "H3: Advertisement",
+      "H3: A Plan in Motion",
+      "H2: To the Peak",
+      "H3: Advertisement",
+      "H3: ‘Gear Up?’",
+      "H3: Advertisement",
+      "H3: The Backcountry Beckons",
+      "H2: The Descent Begins",
+      "H3: ‘I Got Eyes on You’",
+      "H3: Sliding Snow",
+      "H2: Blur of White",
+      "H3: A Ticking Clock",
+      "H3: ‘This Thing Ripped Big’",
+      "H3: Advertisement",
+      "H2: Discovery",
+      "H3: ‘It Was Just a Bad Dream’",
+      "H2: Word Spreads",
+      "H3: A Grim Vigil",
+      "H3: Avalanche at Tunnel Creek",
+      "H3: Tunnel Creek",
+      "H3: To The Peak"
+    ],
+    "scrollHeight": 9881
+  },
+  "mobile": {
+    "height": 8615,
+    "frames": 11
+  }
+}

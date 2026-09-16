@@ -28,8 +28,14 @@ the set; dark vs light decided after research; he wants his Tel Aviv VIDEO
 as the /work hero = Downloads/a-man-sits-at-a-table-and-talks--his-head-
 tilts-sl.mp4 (AI image-to-video of the real photo: R12 AI-imagery + R15 loop
 + colleague-consent questions, raise with him). TitleCard fate: open.
-IN FLIGHT: design research workflow (capture: .planning/exec/ref-capture120
-.mjs, contact120.mjs; out .planning/qa/pass-120/refs/, FABLE-120-DESIGN.md).
+RESEARCH DONE (wf_41e8b480): 14 refs, .planning/qa/pass-120/refs/contact-*.png;
+FABLE-120-DESIGN.md recommends B "Curtain, then Page": /work all paper (lead
+study at hero scale, method line, 4 entries, record block); study = dark
+band hero (client, title, dek, at-a-glance, photo) then paper body;
+TitleCard pin retired -> 600ms settle entrance (HIS signature to sign);
+AI video must not ship (R12/R15/LCP/consent) -> photo + shared-element
+view transition /work -> Guardicore. NEXT: his rulings, then style tiles
+of A vs B at 390/1440 before any brief.
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services.
 

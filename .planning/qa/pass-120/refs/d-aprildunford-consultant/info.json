@@ -1,0 +1,54 @@
+{
+  "url": "https://www.aprildunford.com/consultant",
+  "slug": "d-aprildunford-consultant",
+  "desktop": {
+    "height": 4870,
+    "frames": 6
+  },
+  "info": {
+    "title": "April Dunford - Positioning Consultant",
+    "h1": {
+      "text": "The Positioning + Sales Pitch Workshop.",
+      "font": "Poppins",
+      "size": "44px",
+      "weight": "700",
+      "lh": "54px",
+      "tt": "none"
+    },
+    "h2": null,
+    "h3": {
+      "text": "Workshop Pricing:",
+      "font": "Poppins",
+      "size": "30px",
+      "weight": "700",
+      "lh": "34px",
+      "tt": "none"
+    },
+    "p": null,
+    "biggest_above_fold": {
+      "sz": 55,
+      "text": "Positioning that helps you stand out and sell more.",
+      "font": "Poppins"
+    },
+    "ground": "rgb(255, 255, 255)",
+    "ink": "rgb(26, 27, 31)",
+    "images": 12,
+    "videos": [],
+    "headings": [
+      "H1: The Positioning + Sales Pitch Workshop.",
+      "H3: Workshop Pricing:",
+      "H3: $80K - $100K",
+      "H1: Workshops designed for any size company or organization:",
+      "H3: ForStartups",
+      "H3: $50,000",
+      "H3: ForEnterprise",
+      "H3: $80,000",
+      "H1: Need something special?"
+    ],
+    "scrollHeight": 4870
+  },
+  "mobile": {
+    "height": 4178,
+    "frames": 5
+  }
+}

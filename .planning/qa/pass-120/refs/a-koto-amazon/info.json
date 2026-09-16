@@ -1,0 +1,121 @@
+{
+  "url": "https://koto.com/projects/amazon",
+  "slug": "a-koto-amazon",
+  "desktop": {
+    "height": 39589,
+    "frames": 15
+  },
+  "info": {
+    "title": "Amazon | Koto",
+    "h1": {
+      "text": "Amazon ",
+      "font": "gtKotoheimCondensed",
+      "size": "24px",
+      "weight": "300",
+      "lh": "28.8px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "CHANNELS",
+      "font": "gtKotoheimMono",
+      "size": "9px",
+      "weight": "400",
+      "lh": "9px",
+      "tt": "uppercase"
+    },
+    "h3": {
+      "text": "Thanks",
+      "font": "gtKotoheim",
+      "size": "14px",
+      "weight": "350",
+      "lh": "17.5px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "Like most websites, we use essential cookies to keep things running smoothly. We",
+      "font": "gtKotoheim",
+      "size": "14px",
+      "weight": "350",
+      "lh": "17.5px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 32,
+      "text": "Rakbank The best of both",
+      "font": "gtKotoheimCondensed"
+    },
+    "ground": "rgba(0, 0, 0, 0)",
+    "ink": "rgb(255, 255, 255)",
+    "images": 153,
+    "videos": [
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": true
+      },
+      {
+        "autoplay": false,
+        "loop": true,
+        "muted": true,
+        "poster": true
+      }
+    ],
+    "headings": [
+      "H2: CHANNELS",
+      "H2: Explore",
+      "H2: Channels",
+      "H1: Amazon ",
+      "H1: Amazon",
+      "H2: Challenge",
+      "H2: Logo",
+      "H2: Logotype",
+      "H2: Color System",
+      "H2: Typography",
+      "H2: From A to Я to あ",
+      "H2: Iconography",
+      "H2: Introducing cohorts",
+      "H2: Cohort: Parent & Retail",
+      "H2: Cohort: Prime",
+      "H2: Cohort: Grocery",
+      "H2: Cohort: Devices",
+      "H2: Cohort: Health",
+      "H2: Outcome",
+      "H3: Thanks",
+      "H3: Fixing a fractured brand",
+      "H3: LOGO",
+      "H3: LOGOTYPE",
+      "H3: COLOR SYSTEM",
+      "H3: TYPOGRAPHY"
+    ],
+    "scrollHeight": 39589
+  },
+  "mobile": {
+    "height": 18301,
+    "frames": 12
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "url": "https://www.wolffolins.com/work/instacart",
+  "slug": "a-wolffolins-instacart",
+  "desktop": {
+    "height": 21869,
+    "frames": 15
+  },
+  "info": {
+    "title": "Work — Instacart — Brand Strategy and more — Wolff Olins",
+    "h1": {
+      "text": "Instacart",
+      "font": "Monument-Grotesk",
+      "size": "55px",
+      "weight": "400",
+      "lh": "60.5px",
+      "tt": "none"
+    },
+    "h2": {
+      "text": "From grocery app to delivery leader",
+      "font": "Monument-Grotesk",
+      "size": "30px",
+      "weight": "400",
+      "lh": "36px",
+      "tt": "none"
+    },
+    "h3": {
+      "text": "Industry",
+      "font": "Monument-Grotesk",
+      "size": "16px",
+      "weight": "400",
+      "lh": "20px",
+      "tt": "none"
+    },
+    "p": {
+      "text": "Retail",
+      "font": "Monument-Grotesk",
+      "size": "16px",
+      "weight": "400",
+      "lh": "20px",
+      "tt": "none"
+    },
+    "biggest_above_fold": {
+      "sz": 55,
+      "text": "Instacart",
+      "font": "Monument-Grotesk"
+    },
+    "ground": "rgba(0, 0, 0, 0)",
+    "ink": "rgb(255, 255, 255)",
+    "images": 14,
+    "videos": [
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": false
+      },
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": false
+      },
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": false
+      },
+      {
+        "autoplay": true,
+        "loop": true,
+        "muted": true,
+        "poster": false
+      }
+    ],
+    "headings": [
+      "H1: Instacart",
+      "H3: Industry",
+      "H3: What We Did",
+      "H2: From grocery app to delivery leader",
+      "H3: An ethos for evolution ",
+      "H3: Inspiring reach and resonance ",
+      "H1: Instacart",
+      "H2: From grocery app to delivery leader",
+      "H3: An ethos for evolution ",
+      "H3: Inspiring reach and resonance ",
+      "H3: Industry",
+      "H3: What We Did",
+      "H3: Related Projects",
+      "H1: 2026 Wolff Olins",
+      "H2: Privacy Preference Center",
+      "H3:  Manage Consent Preferences",
+      "H3: Cookie List"
+    ],
+    "scrollHeight": 21869
+  },
+  "mobile": {
+    "height": 9560,
+    "frames": 12
+  }
+}
