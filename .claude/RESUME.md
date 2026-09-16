@@ -18,12 +18,15 @@ HIS 09-16 DESIGN RULINGS: AI Tel Aviv clip ships as /work hero (DESIGN_BAR R12
 exception with conditions: once, muted, poster = real still, colleagues at
 edge, consent his, disclosure caption pending, motion-engineer + LCP); crop
 keeps colleagues at the edge; sage stays on ORDANI; TitleCard fate unsigned.
-MOCKS DONE (wf_a593a88a): .planning/mock/pass-120/{a,b}/ + compare sheets
-.planning/qa/pass-120/mock/compare-*.png. Opus judge + fixers WRONGLY cut
-event years (he allows IPO/acquisition years) and his client descriptors
-("award-winning" is NOT on the banned list): restore both in the brief.
-NEXT: he picks A / B / hybrid (A's dark /work band + B's studies), signs the
-TitleCard settle + disclosure caption + method line; then brief pass-120.
+MOCKS DONE (wf_a593a88a): .planning/mock/pass-120/{a,b}/, compare sheets in
+.planning/qa/pass-120/mock/. Judge WRONGLY cut event years + his client
+descriptors: restore both in the brief.
+HIS 09-16 RULINGS: Direction B. TitleCard pinned stack RETIRED, 600ms settle
+entrance on a hero naming client + result (SIGNED; rewrite brand.json
+motion.signature). NO captions on Pass-120 photos or the hero clip ("maybe
+nothing needs a caption"). Method line: "reword with help from fable".
+NEXT: Fable method-line options -> his pick; build-surface map; brief
+pass-120 (content + sweep + B template + settle + clip + 301s).
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services.
 
