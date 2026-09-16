@@ -276,6 +276,36 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   (the retainer fact still appears once, in the Approach section). A ledger fact being
   confirmed is not the same as it being publishable — this row is the standing example.
 
+- **THE $20M IS A MIX, NOT CONSULTING REVENUE — operator 2026-09-15**, verbatim: "that revenue
+  mark is a mixture of some of my work with corps as an employee and some of it consulting. I
+  think its best we dont state consuilting revenue since 2013. Make it more broad but keep the
+  20 mil". This SUPERSEDES the 2026-09-02 row above ("Consulting revenue $20M+, SINCE 2013 and
+  OPEN-ENDED"), which is live on /about, the home ledger row, the JSON-LD in `app/layout.tsx`
+  and `llms.txt`. The FIGURE stands. The ATTRIBUTION does not: it spans employed work and
+  consulting. NEVER: "consulting revenue" attached to the $20M, or a since-2013 consulting
+  practice claim. Replacement wording is an open operator decision (asked 2026-09-15).
+- **THE 290K REACH FIGURE IS UNVERIFIED — operator 2026-09-15**, verbatim: "Technically it got
+  up to 800,000 impressions. That 290 numner not sure where that came from, maybe from one of
+  the vids view count." The 8,000 to 290,000 claim and the derived "36×" are LIVE on
+  `content/work/content-engine.mdx`, the /work index line and metadata ("36x reach for an
+  author"), the /services Product building receipt, and the home surfaces that carry it. Until
+  he settles a figure with its unit and period, NOTHING may restate 290,000 or 36× as new copy,
+  and the rewrite of that study states no multiplier. Provenance of 290,000: unknown, possibly a
+  single video's view count. Candidate replacement: up to 800,000 impressions, unit and period
+  to be confirmed. The client's industry is never named on any surface (see the anti-racism ban).
+- **NO PERSONAL YEARS ON ANY SURFACE — operator 2026-09-15**, verbatim: "No years tying me to
+  places. I dont want i was at guardicore 2017-2020 or anything like that for other companies
+  like surveymonkey. You can state the IPO years that is okay but nothing personal". EVENT years
+  stay (IPO 2018, Uber 2020, Akamai 2021, Nordic Semiconductor 2025). TENURE years go, wherever a
+  year sits beside his role: the /work index meta rows, the case-study frontmatter `year` as it
+  renders, the Tel Aviv photo caption "2018-2021", the home ledger row tags, /about's roster, the
+  record block's Years column, and any JSON-LD that derives a date from a tenure range.
+- **ORDANI CARRIES NO COUNTS AT ALL — operator 2026-09-15**, verbatim: "Yeah lets not number how
+  many users or paying collectives. Keep it broad." This EXTENDS the 2026-09-01 ban on user
+  counts to every count of users or practices, including the closed-beta history the earlier
+  ledger row permitted inside the case study ("fourteen practitioners", "eight active every
+  week, six had referred a peer"). The 22 pre-build interviews are research, not users, and
+  remain publishable pending his confirmation.
 - **TWO CLIENTS, NOT ONE — operator 2026-09-15**, verbatim: "well i want to split it up since
   its two separate contracts. the content one will be a social acitivit (do not want to say anti
   racism) and the other one can stay with a award winning author/ Leadership consultant also for
