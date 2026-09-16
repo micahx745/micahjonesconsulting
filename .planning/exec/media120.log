@@ -1,0 +1,48 @@
+== source probe
+h264,video,1440,1440,24/1,97
+4.041667
+== 3b.7 #3 frame 0 master (original source)
+rc=0
+== 3b.7 #4 poster AVIF
+rc=0
+== O5 band still
+rc=0
+O5 dims: 960,1200 (want 960,1200)
+O5 bytes: 49655 (want <= 180000)
+== O6 frame 0 at 1440 and the crossfade intermediate
+rc=0
+rc=0
+intermediate: 1440,1440,98 4.083333 
+== 3b.7 #1 MP4 (from intermediate)
+rc=0
+== 3b.7 #2 WebM (from intermediate)
+rc=0
+== O6 end-state check (want All: >= 0.97)
+rc=0
+All:0.992693
+== W1a (want h264,High,720,900,yuv420p,40,97)
+h264,High,720,900,yuv420p,40,98
+== W1b (want vp9,720,900,97)
+vp9,720,900,98
+== W1c (want av1,960,1200)
+av1,960,1200
+== W1d (want two lines 'video ')
+video 
+video 
+== W1e (want 1)
+1
+== W1f
+PASS W1f work-hero-720.mp4: got 210176
+PASS W1f work-hero-720.webm: got 115333
+PASS W1f work-hero-poster-960.avif: got 13412
+W1f failures: 0
+== W1g (brief lists three; O5 adds guardicore-band-960.jpg, so four)
+guardicore-band-960.jpg
+work-hero-720.mp4
+work-hero-720.webm
+work-hero-poster-960.avif
+== W1h (want All: >= 0.98)
+All:0.993637
+== W1i bite (want All: < 0.98)
+All:0.992844
+== media120 done
