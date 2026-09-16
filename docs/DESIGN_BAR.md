@@ -169,6 +169,8 @@ by looking. Grade per page; report R-numbers.
   levels within 15% of each other; ≤5 active sizes per page.
 - **R3 — Body discipline:** body ≥16px, line length ≤75ch, line-height 1.5–1.7, AA contrast
   (4.5:1) everywhere including muted/"subtle" text.
+  - Ruling (operator 2026-09-16, Pass-120 build, picked "Ink text, sage accents (Recommended)"): study pages sit on the Color Worlds bone `#ECE3D0` (brief O8), where ORDANI's sage `#5E7158` measures 4.14:1 and fails body text. On ORDANI's paper body the step numerals and the body links (`--cs-link`) use foyer ink `#1A1816` (13.88:1); sage stays on ORDANI's band rule, list dashes, focus rings and other non-text marks. The other four studies keep copper-deep `#8A3D24` (5.94:1 on bone).
+  - Ruling (operator 2026-09-16, Pass-120 build, picked "Old lighter cream (Recommended)"): on the bone ground the specified exhibit tint `--color-bone` `#E8DFD0` measured 1.04:1 against the page and disappeared. The study exhibit (`--cs-tint` on paper) sits on `--color-foyer-paper` `#F5EFE4` instead, a lighter panel on the darker page; ink on it 15.47:1, ink-soft 10.47:1.
 - **R4 — One accent color per page context doing real work; zero purple/indigo/cyan gradients,
   zero gradient text, zero glow/halo/orb decoration.**
 - **R5 — No glassmorphism, no one-side accent-border cards, no cards nested in cards, no border
