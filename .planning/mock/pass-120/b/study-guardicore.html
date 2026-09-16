@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repositioning Guardicore — Micah Jones (mock, Direction B)</title>
+<meta name="description" content="Pass-120 Direction B mockup: case-study template, theater curtain hero then paper body.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Tokens verbatim from app/globals.css (live code, not brand.json) */
+    --foyer-paper: #f5efe4;
+    --foyer-ink: #1a1816;
+    --foyer-ink-soft: #3a3631;
+    --theater-ground: #12100e;
+    --theater-surface: #1a1713;
+    --theater-ink: #ece3d0;
+    --theater-ink-soft: #a69b8a;
+    --accent-copper: #bd5a2d;
+    --accent-copper-deep: #8a3d24;
+    --rule-foyer: #d9d2c4;
+    --rule-theater: #3a332b;
+
+    --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+    --font-body: "Hanken Grotesk", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* Type scale — spec section 2, five active sizes, 1440 values */
+    --fs-figure: 112px;
+    --fs-h1: 56px;
+    --fs-h2: 36px;
+    --fs-body: 18px;
+    --fs-mono: 13px;
+  }
+
+  @media (max-width: 700px) {
+    :root {
+      /* 390 values */
+      --fs-figure: 64px;
+      --fs-h1: 36px;
+      --fs-h2: 26px;
+      --fs-body: 17px;
+      --fs-mono: 12px;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; max-width: 100%; overflow-x: hidden; }
+
+  body {
+    background: var(--foyer-paper);
+    color: var(--foyer-ink);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img, video { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .mono {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  /* ============ THEATER CURTAIN (first fold) ============ */
+  [data-mode="theater"] {
+    background: var(--theater-ground);
+    color: var(--theater-ink);
+  }
+
+  .curtain-wrap {
+    border-bottom: 2px solid var(--accent-copper);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 28px 64px 24px;
+    border-bottom: 1px solid var(--rule-theater);
+  }
+  @media (min-width: 701px) { .nav { padding-left: 128px; padding-right: 128px; } }
+
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-body);
+    letter-spacing: 0.08em;
+    color: var(--theater-ink);
+  }
+  .nav-links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--theater-ink-soft);
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+  }
+  .nav-links a:hover, .nav-links a.current { color: var(--theater-ink); border-bottom-color: var(--accent-copper); }
+
+  .curtain {
+    padding: 56px 64px 64px;
+  }
+  @media (min-width: 701px) { .curtain { padding-left: 128px; padding-right: 128px; padding-bottom: 88px; } }
+
+  .curtain-grid {
+    display: flex;
+    align-items: flex-start;
+    gap: 72px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) { .curtain-grid { flex-direction: column; gap: 32px; } }
+
+  .curtain-text { flex: 1 1 62%; min-width: 0; }
+  .curtain-media { flex: 1 1 30%; min-width: 0; }
+
+  .curtain-context {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.06em;
+    color: var(--theater-ink-soft);
+    margin: 0 0 20px;
+    font-weight: 500;
+  }
+
+  /* Title-card cadence, corrected per Pass-120 direction B: the pinned
+     word-stack retires; what stays is the settle cadence on the search
+     title itself. 600ms total, transform + opacity, once per load,
+     finished frame without JS. Default state (incl. reduced motion) is
+     the finished frame; motion only runs under no-preference. */
+  .curtain-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: var(--fs-h1);
+    line-height: 1.08;
+    margin: 0 0 24px;
+    color: var(--theater-ink);
+  }
+  .title-line { display: block; opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .title-line {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: title-settle 500ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .title-line:nth-child(1) { animation-delay: 0ms; }
+    .title-line:nth-child(2) { animation-delay: 160ms; }
+  }
+  @keyframes title-settle {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .curtain-dek {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    max-width: 56ch;
+    margin: 0 0 36px;
+    color: var(--theater-ink);
+  }
+
+  .glance {
+    margin: 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--rule-theater);
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+  .glance-row { display: grid; grid-template-columns: 140px 1fr; gap: 16px; align-items: baseline; }
+  @media (max-width: 700px) { .glance-row { grid-template-columns: 1fr; gap: 4px; } }
+  .glance dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.06em;
+    color: var(--theater-ink-soft);
+    margin: 0;
+    font-weight: 500;
+  }
+  .glance dd {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 1.5;
+    margin: 0;
+    color: var(--theater-ink);
+  }
+  .glance dd.result-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-h2);
+    line-height: 1.25;
+  }
+  .glance-sub {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-body);
+    line-height: 1.5;
+  }
+
+  .curtain-photo-frame {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--theater-surface);
+    border: 0;
+  }
+  .curtain-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 68% 30%;
+  }
+  .curtain-media-caption {
+    margin: 12px 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.05em;
+    color: var(--theater-ink-soft);
+  }
+
+  /* ============ PAPER BODY ============ */
+  .paper-body {
+    background: var(--foyer-paper);
+    color: var(--foyer-ink);
+  }
+
+  .body-inner {
+    max-width: calc(68ch + 80px);
+    margin: 0 auto;
+    padding: 72px 40px 96px;
+  }
+
+  .body-inner h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-h2);
+    line-height: 1.15;
+    margin: 0 0 20px;
+    padding-top: 4px;
+  }
+  .body-inner section { margin-bottom: 56px; }
+  .body-inner section:first-of-type { margin-top: 0; }
+
+  .body-inner p {
+    max-width: 68ch;
+    margin: 0 0 18px;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+  }
+  .body-inner p:last-child { margin-bottom: 0; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 700px) {
+    .step { grid-template-columns: 1fr; gap: 6px; }
+  }
+  .step-num {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: var(--fs-mono);
+    color: var(--accent-copper-deep);
+    line-height: 1;
+    padding-top: 6px;
+  }
+  .step p { margin: 0; max-width: 62ch; }
+
+  .changed-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 68ch;
+  }
+  .changed-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 14px;
+    font-size: var(--fs-body);
+    line-height: 1.55;
+  }
+  .changed-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 8px;
+    height: 1px;
+    background: var(--accent-copper);
+  }
+
+  /* Chapter break — Snow Fall's job: the real photograph breaks the
+     reading column full-bleed, between "What I did" and "What changed". */
+  .chapter-break {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: 8px;
+    margin-bottom: 56px;
+  }
+  .chapter-break img {
+    width: 100%;
+    height: 56vh;
+    min-height: 320px;
+    object-fit: cover;
+    object-position: 50% 62%;
+  }
+  .chapter-break figcaption {
+    text-align: center;
+    padding: 14px 16px 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.05em;
+    color: var(--foyer-ink-soft);
+  }
+
+  .close-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--accent-copper-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 600;
+  }
+
+  .next-entry {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule-foyer);
+  }
+  .next-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.06em;
+    color: var(--foyer-ink-soft);
+    margin: 0 0 18px;
+  }
+  .next-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    align-items: baseline;
+    text-decoration: none;
+    color: inherit;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule-foyer);
+  }
+  .next-card:hover .next-did { text-decoration: underline; text-decoration-color: var(--accent-copper); text-underline-offset: 3px; }
+  .next-card .entry-context, .next-card .entry-service {
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.06em;
+    color: var(--foyer-ink-soft);
+    margin: 0;
+    font-weight: 500;
+  }
+  .next-card .entry-figure {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-h2);
+    margin: 0;
+  }
+  .next-did { font-size: var(--fs-body); margin: 0; }
+
+  .all-work {
+    display: block;
+    margin-top: 28px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-mono);
+    letter-spacing: 0.06em;
+    color: var(--foyer-ink-soft);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  footer {
+    padding: 40px 64px 64px;
+    border-top: 1px solid var(--rule-foyer);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--foyer-ink-soft);
+    background: var(--foyer-paper);
+  }
+  @media (min-width: 701px) { footer { padding-left: 128px; padding-right: 128px; } }
+  footer a { color: var(--foyer-ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 700px) {
+    .nav { padding: 20px 16px; }
+    .curtain { padding: 40px 16px 48px; }
+    .body-inner { padding: 48px 16px 72px; }
+    footer { padding: 40px 16px 56px; }
+  }
+</style>
+</head>
+<body>
+
+  <div data-mode="theater" class="curtain-wrap">
+    <nav class="nav">
+      <div class="nav-wordmark">MICAH JONES</div>
+      <div class="nav-links">
+        <a href="#">Services</a>
+        <a href="work.html" class="current">Work</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+
+    <div class="curtain">
+      <div class="curtain-grid">
+        <div class="curtain-text">
+          <p class="curtain-context">Guardicore, acquired by Akamai</p>
+          <h1 class="curtain-title">
+            <span class="title-line">Repositioning Guardicore:</span>
+            <span class="title-line">$14M, then Akamai</span>
+          </h1>
+          <p class="curtain-dek">$14M in revenue, sourced and closed, at a $1.2M average enterprise deal, for a security company built in Tel Aviv whose buyers sat in North American banks. I ran the research that found what those buyers were actually signing for, moved the story from honeypots to east-west visibility, and sat in the deals. Akamai acquired the company in 2021.</p>
+
+          <dl class="glance">
+            <div class="glance-row">
+              <dt>Client</dt>
+              <dd>Guardicore, acquired by Akamai</dd>
+            </div>
+            <div class="glance-row">
+              <dt>My role</dt>
+              <dd>Revenue and positioning</dd>
+            </div>
+            <div class="glance-row">
+              <dt>The work</dt>
+              <dd>Customer research and data analysis, the repositioning, target accounts and outbound, executive briefings, managed-security partners, and a microsegmentation pilot.</dd>
+            </div>
+            <div class="glance-row">
+              <dt>Results</dt>
+              <dd class="result-value">$14M in revenue, sourced and closed.<span class="glance-sub">$1.2M average enterprise deal. Acquired by Akamai in 2021.</span></dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="curtain-media">
+          <!-- Real photograph, R12 pass — no video here (the R12 exception is /work only). -->
+          <div class="curtain-photo-frame">
+            <img src="file:///C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/public/guardicore-telaviv-session.jpg" alt="Micah Jones and colleagues in a working session in Tel Aviv.">
+          </div>
+          <p class="curtain-media-caption">Working session &middot; Tel Aviv</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-mode="foyer" class="paper-body">
+    <div class="body-inner">
+
+      <section aria-labelledby="s1-h">
+        <h2 id="s1-h">Everyone was selling honeypots</h2>
+        <p>In the years before the acquisition, the security market was saturated with deception. Honeypots were a feature several vendors shipped, and Guardicore led with theirs.</p>
+        <p>Meanwhile the thing enterprises could not do was see their own networks. North-south traffic, in and out through the firewall, was well defended. The lateral east-west traffic between workloads was a blind spot, and that blind spot was where ransomware lived.</p>
+        <p>So the top-of-funnel message described a feature the market already had, while buyers at the bottom of the funnel were signing for something else. The product was built an ocean away from the buyers who needed it.</p>
+      </section>
+
+      <section aria-labelledby="s2-h">
+        <h2 id="s2-h">What the customers said that the deck did not</h2>
+        <p>I interviewed customers, researched the market, and ran the data analysis on what closed against what the pitch promised. The two came apart in the same place every time: buyers were not buying deception. They could not see anything inside their own environments, and visibility was the thing they signed for.</p>
+        <p>I brought that to leadership with the analysis behind it, and the story moved: visibility first, then east-west microsegmentation.</p>
+      </section>
+
+      <section aria-labelledby="s3-h">
+        <h2 id="s3-h">What I did</h2>
+
+        <div class="step">
+          <span class="step-num mono" aria-hidden="true">01</span>
+          <p><strong>The research, before the pitch changed.</strong> Customer interviews, market research, and the analysis that showed where the message and the money disagreed.</p>
+        </div>
+        <div class="step">
+          <span class="step-num mono" aria-hidden="true">02</span>
+          <p><strong>The reposition.</strong> Two anchors, in order: see the traffic, then segment it. Every surface told the same story in the same sequence.</p>
+        </div>
+        <div class="step">
+          <span class="step-num mono" aria-hidden="true">03</span>
+          <p><strong>The pipeline.</strong> I picked the target accounts, ran the outbound, briefed executives, qualified the leads, and sat in the deals. Once leadership backed the new focus, I was selling microsegmentation before the product was finished. That is the part of positioning nobody puts in a deck: the story has to hold in a live deal while the roadmap catches up.</p>
+        </div>
+        <div class="step">
+          <span class="step-num mono" aria-hidden="true">04</span>
+          <p><strong>Managed-security partners.</strong> I helped sign the managed-security and reseller partners who extended the platform's reach, and their reps carried the repositioned story the direct team carried.</p>
+        </div>
+        <div class="step">
+          <span class="step-num mono" aria-hidden="true">05</span>
+          <p><strong>The pilot that proved it.</strong> A microsegmentation pilot with a top-10 North American bank. The two anchors held under a real network, with a real security team pushing on them.</p>
+        </div>
+      </section>
+
+      <figure class="chapter-break">
+        <img src="file:///C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/public/guardicore-telaviv-session.jpg" alt="Micah Jones and colleagues in a working session in Tel Aviv.">
+        <figcaption>Working session &middot; Tel Aviv</figcaption>
+      </figure>
+
+      <section aria-labelledby="s4-h">
+        <h2 id="s4-h">What changed</h2>
+        <ul class="changed-list">
+          <li>$14M in revenue, at a $1.2M average enterprise deal size.</li>
+          <li>Deployed behind a global systemically important bank and a federal research agency. It reached a white-shoe Wall Street law firm and a major U.S. utility too.</li>
+          <li>Trillions in financial assets sit protected behind those deployments.</li>
+          <li>Akamai acquired Guardicore in 2021, and the positioning carried into the product that followed the acquisition.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="s5-h">
+        <h2 id="s5-h">Questions buyers ask</h2>
+        <p><strong>Why would positioning change revenue?</strong> It changes which buyer takes the meeting and what they think they are solving. Here the pitch described a feature while buyers were signing the contracts for an outcome.</p>
+      </section>
+
+      <section aria-labelledby="s6-h">
+        <h2 id="s6-h">If enterprise teams still are not buying</h2>
+        <p>You built it. Enterprise teams still are not buying, and the gap is positioning, not features. I run the customer interviews and the sales-call analysis that name the question your buyers are actually asking, then the positioning shift and the sales narrative your team runs without me.</p>
+        <a class="close-link" href="#">Positioning &amp; GTM &rarr;</a>
+      </section>
+
+      <section class="next-entry" aria-labelledby="next-h">
+        <p class="next-label" id="next-h">Next</p>
+        <a class="next-card" href="#">
+          <span class="entry-context">Name protected</span>
+          <span class="entry-figure">$3M in signed contracts</span>
+          <span class="next-did">Built RFP discovery, scoring, and drafting around one expert's own body of work.</span>
+          <span class="entry-service">AI engineering</span>
+        </a>
+        <a class="all-work" href="work.html">All work</a>
+      </section>
+
+    </div>
+
+    <footer>
+      <p>I read every message and reply inside one business day.</p>
+      <a href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a>
+    </footer>
+  </div>
+
+</body>
+</html>

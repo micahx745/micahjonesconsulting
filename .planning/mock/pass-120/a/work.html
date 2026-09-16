@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Direction A: Marquee and Ledger (mock)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Tokens — taken verbatim from app/globals.css (live @theme block),
+     not from brand.json (which has drifted from the shipped values). ===== */
+  :root{
+    --foyer-paper:#f5efe4;
+    --foyer-ink:#1a1816;
+    --foyer-ink-soft:#3a3631;
+    --theater-ground:#12100e;
+    --theater-surface:#1a1713;
+    --theater-ink:#ece3d0;
+    --theater-ink-soft:#a69b8a;
+    --copper:#bd5a2d;
+    --copper-deep:#8a3d24;
+    --rule-foyer:#d9d2c4;
+    --rule-theater:#3a332b;
+
+    --font-display:'Bricolage Grotesque', sans-serif;
+    --font-body:'Hanken Grotesk', system-ui, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, monospace;
+
+    /* Five active sizes, 1440 scale (DESIGN_BAR R2) */
+    --fs-1:112px; /* result figure */
+    --fs-2:56px;  /* h1 / search title */
+    --fs-3:36px;  /* h2 / Results value */
+    --fs-4:18px;  /* body */
+    --fs-5:13px;  /* mono labels */
+  }
+  @media (max-width:700px){
+    :root{
+      --fs-1:64px;
+      --fs-2:36px;
+      --fs-3:26px;
+      --fs-4:17px;
+      --fs-5:12px;
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body);
+    font-size:var(--fs-4);
+    line-height:1.6;
+    background:var(--foyer-paper);
+    color:var(--foyer-ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 64px;}
+  @media (max-width:700px){ .wrap{padding:0 16px;} }
+
+  /* ---------- Nav (sits on the dark hero) ---------- */
+  .site-nav{
+    background:var(--theater-ground);
+    color:var(--theater-ink);
+    border-bottom:1px solid var(--rule-theater);
+  }
+  .nav-inner{
+    max-width:1200px;margin:0 auto;padding:28px 64px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  @media (max-width:700px){ .nav-inner{padding:20px 16px;} }
+  .wordmark{
+    font-family:var(--font-display);
+    font-weight:700;
+    letter-spacing:0.04em;
+    font-size:var(--fs-5);
+  }
+  .nav-links{display:flex;gap:32px;font-size:var(--fs-5);}
+  .nav-links a{text-decoration:none;border-bottom:1px solid transparent;}
+  .nav-links a:hover{border-bottom-color:var(--copper);}
+  @media (max-width:700px){
+    .nav-links{gap:18px;font-size:13px;}
+  }
+
+  /* ---------- Hero (dark band — theater ground) ---------- */
+  .hero{
+    background:var(--theater-ground);
+    color:var(--theater-ink);
+    padding:96px 0 72px;
+  }
+  @media (max-width:700px){ .hero{padding:56px 0 48px;} }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:80px;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:40px;}
+  }
+  .mono-label{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    letter-spacing:0.06em;
+    text-transform:none;
+    color:var(--theater-ink-soft);
+    margin:0 0 20px;
+  }
+  .hero-figure{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-1);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    color:var(--theater-ink);
+    margin:0 0 28px;
+  }
+  .hero-dek{
+    font-size:var(--fs-4);
+    line-height:1.6;
+    max-width:56ch;
+    color:var(--theater-ink);
+    margin:0;
+  }
+  .hero-method{
+    margin-top:40px;
+    padding-top:28px;
+    border-top:1px solid var(--rule-theater);
+    font-size:var(--fs-4);
+    font-weight:600;
+    max-width:52ch;
+    color:var(--theater-ink);
+  }
+  /* PROPOSED COPY — the method line is Fable's brief fix, not yet operator-ruled
+     as final site copy; rendering here per the build spec's direct instruction. */
+
+  .hero-media{
+    position:relative;
+    margin:0;
+  }
+  .hero-media video{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    /* colleagues kept at the frame's edge per operator ruling 2026-09-16 */
+    object-position:82% 45%;
+    display:block;
+    background:var(--theater-surface);
+  }
+  .hero-media figcaption{
+    margin-top:12px;
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--theater-ink-soft);
+    letter-spacing:0.04em;
+  }
+  /* The disclosure clause "· animated from a photograph" is proposed copy,
+     awaiting the operator's ruling per FABLE-120-DESIGN §4 / brand.json R12. */
+
+  /* ---------- Study list (paper) ---------- */
+  .list-section{
+    padding:88px 0 40px;
+  }
+  @media (max-width:700px){ .list-section{padding:56px 0 24px;} }
+
+  .entry{
+    display:grid;
+    grid-template-columns:minmax(0,0.8fr) minmax(0,1.3fr) minmax(0,1.4fr) auto;
+    gap:32px;
+    align-items:start;
+    padding:32px 0;
+    border-top:1px solid var(--rule-foyer);
+    text-decoration:none;
+    color:inherit;
+  }
+  .entry:last-of-type{border-bottom:1px solid var(--rule-foyer);}
+  @media (max-width:900px){
+    .entry{grid-template-columns:1fr;gap:10px;padding:28px 0;}
+  }
+  .entry-context{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--foyer-ink-soft);
+    letter-spacing:0.02em;
+  }
+  .entry-figure{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-3);
+    line-height:1.1;
+  }
+  .entry-did{
+    font-size:var(--fs-4);
+    line-height:1.55;
+    color:var(--foyer-ink-soft);
+  }
+  .entry-service{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--copper-deep);
+    letter-spacing:0.04em;
+    text-align:right;
+    white-space:nowrap;
+  }
+  @media (max-width:900px){
+    .entry-service{text-align:left;}
+  }
+  .entry:hover .entry-figure{text-decoration:underline;text-decoration-color:var(--copper);text-underline-offset:4px;}
+
+  /* ---------- Record block ---------- */
+  .record{
+    padding:120px 0 96px;
+  }
+  @media (max-width:700px){ .record{padding:72px 0 64px;} }
+  .record h2{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-3);
+    margin:0 0 12px;
+  }
+  .record-line{
+    font-size:var(--fs-4);
+    color:var(--foyer-ink-soft);
+    margin:0 0 40px;
+  }
+  .record-row{
+    display:grid;
+    grid-template-columns:1.2fr 1fr 1.4fr;
+    gap:24px;
+    padding:20px 0 8px;
+    border-top:1px solid var(--rule-foyer);
+    align-items:baseline;
+  }
+  .record-row:last-of-type{border-bottom:1px solid var(--rule-foyer);}
+  @media (max-width:700px){
+    .record-row{grid-template-columns:1fr;gap:6px;}
+  }
+  .record-company{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-3);
+  }
+  .record-company a{color:inherit;text-decoration-color:var(--copper);}
+  .record-meta{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--foyer-ink-soft);
+    letter-spacing:0.02em;
+  }
+  .meta-pair{display:contents;}
+  @media (max-width:700px){
+    .meta-pair{display:flex;gap:16px;flex-wrap:wrap;}
+  }
+  .record-desc{
+    grid-column:1 / -1;
+    font-size:var(--fs-4);
+    color:var(--foyer-ink-soft);
+    margin-top:2px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--rule-foyer);
+    padding:40px 0 56px;
+    font-size:var(--fs-4);
+    color:var(--foyer-ink-soft);
+  }
+  footer a{color:var(--copper-deep);text-decoration-color:var(--copper-deep);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <span class="wordmark">MICAH JONES</span>
+    <nav class="nav-links">
+      <a href="#">Services</a>
+      <a href="#" aria-current="page">Work</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="mono-label">Guardicore, acquired by Akamai</p>
+        <p class="hero-figure">$14M</p>
+        <!-- FLAGGED FOR OPERATOR (QA fix, not applied): the reviewer proposes opening this
+             dek at "Sourced and closed, at a $1.2M average enterprise deal..." to stop the
+             $14M figure repeating directly under the 112px hero-figure. That reorders locked
+             draft copy (four-studies-DRAFT.md), so it is left as-is pending an operator
+             ruling rather than rewritten unilaterally. -->
+        <p class="hero-dek">$14M in revenue, sourced and closed, at a $1.2M average enterprise deal, for a security company built in Tel Aviv whose buyers sat in North American banks. I ran the research that found what those buyers were actually signing for, moved the story from honeypots to east-west visibility, and sat in the deals.</p>
+        <p class="hero-method">I find what your buyers are actually paying for, then build the system that sells it.</p>
+      </div>
+      <figure class="hero-media">
+        <!--
+          IMAGERY NOTE: brand.json R12 exception (operator 2026-09-16, "Use the AI clip
+          anyway") overrides FABLE-120-DESIGN.md §4's recommendation against shipping the
+          generated clip. This mock follows the newer, dated operator ruling: the 4s
+          AI image-to-video clip, poster-only in this static mock, no autoplay attribute,
+          muted, playsinline, never looping. Colleagues held at the frame's edge via
+          object-position per the operator's "Keep them at the edge."
+        -->
+        <video muted playsinline preload="none" poster="file:///C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/public/guardicore-telaviv-session.jpg">
+        </video>
+        <!-- PROPOSED COPY: disclosure caption awaits operator ruling (brand.json R12 exception note). -->
+        <figcaption>Working session · Tel Aviv · animated from a photograph</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="list-section">
+  <div class="wrap">
+
+    <a class="entry" href="rfp-engine.html">
+      <span class="entry-context">Name protected</span>
+      <span class="entry-figure">$3M in signed contracts</span>
+      <span class="entry-did">I built RFP discovery, scoring and drafting around one expert's own body of work.</span>
+      <span class="entry-service">AI engineering</span>
+    </a>
+
+    <a class="entry" href="ordani.html">
+      <span class="entry-context">ORDANI, my company</span>
+      <span class="entry-figure">Intake: 40% to 91%</span>
+      <span class="entry-did">A HIPAA-compliant CRM for birth workers, and a company I founded and built.</span>
+      <span class="entry-service">Product building</span>
+    </a>
+
+    <a class="entry" href="content-engine.html">
+      <span class="entry-context">Name protected</span>
+      <span class="entry-figure">Up to 800,000 impressions</span>
+      <span class="entry-did">I wrote the platform strategy, then built an AI engine that turns one rough video into the week's work.</span>
+      <span class="entry-service">Product building</span>
+    </a>
+
+    <a class="entry" href="birth-worker.html">
+      <span class="entry-context">Name protected</span>
+      <span class="entry-figure">Bookings: 1–3 to 5–10 a month</span>
+      <span class="entry-did">I repositioned the practice around the full arc of care, rebuilt how clients find and book her, and set up claims she could file directly.</span>
+      <span class="entry-service">Positioning &amp; GTM</span>
+    </a>
+
+  </div>
+</section>
+
+<section class="record" id="record">
+  <div class="wrap">
+    <h2>Also on the record</h2>
+    <p class="record-line">Four of the companies I worked inside reached an exit.</p>
+    <!-- QA fix applied: years dropped from the role/meta columns and from record-desc
+         prose per the reviewer's fix list. Note: FABLE-120-DESIGN.md §2 specifies the
+         record block with a mono "year" column ("four rows ordered by exit year"), so
+         this cut is a direct conflict with the spec — the operator should confirm
+         whether the row order alone (still by exit year) is sufficient or whether a
+         year column belongs back in. -->
+
+    <div class="record-row">
+      <span class="record-company">SurveyMonkey</span>
+      <div class="meta-pair"><span class="record-meta">Enterprise sales</span>
+      <span class="record-meta">IPO</span></div>
+      <span class="record-desc">$1M+ in enterprise sales toward the IPO.</span>
+    </div>
+
+    <div class="record-row">
+      <span class="record-company">Postmates</span>
+      <div class="meta-pair"><span class="record-meta">Product analyst</span>
+      <span class="record-meta">Acquired by Uber, $2.65B</span></div>
+      <span class="record-desc">Market and fraud analysis in the deliver-anything era, and the case for narrowing the promise to the core offerings. A promise that covers everything cannot be priced, policed or sold.</span>
+    </div>
+
+    <div class="record-row">
+      <span class="record-company"><a href="study-guardicore.html">Guardicore</a></span>
+      <div class="meta-pair"><span class="record-meta">Revenue and positioning</span>
+      <span class="record-meta">Acquired by Akamai</span></div>
+      <span class="record-desc">$14M in revenue, sourced and closed, after the research moved the pitch from honeypots to east-west visibility.</span>
+    </div>
+
+    <div class="record-row">
+      <span class="record-company">Neuton.AI</span>
+      <div class="meta-pair"><span class="record-meta">Helped launch</span>
+      <span class="record-meta">Technology acquired by Nordic Semiconductor</span></div>
+      <span class="record-desc">North American positioning for an AI product years before anyone was queuing to buy AI. I held no cap-table position.</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>I read every message and reply inside one business day.</p>
+    <p><a href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

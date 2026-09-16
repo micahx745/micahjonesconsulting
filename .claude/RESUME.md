@@ -18,9 +18,12 @@ HIS 09-16 DESIGN RULINGS: AI Tel Aviv clip ships as /work hero (DESIGN_BAR R12
 exception with conditions: once, muted, poster = real still, colleagues at
 edge, consent his, disclosure caption pending, motion-engineer + LCP); crop
 keeps colleagues at the edge; sage stays on ORDANI; TitleCard fate unsigned.
-IN FLIGHT: mock workflow (A and B: /work + Guardicore study, 390/1440) ->
-.planning/mock/pass-120/, captures .planning/qa/pass-120/mock/.
-NEXT: he picks A or B from the mocks + signs TitleCard + caption, then brief.
+MOCKS DONE (wf_a593a88a): .planning/mock/pass-120/{a,b}/ + compare sheets
+.planning/qa/pass-120/mock/compare-*.png. Opus judge + fixers WRONGLY cut
+event years (he allows IPO/acquisition years) and his client descriptors
+("award-winning" is NOT on the banned list): restore both in the brief.
+NEXT: he picks A / B / hybrid (A's dark /work band + B's studies), signs the
+TitleCard settle + disclosure caption + method line; then brief pass-120.
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services.
 

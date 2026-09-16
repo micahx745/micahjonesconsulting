@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repositioning Guardicore — Direction A (mock)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --foyer-paper:#f5efe4;
+    --foyer-ink:#1a1816;
+    --theater-ground:#12100e;
+    --theater-surface:#1a1713;
+    --theater-ink:#ece3d0;
+    --theater-ink-soft:#a69b8a;
+    --copper:#bd5a2d;
+    --copper-deep:#8a3d24;
+    --rule-theater:#3a332b;
+
+    --font-display:'Bricolage Grotesque', sans-serif;
+    --font-body:'Hanken Grotesk', system-ui, sans-serif;
+    --font-mono:'JetBrains Mono', ui-monospace, monospace;
+
+    --fs-1:112px;
+    --fs-2:56px;
+    --fs-3:36px;
+    --fs-4:18px;
+    --fs-5:13px;
+  }
+  @media (max-width:700px){
+    :root{
+      --fs-1:64px;
+      --fs-2:36px;
+      --fs-3:26px;
+      --fs-4:17px;
+      --fs-5:12px;
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:var(--font-body);
+    font-size:var(--fs-4);
+    line-height:1.6;
+    background:var(--theater-ground); /* Direction A: obsidian throughout, no paper turn */
+    color:var(--theater-ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 64px;}
+  .measure{max-width:68ch;}
+  @media (max-width:700px){ .wrap{padding:0 16px;} }
+
+  /* ---------- Nav ---------- */
+  .site-nav{
+    background:var(--theater-ground);
+    border-bottom:1px solid var(--rule-theater);
+  }
+  .nav-inner{
+    max-width:1200px;margin:0 auto;padding:28px 64px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  @media (max-width:700px){ .nav-inner{padding:20px 16px;} }
+  .wordmark{
+    font-family:var(--font-display);
+    font-weight:700;
+    letter-spacing:0.04em;
+    font-size:var(--fs-5);
+  }
+  .nav-links{display:flex;gap:32px;font-size:var(--fs-5);}
+  .nav-links a{text-decoration:none;border-bottom:1px solid transparent;}
+  .nav-links a:hover{border-bottom-color:var(--copper);}
+  @media (max-width:700px){ .nav-links{gap:18px;font-size:13px;} }
+
+  /* ---------- Hero (first fold) ---------- */
+  .hero{
+    padding:80px 0 64px;
+    border-bottom:1px solid var(--rule-theater);
+  }
+  @media (max-width:700px){ .hero{padding:48px 0 40px;} }
+
+  .mono-label{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    letter-spacing:0.06em;
+    color:var(--theater-ink-soft);
+    margin:0 0 20px;
+  }
+
+  /* TitleCard settle — cadence kept, pin removed (DESIGN_BAR §2 / §7).
+     Lines settle into place once, ≤600ms total, transform+opacity only,
+     ease-out, no scroll coupling. Base state (below) IS the finished
+     frame, so no-JS and reduced-motion both render correctly with no
+     animation ever applied — this is pure CSS, nothing to disable. */
+  h1.title{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-2);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    margin:0 0 24px;
+    max-width:22ch;
+  }
+  h1.title .line{
+    display:block;
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    h1.title .line{
+      animation:titlecard-settle 600ms cubic-bezier(0.16,1,0.3,1) both;
+    }
+    h1.title .line:nth-child(1){animation-delay:0ms;}
+    h1.title .line:nth-child(2){animation-delay:120ms;}
+  }
+  @keyframes titlecard-settle{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .dek{
+    font-size:var(--fs-4);
+    max-width:56ch;
+    margin:0 0 48px;
+    color:var(--theater-ink);
+  }
+
+  .hero-top{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:start;
+    margin-bottom:48px;
+  }
+  @media (max-width:900px){
+    .hero-top{grid-template-columns:1fr;gap:32px;}
+  }
+
+  .glance{
+    margin:0;
+    max-width:68ch;
+  }
+  .glance-row{
+    display:grid;
+    grid-template-columns:11ch 1fr;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--rule-theater);
+  }
+  .glance-row:last-of-type{border-bottom:1px solid var(--rule-theater);}
+  .glance-row dt{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--theater-ink-soft);
+    letter-spacing:0.04em;
+    margin:0;
+  }
+  .glance-row dd{
+    margin:0;
+    font-size:var(--fs-4);
+    color:var(--theater-ink);
+  }
+  .glance-row.results dd{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-3);
+    line-height:1.15;
+  }
+  .glance-sub{
+    display:block;
+    margin-top:8px;
+    font-family:var(--font-body);
+    font-weight:400;
+    font-size:var(--fs-4);
+    line-height:1.5;
+  }
+
+  figure.hero-photo{margin:0;}
+  figure.hero-photo img{
+    width:100%;
+    display:block;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    background:var(--theater-surface);
+  }
+  figure.hero-photo figcaption{
+    margin-top:12px;
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--theater-ink-soft);
+    letter-spacing:0.04em;
+  }
+  @media (max-width:900px){
+    figure.hero-photo{order:-1;}
+  }
+
+  /* ---------- Body ---------- */
+  .body-section{padding:64px 0;}
+  @media (max-width:700px){ .body-section{padding:40px 0;} }
+
+  h2{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:var(--fs-3);
+    line-height:1.12;
+    margin:0 0 24px;
+  }
+  .body-section h2:not(:first-child){margin-top:72px;}
+  .body-section p{margin:0 0 20px;}
+  .body-section + .body-section{padding-top:24px;}
+
+  .step{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:24px;
+    padding:32px 0;
+    border-top:1px solid var(--rule-theater);
+  }
+  .step:last-of-type{border-bottom:1px solid var(--rule-theater);}
+  @media (min-width:901px){
+    /* Step numerals hang in the left margin at 1440 (spec), rather than sitting in
+       their own 56px inline column. */
+    .step{grid-template-columns:1fr;position:relative;padding:24px 0;}
+  }
+  @media (max-width:700px){
+    .step{grid-template-columns:1fr;gap:8px;}
+  }
+  /* Contrast fix (QA): copper on obsidian is ~4.2:1 at 13px, which fails AA. The spec
+     calls for a copper step numeral, but it cannot pass at this size/ground, so the
+     numeral runs in ink-soft instead — flagged for the operator to rule on. */
+  .step-num{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--theater-ink-soft);
+    letter-spacing:0.04em;
+    padding-top:4px;
+  }
+  @media (min-width:901px){
+    .step-num{position:absolute;left:-72px;top:28px;padding-top:0;}
+  }
+  .step h3{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:var(--fs-4);
+    margin:0 0 8px;
+  }
+  .step p{margin:0;color:var(--theater-ink);}
+
+  .changed-list{
+    list-style:none;
+    margin:0;padding:0;
+  }
+  .changed-list li{
+    padding:18px 0;
+    border-top:1px solid var(--rule-theater);
+  }
+  .changed-list li:last-of-type{border-bottom:1px solid var(--rule-theater);}
+
+  .qa dt{
+    font-weight:600;
+    font-size:var(--fs-4);
+    margin:0 0 8px;
+  }
+  .qa dd{margin:0 0 0;color:var(--theater-ink);}
+
+  .close-block{
+    padding:120px 0 96px;
+    border-top:1px solid var(--rule-theater);
+  }
+  .close-block a.cta{
+    display:inline-block;
+    margin-top:16px;
+    color:var(--theater-ink);
+    border-bottom:1px solid var(--copper);
+    text-decoration:none;
+    font-weight:600;
+  }
+
+  /* ---------- Next / All work ---------- */
+  .next-section{
+    padding:48px 0 64px;
+    border-top:1px solid var(--rule-theater);
+  }
+  .next-label{
+    font-family:var(--font-mono);
+    font-size:var(--fs-5);
+    color:var(--theater-ink-soft);
+    letter-spacing:0.06em;
+    margin:0 0 20px;
+  }
+  .next-entry{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr auto;
+    gap:24px;
+    align-items:start;
+    text-decoration:none;
+    color:inherit;
+  }
+  @media (max-width:900px){
+    .next-entry{grid-template-columns:1fr;gap:8px;}
+  }
+  .next-entry .entry-context{font-family:var(--font-mono);font-size:var(--fs-5);color:var(--theater-ink-soft);}
+  .next-entry .entry-figure{font-family:var(--font-display);font-weight:700;font-size:var(--fs-3);}
+  .next-entry .entry-did{font-size:var(--fs-4);color:var(--theater-ink-soft);}
+  .next-entry .entry-service{font-family:var(--font-mono);font-size:var(--fs-5);color:var(--theater-ink-soft);text-align:right;white-space:nowrap;}
+  @media (max-width:900px){ .next-entry .entry-service{text-align:left;} }
+
+  .all-work{
+    display:block;
+    margin-top:32px;
+    font-size:var(--fs-4);
+    color:var(--theater-ink-soft);
+    text-decoration:underline;
+    text-decoration-color:var(--rule-theater);
+  }
+
+  footer{
+    border-top:1px solid var(--rule-theater);
+    padding:40px 0 56px;
+    font-size:var(--fs-4);
+    color:var(--theater-ink-soft);
+  }
+  footer a{color:var(--theater-ink);text-decoration-color:var(--copper);}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <span class="wordmark">MICAH JONES</span>
+    <nav class="nav-links">
+      <a href="#">Services</a>
+      <a href="work.html">Work</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="mono-label">Guardicore, acquired by Akamai</p>
+    <h1 class="title"><span class="line">Repositioning Guardicore:</span><span class="line">$14M, then Akamai</span></h1>
+    <div class="hero-top">
+      <p class="dek">$14M in revenue, sourced and closed, at a $1.2M average enterprise deal, for a security company built in Tel Aviv whose buyers sat in North American banks. I ran the research that found what those buyers were actually signing for, moved the story from honeypots to east-west visibility, and sat in the deals. Akamai acquired the company in 2021.</p>
+
+      <figure class="hero-photo">
+        <img src="file:///C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/public/guardicore-telaviv-session.jpg" alt="Micah Jones in a working session with colleagues, Tel Aviv" style="object-position:82% 45%;">
+        <figcaption>Working session · Tel Aviv</figcaption>
+      </figure>
+    </div>
+
+    <dl class="glance">
+      <div class="glance-row">
+        <dt>Client</dt>
+        <dd>Guardicore, acquired by Akamai</dd>
+      </div>
+      <div class="glance-row">
+        <dt>My role</dt>
+        <dd>Revenue and positioning</dd>
+      </div>
+      <div class="glance-row">
+        <dt>The work</dt>
+        <dd>Customer research and data analysis, the repositioning, target accounts and outbound, executive briefings, managed-security partners, and a microsegmentation pilot.</dd>
+      </div>
+      <div class="glance-row results">
+        <dt>Results</dt>
+        <dd>$14M in revenue, sourced and closed.<span class="glance-sub">$1.2M average enterprise deal. Acquired by Akamai in 2021.</span></dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="body-section">
+  <div class="wrap measure">
+    <h2>Everyone was selling honeypots</h2>
+    <p>In the years before the acquisition, the security market was saturated with deception. Honeypots were a feature several vendors shipped, and Guardicore led with theirs.</p>
+    <p>Meanwhile the thing enterprises could not do was see their own networks. North-south traffic, in and out through the firewall, was well defended. The lateral east-west traffic between workloads was a blind spot, and that blind spot was where ransomware lived.</p>
+    <p>So the top-of-funnel message described a feature the market already had, while buyers at the bottom of the funnel were signing for something else. The product was built an ocean away from the buyers who needed it.</p>
+
+    <h2>What the customers said that the deck did not</h2>
+    <p>I interviewed customers, researched the market, and ran the data analysis on what closed against what the pitch promised. The two came apart in the same place every time: buyers were not buying deception. They could not see anything inside their own environments, and visibility was the thing they signed for.</p>
+    <p>I brought that to leadership with the analysis behind it, and the story moved: visibility first, then east-west microsegmentation.</p>
+  </div>
+</section>
+
+<section class="body-section">
+  <div class="wrap measure">
+    <h2>What I did</h2>
+
+    <div class="step">
+      <span class="step-num">01</span>
+      <div>
+        <h3>The research, before the pitch changed.</h3>
+        <p>Customer interviews, market research, and the analysis that showed where the message and the money disagreed.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div>
+        <h3>The reposition.</h3>
+        <p>Two anchors, in order: see the traffic, then segment it. Every surface told the same story in the same sequence.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div>
+        <h3>The pipeline.</h3>
+        <p>I picked the target accounts, ran the outbound, briefed executives, qualified the leads, and sat in the deals. Once leadership backed the new focus, I was selling microsegmentation before the product was finished. That is the part of positioning nobody puts in a deck: the story has to hold in a live deal while the roadmap catches up.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <div>
+        <h3>Managed-security partners.</h3>
+        <p>I helped sign the managed-security and reseller partners who extended the platform's reach, and their reps carried the repositioned story the direct team carried.</p>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">05</span>
+      <div>
+        <h3>The pilot that proved it.</h3>
+        <p>A microsegmentation pilot with a top-10 North American bank. The two anchors held under a real network, with a real security team pushing on them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="body-section">
+  <div class="wrap measure">
+    <h2>What changed</h2>
+    <ul class="changed-list">
+      <li>$14M in revenue, at a $1.2M average enterprise deal size.</li>
+      <li>Deployed behind a global systemically important bank and a federal research agency. It reached a white-shoe Wall Street law firm and a major U.S. utility too.</li>
+      <li>Trillions in financial assets sit protected behind those deployments.</li>
+      <li>Akamai acquired Guardicore in 2021, and the positioning carried into the product that followed the acquisition.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="body-section">
+  <div class="wrap measure">
+    <h2>Questions buyers ask</h2>
+    <dl class="qa">
+      <dt>Why would positioning change revenue?</dt>
+      <dd>It changes which buyer takes the meeting and what they think they are solving. Here the pitch described a feature while buyers were signing the contracts for an outcome.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="close-block">
+  <div class="wrap measure">
+    <h2>If enterprise teams still are not buying</h2>
+    <p>You built it. Enterprise teams still are not buying, and the gap is positioning, not features. I run the customer interviews and the sales-call analysis that name the question your buyers are actually asking, then the positioning shift and the sales narrative your team runs without me.</p>
+    <!-- Q7 open in FABLE-120-DESIGN.md §6: whether this link lands on the /services
+         anchor or on /contact with the block named. This mock uses the anchor,
+         pending the operator's ruling. -->
+    <a class="cta" href="#services-positioning-gtm">Positioning &amp; GTM →</a>
+  </div>
+</section>
+
+<section class="next-section">
+  <div class="wrap">
+    <p class="next-label">Next</p>
+    <a class="next-entry" href="rfp-engine.html">
+      <span class="entry-context">Name protected</span>
+      <span class="entry-figure">$3M in signed contracts</span>
+      <span class="entry-did">I built RFP discovery, scoring and drafting around one expert's own body of work.</span>
+      <span class="entry-service">AI engineering</span>
+    </a>
+    <a class="all-work" href="work.html">All work</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>I read every message and reply inside one business day.</p>
+    <p><a href="mailto:micah@micahjonesconsulting.com">micah@micahjonesconsulting.com</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
