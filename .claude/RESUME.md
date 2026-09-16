@@ -26,8 +26,13 @@ entrance on a hero naming client + result (SIGNED; rewrite brand.json
 motion.signature). NO captions on Pass-120 photos or the hero clip ("maybe
 nothing needs a caption"). METHOD LINE picked (ledger #3): "I find what your
 buyers are actually paying for, then build the system that sells exactly that."
-NEXT: Fable method-line options -> his pick; build-surface map; brief
-pass-120 (content + sweep + B template + settle + clip + 301s).
+MAP DONE: .planning/briefs-prep/pass-120/*.md (content model, template,
+/work, live sweep, gates). FIXED + GATED 8f6034c: home aria-label still
+read "80 million dollars in pipeline" (LESSONS #33).
+IN FLIGHT: brief workflow wf_249a184c (5 Opus sections -> 3 Sonnet
+reviewers -> fixes) -> .planning/briefs-prep/pass-120/sections/S2-S6.
+NEXT: I write S1 (ruling, rejected list, return conditions, parked) and
+assemble .claude/briefs/pass-120-work-page.md; read it; commit; then build.
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services.
 
