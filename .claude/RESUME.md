@@ -13,9 +13,11 @@ Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. He must PULL main checkout.
 - Writers+verifiers all PASS (wf_50be51a6-dbe). tsc 0; static 45/46
   (X5: dead components/EditorialTimestamp.tsx, for ruling).
 - build120: 15/15 PASS (render-gate 14 routes). Server :3200 up.
-- IN FLIGHT: served120.sh -> .planning/qa/pass-120/build/. Then 6.6
-  Lighthouse (prod /work baseline median 2710ms, A4), 6.7 shots, CAPTURES.md,
-  ONE Fable first-preview look, report to Micah. STOP there.
+- SERVED: 11 fails classified (A ruling-consequence, B check/brief
+  conflict, C real: mono client line T6, ORDANI HIPAA- break, no-JS
+  video controls, #record -0.3). LH /work 3085 vs prod 2710 = L1b FAIL
+  (A4 stop; /contact calib +216ms). Input: reviews/FABLE-120-FIRST-
+  PREVIEW-INPUT.md. IN FLIGHT: ONE Fable look -> FABLE-120-FIRST-PREVIEW.md.
 - O16 SHIP CHECK: publishedAt "2026-09-16" x5 must equal deploy day.
 - HOLD FOR RULING (report at first preview): media uncommitted (W1a/b 98
   frames want 97; W1i bite 0.9928 want <0.98, O6 made last=first; frame

@@ -1,0 +1,23 @@
+FAIL S2-V9: V9 failures: 1 (want /^V9 failures: 0$/)
+PASS S2-V10: "datePublished":"2026-09-16"
+FAIL C14: guardicore 404 text/html; charset=utf-8|rfp-engine 404 text/html; charset=utf-8|ordani 404 text/html; charset=utf-8|content-engine 404 text/html; charset=utf-8|birth-worker 404 text/html; charset=utf-8|
+PASS C15: id="ai-engineering" id="positioning-gtm" id="product-building" 
+PASS W3a: video/webm|video/mp4|image/avif|
+PASS W3b: 1
+PASS W3c: 1
+FAIL V6: 308 
+FAIL V7: 308 
+FAIL S5-V5: 119 PASS, 4 FAIL, last [s5-render: 4 failures]
+FAIL V1-claims120: claims120 failures: 26 (want /^claims120 failures: 0$/)
+FAIL V2-page120: page120 failures: 10 (want /^page120 failures: 0$/)
+PASS V3-settle120: settle120 failures: 0
+FAIL V4-clip120: clip120 failures: 2 (want /^clip120 failures: 0$/)
+FAIL V5-card1-120: card1 failures: 2 (want /^card1 failures: 0$/)
+FAIL C16-template120: template120 failures: 39 (want /^template120 failures: 0$/)
+PASS W4-clipnav120: clipnav120 failures: 0
+PASS W5: W5 failures: 0
+PASS V8-axe: axe-worlds: axe-core 4.13.0, 253 scans, 0 serious/critical finding(s), 0 not in KNOWN
+FAIL V9-layout: layout-gate: 54 page loads across 9 routes, 3 finding(s), 3 not in KNOWN (want /^layout-gate: [0-9]+ page loads across 9 routes, 0 finding\(s\), 0 not in KNOWN$/)
+PASS V10-type117: type117 failures: 0
+PASS V11-circle115: circle failures: 0
+served120 failures: 11

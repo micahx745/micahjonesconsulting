@@ -1,0 +1,21 @@
+s1-work-1440.png: TL work-lead-hero-still-1440.png | TR work-method-line-and-entries-1440.png | BL work-record-block-1440.png | BR work-hero-nojs-1440.png
+s2-work-390.png: 1 work-lead-hero-still-390.png | 2 work-method-line-and-entries-390.png | 3 work-record-block-390.png | 4 work-hero-nojs-390.png
+s3-guardicore-1440.png: TL study-guardicore-curtain-1440.png | TR study-guardicore-band-to-paper-1440.png | BL study-guardicore-band-photo-1440.png | BR study-guardicore-close-and-all-work-1440.png
+s4-rfp-1440.png: TL study-rfp-engine-curtain-1440.png | TR study-rfp-engine-band-to-paper-1440.png | BL study-rfp-engine-worked-example-1440.png | BR study-rfp-engine-close-and-all-work-1440.png
+s5-birth-ordani-1440.png: TL study-birth-worker-curtain-1440.png | TR study-birth-worker-band-to-paper-1440.png | BL study-birth-worker-close-and-all-work-1440.png | BR study-ordani-chapter-photo-1440.png
+s6-curtains-390.png: 1 study-guardicore-curtain-390.png | 2 study-rfp-engine-curtain-390.png | 3 study-birth-worker-curtain-390.png | 4 study-ordani-curtain-390.png
+s7-body-390.png: 1 study-rfp-engine-worked-example-390.png | 2 study-rfp-engine-band-to-paper-390.png | 3 study-guardicore-close-and-all-work-390.png | 4 study-birth-worker-close-and-all-work-390.png
+s8-dim-path-1440.png: top dim-0094.png, dim-0220.png, dim-0273.png | bottom dim-0346.png, dim-0450.png, dim-0600.png
+s9-og-cards.png: top og-guardicore.png, og-rfp-engine.png, og-ordani.png | bottom og-content-engine.png, og-birth-worker.png, study-content-engine-curtain-1440.png
+total 7756
+drwxr-xr-x 1 micah 197610       0 Sep 16 16:36 .
+drwxr-xr-x 1 micah 197610       0 Sep 16 16:36 ..
+-rw-r--r-- 1 micah 197610 1548027 Sep 16 16:36 s1-work-1440.png
+-rw-r--r-- 1 micah 197610 1256497 Sep 16 16:36 s2-work-390.png
+-rw-r--r-- 1 micah 197610  618537 Sep 16 16:36 s3-guardicore-1440.png
+-rw-r--r-- 1 micah 197610  441128 Sep 16 16:36 s4-rfp-1440.png
+-rw-r--r-- 1 micah 197610  759647 Sep 16 16:36 s5-birth-ordani-1440.png
+-rw-r--r-- 1 micah 197610  953377 Sep 16 16:36 s6-curtains-390.png
+-rw-r--r-- 1 micah 197610  620895 Sep 16 16:36 s7-body-390.png
+-rw-r--r-- 1 micah 197610 1352474 Sep 16 16:36 s8-dim-path-1440.png
+-rw-r--r-- 1 micah 197610  363771 Sep 16 16:36 s9-og-cards.png

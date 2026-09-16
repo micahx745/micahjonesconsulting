@@ -1,0 +1,103 @@
+== http://localhost:3200/work/guardicore at 1440
+PASS S0 status /work/guardicore 1440: got 200
+     177 frames over 2984ms, main h1 present
+PASS S1 motion runs /work/guardicore 1440: got 22 non-final frames
+PASS S2 600ms total /work/guardicore 1440: got 416.3ms
+PASS S3 no flash /work/guardicore 1440: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/guardicore 1440: got filter none, clip-path none, font-size 56px, letter-spacing -1.12px
+PASS S5 once per load /work/guardicore 1440: got 0 non-final frames (152 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/guardicore 1440: got 0 non-final frames of 179, final h1 opacity 1
+== http://localhost:3200/work/guardicore at 390
+PASS S0 status /work/guardicore 390: got 200
+     180 frames over 2982ms, main h1 present
+PASS S1 motion runs /work/guardicore 390: got 25 non-final frames
+PASS S2 600ms total /work/guardicore 390: got 415.7ms
+PASS S3 no flash /work/guardicore 390: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/guardicore 390: got filter none, clip-path none, font-size 36px, letter-spacing -0.72px
+PASS S5 once per load /work/guardicore 390: got 0 non-final frames (151 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/guardicore 390: got 0 non-final frames of 180, final h1 opacity 1
+== http://localhost:3200/work/rfp-engine at 1440
+PASS S0 status /work/rfp-engine 1440: got 200
+     180 frames over 2971ms, main h1 present
+PASS S1 motion runs /work/rfp-engine 1440: got 25 non-final frames
+PASS S2 600ms total /work/rfp-engine 1440: got 403.6ms
+PASS S3 no flash /work/rfp-engine 1440: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/rfp-engine 1440: got filter none, clip-path none, font-size 56px, letter-spacing -1.12px
+PASS S5 once per load /work/rfp-engine 1440: got 0 non-final frames (151 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/rfp-engine 1440: got 0 non-final frames of 180, final h1 opacity 1
+== http://localhost:3200/work/rfp-engine at 390
+PASS S0 status /work/rfp-engine 390: got 200
+     179 frames over 2967ms, main h1 present
+PASS S1 motion runs /work/rfp-engine 390: got 25 non-final frames
+PASS S2 600ms total /work/rfp-engine 390: got 417.1ms
+PASS S3 no flash /work/rfp-engine 390: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/rfp-engine 390: got filter none, clip-path none, font-size 36px, letter-spacing -0.72px
+PASS S5 once per load /work/rfp-engine 390: got 0 non-final frames (151 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/rfp-engine 390: got 0 non-final frames of 180, final h1 opacity 1
+== http://localhost:3200/work/ordani at 1440
+PASS S0 status /work/ordani 1440: got 200
+     179 frames over 2965ms, main h1 present
+PASS S1 motion runs /work/ordani 1440: got 25 non-final frames
+PASS S2 600ms total /work/ordani 1440: got 414.9ms
+PASS S3 no flash /work/ordani 1440: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/ordani 1440: got filter none, clip-path none, font-size 56px, letter-spacing -1.12px
+PASS S5 once per load /work/ordani 1440: got 0 non-final frames (151 frames at 1440px, 1 at other widths not compared)
+PASS S6 reduced /work/ordani 1440: got 0 non-final frames of 180, final h1 opacity 1
+== http://localhost:3200/work/ordani at 390
+PASS S0 status /work/ordani 390: got 200
+     180 frames over 2976ms, main h1 present
+PASS S1 motion runs /work/ordani 390: got 25 non-final frames
+PASS S2 600ms total /work/ordani 390: got 409.5ms
+PASS S3 no flash /work/ordani 390: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/ordani 390: got filter none, clip-path none, font-size 36px, letter-spacing -0.72px
+PASS S5 once per load /work/ordani 390: got 0 non-final frames (151 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/ordani 390: got 0 non-final frames of 180, final h1 opacity 1
+== http://localhost:3200/work/content-engine at 1440
+PASS S0 status /work/content-engine 1440: got 200
+     180 frames over 2971ms, main h1 present
+PASS S1 motion runs /work/content-engine 1440: got 25 non-final frames
+PASS S2 600ms total /work/content-engine 1440: got 404.3ms
+PASS S3 no flash /work/content-engine 1440: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/content-engine 1440: got filter none, clip-path none, font-size 56px, letter-spacing -1.12px
+PASS S5 once per load /work/content-engine 1440: got 0 non-final frames (151 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/content-engine 1440: got 0 non-final frames of 179, final h1 opacity 1
+== http://localhost:3200/work/content-engine at 390
+PASS S0 status /work/content-engine 390: got 200
+     181 frames over 2980ms, main h1 present
+PASS S1 motion runs /work/content-engine 390: got 26 non-final frames
+PASS S2 600ms total /work/content-engine 390: got 412.7ms
+PASS S3 no flash /work/content-engine 390: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/content-engine 390: got filter none, clip-path none, font-size 36px, letter-spacing -0.72px
+PASS S5 once per load /work/content-engine 390: got 0 non-final frames (150 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/content-engine 390: got 0 non-final frames of 180, final h1 opacity 1
+== http://localhost:3200/work/birth-worker at 1440
+PASS S0 status /work/birth-worker 1440: got 200
+     180 frames over 2977ms, main h1 present
+PASS S1 motion runs /work/birth-worker 1440: got 25 non-final frames
+PASS S2 600ms total /work/birth-worker 1440: got 410.1ms
+PASS S3 no flash /work/birth-worker 1440: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/birth-worker 1440: got filter none, clip-path none, font-size 56px, letter-spacing -1.12px
+PASS S5 once per load /work/birth-worker 1440: got 0 non-final frames (151 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/birth-worker 1440: got 0 non-final frames of 176, final h1 opacity 1
+== http://localhost:3200/work/birth-worker at 390
+PASS S0 status /work/birth-worker 390: got 200
+     181 frames over 2993ms, main h1 present
+PASS S1 motion runs /work/birth-worker 390: got 26 non-final frames
+PASS S2 600ms total /work/birth-worker 390: got 425.9ms
+PASS S3 no flash /work/birth-worker 390: got 0 final frames before the first non-final frame
+PASS S4 transform and opacity only /work/birth-worker 390: got filter none, clip-path none, font-size 36px, letter-spacing -0.72px
+PASS S5 once per load /work/birth-worker 390: got 0 non-final frames (150 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/birth-worker 390: got 0 non-final frames of 181, final h1 opacity 1
+PASS S7 CLS /work/guardicore 1440: got 0.0044 (1 shifts)
+PASS S7 CLS /work/guardicore 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work/rfp-engine 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work/rfp-engine 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work/ordani 1440: got 0.0049 (1 shifts)
+PASS S7 CLS /work/ordani 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work/content-engine 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work/content-engine 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work/birth-worker 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work/birth-worker 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work 390: got 0.0000 (0 shifts)
+settle120 failures: 0

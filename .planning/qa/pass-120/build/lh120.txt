@@ -1,0 +1,12 @@
+== runs C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\lh120
+  run work-1.json: http://localhost:3200/work, performance 92, LCP 3081.1ms, CLS 0, LCP element main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+  run work-2.json: http://localhost:3200/work, performance 92, LCP 3084.7ms, CLS 0, LCP element main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+  run work-3.json: http://localhost:3200/work, performance 92, LCP 3157.8ms, CLS 0, LCP element main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+== production baseline C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\lh120-prod
+  run work-1.json: https://www.micahjonesconsulting.com/work, LCP 2714ms
+  run work-2.json: https://www.micahjonesconsulting.com/work, LCP 2635ms
+  run work-3.json: https://www.micahjonesconsulting.com/work, LCP 2710.1ms
+  INFO L1: median LCP 3084.7ms (reference 1800, not gated, brief A4)
+  FAIL L1b: got 3084.7ms (want <= 2710.1ms)
+  PASS L2: got CLS 0, 0, 0
+lh120 gate failures: 1

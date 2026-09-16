@@ -1,0 +1,209 @@
+== /
+  PASS K0 / status: got 200
+  PASS K0 / browser load: got loaded
+  FAIL K1 / "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 / "back to home": got 0 visible, 1 raw (want 0)
+  PASS K3 / method line: got 0
+  PASS K7 / year range: got 0
+  PASS K7 / year beside middot: got 0
+  PASS K7 / raw "case-study__year": got 0
+  PASS K7 / raw "<dt>Year</dt>": got 0
+== /about
+  PASS K0 /about status: got 200
+  PASS K0 /about browser load: got loaded
+  FAIL K1 /about "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /about "back to home": got 0 visible, 1 raw (want 0)
+  PASS K3 /about method line: got 0
+  PASS K7 /about year range: got 0
+  PASS K7 /about year beside middot: got 0
+  PASS K7 /about raw "case-study__year": got 0
+  PASS K7 /about raw "<dt>Year</dt>": got 0
+== /services
+  PASS K0 /services status: got 200
+  PASS K0 /services browser load: got loaded
+  FAIL K1 /services "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /services "back to home": got 1 visible, 3 raw (want 0)
+  PASS K3 /services "An author and leadership consultant: software that finds and drafts RFPs from buyers outside their existing network. $3M in signed contracts, close rate doubled.": got 1
+  PASS K3 /services method line: got 0
+  PASS K4 /services "five to ten": got 1
+== /packages
+  PASS K0 /packages status: got 200
+  PASS K0 /packages browser load: got loaded
+  FAIL K1 /packages "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /packages "back to home": got 0 visible, 1 raw (want 0)
+  PASS K3 /packages method line: got 0
+== /contact
+  PASS K0 /contact status: got 200
+  PASS K0 /contact browser load: got loaded
+  FAIL K1 /contact "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /contact "back to home": got 0 visible, 1 raw (want 0)
+  PASS K3 /contact method line: got 0
+== /call
+  PASS K0 /call status: got 200
+  PASS K0 /call browser load: got loaded
+  FAIL K1 /call "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /call "back to home": got 0 visible, 1 raw (want 0)
+  PASS K3 /call method line: got 0
+== /work
+  PASS K0 /work status: got 200
+  PASS K0 /work browser load: got loaded
+  FAIL K1 /work "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /work "back to home": got 0 visible, 1 raw (want 0)
+  PASS K2 /work "same engagement": got 0
+  PASS K3 /work "I find what your buyers are actually paying for, then build the system that sells exactly that.": got 1
+  PASS K3 /work "Also on the record": got 1
+  PASS K3 /work "Four of the companies I worked inside reached an exit.": got 1
+  PASS K4 /work "$14M": got 2
+  PASS K7 /work year range: got 0
+  PASS K7 /work year beside middot: got 0
+  PASS K7 /work raw "case-study__year": got 0
+  PASS K7 /work raw "<dt>Year</dt>": got 0
+== /work/guardicore
+  PASS K0 /work/guardicore status: got 200
+  PASS K0 /work/guardicore browser load: got loaded
+  FAIL K1 /work/guardicore "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /work/guardicore "back to home": got 0 visible, 1 raw (want 0)
+  PASS K2 /work/guardicore "same engagement": got 0
+  PASS K3 /work/guardicore method line: got 0
+  PASS K4 /work/guardicore "$14M in revenue, sourced and closed": got 2
+  PASS K4 /work/guardicore "a major U.S. utility": got 1
+  PASS K4 /work/guardicore "Acquired by Akamai in 2021": got 1
+  PASS K7 /work/guardicore year range: got 0
+  PASS K7 /work/guardicore year beside middot: got 0
+  PASS K7 /work/guardicore raw "case-study__year": got 0
+  PASS K7 /work/guardicore raw "<dt>Year</dt>": got 0
+  PASS K8 /work/guardicore Article JSON-LD scripts: got 1
+  PASS K8 /work/guardicore datePublished format: got "2026-09-16"
+  PASS K8 /work/guardicore datePublished equals content/work/guardicore.mdx publishedAt: got "2026-09-16"
+== /work/rfp-engine
+  PASS K0 /work/rfp-engine status: got 200
+  PASS K0 /work/rfp-engine browser load: got loaded
+  FAIL K1 /work/rfp-engine "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /work/rfp-engine "back to home": got 0 visible, 1 raw (want 0)
+  PASS K2 /work/rfp-engine "same engagement": got 0
+  PASS K3 /work/rfp-engine method line: got 0
+  FAIL K4 /work/rfp-engine "an award-winning author and leadership consultant who teaches government bodies and corporations": got 0 (want >=1)
+  PASS K4 /work/rfp-engine "$3M in signed contracts": got 4
+  PASS K4 /work/rfp-engine "One requirement, start to finish": got 1
+  PASS K7 /work/rfp-engine year range: got 0
+  PASS K7 /work/rfp-engine year beside middot: got 0
+  PASS K7 /work/rfp-engine raw "case-study__year": got 0
+  PASS K7 /work/rfp-engine raw "<dt>Year</dt>": got 0
+  PASS K8 /work/rfp-engine Article JSON-LD scripts: got 1
+  PASS K8 /work/rfp-engine datePublished format: got "2026-09-16"
+  PASS K8 /work/rfp-engine datePublished equals content/work/rfp-engine.mdx publishedAt: got "2026-09-16"
+== /work/ordani
+  PASS K0 /work/ordani status: got 200
+  PASS K0 /work/ordani browser load: got loaded
+  FAIL K1 /work/ordani "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /work/ordani "back to home": got 0 visible, 1 raw (want 0)
+  PASS K2 /work/ordani "same engagement": got 0
+  PASS K3 /work/ordani method line: got 0
+  PASS K4 /work/ordani "HIPAA-compliant": got 4
+  PASS K4 /work/ordani "Six apps and a Sunday night": got 1
+  PASS K4 /work/ordani "44.8": got 1
+  PASS K4 /work/ordani "3.15": got 1
+  PASS K7 /work/ordani year range: got 0
+  PASS K7 /work/ordani year beside middot: got 0
+  PASS K7 /work/ordani raw "case-study__year": got 0
+  PASS K7 /work/ordani raw "<dt>Year</dt>": got 0
+  PASS K8 /work/ordani Article JSON-LD scripts: got 1
+  PASS K8 /work/ordani datePublished format: got "2026-09-16"
+  PASS K8 /work/ordani datePublished equals content/work/ordani.mdx publishedAt: got "2026-09-16"
+== /work/content-engine
+  PASS K0 /work/content-engine status: got 200
+  PASS K0 /work/content-engine browser load: got loaded
+  FAIL K1 /work/content-engine "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /work/content-engine "back to home": got 0 visible, 1 raw (want 0)
+  PASS K2 /work/content-engine "same engagement": got 0
+  PASS K3 /work/content-engine method line: got 0
+  FAIL K4 /work/content-engine "a social activist": got 0 (want >=1)
+  PASS K4 /work/content-engine "800,000 impressions": got 2
+  PASS K4 /work/content-engine "a few thousand": got 4
+  PASS K7 /work/content-engine year range: got 0
+  PASS K7 /work/content-engine year beside middot: got 0
+  PASS K7 /work/content-engine raw "case-study__year": got 0
+  PASS K7 /work/content-engine raw "<dt>Year</dt>": got 0
+  PASS K8 /work/content-engine Article JSON-LD scripts: got 1
+  PASS K8 /work/content-engine datePublished format: got "2026-09-16"
+  PASS K8 /work/content-engine datePublished equals content/work/content-engine.mdx publishedAt: got "2026-09-16"
+== /work/birth-worker
+  PASS K0 /work/birth-worker status: got 200
+  PASS K0 /work/birth-worker browser load: got loaded
+  FAIL K1 /work/birth-worker "Flexport": got 0 visible, 2 raw (want 0)
+  FAIL K1 /work/birth-worker "back to home": got 0 visible, 1 raw (want 0)
+  PASS K2 /work/birth-worker "same engagement": got 0
+  PASS K3 /work/birth-worker method line: got 0
+  PASS K4 /work/birth-worker "one to three": got 3
+  PASS K4 /work/birth-worker "five to ten": got 3
+  PASS K4 /work/birth-worker "thousands of dollars": got 2
+  PASS K4 /work/birth-worker "Medicaid": got 3
+  PASS K7 /work/birth-worker year range: got 0
+  PASS K7 /work/birth-worker year beside middot: got 0
+  PASS K7 /work/birth-worker raw "case-study__year": got 0
+  PASS K7 /work/birth-worker raw "<dt>Year</dt>": got 0
+  PASS K8 /work/birth-worker Article JSON-LD scripts: got 1
+  PASS K8 /work/birth-worker datePublished format: got "2026-09-16"
+  PASS K8 /work/birth-worker datePublished equals content/work/birth-worker.mdx publishedAt: got "2026-09-16"
+== /llms.txt
+  PASS K0 /llms.txt status: got 200
+  PASS K1 /llms.txt: got 0 hits across 66 retired strings
+  PASS K2 /llms.txt "same engagement": got 0
+  PASS K3 /llms.txt method line: got 0
+  PASS K7 /llms.txt year range: got 0
+  PASS K7 /llms.txt year beside middot: got 0
+== /sitemap.xml
+  PASS K0 /sitemap.xml status: got 200
+  PASS K1 /sitemap.xml: got 0 hits across 66 retired strings
+  PASS K3 /sitemap.xml method line: got 0
+  PASS K9 /work locs: got 6 [https://www.micahjonesconsulting.com/work https://www.micahjonesconsulting.com/work/birth-worker https://www.micahjonesconsulting.com/work/content-engine https://www.micahjonesconsulting.com/work/guardicore https://www.micahjonesconsulting.com/work/ordani https://www.micahjonesconsulting.com/work/rfp-engine]
+  PASS K9 postmates or neuton locs: got 0
+== /work record block at 1440
+  PASS K5@1440 [id="record"] count: got 1
+  PASS K5@1440 #record "SurveyMonkey": got 1
+  PASS K5@1440 #record "Enterprise sales": got 1
+  PASS K5@1440 #record "IPO, 2018": got 1
+  PASS K5@1440 #record "$1M+ in enterprise sales toward the 2018 IPO.": got 1
+  PASS K5@1440 #record "Postmates": got 1
+  PASS K5@1440 #record "Product analyst": got 1
+  PASS K5@1440 #record "Acquired by Uber, $2.65B, 2020": got 1
+  PASS K5@1440 #record "Market and fraud analysis in the deliver-anything era, and the case for narrowing the promise to the core offerings. A promise that covers everything cannot be priced, policed or sold.": got 1
+  PASS K5@1440 #record "Revenue and positioning": got 1
+  PASS K5@1440 #record "Acquired by Akamai, 2021": got 1
+  PASS K5@1440 #record "$14M in revenue, sourced and closed, after the research moved the pitch from honeypots to east-west visibility.": got 1
+  PASS K5@1440 #record "Neuton.AI": got 1
+  PASS K5@1440 #record "Helped launch": got 1
+  PASS K5@1440 #record "Technology acquired by Nordic Semiconductor, 2025": got 1
+  PASS K5@1440 #record "North American positioning for an AI product years before anyone was queuing to buy AI. I held no cap-table position.": got 1
+  PASS K5@1440 #record "Guardicore": got 1
+  PASS K5@1440 #record order: got SurveyMonkey@74 Postmates@160 Guardicore@402 Neuton.AI@574
+  PASS K5@1440 #record a count: got 1
+  PASS K5@1440 #record a href: got "/work/guardicore"
+  PASS K5@1440 page "Helped launch · 2025": got 0
+  PASS K6 main a[href^="/work/"] distinct hrefs: got [/work/birth-worker /work/content-engine /work/guardicore /work/ordani /work/rfp-engine]
+== /work record block at 390
+  PASS K5@390 [id="record"] count: got 1
+  PASS K5@390 #record "SurveyMonkey": got 1
+  PASS K5@390 #record "Enterprise sales": got 1
+  PASS K5@390 #record "IPO, 2018": got 1
+  PASS K5@390 #record "$1M+ in enterprise sales toward the 2018 IPO.": got 1
+  PASS K5@390 #record "Postmates": got 1
+  PASS K5@390 #record "Product analyst": got 1
+  PASS K5@390 #record "Acquired by Uber, $2.65B, 2020": got 1
+  PASS K5@390 #record "Market and fraud analysis in the deliver-anything era, and the case for narrowing the promise to the core offerings. A promise that covers everything cannot be priced, policed or sold.": got 1
+  PASS K5@390 #record "Revenue and positioning": got 1
+  PASS K5@390 #record "Acquired by Akamai, 2021": got 1
+  PASS K5@390 #record "$14M in revenue, sourced and closed, after the research moved the pitch from honeypots to east-west visibility.": got 1
+  PASS K5@390 #record "Neuton.AI": got 1
+  PASS K5@390 #record "Helped launch": got 1
+  PASS K5@390 #record "Technology acquired by Nordic Semiconductor, 2025": got 1
+  PASS K5@390 #record "North American positioning for an AI product years before anyone was queuing to buy AI. I held no cap-table position.": got 1
+  PASS K5@390 #record "Guardicore": got 1
+  PASS K5@390 #record order: got SurveyMonkey@74 Postmates@160 Guardicore@402 Neuton.AI@574
+  PASS K5@390 #record a count: got 1
+  PASS K5@390 #record a href: got "/work/guardicore"
+  PASS K5@390 page "Helped launch · 2025": got 0
+== redirects
+  PASS K10 /work/postmates: got 308 /work#record
+  PASS K10 /work/neuton: got 308 /work#record
+claims120 failures: 26

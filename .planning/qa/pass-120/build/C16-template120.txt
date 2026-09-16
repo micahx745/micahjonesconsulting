@@ -1,0 +1,277 @@
+/work/guardicore @1440 reduced
+  PASS U0 status: got 200
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,30,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","The work","Results"]
+  PASS U11 Name protected: got 0
+  FAIL U12 band photograph: got ["http://localhost:3200/_next/image?url=/media/guardicore-band-960.jpg&w=640&q=75"] (want "guardicore-telaviv-session")
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [5,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#positioning-gtm|Positioning & GTM →"]
+  PASS U19 Next entry: got [["/work/rfp-engine"],"AI engineering"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+  PASS U22 close lands on its /services block: got {"hash":"#positioning-gtm","top":96}
+/work/guardicore @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,30,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","The work","Results"]
+  PASS U11 Name protected: got 0
+  FAIL U12 band photograph: got ["http://localhost:3200/_next/image?url=/media/guardicore-band-960.jpg&w=384&q=75"] (want "guardicore-telaviv-session")
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [5,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#positioning-gtm|Positioning & GTM →"]
+  PASS U19 Next entry: got [["/work/rfp-engine"],"AI engineering"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+/work/guardicore @1440 motion js=true
+  PASS M1 settle animations js=true: got [[400,0],[400,200]]
+  PASS M2 finished frame js=true: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=true: got "opacity,transform"
+  PASS M4 settle runs on a client navigation into a study: got [[400,0],[400,200]]
+/work/guardicore @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  PASS M2 finished frame js=false: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=false: got "opacity,transform"
+/work/rfp-engine @1440 reduced
+  PASS U0 status: got 200
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,96,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","First real RFPs delivered","What I built","Results"]
+  PASS U11 Name protected: got 1
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [1,["The request","What the engine did"],2]
+  PASS U16 steps: got [7,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#ai-engineering|AI engineering →"]
+  PASS U19 Next entry: got [["/work/ordani"],"Product building"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+  PASS U22 close lands on its /services block: got {"hash":"#ai-engineering","top":96}
+/work/rfp-engine @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,96,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","First real RFPs delivered","What I built","Results"]
+  PASS U11 Name protected: got 1
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [1,["The request","What the engine did"],2]
+  PASS U16 steps: got [7,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#ai-engineering|AI engineering →"]
+  PASS U19 Next entry: got [["/work/ordani"],"Product building"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+/work/rfp-engine @1440 motion js=true
+  PASS M1 settle animations js=true: got [[400,0],[400,200]]
+  PASS M2 finished frame js=true: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=true: got "opacity,transform"
+/work/rfp-engine @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  PASS M2 finished frame js=false: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=false: got "opacity,transform"
+/work/ordani @1440 reduced
+  PASS U0 status: got 200
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(94, 113, 88)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,18,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","The work","Results"]
+  PASS U11 Name protected: got 0
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [1,0]
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [4,0]
+  FAIL U17 numeral colour: got "rgb(26, 24, 22)" (want "rgb(94, 113, 88)")
+  PASS U18 close link: got ["/services#product-building|Product building →"]
+  PASS U19 Next entry: got [["/work/content-engine"],"Product building"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+  PASS U22 close lands on its /services block: got {"hash":"#product-building","top":96}
+/work/ordani @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(94, 113, 88)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,18,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","The work","Results"]
+  PASS U11 Name protected: got 0
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [1,0]
+  PASS U14 images in main: got 1
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [4,0]
+  FAIL U17 numeral colour: got "rgb(26, 24, 22)" (want "rgb(94, 113, 88)")
+  PASS U18 close link: got ["/services#product-building|Product building →"]
+  PASS U19 Next entry: got [["/work/content-engine"],"Product building"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+/work/ordani @1440 motion js=true
+  PASS M1 settle animations js=true: got [[400,0],[400,200]]
+  PASS M2 finished frame js=true: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=true: got "opacity,transform"
+/work/ordani @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  PASS M2 finished frame js=false: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=false: got "opacity,transform"
+/work/content-engine @1440 reduced
+  PASS U0 status: got 200
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,17,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","What I built","Results"]
+  PASS U11 Name protected: got 1
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [7,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#product-building|Product building →"]
+  PASS U19 Next entry: got [["/work/birth-worker"],"Positioning & GTM"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+  PASS U22 close lands on its /services block: got {"hash":"#product-building","top":96}
+/work/content-engine @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,17,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","What I built","Results"]
+  PASS U11 Name protected: got 1
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [7,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#product-building|Product building →"]
+  PASS U19 Next entry: got [["/work/birth-worker"],"Positioning & GTM"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+/work/content-engine @1440 motion js=true
+  PASS M1 settle animations js=true: got [[400,0],[400,200]]
+  PASS M2 finished frame js=true: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=true: got "opacity,transform"
+/work/content-engine @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  PASS M2 finished frame js=false: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=false: got "opacity,transform"
+/work/birth-worker @1440 reduced
+  PASS U0 status: got 200
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,14,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","The work","Results"]
+  PASS U11 Name protected: got 1
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [7,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#positioning-gtm|Positioning & GTM →"]
+  PASS U19 Next entry: got [["/work/guardicore"],"Positioning & GTM"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+  PASS U22 close lands on its /services block: got {"hash":"#positioning-gtm","top":96}
+/work/birth-worker @390 reduced
+  FAIL U0 status: got 304 (want 200)
+  PASS U1 band ground: got "rgb(18, 16, 14)"
+  FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb(245, 239, 228)")
+  PASS U4 band meets paper: got 0
+  PASS U5 band rule accent: got "rgb(189, 90, 45)"
+  PASS U6 fixed atmosphere off: got ["none","none"]
+  PASS U7 band grain: got "\"\""
+  PASS U8 retired template gone: got [0,false]
+  PASS U9 band head: got [true,14,true]
+  PASS U10 at-a-glance keys: got ["Client","My role","The work","Results"]
+  PASS U11 Name protected: got 1
+  PASS U12 band photograph: got []
+  PASS U13 chapter breaks, no caption: got [0,0]
+  PASS U14 images in main: got 0
+  PASS U15 exhibit: got [0,[],0]
+  PASS U16 steps: got [7,0]
+  PASS U17 numeral colour: got "rgb(138, 61, 36)"
+  PASS U18 close link: got ["/services#positioning-gtm|Positioning & GTM →"]
+  PASS U19 Next entry: got [["/work/guardicore"],"Positioning & GTM"]
+  PASS U20 All work: got ["/work|All work"]
+  FAIL U21 no console or page errors: got ["Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"] (want [])
+/work/birth-worker @1440 motion js=true
+  PASS M1 settle animations js=true: got [[400,0],[400,200]]
+  PASS M2 finished frame js=true: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=true: got "opacity,transform"
+/work/birth-worker @1440 motion js=false
+  PASS M1 settle animations js=false: got []
+  PASS M2 finished frame js=false: got ["1/none","1/none"]
+  PASS M3 keyframes animate opacity and transform only js=false: got "opacity,transform"
+template120 failures: 39

@@ -1,0 +1,67 @@
+PASS work-lead-hero-still-390.png: got written
+PASS work-method-line-and-entries-390.png: got written
+PASS work-record-block-390.png: got written
+PASS work-full-390.png: got written
+PASS work-hero-nojs-390.png: got written
+PASS work-lead-hero-clip-lastframe-motion-390.png: got written (503ms after ended)
+PASS work-lead-hero-still-1440.png: got written
+PASS work-method-line-and-entries-1440.png: got written
+PASS work-record-block-1440.png: got written
+PASS work-full-1440.png: got written
+PASS work-hero-nojs-1440.png: got written
+PASS work-lead-hero-clip-lastframe-motion-1440.png: got written (511ms after ended)
+PASS study-guardicore-curtain-390.png: got written
+PASS study-guardicore-band-to-paper-390.png: got written
+PASS study-guardicore-band-photo-390.png: got written
+PASS study-guardicore-close-and-all-work-390.png: got written
+PASS study-guardicore-full-390.png: got written
+PASS study-guardicore-curtain-1440.png: got written
+PASS study-guardicore-band-to-paper-1440.png: got written
+PASS study-guardicore-band-photo-1440.png: got written
+PASS study-guardicore-close-and-all-work-1440.png: got written
+PASS study-guardicore-full-1440.png: got written
+PASS study-rfp-engine-curtain-390.png: got written
+PASS study-rfp-engine-band-to-paper-390.png: got written
+PASS study-rfp-engine-worked-example-390.png: got written
+PASS study-rfp-engine-close-and-all-work-390.png: got written
+PASS study-rfp-engine-full-390.png: got written
+PASS study-rfp-engine-curtain-1440.png: got written
+PASS study-rfp-engine-band-to-paper-1440.png: got written
+PASS study-rfp-engine-worked-example-1440.png: got written
+PASS study-rfp-engine-close-and-all-work-1440.png: got written
+PASS study-rfp-engine-full-1440.png: got written
+PASS study-ordani-curtain-390.png: got written
+PASS study-ordani-band-to-paper-390.png: got written
+PASS study-ordani-chapter-photo-390.png: got written
+PASS study-ordani-close-and-all-work-390.png: got written
+PASS study-ordani-full-390.png: got written
+PASS study-ordani-curtain-1440.png: got written
+PASS study-ordani-band-to-paper-1440.png: got written
+PASS study-ordani-chapter-photo-1440.png: got written
+PASS study-ordani-close-and-all-work-1440.png: got written
+PASS study-ordani-full-1440.png: got written
+PASS study-content-engine-curtain-390.png: got written
+PASS study-content-engine-band-to-paper-390.png: got written
+PASS study-content-engine-close-and-all-work-390.png: got written
+PASS study-content-engine-full-390.png: got written
+PASS study-content-engine-curtain-1440.png: got written
+PASS study-content-engine-band-to-paper-1440.png: got written
+PASS study-content-engine-close-and-all-work-1440.png: got written
+PASS study-content-engine-full-1440.png: got written
+PASS study-birth-worker-curtain-390.png: got written
+PASS study-birth-worker-band-to-paper-390.png: got written
+PASS study-birth-worker-close-and-all-work-390.png: got written
+PASS study-birth-worker-full-390.png: got written
+PASS study-birth-worker-curtain-1440.png: got written
+PASS study-birth-worker-band-to-paper-1440.png: got written
+PASS study-birth-worker-close-and-all-work-1440.png: got written
+PASS study-birth-worker-full-1440.png: got written
+PASS study-guardicore-settle-t0-motion-1440.png: got written (nominal 0ms, actual 58ms at request, 342ms at return, after DOMContentLoaded)
+PASS study-guardicore-settle-t150-motion-1440.png: got written (nominal 150ms, actual 342ms at request, 570ms at return, after DOMContentLoaded)
+PASS study-guardicore-settle-t300-motion-1440.png: got written (nominal 300ms, actual 570ms at request, 790ms at return, after DOMContentLoaded)
+PASS study-guardicore-settle-t450-motion-1440.png: got written (nominal 450ms, actual 790ms at request, 987ms at return, after DOMContentLoaded)
+PASS study-guardicore-settle-t600-motion-1440.png: got written (nominal 600ms, actual 987ms at request, 1198ms at return, after DOMContentLoaded)
+PASS study-guardicore-settle-t750-motion-1440.png: got written (nominal 750ms, actual 1198ms at request, 1421ms at return, after DOMContentLoaded)
+PASS redirect-postmates-lands-on-record-1440.png: got written (landed on /work#record)
+PASS redirect-neuton-lands-on-record-1440.png: got written (landed on /work#record)
+shots120 failures: 0

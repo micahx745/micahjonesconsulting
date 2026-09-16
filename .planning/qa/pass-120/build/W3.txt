@@ -1,0 +1,3 @@
+video/webm|video/mp4|image/avif|
+W3b 1
+W3c 1

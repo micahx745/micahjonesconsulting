@@ -1,0 +1,252 @@
+== http://localhost:3200/work at 1440
+PASS T0 status /work 1440: got 200
+         13px  cw-wx-ctx cw-wx-label
+         18px  cw-wx-lead__did cw-wx-entry__did cw-wx-rec__line cw-wx-rec__desc cw-wx-cross cw-wx-link
+         36px  cw-wx-lead__line cw-wx-method cw-wx-entry__line cw-wx-rec__h cw-wx-rec__co a
+        112px  cw-wx-lead__fig
+PASS T1 type ladder /work 1440: got 13,18,36,112
+PASS T2 set size /work 1440: got 4
+PASS T3 largest / 18 /work 1440: got 6.22
+INFO chrome sizes /work 1440: nav 12,22; pagefoot 12,16; footer none
+PASS T5 page spill /work 1440: got 0
+PASS T6 mono prose /work 1440: got 0
+PASS T7 tracked uppercase /work 1440: got 0
+PASS T8 no rail /work 1440: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work 1440: got 0
+PASS T10 one title /work 1440: got 1 [cw-wx-lead__h1 "$14M in revenue, sourced and closed, at "]
+PASS T11 body links on paper /work 1440: got 3 on paper, 0 dark, 0 off
+PASS T12 sage scope /work 1440: got 0 (rgb(94, 113, 88))
+PASS T13 no stickered frame /work 1440: got 0
+== http://localhost:3200/work at 390
+PASS T0 status /work 390: got 200
+         12px  cw-wx-ctx cw-wx-label
+         17px  cw-wx-lead__did cw-wx-entry__did cw-wx-rec__line cw-wx-rec__desc cw-wx-cross cw-wx-link
+         26px  cw-wx-lead__line cw-wx-method cw-wx-entry__line cw-wx-rec__h cw-wx-rec__co a
+         64px  cw-wx-lead__fig
+PASS T1 type ladder /work 390: got 12,17,26,64
+PASS T2 set size /work 390: got 4
+INFO chrome sizes /work 390: nav 12,22; pagefoot 12,16; footer none
+PASS T5 page spill /work 390: got 0
+PASS T6 mono prose /work 390: got 0
+PASS T7 tracked uppercase /work 390: got 0
+PASS T8 no rail /work 390: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work 390: got 0
+PASS T10 one title /work 390: got 1 [cw-wx-lead__h1 "$14M in revenue, sourced and closed, at "]
+PASS T11 body links on paper /work 390: got 3 on paper, 0 dark, 0 off
+PASS T12 sage scope /work 390: got 0 (rgb(94, 113, 88))
+PASS T13 no stickered frame /work 390: got 0
+== http://localhost:3200/work/guardicore at 1440
+PASS T0 status /work/guardicore 1440: got 200
+         13px  cs-band__context dt cs-step__n cs-next__label cs-next__context cs-next__service
+         18px  cs-band__dek dd cs-glance__result-rest p strong li
+         36px  cs-glance__result h2 cs-next__line
+         56px  cs-title__line
+PASS T1 type ladder /work/guardicore 1440: got 13,18,36,56
+PASS T2 set size /work/guardicore 1440: got 4
+INFO chrome sizes /work/guardicore 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/guardicore 1440: got 0
+FAIL T6 mono prose /work/guardicore 1440: got 1 [cs-next__context: An award-winning author and leadership consultant ] (want 0)
+PASS T7 tracked uppercase /work/guardicore 1440: got 0
+PASS T8 no rail /work/guardicore 1440: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/guardicore 1440: got 0
+PASS T10 one visible title /work/guardicore 1440: got 1 h1, visible true [cs-title "Repositioning Guardicore: $14M, then Aka"]
+PASS T11 body links on paper /work/guardicore 1440: got 1 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/guardicore 1440: got 0 (rgb(94, 113, 88))
+PASS T13 full-bleed img /work/guardicore 1440: got 0 []
+PASS T13 band photograph /work/guardicore 1440: got 1 visible guardicore-band-960.jpg [404px http://localhost:3200/_next/image?url=/media/guardicore-band-960.jpg&w=640&q=75]
+PASS T13 no stickered frame /work/guardicore 1440: got 0
+PASS T14 the close /work/guardicore 1440: got 1
+== http://localhost:3200/work/guardicore at 390
+PASS T0 status /work/guardicore 390: got 200
+         12px  cs-band__context dt cs-step__n cs-next__label cs-next__context cs-next__service
+         17px  cs-band__dek dd cs-glance__result-rest p strong li
+         26px  cs-glance__result h2 cs-next__line
+         36px  cs-title__line
+PASS T1 type ladder /work/guardicore 390: got 12,17,26,36
+PASS T2 set size /work/guardicore 390: got 4
+INFO chrome sizes /work/guardicore 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/guardicore 390: got 0
+FAIL T6 mono prose /work/guardicore 390: got 1 [cs-next__context: An award-winning author and leadership consultant ] (want 0)
+PASS T7 tracked uppercase /work/guardicore 390: got 0
+PASS T8 no rail /work/guardicore 390: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/guardicore 390: got 0
+PASS T10 one visible title /work/guardicore 390: got 1 h1, visible true [cs-title "Repositioning Guardicore: $14M, then Aka"]
+PASS T11 body links on paper /work/guardicore 390: got 1 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/guardicore 390: got 0 (rgb(94, 113, 88))
+PASS T13 full-bleed img /work/guardicore 390: got 0 []
+PASS T13 band photograph /work/guardicore 390: got 1 visible guardicore-band-960.jpg [358px http://localhost:3200/_next/image?url=/media/guardicore-band-960.jpg&w=750&q=75]
+PASS T13 no stickered frame /work/guardicore 390: got 0
+PASS T14 the close /work/guardicore 390: got 1
+== http://localhost:3200/work/rfp-engine at 1440
+PASS T0 status /work/rfp-engine 1440: got 200
+         13px  cs-band__context dt cs-glance__protected cs-step__n th case-study-pull-quote__attribution
+         18px  cs-band__dek dd cs-glance__result-rest p strong td
+         36px  cs-glance__result h2 case-study-pull-quote__quote cs-next__line
+         56px  cs-title__line
+PASS T1 type ladder /work/rfp-engine 1440: got 13,18,36,56
+PASS T2 set size /work/rfp-engine 1440: got 4
+INFO chrome sizes /work/rfp-engine 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/rfp-engine 1440: got 0
+FAIL T6 mono prose /work/rfp-engine 1440: got 1 [cs-band__context: An award-winning author and leadership consultant ] (want 0)
+PASS T7 tracked uppercase /work/rfp-engine 1440: got 0
+PASS T8 no rail /work/rfp-engine 1440: got sticky/fixed 0, .case-study__sidebar 0
+FAIL T9 no figcaption /work/rfp-engine 1440: got 1 (want 0)
+PASS T10 one visible title /work/rfp-engine 1440: got 1 h1, visible true [cs-title "AI RFP software: $3M in signed contracts"]
+PASS T11 body links on paper /work/rfp-engine 1440: got 1 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/rfp-engine 1440: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/rfp-engine 1440: got img 0, video 0
+PASS T13 no stickered frame /work/rfp-engine 1440: got 0
+PASS T14 the close /work/rfp-engine 1440: got 1
+== http://localhost:3200/work/rfp-engine at 390
+PASS T0 status /work/rfp-engine 390: got 200
+         12px  cs-band__context dt cs-glance__protected cs-step__n th case-study-pull-quote__attribution
+         17px  cs-band__dek dd cs-glance__result-rest p strong td
+         26px  cs-glance__result h2 case-study-pull-quote__quote cs-next__line
+         36px  cs-title__line
+PASS T1 type ladder /work/rfp-engine 390: got 12,17,26,36
+PASS T2 set size /work/rfp-engine 390: got 4
+INFO chrome sizes /work/rfp-engine 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/rfp-engine 390: got 0
+FAIL T6 mono prose /work/rfp-engine 390: got 1 [cs-band__context: An award-winning author and leadership consultant ] (want 0)
+PASS T7 tracked uppercase /work/rfp-engine 390: got 0
+PASS T8 no rail /work/rfp-engine 390: got sticky/fixed 0, .case-study__sidebar 0
+FAIL T9 no figcaption /work/rfp-engine 390: got 1 (want 0)
+PASS T10 one visible title /work/rfp-engine 390: got 1 h1, visible true [cs-title "AI RFP software: $3M in signed contracts"]
+PASS T11 body links on paper /work/rfp-engine 390: got 1 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/rfp-engine 390: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/rfp-engine 390: got img 0, video 0
+PASS T13 no stickered frame /work/rfp-engine 390: got 0
+PASS T14 the close /work/rfp-engine 390: got 1
+== http://localhost:3200/work/ordani at 1440
+PASS T0 status /work/ordani 1440: got 200
+         13px  cs-band__context dt cs-step__n cs-next__label cs-next__context cs-next__service
+         18px  cs-band__dek dd cs-glance__result-rest p strong cs-close__link
+         36px  cs-glance__result h2 cs-next__line
+         56px  cs-title__line
+PASS T1 type ladder /work/ordani 1440: got 13,18,36,56
+PASS T2 set size /work/ordani 1440: got 4
+INFO chrome sizes /work/ordani 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/ordani 1440: got 0
+PASS T6 mono prose /work/ordani 1440: got 0
+PASS T7 tracked uppercase /work/ordani 1440: got 0
+PASS T8 no rail /work/ordani 1440: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/ordani 1440: got 0
+PASS T10 one visible title /work/ordani 1440: got 1 h1, visible true [cs-title "ORDANI: HIPAA-compliant CRM for birth wo"]
+PASS T11 body links on paper /work/ordani 1440: got 1 on paper, 0 dark, 0 off
+FAIL T12 sage scope /work/ordani 1440: got 0 (rgb(94, 113, 88)) (want >= 1)
+PASS T13 full-bleed img /work/ordani 1440: got 1 [/_next/image?url=/ordani-intake.jpg&w=3840&q=75 1440px]
+PASS T13 no stickered frame /work/ordani 1440: got 0
+PASS T14 the close /work/ordani 1440: got 1
+== http://localhost:3200/work/ordani at 390
+PASS T0 status /work/ordani 390: got 200
+         12px  cs-band__context dt cs-step__n cs-next__label cs-next__context cs-next__service
+         17px  cs-band__dek dd cs-glance__result-rest p strong cs-close__link
+         26px  cs-glance__result h2 cs-next__line
+         36px  cs-title__line
+PASS T1 type ladder /work/ordani 390: got 12,17,26,36
+PASS T2 set size /work/ordani 390: got 4
+INFO chrome sizes /work/ordani 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/ordani 390: got 0
+PASS T6 mono prose /work/ordani 390: got 0
+PASS T7 tracked uppercase /work/ordani 390: got 0
+PASS T8 no rail /work/ordani 390: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/ordani 390: got 0
+PASS T10 one visible title /work/ordani 390: got 1 h1, visible true [cs-title "ORDANI: HIPAA-compliant CRM for birth wo"]
+PASS T11 body links on paper /work/ordani 390: got 1 on paper, 0 dark, 0 off
+FAIL T12 sage scope /work/ordani 390: got 0 (rgb(94, 113, 88)) (want >= 1)
+PASS T13 full-bleed img /work/ordani 390: got 1 [/_next/image?url=/ordani-intake.jpg&w=3840&q=75 390px]
+PASS T13 no stickered frame /work/ordani 390: got 0
+PASS T14 the close /work/ordani 390: got 1
+== http://localhost:3200/work/content-engine at 1440
+PASS T0 status /work/content-engine 1440: got 200
+         13px  cs-band__context dt cs-glance__protected cs-step__n cs-next__label cs-next__context
+         18px  cs-band__dek dd cs-glance__result-rest p strong li
+         36px  cs-glance__result h2 cs-next__line
+         56px  cs-title__line
+PASS T1 type ladder /work/content-engine 1440: got 13,18,36,56
+PASS T2 set size /work/content-engine 1440: got 4
+INFO chrome sizes /work/content-engine 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/content-engine 1440: got 0
+PASS T6 mono prose /work/content-engine 1440: got 0
+PASS T7 tracked uppercase /work/content-engine 1440: got 0
+PASS T8 no rail /work/content-engine 1440: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/content-engine 1440: got 0
+PASS T10 one visible title /work/content-engine 1440: got 1 h1, visible true [cs-title "AI content engine: up to 800,000 impress"]
+PASS T11 body links on paper /work/content-engine 1440: got 1 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/content-engine 1440: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/content-engine 1440: got img 0, video 0
+PASS T13 no stickered frame /work/content-engine 1440: got 0
+PASS T14 the close /work/content-engine 1440: got 1
+== http://localhost:3200/work/content-engine at 390
+PASS T0 status /work/content-engine 390: got 200
+         12px  cs-band__context dt cs-glance__protected cs-step__n cs-next__label cs-next__context
+         17px  cs-band__dek dd cs-glance__result-rest p strong li
+         26px  cs-glance__result h2 cs-next__line
+         36px  cs-title__line
+PASS T1 type ladder /work/content-engine 390: got 12,17,26,36
+PASS T2 set size /work/content-engine 390: got 4
+INFO chrome sizes /work/content-engine 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/content-engine 390: got 0
+PASS T6 mono prose /work/content-engine 390: got 0
+PASS T7 tracked uppercase /work/content-engine 390: got 0
+PASS T8 no rail /work/content-engine 390: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/content-engine 390: got 0
+PASS T10 one visible title /work/content-engine 390: got 1 h1, visible true [cs-title "AI content engine: up to 800,000 impress"]
+PASS T11 body links on paper /work/content-engine 390: got 1 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/content-engine 390: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/content-engine 390: got img 0, video 0
+PASS T13 no stickered frame /work/content-engine 390: got 0
+PASS T14 the close /work/content-engine 390: got 1
+== http://localhost:3200/work/birth-worker at 1440
+PASS T0 status /work/birth-worker 1440: got 200
+         13px  cs-band__context dt cs-glance__protected cs-step__n cs-next__label cs-next__context
+         18px  cs-band__dek dd cs-glance__result-rest p strong li
+         36px  cs-glance__result h2 cs-next__line
+         56px  cs-title__line
+PASS T1 type ladder /work/birth-worker 1440: got 13,18,36,56
+PASS T2 set size /work/birth-worker 1440: got 4
+INFO chrome sizes /work/birth-worker 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/birth-worker 1440: got 0
+PASS T6 mono prose /work/birth-worker 1440: got 0
+PASS T7 tracked uppercase /work/birth-worker 1440: got 0
+PASS T8 no rail /work/birth-worker 1440: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/birth-worker 1440: got 0
+PASS T10 one visible title /work/birth-worker 1440: got 1 h1, visible true [cs-title "Growing a birth worker's practice"]
+PASS T11 body links on paper /work/birth-worker 1440: got 2 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/birth-worker 1440: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/birth-worker 1440: got img 0, video 0
+PASS T13 no stickered frame /work/birth-worker 1440: got 0
+PASS T14 the close /work/birth-worker 1440: got 1
+== http://localhost:3200/work/birth-worker at 390
+PASS T0 status /work/birth-worker 390: got 200
+         12px  cs-band__context dt cs-glance__protected cs-step__n cs-next__label cs-next__context
+         17px  cs-band__dek dd cs-glance__result-rest p strong li
+         26px  cs-glance__result h2 cs-next__line
+         36px  cs-title__line
+PASS T1 type ladder /work/birth-worker 390: got 12,17,26,36
+PASS T2 set size /work/birth-worker 390: got 4
+INFO chrome sizes /work/birth-worker 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/birth-worker 390: got 0
+PASS T6 mono prose /work/birth-worker 390: got 0
+PASS T7 tracked uppercase /work/birth-worker 390: got 0
+PASS T8 no rail /work/birth-worker 390: got sticky/fixed 0, .case-study__sidebar 0
+PASS T9 no figcaption /work/birth-worker 390: got 0
+PASS T10 one visible title /work/birth-worker 390: got 1 h1, visible true [cs-title "Growing a birth worker's practice"]
+PASS T11 body links on paper /work/birth-worker 390: got 2 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/birth-worker 390: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/birth-worker 390: got img 0, video 0
+PASS T13 no stickered frame /work/birth-worker 390: got 0
+PASS T14 the close /work/birth-worker 390: got 1
+PASS T16 no-JS finished frame /work/guardicore 1440: got visible true, opacity 1, top 167.5
+PASS T16 no-JS finished frame /work/guardicore 390: got visible true, opacity 1, top 142.0
+PASS T16 no-JS finished frame /work/rfp-engine 1440: got visible true, opacity 1, top 167.5
+PASS T16 no-JS finished frame /work/rfp-engine 390: got visible true, opacity 1, top 178.0
+PASS T16 no-JS finished frame /work/ordani 1440: got visible true, opacity 1, top 167.5
+PASS T16 no-JS finished frame /work/ordani 390: got visible true, opacity 1, top 142.0
+PASS T16 no-JS finished frame /work/content-engine 1440: got visible true, opacity 1, top 167.5
+PASS T16 no-JS finished frame /work/content-engine 390: got visible true, opacity 1, top 142.0
+PASS T16 no-JS finished frame /work/birth-worker 1440: got visible true, opacity 1, top 167.5
+PASS T16 no-JS finished frame /work/birth-worker 390: got visible true, opacity 1, top 142.0
+FAIL T15 /work/postmates lands on #record 1440: got /work#record, #record top -0.3 (want /work#record, top 0-160)
+FAIL T15 /work/neuton lands on #record 1440: got /work#record, #record top -0.3 (want /work#record, top 0-160)
+page120 failures: 10

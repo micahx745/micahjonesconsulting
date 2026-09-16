@@ -1,0 +1,4 @@
+layout-gate: NEW   /work/ordani @768 [words] word breaks as "HIPAA- / compliant" (56px): span.cs-title__line "HIPAA-compliant"
+layout-gate: NEW   /work/ordani @390 [words] word breaks as "HIPAA- / compliant" (36px): span.cs-title__line "HIPAA-compliant"
+layout-gate: NEW   /work/ordani @360 [words] word breaks as "HIPAA- / compliant" (36px): span.cs-title__line "HIPAA-compliant"
+layout-gate: 54 page loads across 9 routes, 3 finding(s), 3 not in KNOWN

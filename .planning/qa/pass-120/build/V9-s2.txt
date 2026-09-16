@@ -1,0 +1,14 @@
+PASS V9 /work/ordani [at 44.8 per 100,000 live births, 3.15 times the rate of non-Hispanic white women, per the CDC's 2024 release.]: 1
+PASS V9 /work [I find what your buyers are actually paying for, then build the system that sells exactly that.]: 1
+PASS V9 /work [Four of the companies I worked inside reached an exit.]: 1
+PASS V9 /work [Technology acquired by Nordic Semiconductor, 2025]: 1
+PASS V9 /work [An award-winning author and leadership consultant who teaches government bodies and corporations]: 1
+PASS V9 /work/birth-worker [Bookings went from one to three a month to five to ten.]: 1
+PASS V9 /work/rfp-engine [What the engine did]: 1
+FAIL V9 /work zeros: 1 0
+PASS V9 /work/guardicore zeros: 0 0
+PASS V9 /work/rfp-engine zeros: 0 0
+PASS V9 /work/ordani zeros: 0 0
+PASS V9 /work/content-engine zeros: 0 0
+PASS V9 /work/birth-worker zeros: 0 0
+V9 failures: 1

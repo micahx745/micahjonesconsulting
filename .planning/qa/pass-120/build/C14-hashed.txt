@@ -1,0 +1,5 @@
+guardicore /work/guardicore/opengraph-image-oti546?f335ae7932286816 200 image/png
+rfp-engine /work/rfp-engine/opengraph-image-oti546?f335ae7932286816 200 image/png
+ordani /work/ordani/opengraph-image-oti546?f335ae7932286816 200 image/png
+content-engine /work/content-engine/opengraph-image-oti546?f335ae7932286816 200 image/png
+birth-worker /work/birth-worker/opengraph-image-oti546?f335ae7932286816 200 image/png
