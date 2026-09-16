@@ -159,7 +159,7 @@ export function RevenueFigure() {
           />
         </span>
       </p>
-      <p className="cw-rec__lbl">In client revenue since 2013</p>
+      <p className="cw-rec__lbl">In revenue behind my work</p>
     </div>
   );
 }

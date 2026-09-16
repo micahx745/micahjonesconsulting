@@ -64,7 +64,8 @@
 //                              that must NOT hit: "foreign key" on a .ts
 //                              line.
 //
-// SCOPE. app/, content/ and lib/ — the rendered tree. Not node_modules, not
+// SCOPE. app/, components/, content/ and lib/ — the rendered tree (components/
+// joined in Pass-120: RevenueFigure.tsx rendered a retired claim unseen). Not node_modules, not
 // product/ (the book is frozen copy with its own gate), not .planning/ and
 // not docs/ (both are records of what was retired, and quoting a retired
 // phrase is their job).
@@ -110,7 +111,7 @@
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, sep } from "node:path";
 
-const ROOTS = ["app", "content", "lib"];
+const ROOTS = ["app", "components", "content", "lib"];
 const EXT = /\.(tsx?|mdx|md)$/;
 const PHRASES = [
   "2013–2023",
@@ -153,6 +154,75 @@ const PHRASES = [
   // still read it aloud, spelled out, until 2026-09-16. Numerals and words.
   "$80M",
   "80 million",
+  // Pass-120 (operator 2026-09-15, LESSONS #3 "THE $20M IS A MIX, NOT
+  // CONSULTING REVENUE"): the $20M+ spans employed and consulting work. The
+  // approved wording is "$20M+ in revenue behind my work"; never client or
+  // consulting revenue, never a since-2013 practice claim.
+  "client revenue",
+  "consulting revenue",
+  "since 2013",
+  // Pass-120 (operator 2026-09-15, LESSONS #3 "THE 290K REACH FIGURE IS
+  // UNVERIFIED"): "Technically it got up to 800,000 impressions." The
+  // 8,000-to-290,000 pair, its 36x multiplier and the "reach" unit retire.
+  // No multiplier of any kind on this study.
+  "290,000",
+  "290K",
+  "8,000 to",
+  "8K →",
+  "8K to",
+  "36×",
+  "36x",
+  "monthly reach",
+  // Pass-120 (operator 2026-09-15, LESSONS #3 "TWO CLIENTS, NOT ONE"): the
+  // RFP client is an award-winning author and leadership consultant, the
+  // content-engine client a social activist. Neither is "an industry author",
+  // and the two engagements are never one.
+  "industry author",
+  "industry-authority",
+  "same engagement also",
+  "for the same author",
+  // Pass-120 (FABLE-120-CRAFT build note, record block): the exit count lives
+  // once, in the /work record block, never as a sentence inside a study.
+  "one of four companies I worked inside",
+  // Pass-120 (operator 2026-09-16, LESSONS #3 "BIRTH WORKER BOOKINGS, BOTH
+  // SIDES"): the 30% was a floor; the claim is the pair, one to three a month
+  // to five to ten.
+  "bookings up 30%",
+  // Pass-120 (operator 2026-09-15/16, LESSONS #3 "THE RFP CLIENT WAS NOT
+  // REPOSITIONED"): the value is reach beyond the existing network.
+  "repositioned toward the buyers",
+  // Pass-120 (operator 2026-09-16, LESSONS #3 "ORDANI'S PROBLEM WAS SIX
+  // TOOLS, NOT A HACK"): "they did not think they got hacked".
+  "been hacked",
+  // Pass-120 (operator 2026-09-16, LESSONS #3 ORDANI): no counts of users,
+  // practices, beta testers or interviews. The retired ordani.mdx sentences.
+  "fourteen practitioners",
+  "six had referred",
+  "22 birth workers",
+  // Guardicore carries no job title (LESSONS #3, 2026-09-03).
+  "sales manager",
+  // Pass-113 (operator 2026-09-11, decision 5, LESSONS #3): the acquisitions
+  // keep their own sentence, never "led to". llms.txt still said it.
+  "led to the Akamai",
+  // Pass-116 (operator 2026-09-12, LESSONS #3): never a bare
+  // "Helped launch · 2025" that reads as a 2025 launch.
+  "Helped launch · 2025",
+  // Pass-120 (operator 2026-09-16, GUARDICORE photo ruling): the uncleaned
+  // frame still shows the Instagram location sticker. The study uses the
+  // cleaned crop, guardicore-telaviv-session.jpg, which this does not match.
+  "/guardicore-telaviv.jpg",
+  // Pass-120 (operator 2026-09-15 "NO PERSONAL YEARS ON ANY SURFACE" and
+  // 2026-09-16 "YEAR FIELDS", LESSONS #3): no tenure year beside a role on
+  // any surface. Event years (IPO 2018, Uber 2020, Akamai 2021, Nordic
+  // Semiconductor 2025) stay. Both dash spellings of every live range.
+  "Enterprise sales · 2018",
+  "Product analyst · 2020",
+  "2018–2021",
+  "2018-2021",
+  "2024–2025",
+  "2024-2025",
+  "2025–2026",
+  "2025-2026",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);
@@ -167,12 +237,22 @@ function* walk(dir) {
   }
 }
 
+// Pass-120: a removed block comment keeps its newlines, so a finding after a
+// multi-line comment reports its true line number. Before this,
+// app/(foyer)/about/page.tsx:105 reported as :76.
+const keepNewlines = (m) => m.replace(/[^\n]/g, "");
+
 function stripComments(src, isMdx) {
-  if (isMdx) return src.replace(/\{\/\*[\s\S]*?\*\/\}/g, "");
-  return src
-    .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/^\s*\/\/.*$/gm, "")
-    .replace(/([^:"'])\/\/[^\n]*$/gm, "$1");
+  if (isMdx) return src.replace(/\{\/\*[\s\S]*?\*\/\}/g, keepNewlines);
+  return (
+    src
+      .replace(/\/\*[\s\S]*?\*\//g, keepNewlines)
+      // Pass-120: [ \t]*, not \s*. \s* crossed a blank line and ate its
+      // newline, so every finding below a // comment that followed a blank
+      // line reported one line early.
+      .replace(/^[ \t]*\/\/.*$/gm, "")
+      .replace(/([^:"'])\/\/[^\n]*$/gm, "$1")
+  );
 }
 
 // Specifiers are code, not copy, so they are blanked like comments.
@@ -385,7 +465,68 @@ function selfTest() {
       src: `        <span>Frontier AI</span>\n        <p>unrelated line</p>\n        <span>engineering</span>`,
       why: '"Frontier AI" and "engineering" two lines apart (not adjacent)',
     },
+    // Pass-120 near misses (operator 2026-09-15/16 rulings).
+    {
+      file: "content/work/selftest.mdx",
+      src: `  src="/guardicore-telaviv-session.jpg"`,
+      why: "the cleaned crop, guardicore-telaviv-session.jpg",
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        <p>© 2013–2026 Micah Jones</p>`,
+      why: '"© 2013–2026" copyright line (not "since 2013")',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        "$20M+ in revenue behind my work.",`,
+      why: '"$20M+ in revenue behind my work" (the approved wording)',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        "Up to 800,000 impressions in a month, up from a few thousand.",`,
+      why: '"800,000 impressions" (the approved figure, not "8,000 to")',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        both, on the same engagement, for the same fee.`,
+      why: '"on the same engagement, for the same fee" (/about lede, not a client claim)',
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        <span className="cw-lrow__tag">Helped launch · exit 2025</span>`,
+      why: '"Helped launch · exit 2025" (approved Neuton tag, event year)',
+    },
+    {
+      file: "content/work/selftest.mdx",
+      src: `Akamai acquired Guardicore in 2021. Uber acquired Postmates in 2020.`,
+      why: "event years in prose (they stay)",
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        "Bookings went from one to three a month to five to ten.",`,
+      why: "the approved birth-worker booking pair",
+    },
+    {
+      file: "app/selftest/page.tsx",
+      src: `        /*\n          industry author, 290,000, 2018–2021\n        */\n        <p>clean</p>`,
+      why: "retired phrases inside a multi-line block comment",
+    },
   ];
+
+  // Pass-120: findings keep their true line numbers after a multi-line
+  // block comment, and after a // comment that follows a blank line.
+  for (const [fx, want] of [
+    [`/*\n one\n two\n*/\n<p>industry author</p>`, 5],
+    [`const a = 1;\n\n// note\n<p>industry author</p>`, 4],
+  ]) {
+    const f = scanSource(fx, "app/selftest/page.tsx");
+    if (f.length !== 1 || f[0].line !== want) {
+      console.error(
+        `retired-phrases-gate self-test: LINE NUMBER is ${f[0]?.line}, expected ${want}`,
+      );
+      process.exit(1);
+    }
+  }
 
   let caught = 0;
   for (const c of planted) {

@@ -98,11 +98,11 @@ export default function AboutPage() {
                   written as a literal character. No entity, no drop, and
                   nothing for prettier to undo. Enforced by the render-gate
                   GLUE check, which reads the rendered bytes. */}
-              {/* Operator ruling 2026-09-02: the $20M+ HOLDS TO TODAY. The
-                  closed range read as a practice that stopped in 2023, two
-                  lines above a heading called "Currently". Ledgered in
-                  LESSONS #3 as "since 2013", open-ended. */}
-              <strong>$20M+</strong> in client revenue since 2013.
+              {/* Pass-120 (operator 2026-09-15, LESSONS #3 "THE $20M IS A
+                  MIX"): the figure spans employed and consulting work, so it
+                  carries no client, consulting or since-2013 attribution.
+                  His wording, verbatim. */}
+              <strong>$20M+</strong> in revenue behind my work.
             </li>
             <li>
               {/* Four-exit update (operator, 2026-08-30): Postmates joins.
@@ -157,24 +157,15 @@ export default function AboutPage() {
               there was $1.2M.
             </li>
             <li>
-              {/* Pass-67: was "for an HR consultant returned 4× platform lift".
-                  Two defects. The sector label leaked a client the ledger
-                  anonymises, and it did so next to a redirect that used to name
-                  them. And 4× is the two-prioritised-platforms-beat-the-third
-                  figure, not the reach lift, so quoting it here read as a
-                  contradiction of the case study's 36×. Now the case study's
-                  own headline numbers, which trace. */}
-              {/* Pass-78: this credited ONE product with BOTH results. The
-                  close rate was doubled by the RFP software (see
-                  /work/rfp-engine), not by the content engine, and
-                  content-engine.mdx makes no close-rate claim at all. Same
-                  author, two separate engagements. Now split, each clause
-                  naming the thing that produced its own number. "for the same
-                  author", not "next": the build order is not on record. */}
-              <strong>GTM systems that compound.</strong> For one industry
-              author, a content engine took monthly reach from 8,000 to 290,000
-              in five months. The RFP software I built for the same author
-              doubled their close rate inside six months.
+              {/* Pass-120 (operator 2026-09-15, LESSONS #3 "TWO CLIENTS, NOT
+                  ONE" and "THE 290K REACH FIGURE IS UNVERIFIED"): two clients,
+                  two engagements, each clause naming the thing that produced
+                  its own number. No multiplier. */}
+              <strong>GTM systems that compound.</strong> For a social activist,
+              a content engine reached a peak of 800,000 impressions in a month,
+              up from a few thousand. For an award-winning author and leadership
+              consultant, the RFP software I built doubled their close rate
+              inside six months.
             </li>
             <li>
               <strong>End-to-end product builds.</strong> Ordani,

@@ -78,12 +78,12 @@ export const metadata: Metadata = {
     absolute: "Micah Jones — Strategy and software, shipped by one person",
   },
   description:
-    "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in client revenue.",
+    "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title: "Micah Jones — Strategy and software, shipped by one person",
     description:
-      "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Now building Ordani, in beta with paying users.",
+      "Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work. Now building Ordani, in beta with paying users.",
     type: "website",
     url: "https://www.micahjonesconsulting.com",
     siteName: "Micah Jones",
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Micah Jones — Strategy and software, shipped by one person",
     description:
-      "Four exits behind my work, $5B+ combined. $20M+ in client revenue. Now building Ordani.",
+      "Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work. Now building Ordani.",
   },
 };
 
@@ -316,7 +316,7 @@ export default function ColorWorldsHome() {
               {/* THE LEDGER. Was one contiguous list under "The receipts.";
                   the fuse pass splits it across the three stages below plus
                   the closing record, so this note — Trace rule (LESSONS
-                  #2) checked: $80M/$14M in guardicore.mdx, 8K→290K in
+                  #2) checked: $14M in guardicore.mdx, 800,000 impressions in
                   content-engine.mdx, doubled in rfp-engine.mdx, the
                   paying-users claim in ordani.mdx — now sits at the first
                   row a reader reaches rather than above the old single
@@ -333,7 +333,9 @@ export default function ColorWorldsHome() {
                 >
                   <span className="cw-lrow__co">
                     Guardicore
-                    <span className="cw-lrow__tag cw-nowrap">2018–2021</span>
+                    <span className="cw-lrow__tag">
+                      Revenue and positioning
+                    </span>
                   </span>
                   <span
                     className="cw-lrow__out"
@@ -376,10 +378,7 @@ export default function ColorWorldsHome() {
                 >
                   <span className="cw-lrow__co">
                     Ordani
-                    <span className="cw-lrow__tag">
-                      Founder, sole engineer ·{" "}
-                      <span className="cw-nowrap">2025–2026</span>
-                    </span>
+                    <span className="cw-lrow__tag">Founder, sole engineer</span>
                   </span>
                   <span className="cw-lrow__out">
                     <strong>Active paying users</strong> · none lost to a
@@ -396,14 +395,11 @@ export default function ColorWorldsHome() {
                   style={{ transitionDelay: "60ms" }}
                 >
                   <span className="cw-lrow__co">
-                    Industry author
-                    <span className="cw-lrow__tag">
-                      Content engine ·{" "}
-                      <span className="cw-nowrap">2024–2025</span>
-                    </span>
+                    Social activist
+                    <span className="cw-lrow__tag">Content engine</span>
                   </span>
                   <span className="cw-lrow__out">
-                    Monthly reach <strong>8K → 290K</strong> in five months
+                    <strong>Up to 800,000 impressions</strong> in a month
                   </span>
                   <span className="cw-lrow__go" aria-hidden>
                     →
@@ -416,13 +412,12 @@ export default function ColorWorldsHome() {
                   style={{ transitionDelay: "120ms" }}
                 >
                   <span className="cw-lrow__co">
-                    Industry author
-                    <span className="cw-lrow__tag">
-                      RFP engine · <span className="cw-nowrap">2024–2025</span>
-                    </span>
+                    Author and leadership consultant
+                    <span className="cw-lrow__tag">RFP engine</span>
                   </span>
                   <span className="cw-lrow__out">
-                    <strong>$3M in contracts won</strong> · close rate doubled
+                    <strong>$3M in signed contracts</strong> · close rate
+                    doubled
                   </span>
                   <span className="cw-lrow__go" aria-hidden>
                     →
@@ -457,13 +452,11 @@ export default function ColorWorldsHome() {
                 >
                   <span className="cw-lrow__co">
                     SurveyMonkey Enterprise
-                    <span className="cw-lrow__tag">
-                      Enterprise sales · 2018
-                    </span>
+                    <span className="cw-lrow__tag">Enterprise sales</span>
                   </span>
                   <span className="cw-lrow__out">
-                    <strong>$1M+</strong> toward the IPO · cap-table position
-                    held through the Nasdaq listing
+                    <strong>$1M+</strong> toward the 2018 IPO · cap-table
+                    position held through the Nasdaq listing
                   </span>
                 </div>
                 <div
@@ -473,11 +466,11 @@ export default function ColorWorldsHome() {
                 >
                   <span className="cw-lrow__co">
                     Postmates
-                    <span className="cw-lrow__tag">Product analyst · 2020</span>
+                    <span className="cw-lrow__tag">Product analyst</span>
                   </span>
                   <span className="cw-lrow__out">
                     Market and fraud analysis in the wide-open era ·{" "}
-                    <strong>acquired by Uber, $2.65B</strong>
+                    <strong>acquired by Uber, $2.65B, 2020</strong>
                   </span>
                 </div>
                 <div

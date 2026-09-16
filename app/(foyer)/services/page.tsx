@@ -76,7 +76,7 @@ const SERVICES: Service[] = [
     ],
     receipts: [
       {
-        text: "For an industry author: software that reads every new RFP each morning and drafts the first pass at a response. RFP-to-close rate doubled; $3M in contracts won.",
+        text: "An author and leadership consultant: software that finds and drafts RFPs from buyers outside their existing network. $3M in signed contracts, close rate doubled.",
         href: "/work/rfp-engine",
         label: "Read the case study",
       },
@@ -117,7 +117,7 @@ const SERVICES: Service[] = [
         // receipt on the page with a live case study and no link to it, while
         // the receipt below it links out. Now it names what the study names and
         // goes where the number is proved.
-        text: "An industry author: I built the content engine that took their monthly reach from 8,000 to 290,000 in five months.",
+        text: "A social activist: I built the AI content engine that turns one rough video into a week of content. A peak of 800,000 impressions in a month, up from a few thousand.",
         href: "/work/content-engine",
         label: "Read the case study",
       },
@@ -155,11 +155,8 @@ const SERVICES: Service[] = [
       // rather than itemised: naming those services on a consulting site
       // creates exposure for her practice that the proof does not need.
       {
-        text: "A birth worker: repositioned from birth support alone to the full arc of care around it. Organic bookings up 30%, and inquiries arriving across her whole range instead of one service.",
-      },
-      {
-        text: "An industry author: repositioned toward the buyers who award contracts. $3M in contracts won through the RFP software that followed.",
-        href: "/work/rfp-engine",
+        text: "A birth worker: repositioned from birth support alone to the full arc of care around it. Bookings went from one to three a month to five to ten, across her whole range instead of one service.",
+        href: "/work/birth-worker",
         label: "Read the case study",
       },
     ],
@@ -396,7 +393,11 @@ export default function ServicesPage() {
               {SERVICES.map((service) => {
                 const r = service.receipts[service.proof];
                 return (
-                  <article key={service.slug} className="cw-area">
+                  <article
+                    key={service.slug}
+                    id={service.slug}
+                    className="cw-area"
+                  >
                     <h4 className="cw-area__name">{service.title}</h4>
                     <p className="cw-area__pain">{service.pain}</p>
                     <ul className="cw-area__list">

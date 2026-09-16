@@ -14,7 +14,7 @@
 export function GET() {
   const body = `# Micah Jones
 
-> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$20M+ in client revenue since 2013. Four companies he worked inside reached an exit: Postmates (acquired by Uber, 2020, $2.65B), SurveyMonkey (cap-table position held through the IPO, 2018), Guardicore (acquired by Akamai, 2021, $600M), and Neuton.AI (technology acquired by Nordic Semiconductor, 2025; helped launch, not a cap-table position). Disclosed deal values total $5B+. Now building Ordani — HIPAA-compliant practice management software in beta with active paying users.
+> Independent operator based in Oakland, CA. Builds go-to-market for B2B software companies AND ships his own products. \$20M+ in revenue behind my work. Four companies he worked inside reached an exit: Postmates (acquired by Uber, 2020, $2.65B), SurveyMonkey (cap-table position held through the IPO, 2018), Guardicore (acquired by Akamai, 2021, $600M), and Neuton.AI (technology acquired by Nordic Semiconductor, 2025; helped launch, not a cap-table position). Disclosed deal values total $5B+. Now building Ordani — HIPAA-compliant practice management software in beta with active paying users.
 
 ## What I do
 
@@ -29,7 +29,7 @@ Two ways to buy them:
 
 ## Background
 
-- Since 2013: growth, GTM and platform strategy roles inside B2B software companies (thirteen years)
+- Thirteen years of growth, GTM and platform strategy roles inside B2B software companies
 - Currently building Ordani in private beta
 - Based in Oakland, CA
 
@@ -37,10 +37,11 @@ Two ways to buy them:
 - [Home](https://www.micahjonesconsulting.com/): single-page narrative with offerings, exits, products, and contact
 - [About](https://www.micahjonesconsulting.com/about): bio, expertise areas, LinkedIn
 - [Work](https://www.micahjonesconsulting.com/work): case study index
-- [Ordani case study](https://www.micahjonesconsulting.com/work/ordani): HIPAA-compliant practice management software in beta with active paying users
-- [Guardicore case study](https://www.micahjonesconsulting.com/work/guardicore): positioning research behind \$14M in revenue at a \$1.2M average enterprise deal size; led to the Akamai acquisition
-- [Content engine case study](https://www.micahjonesconsulting.com/work/content-engine): an AI content engine plus algorithm strategy for an industry author; monthly reach 8,000 to 290,000 in five months
-- [RFP engine case study](https://www.micahjonesconsulting.com/work/rfp-engine): custom RFP software for an industry author; \$3M in contracts won, close rate doubled
+- [Guardicore case study](https://www.micahjonesconsulting.com/work/guardicore): A Tel Aviv security company was selling a feature the market already had. I found what North American banks were buying, moved the story, and sold \$14M.
+- [RFP engine case study](https://www.micahjonesconsulting.com/work/rfp-engine): I built RFP discovery, scoring and drafting around one expert's own body of work. \$3M signed, and the close rate doubled from one in eight to one in four.
+- [Ordani case study](https://www.micahjonesconsulting.com/work/ordani): Birth workers run practices on group chats and paper intakes. I founded and built ORDANI, where intake completion went from 40% to a measured 91%.
+- [Content engine case study](https://www.micahjonesconsulting.com/work/content-engine): I built the AI content engine that turns one rough video into a week of content for a social activist. Monthly impressions peaked at 800,000.
+- [Birth worker case study](https://www.micahjonesconsulting.com/work/birth-worker): Bookings from one to three a month to five to ten. I repositioned a birth worker's practice, rebuilt her booking path and set up her insurance claims.
 
 ## Contact
 - Email: micah@micahjonesconsulting.com
