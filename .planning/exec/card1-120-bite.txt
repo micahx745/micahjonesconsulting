@@ -1,0 +1,45 @@
+== https://www.micahjonesconsulting.com
+  PASS status /: got 200
+  PASS status /work: got 200
+  PASS status /work/guardicore: got 200
+  PASS status /work/rfp-engine: got 200
+  PASS status /work/ordani: got 200
+  PASS status /work/content-engine: got 200
+  FAIL status /work/birth-worker: got 404 (want 200)
+  PASS status /llms.txt: got 200
+  PASS status /sitemap.xml: got 200
+  FAIL redirect /work/postmates: got 200  (want 308 https://www.micahjonesconsulting.com/work#record)
+  FAIL redirect /work/neuton: got 200  (want 308 https://www.micahjonesconsulting.com/work#record)
+  FAIL absent 'client revenue': got 10 (want 0)
+  PASS absent 'consulting revenue': got 0
+  FAIL absent '290,000': got 5 (want 0)
+  FAIL absent 'industry author': got 10 (want 0)
+  FAIL absent 'industry-authority': got 6 (want 0)
+  FAIL absent 'been hacked': got 2 (want 0)
+  FAIL absent 'Organic bookings up 30%': got 1 (want 0)
+  PASS absent 'repositioned toward the buyers': got 0
+  PASS absent 'one of four companies I worked inside': got 0
+  FAIL absent 'same engagement also produced': got 4 (want 0)
+  FAIL absent '2018–2021': got 4 (want 0)
+  FAIL absent '2018-2021': got 1 (want 0)
+  FAIL absent '2024–2025': got 1 (want 0)
+  FAIL absent '2024-2025': got 5 (want 0)
+  FAIL absent '2025–2026': got 1 (want 0)
+  FAIL absent '2025-2026': got 3 (want 0)
+  FAIL absent 'Protected by NDA': got 2 (want 0)
+  PASS absent '$80M': got 0
+  FAIL absent '80 million': got 1 (want 0)
+  FAIL work method line: got 0 (want >=1)
+  FAIL work id=record: got 0 (want >=1)
+  FAIL work Also on the record: got 0 (want >=1)
+  FAIL work Nordic exit line: got 0 (want >=1)
+  FAIL services RFP receipt: got 0 (want >=1)
+  FAIL home revenue behind my work: got 0 (want >=1)
+  FAIL content-engine a social activist: got 0 (want >=1)
+  FAIL rfp-engine descriptor: got 0 (want >=1)
+  PASS rec sr-only text: got 1
+  PASS tick SSR renders $20M+: got 1
+  PASS loop variant 3 path in SSR: got 1
+  PASS css padding-block .184em: got 1
+  PASS css margin-left .26em: got 1
+card1 failures: 26

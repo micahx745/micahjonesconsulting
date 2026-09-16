@@ -1,0 +1,19 @@
+FAIL C1 exactly one <video: got 0 (want 1)
+FAIL C1 <video> attributes: got no <video> tag (want non-empty poster, none of autoplay/loop/controls)
+PASS C1 no <track: got 0
+FAIL C3 plays once 1440: got no main video (want a main video in the viewport)
+FAIL C2 properties 1440: got no main video (want a main video)
+FAIL C3 plays once 390: got no main video (want a main video in the viewport)
+PASS C4 reduced 1440 rests: got img: max channel diff 0 between 1001.9ms and 4999.9ms, luminance std 61.3 / 61.3
+PASS C4 reduced 1440 never plays: got no video element (visible main img checked above)
+FAIL C9 no caption 1440: got 1 text nodes within 120px below, scope figure.cw-lot__exhibit [Working session · Tel Aviv · 2018-2021] (want 0)
+PASS C4 reduced 390 rests: got img: max channel diff 0 between 1001.5ms and 4999.5ms, luminance std 58.6 / 58.6
+PASS C4 reduced 390 never plays: got no video element (visible main img checked above)
+FAIL C9 no caption 390: got 1 text nodes within 120px below, scope figure.cw-lot__exhibit [Working session · Tel Aviv · 2018-2021] (want 0)
+PASS C5 save-data 1440 rests: got img: max channel diff 0 between 1005.4ms and 5000.4ms, luminance std 61.3 / 61.3
+PASS C5 save-data 1440 never plays: got no video element (visible main img checked above)
+FAIL C6 no-JS 1440 rests: got no media element (want an inked media element)
+FAIL C6 no-JS 390 rests: got no media element (want an inked media element)
+FAIL C7 served size budget: got no video read from /work (want a video with sources and a poster)
+PASS C8 no raw source committed: got 0 of 11 files at 3264298 bytes
+clip120 failures: 10

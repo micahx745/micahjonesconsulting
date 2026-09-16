@@ -70,7 +70,7 @@ const BASE = (
 ).replace(/\/$/, "");
 const ROUTES = args.length
   ? args
-  : ["/", "/services", "/packages", "/work", "/work/postmates", "/work/neuton"];
+  : ["/", "/services", "/packages", "/work", "/work/guardicore", "/work/rfp-engine", "/work/ordani", "/work/content-engine", "/work/birth-worker"];
 // Git Bash rewrites "/" into "C:/Program Files/Git/" (LESSONS #19).
 const badRoutes = ROUTES.filter((r) => !r.startsWith("/") || r.includes(":"));
 if (badRoutes.length) {

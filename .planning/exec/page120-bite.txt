@@ -1,0 +1,260 @@
+== https://www.micahjonesconsulting.com/work at 1440
+PASS T0 status /work 1440: got 200
+       10.5px  figcaption
+         11px  span
+         12px  cw-lot__cta span cw-wk__rest-title cw-wk-item__num cw-nowrap cw-wk-item__cta
+         16px  cw-wk__cross
+         20px  cw-wk-item__line
+         21px  cw-lot__line
+         40px  strong
+         44px  cw-wk-item__title
+      187.2px  cw-lot__fig
+FAIL T1 type ladder /work 1440: got 10.5,11,12,16,20,21,40,44,187.2 [off ladder: 10.5,11,12,16,20,21,40,44,187.2] [missing: 13,18,36,112] (want subset of {13,18,36,56,112} containing 13,18,36,112)
+FAIL T2 set size /work 1440: got 9 (want <= 5)
+PASS T3 largest / 18 /work 1440: got 10.40
+INFO chrome sizes /work 1440: nav 12,22; pagefoot 12,16; footer none
+PASS T5 page spill /work 1440: got 0
+FAIL T6 mono prose /work 1440: got 3 [figcaption: Working session · Tel Aviv · 2018-2021 | span: a drafted head start, not a blank page | span: platforms carried the work, two on the weekly cade] (want 0)
+FAIL T7 tracked uppercase /work 1440: got 57 [span: 01 of 06 | span: · | span: Guardicore (Akamai) | span: ·] (want 0)
+PASS T8 no rail /work 1440: got sticky/fixed 0, .case-study__sidebar 0
+FAIL T9 no figcaption /work 1440: got 1 (want 0)
+PASS T10 one title /work 1440: got 1 [cw-lot__h1 "$14M in revenue for a Tel Aviv security "]
+PASS T11 body links on paper /work 1440: got 0 on paper, 2 dark, 0 off
+PASS T12 sage scope /work 1440: got 0 (rgb(94, 113, 88))
+PASS T13 no stickered frame /work 1440: got 0
+== https://www.micahjonesconsulting.com/work at 390
+PASS T0 status /work 390: got 200
+       10.5px  figcaption
+         11px  span
+         12px  cw-lot__cta span cw-wk__rest-title cw-wk-item__num cw-nowrap cw-wk-item__cta
+         16px  cw-wk__cross
+         17px  cw-lot__line cw-wk-item__line
+         28px  cw-wk-item__title strong
+         72px  cw-lot__fig
+FAIL T1 type ladder /work 390: got 10.5,11,12,16,17,28,72 [off ladder: 10.5,11,16,28,72] [missing: 26,64] (want subset of {12,17,26,36,64} containing 12,17,26,64)
+FAIL T2 set size /work 390: got 7 (want <= 5)
+INFO chrome sizes /work 390: nav 12,22; pagefoot 12,16; footer none
+PASS T5 page spill /work 390: got 0
+FAIL T6 mono prose /work 390: got 3 [figcaption: Working session · Tel Aviv · 2018-2021 | span: a drafted head start, not a blank page | span: platforms carried the work, two on the weekly cade] (want 0)
+FAIL T7 tracked uppercase /work 390: got 57 [span: 01 of 06 | span: · | span: Guardicore (Akamai) | span: ·] (want 0)
+PASS T8 no rail /work 390: got sticky/fixed 0, .case-study__sidebar 0
+FAIL T9 no figcaption /work 390: got 1 (want 0)
+PASS T10 one title /work 390: got 1 [cw-lot__h1 "$14M in revenue for a Tel Aviv security "]
+PASS T11 body links on paper /work 390: got 0 on paper, 2 dark, 0 off
+PASS T12 sage scope /work 390: got 0 (rgb(94, 113, 88))
+PASS T13 no stickered frame /work 390: got 0
+== https://www.micahjonesconsulting.com/work/guardicore at 1440
+PASS T0 status /work/guardicore 1440: got 200
+         11px  span
+         12px  case-study-still__spec-eyebrow case-study__sidebar-label case-study__sidebar-toc-link dt case-study__nav-link
+         14px  dd
+         17px  p strong
+         22px  title-card-caption
+         28px  case-study-still__spec-title
+         40px  h2
+         56px  strong
+         92px  title-card-word
+FAIL T1 type ladder /work/guardicore 1440: got 11,12,14,17,22,28,40,56,92 [off ladder: 11,12,14,17,22,28,40,92] [missing: 13,18,36] (want subset of {13,18,36,56,112} containing 13,18,36,56)
+FAIL T2 set size /work/guardicore 1440: got 9 (want <= 5)
+INFO chrome sizes /work/guardicore 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/guardicore 1440: got 0
+PASS T6 mono prose /work/guardicore 1440: got 0
+FAIL T7 tracked uppercase /work/guardicore 1440: got 15 [title-card-word: PIPELINE. | title-card-word: RESEARCH. | title-card-word: NARRATIVE. | title-card-word: ACQUIRED.] (want 0)
+FAIL T8 no rail /work/guardicore 1440: got sticky/fixed 1 [case-study__sidebar sticky], .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+PASS T9 no figcaption /work/guardicore 1440: got 0
+FAIL T10 one visible title /work/guardicore 1440: got 1 h1, visible false [sr-only "Guardicore (Akamai)"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/guardicore 1440: got 0 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/guardicore 1440: got 0 (rgb(94, 113, 88))
+PASS T13 full-bleed img /work/guardicore 1440: got 0 []
+FAIL T13 band photograph /work/guardicore 1440: got 0 visible guardicore-band-960.jpg [] (want exactly 1, width > 0 and < 1439)
+FAIL T13 no stickered frame /work/guardicore 1440: got img /_next/image?url=/guardicore-telaviv.jpg&w=3840&q=75&dpl=dpl_A16y1jFMgc4iKhEkJZ2 (want 0)
+FAIL T14 the close /work/guardicore 1440: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/guardicore at 390
+PASS T0 status /work/guardicore 390: got 200
+         11px  span
+         12px  case-study__role case-study__tools case-study__year case-study-still__spec-eyebrow case-study__nav-link
+         17px  p strong
+         19px  title-card-caption
+         24px  case-study-still__spec-title
+         28px  h2
+         34px  strong
+       46.8px  title-card-word
+FAIL T1 type ladder /work/guardicore 390: got 11,12,17,19,24,28,34,46.8 [off ladder: 11,19,24,28,34,46.8] [missing: 26,36] (want subset of {12,17,26,36,64} containing 12,17,26,36)
+FAIL T2 set size /work/guardicore 390: got 8 (want <= 5)
+INFO chrome sizes /work/guardicore 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/guardicore 390: got 0
+FAIL T6 mono prose /work/guardicore 390: got 1 [case-study__tools: Pipeline origination, Market & customer research, ] (want 0)
+FAIL T7 tracked uppercase /work/guardicore 390: got 13 [title-card-word: PIPELINE. | title-card-word: RESEARCH. | title-card-word: NARRATIVE. | title-card-word: ACQUIRED.] (want 0)
+FAIL T8 no rail /work/guardicore 390: got sticky/fixed 0, .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+PASS T9 no figcaption /work/guardicore 390: got 0
+FAIL T10 one visible title /work/guardicore 390: got 1 h1, visible false [sr-only "Guardicore (Akamai)"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/guardicore 390: got 0 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/guardicore 390: got 0 (rgb(94, 113, 88))
+PASS T13 full-bleed img /work/guardicore 390: got 0 []
+FAIL T13 band photograph /work/guardicore 390: got 0 visible guardicore-band-960.jpg [] (want exactly 1, width > 0 and < 389)
+FAIL T13 no stickered frame /work/guardicore 390: got img /_next/image?url=/guardicore-telaviv.jpg&w=3840&q=75&dpl=dpl_A16y1jFMgc4iKhEkJZ2 (want 0)
+FAIL T14 the close /work/guardicore 390: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/rfp-engine at 1440
+PASS T0 status /work/rfp-engine 1440: got 200
+         11px  span
+         12px  case-study-still__spec-eyebrow case-study-pull-quote__attribution case-study__sidebar-label case-study__sidebar-toc-link dt case-study__nav-link
+         14px  dd
+         17px  p strong
+         22px  title-card-caption
+         28px  case-study-still__spec-title
+         40px  h2 p
+         56px  strong
+         92px  title-card-word
+FAIL T1 type ladder /work/rfp-engine 1440: got 11,12,14,17,22,28,40,56,92 [off ladder: 11,12,14,17,22,28,40,92] [missing: 13,18,36] (want subset of {13,18,36,56,112} containing 13,18,36,56)
+FAIL T2 set size /work/rfp-engine 1440: got 9 (want <= 5)
+INFO chrome sizes /work/rfp-engine 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/rfp-engine 1440: got 0
+FAIL T6 mono prose /work/rfp-engine 1440: got 1 [span: a drafted head start, not a blank page] (want 0)
+FAIL T7 tracked uppercase /work/rfp-engine 1440: got 15 [title-card-word: RFP. | title-card-word: JUDGMENT. | title-card-word: WON. | span: contracts won, government incl] (want 0)
+FAIL T8 no rail /work/rfp-engine 1440: got sticky/fixed 1 [case-study__sidebar sticky], .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+FAIL T9 no figcaption /work/rfp-engine 1440: got 1 (want 0)
+FAIL T10 one visible title /work/rfp-engine 1440: got 1 h1, visible false [sr-only "RFP engine for an industry author"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/rfp-engine 1440: got 0 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/rfp-engine 1440: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/rfp-engine 1440: got img 0, video 0
+PASS T13 no stickered frame /work/rfp-engine 1440: got 0
+FAIL T14 the close /work/rfp-engine 1440: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/rfp-engine at 390
+PASS T0 status /work/rfp-engine 390: got 200
+         11px  span
+         12px  case-study__role case-study__tools case-study__year case-study-still__spec-eyebrow case-study-pull-quote__attribution case-study__nav-link
+         17px  p strong
+         19px  title-card-caption
+         24px  case-study-still__spec-title
+         28px  h2 p
+         34px  strong
+       46.8px  title-card-word
+FAIL T1 type ladder /work/rfp-engine 390: got 11,12,17,19,24,28,34,46.8 [off ladder: 11,19,24,28,34,46.8] [missing: 26,36] (want subset of {12,17,26,36,64} containing 12,17,26,36)
+FAIL T2 set size /work/rfp-engine 390: got 8 (want <= 5)
+INFO chrome sizes /work/rfp-engine 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/rfp-engine 390: got 0
+FAIL T6 mono prose /work/rfp-engine 390: got 2 [span: a drafted head start, not a blank page | case-study__tools: Custom RFP software, Retrieval / RAG, Response dra] (want 0)
+FAIL T7 tracked uppercase /work/rfp-engine 390: got 13 [title-card-word: RFP. | title-card-word: JUDGMENT. | title-card-word: WON. | span: contracts won, government incl] (want 0)
+FAIL T8 no rail /work/rfp-engine 390: got sticky/fixed 0, .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+FAIL T9 no figcaption /work/rfp-engine 390: got 1 (want 0)
+FAIL T10 one visible title /work/rfp-engine 390: got 1 h1, visible false [sr-only "RFP engine for an industry author"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/rfp-engine 390: got 0 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/rfp-engine 390: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/rfp-engine 390: got img 0, video 0
+PASS T13 no stickered frame /work/rfp-engine 390: got 0
+FAIL T14 the close /work/rfp-engine 390: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/ordani at 1440
+PASS T0 status /work/ordani 1440: got 200
+         11px  span
+         12px  case-study-still__caption case-study-pull-quote__attribution case-study__sidebar-label case-study__sidebar-toc-link dt case-study__nav-link
+         14px  dd
+         17px  p em strong
+         22px  title-card-caption
+         40px  h2 p
+         56px  strong
+         92px  title-card-word
+FAIL T1 type ladder /work/ordani 1440: got 11,12,14,17,22,40,56,92 [off ladder: 11,12,14,17,22,40,92] [missing: 13,18,36] (want subset of {13,18,36,56,112} containing 13,18,36,56)
+FAIL T2 set size /work/ordani 1440: got 8 (want <= 5)
+INFO chrome sizes /work/ordani 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/ordani 1440: got 0
+FAIL T6 mono prose /work/ordani 1440: got 1 [case-study-still__caption: The intake, on paper: what Ordani replaces] (want 0)
+FAIL T7 tracked uppercase /work/ordani 1440: got 15 [title-card-word: ORDANI | title-card-word: INTAKE. | title-card-word: SECURE. | title-card-word: SHIPPED.] (want 0)
+FAIL T8 no rail /work/ordani 1440: got sticky/fixed 1 [case-study__sidebar sticky], .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+FAIL T9 no figcaption /work/ordani 1440: got 2 (want 0)
+FAIL T10 one visible title /work/ordani 1440: got 1 h1, visible false [sr-only "ORDANI"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/ordani 1440: got 0 on paper, 0 dark, 0 off
+FAIL T12 sage scope /work/ordani 1440: got 0 (rgb(94, 113, 88)) (want >= 1)
+FAIL T13 full-bleed img /work/ordani 1440: got 0 [] (want >= 1)
+PASS T13 no stickered frame /work/ordani 1440: got 0
+FAIL T14 the close /work/ordani 1440: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/ordani at 390
+PASS T0 status /work/ordani 390: got 200
+         11px  span
+         12px  case-study__role case-study__tools case-study__year case-study-still__caption case-study-pull-quote__attribution case-study__nav-link
+         17px  p em strong
+         19px  title-card-caption
+         28px  h2 p
+         34px  strong
+       46.8px  title-card-word
+FAIL T1 type ladder /work/ordani 390: got 11,12,17,19,28,34,46.8 [off ladder: 11,19,28,34,46.8] [missing: 26,36] (want subset of {12,17,26,36,64} containing 12,17,26,36)
+FAIL T2 set size /work/ordani 390: got 7 (want <= 5)
+INFO chrome sizes /work/ordani 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/ordani 390: got 0
+FAIL T6 mono prose /work/ordani 390: got 2 [case-study__tools: Full-stack TypeScript, HIPAA-compliant architectur | case-study-still__caption: The intake, on paper: what Ordani replaces] (want 0)
+FAIL T7 tracked uppercase /work/ordani 390: got 13 [title-card-word: ORDANI | title-card-word: INTAKE. | title-card-word: SECURE. | title-card-word: SHIPPED.] (want 0)
+FAIL T8 no rail /work/ordani 390: got sticky/fixed 0, .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+FAIL T9 no figcaption /work/ordani 390: got 2 (want 0)
+FAIL T10 one visible title /work/ordani 390: got 1 h1, visible false [sr-only "ORDANI"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/ordani 390: got 0 on paper, 0 dark, 0 off
+FAIL T12 sage scope /work/ordani 390: got 0 (rgb(94, 113, 88)) (want >= 1)
+FAIL T13 full-bleed img /work/ordani 390: got 0 [] (want >= 1)
+PASS T13 no stickered frame /work/ordani 390: got 0
+FAIL T14 the close /work/ordani 390: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/content-engine at 1440
+PASS T0 status /work/content-engine 1440: got 200
+         11px  span
+         12px  case-study-still__spec-eyebrow case-study__sidebar-label case-study__sidebar-toc-link dt case-study__nav-link
+         14px  dd
+         17px  p strong
+         22px  title-card-caption
+         28px  case-study-still__spec-title
+         40px  h2
+         56px  strong
+         92px  title-card-word
+FAIL T1 type ladder /work/content-engine 1440: got 11,12,14,17,22,28,40,56,92 [off ladder: 11,12,14,17,22,28,40,92] [missing: 13,18,36] (want subset of {13,18,36,56,112} containing 13,18,36,56)
+FAIL T2 set size /work/content-engine 1440: got 9 (want <= 5)
+INFO chrome sizes /work/content-engine 1440: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/content-engine 1440: got 0
+FAIL T6 mono prose /work/content-engine 1440: got 1 [span: platforms carried the work, two on the weekly cade] (want 0)
+FAIL T7 tracked uppercase /work/content-engine 1440: got 14 [title-card-word: REACH. | title-card-word: CADENCE. | title-card-word: ENGINE. | span: monthly reach, 8,000 to 290,00] (want 0)
+FAIL T8 no rail /work/content-engine 1440: got sticky/fixed 1 [case-study__sidebar sticky], .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+PASS T9 no figcaption /work/content-engine 1440: got 0
+FAIL T10 one visible title /work/content-engine 1440: got 1 h1, visible false [sr-only "AI content engine for an industry author"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/content-engine 1440: got 0 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/content-engine 1440: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/content-engine 1440: got img 0, video 0
+PASS T13 no stickered frame /work/content-engine 1440: got 0
+FAIL T14 the close /work/content-engine 1440: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/content-engine at 390
+PASS T0 status /work/content-engine 390: got 200
+         11px  span
+         12px  case-study__role case-study__tools case-study__year case-study-still__spec-eyebrow case-study__nav-link
+         17px  p strong
+         19px  title-card-caption
+         24px  case-study-still__spec-title
+         28px  h2
+         34px  strong
+       46.8px  title-card-word
+FAIL T1 type ladder /work/content-engine 390: got 11,12,17,19,24,28,34,46.8 [off ladder: 11,19,24,28,34,46.8] [missing: 26,36] (want subset of {12,17,26,36,64} containing 12,17,26,36)
+FAIL T2 set size /work/content-engine 390: got 8 (want <= 5)
+INFO chrome sizes /work/content-engine 390: nav 12,22; pagefoot none; footer 14
+PASS T5 page spill /work/content-engine 390: got 0
+FAIL T6 mono prose /work/content-engine 390: got 2 [span: platforms carried the work, two on the weekly cade | case-study__tools: AI content engine, Algorithm strategy, eight-platf] (want 0)
+FAIL T7 tracked uppercase /work/content-engine 390: got 12 [title-card-word: REACH. | title-card-word: CADENCE. | title-card-word: ENGINE. | span: monthly reach, 8,000 to 290,00] (want 0)
+FAIL T8 no rail /work/content-engine 390: got sticky/fixed 0, .case-study__sidebar 1 (want sticky/fixed 0, .case-study__sidebar 0)
+PASS T9 no figcaption /work/content-engine 390: got 0
+FAIL T10 one visible title /work/content-engine 390: got 1 h1, visible false [sr-only "AI content engine for an industry author"] (want 1 h1, visible true)
+PASS T11 body links on paper /work/content-engine 390: got 0 on paper, 0 dark, 0 off
+PASS T12 sage scope /work/content-engine 390: got 0 (rgb(94, 113, 88))
+PASS T13 no photographs /work/content-engine 390: got img 0, video 0
+PASS T13 no stickered frame /work/content-engine 390: got 0
+FAIL T14 the close /work/content-engine 390: got 0 (want 1)
+== https://www.micahjonesconsulting.com/work/birth-worker at 1440
+FAIL T0 status /work/birth-worker 1440: got 404 (want 200)
+SKIP /work/birth-worker 1440: status 404, T1-T14 and T16 not run
+== https://www.micahjonesconsulting.com/work/birth-worker at 390
+FAIL T0 status /work/birth-worker 390: got 404 (want 200)
+SKIP /work/birth-worker 390: status 404, T1-T14 and T16 not run
+FAIL T16 no-JS finished frame /work/guardicore 1440: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+FAIL T16 no-JS finished frame /work/guardicore 390: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+FAIL T16 no-JS finished frame /work/rfp-engine 1440: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+FAIL T16 no-JS finished frame /work/rfp-engine 390: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+FAIL T16 no-JS finished frame /work/ordani 1440: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+FAIL T16 no-JS finished frame /work/ordani 390: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+FAIL T16 no-JS finished frame /work/content-engine 1440: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+FAIL T16 no-JS finished frame /work/content-engine 390: got visible false, opacity 1, top -1.0 (want visible true, opacity 1, top -1.0 +/- 1)
+SKIP T16 /work/birth-worker 1440: no reduced-motion run to compare against
+SKIP T16 /work/birth-worker 390: no reduced-motion run to compare against
+FAIL T15 /work/postmates lands on #record 1440: got /work/postmates, #record top (no #record) (want /work#record, top 0-160)
+FAIL T15 /work/neuton lands on #record 1440: got /work/neuton, #record top (no #record) (want /work#record, top 0-160)
+page120 failures: 89

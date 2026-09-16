@@ -497,13 +497,17 @@ async function runC13() {
     });
 
   // Full load at the case study, then client-navigate home through Next Link.
-  await page.goto(`${S}/work/postmates`, {
+  await page.goto(`${S}/work/guardicore`, {
     waitUntil: "networkidle0",
     timeout: 60000,
   });
   let docLoads = await page.evaluate(() => window.__docLoads || 0);
   if (docLoads !== 1) invalid(`initial docLoads=${docLoads}, expect 1`);
-  await page.click('a.case-study__nav-link[href="/"]');
+  await page.evaluate(() => {
+    const go = () => window.next.router.push("/");
+    if ("startViewTransition" in document) document.startViewTransition(go);
+    else go();
+  });
   await page.waitForFunction(() => location.pathname === "/", {
     timeout: 15000,
   });
@@ -533,7 +537,7 @@ async function runC13() {
   await page.evaluate(() => window.scrollTo(0, 0));
   await sleep(300);
   await page.goBack({ timeout: 15000 }).catch(() => null);
-  await page.waitForFunction(() => location.pathname === "/work/postmates", {
+  await page.waitForFunction(() => location.pathname === "/work/guardicore", {
     timeout: 15000,
   });
   await sleep(800);

@@ -1,0 +1,91 @@
+== https://www.micahjonesconsulting.com/work/guardicore at 1440
+PASS S0 status /work/guardicore 1440: got 200
+     177 frames over 2919ms, main h1 present
+FAIL S1 motion runs /work/guardicore 1440: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/guardicore 1440: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/guardicore 1440: got 177 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/guardicore 1440: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/guardicore 1440: got 0 non-final frames (152 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/guardicore 1440: got 0 non-final frames of 180, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/guardicore at 390
+PASS S0 status /work/guardicore 390: got 200
+     179 frames over 2942ms, main h1 present
+FAIL S1 motion runs /work/guardicore 390: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/guardicore 390: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/guardicore 390: got 179 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/guardicore 390: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/guardicore 390: got 0 non-final frames (152 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/guardicore 390: got 0 non-final frames of 179, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/rfp-engine at 1440
+PASS S0 status /work/rfp-engine 1440: got 200
+     182 frames over 3007ms, main h1 present
+FAIL S1 motion runs /work/rfp-engine 1440: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/rfp-engine 1440: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/rfp-engine 1440: got 182 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/rfp-engine 1440: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/rfp-engine 1440: got 0 non-final frames (151 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/rfp-engine 1440: got 0 non-final frames of 179, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/rfp-engine at 390
+PASS S0 status /work/rfp-engine 390: got 200
+     178 frames over 2924ms, main h1 present
+FAIL S1 motion runs /work/rfp-engine 390: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/rfp-engine 390: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/rfp-engine 390: got 178 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/rfp-engine 390: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/rfp-engine 390: got 0 non-final frames (151 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/rfp-engine 390: got 0 non-final frames of 177, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/ordani at 1440
+PASS S0 status /work/ordani 1440: got 200
+     178 frames over 2972ms, main h1 present
+FAIL S1 motion runs /work/ordani 1440: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/ordani 1440: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/ordani 1440: got 178 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/ordani 1440: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/ordani 1440: got 0 non-final frames (151 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/ordani 1440: got 0 non-final frames of 180, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/ordani at 390
+PASS S0 status /work/ordani 390: got 200
+     182 frames over 3011ms, main h1 present
+FAIL S1 motion runs /work/ordani 390: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/ordani 390: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/ordani 390: got 182 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/ordani 390: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/ordani 390: got 0 non-final frames (151 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/ordani 390: got 0 non-final frames of 177, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/content-engine at 1440
+PASS S0 status /work/content-engine 1440: got 200
+     178 frames over 2945ms, main h1 present
+FAIL S1 motion runs /work/content-engine 1440: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/content-engine 1440: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/content-engine 1440: got 178 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/content-engine 1440: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/content-engine 1440: got 0 non-final frames (152 frames at 1440px, 0 at other widths not compared)
+PASS S6 reduced /work/content-engine 1440: got 0 non-final frames of 180, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/content-engine at 390
+PASS S0 status /work/content-engine 390: got 200
+     179 frames over 2994ms, main h1 present
+FAIL S1 motion runs /work/content-engine 390: got 0 non-final frames (want >= 1)
+FAIL S2 600ms total /work/content-engine 390: got no non-final frame (want <= 634ms)
+FAIL S3 no flash /work/content-engine 390: got 179 final frames before the first non-final frame (want 0)
+PASS S4 transform and opacity only /work/content-engine 390: got filter none, clip-path inset(50%), font-size 16px, letter-spacing normal
+PASS S5 once per load /work/content-engine 390: got 0 non-final frames (151 frames at 390px, 0 at other widths not compared)
+PASS S6 reduced /work/content-engine 390: got 0 non-final frames of 180, final h1 opacity 1
+== https://www.micahjonesconsulting.com/work/birth-worker at 1440
+FAIL S0 status /work/birth-worker 1440: got 404 (want 200)
+SKIP /work/birth-worker 1440: status 404, S1-S7 not run
+== https://www.micahjonesconsulting.com/work/birth-worker at 390
+FAIL S0 status /work/birth-worker 390: got 404 (want 200)
+SKIP /work/birth-worker 390: status 404, S1-S7 not run
+PASS S7 CLS /work/guardicore 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work/guardicore 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work/rfp-engine 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work/rfp-engine 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work/ordani 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work/ordani 390: got 0.0000 (0 shifts)
+PASS S7 CLS /work/content-engine 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work/content-engine 390: got 0.0000 (0 shifts)
+FAIL S7 CLS /work/birth-worker 1440: got status 404 (want status 200)
+FAIL S7 CLS /work/birth-worker 390: got status 404 (want status 200)
+PASS S7 CLS /work 1440: got 0.0000 (0 shifts)
+PASS S7 CLS /work 390: got 0.0000 (0 shifts)
+settle120 failures: 28
