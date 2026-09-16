@@ -336,6 +336,29 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   it". Added to the approved anonymised customer descriptors beside the global systemically
   important bank, the federal research agency and the white-shoe Wall Street law firm.
 - **RFP "FIRST DRAFTS IN HOURS INSTEAD OF DAYS" IS TRUE — operator 2026-09-16**, "True, keep it".
+- **ORDANI O4-O8 CONFIRMED — operator 2026-09-16**, "Yes, as written": the "Six apps and a Sunday
+  night" problem section in `.planning/drafts/pass-120/four-studies-DRAFT.md` (half a dozen tools,
+  the practitioner as the integration, nobody knowing they needed a platform, every copy of client
+  data one more place it lived) is TRUE and publishable.
+- **BIRTH WORKER SCOPE — operator 2026-09-16**, verbatim, answering whether the work went beyond
+  positioning (he ticked website, marketing or content, and intake or booking setup, and wrote):
+  "also via [claims vendor] (please dont mention private vendors just sharing so you get context)
+  to help her get back thousands of dollars that would have been paid in fees to process mediaid or
+  medicare claims via her birthwork." The engagement therefore covered positioning, her website,
+  marketing and content, intake and booking setup, and direct Medicaid and Medicare claims that
+  kept THOUSANDS OF DOLLARS she would have paid in processing fees. NEVER name the claims vendor
+  on any surface (the name is gated in `scripts/retired-phrases-gate.mjs`, Pass-120). No dollar
+  figure beyond "thousands of dollars". Astra's 2026-09-15 partial finding that the draft
+  reduced the engagement to copywriting was correct.
+- **BIRTH WORKER BOOKINGS, BOTH SIDES — operator 2026-09-16**, verbatim: "bookings and the 5-10 are
+  bookings too". SUPERSEDES the reading below that the 5-10 were inquiries. The publishable pair:
+  bookings went from ONE TO THREE A MONTH to FIVE TO TEN A MONTH. The earlier "organic bookings
+  up 30%" was his floor, not a measurement; new copy uses the pair, and the live /services
+  receipt that still says "Organic bookings up 30%" is swept to the pair in Pass-120.
+- **YEAR FIELDS — operator 2026-09-16**, his pick "Keep a date behind the scenes, show none".
+  Each study keeps a date for sorting and structured data: the date the page was published,
+  NEVER a tenure year. No year renders beside a role on any surface. Event years (IPO 2018, Uber
+  2020, Akamai 2021, Nordic Semiconductor 2025) stay where they describe the company's event.
 - **BIRTH WORKER VOLUME — operator 2026-09-16**, verbatim: "Organic bookings grew maybe more
   than 30. She would average 1-3 a month and now she gets 5-10 inquiries. C oming from high
   quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on

@@ -144,6 +144,10 @@ const PHRASES = [
   // racism)". Both spellings.
   "anti-racism",
   "anti racism",
+  // Pass-120 (operator 2026-09-16): the birth worker's claims vendor is private
+  // context, "please dont mention private vendors". Both capitalisations.
+  "Stedi",
+  "stedi",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);

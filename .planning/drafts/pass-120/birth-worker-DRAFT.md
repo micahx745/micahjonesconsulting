@@ -1,46 +1,47 @@
-# Birth worker: dramatized draft for Micah's fact check
+# Birth worker: draft 3, after the operator's scope answer
 
-Pass-120. NOT site copy. A new study. Today this engagement exists only as one receipt line on
-`/services` ([services/page.tsx:158](app/(foyer)/services/page.tsx:158)) and has no page.
+Pass-120. NOT site copy. A new study; today this engagement is one receipt line on `/services`.
 
-**Legend.** Plain text is from the ledger (operator-supplied 2026-09-03). **[B#]** marks a detail
-I added; it may be wrong. Reply with the number and yes, no, or the real version.
+**Legend.** Plain text is confirmed by Micah (2026-09-03, 09-15, 09-16) or is ledger fact.
+**[B#]** marks a detail I dramatized; per his 2026-09-15 ruling these do not block.
 
-**Client:** a birth worker. Name protected, and she stays anonymous.
+**Client:** a birth worker. Name protected, and she stays anonymous. Her range is described by its
+breadth and never itemised.
 
-**Standing rule from the ledger, carried into this draft:** her range is described by its breadth
-and never itemised. Naming the specific kinds of care on a consulting site creates exposure for
-her practice that the proof does not need. Nothing in this draft lists them.
+**Scope, confirmed 2026-09-16:** positioning, her website, the marketing that carried the new
+position, intake and booking, and direct Medicaid and Medicare claims that kept thousands of
+dollars she used to lose to processing fees. The claims vendor is private context and is NEVER
+named on any surface ("please dont mention private vendors").
 
-**Written for:** an expert whose buyers only ask for one of the things they do.
+**Written for:** an expert whose buyers only ask for one of the things they do, and whose practice
+leaks money in the back office. Closes into Positioning & GTM (Fable ruling 7).
 
-**Search terms:** repositioning a practice, service positioning for practitioners, positioning a
-birth worker practice, why clients only book one service, offer positioning. No keyword tool is
-connected, so no volume data sits behind this list.
+**Search terms:** growing a birth worker practice, doula business growth, repositioning a
+practice, Medicaid billing for birth workers, why clients only book one service.
 
 ---
 
 ## Search title and description
 
-- **Title:** Repositioning a birth worker's practice
-- **Description:** Her clients booked one service out of everything she could do. I repositioned
-  the practice around the full arc of care. Now five to ten inquiries a month.
+- **Title:** Growing a birth worker's practice
+- **Description:** Bookings from one to three a month to five to ten. I repositioned a birth
+  worker's practice, rebuilt her booking path and set up her insurance claims.
 
 ## Dek
 
-Every inquiry asked her for the same thing, and it was one service out of everything she could
-do. I repositioned the practice from birth support alone to the full arc of care around it.
-Inquiries went from one to three a month to five to ten, and they started arriving across her whole
-range.
+She was booked one to three times a month, almost always for the same service, and part of every
+Medicaid payment went to processing fees. I repositioned the practice around the full arc of care,
+rebuilt how clients find and book her, and set up claims she could file directly **[B16]**.
+Bookings went to five to ten a month, and thousands of dollars stopped going to fees.
 
 ## At a glance
 
 - **Client:** a birth worker. Name protected.
-- **My role:** positioning **[B1]**
-- **The work:** reading her own inquiries, talking to past clients, naming the range, and
-  rewriting the surfaces a stranger reads first **[B2]**
-- **Results:** inquiries from one to three a month to five to ten. Organic bookings up 30%.
-  Requests across her whole range instead of one service.
+- **My role:** positioning, website, marketing and back-office operations
+- **The work:** reading her own inquiries, talking to past clients, naming the range, rebuilding
+  her website and booking path, the marketing that carried it, and direct insurance claims
+- **Results:** bookings from one to three a month to five to ten. Thousands of dollars kept that
+  used to go to claims-processing fees. Requests across her whole range instead of one service.
 
 ## Her practice was bigger than her booking form
 
@@ -53,6 +54,10 @@ This is a positioning problem I see again and again in a practice of one. The ma
 you is narrower than your skill, and it stays that way until you change what a stranger reads
 first.
 
+The second problem was quieter. Part of her work was paid through Medicaid and Medicare, and a
+slice of every claim went to whoever processed it **[B17]**. Every booking she won cost her a fee
+she never saw on a bill.
+
 ## What I did
 
 **01. I read her own inquiries before I wrote anything.** Where they came from, what they asked
@@ -60,24 +65,34 @@ for, and what she quoted **[B5]**. The pattern was the diagnosis: one service, o
 
 **02. I talked to people she had already cared for.** They did not describe a service. They
 described a person who was there for the whole thing **[B6]**. That gap, between how clients
-talked about her and how her page talked about her, was the whole engagement.
+talked about her and how her page talked about her, was the brief.
 
 **03. I named the range as one offer.** Not a longer menu. One arc of care around birth, with the
 birth itself as a part of it rather than the whole thing **[B7]**. A menu asks a stranger to
 diagnose themselves. A named arc tells them they are in the right place.
 
-**04. I rewrote what a stranger reads first.** How she introduces herself, what her first screen
-says she does, and how her services are grouped **[B8]**.
+**04. I rebuilt her website around it.** How she introduces herself, what her first screen says
+she does, and how her services are grouped **[B8]**.
 
-**05. I gave her the words for the inquiry that is not about a birth.** The hardest part of a
-reposition is the first conversation in the new frame **[B9]**.
+**05. I put the new position in front of the people looking.** The posts and listings that
+carried it said the new thing in her own voice, so someone searching for care before or after a
+birth found her instead of a directory **[B15]**.
+
+**06. I rebuilt the path from question to booking.** One route from first message to booked
+consult, so an inquiry about care beyond the birth itself had somewhere to go, and the words for
+answering it were already written **[B9] [B18]**.
+
+**07. I set up her claims so the fees stopped.** I set up direct Medicaid and Medicare claims for
+her birth work **[B16]**. She kept thousands of dollars that would otherwise have gone to
+processing fees.
 
 ## What changed
 
-- Inquiries went from one to three a month to five to ten, from better-fit clients **[B14]**.
-- Organic bookings up 30%.
-- Inquiries stopped being one service and started arriving across her whole range.
-- She keeps running it. The language is hers now, not a document I left behind **[B11]**.
+- Bookings went from one to three a month to five to ten.
+- Requests started arriving across her whole range instead of one service.
+- Thousands of dollars that used to go to claims-processing fees now stay in her practice.
+- She keeps running it. The language and the booking path are hers now, not a document I left
+  behind **[B11]**.
 
 ## Why I know this world
 
@@ -87,12 +102,13 @@ of engagements like this one **[B12]**.
 ## Questions buyers ask
 
 **What does repositioning actually change?** What a stranger reads first, and what they think
-they can ask you for. Here it moved the inquiries from one service to a whole practice.
+they can ask you for. Here it moved the bookings from one service to a whole practice.
 
-**Does positioning work for a practice of one?** That is often where it moves quickest: there is no
-committee between the decision and the page.
+**Does positioning work for a practice of one?** That is often where it moves quickest: there is
+no committee between the decision and the page.
 
-**How long before bookings move?** Here, the new inquiries started inside the first few weeks of the new introduction and script [B13].
+**How long before bookings move?** Here, the new bookings started inside the first few weeks of the
+new introduction and booking path **[B13]**.
 
 ## If your buyers only ask for one of the things you do
 
@@ -102,27 +118,38 @@ The same method, at enterprise scale, is [the Guardicore story](/work/guardicore
 
 ---
 
-## Still open
+## Confirmed (no longer in question)
 
-| Tag | Detail | Why it is there |
-|---|---|---|
-| B1 | Your role was positioning only | Was there build, site or marketing work too? |
-| B2 | The four pieces of work listed | Cut anything you did not do |
-| B3 | Her page offered birth support only | The before state |
-| B4 | Years of training and practice in the wider care | Her standing |
-| B5 | You read her past inquiries and quotes | The evidence you worked from |
-| B6 | You talked to past clients, who described a person not a service | The turn in the story |
-| B7 | You named one arc of care rather than a longer menu | The actual positioning move |
-| B8 | You rewrote her introduction, first screen and service grouping | The deliverable |
-| B9 | You scripted the first conversation in the new frame | The unglamorous part that makes it stick |
-| B10 | Which channel "organic" means: search, referral, social | Optional detail |
-| B14 | Whether the one-to-three before was inquiries or bookings, and what "high quality" meant (message cut off) | Operator 2026-09-16 gave 1-3 a month before, 5-10 inquiries after |
-| B11 | She still runs it herself | Proof it held |
-| B12 | The line connecting this work to founding Ordani | True, and it links the two pages. Say if you would rather keep them apart |
-| B13 | How long before the bookings moved | The page needs a period for the 30% |
+2026-09-03: repositioned from birth support alone to the full arc of care; services never
+itemised. 2026-09-16: bookings (not inquiries) went from one to three a month to five to ten; the
+engagement covered positioning, her website, marketing and content, intake and booking setup, and
+direct Medicaid and Medicare claims that recovered thousands of dollars in processing fees; the
+claims vendor is never named.
 
-## Also needed
+**Retired in this draft:** "organic bookings up 30%". The operator gave 30% as a floor ("maybe
+more than 30") and then the booking pair, which is the stronger and more exact claim. The live
+/services receipt still says "Organic bookings up 30%"; the brief's sweep replaces it with the
+booking pair so the two surfaces agree.
 
-1. **Over what period the 30% was measured**, and against what baseline.
-2. Whether she is a **doula** or another kind of birth worker: the site says birth worker
-   everywhere, and I will keep that unless you say otherwise.
+## Still open (non-blocking)
+
+| Tag | Detail |
+|---|---|
+| B3 | Her page offered birth support only, before |
+| B4 | Years of training and practice in the wider care |
+| B5 | You read her past inquiries and quotes first |
+| B6 | Past clients described a person, not a service |
+| B7 | One named arc of care rather than a longer menu |
+| B8 | The website rebuild covered her introduction, first screen and service grouping |
+| B9 | The words for answering a non-birth inquiry were written for her |
+| B11 | She still runs it herself |
+| B12 | The line linking this work to founding Ordani |
+| B13 | New bookings started inside the first few weeks |
+| B15 | Posts and listings carried the position, and search found her instead of a directory |
+| B16 | The claims were set up so she could file directly, removing the processing fee |
+| B17 | A slice of each Medicaid or Medicare claim went to whoever processed it |
+| B18 | One route from first message to booked consult |
+
+**Identity note.** Medicaid reimbursement for birth work exists in some states and not others, so
+naming it narrows where she practises. The operator raised it himself; flag it at the ship-gate
+identity read rather than cut it now.
