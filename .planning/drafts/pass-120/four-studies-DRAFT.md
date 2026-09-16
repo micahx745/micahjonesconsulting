@@ -39,7 +39,8 @@ deals. Akamai acquired the company in 2021.
 - **My role:** revenue and positioning, 2018 to 2021
 - **The work:** customer research and data analysis, the repositioning, target accounts and
   outbound, executive briefings, managed-security partners, and a microsegmentation pilot
-- **Results:** $14M in revenue. $1.2M average enterprise deal. Acquired by Akamai in 2021.
+- **Results:** $14M in revenue, sourced and closed. $1.2M average enterprise deal. Acquired by
+  Akamai in 2021.
 
 ## Everyone was selling honeypots
 
@@ -73,7 +74,9 @@ analysis that showed where the message and the money disagreed.
 told the same story in the same sequence **[G3]**.
 
 **03. The pipeline.** I picked the target accounts, ran the outbound, briefed executives,
-qualified the leads, and sat in the deals.
+qualified the leads, and sat in the deals. Once leadership backed the new focus, I was selling
+microsegmentation before the product was finished **[G5]**. That is the part of positioning
+nobody puts in a deck: the story has to hold in a live deal while the roadmap catches up.
 
 **04. Managed-security partners.** I helped sign the managed-security and reseller partners who
 extended the platform's reach, and their reps carried the repositioned story the direct team
@@ -93,13 +96,12 @@ The two anchors held under a real network, with a real security team pushing on 
 
 ## Questions buyers ask
 
-**What is east-west traffic?** The traffic between machines inside your network, rather than in
-and out of it. Most security spending defended the edge, and attackers moved sideways once they
-were past it.
-
 **Why would positioning change revenue?** It changes which buyer takes the meeting and what they
-think they are solving. Here the pitch had been describing a feature while the contracts were
-being signed for an outcome.
+think they are solving. Here the pitch described a feature while the contracts were being signed
+for an outcome.
+
+[The glossary question, "what is east-west traffic", is cut per Fable: a crawler's question, not
+a buyer's. The body already explains it, and the blog is where that explanation belongs.]
 
 ## If enterprise teams still are not buying
 
@@ -199,120 +201,48 @@ team.
 
 ---
 
-# 3. Postmates (Uber)
+# 3. The record block, at the foot of /work
 
-**Buyer:** a company whose promise has grown wider than it can serve. Closes into Positioning &
-GTM.
+Replaces the Postmates and Neuton pages (Micah 2026-09-15: rows, "but definitely describe a bit
+for each one. those are good ones for potential tech and enterprise clients"). Both slugs 301 to
+`/work#record`. No CTA in the block, per Fable.
 
-**Search terms:** narrowing a product promise, marketplace positioning, on-demand delivery
-economics, product analyst market analysis.
+**Heading:** Also on the record
+**Line above the rows:** Four of the companies I worked inside reached an exit.
 
-**Title:** Postmates: narrowing a promise to deliver anything
-**Description:** Postmates promised to deliver everything. As an early product analyst I worked
-the market and fraud analysis behind narrowing that promise to its core offerings.
+Four rows, ordered by exit year. Each carries at most four data points (R11: company, role,
+years, what happened) plus one line of description.
 
-## Dek
+| Company | Role | Years | What happened |
+|---|---|---|---|
+| SurveyMonkey | Enterprise sales | to 2018 **[S1]** | IPO, 2018 |
+| Postmates | Product analyst | 2020 | Acquired by Uber, $2.65B |
+| Guardicore | Revenue and positioning | 2018 to 2021 | Acquired by Akamai |
+| Neuton.AI | Helped launch | 2020 | Technology acquired by Nordic Semiconductor, 2025 |
 
-Postmates promised to deliver anything. As a product analyst early on, I worked the market and
-fraud analysis that helped narrow that promise to its core offerings. Uber acquired Postmates in
-2020 for $2.65B.
+Descriptions, one line each:
 
-## At a glance
+- **SurveyMonkey.** $1M+ in enterprise sales into the accounts that carried the 2018 IPO
+  **[S2]**.
+- **Postmates.** Market and fraud analysis in the deliver-anything era, and the case for
+  narrowing the promise to the core offerings. A promise that covers everything cannot be
+  priced, policed or sold.
+- **Guardicore.** $14M in revenue, sourced and closed, after the research moved the pitch from
+  honeypots to east-west visibility. This row links to the study.
+- **Neuton.AI.** North American positioning for an AI product in 2020, years before anyone was
+  queuing to buy AI. I held no cap-table position.
 
-- **Client:** Postmates, acquired by Uber
-- **My role:** product analyst, 2020
-- **The work:** market analysis, fraud analysis, and the positioning case for a narrower promise
-- **Outcome:** the promise narrowed to core offerings. Uber acquired Postmates in 2020 for
-  $2.65B.
+**Ledger rules this block obeys.** The Neuton row never renders as a bare "Helped launch · 2025":
+the role and the 2020 sit in their own columns, and 2025 belongs to the acquisition. No causal
+line between the positioning work and either sale. The exit count sits directly above the rows
+that evidence it, the same shape /about uses.
 
-## A promise wide enough to break
+**Why this shape** (Fable, ruling 4, and Micah's answer): a page that cannot say what he did, for
+how long, or what changed says "I was near an exit" at hero scale. A row states the same fact at
+its true weight, and a reader who wants tech and enterprise pedigree gets all four in one glance.
 
-Postmates sold everything and promised to deliver everything. In the wide-open era of on-demand,
-that breadth was the pitch: name it, we will bring it **[P1]**.
-
-A promise that wide is expensive in ways that do not show up in the marketing. Every new category
-is its own operations problem, its own pricing problem, and its own support problem **[P2]**.
-
-That promise invited fraud.
-
-The positioning problem was the breadth itself. Postmates needed to stand for its core offerings,
-not for delivering anything at all.
-
-## What I did
-
-**01. Analysis.** I worked the market and fraud analysis across the wide-open model: which orders
-actually repeated, which categories carried the business, and where the promise cost more than it
-returned **[P3]**.
-
-**02. Positioning.** I helped make the case for cutting the promise back, and for standing on the
-core offerings rather than on breadth.
-
-## What changed
-
-The promise narrowed from delivering anything to a position built on core offerings. Uber
-acquired Postmates in 2020 for $2.65B. Postmates is one of four companies I worked inside that
-reached an exit.
-
-## If your promise is wider than your business
-
-A promise that covers everything cannot be priced, policed or sold **[P4]**. I run the analysis
-that shows which part of it is carrying the company, and the positioning that follows from it.
-
----
-
-# 4. Neuton.AI (Nordic Semiconductor)
-
-**Buyer:** a technical product entering a market that has no category for it yet. Closes into
-Positioning & GTM.
-
-**Search terms:** AI product positioning, entering the North American market, embedded AI go to
-market, launching an AI product before the boom.
-
-**Title:** Neuton.AI: positioning an AI product for US buyers
-**Description:** In 2020 I helped launch Neuton.AI in North America, positioning its product for
-buyers here. Nordic Semiconductor acquired the technology in 2025.
-
-## Dek
-
-I helped launch an AI company in North America in 2020, positioning its product for buyers here,
-years before anyone was queuing to buy AI. Nordic Semiconductor acquired the technology in 2025.
-The price was never disclosed.
-
-## At a glance
-
-- **Client:** Neuton.AI, technology acquired by Nordic Semiconductor
-- **My role:** helped launch, positioning for North America, 2020. Exit 2025.
-- **The work:** the North American position for the product, and the launch with that position in
-  place
-- **Outcome:** Nordic Semiconductor acquired the technology in 2025, price never disclosed. I
-  held no cap-table position.
-
-## Selling AI in 2020
-
-In 2020 "AI" was a word on every slide and a budget line at almost no company **[N1]**. A
-technical product arriving from outside the market had two problems at once: a buyer who had
-heard the claim before, and no category to file the product under **[N2]**.
-
-Neuton.AI was entering North America and needed its product positioned for buyers here.
-
-## What I did
-
-**01. The position.** I worked the North American position for the product: which buyer it was
-for, what it replaced, and the words the market already understood **[N3]**.
-
-**02. The launch.** I helped launch with that position in place, rather than translating a pitch
-written for another market **[N4]**.
-
-## What happened
-
-Nordic Semiconductor acquired Neuton.AI's technology in 2025. The price was never disclosed, and
-I held no cap-table position. Neuton.AI is one of four companies I worked inside that reached an
-exit.
-
-## If you are early in a market that has no name for you
-
-I run the interviews and the analysis that name the question your buyers are actually asking, and
-the positioning that follows. Being early is not the same as being understood.
+**Open:** **[S1]** the years he was at SurveyMonkey, and **[S2]** whether "$1M+ in enterprise
+sales toward the 2018 IPO" (the /services wording) is the line to reuse.
 
 ---
 
@@ -324,17 +254,17 @@ the positioning that follows. Being early is not the same as being understood.
 | G2 | Buyers wanted sight of east-west traffic, then the ability to cut it |
 | G3 | Every surface told the story in the same order, visibility then segmentation |
 | G4 | The pilot ran against a real network with the bank's own security team |
+| G5 | You were selling microsegmentation before the product was finished, once leadership backed the focus (your 2026-09-15 answer; wording mine) |
 | O1 | The FAQ answer about one person building a HIPAA product |
 | O2 | The FAQ answer about why an existing CRM does not fit |
-| P1 | "Name it, we will bring it" as the era's pitch |
-| P2 | Each new category is its own operations, pricing and support problem |
-| P3 | The analysis covered which orders repeated and which categories carried the business |
-| P4 | "A promise that covers everything cannot be priced, policed or sold" |
-| N1 | AI was on every slide and in almost no budget in 2020 |
-| N2 | Two problems: a sceptical buyer and no category |
-| N3 | The position named the buyer, what it replaced, and the market's own words |
-| N4 | The launch used the new position rather than a translated pitch |
+| S1 | The years at SurveyMonkey for its row |
+| S2 | Whether the /services wording, "$1M+ in enterprise sales toward the 2018 IPO", is the row's line |
 
-**Deliberately not written:** the Neuton product's technical shape (I know what Neuton is known
-for publicly, and the ledger carries none of it, so the draft says nothing about it); any fraud
-example on Postmates; any causal link between the positioning work and either acquisition.
+**Settled 2026-09-15:** $14M is sourced and closed. Postmates and Neuton are rows, not pages,
+in a record block that also carries SurveyMonkey and Guardicore, under the line "Four of the
+companies I worked inside reached an exit". The exit-count sentence comes off both studies. The
+glossary FAQ comes off Guardicore.
+
+**Deliberately not written:** the Neuton product's technical shape (the ledger carries none of
+it); any fraud example on Postmates; any causal link between the positioning work and either
+acquisition.
