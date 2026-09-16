@@ -359,6 +359,16 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   Each study keeps a date for sorting and structured data: the date the page was published,
   NEVER a tenure year. No year renders beside a role on any surface. Event years (IPO 2018, Uber
   2020, Akamai 2021, Nordic Semiconductor 2025) stay where they describe the company's event.
+- **PASS-120 BUILD ANSWERS — operator 2026-09-16**, by popup while the brief was assembled.
+  PUBLISH DATE: "The release date of the rewrite" for all five studies (the hidden publishedAt
+  that feeds datePublished is the release day, never a first-commit or tenure date). HARNESS:
+  "Yes, edit the hook" (premium-web mdx-frontmatter.sh may stop requiring role, tools, year).
+  ORDANI QUOTE: "Drop it" (the beta-user pull quote leaves the study). LCP for the hero clip:
+  "Field data, like Pass-119" (Speed Insights p75 on /work after release decides; lab numbers are
+  reported, and /work may not ship slower in the lab than production /work today). Left to the
+  judge and ruled in .claude/briefs/pass-120-work-page.md §1.2: the Guardicore band still is the
+  clip's frame 0; the clip crossfades back to frame 0 at its end; studies take an R2 exception at
+  56/18.
 - **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
   (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
   from fable". EXACT approved copy, one sentence, once, on /work only:
