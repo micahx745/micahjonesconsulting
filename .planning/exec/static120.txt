@@ -18,7 +18,7 @@ PASS C2: got 0
 PASS C3: got 5
 PASS C4: got 0
 PASS C5: got 0
-PASS C6: got 0 6 1
+PASS C6: got 0 5 1
 PASS C7: got 2 1 1
 PASS C8: got 0
 PASS C9: got title-card components/TitleCard.tsx,app/globals.css false false true true

@@ -217,7 +217,9 @@ body {
 }
 
 :root {
-  --grain-theater: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>"), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='2.4' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0 0.78 0 0 0 0.6 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  --grain-theater:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='2.4' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0 0.78 0 0 0 0.6 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
 }
 [data-mode="theater"]::before {
   /* Tier H — Two-layer film grain on theater (coarse + fine).
@@ -575,11 +577,15 @@ body {
   color: var(--color-foyer-ink-soft);
   border-top-color: var(--color-rule-foyer);
 }
-[data-mode="theater"]:has([data-surface="paper"]) [data-footer-root] .footer-email-link {
+[data-mode="theater"]:has([data-surface="paper"])
+  [data-footer-root]
+  .footer-email-link {
   color: var(--color-foyer-ink);
   text-decoration-color: var(--color-accent-copper);
 }
-[data-mode="theater"]:has(.cs[data-case="ordani"]) [data-footer-root] .footer-email-link {
+[data-mode="theater"]:has(.cs[data-case="ordani"])
+  [data-footer-root]
+  .footer-email-link {
   text-decoration-color: var(--color-ordani-sage);
 }
 .cs-band {
@@ -628,10 +634,10 @@ body {
   height: auto;
 }
 .cs-band__context {
-  font-family: var(--font-cw-mono);
+  font-family: var(--font-cw-body);
   font-size: var(--fs-label);
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
   line-height: 1.5;
   color: var(--cs-ink-soft);
   margin: 0 0 20px;
@@ -647,6 +653,9 @@ body {
 }
 .cs-title__line {
   display: block;
+}
+.cs-title__nb {
+  white-space: nowrap;
 }
 .cs-band__dek {
   font-family: var(--font-cw-body);
@@ -893,6 +902,9 @@ body {
     letter-spacing: 0.06em;
     color: var(--cs-ink-soft);
   }
+  .cs-exhibit tbody tr + tr td + td {
+    border-top: 0;
+  }
 }
 .cs-break {
   margin: 96px 0;
@@ -943,6 +955,10 @@ body {
   line-height: 1.5;
   color: var(--cs-ink-soft);
   margin: 0;
+}
+.cs-next__context {
+  font-family: var(--font-cw-body);
+  letter-spacing: 0;
 }
 .cs-next__label {
   margin-bottom: 16px;
@@ -1015,7 +1031,10 @@ body {
   stroke-dashoffset: 1;
   transition: stroke-dashoffset 1000ms cubic-bezier(0.22, 0.8, 0.28, 1); /* motion-ok: the PRE-EXISTING PullQuote underline-grow (D10), unchanged timing, re-scoped to the paper body in Pass-120 */
 }
-.cs-body .case-study-pull-quote[data-in-view="true"] .case-study-pull-quote__underline path {
+.cs-body
+  .case-study-pull-quote[data-in-view="true"]
+  .case-study-pull-quote__underline
+  path {
   stroke-dashoffset: 0;
 }
 .cs-body .case-study-pull-quote__attribution {
@@ -1032,7 +1051,9 @@ body {
     stroke-dashoffset: 0 !important;
   }
 }
-.cw-area { scroll-margin-top: 96px; }
+.cw-area {
+  scroll-margin-top: 96px;
+}
 /* END PASS-120 STUDY TEMPLATE */
 
 /* ============================================================

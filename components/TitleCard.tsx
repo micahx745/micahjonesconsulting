@@ -20,7 +20,18 @@ export function TitleCard({ title, lines }: TitleCardProps) {
       {lines.map((line, i) => (
         <Fragment key={`${i}-${line}`}>
           {i > 0 ? " " : null}
-          <span className="cs-title__line">{line}</span>
+          <span className="cs-title__line">
+            {line.split(" ").map((word, j) => (
+              <Fragment key={`${j}-${word}`}>
+                {j > 0 ? " " : null}
+                {word.includes("-") ? (
+                  <span className="cs-title__nb">{word}</span>
+                ) : (
+                  word
+                )}
+              </Fragment>
+            ))}
+          </span>
         </Fragment>
       ))}
     </h1>

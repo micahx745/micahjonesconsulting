@@ -31,11 +31,14 @@ chk C2 0 "$(grep -nE '"gsap|@gsap/|ScrollTrigger|PIN_DISTANCE_PX|useLenis|useGSA
 chk C3 5 "$(ls components/TitleCardComposition.tsx components/CaseStudySidebar.tsx components/CaseStudyStill.tsx components/Dek.tsx components/CopperRule.tsx 2>&1 | grep -c "No such file")"
 chk C4 0 "$(grep -rlE "CaseStudyStill|CaseStudySidebar|TitleCardComposition|titleCardWords|PIN_DISTANCE_PX|components/Dek|CopperRule|pin: true" app components lib mdx-components.tsx | wc -l | tr -d ' ')"
 chk C5 0 "$(grep -cE 'data-title-card|\.title-card|data-tc-|\.case-study__|\.case-study-(dek|still|copper-rule)|\.case-study \{' app/globals.css)"
-chk C6 "0 6 1" "$(grep -c 'data-mode="theater"\] \.case-study-pull-quote' app/globals.css) $(grep -c '^\.cs-body \.case-study-pull-quote' app/globals.css) $(grep -c '^  \.cs-body \.case-study-pull-quote__underline path {$' app/globals.css)"
+# C6 and C10 follow prettier's formatting (judge F4, .planning/reviews/FABLE-120-FIRST-PREVIEW.md):
+# old C6 "0 6 1" -> "0 5 1" (the data-in-view underline selector now wraps, starting `.cs-body` alone);
+# old C10 literal `^\.cw-area { scroll-margin-top: 96px; }$` -> the three-line rule, matched by -A1.
+chk C6 "0 5 1" "$(grep -c 'data-mode="theater"\] \.case-study-pull-quote' app/globals.css) $(grep -c '^\.cs-body \.case-study-pull-quote' app/globals.css) $(grep -c '^  \.cs-body \.case-study-pull-quote__underline path {$' app/globals.css)"
 chk C7 "2 1 1" "$(grep -c "cs-settle" app/globals.css) $(grep -c "(prefers-reduced-motion: no-preference) and (scripting: enabled)" app/globals.css) $(awk '/PASS-120 STUDY TEMPLATE \(Direction B/,/END PASS-120 STUDY TEMPLATE/' app/globals.css | grep -c "animation:")"
 chk C8 0 "$(git diff "$(cat .planning/exec/p120-base.txt)" -- app/globals.css components/view-transition-link.tsx | grep -cE '^[-+][^-+].*(duration-mode-fade|view-transition-(old|new|group)|startViewTransition)')"
 chk C9 "title-card components/TitleCard.tsx,app/globals.css false false true true" "$(node -e "const m=require('./.claude/brand.json').motion;console.log(m.signature.id,m.signature.files.join(','),/Inter Display/.test(JSON.stringify(m)),/600ms ease-in-out/.test(JSON.stringify(m)),m.view_transition.description.startsWith('900ms ease-in-out'),m.signature.description.includes('settles in once when the study page renders'))")"
-chk C10 "1 1" "$(grep -c 'id={service.slug}' "app/(foyer)/services/page.tsx") $(grep -c '^\.cw-area { scroll-margin-top: 96px; }$' app/globals.css)"
+chk C10 "1 1" "$(grep -c 'id={service.slug}' "app/(foyer)/services/page.tsx") $(grep -A1 '^\.cw-area {$' app/globals.css | grep -c '^  scroll-margin-top: 96px;$')"
 chk C11 0 "$(grep -nE "figcaption|caption" components/study/StudyBlocks.tsx | wc -l | tr -d ' ')"
 chk C12 "0 5" "$(grep -cE "TitleCard|Dek|CaseStudyStill|CopperRule" mdx-components.tsx) $(grep -cE "^    (Step|Exhibit|ExhibitRow|ChapterBreak|PullQuote),$" mdx-components.tsx)"
 chk C13 1 "$(grep -c 'var(--cs-accent, var(--color-accent-copper))' components/PullQuote.tsx)"

@@ -1,0 +1,13 @@
+== F5 W1i (judge): poster vs webm frame 48, want All: < 0.98
+extract rc=0
+All:0.891149
+== O6 end-state (want >= 0.97)
+All:0.992693
+== W1a/W1b (judge: want 98)
+h264,High,720,900,yuv420p,40,98
+vp9,720,900,98
+ 49655 public/media/guardicore-band-960.jpg
+210176 public/media/work-hero-720.mp4
+115333 public/media/work-hero-720.webm
+ 13412 public/media/work-hero-poster-960.avif
+388576 total
