@@ -14,7 +14,7 @@ if (!url || !slug) {
 }
 const require2 = createRequire("C:/tmp/p101tools/package.json");
 const puppeteer = require2("puppeteer-core");
-const OUT = `C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/qa/pass-120/refs/${slug}`;
+const OUT = `${process.argv[4] || "C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/qa/pass-120/refs"}/${slug}`;
 mkdirSync(OUT, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
