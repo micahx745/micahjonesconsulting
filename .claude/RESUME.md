@@ -12,27 +12,19 @@ Pass-118 fallbacks live. Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC.
 He must PULL the main checkout (hooks read its brand.json).
 
 ## NOW: Pass-120 = /work + the studies. DIRECT, no site edits yet
-Goals: every story compelling + SEO (blog next), amp the unnamed jobs, one
-design. Method: I dramatize, he confirms; only confirmed tags reach
-content/ (LESSONS #2). Seven drafts in .planning/drafts/pass-120/.
-TWO CLIENTS (ledger + gate): RFP = award-winning author/leadership
-consultant for gov+corps; content = a social activist; never "anti
-racism". DRIFT TO SWEEP before either ships: LESSONS #3 old row still
-reads "same person", /services says "an industry author" twice, /work
-metadata says "36x reach for an author".
-FABLE RULING (.planning/reviews/FABLE-120-RECORD.md): the record proves
-ONE method (find what buyers pay for, then build what sells it); order
-Guardicore, RFP, Ordani, content, birth worker; Postmates + Neuton become
-rows at /work#record with 301s; KILL "one of four companies I worked
-inside that reached an exit"; demote 36x and "award-winning"; RFP needs
-step 00 (the repositioning); FAQ only where a buyer asked it.
-ASTRA on all seven DIED (quota); partials: .planning/exec/astra120all.log.
-09-15/16 rulings in ledger #3: $20M = mix ("$20M+ in revenue behind my
-work"); 290K/36x unverified -> up to 800,000 impressions/month, no
-multiplier; NO personal years anywhere; Ordani no counts; birth worker 1-3
-to 5-10 a month. Live sweep inventory in chat 09-15 (A-D, 9+ surfaces).
-NOW: Fable craft pass (Astra stand-in) -> .planning/reviews/FABLE-120-CRAFT.md;
-then brief pass-120 (studies + sweep), then design.
+Goals: stories that sell + SEO (blog next), amp unnamed jobs, one design.
+I dramatize, he confirms; only confirmed tags reach content/ (LESSONS #2).
+Drafts: .planning/drafts/pass-120/ (rfp-engine, content-engine,
+birth-worker, four-studies = Guardicore + ORDANI + record block of 4 exits).
+Rulings 09-15/16 all in ledger #3: two clients; $20M = "$20M+ in revenue
+behind my work"; 290K/36x retired -> up to 800,000 impressions/month, no
+multiplier; NO personal years; Ordani no counts; birth worker 1-3 -> 5-10
+a month; Postmates + Neuton = rows; $14M "sourced and closed"; method is a
+connective line, studies keep own closes. Fable record ruling:
+.planning/reviews/FABLE-120-RECORD.md. Astra all-seven leg DIED (quota).
+IN FLIGHT: workflow wf_1f2ccb94-5ae (5 Sonnet checkers -> 1 Fable judge ->
+critic) writes .planning/reviews/FABLE-120-CRAFT.md incl. live-drift table.
+NEXT: apply confirmed fixes, then brief pass-120 (studies + live sweep).
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services
 (<2.5s closes it). Patch .planning/qa/pass-119, brief §11.
