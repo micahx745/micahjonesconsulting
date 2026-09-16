@@ -306,6 +306,14 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   ledger row permitted inside the case study ("fourteen practitioners", "eight active every
   week, six had referred a peer"). The 22 pre-build interviews are research, not users, and
   remain publishable pending his confirmation.
+- **BIRTH WORKER VOLUME — operator 2026-09-16**, verbatim: "Organic bookings grew maybe more
+  than 30. She would average 1-3 a month and now she gets 5-10 inquiries. C oming from high
+  quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on
+  /services. NEW publishable pair: one to three a month before, five to ten inquiries a month
+  after, from higher-quality sources. OPEN: whether the "1-3 a month" was inquiries or bookings
+  (the sentence mixes them), the period, and the end of "high quality". Never a multiplier from
+  this pair (his standing objection to multipliers on a small base, 2026-09-15). Her services are
+  still never itemised.
 - **TWO CLIENTS, NOT ONE — operator 2026-09-15**, verbatim: "well i want to split it up since
   its two separate contracts. the content one will be a social acitivit (do not want to say anti
   racism) and the other one can stay with a award winning author/ Leadership consultant also for

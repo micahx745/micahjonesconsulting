@@ -1,11 +1,11 @@
-# RESUME — micahjonesconsulting (2026-09-15)
+# RESUME — micahjonesconsulting (2026-09-16)
 
 ## READ FIRST
 LIVE evolves on `design/live-evolve` (worktree p106-live). Build
-`npx next build --webpack`. ROUTING: conserve THIS account; ChatGPT bucket
-(Astra + Sol) EMPTY until 2026-09-19 12:17, so GLM (z.ai) is the executor
-and juror substitute. Detached executors hang at next build: run chains in
-the main session's background.
+`npx next build --webpack`. ROUTING: conserve THIS account. ChatGPT (Astra +
+Sol) EMPTY till 2026-09-19 12:17. HIS RULE 09-16: "Things that would
+require astra use fable", not overused: one Fable look per gate. Detached
+executors hang at next build: run chains in main-session background.
 
 ## LIVE: main = c2ffb36, dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23 BOTH domains
 Pass-118 fallbacks live. Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC.
@@ -26,11 +26,13 @@ Guardicore, RFP, Ordani, content, birth worker; Postmates + Neuton become
 rows at /work#record with 301s; KILL "one of four companies I worked
 inside that reached an exit"; demote 36x and "award-winning"; RFP needs
 step 00 (the repositioning); FAQ only where a buyer asked it.
-ASTRA on all seven DIED (quota); partials in .planning/exec/astra120all.log:
-content engine undersells the build, birth worker reads as copywriting,
-Ordani's blanket claims about practitioners and rival tools.
-NEXT: his answers to the 4 popup rulings + the fact questions, then GLM
-craft pass, then the brief, then design.
+ASTRA on all seven DIED (quota); partials: .planning/exec/astra120all.log.
+09-15/16 rulings in ledger #3: $20M = mix ("$20M+ in revenue behind my
+work"); 290K/36x unverified -> up to 800,000 impressions/month, no
+multiplier; NO personal years anywhere; Ordani no counts; birth worker 1-3
+to 5-10 a month. Live sweep inventory in chat 09-15 (A-D, 9+ surfaces).
+NOW: Fable craft pass (Astra stand-in) -> .planning/reviews/FABLE-120-CRAFT.md;
+then brief pass-120 (studies + sweep), then design.
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services
 (<2.5s closes it). Patch .planning/qa/pass-119, brief §11.

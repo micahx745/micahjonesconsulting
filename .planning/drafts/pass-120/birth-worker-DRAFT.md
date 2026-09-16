@@ -22,15 +22,16 @@ connected, so no volume data sits behind this list.
 
 ## Search title and description
 
-- **Title:** Repositioning a birth worker: bookings up 30%
+- **Title:** Repositioning a birth worker's practice
 - **Description:** Her clients booked one service out of everything she could do. I repositioned
-  the practice around the full arc of care. Organic bookings rose 30%.
+  the practice around the full arc of care. Inquiries went from one to three a month to five to ten.
 
 ## Dek
 
 Every inquiry asked her for the same thing, and it was one service out of everything she could
 do. I repositioned the practice from birth support alone to the full arc of care around it.
-Organic bookings rose 30%, and inquiries started arriving across her whole range.
+Inquiries went from one to three a month to five to ten, from better-fit clients, and they started
+arriving across her whole range.
 
 ## At a glance
 
@@ -38,7 +39,8 @@ Organic bookings rose 30%, and inquiries started arriving across her whole range
 - **My role:** positioning **[B1]**
 - **The work:** reading her own inquiries, talking to past clients, naming the range, and
   rewriting the surfaces a stranger reads first **[B2]**
-- **Results:** organic bookings up 30%. Inquiries moved from one service to her whole range.
+- **Results:** inquiries from one to three a month to five to ten. Organic bookings up more than
+  30%. Requests across her whole range instead of one service.
 
 ## Her practice was bigger than her booking form
 
@@ -72,7 +74,8 @@ reposition is the first conversation in the new frame **[B9]**.
 
 ## What changed
 
-- Organic bookings rose 30% **[B10]**.
+- Inquiries went from one to three a month to five to ten, from better-fit clients **[B14]**.
+- Organic bookings rose by more than 30%.
 - Inquiries stopped being one service and started arriving across her whole range.
 - She keeps running it. The language is hers now, not a document I left behind **[B11]**.
 
@@ -118,7 +121,8 @@ copy fix.]
 | B7 | You named one arc of care rather than a longer menu | The actual positioning move |
 | B8 | You rewrote her introduction, first screen and service grouping | The deliverable |
 | B9 | You scripted the first conversation in the new frame | The unglamorous part that makes it stick |
-| B10 | 30% is organic bookings: search, referral, social, or all three | The ledger says organic; say which channel |
+| B10 | Which channel "organic" means: search, referral, social | Optional detail |
+| B14 | Whether the one-to-three before was inquiries or bookings, and what "high quality" meant (message cut off) | Operator 2026-09-16 gave 1-3 a month before, 5-10 inquiries after |
 | B11 | She still runs it herself | Proof it held |
 | B12 | The line connecting this work to founding Ordani | True, and it links the two pages. Say if you would rather keep them apart |
 | B13 | How long before the bookings moved | The page needs a period for the 30% |
@@ -126,6 +130,5 @@ copy fix.]
 ## Also needed
 
 1. **Over what period the 30% was measured**, and against what baseline.
-2. **When the engagement ran** (a year for the frontmatter).
-3. Whether she is a **doula** or another kind of birth worker: the site says birth worker
+2. Whether she is a **doula** or another kind of birth worker: the site says birth worker
    everywhere, and I will keep that unless you say otherwise.
