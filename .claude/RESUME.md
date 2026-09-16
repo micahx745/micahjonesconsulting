@@ -2,49 +2,45 @@
 
 ## READ FIRST
 LIVE evolves on `design/live-evolve` (worktree p106-live). Build
-`npx next build --webpack`. ROUTING: conserve THIS account. Sol writes code
-and scripts (no npx); Astra judges gates; Opus rules. Detached executors
-hang at next build: run chains in the main session's background.
+`npx next build --webpack`. ROUTING: conserve THIS account; ChatGPT bucket
+(Astra + Sol) EMPTY until 2026-09-19 12:17, so GLM (z.ai) is the executor
+and juror substitute. Detached executors hang at next build: run chains in
+the main session's background.
 
 ## LIVE: main = c2ffb36, dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23 BOTH domains
-Pass-118 fallbacks live. Revert: Vercel promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC.
-Operator must PULL the main checkout (hooks read its brand.json).
+Pass-118 fallbacks live. Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC.
+He must PULL the main checkout (hooks read its brand.json).
 
-## NOW: Pass-120 = /work + all six study pages. DIRECT, no site edits yet
-His goals: every story compelling + great SEO (blog page next); amp the
-unnamed jobs; one design for index and studies. Rulings 09-15: each study
-serves its own buyer; he narrates, no docs (type-led, no stills); I
-dramatize, he confirms; ONLY confirmed tags reach content/ (LESSONS #2).
-TWO CLIENTS, not one (ledger #3 + gate): RFP = award-winning author and
-leadership consultant for gov/corps; content engine = a social activist;
-never "anti racism"; the "same engagement" lines are FALSE, they come out.
-Drafts v2 in .planning/drafts/pass-120/: rfp-engine (walkthrough + replay
-confirmed; $3M = signed, 1-in-8 to 1-in-4, day 3, 11 awards, 300+ pieces,
-20 yrs, 8-10/mo now), content-engine (open-source video tool EXTENDED,
-never named; one video to video+blog+marketing flow; one income stream
-became four; no failure story, no single-piece callout), birth-worker
-(new study, tags B1-B13). Closes match the /services block that carries
-each study. ASTRA on RFP v1: REVISE, applied (.planning/reviews). ASTRA
-ON ALL SEVEN DIED: ChatGPT quota exhausted until 2026-09-19 12:17, no
-output file; partials in .planning/exec/astra120all.log. Codex/Sol both
-out till then; substitute juror = GLM (z.ai) + Opus.
-FINDING for him: Positioning & GTM's pain line is enterprise-only, so a
-practitioner clicking from the birth-worker study lands wrong.
-Next: his open tags, then the four other studies, then design.
+## NOW: Pass-120 = /work + the studies. DIRECT, no site edits yet
+Goals: every story compelling + SEO (blog next), amp the unnamed jobs, one
+design. Method: I dramatize, he confirms; only confirmed tags reach
+content/ (LESSONS #2). Seven drafts in .planning/drafts/pass-120/.
+TWO CLIENTS (ledger + gate): RFP = award-winning author/leadership
+consultant for gov+corps; content = a social activist; never "anti
+racism". DRIFT TO SWEEP before either ships: LESSONS #3 old row still
+reads "same person", /services says "an industry author" twice, /work
+metadata says "36x reach for an author".
+FABLE RULING (.planning/reviews/FABLE-120-RECORD.md): the record proves
+ONE method (find what buyers pay for, then build what sells it); order
+Guardicore, RFP, Ordani, content, birth worker; Postmates + Neuton become
+rows at /work#record with 301s; KILL "one of four companies I worked
+inside that reached an exit"; demote 36x and "award-winning"; RFP needs
+step 00 (the repositioning); FAQ only where a buyer asked it.
+ASTRA on all seven DIED (quota); partials in .planning/exec/astra120all.log:
+content engine undersells the build, birth worker reads as copywriting,
+Ordani's blanket claims about practitioners and rival tools.
+NEXT: his answers to the 4 popup rulings + the fact questions, then GLM
+craft pass, then the brief, then design.
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services
 (<2.5s closes it). Patch .planning/qa/pass-119, brief §11.
 
-## Open (mine)
-Stand-in glyphs mixed case in headless captures: real-browser check.
-117 §8: mono links home/404, spring CTA on home hero.
-
 ## Waiting on operator
-/work tags + rulings · Speed Insights p75 · Ordani screens · Stripe
-playbook-99 off + Audit copy · 500 dollar live test · A4/S3 · §9a.
+/work rulings + tags · Speed Insights p75 · Ordani screens · Stripe
+playbook-99 off + Audit copy · 500 dollar test · A4/S3 · §9a.
 
 ## Traps
-ChatGPT bucket empty till 09-19 · push to main deploys · pathspec commits (#23) · never reinterpret an expect
-(#25) · measure the render (#26) · scope gates from layout (#28) · lab CLS
-counts hadRecentInput (#29) · never build while serving · gate steps on probe
-exit codes · MSYS_NO_PATHCONV=1 · hooks read the MAIN brand.json.
+ChatGPT empty till 09-19 · push to main deploys · pathspec commits (#23) ·
+never reinterpret an expect (#25) · measure the render (#26) · scope gates
+from the layout (#28) · never build while serving · MSYS_NO_PATHCONV=1 ·
+hooks read the MAIN brand.json.

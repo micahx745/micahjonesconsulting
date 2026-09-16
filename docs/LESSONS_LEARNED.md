@@ -109,7 +109,9 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   new operator instruction.
   INDUSTRY AUTHOR: repositioned toward the buyers who award contracts; the $3M already
   ledgered is the result that followed. Same person as the RFP-engine and content-engine
-  studies. **The operator named them in conversation on 2026-09-03; the site anonymises them
+  studies. **SUPERSEDED 2026-09-15: they are TWO DIFFERENT CLIENTS — see the TWO CLIENTS,
+  NOT ONE row below. The $3M and the repositioning belong to the RFP client; the reach
+  figures belong to the content-engine client.** **The operator named them in conversation on 2026-09-03; the site anonymises them
   and must continue to.** Never publish the name or anything that resolves to it.
 - Content engine **EIGHT platforms, not seven — operator 2026-09-03: "We did ship on
   YouTube"**. LinkedIn, YouTube, Facebook, Instagram, TikTok, X, Threads, Bluesky. This
