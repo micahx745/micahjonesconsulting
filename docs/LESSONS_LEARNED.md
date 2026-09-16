@@ -1243,3 +1243,24 @@ leg launches. RESUME is state, not the ledger.
 **The gate.** A standing check before any review or executor leg: every operator answer since the
 last ledger commit is in #3 (the RESUME trap line "ledger every answer before a leg launches").
 On recurrence: a pre-launch script that diffs the RESUME rulings block against #3's dated rows.
+
+## #33 — A sweep for a retired figure that only searched its numerals missed the spoken version (2026-09-16)
+
+**What happened.** On 2026-09-03 the operator retired the $80M Guardicore pipeline figure from every
+public surface, and the ledger recorded the sweep as done: "Swept 2026-09-03 to zero rendered
+instances". Thirteen days later the Pass-120 build-surface map found
+`aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"`
+on the home ledger's Guardicore row (`app/(foyer)/page.tsx:340`), live on both production domains.
+Sighted visitors never saw it; every screen-reader visitor heard it.
+
+**Root cause.** The sweep grepped for the figure as it is written on screen ("$80M"). Accessible
+names are written for the ear, so the same claim appeared in words, and no pattern matched it. The
+retired-phrases gate never carried the figure at all, so nothing caught it at build.
+
+**The rule.** A retired figure is swept and gated in every spelling a surface can carry it: numerals,
+words, and the accessible-name forms (aria-label, alt, title, sr-only text), and a sweep is not
+recorded as done until each form has been grepped.
+
+**The gate.** `scripts/retired-phrases-gate.mjs` now blocks "$80M" and "80 million" in the rendered
+tree, and the aria-label reads "14 million dollars in revenue, acquired by Akamai" to match what is
+on screen. On recurrence: the gate derives the spelled-out form of every dollar figure it carries.

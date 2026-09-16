@@ -148,6 +148,11 @@ const PHRASES = [
   // context, "please dont mention private vendors". Both capitalisations.
   "Stedi",
   "stedi",
+  // LESSONS #33 (2026-09-16): the Guardicore pipeline figure was retired from
+  // every public surface on 2026-09-03, and an aria-label on the home ledger
+  // still read it aloud, spelled out, until 2026-09-16. Numerals and words.
+  "$80M",
+  "80 million",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);

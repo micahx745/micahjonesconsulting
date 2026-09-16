@@ -337,7 +337,7 @@ export default function ColorWorldsHome() {
                   </span>
                   <span
                     className="cw-lrow__out"
-                    aria-label="80 million dollars in pipeline on 14 million dollars in revenue, acquired by Akamai"
+                    aria-label="14 million dollars in revenue, acquired by Akamai"
                   >
                     <strong>$14M in revenue</strong> ·{" "}
                     <strong>acquired by Akamai</strong>
