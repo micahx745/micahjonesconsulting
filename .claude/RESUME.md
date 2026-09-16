@@ -22,9 +22,14 @@ repositioned, reach beyond network). Reviews: .planning/reviews/
 FABLE-120-RECORD.md + FABLE-120-CRAFT.md (live-drift table).
 HIS 09-16: "Ship everything together": studies + live sweep + design in ONE
 release; the corrected claims stay live until then (his call).
-IN FLIGHT: capture120b (live guardicore + rfp-engine at 390/1440).
-NEXT: design DISCUSS lock (reference class, admired sites, anti-patterns)
--> reference research workflow -> direction -> brief pass-120 -> execute.
+DESIGN DISCUSS 09-16: research ALL four classes (studios' case-study pages,
+live sites studios built, editorial long-form, solo consultants); I pick
+the set; dark vs light decided after research; he wants his Tel Aviv VIDEO
+as the /work hero = Downloads/a-man-sits-at-a-table-and-talks--his-head-
+tilts-sl.mp4 (AI image-to-video of the real photo: R12 AI-imagery + R15 loop
++ colleague-consent questions, raise with him). TitleCard fate: open.
+IN FLIGHT: design research workflow (capture: .planning/exec/ref-capture120
+.mjs, contact120.mjs; out .planning/qa/pass-120/refs/, FABLE-120-DESIGN.md).
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services.
 
