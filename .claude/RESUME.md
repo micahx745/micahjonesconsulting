@@ -34,7 +34,7 @@ NEXT: apply confirmed fixes, then brief pass-120 (studies + live sweep).
 playbook-99 off + Audit copy · 500 dollar test · A4/S3 · §9a.
 
 ## Traps
-ChatGPT empty till 09-19 · push to main deploys · pathspec commits (#23) ·
+LEDGER EVERY OPERATOR ANSWER BEFORE A LEG LAUNCHES (#32) · ChatGPT empty till 09-19 · push to main deploys · pathspec commits (#23) ·
 never reinterpret an expect (#25) · measure the render (#26) · scope gates
 from the layout (#28) · never build while serving · MSYS_NO_PATHCONV=1 ·
 hooks read the MAIN brand.json.

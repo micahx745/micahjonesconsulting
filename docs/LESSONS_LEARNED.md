@@ -283,7 +283,9 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   OPEN-ENDED"), which is live on /about, the home ledger row, the JSON-LD in `app/layout.tsx`
   and `llms.txt`. The FIGURE stands. The ATTRIBUTION does not: it spans employed work and
   consulting. NEVER: "consulting revenue" attached to the $20M, or a since-2013 consulting
-  practice claim. Replacement wording is an open operator decision (asked 2026-09-15).
+  practice claim. WORDING ANSWERED 2026-09-15 (his pick, verbatim): **"$20M+ in revenue behind
+  my work"**. (Recorded here late, on 2026-09-16, after the Fable craft gate listed it as open;
+  see LESSONS #32.)
 - **THE 290K REACH FIGURE IS UNVERIFIED — operator 2026-09-15**, verbatim: "Technically it got
   up to 800,000 impressions. That 290 numner not sure where that came from, maybe from one of
   the vids view count." The 8,000 to 290,000 claim and the derived "36×" are LIVE on
@@ -306,6 +308,18 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   ledger row permitted inside the case study ("fourteen practitioners", "eight active every
   week, six had referred a peer"). The 22 pre-build interviews are research, not users, and
   remain publishable pending his confirmation.
+- **THE RFP CLIENT WAS NOT REPOSITIONED — operator 2026-09-15**, answering what changed in who
+  the author sold to, verbatim: "Nothing really. THey were selling to similar/same folks. It just
+  tthose contracts were award via friends. This helps with opps outside of california and ones not
+  connected to existing network. but i dont want to say that, its unprofessional to say on a site
+  that someone built a business of their friends." This UNDERCUTS the 2026-09-03 row above
+  ("INDUSTRY AUTHOR: repositioned toward the buyers who award contracts") and the live /services
+  receipt that repeats it. The true value of the RFP engine is REACH BEYOND THE EXISTING NETWORK:
+  opportunities from buyers who did not already know the client, including outside their home
+  state. NEVER: that contracts came through friends, or any framing that the business was built
+  on friendships; never "California" (identity). The /services "repositioned toward the buyers
+  who award contracts" line is an OPEN operator decision (asked 2026-09-16): keep, soften, or cut.
+  Fable's craft fix #6 (a "00. The reposition" step) is REJECTED on this entry.
 - **BIRTH WORKER VOLUME — operator 2026-09-16**, verbatim: "Organic bookings grew maybe more
   than 30. She would average 1-3 a month and now she gets 5-10 inquiries. C oming from high
   quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on
@@ -1144,3 +1158,24 @@ before any `/path` value, including environment variables. A step that reads a p
 only when that probe exited 0.
 
 **The gate.** The three trap lines in `.claude/RESUME.md`, and the route chain's `rc` check.
+
+## #32 — An operator answer that lives only in chat gets reviewed against (2026-09-16)
+
+**What happened.** On 2026-09-15 the operator answered two questions in chat: the $20M wording
+("$20M+ in revenue behind my work") and what changed in who the RFP client sold to ("Nothing
+really... selling to similar/same folks"). The session recorded the first in RESUME only and the
+second nowhere. The next day's Fable craft gate read the ledger, found the $20M "open", and wrote
+fix #6 adding a repositioning step the operator had said did not happen. Caught by the main
+session checking the fix-list's premises against the chat before applying it. Nothing shipped.
+
+**Root cause.** Reviewers read files, not the conversation. An answer that is not in a file does
+not exist for them, and a reviewer that cannot see it will rebuild the old claim from the nearest
+live copy.
+
+**The rule.** Every operator answer that settles a fact, a wording or a claim is written into
+LESSONS #3 in the same turn it is given, with the verbatim quote, before any review, brief or edit
+leg launches. RESUME is state, not the ledger.
+
+**The gate.** A standing check before any review or executor leg: every operator answer since the
+last ledger commit is in #3 (the RESUME trap line "ledger every answer before a leg launches").
+On recurrence: a pre-launch script that diffs the RESUME rulings block against #3's dated rows.
