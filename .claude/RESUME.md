@@ -22,9 +22,13 @@ multiplier; NO personal years; Ordani no counts; birth worker 1-3 -> 5-10
 a month; Postmates + Neuton = rows; $14M "sourced and closed"; method is a
 connective line, studies keep own closes. Fable record ruling:
 .planning/reviews/FABLE-120-RECORD.md. Astra all-seven leg DIED (quota).
-IN FLIGHT: workflow wf_1f2ccb94-5ae (5 Sonnet checkers -> 1 Fable judge ->
-critic) writes .planning/reviews/FABLE-120-CRAFT.md incl. live-drift table.
-NEXT: apply confirmed fixes, then brief pass-120 (studies + live sweep).
+GATE DONE: .planning/reviews/FABLE-120-CRAFT.md (all 6 units REVISE, no
+rebuild; 25 fixes + live-drift table). Fixes applied + verified (472b8fd);
+fix 6 REJECTED (client not repositioned, #3). ORDANI problem redone: six
+tools, not a hack (O4-O8 await him); the live "hacked" line is FALSE.
+NEXT: his check of ORDANI O4-O8 + birth worker B1/B13/B14 + year handling;
+then brief pass-120 = studies + live sweep (Fable table + /services RFP
+line + ordani.mdx hacked line), then design.
 
 ## Pass-119 LCP PARKED: waits on his Speed Insights p75 for / and /services
 (<2.5s closes it). Patch .planning/qa/pass-119, brief §11.
