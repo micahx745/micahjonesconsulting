@@ -171,8 +171,5 @@ multi-million-dollar RFP work in enterprise cybersecurity procurement. The clien
 | ?7 | A person approves every response, nothing auto-submits | Trust |
 | ?8 | First drafts in hours instead of days | Needs a real comparison or it goes |
 | ?9 | Eligibility, pricing and submission checks stayed human | Astra's request: say what stayed human |
-| ?W1 | The requirement is proof of similar work in the last five years | The walkthrough's setup |
-| ?W2 | It matched two engagements, with dates and outcomes | The walkthrough's body |
-| ?W3 | The same RFP wanted a credential they did not hold | The gap |
-| ?W4 | The draft marked the gap and named what was missing | The payoff |
+| W1-W4 | CONFIRMED 2026-09-15: the walkthrough stands as written | |
 | ?10 | CLOSED: the close now uses the AI engineering block's own promises | |
