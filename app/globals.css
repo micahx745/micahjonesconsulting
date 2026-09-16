@@ -216,13 +216,14 @@ body {
   pointer-events: none;
 }
 
+:root {
+  --grain-theater: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>"), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='2.4' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0 0.78 0 0 0 0.6 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+}
 [data-mode="theater"]::before {
   /* Tier H — Two-layer film grain on theater (coarse + fine).
    * Plus a slow-drifting warm spotlight on ::after below. The result
    * is "cinema projection" not "flat black." */
-  background-image:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.90 0 0 0 0 0.86 0 0 0 0.8 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>"),
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='2.4' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.82 0 0 0 0 0.78 0 0 0 0.6 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  background-image: var(--grain-theater);
   background-size:
     120px 120px,
     180px 180px;
@@ -450,189 +451,8 @@ body {
 }
 
 /* ============================================================
- * TITLE CARD — Phase 5 (MOT-03 visual structure + MOT-06 mobile reflow)
- *
- * The vertical word stack is the signature element. Inter Display 700
- * (weight imported in lib/fonts.ts), 96px desktop / 64px mobile,
- * negative letter-spacing for tight stack rhythm.
- *
- * The caption uses Source Serif 4 italic at 22px (foyer caption rhythm
- * carried into theater). The hero slot is a responsive box.
- *
- * Initial visibility is controlled by inline `style={{opacity: ...}}` in
- * TitleCardComposition; GSAP overrides on mount in TitleCard. This file
- * only carries TYPOGRAPHY + LAYOUT, not motion state.
- *
- * The data-title-card scope ensures multiple TitleCards on the same page
- * (Phase 6 Work index) don't share state.
- *
- * Source: blueprint §4f; REQUIREMENTS.md MOT-03, MOT-06.
- * ============================================================ */
-
-[data-title-card] {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* W1 (review guardicore #7): a full 100dvh hero at mobile left a
-   * viewport-height of empty black before any content. 72dvh at
-   * mobile; the desktop hero keeps the full-viewport moment. The
-   * GSAP pin distance is fixed (240px) and independent of this. */
-  /* 2026-08-15: 72dvh was sized for the old hero, whose caption was the
-   * full dek and filled the box. The caption is now one short line, so the
-   * same height left ~400px of dead air under it on a phone. 52dvh still
-   * clears the four-word title stack (~200px) plus padding. */
-  min-height: 52dvh;
-  padding: 56px var(--spacing-page-x-mobile);
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  [data-title-card] {
-    min-height: 100dvh; /* fills the viewport so pin has room */
-    padding: 128px var(--spacing-page-x-desktop);
-  }
-}
-
-/* The vertical word stack — pinned during the GSAP reveal */
-.title-card-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.title-card-word {
-  font-family: var(--font-display);
-  font-weight: 700;
-  /* Mobile reflow (MOT-06). The flat 64px on narrow viewports clipped
-   * "SHIPPED." at 390px because "SHIPPED." at 64px exceeds (390 −
-   * case-study padding) characters worth of advance width. clamp scales
-   * smoothly between 44px at 320px wide and 64px at ~492px wide. The
-   * desktop hard size below still kicks in at 768+. */
-  /* W1 (P1-4): 13vw → 12vw so the longest word corpus ("NARRATIVE.")
-   * fits the padded hero box at 390 (262px available, ~252px needed
-   * at 46.8px). The 44px floor and 64px ceiling are unchanged. */
-  font-size: clamp(44px, 12vw, 64px);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: inherit; /* foyer ink or theater bone, set by [data-mode] ancestor */
-}
-
-@media (min-width: 768px) {
-  .title-card-word {
-    font-size: 92px; /* W1: snapped to the D13 display-92 step */
-  }
-}
-
-/* The resolved state — caption + hero, layered on top of the (faded) stack */
-/* Visual-QA fix (audit 2026-08-11): the resolved state was an
- * absolute inset-0 overlay — when the caption (now the full dek)
- * grows taller than the hero box at narrow/short viewports, an
- * absolutely-positioned centered overlay overflows ABOVE the box,
- * colliding with the fixed nav (measured: caption top at -211px in
- * a 390×720 viewport). The stack and resolved states now share one
- * grid cell: same visual overlay, but the hero box sizes to the
- * TALLER of the two, so nothing can overflow. GSAP is unaffected —
- * it only tweens opacity/translate on these nodes. */
-[data-title-card] {
-  display: grid;
-  align-content: center;
-}
-.title-card-stack {
-  grid-area: 1 / 1;
-}
-.title-card-resolved {
-  grid-area: 1 / 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 32px;
-  pointer-events: none; /* GSAP toggles via inline style; layout pre-positioned */
-}
-
-/* W1 re-port (D3): caption leaves Source Serif italic for the system
- * body face at the lede-22 step (D13). It is THE one lede — the header
- * <Dek> that duplicated it is gone. */
-.title-card-caption {
-  margin: 0;
-  font-family: var(--font-cw-body);
-  font-weight: 600;
-  font-size: clamp(19px, 2.2vw, 22px);
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  max-width: 58ch;
-  color: inherit;
-}
-
-.title-card-hero {
-  position: relative;
-  width: 100%;
-  max-width: 720px;
-  aspect-ratio: 4 / 3;
-  background-color: var(--color-theater-surface);
-  border: 2px solid var(--color-theater-ink);
-  overflow: hidden;
-}
-
-.title-card-hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* MOT-05 reduced-motion safety net.
- * The TitleCard component itself reads matchMedia and short-circuits, but
- * if the JS fails to mount (network blip, JS disabled, hydration error),
- * the CSS here ensures the user STILL sees the resolved state — never
- * a frozen pin or a flash of stacked-only content. */
-@media (prefers-reduced-motion: reduce) {
-  [data-title-card] [data-tc-stack] {
-    opacity: 0 !important;
-  }
-  [data-title-card] [data-tc-resolved] {
-    opacity: 1 !important;
-  }
-  [data-title-card] [data-tc-caption] {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  [data-title-card] [data-tc-hero] {
-    opacity: 1 !important;
-  }
-}
-
-/* ============================================================
  * Pass-30 — mobile polish (visual-qa mobile audit, 2026-08-31)
  * ============================================================ */
-
-/* 1. TitleCard at phone widths: static composition. TitleCard.tsx
- * skips the ScrollTrigger pin under 768px; here the grid overlay
- * (stack + resolved sharing one cell) becomes a vertical flow so the
- * title words and the caption both show, compactly. Kills the
- * ~70%-empty first screen and the titleless resolved state. */
-@media (max-width: 767px) {
-  [data-title-card] {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 28px;
-    min-height: 0;
-    /* 96px clears the fixed nav (~64px) with breathing room. */
-    padding-top: 96px;
-    padding-bottom: 12px;
-  }
-  [data-title-card] .title-card-stack,
-  [data-title-card] .title-card-resolved {
-    opacity: 1 !important;
-    transform: none !important; /* motion-ok: static mobile fallback, clears GSAP inline state */
-  }
-  [data-title-card] .title-card-caption {
-    opacity: 1 !important;
-    transform: none !important; /* motion-ok: static mobile fallback, clears GSAP inline state */
-  }
-}
 
 /* 2. 44px tap targets for the menu controls (audit #1: 52x18px).
  * Padding grows the hit area; negative margins / adjusted offsets
@@ -657,14 +477,6 @@ body {
   }
 }
 
-/* 4. Case-study end matter: the 128px desktop-scale gap above the
- * footer nav read as a rendering hole at 390px (audit #4). */
-@media (max-width: 767px) {
-  [data-mode="theater"] .case-study__nav {
-    margin-top: 56px;
-  }
-}
-
 /* 5. Spec-table swipe affordance (audit #3): iOS hides scrollbars, so
  * the 880px comparative table needs a told-not-guessed cue. Rendered
  * by SpecTable.tsx, shown only at phone widths. */
@@ -684,376 +496,511 @@ body {
 }
 
 /* ============================================================
- * CASE STUDY (THEATER) — Phase 7 (CASE-07, CASE-08, CASE-09,
- *   THEATER-04, THEATER-05)
- *
- * The case-study render template + reusable MDX components:
- *   .case-study              — outer article frame
- *   .case-study-dek          — <Dek> wrapper, Source Serif 4 italic
- *   .case-study-copper-rule  — <CopperRule> hairline divider
- *   .case-study-still        — <CaseStudyStill> figure
- *   .case-study-pull-quote   — <PullQuote> with underline-grow
- *
- * Source: blueprint §4c (stills + film-grain), §4f (TitleCard), §9
- * (ORDANI wireframe render order); REQUIREMENTS.md THEATER-04/05,
- * CASE-07/08/09.
+ * PASS-120 STUDY TEMPLATE (Direction B: curtain, then page)
+ * Classes: .cs, .cs-band*, .cs-title*, .cs-glance*, .cs-page,
+ * .cs-body, .cs-step*, .cs-exhibit*, .cs-break*, .cs-close*,
+ * .cs-next*. Local tokens --cs-* are set per surface below;
+ * template rules read only those.
  * ============================================================ */
-
-[data-mode="theater"] .case-study {
-  padding: 0 var(--spacing-page-x-mobile) 128px;
+:root {
+  --fs-display: 112px;
+  --fs-h1: 56px;
+  --fs-h2: 36px;
+  --fs-body: 18px;
+  --fs-label: 13px;
+  --cs-gutter: clamp(32px, 8.9vw, 128px);
 }
-
-@media (min-width: 768px) {
-  [data-mode="theater"] .case-study {
-    padding: 0 var(--spacing-page-x-desktop) 160px;
+@media (max-width: 767px) {
+  :root {
+    --fs-display: 64px;
+    --fs-h1: 36px;
+    --fs-h2: 26px;
+    --fs-body: 17px;
+    --fs-label: 12px;
+    --cs-gutter: 16px;
   }
 }
-
-/* W1 (P1-4 root cause, 2026-08-11): the TitleCard hero was DOUBLE-padded —
- * .case-study pads 64px/128px AND [data-title-card] pads the same again,
- * squeezing the word stack to 134px at a 390 viewport while "NARRATIVE."
- * needs ~273px at its clamp size. The invisible text overflow pushed the
- * page canvas to exactly 401px (the Cowork review's horizontal-scroll
- * finding). Pull the hero back to full bleed; it supplies its own
- * page-x padding. */
-[data-mode="theater"] .case-study .title-card-root {
-  margin-left: calc(-1 * var(--spacing-page-x-mobile));
-  margin-right: calc(-1 * var(--spacing-page-x-mobile));
+[data-mode="theater"] .cs {
+  --cs-bg: var(--color-theater-ground);
+  --cs-ink: var(--color-theater-ink);
+  --cs-ink-soft: var(--color-theater-ink-soft);
+  --cs-rule: var(--color-rule-theater);
+  --cs-accent: var(--color-accent-copper);
+  --cs-link: var(--color-theater-ink);
+  --cs-tint: var(--color-theater-surface);
 }
-
-@media (min-width: 768px) {
-  [data-mode="theater"] .case-study .title-card-root {
-    margin-left: calc(-1 * var(--spacing-page-x-desktop));
-    margin-right: calc(-1 * var(--spacing-page-x-desktop));
+[data-mode="theater"] .cs [data-surface="paper"] {
+  --cs-bg: var(--color-cw-bone);
+  --cs-ink: var(--color-foyer-ink);
+  --cs-ink-soft: var(--color-foyer-ink-soft);
+  --cs-rule: var(--color-rule-foyer);
+  --cs-accent: var(--color-accent-copper);
+  --cs-link: var(--color-accent-copper-deep);
+  --cs-tint: var(--color-foyer-paper);
+  background-color: var(--cs-bg);
+  color: var(--cs-ink);
+}
+/* ORDANI: sage replaces copper (the one recorded exception). */
+[data-mode="theater"] .cs[data-case="ordani"] {
+  --cs-accent: var(--color-ordani-sage);
+}
+[data-mode="theater"] .cs[data-case="ordani"] [data-surface="paper"] {
+  --cs-accent: var(--color-ordani-sage);
+  --cs-link: var(--color-foyer-ink);
+}
+[data-mode="theater"]:has([data-surface="paper"])::before,
+[data-mode="theater"]:has([data-surface="paper"])::after {
+  content: none;
+}
+.cs-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--grain-theater);
+  background-size:
+    120px 120px,
+    180px 180px;
+  opacity: 0.14;
+  mix-blend-mode: screen;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cs-band::before {
+    opacity: 0.07;
   }
 }
-
-/* Pass-22 (CW-18 Slice 1): asymmetric grid layout — replaces the
- * previous centered single-column body (max-width: 64ch; margin: 0
- * auto) that left empty space on both sides of the column at wider
- * viewports. Marcus (Pass-19) called this the "40% void" / "designed
- * for a column tighter than the viewport." The new grid: column 2
- * carries the editorial column at 64ch; column 3 carries the sticky
- * sidebar (TOC + reading progress + meta) at 240px; outer columns
- * are flexible spacers that keep the editorial column centered-ish
- * but allow the sidebar to occupy real estate that was previously
- * void. At <1024px, single column; sidebar hides; header's meta
- * fallback element re-shows. */
-[data-mode="theater"] .case-study__layout {
+[data-mode="theater"]:has([data-surface="paper"]) [data-footer-root] {
+  background-color: var(--color-cw-bone);
+  color: var(--color-foyer-ink-soft);
+  border-top-color: var(--color-rule-foyer);
+}
+[data-mode="theater"]:has([data-surface="paper"]) [data-footer-root] .footer-email-link {
+  color: var(--color-foyer-ink);
+  text-decoration-color: var(--color-accent-copper);
+}
+[data-mode="theater"]:has(.cs[data-case="ordani"]) [data-footer-root] .footer-email-link {
+  text-decoration-color: var(--color-ordani-sage);
+}
+.cs-band {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--cs-bg);
+  color: var(--cs-ink);
+  border-bottom: 2px solid var(--cs-accent);
+  padding: 128px var(--cs-gutter) 96px;
+}
+@media (max-width: 767px) {
+  .cs-band {
+    padding: 104px var(--cs-gutter) 48px;
+  }
+}
+.cs-band__grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "head" "text" "media";
+  row-gap: 28px;
+  max-width: 1184px;
+  margin: 0 auto;
 }
 @media (min-width: 1024px) {
-  [data-mode="theater"] .case-study__layout {
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 64ch)
-      240px
-      minmax(0, 1fr);
-    column-gap: clamp(40px, 5vw, 72px);
-  }
-  /* Direct grid children default to column 2 (the editorial measure). */
-  [data-mode="theater"] .case-study__layout > .case-study__header,
-  [data-mode="theater"] .case-study__layout > .case-study-still,
-  [data-mode="theater"] .case-study__layout > .case-study__body {
-    grid-column: 2;
-  }
-  /* Sidebar takes column 3 and spans all rows; sticky positioning keeps
-   * it in view as the user scrolls through the body. align-self: start
-   * pins it to the top of its grid cell (not stretched to row height). */
-  [data-mode="theater"] .case-study__layout > .case-study__sidebar {
-    grid-column: 3;
-    grid-row: 1 / -1;
-    position: sticky;
-    top: 88px;
-    align-self: start;
+  .cs-band__grid[data-photo="true"] {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    grid-template-areas: "head head" "text media";
+    column-gap: 72px;
   }
 }
-
-/* Header below the TitleCard — Dek + meta-fallback line (at mobile
- * or when JS hasn't wired the sidebar). Max-width removed in Pass-22;
- * the grid layout provides the column width now. */
-[data-mode="theater"] .case-study__header {
-  margin: 64px 0 64px;
+.cs-band__head {
+  grid-area: head;
 }
-/* W1: at desktop the header holds only the (hidden) meta fallback —
- * collapse its margins so the empty element adds no dead vertical gap. */
-@media (min-width: 1024px) {
-  [data-mode="theater"] .case-study__header {
-    margin: 0;
-  }
+.cs-band__text {
+  grid-area: text;
+  max-width: 820px;
 }
-
-/* Pass-22: mobile + no-JS meta fallback. W1 re-port fix: the old rule
- * gated the desktop hide on a .cw-js-reveals class that nothing on
- * theater routes ever set — so role/tools/year rendered TWICE at
- * >=1024px (header + sidebar rail; the Cowork review's duplicate-meta
- * finding). The sidebar server-renders its meta dl, so the hide is
- * safe unconditionally at desktop widths. */
-[data-mode="theater"] .case-study__header-meta-fallback {
-  display: block;
-}
-@media (min-width: 1024px) {
-  /* Double-class selector so this outranks .case-study__meta's
-   * display:flex, which appears later in the file at equal
-   * specificity otherwise. */
-  [data-mode="theater"] .case-study__header-meta-fallback.case-study__meta {
-    display: none;
-  }
-}
-
-/* W1 re-port (D3): the dek/lede moves from Source Serif italic to the
- * system body face at the lede-22 scale step (D13). */
-[data-mode="theater"] .case-study-dek {
-  font-family: var(--font-cw-body);
-  font-weight: 600;
-  font-size: clamp(19px, 2.2vw, 22px);
-  line-height: 1.5;
-  letter-spacing: -0.005em;
-  color: var(--color-theater-ink);
+.cs-band__media {
+  grid-area: media;
+  align-self: start;
   margin: 0;
 }
-
-[data-mode="theater"] .case-study__meta {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-theater-ink-soft);
-  margin: 24px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: baseline;
-}
-
-[data-mode="theater"] .case-study__dot {
-  opacity: 0.55;
-}
-
-[data-mode="theater"] .case-study__role {
-  color: var(--color-theater-ink);
-  font-weight: 500;
-}
-
-/* Pass-111a verify: under 640px a three-item tools list wraps, and the
- * separator dots were left at a line end and a line start (/work/postmates
- * at 390). Phones get one item per line and no dots. */
-@media (max-width: 639px) {
-  [data-mode="theater"] .case-study__meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-  [data-mode="theater"] .case-study__dot {
-    display: none;
-  }
-}
-
-/* MDX body — typography for h1, h2, p, ul inside the case study.
- * Pass-22 (CW-18 Slice 1): max-width + margin: 0 auto removed; the
- * parent .case-study__layout grid provides column width and
- * positioning. Typography rules preserved. */
-[data-mode="theater"] .case-study__body {
-  font-family: var(--font-cw-body);
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--color-theater-ink);
-}
-
-[data-mode="theater"] .case-study__body h2 {
-  font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: clamp(28px, 3.2vw, 40px);
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  color: var(--color-theater-ink);
-  /* Tier H: expanded section spacing — chapter breaks in case studies
-   * should breathe like book chapters, not run-together blog headers. */
-  margin: clamp(96px, 12vw, 144px) 0 32px;
-  position: relative;
-}
-
-/* Tier H — Chapter mark above each h2.
- * Small copper hairline + numeric specimen, gives each section a
- * "chapter card" feel without resorting to literal chapter headings. */
-[data-mode="theater"] .case-study__body h2::before {
-  content: "";
-  display: block;
-  width: 56px;
-  height: 1px;
-  background-color: var(--case-accent, var(--color-accent-copper));
-  margin-bottom: 28px;
-}
-
-[data-mode="theater"] .case-study__body h2:first-child::before {
-  margin-top: 0;
-}
-
-/* W1 re-port (D3): serif drop caps DELETED — they were the second
- * design system's voice (operator-locked decision, 2026-08-11). */
-
-[data-mode="theater"] .case-study__body h2:first-child {
-  margin-top: 0;
-}
-
-[data-mode="theater"] .case-study__body p {
-  margin: 0 0 20px;
-}
-
-[data-mode="theater"] .case-study__body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-[data-mode="theater"] .case-study__body li {
-  position: relative;
-  padding-left: 1.5em;
-}
-
-[data-mode="theater"] .case-study__body li::before {
-  content: "—";
-  position: absolute;
-  left: 0;
-  color: var(--color-accent-copper);
-}
-
-/* Copper rule divider */
-[data-mode="theater"] .case-study-copper-rule {
-  border: none;
-  border-top: 1px solid var(--color-accent-copper);
-  margin: 64px auto;
-  max-width: 320px;
-}
-
-/* CaseStudyStill — figure with 2px bone inner border + 4% film-grain overlay */
-[data-mode="theater"] .case-study-still {
-  margin: 48px 0;
-  max-width: 100%;
-}
-
-[data-mode="theater"] .case-study-still__frame {
-  position: relative;
-  display: block;
-  background-color: var(--color-theater-surface);
-  border: 2px solid var(--color-theater-ink); /* 2px warm off-white inner border per §4c */
-  overflow: hidden;
-}
-
-[data-mode="theater"] .case-study-still__image {
+.cs-band__img {
   display: block;
   width: 100%;
   height: auto;
 }
-
-/* Pass-20 (per Marcus, Pass-19 review): bordered-rectangle placeholder
- * was still reading as "missing image" rather than as deliberate
- * editorial restraint. Redesigned as a typeset block — no outer
- * border, no background gradient (drops the rectangle entirely), a
- * THICK left rule (like a magazine pull-quote) carrying the case-study
- * accent. Eyebrow + display-italic title + date stacked vertically.
- * Reads as deliberate typography, not as a frame waiting for content. */
-/* W1 re-port (D3 + R5): the one-side accent border — the exact card
- * pattern R5 bans — becomes a full hairline frame, matching the framed
- * treatment real artifacts get. Labels move to the mono register at
- * 12px in cw-saffron (7.25:1 on the ground). */
-[data-mode="theater"] .case-study-still__placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 18px;
-  width: 100%;
-  padding: clamp(24px, 3vw, 40px) clamp(20px, 2.4vw, 32px);
-  background: transparent;
-  border: 1px solid var(--color-rule-theater);
-}
-
-[data-mode="theater"] .case-study-still__spec-eyebrow {
+.cs-band__context {
   font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+  font-size: var(--fs-label);
   font-weight: 500;
-  color: var(--color-cw-saffron);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  color: var(--cs-ink-soft);
+  margin: 0 0 20px;
 }
-
-[data-mode="theater"] .case-study-still__spec-title {
+.cs-title {
   font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: clamp(24px, 2.4vw, 28px);
-  line-height: 1.2;
-  color: var(--color-theater-ink);
-  max-width: 36ch;
+  font-weight: 800;
+  font-size: var(--fs-h1);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--cs-ink);
+  margin: 0;
 }
-
-[data-mode="theater"] .case-study-still__spec-date {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-theater-ink-soft);
+.cs-title__line {
+  display: block;
 }
-
-/* 4% film-grain overlay — data URI noise per §4c */
-[data-mode="theater"] .case-study-still__grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='0.85'/></svg>");
-  background-size: 160px 160px;
-}
-
-[data-mode="theater"] .case-study-still__caption {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
+.cs-band__dek {
+  font-family: var(--font-cw-body);
+  font-size: var(--fs-body);
   line-height: 1.6;
-  color: var(--color-theater-ink-soft);
-  margin: 16px 0 0;
+  max-width: 56ch;
+  margin: 0 0 36px;
+  color: var(--cs-ink);
 }
-
-/* PullQuote — W1 re-port (D3): Bricolage display + copper underline-grow.
- * The serif italic voice is gone; the quote now speaks in the system's
- * display face, snapped to the h2 scale step (D13). */
-[data-mode="theater"] .case-study-pull-quote {
-  /* Tier H — Cinematic pull-quote treatment.
-   * Quote becomes a full-bleed-width moment with deep vertical space
-   * around it (a "chapter card" moment between Outcome and the
-   * footer nav). Larger type, dramatic line-height, surrounding silence. */
-  margin: clamp(120px, 16vw, 200px) 0;
-  max-width: 70ch;
-  padding: clamp(32px, 4vw, 64px) 0;
-  border-top: 1px solid var(--color-rule-theater);
-  border-bottom: 1px solid var(--color-rule-theater);
+.cs-glance {
+  margin: 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--cs-rule);
+  display: grid;
+  row-gap: 20px;
 }
-
-[data-mode="theater"] .case-study-pull-quote__quote {
+.cs-glance__row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  column-gap: 24px;
+  align-items: baseline;
+}
+@media (max-width: 767px) {
+  .cs-glance__row {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 4px;
+  }
+}
+.cs-glance dt,
+.cs-glance__protected {
+  font-family: var(--font-cw-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  color: var(--cs-ink-soft);
+  margin: 0;
+}
+.cs-glance__protected {
+  display: block;
+  margin-top: 4px;
+}
+.cs-glance dd {
+  margin: 0;
+  font-family: var(--font-cw-body);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--cs-ink);
+}
+.cs-glance__result {
+  display: block;
   font-family: var(--font-cw-display);
   font-weight: 700;
-  font-size: clamp(28px, 3.6vw, 40px);
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.cs-glance__result-rest {
+  display: block;
+  margin-top: 8px;
+}
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  .cs-title__line {
+    animation: cs-settle 400ms cubic-bezier(0.16, 1, 0.3, 1) backwards; /* motion-ok: Pass-120 TitleCard settle, the one signature (brand.json motion.signature), operator-signed 2026-09-16 */
+  }
+  .cs-title__line:nth-child(2):last-child,
+  .cs-title__line:nth-child(3) {
+    animation-delay: 200ms;
+  }
+  .cs-title__line:nth-child(2):not(:last-child) {
+    animation-delay: 100ms;
+  }
+}
+@keyframes cs-settle {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+.cs-page {
+  padding: 96px 0 120px;
+}
+@media (max-width: 767px) {
+  .cs-page {
+    padding: 56px 0 72px;
+  }
+}
+.cs-body {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--cs-gutter), 1fr)
+    [col-start] minmax(0, var(--measure-body))
+    [col-end] minmax(var(--cs-gutter), 1fr)
+    [full-end];
+  font-family: var(--font-cw-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--cs-ink);
+}
+.cs-body > * {
+  grid-column: col;
+}
+.cs-body > .cs-break {
+  grid-column: full;
+}
+.cs-body h2 {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--cs-ink);
+  margin: 96px 0 24px;
+}
+.cs-body > h2:first-child {
+  margin-top: 0;
+}
+@media (max-width: 767px) {
+  .cs-body h2 {
+    margin: 64px 0 16px;
+  }
+}
+.cs-body p {
+  margin: 0 0 20px;
+}
+.cs-body strong {
+  font-weight: 600;
+}
+.cs-body a {
+  color: var(--cs-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.cs-body a:hover {
+  text-decoration-thickness: 2px;
+}
+.cs-body a:focus-visible {
+  outline: 2px solid var(--cs-accent);
+  outline-offset: 3px;
+}
+.cs-body ul {
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.cs-body ul > li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 12px;
+}
+.cs-body ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 8px;
+  height: 1px;
+  background: var(--cs-accent);
+}
+.cs-step {
+  position: relative;
+  margin: 0 0 28px;
+}
+.cs-step p {
+  margin: 0;
+}
+.cs-step__n {
+  display: block;
+  font-family: var(--font-cw-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  color: var(--cs-link);
+  margin: 0 0 8px;
+}
+@media (min-width: 1024px) {
+  .cs-step__n {
+    position: absolute;
+    left: -64px;
+    top: 0.5em;
+    width: 40px;
+    margin: 0;
+    text-align: right;
+  }
+}
+.cs-exhibit {
+  width: 100%;
+  margin: 40px 0;
+  border-collapse: collapse;
+  background: var(--cs-tint);
+}
+.cs-exhibit th,
+.cs-exhibit td {
+  text-align: left;
+  vertical-align: top;
+  padding: 20px 32px;
+}
+.cs-exhibit th {
+  font-family: var(--font-cw-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--cs-ink-soft);
+  padding-top: 28px;
+  padding-bottom: 0;
+  width: 50%;
+}
+.cs-exhibit td {
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--cs-ink);
+}
+.cs-exhibit tbody tr + tr td {
+  border-top: 1px solid var(--cs-rule);
+}
+@media (max-width: 767px) {
+  .cs-exhibit thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .cs-exhibit tr,
+  .cs-exhibit td {
+    display: block;
+  }
+  .cs-exhibit td {
+    padding: 16px;
+  }
+  .cs-exhibit td + td {
+    padding-top: 0;
+  }
+  .cs-exhibit td::before {
+    content: attr(data-label);
+    display: block;
+    margin: 0 0 4px;
+    font-family: var(--font-cw-mono);
+    font-size: var(--fs-label);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--cs-ink-soft);
+  }
+}
+.cs-break {
+  margin: 96px 0;
+}
+.cs-break__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+@media (max-width: 767px) {
+  .cs-break {
+    margin: 56px 0;
+  }
+  .cs-break__img {
+    aspect-ratio: 4 / 3;
+  }
+}
+.cs-close {
+  margin: 8px 0 0;
+}
+.cs-close__link {
+  font-weight: 600;
+}
+.cs-next {
+  width: min(var(--measure-body), calc(100% - 2 * var(--cs-gutter)));
+  margin: 120px auto 0;
+  padding-top: 40px;
+  border-top: 1px solid var(--cs-rule);
+  font-family: var(--font-cw-body);
+  font-size: var(--fs-body);
+  color: var(--cs-ink);
+}
+@media (max-width: 767px) {
+  .cs-next {
+    margin-top: 72px;
+  }
+}
+.cs-next__label,
+.cs-next__context,
+.cs-next__service {
+  display: block;
+  font-family: var(--font-cw-mono);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  color: var(--cs-ink-soft);
+  margin: 0;
+}
+.cs-next__label {
+  margin-bottom: 16px;
+}
+.cs-next__entry {
+  display: grid;
+  row-gap: 8px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--cs-rule);
+  color: var(--cs-ink);
+  text-decoration: none;
+}
+.cs-next__line {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.cs-next__did {
+  line-height: 1.5;
+}
+.cs-next__entry:hover .cs-next__did {
+  text-decoration: underline;
+  text-decoration-color: var(--cs-accent);
+  text-underline-offset: 3px;
+}
+.cs-next__entry:focus-visible,
+.cs-next__all:focus-visible {
+  outline: 2px solid var(--cs-accent);
+  outline-offset: 4px;
+}
+.cs-next__all {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--cs-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.cs-body .case-study-pull-quote {
+  margin: 64px 0;
+  padding: 32px 0;
+  border-top: 1px solid var(--cs-rule);
+  border-bottom: 1px solid var(--cs-rule);
+}
+.cs-body .case-study-pull-quote__quote {
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: var(--fs-h2);
   line-height: 1.25;
   letter-spacing: -0.015em;
-  color: var(--color-theater-ink);
+  color: var(--cs-ink);
   margin: 0;
   position: relative;
   padding-bottom: 20px;
 }
-
-/* The underline-grow — D10 (operator-locked 2026-08, R9 remediation):
- * re-voiced from a flat scaleX bar to a hand-drawn pen-line stroke, in
- * the same family as components/hand/HandUnderline / HandCircle. The
- * <path> ships with pathLength="1" (see PullQuote.tsx), so a constant
- * stroke-dasharray + a CSS-driven stroke-dashoffset draws it on with no
- * JS length measurement — the draw is keyed off the SAME data-in-view
- * attribute the component already sets (no second observer). */
-[data-mode="theater"] .case-study-pull-quote__underline {
+.cs-body .case-study-pull-quote__underline {
   position: absolute;
   left: 0;
   bottom: 0;
@@ -1063,222 +1010,30 @@ body {
   overflow: visible;
   pointer-events: none;
 }
-[data-mode="theater"] .case-study-pull-quote__underline path {
+.cs-body .case-study-pull-quote__underline path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  transition: stroke-dashoffset 1000ms cubic-bezier(0.22, 0.8, 0.28, 1); /* motion-ok: re-voicing the PRE-EXISTING PullQuote underline-grow (was a 2000ms scaleX bar) into the hand-drawn family's draw-on duration (HandUnderline/HandCircle use 850-1100ms) — same element re-skinned per D10, not a new interaction */
+  transition: stroke-dashoffset 1000ms cubic-bezier(0.22, 0.8, 0.28, 1); /* motion-ok: the PRE-EXISTING PullQuote underline-grow (D10), unchanged timing, re-scoped to the paper body in Pass-120 */
 }
-[data-mode="theater"]
-  .case-study-pull-quote[data-in-view="true"]
-  .case-study-pull-quote__underline
-  path {
+.cs-body .case-study-pull-quote[data-in-view="true"] .case-study-pull-quote__underline path {
   stroke-dashoffset: 0;
 }
-
-/* W1 re-port (D3): the sage PullQuote variant is retired — one accent
- * family on case pages (operator-locked, 2026-08-11). data-accent="sage"
- * now falls through to the copper rule above. */
-
-[data-mode="theater"] .case-study-pull-quote__attribution {
+.cs-body .case-study-pull-quote__attribution {
   font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-theater-ink-soft);
-  margin: 24px 0 0;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--cs-ink-soft);
+  margin: 20px 0 0;
 }
-
-/* Reduced-motion: skip the transition; show full underline immediately.
-   Defense in depth — PullQuote.tsx also sets data-in-view="true" on first
-   mount under reduced-motion. */
 @media (prefers-reduced-motion: reduce) {
-  [data-mode="theater"] .case-study-pull-quote__underline path {
+  .cs-body .case-study-pull-quote__underline path {
     transition: none !important;
     stroke-dashoffset: 0 !important;
   }
 }
-
-/* ============================================================
- * Pass-22 (CW-18 Slice 1): case-study sticky sidebar.
- * Lives in column 3 of .case-study__layout at >=1024px; hidden
- * at <1024px (mobile gets the .case-study__header-meta-fallback
- * instead). Carries: TOC built from body h2s, a reading-progress
- * bar that scales as the user scrolls through the body, and the
- * engagement meta (role / tools / year). Section-level labels
- * use the existing mono register.
- * ============================================================ */
-[data-mode="theater"] .case-study__sidebar {
-  /* CSS variable updated from the client component on every
-   * Lenis scroll tick. Defaults to 0 so the progress bar starts
-   * collapsed before any scroll has happened. */
-  --read-progress: 0;
-  display: none;
-}
-@media (min-width: 1024px) {
-  [data-mode="theater"] .case-study__sidebar {
-    display: block;
-  }
-}
-
-[data-mode="theater"] .case-study__sidebar-section {
-  margin-bottom: 56px;
-}
-[data-mode="theater"] .case-study__sidebar-section:last-child {
-  margin-bottom: 0;
-}
-
-[data-mode="theater"] .case-study__sidebar-label {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--color-cw-saffron);
-  margin: 0 0 16px;
-}
-
-/* TOC frame — a 2-column flex with the reading-progress bar on
- * the left and the ol of links on the right. */
-[data-mode="theater"] .case-study__sidebar-toc-frame {
-  display: flex;
-  gap: 14px;
-  align-items: stretch;
-}
-
-/* Reading-progress bar. Vertical 2px line that scales from 0
- * (top) to var(--read-progress) (driven by the sidebar's client
- * component). transform-origin: top so the fill grows down as
- * the user reads. */
-[data-mode="theater"] .case-study__sidebar-progress {
-  position: relative;
-  width: 2px;
-  flex-shrink: 0;
-  background: color-mix(
-    in srgb,
-    var(--color-theater-ink-soft) 25%,
-    transparent
-  );
-  border-radius: 1px;
-  overflow: hidden;
-}
-[data-mode="theater"] .case-study__sidebar-progress::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--color-accent-copper);
-  transform: scaleY(var(--read-progress));
-  transform-origin: top;
-}
-
-/* TOC list — minimal, no markers. Each link is a typeset row with
- * an inactive (soft ink) and active (copper, slightly stronger
- * weight) state. */
-[data-mode="theater"] .case-study__sidebar-toc {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex: 1;
-}
-[data-mode="theater"] .case-study__sidebar-toc-link {
-  display: block;
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--color-theater-ink-soft);
-  text-decoration: none;
-  padding: 2px 0;
-  transition: color 0.2s ease;
-}
-[data-mode="theater"] .case-study__sidebar-toc-link:hover,
-[data-mode="theater"] .case-study__sidebar-toc-link:focus-visible {
-  color: var(--color-theater-ink);
-}
-[data-mode="theater"] .case-study__sidebar-toc-link[data-active="true"] {
-  color: var(--color-cw-saffron);
-  font-weight: 500;
-}
-
-/* Meta dl — role / tools / year. W1 re-port (D3): mono labels at the
- * 12px step, body face for values — the serif is gone. */
-[data-mode="theater"] .case-study__sidebar-meta {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-[data-mode="theater"] .case-study__sidebar-meta dt {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--color-theater-ink-soft);
-  margin: 0 0 4px;
-}
-[data-mode="theater"] .case-study__sidebar-meta dd {
-  font-family: var(--font-cw-body);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-theater-ink);
-  margin: 0;
-}
-
-/* Case study footer nav — [NEXT WORK ↘] [BACK TO FOYER ↗] */
-[data-mode="theater"] .case-study__nav {
-  margin-top: 128px;
-  padding-top: 32px;
-  border-top: 1px solid var(--color-rule-theater);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-@media (min-width: 768px) {
-  [data-mode="theater"] .case-study__nav {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-}
-
-[data-mode="theater"] .case-study__nav-link {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-theater-ink);
-  text-decoration: none;
-  position: relative;
-  padding-bottom: 2px;
-}
-
-[data-mode="theater"] .case-study__nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background-color: var(--color-accent-copper);
-  transform: translateY(0);
-  transition: transform var(--duration-hover) var(--ease-hover);
-}
-
-[data-mode="theater"] .case-study__nav-link:hover::after {
-  transform: translateY(-4px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-mode="theater"] .case-study__nav-link::after {
-    transition: none !important;
-  }
-  [data-mode="theater"] .case-study__nav-link:hover::after {
-    transform: none !important;
-  }
-}
+.cw-area { scroll-margin-top: 96px; }
+/* END PASS-120 STUDY TEMPLATE */
 
 /* ============================================================
  * Phase 10 — A11Y-06. Skip-to-content link.
@@ -5121,19 +4876,6 @@ body {
   }
 }
 
-/* Case-study pages on mobile — same complaint, same cause. */
-@media (max-width: 760px) {
-  [data-mode="theater"] .case-study__layout {
-    margin-top: 40px;
-  }
-  [data-mode="theater"] .case-study__body h2 {
-    margin-top: 56px;
-  }
-  [data-mode="theater"] .case-study__nav {
-    margin-top: 64px;
-  }
-}
-
 /* ============================================================
  * Pass-47 — self-serve packages on /services (.cw-pkg*)
  * Operator-locked 2026-09-01: $500 / $2,500 / $7,500, credit
@@ -6379,327 +6121,378 @@ body {
 }
 
 /* ============================================================
- * Pass-58 — /work index rebuilt (.cw-wk*) + case-page glance strip
- * Operator 2026-09-01: "work page is weird and weak… case study pages
- * aren't that great." Each engagement carries its receipts (three
- * stat objects) in the same proof grammar /services uses.
+ * Pass-120 - /work index, Direction B (.cw-wx*)
+ * Replaces the Pass-61 catalogue lot and the Pass-58 study list. Paper, the bone world,
+ * top to bottom: the lead study at hero scale beside the Tel Aviv clip,
+ * the method line, four entries of four data points (DESIGN_BAR R11), and
+ * the record block (#record). The five-size ladder of FABLE-120-DESIGN
+ * section 2; /work uses four of the five: 112/36/18/13 above 760px,
+ * 64/26/17/12 at 760px and below. No motion here but the clip
+ * (brand.json motion.heroclip). Hover is an underline, never a lift.
+ * No uppercase, no tracking beyond 0.06em, no opacity on text.
  * ============================================================ */
-[data-mode="cw"] .cw-wk__lede {
-  font-family: var(--font-cw-body);
-  font-size: clamp(17px, 1.7vw, 21px);
-  line-height: 1.5;
-  opacity: 0.85;
-  margin: 24px 0 0;
-  max-width: 58ch;
+[data-mode="cw"] .cw-wx {
+  --wx-fig: 112px;
+  --wx-head: 36px;
+  --wx-body: 18px;
+  --wx-label: 13px;
+  --wx-rule: color-mix(in srgb, var(--cw-fg) 22%, transparent);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
 }
-[data-mode="cw"] .cw-wk-list {
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx {
+    --wx-fig: 64px;
+    --wx-head: 26px;
+    --wx-body: 17px;
+    --wx-label: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Shared text roles */
+[data-mode="cw"] .cw-wx-ctx {
+  margin: 0;
+  font-family: var(--font-cw-body);
+  font-size: var(--wx-label);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-foyer-ink-soft);
+}
+[data-mode="cw"] .cw-wx-label {
+  margin: 0;
+  font-family: var(--font-cw-mono);
+  font-size: var(--wx-label);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--color-foyer-ink-soft);
+}
+
+/* Lead study */
+[data-mode="cw"] .cw-wx-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 64px;
+  align-items: start;
+  padding-top: 152px;
+}
+@media (max-width: 900px) {
+  [data-mode="cw"] .cw-wx-lead {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx-lead {
+    padding-top: 112px;
+  }
+}
+[data-mode="cw"] .cw-wx-lead__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+[data-mode="cw"] .cw-wx-lead__link:focus-visible {
+  outline: 2px solid var(--color-accent-copper);
+  outline-offset: 8px;
+}
+[data-mode="cw"] .cw-wx-lead__h1 {
+  margin: 16px 0 0;
+  /* The h1's only own text is the space between its two spans; its size is
+   * pinned to a ladder value so no stray default size reaches the type gate. */
+  font-family: var(--font-cw-display);
+  font-size: var(--wx-head);
+  font-weight: 600;
+  line-height: 1.15;
+}
+[data-mode="cw"] .cw-wx-lead__fig {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-size: var(--wx-fig);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--cw-fg);
+}
+[data-mode="cw"] .cw-wx-lead__line {
+  display: block;
+  margin-top: 20px;
+  max-width: 22ch;
+  font-family: var(--font-cw-display);
+  font-size: var(--wx-head);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--cw-fg);
+}
+[data-mode="cw"] .cw-wx-lead__did {
+  margin: 24px 0 0;
+  max-width: 60ch;
+  font-family: var(--font-cw-body);
+  font-size: var(--wx-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--cw-fg);
+}
+[data-mode="cw"] .cw-wx-lead__svc {
+  margin-top: 20px;
+}
+[data-mode="cw"] .cw-wx-lead__link:hover .cw-wx-lead__line,
+[data-mode="cw"] .cw-wx-lead__link:focus-visible .cw-wx-lead__line {
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-accent-copper);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+[data-mode="cw"] .cw-wx-lead__media {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-cw-espresso);
+}
+@media (max-width: 900px) {
+  [data-mode="cw"] .cw-wx-lead__media {
+    max-width: 480px;
+  }
+}
+[data-mode="cw"] .cw-wx-lead__clip {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+/* Method line and the four entries */
+[data-mode="cw"] .cw-wx-method {
+  margin: 120px 0 0;
+  max-width: 28ch;
+  font-family: var(--font-cw-display);
+  font-size: var(--wx-head);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--cw-fg);
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx-method {
+    margin-top: 72px;
+    max-width: none;
+  }
+}
+[data-mode="cw"] .cw-wx-list {
   list-style: none;
-  margin: 72px 0 0;
+  margin: 56px 0 0;
   padding: 0;
 }
 @media (max-width: 760px) {
-  [data-mode="cw"] .cw-wk-list {
-    margin-top: 48px;
+  [data-mode="cw"] .cw-wx-list {
+    margin-top: 40px;
   }
 }
-[data-mode="cw"] .cw-wk-item {
-  border-top: 1px solid currentColor;
+[data-mode="cw"] .cw-wx-list__item {
+  border-top: 1px solid var(--wx-rule);
 }
-[data-mode="cw"] .cw-wk-item:last-child {
-  border-bottom: 1px solid currentColor;
+[data-mode="cw"] .cw-wx-list__item:last-child {
+  border-bottom: 1px solid var(--wx-rule);
 }
-/* Review 2026-09-02 #11: the page the primary CTA points at closed on the
- * footer. One line of prose after the list, at the /packages cross-link
- * measure; no rule of its own, because the last item already draws one. */
-[data-mode="cw"] .cw-wk__cross {
-  font-family: var(--font-cw-body);
-  font-size: 16px;
-  line-height: 1.6;
-  max-width: 56ch;
-  margin: 48px 0 0;
-  opacity: 0.9;
-}
-[data-mode="cw"] .cw-wk-item__link {
+[data-mode="cw"] .cw-wx-entry {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 28px 64px;
-  padding: 44px 0 52px;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: 64px;
+  row-gap: 12px;
+  align-items: start;
+  padding: 40px 0;
   color: inherit;
   text-decoration: none;
 }
-@media (max-width: 900px) {
-  [data-mode="cw"] .cw-wk-item__link {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 36px 0 44px;
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx-entry {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 28px 0;
   }
 }
-[data-mode="cw"] .cw-wk-item__num {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.9;
-  margin: 0 0 14px;
+[data-mode="cw"] .cw-wx-entry:focus-visible {
+  outline: 2px solid var(--color-accent-copper);
+  outline-offset: 4px;
 }
-[data-mode="cw"] .cw-wk-item__title {
-  font-family: var(--font-cw-display);
-  font-weight: 700;
-  font-size: clamp(28px, 3.4vw, 44px);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  margin: 0 0 16px;
-}
-[data-mode="cw"] .cw-wk-item__link:hover .cw-wk-item__title,
-[data-mode="cw"] .cw-wk-item__link:focus-visible .cw-wk-item__title {
-  color: var(--color-cw-terracotta);
-}
-[data-mode="cw"] .cw-wk-item__line {
-  font-family: var(--font-cw-body);
-  font-weight: 500;
-  font-size: clamp(17px, 1.6vw, 20px);
-  line-height: 1.45;
-  margin: 0 0 14px;
-  max-width: 40ch;
-}
-[data-mode="cw"] .cw-wk-item__meta {
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  opacity: 0.9;
-  margin: 0 0 22px;
-}
-[data-mode="cw"] .cw-wk-item__cta {
-  display: inline-block;
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 4px;
-}
-[data-mode="cw"] .cw-wk-stats {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  align-content: start;
-}
-[data-mode="cw"] .cw-wk-stats li {
-  padding: 14px 0;
-  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+[data-mode="cw"] .cw-wx-entry__a,
+[data-mode="cw"] .cw-wx-entry__b {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
 }
-[data-mode="cw"] .cw-wk-stats li:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-[data-mode="cw"] .cw-wk-stats strong {
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(28px, 3vw, 40px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-[data-mode="cw"] .cw-wk-stats span {
-  font-family: var(--font-cw-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.85;
-  text-align: right;
-}
-
-/* Case page: outcome strip under the TitleCard (theater) */
-[data-mode="theater"] .case-study__glance {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 0 20px;
-  margin: 0 0 56px;
-}
-@media (min-width: 1024px) {
-  [data-mode="theater"] .case-study__glance {
-    grid-template-columns:
-      minmax(0, 1fr)
-      minmax(0, 64ch)
-      240px
-      minmax(0, 1fr);
-    column-gap: clamp(40px, 5vw, 72px);
-    padding: 0;
-    margin-bottom: 72px;
-  }
-  [data-mode="theater"] .case-study__glance-list {
-    grid-column: 2 / 4;
-  }
-}
-[data-mode="theater"] .case-study__glance-list {
-  list-style: none;
+[data-mode="cw"] .cw-wx-entry__line {
   margin: 0;
-  padding: 28px 0 0;
-  border-top: 1px solid color-mix(in srgb, currentColor 28%, transparent);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-@media (max-width: 600px) {
-  [data-mode="theater"] .case-study__glance-list {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-[data-mode="theater"] .case-study__glance-list strong {
-  display: block;
   font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(34px, 4vw, 56px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--color-theater-ink);
-  font-variant-numeric: tabular-nums;
+  font-size: var(--wx-head);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--cw-fg);
 }
-[data-mode="theater"] .case-study__glance-list span {
-  display: block;
-  margin-top: 8px;
-  font-family: var(--font-cw-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-theater-ink-soft);
-}
-
-/* ============================================================
- * Pass-61 — /work opens as a catalogue lot (.cw-lot*)
- * Operator: the page "does not entice me to look more… premium without
- * screaming AI". It had been opening with its own name in 92px type, the
- * same three elements as /services, /book and /about. Now it opens on one
- * engagement: the figure at hero scale, the photograph as an exhibit, the
- * provenance in small caps. Auction-catalogue form. Zero motion.
- * ============================================================ */
-[data-mode="cw"] .cw-lot {
-  min-height: 78vh;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
-  align-items: center;
-  gap: 64px;
-  padding: 152px 40px 104px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-@media (max-width: 900px) {
-  [data-mode="cw"] .cw-lot {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 120px 20px 72px;
-    min-height: 0;
-  }
-}
-
-/* The figure IS the headline — an h1 that happens to be a number. */
-/* Pass-67: figure + line are now spans inside one h1, so the h1 itself
- * carries no type of its own and the two spans keep the visual they had. */
-[data-mode="cw"] .cw-lot__h1 {
+[data-mode="cw"] .cw-wx-entry__did {
   margin: 0;
-  font-weight: inherit;
-}
-[data-mode="cw"] .cw-lot__fig {
-  display: block;
-  font-family: var(--font-cw-display);
-  font-weight: 800;
-  font-size: clamp(72px, 13vw, 196px);
-  line-height: 0.82;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
-  margin: 0;
-}
-[data-mode="cw"] .cw-lot__line {
-  display: block;
-  font-weight: 400;
+  max-width: 60ch;
   font-family: var(--font-cw-body);
-  font-size: clamp(17px, 1.7vw, 21px);
-  line-height: 1.45;
-  max-width: 34ch;
-  margin: 24px 0 0;
-  opacity: 0.92;
+  font-size: var(--wx-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--cw-fg);
+}
+[data-mode="cw"] .cw-wx-entry:hover .cw-wx-entry__line,
+[data-mode="cw"] .cw-wx-entry:focus-visible .cw-wx-entry__line {
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-accent-copper);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 
-/* Provenance: the catalogue's small-caps line. Wraps as a unit on phones. */
-[data-mode="cw"] .cw-lot__prov {
-  font-family: var(--font-cw-mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.72;
-  line-height: 1.9;
-  margin: 40px 0 0;
-  max-width: 46ch;
+/* Record block, #record. No scroll-margin: the section's own top padding
+ * keeps the h2 clear of the fixed nav when /work#record lands. */
+[data-mode="cw"] .cw-wx-rec {
+  padding-top: 120px;
 }
-[data-mode="cw"] .cw-lot__cta {
-  display: inline-block;
-  margin-top: 20px;
-  font-family: var(--font-cw-mono);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 5px;
-}
-[data-mode="cw"] .cw-lot__cta:hover,
-[data-mode="cw"] .cw-lot__cta:focus-visible {
-  color: var(--color-cw-saffron);
-  border-bottom-color: var(--color-cw-saffron);
-}
-
-/* The exhibit. Grayscale plus a warm veil so the phone-camera colour of the
- * source does not fight the espresso ground. Border, not a shadow. */
-[data-mode="cw"] .cw-lot__exhibit {
-  margin: 0;
-  justify-self: end;
-  width: 100%;
-  max-width: 420px;
-}
-@media (max-width: 900px) {
-  [data-mode="cw"] .cw-lot__exhibit {
-    justify-self: start;
-    max-width: 100%;
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx-rec {
+    padding-top: 80px;
   }
 }
-[data-mode="cw"] .cw-lot__exhibit img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid color-mix(in srgb, var(--color-cw-bone) 34%, transparent);
-  filter: grayscale(1) brightness(1.02) contrast(1.06) sepia(0.12);
+[data-mode="cw"] .cw-wx-rec__h {
+  margin: 0;
+  font-family: var(--font-cw-display);
+  font-size: var(--wx-head);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--cw-fg);
 }
-[data-mode="cw"] .cw-lot__exhibit figcaption {
-  margin-top: 12px;
-  font-family: var(--font-cw-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.62;
+[data-mode="cw"] .cw-wx-rec__line {
+  margin: 12px 0 0;
+  font-family: var(--font-cw-body);
+  font-size: var(--wx-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--cw-fg);
+}
+[data-mode="cw"] .cw-wx-rec__list {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx-rec__list {
+    margin-top: 28px;
+  }
+}
+[data-mode="cw"] .cw-wx-rec__row {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 3fr) minmax(0, 5fr);
+  column-gap: 32px;
+  row-gap: 12px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-top: 1px solid var(--wx-rule);
+}
+[data-mode="cw"] .cw-wx-rec__row:last-child {
+  border-bottom: 1px solid var(--wx-rule);
+}
+[data-mode="cw"] .cw-wx-rec__co {
+  margin: 0;
+  font-family: var(--font-cw-display);
+  font-size: var(--wx-head);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--cw-fg);
+}
+[data-mode="cw"] .cw-wx-rec__co a {
+  color: var(--color-accent-copper-deep);
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+[data-mode="cw"] .cw-wx-rec__co a:hover,
+[data-mode="cw"] .cw-wx-rec__co a:focus-visible {
+  text-decoration-color: var(--color-accent-copper);
+}
+[data-mode="cw"] .cw-wx-rec__co a:focus-visible {
+  outline: 2px solid var(--color-accent-copper);
+  outline-offset: 4px;
+}
+[data-mode="cw"] .cw-wx-rec__meta {
+  display: contents;
+}
+[data-mode="cw"] .cw-wx-rec__desc {
+  grid-column: 1 / -1;
+  margin: 0;
+  max-width: 68ch;
+  font-family: var(--font-cw-body);
+  font-size: var(--wx-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--cw-fg);
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx-rec__row {
+    display: block;
+    padding: 20px 0;
+  }
+  [data-mode="cw"] .cw-wx-rec__meta {
+    display: block;
+    margin: 8px 0 0;
+  }
+  [data-mode="cw"] .cw-wx-rec__role,
+  [data-mode="cw"] .cw-wx-rec__what {
+    display: block;
+  }
+  [data-mode="cw"] .cw-wx-rec__desc {
+    margin-top: 8px;
+  }
 }
 
-/* The rest of the record — the bone list below the lot. */
-[data-mode="cw"] .cw-wk__rest-title {
-  font-family: var(--font-cw-mono);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.75;
-  margin: 0 0 8px;
+/* Close: the kept cross-link line, then PageFooter */
+[data-mode="cw"] .cw-wx-cross {
+  margin: 96px 0 0;
+  max-width: 60ch;
+  font-family: var(--font-cw-body);
+  font-size: var(--wx-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--cw-fg);
 }
-[data-mode="cw"] .cw-wk .cw-wk-list {
-  margin-top: 24px;
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-wx-cross {
+    margin-top: 64px;
+  }
+}
+[data-mode="cw"] .cw-wx-link {
+  color: var(--color-accent-copper-deep);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+[data-mode="cw"] .cw-wx-link:hover,
+[data-mode="cw"] .cw-wx-link:focus-visible {
+  text-decoration-color: var(--color-accent-copper);
+  text-decoration-thickness: 2px;
 }
 
 /* ============================================================

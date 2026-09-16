@@ -31,6 +31,7 @@ export const CITATIONS = {
       "metadata descriptions (root, home, about) — /hire-me retired Pass-57",
       "opengraph images (home, about)",
       "components/color-worlds/ExitRecord.tsx (Pass-106, renders DEALS below)",
+      "content/work-page.ts (record block, years and values checked)",
     ],
     // Pass-106: the same four deals as structured data, so <ExitRecord /> can
     // RENDER the record instead of restating it. quotedStatistics above stays
@@ -93,7 +94,16 @@ export const CITATIONS = {
       "14.2 per 100,000 live births (non-Hispanic white women, maternal mortality rate)",
       "~3.15x rate ratio (Black vs. white, non-Hispanic)",
     ],
-    citedIn: ["content/work/ordani.mdx (Why it matters)"],
+    // Pass-120: the values the ORDANI page RENDERS. Each is read off quotedStatistics above;
+    // content/work/ordani.mdx imports these, so no figure is typed into prose (Pitfall E2).
+    FIGURES: {
+      blackRate: "44.8",
+      whiteRate: "14.2",
+      ratio: "3.15",
+      per: "100,000 live births",
+      releaseYear: "2024",
+    },
+    citedIn: ["content/work/ordani.mdx (Why it matters, renders FIGURES)"],
   },
 } as const;
 

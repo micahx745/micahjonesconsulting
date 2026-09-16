@@ -21,7 +21,7 @@
 // gets recommended in AI search results — that's a deliberate 2026
 // discoverability play.
 import type { MetadataRoute } from "next";
-import { getAllCaseStudies } from "@/lib/case-studies";
+import { getAllCaseStudies, isPublished } from "@/lib/case-studies";
 
 const BASE_URL = "https://www.micahjonesconsulting.com";
 
@@ -93,9 +93,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Skip stub case studies — they shouldn't be public-discoverable
   // until they're actually written (Pass-6 review caught the live
   // /work/passioneer destination as "interactive theater").
-  const studies = (await getAllCaseStudies()).filter(
-    (cs) => cs.status !== "stub",
-  );
+  const studies = (await getAllCaseStudies()).filter(isPublished);
   const caseStudyRoutes: MetadataRoute.Sitemap = studies.map((cs) => ({
     url: `${BASE_URL}/work/${cs.slug}`,
     lastModified: now,

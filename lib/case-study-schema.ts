@@ -1,29 +1,16 @@
 // lib/case-study-schema.ts
 //
-// Phase 7 — CASE-01. Zod schema for case-study MDX frontmatter.
+// Pass-120. Zod schema for content/work/*.mdx frontmatter, the Direction B spine.
+// Invoked from lib/case-studies.ts (runtime) and lib/copy-lint-runner.ts (build gate).
 //
-// This is the single source of truth for what a content/work/*.mdx file
-// must declare in its YAML frontmatter block. The schema is invoked from:
-//   - lib/case-studies.ts (runtime read for index/OG) — CASE-10
-//   - lib/copy-lint-runner.ts (build-time validation) — CASE-02
-//   - mdx-frontmatter.sh harness hook (write-boundary belt-and-suspenders)
+// Two shapes. A stub (status "stub") carries title, dek and status only and never renders.
+// A published study carries everything the dark band, the at-a-glance block, the /work entry
+// and the close need. Both are strict: any leftover retired key (the Pass-58/61 index
+// fields, the tenure field, the tool list, the word stack) fails the build.
 //
-// Required fields (per blueprint §9 ORDANI draft + ARCHITECTURE §7.3):
-//   title              — display title (e.g., "ORDANI")
-//   dek                — Source Serif 4 italic subtitle under the TitleCard
-//   role               — Micah's role on the project (e.g., "Solo build")
-//   tools              — array of tool names (e.g., ["Next.js", "Supabase"])
-//   year               — string or number (allows ranges like "2025-2026")
-//   status             — enum: shipped | in-flight | archived | stub
-//   titleCardWords     — 3 to 6 short words for the pinned vertical stack
-//
-// Optional:
-//   heroStill          — path to hero still rendered between Dek and body
-//   client             — client name when not solo
-//
-// Source: REQUIREMENTS.md CASE-01; blueprint §9 ORDANI frontmatter block;
-//         ARCHITECTURE.md §7.3 (architecture-recommended Zod shape, extended
-//         here with status enum + client? per Phase 7 spec).
+// Rulings: LESSONS #3, 2026-09-15 and 2026-09-16 rows. No personal year renders anywhere.
+// publishedAt is the release date of the page (hidden: JSON-LD and sort only),
+// never a tenure year.
 import { z } from "zod";
 
 export const CASE_STUDY_STATUSES = [
@@ -34,73 +21,88 @@ export const CASE_STUDY_STATUSES = [
 ] as const;
 export type CaseStudyStatus = (typeof CASE_STUDY_STATUSES)[number];
 
-export const caseStudyFrontmatterSchema = z.object({
-  /** Display title rendered in the page <title> + chrome — e.g., "ORDANI". */
-  title: z.string().min(1, "title is required"),
+/** The three /services areas. Labels equal the SERVICES titles in app/(foyer)/services/page.tsx. */
+export const SERVICE_SLUGS = [
+  "ai-engineering",
+  "product-building",
+  "positioning-gtm",
+] as const;
+export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
+export const SERVICE_LABELS: Record<ServiceSlug, string> = {
+  "ai-engineering": "AI engineering",
+  "product-building": "Product building",
+  "positioning-gtm": "Positioning & GTM",
+};
 
-  /** Source Serif 4 italic subtitle below the TitleCard. One sentence. */
-  dek: z.string().min(1, "dek is required"),
+/** A tenure range such as 2018-2021 or 2018–2021. Never allowed in any frontmatter string. */
+const TENURE_RANGE = /\b(19|20)\d{2}\s*[-–]\s*(19|20)\d{2}\b/;
 
-  /** Micah's role (e.g., "Solo — research, design, build, ship"). */
-  role: z.string().min(1, "role is required"),
+const text = z
+  .string()
+  .min(1)
+  .refine((s) => !TENURE_RANGE.test(s), "no year ranges (LESSONS #3, no personal years)");
 
-  /** Tool stack — array of strings. Renders as a comma-separated metadata line. */
-  tools: z.array(z.string().min(1)).min(1, "at least one tool is required"),
-
-  /** Year of work. String allows ranges like "2025-2026"; number allows single years. */
-  year: z.union([z.string().min(1), z.number().int()]),
-
-  /** Status enum — drives sort order in lib/case-studies.ts. */
-  status: z.enum(CASE_STUDY_STATUSES),
-
-  /** 3 to 6 short words for the TitleCard vertical word stack. */
-  titleCardWords: z
-    .array(z.string().min(1, "word must be non-empty"))
-    .min(3, "titleCardWords requires at least 3 words")
-    .max(6, "titleCardWords supports at most 6 words"),
-
-  /** Optional path to hero still rendered between Dek and MDX body. */
-  heroStill: z.string().optional(),
-
-  /** Optional client name. Omit if solo. */
-  client: z.string().optional(),
-
-  /** W3 (P1-5/R11): the ONE figure-bearing line for index surfaces.
-   *  Every number in it must also appear in this case study's body
-   *  (LESSONS #2 — the card is a compression of the study, never a
-   *  second story). Falls back to the dek's first sentence. */
-  indexLine: z.string().optional(),
-
-  /** Pass-58: up to three stat objects for the /work index and the
-   *  case page's "at a glance" strip. Same rule as indexLine — every
-   *  figure must also appear in the study body (LESSONS #2). */
-  stats: z
-    .array(
-      z.object({
-        fig: z.string().min(1),
-        lbl: z.string().min(1),
-      }),
-    )
-    .max(3)
-    .optional(),
-
-  /** Pass-61: hand-set position in the /work index, ascending. The default
-   *  sort is status then year-descending, which put the name-protected author
-   *  engagement above the Akamai acquisition — the strongest receipt buried by
-   *  an accident of chronology. Order is an editorial decision, so it is
-   *  written down rather than derived. Studies without it sort last. */
-  order: z.number().int().positive().optional(),
-
-  /** Pass-61: the /work index opens on ONE study presented as a catalogue lot.
-   *  `feature` carries that opening's two pieces: the figure set at hero scale
-   *  and the line beneath it. Only the study with order 1 uses it. LESSONS #2
-   *  still binds — every number here must also appear in this study's body. */
-  feature: z
-    .object({
-      fig: z.string().min(1),
-      line: z.string().min(1),
-    })
-    .optional(),
+const photo = z.strictObject({
+  src: z.string().regex(/^\/(media\/)?[a-z0-9-]+\.(jpg|jpeg|png|avif|webp)$/),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  alt: text,
 });
 
+export const stubCaseStudySchema = z.strictObject({
+  title: text,
+  dek: text,
+  status: z.literal("stub"),
+});
+
+export const publishedCaseStudySchema = z
+  .strictObject({
+    /** The search title. It renders as the visible h1 and is the page <title>. */
+    title: text,
+    /** The same title split into the lines the settle entrance animates. Joined with one space they equal title. */
+    titleLines: z.array(text).min(1).max(3),
+    /** Meta and JSON-LD description. At most 155 characters, so clampDescription passes it through. */
+    description: text.refine((s) => s.length <= 155, "description is at most 155 characters"),
+    /** The dek under the title in the dark band. */
+    dek: text,
+    /** The client as the page names it, with no trailing period. */
+    client: text,
+    /** true renders the mono label "Name protected" after the client. */
+    clientNameProtected: z.boolean(),
+    /** The at-a-glance rows between Client (from client) and Results (from results). */
+    atAGlance: z.array(z.strictObject({ label: text, value: text })).min(1).max(3),
+    /** The Results row: lead renders at the 36 size, rest beneath it at body size. */
+    results: z.strictObject({ lead: text, rest: text }),
+    /** The /work entry. figure exists only on the order-1 study, which renders it at 112. */
+    entry: z.strictObject({
+      context: text,
+      figure: text.optional(),
+      line: text,
+      did: text,
+    }),
+    /** The /services area the close and the /work entry route to. */
+    service: z.enum(SERVICE_SLUGS),
+    /** Hidden. ISO release date of the page (LESSONS #3, RELEASE DAY). JSON-LD datePublished and the fallback sort only. */
+    publishedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+    status: z.enum(["shipped", "in-flight", "archived"]),
+    /** /work position and the Next order, ascending, unique. */
+    order: z.number().int().positive(),
+    /** The band photograph, where a real, cleared photograph exists. No caption field exists anywhere. */
+    hero: photo.optional(),
+  })
+  .superRefine((cs, ctx) => {
+    if (cs.titleLines.join(" ") !== cs.title) {
+      ctx.addIssue({ code: "custom", path: ["titleLines"], message: "titleLines joined with one space must equal title" });
+    }
+    if ((cs.order === 1) !== (cs.entry.figure !== undefined)) {
+      ctx.addIssue({ code: "custom", path: ["entry", "figure"], message: "entry.figure is required on order 1 and forbidden elsewhere" });
+    }
+  });
+
+export const caseStudyFrontmatterSchema = z.union([
+  stubCaseStudySchema,
+  publishedCaseStudySchema,
+]);
+
 export type CaseStudyFrontmatter = z.infer<typeof caseStudyFrontmatterSchema>;
+export type PublishedCaseStudyFrontmatter = z.infer<typeof publishedCaseStudySchema>;

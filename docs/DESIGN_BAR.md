@@ -167,6 +167,7 @@ by looking. Grade per page; report R-numbers.
   fail.
 - **R2 — Real scale contrast:** largest display type ≥4× body size; no two adjacent hierarchy
   levels within 15% of each other; ≤5 active sizes per page.
+  - Exception (operator 2026-09-16, left to the judge: "what you think is best"): case-study pages set their largest type at 56px against 18px body at 1440 (3.1x) and 36px against 17px at 390, because a result figure at 112px wraps on the anonymous studies. /work keeps its 112px lead figure. Study pages only, not a precedent.
 - **R3 — Body discipline:** body ≥16px, line length ≤75ch, line-height 1.5–1.7, AA contrast
   (4.5:1) everywhere including muted/"subtle" text.
   - Ruling (operator 2026-09-16, Pass-120 build, picked "Ink text, sage accents (Recommended)"): study pages sit on the Color Worlds bone `#ECE3D0` (brief O8), where ORDANI's sage `#5E7158` measures 4.14:1 and fails body text. On ORDANI's paper body the step numerals and the body links (`--cs-link`) use foyer ink `#1A1816` (13.88:1); sage stays on ORDANI's band rule, list dashes, focus rings and other non-text marks. The other four studies keep copper-deep `#8A3D24` (5.94:1 on bone).
@@ -219,6 +220,7 @@ by looking. Grade per page; report R-numbers.
   anything on the repo copy-lint banned list — dots stripped when grepping); zero emoji bullets;
   time-depth stated as specific numbers (years, dates, dollar figures), never "years of
   experience"; every headline could only describe THIS operator.
+  - Exception (operator 2026-09-15, the RFP client's descriptor, "a award winning author/ Leadership consultant also for gov and corps"): "award-winning" may appear only in that client's descriptor on /work and /work/rfp-engine. Not a precedent for any other adjective.
 - **R17 — No selling pressure:** one CTA style per page, no urgency/scarcity devices, no popups,
   no exit-intent, no chat widget, no floating CTA bar.
 - **R18 — The footer is logistics:** contact, socials, legal, copyright (ideally with a date

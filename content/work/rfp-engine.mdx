@@ -1,51 +1,94 @@
 ---
-title: RFP engine for an industry author
-dek: $3M in contracts won through software I built for an industry-authority author, government contracts among them. It weighs every new RFP against the author's own body of work and hands them a drafted head start each morning. RFP-to-close rate doubled inside six months.
-role: Strategist, software builder
-tools:
-  - Custom RFP software
-  - Retrieval / RAG
-  - Response drafting
-  - Procurement strategy
-year: 2024-2025
+title: "AI RFP software: $3M in signed contracts"
+titleLines:
+  - "AI RFP software:"
+  - "$3M in signed contracts"
+description: "I built RFP discovery, scoring and drafting around one expert's own body of work. $3M signed, and the close rate doubled from one in eight to one in four."
+dek: "$3M in signed contracts, won through AI software I built for an award-winning author and leadership consultant. It finds the RFPs worth answering, weighs each one against twenty years of their own work, and has a drafted response waiting by morning. Their close rate went from one in eight to one in four."
+client: "An award-winning author and leadership consultant who teaches government bodies and corporations"
+clientNameProtected: true
+atAGlance:
+  - label: "My role"
+    value: "Strategist and sole builder"
+  - label: "First real RFPs delivered"
+    value: "Day three"
+  - label: "What I built"
+    value: "Discovery, bid/no-bid scoring, a library of their work with provenance, and response drafting"
+results:
+  lead: "$3M in signed contracts across eleven awards."
+  rest: "Close rate from one in eight to one in four inside six months. Responses out per month: two or three, then eight to ten."
+entry:
+  context: "An award-winning author and leadership consultant who teaches government bodies and corporations"
+  line: "$3M in signed contracts across eleven awards."
+  did: "It finds the RFPs worth answering, weighs each one against twenty years of their own work, and has a drafted response waiting by morning."
+service: ai-engineering
+publishedAt: "2026-09-16"
 status: shipped
-titleCardWords:
-  - RFP.
-  - JUDGMENT.
-  - WON.
-client: Industry-authority author (name protected)
-order: 3
-indexLine: $3M in contracts won through RFP software that doubled the author's close rate inside six months.
-stats:
-  - fig: $3M
-    lbl: contracts won, government included
-  - fig: "2×"
-    lbl: RFP-to-close rate, inside six months
-  - fig: Daily
-    lbl: a drafted head start, not a blank page
+order: 2
 ---
 
-## The problem
+## Three responses a month was the ceiling
 
-A respected industry-authority author had the body of work and the inbound interest. The RFP pipeline did not match either. New opportunities arrived through a single newsletter list and a few personal relationships. Every response started from a blank page, so volume was the bottleneck. The upside was not getting captured.
+The client had twenty years of published work behind them: books, keynotes and training programs. Public buyers were funding exactly that expertise. Most of those requests never reached them.
 
-## What I did
+New opportunities arrived through a single newsletter list and the client's existing network. Everything else sat on federal, state and local procurement portals that nobody was watching.
 
-**01. I built it as real software, not templates.** The platform knows the author's own body of work and weighs each new RFP against it, through retrieval. Every morning the author opens a report of live opportunities, each with a partial response already drafted. A head start instead of a blank page. Volume stopped being the bottleneck.
+Every response started from a blank page. One took three to five working days, so two or three went out a month and the client passed on the rest. Volume was the ceiling, and each pass was a contract someone else won.
 
-<CaseStudyStill
-  alt="The morning report: live RFPs, each with a partial response already drafted"
-  placeholderEyebrow="Custom software · client-confidential"
-/>
+## Real RFPs by day three
 
-**02. The product is the judgment.** The hard part was never the retrieval. Earlier in my career I ran complex, multi-million-dollar RFPs in enterprise cybersecurity procurement. I know what a buyer's evaluation committee actually reads. A strategy deck would have described that judgment. I wrote it into the software, so it fires on every submission, not only the ones I touch. The specifics stay with the client.
+Day three, the software was live and sending real opportunities. Scoring, the library and the drafting came after that.
 
-**03. It closed government contracts.** Through the platform, the author won government contracts worth millions. Contracts closed through it total $3M. RFP-to-close rate doubled inside six months.
+<Step n="01" lead="Discovery.">It checks federal, state and local procurement portals every night and pulls each new RFP in the client's field.</Step>
 
-## Outcome
+<Step n="02" lead="One record per solicitation.">Portals repost the same solicitation, and amendments change it. Duplicates collapse into one record, and an amendment gets flagged for review rather than quietly replacing what the client already read.</Step>
 
-$3M in contracts won through the platform, government contracts among them. RFP-to-close rate: 2× inside six months. Every morning the author opens live opportunities with a partial response already drafted, a daily head start instead of a blank page. The judgment that used to fire only when I was in the room now fires on every submission. The same engagement also produced the author's content engine, written up separately.
+<Step n="03" lead="The library, with provenance.">I put more than 300 pieces of the client's work into a searchable library: books, articles, talks, past proposals and client results. Every passage keeps its source, its date and how that engagement ended. This is the retrieval layer, RAG, and the provenance is the point: a draft can name real work instead of describing work in general.</Step>
 
-<PullQuote attribution="The author, name protected">
-  Micah does the work that most strategy decks promise and never deliver.
-</PullQuote>
+<Step n="04" lead="Bid/no-bid scoring.">Each RFP gets scored before a person reads it: eligibility, deadline, required certifications, and how far the scope overlaps proven work.</Step>
+
+<Step n="05" lead="Drafting against the buyer's own criteria.">Each solicitation states how it will be scored, and evaluation factors differ from one to the next. The draft follows that solicitation's stated criteria rather than a house template.</Step>
+
+<Step n="06" lead="Gaps instead of invention.">Where the library cannot support a claim, the draft leaves a marked gap and says what is missing. It does not write a sentence that merely sounds right.</Step>
+
+<Step n="07" lead="Outcomes tune the scoring.">Every award and every rejection adjusts the weights, so the scoring keeps learning from real results.</Step>
+
+Nothing submits itself. A person reads and approves every response before it goes out.
+
+## One requirement, start to finish
+
+<Exhibit>
+  <ExhibitRow request="A buyer asks for proof of similar work delivered in the last five years." engine="The engine pulls two engagements out of the library that match the scope, each with its date and how it ended, and drafts the answer around them in the client's own language." />
+  <ExhibitRow request="The same RFP asks for a credential the client does not hold." engine="Nothing in twenty years of their work supports it. The draft leaves a marked gap and names what is missing, so the client can answer it honestly, bring in a partner who has it, or skip the bid." />
+</Exhibit>
+
+That gap is the part I care about. A model that writes something plausible there costs a client their credibility with a buyer they wanted for years.
+
+## What the replay found
+
+Before the software scored a live RFP, I ran thirty to fifty of the client's past bids back through it. The pattern held: every win matched two or more of their proven capabilities, and every loss matched one or none. Capability overlap became the heaviest weight in the score.
+
+That is also the honest answer to a fair question. A better filter raises a win rate on its own, so the scoring had to earn its weights against bids whose outcomes were already known.
+
+## What changed
+
+- $3M in signed contracts through the platform, across eleven awards.
+- Contracts started arriving from buyers outside the client's existing network and outside their home state.
+- The close rate went from one in eight to one in four of submitted proposals, inside six months.
+- Responses out went from two or three a month to eight to ten.
+- First drafts arrive in hours instead of days.
+- The judgment that used to fire only when I was in the room now fires on every submission.
+
+<PullQuote attribution="The client, name protected">Micah does the work that most strategy decks promise and never deliver.</PullQuote>
+
+## Questions buyers ask
+
+**What did this RFP engine automate?** Finding relevant solicitations, scoring whether each one is worth a bid, and drafting a first response from the client's own published work. A person reviews and submits every response.
+
+**Can AI write a government RFP response?** It can draft one. Here the draft came from the client's own library and followed that solicitation's stated evaluation criteria, and a person finished every response. Eligibility, pricing and submission checks stayed human.
+
+**What was working after three days?** Real RFPs arriving, scored for fit. The library, the drafting and the tuning came after.
+
+## If your experts read the same document every week
+
+Your AI works in the notebook. Production is a different stack, and I run that stack. I build the retrieval, the scoring and the drafting on your own material, for real load and not the demo, with evals that fire on every change and catch failures before your customers do. Your team runs it after I leave.

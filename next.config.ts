@@ -26,6 +26,23 @@ const nextConfig: NextConfig = {
         destination: "/work/guardicore",
         permanent: true,
       },
+      // Pass-120 (operator 2026-09-15): Postmates and Neuton.AI become rows in
+      // the record block on /work, "but definitely describe a bit for each
+      // one". Both pages retire. permanent: true answers 308, not 301
+      // (node_modules/next/dist/docs/01-app/03-api-reference/05-config/
+      // 01-next-config-js/redirects.md:30). The #record fragment is kept in the
+      // Location header (next/dist/shared/lib/router/utils/
+      // prepare-destination.js:184-192) and lands on <section id="record">.
+      {
+        source: "/work/postmates",
+        destination: "/work#record",
+        permanent: true,
+      },
+      {
+        source: "/work/neuton",
+        destination: "/work#record",
+        permanent: true,
+      },
       // Pass-57 (operator 2026-09-01: "you click hire me and it takes me
       // to this weird page — maybe go to the new services page"). The
       // /hire-me landing is retired; /services carries the four shapes.

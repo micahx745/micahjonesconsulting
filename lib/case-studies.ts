@@ -23,10 +23,22 @@ import matter from "gray-matter";
 import {
   caseStudyFrontmatterSchema,
   type CaseStudyFrontmatter,
+  type PublishedCaseStudyFrontmatter,
 } from "@/lib/case-study-schema";
 
-export interface CaseStudyMeta extends CaseStudyFrontmatter {
+// Pass-120: an interface cannot extend a union, so CaseStudyMeta is a type
+// alias over the CaseStudyFrontmatter union (stub | published) plus slug.
+// PublishedCaseStudyMeta narrows it to the published shape only.
+export type CaseStudyMeta = CaseStudyFrontmatter & { slug: string };
+export type PublishedCaseStudyMeta = PublishedCaseStudyFrontmatter & {
   slug: string;
+};
+
+/** True for every status except "stub". Narrows CaseStudyMeta to PublishedCaseStudyMeta. */
+export function isPublished(
+  cs: CaseStudyMeta,
+): cs is PublishedCaseStudyMeta {
+  return cs.status !== "stub";
 }
 
 const CONTENT_DIR = "content/work";
@@ -36,8 +48,9 @@ const CONTENT_DIR = "content/work";
  * Zod schema, and return a sorted array of CaseStudyMeta. Throws on schema
  * violations — surfaced by the build via lib/copy-lint-runner.ts.
  *
- * Sort order: status (shipped < in-flight < archived < stub), then year desc.
- * So Phase 8 published case studies bubble above the Phase 7 stub corpus.
+ * Sort order (Pass-120): published studies by their editorial `order`
+ * ascending, with `publishedAt` descending as the tie-break. Stubs carry
+ * neither field and always sort last.
  */
 export async function getAllCaseStudies(): Promise<CaseStudyMeta[]> {
   const dir = join(process.cwd(), CONTENT_DIR);
@@ -70,35 +83,18 @@ export async function getAllCaseStudies(): Promise<CaseStudyMeta[]> {
     studies.push({ slug, ...parsed.data });
   }
 
-  const statusRank: Record<string, number> = {
-    shipped: 0,
-    "in-flight": 1,
-    archived: 2,
-    stub: 3,
-  };
-
-  // Pass-61: an explicit `order` wins over everything. The status-then-year
-  // sort is a reasonable default and a poor editor: it ranked the
-  // name-protected author engagement above the Akamai acquisition purely
-  // because 2024 is later than 2021, so the strongest receipt on the site
-  // opened below the fold. Which engagement leads is an editorial call, so it
-  // is written in frontmatter. Studies without `order` keep the old behaviour
-  // and sort after every study that has one.
+  // Pass-120: `order` is now required on every published study, so it always
+  // wins. `publishedAt` (ISO, sorts correctly as a string) breaks ties
+  // descending. Stubs carry neither field and sort after every published
+  // study.
   return studies.sort((a, b) => {
-    if (a.order !== undefined || b.order !== undefined) {
-      return (a.order ?? Infinity) - (b.order ?? Infinity);
+    if (isPublished(a) && isPublished(b)) {
+      if (a.order !== b.order) return a.order - b.order;
+      return b.publishedAt.localeCompare(a.publishedAt);
     }
-    const rs = (statusRank[a.status] ?? 99) - (statusRank[b.status] ?? 99);
-    if (rs !== 0) return rs;
-    const ay =
-      typeof a.year === "number"
-        ? a.year
-        : Number(String(a.year).match(/\d+/)?.[0] ?? 0);
-    const by =
-      typeof b.year === "number"
-        ? b.year
-        : Number(String(b.year).match(/\d+/)?.[0] ?? 0);
-    return by - ay;
+    if (isPublished(a)) return -1;
+    if (isPublished(b)) return 1;
+    return 0;
   });
 }
 
@@ -106,9 +102,11 @@ export async function getAllCaseStudies(): Promise<CaseStudyMeta[]> {
  * Convenience: top N for the Home selected-work strip.
  * Excludes status="stub" so Phase 7's test corpus never lands on Home.
  */
-export async function getSelectedWork(limit = 3): Promise<CaseStudyMeta[]> {
+export async function getSelectedWork(
+  limit = 3,
+): Promise<PublishedCaseStudyMeta[]> {
   const all = await getAllCaseStudies();
-  return all.filter((cs) => cs.status !== "stub").slice(0, limit);
+  return all.filter(isPublished).slice(0, limit);
 }
 
 /**
@@ -119,11 +117,11 @@ export async function getSelectedWork(limit = 3): Promise<CaseStudyMeta[]> {
  */
 export async function getCaseStudyBySlug(
   slug: string,
-): Promise<CaseStudyMeta | null> {
+): Promise<PublishedCaseStudyMeta | null> {
   const all = await getAllCaseStudies();
   const cs = all.find((cs) => cs.slug === slug);
   if (!cs) return null;
-  if (cs.status === "stub") return null;
+  if (!isPublished(cs)) return null;
   return cs;
 }
 
@@ -143,8 +141,8 @@ export async function getCaseStudyBySlug(
  */
 export async function getNextCaseStudy(
   slug: string,
-): Promise<CaseStudyMeta | null> {
-  const all = (await getAllCaseStudies()).filter((cs) => cs.status !== "stub");
+): Promise<PublishedCaseStudyMeta | null> {
+  const all = (await getAllCaseStudies()).filter(isPublished);
   if (all.length < 2) return null;
   const idx = all.findIndex((cs) => cs.slug === slug);
   if (idx === -1) return null;

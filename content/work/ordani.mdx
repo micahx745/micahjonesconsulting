@@ -1,70 +1,66 @@
 ---
-title: ORDANI
-dek: A HIPAA-compliant CRM for birth workers, and a company I founded and built. Active paying users in beta, none lost to a competitor. Public release coming.
-role: Founder and sole engineer
-tools:
-  - Full-stack TypeScript
-  - HIPAA-compliant architecture
-  - Progressive intake flow
-  - Transactional messaging
-year: 2025-2026
+title: "ORDANI: HIPAA-compliant CRM for birth workers"
+titleLines:
+  - "ORDANI: HIPAA-compliant"
+  - "CRM for birth workers"
+description: "Birth workers run practices on group chats and paper intakes. I founded and built ORDANI, where intake completion went from 40% to a measured 91%."
+dek: "A HIPAA-compliant CRM for birth workers, and a company I founded and built. Intake completion went from 40% to a measured 91%. Active paying users in beta, none lost to a competitor, public release coming."
+client: "ORDANI, my company"
+clientNameProtected: false
+atAGlance:
+  - label: "My role"
+    value: "Founder and sole engineer"
+  - label: "The work"
+    value: "Practitioner interviews, a progressive intake flow, a HIPAA-compliant build shaped with birth workers and cyber security experts, and a closed beta"
+results:
+  lead: "Intake completion 40% to 91%."
+  rest: "Active paying users in beta, none lost to a competitor."
+entry:
+  context: "ORDANI, my company"
+  line: "Intake completion went from 40% to a measured 91%."
+  did: "A HIPAA-compliant CRM for birth workers, and a company I founded and built."
+service: product-building
+publishedAt: "2026-09-16"
 status: in-flight
-titleCardWords:
-  - ORDANI
-  - INTAKE.
-  - SECURE.
-  - SHIPPED.
-client: ORDANI (my company)
-order: 2
-indexLine: Intake completion moved from 40% to a measured 91%. Active paying users in beta.
-stats:
-  - fig: 91%
-    lbl: intake completion, from 40%
-  - fig: Beta
-    lbl: active paying users, public release next
-  - fig: "0"
-    lbl: lost to a competitor
+order: 3
 ---
 
-## The problem
+import { CITATIONS } from "../citations";
 
-Birth workers (doulas, midwives, perinatal counselors) run their whole practice on group chats, paper intakes, and Google Docs. HIPAA is the law. Compliance takes infrastructure, and the tools these practitioners run on were never built for it. So practitioners either break the law, pay $200 a month for software designed for dentists, or hand-roll a system that breaks the first time a client churns.
+export const CDC = CITATIONS.ORDANI_CDC_2024.FIGURES;
 
-<CaseStudyStill
-  src="/ordani-intake.jpg"
-  width={1600}
-  height={1068}
-  alt="A doula sits with a pregnant client on a couch, writing on a notepad as they talk."
-  caption="The intake, on paper: what Ordani replaces"
-/>
+## Six apps and a Sunday night
+
+Birth workers, doulas, midwives and perinatal counselors, were not running their practices on nothing. They were running them on half a dozen tools: a scheduler, an invoicing app, a form builder for intake, a notes app, a payments app, and a group chat holding it together.
+
+Each one did its own job. None of them talked to the others, so the practitioner became the integration, copying the same client's details from one app into the next on a Sunday night. The monthly bill for six subscriptions added up to a system nobody had designed.
+
+Nobody I spoke to was shopping for a platform. Nobody had ever offered them one built for their work, so they did not know to want it. And HIPAA is the law for all of it: every copy of a client's details in another app was one more place that data lived.
 
 ## Why it matters
 
-In the United States, non-Hispanic Black women die from maternal causes at 44.8 per 100,000 live births. That is 3.15 times the rate of non-Hispanic white women (14.2), per the CDC's _Maternal Mortality Rates in the United States, 2024_ release. Doulas and midwives, disproportionately Black women themselves, are one of the most evidence-supported interventions against that gap. The data they collect on their clients is sensitive, high-stakes, and almost never properly protected. The market hasn't shipped for these workers because the market doesn't see them. That is the gap I built ORDANI to close.
+In the United States, non-Hispanic Black women die from maternal causes at {CDC.blackRate} per {CDC.per}, {CDC.ratio} times the rate of non-Hispanic white women, per the CDC's {CDC.releaseYear} release. Doulas and midwives, disproportionately Black women themselves, are one of the most evidence-supported interventions against that gap. The data they hold is sensitive and almost never properly protected. The market has not shipped for these workers because the market does not see them.
 
-## Approach
+## What I did
 
-**01. I talked to 22 birth workers before writing a line of code.**
-Across four weeks of unpaid conversations. I asked what they used now, what they hated about it, what they'd never give up, and what they'd pay for. Three patterns emerged: every practitioner had been hacked or scared into thinking they had been; nobody wanted a "platform"; everybody wanted intake to stop being the thing that ate their Sundays.
+<Step n="01" lead="I talked to birth workers before writing a line of code.">Four weeks of unpaid conversations: what they used, what they hated, what they would never give up, what they would pay for. Two patterns came back. Nobody asked for a platform, because nobody had been offered one that understood their work. And everybody wanted intake to stop eating their Sundays.</Step>
 
-**02. I designed intake as one progressive flow, not a form wall.**
-Existing tools dump fifteen pages of medical forms on a pregnant person at 1 a.m. I built a single conversational flow that adapts to the practitioner's preferences and saves on every step. Intake completion went from a self-reported 40% in beta-zero to a measured 91% in beta-one.
+<Step n="02" lead="I made intake one flow instead of a form wall.">The tools they had dropped fifteen pages of medical forms on a pregnant person at one in the morning. I built a single conversational flow that adapts to the practitioner's preferences and saves at every step. Completion went from a self-reported 40% to a measured 91%.</Step>
 
-**03. I built it HIPAA-compliant, and not on my own judgment alone.**
-An app holding this data has to be shaped by people who understand both halves of it: the birth workers whose practice lives inside it, and people who work in healthcare and in cyber security. Ordani has a small team around it for that reason. How the protections actually work is not something a HIPAA product publishes, so this case study does not.
+<Step n="03" lead="I built it HIPAA-compliant, and not on my own judgment.">An app holding this data has to be shaped by the people who understand both halves of it. That means the birth workers whose practice lives inside it, and people who work in healthcare and in cyber security. Ordani has a small team around it for that reason. How the protections work is not something a HIPAA product publishes, so this page does not.</Step>
 
-**04. I shipped to a closed beta of fourteen practitioners first.**
-Free for the first year in exchange for weekly feedback calls. Six months in, eight were active every week, six had referred a peer, and none had left for a competitor. That beta is where today's paying practitioners started.
+<Step n="04" lead="I shipped to a closed beta first.">Free for the first year in exchange for weekly feedback calls. By the end of it, practitioners were using it every week, referring peers, and none had left. That beta is where today's paying practitioners started.</Step>
+
+<ChapterBreak src="/ordani-intake.jpg" width={1600} height={1068} alt="A doula sits with a pregnant client on a couch, writing on a notepad as they talk." />
 
 ## What it became
 
-One intake instead of fifteen pages of forms, and 91% of clients complete it. The practitioner opens a Tuesday-morning view of the week's clients instead of a spreadsheet and a group chat. The screens hold real client data, so I describe them here rather than show them.
+One intake instead of fifteen pages, and 91% of clients finish it. The practitioner opens a Tuesday-morning view of the week instead of a spreadsheet and a group chat. The screens hold real client data, so this page describes them rather than shows them.
 
-## Outcome
+## Questions buyers ask
 
-Birth workers pay for it today, and none have left for a competitor. A HIPAA-compliant CRM built for the doula market, in beta now with a public release coming.
+**Can one person build a HIPAA product?** One person can write the code. Nobody should decide alone what "compliant" means, which is why birth workers, healthcare people and security people shaped it.
 
-<PullQuote attribution="A beta user, name withheld">
-  It is the first piece of software that treats my practice the way I treat my
-  clients.
-</PullQuote>
+## If you have the idea and no team
+
+You have the idea, the budget, and customers waiting. What you do not have is the team to build it. I build it: strategy, design, code, security and launch, with nothing handed to a second team.

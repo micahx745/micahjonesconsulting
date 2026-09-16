@@ -104,7 +104,7 @@ export function PullQuote({
             d="M 3 9 C 80 8, 200 10, 320 9 S 540 10, 720 9 S 920 8, 997 9"
             pathLength={1}
             fill="none"
-            stroke="var(--color-accent-copper)"
+            stroke="var(--cs-accent, var(--color-accent-copper))"
             strokeWidth={2.2}
             strokeLinecap="round"
             strokeLinejoin="round"

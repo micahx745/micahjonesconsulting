@@ -18,7 +18,7 @@ Copper `#C8542B`. Used everywhere across both modes. One exception: `ordani.sage
 The `design-tokens.sh` hook warns on any other hex literal.
 
 ## One signature motion
-`<TitleCard />` on case-study hero (Phase 5). Foyer↔theater View Transition (Phase 2). NOTHING ELSE pins, sticks, parallax-scrolls, or follows the cursor without the `motion-engineer` agent's written approval.
+`<TitleCard />`: a 600ms settle entrance on the case-study hero, which names the client and the result. Foyer↔theater View Transition (Phase 2): a 900ms dim. NOTHING ELSE pins, sticks, parallax-scrolls, or follows the cursor without the `motion-engineer` agent's written approval.
 
 **No figure animation is mounted.** The one that existed, `<WallChart />` in the `/playbook` hero, left with the book in Pass-112 (operator 2026-09-11: the book is not shown on the site yet). `motion.figure` in `brand.json` stays as the record of the 2026-09-01 approval. A new animated figure is the second-signature line; the answer there is no.
 
@@ -133,8 +133,8 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - Do not use stock photography, illustration, icon kits, or 3D. Type and photographs/screenshots only.
 
 ## Content
-- `content/work/*.mdx` — case studies. Frontmatter required (validated by Zod schema in Phase 7 + harness `mdx-frontmatter.sh`): `title`, `dek`, `role`, `tools[]`, `year`, `status`, `titleCardWords[3-6]`, `hero?`.
-- `content/citations.ts` — locked sources (e.g., CDC maternal-mortality statistics for ORDANI). Numbers in case studies render from this object, NOT as literals in prose (Pitfall E2).
+- `content/work/*.mdx` — case studies. Frontmatter is validated by the Zod schema in `lib/case-study-schema.ts` and by the harness hook `mdx-frontmatter.sh`, which requires `title`, `dek`, `status`. Published studies require `title`, `titleLines`, `description`, `dek`, `client`, `clientNameProtected`, `atAGlance`, `results`, `entry`, `service`, `publishedAt`, `status`, `order`, `hero?`. Stubs (`status: stub`) carry `title`, `dek`, `status` only.
+- `content/citations.ts` — locked sources. ORDANI's CDC maternal-mortality figures render from `ORDANI_CDC_2024.FIGURES` in this file, NOT as literals in prose (Pitfall E2).
 - `content/site.ts` — global copy (nav labels, footer copy, positioning sentence).
 
 ## Voice
@@ -193,7 +193,7 @@ Rewritten 2026-08-15. What changed and why:
 
 ## Definition of done
 A page is done when:
-1. The signature interactions hold per blueprint §4f (TitleCard pin ~600ms, foyer↔theater dim 600ms ease-in-out).
+1. The signature interactions hold (TitleCard settle entrance 600ms, foyer↔theater dim 900ms ease-in-out).
 2. Lighthouse Performance ≥ 95 on mobile; LCP ≤ 1800ms; INP ≤ 200ms; CLS ≤ 0.05.
 3. Zero serious/critical axe violations (`a11y-baseline.sh` passes).
 4. The foyer-to-theater transition is visible in DevTools Performance panel as a single browser View Transition.
