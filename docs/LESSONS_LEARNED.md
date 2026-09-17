@@ -540,6 +540,23 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   GUARDICORE and RFP ENGINE deks are UNCHANGED (audit-b judged both already answer-shaped). No h2 in
   any study changes.
 
+- **ORDANI STEP 02 AND "WHAT IT BECAME" — operator 2026-09-17 (Pass-121 EXECUTE, popup)**. Found while
+  drafting the build brief: PART 5 ledgered the Step 02 FACTS but no wording was ever saved, and "What it
+  became" still carried "91% of clients finish it". Both drafted only from PARTS 1 to 5.
+  STEP 02, picked "\"I put claims inside the calendar\" (Recommended)". EXACT, for
+  `content/work/ordani.mdx` (replaces the whole `<Step n="02" ...>` element, lead and body):
+  lead **"I put claims inside the calendar they already keep."**
+  body **"Birth workers who take Medicaid or private insurance either pay a service like Loula a fee on
+  every visit, or file the claims themselves, which costs no fee but takes time and knowledge. Ordani
+  builds the claim from the visits already on the calendar and checks it before it goes out, so fewer
+  come back rejected. Filing comes with the subscription."**
+  This is the ONE place Loula is named on any surface (PART 4), with no fee figure (PART 3).
+  WHAT IT BECAME, picked "Real claims, no separate charge (Recommended)". EXACT: the section's first
+  sentence **"One intake instead of fifteen pages, and 91% of clients finish it."** is replaced by
+  **"Practitioners in the beta file real Medicaid and private-insurance claims from Ordani, with no
+  separate claims charge."** The two sentences after it are unchanged. The money line is NOT repeated in
+  this section (it is already in the dek and the results).
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
