@@ -499,6 +499,15 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   **"Four client engagements and the company I founded. $14M in revenue for a security company, $3M in
   contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a month, a birth
   worker's practice rebuilt, and ORDANI. Each page says what I found, what I built, and what changed."**
+- **ORDANI CLAIMS FACTS, PART 5 — operator 2026-09-17 (Pass-121 DIRECT, popup)**. STEP 02 DRAFT: asked
+  to tick anything that did NOT happen; he ticked "All of these happened" AND typed, verbatim: "they
+  usually use a service and or file them selves (which wouldn't come with a fee but takes time and
+  knowledge )". So C1 (the claim is built from visits already logged in Ordani) and C2 (Ordani checks the
+  claim before it goes out) are TRUE as written. C3 is CORRECTED: birth workers who take Medicaid or
+  insurance either pay a service like Loula a fee on every visit OR file the claims themselves, which
+  carries no fee but costs time and knowledge. NEVER say a service is the only way, or that self-filing
+  costs a fee. BETA: picked "Still beta, release coming": "Active paying users in beta, none lost to a
+  competitor, public release coming" stays on every ORDANI surface.
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
