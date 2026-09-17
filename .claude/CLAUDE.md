@@ -93,6 +93,14 @@ gates, captures, research, commits. Opus and Astra hold the quality gates: brief
 the judge look, design and copy verdicts. Fable is reserved for the rare ruling Opus should
 not make alone. GLM is overflow, not the default. Every Agent leg names `model: "sonnet"`.
 
+**Amended 2026-09-16: Fable at the gates, never the main driver.** Operator, verbatim: "i dont
+want to pick fableas main driver for useage . we are at a good amount right now our resent is
+1am sat and fable is at 52 while week is 64 . just want to make sure that is helping with
+planning and quality gates." So: the main session runs on Opus 5. Fable is called as a named
+subagent (`model: "fable"`) at the planning and quality gates a kickoff or brief names (picking
+a direction, judging mocks or a preview, reading a brief before it commits), one call per gate
+with a written input file. Research, capture and measuring legs stay on Sonnet.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing

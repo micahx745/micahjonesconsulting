@@ -66,24 +66,51 @@ without the motion-engineer agent's written approval"; R12 and CLAUDE.md "no sto
 illustration, icon kits, or 3D"; R11 index entries ≤4 data points; R7 the hero states the offer in one
 sentence.
 
-## 3. Suggested arc shape (Micah wants Fable directing the planning)
+## 3. Arc shape and routing (operator 2026-09-16)
 
-- Main model **Fable 5.1** for this DIRECT segment, ≤15 top-tier tool calls, no build or capture loops;
-  research, capture and audit legs on **Sonnet**, mock-building on **Opus**. The build later runs in its
-  own session on Opus 5 from the brief.
+**Routing, verbatim:** "i dont want to pick fableas main driver for useage . we are at a good amount
+right now our resent is 1am sat and fable is at 52 while week is 64 . just want to make sure that is
+helping with planning and quality gates."
+
+- **Main model: Opus 5.** It orchestrates, asks Micah, runs the workflows, reads results and writes
+  the brief. Research, capture and audit legs run on **Sonnet**; mock-building on **Opus**.
+- **Fable 5.1 only as a named subagent (`model: "fable"`) at these gates**, one call each, with a
+  written input file so it reads files, not transcripts: (G1) pick the reference set and rule on what
+  the trend research found worth taking; (G2) write the 2-3 directions and recommend one; (G3) judge
+  the mocks once; (G4) read the finished brief before it commits. Four calls in the arc, a fifth only
+  if a gate returns fixes that change the page. No Fable main loop, no Fable research or capture legs.
+- Usage at the ruling: Fable 52% and the week 64% of the plan, weekly reset Saturday 2026-09-19 01:00.
+
+**Trend research comes first (operator: "need yiu to find what the klatest trends in taht stuff i
+listedbefore are and how we can take advantage of it on the site").** A Sonnet workflow with live
+WebSearch and WebFetch, never from model memory, every finding carrying its URL and a date from
+2025-2026. Facets, one leg each: (a) motion and interaction on portfolio and case-study sites (CSS
+scroll-driven animations, View Transitions, kinetic and variable type, WebGL or shader surfaces,
+Rive or Lottie, cursor and hover craft), with what is now overused; (b) making text-heavy case studies
+visual without photographs (diagrams, data figures, interactive process explainers, typographic
+systems, generative art), with live examples; (c) award-level work indexes and case studies from
+2025-2026 (Awwwards, FWA, Godly, Siteinspire and studio sites), with live URLs to capture; (d) being
+recommended by AI assistants (how ChatGPT, Claude, Perplexity and Google AI Overviews choose and cite
+sources; llms.txt, JSON-LD such as FAQPage and Article, answer-shaped passages, entity signals), with
+measured evidence, not vendor claims; (e) what makes a site read as AI-built in 2026 and the craft
+signals that read as hand-made. Then an adversarial verify leg per facet that tries to refute its
+central claims, then a synthesis of what the site can take, where, and at what cost, for Fable at G1.
+
 - **Research is a set, not a sample** (memory "design-research-means-a-set"): 12-16 references,
-  captured at 390 and 1440 with one rubric, chosen by Fable across classes: studio work indexes with
+  captured at 390 and 1440 with one rubric, chosen by Fable at G1 from the trend research across classes: studio work indexes with
   real motion and interaction craft; case studies made visual without photography (diagrams, data
   figures, typographic systems, interactive process explainers); solo operators whose sites do not read
   as templates. Tooling from Pass-120: `.planning/qa/pass-120/refs/` and its capture scripts.
 - Two audits in the same fan-out: (a) "looks built by AI" tells on the live /work and studies, judged
   against the set; (b) AI-assistant discoverability of the live site with concrete gaps.
-- Fable writes 2-3 directions (the /work header and featured-study entry, the index as a designed
-  object, the study template's visual system without photos, the motion vocabulary), names which rules
-  each relaxes, and recommends one. Micah picks by popup.
-- Opus builds HTML mocks of the pick at 390 and 1440; Fable judges once; Micah sees the captures
-  (SendUserFile, render) and approves. Then the brief `.claude/briefs/pass-121-<slug>.md` is written
-  and committed, with exact copy, rejected list, checks with expected output, and return conditions.
+- Fable at G2 writes 2-3 directions (the /work header and featured-study entry, the index as a
+  designed object, the study template's visual system without photos, the motion vocabulary), names
+  which rules each relaxes, and recommends one. Micah picks by popup.
+- Opus builds HTML mocks of the pick at 390 and 1440; Fable judges once at G3; Micah sees the captures
+  (SendUserFile, render) and approves. Opus writes the brief `.claude/briefs/pass-121-<slug>.md` with
+  exact copy, rejected list, checks with expected output and return conditions; Fable reads it at G4;
+  it commits. The build runs later in its own Opus session from the brief.
+- If ChatGPT is back (after 2026-09-19 12:17), Astra may take G3 or G4 instead of Fable to spare Fable.
 
 ## 4. Boot, in order
 
@@ -105,6 +132,7 @@ what he needs to decide.
 
 ## Micah: open the new chat
 
-In the Claude desktop app's Code tab, choose the `p106-live` worktree, pick **Fable 5.1**, and paste:
+In the Claude desktop app's Code tab, choose the `p106-live` worktree, pick **Opus 5** (Fable is called
+only at the four gates), and paste:
 
 `Read C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/NEXT-SESSION-KICKOFF.md and follow it.`

@@ -30,7 +30,8 @@ Kickoff .planning/handoff/NEXT-SESSION-KICKOFF.md (his feedback verbatim):
 ORDANI lead = claims savings (ledger row OPEN: mechanism + per-claim
 figure needed; Pass-82 cut it once); /work header replaces method line +
 featured-study entry; visual punch + motion on /work and studies without
-photos; AI-assistant discoverability; not AI-looking; Fable directs.
+photos; AI-assistant discoverability; not AI-looking. Trend research first
+(live web). ROUTING 2026-09-16: main = Opus 5; Fable only at gates G1-G4.
 Branch: EditorialTimestamp deleted (not deployed). Parked: settle120 S6
 check; settle-after-dim offer; "eleven awards" wording.
 
