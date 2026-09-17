@@ -21,11 +21,10 @@ both domains (LESSONS #5). Branch not deployed.
   description (ledgered exact), static drawings. R12 ruling in DESIGN_BAR.
 - PROOF PASSED r4 (all M checks; Sonnet finished it when GLM capped). He saw
   the captures and approved the full mock set 2026-09-17.
-- RUNNING: queued GLM mock build (.planning/exec/glm-121-mocks.md -> mock/
-  pass-121/set/, log exec/glm121-mocks.log), fires at 13:46 PDT when the z.ai
-  5h cap resets. Then Opus look -> Fable G3 -> his approval -> brief -> G4.
-- OPEN for him: ORDANI Step 02 draft tick-confirm [C1-C3]; still in beta?
-  (re-ask later).
+- NEXT: run .planning/exec/glm-121-mocks.md on GLM (cap resets 13:46 PDT; the
+  queued run was cancelled for the handoff). Then Opus look -> Fable G3 -> his
+  approval -> brief -> G4. HANDOFF for the new chat:
+  .planning/handoff/NEXT-SESSION-KICKOFF.md (rewritten 2026-09-17).
 - Next after mocks: Opus writes .claude/briefs/pass-121-*.md (exact copy,
   plumbing from audit-b, verification), Fable G4 reads it, commit. Doc drift:
   copper token is #bd5a2d, .claude/CLAUDE.md prose says #C8542B. Doc drift: copper token
