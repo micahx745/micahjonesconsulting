@@ -9,13 +9,13 @@ s8-dim-path-1440.png: top dim-0094.png, dim-0220.png, dim-0273.png | bottom dim-
 s9-og-cards.png: top og-guardicore.png, og-rfp-engine.png, og-ordani.png | bottom og-content-engine.png, og-birth-worker.png, study-content-engine-curtain-1440.png
 total 7756
 drwxr-xr-x 1 micah 197610       0 Sep 16 16:36 .
-drwxr-xr-x 1 micah 197610       0 Sep 16 16:36 ..
--rw-r--r-- 1 micah 197610 1548027 Sep 16 16:36 s1-work-1440.png
--rw-r--r-- 1 micah 197610 1256497 Sep 16 16:36 s2-work-390.png
--rw-r--r-- 1 micah 197610  618537 Sep 16 16:36 s3-guardicore-1440.png
--rw-r--r-- 1 micah 197610  441128 Sep 16 16:36 s4-rfp-1440.png
--rw-r--r-- 1 micah 197610  759647 Sep 16 16:36 s5-birth-ordani-1440.png
--rw-r--r-- 1 micah 197610  953377 Sep 16 16:36 s6-curtains-390.png
--rw-r--r-- 1 micah 197610  620895 Sep 16 16:36 s7-body-390.png
--rw-r--r-- 1 micah 197610 1352474 Sep 16 16:36 s8-dim-path-1440.png
--rw-r--r-- 1 micah 197610  363771 Sep 16 16:36 s9-og-cards.png
+drwxr-xr-x 1 micah 197610       0 Sep 16 16:49 ..
+-rw-r--r-- 1 micah 197610 1548027 Sep 16 17:05 s1-work-1440.png
+-rw-r--r-- 1 micah 197610 1256497 Sep 16 17:05 s2-work-390.png
+-rw-r--r-- 1 micah 197610  616226 Sep 16 17:05 s3-guardicore-1440.png
+-rw-r--r-- 1 micah 197610  439539 Sep 16 17:05 s4-rfp-1440.png
+-rw-r--r-- 1 micah 197610  758943 Sep 16 17:05 s5-birth-ordani-1440.png
+-rw-r--r-- 1 micah 197610  956411 Sep 16 17:05 s6-curtains-390.png
+-rw-r--r-- 1 micah 197610  619023 Sep 16 17:05 s7-body-390.png
+-rw-r--r-- 1 micah 197610 1352474 Sep 16 17:05 s8-dim-path-1440.png
+-rw-r--r-- 1 micah 197610  363355 Sep 16 17:05 s9-og-cards.png

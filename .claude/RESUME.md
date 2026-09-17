@@ -9,23 +9,21 @@ per gate. Main session builds (detached executors hang at next build).
 ## LIVE: main = c2ffb36, dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23 BOTH domains
 Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. He must PULL main checkout.
 
-## NOW: Pass-120 BUILD. base 73dde08. Code 6c564b4 e015346 96fc8f1
-- Writers+verifiers all PASS (wf_50be51a6-dbe). tsc 0; static 45/46
-  (X5: dead components/EditorialTimestamp.tsx, for ruling).
-- build120: 15/15 PASS (render-gate 14 routes). Server :3200 up.
-- SERVED: 11 fails classified (A ruling-consequence, B check/brief
-  conflict, C real: mono client line T6, ORDANI HIPAA- break, no-JS
-  video controls, #record -0.3). LH /work 3085 vs prod 2710 = L1b FAIL
-  (A4 stop; /contact calib +216ms). Input: reviews/FABLE-120-FIRST-
-  PREVIEW-INPUT.md. IN FLIGHT: ONE Fable look -> FABLE-120-FIRST-PREVIEW.md.
+## NOW: Pass-120 at RC1 (first preview) DONE. STOPPED for Micah.
+Code 6c564b4 e015346 96fc8f1; judge fixes + media 234145a. base 73dde08.
+- Fable first look: .planning/reviews/FABLE-120-FIRST-PREVIEW.md. HOLDS at
+  390/1440. F1-F5 applied + verified (fixdom 0, layout-gate 0, T6 gone,
+  build 15/15, static 45/46 X5 accepted). Remaining page120 T9/T12/T15 and
+  template120 U0/U2/U3/U12/U17/U21 = judge-ACCEPTED with new expecteds.
+- F6 same-machine LCP: build 3083.9 vs base 3013.1 = FAIL L1b-local +71ms
+  (runs overlap). Old 3085-vs-prod-2710 retired (laptop offset).
+- ASKING MICAH: speed call (preview deploy measure vs Speed Insights
+  after release), "behind his work" on PERSON_LD + llms.txt (judge F5
+  copy), go-ahead for RC2 copy curl, RC3 Fable ship read, RC4 motion-eng.
 - O16 SHIP CHECK: publishedAt "2026-09-16" x5 must equal deploy day.
-- HOLD FOR RULING (report at first preview): media uncommitted (W1a/b 98
-  frames want 97; W1i bite 0.9928 want <0.98, O6 made last=first; frame
-  48 = 0.892); X5; prettier fails globals.css on 5 brief single-lines
-  (DoD #7 vs C10); JSON-LD + llms.txt third person but "behind my work"
-  (rows 22-23); brief grep -iF lines 4924/5392 (LESSONS #34, fixed in
-  s5-render.sh); CLAUDE.md GSAP + two-mode lines stale (outside O14);
-  K1 may trip on "Flexport" (gate-exempt alumniOf).
+- Parked: delete dead EditorialTimestamp after ship; CLAUDE.md GSAP and
+  two-mode lines at RC3 doc sweep; no-JS hero shows native controls (UA,
+  accepted).
 
 ## Waiting on operator
 Release push words · the rulings above · Ordani screens · Stripe

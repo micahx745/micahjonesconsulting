@@ -1,0 +1,19 @@
+fixdom: fixdom120 failures: 0
+page120: page120 failures: 6
+FAIL T9 no figcaption /work/rfp-engine 1440: got 1 (want 0)
+FAIL T9 no figcaption /work/rfp-engine 390: got 1 (want 0)
+FAIL T12 sage scope /work/ordani 1440: got 0 (rgb(94, 113, 88)) (want >= 1)
+FAIL T12 sage scope /work/ordani 390: got 0 (rgb(94, 113, 88)) (want >= 1)
+FAIL T15 /work/postmates lands on #record 1440: got /work#record, #record top -0.3 (want /work#record, top 0-160)
+FAIL T15 /work/neuton lands on #record 1440: got /work#record, #record top -0.3 (want /work#record, top 0-160)
+template120: template120 failures: 39
+      5 FAIL U0 status: got 304 (want 200)
+      2 FAIL U12 band photograph: got ["http://localhost:3200/_next/
+      2 FAIL U17 numeral colour: got "rgb(26, 24, 22)" (want "rgb(94
+     10 FAIL U2 paper body: got "rgb(236, 227, 208)" (want "rgb(245,
+     10 FAIL U21 no console or page errors: got ["Failed to load res
+     10 FAIL U3 footer on paper: got "rgb(236, 227, 208)" (want "rgb
+layout: layout-gate: 54 page loads across 9 routes, 0 finding(s), 0 not in KNOWN
+W5: W5 failures: 0
+axe: axe-worlds: axe-core 4.13.0, 129 scans, 0 serious/critical finding(s), 0 not in KNOWN
+shots: shots120 failures: 0

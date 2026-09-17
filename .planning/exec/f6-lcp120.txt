@@ -1,0 +1,29 @@
+== 1. build at :3200
+  lighthouse http://localhost:3200/work run 1 rc=0
+  lighthouse http://localhost:3200/work run 2 rc=0
+  lighthouse http://localhost:3200/work run 3 rc=0
+stopped 3200
+== 2. base 73dde08 at :3201
+Preparing worktree (detached HEAD 73dde08)
+Updating files:  20% (271/1316)Updating files:  21% (277/1316)Updating files:  22% (290/1316)Updating files:  23% (303/1316)Updating files:  24% (316/1316)Updating files:  25% (329/1316)Updating files:  26% (343/1316)Updating files:  27% (356/1316)Updating files:  28% (369/1316)Updating files:  29% (382/1316)Updating files:  30% (395/1316)Updating files:  31% (408/1316)Updating files:  32% (422/1316)Updating files:  33% (435/1316)Updating files:  34% (448/1316)Updating files:  35% (461/1316)Updating files:  36% (474/1316)Updating files:  37% (487/1316)Updating files:  38% (501/1316)Updating files:  39% (514/1316)Updating files:  40% (527/1316)Updating files:  41% (540/1316)Updating files:  41% (544/1316)Updating files:  42% (553/1316)Updating files:  43% (566/1316)Updating files:  44% (580/1316)Updating files:  45% (593/1316)Updating files:  46% (606/1316)Updating files:  47% (619/1316)Updating files:  48% (632/1316)Updating files:  49% (645/1316)Updating files:  49% (648/1316)Updating files:  50% (658/1316)Updating files:  51% (672/1316)Updating files:  52% (685/1316)Updating files:  53% (698/1316)Updating files:  54% (711/1316)Updating files:  55% (724/1316)Updating files:  56% (737/1316)Updating files:  57% (751/1316)Updating files:  58% (764/1316)Updating files:  59% (777/1316)Updating files:  60% (790/1316)Updating files:  61% (803/1316)Updating files:  62% (816/1316)Updating files:  63% (830/1316)Updating files:  64% (843/1316)Updating files:  65% (856/1316)Updating files:  66% (869/1316)Updating files:  67% (882/1316)Updating files:  68% (895/1316)Updating files:  69% (909/1316)Updating files:  70% (922/1316)Updating files:  71% (935/1316)Updating files:  72% (948/1316)Updating files:  73% (961/1316)Updating files:  74% (974/1316)Updating files:  75% (987/1316)Updating files:  76% (1001/1316)Updating files:  77% (1014/1316)Updating files:  78% (1027/1316)Updating files:  79% (1040/1316)Updating files:  80% (1053/1316)Updating files:  81% (1066/1316)Updating files:  82% (1080/1316)Updating files:  83% (1093/1316)Updating files:  84% (1106/1316)Updating files:  85% (1119/1316)Updating files:  86% (1132/1316)Updating files:  87% (1145/1316)Updating files:  88% (1159/1316)Updating files:  89% (1172/1316)Updating files:  90% (1185/1316)Updating files:  90% (1188/1316)Updating files:  91% (1198/1316)Updating files:  92% (1211/1316)Updating files:  93% (1224/1316)Updating files:  94% (1238/1316)Updating files:  95% (1251/1316)Updating files:  96% (1264/1316)Updating files:  97% (1277/1316)Updating files:  98% (1290/1316)Updating files:  99% (1303/1316)Updating files: 100% (1316/1316)Updating files: 100% (1316/1316), done.
+HEAD is now at 73dde08 Pass-120: two design rulings on the bone ground recorded before any leg launches (ORDANI ink text with sage accents; exhibit on the lighter cream)
+  install rc=0
+  base build rc=0
+  base :3201 /work 200
+  lighthouse http://localhost:3201/work run 1 rc=0
+  lighthouse http://localhost:3201/work run 2 rc=0
+  lighthouse http://localhost:3201/work run 3 rc=0
+stopped 3201
+error: failed to delete 'C:/tmp/p120-base': Directory not empty
+C:/Users/micah/Code/micahjonesconsulting                                   79534b8 [main]
+C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p101-integrate  ab62f35 [design/room-and-ledger]
+C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live       234145a [design/live-evolve]
+== 3. comparison
+  build run 1: score 0.92 FCP 1957 LCP 3082 CLS 0 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+  build run 2: score 0.92 FCP 1956 LCP 3084 CLS 0 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+  build run 3: score 0.92 FCP 1955 LCP 3159 CLS 0 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+  base-local run 1: score 0.92 FCP 1970 LCP 3099 CLS 0 el main#main-content > section.cw-lot > figure.cw-lot__exhibit > img
+  base-local run 2: score 0.93 FCP 1962 LCP 3013 CLS 0 el main#main-content > section.cw-lot > figure.cw-lot__exhibit > img
+  base-local run 3: score 0.93 FCP 1957 LCP 3002 CLS 0 el main#main-content > section.cw-lot > figure.cw-lot__exhibit > img
+L1b-local: build 3083.9ms vs base-local 3013.1ms; LCP element build=main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip base=main#main-content > section.cw-lot > figure.cw-lot__exhibit > img
+FAIL L1b-local: got 3083.9 (want <= 3013.1)
