@@ -25,10 +25,14 @@ Live: card1 + claims120 both domains = judge-accepted set only.
 - Colleague okay for the animated clip (his to hold).
 - Ordani screens · Stripe playbook-99 · 500 dollar test · A4/S3 · §9a.
 
-## Parked (no ruling needed to start)
-Delete dead components/EditorialTimestamp.tsx · settle120 S6 cause check
-(motion-engineer) · offer: settle after the dim on client navigation
-(needs his word) · optional "eleven awards" wording.
+## NEXT: Pass-121 DIRECT in a NEW CHAT (operator 2026-09-16)
+Kickoff .planning/handoff/NEXT-SESSION-KICKOFF.md (his feedback verbatim):
+ORDANI lead = claims savings (ledger row OPEN: mechanism + per-claim
+figure needed; Pass-82 cut it once); /work header replaces method line +
+featured-study entry; visual punch + motion on /work and studies without
+photos; AI-assistant discoverability; not AI-looking; Fable directs.
+Branch: EditorialTimestamp deleted (not deployed). Parked: settle120 S6
+check; settle-after-dim offer; "eleven awards" wording.
 
 ## Traps
 LEDGER EVERY ANSWER BEFORE A LEG (#32) · retired figures every spelling

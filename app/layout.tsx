@@ -3,10 +3,9 @@
 // Root layout — fonts, LenisProvider, ViewTransition, JSON-LD Person +
 // Organization schemas, default metadata.
 //
-// EditorialTimestamp was REMOVED from root — it now mounts inside the
-// individual legacy route-group layouts (/v1, /v2, /v3, /v4) where it
-// actually belongs. Keeping it in the root + hiding via CSS leaked the
-// "Oakland · May 2026 · Issue 01" text into Color Worlds SSR HTML.
+// EditorialTimestamp (the "Oakland · Month Year · Issue 01" mark) was deleted
+// on 2026-09-16 (operator: "delete the dead EditorialTimestamp component"):
+// nothing had mounted it since the /v1-/v4 layouts went in Pass-37.
 //
 // Pass-37 (operator: "delete"): the /v1-/v4 legacy directions are gone,
 // and with them the six fonts only they used. The root now loads the

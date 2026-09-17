@@ -410,6 +410,17 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   practices on half a dozen tools: a scheduler, an invoicing app, a form builder for intake, a notes
   app, a payments app, and a group chat holding it together." The "not running their practices on
   nothing" setup is gone. Facts unchanged (O4-O8).
+- **ORDANI LEAD STORY, OPEN — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the
+  main line for Ordani the intake completion is weak. I want to lead with the claims processing
+  saving users hundreds of dollar per claim. The intake completion thing is a very weak story that
+  dors not need to be included. If it neecds to be changed out with another story instead of just
+  removed let me know." NOT YET PUBLISHABLE: Pass-82 (operator 2026-09-02, "soften it to what's
+  defensible") cut "processing Medicaid claims fee-free" and "keeping hundreds of dollars in birth
+  workers' pockets" because no ledger sentence said what Ordani does to a claim and "hundreds of"
+  matched the retired user-count shape (`app/(foyer)/page.tsx` comment at the ORDANI copy block).
+  Before it ships: one sentence on the real mechanism and a named per-claim figure, confirmed by
+  him and dated here; whether it is Medicaid only; and whether the intake story (40% to 91%) is
+  removed everywhere it renders or replaced by another story he names.
 - **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
   (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
   from fable". EXACT approved copy, one sentence, once, on /work only:
