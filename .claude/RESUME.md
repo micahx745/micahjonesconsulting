@@ -25,10 +25,9 @@ both domains (LESSONS #5). Branch not deployed.
   queued run was cancelled for the handoff). Then Opus look -> Fable G3 -> his
   approval -> brief -> G4. HANDOFF for the new chat:
   .planning/handoff/NEXT-SESSION-KICKOFF.md (rewritten 2026-09-17).
-- Next after mocks: Opus writes .claude/briefs/pass-121-*.md (exact copy,
-  plumbing from audit-b, verification), Fable G4 reads it, commit. Doc drift:
-  copper token is #bd5a2d, .claude/CLAUDE.md prose says #C8542B. Doc drift: copper token
-  is #bd5a2d, .claude/CLAUDE.md prose says #C8542B (fix in brief).
+- Then: Opus writes .claude/briefs/pass-121-*.md (exact copy, audit-b plumbing,
+  verification), Fable G4 reads it, commit. Doc drift to fix in the brief: the
+  copper token is #bd5a2d; .claude/CLAUDE.md prose says #C8542B.
 
 ## Waiting on operator
 - Speed Insights p75 LCP for /work (A4). Colleague okay for the clip.
