@@ -220,7 +220,7 @@ by looking. Grade per page; report R-numbers.
   anything on the repo copy-lint banned list — dots stripped when grepping); zero emoji bullets;
   time-depth stated as specific numbers (years, dates, dollar figures), never "years of
   experience"; every headline could only describe THIS operator.
-  - Exception (operator 2026-09-15, the RFP client's descriptor, "a award winning author/ Leadership consultant also for gov and corps"): "award-winning" may appear only in that client's descriptor on /work and /work/rfp-engine. Not a precedent for any other adjective.
+  - Exception (operator 2026-09-15, the RFP client's descriptor, "a award winning author/ Leadership consultant also for gov and corps"): "award-winning" may appear only inside that client's descriptor, on every surface where the descriptor renders (today: /work, /work/rfp-engine, the Next entry on /work/guardicore, one sentence on /about). Never as an adjective for anything else; not a precedent for any other adjective. Scope widened at the Pass-120 ship gate, 2026-09-16 (FABLE-120-SHIP-GATE §3).
 - **R17 — No selling pressure:** one CTA style per page, no urgency/scarcity devices, no popups,
   no exit-intent, no chat widget, no floating CTA bar.
 - **R18 — The footer is logistics:** contact, socials, legal, copyright (ideally with a date

@@ -23,7 +23,7 @@ chk V6f 0 "$(node scripts/ordani-claims-gate.mjs 2>&1 | grep -ci "content")"
 chk V8a 0 "$(grep -cE "44\.8|14\.2|3\.15|100,000" content/work/ordani.mdx)"
 chk V8b 1 "$(grep -c "{CDC.blackRate}" content/work/ordani.mdx)"
 chk "S5-V3 gate" "retired-phrases-gate: clean" "$(node scripts/retired-phrases-gate.mjs 2>&1 | tail -1)"
-chk "S5-V1 selftest" "retired-phrases-gate self-test: 70 planted caught, 32 near misses passed" "$(node scripts/retired-phrases-gate.mjs --self-test 2>&1 | tail -1)"
+chk "S5-V1 selftest" "retired-phrases-gate self-test: 72 planted caught, 32 near misses passed" "$(node scripts/retired-phrases-gate.mjs --self-test 2>&1 | tail -1)"
 
 chk C1a "gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean" "$(node scripts/gsap-quarantine-gate.mjs --self-test 2>&1 | tail -1)"
 c1b=$(node scripts/gsap-quarantine-gate.mjs 2>&1 | tail -1); if printf '%s' "$c1b" | grep -Eq '^gsap-quarantine-gate: clean \([0-9]+ files\)$'; then echo "PASS C1b: got $c1b"; else echo "FAIL C1b: got $c1b"; F=$((F+1)); fi

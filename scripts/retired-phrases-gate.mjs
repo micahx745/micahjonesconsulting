@@ -223,6 +223,13 @@ const PHRASES = [
   "2024-2025",
   "2025–2026",
   "2025-2026",
+  // Pass-120 ship gate (operator 2026-09-16, LESSONS #3 "PASS-120 SHIP ANSWERS",
+  // verbatim "its the one for low income not elerdely forgot the difference"): the
+  // birth worker's direct claims were Medicaid only. No surface carries Medicare.
+  "Medicare",
+  // Pass-120 ship gate (operator 2026-09-16, "sounds horrible"): the retired ORDANI
+  // opening sentence, in the form that reads as its tell.
+  "not running their practices on nothing",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);

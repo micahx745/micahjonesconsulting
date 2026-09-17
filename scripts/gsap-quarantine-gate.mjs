@@ -1,8 +1,8 @@
 // scripts/gsap-quarantine-gate.mjs: GSAP stays inside the files that own the
-// one signature motion (.claude/CLAUDE.md, "quarantined to TitleCard.tsx").
+// one signature motion (.claude/CLAUDE.md: the one importer is SplitReveal.tsx).
 //
 // The Pass-111a review (gate lens) broke the first version four ways: it never
-// matched "@gsap/react", the package both allowlisted files use; it missed a
+// matched "@gsap/react", the package the allowlisted file uses; it missed a
 // dynamic import("gsap"); it missed require() and `export ... from "gsap"`; and
 // it failed the build on an import written inside a comment. It now strips
 // comments, then flags any module specifier naming gsap, gsap/<sub> or
@@ -26,7 +26,6 @@ const SOURCE_EXTENSIONS = new Set([
   ".cjs",
 ]);
 const ALLOWLIST = new Set([
-  "components/TitleCard.tsx",
   // pre-existing exception recorded in Pass-111a: mounted on every home section title; moving it off GSAP is its own arc, not a precedent
   "components/color-worlds/SplitReveal.tsx",
 ]);

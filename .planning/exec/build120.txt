@@ -1,6 +1,6 @@
 PASS G1: got [copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
 PASS G2: got vendor-gate: clean
-PASS G3: got retired-phrases-gate self-test: 70 planted caught, 32 near misses passed
+PASS G3: got retired-phrases-gate self-test: 72 planted caught, 32 near misses passed
 PASS G4: got retired-phrases-gate: clean
 PASS G5: got accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms
 PASS G6: got accent-states-lint: clean

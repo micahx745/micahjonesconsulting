@@ -3,8 +3,8 @@
 This project uses the **premium-web** Claude Code plugin (installed at `~/Code/premium-web-harness`). Read `.claude/brand.json` before making any UI decision.
 
 ## Two modes
-- Foyer pages (`app/(foyer)/`) — warm cream paper `#F5EFE4`, ink `#1A1816`. Hospitality feel. Home / About / Work With Me / Contact / Work index.
-- Theater pages (`app/(theater)/`) — obsidian ground `#0D0D0F`, bone `#EAE6DD`. Cinematic feel. `/work/[slug]` case studies.
+- Foyer pages (`app/(foyer)/`) — paper `--color-foyer-paper #F5EFE4`, ink `#1A1816`. Hospitality feel. Home / About / Work With Me / Contact / Work index.
+- Theater pages (`app/(theater)/`) — `/work/[slug]` case studies. Each opens on a dark band (`--color-theater-ground #12100E`, type in `--color-theater-ink #ECE3D0`) that names the client and the result, then turns on one copper rule (sage on `/work/ordani`) to bone paper `#ECE3D0` (`--color-cw-bone`) for the body and the footer. Pass-120; the earlier all-obsidian study is retired.
 - Mode is route-determined. NO `useTheme()`, NO `<ThemeProvider>`, NO toggle. Group layouts stamp `data-mode="foyer"` or `data-mode="theater"` on a wrapper `<div>`; Tailwind v4 reads the attribute via `[data-mode="..."]` selectors in `app/globals.css`.
 
 ## One accent
@@ -110,7 +110,7 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - `@tailwindcss/postcss` is a SEPARATE package from `tailwindcss` in v4 — both required
 - `next/font/google` — three faces, the Color Worlds system (Pass-37): Bricolage Grotesque (display, `opsz`), Hanken Grotesk (body), JetBrains Mono (labels, § codes, data — the DESIGN_BAR R1 "narrow third" only, never body or headings). `lib/fonts.ts` is the source of truth. Inter and Source Serif 4 are gone; do not reintroduce them. (Prose corrected 2026-09-04 to match live code.)
 - MDX via `@next/mdx`; `mdx-components.tsx` MUST live at REPO ROOT, not inside `app/`
-- GSAP 3.15 (free as of 2025) — quarantined to `components/TitleCard.tsx` only. ALL OTHER FILES must not import `gsap`. Pitfall C1: always `'use client'` + `useGSAP` hook
+- GSAP 3.15 (free as of 2025) — one importer, `components/color-worlds/SplitReveal.tsx`, the recorded Pass-111a exception. `components/TitleCard.tsx` imports no GSAP since Pass-120: the settle entrance is CSS (`cs-settle` in `app/globals.css`). No other file may import `gsap`; `scripts/gsap-quarantine-gate.mjs` enforces it. Pitfall C1 still applies to SplitReveal: `'use client'` + the `useGSAP` hook.
 - Lenis 1.3 via `lenis/react` subpath at ROOT layout — NOT in group layouts. `syncTouch: false` is locked (Pitfall D2)
 - Resend for transactional contact email
 - Supabase for contact archive insert ONLY — server-side service-role key, no client SDK
@@ -123,7 +123,7 @@ per page arc: first preview at 390 and 1440, copy checked against the LESSONS #3
 - Do not add Framer Motion. Component-level enter/exit uses CSS transitions + `:hover` via Tailwind utilities.
 - Do not install `@studio-freight/react-lenis` — retired package. Install `lenis` and import from `lenis/react`.
 - Do not set `syncTouch: true` on Lenis — iOS gets native momentum, which is correct.
-- Do not import `gsap` outside `components/TitleCard.tsx`. Enforced by `scripts/gsap-quarantine-gate.mjs`; `components/color-worlds/SplitReveal.tsx` is a recorded pre-existing exception (Pass-111a), not a precedent.
+- Do not import `gsap` anywhere. The one importer is `components/color-worlds/SplitReveal.tsx`, a recorded exception (Pass-111a), not a precedent; `components/TitleCard.tsx` gave up its import in Pass-120. Enforced by `scripts/gsap-quarantine-gate.mjs`, whose allow-list names SplitReveal only.
 - Do not write `tailwind.config.ts` — v4 has no JS config.
 - Do not put `mdx-components.tsx` inside `app/` — silent render failure.
 - Do not add `noindex` to `/work/ordani` "out of abundance of caution" (Pitfall E3). `robots.txt` deliberately allows ALL crawlers including the AI bots — `app/robots.ts` reasons it in its header — so do not "fix" it to block them without an operator ruling. (Prose corrected 2026-09-04 to match live code; the block it used to describe never shipped.)

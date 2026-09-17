@@ -440,7 +440,10 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on
   /services. NEW publishable pair: one to three a month before, five to ten inquiries a month
   after, from higher-quality sources. OPEN: whether the "1-3 a month" was inquiries or bookings
-  (the sentence mixes them), the period, and the end of "high quality". Never a multiplier from
+  (the sentence mixes them), the period, and the end of "high quality". CLOSED 2026-09-16 by the
+  BIRTH WORKER BOOKINGS, BOTH SIDES row above (operator verbatim: "bookings and the 5-10 are
+  bookings too"): bookings on both sides, one to three a month to five to ten; the pages say
+  "Bookings". (Flagged open again by the Fable ship gate, which had missed that row.) Never a multiplier from
   this pair (his standing objection to multipliers on a small base, 2026-09-15). Her services are
   still never itemised.
 - **TWO CLIENTS, NOT ONE — operator 2026-09-15**, verbatim: "well i want to split it up since
@@ -458,6 +461,10 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   engagements. NEVER: "anti-racism" or "anti racism" on any surface (same instruction), and
   never a descriptor from which a reader can name either client — Astra's 2026-09-15 read found
   the two studies identified one client jointly, which splitting does not by itself cure.
+  IDENTITY READ 2026-09-16 (Fable ship gate, .planning/reviews/FABLE-120-SHIP-GATE.md §2): as built
+  in Pass-120 neither client can be named and the two do not read as one person; naming Medicaid
+  does not locate the birth worker. Standing rule from that ruling: never add a field, state,
+  title, handle, photo or talk date to either anonymous study.
 - HIPAA: Ordani is **HIPAA-compliant** (operator confirmation 2026-08-31: "HIPAA compliant is
   true", ruling on the app). "HIPAA-grade" was the pre-confirmation hedge; swept to
   "HIPAA-compliant" everywhere (site + playbook chapter) same day. NEVER revert to "-grade".
@@ -1340,3 +1347,24 @@ it can count: it either runs once against a planted positive, or it reads the gr
 in `.planning/exec`, `scripts` and `.claude/briefs`; the standing clause in `.claude/briefs/README.md`
 names it. On 2026-09-16 it reports exactly the two brief lines above, which the Pass-120 build runs
 in a corrected form and holds for the judge. On recurrence: the gate joins `package.json` `build`.
+
+## #35 — A sentence everyone knew was wrong was parked, placed verbatim and reached the ship gate (2026-09-16)
+
+**What happened.** ORDANI's locked draft opened "Birth workers, doulas, midwives and perinatal
+counselors, were not running their practices on nothing." The brief writer flagged the comma, parked
+it ("a punctuation fix needs his word", brief §1.5 and §2.10), and told the executor to place it
+verbatim. The first-preview judge read the page and did not raise it; the ship-gate judge raised it as
+"one comma, yours to place". Asked about the comma at the end of the build, the operator answered:
+"what is that sentence??? sounds horrible. thought fable was reviewing everything??". The sentence was
+rewritten by his pick and the old form gated. Nothing shipped with it.
+
+**Root cause.** The harness treats copy as ledgered and untouchable without the operator's word, which
+is right for facts and wrong for a sentence that plainly reads badly. Parking converted a quality
+defect into a deferred question, and each later reviewer read the parked note instead of the sentence.
+
+**The rule.** A copy defect is never parked. Whoever sees it puts it to the operator by popup at once,
+with two or three rewrites that change no fact, and the pick is ledgered before the brief commits.
+
+**The gate.** The standing clause "No copy defect is parked" in `.claude/briefs/README.md`, and the
+retired form "not running their practices on nothing" in `scripts/retired-phrases-gate.mjs`. On
+recurrence: a brief lint that fails when a parked item names a sentence to be placed verbatim.

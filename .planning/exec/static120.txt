@@ -11,7 +11,7 @@ PASS V6f: got 0
 PASS V8a: got 0
 PASS V8b: got 1
 PASS S5-V3 gate: got retired-phrases-gate: clean
-PASS S5-V1 selftest: got retired-phrases-gate self-test: 70 planted caught, 32 near misses passed
+PASS S5-V1 selftest: got retired-phrases-gate self-test: 72 planted caught, 32 near misses passed
 PASS C1a: got gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
 PASS C1b: got gsap-quarantine-gate: clean (85 files)
 PASS C2: got 0

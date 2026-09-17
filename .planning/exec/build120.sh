@@ -4,6 +4,8 @@
 # Every line is PASS/FAIL <id>: got <x> (want <y>); ends `build120 failures: N`, exit 1 when N != 0.
 # Run from the Bash tool (foreground or run_in_background), never detached. Never while a server runs.
 set -u
+# G3 expects 72 (was O12's 70): two phrases added at the ship gate from the operator's 2026-09-16 rulings
+# (Medicare; the retired ORDANI opening), LESSONS #3 PASS-120 SHIP ANSWERS and ORDANI OPENING, PICKED.
 export MSYS_NO_PATHCONV=1
 cd /c/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live || exit 9
 LOG=.planning/exec/gates120.log
@@ -30,7 +32,7 @@ regex() { # id regex cmd...
 pre() {
   exact G1 "[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations." node_modules/.bin/tsx lib/copy-lint-cli.ts || return 1
   exact G2 "vendor-gate: clean" node scripts/vendor-gate.mjs || return 1
-  exact G3 "retired-phrases-gate self-test: 70 planted caught, 32 near misses passed" node scripts/retired-phrases-gate.mjs --self-test || return 1
+  exact G3 "retired-phrases-gate self-test: 72 planted caught, 32 near misses passed" node scripts/retired-phrases-gate.mjs --self-test || return 1
   exact G4 "retired-phrases-gate: clean" node scripts/retired-phrases-gate.mjs || return 1
   exact G5 "accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms" node scripts/accent-states-lint.mjs --self-test || return 1
   exact G6 "accent-states-lint: clean" node scripts/accent-states-lint.mjs || return 1

@@ -63,6 +63,10 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
   pair (exit 134, no output), and `| wc -l` then prints `0`, so every `expect 0` passes without
   looking. Lowercase both sides (`tr '[:upper:]' '[:lower:]'`) and use `grep -F`, or use
   `grep -i` on an escaped pattern. `node .planning/exec/grep-if-gate.mjs` finds the pair.
+- **No copy defect is parked** (LESSONS #35). A draft sentence that anyone flags as reading wrong
+  (grammar, sense, a stray comma) goes to the operator by popup in the DIRECT session, with
+  rewrites to pick from, before the brief commits. A brief's parked list may hold facts only the
+  operator has; it never holds a sentence the executor must place verbatim while knowing it is bad.
 
 ## Budget this enforces
 
