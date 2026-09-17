@@ -11,14 +11,12 @@ Worktree p106-live, branch design/live-evolve. ChatGPT EMPTY till 09-19 12:17.
 Revert: promote dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23. Push to main deploys; re-alias
 both domains (LESSONS #5). Branch not deployed.
 
-## Pass-121 progress (last commit b46333e)
+## Pass-121 progress
 - Ledger #3: ORDANI CLAIMS FACTS 1-4. Line (exact): "Birth workers keep hundreds
   of dollars per client that a claims service would take." Loula named once in
   the body only; never a Loula fee number; never per claim; claims included in
   the subscription; Medicaid + private insurance; intake 40->91 cut everywhere.
-  THE /WORK HEADER ruling; featured study left to the directions.
-- Done: research SYNTHESIS, claims/CLAIMS-FACTS, G1 (FABLE-121-G1.md), 14-ref
-  set (set/SET-INDEX.md; Bloomberg dead), audit-a-tells.md, audit-b.
+- Done: research/pass-121 SYNTHESIS, claims/, set/ (14 refs), audit-a, audit-b; G1.
 - G2 DONE (FABLE-121-G2.md). He picked C "Five exhibits" CONDITIONAL on quality
   ("ru able to produce a quality design?"), heading THE WORK, ON THE RECORD. +
   description (ledgered exact), static drawings. R12 ruling in DESIGN_BAR.
