@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pass-121 proof / the top of the new /work page</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5efe4;
+    --ink:#1a1816;
+    --ink-soft:#3a3631;
+    --bone:#ece3d0;
+    --copper:#bd5a2d;
+    --copper-deep:#8a3d24;
+    --rule:#d9d2c4;
+    --ease-hover:cubic-bezier(0.2,0.8,0.2,1);
+    --dur-hover:200ms;
+  }
+  *{box-sizing:border-box}
+  html{margin:0}
+  body{
+    margin:0;
+    position:relative;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Hanken Grotesk',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* paper grain */
+  .grain{position:absolute;inset:0;width:100%;height:100%;z-index:9998;pointer-events:none;opacity:.05;mix-blend-mode:multiply}
+
+  /* nav */
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:24px 40px;color:var(--ink)}
+  .nav__mark{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.02em}
+  .nav__links{display:flex;gap:30px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+  .nav__links a{opacity:.92}
+
+  /* container */
+  .wx{max-width:1200px;margin:0 auto;padding:0 40px 120px}
+
+  /* heading + description */
+  .wx__head{margin:56px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;line-height:1.02;letter-spacing:-0.02em;text-transform:uppercase;font-variation-settings:"opsz" 96}
+  .wx__desc{margin:36px 0 0;font-size:20px;line-height:1.6;max-width:60ch;color:var(--ink)}
+
+  /* mono bits */
+  .ctx{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;line-height:1.5;color:var(--ink-soft);margin:0}
+  .svc{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;line-height:1.5;color:var(--ink-soft);margin:0}
+
+  /* doorway */
+  .doorway{
+    display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:64px;
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    padding:48px 0;margin-top:64px;
+  }
+  .doorway__ctx{margin:0 0 28px}
+  .doorway__fig{position:relative;display:inline-block;margin:0 0 20px}
+  .doorway__num{position:relative;display:inline-block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;line-height:1;letter-spacing:-0.02em;font-variation-settings:"opsz" 96}
+  .doorway__line{margin:0 0 20px;font-size:22px;line-height:1.45}
+  .doorway__did{margin:0 0 28px;font-size:18px;line-height:1.6;max-width:52ch}
+  .doorway__svc{margin:0 0 12px}
+  .doorway__read{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--copper-deep);margin:0}
+  .doorway__img{margin:0}
+  .doorway__img img{display:block;width:320px;height:400px;object-fit:cover}
+
+  /* hand circle (HandCircle variant 3, static finished frame) */
+  .handcircle{position:absolute;overflow:visible;pointer-events:none}
+  .hc-p{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.92}
+  .hc-o{fill:none;stroke:currentColor;stroke-width:2.55;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.55}
+
+  /* index entry */
+  .entry{
+    display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;
+    position:relative;padding:56px 0 48px;border-bottom:1px solid var(--rule);
+  }
+  .entry .copperline{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-hover) var(--ease-hover)}
+  .entry--hover .copperline{transform:scaleX(1)}
+  .e-folio{grid-column:1/7;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.06em;color:var(--ink-soft);margin:0 0 20px}
+  .e-ctx{grid-column:1/7;margin:0 0 24px;max-width:44ch}
+  .e-fig{grid-column:1/7;margin:0 0 24px}
+  .e-num{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:72px;line-height:1;letter-spacing:-0.02em;font-variation-settings:"opsz" 96;transition:color var(--dur-hover) var(--ease-hover)}
+  .e-qual{display:block;margin-top:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:28px;line-height:1.25;letter-spacing:-0.01em;font-variation-settings:"opsz" 28;transition:color var(--dur-hover) var(--ease-hover)}
+  .entry--hover .e-num,.entry--hover .e-qual{color:var(--copper-deep)}
+  .e-did{grid-column:1/7;margin:0 0 20px;font-size:18px;line-height:1.6;max-width:48ch}
+  .e-svc{grid-column:1/7}
+  .e-exhibit{grid-column:8/13;grid-row:3/6;align-self:start;justify-self:end;width:100%;max-width:440px;color:var(--ink)}
+
+  .statenote{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:48px 0 0}
+
+  /* the flow drawing */
+  .flow{display:block;width:100%;height:auto}
+  .flow .ln{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .flow .hl .ln{stroke:var(--copper)}
+  .flow text{font-family:'JetBrains Mono',monospace;font-size:20px;fill:currentColor}
+
+  @media (max-width:767px){
+    .nav{padding:20px 20px}
+    .nav__mark{font-size:17px}
+    .nav__links{gap:12px;font-size:10px}
+    .wx{padding:0 20px 72px}
+    .wx__head{font-size:48px;line-height:1.06}
+    .wx__desc{font-size:17px}
+    .doorway{grid-template-columns:minmax(0,1fr);gap:28px;padding:36px 0;margin-top:48px}
+    .doorway__img{order:-1}
+    .doorway__img img{width:100%;height:auto;aspect-ratio:16/10}
+    .doorway__num{font-size:40px}
+    .doorway__line{font-size:20px}
+    .e-folio,.e-ctx,.e-fig,.e-did,.e-svc{grid-column:1/-1}
+    .e-exhibit{grid-column:1/-1;grid-row:auto;justify-self:start;max-width:358px}
+    .e-num{font-size:48px}
+    .e-qual{font-size:20px}
+    .e-did{font-size:17px}
+    .flow .ln{stroke-width:1.25}
+  }
+</style>
+</head>
+<body>
+
+<svg class="grain" aria-hidden="true"><filter id="pg"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0"/></filter><rect width="100%" height="100%" filter="url(#pg)"/></svg>
+
+<header class="nav">
+  <a class="nav__mark" href="#">MICAH/JONES</a>
+  <nav class="nav__links">
+    <a href="#">Services</a><a href="#">Work</a><a href="#">About</a><a href="#">Contact</a>
+  </nav>
+</header>
+
+<main class="wx">
+  <h1 class="wx__head">The Work,<br>On The Record.</h1>
+  <p class="wx__desc">Four client engagements and the company I founded: $14M in revenue for a security company, $3M in contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a month, a birth worker's practice rebuilt, and ORDANI. Each page says what I found, what I built, and what changed.</p>
+
+  <a class="doorway" href="#">
+    <div class="doorway__text">
+      <p class="ctx doorway__ctx">Guardicore, acquired by Akamai</p>
+      <p class="doorway__fig">
+        <span class="doorway__num">$14M<svg class="handcircle" viewBox="0 0 180 60" preserveAspectRatio="none" aria-hidden="true" style="left:-7%;top:-12.5%;width:114%;height:125%">
+          <defs>
+            <filter id="hg1" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
+              <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.9"/>
+            </filter>
+          </defs>
+          <g filter="url(#hg1)">
+            <path class="hc-p" d="M 100 0.5 C 12 -0.5, 0 2, 0 31 C 0 57, 10 60, 88 60 C 171 60, 180 57, 180 29 C 180 2, 170 0, 92 0.5"/>
+            <path class="hc-o" d="M 116 1.5 C 46 0.5, 2.5 0.5, 2 12"/>
+          </g>
+        </svg></span>
+      </p>
+      <p class="doorway__line">in revenue, sourced and closed, at a $1.2M average enterprise deal.</p>
+      <p class="doorway__did">I ran the research that found what those buyers were actually signing for, moved the story from honeypots to east-west visibility, and sat in the deals.</p>
+      <p class="svc doorway__svc">Positioning &amp; GTM</p>
+      <p class="doorway__read">Read this one first &#8594;</p>
+    </div>
+    <p class="doorway__img"><img src="file:///C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/public/media/guardicore-band-960.jpg" alt=""></p>
+  </a>
+
+  <a class="entry" href="#">
+    <p class="e-folio">02</p>
+    <p class="ctx e-ctx">An award-winning author and leadership consultant who teaches government bodies and corporations</p>
+    <p class="e-fig">
+      <span class="e-num">$3M</span>
+      <span class="e-qual">in signed contracts across eleven awards.</span>
+    </p>
+    <p class="e-did">It finds the RFPs worth answering, weighs each one against twenty years of their own work, and has a drafted response waiting by morning.</p>
+    <p class="svc e-svc">AI engineering</p>
+    <div class="e-exhibit">
+      <svg class="flow" viewBox="0 0 530 280" role="img" aria-label="The RFP engine in six steps">
+        <defs>
+          <filter id="fg1" x="-4%" y="-8%" width="108%" height="116%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.9"/>
+          </filter>
+        </defs>
+        <g filter="url(#fg1)">
+          <path class="ln" d="M 48 19.5 C 76 16, 118 17.5, 161 19 C 164.5 30, 165 42, 161.5 53.5 C 118 57, 74 55.5, 46 54 C 42.5 42, 43 27, 50.5 13.5"/>
+          <path class="ln" d="M 230 18.5 C 258 21, 300 17, 335 18.5 C 339 29, 338.5 41, 336 53 C 298 56.5, 258 55, 228 53.5 C 224.5 41, 225 28, 233 14.5"/>
+          <path class="ln" d="M 387 19 C 418 16.5, 462 18, 499 18.5 C 502.5 29, 502.5 42, 499.5 53.5 C 460 56, 416 56.5, 385 54.5 C 381.5 42, 382 26, 389.5 13"/>
+          <path class="ln" d="M 49 175.5 C 82 173, 124 174, 160 175.5 C 164 187, 164 198, 160.5 209.5 C 120 213, 76 211.5, 46 210 C 43 198, 43.5 183, 51.5 169.5"/>
+          <path class="ln" d="M 386 176 C 418 173.5, 464 174.5, 500 176 C 503.5 187, 503 199, 500.5 210.5 C 460 213, 415 212.5, 384.5 210.5 C 381.5 198, 382 182, 390 169"/>
+          <g class="hl" opacity="0.6">
+            <path class="ln" d="M 231 175 C 260 172.5, 302 173.5, 336 175 C 339.5 186, 339.5 197, 336.5 209 C 300 212.5, 258 211, 228.5 209.5 C 225 197, 225.5 184, 233.5 170.5"/>
+          </g>
+          <path class="ln arw" d="M 168.5 35.5 C 178 34.5, 194 36.2, 221.5 35"/>
+          <path class="ln arw" d="M 221.5 35 L 214.5 31.4"/>
+          <path class="ln arw" d="M 221.5 35 L 214.2 38.6"/>
+          <path class="ln arw" d="M 342.5 34.8 C 352 35.8, 366 34.2, 377.5 35"/>
+          <path class="ln arw" d="M 377.5 35 L 370.5 31.4"/>
+          <path class="ln arw" d="M 377.5 35 L 370.2 38.6"/>
+          <path class="ln arw" d="M 503 35 C 512.5 37.5, 523.5 44.5, 525.5 57 C 527.5 77, 527 101, 525 121 C 523.5 137, 517.5 148.5, 504.5 154.5 C 459 163.5, 250 152.5, 152 158.5 C 132 160, 120.5 162.5, 114.5 167.5"/>
+          <path class="ln arw" d="M 114.5 167.5 L 110 159.2"/>
+          <path class="ln arw" d="M 114.5 167.5 L 123.2 160.8"/>
+          <g class="hl" opacity="0.6">
+            <path class="ln arw" d="M 168.5 191.5 C 178 190.5, 194 192.2, 221.5 191"/>
+            <path class="ln arw" d="M 221.5 191 L 214.5 187.4"/>
+            <path class="ln arw" d="M 221.5 191 L 214.2 194.6"/>
+          </g>
+          <path class="ln arw" d="M 342.5 190.8 C 352 191.8, 366 190.2, 377.5 191"/>
+          <path class="ln arw" d="M 377.5 191 L 370.5 187.4"/>
+          <path class="ln arw" d="M 377.5 191 L 370.2 194.6"/>
+        </g>
+        <text x="104" y="84" text-anchor="middle">portals,<tspan x="104" dy="24">checked nightly</tspan></text>
+        <text x="282" y="84" text-anchor="middle">library,<tspan x="282" dy="24">300+ pieces</tspan></text>
+        <text x="434" y="84" text-anchor="middle">bid or no-bid<tspan x="434" dy="24">score</tspan></text>
+        <text x="104" y="240" text-anchor="middle">draft, on the<tspan x="104" dy="24">buyer's criteria</tspan></text>
+        <text x="282" y="240" text-anchor="middle">the gap,<tspan x="282" dy="24">marked</tspan></text>
+        <text x="434" y="240" text-anchor="middle">a person<tspan x="434" dy="24">approves</tspan></text>
+      </svg>
+    </div>
+    <span class="copperline"></span>
+  </a>
+
+  <p class="statenote">hover</p>
+
+  <a class="entry entry--hover" href="#">
+    <p class="e-folio">02</p>
+    <p class="ctx e-ctx">An award-winning author and leadership consultant who teaches government bodies and corporations</p>
+    <p class="e-fig">
+      <span class="e-num">$3M</span>
+      <span class="e-qual">in signed contracts across eleven awards.</span>
+    </p>
+    <p class="e-did">It finds the RFPs worth answering, weighs each one against twenty years of their own work, and has a drafted response waiting by morning.</p>
+    <p class="svc e-svc">AI engineering</p>
+    <div class="e-exhibit">
+      <svg class="flow" viewBox="0 0 530 280" role="img" aria-label="The RFP engine in six steps">
+        <defs>
+          <filter id="fg3" x="-4%" y="-8%" width="108%" height="116%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.9"/>
+          </filter>
+        </defs>
+        <g filter="url(#fg3)">
+          <path class="ln" d="M 48 19.5 C 76 16, 118 17.5, 161 19 C 164.5 30, 165 42, 161.5 53.5 C 118 57, 74 55.5, 46 54 C 42.5 42, 43 27, 50.5 13.5"/>
+          <path class="ln" d="M 230 18.5 C 258 21, 300 17, 335 18.5 C 339 29, 338.5 41, 336 53 C 298 56.5, 258 55, 228 53.5 C 224.5 41, 225 28, 233 14.5"/>
+          <path class="ln" d="M 387 19 C 418 16.5, 462 18, 499 18.5 C 502.5 29, 502.5 42, 499.5 53.5 C 460 56, 416 56.5, 385 54.5 C 381.5 42, 382 26, 389.5 13"/>
+          <path class="ln" d="M 49 175.5 C 82 173, 124 174, 160 175.5 C 164 187, 164 198, 160.5 209.5 C 120 213, 76 211.5, 46 210 C 43 198, 43.5 183, 51.5 169.5"/>
+          <path class="ln" d="M 386 176 C 418 173.5, 464 174.5, 500 176 C 503.5 187, 503 199, 500.5 210.5 C 460 213, 415 212.5, 384.5 210.5 C 381.5 198, 382 182, 390 169"/>
+          <g class="hl" opacity="1">
+            <path class="ln" d="M 231 175 C 260 172.5, 302 173.5, 336 175 C 339.5 186, 339.5 197, 336.5 209 C 300 212.5, 258 211, 228.5 209.5 C 225 197, 225.5 184, 233.5 170.5"/>
+          </g>
+          <path class="ln arw" d="M 168.5 35.5 C 178 34.5, 194 36.2, 221.5 35"/>
+          <path class="ln arw" d="M 221.5 35 L 214.5 31.4"/>
+          <path class="ln arw" d="M 221.5 35 L 214.2 38.6"/>
+          <path class="ln arw" d="M 342.5 34.8 C 352 35.8, 366 34.2, 377.5 35"/>
+          <path class="ln arw" d="M 377.5 35 L 370.5 31.4"/>
+          <path class="ln arw" d="M 377.5 35 L 370.2 38.6"/>
+          <path class="ln arw" d="M 503 35 C 512.5 37.5, 523.5 44.5, 525.5 57 C 527.5 77, 527 101, 525 121 C 523.5 137, 517.5 148.5, 504.5 154.5 C 459 163.5, 250 152.5, 152 158.5 C 132 160, 120.5 162.5, 114.5 167.5"/>
+          <path class="ln arw" d="M 114.5 167.5 L 110 159.2"/>
+          <path class="ln arw" d="M 114.5 167.5 L 123.2 160.8"/>
+          <g class="hl" opacity="1">
+            <path class="ln arw" d="M 168.5 191.5 C 178 190.5, 194 192.2, 221.5 191"/>
+            <path class="ln arw" d="M 221.5 191 L 214.5 187.4"/>
+            <path class="ln arw" d="M 221.5 191 L 214.2 194.6"/>
+          </g>
+          <path class="ln arw" d="M 342.5 190.8 C 352 191.8, 366 190.2, 377.5 191"/>
+          <path class="ln arw" d="M 377.5 191 L 370.5 187.4"/>
+          <path class="ln arw" d="M 377.5 191 L 370.2 194.6"/>
+        </g>
+        <text x="104" y="84" text-anchor="middle">portals,<tspan x="104" dy="24">checked nightly</tspan></text>
+        <text x="282" y="84" text-anchor="middle">library,<tspan x="282" dy="24">300+ pieces</tspan></text>
+        <text x="434" y="84" text-anchor="middle">bid or no-bid<tspan x="434" dy="24">score</tspan></text>
+        <text x="104" y="240" text-anchor="middle">draft, on the<tspan x="104" dy="24">buyer's criteria</tspan></text>
+        <text x="282" y="240" text-anchor="middle">the gap,<tspan x="282" dy="24">marked</tspan></text>
+        <text x="434" y="240" text-anchor="middle">a person<tspan x="434" dy="24">approves</tspan></text>
+      </svg>
+    </div>
+    <span class="copperline"></span>
+  </a>
+</main>
+
+</body>
+</html>
