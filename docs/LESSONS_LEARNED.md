@@ -481,6 +481,19 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   comes with the plan."). The saving is stated against no separate Ordani claims fee; NEVER "free
   claims" or "no charge" (claims come with a paid plan). (The first ask of these two, 2026-09-16, was
   dismissed with two other questions; this is the re-ask.)
+- **PASS-121 DIRECTION AND /WORK HEADING — operator 2026-09-17 (Pass-121 DIRECT, popup after Fable
+  G2, `.planning/reviews/FABLE-121-G2.md`)**. DIRECTION, verbatim (Other): "go with recommendations -
+  but ru able to produce a quality design? dont want to waste usage if you give me bullshit that we
+  should have another softwaere do". Direction C "Five exhibits" (Fable's recommendation) is picked,
+  CONDITIONAL on the design proving it can be made at quality before usage is spent on the full set.
+  HEADING, picked "THE WORK, ON THE RECORD. (Recommended)"; EXACT approved copy (corrected by the main
+  session from Fable's draft before the popup: "five engagements and the company" miscounted the
+  studies, and "reached 800,000" dropped the qualifier): heading **"THE WORK, ON THE RECORD."**;
+  description **"Four client engagements and the company I founded: $14M in revenue for a security
+  company, $3M in contracts from an RFP engine, a content engine that peaked at 800,000 impressions in
+  a month, a birth worker's practice rebuilt, and ORDANI. Each page says what I found, what I built,
+  and what changed."** DRAW-IN: picked "No, still drawings first (Recommended)": the exhibits are
+  static; they may fade and rise once in view (the permitted reveal); no stroke draw-in this pass.
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
