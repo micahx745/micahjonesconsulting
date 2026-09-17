@@ -508,6 +508,22 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   carries no fee but costs time and knowledge. NEVER say a service is the only way, or that self-filing
   costs a fee. BETA: picked "Still beta, release coming": "Active paying users in beta, none lost to a
   competitor, public release coming" stays on every ORDANI surface.
+- **ORDANI DEK AND THE ANSWER-SHAPE SCOPE — operator 2026-09-17 (Pass-121 EXECUTE, popup)**.
+  ORDANI DEK: the live dek carries the retired 40%/91% line and had to be rewritten with the pass.
+  Picked "Swap in the money line (Recommended)". EXACT approved dek for `content/work/ordani.mdx`:
+  **"A HIPAA-compliant CRM for birth workers, and a company I founded and built. Birth workers keep
+  hundreds of dollars per client that a claims service would take. Active paying users in beta, none
+  lost to a competitor, public release coming."** The same retirement applies to that file's
+  `description`, `results.lead`, `entry.line` and `entry.did`, and to the hand-written ORDANI line in
+  `app/llms.txt/route.ts` (verified 2026-09-17: that file is a literal template, so retiring the
+  figure in the MDX does NOT propagate to it).
+  ANSWER-SHAPE SCOPE: asked how far audit-b's proposed answer-shaped rewrites go. Picked "Openings
+  only, not the headings (Recommended)". So: the three study openings that do not lead with a result
+  (ORDANI, content engine, birth worker) are rewritten; EVERY h2 in all five studies STAYS AS
+  WRITTEN. Audit-b's PROPOSED h2 rewrites are declined for this pass and are not re-proposed without
+  a new dated ruling. Reason given and accepted: the h2s are voice, and audit-b itself states it
+  cannot show the rewrites change how any assistant cites the site.
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
