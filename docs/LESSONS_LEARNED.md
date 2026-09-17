@@ -524,6 +524,22 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   a new dated ruling. Reason given and accepted: the h2s are voice, and audit-b itself states it
   cannot show the rewrites change how any assistant cites the site.
 
+- **THE TWO REWRITTEN STUDY OPENINGS — operator 2026-09-17 (Pass-121 EXECUTE, popup)**. Following the
+  "openings only" ruling above, both picked "Result first, then the before (Recommended)". EXACT
+  approved deks, to be placed verbatim in the `dek` frontmatter:
+  CONTENT ENGINE (`content/work/content-engine.mdx`): **"Monthly impressions went from a few thousand
+  to a peak of 800,000. A social activist's message had been landing in every room and nowhere
+  online. I wrote the platform strategy, then built an AI engine that turns one rough video into the
+  week's work: finished videos, the blog post, and the whole marketing flow for the idea it argues.
+  One income stream became four."**
+  BIRTH WORKER (`content/work/birth-worker.mdx`): **"Bookings went from one to three a month to five
+  to ten. She had been booked almost always for the same service, and part of every Medicaid payment
+  went to processing fees. I repositioned the practice around the full arc of care, rebuilt how
+  clients find and book her, and set up claims she could file directly. Thousands of dollars stopped
+  going to fees."**
+  GUARDICORE and RFP ENGINE deks are UNCHANGED (audit-b judged both already answer-shaped). No h2 in
+  any study changes.
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
