@@ -449,6 +449,28 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   claims line (Recommended)": the home ORDANI block carries the same claims sentence as the study.
   /WORK FEATURED STUDY: picked "Let the design directions propose": each G2 direction names its
   featured study and why; he picks the study with the direction.
+- **ORDANI CLAIMS FACTS, PART 3 — operator 2026-09-16 (Pass-121 DIRECT, popup, after the claims
+  check `.planning/research/pass-121/claims/CLAIMS-FACTS.md`)**. COMPETITOR: two passes found no
+  claims company named Luna for birth workers; asked "Did you mean Loula?" (joinloula.com), picked
+  "Yes, I meant Loula". The named competitor is LOULA; NEVER "Luna". UNIT: asked with the arithmetic
+  stated ("one Medi-Cal doula claim pays $162 to $796, so even a 10% fee is $16 to $80 ... a full
+  Medi-Cal course pays up to $3,152.65, and Loula's page says a doula nets $2,616.70 per client after
+  its fee, about $536 less"), picked "'Hundreds of dollars per client' (Recommended)", whose
+  description read "True by Medi-Cal's published rates and Loula's own example. The page never
+  prints Loula's fee as a number, since Loula doesn't publish one." SUPERSEDES "per claim" in PART
+  1: the figure is **hundreds of dollars per client**; NEVER "per claim" for the money line, and
+  NEVER a dollar or percentage figure for Loula's fee. Sources, read 2026-09-16: Loula, verbatim "Loula
+  takes a fee for every visit you submit" and "you can get paid $2616.70 per client after the Loula
+  fee" (https://joinloula.com/providers, no page date); Medi-Cal FFS doula rates (DHCS, via search
+  2026-09-16): initial visit $197.98, prenatal or postpartum $162.11 (up to eight), vaginal delivery
+  support $685.07, extended three-hour postpartum $486.36 (up to two); full standing-recommendation
+  course $3,152.65. PROOF: asked whether to count real claims read-only in Ordani's database (the
+  code files real claims only behind a live setting that an Aug 7 audit recorded as off), picked "My
+  word is enough": his answer "Yes, real claims are paid" is the recorded source, dated 2026-09-16,
+  nothing checked. PAYERS: asked because the code builds Medi-Cal claims only, verbatim (Other):
+  "private works - no need to check the app. I have other apps i work ordani from". Medicaid and
+  private insurance STANDS; the ORDANI repo is not the whole product. STILL OPEN: the exact claims
+  sentence (candidates go to him by popup), and what Ordani itself charges for claims.
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
