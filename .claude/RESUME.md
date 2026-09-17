@@ -20,14 +20,16 @@ both domains (LESSONS #5). Branch not deployed.
 - G2 DONE (FABLE-121-G2.md). He picked C "Five exhibits" CONDITIONAL on quality
   ("ru able to produce a quality design?"), heading THE WORK, ON THE RECORD. +
   description (ledgered exact), static drawings. R12 ruling in DESIGN_BAR.
-- PROOF: GLM r1-r3 (LESSONS #36 stdin fix) -> Fable FABLE-121-PROOF.md ADJUST
-  FIRST (words in boxes, snake, one stroke, home circle ratios). Description
-  colon->period ledgered. RUNNING: GLM r4 (exec/glm-121-proof-r4.md, log r4).
-  r4 passes M1-M11 + Opus look -> GO full mocks; else he sketches, we trace.
+- PROOF PASSED r4 (all M checks; Sonnet finished it when GLM capped). He saw
+  the captures and approved the full mock set 2026-09-17.
+- RUNNING: queued GLM mock build (.planning/exec/glm-121-mocks.md -> mock/
+  pass-121/set/, log exec/glm121-mocks.log), fires at 13:46 PDT when the z.ai
+  5h cap resets. Then Opus look -> Fable G3 -> his approval -> brief -> G4.
 - OPEN for him: ORDANI Step 02 draft tick-confirm [C1-C3]; still in beta?
   (re-ask later).
-- Next: show him r4 -> GLM full C mock set -> G3 Fable -> his approval ->
-  Opus brief -> G4 -> commit. Doc drift: copper token
+- Next after mocks: Opus writes .claude/briefs/pass-121-*.md (exact copy,
+  plumbing from audit-b, verification), Fable G4 reads it, commit. Doc drift:
+  copper token is #bd5a2d, .claude/CLAUDE.md prose says #C8542B. Doc drift: copper token
   is #bd5a2d, .claude/CLAUDE.md prose says #C8542B (fix in brief).
 
 ## Waiting on operator
