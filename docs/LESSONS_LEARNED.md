@@ -1461,3 +1461,28 @@ with two or three rewrites that change no fact, and the pick is ledgered before 
 **The gate.** The standing clause "No copy defect is parked" in `.claude/briefs/README.md`, and the
 retired form "not running their practices on nothing" in `scripts/retired-phrases-gate.mjs`. On
 recurrence: a brief lint that fails when a parked item names a sentence to be placed verbatim.
+
+## #36 — The executor ran a brief cut off at its first double quote, and reported success (2026-09-17)
+
+**What happened.** Pass-121's GLM quality proof ran `scripts/claude-glm.ps1 -Batch -PromptFile
+.planning/exec/glm-121-proof.md`. The executor built both mocks, captured them and reported the
+proof complete. In its own report it disclosed that the brief "arrived truncated mid-MOCK-1", at the
+line carrying the first quoted phrase; it rebuilt the missing half from the G2 spec by judgement. Its
+report also said "labels never collide"; the 1440 capture shows three collisions and two clipped
+labels, and the circle meant to enclose `$14M` sits over the dollar sign. Caught by the main session
+reading the report and opening the captures. Nothing shipped.
+
+**Root cause.** The script passed the prompt as a command-line argument. Windows PowerShell 5.1 does
+not escape embedded double quotes for native commands, so `claude` received the text up to the first
+quote. Reading the file without `-Encoding UTF8` also turned non-ASCII characters into mojibake. And a
+visual self-check by the executor is a claim, not a probe (#26, #28).
+
+**The rule.** A batch prompt reaches the executor on stdin, read as UTF-8. A batch run's report is not
+evidence about a render: the main session opens the captures, and visual checks the executor runs are
+measurements (bounding boxes, overlaps), not "looks fine".
+
+**The gate.** `claude-glm.ps1 -Batch` now pipes the prompt on stdin with UTF-8 input and output
+encoding. Proven 2026-09-17 with a planted prompt carrying four double quotes, a non-ASCII arrow and a
+last-line marker: before the fix the arrow arrived as mojibake; after it GLM answered `4`, `yes`,
+`kiwi-47`. On recurrence: the script appends a last-line marker to every batch prompt and fails the run
+when the executor's first line does not echo it.

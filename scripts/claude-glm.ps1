@@ -76,9 +76,14 @@ if ($Smoke) {
 }
 if ($Batch) {
   if ($PromptFile -eq "" -or -not (Test-Path $PromptFile)) { Write-Error "-Batch needs -PromptFile <file>."; exit 1 }
-  $text = Get-Content -Raw $PromptFile
+  $text = Get-Content -Raw -Encoding UTF8 $PromptFile
   Write-Host "claude-glm: BATCH on $Model via z.ai, in $Dir (permissions skipped; hooks and gates still run)" -ForegroundColor DarkYellow
-  & claude -p --dangerously-skip-permissions --output-format text $text
+  # LESSONS #36: passing $text as an argument cut the prompt at its first embedded double quote
+  # (Windows PowerShell 5.1 does not escape quotes for native commands), so the executor ran a
+  # truncated brief. The prompt goes in on stdin, UTF-8, so quotes and non-ASCII survive whole.
+  $OutputEncoding = New-Object System.Text.UTF8Encoding $false
+  [Console]::InputEncoding = $OutputEncoding
+  $text | & claude -p --dangerously-skip-permissions --output-format text
   exit $LASTEXITCODE
 }
 Write-Host "claude-glm: executor session on $Model via z.ai, in $Dir" -ForegroundColor DarkYellow
