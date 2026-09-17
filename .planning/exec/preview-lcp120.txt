@@ -1,0 +1,19 @@
+cookies captured: _vercel_jwt
+preview /work with cookie: 200
+preview data-dpl-id="dpl_6Jwjh6xpyYYk9Ew47P1C5MgWmDn4"
+production data-dpl-id="dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23"
+prod run 1 rc=0
+preview run 1 rc=0
+prod run 2 rc=0
+preview run 2 rc=0
+prod run 3 rc=0
+preview run 3 rc=0
+  production run 1: https://www.micahjonesconsulting.com/work score 0.96 FCP 1213 LCP 2713 CLS 0 el main#main-content > section.cw-lot > figure.cw-lot__exhibit > img
+  production run 2: https://www.micahjonesconsulting.com/work score 0.96 FCP 1211 LCP 2711 CLS 0 el main#main-content > section.cw-lot > figure.cw-lot__exhibit > img
+  production run 3: https://www.micahjonesconsulting.com/work score 0.96 FCP 1210 LCP 2710 CLS 0 el main#main-content > section.cw-lot > figure.cw-lot__exhibit > img
+  preview run 1: https://micahjonesconsulting-ccwx6g91k-passioneer.vercel.app/work score 0.9 FCP 1783 LCP 3406 CLS 0 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+  preview run 2: https://micahjonesconsulting-ccwx6g91k-passioneer.vercel.app/work score 0.93 FCP 1209 LCP 3178 CLS 0 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+  preview run 3: https://micahjonesconsulting-ccwx6g91k-passioneer.vercel.app/work score 0.92 FCP 1211 LCP 3311 CLS 0 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip
+L1b-vercel: preview 3310.7ms vs production 2710.8ms
+FAIL L1b-vercel: got 3310.7 (want <= 2710.8)
+PASS L2 preview CLS: got 0, 0, 0

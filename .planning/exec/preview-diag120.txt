@@ -1,0 +1,8 @@
+cookie ok
+preview-novideo run 1 rc=0
+preview-novideo run 2 rc=0
+preview-novideo run 3 rc=0
+  preview-novideo run 1: simLCP 3177 obsLCP 265 simFCP 1210 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip video requests ["work-hero-720.webm:-1","work-hero-720.mp4:-1"]
+  preview-novideo run 2: simLCP 3330 obsLCP 266 simFCP 1208 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip video requests ["work-hero-720.webm:-1","work-hero-720.mp4:-1"]
+  preview-novideo run 3: simLCP 3324 obsLCP 265 simFCP 1207 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip video requests ["work-hero-720.webm:-1","work-hero-720.mp4:-1"]
+preview-novideo median simulated LCP 3324.0ms (production 2710.8ms, preview with video 3310.7ms)

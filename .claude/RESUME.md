@@ -23,8 +23,13 @@ Code 6c564b4 e015346 96fc8f1; judge fixes + media 234145a. base 73dde08.
   preview dpl_6Jwjh6xpyYYk9Ew47P1C5MgWmDn4 READY. RC2 copy PASS
   (reviews/RC2-COPY-120.md; flag: R16 award-winning scope /about + Next).
   settle120 run1 S6 blip 2/175 (not reproduced, run2 0).
-- IN FLIGHT: preview-vs-prod Lighthouse (preview-lcp120.sh); motion-
-  engineer -> reviews/MOTION-120-APPROVAL.md. NEXT: RC3 Fable ship read.
+- VERCEL SPEED (lh120-vercel/): preview /work sim LCP median 3311 vs prod
+  2711 = FAIL L1b-vercel (+600ms); obs LCP 265-300 vs prod 277. Discrim:
+  video blocked 3324 (not the clip download); RSC prefetch blocked 3183.
+  Gap tracks LCP element img->video poster in Lantern. OPERATOR DECIDES
+  (A4/6.6: override in dated words, or a speed pass). Never trim clip.
+- IN FLIGHT: motion-engineer (MOTION-120-APPROVAL.md); Fable RC3 ship read
+  (FABLE-120-SHIP-GATE.md). Then report + ask ship/deploy words.
 - O16 SHIP CHECK: publishedAt "2026-09-16" x5 must equal deploy day.
 - Parked: delete dead EditorialTimestamp after ship; CLAUDE.md GSAP and
   two-mode lines at RC3 doc sweep; no-JS hero shows native controls (UA,

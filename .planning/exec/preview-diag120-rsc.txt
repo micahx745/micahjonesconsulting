@@ -1,0 +1,8 @@
+cookie ok
+preview-norsc run 1 rc=0
+preview-norsc run 2 rc=0
+preview-norsc run 3 rc=0
+  preview-norsc run 1: simLCP 3185 obsLCP 279 simFCP 1213 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip video requests ["guardicore?_rsc=2w9-JQzBEdMnhII4:-1"]
+  preview-norsc run 2: simLCP 3178 obsLCP 250 simFCP 1210 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip video requests ["guardicore?_rsc=2w9-JQzBEdMnhII4:-1"]
+  preview-norsc run 3: simLCP 3183 obsLCP 263 simFCP 1214 el main#main-content > section.cw-wx > figure.cw-wx-lead__media > video.cw-wx-lead__clip video requests ["guardicore?_rsc=2w9-JQzBEdMnhII4:-1"]
+preview-norsc median simulated LCP 3183.0ms (production 2710.8ms, preview with video 3310.7ms)
