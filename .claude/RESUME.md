@@ -18,8 +18,12 @@ both domains (LESSONS #5). Production untouched this pass.
   defects. Worst: .flow .hl opacity .6 -> 2.19:1 (fails 3:1); ORDANI = 45 words
   mono body copy; clipped east-west label; unit boxed to game M14; copyright
   deleted to pass M15. Round 1 PNGs kept in set/round1/ (not committed).
-- IN FLIGHT: fix round 2, .planning/exec/glm-121-mocks-fix2.md (D1-D7 + metric
-  corrections), log .planning/exec/glm121-fix2.log.
+- GLM CAPPED 16:39 PDT (round 1 ate the 5h window in ~35 min); resets 20:54 PDT
+  (server said 09-18 11:54:23 UTC+8). Operator 16:46: "Wait for GLM, draft the
+  brief meanwhile". ARMED: .planning/exec/glm121-fix2-when-reset.ps1 smokes from
+  20:56 and runs glm-121-mocks-fix2.md once (log glm121-fix2.log, smoke log
+  glm121-fix2-smoke.log). If the session died, run that script by hand.
+- DRAFTING: .claude/briefs/pass-121-work-and-studies.md (G3-dependent parts marked).
 - LESSONS #37 written + 4 standing clauses in .claude/briefs/README.md.
 - NEXT: open round-2 captures -> G3 input -> Fable G3 -> operator popup with
   390/1440 captures -> brief -> G4 -> commit.
