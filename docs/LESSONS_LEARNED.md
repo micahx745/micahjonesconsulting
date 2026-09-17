@@ -404,6 +404,12 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   nothing.", verbatim: "what is that sentence??? sounds horrible. thought fable was reviewing
   everything??". The sentence is REJECTED as written (not only its comma); its replacement is
   his pick, recorded on the row below when he makes it.
+- **ORDANI OPENING, PICKED — operator 2026-09-16**, by popup, picked "One plain sentence
+  (Recommended)". The first two sentences of "Six apps and a Sunday night" in
+  content/work/ordani.mdx become EXACTLY: "Doulas, midwives and perinatal counselors ran their
+  practices on half a dozen tools: a scheduler, an invoicing app, a form builder for intake, a notes
+  app, a payments app, and a group chat holding it together." The "not running their practices on
+  nothing" setup is gone. Facts unchanged (O4-O8).
 - **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
   (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
   from fable". EXACT approved copy, one sentence, once, on /work only:
