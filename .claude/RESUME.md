@@ -20,13 +20,14 @@ both domains (LESSONS #5). Branch not deployed.
 - G2 DONE (FABLE-121-G2.md). He picked C "Five exhibits" CONDITIONAL on quality
   ("ru able to produce a quality design?"), heading THE WORK, ON THE RECORD. +
   description (ledgered exact), static drawings. R12 ruling in DESIGN_BAR.
-- RUNNING: GLM proof (.planning/exec/glm-121-proof.md -> mock/pass-121/proof/,
-  log exec/glm121-proof.log): RFP flow drawing + /work fold, 390/1440. If the
-  drawing reads clip-art: stop; offer he sketches the 5 diagrams, we trace.
+- PROOF: GLM r1-r3 (LESSONS #36 stdin fix) -> Fable FABLE-121-PROOF.md ADJUST
+  FIRST (words in boxes, snake, one stroke, home circle ratios). Description
+  colon->period ledgered. RUNNING: GLM r4 (exec/glm-121-proof-r4.md, log r4).
+  r4 passes M1-M11 + Opus look -> GO full mocks; else he sketches, we trace.
 - OPEN for him: ORDANI Step 02 draft tick-confirm [C1-C3]; still in beta?
   (popup interrupted 09-17; re-ask when he is free).
-- Next: Opus looks at proof -> show him -> if yes GLM mocks the full C set ->
-  G3 Fable -> his approval -> Opus brief -> G4 -> commit. Doc drift: copper token
+- Next: show him r4 -> GLM full C mock set -> G3 Fable -> his approval ->
+  Opus brief -> G4 -> commit. Doc drift: copper token
   is #bd5a2d, .claude/CLAUDE.md prose says #C8542B (fix in brief).
 
 ## Waiting on operator
