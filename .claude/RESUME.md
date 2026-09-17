@@ -33,11 +33,11 @@ both domains (LESSONS #5). Branch not deployed.
 
 ## Waiting on operator
 - Speed Insights p75 LCP for /work (A4). Colleague okay for the clip.
-- Ordani screens · Stripe playbook-99 · 500 dollar test · A4/S3 · §9a.
+- Ordani screens · Stripe playbook-99 · 500 test · A4/S3 · §9a.
 - Off-site presence (AI lever, unmeasured): a talk, not a brief.
 
 ## Traps
-LEDGER EVERY ANSWER BEFORE A LEG (#32) · retired figures every spelling
+LEDGER ANSWERS BEFORE A LEG (#32) · retired figures every spelling
 (#33) · no grep -iF (#34) · no parked copy defects (#35) · push to main
 deploys + re-alias both · pathspec commits (#23) · never reinterpret an
 expect (#25) · hooks read MAIN brand.json (#31) · MSYS_NO_PATHCONV=1.
