@@ -1,0 +1,13 @@
+== waiting for dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (https://micahjonesconsulting-3tifcgdrf-passioneer.vercel.app) to be Ready
+  [1]  status	● Building
+  [2]  status	● Building
+  [3]  status	● Building
+  [4]  status	● Ready
+== aliasing both domains to https://micahjonesconsulting-3tifcgdrf-passioneer.vercel.app
+Creating alias
+> Success! https://micahjonesconsulting.vercel.app now points to https://micahjonesconsulting-3tifcgdrf-passioneer.vercel.app [631ms]
+Creating alias
+> Success! https://www.micahjonesconsulting.com now points to https://micahjonesconsulting-3tifcgdrf-passioneer.vercel.app [4s]
+www:    data-dpl-id="dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg"
+vercel: data-dpl-id="dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg"
+PASS both domains serve dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg

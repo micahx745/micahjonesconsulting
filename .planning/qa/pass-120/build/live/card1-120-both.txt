@@ -1,0 +1,92 @@
+== https://www.micahjonesconsulting.com
+  PASS dpl id is new: got dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg
+  PASS status /: got 200
+  PASS status /work: got 200
+  PASS status /work/guardicore: got 200
+  PASS status /work/rfp-engine: got 200
+  PASS status /work/ordani: got 200
+  PASS status /work/content-engine: got 200
+  PASS status /work/birth-worker: got 200
+  PASS status /llms.txt: got 200
+  PASS status /sitemap.xml: got 200
+  FAIL redirect /work/postmates: got 308  (want 308 https://www.micahjonesconsulting.com/work#record)
+  FAIL redirect /work/neuton: got 308  (want 308 https://www.micahjonesconsulting.com/work#record)
+  PASS absent 'client revenue': got 0
+  PASS absent 'consulting revenue': got 0
+  PASS absent '290,000': got 0
+  PASS absent 'industry author': got 0
+  PASS absent 'industry-authority': got 0
+  PASS absent 'been hacked': got 0
+  PASS absent 'Organic bookings up 30%': got 0
+  PASS absent 'repositioned toward the buyers': got 0
+  PASS absent 'one of four companies I worked inside': got 0
+  PASS absent 'same engagement also produced': got 0
+  PASS absent '2018–2021': got 0
+  PASS absent '2018-2021': got 0
+  PASS absent '2024–2025': got 0
+  PASS absent '2024-2025': got 0
+  PASS absent '2025–2026': got 0
+  PASS absent '2025-2026': got 0
+  PASS absent 'Protected by NDA': got 0
+  PASS absent '$80M': got 0
+  PASS absent '80 million': got 0
+  PASS work method line: got 1
+  PASS work id=record: got 1
+  PASS work Also on the record: got 1
+  PASS work Nordic exit line: got 1
+  PASS services RFP receipt: got 1
+  PASS home revenue behind my work: got 1
+  PASS content-engine a social activist: got 2
+  PASS rfp-engine descriptor: got 2
+  PASS rec sr-only text: got 1
+  PASS tick SSR renders $20M+: got 1
+  PASS loop variant 3 path in SSR: got 1
+  PASS css padding-block .184em: got 1
+  PASS css margin-left .26em: got 1
+== https://micahjonesconsulting.vercel.app
+  PASS dpl id is new: got dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg
+  PASS status /: got 200
+  PASS status /work: got 200
+  PASS status /work/guardicore: got 200
+  PASS status /work/rfp-engine: got 200
+  PASS status /work/ordani: got 200
+  PASS status /work/content-engine: got 200
+  PASS status /work/birth-worker: got 200
+  PASS status /llms.txt: got 200
+  PASS status /sitemap.xml: got 200
+  FAIL redirect /work/postmates: got 308  (want 308 https://micahjonesconsulting.vercel.app/work#record)
+  FAIL redirect /work/neuton: got 308  (want 308 https://micahjonesconsulting.vercel.app/work#record)
+  PASS absent 'client revenue': got 0
+  PASS absent 'consulting revenue': got 0
+  PASS absent '290,000': got 0
+  PASS absent 'industry author': got 0
+  PASS absent 'industry-authority': got 0
+  PASS absent 'been hacked': got 0
+  PASS absent 'Organic bookings up 30%': got 0
+  PASS absent 'repositioned toward the buyers': got 0
+  PASS absent 'one of four companies I worked inside': got 0
+  PASS absent 'same engagement also produced': got 0
+  PASS absent '2018–2021': got 0
+  PASS absent '2018-2021': got 0
+  PASS absent '2024–2025': got 0
+  PASS absent '2024-2025': got 0
+  PASS absent '2025–2026': got 0
+  PASS absent '2025-2026': got 0
+  PASS absent 'Protected by NDA': got 0
+  PASS absent '$80M': got 0
+  PASS absent '80 million': got 0
+  PASS work method line: got 1
+  PASS work id=record: got 1
+  PASS work Also on the record: got 1
+  PASS work Nordic exit line: got 1
+  PASS services RFP receipt: got 1
+  PASS home revenue behind my work: got 1
+  PASS content-engine a social activist: got 2
+  PASS rfp-engine descriptor: got 2
+  PASS rec sr-only text: got 1
+  PASS tick SSR renders $20M+: got 1
+  PASS loop variant 3 path in SSR: got 1
+  PASS css padding-block .184em: got 1
+  PASS css margin-left .26em: got 1
+  PASS both domains same deployment: got dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg vs dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg
+card1 failures: 4

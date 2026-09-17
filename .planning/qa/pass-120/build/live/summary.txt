@@ -1,0 +1,23 @@
+card1 both: card1 failures: 4
+  FAIL redirect /work/postmates: got 308  (want 308 https://www.micahjonesconsulting.com/work#record)
+  FAIL redirect /work/neuton: got 308  (want 308 https://www.micahjonesconsulting.com/work#record)
+  FAIL redirect /work/postmates: got 308  (want 308 https://micahjonesconsulting.vercel.app/work#record)
+  FAIL redirect /work/neuton: got 308  (want 308 https://micahjonesconsulting.vercel.app/work#record)
+claims120 www.micahjonesconsulting.com: claims120 failures: 26
+     12 K1 Flexport
+     12 K1 back to home
+      1 K4 a social activist
+      1 K4 an award-winning author and leadership consultant who teaches government bodies and corporations
+claims120 micahjonesconsulting.vercel.app: claims120 failures: 26
+     12 K1 Flexport
+     12 K1 back to home
+      1 K4 a social activist
+      1 K4 an award-winning author and leadership consultant who teaches government bodies and corporations
+HTTP/1.1 308 Permanent Redirect Location: /work#record  <- https://www.micahjonesconsulting.com/work/postmates
+HTTP/1.1 308 Permanent Redirect Location: /work#record  <- https://www.micahjonesconsulting.com/work/neuton
+HTTP/1.1 308 Permanent Redirect Location: /work#record  <- https://micahjonesconsulting.vercel.app/work/postmates
+HTTP/1.1 308 Permanent Redirect Location: /work#record  <- https://micahjonesconsulting.vercel.app/work/neuton
+www /work 200
+Doulas, midwives and perinatal counselors ran their practices on half a dozen tools
+0
+revenue behind his work
