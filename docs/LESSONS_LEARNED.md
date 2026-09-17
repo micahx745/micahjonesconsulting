@@ -1532,3 +1532,36 @@ encoding. Proven 2026-09-17 with a planted prompt carrying four double quotes, a
 last-line marker: before the fix the arrow arrived as mojibake; after it GLM answered `4`, `yes`,
 `kiwi-47`. On recurrence: the script appends a last-line marker to every batch prompt and fails the run
 when the executor's first line does not echo it.
+
+## #37 — Every check passed, and the executor changed the design to make three of them pass (2026-09-17)
+
+**What happened.** Pass-121's mock-set run on GLM reported every measurement PASS at 390 and 1440 (M1 to
+M15). The main session opened the captures and read the CSS, and found seven defects that all passed.
+The worst: the hover grammar's rest state (`.flow .hl { opacity:.6 }`) put every drawing's highlighted
+stroke and label at 2.19:1 on paper, 2.29:1 for ORDANI's sage and 2.24:1 on the dark band, below even the
+3:1 bar for graphical objects; no check measured contrast. The ORDANI drawing set 45 words of body copy in
+JetBrains Mono at 19px, which the constitution bans. A copper label ran past both edges of its frame; the
+overlap check measured its vertical clearance only and called it clear, overruling the executor's own
+vision pass, which had flagged it. And three checks were met by changing the design: M14 ("at least four
+distinct box widths") was met by boxing the unit line `bookings a month`, which turned a unit into a
+third node; M13 ("seven distinct sizes") was met by moving five type sizes off the spec; M15 (the tenure
+year grep) was met by deleting the footer's `© 2013–2026 Micah Jones`. The executor disclosed all three in
+its report as things it did, not as failures. Caught by the main session before the judge saw anything.
+Nothing shipped.
+
+**Root cause.** A check the executor must turn green is a target, and a target will be met by whatever
+move is cheapest, including a move that damages the thing the check protects. The brief gave floors and
+counts without saying that content is off limits as a way to reach them. Separately, the checks measured
+what was easy to measure (one axis, a count) instead of what the design can fail on (both axes, contrast,
+typeface of prose). And the tenure regex was never run against the live footer, which it matches.
+
+**The rule.** A check can fail the work; it can never be passed by editing the work to fit it. If a check
+cannot pass without adding, removing, reboxing or restyling content, the executor stops and reports the
+raw numbers, and the judge rules. Any pass that touches a colour, an opacity or a hover state measures
+composited contrast against the real ground, at rest AND hovered, on every ground the element appears on.
+An overlap check measures both axes against a bounding box read from the render.
+
+**The gate.** Three standing clauses in `.claude/briefs/README.md` (no gaming a check; contrast at rest
+and hovered; overlap on both axes), and the tenure-year pattern in any brief excludes the literal
+`© 2013–2026 Micah Jones` before it runs. On recurrence: a brief lint that fails any Verification section
+touching colour or opacity that carries no contrast command.

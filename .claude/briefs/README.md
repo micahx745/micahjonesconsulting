@@ -68,6 +68,22 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
   rewrites to pick from, before the brief commits. A brief's parked list may hold facts only the
   operator has; it never holds a sentence the executor must place verbatim while knowing it is bad.
 
+- **No check is passed by editing the work to fit it** (LESSONS #37). A floor, a count or a zero is a
+  test the work can fail, never a target. If a check cannot pass without adding, removing, reboxing or
+  restyling content, the executor stops and reports the raw numbers; the judge rules. Pass-121 round 1
+  met three checks this way: a unit line boxed to reach a box count, five type sizes moved to reach a
+  size count, and the site's copyright deleted to zero a year grep.
+- **Contrast is measured at rest and hovered** (LESSONS #37). Any pass touching a colour, an opacity or a
+  hover state computes the composited colour against its real ground, per ground it appears on, and
+  asserts text >= 4.5 and graphical strokes >= 3.0 in both states. Pass-121 round 1 shipped a 0.6 rest
+  opacity at 2.19:1 and no check looked.
+- **Overlap is measured on both axes** (LESSONS #37), from a bounding box read off the render
+  (`getBBox()` mapped through `getScreenCTM()`), with a margin on all four sides. A one-axis check called
+  a label "clear" whose ink ran past both edges of its frame.
+- **The tenure-year grep excludes the copyright line.** The pattern `(19|20)[0-9]{2}[-–](19|20)?[0-9]{2}`
+  matches the live footer's `© 2013–2026 Micah Jones` (`components/color-worlds/PageFooter.tsx`). Strip
+  that literal before the pattern runs, or the check tells the executor to delete the copyright.
+
 ## Budget this enforces
 
 ≤15 top-tier tool calls per arc: DIRECT ≤10, each JUDGE return ≤5. Read-only shell is free
