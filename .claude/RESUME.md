@@ -20,8 +20,12 @@ Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. He must PULL main checkout.
 - SPEED (lh120-vercel/): preview /work sim LCP 3311 vs prod 2711 = FAIL
   L1b (+600); observed 265-300 vs 277. Video blocked 3324, RSC prefetch
   blocked 3183: gap tracks img -> video poster. OPERATOR DECIDES (6.6).
-- IN FLIGHT: Fable RC3 -> reviews/FABLE-120-SHIP-GATE.md. Then report;
-  ask speed + ship words.
+- RC3 Fable: SHIP AFTER FIXES (reviews/FABLE-120-SHIP-GATE.md); its speed
+  premise wrong (poster preload exists page.tsx:52), Fix 4 already closed.
+- MICAH 2026-09-16 SHIP ANSWERS (ledgered #3): "Override, release today
+  (Recommended)" = A4 OVERRIDE + RELEASE TODAY after fixes + checks pass;
+  Medicaid ONLY ("its the one for low income not elerdely"); ORDANI opening
+  sentence REJECTED ("sounds horrible") -> rewrite popup pending.
 - SHIP CHECKS: publishedAt "2026-09-16" x5 == deploy day (O16); his words
   that day quoted here before any main push; card1-120 + claims120 on both
   domains after deploy.

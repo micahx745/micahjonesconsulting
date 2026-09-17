@@ -388,6 +388,22 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   surface keeps "$20M+ in revenue behind my work". The figure and the claim do not change. NEXT
   GATES: picked "Yes, run them (Recommended)": copy check by curl, one Fable ship-gate read, the
   motion-engineer's written sign-off.
+- **PASS-120 SHIP ANSWERS — operator 2026-09-16**, by popup after the Fable ship gate
+  (.planning/reviews/FABLE-120-SHIP-GATE.md). SPEED OVERRIDE: picked "Override, release today
+  (Recommended)", whose description read "I record your override with today's date. After the last
+  doc fixes land and the build and checks pass again, I merge to main (that deploys), check both
+  domains live, and real-visitor Speed Insights decides after release. Undo is one step: promote
+  today's production deploy." This is the dated operator override of A4 and brief §6.6 for /work:
+  on Vercel the preview's simulated mobile LCP median was 3311ms against production's 2711ms
+  (observed 265-300ms against 277ms); LCP is judged on Speed Insights field p75 for /work after
+  release. MEDICAID ONLY: asked whether "Medicaid and Medicare" is right, verbatim: "its the one
+  for low income not elerdely forgot the difference". The birth worker's direct claims were
+  MEDICAID only (the low-income program); SUPERSEDES "Medicaid and Medicare" in the BIRTH WORKER
+  SCOPE row above. NEVER "Medicare" for her. ORDANI OPENING SENTENCE: asked about the comma in
+  "Birth workers, doulas, midwives and perinatal counselors, were not running their practices on
+  nothing.", verbatim: "what is that sentence??? sounds horrible. thought fable was reviewing
+  everything??". The sentence is REJECTED as written (not only its comma); its replacement is
+  his pick, recorded on the row below when he makes it.
 - **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
   (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
   from fable". EXACT approved copy, one sentence, once, on /work only:
