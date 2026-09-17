@@ -17,9 +17,9 @@ Code 6c564b4 e015346 96fc8f1; judge fixes + media 234145a. base 73dde08.
   template120 U0/U2/U3/U12/U17/U21 = judge-ACCEPTED with new expecteds.
 - F6 same-machine LCP: build 3083.9 vs base 3013.1 = FAIL L1b-local +71ms
   (runs overlap). Old 3085-vs-prod-2710 retired (laptop offset).
-- ASKING MICAH: speed call (preview deploy measure vs Speed Insights
-  after release), "behind his work" on PERSON_LD + llms.txt (judge F5
-  copy), go-ahead for RC2 copy curl, RC3 Fable ship read, RC4 motion-eng.
+- MICAH 2026-09-16 (popup, ledgered #3): "Preview deploy test (Recommended)"
+  = BRANCH PUSH APPROVED TODAY ONLY (not main/prod/alias); "Yes, his there"
+  (PERSON_LD + llms.txt only); "Yes, run them" (RC2 copy, RC3 Fable, RC4).
 - O16 SHIP CHECK: publishedAt "2026-09-16" x5 must equal deploy day.
 - Parked: delete dead EditorialTimestamp after ship; CLAUDE.md GSAP and
   two-mode lines at RC3 doc sweep; no-JS hero shows native controls (UA,

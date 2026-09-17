@@ -376,6 +376,18 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   before any push to `main` every study's publishedAt must equal the deploy day recorded in RESUME;
   if not, the five values change in one commit and the site rebuilds. The field stays hidden (JSON-LD
   and sort only), never a tenure year, never rendered.
+- **PASS-120 FIRST-PREVIEW ANSWERS — operator 2026-09-16**, by popup after the Fable first-preview
+  look (.planning/reviews/FABLE-120-FIRST-PREVIEW.md). SPEED: picked "Preview deploy test
+  (Recommended)", whose description read "I push the branch so Vercel builds a private preview (no
+  domain, production untouched), then run the same speed test against the live site. Fair
+  comparison. This counts as your go-ahead to push the branch today." So A4's lab limit is measured
+  preview-vs-production by the same Lighthouse loop; branch pushes are approved for 2026-09-16 only;
+  main, production and aliases are not. WORDING: picked "Yes, 'his' there (Recommended)": on the two
+  third-person surfaces only (app/layout.tsx PERSON_LD description, app/llms.txt/route.ts summary
+  line) the $20M sentence reads "$20M+ in revenue behind his work."; every visible first-person
+  surface keeps "$20M+ in revenue behind my work". The figure and the claim do not change. NEXT
+  GATES: picked "Yes, run them (Recommended)": copy check by curl, one Fable ship-gate read, the
+  motion-engineer's written sign-off.
 - **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
   (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
   from fable". EXACT approved copy, one sentence, once, on /work only:
