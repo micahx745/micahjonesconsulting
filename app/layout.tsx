@@ -65,7 +65,7 @@ const PERSON_LD = {
   // facts now land first. "AND" in all-caps was a formatting artifact
   // that shouldn't appear in machine-readable metadata.
   description:
-    "Oakland-based independent operator. Four exits behind his work: Postmates (Uber, 2020), SurveyMonkey (IPO, 2018), Guardicore (Akamai, 2021), Neuton.AI (Nordic Semiconductor, 2025). $20M+ in revenue behind my work. Building Ordani: HIPAA-compliant practice management for doulas and midwives.",
+    "Oakland-based independent operator. Four exits behind his work: Postmates (Uber, 2020), SurveyMonkey (IPO, 2018), Guardicore (Akamai, 2021), Neuton.AI (Nordic Semiconductor, 2025). $20M+ in revenue behind his work. Building Ordani: HIPAA-compliant practice management for doulas and midwives.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Oakland",
