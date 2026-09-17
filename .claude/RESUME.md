@@ -30,10 +30,10 @@ both domains (LESSONS #5). Branch not deployed. Production untouched this pass.
   Doc drift: live copper token is #bd5a2d; .claude/CLAUDE.md prose says #C8542B.
 
 ## Waiting on operator
-- The audit-b h2/lede rewrites are PROPOSED copy, never ledgered — ask before any
-  land in the brief.
+- audit-b h2/lede rewrites are PROPOSED copy, never ledgered: ask before any land.
 - Speed Insights p75 LCP for /work (A4). Colleague okay for the clip.
 - Ordani screens · Stripe playbook-99 · 500 test · A4/S3 · §9a.
+- Off-site presence (AI lever, unmeasured): a talk, not a brief.
 
 ## Traps
 LEDGER ANSWERS BEFORE A LEG (#32) · retired figures every spelling (#33) ·
