@@ -494,6 +494,11 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   a month, a birth worker's practice rebuilt, and ORDANI. Each page says what I found, what I built,
   and what changed."** DRAW-IN: picked "No, still drawings first (Recommended)": the exhibits are
   static; they may fade and rise once in view (the permitted reveal); no stroke draw-in this pass.
+  DESCRIPTION PUNCTUATION, operator 2026-09-17, picked "Period instead of colon (Recommended)" after the
+  Fable proof look flagged the 40-word first sentence (COPY-04). The approved description is now EXACTLY:
+  **"Four client engagements and the company I founded. $14M in revenue for a security company, $3M in
+  contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a month, a birth
+  worker's practice rebuilt, and ORDANI. Each page says what I found, what I built, and what changed."**
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
