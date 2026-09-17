@@ -1,0 +1,30 @@
+200 /work/guardicore -> .planning/qa/pass-120/rc2/work_guardicore.txt (4456 chars) NEVER hits raw/visible: [["The reposition",6,3]]
+200 /about -> .planning/qa/pass-120/rc2/about.txt (2084 chars) NEVER hits raw/visible: [["same engagement",2,1]]
+1
+0
+s5: 118 PASS, 5 FAIL
+FAIL rawsome /llms.txt [$20M+ in revenue behind my work.] got=0
+FAIL rawsome /llms.txt [$14M in revenue, sourced and closed, at a $1.2M average enterprise
+FAIL rawsome /llms.txt [for a social activist; up to 800,000 impressions in a month, up fr
+FAIL rawsome /llms.txt [for an award-winning author and leadership consultant; $3M in sign
+FAIL rawsome /llms.txt [(https://www.micahjonesconsulting.com/work/birth-worker): position
+claims120: claims120 failures: 26
+     12 K1 Flexport
+     12 K1 back to home
+      1 K4 a social activist
+      1 K4 an award-winning author and leadership consultant who teaches government bodies and corporations
+card1: card1 failures: 2
+  FAIL redirect /work/postmates: got 308  (want 308 http://localhost:3200/work#record)
+  FAIL redirect /work/neuton: got 308  (want 308 http://localhost:3200/work#record)
+page120: page120 failures: 6
+      1 FAIL T12 sage scope /work/ordani 1440: got 0 (rgb(94, 113, 88)) (want 
+      1 FAIL T12 sage scope /work/ordani 390: got 0 (rgb(94, 113, 88)) (want >
+      1 FAIL T15 /work/neuton lands on #record 1440: got /work#record, #record
+      1 FAIL T15 /work/postmates lands on #record 1440: got /work#record, #rec
+      1 FAIL T9 no figcaption /work/rfp-engine 1440: got 1 (want 0)
+      1 FAIL T9 no figcaption /work/rfp-engine 390: got 1 (want 0)
+layout: layout-gate: 54 page loads across 9 routes, 0 finding(s), 0 not in KNOWN
+fixdom: fixdom120 failures: 0
+axe: axe-worlds: axe-core 4.13.0, 252 scans, 0 serious/critical finding(s), 0 not in KNOWN
+type117: type117 failures: 0
+circle: circle failures: 0

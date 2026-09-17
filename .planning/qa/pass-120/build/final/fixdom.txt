@@ -1,0 +1,11 @@
+PASS F2 ordani h1 text 390: got "ORDANI: HIPAA-compliant CRM for birth workers"
+PASS F2 ordani nb count 390: got 1
+PASS F2 ordani h1 text 1440: got "ORDANI: HIPAA-compliant CRM for birth workers"
+PASS F2 ordani nb count 1440: got 1
+PASS F2 guardicore nb count: got 0
+PASS F2 rfp-engine nb count: got 0
+PASS F2 content-engine nb count: got 0
+PASS F2 birth-worker nb count: got 0
+PASS F3 exhibit bordered cells 390: got 1
+PASS F3 exhibit bordered cells 1440: got 2
+fixdom120 failures: 0

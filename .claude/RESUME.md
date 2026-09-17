@@ -26,9 +26,11 @@ Revert: promote dpl_GTqjwEgFe6NZoLCrTa7mmAfjLeAC. He must PULL main checkout.
   (Recommended)" = A4 OVERRIDE + RELEASE TODAY after fixes + checks pass;
   Medicaid ONLY ("its the one for low income not elerdely"); ORDANI opening
   sentence REJECTED ("sounds horrible") -> rewrite popup pending.
-- SHIP CHECKS: publishedAt "2026-09-16" x5 == deploy day (O16); his words
-  that day quoted here before any main push; card1-120 + claims120 on both
-  domains after deploy.
+- RELEASE AUTHORIZED 2026-09-16 (popup, verbatim pick): "Override, release
+  today (Recommended)" = merge to main after fixes + checks pass. Ship-gate
+  fixes 8d9866b; build 15/15; final served = judge-accepted set only.
+  O16 OK: publishedAt 2026-09-16 x5, deploy day 2026-09-16 PDT.
+  REVERT: promote dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23 (prod before release).
 
 ## Parked
 Delete dead EditorialTimestamp · settle120 S6 cause check (motion-eng) ·

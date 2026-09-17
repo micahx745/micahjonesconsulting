@@ -21,7 +21,7 @@ Practitioner interviews, a progressive intake flow, a HIPAA-compliant build shap
 Results
 Intake completion 40% to 91%. Active paying users in beta, none lost to a competitor.
 Six apps and a Sunday night
-Birth workers, doulas, midwives and perinatal counselors, were not running their practices on nothing. They were running them on half a dozen tools: a scheduler, an invoicing app, a form builder for intake, a notes app, a payments app, and a group chat holding it together.
+Doulas, midwives and perinatal counselors ran their practices on half a dozen tools: a scheduler, an invoicing app, a form builder for intake, a notes app, a payments app, and a group chat holding it together.
 Each one did its own job. None of them talked to the others, so the practitioner became the integration, copying the same client's details from one app into the next on a Sunday night. The monthly bill for six subscriptions added up to a system nobody had designed.
 Nobody I spoke to was shopping for a platform. Nobody had ever offered them one built for their work, so they did not know to want it. And HIPAA is the law for all of it: every copy of a client's details in another app was one more place that data lived.
 Why it matters

@@ -23,7 +23,7 @@ Bookings from one to three a month to five to ten. Thousands of dollars kept tha
 Her practice was bigger than her booking form
 Clients booked her for births. That is what people asked for, and that is what her page offered. The care she gave in the months around a birth was work she had trained for and practised for years, and almost nobody asked for it, because nothing told them they could.
 This is a positioning problem I see again and again in a practice of one. The market's picture of you is narrower than your skill, and it stays that way until you change what a stranger reads first.
-The second problem was quieter. Part of her work was paid through Medicaid and Medicare, and a slice of every claim went to whoever processed it. Every booking she won cost her a fee she never saw on a bill.
+The second problem was quieter. Part of her work was paid through Medicaid, and a slice of every claim went to whoever processed it. Every booking she won cost her a fee she never saw on a bill.
 What I did
 01 I read her own inquiries before I wrote anything. Where they came from, what they asked for, and what she quoted. The pattern was the diagnosis: one service, over and over.
 02 I talked to people she had already cared for. They did not describe a service. They described a person who was there for the whole thing. That gap, between how clients talked about her and how her page talked about her, was the brief.
@@ -31,7 +31,7 @@ What I did
 04 I rebuilt her website around it. How she introduces herself, what her first screen says she does, and how her services are grouped.
 05 I put the new position in front of the people looking. The posts and listings that carried it said the new thing in her own voice, so someone searching for care before or after a birth found her instead of a directory.
 06 I rebuilt the path from question to booking. One route from first message to booked consult, so an inquiry about care beyond the birth itself had somewhere to go, and the words for answering it were already written.
-07 I set up her claims so the fees stopped. I set up direct Medicaid and Medicare claims for her birth work. She kept thousands of dollars that would otherwise have gone to processing fees.
+07 I set up her claims so the fees stopped. I set up direct Medicaid claims for her birth work. She kept thousands of dollars that would otherwise have gone to processing fees.
 What changed
 Bookings went from one to three a month to five to ten.
 Requests started arriving across her whole range instead of one service.
