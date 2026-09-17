@@ -1,0 +1,9 @@
+PASS N1 clip ended after the first load: got true
+PASS N2 play events after the first load: got 1
+PASS N3 reached /work/rfp-engine: got true
+PASS N4 same document after the entry click (client navigation): got true
+PASS N5 Back reached /work with a video element: got true
+PASS N6 same document after Back: got true
+PASS N7 no second play event in this document: got 1
+PASS N8 the remounted video never played: got {"played":0,"paused":true}
+clipnav120 failures: 0

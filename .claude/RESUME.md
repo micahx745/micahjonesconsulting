@@ -18,8 +18,13 @@ Code 6c564b4 e015346 96fc8f1; judge fixes + media 234145a. base 73dde08.
 - F6 same-machine LCP: build 3083.9 vs base 3013.1 = FAIL L1b-local +71ms
   (runs overlap). Old 3085-vs-prod-2710 retired (laptop offset).
 - MICAH 2026-09-16 (popup, ledgered #3): "Preview deploy test (Recommended)"
-  = BRANCH PUSH APPROVED TODAY ONLY (not main/prod/alias); "Yes, his there"
-  (PERSON_LD + llms.txt only); "Yes, run them" (RC2 copy, RC3 Fable, RC4).
+  = BRANCH PUSH APPROVED TODAY ONLY; "Yes, his there"; "Yes, run them".
+- DONE: his-wording 5c767de; BRANCH PUSHED 5c767de (main untouched c2ffb36);
+  preview dpl_6Jwjh6xpyYYk9Ew47P1C5MgWmDn4 READY. RC2 copy PASS
+  (reviews/RC2-COPY-120.md; flag: R16 award-winning scope /about + Next).
+  settle120 run1 S6 blip 2/175 (not reproduced, run2 0).
+- IN FLIGHT: preview-vs-prod Lighthouse (preview-lcp120.sh); motion-
+  engineer -> reviews/MOTION-120-APPROVAL.md. NEXT: RC3 Fable ship read.
 - O16 SHIP CHECK: publishedAt "2026-09-16" x5 must equal deploy day.
 - Parked: delete dead EditorialTimestamp after ship; CLAUDE.md GSAP and
   two-mode lines at RC3 doc sweep; no-JS hero shows native controls (UA,

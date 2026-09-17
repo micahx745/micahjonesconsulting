@@ -1,0 +1,50 @@
+Skip to content
+MICAH/JONES
+Services
+Work
+About
+Contact
+Menu —
+Close ✕ Services
+Work
+About
+Contact
+Guardicore, acquired by Akamai
+Repositioning Guardicore: $14M, then Akamai
+$14M in revenue, sourced and closed, at a $1.2M average enterprise deal, for a security company built in Tel Aviv whose buyers sat in North American banks. I ran the research that found what those buyers were actually signing for, moved the story from honeypots to east-west visibility, and sat in the deals. Akamai acquired the company in 2021.
+Client
+Guardicore, acquired by Akamai
+My role
+Revenue and positioning
+The work
+Customer research and data analysis, the repositioning, target accounts and outbound, executive briefings, managed-security partners, and a microsegmentation pilot
+Results
+$14M in revenue, sourced and closed. $1.2M average enterprise deal. Acquired by Akamai in 2021.
+Everyone was selling honeypots
+In the years before the acquisition, the security market was saturated with deception. Honeypots were a feature several vendors shipped, and Guardicore led with theirs.
+Meanwhile the thing enterprises could not do was see their own networks. North-south traffic, in and out through the firewall, was well defended. The lateral east-west traffic between workloads was a blind spot, and that blind spot was where ransomware lived.
+So the top-of-funnel message described a feature the market already had, while buyers at the bottom of the funnel were signing for something else. The product was built an ocean away from the buyers who needed it.
+What the customers said that the deck did not
+I interviewed customers, researched the market, and ran the data analysis on what closed against what the pitch promised. The two came apart in the same place every time: buyers were not buying deception. They could not see anything inside their own environments, and visibility was the thing they signed for.
+I brought that to leadership with the analysis behind it, and the story moved: visibility first, then east-west microsegmentation.
+What I did
+01 The research, before the pitch changed. Customer interviews, market research, and the analysis that showed where the message and the money disagreed.
+02 The reposition. Two anchors, in order: see the traffic, then segment it. Every surface told the same story in the same sequence.
+03 The pipeline. I picked the target accounts, ran the outbound, briefed executives, qualified the leads, and sat in the deals. Once leadership backed the new focus, I was selling microsegmentation before the product was finished. That is the part of positioning nobody puts in a deck: the story has to hold in a live deal while the roadmap catches up.
+04 Managed-security partners. I helped sign the managed-security and reseller partners who extended the platform's reach, and their reps carried the repositioned story the direct team carried.
+05 The pilot that proved it. A microsegmentation pilot with a top-10 North American bank. The two anchors held under a real network, with a real security team pushing on them.
+What changed
+$14M in revenue, at a $1.2M average enterprise deal size.
+Deployed behind a global systemically important bank and a federal research agency. It reached a white-shoe Wall Street law firm and a major U.S. utility too.
+Trillions in financial assets sit protected behind those deployments.
+Akamai acquired Guardicore in 2021, and the positioning carried into the product that followed the acquisition.
+Questions buyers ask
+Why would positioning change revenue? It changes which buyer takes the meeting and what they think they are solving. Here the pitch described a feature while buyers were signing the contracts for an outcome.
+If enterprise teams still are not buying
+You built it. Enterprise teams still are not buying, and the gap is positioning, not features. I run the customer interviews and the sales-call analysis that name the question your buyers are actually asking, then the positioning shift and the sales narrative your team runs without me.
+Positioning & GTM →
+Next
+An award-winning author and leadership consultant who teaches government bodies and corporations $3M in signed contracts across eleven awards. It finds the RFPs worth answering, weighs each one against twenty years of their own work, and has a drafted response waiting by morning. AI engineering
+All work
+I read every message and reply inside one business day.
+Or write to me directly: micah@micahjonesconsulting.com

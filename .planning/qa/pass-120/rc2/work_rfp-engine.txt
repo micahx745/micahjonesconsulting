@@ -1,0 +1,70 @@
+Skip to content
+MICAH/JONES
+Services
+Work
+About
+Contact
+Menu —
+Close ✕ Services
+Work
+About
+Contact
+An award-winning author and leadership consultant who teaches government bodies and corporations
+AI RFP software: $3M in signed contracts
+$3M in signed contracts, won through AI software I built for an award-winning author and leadership consultant. It finds the RFPs worth answering, weighs each one against twenty years of their own work, and has a drafted response waiting by morning. Their close rate went from one in eight to one in four.
+Client
+An award-winning author and leadership consultant who teaches government bodies and corporations Name protected
+My role
+Strategist and sole builder
+First real RFPs delivered
+Day three
+What I built
+Discovery, bid/no-bid scoring, a library of their work with provenance, and response drafting
+Results
+$3M in signed contracts across eleven awards. Close rate from one in eight to one in four inside six months. Responses out per month: two or three, then eight to ten.
+Three responses a month was the ceiling
+The client had twenty years of published work behind them: books, keynotes and training programs. Public buyers were funding exactly that expertise. Most of those requests never reached them.
+New opportunities arrived through a single newsletter list and the client's existing network. Everything else sat on federal, state and local procurement portals that nobody was watching.
+Every response started from a blank page. One took three to five working days, so two or three went out a month and the client passed on the rest. Volume was the ceiling, and each pass was a contract someone else won.
+Real RFPs by day three
+Day three, the software was live and sending real opportunities. Scoring, the library and the drafting came after that.
+01 Discovery. It checks federal, state and local procurement portals every night and pulls each new RFP in the client's field.
+02 One record per solicitation. Portals repost the same solicitation, and amendments change it. Duplicates collapse into one record, and an amendment gets flagged for review rather than quietly replacing what the client already read.
+03 The library, with provenance. I put more than 300 pieces of the client's work into a searchable library: books, articles, talks, past proposals and client results. Every passage keeps its source, its date and how that engagement ended. This is the retrieval layer, RAG, and the provenance is the point: a draft can name real work instead of describing work in general.
+04 Bid/no-bid scoring. Each RFP gets scored before a person reads it: eligibility, deadline, required certifications, and how far the scope overlaps proven work.
+05 Drafting against the buyer's own criteria. Each solicitation states how it will be scored, and evaluation factors differ from one to the next. The draft follows that solicitation's stated criteria rather than a house template.
+06 Gaps instead of invention. Where the library cannot support a claim, the draft leaves a marked gap and says what is missing. It does not write a sentence that merely sounds right.
+07 Outcomes tune the scoring. Every award and every rejection adjusts the weights, so the scoring keeps learning from real results.
+Nothing submits itself. A person reads and approves every response before it goes out.
+One requirement, start to finish
+The request
+What the engine did
+A buyer asks for proof of similar work delivered in the last five years.
+The engine pulls two engagements out of the library that match the scope, each with its date and how it ended, and drafts the answer around them in the client's own language.
+The same RFP asks for a credential the client does not hold.
+Nothing in twenty years of their work supports it. The draft leaves a marked gap and names what is missing, so the client can answer it honestly, bring in a partner who has it, or skip the bid.
+That gap is the part I care about. A model that writes something plausible there costs a client their credibility with a buyer they wanted for years.
+What the replay found
+Before the software scored a live RFP, I ran thirty to fifty of the client's past bids back through it. The pattern held: every win matched two or more of their proven capabilities, and every loss matched one or none. Capability overlap became the heaviest weight in the score.
+That is also the honest answer to a fair question. A better filter raises a win rate on its own, so the scoring had to earn its weights against bids whose outcomes were already known.
+What changed
+$3M in signed contracts through the platform, across eleven awards.
+Contracts started arriving from buyers outside the client's existing network and outside their home state.
+The close rate went from one in eight to one in four of submitted proposals, inside six months.
+Responses out went from two or three a month to eight to ten.
+First drafts arrive in hours instead of days.
+The judgment that used to fire only when I was in the room now fires on every submission.
+Micah does the work that most strategy decks promise and never deliver.
+The client, name protected
+Questions buyers ask
+What did this RFP engine automate? Finding relevant solicitations, scoring whether each one is worth a bid, and drafting a first response from the client's own published work. A person reviews and submits every response.
+Can AI write a government RFP response? It can draft one. Here the draft came from the client's own library and followed that solicitation's stated evaluation criteria, and a person finished every response. Eligibility, pricing and submission checks stayed human.
+What was working after three days? Real RFPs arriving, scored for fit. The library, the drafting and the tuning came after.
+If your experts read the same document every week
+Your AI works in the notebook. Production is a different stack, and I run that stack. I build the retrieval, the scoring and the drafting on your own material, for real load and not the demo, with evals that fire on every change and catch failures before your customers do. Your team runs it after I leave.
+AI engineering →
+Next
+ORDANI, my company Intake completion went from 40% to a measured 91%. A HIPAA-compliant CRM for birth workers, and a company I founded and built. Product building
+All work
+I read every message and reply inside one business day.
+Or write to me directly: micah@micahjonesconsulting.com

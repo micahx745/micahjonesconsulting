@@ -1,0 +1,28 @@
+PASS C1 exactly one <video: got 1
+PASS C1 <video> attributes: got poster "/media/work-hero-poster-960.avif", autoplay/loop/controls present: none
+PASS C1 no <track: got 0
+PASS C3 ended within 8000ms 1440: got 4170.8ms after load
+PASS C3 frames move 1440: got max channel diff 140 between 308.6ms and 2508.6ms
+PASS C3 rests after ended 1440: got max channel diff 0 between 4510.6ms and 6270.6ms, luminance std 37.4 / 37.4
+PASS C3 played once 1440: got paused true, played.length 1, start 0, end 4.084, duration 4.084
+PASS C2 properties 1440: got muted true, playsInline true, loop false, controls false, duration 4.084
+PASS C3 ended within 8000ms 390: got 4111.7ms after load
+PASS C3 frames move 390: got max channel diff 140 between 312.4ms and 2510.4ms
+PASS C3 rests after ended 390: got max channel diff 0 between 4437.4ms and 6221.4ms, luminance std 36.5 / 36.5
+PASS C3 played once 390: got paused true, played.length 1, start 0, end 4.084, duration 4.084
+PASS C4 reduced 1440 rests: got video: max channel diff 0 between 1001.8ms and 5002.8ms, luminance std 37.0 / 37.0
+PASS C4 reduced 1440 never plays: got played.length 0
+PASS C9 no caption 1440: got 0 text nodes within 120px below, scope figure.cw-wx-lead__media
+PASS C4 reduced 390 rests: got video: max channel diff 0 between 1005.3ms and 5010.3ms, luminance std 36.5 / 36.5
+PASS C4 reduced 390 never plays: got played.length 0
+PASS C9 no caption 390: got 0 text nodes within 120px below, scope figure.cw-wx-lead__media
+PASS C5 save-data 1440 rests: got video: max channel diff 0 between 1008.1ms and 5007.1ms, luminance std 37.0 / 37.0
+PASS C5 save-data 1440 never plays: got played.length 0
+FAIL C6 no-JS 1440 rests: got video: max channel diff 37 between 1003.6ms and 5010.6ms, luminance std 38.4 / 38.4 (want diff <= 2, std > 10)
+FAIL C6 no-JS 390 rests: got video: max channel diff 70 between 1008.1ms and 5011.1ms, luminance std 36.5 / 36.5 (want diff <= 2, std > 10)
+PASS C7 video /media/work-hero-720.webm: got status 200, video/webm, 115333 bytes
+PASS C7 video /media/work-hero-720.mp4: got status 200, video/mp4, 210176 bytes
+PASS C7 video bytes together: got 325509 over 2 files
+PASS C7 poster /media/work-hero-poster-960.avif: got status 200, image/avif, 13412 bytes
+PASS C8 no raw source committed: got 0 of 14 files at 3264298 bytes
+clip120 failures: 2

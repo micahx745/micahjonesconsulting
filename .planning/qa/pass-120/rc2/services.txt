@@ -1,0 +1,112 @@
+Skip to content
+MICAH/JONES
+Services
+Work
+About
+Contact
+Menu —
+Close ✕ Services
+Work
+About
+Contact
+Services
+For companies
+Engagements
+Strategy and software from the same person, so nothing is lost in the hand-off. Pick the problem; I name the shape on the call.
+Proof
+See how I helped Guardicore, a Tel Aviv security company, break into the North American market with $14M in revenue and get acquired by Akamai →
+Advisory
+From $5K a month
+4-6 hours a month, ongoing
+You want a second operator in the room for the big decisions.
+Two working sessions a month, booked when you need them.
+Send me a decision between sessions and get my read within one business day.
+A short written note after each session: what we decided and what happens next.
+Ask about Advisory →
+Project
+6-20 weeks
+Scoped and priced on the call
+One defined outcome with a start, an end, and a named deliverable.
+A fixed price for the agreed scope.
+A written progress note every week.
+A handover at the end: documentation and a walkthrough, so your team runs it without me.
+Ask about a project →
+Retainer
+6 months then month to month
+Scoped and priced on the call
+I stay on after the project ships: the launch, the first customers, and what they break.
+Same-day response on anything that breaks in production.
+A monthly written review of what shipped and what is next.
+Ask about a retainer →
+Embedded
+3-8 months 3+ days a week
+Scoped and priced on the call
+I act as your head of GTM, product, or AI engineering for the window.
+In your standups and leadership meetings as part of the team.
+A roadmap I own and report on to the CEO.
+Before I leave: help hiring the permanent head of the function, and a handover plan.
+Ask about Embedded →
+Every engagement includes
+Week one is a scoping session and an audit of where things stand, so the work starts on the right problem.
+Something named ships in month one.
+The scope and the price in writing before anything starts. No discovery fee.
+You get me, directly, for the whole engagement.
+A reply within one business day.
+Any one of the three areas below, two of them, or all three.
+Three areas of work
+AI engineering Your AI works in the notebook. Production is a different stack. I run that stack.
+Retrieval, agents, and orchestration built for real load, not the demo.
+Evals that fire on every change and catch failures before your customers do.
+Prompt deployment as its own pipeline, and a written bar for what ships. Your team runs it after I leave.
+An author and leadership consultant: software that finds and drafts RFPs from buyers outside their existing network. $3M in signed contracts, close rate doubled. Read the case study →
+Product building You have the idea, the budget, and customers waiting. What you do not have is the team to build it. I build it.
+Strategy, design, code, security, and launch, all mine. Nothing gets handed to a second team.
+A production build, not a prototype: auth, data, deploy, and the compliance posture written down.
+A roadmap with the trade-offs named, agreed with the founder before the first sprint.
+Ordani: a HIPAA-compliant CRM I founded and built. Active paying users in beta, none lost to a competitor, and a public release coming. Read the case study →
+Positioning & GTM You built it. Enterprise teams still aren't buying. The gap is positioning, not features.
+Customer interviews and sales-call analysis that name the question buyers are actually asking.
+A positioning shift and a sales narrative your team can run without me.
+A plan for selling data and security into banks, insurers, and slow procurement committees.
+A birth worker: repositioned from birth support alone to the full arc of care around it. Bookings went from one to three a month to five to ten, across her whole range instead of one service. Read the case study →
+Or start smaller. Three fixed prices.
+No scoping call, no proposal. Buy one and the work starts within the week.
+Pick the area first. A package covers one. AI engineering Product building Positioning & GTM
+The Unstick Session
+$500
+90 minutes · same-day plan
+Ninety minutes live on whatever is stuck. You leave with a written plan the same day.
+A written fix plan: what is wrong, in the order to fix it, and for builds the prompts to fix it with.
+The call is recorded and the recording comes with the plan.
+One follow-up question by email within 7 days.
+Buy the Unstick Session →
+Start here
+The Audit
+$2,500
+Two weeks · starts within the week
+I go through your AI stack, your build, or your positioning top to bottom.
+An 8-10 page memo: what works, what is broken, and what to fix first.
+A prioritized fix sequence, so you can start the morning it lands.
+A one-hour debrief call where I walk you through it, and a 30-day follow-up call after. You keep the memo either way.
+Buy the Audit →
+The Sprint
+$7,500
+One week · embedded
+One week on one outcome, shipped. Not a plan. The thing, done.
+One outcome, agreed by email before day one.
+Daily progress notes and a mid-week check-in call.
+The work lands in your repo and tools, with a handover note.
+A debrief and a map of the next steps.
+Buy the Sprint →
+The moment your card clears you get a kickoff email: the intake questions and a link to book the call. Every fee credits toward the next package, or toward an engagement started within 60 days. Full refund any time before kickoff, none after. I reply within one business day. Full details on the packages page →
+Why one person
+An agency gives you a team and a relay race between them. A full-time hire takes three months to find and another to ramp. I am a senior operator you can start this week, on a scope with an end date. Week one is the scoping session and the audit: the foundational work that decides what the engagement is actually for. Something named ships in month one. When the work is bigger than one person, I say so on the call.
+Next step
+A free 30-minute call comes first.
+Tell me what is stuck. I listen, then say what the work looks like and whether I am the right person for it. If the work does not map to what you need, I say so on the call.
+Book a free intro call →
+← Back to home
+I read every message and reply inside one business day.
+micah@micahjonesconsulting.com
+· LinkedIn
+· © 2013–2026 Micah Jones
