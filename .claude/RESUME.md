@@ -1,7 +1,7 @@
 # RESUME — micahjonesconsulting (2026-09-16, night)
 
 ## READ FIRST
-Pass-121 DIRECT is running (kickoff .planning/handoff/NEXT-SESSION-KICKOFF.md).
+Pass-121 DIRECT running (kickoff .planning/handoff/NEXT-SESSION-KICKOFF.md).
 Main = Opus 5; Fable only at gates G1-G4 as a named subagent. Worktree p106-live,
 branch design/live-evolve. ChatGPT EMPTY till 2026-09-19 12:17.
 
@@ -9,23 +9,27 @@ branch design/live-evolve. ChatGPT EMPTY till 2026-09-19 12:17.
 Revert: promote dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23. Push to main deploys; re-alias
 both domains (LESSONS #5). Branch not deployed: EditorialTimestamp deleted.
 
-## Pass-121 progress
-- Ledgered (LESSONS #3): ORDANI CLAIMS FACTS parts 1-2 (real claims paid; saving
-  vs typical services like Luna + fewer rejections; "hundreds of dollars per
-  claim"; Medicaid and private insurance; intake 40->91 cut everywhere, claims
-  takes Step 02; name the competitor, never Stedi/internal tools; home block gets
-  the same line; featured study left to G2 directions) and THE /WORK HEADER.
-- Running: workflow wf_3c800967-636 trend research (5 facets + verify +
-  SYNTHESIS) -> .planning/research/pass-121/.
-- Next: claims research leg (Luna pricing with URL+date, doula claim sizes,
-  clearinghouse benefits) -> draft mechanism sentence -> his confirm popup.
-- Then G1 Fable (reference set) -> captures + two audits -> G2 directions ->
-  his pick -> Opus mocks 390/1440 -> G3 -> his approval -> brief -> G4 -> commit.
+## Pass-121 progress (commits 5e56ec7, 4d52a5e, d30d8d1)
+- Ledgered #3: ORDANI CLAIMS FACTS parts 1-3 (real claims paid, his word; vs
+  LOULA not Luna; "hundreds of dollars per client", never per claim, never a
+  Loula fee number; Medicaid + private insurance; intake 40->91 cut everywhere,
+  claims takes Step 02; never name Stedi/internal tools; home block same line);
+  THE /WORK HEADER; featured study left to G2.
+- Research: .planning/research/pass-121/SYNTHESIS.md (+facets, verifies);
+  claims/CLAIMS-FACTS.md. G1 DONE: .planning/reviews/FABLE-121-G1.md (15-ref
+  set, rubric, take-list verdicts, audit specs). G1 slip: llms.txt EXISTS.
+- NOW: run wf_e8e572ff-6c5 (resumed 2026-09-17 after his stop): tool + 8 refs +
+  audit (b) done; 7 refs, SET-INDEX, audit (a) running. PNGs stay uncommitted.
+- OPEN for him (popup dismissed 2026-09-16, re-ask later, fewer at once): ORDANI
+  money line + Step 02 draft; Ordani claims charge; still in beta?
+- Then G2 Fable writes 2-3 directions (kickoff) -> popup pick + rule collisions
+  -> Opus mocks 390/1440 -> G3 -> his approval -> brief -> G4 -> commit.
 
 ## Waiting on operator
 - Speed Insights p75 LCP for /work after release (A4 override).
 - Colleague okay for the animated clip (his to hold).
 - Ordani screens · Stripe playbook-99 · 500 dollar test · A4/S3 · §9a.
+- Off-site presence (AI recommendation lever, unmeasured) as a talk, not a brief.
 
 ## Traps
 LEDGER EVERY ANSWER BEFORE A LEG (#32) · retired figures every spelling
