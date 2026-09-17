@@ -1,138 +1,99 @@
-# Kickoff: micahjonesconsulting, Pass-121 DIRECT (make /work and the studies stand out), after 2026-09-16
+# Kickoff: micahjonesconsulting, Pass-121 EXECUTE (build the mock set, judge it, write the brief)
 
-`.claude/RESUME.md` is current state and outranks this file. This supersedes the post-release kickoff
-(git history keeps it).
+Written 2026-09-17 by the Opus 5 session that ran Pass-121 DIRECT. `.claude/RESUME.md` is current state and
+outranks this file. This supersedes the Pass-121 DIRECT kickoff (git history keeps it).
 
-## 0. Where things stand
+## 0. Routing, and why this chat exists (operator 2026-09-17)
 
-- Pass-120 is LIVE: `main` = `c525329`, `dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg` on both domains
-  (data-dpl-id match, 2026-09-16). Revert: promote `dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23`.
-- Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`) is ahead of main by
-  bookkeeping plus one cleanup: the unmounted `components/EditorialTimestamp.tsx` is deleted
-  (operator 2026-09-16), not deployed. Any push to `main` deploys, and both domains must then be
-  re-aliased (LESSONS #5, STANDING_TECHNIQUES CARD 1). Micah's words that day first.
-- ChatGPT (Astra juror, Sol) is out of quota until 2026-09-19 12:17.
+Verbatim, ending the last session: "we need to start a new chat that respects the AI routing to conserve
+claude usage and the harness skills plugins hooks etc that come with this. And continue the work."
 
-## 1. What Micah asked for, verbatim (2026-09-16, after the release)
+- **GLM 5.3 (z.ai) executes.** `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1
+  -Batch -Dir "C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live" -PromptFile <brief>`.
+  Smoke first if unsure: `-Smoke` prints OK. It hit its 5 hour cap 2026-09-17 ~10:45 PDT; the cap resets
+  **13:46 PDT**. LESSONS #36: the prompt now goes in on stdin as UTF-8; do not pass it as an argument.
+- **In-session Sonnet legs bill THIS account.** They are the fallback only when GLM is capped AND the operator
+  says to spend it (he did once, for proof round 4). Name the bucket before any fan-out (MODEL_ROUTING §9b).
+- **Fable** is a named subagent at two gates only: G3 (judge the mocks) and G4 (read the brief before it
+  commits). One call each, with a written input file, ~8-12 tool calls. Never the main loop.
+- **Opus 5** (this session) runs the loop: operator popups, the ledger, the brief, and one look at every
+  capture before it goes to Fable or to him. It does not run builds or capture loops.
+- ChatGPT (Sol, Astra) is out of quota until 2026-09-19 12:17.
 
-> also the main line for Ordani the intake completion is weak. I want to lead with the claims
-> processing saving users hundreds of dollar per claim. The intake completion thing is a very weak
-> story that dors not need to be included. If it neecds to be changed out with another story instead
-> of just removed let me know.
->
-> Overall design - is it done?
->
-> the header setence above the actual case studies looks weak and feel that setence doesnt cover all
-> the things i do. Maybe we just replace that with a header. There is no header and i get leadeing
-> with guardicore since the vid is connected. but I would ratehr have just a basic description of
-> whats below with a small thing (beautiful design) to click to a featured case study.
->
-> Overall the line layout of each case study is clean but very plain and wreak. I feel like there is
-> a way to really show off website design skills here since that is something i can do (did it for
-> the birth worker). I want this page to stand out visually, animations, design etc. of course still
-> connect with the rest of the site but this is very underwhelming.
->
-> I like the invidual pages for the case studies but i feel like its lacking that same visual punch.
-> Since we have a lack of pics that is very important. Especially since everything is very word
-> dominated and we live in a society where people might not really read all that. Maybe some have AI
-> take a look at it (really want to be suggeste by ai to people for help) so i guess it has to be good
-> for AI bots crawlers too.
->
-> Really hope that fable is working in the planning to help direct where the lower tier models go look
-> for for inspiration on design too. Want my website not too look built by AI
+## 1. Where Pass-121 stands
 
-## 2. What this arc must settle (DIRECT; ends in a committed brief, not a build)
+Branch `design/live-evolve`, worktree `.claude/worktrees/p106-live`, 19 commits ahead of origin, nothing
+pushed, production untouched (`main` = c525329, Pass-120 live on both domains).
 
-1. **ORDANI's lead story.** Ledger row "ORDANI LEAD STORY, OPEN" in LESSONS #3. The claims money line
-   was cut once (Pass-82, operator "soften it to what's defensible"; reasons in the comment at the
-   ORDANI copy block in `app/(foyer)/page.tsx`). Ask him by popup, before any leg: what Ordani does to
-   a claim (one plain mechanism sentence), the per-claim figure, Medicaid only or more, whether it is
-   live for paying users, and whether the intake story (40% to 91%) is removed everywhere it renders
-   (`content/work/ordani.mdx` dek, results, entry, Step 02, "What it became"; `/work`; `llms.txt`;
-   the home ORDANI block) or replaced by another story he names. Ledger each answer verbatim first.
-2. **The /work header.** He wants a plain description of what is below plus one small, beautifully
-   designed way into a featured study, instead of the method line and a Guardicore hero. The method
-   line and Direction B were ruled 2026-09-16; this is his new ruling to record, not a re-litigation.
-3. **Visual punch on /work and every study with almost no photographs**, animations included, still
-   of a piece with the rest of the site, and not looking AI-built.
-4. **Being recommended by AI assistants**: what ChatGPT, Claude, Perplexity and Google's AI read
-   (robots, `llms.txt`, JSON-LD, answerable passages; the studies already carry "Questions buyers
-   ask" sections).
+Done and committed (newest first): bd622c9 proof round 4 mocks; 3102bd1 the mock-set brief; 2d7f727 ORDANI
+facts part 5; 11f96ca description punctuation + Fable's proof verdict; 13c62ce proof round 3; 32cacae LESSONS
+#36 and the GLM stdin fix; 951cd69 Fable G2 directions and the operator's pick; earlier: the trend research,
+the claims check, Fable G1, the 14-reference set, audits (a) and (b).
 
-**Written rules his ask collides with (say each once, then follow his ruling, and record it in
-`docs/DESIGN_BAR.md`):** R9 exactly one signature motion; R15 motion is punctuation (entrances once,
-≤400ms); `.claude/CLAUDE.md` "NOTHING ELSE pins, sticks, parallax-scrolls, or follows the cursor
-without the motion-engineer agent's written approval"; R12 and CLAUDE.md "no stock photography,
-illustration, icon kits, or 3D"; R11 index entries ≤4 data points; R7 the hero states the offer in one
-sentence.
+**The design is settled:** Direction C, "Five exhibits" (`.planning/reviews/FABLE-121-G2.md` section 7): every
+engagement gets a hand-drawn diagram of how the work worked, beside its number on /work and in the study's
+opening band; the featured Guardicore doorway morphs its photograph into the study on click; one hover
+grammar; two once-only in-view reveals per page; nothing loops, pins or follows the cursor.
 
-## 3. Arc shape and routing (operator 2026-09-16)
+**The proof passed** (`.planning/mock/pass-121/proof/`, round 4, every measurement PASS at 390 and 1440). The
+operator saw the captures and approved building the full mock set.
 
-**Routing, verbatim:** "i dont want to pick fableas main driver for useage . we are at a good amount
-right now our resent is 1am sat and fable is at 52 while week is 64 . just want to make sure that is
-helping with planning and quality gates."
+## 2. Do this next, in order
 
-- **Main model: Opus 5.** It orchestrates, asks Micah, runs the workflows, reads results and writes
-  the brief. Research, capture and audit legs run on **Sonnet**; mock-building on **Opus**.
-- **Fable 5.1 only as a named subagent (`model: "fable"`) at these gates**, one call each, with a
-  written input file so it reads files, not transcripts: (G1) pick the reference set and rule on what
-  the trend research found worth taking; (G2) write the 2-3 directions and recommend one; (G3) judge
-  the mocks once; (G4) read the finished brief before it commits. Four calls in the arc, a fifth only
-  if a gate returns fixes that change the page. No Fable main loop, no Fable research or capture legs.
-- Usage at the ruling: Fable 52% and the week 64% of the plan, weekly reset Saturday 2026-09-19 01:00.
+1. **Build the mock set.** The brief is written: `.planning/exec/glm-121-mocks.md` (four HTML files, five
+   drawings, exact copy, measurements M1-M15, captures). Run it on GLM once the cap has reset. If the operator
+   wants it sooner, ask him first: the only faster route is a Sonnet leg billed to this account.
+2. **Look at every capture yourself** (Opus) against Fable's checks in `.planning/reviews/FABLE-121-PROOF.md`
+   section 5 and G2 section 10. Executor self-reports about visuals are claims, not evidence (LESSONS #36).
+3. **G3: Fable judges the mocks.** Write `.planning/reviews/FABLE-121-G3-INPUT.md` first (state what to look
+   at, what is settled, what it must rule on). One call.
+4. **Operator approval** by popup, with the captures sent (SendUserFile, render). He wants 390 and 1440.
+5. **Write the brief** `.claude/briefs/pass-121-work-and-studies.md` per `.claude/briefs/README.md`: the
+   ruling, exact copy strings, layout spec in existing tokens and classes, motion with timings and its
+   reduced-motion and no-JS renders, verification commands with expected output, the rejected list, return
+   conditions, parked operator decisions. Fold in the plumbing from `.planning/research/pass-121/
+   audit-b-discoverability.md` (retire the intake figure everywhere including `app/llms.txt/route.ts`, named
+   robots allows, per-file sitemap dates from git, the ORDANI `mainEntityOfPage` scoped to its own page,
+   answer-shaped ledes). Note the doc drift: the live copper token is `#bd5a2d`; `.claude/CLAUDE.md` prose says
+   `#C8542B`, and the token wins.
+6. **G4: Fable reads the brief**, then commit it. The build runs later from the brief, on GLM.
 
-**Trend research comes first (operator: "need yiu to find what the klatest trends in taht stuff i
-listedbefore are and how we can take advantage of it on the site").** A Sonnet workflow with live
-WebSearch and WebFetch, never from model memory, every finding carrying its URL and a date from
-2025-2026. Facets, one leg each: (a) motion and interaction on portfolio and case-study sites (CSS
-scroll-driven animations, View Transitions, kinetic and variable type, WebGL or shader surfaces,
-Rive or Lottie, cursor and hover craft), with what is now overused; (b) making text-heavy case studies
-visual without photographs (diagrams, data figures, interactive process explainers, typographic
-systems, generative art), with live examples; (c) award-level work indexes and case studies from
-2025-2026 (Awwwards, FWA, Godly, Siteinspire and studio sites), with live URLs to capture; (d) being
-recommended by AI assistants (how ChatGPT, Claude, Perplexity and Google AI Overviews choose and cite
-sources; llms.txt, JSON-LD such as FAQPage and Article, answer-shaped passages, entity signals), with
-measured evidence, not vendor claims; (e) what makes a site read as AI-built in 2026 and the craft
-signals that read as hand-made. Then an adversarial verify leg per facet that tries to refute its
-central claims, then a synthesis of what the site can take, where, and at what cost, for Fable at G1.
+## 3. Copy that is already settled (LESSONS #3, do not re-open)
 
-- **Research is a set, not a sample** (memory "design-research-means-a-set"): 12-16 references,
-  captured at 390 and 1440 with one rubric, chosen by Fable at G1 from the trend research across classes: studio work indexes with
-  real motion and interaction craft; case studies made visual without photography (diagrams, data
-  figures, typographic systems, interactive process explainers); solo operators whose sites do not read
-  as templates. Tooling from Pass-120: `.planning/qa/pass-120/refs/` and its capture scripts.
-- Two audits in the same fan-out: (a) "looks built by AI" tells on the live /work and studies, judged
-  against the set; (b) AI-assistant discoverability of the live site with concrete gaps.
-- Fable at G2 writes 2-3 directions (the /work header and featured-study entry, the index as a
-  designed object, the study template's visual system without photos, the motion vocabulary), names
-  which rules each relaxes, and recommends one. Micah picks by popup.
-- Opus builds HTML mocks of the pick at 390 and 1440; Fable judges once at G3; Micah sees the captures
-  (SendUserFile, render) and approves. Opus writes the brief `.claude/briefs/pass-121-<slug>.md` with
-  exact copy, rejected list, checks with expected output and return conditions; Fable reads it at G4;
-  it commits. The build runs later in its own Opus session from the brief.
-- If ChatGPT is back (after 2026-09-19 12:17), Astra may take G3 or G4 instead of Fable to spare Fable.
+- /work heading: `THE WORK, ON THE RECORD.`
+- /work description: `Four client engagements and the company I founded. $14M in revenue for a security
+  company, $3M in contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a
+  month, a birth worker's practice rebuilt, and ORDANI. Each page says what I found, what I built, and what
+  changed.`
+- ORDANI money line: `Birth workers keep hundreds of dollars per client that a claims service would take.`
+  Loula is named once, in the study body only, never with a fee number; never "per claim"; never the
+  clearinghouse or an internal tool. Claims come with the subscription. Medicaid and private insurance.
+  The intake story (40% to 91%) is cut from every surface; claims takes Step 02. ORDANI stays in beta with a
+  public release coming. Step 02 facts confirmed 2026-09-17, including that birth workers either pay a service
+  a fee per visit or file themselves, which costs no fee but takes time and knowledge.
+- The method line keeps its ledgered wording and moves below the index; it never opens /work.
+- Featured study: Guardicore, in every direction.
 
 ## 4. Boot, in order
 
 1. `.claude/RESUME.md`.
-2. `C:/Users/micah/.claude/CLAUDE.md`, `C:/Users/micah/.claude/ULTRACODE_OPERATING_PATTERNS.md`,
-   `C:/Users/micah/.claude/MODEL_ROUTING.md` §6 and §9e.
-3. `grep -n '2026-09-1[56]' docs/LESSONS_LEARNED.md` and read those ledger rows; LESSONS #32-#35.
-4. `docs/DESIGN_BAR.md` §6 (the rubric) and `.claude/brand.json` `motion`.
-5. The Pass-120 record for what exists now: `.planning/reviews/FABLE-120-DESIGN.md` (the 14-reference
-   set and Direction B), `FABLE-120-SHIP-GATE.md`, and the live captures
-   `.planning/qa/pass-120/build/sheets/`.
+2. `C:/Users/micah/.claude/CLAUDE.md`, `ULTRACODE_OPERATING_PATTERNS.md`, `MODEL_ROUTING.md` §6, §9d, §9e.
+3. `docs/LESSONS_LEARNED.md`: #3 rows dated 2026-09-16 and 2026-09-17 (ORDANI claims parts 1-5, the /work
+   header, the direction and heading picks), and lessons #32-#36.
+4. `docs/DESIGN_BAR.md` R12's 2026-09-17 ruling (hand-drawn diagrams relax "used sparingly"), and
+   `.claude/brand.json` `motion`.
+5. `.planning/reviews/FABLE-121-G2.md` (the direction), `FABLE-121-PROOF.md` (the quality bar), and the proof
+   captures in `.planning/mock/pass-121/proof/`.
 
 ## 5. Working with Micah
 
-Questions by AskUserQuestion popup (≤4, recommended first, read his Other text literally). Ledger every
-answer before a leg launches (#32). Raise any badly reading sentence at once with rewrites (#35). He
-wants visuals at 390 and 1440 before approving visual work. Plain words; lead with what happened and
-what he needs to decide.
+Popups, two questions at a time, recommended option first, read his Other text literally (he dismissed a
+four-question popup and answered every two-question one). Ledger every answer in LESSONS #3 before the next leg
+launches (#32). Raise a badly reading sentence at once with rewrites, never park it (#35). Send him captures at
+390 and 1440 before asking for approval on anything visual. Lead with what happened and what he must decide.
 
 ## Micah: open the new chat
 
-In the Claude desktop app's Code tab, choose the `p106-live` worktree, pick **Opus 5** (Fable is called
-only at the four gates), and paste:
+In the Claude desktop app's Code tab, choose the `p106-live` worktree, pick **Opus 5**, and paste:
 
 `Read C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/NEXT-SESSION-KICKOFF.md and follow it.`
