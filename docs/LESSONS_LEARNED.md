@@ -421,6 +421,43 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   Before it ships: one sentence on the real mechanism and a named per-claim figure, confirmed by
   him and dated here; whether it is Medicaid only; and whether the intake story (40% to 91%) is
   removed everywhere it renders or replaced by another story he names.
+- **ORDANI CLAIMS FACTS, PART 1 — operator 2026-09-16 (Pass-121 DIRECT, popup)**. Asked with the
+  evidence stated: Ordani's own `docs/ORDANI_PRODUCT_GUIDE.md` (2026-08-10) says claim submissions
+  go out as test transactions and none has been paid, and the submit route files real claims only
+  behind a live switch. LIVE: "Yes, real claims are paid" (Ordani files real claims for paying
+  practitioners today; SUPERSEDES the product guide's test-only line for site copy). SOURCE OF THE
+  SAVINGS, verbatim (typed in Other): "compared to typical processing sites like Luna, and others.
+  Fewer rejected claims and look at stedi for other benefits". So the saving is measured against
+  typical claims-processing services, plus fewer rejected claims; the clearinghouse's features are
+  to be researched for further true benefits. FIGURE: picked "'Hundreds of dollars per claim'",
+  whose description read "Your words become the figure. A 2026-09-02 ruling cut this phrase as too
+  vague; this answer brings it back, dated today." This RESTORES "hundreds of dollars per claim"
+  over the Pass-82 cut, as a per-claim money figure (never a user count). PAYERS: picked "Medicaid
+  and private insurance". STILL OPEN: the one mechanism sentence (drafted from these answers, then
+  confirmed by him); whether the typical-service comparison survives a check of what those services
+  charge; naming. NEVER, pending his word: the name of any processing service or the clearinghouse
+  on a surface (his standing "dont mention private vendors" on the birth worker row).
+- **ORDANI CLAIMS FACTS, PART 2 — operator 2026-09-16 (Pass-121 DIRECT, popup)**. INTAKE STORY:
+  picked "Cut it; claims takes its step (Recommended)", whose description read "The 40%→91% figure
+  leaves every page: ORDANI's summary, results line, /work entry, the AI summary file and the body.
+  Step 02 becomes the claims step, and 'What it became' opens on claims." NEVER after Pass-121 ships:
+  "40%", "91%", "intake completion" on any ORDANI surface. NAMES, verbatim (typed in Other): "name
+  competitor not stedi or product we use internally". So the COMPETITOR the saving is measured
+  against may be named (Luna); the clearinghouse (Stedi) and any product Ordani uses internally are
+  NEVER named. A named competitor comparison must match that competitor's published pricing, with
+  the source URL and the date it was read recorded here before it ships. HOME: picked "Yes, same
+  claims line (Recommended)": the home ORDANI block carries the same claims sentence as the study.
+  /WORK FEATURED STUDY: picked "Let the design directions propose": each G2 direction names its
+  featured study and why; he picks the study with the direction.
+- **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
+  setence above the actual case studies looks weak and feel that setence doesnt cover all the things
+  i do. Maybe we just replace that with a header. There is no header and i get leadeing with
+  guardicore since the vid is connected. but I would ratehr have just a basic description of whats
+  below with a small thing (beautiful design) to click to a featured case study." This is a NEW
+  RULING, recorded 2026-09-16 in Pass-121 DIRECT, not a re-litigation: it SUPERSEDES the placement of
+  THE /WORK METHOD LINE row below on /work (the sentence may not open /work) and the Pass-120
+  Direction B hero (the lead study at hero scale with the clip). /work opens on a heading plus a plain
+  description of what the page holds, and one small, designed entry into a featured study.
 - **THE /WORK METHOD LINE — operator 2026-09-16**, picked from Fable's six candidates
   (.planning/reviews/FABLE-120-METHOD-LINE.md, candidate 2), after asking for it "reword with help
   from fable". EXACT approved copy, one sentence, once, on /work only:
