@@ -471,6 +471,16 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   "private works - no need to check the app. I have other apps i work ordani from". Medicaid and
   private insurance STANDS; the ORDANI repo is not the whole product. STILL OPEN: the exact claims
   sentence (candidates go to him by popup), and what Ordani itself charges for claims.
+- **ORDANI CLAIMS FACTS, PART 4 — operator 2026-09-17 (Pass-121 DIRECT, popup)**. MONEY LINE: picked
+  "Unnamed service (Recommended)", whose description read "\"Birth workers keep hundreds of dollars
+  per client that a claims service would take.\" Loula is named once, lower in the study, where the
+  comparison is explained." EXACT approved copy for the /work entry line and the study's lead result:
+  **"Birth workers keep hundreds of dollars per client that a claims service would take."** Loula
+  is named once, in the study body where the comparison is explained, never in the headline line.
+  ORDANI'S OWN CHARGE: picked "Included in the subscription" ("No separate claims charge; filing
+  comes with the plan."). The saving is stated against no separate Ordani claims fee; NEVER "free
+  claims" or "no charge" (claims come with a paid plan). (The first ask of these two, 2026-09-16, was
+  dismissed with two other questions; this is the re-ask.)
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
