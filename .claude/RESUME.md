@@ -25,7 +25,7 @@ both domains (LESSONS #5). Branch not deployed.
   colon->period ledgered. RUNNING: GLM r4 (exec/glm-121-proof-r4.md, log r4).
   r4 passes M1-M11 + Opus look -> GO full mocks; else he sketches, we trace.
 - OPEN for him: ORDANI Step 02 draft tick-confirm [C1-C3]; still in beta?
-  (popup interrupted 09-17; re-ask when he is free).
+  (re-ask later).
 - Next: show him r4 -> GLM full C mock set -> G3 Fable -> his approval ->
   Opus brief -> G4 -> commit. Doc drift: copper token
   is #bd5a2d, .claude/CLAUDE.md prose says #C8542B (fix in brief).
