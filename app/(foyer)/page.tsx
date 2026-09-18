@@ -600,26 +600,14 @@ export default function ColorWorldsHome() {
 
           <div className="cw-ord-copy">
             {/* Pass-82, operator ruling 2026-09-02: "soften it to what's
-                defensible". Two claims came out.
-
-                "processing Medicaid claims fee-free" reads as a regulated
-                billing function sitting on a HIPAA product, and the ledger
-                carries no sentence describing what Ordani actually does to a
-                claim. It was operator-supplied via a code comment, and a code
-                comment is not provenance.
-
-                "keeping hundreds of dollars in birth workers' pockets" was the
-                vaguest number on a page built from named ones, and it wore the
-                same "hundreds of" shape as the user count retired on
-                2026-08-31 - close enough to be misread as one.
-
-                What replaces them is the ledger framing this surface was
-                missing entirely: active paying users, in beta, public release
-                coming. The mortality line is purpose-framed ("lower"), never
-                an outcome claim, and stays.
-
-                To put the money claim back: one sentence on the real mechanism
-                and a named figure, ledgered in LESSONS #3 with a date. */}
+                defensible". Two claims came out. Pass-121 (2026-09-17): the
+                money claim is BACK, under LESSONS #3 ORDANI CLAIMS FACTS
+                PARTS 3 to 5 and ORDANI DESCRIPTION AND THE HOME MONEY LINE —
+                birth workers keep hundreds of dollars per client that a
+                claims service would take, the same sentence every ORDANI
+                surface now carries. The beta framing (active paying users,
+                public release coming) stays, and the mortality line stays
+                purpose-framed ("lower"), never an outcome claim. */}
             {/* LESSONS #6, sharpened: every apostrophe in this paragraph is a
                 LITERAL character, never &rsquo;. Next 16's RSC serializer
                 drops the space before a text node that follows an inline
@@ -636,9 +624,10 @@ export default function ColorWorldsHome() {
               Birth workers run their practices on group chats and paper
               intakes. HIPAA is the law. <em>So I built Ordani.</em> It has
               active paying users today, it is in beta, and a public release is
-              coming. The mission is bigger: lower infant mortality, by giving
-              the people who care for mothers and babies better tools than
-              paperwork.
+              coming. Birth workers keep hundreds of dollars per client that a
+              claims service would take. The mission is bigger: lower infant
+              mortality, by giving the people who care for mothers and babies
+              better tools than paperwork.
             </p>
             <div className="cw-section-cta-wrap cw-reveal">
               <a href="/work/ordani" className="cw-section-cta">

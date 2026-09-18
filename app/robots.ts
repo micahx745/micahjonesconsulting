@@ -25,6 +25,25 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
       },
+      // Pass-121 (audit-b item 3): named allow records for the AI assistants' fetchers, beside the
+      // wildcard. Audit-b states it cannot show this changes how any assistant cites the site; it states
+      // the policy per agent, nothing more.
+      {
+        userAgent: "Claude-User",
+        allow: "/",
+      },
+      {
+        userAgent: "Claude-SearchBot",
+        allow: "/",
+      },
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+      },
     ],
     sitemap: "https://www.micahjonesconsulting.com/sitemap.xml",
     host: "https://www.micahjonesconsulting.com",

@@ -230,6 +230,21 @@ const PHRASES = [
   // Pass-120 ship gate (operator 2026-09-16, "sounds horrible"): the retired ORDANI
   // opening sentence, in the form that reads as its tell.
   "not running their practices on nothing",
+  // Pass-121 (LESSONS #3 ORDANI CLAIMS FACTS PART 2 and PART 4, and #37):
+  // the ORDANI intake figure (40% to 91%) is retired from every surface;
+  // claims wording replaces it. Every spelling of both numbers, the phrase
+  // that carried them, the superseded fee wording and vendor misspelling,
+  // and the superseded figure line. Near miss that must NOT hit: "Loula",
+  // the approved claims-service spelling (Stage A2 places it once).
+  "intake completion",
+  "91%",
+  "40% to",
+  "forty percent",
+  "ninety-one percent",
+  "ninety one percent",
+  "per claim",
+  "Luna",
+  "stay with the practitioner",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);

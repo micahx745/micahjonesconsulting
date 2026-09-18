@@ -114,10 +114,10 @@ const ORG_LD = {
   // reference to the case study until Ordani has its own production site.
   description:
     "Ordani is HIPAA-compliant practice management software for birth workers — doulas, midwives, and perinatal counselors. Built end to end by Micah Jones. In beta with active paying users.",
-  // mainEntityOfPage points at the case study (the only public page
-  // about Ordani right now). Avoids putting a case-study URL in the
-  // Organization.url slot, which expects the org's actual site.
-  mainEntityOfPage: "https://www.micahjonesconsulting.com/work/ordani",
+  // Pass-121 A5: mainEntityOfPage dropped. The ORDANI case study's own Article
+  // JSON-LD (app/(theater)/work/[slug]/page.tsx) already names that page as
+  // its mainEntityOfPage, so this Organization block does not need to repeat
+  // the reference.
   founder: { "@type": "Person", name: "Micah Jones" },
   foundingLocation: {
     "@type": "Place",

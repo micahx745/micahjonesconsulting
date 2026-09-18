@@ -61,8 +61,11 @@ export const publishedCaseStudySchema = z
     title: text,
     /** The same title split into the lines the settle entrance animates. Joined with one space they equal title. */
     titleLines: z.array(text).min(1).max(3),
-    /** Meta and JSON-LD description. At most 155 characters, so clampDescription passes it through. */
-    description: text.refine((s) => s.length <= 155, "description is at most 155 characters"),
+    /** Meta and JSON-LD description. At most 175 characters (the approved ORDANI description is 169).
+     * Pass-121 (2026-09-18): 155 -> 175. The cap follows the operator ruling in LESSONS #3, ORDANI
+     * DESCRIPTION KEEPS "HIPAA-COMPLIANT" (the approved description is 169 characters and stays
+     * whole); clampDescription still guards the served meta description when one runs long. */
+    description: text.refine((s) => s.length <= 175, "description is at most 175 characters"),
     /** The dek under the title in the dark band. */
     dek: text,
     /** The client as the page names it, with no trailing period. */
@@ -73,12 +76,16 @@ export const publishedCaseStudySchema = z
     atAGlance: z.array(z.strictObject({ label: text, value: text })).min(1).max(3),
     /** The Results row: lead renders at the 36 size, rest beneath it at body size. */
     results: z.strictObject({ lead: text, rest: text }),
-    /** The /work entry. figure exists only on the order-1 study, which renders it at 112. */
+    /** The /work entry. Pass-121: figure (the numeral set at display size on /work and in the
+     * study's figure moment) is required on order 1 and allowed on any study that carries one.
+     * figurePhrase names the phrase the circle lifts on a words-figure; it must be a substring
+     * of line (Stage D check D2b). */
     entry: z.strictObject({
       context: text,
       figure: text.optional(),
       line: text,
       did: text,
+      figurePhrase: text.optional(),
     }),
     /** The /services area the close and the /work entry route to. */
     service: z.enum(SERVICE_SLUGS),
@@ -94,8 +101,9 @@ export const publishedCaseStudySchema = z
     if (cs.titleLines.join(" ") !== cs.title) {
       ctx.addIssue({ code: "custom", path: ["titleLines"], message: "titleLines joined with one space must equal title" });
     }
-    if ((cs.order === 1) !== (cs.entry.figure !== undefined)) {
-      ctx.addIssue({ code: "custom", path: ["entry", "figure"], message: "entry.figure is required on order 1 and forbidden elsewhere" });
+    // Pass-121: order 1 (the doorway study) must carry a figure; other studies may.
+    if (cs.order === 1 && cs.entry.figure === undefined) {
+      ctx.addIssue({ code: "custom", path: ["entry", "figure"], message: "entry.figure is required on order 1" });
     }
   });
 

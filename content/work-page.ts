@@ -10,9 +10,22 @@
 export const METHOD_LINE =
   "I find what your buyers are actually paying for, then build the system that sells exactly that.";
 
+// Pass-121 (operator 2026-09-17/18, LESSONS #3, PASS-121 DIRECTION AND /WORK
+// HEADING; ORDANI DID-LINE AND THE RECORD HEADING): /work becomes five
+// exhibits. WORK_HEADING is the page's one h1 (sentence case in the DOM,
+// uppercased by CSS); WORK_DESCRIPTION is the description under it;
+// DOORWAY_LINK closes the Guardicore doorway (renders READ THIS ONE FIRST →,
+// the arrow span is the component's). The record heading gains its period.
+export const WORK_HEADING = "The work, on the record.";
+
+export const WORK_DESCRIPTION =
+  "Four client engagements and the company I founded. $14M in revenue for a security company, $3M in contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a month, a birth worker's practice rebuilt, and ORDANI. Each page says what I found, what I built, and what changed.";
+
+export const DOORWAY_LINK = "Read this one first";
+
 export const RECORD = {
   id: "record",
-  heading: "Also on the record",
+  heading: "Also on the record.",
   line: "Four of the companies I worked inside reached an exit.",
   rows: [
     {

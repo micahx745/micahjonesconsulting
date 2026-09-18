@@ -22,28 +22,33 @@
 // discoverability play.
 import type { MetadataRoute } from "next";
 import { getAllCaseStudies, isPublished } from "@/lib/case-studies";
+// Pass-121 (Stage A4): lastmod dates are generated locally from git
+// (scripts/lastmod.mjs) and committed here, because the build environment's
+// git history is not guaranteed. The JSON keys are route paths. Regenerate
+// with `node scripts/lastmod.mjs` whenever a route's source file changes.
+import lastmod from "@/content/lastmod.json";
+
+const LASTMOD: Record<string, string> = lastmod;
 
 const BASE_URL = "https://www.micahjonesconsulting.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
-
   const routes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: now,
+      lastModified: LASTMOD["/"],
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${BASE_URL}/about`,
-      lastModified: now,
+      lastModified: LASTMOD["/about"],
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/work`,
-      lastModified: now,
+      lastModified: LASTMOD["/work"],
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -54,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // ChatGPT search, Claude search, Google AI Overviews).
     {
       url: `${BASE_URL}/services`,
-      lastModified: now,
+      lastModified: LASTMOD["/services"],
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -67,7 +72,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       // Pass-70: the fixed-price lane split out of /services.
       url: `${BASE_URL}/packages`,
-      lastModified: now,
+      lastModified: LASTMOD["/packages"],
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -76,13 +81,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       // route stays indexed but drops below it — a scheduled call is the step
       // after a purchase, not the front door it used to be.
       url: `${BASE_URL}/contact`,
-      lastModified: now,
+      lastModified: LASTMOD["/contact"],
       changeFrequency: "yearly",
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/call`,
-      lastModified: now,
+      lastModified: LASTMOD["/call"],
       changeFrequency: "yearly",
       priority: 0.6,
     },
@@ -96,7 +101,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const studies = (await getAllCaseStudies()).filter(isPublished);
   const caseStudyRoutes: MetadataRoute.Sitemap = studies.map((cs) => ({
     url: `${BASE_URL}/work/${cs.slug}`,
-    lastModified: now,
+    lastModified: LASTMOD[`/work/${cs.slug}`],
     changeFrequency: "yearly",
     priority: 0.7,
   }));
