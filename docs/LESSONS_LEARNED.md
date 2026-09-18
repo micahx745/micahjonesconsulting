@@ -625,6 +625,24 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   Every copy and fact ruling above stands; only the visual direction is reopened. Do not re-propose
   diagram-of-the-work boxes and arrows without a new dated ruling.
 
+- **PASS-122 DIRECTION AND THE DEMO PIECE — operator 2026-09-18 (Pass-122 DIRECT, popup, after the three
+  reference sheets `.planning/qa/pass-122/sheets/sheet-{A,B,C}.png` and the verified research,
+  `.planning/research/pass-122-research-verify.md`)**. DIRECTION: picked "C: Kinetic Editorial
+  (Recommended)" over the research's own pick (A, The Ledger), after being told A is structurally the site
+  he already has. The description he picked: "Your numbers as poster-size type that assembles and moves as
+  you scroll ($20M+, $14M, 800,000). The Tel Aviv clip plays inside the lettering for one beat. Most punch.
+  Risk: phone speed, so I'd build it without 3D and prove it on a mid-range phone." NAMING: this is the
+  RESEARCH'S Direction C, "Kinetic Editorial"; it is NOT Pass-121's rejected Direction C ("Five exhibits").
+  Call it Kinetic Editorial everywhere to keep the two apart. NEXT STEP he picked: one screen at phone and
+  desktop width, before any full mock set. DEMO PIECE: picked "Not yet: type first (Recommended)": "Mock
+  the direction without it. Decide on a demo once the direction draws you in. Nothing diagram-shaped gets
+  designed until then." The 2026-09-18 boxes-and-arrows hold above stands unchanged.
+  RESEARCH FIGURES THAT MUST NOT REACH A SURFACE (verified 2026-09-18, not operator rulings, recorded so no
+  leg lifts them from the research): Akamai "$610.4M" and "October 2021" (the pinned figure is $600M,
+  EXITS_COMBINED_VALUE; no month is ledgered); "$20M+ in revenue behind the work" (approved: "behind my
+  work"); 800,000 as a monthly rate ("impressions/mo"; approved: a peak month); "four exits" without
+  "worked inside".
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
