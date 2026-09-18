@@ -27,12 +27,7 @@ both domains (LESSONS #5). Production untouched this pass.
 - LESSONS #37 + 4 standing clauses in briefs/README (708865b).
 - NEXT: open round-2 captures -> G3 input -> Fable G3 -> operator popup with
   390/1440 captures -> brief -> G4 -> commit.
-- For G3/brief: G2's hover grammar (0.6->1) is itself the AA defect; G2 3.1's
-  seven sizes conflict with 3.2/3.3/2; sage on /work vs "sage /work/ordani only";
-  G2 3.7 heading grep fails a correct page (DOM is sentence case); hand marks
-  exist as components/hand/* (HandCircle instant), not a .cw-hand class.
-- Brief plumbing: llms.txt is a literal (edit it too); robots named allows;
-  sitemap per-file git dates; ORDANI mainEntityOfPage scoped. Copper = #bd5a2d.
+- G3 open items + corrected G2 assumptions: see the brief's [G3] marks.
 
 ## Waiting on operator
 - Speed Insights p75 LCP for /work (A4). Colleague okay for the clip.
