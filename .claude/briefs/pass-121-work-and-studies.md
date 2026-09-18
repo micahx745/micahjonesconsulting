@@ -1,11 +1,11 @@
 # Pass-121 brief: /work and the five studies in Direction C ("Five exhibits"), and the ORDANI claims retirement
 
-**Status: FOR G4, 2026-09-18, Opus 5 (main session).** Every copy string here is ledgered in LESSONS #3.
+**Status: FINAL, G4 passed with fixes applied 2026-09-18 (`.planning/reviews/FABLE-121-G4.md`), Opus 5 (main session).** Every copy string here is ledgered in LESSONS #3.
 Fable's G3 ruling (`.planning/reviews/FABLE-121-G3.md`, verdict ADJUST, 2026-09-18) is folded in; each
 placement cites its ruling (R1 to R14, N1 to N10). The operator approved the build and every open string on
 2026-09-18 (LESSONS #3, PASS-121 BUILD APPROVED AND THE DRAWING WORDS; ORDANI DID-LINE AND THE RECORD
-HEADING). Next: Fable reads this at G4, then it commits as final. Nothing here is executed before G4. One
-conflict inside G3 is resolved here and flagged for G4: see 3.3, "The circle".
+HEADING). Next: Stage A, after the G4 fixes are applied. The one
+conflict inside G3, the circle's stroke, is confirmed at G4: see 3.3, "The circle".
 
 Executor: GLM 5.3 via `scripts/claude-glm.ps1 -Batch` (prompt on stdin, LESSONS #36). One stage per run,
 each stage committed on its own with a `Pass-121:` subject and a pathspec (`git commit -- <paths>`,
@@ -130,7 +130,7 @@ inside the build-time copy-lint scope and the retired-phrases gate's roots, so e
 Lifted, never written (G2 §3.4): each note is the section's § number plus a phrase that already appears,
 character for character, in that h2 section's own MDX text. ORDANI's CDC note renders from
 `ORDANI_CDC_2024.FIGURES`. The executor lists every note it placed with the source line it was lifted
-from; D2 checks each is a substring of its section, compared case-insensitively. Rendering case (G3 N3):
+from, and it places only the notes that `.claude/briefs/pass-121-margin-notes.md` lists: one note per h2 section of every study, each with its source line, written by the main session and committed before Stage D starts (section 7 stops Stage D without it). The executor chooses no phrase. D2 checks each listed note is a substring of its section, compared case-insensitively. Rendering case (G3 N3):
 first letter lowercase unless the first word is a proper noun, an acronym or a figure (`Akamai`, `RFP`,
 `$3M`), so `a person reviews and submits every response` is correct. Guardicore's §01 note is
 `§01 · east-west traffic between workloads` (verified a verbatim lift, 2026-09-18); G2 §4.2's
@@ -161,7 +161,7 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   48px at 390, two line spans. The doorway figure is no longer an `h1` (today `cw-wx-lead__h1` is).
 - **Description**: `WORK_DESCRIPTION`, Hanken regular 22px at 1440 (18 at 390), max 60ch, columns 1 to 7,
   `text-wrap: pretty`. In the 1440 capture its last line carries three words or more; if not, the measure
-  moves in 1ch steps between 58ch and 62ch until it does (G3 R3, N10).
+  moves in 1ch steps between 58ch and 62ch until it does (G3 R3, N10); if none of the five measures does, stop and report (section 7).
 - **Section labelling**: today the entries section is `aria-labelledby="cw-wx-method"`, the method line.
   The method line moves below the index, so the entries section gets its own visually hidden label
   (`<h2 class="sr-only">` reading `The engagements`; this is an accessible name, not display copy) and the
@@ -173,17 +173,16 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   first at 358 wide, 16:10, `object-position: 50% 0%` (fix round 2, D7: the face is in frame). Text order:
   mono folio `01`; context from `entry.context` in Hanken 14 `--color-foyer-ink-soft` (the same treatment
   as the four entries, G3 R3); `entry.figure` at 72px Bricolage with the static hand circle (one numeral
-  size across the page, G3 R3); `entry.line` in Bricolage 22 at the words-figure's weight; `entry.did`;
+  size across the page, G3 R3); `entry.line` in Bricolage 22 at weight 600 (the live `cw-wx-lead__h1` weight, `app/globals.css`); `entry.did`;
   mono `SERVICE_LABELS`; `DOORWAY_LINK` (copper-deep at rest, no motion of its own beyond the arrow's 4px).
   The doorway carries the still only: the visibility diagram lives in the study (G3 R12). /work holds four
   drawings and one photograph.
 - **Four entries** (order 2 to 5, live order: RFP, ORDANI, content engine, birth worker): each one
   `ViewTransitionLink`, hairline-separated. 1440: text in columns 1 to 6 (folio, figure line, did-line
-  under it, service label), the exhibit in columns 8 to 12, max 400 wide, its top on the figure's cap
-  line. A numeral figure (`entry.figure`) sets alone at 72px Bricolage with `entry.line` beneath in
-  Bricolage 22 at the words-figure's weight, `text-wrap: pretty`; a words figure (no `entry.figure`) sets
-  `entry.line` at 36px. No circle on any of the four entries: one circle per page, on the doorway (G3 R8).
-  390: folio and figure line, the exhibit at full width (max 240 tall, 300 for ORDANI's stacked drawing),
+  under it, service label; the context line sits between the folio and the figure line, as on the doorway), the exhibit in columns 8 to 12, max 400 wide, its top on the figure's cap line. The cap line is measured once, never eyeballed: at 1440 the executor reads the figure's baseline as the `getBoundingClientRect().top` of a zero-height `display: inline-block` probe span inside the figure, and the cap height as `measureText('H').actualBoundingBoxAscent` on a canvas 2d context whose `font` is `getComputedStyle(figure).font`; cap line = baseline minus cap height. The offset from the figure's line-box top to that cap line is stored once as an em value (`--wx-cap`) and quoted in the Stage C commit, and C1 reads the exhibit's top against the cap line and reports them within 2px. A numeral figure (`entry.figure`) sets alone at 72px Bricolage with `entry.line` beneath in
+  Bricolage 22 at weight 600 (the live `cw-wx-lead__h1` weight, `app/globals.css`), `text-wrap: pretty`; a words figure (no `entry.figure`) sets
+  `entry.line` at 36px, weight 600. No circle on any of the four entries: one circle per page, on the doorway (G3 R8).
+  390: folio, context line and figure line, the exhibit at full width (max 240 tall, 300 for ORDANI's stacked drawing),
   the did-line, the label, in that order. Context line: Hanken 14px, `--color-foyer-ink-soft`, two lines max
   at 1440 (PROOF §2 item 8). No `DRAFT` mark: every ORDANI string on /work is approved (2026-09-18), so
   G3 N9's placement rule is moot.
@@ -200,7 +199,7 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   Hanken did-lines and record descriptions; 14 Hanken context lines, and JetBrains Mono service labels,
   `READ THIS ONE FIRST`, record role and outcome; 12 JetBrains Mono folio and the footer row. G2's 56, 28
   and 20 are retired. Scope of the check: the main content from the h1 to the record's last row; the cross
-  line and the footer keep their live sizes outside the scope.
+  line and the footer keep their live sizes outside the scope. The `sr-only` h2 renders no text and is outside the set. Weights: the h1 and the record heading take the weight of the home's uppercase display heading (`THE RECEIPTS.`; the executor reads it once from `app/globals.css` and quotes it in the Stage C commit); the record rows keep `.cw-ledger`'s live weights; every other Bricolage size on /work is 600, the live `cw-wx-lead__h1` weight; Hanken and mono weights as live.
 - **Sizes at 390** (checked at the first preview): h1 48; numeral figures 36; words-figures 26; method
   line 26; description 18; figure lines 18; did-lines 16; context 14; mono as live.
 - Page height at 390: under 4,600px.
@@ -219,7 +218,7 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   stays a pure scale.
 - **Text size per placement** (G3 R5): the SVG text's `font-size` in user units is
   `target px x (viewBox width / rendered width)`. Mono labels render 12px at the 1440 index (400 wide), 13px
-  on the 1440 band and Guardicore's body break (560 to about 600 wide), 11px at 390 (358 wide); ORDANI's
+  on the 1440 band and Guardicore's body break (two placements: each rendered width is read once from the 1440 layout as the SVG's `getBoundingClientRect().width`, the user-unit font-size is computed from that reading, and both numbers per placement are quoted in the Stage D commit), 11px at 390 (358 wide); ORDANI's
   Hanken sentences one step up: 13, 14, 12. Line-height 1.25 mono, 1.3 Hanken. Everything mono in a drawing
   (box labels, unit lines, frame heads, column heads) takes the placement's label size; none is a title.
   Between 390 and 1440 the text scales with the drawing; the two named widths are what the check measures.
@@ -242,9 +241,9 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   Accent on strokes only.
 - **Text in drawings**: short labels in JetBrains Mono (the cleared R1 narrow third). Any full sentence is
   Hanken (fix round 2, D2); the ORDANI comparison's four sentences are Hanken. No text under 24px takes
-  copper on paper: labels are ink, or `--color-accent-copper-deep`, or sage on ORDANI; on the band they
+  copper on paper: labels are ink, or `--color-accent-copper-deep`, never sage (sage text is 3.62:1 on the band and 4.14:1 on bone, under 4.5); on the band they
   are `#ece3d0`. Sizes per placement above.
-- **Exhibit sentence** (the RFP flow and the visibility diagram only, G3 R9): Hanken 15px, max 48ch, server-rendered beneath the drawing,
+- **Exhibit sentence** (the RFP flow and the visibility diagram only, G3 R9): Hanken 15px, max 48ch, server-rendered beneath the drawing in the study only (the RFP engine's band, Guardicore's body break); no entry on /work carries a sentence, so R3's seven sizes hold;
   24 to 40px below it (M12). It is the exhibit's sentence, not a photo caption (the no-captions ruling
   covers photographs and the clip).
 - Class: `.cs-exhibit` exists; add modifiers `--flow`, `--compare`, `--figure`, `--vis`.
@@ -255,7 +254,7 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   `data-photo`. New rule: the slot renders the photograph when `hero` exists (Guardicore only, verified
   2026-09-17: no other study has `hero`), otherwise the study's exhibit, drawn in `#ece3d0` with its
   accent. Replace `data-photo` with `data-media="photo" | "exhibit"` and move its CSS with it. At 1440 the
-  exhibit fills columns 8 to 12 (about 560 wide), its top on the title's cap line, the sentence 24 to
+  exhibit fills columns 8 to 12 (about 560 wide), its top on the title's cap line (measured as in 3.1, against the h1's first line at its band size), the sentence 24 to
   40px beneath; leftover dark sits at the band's bottom (fix E of the mock brief). **Correction to G2
   §7**: G2 assumed ORDANI keeps a band photograph; it has none, so ORDANI's band carries the claims
   drawing like the other three. Guardicore alone opens on its photograph and gets the visibility diagram
@@ -270,7 +269,7 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
 - **Margin column** `.cs-aside` (new), columns 10 to 12 beside the 68ch body at 1440, mono 12px
   `--cs-ink-soft`, one note per h2 section (2.4). Omitted at 390.
 - **Hand marks**: at most three per study from one family, each with a job: the circle on the result
-  figure, a bracket or arrow at the story's turn, an underline under the close's link. Use the existing
+  figure, a bracket or arrow at the story's turn, an underline under the close's link. The turn is named or it gets no mark: Guardicore's bracket on the paragraph named below; the RFP engine's arrow at the comparison table's one row whose text contains `gap` (zero or two such rows: stop and report); ORDANI, the content engine and the birth worker carry the circle and the underline only, unless `.claude/briefs/pass-121-margin-notes.md` names their turn paragraph by its first and last words. The executor never picks a paragraph. Use the existing
   components in `components/hand/` (the G2 `.cw-hand` class does not exist and is not created).
   `HandCircle` is a client component with effects; for static circles add `components/hand/
   HandCircleStatic.tsx`, a server component that renders `HandCircle`'s own `PATHS` (export that const;
@@ -281,7 +280,7 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   `--cs-ink-soft`, in column 9 between the body and the margin column, its margin note beside its top
   tick. Never a text glyph.
 - **Figure moment** in "What changed" (G3 R8): a numeral figure is the whole `entry.figure` string at 72px
-  with the static circle around all of it (`Up to 800,000` is circled as one claim, qualifier included),
+  with the static circle around all of it (`Up to 800,000` is circled as one claim, qualifier included, the figure `white-space: nowrap`),
   `entry.line` beneath, `results.rest` in mono 14 beneath that. A words figure (ORDANI, birth worker):
   `entry.line` at 36px Bricolage, with the circle around the one phrase named by `entry.figurePhrase`,
   rendered as a span with `white-space: nowrap` so the circle never spans a line break; `results.rest`
@@ -299,8 +298,8 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   study. **Stroke, resolved here and flagged for G4:** R7 asks for the stroke to scale with the path;
   FABLE-121-PROOF §2 item 3 ruled one stroke weight for every hand mark on a page, circle included,
   because a heavier or lighter circle beside the drawings "reads as two sources". The brief keeps the
-  proof's rule: the circle is 2px at 1440 and 1.5px at 390, `vector-effect: non-scaling-stroke`, like every
-  other hand mark. G4 confirms or reverses.
+  proof's rule, confirmed at G4: the circle's loop is 2px at 1440 and 1.5px at 390, its overshoot stroke 0.85 of that (1.7px and 1.275px, `HandCircle`'s own ratio), `vector-effect: non-scaling-stroke` as `HandCircle` already sets, like every
+  other hand mark. Confirmed at G4 (`.planning/reviews/FABLE-121-G4.md`): `HandCircle` never scaled its stroke, and under `preserveAspectRatio="none"` a scaled stroke would draw a different pen for each figure.
 - **RFP comparison table**: stays where it is, restyled: mono column heads, the gap row's sentence in
   `--cs-link`, a hand arrow in the margin pointing at that row.
 
@@ -422,7 +421,7 @@ expects a miss, and plants one string that occurs only in LESSONS #37's prose an
 section scope bites). A miss on the real tree is a stop-and-report, never a reword (section 7).
 Wire both into `package.json` `build` after the retired-phrases gate. Expect `EXIT=0` on the real tree.
 B3. Determinism: render each exhibit twice in one process; the SVG strings are identical. Expect
-`identical=5/5`.
+`identical=7/7` (the five drawings and the two stacked 390 variants).
 Commit Stage B.
 
 ### Stage C: /work
@@ -434,6 +433,8 @@ C1. Build per 3.1. Served checks on `/work`:
   `five to ten` (all `>= 1`).
 - `grep -c controls` on raw HTML: expect `0` (the clip has no controls).
 - Exhibits server-rendered: raw HTML `grep -c 'cs-exhibit'` expect `>= 4`.
+- Page height at 390: `document.documentElement.scrollHeight` expect `< 4600`.
+- Exhibit top against the figure's cap line at 1440 (3.1), each of the four entries: expect within `2px`, both readings quoted.
 C2. First Load JS for `/work` from the `pnpm build` route table, before (Stage A build) and after: expect
 the same within 2 kB.
 Commit Stage C.
@@ -488,7 +489,7 @@ Commit Stage E.
 - Axe on `/`, `/work` and all five studies at 1440 and 390: serious and critical expect `0`.
 - Lighthouse mobile on `/work` (local production build): Performance `>= 95`, LCP `<= 1800ms`, CLS
   `<= 0.05`.
-- Type sizes on `/work` at 1440: the G1 section 2.2 snippet, scoped from the h1 to the record's last row;
+- Type sizes on `/work` at 1440: the G1 section 2.2 snippet, scoped from the h1 to the record's last row and with `.sr-only` elements filtered out (`!e.closest('.sr-only')`, they render no text);
   expect exactly `{96, 72, 36, 22, 18, 14, 12}` (G3 R3).
 - Source ledger grep over `app components content lib` (lowercased, no `-iF`): each retired phrase in A1
   expect `0`; tenure pattern `(19|20)[0-9]{2}[-–](19|20)?[0-9]{2}` after removing the literal
@@ -538,6 +539,7 @@ Commit Stage E.
   `got` differs from its `expect` (#25).
 - Any copy string needed that is not in section 2: stop; it goes to the operator by popup.
 - A false positive in A1's before-run.
+- Stage D reached with no `.claude/briefs/pass-121-margin-notes.md` committed: stop; the main session writes it.
 - First preview, after Stage D: captures at 390 and 1440 to the main session, which looks, then Fable's
   first-preview checkpoint (CLAUDE.md: first preview at 390 and 1440; copy checked by `curl -s | grep`;
   one buyer read at the ship gate).
@@ -556,6 +558,6 @@ Commit Stage E.
 
 ---
 
-## G3 ruling (appended after Fable's look)
+## G4 ruling (appended after Fable's look)
 
-(empty until G3)
+FIX FIRST, applied; commits as final. The circle's stroke is the page's pen, 2px at 1440 and 1.5px at 390, non-scaling, as `HandCircle` already draws it. Full text: `.planning/reviews/FABLE-121-G4.md`.
