@@ -17,19 +17,17 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
 
 ## Next
 1. DONE: Stage A shipped (above).
-2. DONE 09-18: direction = KINETIC EDITORIAL (research's C, not Pass-121's C);
-   demo piece "Not yet"; rules on trial ruled (ledger 8f4a118, 3c455ef:
-   motion open for scroll type, face test vs Bricolage, poster grounds one
-   accent, imagery = research's line + animated real photos, hero counters,
-   logos only if real + approved). No shoot: animate his real photos.
-3. RUNNING: style-tile panel (workflow pass-122-style-tile): 3 Opus designers
-   (.planning/mocks/pass-122/tile-1-numeral, -2-line, -3-posters, brief
-   TILE-BRIEF.md), Sonnet capture/measure (review/ per tile), 2 Opus judges.
-   Then: main reads frames, shows him the winner (both faces) at 390/1440 as
-   file:/// standalone + captures; iterate until it draws him in; Fable gate.
+2. 09-18 rulings (LESSONS #3): Kinetic Editorial = THEMES FOR THE EXISTING
+   SITE, NOT A REDESIGN ("i didnt want to change the entire site"); Bricolage
+   stays; tiles are reference only (#39). Themes: poster numbers, numbers
+   that move, clip inside $20M+, fewer words (cuts shown first). FIRST: home
+   receipts section.
+3. RUNNING: build of .planning/mocks/pass-122/RECEIPTS-BRIEF.md on the
+   branch (Opus), then before/after captures (Sonnet). Then: main reviews,
+   shows him before/after 390+1440 and the pane (launch "prod", port 3100).
 
 ## Waiting on operator
-Tile verdict · which real photos of him to animate · fable-harness-init
+Receipts before/after verdict · proposed word cuts · which real photos to animate · fable-harness-init
 @AGENTS.md · Speed Insights p75 LCP /work · clip okay · Ordani screens.
 Ledger gap: "one in eight to one in four" + "eleven awards" live since
 Pass-120 (6c564b4) with no #3 row: add provenance.
