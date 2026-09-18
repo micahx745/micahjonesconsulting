@@ -15,11 +15,14 @@ deploy, re-alias both domains, curl-verify). Defect = LESSONS #38; fix in
 app/(foyer)/work/page.tsx:105; gate scripts/work-entry-gate.mjs (in build).
 Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329, Pass-120).
 
-## LIVE before ship: c525329 (Pass-120) BOTH domains
-Retired ORDANI claim live (curl 09-18: /work/ordani 12, /llms.txt 1).
+## LIVE: 92095b7 (Stage A + fix) BOTH domains, dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe
+Pushed 14:13, git deploy 14:22, both domains same dpl (no re-alias needed).
+curl 09-18 15:12 both domains: /work/ordani "40% to a measured 91%" 0, "91%" 0;
+llms retired 0, new line 1; /work $3M, 800,000, bookings lines 1 each; all 200.
+Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
 
 ## Next
-1. Stage A ship per CARD 1 (alias AFTER push; data-dpl-id match).
+1. DONE: Stage A shipped (above).
 2. Direction popups with sheets .planning/qa/pass-122/sheets/ (A Ledger =
    research pick, closest to today's site; B Operating System; C Kinetic
    Editorial). Then rules on trial, rule by rule. Ledger every answer (#32).
