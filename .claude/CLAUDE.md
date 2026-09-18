@@ -2,6 +2,27 @@
 
 This project uses the **premium-web** Claude Code plugin (installed at `~/Code/premium-web-harness`). Read `.claude/brand.json` before making any UI decision.
 
+## Pass-122 amendment — the rules on trial (operator 2026-09-18)
+The operator rejected Pass-121 on sight and put the design rules below on trial; he ruled on each by
+popup for the **Kinetic Editorial** direction (LESSONS #3 "PASS-122 DIRECTION AND THE DEMO PIECE" and
+"PASS-122 RULES ON TRIAL"; `docs/DESIGN_BAR.md` R1, R4, R9, R12, R13, R15 carry the dated rulings).
+Where a section below says otherwise, THIS amendment wins:
+- **Motion:** the one-signature limit and the 400ms entrance cap are lifted for scroll-driven type: type
+  and numbers may move with the scroll, a section may hold while its number assembles. Still banned:
+  cursor followers, scroll that changes speed, marquees, idle loops. Reduced motion gets the finished frame.
+- **Counters:** one hero number per page or section may assemble once; the number is in the server HTML.
+- **Colour:** poster grounds, one full-bleed ground per section, ONE accent per screen; palette picked at
+  the style tile, then added to `brand.json.palette`. No gradients, purple or glow.
+- **Type:** the display face is on test against Bricolage at the style tile; Hanken body and Mono labels stay.
+- **Imagery:** real photos, screen recordings, charts of real numbers, and animated versions of the
+  operator's own real working photos (no captions). Still out: stock, AI illustration, icons, 3D scenes.
+  The 2026-09-18 hold on box-and-arrow diagrams of the work stands.
+- **Logos and quotes:** allowed only if real, each approved and ledgered before it renders.
+- **Not on trial:** facts, copy, voice rules, the banned list, the em-dash cap.
+- **Enforcement still to move:** `brand.json.palette` (the design-tokens allow-list) when the palette is
+  picked; `scripts/gsap-quarantine-gate.mjs` only if the build brief picks GSAP over CSS scroll-driven
+  animation. The plugin hooks (`motion-discipline.sh`, `design-tokens.sh`) already ban only what stays banned.
+
 ## Two modes
 - Foyer pages (`app/(foyer)/`) — paper `--color-foyer-paper #F5EFE4`, ink `#1A1816`. Hospitality feel. Home / About / Work With Me / Contact / Work index.
 - Theater pages (`app/(theater)/`) — `/work/[slug]` case studies. Each opens on a dark band (`--color-theater-ground #12100E`, type in `--color-theater-ink #ECE3D0`) that names the client and the result, then turns on one copper rule (sage on `/work/ordani`) to bone paper `#ECE3D0` (`--color-cw-bone`) for the body and the footer. Pass-120; the earlier all-obsidian study is retired.

@@ -642,6 +642,38 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   EXITS_COMBINED_VALUE; no month is ledgered); "$20M+ in revenue behind the work" (approved: "behind my
   work"); 800,000 as a monthly rate ("impressions/mo"; approved: a peak month); "four exits" without
   "worked inside".
+- **PASS-122 RULES ON TRIAL — operator 2026-09-18 (Pass-122 DIRECT, three popups, rule by rule, for the
+  Kinetic Editorial direction)**. Each is his pick, verbatim, with the description he picked:
+  MOTION (R9, R15, the one-signature rule): "Open it for scroll type (Recommended)": "Type and numbers may
+  move with the scroll, a section may hold while its number assembles, and entrances may run past 400ms.
+  Still banned: cursor followers, scroll that changes speed, marquees, idle loops. Reduced motion always
+  gets the finished frame."
+  DISPLAY FONT (R1): "Test new face vs Bricolage (Recommended)": "The first screen is shown twice, once in
+  Bricolage and once in a more characterful display face chosen for moving type. You pick on sight. Body
+  and label fonts stay." (Hanken Grotesk body and JetBrains Mono labels stay; mono still labels only.)
+  COLOUR (R4, one accent, the dark band): "Poster grounds, one accent (Recommended)": "Each section may sit
+  on its own full-bleed ground (ink, paper, or one saturated colour), still one accent per screen. The exact
+  palette is chosen on sight at the style tile. Still no gradients, no purple, no glow."
+  IMAGERY (R12): first answered with a question, verbatim "what would the research say?"; answered (the
+  research cuts stock, AI illustration and 3D blobs; uses real photos, screen recordings and charts of real
+  numbers; WebGL at most one hero moment), then re-asked. Picked "The research's line (Recommended)": "Real
+  photos (plus a new shoot), short screen recordings of your AI systems, and charts drawn from your real
+  numbers. Still out: stock, AI illustration, icons, 3D scenes. The 09-18 hold on box-and-arrow diagrams
+  stands." A chart of a number is not a diagram of the work; the boxes-and-arrows hold is unchanged.
+  COUNTERS (R13 second half): "Lift it for hero numbers (Recommended)": "One hero number per page or section
+  may assemble once as it arrives. The real number is in the page without JavaScript, and reduced motion
+  shows it finished. No tickers or stat bars."
+  LOGO WALLS (R13 first half): picked "Open it": "Allow a logo row or quotes if real ones become available
+  later, each approved by you." Nothing is faked or implied; each logo or quote needs his dated approval
+  in this ledger before it renders.
+  SHOOT: asked when to commission the research's half-day shoot; answered (Other), verbatim: "i like the
+  idea of animating the real pics i have of me working." So: no shoot is commissioned; the imagery plan is
+  animated versions of HIS OWN REAL photos of him working, made the way the Tel Aviv clip was made (the R12
+  09-16 conditions carry over: the real photo is the poster and the no-JS, reduced-motion and save-data
+  render; no captions, per the standing no-captions ruling). Which photos exist beyond the Tel Aviv one is
+  his to supply.
+  NOT ON TRIAL (kickoff): facts and copy. Voice rules, the banned-words list, the em-dash cap and every row
+  of this ledger stand.
 
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things

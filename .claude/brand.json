@@ -136,6 +136,7 @@
     ]
   },
   "motion": {
+    "pass122_rulings": "Operator 2026-09-18 (LESSONS #3 PASS-122 RULES ON TRIAL), Kinetic Editorial: the one-signature limit and the R15 400ms entrance cap are lifted for scroll-driven type and hero numbers (a section may hold while its number assembles; one hero number per page or section may assemble once, number in the server HTML). Still banned (motion.banned stands): cursor followers, scroll that changes speed, marquees, idle loops. Reduced motion always gets the finished frame.",
     "signature": {
       "id": "title-card",
       "description": "Case-study hero title settle, on /work/[slug] only. The band's h1 (Bricolage Grotesque 800; 56px at 1440, 36px at 390) settles in once when the study page renders, on a full load or a client navigation into a study. Each title line rises 12px and fades from 0 to 1 over 400ms on cubic-bezier(0.16, 1, 0.3, 1); line 2 starts 200ms after line 1 (100ms and 200ms when there are three lines), so the entrance is 600ms at most. Transform and opacity only: no scroll pin, no scroll coupling, no replay on scroll, resize or re-render. CSS only, gated by (prefers-reduced-motion: no-preference) and (scripting: enabled), so reduced motion, no-JS and browsers without the scripting media feature get the server-rendered finished frame. It replaced the pinned full-fold word stack and its GSAP scroll-resolve (operator signed 2026-09-16, Pass-120).",

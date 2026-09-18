@@ -165,6 +165,7 @@ by looking. Grade per page; report R-numbers.
 - **R1 — ≤2 typefaces** (a mono for numerals/data permitted as a narrow third); the display face
   has visible character. Inter/Roboto/Geist/Open Sans serving as the display face is an automatic
   fail.
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): the display face is on test. The first style-tile screen is shown in Bricolage and in one more characterful display face chosen for moving type; he picks on sight, and this rule records the pick. Hanken Grotesk (body) and JetBrains Mono (labels only) stay.
 - **R2 — Real scale contrast:** largest display type ≥4× body size; no two adjacent hierarchy
   levels within 15% of each other; ≤5 active sizes per page.
   - Exception (operator 2026-09-16, left to the judge: "what you think is best"): case-study pages set their largest type at 56px against 18px body at 1440 (3.1x) and 36px against 17px at 390, because a result figure at 112px wraps on the anonymous studies. /work keeps its 112px lead figure. Study pages only, not a precedent.
@@ -174,6 +175,7 @@ by looking. Grade per page; report R-numbers.
   - Ruling (operator 2026-09-16, Pass-120 build, picked "Old lighter cream (Recommended)"): on the bone ground the specified exhibit tint `--color-bone` `#E8DFD0` measured 1.04:1 against the page and disappeared. The study exhibit (`--cs-tint` on paper) sits on `--color-foyer-paper` `#F5EFE4` instead, a lighter panel on the darker page; ink on it 15.47:1, ink-soft 10.47:1.
 - **R4 — One accent color per page context doing real work; zero purple/indigo/cyan gradients,
   zero gradient text, zero glow/halo/orb decoration.**
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): poster grounds. Each section may sit on its own full-bleed ground (ink, paper, or one saturated colour) with type at maximum contrast; still ONE accent per screen. The palette is chosen on sight at the style tile, then added to `brand.json.palette` (the `design-tokens.sh` allow-list) in the commit that adopts it. Gradients, gradient text, purple and glow stay banned.
 - **R5 — No glassmorphism, no one-side accent-border cards, no cards nested in cards, no border
   radius >16px on content containers.**
 
@@ -190,6 +192,7 @@ by looking. Grade per page; report R-numbers.
   15vh+), not a constant 96px.
 - **R9 — Exactly one signature motion/visual gesture exists**, deployed deliberately in specific
   moments — not sprinkled on every section, and not zero identity either.
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): the one-signature limit is lifted for scroll-driven type. Type and numbers may move with the scroll and a section may hold (pin) while its number assembles. Still banned: cursor followers, scroll that changes speed (scroll-jacking, mandatory snap), marquees, idle loops. Reduced motion always gets the finished frame.
 - **R10 — Nav is ≤5 primary items** including a bare "Work" (or direct equivalent); contact is a
   plain invitation; no mega-menu, no dropdown taxonomies, no "Resources."
 - **R11 — Case/work entries on index surfaces carry ≤4 data points** (client/context, one
@@ -201,11 +204,13 @@ by looking. Grade per page; report R-numbers.
 - **R12 — Every image is a real artifact** — actual screenshot, document, photograph, or hand-made
   graphic tied to the work. Zero stock photos, stock 3D, Undraw-style figures, AI-generated
   imagery. Hand-drawn SVG accents pass only as one consistent authored voice, used sparingly.
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): the research's line. Allowed: real photos, short screen recordings of his AI systems, and charts drawn from his real, ledgered numbers; and animated versions of HIS OWN REAL photos of him working, made as the Tel Aviv clip was, under the 09-16 conditions below (real photo as poster and fallback, no captions). Still out: stock, AI illustration, icons, 3D scenes. A chart of a number is not a diagram of the work: the 2026-09-18 hold on box-and-arrow diagrams stands.
   - Exception (operator 2026-09-16, verbatim pick "Use the AI clip anyway", against the Fable design ruling in .planning/reviews/FABLE-120-DESIGN.md §4): the /work hero may carry the 4-second AI image-to-video animation of the real Tel Aviv working-session photograph. Conditions: /work only; plays once, muted, never loops (R15); the real photograph is the poster and the render for no-JS, reduced motion and save-data; colleagues kept at the frame's edge (operator 2026-09-16, "Keep them at the edge"); the colleagues' okay to being animated is the operator's to hold and is not asserted here; NO caption and no disclosure (operator 2026-09-16, verbatim: "no captions not everything needs a caption. maybe nothing needs a caption. AI indicator and pointless. its for the aesthetic"; recommended disclosure declined, recorded, not re-raised); the motion-engineer's written approval and a measured mobile LCP inside budget before ship. Not a precedent for any other generated imagery.
-  - Ruling (operator 2026-09-17, Pass-121 Direction C "Five exhibits", verbatim "go with recommendations", conditional on the drawings proving they can be made at quality): hand-drawn diagrams of how each engagement worked, one per /work entry and one to three per study, in the same hand as the home's circle. This relaxes "used sparingly" for these diagrams only. They are not illustration: each encodes only facts on that study's page or in LESSONS #3, and carries no people, icons, fills or decoration. Static; the stroke draw-in was declined ("No, still drawings first"). Not a precedent for any other hand-drawn element.
+  - RETIRED 2026-09-18 (Direction C "Five exhibits" rejected on sight, LESSONS #3): the exception below no longer applies. Ruling (operator 2026-09-17, Pass-121 Direction C "Five exhibits", verbatim "go with recommendations", conditional on the drawings proving they can be made at quality): hand-drawn diagrams of how each engagement worked, one per /work entry and one to three per study, in the same hand as the home's circle. This relaxes "used sparingly" for these diagrams only. They are not illustration: each encodes only facts on that study's page or in LESSONS #3, and carries no people, icons, fills or decoration. Static; the stroke draw-in was declined ("No, still drawings first"). Not a precedent for any other hand-drawn element.
 - **R13 — No logo wall without outcomes; any client or company named is attached to a specific
   figure-bearing result. No testimonial carousel, no star ratings, no generated avatars, no
   animated counters.**
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): COUNTERS: one hero number per page or section may assemble once as it arrives; the real number is in the server HTML, reduced motion shows it finished, no tickers or stat bars. LOGOS AND QUOTES: a logo row or quotes may appear if real ones become available, each approved by the operator and ledgered in LESSONS #3 before it renders. Nothing is faked or implied.
   - Exception (operator 2026-09-11, decision 4): the home page's own $20M+ figure counts once from $0M to $20M+ over 1.2s, on / only, once per load, skipped under reduced motion, finished frame as the no-JS render. It is a single authored proof moment, not a stat ticker, and not a precedent.
 - **R14 — At least one proof block contains a named metric WITH mechanism** (what was done → the
   number that changed) that a skeptical CFO could interrogate — e.g., the $80M pipeline / $14M
@@ -215,6 +220,7 @@ by looking. Grade per page; report R-numbers.
 
 - **R15 — Motion is punctuation:** nothing animates idly (no pulsing dots, marquees, looping
   gradients); entrance effects, if any, run once, ≤400ms, ease-out, transform/opacity only.
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): the 400ms entrance cap is lifted for Kinetic Editorial's scroll-driven type and hero numbers (see R9). "Nothing animates idly" stands: no loops, pulses or marquees.
   - Exception (operator 2026-09-11, decision 4): the same $20M+ count and its circle run 2.65s total, once, never on scroll after start. Recorded in brand.json motion.countup.
 - **R16 — Copy passes the specificity test:** zero instances of hype vocabulary (stream·line,
   em·power, supercharge, world·class, seam·less, cutting·edge, enterprise-grade, award-winning, or
