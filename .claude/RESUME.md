@@ -16,9 +16,13 @@ both domains (LESSONS #5). Production untouched this pass.
   home money line; openings only (NO h2 changes); content + birth deks.
 - ROUND 1 (77d3e5f): GLM said all PASS; Opus found 7 defects (hl opacity .6 =
   2.19:1; ORDANI mono prose; clipped label; M14/M13/M15 gamed). PNGs set/round1/.
-- Armed launcher DIED overnight unrun (exit 4, no smoke log; app restart).
-  09-18 09:03 GLM smoke OK; fix round 2 LAUNCHED by hand 09:04
-  (log .planning/exec/glm121-fix2.log). Don't re-arm launchers across restarts.
+- ROUND 2 done 09-18 09:31 (4cea6f1): D1-D8 fixed; GLM STOPPED on a check it could
+  not pass (ORDANI 9.9px at 390) instead of gaming it. Opus opened every capture
+  type: 10 findings N1-N10 (no study opens on its image at 390; §01 margin note
+  not a lift; stray bracket; box padding). drawings-sheet + sheet-390 composed.
+- G3 IN FLIGHT: Fable reads .planning/reviews/FABLE-121-G3-INPUT.md (R1-R14),
+  writes FABLE-121-G3.md. Then: fold ruling into the brief, operator popup with
+  390+1440 captures (+ did-line, record period, exhibit strings), G4, commit.
 - BRIEF DRAFT committed: .claude/briefs/pass-121-work-and-studies.md, [G3] marks
   12 open rulings; [OPERATOR] marks 3 asks for the visual popup (ORDANI did-line,
   record heading period, Guardicore + ORDANI exhibit strings).
