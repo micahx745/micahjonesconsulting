@@ -1,13 +1,13 @@
 You are the executor running FIX ROUND 2 on the Pass-121 mock set you just built, in the git worktree
 C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live (W). The main session opened every
-capture and measured the CSS. Seven defects below are confirmed by measurement or by an opened image, not
-by opinion. Fix all seven, re-measure, re-capture.
+capture and measured the CSS. Eight defects below are confirmed by measurement or by an opened image, not
+by opinion. Fix all eight, re-measure, re-capture.
 
 HARD LIMITS, unchanged: write ONLY under W/.planning/mock/pass-121/set/. Never edit app/, components/,
 content/, lib/, public/, docs/ or .claude/. No pnpm build, no dev server, no commit, no push. No emoji, no
 em-dashes, no icons, no fills, no people. Every copy string already in the mocks is exact and approved:
-do not reword one. You are changing typography, colour, geometry and markup only, plus the two label
-strings named in D.
+do not reword one. You are changing typography, colour, geometry and markup only, plus the one deletion
+in D8 and the heading case in D6.
 
 ## D1. The 0.6 opacity rest state fails WCAG AA everywhere. This is the blocking one.
 
@@ -51,8 +51,8 @@ Fix, in the ORDANI claims drawing only:
 - The two COLUMN HEADS (`Filing it yourself or through a service`, `Filing it in Ordani`) stay mono. They
   are labels.
 - The four SENTENCES move to `'Hanken Grotesk', sans-serif` at 17px, normal weight, `fill: var(--ink)`.
-- The closing line `Hundreds of dollars per client stay with the practitioner.` moves to Hanken 17px in
-  `var(--sage)` at opacity 1 (4.61, passes).
+- The closing line `Hundreds of dollars per client stay with the practitioner.` is DELETED (see D8), not
+  restyled.
 - Keep the hand-drawn boxes around the sentences; only the typeface changes.
 Everywhere else the drawings' short mono labels are correct and stay mono: they are labels, not prose.
 
@@ -111,6 +111,17 @@ Fix: change the 390 crop's focal point so the face that is centred in the 1440 c
 frame. Use `object-position` on the existing image; do not change the aspect ratio, the 358px width, or
 the file. Open the recaptured `work-390-fold.png` and say in one line what is in frame.
 
+## D8. The ORDANI drawing's closing line is a superseded draft and repeats the entry's money line.
+
+`Hundreds of dollars per client stay with the practitioner.` was G2's DRAFT money line. The operator
+replaced it on 2026-09-17 (LESSONS #3, ORDANI CLAIMS FACTS PART 4) with `Birth workers keep hundreds of
+dollars per client that a claims service would take.`, which is already the ORDANI entry's figure line
+directly above the drawing on /work. So the entry says the same claim twice, once in retired words.
+Fix: delete the closing line from the ORDANI drawing in every file. The drawing's single sage element
+becomes the two boxes in the right-hand column (`Filing it in Ordani`), both drawn in `var(--sage)` at
+opacity 1 with the second offset pass, exactly as the copper gap box is drawn in the RFP flow. The left
+column's boxes stay ink. Add `stay with the practitioner` to your ledger grep; expect 0 in all four files.
+
 ## Three metric corrections. Read these before you re-measure.
 
 Your round-1 report shows three measurements that pushed the design the wrong way. A metric you must
@@ -146,6 +157,6 @@ behind. Open every PNG you cite.
 
 ## Report, under 30 lines
 
-Per defect D1 to D7: the measurement or the opened image that shows it is fixed. The lowest contrast ratio
+Per defect D1 to D8: the measurement or the opened image that shows it is fixed. The lowest contrast ratio
 found per page, per ground, at rest and hovered. Every M-check line verbatim per page and width. Anything
 you could not do, named plainly. Claim nothing a measurement or an opened image did not show.
