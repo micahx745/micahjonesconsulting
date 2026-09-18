@@ -600,6 +600,19 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   the record."** (renders `ALSO ON THE RECORD.`, matching `THE WORK, ON THE RECORD.` and the home's `THE
   RECEIPTS.`).
 
+- **ORDANI DESCRIPTION KEEPS "HIPAA-COMPLIANT" — operator 2026-09-18 (Pass-121 EXECUTE, popup)**. Asked after
+  the main session found its own error: the approved description (ORDANI DESCRIPTION AND THE HOME MONEY LINE)
+  was described in that popup as "About 165 characters, so it fits a search snippet"; it is 169, and
+  `clampDescription` (`app/(theater)/work/[slug]/page.tsx`) trims the meta/OG/Twitter description over 155,
+  serving "...I founded and built ORDANI, the HIPAA-compliant CRM where they file...". Offered dropping
+  "HIPAA-compliant" (153, served whole). Answer, verbatim (Other): "this is for just the AI bots cralers?
+  Because i want hipaa compliant to remain on the ordanis desc ription". Answered: the field feeds the search
+  and link-preview snippet (trimmed at 155), the Article JSON-LD and llms.txt (both full). RULING: the
+  description stays EXACTLY as approved, "HIPAA-compliant" included; the trimmed snippet is accepted. No
+  wording keeping both "HIPAA-compliant" and the money line fits 155 (shortest measured, 157). Consequence:
+  `lib/case-study-schema.ts`'s description cap rises from 155 to 175 so the approved string validates; the
+  155 trim in `clampDescription` is unchanged.
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
