@@ -2,18 +2,12 @@
 
 ## NOW: Pass-122 DIRECT (Opus 5 main; Sonnet legs; Fable at gates)
 Kickoff: .planning/handoff/NEXT-SESSION-KICKOFF.md. Worktree p106-live,
-branch design/live-evolve. Research IN: operator's Fable-chat answer, copy at
-.planning/research/pass-122-research-answer.md. Verified 2026-09-18:
-.planning/research/pass-122-research-verify.md (15/16 URLs load; Akamai
-$610.4M, "behind the work", "/mo" wrong; diagram proposals hit the 09-18
-boxes-and-arrows ruling).
+branch design/live-evolve. Research + verification: .planning/research/
+pass-122-research-answer.md, pass-122-research-verify.md.
 
 ## SHIP APPROVED: Stage A + /work figure fix
 Operator 2026-09-18, popup, picked verbatim "Fix, then ship (Recommended)"
-(asked: fix the dropped $3M / Up to 800,000 on /work, build, then push,
-deploy, re-alias both domains, curl-verify). Defect = LESSONS #38; fix in
-app/(foyer)/work/page.tsx:105; gate scripts/work-entry-gate.mjs (in build).
-Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329, Pass-120).
+Defect = LESSONS #38; gate scripts/work-entry-gate.mjs (in build).
 
 ## LIVE: 92095b7 (Stage A + fix) BOTH domains, dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe
 Pushed 14:13, git deploy 14:22, both domains same dpl (no re-alias needed).
