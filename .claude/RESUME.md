@@ -1,11 +1,13 @@
 # RESUME — micahjonesconsulting (2026-09-18)
 
 ## READ FIRST
-Pass-121 EXECUTE. Main = Opus 5; Fable only at named gates (one call, written
-input). GLM 5.3 executes on z.ai (5h cap: round 1 ate a window in 35 min).
-No in-session Sonnet fan-outs unless the operator says. ChatGPT EMPTY till
-09-19 12:17. Worktree p106-live, branch design/live-evolve, nothing pushed.
-Don't arm background launchers across app restarts (one died overnight).
+Pass-121 EXECUTE. ROUTING 09-18 ~10:50 (operator, verbatim): "with our usage
+resetting in 13 hours and glm and chatgpt out for right now - think we need to
+move forward with using more claude right now. Of course we need to have tiers -
+best quality for gates etc and lower tier models for grunt work etc." So until
+GLM/ChatGPT return: Sonnet subagents execute stages (build, checks, captures,
+commits); Opus main verifies each stage; Fable only at the brief's named gates
+(first preview, ship). Worktree p106-live, branch design/live-evolve, unpushed.
 
 ## LIVE: main = c525329, dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg BOTH domains
 Revert: promote dpl_A16y1jFMgc4iKhEkJZ2NNbRhQY23. Push to main deploys; re-alias
@@ -17,12 +19,9 @@ both domains (LESSONS #5). Production untouched this pass.
   money line, openings, drawing words, record period). NO h2 changes.
 - Brief FINAL 4906c47 (.claude/briefs/pass-121-work-and-studies.md): G3 ADJUST
   + G4 FIX FIRST (23 fixes) applied. One pen: circle 2px non-scaling.
-- STAGE A: GLM capped mid-run 10:33 (edits uncommitted). Opus verified the copy
-  (20/20 exact), home lede, gate (clean; bite proven on HEAD copies). Resume =
-  .planning/exec/glm-121-stageA-resume.md, ARMED for 14:05 PDT via
-  glm-when-reset.ps1 (log glm121-stageA2.log). If the app restarted, run by hand:
-  powershell -File .planning/exec/glm-when-reset.ps1 -PromptFile <resume.md>
-  -Log .planning/exec/glm121-stageA2.log -At "2026-09-18 14:05".
+- STAGE A: GLM capped mid-run 10:33; Opus verified its copy (20/20), home lede,
+  gate. GLM launcher STOPPED (no orphan). Resume on SONNET now:
+  .planning/exec/glm-121-stageA-resume.md.
 - ORDANI description keeps HIPAA-compliant (operator); schema cap 175; snippet
   trims at 155 (my popup had called 169 chars snippet-sized: corrected).
 - BEFORE STAGE D: Opus writes .claude/briefs/pass-121-margin-notes.md (one
