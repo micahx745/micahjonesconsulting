@@ -102,7 +102,9 @@ export default async function WorkIndexPage() {
               <ViewTransitionLink href={`/work/${s.slug}`} className="cw-wx-entry">
                 <div className="cw-wx-entry__a">
                   <p className="cw-wx-ctx cw-wx-entry__ctx">{s.entry.context}</p>
-                  <h3 className="cw-wx-entry__line">{s.entry.line}</h3>
+                  <h3 className="cw-wx-entry__line">
+                    {s.entry.figure ? `${s.entry.figure} ${s.entry.line}` : s.entry.line}
+                  </h3>
                 </div>
                 <div className="cw-wx-entry__b">
                   <p className="cw-wx-entry__did">{s.entry.did}</p>

@@ -1650,3 +1650,29 @@ An overlap check measures both axes against a bounding box read from the render.
 and hovered; overlap on both axes), and the tenure-year pattern in any brief excludes the literal
 `© 2013–2026 Micah Jones` before it runs. On recurrence: a brief lint that fails any Verification section
 touching colour or opacity that carries no contrast command.
+
+## #38 — A field split passed every check because no check read the list that renders it (2026-09-18)
+
+**What happened.** Pass-121 Stage A (`294f7c9`) split two studies' `/work` entry into `entry.figure` +
+`entry.line` (RFP engine "$3M" / "in signed contracts across eleven awards."; content engine "Up to
+800,000" / "impressions in a month, up from a few thousand a month."), as plumbing for the Direction C
+exhibits. The `/work` index reads `figure` for the lead entry only; every other entry printed `line`
+alone (`app/(foyer)/work/page.tsx:105`). The Stage A production build (2026-09-18 11:49) served
+`<h3 class="cw-wx-entry__line">in signed contracts across eleven awards.</h3>`. Stage A's checks passed,
+and the Pass-122 kickoff called it safe to ship alone. Caught by the Pass-122 session reading the render
+path before putting the ship question to the operator. Nothing shipped.
+
+**Root cause.** The split served a page design (Stage B) that never ran. Stage A's checks asserted what
+Stage A was about (the retired figure gone, the new ORDANI line present), not that every surface reading
+the changed fields still rendered them. When Direction C was rejected, the stage that "stood alone" was
+never re-read against the page as it is today.
+
+**The rule.** A change to a content-model field (split, rename, move) greps the field name across `app/`,
+`components/` and `lib/`, and checks the rendered output of every consumer before the stage is done. A
+stage that ships ahead of, or without, its design is re-checked against the live page, not the brief's.
+
+**The gate.** `scripts/work-entry-gate.mjs`, in `pnpm build` after render-gate: every published study's
+`/work` entry must render `figure + line` in the built HTML. Proven 2026-09-18: against a copy of the
+defective 11:49 build it exits 1 naming exactly content-engine and rfp-engine; on the fixed build it
+passes all five. On recurrence: the gate covers every `entry` and `results` field on every route that
+renders them.
