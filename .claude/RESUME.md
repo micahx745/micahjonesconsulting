@@ -25,12 +25,11 @@ both domains (LESSONS #5). Production untouched this pass.
   left, 7 [OPERATOR]). Opus kept PROOF's one-stroke-weight rule over R7's
   scaling stroke: flagged for G4. Premises checked (JSON ratios, --cs-accent
   scope, lifts); 'bookings a month' has no ledger provenance: asked.
-- NEXT: operator popups (build approval + drawing words; ORDANI did-line +
-  record period) -> ledger -> resolve [OPERATOR] -> G4 -> commit brief final.
-- LESSONS #37 + 4 standing clauses in briefs/README (708865b).
-- NEXT: open round-2 captures -> G3 input -> Fable G3 -> operator popup with
-  390/1440 captures -> brief -> G4 -> commit.
-- G3 open items + corrected G2 assumptions: see the brief's [G3] marks.
+- Operator 09-18: BUILD APPROVED (C + G3 fixes); drawing words, ORDANI did-line,
+  record period all approved + ledgered. Brief complete (0 G3/0 OPERATOR marks).
+- G4 IN FLIGHT: Fable reads brief per FABLE-121-G4-INPUT.md (circle stroke,
+  executability) -> apply FIX FIRST list if any -> commit brief FINAL -> GLM
+  Stage A on z.ai. Push/deploy stays the operator's.
 
 ## Waiting on operator
 - Speed Insights p75 LCP for /work (A4). Colleague okay for the clip.
