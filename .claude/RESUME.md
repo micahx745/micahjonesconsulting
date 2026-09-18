@@ -23,13 +23,19 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
 
 ## Next
 1. DONE: Stage A shipped (above).
-2. Direction popups with sheets .planning/qa/pass-122/sheets/ (A Ledger =
-   research pick, closest to today's site; B Operating System; C Kinetic
-   Editorial). Then rules on trial, rule by rule. Ledger every answer (#32).
-3. Style tile at 390/1440 of the pick, shown fast.
+2. DONE 09-18: direction = KINETIC EDITORIAL (research's C, not Pass-121's C);
+   demo piece "Not yet"; rules on trial ruled (ledger 8f4a118, 3c455ef:
+   motion open for scroll type, face test vs Bricolage, poster grounds one
+   accent, imagery = research's line + animated real photos, hero counters,
+   logos only if real + approved). No shoot: animate his real photos.
+3. RUNNING: style-tile panel (workflow pass-122-style-tile): 3 Opus designers
+   (.planning/mocks/pass-122/tile-1-numeral, -2-line, -3-posters, brief
+   TILE-BRIEF.md), Sonnet capture/measure (review/ per tile), 2 Opus judges.
+   Then: main reads frames, shows him the winner (both faces) at 390/1440 as
+   file:/// standalone + captures; iterate until it draws him in; Fable gate.
 
 ## Waiting on operator
-Direction pick · rules on trial · imagery/shoot · fable-harness-init
+Tile verdict · which real photos of him to animate · fable-harness-init
 @AGENTS.md · Speed Insights p75 LCP /work · clip okay · Ordani screens.
 Ledger gap: "one in eight to one in four" + "eleven awards" live since
 Pass-120 (6c564b4) with no #3 row: add provenance.
