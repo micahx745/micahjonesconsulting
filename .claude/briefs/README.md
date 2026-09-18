@@ -83,6 +83,12 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
 - **The tenure-year grep excludes the copyright line.** The pattern `(19|20)[0-9]{2}[-–](19|20)?[0-9]{2}`
   matches the live footer's `© 2013–2026 Micah Jones` (`components/color-worlds/PageFooter.tsx`). Strip
   that literal before the pattern runs, or the check tells the executor to delete the copyright.
+- **A design direction is never picked without its scope** (LESSONS #39). Before any popup asks the
+  operator to pick a design direction, the scope is settled and ledgered: which pages and sections change,
+  and whether the direction REPLACES the existing theme or FEEDS it. If LESSONS #3 holds no scope row for
+  the pass, the scope is its own popup, asked first. Every mock, tile or brief names its scope in its first
+  lines. Pass-122 built a complete redesign tile for a direction the operator meant as themes for the
+  existing site ("i didnt want to change the entire site").
 
 ## Budget this enforces
 

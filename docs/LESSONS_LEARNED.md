@@ -687,6 +687,17 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   display-face test is WITHDRAWN: Bricolage stays. The panel's tiles (`.planning/mocks/pass-122/tile-*`)
   are reference material only: nothing ships from them as a whole, and the black/signal-orange (#FF5A1F)
   palette they used is NOT adopted. Which themes come in, and on which page first, is his next pick.
+- **PASS-122 THEMES AND FIRST PAGE — operator 2026-09-18 (Pass-122 DIRECT, popup, after the scope ruling)**.
+  Asked which ideas come into the existing site (multi-select), he ticked all four: "Poster-size numbers
+  (Recommended)" ("$20M+, $14M, 800,000 and the exit values set far bigger, each the image of its section,
+  in Bricolage and your colours"), "Numbers that move (Recommended)" ("Each big number assembles once as you
+  scroll to it, and the four exits step through like a scoreboard. Reduced motion shows them finished."),
+  "Clip inside $20M+ (Recommended)" ("The Tel Aviv clip plays inside the $20M+ numerals for one beat, then
+  they settle into your copper.") and "Fewer words" ("Paragraphs cut down to one-line captions under the
+  numbers. Every cut shown to you before it's made; no rewording."). FIRST PAGE: picked "Home receipts
+  section (Recommended)": "The rest of the home stays. Its $20M+ and four exits section takes the ideas you
+  ticked." He is shown that section before and after at 390 and 1440 before anything else. FEWER WORDS
+  binds: every proposed cut goes to him as a list before it is made; nothing is reworded.
 
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
@@ -1739,3 +1750,28 @@ stage that ships ahead of, or without, its design is re-checked against the live
 defective 11:49 build it exits 1 naming exactly content-engine and rfp-engine; on the fixed build it
 passes all five. On recurrence: the gate covers every `entry` and `results` field on every route that
 renders them.
+
+## #39 — A direction pick was built as a redesign because nobody asked what it replaced (2026-09-18)
+
+**What happened.** Pass-122's kickoff called the pass "a new design direction", the research answered with
+three whole-site directions, and the popup asked "Which do we mock first?". The operator picked Kinetic
+Editorial and ruled the rules on trial one by one. The session then ran a three-designer style-tile panel
+that produced a complete black-and-orange redesign of the first screen, with a new accent and a font test.
+On seeing the winner he answered: "im confused - i didnt want to change the entire site. I wanted to take
+the best themes from these designs and incoporate them in our existing theme. even if it breaks some of the
+existing rules etc. Didnt want a complete redesign like this". About 1.5M subagent tokens went to tiles that
+are now reference only. Nothing shipped.
+
+**Root cause.** The scope (replace the theme, or feed it) was the first decision and was never asked. The
+kickoff, the research prompt and the direction popup all used the word "direction", and each reader filled
+in "replacement". The rules-on-trial popups made it worse: ruling that rules could go read as licence for a
+new site, when he meant permission inside the one he has.
+
+**The rule.** Before a design direction is put to the operator, its scope is settled and ledgered: which
+pages and sections change, and whether the direction replaces the existing theme or feeds it. Absent a
+scope row, the scope is its own popup, asked first. Every mock, tile and brief states its scope in its
+first lines.
+
+**The gate.** The standing clause "A design direction is never picked without its scope" in
+`.claude/briefs/README.md`. On recurrence: a pre-launch check that refuses any mock or tile workflow whose
+brief has no "Scope:" line naming the pages it changes and "replaces" or "feeds".
