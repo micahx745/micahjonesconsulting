@@ -575,6 +575,23 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   satisfied by PARTS 3 to 5 and this row, and is updated to say so. LESSONS #6 still binds that paragraph:
   literal characters only, no HTML entities.
 
+- **PASS-121 BUILD APPROVED AND THE DRAWING WORDS — operator 2026-09-18 (Pass-121 EXECUTE, popup after
+  Fable G3, `.planning/reviews/FABLE-121-G3.md`)**, with the round-2 captures sent at 390 and 1440. BUILD:
+  picked "Yes, build it with Fable's fixes (Recommended)": Direction C is built from
+  `.claude/briefs/pass-121-work-and-studies.md` with G3's eleven changes, after G4; no third mock round.
+  Nothing reaches production without a separate push approval. DRAWING WORDS: picked "Approve all as
+  written (Recommended)". EXACT approved strings, the provenance for the exhibit facts gate:
+  GUARDICORE labels **"What the pitch led with"**, **"What buyers signed for"**, **"honeypot"**,
+  **"north-south, defended"**, **"workloads"**, **"east-west traffic, seen"**; its sentence **"The pitch led
+  with honeypots. Buyers could not see the east-west traffic between their own workloads, and seeing inside
+  the environment was what they signed for."**
+  ORDANI heads **"Filing it yourself or through a service"**, **"Filing it in Ordani"**; boxes **"A service
+  takes a fee on every visit."**, **"Filing it yourself costs no fee, but it costs time and knowledge."**,
+  **"The claim is built from the visits already on the calendar."**, **"It is checked before it goes out,
+  so fewer come back rejected."**
+  BIRTH WORKER row 1 **"one to three"** to **"five to ten"**, unit **"bookings a month"**; row 2 **"the same
+  service"** to **"the full arc of care"**.
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
