@@ -557,6 +557,24 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   separate claims charge."** The two sentences after it are unchanged. The money line is NOT repeated in
   this section (it is already in the dek and the results).
 
+- **ORDANI DESCRIPTION AND THE HOME MONEY LINE — operator 2026-09-17 (Pass-121 EXECUTE, popup)**.
+  DESCRIPTION, picked "Lead with the money line (Recommended)". EXACT `description` for
+  `content/work/ordani.mdx`, which feeds the meta description, the Article JSON-LD and (by hand, since
+  `app/llms.txt/route.ts` is a literal template) the llms.txt ORDANI line: **"Birth workers keep
+  hundreds of dollars per client that a claims service would take. I founded and built ORDANI, the
+  HIPAA-compliant CRM where they file their own claims."**
+  HOME, picked "After beta, before the mission (Recommended)". This carries out PART 2's "HOME: same
+  claims line". In `app/(foyer)/page.tsx`, the `cw-lede` paragraph of the ORDANI block gains ONE sentence,
+  placed between "...and a public release is coming." and "The mission is bigger:". No other word in that
+  paragraph changes. EXACT resulting paragraph text: **"Birth workers run their practices on group chats
+  and paper intakes. HIPAA is the law. So I built Ordani. It has active paying users today, it is in beta,
+  and a public release is coming. Birth workers keep hundreds of dollars per client that a claims service
+  would take. The mission is bigger: lower infant mortality, by giving the people who care for mothers and
+  babies better tools than paperwork."** The Pass-82 comment above that paragraph ("To put the money claim
+  back: one sentence on the real mechanism and a named figure, ledgered in LESSONS #3 with a date") is
+  satisfied by PARTS 3 to 5 and this row, and is updated to say so. LESSONS #6 still binds that paragraph:
+  literal characters only, no HTML entities.
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
