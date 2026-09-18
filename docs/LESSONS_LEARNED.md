@@ -592,6 +592,14 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   BIRTH WORKER row 1 **"one to three"** to **"five to ten"**, unit **"bookings a month"**; row 2 **"the same
   service"** to **"the full arc of care"**.
 
+- **ORDANI DID-LINE AND THE RECORD HEADING — operator 2026-09-18 (Pass-121 EXECUTE, popup)**. DID-LINE:
+  picked "Say what it does (Recommended)". EXACT `entry.did` for `content/work/ordani.mdx`: **"I founded and
+  built ORDANI, a HIPAA-compliant CRM where birth workers file their own Medicaid and private-insurance
+  claims."** With it every ORDANI string on /work is approved, so the entry's DRAFT mark retires. RECORD
+  HEADING: picked "With a period (Recommended)". EXACT `RECORD.heading` in `content/work-page.ts`: **"Also on
+  the record."** (renders `ALSO ON THE RECORD.`, matching `THE WORK, ON THE RECORD.` and the home's `THE
+  RECEIPTS.`).
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
