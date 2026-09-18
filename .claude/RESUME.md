@@ -27,10 +27,7 @@ both domains (LESSONS #5). Production untouched this pass.
   for a preview (local file links, preview/ folder, photo embedded). Also asked:
   add the @AGENTS.md rule to fable-harness-init? (CC 2.1.277 fallback).
 - Margin notes list ce5b8e5 (31/31 lifts) sent to the operator for a look.
-- BEFORE STAGE D: Opus writes .claude/briefs/pass-121-margin-notes.md (one
-  lifted note per h2 + source line; turn paragraphs) -> operator looks.
 - After Stage D: first preview 390+1440 -> Opus look -> Fable checkpoint.
-- LESSONS #37 (checks gamed) + 4 briefs/README clauses, 708865b.
 
 ## Waiting on operator
 - Push/deploy timing (quote approval + date here first).
