@@ -366,8 +366,17 @@ with `-F` (#34); no check passed by editing the work to fit it, contrast at rest
 both axes, the tenure grep excludes `© 2013–2026 Micah Jones` (#37).
 
 **Visible-text helper**, written once in Stage A as `.planning/exec/visible-text.mjs`: reads HTML on
-stdin, removes `<head>...</head>`, every `<script>...</script>` and every tag, decodes the five basic
-entities, prints the text. All `expect >= 1` checks count its output; `expect 0` checks may read raw HTML.
+stdin, removes `<head>...</head>`, every `<script>...</script>` and every tag, decodes numeric entities
+(decimal and hex) and the named ones with `&amp;` last, prints the text. All `expect >= 1` checks count its
+output; `expect 0` checks may read raw HTML. (Execution correction, Stage A, 2026-09-18: the brief first said
+"the five basic entities"; React writes an apostrophe as `&#x27;`, so that version false-negatived every
+string containing one. The helper as committed in `294f7c9` is the one to use.)
+
+**JS size** (execution correction, Stage A, 2026-09-18): Next 16 no longer prints First Load JS in the
+`next build` route table (`node_modules/next/dist/docs/01-app/02-guides/upgrading/version-16.md`). The measure
+is `node .planning/exec/route-js-bytes.mjs <prerendered html>`: the uncompressed bytes of every distinct
+`/_next/static/**.js` file the page's HTML references. Stage A baseline (`294f7c9`'s build): `/work`
+`files=11 bytes=665757` (650.2 kB); each study `files=11 bytes=679924` (664.0 kB).
 
 ### Stage A: the retirement and the plumbing (content, gates, llms, robots, sitemap, JSON-LD)
 
@@ -435,8 +444,8 @@ C1. Build per 3.1. Served checks on `/work`:
 - Exhibits server-rendered: raw HTML `grep -c 'cs-exhibit'` expect `>= 4`.
 - Page height at 390: `document.documentElement.scrollHeight` expect `< 4600`.
 - Exhibit top against the figure's cap line at 1440 (3.1), each of the four entries: expect within `2px`, both readings quoted.
-C2. First Load JS for `/work` from the `pnpm build` route table, before (Stage A build) and after: expect
-the same within 2 kB.
+C2. `node .planning/exec/route-js-bytes.mjs .next/server/app/work.html` after the Stage C build: expect
+`bytes` within 2048 of the Stage A baseline 665757.
 Commit Stage C.
 
 ### Stage D: the studies
@@ -450,8 +459,9 @@ D2b. Every `entry.figurePhrase` is a substring of its own `entry.line`. Expect `
 D2c. At 390, each of the five study bands shows its media (photograph or exhibit) inside the first 812px:
 read `document.querySelector('.cs-band__media').getBoundingClientRect().top` at a 390 viewport. Expect
 `< 812` on all five, and open each 390 band capture once.
-D3. First Load JS for `/work/[slug]`, before and after: expect within 3 kB (the ScrollReveal mount is the
-only new client code).
+D3. `node .planning/exec/route-js-bytes.mjs .next/server/app/work/guardicore.html` after the Stage D build:
+expect `bytes` within 3072 of the Stage A baseline 679924 (the ScrollReveal mount is the only new client
+code).
 Commit Stage D.
 
 ### Stage E: motion
