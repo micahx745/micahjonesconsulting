@@ -674,6 +674,19 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   his to supply.
   NOT ON TRIAL (kickoff): facts and copy. Voice rules, the banned-words list, the em-dash cap and every row
   of this ledger stand.
+- **PASS-122 SCOPE: EVOLVE THE EXISTING THEME, NOT A REDESIGN — operator 2026-09-18 (Pass-122 DIRECT, popup,
+  on seeing the style-tile panel's winner, a complete black-and-orange redesign of the first screen)**.
+  Asked which tile to carry forward, he answered (Other), verbatim: "im confused - i didnt want to change the
+  entire site. I wanted to take the best themes from these designs and incoporate them in our existing theme.
+  even if it breaks some of the existing rules etc. Didnt want a complete redesign like this". Asked which
+  display face, he answered (Other), verbatim: "ditto las tmessage".
+  RULING: the existing site's theme stays: its structure, its pages, the Color Worlds home, cream paper,
+  ink, copper, and the three faces (Bricolage display, Hanken body, Mono labels). "Kinetic Editorial" is a
+  SOURCE OF THEMES to bring into that theme, not a replacement. The rules-on-trial rulings above stand as
+  permissions ("even if it breaks some of the existing rules"), applied inside the existing theme. The
+  display-face test is WITHDRAWN: Bricolage stays. The panel's tiles (`.planning/mocks/pass-122/tile-*`)
+  are reference material only: nothing ships from them as a whole, and the black/signal-orange (#FF5A1F)
+  palette they used is NOT adopted. Which themes come in, and on which page first, is his next pick.
 
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things

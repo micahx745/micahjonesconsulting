@@ -165,7 +165,7 @@ by looking. Grade per page; report R-numbers.
 - **R1 — ≤2 typefaces** (a mono for numerals/data permitted as a narrow third); the display face
   has visible character. Inter/Roboto/Geist/Open Sans serving as the display face is an automatic
   fail.
-  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): the display face is on test. The first style-tile screen is shown in Bricolage and in one more characterful display face chosen for moving type; he picks on sight, and this rule records the pick. Hanken Grotesk (body) and JetBrains Mono (labels only) stay.
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): the display face is on test. The first style-tile screen is shown in Bricolage and in one more characterful display face chosen for moving type; he picks on sight, and this rule records the pick. Hanken Grotesk (body) and JetBrains Mono (labels only) stay. WITHDRAWN the same day by the scope ruling (LESSONS #3 "PASS-122 SCOPE": evolve the existing theme, not a redesign): Bricolage stays.
 - **R2 — Real scale contrast:** largest display type ≥4× body size; no two adjacent hierarchy
   levels within 15% of each other; ≤5 active sizes per page.
   - Exception (operator 2026-09-16, left to the judge: "what you think is best"): case-study pages set their largest type at 56px against 18px body at 1440 (3.1x) and 36px against 17px at 390, because a result figure at 112px wraps on the anonymous studies. /work keeps its 112px lead figure. Study pages only, not a precedent.
@@ -175,7 +175,7 @@ by looking. Grade per page; report R-numbers.
   - Ruling (operator 2026-09-16, Pass-120 build, picked "Old lighter cream (Recommended)"): on the bone ground the specified exhibit tint `--color-bone` `#E8DFD0` measured 1.04:1 against the page and disappeared. The study exhibit (`--cs-tint` on paper) sits on `--color-foyer-paper` `#F5EFE4` instead, a lighter panel on the darker page; ink on it 15.47:1, ink-soft 10.47:1.
 - **R4 — One accent color per page context doing real work; zero purple/indigo/cyan gradients,
   zero gradient text, zero glow/halo/orb decoration.**
-  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): poster grounds. Each section may sit on its own full-bleed ground (ink, paper, or one saturated colour) with type at maximum contrast; still ONE accent per screen. The palette is chosen on sight at the style tile, then added to `brand.json.palette` (the `design-tokens.sh` allow-list) in the commit that adopts it. Gradients, gradient text, purple and glow stay banned.
+  - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): poster grounds. Each section may sit on its own full-bleed ground (ink, paper, or one saturated colour) with type at maximum contrast; still ONE accent per screen. Grounds come from the EXISTING palette (scope ruling, LESSONS #3 "PASS-122 SCOPE"); the style tile's black and signal orange are not adopted. Gradients, gradient text, purple and glow stay banned.
 - **R5 — No glassmorphism, no one-side accent-border cards, no cards nested in cards, no border
   radius >16px on content containers.**
 

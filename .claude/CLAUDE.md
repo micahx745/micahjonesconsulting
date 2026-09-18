@@ -7,13 +7,18 @@ The operator rejected Pass-121 on sight and put the design rules below on trial;
 popup for the **Kinetic Editorial** direction (LESSONS #3 "PASS-122 DIRECTION AND THE DEMO PIECE" and
 "PASS-122 RULES ON TRIAL"; `docs/DESIGN_BAR.md` R1, R4, R9, R12, R13, R15 carry the dated rulings).
 Where a section below says otherwise, THIS amendment wins:
+- **SCOPE (operator 2026-09-18, same day, LESSONS #3 "PASS-122 SCOPE"):** "i didnt want to change the
+  entire site. I wanted to take the best themes from these designs and incoporate them in our existing
+  theme." The existing theme stays (structure, pages, Color Worlds home, cream/ink/copper, Bricolage,
+  Hanken, Mono labels). Kinetic Editorial is a source of themes; the rulings below are permissions used
+  INSIDE that theme. The display-face test is withdrawn; the style-tile palette is not adopted.
 - **Motion:** the one-signature limit and the 400ms entrance cap are lifted for scroll-driven type: type
   and numbers may move with the scroll, a section may hold while its number assembles. Still banned:
   cursor followers, scroll that changes speed, marquees, idle loops. Reduced motion gets the finished frame.
 - **Counters:** one hero number per page or section may assemble once; the number is in the server HTML.
-- **Colour:** poster grounds, one full-bleed ground per section, ONE accent per screen; palette picked at
-  the style tile, then added to `brand.json.palette`. No gradients, purple or glow.
-- **Type:** the display face is on test against Bricolage at the style tile; Hanken body and Mono labels stay.
+- **Colour:** poster grounds, one full-bleed ground per section, ONE accent per screen, drawn from the
+  EXISTING palette (scope ruling). No gradients, purple or glow.
+- **Type:** Bricolage stays (the face test was withdrawn by the scope ruling); Hanken body, Mono labels.
 - **Imagery:** real photos, screen recordings, charts of real numbers, and animated versions of the
   operator's own real working photos (no captions). Still out: stock, AI illustration, icons, 3D scenes.
   The 2026-09-18 hold on box-and-arrow diagrams of the work stands.
