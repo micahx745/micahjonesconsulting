@@ -1,0 +1,157 @@
+M1 work 1440 PASS 28 labels in 5 visible drawing(s): no intersections, all inside their svg box
+M2 work 1440 PASS guardicore-vis (340px wide): min rendered label font 11.5px, need >= 11
+M2 work 1440 PASS rfp-flow (400px wide): min rendered label font 13.6px, need >= 11
+M2 work 1440 PASS ordani-claims (400px wide): min rendered label font 11.3px, need >= 11
+M2 work 1440 PASS content-move (400px wide): min rendered label font 13.3px, need >= 11
+M2 work 1440 PASS birth-move (400px wide): min rendered label font 17.3px, need >= 11
+M3 work 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 work 1440 PASS page width 1440 = viewport 1440
+M5 work 1440 PASS arrows vs labels: min gap 5.5px (need >= 4)
+M6 work 1440 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 9, rfp-flow 7, ordani-claims 5, content-move 6x, birth-move 4x (need >= 4 each; x = figure-move exemption)
+M7 work 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 185 paths
+M8 work 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+M10 work 1440 PASS (check defined at 390 only)
+M13 work 1440 PASS 7 distinct HTML font sizes: 12, 14, 18, 22, 36, 72, 96 (need exactly 7); svg label sizes (drawings' own type): 16, 17, 19
+M14 work 1440 PASS drawings present: guardicore-vis, rfp-flow, ordani-claims, content-move, birth-move; rfp-flow, guardicore-vis, ordani-claims all have >= 4 distinct node widths (figure-move exempt per amended M14)
+D1 work 1440 PASS rest: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (birth-move); paper stroke 3.93 (guardicore-vis)
+D1 work 1440 PASS hover: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (birth-move); paper stroke 3.93 (guardicore-vis)
+D3 work 1440 east-west label ink box L288 R550.2 T288.2 B312.9; viewBox margins left 288, right 9.8, top 288.2, bottom 9.1
+D3 work 1440 PASS 28 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 work 1440 PASS display heading text: wx__head "The work, on the record." | rec__h "Also on the record."
+RESULT work 1440 PASS
+
+M1 work 390 PASS 28 labels in 5 visible drawing(s): no intersections, all inside their svg box
+M2 work 390 PASS guardicore-vis (350px wide): min rendered label font 22.2px, need >= 11
+M2 work 390 PASS rfp-flow (350px wide): min rendered label font 11.9px, need >= 11
+M2 work 390 FAIL ordani-claims (350px wide): min rendered label font 9.9px, need >= 11
+M2 work 390 PASS content-move (350px wide): min rendered label font 11.7px, need >= 11
+M2 work 390 PASS birth-move (350px wide): min rendered label font 15.1px, need >= 11
+M3 work 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.171 vs 1.1858 (1.2%), leftOffsetRatio 0.091 vs 0.0909 (0.1%)
+M4 work 390 PASS page width 390 = viewport 390
+M5 work 390 PASS arrows vs labels: min gap 4.9px (need >= 4)
+M6 work 390 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 9, rfp-flow 6, ordani-claims 5, content-move 6x, birth-move 4x (need >= 4 each; x = figure-move exemption)
+M7 work 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 185 paths
+M8 work 390 PASS stroke widths: circle 1.5px, node 1.5px, arrow 1.5px; spread 0.00px (need <= 0.5)
+M10 work 390 PASS entry order figure line < drawing < did-line < service label on 4 entries
+M13 work 390 PASS (check defined at 1440 only)
+INFO work 390: first fold head top 117, description bottom 472, doorway top 520 (viewport 844)
+D1 work 390 PASS rest: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (birth-move); paper stroke 3.93 (guardicore-vis)
+D1 work 390 PASS hover: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (birth-move); paper stroke 3.93 (guardicore-vis)
+D3 work 390 east-west label ink box L20 R282.1 T592.3 B618; viewBox margins left 20, right 17.9, top 592.3, bottom 8
+D3 work 390 PASS 28 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 work 390 PASS display heading text: wx__head "The work, on the record." | rec__h "Also on the record."
+RESULT work 390 FAIL
+
+M1 study-guardicore 1440 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-guardicore 1440 PASS guardicore-vis (834px wide): min rendered label font 28.3px, need >= 11
+M3 study-guardicore 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 study-guardicore 1440 PASS page width 1440 = viewport 1440
+M5 study-guardicore 1440 PASS arrows vs labels: min gap 21.8px (need >= 4)
+M6 study-guardicore 1440 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 9 (need >= 4 each; x = figure-move exemption)
+M7 study-guardicore 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 66 paths
+M8 study-guardicore 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+M12 study-guardicore 1440 PASS (no drawing in this band; the photograph band)
+INFO study-guardicore 1440: band media top 149.4 vs title cap top 149.5 (diff 0px)
+INFO study-guardicore 1440: body break drawing-to-sentence gaps 28px
+D1 study-guardicore 1440 PASS rest: text >= 4.5, strokes >= 3.0; lowest: bone text 5.94 (guardicore-vis); bone stroke 3.53 (guardicore-vis)
+D1 study-guardicore 1440 PASS hover: text >= 4.5, strokes >= 3.0; lowest: bone text 5.94 (guardicore-vis); bone stroke 3.53 (guardicore-vis)
+D3 study-guardicore 1440 east-west label ink box L288 R550.1 T288.5 B313.4; viewBox margins left 288, right 9.9, top 288.5, bottom 8.6
+D3 study-guardicore 1440 PASS 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-guardicore 1440 PASS display heading text: cs-title "Repositioning Guardicore: $14M, then Akamai"
+RESULT study-guardicore 1440 PASS
+
+M1 study-guardicore 390 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-guardicore 390 PASS guardicore-vis (310px wide): min rendered label font 19.6px, need >= 11
+M3 study-guardicore 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.171 vs 1.1858 (1.2%), leftOffsetRatio 0.091 vs 0.0909 (0.1%)
+M4 study-guardicore 390 PASS page width 390 = viewport 390
+M5 study-guardicore 390 PASS arrows vs labels: min gap 14.7px (need >= 4)
+M6 study-guardicore 390 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 8 (need >= 4 each; x = figure-move exemption)
+M7 study-guardicore 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 66 paths
+M8 study-guardicore 390 PASS stroke widths: circle 1.5px, node 1.5px, arrow 1.5px; spread 0.00px (need <= 0.5)
+M12 study-guardicore 390 PASS (no drawing in this band; the photograph band)
+INFO study-guardicore 390: band media top 1079 vs title cap top 121.5 (diff 958px)
+INFO study-guardicore 390: body break drawing-to-sentence gaps 28px
+D1 study-guardicore 390 PASS rest: text >= 4.5, strokes >= 3.0; lowest: bone text 5.94 (guardicore-vis); bone stroke 3.53 (guardicore-vis)
+D1 study-guardicore 390 PASS hover: text >= 4.5, strokes >= 3.0; lowest: bone text 5.94 (guardicore-vis); bone stroke 3.53 (guardicore-vis)
+D3 study-guardicore 390 east-west label ink box L20 R282.2 T592.6 B617.8; viewBox margins left 20, right 17.8, top 592.6, bottom 8.2
+D3 study-guardicore 390 PASS 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-guardicore 390 PASS display heading text: cs-title "Repositioning Guardicore: $14M, then Akamai"
+RESULT study-guardicore 390 PASS
+
+M1 study-rfp 1440 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-rfp 1440 PASS rfp-flow (552px wide, band): min rendered label font 18.7px, need >= 12
+M3 study-rfp 1440 PASS circle on "$3M": widthRatio 1.1884 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0908 vs 0.0909 (0.1%)
+M4 study-rfp 1440 PASS page width 1440 = viewport 1440
+M5 study-rfp 1440 PASS arrows vs labels: min gap 7.9px (need >= 4)
+M6 study-rfp 1440 PASS paired labels inside their node boxes; distinct widths per drawing: rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 study-rfp 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 46 paths
+M8 study-rfp 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+M12 study-rfp 1440 PASS band rfp-flow: drawing bottom to sentence top 28px (need 24-40)
+INFO study-rfp 1440: band media top 149.4 vs title cap top 149.5 (diff 0px)
+D1 study-rfp 1440 PASS rest: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 4.22 (rfp-flow)
+D1 study-rfp 1440 PASS hover: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 4.22 (rfp-flow)
+D3 study-rfp 1440 PASS 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-rfp 1440 PASS display heading text: cs-title "AI RFP software: $3M in signed contracts"
+RESULT study-rfp 1440 PASS
+
+M1 study-rfp 390 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-rfp 390 PASS rfp-flow (360.59px wide, band): min rendered label font 12.2px, need >= 12
+M3 study-rfp 390 PASS circle on "$3M": widthRatio 1.1884 vs 1.1885 (0.0%), heightRatio 1.171 vs 1.1858 (1.2%), leftOffsetRatio 0.0907 vs 0.0909 (0.2%)
+M4 study-rfp 390 PASS page width 390 = viewport 390
+M5 study-rfp 390 PASS arrows vs labels: min gap 5.5px (need >= 4)
+M6 study-rfp 390 PASS paired labels inside their node boxes; distinct widths per drawing: rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 study-rfp 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 46 paths
+M8 study-rfp 390 PASS stroke widths: circle 1.5px, node 1.5px, arrow 1.5px; spread 0.00px (need <= 0.5)
+M12 study-rfp 390 PASS band rfp-flow: drawing bottom to sentence top 28px (need 24-40)
+INFO study-rfp 390: band media top 1222.8 vs title cap top 141 (diff 1082px)
+D1 study-rfp 390 PASS rest: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 4.22 (rfp-flow)
+D1 study-rfp 390 PASS hover: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 4.22 (rfp-flow)
+D3 study-rfp 390 PASS 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-rfp 390 PASS display heading text: cs-title "AI RFP software: $3M in signed contracts"
+RESULT study-rfp 390 PASS
+
+M1 states 1440 PASS 54 labels in 9 visible drawing(s): no intersections, all inside their svg box
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS rfp-flow (399.44px wide): min rendered label font 13.6px, need >= 11
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS rfp-flow (399.44px wide): min rendered label font 13.6px, need >= 11
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS rfp-flow (399.44px wide): min rendered label font 13.6px, need >= 11
+M2 states 1440 PASS rfp-flow (476px wide): min rendered label font 16.1px, need >= 11
+M2 states 1440 PASS rfp-flow (476px wide): min rendered label font 16.1px, need >= 11
+M3 states 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M3 states 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 states 1440 PASS page width 1440 = viewport 1440
+M5 states 1440 PASS arrows vs labels: min gap 5.5px (need >= 4)
+M6 states 1440 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 8, guardicore-vis 8, rfp-flow 7, guardicore-vis 8, rfp-flow 7, guardicore-vis 8, rfp-flow 7, rfp-flow 7, rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 states 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 494 paths
+M8 states 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+D1 states 1440 PASS rest: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (guardicore-vis); paper stroke 3.93 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D1 states 1440 PASS hover: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (guardicore-vis); paper stroke 3.93 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D3 states 1440 east-west label ink box L288 R550.1 T288.2 B312.9; viewBox margins left 288, right 9.9, top 288.2, bottom 9.1
+D3 states 1440 east-west label ink box L288 R550.1 T288.2 B312.9; viewBox margins left 288, right 9.9, top 288.2, bottom 9.1
+D3 states 1440 east-west label ink box L288 R550.1 T288.2 B312.9; viewBox margins left 288, right 9.9, top 288.2, bottom 9.1
+D3 states 1440 east-west label ink box L288 R550.1 T288.2 B312.9; viewBox margins left 288, right 9.9, top 288.2, bottom 9.1
+D3 states 1440 PASS 54 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 states 1440 PASS display heading text: wx__head "The work, on the record." | wx__head "The work, on the record." | wx__head "The work, on the record." | wx__head "The work, on the record."
+RESULT states 1440 PASS
+
+M1 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+M2 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+M3 states 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M3 states 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 states 390 PASS page width 390 = viewport 390
+M5 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+M5 states 390 PASS arrows vs labels: min gap n/a (need >= 4)
+M6 states 390 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 7, guardicore-vis 7, rfp-flow 6, guardicore-vis 7, rfp-flow 6, guardicore-vis 7, rfp-flow 6, rfp-flow 7, rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 states 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 494 paths
+M8 states 390 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+D1 states 390 PASS rest: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (guardicore-vis); paper stroke 3.93 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D1 states 390 PASS hover: text >= 4.5, strokes >= 3.0; lowest: paper text 6.62 (guardicore-vis); paper stroke 3.93 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D3 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+D6 states 390 PASS display heading text: wx__head "The work, on the record." | wx__head "The work, on the record." | wx__head "The work, on the record." | wx__head "The work, on the record."
+RESULT states 390 PASS
+
+M15 exemption applied: the literal "© 2013–2026 Micah Jones" was excluded before the tenure pattern ran (1 occurrence(s) cut)
+M15 all four files PASS ledger grep: none of 40%, 91%, intake completion, 290,000, 36x, $80M, Luna, per claim, em-dash, tenure year range (copyright line exempted); D8: no "stay with the practitioner"

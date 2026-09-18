@@ -1,0 +1,675 @@
+M1 work 1440 PASS 29 labels in 5 visible drawing(s): no intersections, all inside their svg box
+M2 work 1440 PASS guardicore-vis (340px wide): min rendered label font 11.5px, need >= 11
+M2 work 1440 PASS rfp-flow (400px wide): min rendered label font 13.6px, need >= 11
+M2 work 1440 PASS ordani-claims (400px wide): min rendered label font 12.7px, need >= 11
+M2 work 1440 PASS content-move (400px wide): min rendered label font 13.3px, need >= 11
+M2 work 1440 PASS birth-move (400px wide): min rendered label font 17.3px, need >= 11
+M3 work 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 work 1440 PASS page width 1440 = viewport 1440
+M5 work 1440 PASS arrows vs labels: min gap 5.5px (need >= 4)
+M6 work 1440 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 6, rfp-flow 7, ordani-claims 4, content-move 6x, birth-move 5x (need >= 4 each; x = figure-move exemption)
+M7 work 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 184 paths
+M8 work 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+M10 work 1440 PASS (check defined at 390 only)
+M13 work 1440 PASS 7 distinct HTML font sizes: 12, 14, 18, 22, 36, 72, 96 (need exactly 7); svg label sizes (drawings' own type): 16, 19
+M14 work 1440 PASS drawings present: guardicore-vis, rfp-flow, ordani-claims, content-move, birth-move; rfp-flow, guardicore-vis, ordani-claims all have >= 4 distinct node widths (figure-move exempt per amended M14)
+D1 work 1440 FAIL rest: guardicore-vis text "east-west traffic, seen" 11.5px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: ordani-claims text "Hundreds of dollars per clie" 12.7px @opacity 0.60 on paper: 2.28 < 4.5
+D1 work 1440 FAIL rest: content-move text "+" 15.8px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: birth-move text "+" 17.3px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 1440 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (birth-move); paper stroke 1.73 (guardicore-vis)
+D1 work 1440 FAIL hover: guardicore-vis text "east-west traffic, seen" 11.5px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: ordani-claims text "Hundreds of dollars per clie" 12.7px @opacity 0.60 on paper: 2.28 < 4.5
+D1 work 1440 FAIL hover: content-move text "+" 15.8px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move text "+" 17.3px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 1440 FAIL hover: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (birth-move); paper stroke 2.19 (birth-move)
+D3 work 1440 FAIL guardicore-vis label "What the pitchled with" margins L62.2 R338.1 T2.2 B241.1 (need >= 8 each)
+D3 work 1440 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 work 1440 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 work 1440 FAIL guardicore-vis label "What buyers signed for" margins L292.7 R16.5 T2.2 B265.1 (need >= 8 each)
+D3 work 1440 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 work 1440 FAIL rfp-flow label "bid or no-bidscore" intersects stroke(s) b3
+D3 work 1440 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 work 1440 FAIL ordani-claims label "Filing it yourselfor through a service" margins L8 R364.1 T6.5 B280 (need >= 8 each)
+D3 work 1440 FAIL ordani-claims label "Filing it in Ordani" margins L312 R70.9 T6.5 B304 (need >= 8 each)
+D3 work 1440 FAIL ordani-claims label "Hundreds of dollars per clientstay with the practitioner." margins L129.1 R129.1 T280.5 B6 (need >= 8 each)
+D3 work 1440 FAIL birth-move label "+" intersects stroke(s) bm-plus2
+D3 work 1440 east-west label ink box L287 R549.2 T238.2 B262.9; viewBox margins left 287, right 10.8, top 238.2, bottom 29.1
+D3 work 1440 FAIL 29 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 work 1440 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 work 1440 FAIL rec__h textContent "Also On The Record." != "Also on the record."
+D6 work 1440 FAIL display heading text: wx__head "The Work,On The Record." | rec__h "Also On The Record."
+RESULT work 1440 FAIL
+
+M1 work 390 PASS 29 labels in 5 visible drawing(s): no intersections, all inside their svg box
+M2 work 390 PASS guardicore-vis (350px wide): min rendered label font 22.2px, need >= 11
+M2 work 390 PASS rfp-flow (350px wide): min rendered label font 11.9px, need >= 11
+M2 work 390 PASS ordani-claims (350px wide): min rendered label font 11.1px, need >= 11
+M2 work 390 PASS content-move (350px wide): min rendered label font 11.7px, need >= 11
+M2 work 390 PASS birth-move (350px wide): min rendered label font 15.1px, need >= 11
+M3 work 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.171 vs 1.1858 (1.2%), leftOffsetRatio 0.091 vs 0.0909 (0.1%)
+M4 work 390 PASS page width 390 = viewport 390
+M5 work 390 PASS arrows vs labels: min gap 4.9px (need >= 4)
+M6 work 390 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 6, rfp-flow 6, ordani-claims 4, content-move 6x, birth-move 5x (need >= 4 each; x = figure-move exemption)
+M7 work 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 184 paths
+M8 work 390 PASS stroke widths: circle 1.5px, node 1.5px, arrow 1.5px; spread 0.00px (need <= 0.5)
+M10 work 390 PASS entry order figure line < drawing < did-line < service label on 4 entries
+M13 work 390 PASS (check defined at 1440 only)
+INFO work 390: first fold head top 117, description bottom 472, doorway top 520 (viewport 844)
+D1 work 390 FAIL rest: guardicore-vis text "east-west traffic, seen" 22.2px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: ordani-claims text "Hundreds of dollars per clie" 11.1px @opacity 0.60 on paper: 2.28 < 4.5
+D1 work 390 FAIL rest: content-move text "+" 13.9px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: content-move stroke ln path in content-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: birth-move text "+" 15.1px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: birth-move stroke ln path in birth-move @opacity 0.43 on paper: 1.73 < 3
+D1 work 390 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (birth-move); paper stroke 1.73 (guardicore-vis)
+D1 work 390 FAIL hover: guardicore-vis text "east-west traffic, seen" 22.2px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: rfp-flow stroke ln path in rfp-flow @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: ordani-claims text "Hundreds of dollars per clie" 11.1px @opacity 0.60 on paper: 2.28 < 4.5
+D1 work 390 FAIL hover: content-move text "+" 13.9px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: content-move stroke ln path in content-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move text "+" 15.1px @opacity 0.60 on paper: 2.19 < 4.5
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: birth-move stroke ln path in birth-move @opacity 0.60 on paper: 2.19 < 3
+D1 work 390 FAIL hover: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (birth-move); paper stroke 2.19 (birth-move)
+D3 work 390 FAIL guardicore-vis label "What the pitchled with" margins L70.2 R70.2 T2.3 B544 (need >= 8 each)
+D3 work 390 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 work 390 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 work 390 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 work 390 FAIL rfp-flow label "bid or no-bidscore" intersects stroke(s) b3
+D3 work 390 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 work 390 FAIL ordani-claims label "Filing it yourselfor through a service" margins L8 R364.1 T7.1 B280.9 (need >= 8 each)
+D3 work 390 FAIL ordani-claims label "Filing it in Ordani" margins L312 R70.9 T7.1 B304.9 (need >= 8 each)
+D3 work 390 FAIL ordani-claims label "Hundreds of dollars per clientstay with the practitioner." margins L129 R128.5 T281.1 B6.9 (need >= 8 each)
+D3 work 390 FAIL birth-move label "+" intersects stroke(s) bm-plus
+D3 work 390 east-west label ink box L18.9 R281.1 T542.3 B568; viewBox margins left 18.9, right 18.9, top 542.3, bottom 28
+D3 work 390 FAIL 29 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 work 390 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 work 390 FAIL rec__h textContent "Also On The Record." != "Also on the record."
+D6 work 390 FAIL display heading text: wx__head "The Work,On The Record." | rec__h "Also On The Record."
+RESULT work 390 FAIL
+
+M1 study-guardicore 1440 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-guardicore 1440 PASS guardicore-vis (834px wide): min rendered label font 28.3px, need >= 11
+M3 study-guardicore 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 study-guardicore 1440 PASS page width 1440 = viewport 1440
+M5 study-guardicore 1440 PASS arrows vs labels: min gap 21.8px (need >= 4)
+M6 study-guardicore 1440 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 6 (need >= 4 each; x = figure-move exemption)
+M7 study-guardicore 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 66 paths
+M8 study-guardicore 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+M12 study-guardicore 1440 PASS (no drawing in this band; the photograph band)
+INFO study-guardicore 1440: band media top 149.4 vs title cap top 149.5 (diff 0px)
+INFO study-guardicore 1440: body break drawing-to-sentence gaps 28px
+D1 study-guardicore 1440 FAIL rest: guardicore-vis text "east-west traffic, seen" 28.3px @opacity 1.00 on bone: 3.53 < 4.5
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 1440 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: bone text 3.53 (guardicore-vis); bone stroke 2.43 (guardicore-vis)
+D1 study-guardicore 1440 FAIL hover: guardicore-vis text "east-west traffic, seen" 28.3px @opacity 1.00 on bone: 3.53 < 4.5
+D1 study-guardicore 1440 FAIL hover: text >= 4.5, strokes >= 3.0; lowest: bone text 3.53 (guardicore-vis); bone stroke 3.53 (guardicore-vis)
+D3 study-guardicore 1440 FAIL guardicore-vis label "What the pitchled with" margins L62.2 R338.2 T2.5 B240.6 (need >= 8 each)
+D3 study-guardicore 1440 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 study-guardicore 1440 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 study-guardicore 1440 FAIL guardicore-vis label "What buyers signed for" margins L292.6 R16.6 T2.5 B264.6 (need >= 8 each)
+D3 study-guardicore 1440 east-west label ink box L286.9 R549.1 T238.5 B263.4; viewBox margins left 286.9, right 10.9, top 238.5, bottom 28.6
+D3 study-guardicore 1440 FAIL 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-guardicore 1440 FAIL cs-title textContent "Repositioning Guardicore:$14M, then Akamai" != "Repositioning Guardicore: $14M, then Akamai"
+D6 study-guardicore 1440 FAIL display heading text: cs-title "Repositioning Guardicore:$14M, then Akamai"
+RESULT study-guardicore 1440 FAIL
+
+M1 study-guardicore 390 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-guardicore 390 PASS guardicore-vis (310px wide): min rendered label font 19.6px, need >= 11
+M3 study-guardicore 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.171 vs 1.1858 (1.2%), leftOffsetRatio 0.091 vs 0.0909 (0.1%)
+M4 study-guardicore 390 PASS page width 390 = viewport 390
+M5 study-guardicore 390 PASS arrows vs labels: min gap 14.7px (need >= 4)
+M6 study-guardicore 390 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 6 (need >= 4 each; x = figure-move exemption)
+M7 study-guardicore 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 66 paths
+M8 study-guardicore 390 PASS stroke widths: circle 1.5px, node 1.5px, arrow 1.5px; spread 0.00px (need <= 0.5)
+M12 study-guardicore 390 PASS (no drawing in this band; the photograph band)
+INFO study-guardicore 390: band media top 1079 vs title cap top 121.5 (diff 958px)
+INFO study-guardicore 390: body break drawing-to-sentence gaps 28px
+D1 study-guardicore 390 FAIL rest: guardicore-vis text "east-west traffic, seen" 19.6px @opacity 1.00 on bone: 3.53 < 4.5
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on bone: 2.43 < 3
+D1 study-guardicore 390 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: bone text 3.53 (guardicore-vis); bone stroke 2.43 (guardicore-vis)
+D1 study-guardicore 390 FAIL hover: guardicore-vis text "east-west traffic, seen" 19.6px @opacity 1.00 on bone: 3.53 < 4.5
+D1 study-guardicore 390 FAIL hover: text >= 4.5, strokes >= 3.0; lowest: bone text 3.53 (guardicore-vis); bone stroke 3.53 (guardicore-vis)
+D3 study-guardicore 390 FAIL guardicore-vis label "What the pitchled with" margins L70.2 R70.2 T2.6 B544.2 (need >= 8 each)
+D3 study-guardicore 390 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 study-guardicore 390 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 study-guardicore 390 east-west label ink box L18.9 R281.1 T542.6 B567.8; viewBox margins left 18.9, right 18.9, top 542.6, bottom 28.2
+D3 study-guardicore 390 FAIL 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-guardicore 390 FAIL cs-title textContent "Repositioning Guardicore:$14M, then Akamai" != "Repositioning Guardicore: $14M, then Akamai"
+D6 study-guardicore 390 FAIL display heading text: cs-title "Repositioning Guardicore:$14M, then Akamai"
+RESULT study-guardicore 390 FAIL
+
+M1 study-rfp 1440 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-rfp 1440 PASS rfp-flow (552px wide, band): min rendered label font 18.7px, need >= 12
+M3 study-rfp 1440 PASS circle on "$3M": widthRatio 1.1884 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0908 vs 0.0909 (0.1%)
+M4 study-rfp 1440 PASS page width 1440 = viewport 1440
+M5 study-rfp 1440 PASS arrows vs labels: min gap 7.9px (need >= 4)
+M6 study-rfp 1440 PASS paired labels inside their node boxes; distinct widths per drawing: rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 study-rfp 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 46 paths
+M8 study-rfp 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+M12 study-rfp 1440 PASS band rfp-flow: drawing bottom to sentence top 28px (need 24-40)
+INFO study-rfp 1440: band media top 149.4 vs title cap top 149.5 (diff 0px)
+D1 study-rfp 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 1440 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 2.73 (rfp-flow)
+D1 study-rfp 1440 PASS hover: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 4.22 (rfp-flow)
+D3 study-rfp 1440 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 study-rfp 1440 FAIL rfp-flow label "bid or no-bidscore" intersects stroke(s) b3
+D3 study-rfp 1440 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 study-rfp 1440 FAIL 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-rfp 1440 FAIL cs-title textContent "AI RFP software:$3M in signed contracts" != "AI RFP software: $3M in signed contracts"
+D6 study-rfp 1440 FAIL display heading text: cs-title "AI RFP software:$3M in signed contracts"
+RESULT study-rfp 1440 FAIL
+
+M1 study-rfp 390 PASS 6 labels in 1 visible drawing(s): no intersections, all inside their svg box
+M2 study-rfp 390 PASS rfp-flow (360.59px wide, band): min rendered label font 12.2px, need >= 12
+M3 study-rfp 390 PASS circle on "$3M": widthRatio 1.1884 vs 1.1885 (0.0%), heightRatio 1.171 vs 1.1858 (1.2%), leftOffsetRatio 0.0907 vs 0.0909 (0.2%)
+M4 study-rfp 390 PASS page width 390 = viewport 390
+M5 study-rfp 390 PASS arrows vs labels: min gap 5.5px (need >= 4)
+M6 study-rfp 390 PASS paired labels inside their node boxes; distinct widths per drawing: rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 study-rfp 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 46 paths
+M8 study-rfp 390 PASS stroke widths: circle 1.5px, node 1.5px, arrow 1.5px; spread 0.00px (need <= 0.5)
+M12 study-rfp 390 PASS band rfp-flow: drawing bottom to sentence top 28px (need 24-40)
+INFO study-rfp 390: band media top 1222.8 vs title cap top 141 (diff 1082px)
+D1 study-rfp 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on dark: 2.73 < 3
+D1 study-rfp 390 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 2.73 (rfp-flow)
+D1 study-rfp 390 PASS hover: text >= 4.5, strokes >= 3.0; lowest: dark text 14.88 (rfp-flow); dark stroke 4.22 (rfp-flow)
+D3 study-rfp 390 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 study-rfp 390 FAIL 6 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 study-rfp 390 FAIL cs-title textContent "AI RFP software:$3M in signed contracts" != "AI RFP software: $3M in signed contracts"
+D6 study-rfp 390 FAIL display heading text: cs-title "AI RFP software:$3M in signed contracts"
+RESULT study-rfp 390 FAIL
+
+M1 states 1440 PASS 54 labels in 9 visible drawing(s): no intersections, all inside their svg box
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS rfp-flow (399.44px wide): min rendered label font 13.6px, need >= 11
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS rfp-flow (399.44px wide): min rendered label font 13.6px, need >= 11
+M2 states 1440 PASS guardicore-vis (339.53px wide): min rendered label font 11.5px, need >= 11
+M2 states 1440 PASS rfp-flow (399.44px wide): min rendered label font 13.6px, need >= 11
+M2 states 1440 PASS rfp-flow (476px wide): min rendered label font 16.1px, need >= 11
+M2 states 1440 PASS rfp-flow (476px wide): min rendered label font 16.1px, need >= 11
+M3 states 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M3 states 1440 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 states 1440 PASS page width 1440 = viewport 1440
+M5 states 1440 PASS arrows vs labels: min gap 5.5px (need >= 4)
+M6 states 1440 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 5, guardicore-vis 5, rfp-flow 7, guardicore-vis 5, rfp-flow 7, guardicore-vis 5, rfp-flow 7, rfp-flow 7, rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 states 1440 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 494 paths
+M8 states 1440 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+D1 states 1440 FAIL rest: guardicore-vis text "east-west traffic, seen" 11.5px @opacity 0.60 on paper: 2.19 < 4.5
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 1440 FAIL rest: guardicore-vis text "east-west traffic, seen" 11.5px @opacity 1.00 on paper: 3.93 < 4.5
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 1440 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (guardicore-vis); paper stroke 1.73 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D1 states 1440 FAIL hover: guardicore-vis text "east-west traffic, seen" 11.5px @opacity 0.60 on paper: 2.19 < 4.5
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 1440 FAIL hover: guardicore-vis text "east-west traffic, seen" 11.5px @opacity 1.00 on paper: 3.93 < 4.5
+D1 states 1440 FAIL hover: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (guardicore-vis); paper stroke 2.19 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D3 states 1440 FAIL guardicore-vis label "What the pitchled with" margins L62.3 R338.1 T2.2 B241.1 (need >= 8 each)
+D3 states 1440 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 states 1440 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 states 1440 FAIL guardicore-vis label "What buyers signed for" margins L292.7 R16.6 T2.2 B265.1 (need >= 8 each)
+D3 states 1440 FAIL guardicore-vis label "What the pitchled with" margins L62.3 R338.1 T2.2 B241.1 (need >= 8 each)
+D3 states 1440 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 states 1440 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 states 1440 FAIL guardicore-vis label "What buyers signed for" margins L292.7 R16.6 T2.2 B265.1 (need >= 8 each)
+D3 states 1440 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 states 1440 FAIL rfp-flow label "bid or no-bidscore" intersects stroke(s) b3
+D3 states 1440 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 states 1440 FAIL guardicore-vis label "What the pitchled with" margins L62.3 R338.1 T2.2 B241.1 (need >= 8 each)
+D3 states 1440 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 states 1440 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 states 1440 FAIL guardicore-vis label "What buyers signed for" margins L292.7 R16.6 T2.2 B265.1 (need >= 8 each)
+D3 states 1440 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 states 1440 FAIL rfp-flow label "bid or no-bidscore" intersects stroke(s) b3
+D3 states 1440 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 states 1440 FAIL guardicore-vis label "What the pitchled with" margins L62.3 R338.1 T2.2 B241.1 (need >= 8 each)
+D3 states 1440 FAIL guardicore-vis label "east-west traffic, seen" intersects stroke(s) env-r, env-r
+D3 states 1440 FAIL guardicore-vis label "workloads" intersects stroke(s) env-r
+D3 states 1440 FAIL guardicore-vis label "What buyers signed for" margins L292.7 R16.6 T2.2 B265.1 (need >= 8 each)
+D3 states 1440 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 states 1440 FAIL rfp-flow label "bid or no-bidscore" intersects stroke(s) b3
+D3 states 1440 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 states 1440 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 states 1440 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 states 1440 FAIL rfp-flow label "library,300+ pieces" intersects stroke(s) b2
+D3 states 1440 FAIL rfp-flow label "the gap,marked" intersects stroke(s) b5, b5p2
+D3 states 1440 east-west label ink box L287 R549.1 T238.2 B262.9; viewBox margins left 287, right 10.9, top 238.2, bottom 29.1
+D3 states 1440 east-west label ink box L287 R549.1 T238.2 B262.9; viewBox margins left 287, right 10.9, top 238.2, bottom 29.1
+D3 states 1440 east-west label ink box L287 R549.1 T238.2 B262.9; viewBox margins left 287, right 10.9, top 238.2, bottom 29.1
+D3 states 1440 east-west label ink box L287 R549.1 T238.2 B262.9; viewBox margins left 287, right 10.9, top 238.2, bottom 29.1
+D3 states 1440 FAIL 54 labels: all >= 8px inside their viewBox on every side, no foreign stroke intersections
+D6 states 1440 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 1440 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 1440 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 1440 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 1440 FAIL display heading text: wx__head "The Work,On The Record." | wx__head "The Work,On The Record." | wx__head "The Work,On The Record." | wx__head "The Work,On The Record."
+RESULT states 1440 FAIL
+
+M1 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+M2 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+M3 states 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M3 states 390 PASS circle on "$14M": widthRatio 1.1883 vs 1.1885 (0.0%), heightRatio 1.1799 vs 1.1858 (0.5%), leftOffsetRatio 0.0911 vs 0.0909 (0.2%)
+M4 states 390 PASS page width 390 = viewport 390
+M5 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+M5 states 390 PASS arrows vs labels: min gap n/a (need >= 4)
+M6 states 390 PASS paired labels inside their node boxes; distinct widths per drawing: guardicore-vis 5, guardicore-vis 5, rfp-flow 6, guardicore-vis 5, rfp-flow 6, guardicore-vis 5, rfp-flow 6, rfp-flow 7, rfp-flow 7 (need >= 4 each; x = figure-move exemption)
+M7 states 390 PASS vertical arrows shorter than the tallest node where present; no 90-degree elbow with both legs > 20px in 494 paths
+M8 states 390 PASS stroke widths: circle 2px, node 2px, arrow 2px; spread 0.00px (need <= 0.5)
+D1 states 390 FAIL rest: guardicore-vis text "east-west traffic, seen" 3.1px @opacity 0.60 on paper: 2.19 < 4.5
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.43 on paper: 1.73 < 3
+D1 states 390 FAIL rest: guardicore-vis text "east-west traffic, seen" 3.1px @opacity 1.00 on paper: 3.93 < 4.5
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: guardicore-vis stroke ln path in guardicore-vis @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: rfp-flow stroke ln path in rfp-flow @opacity 0.72 on paper: 2.61 < 3
+D1 states 390 FAIL rest: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (guardicore-vis); paper stroke 1.73 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D1 states 390 FAIL hover: guardicore-vis text "east-west traffic, seen" 3.1px @opacity 0.60 on paper: 2.19 < 4.5
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis stroke ln path in guardicore-vis @opacity 0.60 on paper: 2.19 < 3
+D1 states 390 FAIL hover: guardicore-vis text "east-west traffic, seen" 3.1px @opacity 1.00 on paper: 3.93 < 4.5
+D1 states 390 FAIL hover: text >= 4.5, strokes >= 3.0; lowest: paper text 2.19 (guardicore-vis); paper stroke 2.19 (guardicore-vis); 6 drawing(s) in morph mid-point frames reported as transition states, not asserted
+D3 states 390 PASS (states at 390 shows the 1440 frames scaled to fit; not a design width)
+D6 states 390 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 390 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 390 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 390 FAIL wx__head textContent "The Work,On The Record." != "The work, on the record."
+D6 states 390 FAIL display heading text: wx__head "The Work,On The Record." | wx__head "The Work,On The Record." | wx__head "The Work,On The Record." | wx__head "The Work,On The Record."
+RESULT states 390 FAIL
+
+D8 FAIL work.html: contains the superseded line "stay with the practitioner"
+M15 exemption applied: the literal "© 2013–2026 Micah Jones" was excluded before the tenure pattern ran (0 occurrence(s) cut)
+M15 all four files FAIL ledger grep: none of 40%, 91%, intake completion, 290,000, 36x, $80M, Luna, per claim, em-dash, tenure year range (copyright line exempted); D8: no "stay with the practitioner"

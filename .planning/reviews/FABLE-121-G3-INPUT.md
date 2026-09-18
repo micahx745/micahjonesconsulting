@@ -1,7 +1,7 @@
 # FABLE-121-G3-INPUT: judge the Direction C mock set
 
 For Fable 5.1, gate G3 of Pass-121. Written 2026-09-17 by the Opus 5 main session. One call, about ten
-tool calls: this file, the brief draft, and the images in section 3. No edits, builds, captures or web
+tool calls: this file, the brief draft, and the eight images in section 3. No edits, builds, captures or web
 research. Write your ruling to `.planning/reviews/FABLE-121-G3.md`: plain markdown, no emoji, no
 em-dashes.
 
@@ -18,8 +18,8 @@ em-dashes.
   the before (one look is enough; do not spend calls there).
 - Six operator copy rulings were ledgered this session (LESSONS #3, the rows dated 2026-09-17 from
   "ORDANI DEK AND THE ANSWER-SHAPE SCOPE" on). Every ORDANI surface now has approved words.
-- The build brief is drafted (`.claude/briefs/pass-121-work-and-studies.md`). It carries twelve **[G3]**
-  marks. Your ruling fills them; you read the finished brief again at G4.
+- The build brief is drafted (`.claude/briefs/pass-121-work-and-studies.md`). It carries **[G3]**
+  marks; with N1 to N10 below there are fourteen rulings (R1 to R14). Your ruling fills them; you read the finished brief again at G4.
 
 ## 2. Settled. Do not reopen
 
@@ -31,20 +31,60 @@ at rest.
 
 ## 3. Look at these, in this order
 
-All under `.planning/mock/pass-121/set/` unless a path is given.
+All under `.planning/mock/pass-121/set/` unless a path is given. Eight images; Opus opened each
+first.
 
-1. `drawings-sheet-1440.png`: the five drawings on one sheet (Opus composed it from the five crops).
-2. `work-1440-fold.png` and `work-390-fold.png`.
-3. `work-1440-50pct.png`: the whole of /work at half size, for rhythm and the five exhibits down one page.
-4. `study-rfp-1440-fold.png` and `study-guardicore-1440-fold.png`.
-5. `study-rfp-1440-50pct.png`: your skim-path test.
-6. `states-1440.png`: rest, hover, entry hover, the two morph mid-points, the reveal before and after.
-7. `.planning/mock/pass-121/proof/live-home-circle-crop-fixed.png`: the home's `$20M+` circle, for item
-   R7.
+1. `drawings-sheet-1440.png`: the five drawings on one sheet (composed from the five crops).
+2. `work-1440-fold.png`.
+3. `work-1440-50pct.png`: the whole of /work at half size, for rhythm and the exhibits down one page.
+4. `sheet-390.png`: four 390 frames side by side: /work fold, Guardicore fold, RFP fold, and the /work
+   index (entries 02 to 04).
+5. `study-guardicore-1440-50pct.png`: your skim-path test.
+6. `study-rfp-1440-50pct.png`: the same test on the study with no photograph.
+7. `states-1440.png`: rest, doorway hover, entry hover, the two morph mid-points, reveal before and after.
+8. `.planning/mock/pass-121/proof/live-home-circle-crop-fixed.png`: the home's `$20M+` circle (R7).
 
 ## 4. What Opus saw in round 2
 
-(Filled in after round 2's captures are opened.)
+Fixed and confirmed (GLM's measurements, Opus's own look or CSS read):
+- D1 contrast. GLM ran the check against round 1 first and it failed (lowest text 2.19, stroke 1.73);
+  after the fix, at rest and hovered, both widths: paper text 6.62 / stroke 3.93, bone text 5.94 / stroke
+  3.53, dark band text 14.88 / stroke 4.22. Opus read the CSS: the doorway's `READ THIS ONE FIRST` and the
+  cross-line links are `--copper-deep` (6.62). The accent's second pass appears on hover.
+- D2 ORDANI sentences in Hanken, heads mono. D3 the east-west label below its frame, clear. D4 six
+  workload widths (61, 39, 56, 46, 66, 48). D5 the two figure-moves share one grammar. D6 the h1's
+  `textContent` is `The work, on the record.` and renders uppercase. D7 the 390 still frames the face. D8
+  the superseded ORDANI line is gone. The copyright row is restored and the tenure grep excludes it.
+- Margin notes: all seven on the RFP study and five of six on Guardicore are verbatim lifts (grep).
+- GLM stopped instead of bending the work where a check could not pass (the LESSONS #37 clause working):
+  see N2. It changed two viewBoxes to fit the moved label and says so.
+
+New, for your ruling or your note:
+- N1. **At 390 no study opens on its image.** The band sets its media slot after the at-a-glance list, so
+  Guardicore's photograph and the RFP flow are both below the first fold (`sheet-390.png`, frames 2 and
+  3). G2 §7 promised every study opens on an image or an exhibit at both widths. This is the band's phone
+  order, probably inherited from Pass-120, not new in the exhibit branch. Ruling R13.
+- N2. **ORDANI's drawing at the 390 index width sets its sentences at 9.9px** (measured; the floor is 11).
+  The two-column comparison scales to 350px wide. Ruling R14.
+- N3. **Guardicore's §01 margin note is not a lift.** `east-west, the blind spot` is G2 §4.2's own
+  paraphrase and appears nowhere in the section (the text says "a blind spot"). The brief's lift check
+  would fail it. Also the mock lowercased the first letter of `A person reviews and submits every
+  response`. Rule the case convention (verbatim, or first letter may drop to lowercase).
+- N4. **The §02 bracket is a stray glyph**: a roughly 20px `(` at the h2's height, not a bracket spanning
+  the paragraph where buyers could not see inside their environments.
+- N5. **The body-scale diagram on Guardicore inverts hierarchy**: its mono labels render near h2 size and
+  larger than the body text, while its sentence underneath reads as a small caption. Part of R5.
+- N6. **States frame 05 cannot happen**: it shows the RFP flow flying over Guardicore's photograph with
+  the page at the top. A reader clicks entry 02 with entry 02 in view. Part of R11.
+- N7. **Box padding**: `the week's work` touches its own box's strokes. The overlap check exempted a
+  label's own box, so it passed. Your proof set 8px padding inside every box.
+- N8. **Weight at 50 percent**: the drawings sit much lighter than the 72px numerals beside them; the two
+  figure-move drawings read as annotations, not as each entry's image. Part of R1.
+- N9. `DRAFT` sits under ORDANI's hairline, where it reads as entry 04's. The ORDANI line is approved now;
+  only its did-line is open, and it goes to the operator.
+- N10. The description ends on a one-word line, `changed.`, at 1440.
+- For the record, not a ruling: the mock's figure-moment mono lines use G2 §4.3 and §4.4's composed
+  wording; the brief renders `results.rest` verbatim instead, so no new words ship.
 
 ## 5. Rule on these (the brief's [G3] marks)
 
@@ -94,6 +134,12 @@ C ship with the dim only and the drawings static on both ends?
 R12. **The doorway.** The mock put the Guardicore diagram under the still to satisfy a count (every
 drawing on /work). G2 §3.2's doorway is text plus the still. Keep the diagram there or move it to the
 study only?
+
+R13. **The band's order at 390** (N1). Where does the media slot sit on a phone so each study opens on its
+image: after the title, after the dek, or somewhere else? This touches the Pass-120 band.
+
+R14. **ORDANI's drawing at the 390 index width** (N2): stack its two columns at 390, set the comparison as
+HTML text at 390 instead of SVG, or another answer. The words do not change.
 
 ## 6. Also correct, if you see it
 

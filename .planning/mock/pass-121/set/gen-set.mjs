@@ -134,11 +134,10 @@ const byId = Object.fromEntries(B.map((b) => [b.id, b]));
 const center = (b) => +(b.x + b.w / 2).toFixed(1);
 const firstBaseline = (b) => +(b.y + (b.h - 42.6) / 2 + 14.3).toFixed(1);
 
-function flowMarkup(fid, hlInline) {
-  const hl = hlInline ? ` style="opacity:1"` : "";
+function flowMarkup(fid) {
   const texts = B.map(
     (b) =>
-      `<text data-label="${b.id}" x="${center(b)}" y="${firstBaseline(b)}" text-anchor="middle">${b.lines[0]}<tspan x="${center(
+      `<text data-label="${b.id}" data-node="${b.id}" x="${center(b)}" y="${firstBaseline(b)}" text-anchor="middle">${b.lines[0]}<tspan x="${center(
         b,
       )}" dy="24">${b.lines[1]}</tspan></text>`,
   ).join("\n        ");
@@ -158,7 +157,7 @@ function flowMarkup(fid, hlInline) {
             return arrowMarkup(dx, byId.b3.y + byId.b3.h + 1.5, dx, byId.b4.y - 1.5, 97, 0, 0, "arw-down");
           })()}
           ${arrowMarkup(byId.b5.x - 3, 132, byId.b6.x + byId.b6.w + 3, 134, 101)}
-          <g class="hl"${hl}>
+          <g class="hl">
             ${nodeMarkup(byId.b5.x, byId.b5.y, byId.b5.w, byId.b5.h, byId.b5.seed, "b5")}
             <g class="p2">${nodeMarkup(byId.b5.x, byId.b5.y, byId.b5.w, byId.b5.h, byId.b5.seed + 37, "b5p2", 2.2, 1.6)}</g>
             ${arrowMarkup(byId.b4.x - 3, 134, byId.b5.x + byId.b5.w + 3, 132, 103)}
@@ -193,8 +192,14 @@ const VIS = {
   frameW: 260,
   frameH: 160,
   honeypot: { w: Math.round(8 * CHV + 18), h: 34 }, // "honeypot"
-  wl: [58, 44, 52], // workload box widths, varied per hand
-  wlH: 24,
+  // D4: six hand-drawn workloads, not a grid. Six distinct widths across the
+  // boxes (39-66, roughly 0.75x-1.27x of the old 52), heights 22-26, each
+  // row's boxes off the shared baseline by a few px. Two rows stay two rows.
+  rows: [
+    { w: [61, 39, 56], h: [24, 22, 25], dy: [-2, 1, -1] },
+    { w: [46, 66, 48], h: [23, 26, 22], dy: [2, -2, 1] },
+  ],
+  gap: 34,
 };
 
 function visFrameLeft(fx, fy) {
@@ -207,34 +212,36 @@ function visFrameLeft(fx, fy) {
   const a1 = arrowMarkup(fx + 198, fy + 104, fx + 198, fy + 160, 227); // in
   const a2 = arrowMarkup(fx + 234, fy + 160, fx + 234, fy + 104, 229); // out
   const ns = `<text data-label="ns" x="${fx}" y="${fy + 84}">north-south, defended</text>`;
-  const label = `<text data-label="fl" x="${fx + VIS.frameW / 2}" y="${fy + 22}" text-anchor="middle">What the pitch<tspan x="${fx + VIS.frameW / 2}" dy="24">led with</tspan></text>`;
+  const label = `<text data-label="fl" x="${fx + VIS.frameW / 2}" y="${fy + 30}" text-anchor="middle">What the pitch<tspan x="${fx + VIS.frameW / 2}" dy="24">led with</tspan></text>`;
   return { markup: [rect, hpBox, a1, a2].join("\n      ") + "\n      " + hpText + ns + label, bottom: fy + 120 + VIS.frameH };
 }
 
 function visFrameRight(fx, fy) {
   const rect = nodeMarkup(fx, fy + 120, VIS.frameW, VIS.frameH, 213, "env-r");
   const cx = fx + 16;
-  const widths = VIS.wl;
   let out = rect;
   const rowY = [fy + 120 + 32, fy + 120 + 76];
   let arrows = "";
   for (let r = 0; r < 2; r++) {
+    const spec = VIS.rows[r];
     let x = cx;
     for (let c = 0; c < 3; c++) {
-      out += "\n      " + nodeMarkup(x, rowY[r], widths[c], VIS.wlH, 233 + r * 3 + c, `wl${r}${c}`);
+      out += "\n      " + nodeMarkup(x, rowY[r] + spec.dy[c], spec.w[c], spec.h[c], 233 + r * 3 + c, `wl${r}${c}`);
       if (c < 2) {
-        const ax1 = x + widths[c] + 3;
-        const ax2 = x + widths[c] + 31;
-        const ay = rowY[r] + VIS.wlH / 2 + (r === 0 ? -1 : 1);
+        const ax1 = x + spec.w[c] + 3;
+        const ax2 = x + spec.w[c] + 31;
+        const ay = rowY[r] + 12 + (r === 0 ? -1 : 1);
         arrows += arrowMarkup(ax1, ay, ax2, ay, 251 + r * 2 + c);
         arrows += `<g class="p2">${arrowMarkup(ax1, ay, ax2, ay, 281 + r * 2 + c, 1.8, 1.4)}</g>`;
       }
-      x += widths[c] + 34;
+      x += spec.w[c] + VIS.gap;
     }
   }
-  const wl = `<text data-label="workloads" x="${fx + VIS.frameW / 2}" y="${fy + 120 + 18}" text-anchor="middle">workloads</text>`;
-  const ew = `<text class="hl-t" data-label="ew" x="${fx + VIS.frameW / 2}" y="${fy + 120 + 138}" text-anchor="middle">east-west traffic, seen</text>`;
-  const label = `<text data-label="fr" x="${fx + VIS.frameW / 2}" y="${fy + 22}" text-anchor="middle">What buyers signed for</text>`;
+  const wl = `<text data-label="workloads" data-node="env-r" x="${fx + VIS.frameW / 2}" y="${fy + 120 + 17}" text-anchor="middle">workloads</text>`;
+  // D3: the caption sits below the right frame's bottom edge, left-aligned to
+  // the frame, clear of every stroke and 8px inside the viewBox on all sides.
+  const ew = `<text class="hl-t" data-label="ew" x="${fx}" y="${fy + 120 + VIS.frameH + 28}">east-west traffic, seen</text>`;
+  const label = `<text data-label="fr" x="${fx + VIS.frameW / 2}" y="${fy + 30}" text-anchor="middle">What buyers signed for</text>`;
   return {
     markup: `<g class="hl">\n      ${arrows}${ew}\n      </g>\n      ${out}\n      ${wl}${label}`,
     bottom: fy + 120 + VIS.frameH,
@@ -249,13 +256,13 @@ function visibilityMarkup(fid, variant) {
     const Rr = visFrameRight(288, 0);
     inner = L.markup + "\n      " + Rr.markup;
     vbw = 560;
-    vbh = 292;
+    vbh = 322; // D3: room for the ew caption below the right frame, 8px clear
   } else {
     const L = visFrameLeft(20, 0);
     const Rr = visFrameRight(20, 304);
     inner = L.markup + "\n      " + Rr.markup;
     vbw = 300;
-    vbh = 596;
+    vbh = 626; // D3: same clearance in the stacked variant
   }
   return `<svg class="flow vis vis-${variant}" data-drawing="guardicore-vis" viewBox="0 0 ${vbw} ${vbh}" role="img" aria-label="What the pitch led with, and what buyers signed for">
       <defs>
@@ -300,30 +307,35 @@ function claimsBox(b, x, y) {
     .join("");
   return {
     markup: nodeMarkup(x, y, w, h, b.seed, `cl-${b.seed}`) +
-      `\n      <text data-label="cl-${b.seed}" data-node="cl-${b.seed}" x="${cx}" y="${y + (h - (b.lines.length - 1) * 24) / 2 + 4}" text-anchor="middle">${texts}</text>`,
+      `\n      <text class="sent" data-label="cl-${b.seed}" data-node="cl-${b.seed}" x="${cx}" y="${y + (h - (b.lines.length - 1) * 24) / 2 + 4}" text-anchor="middle">${texts}</text>`,
     w, h, bottom: y + h,
   };
 }
 function claimsMarkup(fid) {
-  const x0 = [8, 312];
+  const x0 = [10, 312];
   let boxes = "";
   let maxBottom = 0;
   CLAIMS.cols.forEach((col, ci) => {
     const head = col.head
       .map((l, i) => `<tspan${i === 0 ? "" : ` x="${x0[ci]}" dy="24"`}>${l}</tspan>`)
       .join("");
-    boxes += `\n      <text data-label="cl-h${ci}" x="${x0[ci]}" y="26">${head}</text>`;
+    boxes += `\n      <text data-label="cl-h${ci}" x="${x0[ci]}" y="30">${head}</text>`;
     let y = 70;
     for ( const b of col.boxes ) {
       const bx = claimsBox(b, x0[ci], y);
-      boxes += "\n      " + bx.markup;
+      // D8: the Ordani column's boxes are the drawing's one sage element,
+      // drawn like the RFP flow's copper gap box: full strength, second
+      // offset pass on hover.
+      boxes += "\n      " + (ci === 1
+        ? `<g class="hl">${bx.markup}<g class="p2">${nodeMarkup(x0[ci], y, bx.w, bx.h, b.seed + 37, `cl-${b.seed}-p2`, 2.2, 1.6)}</g></g>`
+        : bx.markup);
       y = bx.bottom + 20;
       maxBottom = Math.max(maxBottom, bx.bottom);
     }
   });
-  const cx = 300;
-  const sage = `<g class="hl"><text class="hl-t sage-t" data-label="cl-sage" x="${cx}" y="${maxBottom + 34}" text-anchor="middle">Hundreds of dollars per client<tspan x="${cx}" dy="24">stay with the practitioner.</tspan></text></g>`;
-  return `<svg class="flow claims" data-drawing="ordani-claims" viewBox="0 0 600 ${maxBottom + 70}" role="img" aria-label="Filing it yourself or through a service, against filing it in Ordani">
+  // D8: the closing money line is deleted; the entry's figure line above the
+  // drawing carries the approved claim.
+  return `<svg class="flow claims" data-drawing="ordani-claims" viewBox="0 0 600 ${maxBottom + 24}" role="img" aria-label="Filing it yourself or through a service, against filing it in Ordani">
       <defs>
         <filter id="${fid}" x="-4%" y="-8%" width="108%" height="116%" color-interpolation-filters="sRGB">
           <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" result="noise"/>
@@ -333,7 +345,6 @@ function claimsMarkup(fid) {
       <g filter="url(#${fid})">
       ${boxes}
       </g>
-      ${sage}
     </svg>`;
 }
 
@@ -375,13 +386,14 @@ function figureMoveMarkup(fid, kind) {
       ${cap}
     </svg>`;
   }
-  // birth worker: 1 to 3 -> 5 to 10, copper arrow drawn twice, boxed + tag,
-  // unit strip "bookings a month". viewBox 440 x 160.
+  // birth worker: 1 to 3 -> 5 to 10, ink arrow, boxed + tag in copper as the
+  // single accent, unit line "bookings a month" beneath the pair, unboxed,
+  // matching the content engine exactly. viewBox 440 x 120.
   const n1 = { x: 24, y: 20, w: 90, h: 40, label: "1 to 3", seed: 511 };
   const n2 = { x: 182, y: 20, w: 104, h: 40, label: "5 to 10", seed: 513 };
   const plus = { x: n2.x + n2.w + 14, y: 23, w: 34, h: 34 };
-  const strip = { x: 120, y: 96, w: 200, h: 38, label: "bookings a month" };
-  return `<svg class="flow fmove" data-drawing="birth-move" viewBox="0 0 440 160" role="img" aria-label="Bookings went from one to three a month to five to ten">
+  const cap = `<text data-label="bm-cap" x="220" y="94" text-anchor="middle">bookings a month</text>`;
+  return `<svg class="flow fmove" data-drawing="birth-move" viewBox="0 0 440 120" role="img" aria-label="Bookings went from one to three a month to five to ten">
       <defs>
         <filter id="${fid}" x="-4%" y="-8%" width="108%" height="116%" color-interpolation-filters="sRGB">
           <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" result="noise"/>
@@ -391,18 +403,16 @@ function figureMoveMarkup(fid, kind) {
       <g filter="url(#${fid})">
       ${nodeMarkup(n1.x, n1.y, n1.w, n1.h, n1.seed, "bm-n1")}
       <text data-label="bm-n1" data-node="bm-n1" x="${n1.x + n1.w / 2}" y="${n1.y + 27}" text-anchor="middle">${n1.label}</text>
+      ${arrowMarkup(n1.x + n1.w + 4, 40, n2.x - 4, 40, 517)}
+      ${nodeMarkup(n2.x, n2.y, n2.w, n2.h, n2.seed, "bm-n2")}
+      <text data-label="bm-n2" data-node="bm-n2" x="${n2.x + n2.w / 2}" y="${n2.y + 27}" text-anchor="middle">${n2.label}</text>
       <g class="hl">
-        ${arrowMarkup(n1.x + n1.w + 4, 40, n2.x - 4, 40, 517)}
-        <g class="p2">${arrowMarkup(n1.x + n1.w + 4, 40, n2.x - 4, 40, 541, 2, 1.5)}</g>
         ${nodeMarkup(plus.x, plus.y, plus.w, plus.h, 519, "bm-plus")}
         <g class="p2">${nodeMarkup(plus.x, plus.y, plus.w, plus.h, 552, "bm-plus2", 2, 1.5)}</g>
         <text class="hl-t" data-label="bm-plus" x="${plus.x + plus.w / 2}" y="${plus.y + 24.5}" text-anchor="middle">+</text>
       </g>
-      ${nodeMarkup(n2.x, n2.y, n2.w, n2.h, n2.seed, "bm-n2")}
-      <text data-label="bm-n2" data-node="bm-n2" x="${n2.x + n2.w / 2}" y="${n2.y + 27}" text-anchor="middle">${n2.label}</text>
-      ${nodeMarkup(strip.x, strip.y, strip.w, strip.h, 523, "bm-strip")}
-      <text data-label="bm-strip" data-node="bm-strip" x="${strip.x + strip.w / 2}" y="${strip.y + 24.5}" text-anchor="middle">${strip.label}</text>
       </g>
+      ${cap}
     </svg>`;
 }
 
@@ -496,13 +506,13 @@ const FLOW_CSS = `
   .flow{display:block;width:100%;height:auto}
   .flow .ln{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
   .flow .hl .ln{stroke:var(--copper)}
-  .flow .hl{opacity:.6}
-  .flow .hl .p2{opacity:.72}
+  .flow.claims .hl .ln{stroke:var(--sage)}
+  .flow .hl .p2{opacity:0;transition:opacity .2s cubic-bezier(.2,.8,.2,1)}
   .flow text{font-family:'JetBrains Mono',monospace;font-size:19px;fill:currentColor}
-  .flow .hl .hl-t,.flow .hl-t{fill:var(--copper)}
+  .flow .hl .hl-t,.flow .hl-t{fill:var(--copper-deep)}
   .flow .sm{font-size:16px}
   .flow.vis text{font-size:19px}
-  .flow.claims .hl-t.sage-t{fill:var(--sage)}`;
+  .flow.claims .sent{font-family:'Hanken Grotesk',sans-serif;font-size:17px;font-weight:400;fill:var(--ink)}`;
 const CIRCLE_CSS = `
   .handcircle{position:absolute;overflow:visible;pointer-events:none}
   .hc-p{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.92}
@@ -640,6 +650,7 @@ ${FONT_LINKS}
 ${NAV_CSS}
   .wx{max-width:1200px;margin:0 auto;padding:0 40px 120px}
   .wx__head{margin:56px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;line-height:1.02;letter-spacing:-0.02em;text-transform:uppercase;font-variation-settings:"opsz" 96}
+  .wx__head .wx__line{display:block}
   .wx__desc{margin:36px 0 0;font-size:22px;line-height:1.6;max-width:60ch;color:var(--ink)}
   .svc{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;line-height:1.5;color:var(--ink-soft);margin:0}
 
@@ -665,7 +676,7 @@ ${NAV_CSS}
   .doorway__read .arr{display:inline-block;transition:transform var(--dur-hover) var(--ease-hover)}
   .doorway--hover .doorway__read .arr{transform:translateX(4px)}
   .doorway--hover .doorway__num{color:var(--copper-deep)}
-  .doorway--hover .flow .hl{opacity:1}
+  .doorway--hover .flow .hl .p2{opacity:1}
 ${CIRCLE_CSS}
 ${FLOW_CSS}
   .doorway__exhibit .vis-wide{display:block}
@@ -685,7 +696,7 @@ ${FLOW_CSS}
   .e-qual{display:block;margin-top:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:22px;line-height:1.3;letter-spacing:-0.01em;font-variation-settings:"opsz" 22;transition:color var(--dur-hover) var(--ease-hover)}
   .e-line36{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:36px;line-height:1.25;letter-spacing:-0.01em;font-variation-settings:"opsz" 36;max-width:20ch;transition:color var(--dur-hover) var(--ease-hover)}
   .entry--hover .e-num,.entry--hover .e-qual,.entry--hover .e-line36{color:var(--copper-deep)}
-  .entry--hover .flow .hl{opacity:1}
+  .entry--hover .flow .hl .p2{opacity:1}
   .e-did{grid-column:1/7;margin:0 0 20px;font-size:18px;line-height:1.6;max-width:48ch}
   .e-svc{grid-column:1/7}
   .e-exhibit{grid-column:8/13;grid-row:3/6;align-self:start;justify-self:end;width:100%;max-width:400px;margin-top:14px;color:var(--ink)}
@@ -728,7 +739,10 @@ ${FLOW_CSS}
     .doorway__text{order:2}
     .doorway__exhibit{order:3;margin-top:4px}
     .doorway__img{justify-self:start}
-    .doorway__img img{width:100%;height:auto;aspect-ratio:16/10}
+    /* D7: the 16:10 crop of a 4:5 source cuts 600px; centre-weighted framing
+       took the head off. Hold the window near the top of the frame so the
+       face that the 1440 crop centres stays inside the 390 frame. */
+    .doorway__img img{width:100%;height:auto;aspect-ratio:16/10;object-position:50% 0%}
     .doorway__num{font-size:48px}
     .doorway__line{font-size:20px}
     .doorway__did{font-size:17px}
@@ -760,7 +774,7 @@ ${GRAIN_LIGHT}
 ${NAV_LIGHT}
 
 <main class="wx">
-  <h1 class="wx__head">The Work,<br>On The Record.</h1>
+  <h1 class="wx__head"><span class="wx__line">The work,</span> <span class="wx__line">on the record.</span></h1>
   <p class="wx__desc">${DESC}</p>
 
   <a class="doorway" href="#">
@@ -783,7 +797,7 @@ ${NAV_LIGHT}
   </a>
 
   <div class="entries">
-${entryMarkup(ENTRY02, flowMarkup("fgw2", false))}
+${entryMarkup(ENTRY02, flowMarkup("fgw2"))}
 ${entryMarkup(ENTRY03, claimsMarkup("clw3"), " entry--draft")}
   <p class="draftnote">DRAFT</p>
 ${entryMarkup(ENTRY04, figureMoveMarkup("cmw4", "content"))}
@@ -797,7 +811,7 @@ ${entryMarkup(ENTRY05, figureMoveMarkup("bmw5", "birth"))}
 
 <section class="record">
   <div class="wx">
-    <h2 class="rec__h">Also On The Record.</h2>
+    <h2 class="rec__h">Also on the record.</h2>
     <p class="rec__line">Four of the companies I worked inside reached an exit.</p>
     <ol class="rec__list">
 ${record}
@@ -813,6 +827,8 @@ ${record}
       <a href="#">micah@micahjonesconsulting.com</a>
       <span aria-hidden="true">&#183;</span>
       <a href="#">LinkedIn</a>
+      <span aria-hidden="true">&#183;</span>
+      <span>© 2013–2026 Micah Jones</span>
     </p>
   </footer>
 </div>
@@ -922,7 +938,7 @@ const STUDY_CSS = `
   .band__grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "text" "media";row-gap:28px;max-width:1184px;margin:0 auto}
   .band__context{font-size:13px;font-weight:500;line-height:1.5;color:var(--t-ink-soft);margin:0 0 20px}
   .cs-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;line-height:1.08;letter-spacing:-0.02em;font-variation-settings:"opsz" 56;margin:0}
-  .cs-title span{display:block}
+  .cs-title .cs-title__line{display:block}
   .band__dek{font-size:18px;line-height:1.6;max-width:56ch;margin:0 0 36px;color:var(--t-ink)}
   .glance{margin:0;padding-top:28px;border-top:1px solid var(--t-rule);display:grid;row-gap:20px}
   .glance__row{display:grid;grid-template-columns:220px minmax(0,1fr);column-gap:24px;align-items:baseline}
@@ -934,7 +950,6 @@ const STUDY_CSS = `
   .glance__rest{display:block;margin-top:8px;font-size:18px;line-height:1.5;color:var(--t-ink)}
 ${FLOW_CSS}
   .flow{color:var(--t-ink)}
-  .flow .hl{opacity:1}
   .exhibit__sentence{margin:28px 0 0;font-size:15px;line-height:1.6;color:var(--t-ink-soft);max-width:48ch}
 
   /* bone body: per-section grid, body col + margin col */
@@ -950,7 +965,6 @@ ${FLOW_CSS}
   .aside-note .mark-bracket{width:22px;height:54px;color:var(--ink);margin-bottom:16px}
   .sec__break{grid-column:1/-1;width:834px;max-width:100%;margin:48px 0 0}
   .sec__break .flow{color:var(--ink)}
-  .sec__break .flow .hl{opacity:1}
   .sec__break .vis-wide{display:block}
   .sec__break .vis-tall{display:none}
   .break-sentence{margin:28px 0 0;font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:48ch}
@@ -1028,7 +1042,7 @@ ${STROKE_MOBILE}
 
 const BAND_HEAD = (context, l1, l2) => `      <div class="band__head">
         <p class="band__context">${context}</p>
-        <h1 class="cs-title"><span>${l1}</span><span>${l2}</span></h1>
+        <h1 class="cs-title"><span class="cs-title__line">${l1}</span> <span class="cs-title__line">${l2}</span></h1>
       </div>`;
 
 const GLANCE_ROW = (dt, dd) => `        <div class="glance__row"><dt>${dt}</dt><dd>${dd}</dd></div>`;
@@ -1228,7 +1242,7 @@ ${GLANCE_ROW("What I built", "Discovery, bid/no-bid scoring, a library of their 
       </dl>
     </div>
     <figure class="band__media band__media--bleed">
-      ${flowMarkup("fgrfp", true)}
+      ${flowMarkup("fgrfp")}
       <figcaption class="exhibit__sentence">Nightly checks on procurement portals feed a library of more than 300 pieces of the client's own work. Each request is scored bid or no-bid, drafted against the buyer's criteria with any gap marked, and a person approves every response.</figcaption>
     </figure>
   </div>
@@ -1358,14 +1372,14 @@ function mixColor(a, b) {
 // the ghost /work slice: nav + heading + description + doorway (still
 // hidden where the shared element takes over) + entry 02
 function ghostWork(hideStill, hideFlow) {
-  const entry = entryMarkup(ENTRY02, flowMarkup("fgs2", false));
+  const entry = entryMarkup(ENTRY02, flowMarkup("fgs2"));
   const entryStyled = hideFlow
     ? entry.replace('class="e-exhibit"', 'class="e-exhibit" style="visibility:hidden"')
     : entry;
   return `<div class="ghostwork">
 ${NAV_LIGHT}
 <main class="wx">
-  <h1 class="wx__head">The Work,<br>On The Record.</h1>
+  <h1 class="wx__head"><span class="wx__line">The work,</span> <span class="wx__line">on the record.</span></h1>
   <p class="wx__desc">${DESC}</p>
   <a class="doorway" href="#">
     <div class="doorway__text">
@@ -1401,7 +1415,7 @@ function doorwayFrame(hover) {
       <div class="workctx">
 ${NAV_LIGHT}
 <main class="wx">
-  <h1 class="wx__head">The Work,<br>On The Record.</h1>
+  <h1 class="wx__head"><span class="wx__line">The work,</span> <span class="wx__line">on the record.</span></h1>
   <p class="wx__desc">${DESC}</p>
   <a class="doorway${hover ? " doorway--hover" : ""}" href="#">
     <div class="doorway__text">
@@ -1488,6 +1502,7 @@ ${CIRCLE_CSS}
   .workctx{background:var(--paper);color:var(--ink)}
   .wx{max-width:1200px;margin:0 auto;padding:0 40px}
   .wx__head{margin:56px 0 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:96px;line-height:1.02;letter-spacing:-0.02em;text-transform:uppercase;font-variation-settings:"opsz" 96}
+  .wx__head .wx__line{display:block}
   .wx__desc{margin:36px 0 0;font-size:22px;line-height:1.6;max-width:60ch}
   .svc{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;line-height:1.5;color:var(--ink-soft);margin:0}
   .doorway{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:64px;row-gap:28px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:48px 0;margin-top:64px}
@@ -1507,7 +1522,7 @@ ${CIRCLE_CSS}
   .doorway__read .arr{display:inline-block;transition:transform var(--dur-hover) var(--ease-hover)}
   .doorway--hover .doorway__read .arr{transform:translateX(4px)}
   .doorway--hover .doorway__num{color:var(--copper-deep)}
-  .doorway--hover .flow .hl{opacity:1}
+  .doorway--hover .flow .hl .p2{opacity:1}
   .entry{display:grid;grid-template-columns:repeat(12,1fr);column-gap:24px;position:relative;padding:56px 0 48px;border-bottom:1px solid var(--rule)}
   .entry .copperline{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-hover) var(--ease-hover)}
   .entry--hover .copperline{transform:scaleX(1)}
@@ -1517,7 +1532,7 @@ ${CIRCLE_CSS}
   .e-num{display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:72px;line-height:1;letter-spacing:-0.02em;font-variation-settings:"opsz" 96}
   .e-qual{display:block;margin-top:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:22px;line-height:1.3;letter-spacing:-0.01em}
   .entry--hover .e-num,.entry--hover .e-qual{color:var(--copper-deep)}
-  .entry--hover .flow .hl{opacity:1}
+  .entry--hover .flow .hl .p2{opacity:1}
   .e-did{grid-column:1/7;margin:0 0 20px;font-size:18px;line-height:1.6;max-width:48ch}
   .e-svc{grid-column:1/7}
   .e-exhibit{grid-column:8/13;grid-row:3/6;align-self:start;justify-self:end;width:100%;max-width:400px;margin-top:14px;color:var(--ink)}
@@ -1551,7 +1566,7 @@ ${doorwayFrame(true)}
       <div class="workctx">
 <main class="wx" style="padding-top:56px">
   <div class="entries">
-${entryMarkup(ENTRY02, flowMarkup("fgs3", false), " entry--hover")}
+${entryMarkup(ENTRY02, flowMarkup("fgs3"), " entry--hover")}
   </div>
 </main>
       </div>
@@ -1576,8 +1591,8 @@ ${entryMarkup(ENTRY02, flowMarkup("fgs3", false), " entry--hover")}
       ${ghostWork(false, true)}
     </div>
     <div class="shared--flow" style="left:${r(flowMid.x)}px;top:${r(flowMid.y)}px;width:${r(flowMid.w)}px">
-      <div style="position:absolute;inset:0;opacity:.55">${flowMarkup("fgs4a", true).replace('class="flow"', 'class="flow flow--ink"')}</div>
-      <div style="position:absolute;inset:0;opacity:.55">${flowMarkup("fgs4b", true).replace('class="flow"', 'class="flow flow--bone"')}</div>
+      <div style="position:absolute;inset:0;opacity:.55">${flowMarkup("fgs4a").replace('class="flow"', 'class="flow flow--ink"')}</div>
+      <div style="position:absolute;inset:0;opacity:.55">${flowMarkup("fgs4b").replace('class="flow"', 'class="flow flow--bone"')}</div>
     </div>
   </div>
 </section>

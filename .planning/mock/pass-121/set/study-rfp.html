@@ -36,7 +36,7 @@
   .band__grid{display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "text" "media";row-gap:28px;max-width:1184px;margin:0 auto}
   .band__context{font-size:13px;font-weight:500;line-height:1.5;color:var(--t-ink-soft);margin:0 0 20px}
   .cs-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;line-height:1.08;letter-spacing:-0.02em;font-variation-settings:"opsz" 56;margin:0}
-  .cs-title span{display:block}
+  .cs-title .cs-title__line{display:block}
   .band__dek{font-size:18px;line-height:1.6;max-width:56ch;margin:0 0 36px;color:var(--t-ink)}
   .glance{margin:0;padding-top:28px;border-top:1px solid var(--t-rule);display:grid;row-gap:20px}
   .glance__row{display:grid;grid-template-columns:220px minmax(0,1fr);column-gap:24px;align-items:baseline}
@@ -50,15 +50,14 @@
   .flow{display:block;width:100%;height:auto}
   .flow .ln{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
   .flow .hl .ln{stroke:var(--copper)}
-  .flow .hl{opacity:.6}
-  .flow .hl .p2{opacity:.72}
+  .flow.claims .hl .ln{stroke:var(--sage)}
+  .flow .hl .p2{opacity:0;transition:opacity .2s cubic-bezier(.2,.8,.2,1)}
   .flow text{font-family:'JetBrains Mono',monospace;font-size:19px;fill:currentColor}
-  .flow .hl .hl-t,.flow .hl-t{fill:var(--copper)}
+  .flow .hl .hl-t,.flow .hl-t{fill:var(--copper-deep)}
   .flow .sm{font-size:16px}
   .flow.vis text{font-size:19px}
-  .flow.claims .hl-t.sage-t{fill:var(--sage)}
+  .flow.claims .sent{font-family:'Hanken Grotesk',sans-serif;font-size:17px;font-weight:400;fill:var(--ink)}
   .flow{color:var(--t-ink)}
-  .flow .hl{opacity:1}
   .exhibit__sentence{margin:28px 0 0;font-size:15px;line-height:1.6;color:var(--t-ink-soft);max-width:48ch}
 
   /* bone body: per-section grid, body col + margin col */
@@ -74,7 +73,6 @@
   .aside-note .mark-bracket{width:22px;height:54px;color:var(--ink);margin-bottom:16px}
   .sec__break{grid-column:1/-1;width:834px;max-width:100%;margin:48px 0 0}
   .sec__break .flow{color:var(--ink)}
-  .sec__break .flow .hl{opacity:1}
   .sec__break .vis-wide{display:block}
   .sec__break .vis-tall{display:none}
   .break-sentence{margin:28px 0 0;font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:48ch}
@@ -181,7 +179,7 @@
   <div class="band__grid">
       <div class="band__head">
         <p class="band__context">An award-winning author and leadership consultant who teaches government bodies and corporations</p>
-        <h1 class="cs-title"><span>AI RFP software:</span><span>$3M in signed contracts</span></h1>
+        <h1 class="cs-title"><span class="cs-title__line">AI RFP software:</span> <span class="cs-title__line">$3M in signed contracts</span></h1>
       </div>
     <div class="band__text">
       <p class="band__dek">$3M in signed contracts, won through AI software I built for an award-winning author and leadership consultant. It finds the RFPs worth answering, weighs each one against twenty years of their own work, and has a drafted response waiting by morning. Their close rate went from one in eight to one in four.</p>
@@ -211,19 +209,19 @@
           <path class="ln arw" d="M 366.01 39.1 C 367.23 39.07, 370.92 39.15, 373.36 38.89 C 375.8 38.62, 378.19 37.7, 380.63 37.53 C 383.08 37.36, 386.79 37.81, 388.02 37.87"/><path class="ln arw" d="M 387.98 37.47 C 387.59 37.73, 386.44 38.58, 385.61 39.02 C 384.78 39.47, 383.76 39.6, 382.99 40.16 C 382.22 40.71, 381.32 41.99, 380.99 42.35"/><path class="ln arw" d="M 388.21 37 C 387.71 36.95, 386.16 37, 385.26 36.72 C 384.35 36.43, 383.62 35.74, 382.78 35.29 C 381.95 34.84, 380.66 34.23, 380.24 34.02"/>
           <path class="ln arw arw-down" d="M 541.89 71.5 C 541.94 72.71, 542.21 76.33, 542.19 78.75 C 542.17 81.17, 541.79 83.58, 541.77 86 C 541.75 88.42, 541.86 90.83, 542.09 93.25 C 542.31 95.67, 542.93 99.29, 543.1 100.5"/><path class="ln arw arw-down" d="M 541.56 100.72 C 541.43 100.26, 541.1 98.84, 540.79 97.94 C 540.48 97.04, 540.13 96.16, 539.68 95.33 C 539.22 94.5, 538.33 93.36, 538.06 92.97"/><path class="ln arw arw-down" d="M 542.02 100.51 C 542.21 100.08, 542.71 98.74, 543.16 97.91 C 543.61 97.08, 544.31 96.37, 544.73 95.53 C 545.15 94.68, 545.54 93.29, 545.7 92.85"/>
           <path class="ln arw" d="M 205.95 131.12 C 204.9 131.29, 201.75 131.78, 199.65 132.1 C 197.55 132.42, 195.46 132.92, 193.35 133.04 C 191.24 133.17, 189.11 132.85, 186.99 132.85 C 184.87 132.84, 182.76 132.87, 180.65 133.01 C 178.54 133.14, 176.43 133.35, 174.33 133.67 C 172.23 133.99, 169.1 134.72, 168.05 134.93"/><path class="ln arw" d="M 168.29 134.52 C 168.65 134.19, 169.62 133.03, 170.41 132.5 C 171.2 131.98, 172.21 131.85, 173.03 131.39 C 173.85 130.92, 174.96 130, 175.35 129.72"/><path class="ln arw" d="M 167.87 134.31 C 168.33 134.42, 169.76 134.7, 170.66 134.98 C 171.57 135.26, 172.51 135.47, 173.31 136 C 174.1 136.54, 175.09 137.84, 175.44 138.21"/>
-          <g class="hl" style="opacity:1">
+          <g class="hl">
             <g class="node" data-node="b5"><path class="ln" d="M 206.99 104.28 C 208.07 103.86, 211.31 102.21, 213.47 101.78 C 215.62 101.34, 217.78 101.65, 219.93 101.66 C 222.08 101.68, 224.24 101.93, 226.39 101.87 C 228.55 101.81, 230.7 101.38, 232.86 101.3 C 235.01 101.22, 237.17 101.38, 239.32 101.38 C 241.47 101.38, 243.63 101.35, 245.78 101.31 C 247.94 101.27, 250.09 101.1, 252.25 101.16 C 254.4 101.21, 256.55 101.52, 258.71 101.66 C 260.86 101.81, 263.01 101.9, 265.17 102.03 C 267.32 102.15, 269.47 102.36, 271.63 102.43 C 273.78 102.49, 275.94 102.41, 278.09 102.44 C 280.24 102.47, 282.4 102.63, 284.55 102.62 C 286.71 102.62, 288.86 102.5, 291.02 102.4 C 293.17 102.3, 295.33 102.1, 297.48 102.02 C 299.64 101.94, 301.79 102, 303.94 101.91 C 306.1 101.82, 308.25 101.58, 310.41 101.48 C 312.56 101.39, 315.8 101.36, 316.87 101.34"/><path class="ln" d="M 318.27 100.61 C 318.05 101.69, 317.37 104.94, 316.97 107.1 C 316.57 109.26, 316.09 111.43, 315.88 113.59 C 315.68 115.75, 315.85 117.91, 315.74 120.08 C 315.63 122.24, 315.19 124.4, 315.22 126.56 C 315.26 128.73, 315.73 130.89, 315.94 133.05 C 316.14 135.21, 316.35 137.37, 316.48 139.54 C 316.61 141.7, 316.74 143.86, 316.69 146.02 C 316.64 148.18, 316.49 150.35, 316.18 152.51 C 315.87 154.67, 315.23 156.84, 314.86 159 C 314.49 161.16, 314.1 164.41, 313.95 165.49"/><path class="ln" d="M 317.88 161.05 C 316.8 161.18, 313.55 161.48, 311.39 161.83 C 309.22 162.17, 307.06 162.93, 304.89 163.1 C 302.73 163.27, 300.57 162.99, 298.41 162.87 C 296.25 162.74, 294.09 162.46, 291.93 162.37 C 289.77 162.28, 287.6 162.45, 285.44 162.33 C 283.28 162.21, 281.12 161.84, 278.96 161.66 C 276.8 161.49, 274.64 161.31, 272.48 161.27 C 270.31 161.23, 268.15 161.48, 265.99 161.43 C 263.83 161.38, 261.67 160.97, 259.51 160.96 C 257.34 160.94, 255.18 161.17, 253.02 161.34 C 250.85 161.51, 248.69 161.83, 246.53 161.96 C 244.37 162.08, 242.2 162.01, 240.04 162.11 C 237.88 162.21, 235.71 162.51, 233.55 162.53 C 231.39 162.55, 229.23 162.25, 227.07 162.24 C 224.91 162.23, 222.74 162.5, 220.58 162.48 C 218.42 162.46, 216.26 162.41, 214.1 162.13 C 211.94 161.84, 208.7 161, 207.62 160.78"/><path class="ln" d="M 208.45 164.92 C 208.62 163.83, 209.26 160.54, 209.47 158.34 C 209.69 156.15, 209.8 153.96, 209.75 151.76 C 209.7 149.57, 209.34 147.38, 209.18 145.18 C 209.03 142.99, 208.9 140.8, 208.82 138.6 C 208.74 136.41, 208.7 134.22, 208.71 132.02 C 208.73 129.83, 208.83 127.64, 208.9 125.44 C 208.96 123.25, 209 121.06, 209.13 118.86 C 209.26 116.67, 209.57 114.48, 209.67 112.28 C 209.78 110.09, 209.86 107.9, 209.76 105.7 C 209.67 103.51, 209.21 100.22, 209.1 99.12"/></g>
             <g class="p2"><g class="node" data-node="b5p2"><path class="ln" d="M 208.54 101.67 C 209.65 101.73, 212.99 101.9, 215.22 102.07 C 217.44 102.23, 219.67 102.56, 221.89 102.66 C 224.12 102.76, 226.35 102.52, 228.58 102.67 C 230.8 102.82, 233.03 103.39, 235.25 103.58 C 237.48 103.77, 239.71 103.72, 241.94 103.83 C 244.16 103.93, 246.39 104.13, 248.62 104.22 C 250.84 104.31, 253.07 104.45, 255.3 104.37 C 257.53 104.3, 259.76 103.94, 261.98 103.79 C 264.21 103.64, 266.44 103.57, 268.67 103.47 C 270.9 103.37, 273.13 103.25, 275.35 103.18 C 277.58 103.12, 279.81 103.11, 282.04 103.07 C 284.27 103.03, 286.5 102.86, 288.72 102.96 C 290.95 103.07, 293.17 103.61, 295.4 103.7 C 297.63 103.78, 299.86 103.29, 302.08 103.48 C 304.31 103.67, 306.53 104.49, 308.76 104.82 C 310.98 105.15, 313.21 105.17, 315.44 105.44 C 317.66 105.7, 321 106.26, 322.11 106.43"/><path class="ln" d="M 317.53 101.21 C 317.57 102.3, 317.66 105.55, 317.76 107.72 C 317.85 109.88, 318 112.05, 318.09 114.22 C 318.18 116.39, 318.23 118.56, 318.29 120.72 C 318.35 122.89, 318.42 125.06, 318.48 127.23 C 318.53 129.39, 318.65 131.56, 318.63 133.73 C 318.6 135.9, 318.46 138.06, 318.34 140.23 C 318.21 142.4, 317.94 144.56, 317.89 146.73 C 317.83 148.9, 318.08 151.07, 317.99 153.24 C 317.91 155.4, 317.3 157.57, 317.39 159.73 C 317.48 161.9, 318.35 165.16, 318.54 166.24"/><path class="ln" d="M 322.03 163.38 C 320.97 163.49, 317.79 163.89, 315.68 164.03 C 313.56 164.17, 311.44 164.18, 309.32 164.2 C 307.2 164.22, 305.08 164.19, 302.97 164.15 C 300.85 164.11, 298.73 163.97, 296.61 163.96 C 294.49 163.94, 292.37 164.17, 290.25 164.07 C 288.14 163.98, 286.02 163.55, 283.9 163.37 C 281.78 163.19, 279.66 163.03, 277.54 162.97 C 275.42 162.91, 273.3 163.02, 271.19 163.01 C 269.07 163.01, 266.95 162.96, 264.83 162.96 C 262.71 162.96, 260.59 162.95, 258.47 163.03 C 256.36 163.11, 254.24 163.35, 252.12 163.44 C 250 163.52, 247.88 163.42, 245.76 163.53 C 243.65 163.64, 241.53 163.96, 239.41 164.08 C 237.29 164.2, 235.17 164.32, 233.05 164.26 C 230.94 164.19, 228.82 163.9, 226.7 163.7 C 224.58 163.49, 222.46 163.09, 220.34 163.03 C 218.22 162.96, 216.1 163.29, 213.99 163.31 C 211.87 163.33, 208.69 163.17, 207.63 163.14"/><path class="ln" d="M 210.05 164.94 C 210.01 163.88, 209.72 160.7, 209.81 158.58 C 209.91 156.47, 210.33 154.35, 210.63 152.24 C 210.94 150.13, 211.42 148.01, 211.64 145.9 C 211.86 143.78, 211.99 141.67, 211.96 139.55 C 211.93 137.43, 211.66 135.31, 211.45 133.19 C 211.23 131.07, 210.74 128.95, 210.66 126.83 C 210.57 124.71, 210.74 122.6, 210.96 120.48 C 211.17 118.37, 211.73 116.25, 211.93 114.14 C 212.12 112.02, 211.82 109.9, 212.12 107.79 C 212.41 105.67, 213.44 102.51, 213.7 101.45"/></g></g>
             <path class="ln arw" d="M 353.03 133.54 C 351.89 133.57, 348.46 133.77, 346.19 133.7 C 343.92 133.64, 341.67 133.29, 339.4 133.15 C 337.14 133.01, 334.87 132.94, 332.6 132.86 C 330.33 132.78, 328.05 132.87, 325.78 132.68 C 323.52 132.48, 320.15 131.85, 319.02 131.69"/><path class="ln arw" d="M 318.57 130.98 C 319.08 130.97, 320.7 131.16, 321.63 130.94 C 322.56 130.71, 323.28 130, 324.14 129.62 C 325.01 129.23, 326.35 128.77, 326.79 128.6"/><path class="ln arw" d="M 318.8 132.34 C 319.26 132.49, 320.72 132.8, 321.55 133.25 C 322.38 133.7, 322.98 134.55, 323.78 135.05 C 324.59 135.54, 325.95 136.02, 326.38 136.22"/>
             <g class="p2"><path class="ln arw" d="M 355.12 137 C 354 136.69, 350.65 135.55, 348.41 135.1 C 346.16 134.66, 343.9 134.42, 341.63 134.34 C 339.36 134.25, 337.06 134.61, 334.79 134.6 C 332.51 134.6, 330.24 134.59, 327.98 134.3 C 325.72 134.01, 322.37 133.11, 321.24 132.87"/><path class="ln arw" d="M 321 133.14 C 321.48 133.04, 322.96 132.91, 323.85 132.58 C 324.73 132.26, 325.47 131.58, 326.33 131.19 C 327.2 130.81, 328.57 130.41, 329.01 130.25"/><path class="ln arw" d="M 321.12 133.73 C 321.55 133.94, 322.83 134.55, 323.67 134.99 C 324.5 135.44, 325.28 135.98, 326.12 136.41 C 326.96 136.84, 328.29 137.38, 328.72 137.57"/></g>
           </g>
         </g>
-        <text data-label="b1" x="99.5" y="33" text-anchor="middle">portals,<tspan x="99.5" dy="24">checked nightly</tspan></text>
-        <text data-label="b2" x="292" y="31" text-anchor="middle">library,<tspan x="292" dy="24">300+ pieces</tspan></text>
-        <text data-label="b3" x="473" y="32" text-anchor="middle">bid or no-bid<tspan x="473" dy="24">score</tspan></text>
-        <text data-label="b4" x="455" y="128" text-anchor="middle">draft, on the<tspan x="455" dy="24">buyer's criteria</tspan></text>
-        <text data-label="b5" x="262.5" y="125" text-anchor="middle">the gap,<tspan x="262.5" dy="24">marked</tspan></text>
-        <text data-label="b6" x="110.5" y="126.5" text-anchor="middle">a person<tspan x="110.5" dy="24">approves</tspan></text>
+        <text data-label="b1" data-node="b1" x="99.5" y="33" text-anchor="middle">portals,<tspan x="99.5" dy="24">checked nightly</tspan></text>
+        <text data-label="b2" data-node="b2" x="292" y="31" text-anchor="middle">library,<tspan x="292" dy="24">300+ pieces</tspan></text>
+        <text data-label="b3" data-node="b3" x="473" y="32" text-anchor="middle">bid or no-bid<tspan x="473" dy="24">score</tspan></text>
+        <text data-label="b4" data-node="b4" x="455" y="128" text-anchor="middle">draft, on the<tspan x="455" dy="24">buyer's criteria</tspan></text>
+        <text data-label="b5" data-node="b5" x="262.5" y="125" text-anchor="middle">the gap,<tspan x="262.5" dy="24">marked</tspan></text>
+        <text data-label="b6" data-node="b6" x="110.5" y="126.5" text-anchor="middle">a person<tspan x="110.5" dy="24">approves</tspan></text>
       </svg>
       <figcaption class="exhibit__sentence">Nightly checks on procurement portals feed a library of more than 300 pieces of the client's own work. Each request is scored bid or no-bid, drafted against the buyer's criteria with any gap marked, and a person approves every response.</figcaption>
     </figure>
