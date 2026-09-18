@@ -20,12 +20,13 @@ both domains (LESSONS #5). Production untouched this pass.
   not pass (ORDANI 9.9px at 390) instead of gaming it. Opus opened every capture
   type: 10 findings N1-N10 (no study opens on its image at 390; §01 margin note
   not a lift; stray bracket; box padding). drawings-sheet + sheet-390 composed.
-- G3 IN FLIGHT: Fable reads .planning/reviews/FABLE-121-G3-INPUT.md (R1-R14),
-  writes FABLE-121-G3.md. Then: fold ruling into the brief, operator popup with
-  390+1440 captures (+ did-line, record period, exhibit strings), G4, commit.
-- BRIEF DRAFT committed: .claude/briefs/pass-121-work-and-studies.md, [G3] marks
-  12 open rulings; [OPERATOR] marks 3 asks for the visual popup (ORDANI did-line,
-  record heading period, Guardicore + ORDANI exhibit strings).
+- G3 DONE: Fable ADJUST (FABLE-121-G3.md): C lands, 11 changes, no 3rd mock
+  round; next Fable look = first built preview. Folded into the brief (0 [G3]
+  left, 7 [OPERATOR]). Opus kept PROOF's one-stroke-weight rule over R7's
+  scaling stroke: flagged for G4. Premises checked (JSON ratios, --cs-accent
+  scope, lifts); 'bookings a month' has no ledger provenance: asked.
+- NEXT: operator popups (build approval + drawing words; ORDANI did-line +
+  record period) -> ledger -> resolve [OPERATOR] -> G4 -> commit brief final.
 - LESSONS #37 + 4 standing clauses in briefs/README (708865b).
 - NEXT: open round-2 captures -> G3 input -> Fable G3 -> operator popup with
   390/1440 captures -> brief -> G4 -> commit.
