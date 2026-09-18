@@ -17,8 +17,14 @@ both domains (LESSONS #5). Production untouched this pass.
   money line, openings, drawing words, record period). NO h2 changes.
 - Brief FINAL 4906c47 (.claude/briefs/pass-121-work-and-studies.md): G3 ADJUST
   + G4 FIX FIRST (23 fixes) applied. One pen: circle 2px non-scaling.
-- STAGE A on GLM (.planning/exec/glm-121-stageA.md, log glm121-stageA.log).
-  Opus verifies checks + diff, then Stage B.
+- STAGE A: GLM capped mid-run 10:33 (edits uncommitted). Opus verified the copy
+  (20/20 exact), home lede, gate (clean; bite proven on HEAD copies). Resume =
+  .planning/exec/glm-121-stageA-resume.md, ARMED for 14:05 PDT via
+  glm-when-reset.ps1 (log glm121-stageA2.log). If the app restarted, run by hand:
+  powershell -File .planning/exec/glm-when-reset.ps1 -PromptFile <resume.md>
+  -Log .planning/exec/glm121-stageA2.log -At "2026-09-18 14:05".
+- ORDANI description keeps HIPAA-compliant (operator); schema cap 175; snippet
+  trims at 155 (my popup had called 169 chars snippet-sized: corrected).
 - BEFORE STAGE D: Opus writes .claude/briefs/pass-121-margin-notes.md (one
   lifted note per h2 + source line; turn paragraphs) -> operator looks.
 - After Stage D: first preview 390+1440 -> Opus look -> Fable checkpoint.
