@@ -27,9 +27,13 @@ both domains (LESSONS #5). Production untouched this pass.
   scope, lifts); 'bookings a month' has no ledger provenance: asked.
 - Operator 09-18: BUILD APPROVED (C + G3 fixes); drawing words, ORDANI did-line,
   record period all approved + ledgered. Brief complete (0 G3/0 OPERATOR marks).
-- G4 IN FLIGHT: Fable reads brief per FABLE-121-G4-INPUT.md (circle stroke,
-  executability) -> apply FIX FIRST list if any -> commit brief FINAL -> GLM
-  Stage A on z.ai. Push/deploy stays the operator's.
+- G4 DONE: FIX FIRST, 23 fixes applied verbatim (sage-text + weight premises
+  verified). Brief FINAL 4906c47. Stroke: one pen, 2px non-scaling (PROOF rule).
+- STAGE A launching on GLM (.planning/exec/glm-121-stageA.md, log
+  glm121-stageA.log): ORDANI retirement, gate phrases, llms, robots, sitemap
+  dates, JSON-LD. Opus verifies its checks + diff before Stage B.
+- BEFORE STAGE D: Opus writes .claude/briefs/pass-121-margin-notes.md (one lifted
+  note per h2, source lines, turn paragraphs) -> operator looks at it.
 
 ## Waiting on operator
 - Speed Insights p75 LCP for /work (A4). Colleague okay for the clip.
