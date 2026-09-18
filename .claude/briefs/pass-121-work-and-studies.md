@@ -1,10 +1,11 @@
 # Pass-121 brief: /work and the five studies in Direction C ("Five exhibits"), and the ORDANI claims retirement
 
-**Status: DRAFT, 2026-09-18, Opus 5 (main session).** Every copy string here is ledgered or marked
-**[OPERATOR]**. Fable's G3 ruling (`.planning/reviews/FABLE-121-G3.md`, verdict ADJUST, 2026-09-18) is folded
-in; each placement cites its ruling (R1 to R14, N1 to N10). Next: the operator's visual approval and the
-**[OPERATOR]** strings, then Fable reads this at G4, then it commits as final. Nothing here is executed
-before G4. One conflict inside G3 is resolved here and flagged for G4: see 3.3, "The circle".
+**Status: FOR G4, 2026-09-18, Opus 5 (main session).** Every copy string here is ledgered in LESSONS #3.
+Fable's G3 ruling (`.planning/reviews/FABLE-121-G3.md`, verdict ADJUST, 2026-09-18) is folded in; each
+placement cites its ruling (R1 to R14, N1 to N10). The operator approved the build and every open string on
+2026-09-18 (LESSONS #3, PASS-121 BUILD APPROVED AND THE DRAWING WORDS; ORDANI DID-LINE AND THE RECORD
+HEADING). Next: Fable reads this at G4, then it commits as final. Nothing here is executed before G4. One
+conflict inside G3 is resolved here and flagged for G4: see 3.3, "The circle".
 
 Executor: GLM 5.3 via `scripts/claude-glm.ps1 -Batch` (prompt on stdin, LESSONS #36). One stage per run,
 each stage committed on its own with a `Pass-121:` subject and a pathspec (`git commit -- <paths>`,
@@ -54,7 +55,7 @@ space.
 | `content/work/ordani.mdx` | `results.lead` | `Birth workers keep hundreds of dollars per client that a claims service would take.` | ORDANI CLAIMS FACTS, PART 4 |
 | `content/work/ordani.mdx` | `results.rest` | unchanged: `Active paying users in beta, none lost to a competitor.` | PART 5 (BETA) |
 | `content/work/ordani.mdx` | `entry.line` | `Birth workers keep hundreds of dollars per client that a claims service would take.` | PART 4 |
-| `content/work/ordani.mdx` | `entry.did` | **[OPERATOR, asked with the visual approval]** either unchanged `A HIPAA-compliant CRM for birth workers, and a company I founded and built.` or `I founded and built ORDANI, a HIPAA-compliant CRM where birth workers file their own Medicaid and private-insurance claims.` | to be ledgered |
+| `content/work/ordani.mdx` | `entry.did` | `I founded and built ORDANI, a HIPAA-compliant CRM where birth workers file their own Medicaid and private-insurance claims.` | ORDANI DID-LINE AND THE RECORD HEADING |
 | `content/work/ordani.mdx` | the whole `<Step n="02" ...>` element | `<Step n="02" lead="I put claims inside the calendar they already keep.">Birth workers who take Medicaid or private insurance either pay a service like Loula a fee on every visit, or file the claims themselves, which costs no fee but takes time and knowledge. Ordani builds the claim from the visits already on the calendar and checks it before it goes out, so fewer come back rejected. Filing comes with the subscription.</Step>` | ORDANI STEP 02 AND "WHAT IT BECAME" |
 | `content/work/ordani.mdx` | "What it became", first sentence only | replace `One intake instead of fifteen pages, and 91% of clients finish it.` with `Practitioners in the beta file real Medicaid and private-insurance claims from Ordani, with no separate claims charge.` The two sentences after it stay. | same row |
 | `content/work/content-engine.mdx` | `dek` | `Monthly impressions went from a few thousand to a peak of 800,000. A social activist's message had been landing in every room and nowhere online. I wrote the platform strategy, then built an AI engine that turns one rough video into the week's work: finished videos, the blog post, and the whole marketing flow for the idea it argues. One income stream became four.` | THE TWO REWRITTEN STUDY OPENINGS |
@@ -64,7 +65,7 @@ space.
 | `content/work/content-engine.mdx` | `entry.figure` (new) / `entry.line` | `figure: "Up to 800,000"`, `line: "impressions in a month, up from a few thousand a month."` The qualifier stays inside the figure and inside its circle; no `figurePrefix` field (G3 R8). The words do not change. | G2 §3.3; FABLE-121-G3 R8 |
 | `content/work/ordani.mdx` | `entry.figurePhrase` (new, optional) | `hundreds of dollars` (must be a substring of `entry.line`) | FABLE-121-G3 R8 |
 | `content/work/birth-worker.mdx` | `entry.figurePhrase` (new, optional) | `five to ten` (must be a substring of `entry.line`) | FABLE-121-G3 R8 |
-| `content/work-page.ts` | `RECORD.heading` | **[OPERATOR, asked with the visual approval]** unchanged `Also on the record` or `Also on the record.` (G2 and the mock add the period, matching the home's `The receipts.`) | to be ledgered |
+| `content/work-page.ts` | `RECORD.heading` | `Also on the record.` (renders `ALSO ON THE RECORD.`) | ORDANI DID-LINE AND THE RECORD HEADING |
 | `content/work-page.ts` | new export `WORK_HEADING` | `The work, on the record.` | PASS-121 DIRECTION AND /WORK HEADING (renders as `THE WORK, ON THE RECORD.`) |
 | `content/work-page.ts` | new export `WORK_DESCRIPTION` | `Four client engagements and the company I founded. $14M in revenue for a security company, $3M in contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a month, a birth worker's practice rebuilt, and ORDANI. Each page says what I found, what I built, and what changed.` | same row, DESCRIPTION PUNCTUATION |
 | `content/work-page.ts` | new export `DOORWAY_LINK` | `Read this one first` (renders `READ THIS ONE FIRST →`, the arrow in `<span aria-hidden="true"> →</span>` as `cs-close__link` does) | Direction C as picked (G2 §1 A, carried by C) |
@@ -103,21 +104,20 @@ inside the build-time copy-lint scope and the retired-phrases gate's roots, so e
 - `guardicore.ts`: frame labels `What the pitch led with`, `What buyers signed for`; inner labels
   `honeypot`, `north-south, defended`, `workloads`, `east-west traffic, seen`. Sentence: `The pitch led with
   honeypots. Buyers could not see the east-west traffic between their own workloads, and seeing inside the
-  environment was what they signed for.` **[OPERATOR, asked with the visual approval]**: first shown to
-  him in fix round 2's captures.
+  environment was what they signed for.` Approved 2026-09-18 (LESSONS #3, PASS-121 BUILD APPROVED AND
+  THE DRAWING WORDS).
 - `ordani.ts`: column heads `Filing it yourself or through a service`, `Filing it in Ordani`; sentences
   `A service takes a fee on every visit.`, `Filing it yourself costs no fee, but it costs time and
   knowledge.`, `The claim is built from the visits already on the calendar.`, `It is checked before it goes
   out, so fewer come back rejected.` No closing line (the superseded `stay with the practitioner` draft is
-  retired). **[OPERATOR, asked with the visual approval]**.
+  retired). Approved 2026-09-18, same row.
 - `content-engine.ts`: row 1 nodes `a few thousand`, `up to 800,000`; unit `impressions in a month`
   beneath row 1; row 2 nodes `one rough video`, `the week's work`. No tag (G3 R6).
 - `birth-worker.ts`: row 1 nodes `one to three`, `five to ten` (words, as the dek has them); unit
   `bookings a month` beneath row 1; row 2 nodes, new, `the same service`, `the full arc of care`. No tag.
-  **[OPERATOR, asked with the visual approval]**: the row-2 words and the unit line. Provenance checked
-  2026-09-18: the four node phrases occur verbatim in the approved birth-worker dek; `bookings a month`
-  occurs in no MDX and in no LESSONS #3 row (its only occurrence is LESSONS #37's prose), so it is asked,
-  not assumed.
+  Approved 2026-09-18, same row. Provenance: the four node phrases occur verbatim in the approved
+  birth-worker dek; `bookings a month` occurred in no MDX and no LESSONS #3 row before that approval, so
+  its provenance is that row.
 - No sentence under the two figure-move drawings or under ORDANI's comparison (G3 R9). Sentences exist on
   the RFP flow and the visibility diagram only. G2 §3.4 is amended: a sentence where a drawing needs a key.
 - **Facts gate match rule** (G3 R6): each label and sentence must occur as a contiguous, case-insensitive,
@@ -185,8 +185,8 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   `entry.line` at 36px. No circle on any of the four entries: one circle per page, on the doorway (G3 R8).
   390: folio and figure line, the exhibit at full width (max 240 tall, 300 for ORDANI's stacked drawing),
   the did-line, the label, in that order. Context line: Hanken 14px, `--color-foyer-ink-soft`, two lines max
-  at 1440 (PROOF §2 item 8). ORDANI's `DRAFT` (only while its did-line is unapproved) renders on the folio
-  row, 24px right of `03`, mono 12 `--color-foyer-ink-soft`, above the hairline that closes the entry (N9).
+  at 1440 (PROOF §2 item 8). No `DRAFT` mark: every ORDANI string on /work is approved (2026-09-18), so
+  G3 N9's placement rule is moot.
 - **Method band**: `METHOD_LINE`, 36px Bricolage sentence case, alone on paper, 160px above and below at
   1440, 96px at 390. Keeps class `cw-wx-method`.
 - **Record on espresso**: one full-bleed section, `data-world="espresso"`, ground
@@ -198,7 +198,7 @@ line, footer. Classes: keep every existing `cw-wx-*` class that still has a job;
   Bricolage the numeral figures (doorway and entries) and the record heading; 36 Bricolage the words-figures,
   the method line and a record row's company; 22 Hanken the description and Bricolage the figure lines; 18
   Hanken did-lines and record descriptions; 14 Hanken context lines, and JetBrains Mono service labels,
-  `READ THIS ONE FIRST`, record role and outcome; 12 JetBrains Mono folio, DRAFT, footer row. G2's 56, 28
+  `READ THIS ONE FIRST`, record role and outcome; 12 JetBrains Mono folio and the footer row. G2's 56, 28
   and 20 are retired. Scope of the check: the main content from the h1 to the record's last row; the cross
   line and the footer keep their live sizes outside the scope.
 - **Sizes at 390** (checked at the first preview): h1 48; numeral figures 36; words-figures 26; method
@@ -547,10 +547,9 @@ Commit Stage E.
 
 - Push and deploy timing. Push to `main` deploys production and both domains are re-aliased (LESSONS #5).
   His approval is quoted with its date in RESUME before any push, branch or main.
-- Asked with the visual approval, before this brief commits (never parked, LESSONS #35): the ORDANI
-  `entry.did`; `Also on the record` with or without a period; the Guardicore and ORDANI exhibit strings;
-  the birth-worker drawing's new second row (`the same service` to `the full arc of care`) and its unit
-  line `bookings a month` (G3 R6).
+- Answered 2026-09-18, before this brief commits (LESSONS #35): the build approval; the ORDANI
+  `entry.did`; the record heading's period; the Guardicore, ORDANI and birth-worker drawing words. All
+  ledgered in LESSONS #3.
 - Speed Insights p75 LCP for `/work` after release (A4).
 - The colleagues' okay to being animated in the clip (DESIGN_BAR R12 exception).
 - Ordani screens, for ORDANI as a future featured study.
