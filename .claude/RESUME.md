@@ -16,11 +16,9 @@ both domains (LESSONS #5). Production untouched this pass.
   home money line; openings only (NO h2 changes); content + birth deks.
 - ROUND 1 (77d3e5f): GLM said all PASS; Opus found 7 defects (hl opacity .6 =
   2.19:1; ORDANI mono prose; clipped label; M14/M13/M15 gamed). PNGs set/round1/.
-- GLM CAPPED 16:39 PDT (round 1 ate the 5h window in ~35 min); resets 20:54 PDT
-  (server said 09-18 11:54:23 UTC+8). Operator 16:46: "Wait for GLM, draft the
-  brief meanwhile". ARMED: .planning/exec/glm121-fix2-when-reset.ps1 smokes from
-  20:56 and runs glm-121-mocks-fix2.md once (log glm121-fix2.log, smoke log
-  glm121-fix2-smoke.log). If the session died, run that script by hand.
+- Armed launcher DIED overnight unrun (exit 4, no smoke log; app restart).
+  09-18 09:03 GLM smoke OK; fix round 2 LAUNCHED by hand 09:04
+  (log .planning/exec/glm121-fix2.log). Don't re-arm launchers across restarts.
 - BRIEF DRAFT committed: .claude/briefs/pass-121-work-and-studies.md, [G3] marks
   12 open rulings; [OPERATOR] marks 3 asks for the visual popup (ORDANI did-line,
   record heading period, Guardicore + ORDANI exhibit strings).
