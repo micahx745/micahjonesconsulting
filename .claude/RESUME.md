@@ -22,10 +22,10 @@ both domains (LESSONS #5). Production untouched this pass.
 - STAGE A DONE 294f7c9 + ed4de52 (GLM partial, Sonnet checks, Opus verified +
   committed). Brief corrected 675dff4: visible-text decodes numeric entities;
   route-js-bytes replaces First Load JS (baseline /work 665757 B, study 679924).
-- STAGE B READY (.planning/exec/exec-121-stageB.md, Sonnet) but BLOCKED on the
-  operator: the RFP flow's 6 labels + sentence have no ledger provenance; he asked
-  for a preview (local file links, preview/ folder, photo embedded). Also asked:
-  add the @AGENTS.md rule to fable-harness-init? (CC 2.1.277 fallback).
+- DIRECTION C REJECTED 09-18 (ledger f241ce1): "bland, word heavy, weak". Stages
+  B-F ON HOLD; Stage A stands. Operator runs a Claude chat (Fable) research with
+  .planning/research/pass-122-design-ethos-prompt.md (prompt 1 open; prompt 2
+  puts the current design rules on trial). Next arc waits on that answer.
 - Margin notes list ce5b8e5 (31/31 lifts) sent to the operator for a look.
 - After Stage D: first preview 390+1440 -> Opus look -> Fable checkpoint.
 
