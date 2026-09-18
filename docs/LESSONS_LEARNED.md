@@ -613,6 +613,18 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   `lib/case-study-schema.ts`'s description cap rises from 155 to 175 so the approved string validates; the
   155 trim in `clampDescription` is unchanged.
 
+- **DIRECTION C REJECTED ON SIGHT — operator 2026-09-18 (Pass-121 EXECUTE, after previewing the round-2
+  mocks locally)**, verbatim: "It looks bad. Still very wordy and the boxes with lines looks bad. Fable
+  really signed off on this? confused on where the insipiration and ideas are coming for such a bland, word
+  heavy, weak design. Its something that would not draw someone in. I feel like there are so many amazing
+  design websites. Why do you keep going underwhelming? are there restraints?" He asked for a prompt for a
+  Claude chat (Fable) research run on the best design ethos, fed as few design restraints as possible.
+  CONSEQUENCE: the Direction C design (the hand-drawn box-and-arrow exhibits, the doorway, the brief's
+  sections 3 and 4) is ON HOLD; brief Stages B to F do NOT run. Stage A (`294f7c9`, `ed4de52`: the ORDANI
+  claims retirement, the gate, llms.txt, robots, sitemap dates, JSON-LD) is design-independent and STANDS.
+  Every copy and fact ruling above stands; only the visual direction is reopened. Do not re-propose
+  diagram-of-the-work boxes and arrows without a new dated ruling.
+
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
   i do. Maybe we just replace that with a header. There is no header and i get leadeing with
