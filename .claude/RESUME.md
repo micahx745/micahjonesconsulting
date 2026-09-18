@@ -19,11 +19,14 @@ both domains (LESSONS #5). Production untouched this pass.
   money line, openings, drawing words, record period). NO h2 changes.
 - Brief FINAL 4906c47 (.claude/briefs/pass-121-work-and-studies.md): G3 ADJUST
   + G4 FIX FIRST (23 fixes) applied. One pen: circle 2px non-scaling.
-- STAGE A: GLM capped mid-run 10:33; Opus verified its copy (20/20), home lede,
-  gate. GLM launcher STOPPED (no orphan). Resume on SONNET now:
-  .planning/exec/glm-121-stageA-resume.md.
-- ORDANI description keeps HIPAA-compliant (operator); schema cap 175; snippet
-  trims at 155 (my popup had called 169 chars snippet-sized: corrected).
+- STAGE A DONE 294f7c9 + ed4de52 (GLM partial, Sonnet checks, Opus verified +
+  committed). Brief corrected 675dff4: visible-text decodes numeric entities;
+  route-js-bytes replaces First Load JS (baseline /work 665757 B, study 679924).
+- STAGE B READY (.planning/exec/exec-121-stageB.md, Sonnet) but BLOCKED on the
+  operator: the RFP flow's 6 labels + sentence have no ledger provenance; he asked
+  for a preview (local file links, preview/ folder, photo embedded). Also asked:
+  add the @AGENTS.md rule to fable-harness-init? (CC 2.1.277 fallback).
+- Margin notes list ce5b8e5 (31/31 lifts) sent to the operator for a look.
 - BEFORE STAGE D: Opus writes .claude/briefs/pass-121-margin-notes.md (one
   lifted note per h2 + source line; turn paragraphs) -> operator looks.
 - After Stage D: first preview 390+1440 -> Opus look -> Fable checkpoint.
