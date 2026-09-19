@@ -127,6 +127,14 @@ subagent (`model: "fable"`) at the planning and quality gates a kickoff or brief
 a direction, judging mocks or a preview, reading a brief before it commits), one call per gate
 with a written input file. Research, capture and measuring legs stay on Sonnet.
 
+**Amended 2026-09-18, evening: more Fable when its bucket has room.** Operator, verbatim: "feel free
+to use more of fable. look at usage and usage reset time for fable". So: before choosing a tier, read the
+plan limits (`mcp__ccd_session_mgmt__get_usage`: 5-hour, weekly all models, weekly Fable, reset times).
+Fable takes the taste and judgement legs (design and copy verdicts, the first design of a surface, briefs,
+buyer reads) while its weekly bucket has headroom; builds, captures and measuring stay on Sonnet. The
+weekly ALL-MODELS bucket binds first (at the time of this note: 87% used, Fable 61%, both resetting
+2026-09-19 00:59 PDT), and every Fable call draws on it too.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing
