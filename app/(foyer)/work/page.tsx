@@ -155,7 +155,7 @@ export default async function WorkIndexPage() {
         </h1>
         <div className="cw-wx-open__row">
           <p className="cw-wx-open__desc">{WORK_DESCRIPTION}</p>
-          {featured?.entry.figure ? (
+          {featured ? (
             <ViewTransitionLink
               href={`/work/${featured.slug}`}
               className="cw-wx-feat"
@@ -167,8 +167,9 @@ export default async function WorkIndexPage() {
                 <span className="cw-wx-feat__ctx">
                   {featured.entry.context}
                 </span>{" "}
+                {/* $14M cut 2026-09-18 (operator, LESSONS #3 "PASS-122 /WORK
+                    LOCKED WITH THREE CUTS"): it repeated the first poster. */}
                 <span className="cw-wx-feat__fig">
-                  {featured.entry.figure}
                   <span className="cw-wx-feat__go" aria-hidden="true">
                     {"→"}
                   </span>
@@ -232,7 +233,9 @@ export default async function WorkIndexPage() {
                   {row.outcome}
                 </span>
               </p>
-              <p className="cw-wx-rec__desc">{row.description}</p>
+              {row.description ? (
+                <p className="cw-wx-rec__desc">{row.description}</p>
+              ) : null}
             </li>
           ))}
         </ol>

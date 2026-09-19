@@ -14,12 +14,13 @@ export const METHOD_LINE =
 // HEADING; ORDANI DID-LINE AND THE RECORD HEADING): /work becomes five
 // exhibits. WORK_HEADING is the page's one h1 (sentence case in the DOM,
 // uppercased by CSS); WORK_DESCRIPTION is the description under it;
+// WORK_DESCRIPTION's figure list was cut 2026-09-18 (LESSONS #3 "PASS-122 /WORK LOCKED").
 // DOORWAY_LINK closes the Guardicore doorway (renders READ THIS ONE FIRST →,
 // the arrow span is the component's). The record heading gains its period.
 export const WORK_HEADING = "The work, on the record.";
 
 export const WORK_DESCRIPTION =
-  "Four client engagements and the company I founded. $14M in revenue for a security company, $3M in contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a month, a birth worker's practice rebuilt, and ORDANI. Each page says what I found, what I built, and what changed.";
+  "Four client engagements and the company I founded. Each page says what I found, what I built, and what changed.";
 
 export const DOORWAY_LINK = "Read this one first";
 
@@ -47,8 +48,9 @@ export const RECORD = {
       company: "Guardicore",
       role: "Revenue and positioning",
       outcome: "Acquired by Akamai, 2021",
-      description:
-        "$14M in revenue, sourced and closed, after the research moved the pitch from honeypots to east-west visibility.",
+      // Cut 2026-09-18 (operator, LESSONS #3 "PASS-122 /WORK LOCKED WITH THREE CUTS"): it repeated the
+      // study's own line; the row still links to the study.
+      description: null,
       href: "/work/guardicore",
     },
     {
