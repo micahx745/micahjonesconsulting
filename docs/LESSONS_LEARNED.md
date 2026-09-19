@@ -698,6 +698,15 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   section (Recommended)": "The rest of the home stays. Its $20M+ and four exits section takes the ideas you
   ticked." He is shown that section before and after at 390 and 1440 before anything else. FEWER WORDS
   binds: every proposed cut goes to him as a list before it is made; nothing is reworded.
+- **PASS-122 RECEIPTS VERDICT AND THE FIRST CUT — operator 2026-09-18 (Pass-122 DIRECT, popup, after the
+  before/after sheet and the live preview of `e2df56e` on the branch)**. VERDICT: picked "Yes, make the two
+  fixes (Recommended)": "Clip more visible (still legible), the caption larger and tight under $20M+. Then
+  the same treatment for /work ($14M, $3M, 800,000) with before/after for you." The evolved receipts section
+  is APPROVED IN DIRECTION; it is not approved to ship until he sees the fixed version and a separate push
+  approval. CUT: picked "Cut it, screen readers keep it (Recommended)": the h3 `The receipts.` is removed
+  from the screen and stays as a visually hidden heading, same text, so the outline still reads. This
+  retires the Pass-114 count-up and the hand circle around $20M+ on the home (replaced by the clip
+  arrival; brand.json `motion.countup` and the CLAUDE.md count-up paragraph are rewritten when this ships).
 
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
