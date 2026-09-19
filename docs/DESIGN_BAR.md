@@ -211,7 +211,7 @@ by looking. Grade per page; report R-numbers.
   figure-bearing result. No testimonial carousel, no star ratings, no generated avatars, no
   animated counters.**
   - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): COUNTERS: one hero number per page or section may assemble once as it arrives; the real number is in the server HTML, reduced motion shows it finished, no tickers or stat bars. LOGOS AND QUOTES: a logo row or quotes may appear if real ones become available, each approved by the operator and ledgered in LESSONS #3 before it renders. Nothing is faked or implied.
-  - Exception (operator 2026-09-11, decision 4): the home page's own $20M+ figure counts once from $0M to $20M+ over 1.2s, on / only, once per load, skipped under reduced motion, finished frame as the no-JS render. It is a single authored proof moment, not a stat ticker, and not a precedent.
+  - RETIRED (Pass-122, operator 2026-09-18, LESSONS #3 "PASS-122 RECEIPTS V2 LOCKED" and "PASS-122 PUSH APPROVED, WITH FIXES"): replaced by the receipts clip arrival under the Pass-122 R13 ruling above. Exception (operator 2026-09-11, decision 4): the home page's own $20M+ figure counts once from $0M to $20M+ over 1.2s, on / only, once per load, skipped under reduced motion, finished frame as the no-JS render. It is a single authored proof moment, not a stat ticker, and not a precedent.
 - **R14 — At least one proof block contains a named metric WITH mechanism** (what was done → the
   number that changed) that a skeptical CFO could interrogate — e.g., the $80M pipeline / $14M
   revenue Guardicore result stated with its how.
@@ -221,7 +221,7 @@ by looking. Grade per page; report R-numbers.
 - **R15 — Motion is punctuation:** nothing animates idly (no pulsing dots, marquees, looping
   gradients); entrance effects, if any, run once, ≤400ms, ease-out, transform/opacity only.
   - Ruling (operator 2026-09-18, Pass-122, Kinetic Editorial; LESSONS #3 "PASS-122 RULES ON TRIAL"): the 400ms entrance cap is lifted for Kinetic Editorial's scroll-driven type and hero numbers (see R9). "Nothing animates idly" stands: no loops, pulses or marquees.
-  - Exception (operator 2026-09-11, decision 4): the same $20M+ count and its circle run 2.65s total, once, never on scroll after start. Recorded in brand.json motion.countup.
+  - RETIRED (Pass-122, operator 2026-09-18, LESSONS #3 "PASS-122 RECEIPTS V2 LOCKED" and "PASS-122 PUSH APPROVED, WITH FIXES"). Exception (operator 2026-09-11, decision 4): the same $20M+ count and its circle run 2.65s total, once, never on scroll after start. Recorded in brand.json motion.countup.
 - **R16 — Copy passes the specificity test:** zero instances of hype vocabulary (stream·line,
   em·power, supercharge, world·class, seam·less, cutting·edge, enterprise-grade, award-winning, or
   anything on the repo copy-lint banned list — dots stripped when grepping); zero emoji bullets;

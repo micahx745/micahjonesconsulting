@@ -89,6 +89,9 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
   the pass, the scope is its own popup, asked first. Every mock, tile or brief names its scope in its first
   lines. Pass-122 built a complete redesign tile for a direction the operator meant as themes for the
   existing site ("i didnt want to change the entire site").
+- **Scroll reveals are captured before and after their trigger** (LESSONS #40). Every scroll-triggered
+  reveal gets frames before and after it fires at 390 and 1440, and a check that it reached its done state
+  after a slow scroll past it. A waiting state is never empty.
 
 ## Budget this enforces
 

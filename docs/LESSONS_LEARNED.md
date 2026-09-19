@@ -1813,3 +1813,24 @@ first lines.
 **The gate.** The standing clause "A design direction is never picked without its scope" in
 `.claude/briefs/README.md`. On recurrence: a pre-launch check that refuses any mock or tile workflow whose
 brief has no "Scope:" line naming the pages it changes and "replaces" or "feeds".
+
+## #40 — A scroll-triggered figure never fired, and a later fix left its slot blank (2026-09-18)
+
+**What happened.** Pass-122's /work build hid each study figure before its assembly with a clip, and the
+figures never assembled: Chrome's IntersectionObserver treats an element whose painted area is clipped to
+nothing as never intersecting, so the observer never fired and the posters stayed hidden. The builder caught
+it in its own capture run and switched the waiting state to transparency. The Fable ship gate then found the
+second half of the same class: with the waiting state transparent and a 0.6 threshold, the birth-worker
+poster's slot showed as blank paper with 125px already in view on a phone. Nothing shipped with either.
+
+**Root cause.** A reveal was verified from its finished frames. No check captured the element BEFORE its
+trigger or asserted that it reached its done state after the visitor scrolled past it.
+
+**The rule.** Any scroll-triggered reveal is captured before and after its trigger at 390 and 1440, and a
+check asserts every such element reaches its done state after a slow scroll past it. The waiting state of a
+reveal is never empty: the element is visible in some form before it animates.
+
+**The gate.** The standing clause "Scroll reveals are captured before and after their trigger" in
+`.claude/briefs/README.md`. On recurrence: a capture helper that scrolls every page slowly and fails when any
+element carrying the reveal's waiting class is still in it once scrolled past.
+
