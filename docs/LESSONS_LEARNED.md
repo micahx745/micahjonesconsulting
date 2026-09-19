@@ -707,6 +707,12 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   from the screen and stays as a visually hidden heading, same text, so the outline still reads. This
   retires the Pass-114 count-up and the hand circle around $20M+ on the home (replaced by the clip
   arrival; brand.json `motion.countup` and the CLAUDE.md count-up paragraph are rewritten when this ships).
+- **PASS-122 RECEIPTS V2 LOCKED — operator 2026-09-18 (Pass-122 DIRECT, popup, after the v1/v2 sheets and the
+  live preview of `1225bea`)**. Picked "Yes, it's right (Recommended)": "Lock it." The home receipts section
+  as built in `1225bea` (footage graded `grayscale(1) contrast(.59) brightness(2.04) sepia(.12)` inside
+  $20M+, copper settle, caption "In revenue behind my work" in Bricolage 600 under the numerals, the exits
+  scoreboard, "The receipts." screen-reader only) is the approved design. Shipping still needs his separate
+  push approval, after /work.
 
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
