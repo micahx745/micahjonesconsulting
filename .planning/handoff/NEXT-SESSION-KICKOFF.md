@@ -1,135 +1,104 @@
-# Kickoff: micahjonesconsulting, Pass-122 DIRECT (a new design direction, from the operator's research)
+# Kickoff: micahjonesconsulting, Pass-123 (the study pages and the small fixes, on the week's routing tiers)
 
-Written 2026-09-18 13:40 PDT by the Opus 5 session that ran Pass-121 EXECUTE. `.claude/RESUME.md` is current
-state and outranks this file. Supersedes the Pass-121 EXECUTE kickoff (git history keeps it).
+Written 2026-09-19 08:10 PDT by the Opus 5 session that shipped Pass-122. `.claude/RESUME.md` is current
+state and outranks this file. Supersedes the Pass-122 DIRECT kickoff (git history keeps it).
 
-## 0. What the operator will paste with this file
+## 0. The routing tiers for this week (operator 2026-09-19, read this first)
 
-The answer from a Claude chat (Fable, research on) to the prompt in
-`.planning/research/pass-122-design-ethos-prompt.md`: real reference sites, a recommended design ethos,
-three directions, a pick, what to create or shoot, and the AI-built tells to avoid. Possibly its answer to
-prompt 2, which puts the current site's design rules on trial. That answer is the input to this pass.
-It is research, not a ruling: verify its premises (open a sample of its URLs; check its claims about Micah
-against LESSONS #3) before building on it, and let the operator pick.
+Operator, verbatim: "I want to really implement the AI routing tier to conserve usage this week. Right now
+chatgpt weekly usage is reset in 4 hours, and glm is at 74% for the week. So we can use glm and claude for
+now - using the best models to ensure quality in design and writing and the cheaper models to do the grunt
+work." Recorded in `.claude/CLAUDE.md` (amendment 2026-09-19). In practice:
 
-## 1. Why this pass exists (read this before anything else)
+| Work | Who | How |
+|---|---|---|
+| Rulings, briefs, verifying, commits, talking to Micah | Main session, Opus 5 | this chat; no build, capture or screenshot loops |
+| First design of a surface, copy drafts and rulings, brief reads, judge and buyer reads | Fable | `model: "fable"` subagent, ONE call per gate, input written to a file first |
+| Independent juror at design and copy checkpoints | Astra (ChatGPT) | `scripts/codex-exec.ps1 -Review -Prompt <file> -Out <file> -Image a.png,b.png`; back 2026-09-19 12:17 PDT; gates only |
+| Builds, fix rounds, captures, measuring scripts, mechanical edits | GLM 5.3 | `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Batch -PromptFile <file>` (prompt on stdin, LESSONS #36); `-Smoke` first each session; small runs (a big brief can drain a 5-hour window in ~35 min); GLM weekly was 74% on 09-19 |
+| Grunt overflow, research and lookups | Sonnet | `model: "sonnet"` subagent when GLM is capped or a leg needs in-session tools |
 
-The operator rejected Pass-121's design on sight, 2026-09-18 (LESSONS #3, "DIRECTION C REJECTED ON SIGHT"),
-verbatim: "It looks bad. Still very wordy and the boxes with lines looks bad. Fable really signed off on
-this? confused on where the insipiration and ideas are coming for such a bland, word heavy, weak design.
-Its something that would not draw someone in. I feel like there are so many amazing design websites. Why do
-you keep going underwhelming? are there restraints?"
+Pacing: call `mcp__ccd_session_mgmt__get_usage` at boot and before every fan-out, and name the bucket in one
+line before launching (memory: `check-usage-before-tiering`). On 09-19 08:06 PDT the Claude week had just
+reset: all models 0%, Fable 0%, next reset 2026-09-26 01:00 PDT. Claude weekly all-models is the bucket that
+stops everything; every Fable call draws on it. A GLM or Sonnet report is a claim: the main session opens
+every capture and re-runs every number that decides a ship (LESSONS #36, #37).
 
-What the previous session told him, and what this pass must not repeat:
-- The Pass-121 direction came from a 14-site reference set that leaned editorial and quiet (Tom Critchlow,
-  Basecamp Shape Up, The Pudding, Emil Kowalski, Draft.nu). Quiet references produce a quiet design.
-- Every gate asked "does this break a rule?" and "is every word true?", and none asked "would this stop a
-  buyer scrolling?". Fable designed the direction and passed it with fixes; it saw the drawings read as "a
-  sketch tool's output" and judged that cosmetic. The operator judged it the concept.
-- The design rules in `.claude/CLAUDE.md` and `docs/DESIGN_BAR.md` (type and photographs only; one signature
-  motion; nothing pins, parallaxes or follows the cursor; entrance motion once and 400ms or less; one accent
-  colour; mono for labels only) came largely with the "House Lights" setup the site was started on. They
-  cap visual punch. They are ON TRIAL this pass, not binding: which ones go is the operator's ruling, by
-  popup, ledgered with his words, and then the constitution files are amended with a dated note before any
-  build relies on the change. Until he rules, do not design inside them and do not silently break them.
-- What is NOT on trial: facts and copy. Every number, client and sentence is ledgered in LESSONS #3; nothing
-  is invented; retired figures stay retired (the gates enforce it).
+## 1. Where things stand
 
-The new gate for this pass: the operator sees a visual early and often. A style tile or a one-screen mock
-at 390 and 1440 comes before any full mock set, and the question every reviewer answers first is "does this
-draw a stranger in?", before any rule check.
+- **Production = Pass-122, `361f29d`, on all three domains** (www, apex, .vercel.app), dpl
+  `dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD`, curl-verified 2026-09-19 07:00. Revert: promote
+  `dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe` (Stage A, `92095b7`). Push to main deploys (git integration).
+- Worktree `.claude/worktrees/p106-live`, branch `design/live-evolve` = origin/main plus RESUME/ledger
+  commits (not pushed; they carry no site change). The main checkout's local `main` ref is stale (79534b8);
+  its `.claude/launch.json` carries an uncommitted `prod-p106` preview config (port 3101, serves this
+  worktree's `.next`): keep it, it is how Micah scrolls a build in the app's browser pane.
+- **What Pass-122 shipped** (LESSONS #3 rows headed "PASS-122 ..."): the redesign research FEEDS the existing
+  theme, never replaces it ("i didnt want to change the entire site", #39). Home receipts: $20M+ at poster
+  size with the Tel Aviv clip inside the numerals once, then copper; the exits scoreboard; "The receipts."
+  screen-reader only. /work: approved heading + two-sentence description, small featured Guardicore entry
+  (photo + arrow), every figure a copper poster that assembles once, three cuts. Micah verified the clip on
+  his iPhone.
+- New gates you must follow: LESSONS #38 (a field split re-checks every consumer; `work-entry-gate` in
+  build), #39 (scope before any direction popup; briefs README clause), #40 (scroll reveals captured before
+  and after trigger; a waiting state is never empty), #19 recurrence (accent colour on a WorldSwitcher page
+  measured while scrolling: `node .planning/exec/crossfade-contrast.mjs`, down and up, normal and reduced
+  motion, 390 and 1440, 0 steps under the floor, before CARD 1).
 
-## 2. Where things stand
+## 2. Boot, in order
 
-- Branch `design/live-evolve`, worktree `.claude/worktrees/p106-live`, nothing pushed. Production is
-  `c525329` (Pass-120) on both domains. The local `main` ref is stale; compare against `c525329`.
-- **Pass-121 Stage A is committed and design-independent** (`294f7c9`, `ed4de52`): the retired ORDANI intake
-  figure (40% to 91%) leaves all seven surfaces in the operator's approved words; the home ORDANI paragraph
-  carries the money line; the retired-phrases gate carries the figure in every spelling (proven to bite);
-  named robots allows; per-route sitemap dates from a committed `content/lastmod.json`; the Ordani
-  Organization JSON-LD no longer claims the study page. Checks passed on the production build.
-- **The retired claim is LIVE on production right now** (curl, 2026-09-18 13:34: `/work/ordani` shows
-  "40% to a measured 91%", `/llms.txt` shows "intake completion went from 40%"). Against `c525329`, the
-  branch's only site changes are Stage A and the deletion of the unmounted `EditorialTimestamp` (operator
-  2026-09-16). So Stage A can ship alone, ahead of any design. That is the operator's decision (section 5).
-- Pass-121's brief `.claude/briefs/pass-121-work-and-studies.md` is FINAL but ON HOLD: its sections 3 and 4
-  (the Direction C design) are dead; its section 2 copy and Stage A stand. Stages B to F do not run.
-- Kept from Pass-121 and still useful: every LESSONS #3 ruling (ORDANI dek, description, Step 02, What it
-  became, did-line, home money line, the rewritten content-engine and birth-worker openings, the /work
-  heading and description, the record heading's period); `.planning/exec/visible-text.mjs` (decodes numeric
-  entities); `.planning/exec/route-js-bytes.mjs` (JS size, since Next 16 dropped First Load JS; baseline
-  /work 665757 bytes, each study 679924); `scripts/lastmod.mjs`; LESSONS #36 and #37 and the four standing
-  clauses they added to `.claude/briefs/README.md`.
+1. `.claude/RESUME.md`. 2. `get_usage` (name the numbers to Micah in one line). 3. `docs/LESSONS_LEARNED.md`
+#3 rows headed "PASS-122" and lessons #38 to #40 plus the #19 recurrence. 4. `.claude/briefs/README.md`
+standing clauses. 5. `C:/Users/micah/.claude/playbooks/website-dev.md` ("Premium marketing routes: the design
+loop is mandatory"). 6. The Pass-122 briefs as the pattern to copy: `.planning/mocks/pass-122/RECEIPTS-BRIEF.md`
+and `WORK-BRIEF.md` (scope line first, themes quoted, bans, verification with numbers).
 
-## 3. Do this, in order
+## 3. The queue, in order, with the tier for each
 
-1. Boot (section 4). Rewrite `.claude/RESUME.md` for this pass.
-2. Ask the operator the Stage A ship question first (section 5, item 1), by popup. If yes: follow
-   `docs/DEPLOY-RUNBOOK.md` and STANDING_TECHNIQUES CARD 1, re-alias BOTH domains (LESSONS #5), quote his
-   approval with its date in RESUME before the push, and verify on the live domains with curl that the
-   retired figure is gone (expect 0) and the new ORDANI line is present.
-3. Read the research he pastes. Verify: open 6 to 8 of its reference URLs (they must exist and show the
-   move it claims); check every claim it makes about Micah against LESSONS #3.
-4. Put the directions to him by popup, two questions at a time, recommended option first, with the
-   reference screenshots or links. Then the rules on trial, rule by rule, by popup. Ledger every answer in
-   LESSONS #3 before the next leg (#32); amend `.claude/CLAUDE.md`, `docs/DESIGN_BAR.md` and
-   `.claude/brand.json` with dated notes for every rule he drops, and update the hooks that enforce them
-   (`design-tokens.sh`, `motion-discipline.sh`, `scripts/gsap-quarantine-gate.mjs` and similar) in the same
-   commit, or the harness will block the new design.
-5. A style tile or one-screen mock of the picked direction at 390 and 1440, fast, shown to him as a local
-   preview (section 6) before any full mock set. Iterate with him until he says it draws him in.
-6. Then the Fable gate on the direction, the full mocks, his approval, the brief, the Fable read of the
-   brief, the build in stages, per the arc in `.claude/briefs/README.md`.
+1. **GLM smoke + three small fixes (grunt, GLM):** `-Smoke` first. Then one small batch prompt, verified by
+   the main session: (a) F5 from `.planning/reviews/CROSS-REVIEW-PASS-122-DIFF-claude.md`: `.cw-rec` and
+   `.cw-exits.is-live` size from `100vw`, so with classic scrollbars (Windows) the `+` of $20M+ runs up to
+   ~9px into the gutter below ~1300px; switch to `container-type: inline-size` + `cqi` like /work does;
+   (b) `components/view-transition-link.tsx` accepts anchor attributes, so the featured link's
+   `aria-label` in `app/(foyer)/work/page.tsx` drops its `as any` spread; (c) dead CSS `.cw-secttitle--sub`
+   and the stale 112px-pause comment on the home. Do NOT delete `components/hand/HandCircle.tsx` (no importer
+   now) without asking Micah. Verify: build, captures of $20M+ at 1300/1440 with a classic scrollbar, CLS 0,
+   contrast unchanged. Ship only with his push approval.
+2. **Ledger provenance (main session, then Micah if needed):** "Close rate from one in eight to one in four
+   inside six months" and "$3M in signed contracts across eleven awards" are live on the RFP study since
+   Pass-120 (`6c564b4`) with no LESSONS #3 row. Look for them in the Pass-120 brief's draft-detail
+   confirmations (LESSONS #3 "PASS-120 DRAFT DETAILS CONFIRMED", 2026-09-16: RFP ?1 to ?7, ?9 and ?11
+   confirmed; ?8 and ?10 are not in that list); if found, add a
+   provenance row; if not, put both to him by popup before any surface restates them.
+3. **The five study pages, `/work/[slug]`, in the same grammar (the pass's main work):**
+   - SCOPE FIRST (#39), by popup, before any design: which parts of the study page take which themes (the
+     dark band's result as a poster that assembles; the results block as posters; fewer words as proposed
+     cuts; the Guardicore photo), and that it FEEDS the existing theme. Note the DESIGN_BAR R2 exception of
+     2026-09-16: study pages cap their largest type at 56px/36px because a 112px result wrapped on the
+     anonymous studies; poster figures reopen that, so it is part of the scope question.
+   - Design + brief: Fable (one call; input file with the scope ruling, the Pass-122 frames, the study page
+     code, the ledger rows it may use). Main session reads the brief against the ledger (no invented copy).
+   - Build: GLM from the brief, in small stages (one study template change, then captures), Sonnet as
+     overflow. Captures before/after at 390 and 1440 for all five studies.
+   - Gates: Astra juror (images) + Fable judge read; crossfade-contrast.mjs and before/after-trigger frames;
+     Micah sees before/after and the live build in the pane (launch `prod-p106`) before anything ships.
+   - Ship: his dated push approval quoted in RESUME, CARD 1, curl via `visible-text.mjs` + a whitespace-
+     normalising counter (never `grep -i -F`, #34).
+4. **Parked, Micah's calls:** which other real photos of him to animate like the Tel Aviv clip; topping up
+   the pay-as-you-go GLM key for the cross-review REST leg (HTTP 429 "Insufficient balance" on 09-18);
+   `fable-harness-init` + `@AGENTS.md` (CC 2.1.277); Speed Insights p75 LCP for /work; the colleagues' okay
+   for the clip; Ordani screens.
 
-## 4. Boot, in order
+## 4. How to show him work
 
-1. `.claude/RESUME.md`.
-2. `C:/Users/micah/.claude/CLAUDE.md`, `ULTRACODE_OPERATING_PATTERNS.md`, `MODEL_ROUTING.md` §6 and §9.
-3. `docs/LESSONS_LEARNED.md`: #3 rows dated 2026-09-17 and 2026-09-18 (the copy rulings and the rejection),
-   and lessons #32 to #37.
-4. `C:/Users/micah/.claude/playbooks/website-dev.md`, especially "Premium marketing routes: the design loop is
-   mandatory" (taste-lock with real-site side-by-sides before any code; operator visual checkpoint per wave;
-   an aesthetic gate before functional checks). Pass-121 skipped the spirit of it.
-5. `.planning/research/pass-122-design-ethos-prompt.md` (what the research was asked).
-
-## 5. Parked operator decisions
-
-1. **Ship Stage A now?** It removes a retired claim from production and is independent of the design. Push
-   and deploy are his; quote his approval with the date in RESUME first.
-2. Which design rules go (section 1). Nothing changes in the constitution without his dated word.
-3. Imagery: the research will likely ask for a shoot or new visual material. Only he can commission it.
-4. `fable-harness-init` does not handle `AGENTS.md`: since Claude Code 2.1.277 (2026-09-18) a project with
-   no `CLAUDE.md` reads `AGENTS.md`, so a `CLAUDE.md` the skill creates would silently stop that file loading.
-   Offered adding "start the new CLAUDE.md with `@AGENTS.md` when an AGENTS.md exists"; he has not answered.
-   This repo is unaffected (its `CLAUDE.md` already opens with `@AGENTS.md`).
-5. Standing: Speed Insights p75 LCP for /work; the colleagues' okay for the clip; Ordani screens.
-
-## 6. How to show him work
-
-- Popups, two questions at a time, recommended first; read his "Other" text literally (he often answers a
-  question with a question: answer it, then re-ask). Lead with what happened and what he must decide.
-- He rejects on sight, so show visuals early. Send captures at 390 and 1440 with SendUserFile (render).
-- Live previews: self-contained HTML with images embedded as data URIs, opened as `file:///` links in his
-  browser and in the app's browser pane. The pane serves local pages as a snapshot and blocks `file:///`
-  image paths, so an image referenced by path shows as missing there (found 2026-09-18). A private Artifact
-  link works on his phone, but only after the page is read in full before publishing.
-- Raise a badly reading sentence at once with rewrites (#35). Never absorb a decision that is his.
-
-## 7. Routing (operator 2026-09-18)
-
-"with our usage resetting in 13 hours and glm and chatgpt out for right now - think we need to move forward
-with using more claude right now. Of course we need to have tiers - best quality for gates etc and lower
-tier models for grunt work etc." So: the main session runs on Opus 5 and rules, briefs and verifies; Sonnet
-subagents do grunt work (builds, checks, captures, mechanical edits), named `model: "sonnet"`; Fable is a
-named subagent at gates only, one call with a written input file. GLM 5.3's 5-hour window reopened at 14:03
-PDT 2026-09-18 and is the cheaper executor for long mechanical runs (`scripts/claude-glm.ps1 -Batch`, prompt
-on stdin, LESSONS #36; a big brief can drain a whole window in about 35 minutes, so keep its runs small and
-smoke-test first). ChatGPT (Sol, Astra) returns 2026-09-19 12:17. Name the bucket before any fan-out. Do not
-arm background launchers that must survive an app restart; one died overnight.
+Popups, two questions at a time, recommended option first; read his "Other" text literally and answer a
+question-answer before re-asking. Lead with what happened and what he must decide. Visuals early:
+before/after sheets at 390 and 1440 via SendUserFile (render), and the real build in the app's browser pane
+(`preview_start` name `prod-p106`; stop that server before any rebuild, one `.next` at a time). He rejects on
+sight; a tasteful-but-quiet result fails. Raise a badly reading sentence at once with rewrites (#35).
 
 ## Micah: open the new chat
 
-In the Claude desktop app's Code tab, choose the `p106-live` worktree, pick **Opus 5**, and paste this line,
-then paste the research results under it:
+In the Claude desktop app's Code tab, choose the `p106-live` worktree, pick **Opus 5**, and paste:
 
-`Read C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/NEXT-SESSION-KICKOFF.md and follow it. The design research results are below.`
+`Read C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/handoff/NEXT-SESSION-KICKOFF.md and follow it.`
