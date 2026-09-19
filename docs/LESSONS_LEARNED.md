@@ -771,6 +771,25 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   framed as co-equal in the buyer's motive.
   CUT: ORDANI FAQ O2 ("the workflow is the product... not a dentist's front desk"), verbatim
   "diont ge this line".
+- **RFP ENGINE RESULTS, PROVENANCE — operator 2026-09-15**, by popup and chat in the Pass-120 DIRECT
+  session (transcript "MJCONSULT SEP 2", recovered 2026-09-19 because no row held them; LESSONS #32).
+  Live on the RFP study since Pass-120 (`6c564b4`). Verbatim, PDT:
+  16:42 "what does the $3M actually count?" = **"Signed contract value"**. 16:42 "'close rate doubled'
+  from what to what, and measured on what?" = **"About 1 in 8 to 1 in 4 of submitted proposals"**.
+  16:42 "which of these details can be published?" = "Twenty years of work", "Books, keynotes,
+  training programs", "Federal, state and local portals", **"Eleven contracts behind the $3M"**.
+  17:09 "which of these can I state as fact on the page?" = "You were the sole builder", "You ran
+  multi-million-dollar RFPs earlier in your career", **"The close rate doubled inside six months"**,
+  "The client's quote". 16:59 "are the before numbers in the draft right? (two or three responses a
+  month, three to five working days each)" = **"Both about right"**. 15:49, on the dramatized draft
+  `eaa0cd7` (tags C1-C26; C3 "about one in eight to one in four", C24 "across eleven contracts", C25
+  "eight to ten RFPs a month, up from two or three"): "C1: it was actually a 3 days before it was up
+  and running ... everything is great." So the live figures stand: $3M signed; close rate one in
+  eight to one in four of submitted proposals, inside six months (his answer carried "About"; the
+  page states the rounded ratio); two or three responses a month before, eight to ten after.
+  WORDING NOTE: he confirmed "eleven CONTRACTS"; "eleven awards" is the v2 drafter's substitution
+  (`e295925`). The Fable-120 ship gate flagged it (two senses of "award" beside "An award-winning
+  author") and it was parked as optional on 2026-09-16; it goes to him by popup (LESSONS #35).
 - **BIRTH WORKER VOLUME — operator 2026-09-16**, verbatim: "Organic bookings grew maybe more
   than 30. She would average 1-3 a month and now she gets 5-10 inquiries. C oming from high
   quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on
