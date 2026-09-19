@@ -15,12 +15,14 @@
 
 import Link, { type LinkProps } from "next/link";
 import { useRouter } from "next/navigation";
-import type { MouseEvent, ReactNode } from "react";
+import type { AnchorHTMLAttributes, MouseEvent, ReactNode } from "react";
 
-type ViewTransitionLinkProps = LinkProps & {
-  children: ReactNode;
-  className?: string;
-};
+// Anchor attributes (aria-label and the rest) reach <Link> through ...rest.
+type ViewTransitionLinkProps = LinkProps &
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> & {
+    children: ReactNode;
+    className?: string;
+  };
 
 /**
  * Wraps next/link so the navigation occurs inside document.startViewTransition()

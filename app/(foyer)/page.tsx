@@ -520,12 +520,6 @@ export default function ColorWorldsHome() {
             whole record. Otherwise unchanged from
             Pass-2/Pass-18; only the heading level moved (h2 → h3), since
             "How I work." above is now the section's one accessible name. */}
-        {/* DENSITY FIX (home-pace pass, 2026-09-10): was 56px -- the same
-            unit .cw-exits uses below for its own internal break.
-            Doubled so the shift out of the three-stage loop into the
-            closing tally reads as a full pause, not a half one; paired
-            with cw-secttitle--sub above so the register change is
-            visible in both space and size, not space alone. */}
         {/* Pass-122 (operator 2026-09-18, LESSONS #3 "PASS-122 RECEIPTS
             VERDICT AND THE FIRST CUT"): "The receipts." is cut from the
             screen and kept for screen readers, same text, so the outline

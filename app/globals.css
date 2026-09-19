@@ -2316,20 +2316,6 @@ body {
   margin: 0;
 }
 
-/* DENSITY FIX (home-pace pass, 2026-09-10): .cw-secttitle is a class-
- * based scale, not a tag-based one (see the fuse-pass comment at
- * app/(foyer)/page.tsx L280) -- so "The receipts." (h3) was rendering
- * exactly as large as "How I work." (h2), two headline-scale words
- * inside one <section>. This modifier gives a closing subhead its own
- * smaller step on the same display face, so only one element per
- * section reads as THE headline. Semantics (h2 vs h3, aria-labelledby)
- * are untouched -- this only changes size, never the tag or the
- * accessible name. */
-[data-mode="cw"] .cw-secttitle--sub {
-  font-size: clamp(26px, 3.6vw, 46px);
-  max-width: 20ch;
-}
-
 /* Clients hover-reveal list */
 [data-mode="cw"] .cw-worklist {
   margin-top: 64px;
@@ -3699,7 +3685,10 @@ body {
  * $20M+ at poster size, fitted to the content column. Under 600px it
  * runs two lines ("$20" / "M+"); above, one line. The divisors are the measured
  * Bricolage 800 advances at -0.035em tracking: "$20" 1.612em, "$20M+" 2.830em,
- * each with a little slack so the ink never meets the gutter. Copper on
+ * each with a little slack so the ink never meets the gutter. Where container
+ * units exist the size comes from the column (cqi), so a classic scrollbar no
+ * longer pushes the "+" into the gutter; the vw lines are the fallback
+ * (Pass-123, cross-review F5). Copper on
  * espresso is large text only (3:1 floor). The Pass-115 HandCircle is gone: at
  * edge-to-edge size a loop has nowhere to go but out of the column, and the
  * clip's settle is this figure's one arrival.
@@ -3710,6 +3699,7 @@ body {
 [data-mode="cw"] .cw-rec {
   --cw-rec-size: calc((100vw - 40px) / 1.64);
   margin-top: 112px;
+  container-type: inline-size;
 }
 @media (min-width: 600px) {
   [data-mode="cw"] .cw-rec {
@@ -3719,6 +3709,16 @@ body {
 @media (min-width: 761px) {
   [data-mode="cw"] .cw-rec {
     --cw-rec-size: calc((100vw - 80px) / 2.87);
+  }
+}
+@supports (width: 1cqi) {
+  [data-mode="cw"] .cw-rec {
+    --cw-rec-size: calc(100cqi / 1.64);
+  }
+  @media (min-width: 600px) {
+    [data-mode="cw"] .cw-rec {
+      --cw-rec-size: calc(100cqi / 2.87);
+    }
   }
 }
 [data-mode="cw"] .cw-rec__num {
@@ -4001,6 +4001,7 @@ body {
   --cw-p: min(calc((100vw - 40px) / 3.05), calc(var(--cw-stage-h) * 0.2));
   --cw-s: min(calc((100vw - 40px) / 5.6), calc(var(--cw-stage-h) * 0.085));
   height: calc(var(--cw-stage-h) + var(--cw-beats, 4) * 50svh);
+  container-type: inline-size;
 }
 [data-mode="cw"] .cw-exits.is-live .cw-exits__stage {
   position: sticky;
@@ -4202,6 +4203,24 @@ body {
     justify-self: end;
     text-align: right;
     max-width: 22ch;
+  }
+}
+@supports (width: 1cqi) {
+  [data-mode="cw"] .cw-exits.is-live {
+    --cw-p: min(calc(100cqi / 3.05), calc(var(--cw-stage-h) * 0.2));
+    --cw-s: min(calc(100cqi / 5.6), calc(var(--cw-stage-h) * 0.085));
+  }
+  @media (min-width: 761px) and (max-width: 899px) {
+    [data-mode="cw"] .cw-exits.is-live {
+      --cw-p: min(calc((100cqi + 40px) / 3.05), calc(var(--cw-stage-h) * 0.2));
+      --cw-s: min(calc((100cqi + 40px) / 5.6), calc(var(--cw-stage-h) * 0.085));
+    }
+  }
+  @media (min-width: 900px) {
+    [data-mode="cw"] .cw-exits.is-live {
+      --cw-p: min(calc(100cqi * 0.68 / 3.05), calc(var(--cw-stage-h) * 0.4));
+      --cw-s: min(calc(5.2cqi + 4.16px), calc(var(--cw-stage-h) * 0.085));
+    }
   }
 }
 

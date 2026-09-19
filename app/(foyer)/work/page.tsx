@@ -159,13 +159,7 @@ export default async function WorkIndexPage() {
             <ViewTransitionLink
               href={`/work/${featured.slug}`}
               className="cw-wx-feat"
-              // ViewTransitionLinkProps only widens next/link's LinkProps
-              // (href/replace/scroll/etc.), not AnchorHTMLAttributes, so
-              // aria-label isn't in its declared prop type even though the
-              // component forwards ...rest straight onto <Link>, which does
-              // accept it. Spread-as-any is the scoped fix: this file may not
-              // touch view-transition-link.tsx (Pass-122 ship-gate fix 4).
-              {...({ "aria-label": featured.entry.context } as any)}
+              aria-label={featured.entry.context}
             >
               <span className="cw-wx-feat__media" aria-hidden="true">
                 <WorkHeroClip poster={HERO_POSTER} />
