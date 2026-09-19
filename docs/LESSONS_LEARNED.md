@@ -726,6 +726,16 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   record row's Guardicore description ("$14M in revenue, sourced and closed, after the research moved the
   pitch from honeypots to east-west visibility.") is removed; the row still links to the study. NOT ticked:
   the method line stays, below the studies. Shipping still needs his separate push approval.
+- **PASS-122 PUSH APPROVED, WITH FIXES — operator 2026-09-18 (Pass-122 DIRECT, popup, after the Fable ship gate
+  `.planning/reviews/FABLE-122-SHIP.md`, verdict SHIP)**. PUSH: picked "Fix those, then ship (Recommended)":
+  "Fix the two, plus your picks below. Rebuild with every gate, recheck, then push to main, deploy, point both
+  domains at it, and verify live with curl." (The two: no blank poster slot before a figure assembles on a
+  phone; halve the ~125px of empty paper at the top of /work.) FIVE TO TEN: picked "One line, one size
+  smaller (Recommended)": "'five to ten.' stays on one line at a slightly smaller poster size. Same words."
+  REPEAT: picked "Featured: photo + arrow only (Recommended)": "The small featured entry becomes the clip
+  thumbnail and the arrow. Screen readers still hear 'Guardicore, acquired by Akamai'. The study below keeps
+  its label." The approval covers exactly: the home receipts section (`1225bea`) and /work (`30b1c45` +
+  `1674799` + these fixes). Nothing else.
 
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
