@@ -17,10 +17,15 @@ same dpl, 12 routes 200, RFP lines, eleven 0, cqi CSS served; apex 308->www).
 Revert: promote dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d, Pass-122).
 
 ## Queue
-1. Scoreboard CLS (LESSONS #41; live 0.3298 @390, 0.1990 @1440; /work 0):
-   operator 09-19 "Fix it next, same look". IN FLIGHT: GLM 123c on brief
-   .claude/briefs/pass-123c-scoreboard-cls.md (measure 4 states once, actors on
-   translate/scale) -> qa/pass-123/REPORT-123C.md. Then his before/after + a push.
+1. Scoreboard CLS (LESSONS #41; live 0.3298 @390, 0.1990 @1440; /work 0).
+   Brief .claude/briefs/pass-123c-scoreboard-cls.md. GLM wrote the actor-mode
+   fix then hit its z.ai 5h cap ~13:20 (reset ~21:20); its frame captures were
+   a dead leg (identical frames) and V2/V3 never ran. Main-session compare of
+   its geometry: each deal's actors sat one flex slot low (176px @390,
+   188px @1440, per index). FIX ROUND 1 (main, uncommitted): actors measure
+   their resting place in actor mode and move by the delta; deal gets an
+   explicit position: relative. Re-verify running (verify-123c.sh). Then
+   frames/sheets (GLM after reset, or Sonnet), then his before/after + push.
 2. RFP FAQ cut (operator 09-19 "Cut the whole FAQ", ledgered): GLM 123d
    (.planning/exec/glm-123d.md) AFTER 123c ends; ships with the 123c push.
 3. Study bands: Fable DONE (fa215c8): .planning/mocks/pass-123/STUDY-BRIEF.md
@@ -33,6 +38,11 @@ Revert: promote dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d, Pass-122).
 ## Waiting on operator
 More real photos · GLM REST key top-up · fable-harness-init · Speed
 Insights /work · clip okay · Ordani screens.
+
+## Tiers now (operator 09-19 pm: ChatGPT back, tiered)
+Sol grunt (codex-exec.ps1 -Task; struggled with the sandbox shims on 123c,
+stopped), Astra juror at gates, Sonnet in-session grunt, GLM capped till
+~21:20, Opus rules/verifies/commits, Fable taste gates.
 
 ## Traps
 LEDGER BEFORE A LEG (#32) · retired figures every spelling (#33) · no grep
