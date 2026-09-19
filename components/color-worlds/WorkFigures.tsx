@@ -36,7 +36,6 @@ export function WorkFigures() {
       document.querySelectorAll<HTMLElement>(".cw-wx-num"),
     ).filter((el) => el.getBoundingClientRect().top >= window.innerHeight);
     if (!armed.length) return;
-    armedThisLoad = true;
 
     const timers = new Map<HTMLElement, number>();
     const finish = (el: HTMLElement) => {
@@ -59,6 +58,12 @@ export function WorkFigures() {
             window.setTimeout(() => finish(el), BACKSTOP_MS),
           );
           el.classList.add("is-assembling");
+          // F3 (cross-review, Pass-122): armed only once an assembly has
+          // actually started, not at setup. StrictMode's dev-only double
+          // invoke simulates an unmount before any assembly could have
+          // fired, and setting the flag at setup made the re-run's early
+          // return leave every figure unassembled in `next dev`.
+          armedThisLoad = true;
         }
       },
       { rootMargin: "0px 0px -15% 0px", threshold: 0 },

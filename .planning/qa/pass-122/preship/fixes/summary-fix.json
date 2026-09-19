@@ -1,0 +1,79 @@
+{
+  "totalSamplesWithCopperVisible": 655,
+  "stepsUnder3to1": 2,
+  "minRatio": 2.6879656642970904,
+  "minRatioDetail": {
+    "vp": "1440x900",
+    "pass": "down",
+    "label": "down#0",
+    "scrollY": 3233,
+    "cls": "cw-rec__num",
+    "text": "$20M+$20M+",
+    "rect": {
+      "x": 40,
+      "y": 342.265625,
+      "width": 1360,
+      "height": 492.8125
+    },
+    "mode": "text",
+    "sampleColor": "rgb(189, 90, 45)",
+    "textRgb": [
+      189,
+      90,
+      45
+    ],
+    "groundRgb": [
+      85,
+      42,
+      29
+    ],
+    "ratio": 2.6879656642970904
+  },
+  "worst5": [
+    {
+      "vp": "1440x900",
+      "pass": "down",
+      "label": "down#0",
+      "scrollY": 3233,
+      "ratio": 2.6879656642970904,
+      "text": "$20M+$20M+",
+      "cls": "cw-rec__num"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "down",
+      "label": "down#0",
+      "scrollY": 3233,
+      "ratio": 2.6879656642970904,
+      "text": "$20M+",
+      "cls": "cw-sr-only"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "down",
+      "label": "down#0",
+      "scrollY": 3233,
+      "ratio": 2.6879656642970904,
+      "text": "$20M+",
+      "cls": "cw-rec__box"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "down",
+      "label": "down#0",
+      "scrollY": 3233,
+      "ratio": 2.6879656642970904,
+      "text": "$20M+",
+      "cls": "cw-rec__fig"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "down",
+      "label": "down#0",
+      "scrollY": 3233,
+      "ratio": 2.6879656642970904,
+      "text": "$20",
+      "cls": "cw-rec__line"
+    }
+  ]
+}

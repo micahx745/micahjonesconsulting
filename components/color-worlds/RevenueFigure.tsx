@@ -46,6 +46,7 @@ function Numerals() {
 }
 
 export function RevenueFigure() {
+  const recRef = useRef<HTMLDivElement | null>(null);
   const boxRef = useRef<HTMLSpanElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const phaseRef = useRef<Phase>("idle");
@@ -55,6 +56,36 @@ export function RevenueFigure() {
     phaseRef.current = next;
     setPhaseState(next);
   };
+
+  // Fix (Pass-122 ship gate; confirmed contrast failure:
+  // .planning/qa/pass-122/preship/fixes-reduced/summary-fix.json — copper on
+  // petrol measured 2.35:1 at 1440, scrollY 4050, scrolling UP from Ordani
+  // while reduced motion keeps the scoreboard from pinning, so #products is
+  // shorter and this figure can be on screen before WorldSwitcher crosses
+  // back to espresso). Same class ExitScoreboard.tsx's FIX A uses, applied
+  // here in EVERY JS mode (normal and reduced motion, unlike the scoreboard's
+  // own live-mode-only observer): watch the [data-mode="cw"] root's inline
+  // --cw-bg directly (WorldSwitcher writes it, no React state) and toggle
+  // is-offworld on this element whenever the page isn't espresso, so CSS can
+  // swap the numerals to the world's own foreground. Set once on mount,
+  // disconnect on unmount. Nothing changes while the page is espresso: copper
+  // stays copper there. The figure never reaches this state until its clip
+  // has long finished (the flip trigger sits far below it in scroll order),
+  // so the clip overlay and its mask are untouched by this effect.
+  useEffect(() => {
+    const el = recRef.current;
+    const worldRoot = document.querySelector<HTMLElement>('[data-mode="cw"]');
+    if (!el || !worldRoot) return;
+    const ESPRESSO_BG = "#2A1F18";
+    const syncOffworld = () => {
+      const bg = worldRoot.style.getPropertyValue("--cw-bg").trim().toUpperCase();
+      el.classList.toggle("is-offworld", bg !== ESPRESSO_BG);
+    };
+    syncOffworld();
+    const observer = new MutationObserver(syncOffworld);
+    observer.observe(worldRoot, { attributeFilter: ["style"] });
+    return () => observer.disconnect();
+  }, []);
 
   // Eligibility + arming.
   useEffect(() => {
@@ -158,7 +189,7 @@ export function RevenueFigure() {
     phase === "armed" || phase === "playing" || phase === "settling";
 
   return (
-    <div className="cw-rec" data-phase={phase}>
+    <div className="cw-rec" data-phase={phase} ref={recRef}>
       <p className="cw-rec__num">
         <span className="cw-sr-only">$20M+</span>
         <span className="cw-rec__box" aria-hidden="true" ref={boxRef}>

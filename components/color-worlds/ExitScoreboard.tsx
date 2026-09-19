@@ -18,6 +18,14 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
+// F2 (cross-review, Pass-122): the browser restores scrollY natively on
+// back-navigation before this effect runs, so a below-the-fold check at
+// mount would wrongly skip going live for a reader returning mid-section.
+// Once the section has gone live for this document load, later mounts
+// (client nav back to /) go live unconditionally; beatFor() already
+// handles entering mid-section from any scroll position.
+let wentLiveThisLoad = false;
+
 export function ExitScoreboard({
   count,
   children,
@@ -33,10 +41,15 @@ export function ExitScoreboard({
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (
       !CSS.supports("overflow-x", "clip") ||
-      !CSS.supports("selector(:has(a))")
+      !CSS.supports("selector(:has(a))") ||
+      !CSS.supports("height", "1svh")
     )
       return;
-    if (section.getBoundingClientRect().top < window.innerHeight) return;
+    if (
+      !wentLiveThisLoad &&
+      section.getBoundingClientRect().top < window.innerHeight
+    )
+      return;
 
     const stage = section.querySelector<HTMLElement>(".cw-exits__stage");
     const deals = Array.from(
@@ -72,7 +85,28 @@ export function ExitScoreboard({
 
     section.style.setProperty("--cw-beats", String(count));
     section.classList.add("is-live");
+    wentLiveThisLoad = true;
     measure();
+
+    // FIX A (confirmed contrast failure): the current exit's value and its
+    // beat ticks render copper, which fails AA once WorldSwitcher crossfades
+    // the root to a non-espresso world while a beat is still pinned under the
+    // nav. Watch the root's inline --cw-bg (WorldSwitcher writes it directly,
+    // no React state) and flag the section whenever the page is not espresso,
+    // so CSS can swap the current value/ticks to the world's own foreground.
+    const worldRoot = document.querySelector<HTMLElement>('[data-mode="cw"]');
+    const ESPRESSO_BG = "#2A1F18";
+    const syncOffworld = () => {
+      const bg =
+        worldRoot?.style.getPropertyValue("--cw-bg").trim().toUpperCase() ??
+        "";
+      section.classList.toggle("is-offworld", bg !== ESPRESSO_BG);
+    };
+    syncOffworld();
+    const worldObserver = worldRoot
+      ? new MutationObserver(syncOffworld)
+      : null;
+    worldObserver?.observe(worldRoot!, { attributeFilter: ["style"] });
 
     let current = -1;
     let visible = false;
@@ -165,11 +199,14 @@ export function ExitScoreboard({
       onScroll();
     };
 
-    // The first current value assembles when the stage is actually seen.
+    // The first current value assembles when the stage is actually seen at
+    // 35% (F1): isIntersecting alone flips true at the first intersecting
+    // pixel per the IO spec, which fired the assembly long before the stage
+    // was "actually seen" as the comment above always intended.
     const seen = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          visible = entry.isIntersecting;
+          visible = entry.isIntersecting && entry.intersectionRatio >= 0.35;
           if (visible && current >= 0) assemble(current);
         }
       },
@@ -183,9 +220,10 @@ export function ExitScoreboard({
     return () => {
       cancelAnimationFrame(raf);
       seen.disconnect();
+      worldObserver?.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
-      section.classList.remove("is-live");
+      section.classList.remove("is-live", "is-offworld");
     };
   }, [count]);
 

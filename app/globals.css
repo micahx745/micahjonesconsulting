@@ -3754,6 +3754,18 @@ body {
     display: inline;
   }
 }
+/* FIX (Pass-122 ship gate; confirmed contrast failure, same class as
+ * .cw-exits' FIX A above): copper on petrol measured 2.35:1 under reduced
+ * motion — the scoreboard doesn't pin there, so #products is shorter and
+ * this figure can be on screen while WorldSwitcher still holds the root off
+ * espresso. .is-offworld (toggled by a MutationObserver on the root's inline
+ * --cw-bg in the component, in every JS mode) swaps the numerals to the
+ * world's own foreground, which is always AA against its own background.
+ * Nothing changes while the page is espresso: copper stays copper. */
+[data-mode="cw"] .cw-rec.is-offworld .cw-rec__line {
+  color: var(--cw-fg);
+  transition: color 0.7s ease-out; /* motion-ok: matches the PRE-EXISTING WorldSwitcher root crossfade (app/globals.css ~line 1132, untagged, 0.7s) — not a new entrance, the same rule ExitScoreboard's FIX A uses */
+}
 /* The clip box (mounted by the component only while the clip runs). Every
  * blend lives inside this isolated box (LESSONS #7): black ground + white
  * glyphs, the footage multiplied onto them, then the world ground lightened
@@ -4104,6 +4116,26 @@ body {
 }
 [data-mode="cw"] .cw-exits.is-live .is-current .cw-exits__val--undisclosed {
   font-size: calc(var(--cw-p) * 0.58);
+}
+/* FIX A (cross-review, Pass-122; confirmed contrast failure): copper on
+ * petrol measured 2.62:1, under the large-text 3:1 floor, for the ~250px of
+ * scroll where the last beat is still pinned while WorldSwitcher crossfades
+ * the root off espresso. .is-offworld (toggled by a MutationObserver on the
+ * root's inline --cw-bg in the component) swaps the current value and its
+ * beat tick to the world's own foreground, which is always AA against its
+ * own background. Nothing changes while the page is espresso: copper stays
+ * copper there. */
+[data-mode="cw"] .cw-exits.is-live.is-offworld .is-current .cw-exits__val {
+  color: var(--cw-fg);
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
+    color 0.7s ease-out; /* motion-ok: matches the PRE-EXISTING WorldSwitcher root crossfade (app/globals.css ~line 1132, untagged, 0.7s) — not a new entrance */
+}
+[data-mode="cw"] .cw-exits.is-live.is-offworld .cw-exits__tick.is-current {
+  background-color: var(--cw-fg);
+  transition:
+    opacity 0.3s ease,
+    background-color 0.7s ease-out; /* motion-ok: matches the PRE-EXISTING WorldSwitcher root crossfade (app/globals.css ~line 1132, untagged, 0.7s) — not a new entrance */
 }
 [data-mode="cw"] .cw-exits.is-live .is-current .cw-exits__outcome {
   grid-area: out;
