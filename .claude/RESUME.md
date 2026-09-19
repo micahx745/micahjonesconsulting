@@ -9,11 +9,11 @@ pass-122-research-answer.md, pass-122-research-verify.md.
 Operator 2026-09-18, popup, picked verbatim "Fix, then ship (Recommended)"
 Defect = LESSONS #38; gate scripts/work-entry-gate.mjs (in build).
 
-## LIVE: 92095b7 (Stage A + fix) BOTH domains, dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe
-Pushed 14:13, git deploy 14:22, both domains same dpl (no re-alias needed).
-curl 09-18 15:12 both domains: /work/ordani "40% to a measured 91%" 0, "91%" 0;
-llms retired 0, new line 1; /work $3M, 800,000, bookings lines 1 each; all 200.
-Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
+## LIVE: 361f29d (Pass-122) ALL 3 domains, dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD
+Pushed 2026-09-19 06:54 PDT; git deploy 06:55; www, apex and .vercel.app on the
+same dpl. curl 07:00 both: home $20M+/caption/exits 1 each; /work new desc 1,
+3 cut strings 0, 5 figure lines 1 each; retired ORDANI 0; 15 routes 200.
+Revert: promote dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe (92095b7, Stage A).
 
 ## Next
 1. DONE: Stage A shipped (above).
@@ -24,12 +24,11 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
    receipts section.
 3. RECEIPTS LOCKED by operator (v2 1225bea, ledger 6abc3a8). NOT shipped.
 4. /WORK LOCKED with 3 cuts (ledger 8d7cb7f; build 30b1c45 + cuts). NOT shipped.
-5. PUSH APPROVED, operator 2026-09-18, popup: "Fix those, then ship
-   (Recommended)" (+ five-to-ten one line, featured photo + arrow). Fable
-   ship gate SHIP; cross-review BLOCK (crossfade contrast) fixed 3563cfb,
-   0 steps < 3:1. SHIPPING NOW via CARD 1 (push HEAD:main). Revert: promote
-   dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe (92095b7). Then his iPhone look (G1).
-   Queue: F5 (100vw vs scrollbars), ViewTransitionLink aria prop type.
+5. SHIPPED (above). Operator approval 2026-09-18: "Fix those, then ship".
+   Open: his iPhone look at $20M+ (Safari video blend, G1, unverified).
+   Queue: F5 (100vw vs scrollbars), ViewTransitionLink aria prop type,
+   next surfaces in the same grammar (study pages), ledger row for RFP
+   "one in eight..." + "eleven awards".
 
 ## Waiting on operator
 which real photos to animate · fable-harness-init
