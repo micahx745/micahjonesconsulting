@@ -24,13 +24,12 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
    receipts section.
 3. RECEIPTS LOCKED by operator (v2 1225bea, ledger 6abc3a8). NOT shipped.
 4. /WORK LOCKED with 3 cuts (ledger 8d7cb7f; build 30b1c45 + cuts). NOT shipped.
-5. Fable ship gate SHIP. PUSH APPROVED, operator 2026-09-18, popup: "Fix
-   those, then ship (Recommended)" (+ five-to-ten one line, featured photo +
-   arrow). Fixes DONE ebc7e14. RUNNING pre-CARD-1 (CARD 6): cross-review diff
-   92095b7..HEAD (qa/xr/xr_out.txt), Fable same-family code review
-   (.planning/reviews/CROSS-REVIEW-PASS-122-DIFF-claude.md), axe + Lighthouse
-   (.planning/qa/pass-122/preship/REPORT.md). Any CONFIRMED BLOCK stops CARD 1.
-   Then CARD 1: push HEAD:main, both domains same dpl, curl visible-text.
+5. PUSH APPROVED, operator 2026-09-18, popup: "Fix those, then ship
+   (Recommended)" (+ five-to-ten one line, featured photo + arrow). Fable
+   ship gate SHIP; cross-review BLOCK (crossfade contrast) fixed 3563cfb,
+   0 steps < 3:1. SHIPPING NOW via CARD 1 (push HEAD:main). Revert: promote
+   dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe (92095b7). Then his iPhone look (G1).
+   Queue: F5 (100vw vs scrollbars), ViewTransitionLink aria prop type.
 
 ## Waiting on operator
 which real photos to animate · fable-harness-init

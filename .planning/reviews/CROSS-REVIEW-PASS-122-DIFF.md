@@ -37,3 +37,16 @@ Performance (same machine, same Lighthouse, 3 runs, medians): home 0.90 → 0.90
 
 `CROSS-REVIEW VERDICT: BLOCK (1)` until fix A is in and re-measured at 0 steps under 3:1; then the round is
 re-verified by the fix round's measurements (a fix pass is itself a review subject).
+
+## Round r1 closed (2026-09-18, after the fix rounds `3563cfb`)
+
+- Fix A ADOPTED and re-measured with `.planning/exec/crossfade-contrast.mjs` (1500ms settle after jumps):
+  0 steps under 3:1 in all 8 runs (normal and reduced motion x 390 and 1440 x down and up); min 3.04:1
+  (reduced motion, 1440, up, mid-crossfade). A second real case found by the wider scan, copper $20M+ on
+  petrol in reduced motion scrolling up (2.35:1), got the same fix and is inside those 8 runs.
+- F1 verified (first assemble at intersectionRatio 0.356); F2 verified (Back returns to scrollY 6892 of
+  6892, `.is-live` true); F3, F4 in; F5 DEFERRED (RESUME queue); G1 (Safari video blend) UNVERIFIED here,
+  handed to the operator as a post-deploy iPhone look.
+
+`CROSS-REVIEW VERDICT: BLOCK (1) → resolved by ADOPT; round partial (1 of 3 external legs).` CARD 1 may run.
+
