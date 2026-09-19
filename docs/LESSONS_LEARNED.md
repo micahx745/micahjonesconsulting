@@ -798,6 +798,13 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   contracts."**; What changed bullet **"$3M in signed contracts through the platform."** NEVER on any
   surface: any count of the RFP client's contracts or awards ("eleven awards", "eleven contracts", "11
   contracts", "eleven of them"). The $3M, the close rate and the response counts are unchanged.
+- **RFP DAY-THREE FAQ CUT — operator 2026-09-19 (Pass-123, popup)**. The live FAQ "**What was working after three
+  days?** Real RFPs arriving, scored for fit. The library, the drafting and the tuning came after."
+  (`content/work/rfp-engine.mdx:91`) contradicted the page (line 41: "Scoring, the library and the drafting came
+  after that.") and his 09-16 confirmation of ?2 (day three was discovery only). Found by the Fable-123 cuts
+  read. He picked "Cut the whole FAQ (Recommended)": the FAQ leaves the study; line 41 and the "First real RFPs
+  delivered: Day three" row carry the fact. NEVER on any surface: that the RFP engine scored anything by day
+  three ("scored for fit" is gated).
 - **PASS-123 STUDY PAGES SCOPE — operator 2026-09-19 (Pass-123, popup, asked first per LESSONS #39)**. Question:
   the five study pages (one template), "Same rule as /work: your themes feed the existing page, nothing gets
   redesigned. Which parts take the themes?" He ticked three: **"Band number as a poster"** ("The top band's
