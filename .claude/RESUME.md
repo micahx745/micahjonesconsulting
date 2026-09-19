@@ -23,14 +23,15 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
    that move, clip inside $20M+, fewer words (cuts shown first). FIRST: home
    receipts section.
 3. RECEIPTS LOCKED by operator (v2 1225bea, ledger 6abc3a8). NOT shipped.
-4. RUNNING: /work build (Opus) per .planning/mocks/pass-122/WORK-BRIEF.md,
-   editing app/(foyer)/work/* + CSS in the worktree (uncommitted until it
-   reports). Then: before/after to him, Fable gate, push approval, CARD 1
-   (+ rewrite brand.json motion.countup + CLAUDE.md count-up paragraph).
+4. /WORK LOCKED with 3 cuts (ledger 8d7cb7f; build 30b1c45 + cuts). NOT shipped.
+5. RUNNING: ship gate (Sonnet rebuild + served checks + post-cut frames,
+   then ONE Fable buyer read -> .planning/reviews/FABLE-122-SHIP.md).
+   Then: his PUSH APPROVAL (quote + date here), CARD 1, rewrite brand.json
+   motion.countup + CLAUDE.md count-up/"No figure animation" paragraphs.
    Preview: launch "prod-p106" (main checkout launch.json, port 3101).
 
 ## Waiting on operator
-/work before/after · proposed word cuts · which real photos to animate · fable-harness-init
+Push approval (receipts + /work) · which real photos to animate · fable-harness-init
 @AGENTS.md · Speed Insights p75 LCP /work · clip okay · Ordani screens.
 Ledger gap: "one in eight to one in four" + "eleven awards" live since
 Pass-120 (6c564b4) with no #3 row: add provenance.
