@@ -92,6 +92,11 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
 - **Scroll reveals are captured before and after their trigger** (LESSONS #40). Every scroll-triggered
   reveal gets frames before and after it fires at 390 and 1440, and a check that it reached its done state
   after a slow scroll past it. A waiting state is never empty.
+- **Accent colour on a WorldSwitcher page is measured while scrolling** (LESSONS #19, recurrence
+  2026-09-18). Before CARD 1, any pass that adds or moves an accent colour runs
+  `node .planning/exec/crossfade-contrast.mjs` (down and up, normal and reduced motion, 390 and 1440). A
+  resting axe scan cannot see a pinned or late element crossing a world boundary. Pass = 0 steps under
+  the floor.
 
 ## Budget this enforces
 

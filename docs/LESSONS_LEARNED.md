@@ -1338,6 +1338,26 @@ point, expands nesting branch by branch, counts unscoped rules as in scope, and 
 of that on a planted probe (`--self-test`, 16 cases and 3 near-miss negatives) at the start
 of every build, so a later edit that weakens it fails the build before it lints.
 
+### RECURRENCE (2026-09-18, Pass-122) — a pinned accent crossed a world boundary the resting gate never scrolled to
+
+Pass-122 painted the home receipts copper: $20M+ settles to copper and the scoreboard's current exit
+value is copper, both on espresso (3.57:1, large text). The resting axe gate cannot see what the
+visitor sees while scrolling. A scrolled measurement found two real failures and one artifact:
+(1) the scoreboard pins its last value ("Undisclosed") under the nav while the Ordani section takes the
+viewport centre, so WorldSwitcher crossfades the ground to petrol under copper: 2.62:1 over ~250px at
+390 and 1440, both directions; (2) with reduced motion the section is shorter, and scrolling UP from
+Ordani brings the copper $20M+ into view while the ground is still petrol: 2.35:1. The artifact: a
+sample taken right after a programmatic jump reads the ground mid-crossfade (2.69:1), which no
+scrolling visitor sees. Axe's own flag (copper on terracotta, 1.49:1) named the wrong mechanism.
+Caught before ship by the Pass-122 pre-CARD-1 checks; nothing shipped.
+FIX: any accent-coloured element on a WorldSwitcher page watches the root's `--cw-bg` and takes
+`var(--cw-fg)` whenever the page is not in its own world (`is-offworld`, 0.7s colour transition).
+GATE, graduated: `.planning/exec/crossfade-contrast.mjs` (scrolls a page in wheel steps, down and up,
+normal and reduced motion, at 390 and 1440, samples the painted ground behind every accent element from
+the screenshot, and waits 1500ms after any jump). It is a standing pre-CARD-1 check for any pass that
+adds or moves an accent colour on a WorldSwitcher page (clause in `.claude/briefs/README.md`). Pass = 0
+steps under the element's floor.
+
 ## #20 — A layout can pass every gate and still break between the widths anyone looked at (2026-09-11)
 
 **What happened.** Pass-111a's first battery passed render, copy, axe in all four worlds and
