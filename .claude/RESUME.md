@@ -21,10 +21,14 @@ Revert: promote dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d, Pass-122).
    operator 09-19 "Fix it next, same look". IN FLIGHT: GLM 123c on brief
    .claude/briefs/pass-123c-scoreboard-cls.md (measure 4 states once, actors on
    translate/scale) -> qa/pass-123/REPORT-123C.md. Then his before/after + a push.
-2. Study bands: Fable running (since 09:55) (FABLE-STUDY-INPUT.md -> STUDY-BRIEF.md +
-   CUTS-PROPOSED.md). Cuts to him by popup; brief read against the ledger;
-   add the scroll-CLS clause (#41) to its verification.
-3. HandCircle.tsx delete: ask after the band design.
+2. RFP FAQ cut (operator 09-19 "Cut the whole FAQ", ledgered): GLM 123d
+   (.planning/exec/glm-123d.md) AFTER 123c ends; ships with the 123c push.
+3. Study bands: Fable DONE (fa215c8): .planning/mocks/pass-123/STUDY-BRIEF.md
+   (title figure = poster; birth worker lead poster; Guardicore clip over
+   photo) read vs ledger OK; CLS widened to 5 studies. GLM runs it stage by
+   stage (glm-123-band-stage.md + STAGE/marker lines) after 123d. Cuts list
+   CUTS-PROPOSED.md goes to him WITH the built before/after (T1a/b, G3, O6).
+4. HandCircle.tsx delete: ask after the band design.
 
 ## Waiting on operator
 More real photos · GLM REST key top-up · fable-harness-init · Speed
