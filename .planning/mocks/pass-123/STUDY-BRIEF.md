@@ -288,7 +288,7 @@ isMobile, hasTouch) and 1440x900 (DPR 1). Lighthouse: `C:/tmp/p101tools/node_mod
     lines; record the median LCP and every LCP element selector as BEFORE (the script's L1b line compares the
     dir with itself and is ignored here).
 0.6 Copy `.planning/exec/cls-attrib-123.mjs` to `.planning/exec/cls-study-123.mjs` taking `<baseUrl> <path>
-    <outDir>` and loading `<baseUrl><path>` (scroll to the bottom of `.cs-band` plus one viewport). Run it for
+    <outDir>` and loading `<baseUrl><path>` (scroll to the bottom of `.cs-band` plus one viewport). Run it for all five;
     `/work/guardicore` and `/work/birth-worker` -> `.planning/qa/pass-123/cls-before/<slug>-<W>.json`; report
     the largest-session-window CLS per width (expect a number; record it as BEFORE).
 0.7 Write `.planning/exec/band123.mjs` (checks B1-B10 and K1-K9 below, `<base>` argument) and run it against
@@ -353,9 +353,10 @@ isMobile, hasTouch) and 1440x900 (DPR 1). Lighthouse: `C:/tmp/p101tools/node_mod
     <= 0.05); (d) the median LCP against the 1800ms reference is REPORTED. Plus one desktop run:
     `... --preset=desktop --output-path=.planning/exec/lh123/after/desktop-1.json` -> its LCP element selector
     contains `cs-band__img` (the photo stays the LCP image at 1440; report the selector).
-4.5 CLS AFTER: `cls-study-123.mjs` for `/work/guardicore` and `/work/birth-worker` at both widths ->
-    largest session window <= 0.05 each, and <= BEFORE (0.6); and zero layout-shift sources whose selector
-    contains `cs-band`, `cs-title`, `cs-num` or `cs-poster` (print the count).
+4.5 CLS AFTER: `cls-study-123.mjs` for ALL FIVE studies at both widths (main-session amendment 2026-09-19,
+    LESSONS #41: every page the template renders) -> largest session window <= 0.05 each, and <= the step-0.6
+    BEFORE value; and zero layout-shift sources whose selector contains `cs-band`, `cs-title`, `cs-num` or
+    `cs-poster` (print the count). Step 0.6 runs all five too.
 4.6 Visible text: for each slug, `curl -s http://localhost:3236/work/<slug> | node
     .planning/exec/visible-text.mjs | tr -s '[:space:]' ' ' > .planning/qa/pass-123/text-after/<slug>.txt`;
     `diff .planning/qa/pass-123/text-before/<slug>.txt .planning/qa/pass-123/text-after/<slug>.txt` -> no
