@@ -16,7 +16,7 @@ const require = createRequire('C:/tmp/p101tools/package.json');
 const puppeteer = require('puppeteer-core');
 
 const baseUrl = process.argv[2] || 'https://www.micahjonesconsulting.com/';
-const OUT_DIR = '.planning/qa/pass-123';
+const OUT_DIR = process.argv[3] || '.planning/qa/pass-123';
 
 const browser = await puppeteer.launch({
   executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
