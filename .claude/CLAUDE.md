@@ -135,6 +135,23 @@ buyer reads) while its weekly bucket has headroom; builds, captures and measurin
 weekly ALL-MODELS bucket binds first (at the time of this note: 87% used, Fable 61%, both resetting
 2026-09-19 00:59 PDT), and every Fable call draws on it too.
 
+**Amended 2026-09-19: the week's routing tiers (new usage week).** Operator, verbatim: "I want to
+really implement the AI routing tier to conserve usage this week. Right now chatgpt weekly usage is reset
+in 4 hours, and glm is at 74% for the week. So we can use glm and claude for now - using the best models to
+ensure quality in design and writing and the cheaper models to do the grunt work." So, until he changes it:
+- **Quality tier (design and writing):** Fable (`model: "fable"`, one call per gate with a written input
+  file) designs a new surface, drafts or rules on copy, reads briefs, and does the judge and buyer reads.
+  Astra (ChatGPT, `scripts/codex-exec.ps1 -Review`, images attached) is the independent juror at design and
+  copy checkpoints once ChatGPT resets (2026-09-19 12:17 PDT). The main session runs on Opus 5: it rules,
+  briefs, verifies and commits, and does not run build or capture loops.
+- **Grunt tier:** GLM 5.3 (`scripts/claude-glm.ps1 -Batch -PromptFile`, prompt on stdin, smoke-test first,
+  small runs; LESSONS #36) runs finished briefs, fix rounds, builds, captures and measuring scripts.
+  Sonnet subagents (`model: "sonnet"`) take grunt work when GLM is capped or a leg needs in-session tools.
+  The main session opens every capture itself (LESSONS #36, #37).
+- **Pacing:** read `mcp__ccd_session_mgmt__get_usage` at session start and before every fan-out, and name
+  the bucket in one line before launching. Claude weekly all-models is the bucket that stops everything; the
+  2026-09-19 week started at 0% (Fable 0%), resetting 2026-09-26 01:00 PDT.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing
