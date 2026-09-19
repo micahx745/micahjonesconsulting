@@ -1,0 +1,181 @@
+{
+  "totalSamplesWithCopperVisible": 554,
+  "stepsUnder3to1": 30,
+  "minRatio": 2.6233248268363334,
+  "minRatioDetail": {
+    "vp": "390x844",
+    "pass": "up",
+    "scrollY": 6847,
+    "label": "up#17",
+    "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled",
+    "text": "Undisclosed",
+    "rect": {
+      "x": 20,
+      "y": 192.421875,
+      "width": 350.078125,
+      "height": 59.90625
+    },
+    "textColor": "rgb(189, 90, 45)",
+    "textRgb": [
+      189,
+      90,
+      45
+    ],
+    "groundRgb": [
+      22,
+      61,
+      65
+    ],
+    "groundHex": "#163d41",
+    "groundSamples": 12,
+    "groundSource": "in-box",
+    "ratio": 2.6233248268363334
+  },
+  "worst5": [
+    {
+      "vp": "390x844",
+      "pass": "up",
+      "scrollY": 6847,
+      "label": "up#17",
+      "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled",
+      "text": "Undisclosed",
+      "rect": {
+        "x": 20,
+        "y": 192.421875,
+        "width": 350.078125,
+        "height": 59.90625
+      },
+      "textColor": "rgb(189, 90, 45)",
+      "textRgb": [
+        189,
+        90,
+        45
+      ],
+      "groundRgb": [
+        22,
+        61,
+        65
+      ],
+      "groundHex": "#163d41",
+      "groundSamples": 12,
+      "groundSource": "in-box",
+      "ratio": 2.6233248268363334
+    },
+    {
+      "vp": "390x844",
+      "pass": "down",
+      "scrollY": 6941,
+      "label": "down#156",
+      "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled",
+      "text": "Undisclosed",
+      "rect": {
+        "x": 20,
+        "y": 98.421875,
+        "width": 350.078125,
+        "height": 59.90625
+      },
+      "textColor": "rgb(189, 90, 45)",
+      "textRgb": [
+        189,
+        90,
+        45
+      ],
+      "groundRgb": [
+        21,
+        61,
+        63.5
+      ],
+      "groundHex": "#153d40",
+      "groundSamples": 12,
+      "groundSource": "in-box",
+      "ratio": 2.6317026012518085
+    },
+    {
+      "vp": "390x844",
+      "pass": "up",
+      "scrollY": 6937,
+      "label": "up#14",
+      "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled",
+      "text": "Undisclosed",
+      "rect": {
+        "x": 20,
+        "y": 102.421875,
+        "width": 350.078125,
+        "height": 59.90625
+      },
+      "textColor": "rgb(189, 90, 45)",
+      "textRgb": [
+        189,
+        90,
+        45
+      ],
+      "groundRgb": [
+        21,
+        61,
+        61.5
+      ],
+      "groundHex": "#153d3e",
+      "groundSamples": 12,
+      "groundSource": "in-box",
+      "ratio": 2.638300854297962
+    },
+    {
+      "vp": "390x844",
+      "pass": "down",
+      "scrollY": 7091,
+      "label": "down#161",
+      "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled",
+      "text": "Undisclosed",
+      "rect": {
+        "x": 20,
+        "y": -51.578125,
+        "width": 350.078125,
+        "height": 59.90625
+      },
+      "textColor": "rgb(189, 90, 45)",
+      "textRgb": [
+        189,
+        90,
+        45
+      ],
+      "groundRgb": [
+        23,
+        60.5,
+        61.5
+      ],
+      "groundHex": "#173d3e",
+      "groundSamples": 10,
+      "groundSource": "in-box",
+      "ratio": 2.64740710461228
+    },
+    {
+      "vp": "390x844",
+      "pass": "up",
+      "scrollY": 7091,
+      "label": "up#9",
+      "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled",
+      "text": "Undisclosed",
+      "rect": {
+        "x": 20,
+        "y": -51.578125,
+        "width": 350.078125,
+        "height": 59.90625
+      },
+      "textColor": "rgb(189, 90, 45)",
+      "textRgb": [
+        189,
+        90,
+        45
+      ],
+      "groundRgb": [
+        23,
+        60.5,
+        61.5
+      ],
+      "groundHex": "#173d3e",
+      "groundSamples": 10,
+      "groundSource": "in-box",
+      "ratio": 2.64740710461228
+    }
+  ]
+}
