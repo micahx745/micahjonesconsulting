@@ -98,6 +98,11 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
   resting axe scan cannot see a pinned or late element crossing a world boundary. Pass = 0 steps under
   the floor.
 
+- **CLS is measured while scrolling** (LESSONS #41). Any pass that adds or changes an element whose layout
+  follows scroll position runs `node .planning/exec/cls-attrib-123.mjs <url>` at 390 and 1440 before CARD 1.
+  Pass = the largest session window at or under 0.05 (the Definition of done). Pass-122's scoreboard shipped
+  0.33 on a phone because every check it had was taken at rest or at load.
+
 ## Budget this enforces
 
 ≤15 top-tier tool calls per arc: DIRECT ≤10, each JUDGE return ≤5. Read-only shell is free

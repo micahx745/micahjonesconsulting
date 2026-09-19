@@ -1,0 +1,328 @@
+{
+  "guardicore": {
+    "390": {
+      "bandRect": {
+        "height": 1517.23
+      },
+      "context": {
+        "fontSize": "12px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "Repositioning Guardicore:",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "$14M, then Akamai",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "17px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "26px",
+        "fontWeight": "700"
+      },
+      "media": {
+        "width": 358,
+        "height": 447.73
+      },
+      "scrollHeight": 5506
+    },
+    "1440": {
+      "bandRect": {
+        "height": 1022.59
+      },
+      "context": {
+        "fontSize": "13px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "Repositioning Guardicore:",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "$14M, then Akamai",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "18px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "36px",
+        "fontWeight": "700"
+      },
+      "media": {
+        "width": 404.38,
+        "height": 505.47
+      },
+      "scrollHeight": 4481
+    }
+  },
+  "rfp-engine": {
+    "390": {
+      "bandRect": {
+        "height": 1175.31
+      },
+      "context": {
+        "fontSize": "12px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "AI RFP software:",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "$3M in signed contracts",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "17px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "26px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 7354
+    },
+    "1440": {
+      "bandRect": {
+        "height": 1065.3
+      },
+      "context": {
+        "fontSize": "13px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "AI RFP software:",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "$3M in signed contracts",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "18px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "36px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 6412
+    }
+  },
+  "ordani": {
+    "390": {
+      "bandRect": {
+        "height": 1116.38
+      },
+      "context": {
+        "fontSize": "12px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "ORDANI: HIPAA-compliant",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "CRM for birth workers",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "17px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "26px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 5511
+    },
+    "1440": {
+      "bandRect": {
+        "height": 982.19
+      },
+      "context": {
+        "fontSize": "13px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "ORDANI: HIPAA-compliant",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "CRM for birth workers",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "18px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "36px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 5334
+    }
+  },
+  "content-engine": {
+    "390": {
+      "bandRect": {
+        "height": 1155.56
+      },
+      "context": {
+        "fontSize": "12px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "AI content engine:",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "up to 800,000 impressions",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "17px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "26px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 6049
+    },
+    "1440": {
+      "bandRect": {
+        "height": 1063.28
+      },
+      "context": {
+        "fontSize": "13px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "AI content engine:",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "up to 800,000 impressions",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "18px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "36px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 5132
+    }
+  },
+  "birth-worker": {
+    "390": {
+      "bandRect": {
+        "height": 1142.5
+      },
+      "context": {
+        "fontSize": "12px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "Growing a",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "birth worker's practice",
+          "fontSize": "36px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "17px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "26px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 5447
+    },
+    "1440": {
+      "bandRect": {
+        "height": 1047.09
+      },
+      "context": {
+        "fontSize": "13px",
+        "fontWeight": "500"
+      },
+      "titleLines": [
+        {
+          "text": "Growing a",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        },
+        {
+          "text": "birth worker's practice",
+          "fontSize": "56px",
+          "fontWeight": "800"
+        }
+      ],
+      "dek": {
+        "fontSize": "18px",
+        "fontWeight": "400"
+      },
+      "glanceResult": {
+        "fontSize": "36px",
+        "fontWeight": "700"
+      },
+      "media": null,
+      "scrollHeight": 4796
+    }
+  }
+}

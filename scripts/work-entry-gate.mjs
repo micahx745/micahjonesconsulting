@@ -2,7 +2,7 @@
 //
 // Why this exists (LESSONS #38). Commit 294f7c9 split two studies' `entry.line`
 // into `entry.figure` + `entry.line` (content/work/rfp-engine.mdx: figure "$3M",
-// line "in signed contracts across eleven awards."; content/work/content-engine.mdx:
+// line "in signed contracts." (Pass-123 cut the count); content/work/content-engine.mdx:
 // figure "Up to 800,000", line "impressions in a month, up from a few thousand a
 // month."). The non-lead render on app/(foyer)/work/page.tsx printed `entry.line`
 // only — the figure field was never read — so both figures silently vanished from
@@ -108,15 +108,15 @@ function loadExpectedStrings() {
 // --- self-test (--self-test) ----------------------------------------------
 // Same matcher, run against in-memory HTML snippets. Any wrong answer exits 1.
 function selfTest() {
-  const expectedRfp = "$3M in signed contracts across eleven awards.";
+  const expectedRfp = "$3M in signed contracts.";
 
   // Planted defect: the figure was dropped from the render (the real bug this
   // gate exists to catch). Must be reported MISSING.
   const defectiveHtml =
-    "<html><body><ol><li><h3>in signed contracts across eleven awards.</h3></li></ol></body></html>";
+    "<html><body><ol><li><h3>in signed contracts.</h3></li></ol></body></html>";
   // Fixed render: figure + line together. Must PASS.
   const correctHtml =
-    '<html><body><ol><li><h3>$3M in signed contracts across eleven awards.</h3></li></ol></body></html>';
+    '<html><body><ol><li><h3>$3M in signed contracts.</h3></li></ol></body></html>';
   // React serializes an apostrophe as &#x27; — must decode to a literal one.
   const apostropheHtml = "<html><body><p>worker&#x27;s</p></body></html>";
 

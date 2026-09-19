@@ -1,0 +1,266 @@
+{
+  "width": 1440,
+  "url": "https://www.micahjonesconsulting.com/",
+  "entries": [
+    {
+      "value": 0.00448,
+      "startTime": 202.9,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 0,
+      "sources": [
+        {
+          "node": "h1.cw-h1 > span.cw-line > span",
+          "previousRect": {
+            "x": 40,
+            "y": 365.9,
+            "w": 1360,
+            "h": 76.8
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 365.9,
+            "w": 1360,
+            "h": 76.8
+          }
+        },
+        {
+          "node": "header.cw-hero > p.cw-sub > em",
+          "previousRect": {
+            "x": 39,
+            "y": 558.4,
+            "w": 621,
+            "h": 57.4
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 558.4,
+            "w": 620,
+            "h": 57.4
+          }
+        },
+        {
+          "node": "main > header.cw-hero > p.cw-sub",
+          "previousRect": {
+            "x": 39,
+            "y": 557.4,
+            "w": 621,
+            "h": 27
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 588.9,
+            "w": 620,
+            "h": 27
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.0893,
+      "startTime": 5928.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5000,
+      "sources": [
+        {
+          "node": "section.cw-exits > div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal",
+          "previousRect": {
+            "x": 40,
+            "y": 837.2,
+            "w": 1360,
+            "h": 62.8
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 627.2,
+            "w": 1360,
+            "h": 272.8
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 345.8,
+            "w": 937.3,
+            "h": 169
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 345.8,
+            "w": 861.3,
+            "h": 311.2
+          }
+        },
+        {
+          "node": "div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal > p.cw-exits__co",
+          "previousRect": {
+            "x": 941.2,
+            "y": 801,
+            "w": 467.7,
+            "h": 68.2
+          },
+          "currentRect": {
+            "x": 1131,
+            "y": 543,
+            "w": 278,
+            "h": 39.9
+          }
+        },
+        {
+          "node": "div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal > p.cw-exits__co",
+          "previousRect": {
+            "x": 1323.8,
+            "y": 644.5,
+            "w": 73.7,
+            "h": 13.9
+          },
+          "currentRect": {
+            "x": 1273.1,
+            "y": 734.2,
+            "w": 125,
+            "h": 23.7
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 755.9,
+            "w": 49.2,
+            "h": 15.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 755.9,
+            "w": 192.8,
+            "h": 10.4
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.10947,
+      "startTime": 6297.9,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "section.cw-exits > div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal",
+          "previousRect": {
+            "x": 40,
+            "y": 377.9,
+            "w": 1360,
+            "h": 351.2
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 422.9,
+            "w": 1360,
+            "h": 163.3
+          }
+        },
+        {
+          "node": "ol.cw-exits__row > li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 445.3,
+            "w": 998.1,
+            "h": 377.1
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 445.3,
+            "w": 907.4,
+            "h": 354.5
+          }
+        },
+        {
+          "node": "section.cw-exits > div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal",
+          "previousRect": {
+            "x": 40,
+            "y": 254.5,
+            "w": 1360,
+            "h": 141
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 276.5,
+            "w": 1360,
+            "h": 163.3
+          }
+        },
+        {
+          "node": "section.cw-exits > div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal",
+          "previousRect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 768.1,
+            "w": 1360,
+            "h": 131.9
+          }
+        },
+        {
+          "node": "ol.cw-exits__row > li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 167.3,
+            "w": 216.8,
+            "h": 84.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 190.5,
+            "w": 216.8,
+            "h": 84.7
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00025,
+      "startTime": 6544.3,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 6000,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__outcome",
+          "previousRect": {
+            "x": 1153.6,
+            "y": 684.9,
+            "w": 247.7,
+            "h": 55
+          },
+          "currentRect": {
+            "x": 1153.6,
+            "y": 684.5,
+            "w": 247.7,
+            "h": 55
+          }
+        }
+      ]
+    }
+  ],
+  "totalAll": 0.2035,
+  "chromeSessionWindows": [
+    {
+      "start": 202.9,
+      "last": 202.9,
+      "value": 0.00448,
+      "count": 1,
+      "durationMs": 0
+    },
+    {
+      "start": 5928.6,
+      "last": 6544.3,
+      "value": 0.19902,
+      "count": 3,
+      "durationMs": 615.7
+    }
+  ],
+  "largestSessionWindow": 0.19902
+}

@@ -245,6 +245,14 @@ const PHRASES = [
   "per claim",
   "Luna",
   "stay with the practitioner",
+  // Pass-123 (operator 2026-09-19, LESSONS #3 "RFP CONTRACT COUNT RETIRED"):
+  // no count of the RFP client's contracts or awards, in any spelling.
+  "eleven awards",
+  "eleven contracts",
+  "eleven signed",
+  "eleven of them",
+  "11 awards",
+  "11 contracts",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);

@@ -1,0 +1,70 @@
+
+> micahjonesconsulting@0.1.0 build C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+> tsx lib/copy-lint-cli.ts && node scripts/vendor-gate.mjs && node scripts/retired-phrases-gate.mjs --self-test && node scripts/retired-phrases-gate.mjs && node scripts/accent-states-lint.mjs --self-test && node scripts/accent-states-lint.mjs && node scripts/gsap-quarantine-gate.mjs --self-test && node scripts/gsap-quarantine-gate.mjs && next build && node scripts/render-gate.mjs && node scripts/work-entry-gate.mjs --self-test && node scripts/work-entry-gate.mjs
+
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+vendor-gate: clean
+retired-phrases-gate self-test: 87 planted caught, 32 near misses passed
+retired-phrases-gate: clean
+accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms
+accent-states-lint: clean
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+gsap-quarantine-gate: clean (86 files)
+▲ Next.js 16.2.6 (Turbopack)
+- Experiments (use with caution):
+  ✓ viewTransition
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.3s
+  Running TypeScript ...
+  Finished TypeScript in 2.6s ...
+  Collecting page data using 23 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 23 workers (0/22) ...
+  Generating static pages using 23 workers (5/22) 
+  Generating static pages using 23 workers (10/22) 
+  Generating static pages using 23 workers (16/22) 
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+✓ Generating static pages using 23 workers (22/22) in 773ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /about/opengraph-image-10qg6g
+├ ƒ /api/stripe/webhook
+├ ○ /call
+├ ○ /call/kickoff
+├ ○ /contact
+├ ○ /icon.svg
+├ ƒ /llms.txt
+├ ƒ /opengraph-image-1o6u9y
+├ ○ /packages
+├ ○ /robots.txt
+├ ○ /services
+├ ○ /services/thanks
+├ ○ /sitemap.xml
+├ ○ /work
+├ ● /work/[slug]
+│ ├ /work/guardicore
+│ ├ /work/rfp-engine
+│ ├ /work/ordani
+│ └ [+2 more paths]
+├ ƒ /work/[slug]/opengraph-image-oti546
+└ ƒ /work/opengraph-image-xevl18
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+render-gate: 14 routes — links resolve, fragments exist, metadata within limits.
+work-entry-gate --self-test: PASS (dropped-figure case reported missing, fixed case passes, &#x27; decodes to ')
+work-entry-gate: PASS birth-worker (1x) "Bookings went from one to three a month to five to ten."
+work-entry-gate: PASS content-engine (1x) "Up to 800,000 impressions in a month, up from a few thousand a month."
+work-entry-gate: PASS guardicore (1x) "$14M in revenue, sourced and closed, at a $1.2M average enterprise deal."
+work-entry-gate: PASS ordani (1x) "Birth workers keep hundreds of dollars per client that a claims service would take."
+work-entry-gate: PASS rfp-engine (1x) "$3M in signed contracts."
+work-entry-gate: 5 studies — every entry figure+line renders.

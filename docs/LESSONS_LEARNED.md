@@ -1892,3 +1892,28 @@ reveal is never empty: the element is visible in some form before it animates.
 `.claude/briefs/README.md`. On recurrence: a capture helper that scrolls every page slowly and fails when any
 element carrying the reveal's waiting class is still in it once scrolled past.
 
+
+## #41 — A scoreboard that restyles its cards on scroll shipped CLS 0.33, and no check scrolled (2026-09-19)
+
+**What happened.** Pass-122 shipped the home exits scoreboard (live 2026-09-19 07:00, `dpl_7ov1sFM`).
+Pass-123a's CLS probe, which sums every layout shift across a scripted scroll, read 0.33 at 390 and 0.20 at
+1440, the same before and after its own fix. Pass-123b attributed every shift to the scoreboard: as each exit
+becomes current, `li.cw-exits__deal` changes height (350x153 to 350x268.6 at 390), `p.cw-exits__val` changes
+font size (`--cw-s` to `--cw-p`), and `p.cw-exits__co` appears from 0x0. Chrome's session-window CLS,
+recomputed by the main session from the raw entries: 0.3298 at 390 (above 0.25, "poor") and 0.1990 at 1440.
+The Definition of done says 0.05. The FLIP transforms hide the move on screen, but the layout change is real
+and Chrome scores the layout box. Caught by the main session's Pass-123 verification. It is live.
+
+**Root cause.** Every Pass-122 check of the scoreboard measured frames, contrast and scroll behaviour. Its CLS
+was never measured while scrolling. Lighthouse and a load-time observer see only the load; the scoreboard's
+shifts happen at beat changes seconds later, with no input to excuse them.
+
+**The rule.** Any element whose layout changes with scroll position (a scoreboard, a pinned stage, a class that
+swaps grid areas, font sizes or display) is measured for CLS by Chrome's session-window method while
+scrolling, at 390 and 1440, before CARD 1. The pass condition is the Definition of done (largest window at or
+under 0.05), never "same as before". State changes driven by scroll use transform and opacity on boxes whose
+size does not change.
+
+**The gate.** The standing clause "CLS is measured while scrolling" in `.claude/briefs/README.md`; the tool is
+`node .planning/exec/cls-attrib-123.mjs <url>` (per width: the total, the largest session window, and each
+shift's sources). On recurrence: it joins the pre-CARD-1 list for every route with a scroll-driven component.

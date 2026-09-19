@@ -1,0 +1,183 @@
+{
+  "width": 390,
+  "url": "https://www.micahjonesconsulting.com/",
+  "entries": [
+    {
+      "value": 0.1841,
+      "startTime": 6594.7,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "section.cw-exits > div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal",
+          "previousRect": {
+            "x": 20,
+            "y": 660.6,
+            "w": 350,
+            "h": 153
+          },
+          "currentRect": {
+            "x": 20,
+            "y": 544.6,
+            "w": 350,
+            "h": 268.6
+          }
+        },
+        {
+          "node": "ol.cw-exits__row > li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 20,
+            "y": 430.3,
+            "w": 368.3,
+            "h": 95.7
+          },
+          "currentRect": {
+            "x": 20,
+            "y": 396.4,
+            "w": 338.4,
+            "h": 120.3
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 20,
+            "y": 396.4,
+            "w": 368.3,
+            "h": 106.2
+          },
+          "currentRect": {
+            "x": 20,
+            "y": 396.4,
+            "w": 338.4,
+            "h": 120.3
+          }
+        },
+        {
+          "node": "div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal > p.cw-exits__co",
+          "previousRect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "currentRect": {
+            "x": 39.5,
+            "y": 371.4,
+            "w": 196.5,
+            "h": 27.9
+          }
+        },
+        {
+          "node": "div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal > p.cw-exits__co",
+          "previousRect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "currentRect": {
+            "x": 273.8,
+            "y": 669.7,
+            "w": 95.6,
+            "h": 17.5
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.1457,
+      "startTime": 6845.3,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 6000,
+      "sources": [
+        {
+          "node": "section.cw-exits > div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal",
+          "previousRect": {
+            "x": 20,
+            "y": 816.5,
+            "w": 350,
+            "h": 27.5
+          },
+          "currentRect": {
+            "x": 20,
+            "y": 697.5,
+            "w": 350,
+            "h": 146.5
+          }
+        },
+        {
+          "node": "ol.cw-exits__row > li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 20,
+            "y": 585.1,
+            "w": 370,
+            "h": 93.8
+          },
+          "currentRect": {
+            "x": 20,
+            "y": 549.3,
+            "w": 338.5,
+            "h": 120.3
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 20,
+            "y": 549.3,
+            "w": 370,
+            "h": 106.2
+          },
+          "currentRect": {
+            "x": 20,
+            "y": 549.3,
+            "w": 338.5,
+            "h": 120.3
+          }
+        },
+        {
+          "node": "div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal > p.cw-exits__co",
+          "previousRect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "currentRect": {
+            "x": 42.4,
+            "y": 524.2,
+            "w": 150.1,
+            "h": 27.9
+          }
+        },
+        {
+          "node": "div.cw-exits__stage > ol.cw-exits__row > li.cw-exits__deal > p.cw-exits__co",
+          "previousRect": {
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0
+          },
+          "currentRect": {
+            "x": 289.4,
+            "y": 799.9,
+            "w": 79.5,
+            "h": 17.5
+          }
+        }
+      ]
+    }
+  ],
+  "totalAll": 0.3298,
+  "chromeSessionWindows": [
+    {
+      "start": 6594.7,
+      "last": 6845.3,
+      "value": 0.3298,
+      "count": 2,
+      "durationMs": 250.6
+    }
+  ],
+  "largestSessionWindow": 0.3298
+}
