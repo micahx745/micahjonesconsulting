@@ -159,16 +159,24 @@ export default async function WorkIndexPage() {
             <ViewTransitionLink
               href={`/work/${featured.slug}`}
               className="cw-wx-feat"
+              // ViewTransitionLinkProps only widens next/link's LinkProps
+              // (href/replace/scroll/etc.), not AnchorHTMLAttributes, so
+              // aria-label isn't in its declared prop type even though the
+              // component forwards ...rest straight onto <Link>, which does
+              // accept it. Spread-as-any is the scoped fix: this file may not
+              // touch view-transition-link.tsx (Pass-122 ship-gate fix 4).
+              {...({ "aria-label": featured.entry.context } as any)}
             >
               <span className="cw-wx-feat__media" aria-hidden="true">
                 <WorkHeroClip poster={HERO_POSTER} />
               </span>
               <span className="cw-wx-feat__text">
-                <span className="cw-wx-feat__ctx">
-                  {featured.entry.context}
-                </span>{" "}
                 {/* $14M cut 2026-09-18 (operator, LESSONS #3 "PASS-122 /WORK
-                    LOCKED WITH THREE CUTS"): it repeated the first poster. */}
+                    LOCKED WITH THREE CUTS"): it repeated the first poster.
+                    Visible context span cut 2026-09-18 (Fable-122 ship gate,
+                    fix 4): it repeated "Guardicore, acquired by Akamai",
+                    already the first study's label one screen down. The
+                    link keeps that exact string as its accessible name. */}
                 <span className="cw-wx-feat__fig">
                   <span className="cw-wx-feat__go" aria-hidden="true">
                     {"→"}

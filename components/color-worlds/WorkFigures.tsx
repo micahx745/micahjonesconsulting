@@ -8,9 +8,11 @@
 // Every figure is real text in the server HTML at its finished weight. That is
 // the whole render without JavaScript, under reduced motion, and for any
 // figure already in view (or above) when the page loads. Only a figure still
-// below the fold at load is armed: it waits unseen (opacity 0; a clip-path
-// here would hide it from the observer, which honours the target's own clip)
-// until three fifths of it is above the viewport's lower 10%, then runs the
+// below the fold at load is armed: it waits VISIBLE, at weight 200 (opacity 1
+// — a clip-path here would hide it from the observer, which honours the
+// target's own clip, and opacity 0 read as a blank poster slot on a phone,
+// Pass-122 ship-gate fix 1) until any part of it crosses into the viewport's
+// bottom 15% (rootMargin "0px 0px -15% 0px", threshold 0), then runs the
 // assembly once. Once per document load: a client navigation back to
 // /work shows the finished figures, as the clip does (WorkHeroClip).
 //
@@ -59,7 +61,7 @@ export function WorkFigures() {
           el.classList.add("is-assembling");
         }
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.6 },
+      { rootMargin: "0px 0px -15% 0px", threshold: 0 },
     );
 
     for (const el of armed) {

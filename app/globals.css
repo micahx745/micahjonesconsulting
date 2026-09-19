@@ -6646,12 +6646,17 @@ body {
 }
 
 /* ---- The studies: one poster per study ---- */
+/* Halved from 104px (Pass-122 ship-gate fix 2): 1440 showed the same gap, only
+ * bigger (measured 160.67px, arrow bottom to the first study's context line,
+ * at the pre-fix 104px). */
 [data-mode="cw"] .cw-wx-studies {
-  padding-top: 104px;
+  padding-top: 52px;
 }
 @media (max-width: 760px) {
+  /* Halved from 72px (Pass-122 ship-gate fix 2): ~125 CSS px of empty paper
+   * sat between the featured arrow and the first study's context line at 390. */
   [data-mode="cw"] .cw-wx-studies {
-    padding-top: 72px;
+    padding-top: 36px;
   }
 }
 [data-mode="cw"] .cw-wx-list {
@@ -6741,12 +6746,25 @@ body {
     font-size: calc((100cqi - 64px) * 7 / 12 / 2.6);
   }
 }
-/* The words poster breaks after "five to" at every weight: 3em is wider than
- * "five to" at 800 (2.522em) and narrower than "five to ten." at 200
- * (3.695em), so the assembly never reflows it. */
+/* The words poster: one line, one step smaller than the numeral posters
+ * (Pass-122 ship-gate fix 3 — "five to ten." broke over two lines at both
+ * widths). Its own divisor, not a fraction of .cw-wx-num's: measured live at
+ * weight 800 (the finished, resting weight — wider than the weight-200
+ * waiting state), the phrase renders 346px inside the 350px column at 390
+ * with the numeral's own ~3.6px divisor-4.4 slack, too tight a margin for
+ * subpixel/DPR drift. 4.6 clears both breakpoints' column with real margin
+ * (measured: ~331px of 350px at 390). */
 [data-mode="cw"] .cw-wx-num--words {
-  max-width: 3em;
-  white-space: normal;
+  max-width: none;
+  white-space: nowrap;
+  font-size: calc((100vw - 40px) / 4.6);
+  font-size: calc(100cqi / 4.6);
+}
+@media (min-width: 900px) {
+  [data-mode="cw"] .cw-wx-num--words {
+    font-size: calc((min(100vw, 1200px) - 144px) * 7 / 12 / 4.6);
+    font-size: calc((100cqi - 64px) * 7 / 12 / 4.6);
+  }
 }
 /* The caption: cap tops about 14px under the lowest numeral ink, as under
  * $20M+ (0.15em is the caption's own box-top to cap-top). */
@@ -6856,16 +6874,19 @@ body {
     }
   }
 }
-/* The assembly (WorkFigures): a figure below the fold at load waits unseen,
- * then once, in view, climbs from Bricolage's 200 floor to 800 while a clip
- * rises off the baseline. The home scoreboard's move, on its own keyframes so
- * the two pages never couple. The waiting state is opacity, NOT the clip:
+/* The assembly (WorkFigures): a figure below the fold at load waits VISIBLE,
+ * at Bricolage's 200 floor (thin glyphs, not a blank slot — Pass-122 ship-gate
+ * fix 1: opacity 0 read as empty paper on a phone with the poster already
+ * ~125px into view), then once, in view, climbs to 800 while a clip rises off
+ * the baseline. The home scoreboard's move, on its own keyframes so the two
+ * pages never couple. The waiting state is opacity 1, NOT a clip-path:
  * Chrome's IntersectionObserver applies the target's own clip-path, so a
  * figure clipped to nothing never reports as intersecting and never assembles
  * (measured 2026-09-18: ratio 0 clipped, 1 unclipped). The clip lives only
- * inside the keyframes. */
+ * inside the keyframes. No reflow: only opacity and font-variation-settings
+ * change, never a box dimension. */
 [data-mode="cw"] .cw-wx-num.is-armed {
-  opacity: 0;
+  opacity: 1;
   font-variation-settings: "wght" 200;
 }
 [data-mode="cw"] .cw-wx-num.is-assembling {
