@@ -22,15 +22,15 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
    stays; tiles are reference only (#39). Themes: poster numbers, numbers
    that move, clip inside $20M+, fewer words (cuts shown first). FIRST: home
    receipts section.
-3. Receipts built on branch (e2df56e, NOT shipped); operator: approved in
-   direction + 2 fixes (clip more visible, caption big + tight) + "The
-   receipts." cut to sr-only (ledger 44d8d94). RUNNING: v2 fix agent (Opus).
-4. NEXT: /work per .planning/mocks/pass-122/WORK-BRIEF.md (after v2 lands;
-   one .next at a time). Then Fable gate, push approval, CARD 1.
+3. RECEIPTS LOCKED by operator (v2 1225bea, ledger 6abc3a8). NOT shipped.
+4. RUNNING: /work build (Opus) per .planning/mocks/pass-122/WORK-BRIEF.md,
+   editing app/(foyer)/work/* + CSS in the worktree (uncommitted until it
+   reports). Then: before/after to him, Fable gate, push approval, CARD 1
+   (+ rewrite brand.json motion.countup + CLAUDE.md count-up paragraph).
    Preview: launch "prod-p106" (main checkout launch.json, port 3101).
 
 ## Waiting on operator
-Receipts before/after verdict · proposed word cuts · which real photos to animate · fable-harness-init
+/work before/after · proposed word cuts · which real photos to animate · fable-harness-init
 @AGENTS.md · Speed Insights p75 LCP /work · clip okay · Ordani screens.
 Ledger gap: "one in eight to one in four" + "eleven awards" live since
 Pass-120 (6c564b4) with no #3 row: add provenance.
