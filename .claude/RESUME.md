@@ -30,7 +30,7 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
    92095b7..HEAD (qa/xr/xr_out.txt), Fable same-family code review
    (.planning/reviews/CROSS-REVIEW-PASS-122-DIFF-claude.md), axe + Lighthouse
    (.planning/qa/pass-122/preship/REPORT.md). Any CONFIRMED BLOCK stops CARD 1.
-   Then CARD 1: push HEAD:main, both domains same dpl, curl via visible-text.
+   Then CARD 1: push HEAD:main, both domains same dpl, curl visible-text.
 
 ## Waiting on operator
 which real photos to animate · fable-harness-init
