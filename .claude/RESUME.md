@@ -8,15 +8,13 @@ gate) + Astra juror (ChatGPT back 12:17 PDT); grunt = GLM 5.3 (claude-glm.ps1
 week 1%, Fable 0%; reset 2026-09-26 01:00 PDT).
 Worktree p106-live, branch design/live-evolve.
 
-## SHIPPING NOW: Pass-123a + 123b (babd2a0)
-Operator 2026-09-19 ~10:05 PDT, popup, picked verbatim "Push now
-(Recommended)": "I push both to main (Vercel deploys), point all three
-domains at the new deploy, and check them live with curl. Undo is one step:
-promote this morning's deploy." Covers exactly 3874370 (F5 cqi, link props,
-dead CSS) + babd2a0 (RFP contract count cut). Revert: promote
-dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d, Pass-122).
-
-## LIVE before this push: 361f29d (Pass-122) all 3 domains, dpl_7ov1sFM
+## LIVE: 68a8dc3 (Pass-123a+b) dpl_HNtW9HazWjSuhg7VYgaT1WXD4oV7
+Pushed 10:03 PDT 09-19 on the operator's popup approval ("Push now
+(Recommended)": "I push both to main (Vercel deploys), point all three domains
+at the new deploy, and check them live with curl. Undo is one step: promote
+this morning's deploy."). card1-123.sh 10:08: 0 failures (www + vercel.app
+same dpl, 12 routes 200, RFP lines, eleven 0, cqi CSS served; apex 308->www).
+Revert: promote dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d, Pass-122).
 
 ## Queue
 1. Scoreboard CLS (LESSONS #41; 0.3298 @390, 0.1990 @1440 live; /work 0):
