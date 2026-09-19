@@ -23,6 +23,7 @@
 
 param(
   [string]$Brief = "",
+  [string]$Task = "",   # a prompt FILE run as-is (workspace-write, no commit/RESUME wrapper; Pass-123)
   [switch]$Review,
   [string]$Prompt = "",
   [string]$Out = "",
@@ -32,7 +33,7 @@ param(
   [string]$Model = "gpt-6-astra"   # gpt-5.6-sol for drafting and research legs (MODEL_ROUTING §9c)
 )
 
-if (-not $Review -and $Brief -eq "") { Write-Error "Give -Brief <path> to execute, or -Review -Prompt <path>."; exit 1 }
+if (-not $Review -and $Brief -eq "" -and $Task -eq "") { Write-Error "Give -Brief <path> or -Task <path> to execute, or -Review -Prompt <path>."; exit 1 }
 if ($Effort -eq "") { $Effort = if ($Review) { "ultra" } else { "xhigh" } }
 
 $imgArgs = @()
@@ -43,6 +44,15 @@ if ($Review) {
   $outArgs = @(); if ($Out -ne "") { $outArgs = @("-o", $Out) }
   Write-Host "codex-exec: REVIEW on $Model @ $Effort, read-only, in $Dir" -ForegroundColor DarkYellow
   Get-Content -Raw $Prompt | & codex exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox read-only -C $Dir @imgArgs @outArgs -
+  exit $LASTEXITCODE
+}
+
+if ($Task -ne "") {
+  if (-not (Test-Path $Task)) { Write-Error "-Task file not found: $Task"; exit 1 }
+  # Pass-123: the prompt file is the whole instruction. No commit wrapper (a worktree's git dir sits
+  # outside the sandbox, LESSONS #18) and no RESUME rewrite (the main session owns that file).
+  Write-Host "codex-exec: TASK $Task on $Model @ $Effort, workspace-write, in $Dir" -ForegroundColor DarkYellow
+  Get-Content -Raw -Encoding UTF8 $Task | & codex exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox workspace-write -C $Dir -
   exit $LASTEXITCODE
 }
 

@@ -152,6 +152,16 @@ ensure quality in design and writing and the cheaper models to do the grunt work
   the bucket in one line before launching. Claude weekly all-models is the bucket that stops everything; the
   2026-09-19 week started at 0% (Fable 0%), resetting 2026-09-26 01:00 PDT.
 
+**Amended 2026-09-19, afternoon: ChatGPT is back, tiered (GLM capped).** Operator, verbatim: "think
+chatgpt is back so we can use the,. still use it in a tiered way - astra for quality and the lower models for
+grunt work. Mix in some of claude too". So, alongside the morning tiers: **Sol** (`gpt-5.6-sol`, via
+`scripts/codex-exec.ps1 -Task <promptfile>`, workspace-write, no commits) takes grunt runs -- builds, capture
+and measuring scripts, fix rounds -- especially while GLM 5.3 is capped (it hit its z.ai 5-hour limit
+2026-09-19 ~13:20 PDT, reset ~21:20 PDT). **Astra** (`gpt-6-astra`, `-Review`, images attached) stays the
+independent juror at design and copy checkpoints only. **Sonnet** subagents take in-session grunt legs.
+Opus (this session) rules, briefs, verifies and commits; Fable takes the taste gates. Every leg still names
+its model, and `get_usage` runs before every Claude fan-out.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing
