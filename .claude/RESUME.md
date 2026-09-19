@@ -17,11 +17,11 @@ same dpl, 12 routes 200, RFP lines, eleven 0, cqi CSS served; apex 308->www).
 Revert: promote dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d, Pass-122).
 
 ## Queue
-1. Scoreboard CLS (LESSONS #41; 0.3298 @390, 0.1990 @1440 live; /work 0):
-   operator 09-19 picked "Fix it next, same look (Recommended)": beat changes
-   on transforms, boxes fixed size; before/after frames + scroll CLS, then a
-   separate push. Brief by main -> GLM.
-2. Study bands: Fable running (FABLE-STUDY-INPUT.md -> STUDY-BRIEF.md +
+1. Scoreboard CLS (LESSONS #41; live 0.3298 @390, 0.1990 @1440; /work 0):
+   operator 09-19 "Fix it next, same look". IN FLIGHT: GLM 123c on brief
+   .claude/briefs/pass-123c-scoreboard-cls.md (measure 4 states once, actors on
+   translate/scale) -> qa/pass-123/REPORT-123C.md. Then his before/after + a push.
+2. Study bands: Fable running (since 09:55) (FABLE-STUDY-INPUT.md -> STUDY-BRIEF.md +
    CUTS-PROPOSED.md). Cuts to him by popup; brief read against the ledger;
    add the scroll-CLS clause (#41) to its verification.
 3. HandCircle.tsx delete: ask after the band design.
