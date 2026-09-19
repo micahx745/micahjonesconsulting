@@ -790,6 +790,25 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   WORDING NOTE: he confirmed "eleven CONTRACTS"; "eleven awards" is the v2 drafter's substitution
   (`e295925`). The Fable-120 ship gate flagged it (two senses of "award" beside "An award-winning
   author") and it was parked as optional on 2026-09-16; it goes to him by popup (LESSONS #35).
+- **RFP CONTRACT COUNT RETIRED — operator 2026-09-19 (Pass-123, popup on the "eleven awards" wording)**,
+  answered (Other), verbatim: "lets not number the contracts in this story sorry. no need to say 11
+  contracts won, just say the overall amount." SUPERSEDES the 09-15 "Eleven contracts behind the $3M"
+  publish answer in the row above. The three live lines become straight cuts, nothing reworded:
+  `results.lead` **"$3M in signed contracts."**; `/work` `entry.line` (under the $3M poster) **"in signed
+  contracts."**; What changed bullet **"$3M in signed contracts through the platform."** NEVER on any
+  surface: any count of the RFP client's contracts or awards ("eleven awards", "eleven contracts", "11
+  contracts", "eleven of them"). The $3M, the close rate and the response counts are unchanged.
+- **PASS-123 STUDY PAGES SCOPE — operator 2026-09-19 (Pass-123, popup, asked first per LESSONS #39)**. Question:
+  the five study pages (one template), "Same rule as /work: your themes feed the existing page, nothing gets
+  redesigned. Which parts take the themes?" He ticked three: **"Band number as a poster"** ("The top band's
+  result ($14M, $3M, Up to 800,000, five to ten) set at poster size in copper, assembling once, like /work.
+  Lifts the 56px cap from 09-16 for that one figure. ORDANI gets no number."), **"Fewer words"** ("I list
+  each sentence I'd cut on each study and you tick the ones to go. Nothing is reworded."), and **"Guardicore
+  photo plays the clip"** ("On the Guardicore study only, the band photo becomes the Tel Aviv clip for one
+  beat, then rests on the photo (the same clip as /work's featured entry)."). NOT ticked: "What changed as
+  big numbers": the body's What changed list stays as it is. Scope: FEEDS the existing theme; changes the
+  study template's band (and the proposed cuts once he ticks them), nothing else. A before/after at 390
+  and 1440 goes to him before anything ships.
 - **BIRTH WORKER VOLUME — operator 2026-09-16**, verbatim: "Organic bookings grew maybe more
   than 30. She would average 1-3 a month and now she gets 5-10 inquiries. C oming from high
   quality" (message cut off there). The 30% is a FLOOR, not the figure; "up 30%" stays true on
