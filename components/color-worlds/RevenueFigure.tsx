@@ -1,162 +1,197 @@
-// Pass-114 (operator 2026-09-11, decision 4): the $20M+ figure counts once
-// from $0M to $20M+ over 1200ms, and the hand circle closes after it, finishing
-// at 2.65s. A recorded exception to DESIGN_BAR R13 and R15 — see
-// brand.json motion.countup and the recorded-exception paragraph in
-// .claude/CLAUDE.md. Not a second signature and not a precedent.
+// Pass-122 (.planning/mocks/pass-122/RECEIPTS-BRIEF.md; operator 2026-09-18,
+// LESSONS #3 "PASS-122 THEMES AND FIRST PAGE", themes 1 and 3). Replaces the
+// Pass-114 count-up (brand.json motion.countup): this arrival is the one
+// hero-number move for the receipts.
 //
-// CRITIQUE-110 LOW-7: the tick span renders with dangerouslySetInnerHTML and
-// NO React children, so a re-render never reconciles against the text node
-// that textContent replaced. All tick writes go through tickRef.current
-// .textContent. React state changes exactly three times (play, instant) —
-// never per frame.
+// $20M+ at poster size, fitted to the content column (two lines under 600px,
+// one line above). The server renders it as solid text (copper once JS runs;
+// without JS the world map never reaches espresso, so it keeps the world's
+// foreground): that is the finished frame without JavaScript, under reduced
+// motion, with Save-Data or a 2g connection, and whenever the figure is
+// already in view or above at load.
+//
+// Otherwise, once the window has loaded and the figure is within one viewport
+// of the fold, a decorative clip box is mounted over the numerals (the video
+// is preload="none" until then, so the home hero's LCP never sees it). When
+// half the figure is visible the Tel Aviv clip plays ONCE, muted and inline,
+// inside the glyphs, then the box fades and the numerals settle into copper.
+//
+// The knockout (LESSONS #7: every blend lives inside one isolated box):
+//   black box + white glyphs          -> glyph mask
+//   video, mix-blend-mode: multiply   -> footage inside the glyphs, black out
+//   world ground, mix-blend-mode: lighten -> the black becomes the ground
+// The footage is lifted (grayscale, low contrast, bright) so its darkest pixel
+// still clears 3:1 against espresso and every glyph reads as a whole shape.
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { HandCircle } from "@/components/hand/HandCircle";
+import { useEffect, useRef, useState } from "react";
 
-const FINAL_TEXT = "$20M+";
-const COUNT_MS = 1200;
-const useIsoLayoutEffect =
-  typeof window === "undefined" ? useEffect : useLayoutEffect;
+type Phase = "idle" | "armed" | "playing" | "settling" | "done";
+type ConnectionHint = { saveData?: boolean; effectiveType?: string };
+
+const SETTLE_MS = 900;
+// Backstop if `ended` never arrives (a stalled decode): the clip is 4.08s.
+const BACKSTOP_MS = 5600;
 let playedThisLoad = false;
 
+function Numerals() {
+  return (
+    <>
+      <span className="cw-rec__line">$20</span>
+      <span className="cw-rec__line">M+</span>
+    </>
+  );
+}
+
 export function RevenueFigure() {
-  const tickRef = useRef<HTMLSpanElement | null>(null);
-  const wrapRef = useRef<HTMLSpanElement | null>(null);
-  const stateRef = useRef<"waiting" | "armed" | "playing" | "done">("waiting");
-  const rafRef = useRef(0);
-  const [instant, setInstant] = useState(false);
-  const [play, setPlay] = useState(false);
+  const boxRef = useRef<HTMLSpanElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const phaseRef = useRef<Phase>("idle");
+  const [phase, setPhaseState] = useState<Phase>("idle");
 
-  useIsoLayoutEffect(() => {
-    if (playedThisLoad) {
-      stateRef.current = "done";
-      setInstant(true);
-      return;
-    }
-    const tick = tickRef.current;
-    const wrap = wrapRef.current;
-    if (!tick || !wrap) return;
+  const setPhase = (next: Phase) => {
+    phaseRef.current = next;
+    setPhaseState(next);
+  };
 
-    // Reduced motion, or the figure already in view / above at load (refresh,
-    // deep link): the finished frame, and nothing else ever happens.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      stateRef.current = "done";
-      setInstant(true);
+  // Eligibility + arming.
+  useEffect(() => {
+    const box = boxRef.current;
+    if (!box || playedThisLoad) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const conn = (navigator as Navigator & { connection?: ConnectionHint })
+      .connection;
+    if (conn?.saveData === true) return;
+    if (conn?.effectiveType === "2g" || conn?.effectiveType === "slow-2g")
       return;
-    }
-    if (wrap.getBoundingClientRect().top < window.innerHeight) {
-      stateRef.current = "done";
-      setInstant(true);
-      return;
-    }
+    // Already in view or above at load (refresh, deep link): finished frame.
+    if (box.getBoundingClientRect().top < window.innerHeight) return;
 
-    // Arm observer: the extended root reaches one viewport below the fold, so
-    // the figure arms before it is visible. A flick past upward finishes it.
-    const armObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (
-              stateRef.current === "waiting" &&
-              entry.boundingClientRect.top >= window.innerHeight
-            ) {
-              tick.textContent = "$0M";
-              setPlay(false);
-              stateRef.current = "armed";
-            } else if (
-              stateRef.current === "waiting" &&
-              entry.boundingClientRect.top < window.innerHeight
-            ) {
-              // Arrived already in view without ever arming: a single jump
-              // from above the arm zone skips the extended root entirely, so
-              // no not-intersecting callback can fire either. That is the
-              // flick-past case (DIRECTION-110 premise 4) — settle finished.
-              tick.textContent = FINAL_TEXT;
-              setInstant(true);
-              stateRef.current = "done";
+    let cancelled = false;
+    let observer: IntersectionObserver | null = null;
+
+    const arm = () => {
+      if (cancelled) return;
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting || phaseRef.current !== "idle") continue;
+            if (entry.boundingClientRect.top >= window.innerHeight) {
+              // Inside the extended root, still below the fold: mount the
+              // clip box so the first frame is ready before it is seen.
+              observer?.disconnect();
+              setPhase("armed");
             }
-          } else if (
-            stateRef.current === "armed" &&
-            entry.boundingClientRect.bottom < 0
-          ) {
-            // Flicked past upward while armed: settle on the finished frame.
-            tick.textContent = FINAL_TEXT;
-            setInstant(true);
-            stateRef.current = "done";
+            // Arrived in view without ever arming (one jump from far above):
+            // leave the finished frame alone.
           }
-        });
-      },
-      { rootMargin: "0px 0px 100% 0px", threshold: 0 },
-    );
+        },
+        { rootMargin: "0px 0px 100% 0px", threshold: 0 },
+      );
+      observer.observe(box);
+    };
 
-    // Play observer: half the figure visible starts the count. It only ever
-    // starts or finishes the moment — never couples to scroll after it starts.
-    const playObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && stateRef.current === "armed") {
-            stateRef.current = "playing";
-            playedThisLoad = true;
-            setPlay(true);
-            const start = performance.now();
-            const step = (now: number) => {
-              const t = Math.min((now - start) / COUNT_MS, 1);
-              const eased = 1 - (1 - t) ** 3;
-              tick.textContent =
-                t >= 1 ? FINAL_TEXT : `$${Math.round(eased * 20)}M`;
-              if (t < 1) {
-                rafRef.current = requestAnimationFrame(step);
-              } else {
-                stateRef.current = "done";
-              }
-            };
-            rafRef.current = requestAnimationFrame(step);
-          }
-        });
-      },
-      { threshold: 0.5 },
-    );
-
-    armObserver.observe(wrap);
-    playObserver.observe(wrap);
+    if (document.readyState === "complete") arm();
+    else window.addEventListener("load", arm, { once: true });
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
-      armObserver.disconnect();
-      playObserver.disconnect();
+      cancelled = true;
+      window.removeEventListener("load", arm);
+      observer?.disconnect();
     };
   }, []);
 
+  // Leave the clip for the settle: on `ended`, on a refused play(), or on the
+  // backstop timer. Only ever from "playing", so it runs once.
+  const settle = () => {
+    if (phaseRef.current === "playing") setPhase("settling");
+  };
+
+  // Play once half the figure is visible; flicked past upward = finished.
+  useEffect(() => {
+    if (phase !== "armed") return;
+    const box = boxRef.current;
+    const video = videoRef.current;
+    if (!box || !video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (phaseRef.current !== "armed") continue;
+          if (entry.intersectionRatio >= 0.5) {
+            observer.disconnect();
+            playedThisLoad = true;
+            setPhase("playing");
+            video.muted = true;
+            video.play().catch(settle);
+          } else if (
+            !entry.isIntersecting &&
+            entry.boundingClientRect.bottom < 0
+          ) {
+            observer.disconnect();
+            setPhase("done");
+          }
+        }
+      },
+      { threshold: [0, 0.5] },
+    );
+    observer.observe(box);
+    return () => observer.disconnect();
+  }, [phase]);
+
+  useEffect(() => {
+    if (phase !== "playing") return;
+    const t = window.setTimeout(settle, BACKSTOP_MS);
+    return () => window.clearTimeout(t);
+  }, [phase]);
+
+  // The settle: the clip box fades over the copper numerals, then unmounts.
+  useEffect(() => {
+    if (phase !== "settling") return;
+    const t = window.setTimeout(() => setPhase("done"), SETTLE_MS);
+    return () => window.clearTimeout(t);
+  }, [phase]);
+
+  const clipMounted =
+    phase === "armed" || phase === "playing" || phase === "settling";
+
   return (
-    <div className="cw-rec">
+    <div className="cw-rec" data-phase={phase}>
       <p className="cw-rec__num">
-        <span className="cw-sr-only">More than 20 million dollars</span>
-        <span className="cw-rec__wrap" aria-hidden="true" ref={wrapRef}>
-          <span className="cw-rec__ghost">$20M+</span>
-          <span
-            className="cw-rec__tick"
-            ref={tickRef}
-            dangerouslySetInnerHTML={{ __html: FINAL_TEXT }}
-          />
-          {/* Pass-115 (.claude/briefs/pass-115-circle-encloses.md): the loop
-              box is sized in em from the measured $20M+ ink box (M1: L 0.021,
-              T -0.001, W 2.825, H 0.875; hx 0.28, hy 0.184), variant 3. */}
-          <HandCircle
-            variant={3}
-            aspect="none"
-            boxStyle={{
-              inset: "auto",
-              left: "-0.259em",
-              top: "-0.185em",
-              width: "3.385em",
-              height: "1.243em",
-            }}
-            color="currentColor"
-            play={play}
-            instant={instant}
-            delay={0.6}
-          />
+        <span className="cw-sr-only">$20M+</span>
+        <span className="cw-rec__box" aria-hidden="true" ref={boxRef}>
+          <span className="cw-rec__fig">
+            <Numerals />
+          </span>
+          {clipMounted ? (
+            <span className="cw-rec__clip">
+              <span className="cw-rec__fig cw-rec__fig--mask">
+                <Numerals />
+              </span>
+              <video
+                ref={videoRef}
+                className="cw-rec__video"
+                poster="/media/work-hero-poster-960.avif"
+                preload="auto"
+                muted
+                playsInline
+                disablePictureInPicture
+                disableRemotePlayback
+                tabIndex={-1}
+                onEnded={settle}
+              >
+                <source
+                  src="/media/work-hero-720.webm"
+                  type='video/webm; codecs="vp9"'
+                />
+                <source
+                  src="/media/work-hero-720.mp4"
+                  type='video/mp4; codecs="avc1.640028"'
+                />
+              </video>
+              <span className="cw-rec__floor" />
+            </span>
+          ) : null}
         </span>
       </p>
       <p className="cw-rec__lbl">In revenue behind my work</p>
