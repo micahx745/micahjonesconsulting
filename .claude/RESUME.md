@@ -22,9 +22,12 @@ Revert: promote dpl_4C69xGq9PfH9ujTHBjqZ2Ecw3tdg (c525329).
    stays; tiles are reference only (#39). Themes: poster numbers, numbers
    that move, clip inside $20M+, fewer words (cuts shown first). FIRST: home
    receipts section.
-3. RUNNING: build of .planning/mocks/pass-122/RECEIPTS-BRIEF.md on the
-   branch (Opus), then before/after captures (Sonnet). Then: main reviews,
-   shows him before/after 390+1440 and the pane (launch "prod", port 3100).
+3. Receipts built on branch (e2df56e, NOT shipped); operator: approved in
+   direction + 2 fixes (clip more visible, caption big + tight) + "The
+   receipts." cut to sr-only (ledger 44d8d94). RUNNING: v2 fix agent (Opus).
+4. NEXT: /work per .planning/mocks/pass-122/WORK-BRIEF.md (after v2 lands;
+   one .next at a time). Then Fable gate, push approval, CARD 1.
+   Preview: launch "prod-p106" (main checkout launch.json, port 3101).
 
 ## Waiting on operator
 Receipts before/after verdict · proposed word cuts · which real photos to animate · fable-harness-init
