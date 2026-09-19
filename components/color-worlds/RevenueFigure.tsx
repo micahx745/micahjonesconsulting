@@ -20,8 +20,10 @@
 //   black box + white glyphs          -> glyph mask
 //   video, mix-blend-mode: multiply   -> footage inside the glyphs, black out
 //   world ground, mix-blend-mode: lighten -> the black becomes the ground
-// The footage is lifted (grayscale, low contrast, bright) so its darkest pixel
-// still clears 3:1 against espresso and every glyph reads as a whole shape.
+// The footage grade and framing live on .cw-rec__video in app/globals.css: a
+// 0.42 floor with a steep slope, so the glyph interiors hold 3:1 against
+// espresso (p5, measured on the rendered page) while faces and hands still
+// separate. Every glyph reads as a whole shape.
 "use client";
 
 import { useEffect, useRef, useState } from "react";

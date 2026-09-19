@@ -3695,9 +3695,6 @@ body {
  * (see the CONTRAST FIX note below — an accent was tried and failed AA), and
  * the entrance is the site's existing .cw-reveal system: no new keyframe, no
  * new token, no second mechanism. */
-[data-mode="cw"] .cw-receipts__title {
-  margin-top: 112px;
-}
 /* Pass-122 (.planning/mocks/pass-122/RECEIPTS-BRIEF.md, themes 1 and 3):
  * $20M+ at poster size, fitted to the content column. Under 600px it
  * runs two lines ("$20" / "M+"); above, one line. The divisors are the measured
@@ -3705,11 +3702,29 @@ body {
  * each with a little slack so the ink never meets the gutter. Copper on
  * espresso is large text only (3:1 floor). The Pass-115 HandCircle is gone: at
  * edge-to-edge size a loop has nowhere to go but out of the column, and the
- * clip's settle is this figure's one arrival. */
+ * clip's settle is this figure's one arrival.
+ * Fix round (operator 2026-09-18, LESSONS #3 "PASS-122 RECEIPTS VERDICT"):
+ * "The receipts." left the screen (a .cw-sr-only h3 now), so the figure opens
+ * the tally itself and carries the 112px pause the title used to. The numeral
+ * size is one custom property so the caption below can sit on the ink. */
+[data-mode="cw"] .cw-rec {
+  --cw-rec-size: calc((100vw - 40px) / 1.64);
+  margin-top: 112px;
+}
+@media (min-width: 600px) {
+  [data-mode="cw"] .cw-rec {
+    --cw-rec-size: calc((100vw - 40px) / 2.87);
+  }
+}
+@media (min-width: 761px) {
+  [data-mode="cw"] .cw-rec {
+    --cw-rec-size: calc((100vw - 80px) / 2.87);
+  }
+}
 [data-mode="cw"] .cw-rec__num {
-  margin: 32px 0 0;
+  margin: 0;
   font-family: var(--font-cw-display);
-  font-size: calc((100vw - 40px) / 1.64);
+  font-size: var(--cw-rec-size);
   font-weight: 800;
   line-height: 0.86;
   letter-spacing: -0.035em;
@@ -3721,16 +3736,6 @@ body {
  * sets on mount, the same moment the world map starts following the scroll. */
 [data-mode="cw"].cw-js-reveals .cw-rec__num {
   color: var(--color-accent-copper);
-}
-@media (min-width: 600px) {
-  [data-mode="cw"] .cw-rec__num {
-    font-size: calc((100vw - 40px) / 2.87);
-  }
-}
-@media (min-width: 761px) {
-  [data-mode="cw"] .cw-rec__num {
-    font-size: calc((100vw - 80px) / 2.87);
-  }
 }
 [data-mode="cw"] .cw-rec__box {
   position: relative;
@@ -3753,7 +3758,8 @@ body {
  * blend lives inside this isolated box (LESSONS #7): black ground + white
  * glyphs, the footage multiplied onto them, then the world ground lightened
  * over the black so the box is the page's own espresso outside the letters.
- * The footage lift keeps its darkest pixel above 3:1 against espresso. */
+ * The footage grade (see .cw-rec__video) keeps the glyph interiors at or
+ * above 3:1 against espresso, so every glyph reads as a whole shape. */
 [data-mode="cw"] .cw-rec__clip {
   position: absolute;
   inset: 0;
@@ -3770,15 +3776,38 @@ body {
 [data-mode="cw"] .cw-rec__fig--mask {
   color: white;
 }
+/* The footage grade. Fix round (operator 2026-09-18: "clip more visible,
+ * still legible"): the first grade, contrast(.45) brightness(1.8) sepia(.4),
+ * mapped the clip to 0.81v + 0.50, so every input above 0.62 clipped to white
+ * and his face, which lives in the clip's shadows, went to flat beige. This one
+ * is 1.2v + 0.42 (contrast .59 then brightness 2.04): the same 0.42 floor that
+ * holds the glyphs at 3:1, with half again the slope, so faces and hands
+ * separate; only the white tablecloth clips. sepia(.12) warms the grey
+ * toward espresso without going beige. Measured on the rendered page, grain
+ * and vignette included: .planning/qa/pass-122/receipts/v2/.
+ * A lighter matte layer (lighten) was tried to floor the shadows instead: it
+ * turned them into flat patches and the glyphs read as two-toned. Rejected.
+ * Framing: the clip is portrait (720x900). Under 600px it is scaled 1.3 about
+ * his face so the face fills "20" and the clip's darkest bottom rows (a graded
+ * vignette) leave the M+ line; above 600px the box is a wide band, set at 18%
+ * so the band holds his face rather than his vest and the table. */
 [data-mode="cw"] .cw-rec__video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 42%;
+  object-position: 50% 50%;
+  transform: scale(1.3);
+  transform-origin: 62% 14%;
   mix-blend-mode: multiply;
-  filter: grayscale(1) contrast(0.45) brightness(1.8) sepia(0.4);
+  filter: grayscale(1) contrast(0.59) brightness(2.04) sepia(0.12);
+}
+@media (min-width: 600px) {
+  [data-mode="cw"] .cw-rec__video {
+    object-position: 50% 18%;
+    transform: none;
+  }
 }
 [data-mode="cw"] .cw-rec__floor {
   position: absolute;
@@ -3786,14 +3815,29 @@ body {
   background: var(--cw-bg);
   mix-blend-mode: lighten;
 }
+/* The caption. Fix round (operator 2026-09-18: "the caption larger and tight
+ * under $20M+"): was a 13px mono label about 60px below the ink. Now the
+ * display face at 600, the idiom of the old .cw-rev__dek caption under this
+ * figure, sized with the numerals (22.5px at 390, 40px at 1440), its cap tops
+ * 14px under the lowest numeral ink. That ink sits a measured 0.2036em of the
+ * numeral size above the box bottom under 600px (the M+ baseline) and 0.0946em
+ * above it on one line (the $ tail); 0.15em is the caption's own box-top to
+ * cap-top. The caption overlaps the box's bottom padding, so it is stacked
+ * above the clip box, which paints the ground there while the clip runs. */
 [data-mode="cw"] .cw-rec__lbl {
-  margin: 10px 0 0;
-  font-family: var(--font-cw-mono);
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  margin: calc(14px - 0.2036 * var(--cw-rec-size) - 0.15em) 0 0;
+  font-family: var(--font-cw-display);
+  font-size: calc(8px + 0.068 * var(--cw-rec-size));
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 600px) {
+  [data-mode="cw"] .cw-rec__lbl {
+    margin-top: calc(14px - 0.0946 * var(--cw-rec-size) - 0.15em);
+  }
 }
 
 [data-mode="cw"] .cw-exits {

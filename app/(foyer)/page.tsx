@@ -526,13 +526,15 @@ export default function ColorWorldsHome() {
             closing tally reads as a full pause, not a half one; paired
             with cw-secttitle--sub above so the register change is
             visible in both space and size, not space alone. */}
-        <SplitReveal
-          as="h3"
-          id="cw-products-title"
-          className="cw-secttitle cw-secttitle--sub cw-receipts__title"
-        >
+        {/* Pass-122 (operator 2026-09-18, LESSONS #3 "PASS-122 RECEIPTS
+            VERDICT AND THE FIRST CUT"): "The receipts." is cut from the
+            screen and kept for screen readers, same text, so the outline
+            still reads. A plain visually hidden h3: no SplitReveal, nothing
+            animates, no space reserved. The poster figure takes its place
+            (the 112px pause above it moved to .cw-rec). */}
+        <h3 id="cw-products-title" className="cw-sr-only">
           The receipts.
-        </SplitReveal>
+        </h3>
         <RevenueFigure />
         <ExitRecord />
       </section>
