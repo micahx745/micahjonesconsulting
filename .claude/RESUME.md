@@ -25,7 +25,7 @@ Revert: promote dpl_3hnWsf2kgZn5bhEdQrTqLcaG9dwe (92095b7, Stage A).
 3. RECEIPTS LOCKED by operator (v2 1225bea, ledger 6abc3a8). NOT shipped.
 4. /WORK LOCKED with 3 cuts (ledger 8d7cb7f; build 30b1c45 + cuts). NOT shipped.
 5. SHIPPED (above). Operator approval 2026-09-18: "Fix those, then ship".
-   Open: his iPhone look at $20M+ (Safari video blend, G1, unverified).
+   G1 VERIFIED by operator on his iPhone 2026-09-19: "Clip inside the numbers".
    Queue: F5 (100vw vs scrollbars), ViewTransitionLink aria prop type,
    next surfaces in the same grammar (study pages), ledger row for RFP
    "one in eight..." + "eleven awards".

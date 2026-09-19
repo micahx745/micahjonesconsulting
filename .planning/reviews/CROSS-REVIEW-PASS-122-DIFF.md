@@ -50,3 +50,5 @@ re-verified by the fix round's measurements (a fix pass is itself a review subje
 
 `CROSS-REVIEW VERDICT: BLOCK (1) → resolved by ADOPT; round partial (1 of 3 external legs).` CARD 1 may run.
 
+G1 closed 2026-09-19 after the deploy (`361f29d`, dpl_7ov1sFM): the operator looked on his iPhone (Safari)
+and picked "Clip inside the numbers": footage plays inside $20M+, then it settles to copper.
