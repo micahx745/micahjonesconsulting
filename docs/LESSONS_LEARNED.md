@@ -713,6 +713,19 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   $20M+, copper settle, caption "In revenue behind my work" in Bricolage 600 under the numerals, the exits
   scoreboard, "The receipts." screen-reader only) is the approved design. Shipping still needs his separate
   push approval, after /work.
+- **PASS-122 /WORK LOCKED WITH THREE CUTS — operator 2026-09-18 (Pass-122 DIRECT, popup, after the /work
+  before/after sheets and the live preview of `30b1c45`)**. Picked "Yes, with the cuts below (Recommended)".
+  CUTS he ticked (straight removals, nothing reworded): (1) "Description's figure list (Recommended)": the
+  /work description becomes EXACTLY **"Four client engagements and the company I founded. Each page says what
+  I found, what I built, and what changed."** (the middle sentence "$14M in revenue for a security company,
+  $3M in contracts from an RFP engine, a content engine that peaked at 800,000 impressions in a month, a birth
+  worker's practice rebuilt, and ORDANI." is removed; this amends the 2026-09-17 WORK_DESCRIPTION row).
+  (2) "Featured entry's '$14M' (Recommended)": the featured Guardicore entry keeps its clip thumbnail,
+  "Guardicore, acquired by Akamai" and the arrow, and no longer shows $14M. (3) "Two repeated Guardicore lines
+  (Recommended)": "Akamai acquired the company in 2021." leaves the Guardicore /work entry, and the /work
+  record row's Guardicore description ("$14M in revenue, sourced and closed, after the research moved the
+  pitch from honeypots to east-west visibility.") is removed; the row still links to the study. NOT ticked:
+  the method line stays, below the studies. Shipping still needs his separate push approval.
 
 - **THE /WORK HEADER — operator 2026-09-16 (after the Pass-120 release)**, verbatim: "the header
   setence above the actual case studies looks weak and feel that setence doesnt cover all the things
