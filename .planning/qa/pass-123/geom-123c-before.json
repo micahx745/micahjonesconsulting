@@ -1,0 +1,866 @@
+{
+  "390": {
+    "viewport": {
+      "name": "390",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 2,
+      "isMobile": true,
+      "hasTouch": true
+    },
+    "info": {
+      "navH": 69,
+      "Y0": 4654.61,
+      "actorsMode": false,
+      "navOffsetH": 69
+    },
+    "beats": [
+      {
+        "b": 0,
+        "scrollY": 4866,
+        "current": 0,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 223.7,
+              "right": 359.55,
+              "bottom": 361.7,
+              "width": 339.55,
+              "height": 138
+            },
+            "co": {
+              "left": 20,
+              "top": 205.7,
+              "right": 160.73,
+              "bottom": 233.7,
+              "width": 140.73,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 355.97,
+              "right": 153.03,
+              "bottom": 377.97,
+              "width": 133.03,
+              "height": 22
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 466.33,
+              "right": 212.81,
+              "bottom": 541.33,
+              "width": 192.81,
+              "height": 75
+            },
+            "co": {
+              "left": 245.19,
+              "top": 515.58,
+              "right": 370,
+              "bottom": 533.58,
+              "width": 124.81,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 619.28,
+              "right": 214.13,
+              "bottom": 694.28,
+              "width": 194.13,
+              "height": 75
+            },
+            "co": {
+              "left": 273.81,
+              "top": 668.53,
+              "right": 370,
+              "bottom": 686.53,
+              "width": 96.19,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 776.25,
+              "right": 225.69,
+              "bottom": 821.25,
+              "width": 205.69,
+              "height": 45
+            },
+            "co": {
+              "left": 289.44,
+              "top": 799,
+              "right": 370,
+              "bottom": 817,
+              "width": 80.56,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          391.61,
+          544.58,
+          697.53
+        ]
+      },
+      {
+        "b": 1,
+        "scrollY": 5288,
+        "current": 1,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 197.7,
+              "right": 212.81,
+              "bottom": 272.7,
+              "width": 192.81,
+              "height": 75
+            },
+            "co": {
+              "left": 280.86,
+              "top": 246.95,
+              "right": 370,
+              "bottom": 264.95,
+              "width": 89.14,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 376.67,
+              "right": 359.55,
+              "bottom": 514.67,
+              "width": 339.55,
+              "height": 138
+            },
+            "co": {
+              "left": 20,
+              "top": 358.67,
+              "right": 217.03,
+              "bottom": 386.67,
+              "width": 197.03,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 508.94,
+              "right": 162.25,
+              "bottom": 530.94,
+              "width": 142.25,
+              "height": 22
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 619.28,
+              "right": 214.13,
+              "bottom": 694.28,
+              "width": 194.13,
+              "height": 75
+            },
+            "co": {
+              "left": 273.81,
+              "top": 668.53,
+              "right": 370,
+              "bottom": 686.53,
+              "width": 96.19,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 776.25,
+              "right": 225.69,
+              "bottom": 821.25,
+              "width": 205.69,
+              "height": 45
+            },
+            "co": {
+              "left": 289.44,
+              "top": 799,
+              "right": 370,
+              "bottom": 817,
+              "width": 80.56,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          544.58,
+          697.53
+        ]
+      },
+      {
+        "b": 2,
+        "scrollY": 5710,
+        "current": 2,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 197.7,
+              "right": 212.81,
+              "bottom": 272.7,
+              "width": 192.81,
+              "height": 75
+            },
+            "co": {
+              "left": 280.86,
+              "top": 246.95,
+              "right": 370,
+              "bottom": 264.95,
+              "width": 89.14,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 350.67,
+              "right": 212.81,
+              "bottom": 425.67,
+              "width": 192.81,
+              "height": 75
+            },
+            "co": {
+              "left": 245.19,
+              "top": 399.92,
+              "right": 370,
+              "bottom": 417.92,
+              "width": 124.81,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 529.63,
+              "right": 359.89,
+              "bottom": 667.63,
+              "width": 339.89,
+              "height": 138
+            },
+            "co": {
+              "left": 20,
+              "top": 511.63,
+              "right": 171.91,
+              "bottom": 539.63,
+              "width": 151.91,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 661.89,
+              "right": 171.95,
+              "bottom": 683.89,
+              "width": 151.95,
+              "height": 22
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 776.25,
+              "right": 225.69,
+              "bottom": 821.25,
+              "width": 205.69,
+              "height": 45
+            },
+            "co": {
+              "left": 289.44,
+              "top": 799,
+              "right": 370,
+              "bottom": 817,
+              "width": 80.56,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          428.92,
+          697.53
+        ]
+      },
+      {
+        "b": 3,
+        "scrollY": 6132,
+        "current": 3,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 196.77,
+              "right": 212.81,
+              "bottom": 271.77,
+              "width": 192.81,
+              "height": 75
+            },
+            "co": {
+              "left": 280.86,
+              "top": 246.02,
+              "right": 370,
+              "bottom": 264.02,
+              "width": 89.14,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 348.78,
+              "right": 212.81,
+              "bottom": 423.78,
+              "width": 192.81,
+              "height": 75
+            },
+            "co": {
+              "left": 245.19,
+              "top": 398.03,
+              "right": 370,
+              "bottom": 416.03,
+              "width": 124.81,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 500.8,
+              "right": 214.13,
+              "bottom": 575.8,
+              "width": 194.13,
+              "height": 75
+            },
+            "co": {
+              "left": 273.81,
+              "top": 550.05,
+              "right": 370,
+              "bottom": 568.05,
+              "width": 96.19,
+              "height": 18
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 685.81,
+              "right": 370.08,
+              "bottom": 765.81,
+              "width": 350.08,
+              "height": 80
+            },
+            "co": {
+              "left": 20,
+              "top": 660.81,
+              "right": 147.16,
+              "bottom": 688.81,
+              "width": 127.16,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 767.72,
+              "right": 255.61,
+              "bottom": 814.36,
+              "width": 235.61,
+              "height": 46.64
+            },
+            "outcomeVisible": true
+          }
+        ],
+        "dividers": [
+          275.02,
+          427.03,
+          579.05
+        ]
+      }
+    ],
+    "consoleErrors": []
+  },
+  "1440": {
+    "viewport": {
+      "name": "1440",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false
+    },
+    "info": {
+      "navH": 81,
+      "Y0": 4052.47,
+      "actorsMode": false,
+      "navOffsetH": 81
+    },
+    "beats": [
+      {
+        "b": 0,
+        "scrollY": 4277,
+        "current": 0,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 155.31,
+              "right": 937.2,
+              "bottom": 519.31,
+              "width": 897.2,
+              "height": 364
+            },
+            "co": {
+              "left": 1200.61,
+              "top": 396.64,
+              "right": 1400,
+              "bottom": 437.64,
+              "width": 199.39,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1243.5,
+              "top": 446.2,
+              "right": 1400,
+              "bottom": 472.2,
+              "width": 156.5,
+              "height": 26
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 541.52,
+              "right": 252.94,
+              "bottom": 625.52,
+              "width": 212.94,
+              "height": 84
+            },
+            "co": {
+              "left": 1234.81,
+              "top": 593.16,
+              "right": 1400,
+              "bottom": 617.16,
+              "width": 165.19,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 682.47,
+              "right": 254.13,
+              "bottom": 766.47,
+              "width": 214.13,
+              "height": 84
+            },
+            "co": {
+              "left": 1272.64,
+              "top": 734.11,
+              "right": 1400,
+              "bottom": 758.11,
+              "width": 127.36,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 827.42,
+              "right": 267.61,
+              "bottom": 877.42,
+              "width": 227.61,
+              "height": 50
+            },
+            "co": {
+              "left": 1293.38,
+              "top": 850,
+              "right": 1400,
+              "bottom": 874,
+              "width": 106.63,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          486.2,
+          627.16,
+          768.11
+        ]
+      },
+      {
+        "b": 1,
+        "scrollY": 4727,
+        "current": 1,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 190.31,
+              "right": 252.94,
+              "bottom": 274.31,
+              "width": 212.94,
+              "height": 84
+            },
+            "co": {
+              "left": 1282.02,
+              "top": 241.95,
+              "right": 1400,
+              "bottom": 265.95,
+              "width": 117.98,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 296.27,
+              "right": 937.2,
+              "bottom": 660.27,
+              "width": 897.2,
+              "height": 364
+            },
+            "co": {
+              "left": 1120.81,
+              "top": 537.59,
+              "right": 1400,
+              "bottom": 578.59,
+              "width": 279.19,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1232.66,
+              "top": 587.16,
+              "right": 1400,
+              "bottom": 613.16,
+              "width": 167.34,
+              "height": 26
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 682.47,
+              "right": 254.13,
+              "bottom": 766.47,
+              "width": 214.13,
+              "height": 84
+            },
+            "co": {
+              "left": 1272.64,
+              "top": 734.11,
+              "right": 1400,
+              "bottom": 758.11,
+              "width": 127.36,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 827.42,
+              "right": 267.61,
+              "bottom": 877.42,
+              "width": 227.61,
+              "height": 50
+            },
+            "co": {
+              "left": 1293.38,
+              "top": 850,
+              "right": 1400,
+              "bottom": 874,
+              "width": 106.63,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          627.16,
+          768.11
+        ]
+      },
+      {
+        "b": 2,
+        "scrollY": 5177,
+        "current": 2,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 190.31,
+              "right": 252.94,
+              "bottom": 274.31,
+              "width": 212.94,
+              "height": 84
+            },
+            "co": {
+              "left": 1282.02,
+              "top": 241.95,
+              "right": 1400,
+              "bottom": 265.95,
+              "width": 117.98,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 331.27,
+              "right": 252.94,
+              "bottom": 415.27,
+              "width": 212.94,
+              "height": 84
+            },
+            "co": {
+              "left": 1234.81,
+              "top": 382.91,
+              "right": 1400,
+              "bottom": 406.91,
+              "width": 165.19,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 437.22,
+              "right": 938.11,
+              "bottom": 801.22,
+              "width": 898.11,
+              "height": 364
+            },
+            "co": {
+              "left": 1184.53,
+              "top": 678.55,
+              "right": 1400,
+              "bottom": 719.55,
+              "width": 215.47,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1221.23,
+              "top": 728.11,
+              "right": 1400,
+              "bottom": 754.11,
+              "width": 178.77,
+              "height": 26
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 827.42,
+              "right": 267.61,
+              "bottom": 877.42,
+              "width": 227.61,
+              "height": 50
+            },
+            "co": {
+              "left": 1293.38,
+              "top": 850,
+              "right": 1400,
+              "bottom": 874,
+              "width": 106.63,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          416.91,
+          768.11
+        ]
+      },
+      {
+        "b": 3,
+        "scrollY": 5627,
+        "current": 3,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": false,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 212.7,
+              "right": 252.94,
+              "bottom": 296.7,
+              "width": 212.94,
+              "height": 84
+            },
+            "co": {
+              "left": 1282.02,
+              "top": 264.34,
+              "right": 1400,
+              "bottom": 288.34,
+              "width": 117.98,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 376.05,
+              "right": 252.94,
+              "bottom": 460.05,
+              "width": 212.94,
+              "height": 84
+            },
+            "co": {
+              "left": 1234.81,
+              "top": 427.69,
+              "right": 1400,
+              "bottom": 451.69,
+              "width": 165.19,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 539.39,
+              "right": 254.13,
+              "bottom": 623.39,
+              "width": 214.13,
+              "height": 84
+            },
+            "co": {
+              "left": 1272.64,
+              "top": 591.03,
+              "right": 1400,
+              "bottom": 615.03,
+              "width": 127.36,
+              "height": 24
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 686.73,
+              "right": 924.73,
+              "bottom": 897.73,
+              "width": 884.73,
+              "height": 211
+            },
+            "co": {
+              "left": 1219.81,
+              "top": 765.44,
+              "right": 1400,
+              "bottom": 806.44,
+              "width": 180.19,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1187.27,
+              "top": 815,
+              "right": 1400,
+              "bottom": 870,
+              "width": 212.73,
+              "height": 55
+            },
+            "outcomeVisible": true
+          }
+        ],
+        "dividers": [
+          298.34,
+          461.69,
+          625.03
+        ]
+      }
+    ],
+    "consoleErrors": []
+  },
+  "base": "https://www.micahjonesconsulting.com",
+  "when": "2026-09-19T17:21:27.901Z"
+}

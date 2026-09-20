@@ -1,0 +1,872 @@
+{
+  "390": {
+    "viewport": {
+      "name": "390",
+      "width": 390,
+      "height": 844,
+      "deviceScaleFactor": 2,
+      "isMobile": true,
+      "hasTouch": true
+    },
+    "info": {
+      "navH": 69,
+      "Y0": 4654.61,
+      "actorsMode": true,
+      "navOffsetH": 69
+    },
+    "beats": [
+      {
+        "b": 0,
+        "scrollY": 4866,
+        "current": 0,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 223.7,
+              "right": 359.55,
+              "bottom": 361.7,
+              "width": 339.55,
+              "height": 138
+            },
+            "co": {
+              "left": 20,
+              "top": 205.7,
+              "right": 160.73,
+              "bottom": 233.7,
+              "width": 140.73,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 355.97,
+              "right": 153.03,
+              "bottom": 377.97,
+              "width": 133.03,
+              "height": 22
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 466.52,
+              "right": 204.96,
+              "bottom": 541.69,
+              "width": 184.96,
+              "height": 75.17
+            },
+            "co": {
+              "left": 245.19,
+              "top": 516.33,
+              "right": 368.33,
+              "bottom": 533.83,
+              "width": 123.14,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 619.48,
+              "right": 205.14,
+              "bottom": 694.65,
+              "width": 185.14,
+              "height": 75.17
+            },
+            "co": {
+              "left": 273.81,
+              "top": 669.28,
+              "right": 368.75,
+              "bottom": 686.78,
+              "width": 94.94,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 776.05,
+              "right": 217.23,
+              "bottom": 821.12,
+              "width": 197.23,
+              "height": 45.07
+            },
+            "co": {
+              "left": 289.44,
+              "top": 799.75,
+              "right": 368.91,
+              "bottom": 817.25,
+              "width": 79.47,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          391.61,
+          544.58,
+          697.53
+        ]
+      },
+      {
+        "b": 1,
+        "scrollY": 5288,
+        "current": 1,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 197.9,
+              "right": 204.96,
+              "bottom": 273.07,
+              "width": 184.96,
+              "height": 75.17
+            },
+            "co": {
+              "left": 280.86,
+              "top": 247.7,
+              "right": 368.82,
+              "bottom": 265.2,
+              "width": 87.96,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 376.67,
+              "right": 359.55,
+              "bottom": 514.67,
+              "width": 339.55,
+              "height": 138
+            },
+            "co": {
+              "left": 20,
+              "top": 358.67,
+              "right": 217.03,
+              "bottom": 386.67,
+              "width": 197.03,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 508.94,
+              "right": 162.25,
+              "bottom": 530.94,
+              "width": 142.25,
+              "height": 22
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 619.48,
+              "right": 205.14,
+              "bottom": 694.65,
+              "width": 185.14,
+              "height": 75.17
+            },
+            "co": {
+              "left": 273.81,
+              "top": 669.28,
+              "right": 368.75,
+              "bottom": 686.78,
+              "width": 94.94,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 776.05,
+              "right": 217.23,
+              "bottom": 821.12,
+              "width": 197.23,
+              "height": 45.07
+            },
+            "co": {
+              "left": 289.44,
+              "top": 799.75,
+              "right": 368.91,
+              "bottom": 817.25,
+              "width": 79.47,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          544.58,
+          697.53
+        ]
+      },
+      {
+        "b": 2,
+        "scrollY": 5710,
+        "current": 2,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 197.9,
+              "right": 204.96,
+              "bottom": 273.07,
+              "width": 184.96,
+              "height": 75.17
+            },
+            "co": {
+              "left": 280.86,
+              "top": 247.7,
+              "right": 368.82,
+              "bottom": 265.2,
+              "width": 87.96,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 350.87,
+              "right": 204.96,
+              "bottom": 426.04,
+              "width": 184.96,
+              "height": 75.17
+            },
+            "co": {
+              "left": 245.19,
+              "top": 400.67,
+              "right": 368.33,
+              "bottom": 418.17,
+              "width": 123.14,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 529.63,
+              "right": 359.89,
+              "bottom": 667.63,
+              "width": 339.89,
+              "height": 138
+            },
+            "co": {
+              "left": 20,
+              "top": 511.63,
+              "right": 171.91,
+              "bottom": 539.63,
+              "width": 151.91,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 661.89,
+              "right": 171.95,
+              "bottom": 683.89,
+              "width": 151.95,
+              "height": 22
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 776.05,
+              "right": 217.23,
+              "bottom": 821.12,
+              "width": 197.23,
+              "height": 45.07
+            },
+            "co": {
+              "left": 289.44,
+              "top": 799.75,
+              "right": 368.91,
+              "bottom": 817.25,
+              "width": 79.47,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          428.92,
+          697.53
+        ]
+      },
+      {
+        "b": 3,
+        "scrollY": 6132,
+        "current": 3,
+        "stageTop": 69,
+        "navH": 69,
+        "scrollWidth": 390,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 20,
+              "top": 196.96,
+              "right": 204.96,
+              "bottom": 272.13,
+              "width": 184.96,
+              "height": 75.17
+            },
+            "co": {
+              "left": 280.86,
+              "top": 246.77,
+              "right": 368.82,
+              "bottom": 264.27,
+              "width": 87.96,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 348.98,
+              "right": 204.96,
+              "bottom": 424.15,
+              "width": 184.96,
+              "height": 75.17
+            },
+            "co": {
+              "left": 245.19,
+              "top": 398.78,
+              "right": 368.33,
+              "bottom": 416.28,
+              "width": 123.14,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 500.99,
+              "right": 205.14,
+              "bottom": 576.16,
+              "width": 185.14,
+              "height": 75.17
+            },
+            "co": {
+              "left": 273.81,
+              "top": 550.8,
+              "right": 368.75,
+              "bottom": 568.3,
+              "width": 94.94,
+              "height": 17.5
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 20,
+              "top": 685.81,
+              "right": 370.08,
+              "bottom": 765.81,
+              "width": 350.08,
+              "height": 80
+            },
+            "co": {
+              "left": 20,
+              "top": 660.81,
+              "right": 147.16,
+              "bottom": 688.81,
+              "width": 127.16,
+              "height": 28
+            },
+            "outcome": {
+              "left": 20,
+              "top": 767.72,
+              "right": 255.61,
+              "bottom": 814.36,
+              "width": 235.61,
+              "height": 46.64
+            },
+            "outcomeVisible": true
+          }
+        ],
+        "dividers": [
+          275.02,
+          427.03,
+          579.05
+        ]
+      }
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ]
+  },
+  "1440": {
+    "viewport": {
+      "name": "1440",
+      "width": 1440,
+      "height": 900,
+      "deviceScaleFactor": 1,
+      "isMobile": false,
+      "hasTouch": false
+    },
+    "info": {
+      "navH": 81,
+      "Y0": 4052.47,
+      "actorsMode": true,
+      "navOffsetH": 81
+    },
+    "beats": [
+      {
+        "b": 0,
+        "scrollY": 4277,
+        "current": 0,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 155.31,
+              "right": 937.2,
+              "bottom": 519.31,
+              "width": 897.2,
+              "height": 364
+            },
+            "co": {
+              "left": 1200.61,
+              "top": 396.64,
+              "right": 1400,
+              "bottom": 437.64,
+              "width": 199.39,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1243.5,
+              "top": 446.2,
+              "right": 1400,
+              "bottom": 472.2,
+              "width": 156.5,
+              "height": 26
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 541.96,
+              "right": 245.95,
+              "bottom": 625.51,
+              "width": 205.95,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1234.81,
+              "top": 592.84,
+              "right": 1396.37,
+              "bottom": 616.57,
+              "width": 161.56,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 682.91,
+              "right": 246.16,
+              "bottom": 766.46,
+              "width": 206.16,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1272.64,
+              "top": 733.79,
+              "right": 1397.32,
+              "bottom": 757.52,
+              "width": 124.68,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 828.01,
+              "right": 250.07,
+              "bottom": 878.11,
+              "width": 210.07,
+              "height": 50.1
+            },
+            "co": {
+              "left": 1293.38,
+              "top": 849.69,
+              "right": 1397.64,
+              "bottom": 873.41,
+              "width": 104.27,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          486.2,
+          627.16,
+          768.11
+        ]
+      },
+      {
+        "b": 1,
+        "scrollY": 4727,
+        "current": 1,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 190.75,
+              "right": 245.95,
+              "bottom": 274.31,
+              "width": 205.95,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1282.02,
+              "top": 241.64,
+              "right": 1397.4,
+              "bottom": 265.36,
+              "width": 115.38,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 296.27,
+              "right": 937.2,
+              "bottom": 660.27,
+              "width": 897.2,
+              "height": 364
+            },
+            "co": {
+              "left": 1120.81,
+              "top": 537.59,
+              "right": 1400,
+              "bottom": 578.59,
+              "width": 279.19,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1232.66,
+              "top": 587.16,
+              "right": 1400,
+              "bottom": 613.16,
+              "width": 167.34,
+              "height": 26
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 682.91,
+              "right": 246.16,
+              "bottom": 766.46,
+              "width": 206.16,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1272.64,
+              "top": 733.79,
+              "right": 1397.32,
+              "bottom": 757.52,
+              "width": 124.68,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 828.01,
+              "right": 250.07,
+              "bottom": 878.11,
+              "width": 210.07,
+              "height": 50.1
+            },
+            "co": {
+              "left": 1293.38,
+              "top": 849.69,
+              "right": 1397.64,
+              "bottom": 873.41,
+              "width": 104.27,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          627.16,
+          768.11
+        ]
+      },
+      {
+        "b": 2,
+        "scrollY": 5177,
+        "current": 2,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 190.75,
+              "right": 245.95,
+              "bottom": 274.31,
+              "width": 205.95,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1282.02,
+              "top": 241.64,
+              "right": 1397.4,
+              "bottom": 265.36,
+              "width": 115.38,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 331.71,
+              "right": 245.95,
+              "bottom": 415.26,
+              "width": 205.95,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1234.81,
+              "top": 382.59,
+              "right": 1396.37,
+              "bottom": 406.32,
+              "width": 161.56,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 437.22,
+              "right": 938.11,
+              "bottom": 801.22,
+              "width": 898.11,
+              "height": 364
+            },
+            "co": {
+              "left": 1184.53,
+              "top": 678.55,
+              "right": 1400,
+              "bottom": 719.55,
+              "width": 215.47,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1221.23,
+              "top": 728.11,
+              "right": 1400,
+              "bottom": 754.11,
+              "width": 178.77,
+              "height": 26
+            },
+            "outcomeVisible": true
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 828.01,
+              "right": 250.07,
+              "bottom": 878.11,
+              "width": 210.07,
+              "height": 50.1
+            },
+            "co": {
+              "left": 1293.38,
+              "top": 849.69,
+              "right": 1397.64,
+              "bottom": 873.41,
+              "width": 104.27,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          }
+        ],
+        "dividers": [
+          275.95,
+          416.91,
+          768.11
+        ]
+      },
+      {
+        "b": 3,
+        "scrollY": 5627,
+        "current": 3,
+        "stageTop": 81,
+        "navH": 81,
+        "scrollWidth": 1440,
+        "actorsMode": true,
+        "deals": [
+          {
+            "val": {
+              "left": 40,
+              "top": 213.14,
+              "right": 245.95,
+              "bottom": 296.7,
+              "width": 205.95,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1282.02,
+              "top": 264.03,
+              "right": 1397.4,
+              "bottom": 287.75,
+              "width": 115.38,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 376.49,
+              "right": 245.95,
+              "bottom": 460.04,
+              "width": 205.95,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1234.81,
+              "top": 427.37,
+              "right": 1396.37,
+              "bottom": 451.1,
+              "width": 161.56,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 539.83,
+              "right": 246.16,
+              "bottom": 623.39,
+              "width": 206.16,
+              "height": 83.55
+            },
+            "co": {
+              "left": 1272.64,
+              "top": 590.72,
+              "right": 1397.32,
+              "bottom": 614.44,
+              "width": 124.68,
+              "height": 23.73
+            },
+            "outcome": null,
+            "outcomeVisible": false
+          },
+          {
+            "val": {
+              "left": 40,
+              "top": 686.73,
+              "right": 924.73,
+              "bottom": 897.73,
+              "width": 884.73,
+              "height": 211
+            },
+            "co": {
+              "left": 1219.81,
+              "top": 765.44,
+              "right": 1400,
+              "bottom": 806.44,
+              "width": 180.19,
+              "height": 41
+            },
+            "outcome": {
+              "left": 1187.27,
+              "top": 815,
+              "right": 1400,
+              "bottom": 870,
+              "width": 212.73,
+              "height": 55
+            },
+            "outcomeVisible": true
+          }
+        ],
+        "dividers": [
+          298.34,
+          461.69,
+          625.03
+        ]
+      }
+    ],
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ]
+  },
+  "base": "http://localhost:3251",
+  "when": "2026-09-20T00:07:45.011Z"
+}

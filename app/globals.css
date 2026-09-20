@@ -4224,6 +4224,88 @@ body {
   }
 }
 
+/* Pass-123c ACTOR MODE (operator 2026-09-19, "Fix it next, same look";
+ * LESSONS #41). The FLIP scoreboard re-flowed the list at every beat and
+ * Chrome scored the boxes: CLS 0.33 @390, 0.20 @1440. After the component
+ * measures the flow layout of all four states it adds `.is-actors` and a
+ * beat change is only translate/scale on absolutely-positioned actors plus
+ * the hairlines' --cw-line-y — a layout that never changes cannot shift.
+ * The deals collapse to zero-height blocks (a deal must NOT become the
+ * containing block of its children: no transform, translate, filter,
+ * will-change or position on it), so every actor resolves against the row.
+ * Flow mode (no .is-actors), reduced motion, no JS and the static ledger
+ * are untouched — this block only matches while JS has measured the states. */
+[data-mode="cw"] .cw-exits.is-live.is-actors .cw-exits__row {
+  position: relative;
+}
+[data-mode="cw"] .cw-exits.is-live.is-actors .cw-exits__row .cw-exits__deal,
+[data-mode="cw"]
+  .cw-exits.is-live.is-actors
+  .cw-exits__row
+  .cw-exits__deal.is-current {
+  display: block;
+  height: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  transform: none;
+  translate: none;
+  will-change: auto;
+  /* Pass-123c fix round 1: an explicit anchor. Round 0 left the deal static and
+   * assumed the row was every actor's containing block; the measured render put
+   * each deal's actors one flex slot too low (176px at 390, 188px at 1440, per
+   * deal index). The deal is now the positioned ancestor on purpose, and the
+   * component measures each actor's resting place in actor mode and moves it by
+   * the difference, so the anchor is never assumed again. */
+  position: relative;
+}
+[data-mode="cw"]
+  .cw-exits.is-live.is-actors
+  .cw-exits__row
+  .cw-exits__deal
+  + .cw-exits__deal::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-top: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  translate: 0 var(--cw-line-y, 0px);
+  transition: translate 0.6s cubic-bezier(0.2, 0.7, 0.1, 1); /* motion-ok: the PRE-EXISTING Pass-122 scoreboard move duration (transform 0.6s, app/globals.css ~line 4071) re-expressed on translate — not a new entrance */
+}
+[data-mode="cw"] .cw-exits.is-live.is-actors .cw-exits__val,
+[data-mode="cw"] .cw-exits.is-live.is-actors .cw-exits__co {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  width: max-content;
+  white-space: nowrap;
+  transform-origin: 0 0;
+  transition:
+    translate 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
+    scale 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
+    color 0.3s ease; /* motion-ok: the PRE-EXISTING Pass-122 scoreboard move (transform 0.6s, app/globals.css ~line 4071) re-expressed on translate/scale — not a new entrance */
+}
+/* Outcome: on screen only for the current exit, at its measured
+ * current-state position and width (the component sets them inline); the
+ * cw-exit-caption entrance below keeps running on transform and opacity,
+ * which compose with translate. Screen readers still read all four. */
+[data-mode="cw"] .cw-exits.is-live.is-actors .cw-exits__outcome {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  opacity: 0;
+}
+[data-mode="cw"] .cw-exits.is-live.is-actors .is-current .cw-exits__outcome {
+  opacity: 1;
+}
+
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-lrow {
     grid-template-columns: minmax(0, 1fr) 28px;

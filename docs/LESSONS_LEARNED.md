@@ -1924,3 +1924,28 @@ size does not change.
 **The gate.** The standing clause "CLS is measured while scrolling" in `.claude/briefs/README.md`; the tool is
 `node .planning/exec/cls-attrib-123.mjs <url>` (per width: the total, the largest session window, and each
 shift's sources). On recurrence: it joins the pre-CARD-1 list for every route with a scroll-driven component.
+
+## #42 — The toolchain vanished mid-pass, and a probe against the dead server reported a perfect zero (2026-09-19)
+
+**What happened.** During Pass-123c `node_modules/.bin` emptied (15 shims to 0) while the packages themselves
+stayed installed. Every later run failed the same way and each executor read it as its own problem: GLM's
+batch died on its provider cap before reporting, Sol spent a whole run writing wrapper scripts under
+`.planning/exec/bin/` instead of doing the work, and the main session's verification script reported
+`Command "tsc" not found`, `build exit=1`, then a CLS of `total=0, largest-window=0.00000` at both widths.
+The zero was not a pass: the build had failed, so the server either never started or served the previous
+build. `pnpm install --frozen-lockfile` restored the shims in 679ms and changed nothing else.
+
+**Root cause.** Two: a shared worktree's `node_modules` is mutable state that no check asserted before a
+run; and a measuring script trusted its own navigation, so "nothing rendered" and "nothing shifted" printed
+the same number. A zero from a probe is a claim about the probe as much as the page (LESSONS #34, the
+`grep -i -F` zero; #26, measure the render).
+
+**The rule.** A verification run asserts its toolchain before it measures (`pnpm exec tsc --version` or the
+build's own exit code read before any probe runs), and every probe that can return a clean zero first proves
+the target rendered: HTTP 200, at least one stylesheet, and the element the probe exists to watch, with a
+plausible size. A probe that cannot prove liveness reports UNVERIFIED, never 0.
+
+**The gate.** `.planning/exec/cls-attrib-123.mjs` now runs a LIVENESS check per viewport (status, `.cw-exits`
+present and over 100px tall, stylesheets present) and exits 1 with `LIVENESS FAIL` otherwise; proven against
+a dead port. On recurrence: the same three-line assertion is copied into every capture and measuring script
+under `.planning/exec/`, and a run-start step asserts `node_modules/.bin` is non-empty.
