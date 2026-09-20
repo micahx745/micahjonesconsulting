@@ -9,13 +9,11 @@ C:/Users/micah/AppData/Roaming/npm/pnpm.cmd; serve `node
 node_modules/next/dist/bin/next start -p 3236`; one .next at a time; NEVER
 elementHandle.screenshot(); `MSYS_NO_PATHCONV=1` for a leading-slash path arg.
 
-## LIVE: Pass-123, the commit at origin/main
+## LIVE: Pass-123, the commit at origin/main (bf88384, CARD 1 67/0)
 Names the COMMIT, never a deploy id - every docs push mints a new dpl and a
-pinned one is stale in minutes (LESSONS #45). Read it, then re-run CARD 1:
-  curl -sL https://www.micahjonesconsulting.com/ | grep -o 'data-dpl-id="[^"]*"'
-  EXPECT_DPL=<that id> bash .planning/exec/card1-123.sh
-Shipped at bf88384; 67 PASS / 0 FAIL all three domains. REVERT: promote
-dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ (9813825) - that id does not move.
+pinned one is stale in minutes (LESSONS #45). Read it off the wire, then:
+  EXPECT_DPL=<id from curl> bash .planning/exec/card1-123.sh
+REVERT: promote dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ (9813825) - that id is fixed.
 
 ## THE LIVE WORK: Pass-124, the voice (operator 2026-09-20)
 He read the site: wording is "very AI, wordy, and not enticing to want to do
@@ -35,7 +33,9 @@ DO NOT touch home copy or the hero CLS until the voice lands - it churns.
    first. SCOPE HONESTY: a real backgrounded tab suspends IntersectionObserver
    (0 callbacks/10s), so THAT case was never broken - the true trigger is
    tab-switching inside the arm window. Rarer than the review claimed.
-2. HandCircle.tsx delete. 3. Rotated DeepSeek key.
+2. Rotated DeepSeek key (only thing still blocked on him besides the voice).
+HandCircle.tsx: DELETED, ce76eb7 (he ruled "Delete it", 2026-09-20).
+Clip fix ruling: "Hold it, ride with the next change" - do not push it alone.
 
 ## Queue
 1. Home hero 0.0045 of the 1440 CLS - AFTER the voice pass.
