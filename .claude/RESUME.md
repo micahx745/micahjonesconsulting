@@ -1,48 +1,52 @@
 # RESUME — micahjonesconsulting (2026-09-20)
 
 ## READ FIRST
-Pass-123 ship gate (Opus 5 main). TIERS (operator 09-20): Claude week reset —
-5h 1%, week 7%, Fable 5% at 10:30. GLM is 94% for the week (resets ~09-22) so
-it is OUT: grunt = Sonnet legs (anything needing Chrome) and Sol via
-`codex-exec.ps1 -Task` (file+build only, no Chrome); gates = Opus/Fable/Astra.
-get_usage before every fan-out. pnpm off PATH ->
-C:/Users/micah/AppData/Roaming/npm/pnpm.cmd; serve
-`node node_modules/next/dist/bin/next start -p 3236`; one .next at a time;
-NEVER elementHandle.screenshot() (it scrolls; frames come back identical).
+Pass-123 ship gate (Opus 5 main). 09-20 11:00: 5h 6%, week 8%, Fable 6%. GLM
+94% (resets ~09-22) = OUT; grunt = Sonnet legs (Chrome) + Sol
+(`codex-exec.ps1 -Task`); gates = Opus/Fable/Astra. NEW: DeepSeek is the 4th
+cross-review REST leg (`--legs deepseek`; DEEPSEEK_API_KEY or
+.claude/.deepseek-key, NOT set yet — the chat-pasted key must be rotated).
+get_usage before every fan-out. pnpm -> C:/Users/micah/AppData/Roaming/npm/
+pnpm.cmd; serve `node node_modules/next/dist/bin/next start -p 3236`; one
+.next at a time; NEVER elementHandle.screenshot(); `MSYS_NO_PATHCONV=1` for a
+leading-slash path arg from Git Bash.
 
 ## LIVE: 3809f5e dpl_9fPDmK1W62BqCj9TriRSG6dJVkwp
-Pass-123a+b+c+d. card1-123.sh 0 failures; prod CLS 0.00000 @390 / 0.00714
-@1440. Revert: promote dpl_HNtW9Ha (68a8dc3).
+Pass-123a+b+c+d. Revert: promote dpl_HNtW9Ha (68a8dc3).
 
-## BRANCH, UNPUSHED: the study bands, through ceb1c09
-Stages 1-4, the ticked cuts, the judge-gate answers, and the judge FIX ROUND
-(ceb1c09, 09-20): poster lead's last three words in .cs-title__nb so 390 never
-breaks after a bare "a"; "Name protected" spacing; .cs-num--comma 0.16 ->
-0.12em. Verified by .planning/exec/band123-fixround-rerun2.log — 141 PASS, 1
-FAIL that is the K5@390 harness scrollIntoView-vs-Lenis race, not the page.
-Ink gap 30-31px @1440 / 13-13.5 @390 (was 39-40 vs an expected 12-32). Build
-green at ceb1c09 (.planning/exec/build-p123-commitgate.log), prettier clean.
-Earlier: CLS 0.00000 all five studies; LH mobile median 3375.8 vs 3389.8ms;
-route JS +1363B (limit 6144).
+## BRANCH, UNPUSHED: the study bands, through 3478302
+ceb1c09 judge fix round (poster no-break tail, "Name protected" spacing, comma
+ink gap 39-40 -> 30-31px @1440). be786f7 THE RFP REPEAT: the operator's
+2026-09-19 "drop the repeat" ruling was ledgered as done and never built —
+found by two audit legs off the prerendered HTML. Now built
+(`leadRepeatsTitleFigure`), held by `scripts/results-repeat-gate.mjs` in the
+build, LESSONS #44, ledger row corrected. 3478302 the DeepSeek leg.
 
-## IN FLIGHT
-Workflow wf_4be9db6b-461, 4 Sonnet legs: recapture study-final at 390/1440
-POST-fix (the 09-19 21:05 sheets predate ceb1c09) + audits of ledger
-conformance, ticked cuts, and 3809f5e..HEAD code. Pre-fix captures backed up
-to study-final-prefix/. THEN: Micah sees the fresh sheets and the live build
-in the pane (`prod-p106`), his dated push approval, CARD 1.
+## EVIDENCE, re-read by this session
+Build green at be786f7; results-repeat-gate 5/5. Captures 11:01: 94 PNGs, 0
+identical-check failures. CLS 0.00000 all five, both widths. Crossfade
+(LESSONS #19): 0 steps under 3:1, 330 normal / 158 reduced, 390 AND 1440, down
+AND up. Sheets: qa/pass-123/sheets/study-final-{390,1440}.png (pre-fix kept as
+study-final-prefix-*).
+
+## IN FLIGHT — with Micah
+His look at the fresh sheets, plus two questions: (1) push approval; (2) the
+RFP Results row now has NO display-size lead (guardicore/content-engine/ordani
+each keep one) — leave it quiet, or promote the first sentence of the rest.
+Then CARD 1 (both aliases).
 
 ## Queue after that
-1. Home hero shift: 0.0045 of the 1440 CLS is h1.cw-h1 / p.cw-sub at load,
-   pre-existing. Own small pass.
-2. /work/guardicore mobile LCP ~3.4s (text LCP), pre-existing; Speed Insights
-   is the agreed judge (Pass-120).
+1. Home hero shift 0.0045 of the 1440 CLS (h1.cw-h1 / p.cw-sub), pre-existing.
+2. /work/guardicore mobile LCP ~3.4s, pre-existing; Speed Insights is judge.
 3. K5@390 harness race (task filed). 4. HandCircle.tsx delete: ask him.
-Kickoff items 1-2 DONE (fixes in Pass-123a-d; RFP provenance LESSONS #3:785).
+5. WorkHeroClip + StudyBandClip set `playedThisLoad` BEFORE play() resolves, so
+   a background-tab autoplay refusal kills the clip for that load with no
+   retry; no pause() on unmount. Pre-existing (Pass-120, live), NOT this pass.
 
 ## Traps
 #32 ledger first · #33 every spelling · #34 no grep -iF · #35 no parked copy ·
 #36 marker leads · #37 no gaming a check · #38 field consumers · #39 scope
 first · #40 reveals never empty · #41 scroll CLS · #42 prove liveness · #43 a
-scripted edit proves what landed · #23 commit only outside a running leg's
-scope · #19 accent while scrolling · pathspec commits.
+scripted edit proves what landed · #44 a ruling in the past tense reads as work
+done — ship its gate the same pass · #19 accent while scrolling · pathspec
+commits.
