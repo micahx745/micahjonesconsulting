@@ -175,7 +175,20 @@ to give quality feedback." Two slots, and only two:
    its model by asking the account (`GET /models`) and preferring `deepseek-reasoner`, then
    `deepseek-chat`; `DEEPSEEK_MODEL` overrides. Proven offline against a stub server that speaks the
    same dialect: `python scripts/cross-review/test/deepseek_leg_test.py`, 13 assertions, no key, no spend.
-2. **Grunt overflow** behind Sonnet and Sol, when both are busy and GLM is capped.
+2. **A standing grunt tier, not overflow** (operator 2026-09-20, second message:
+   *"alos make sure deep seek is included now for the new chat harness so we use it
+   consistently"*). `scripts/deepseek-exec.ps1 -PromptFile <file> -Out <file>` runs a prompt as
+   ONE pay-as-you-go REST call. Deliberately not a Claude Code process like `claude-glm.ps1`:
+   GLM's Coding Plan is sold for that, DeepSeek here is API credit, so a plain call is the
+   honest fit and every run costs one visible request. It has no tools, no filesystem and no
+   repo access, which decides what to send it: **reading, drafting, summarising, classifying,
+   one-shot rewrites, and a second opinion on a written artifact.** Anything that must edit a
+   file or run a command goes to a Sonnet subagent or Sol instead. `-Model deepseek-reasoner`
+   for the thinking model; `-Smoke` and `-Models` prove the account before you trust a run.
+   **UNSMOKED as of 2026-09-20** — no key was set when it was written, so the first session
+   with a key runs `-Smoke` and records the dated result in the script's STATUS comment,
+   exactly as `claude-glm.ps1` carries its own verification line. Until that line exists it is
+   untested code and its output is not evidence.
 It does NOT rule, and it does not replace Astra or Fable at a taste gate: a fourth opinion is worth
 having precisely because it is independent, and an independent opinion that gets to decide is just
 another ruler. Every finding it returns goes through the same disposition protocol as the other legs

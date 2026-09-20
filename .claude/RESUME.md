@@ -9,7 +9,7 @@ C:/Users/micah/AppData/Roaming/npm/pnpm.cmd; serve `node
 node_modules/next/dist/bin/next start -p 3236`; one .next at a time; NEVER
 elementHandle.screenshot(); `MSYS_NO_PATHCONV=1` for a leading-slash path arg.
 
-## LIVE: Pass-123, the commit at origin/main (bf88384, CARD 1 67/0)
+## LIVE: 31d44b9, dpl_A6PqFCsmCFCav2Cbj79eo781nv1e, CARD 1 67/0
 Names the COMMIT, never a deploy id - every docs push mints a new dpl and a
 pinned one is stale in minutes (LESSONS #45). Read it off the wire, then:
   EXPECT_DPL=<id from curl> bash .planning/exec/card1-123.sh
@@ -26,16 +26,11 @@ role. Anti-patterns verbatim: humble-brag storytelling, jargon-dense insider.
 DO NOT touch home copy or the hero CLS until the voice lands - it churns.
 
 ## AWAITING HIM
-1. Clip fix, f3747e6, NOT pushed. A refused play() branches on why: visible =
-   give up as before, hidden = retry once visible IF still intersecting, 3
-   attempts. Motion-engineer approved the shape; it amends
-   MOTION-120-APPROVAL:127 and /work/guardicore shipped today, so he sees it
-   first. SCOPE HONESTY: a real backgrounded tab suspends IntersectionObserver
-   (0 callbacks/10s), so THAT case was never broken - the true trigger is
-   tab-switching inside the arm window. Rarer than the review claimed.
-2. Rotated DeepSeek key (only thing still blocked on him besides the voice).
-HandCircle.tsx: DELETED, ce76eb7 (he ruled "Delete it", 2026-09-20).
-Clip fix ruling: "Hold it, ride with the next change" - do not push it alone.
+1. Rotated DeepSeek key, then `deepseek-exec.ps1 -Smoke` and record the dated
+   line in the script's STATUS comment. It is UNSMOKED until then.
+2. The copy research answer from his Fable chat.
+DONE today on his rulings: HandCircle deleted (ce76eb7); clip fix pushed after
+he said "push everything", which supersedes the earlier hold.
 
 ## Queue
 1. Home hero 0.0045 of the 1440 CLS - AFTER the voice pass.
