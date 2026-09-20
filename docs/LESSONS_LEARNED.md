@@ -805,6 +805,18 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   read. He picked "Cut the whole FAQ (Recommended)": the FAQ leaves the study; line 41 and the "First real RFPs
   delivered: Day three" row carry the fact. NEVER on any surface: that the RFP engine scored anything by day
   three ("scored for fit" is gated).
+- **COPPER IS #bd5a2d, THE DOCS WERE WRONG — operator 2026-09-19 (Pass-123, popup, after an A/B of both
+  hexes on the home, /work and a study at 390 and 1440,
+  `.planning/qa/pass-123/copper/copper-ab-{390,1440}.png`)**. He picked "Keep what ships, fix the docs
+  (Recommended)": "Nothing on the site changes. I correct the design notes, brand.json and the stale
+  stylesheet comment to #bd5a2d / #8a3d24 and ledger it, so no future check or design re-encodes the old
+  hex." FACTS: the stylesheet has shipped `--color-accent-copper: #bd5a2d` and `--color-accent-copper-deep:
+  #8a3d24` since Tier H (`40b97a6`, "shifted from #C8542B (digital orange) -> #BD5A2D (leathered amber)"),
+  so every design he has approved on sight is that colour; `.claude/CLAUDE.md`, `brand.json` and the
+  stylesheet's own header comment kept #C8542B / #8E3A1E. Corrected in all three on 2026-09-19. Computed
+  ratios for the LIVE hexes: copper 3.93 on foyer paper (still FAILS AA for body text, the B1 rule stands),
+  3.53 on bone, 4.22 on the theater band, 3.57 on espresso; copper-deep 6.62 on paper, 5.94 on bone (PASS).
+  NEVER re-encode #C8542B or #8E3A1E in a check, a brief or a design note.
 - **PASS-123 STUDY PAGES SCOPE — operator 2026-09-19 (Pass-123, popup, asked first per LESSONS #39)**. Question:
   the five study pages (one template), "Same rule as /work: your themes feed the existing page, nothing gets
   redesigned. Which parts take the themes?" He ticked three: **"Band number as a poster"** ("The top band's

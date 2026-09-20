@@ -1,0 +1,137 @@
+{
+  "aborted": null,
+  "combos": [
+    {
+      "page": "home",
+      "url": "https://www.micahjonesconsulting.com/",
+      "width": 390,
+      "variant": "live",
+      "selector": ".cw-rec",
+      "selectorFound": true,
+      "scrollY": 4046.578125,
+      "confirmRgb": "rgb(189, 90, 45)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\home-390-live.png"
+    },
+    {
+      "page": "home",
+      "url": "https://www.micahjonesconsulting.com/",
+      "width": 390,
+      "variant": "docs",
+      "selector": ".cw-rec",
+      "selectorFound": true,
+      "scrollY": 4046.578125,
+      "confirmRgb": "rgb(200, 84, 43)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\home-390-docs.png"
+    },
+    {
+      "page": "work",
+      "url": "https://www.micahjonesconsulting.com/work",
+      "width": 390,
+      "variant": "live",
+      "selector": ".cw-wx-num",
+      "selectorFound": true,
+      "scrollY": 210.21875,
+      "confirmRgb": "rgb(189, 90, 45)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\work-390-live.png"
+    },
+    {
+      "page": "work",
+      "url": "https://www.micahjonesconsulting.com/work",
+      "width": 390,
+      "variant": "docs",
+      "selector": ".cw-wx-num",
+      "selectorFound": true,
+      "scrollY": 210.21875,
+      "confirmRgb": "rgb(200, 84, 43)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\work-390-docs.png"
+    },
+    {
+      "page": "guardicore",
+      "url": "https://www.micahjonesconsulting.com/work/guardicore",
+      "width": 390,
+      "variant": "live",
+      "selector": ".cs-band",
+      "selectorFound": true,
+      "scrollY": 0,
+      "confirmRgb": "rgb(189, 90, 45)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\guardicore-390-live.png"
+    },
+    {
+      "page": "guardicore",
+      "url": "https://www.micahjonesconsulting.com/work/guardicore",
+      "width": 390,
+      "variant": "docs",
+      "selector": ".cs-band",
+      "selectorFound": true,
+      "scrollY": 0,
+      "confirmRgb": "rgb(200, 84, 43)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\guardicore-390-docs.png"
+    },
+    {
+      "page": "home",
+      "url": "https://www.micahjonesconsulting.com/",
+      "width": 1440,
+      "variant": "live",
+      "selector": ".cw-rec",
+      "selectorFound": true,
+      "scrollY": 3376.265625,
+      "confirmRgb": "rgb(189, 90, 45)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\home-1440-live.png"
+    },
+    {
+      "page": "home",
+      "url": "https://www.micahjonesconsulting.com/",
+      "width": 1440,
+      "variant": "docs",
+      "selector": ".cw-rec",
+      "selectorFound": true,
+      "scrollY": 3376.265625,
+      "confirmRgb": "rgb(200, 84, 43)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\home-1440-docs.png"
+    },
+    {
+      "page": "work",
+      "url": "https://www.micahjonesconsulting.com/work",
+      "width": 1440,
+      "variant": "live",
+      "selector": ".cw-wx-num",
+      "selectorFound": true,
+      "scrollY": 361.25,
+      "confirmRgb": "rgb(189, 90, 45)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\work-1440-live.png"
+    },
+    {
+      "page": "work",
+      "url": "https://www.micahjonesconsulting.com/work",
+      "width": 1440,
+      "variant": "docs",
+      "selector": ".cw-wx-num",
+      "selectorFound": true,
+      "scrollY": 361.25,
+      "confirmRgb": "rgb(200, 84, 43)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\work-1440-docs.png"
+    },
+    {
+      "page": "guardicore",
+      "url": "https://www.micahjonesconsulting.com/work/guardicore",
+      "width": 1440,
+      "variant": "live",
+      "selector": ".cs-band",
+      "selectorFound": true,
+      "scrollY": 0,
+      "confirmRgb": "rgb(189, 90, 45)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\guardicore-1440-live.png"
+    },
+    {
+      "page": "guardicore",
+      "url": "https://www.micahjonesconsulting.com/work/guardicore",
+      "width": 1440,
+      "variant": "docs",
+      "selector": ".cs-band",
+      "selectorFound": true,
+      "scrollY": 0,
+      "confirmRgb": "rgb(200, 84, 43)",
+      "outPath": "C:\\Users\\micah\\Code\\micahjonesconsulting\\.claude\\worktrees\\p106-live\\.planning\\qa\\pass-123\\copper\\guardicore-1440-docs.png"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+page	width	variant	inkN	ink rgb	ground rgb	ground via	contrast
+home	390	live	205240	rgb(178,86,43)	rgb(37,27,21)	right	3.42
+home	390	docs	206010	rgb(187,81,41)	rgb(37,27,21)	right	3.47
+work	390	live	37744	rgb(178,87,43)	rgb(202,194,178)	right	2.77
+work	390	docs	37875	rgb(188,81,41)	rgb(202,194,178)	right	2.73
+guardicore	390	live	0	n/a	-	-	NA: no copper-window pixels found in frame
+guardicore	390	docs	0	n/a	-	-	NA: no copper-window pixels found in frame
+home	1440	live	253462	rgb(178,86,43)	rgb(37,27,21)	right	3.42
+home	1440	docs	254192	rgb(187,80,41)	rgb(37,27,21)	right	3.44
+work	1440	live	55033	rgb(179,87,43)	rgb(207,198,182)	right	2.88
+work	1440	docs	55166	rgb(188,81,41)	rgb(207,198,182)	right	2.85
+guardicore	1440	live	0	n/a	-	-	NA: no copper-window pixels found in frame
+guardicore	1440	docs	0	n/a	-	-	NA: no copper-window pixels found in frame

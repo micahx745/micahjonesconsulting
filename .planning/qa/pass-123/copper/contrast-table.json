@@ -1,0 +1,170 @@
+[
+  {
+    "page": "home",
+    "width": 390,
+    "variant": "live",
+    "inkN": 205240,
+    "inkRgb": [
+      178,
+      86,
+      43
+    ],
+    "groundRgb": [
+      37,
+      27,
+      21
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 3.42
+  },
+  {
+    "page": "home",
+    "width": 390,
+    "variant": "docs",
+    "inkN": 206010,
+    "inkRgb": [
+      187,
+      81,
+      41
+    ],
+    "groundRgb": [
+      37,
+      27,
+      21
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 3.47
+  },
+  {
+    "page": "work",
+    "width": 390,
+    "variant": "live",
+    "inkN": 37744,
+    "inkRgb": [
+      178,
+      87,
+      43
+    ],
+    "groundRgb": [
+      202,
+      194,
+      178
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 2.77
+  },
+  {
+    "page": "work",
+    "width": 390,
+    "variant": "docs",
+    "inkN": 37875,
+    "inkRgb": [
+      188,
+      81,
+      41
+    ],
+    "groundRgb": [
+      202,
+      194,
+      178
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 2.73
+  },
+  {
+    "page": "guardicore",
+    "width": 390,
+    "variant": "live",
+    "note": "no copper-window pixels found in frame"
+  },
+  {
+    "page": "guardicore",
+    "width": 390,
+    "variant": "docs",
+    "note": "no copper-window pixels found in frame"
+  },
+  {
+    "page": "home",
+    "width": 1440,
+    "variant": "live",
+    "inkN": 253462,
+    "inkRgb": [
+      178,
+      86,
+      43
+    ],
+    "groundRgb": [
+      37,
+      27,
+      21
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 3.42
+  },
+  {
+    "page": "home",
+    "width": 1440,
+    "variant": "docs",
+    "inkN": 254192,
+    "inkRgb": [
+      187,
+      80,
+      41
+    ],
+    "groundRgb": [
+      37,
+      27,
+      21
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 3.44
+  },
+  {
+    "page": "work",
+    "width": 1440,
+    "variant": "live",
+    "inkN": 55033,
+    "inkRgb": [
+      179,
+      87,
+      43
+    ],
+    "groundRgb": [
+      207,
+      198,
+      182
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 2.88
+  },
+  {
+    "page": "work",
+    "width": 1440,
+    "variant": "docs",
+    "inkN": 55166,
+    "inkRgb": [
+      188,
+      81,
+      41
+    ],
+    "groundRgb": [
+      207,
+      198,
+      182
+    ],
+    "groundStrategy": "right",
+    "contrastRatio": 2.85
+  },
+  {
+    "page": "guardicore",
+    "width": 1440,
+    "variant": "live",
+    "note": "no copper-window pixels found in frame"
+  },
+  {
+    "page": "guardicore",
+    "width": 1440,
+    "variant": "docs",
+    "note": "no copper-window pixels found in frame"
+  }
+]

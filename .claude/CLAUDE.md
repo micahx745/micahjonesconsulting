@@ -34,11 +34,13 @@ Where a section below says otherwise, THIS amendment wins:
 - Mode is route-determined. NO `useTheme()`, NO `<ThemeProvider>`, NO toggle. Group layouts stamp `data-mode="foyer"` or `data-mode="theater"` on a wrapper `<div>`; Tailwind v4 reads the attribute via `[data-mode="..."]` selectors in `app/globals.css`.
 
 ## One accent
-Copper `#C8542B`. Used everywhere across both modes. One exception: `ordani.sage #5E7158` inside `/work/ordani` only.
+Copper `#bd5a2d` ("leathered amber", shifted from the original #C8542B in Tier H, `40b97a6`; the docs kept
+the old hex until the operator ruled on 2026-09-19, LESSONS #3 "COPPER IS #bd5a2d"). Used everywhere across
+both modes. One exception: `ordani.sage #5E7158` inside `/work/ordani` only.
 
 **CRITICAL — WCAG AA rule (Pitfall B1):**
-- `--accent-copper #C8542B` on `--foyer-paper #F5EFE4` is 3.85:1 → FAILS WCAG AA for normal body text.
-- Use `--accent-copper-deep #8E3A1E` (5.4:1, PASS) for body-text emphasis and foyer body link color.
+- `--accent-copper #bd5a2d` on `--foyer-paper #F5EFE4` is 3.93:1 → FAILS WCAG AA for normal body text.
+- Use `--accent-copper-deep #8a3d24` (6.62:1 on paper, PASS) for body-text emphasis and foyer body link color.
 - Plain `--accent-copper` is fine for large text (≥24px), headlines, UI components (buttons, focus rings, dividers), and decorative underlines.
 
 The `design-tokens.sh` hook warns on any other hex literal.
