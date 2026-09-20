@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
-# CARD 1 served checks for Pass-123a + 123b (operator push approval 2026-09-19, RESUME).
+# CARD 1 served checks for Pass-123 (operator push approval 2026-09-20, RESUME + LESSONS #3
+# "PASS-123 SHIP APPROVED"). OLD_DPL updated to the pre-push live deploy.
 # Presence counts run on VISIBLE text (visible-text.mjs strips <head> and every <script>,
 # LESSONS #24), whitespace collapsed, fixed-string match, counted with grep -o | wc -l.
 # Absence counts run on the RAW body (RSC payload and JSON-LD included). No grep -i -F (#34).
 # Usage: bash .planning/exec/card1-123.sh [base]   (no argument: all three production domains)
-OLD_DPL="dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD"
+# The deploy that is live BEFORE this push (Pass-123a-d). "dpl id is new" proves the
+# new deploy actually took; leaving a stale value here makes that check pass vacuously.
+OLD_DPL="dpl_9fPDmK1W62BqCj9TriRSG6dJVkwp"
 if [ -n "${1:-}" ]; then BASES=("${1%/}"); CHECK_DPL=0; else
   BASES=(https://www.micahjonesconsulting.com https://micahjonesconsulting.vercel.app); CHECK_DPL=1; fi
 # The apex is a 308 to www, path kept (checked below), so it always serves www's deploy.
