@@ -14,13 +14,13 @@ one dpl, 12 routes 200, RFP lines, eleven 0, cqi CSS; apex 308->www).
 Revert: promote dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d).
 
 ## Queue
-1. Scoreboard CLS (#41; live 0.3298 @390 / 0.1990 @1440; /work 0). Brief
-   .claude/briefs/pass-123c-scoreboard-cls.md. GLM wrote actor mode, then
-   capped; its frames were a dead leg (identical), V2/V3 never ran. Compare of
-   its geometry: each deal's actors one flex slot low (176/188px per index).
-   FIX ROUND 1 (uncommitted): actors measure their resting place in actor mode
-   and move by the delta; deal gets position: relative. verify-123c.sh running.
-   Then frames+sheets, his before/after, push.
+1. Scoreboard CLS: FIXED and committed (b596fb2 + b4c175a). CLS 0.33->0 @390,
+   0.199->0.0045 @1440 (Chrome session windows, local build). Geometry vs live:
+   353/392 exact; the 39 fails are right edges of the SCALED non-current text
+   (values 6.99-17.54px narrower, labels 1.67-3.63px) because Bricolage has an
+   opsz axis - poster value is scale 1, pixel-identical. Frames+sheets running
+   (Sonnet leg; GLM and Sol both produced dead legs). Then: his look at the
+   sheets + the letterform note, then push (with the FAQ cut).
 2. RFP FAQ cut (he picked "Cut the whole FAQ", ledgered): .planning/exec/
    glm-123d.md, ships with the 123c push.
 3. Study bands: Fable brief .planning/mocks/pass-123/STUDY-BRIEF.md (title
