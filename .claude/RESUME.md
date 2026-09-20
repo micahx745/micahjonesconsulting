@@ -13,16 +13,16 @@ Pushed 10:03 on his popup approval; card1-123.sh 0 failures (www + vercel.app
 one dpl, 12 routes 200, RFP lines, eleven 0, cqi CSS; apex 308->www).
 Revert: promote dpl_7ov1sFMSwNhEpyPzhCqyohPgxkUD (361f29d).
 
+## PUSHING NOW: 123c + 123d (scoreboard actor mode + RFP FAQ cut)
+Operator 2026-09-19 ~18:05 PDT, popup, picked verbatim "Push both now
+(Recommended)": "I push the scoreboard fix and the RFP day-three FAQ removal to
+main, wait for the deploy, point all three domains at it, and verify live with
+curl. Undo is one step: promote today's earlier deploy." Evidence: geometry
+392/392 vs live; CLS 0.33->0 @390, 0.199->0.0076 @1440 (0.0045 of it the
+pre-existing hero shift); frames distinct, diff edges-only; every gate passes.
+Revert: promote dpl_HNtW9HazWjSuhg7VYgaT1WXD4oV7 (68a8dc3).
+
 ## Queue
-1. Scoreboard CLS: FIXED and committed (b596fb2 + b4c175a). CLS 0.33->0 @390,
-   0.199->0.0045 @1440 (Chrome session windows, local build). Geometry vs live:
-   353/392 exact; the 39 fails are right edges of the SCALED non-current text
-   (values 6.99-17.54px narrower, labels 1.67-3.63px) because Bricolage has an
-   opsz axis - poster value is scale 1, pixel-identical. Frames+sheets running
-   (Sonnet leg; GLM and Sol both produced dead legs). Then: his look at the
-   sheets + the letterform note, then push (with the FAQ cut).
-2. RFP FAQ cut (he picked "Cut the whole FAQ", ledgered): .planning/exec/
-   glm-123d.md, ships with the 123c push.
 3. Study bands: Fable brief .planning/mocks/pass-123/STUDY-BRIEF.md (title
    figure = poster; birth-worker lead poster; Guardicore clip over the photo),
    read vs ledger, CLS widened to 5 studies. Run stage by stage with

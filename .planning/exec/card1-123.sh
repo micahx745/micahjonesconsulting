@@ -35,9 +35,15 @@ for D in "${BASES[@]}"; do
   n=$(cnt "$HV" 'In revenue behind my work'); chk "home caption" "$n" '[ "$n" -ge 1 ]' ">=1"
   n=$(cnt "$HV" 'Four exits I worked inside'); chk "home exits title" "$n" '[ "$n" -ge 1 ]' ">=1"
   n=$(cnt "$WR" 'aria-label="Guardicore, acquired by Akamai"'); chk "/work featured aria-label" "$n" '[ "$n" -ge 1 ]' ">=1"
+  # Pass-123d: the day-three FAQ is cut (operator 2026-09-19). Raw body, so the RSC payload counts too.
+  n=$(printf %s "$RR" | grep -o -i "scored for fit" | wc -l | tr -d " "); chk "FAQ phrase gone" "$n" '[ "$n" -eq 0 ]' 0
+  n=$(printf %s "$RR" | grep -o -i "What was working after three days" | wc -l | tr -d " "); chk "FAQ question gone" "$n" '[ "$n" -eq 0 ]' 0
+  n=$(cnt "$RV" "Can AI write a government RFP response?"); chk "other FAQs kept" "$n" '[ "$n" -ge 1 ]' ">=1"
   css=""; for u in $(printf '%s' "$H" | grep -o '/_next/static/[^"]*\.css' | sort -u); do css="$css$(curl -s "$D$u")"; done
   n=$(cnt "$css" '100cqi / 2.87'); chk "F5 cqi rule served" "$n" '[ "$n" -ge 1 ]' ">=1"
   n=$(cnt "$css" 'cw-secttitle--sub'); chk "dead CSS gone" "$n" '[ "$n" -eq 0 ]' 0
+  # Pass-123c: actor mode is what keeps the scoreboard from shifting layout.
+  n=$(cnt "$css" "is-actors"); chk "scoreboard actor CSS served" "$n" '[ "$n" -ge 1 ]' ">=1"
 done
 if [ "$CHECK_DPL" -eq 1 ]; then
   echo "== https://micahjonesconsulting.com (apex)"
