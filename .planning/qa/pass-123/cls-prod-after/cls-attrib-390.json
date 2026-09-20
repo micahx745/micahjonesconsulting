@@ -1,0 +1,47 @@
+{
+  "width": 390,
+  "url": "https://www.micahjonesconsulting.com/",
+  "entries": [
+    {
+      "value": 0.00111,
+      "startTime": 283.6,
+      "hadRecentInput": true,
+      "scrollYAtCallback": 0,
+      "sources": [
+        {
+          "node": "main > header.cw-hero > p.cw-sub",
+          "previousRect": {
+            "x": 19,
+            "y": 396.6,
+            "w": 351,
+            "h": 46.6
+          },
+          "currentRect": {
+            "x": 19,
+            "y": 396.6,
+            "w": 351,
+            "h": 46.6
+          }
+        },
+        {
+          "node": "span.cw-line > span > span.cw-nowrap",
+          "previousRect": {
+            "x": 20,
+            "y": 189.4,
+            "w": 350,
+            "h": 42
+          },
+          "currentRect": {
+            "x": 20,
+            "y": 189.4,
+            "w": 350,
+            "h": 42
+          }
+        }
+      ]
+    }
+  ],
+  "totalAll": 0.00111,
+  "chromeSessionWindows": [],
+  "largestSessionWindow": 0
+}

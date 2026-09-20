@@ -1,0 +1,679 @@
+{
+  "width": 1440,
+  "url": "https://www.micahjonesconsulting.com/",
+  "entries": [
+    {
+      "value": 0.00448,
+      "startTime": 214.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 0,
+      "sources": [
+        {
+          "node": "h1.cw-h1 > span.cw-line > span",
+          "previousRect": {
+            "x": 40,
+            "y": 365.9,
+            "w": 1360,
+            "h": 76.8
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 365.9,
+            "w": 1360,
+            "h": 76.8
+          }
+        },
+        {
+          "node": "header.cw-hero > p.cw-sub > em",
+          "previousRect": {
+            "x": 39,
+            "y": 558.4,
+            "w": 621,
+            "h": 57.4
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 558.4,
+            "w": 620,
+            "h": 57.4
+          }
+        },
+        {
+          "node": "main > header.cw-hero > p.cw-sub",
+          "previousRect": {
+            "x": 39,
+            "y": 557.4,
+            "w": 621,
+            "h": 27
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 588.9,
+            "w": 620,
+            "h": 27
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00067,
+      "startTime": 5688.3,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 155.3,
+            "w": 904,
+            "h": 335
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 159.3,
+            "w": 833,
+            "h": 335
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 607.3,
+            "w": 193,
+            "h": 24.9
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 607.3,
+            "w": 253,
+            "h": 20.9
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00043,
+      "startTime": 5706.4,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 159.3,
+            "w": 825.9,
+            "h": 305
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 162.3,
+            "w": 757,
+            "h": 305
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 594.3,
+            "w": 253,
+            "h": 41.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 594.3,
+            "w": 324,
+            "h": 38.7
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00062,
+      "startTime": 5722.7,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 162.3,
+            "w": 738.5,
+            "h": 272
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 167.3,
+            "w": 677,
+            "h": 272
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 575.8,
+            "w": 324,
+            "h": 65
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 575.8,
+            "w": 402,
+            "h": 61
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00044,
+      "startTime": 5739.7,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 167.3,
+            "w": 652.2,
+            "h": 240
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 171.3,
+            "w": 598,
+            "h": 240
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 551.8,
+            "w": 402,
+            "h": 93.2
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 551.8,
+            "w": 479,
+            "h": 89.2
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00041,
+      "startTime": 5755.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 171.3,
+            "w": 575.2,
+            "h": 212
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 174.3,
+            "w": 527,
+            "h": 212
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 524,
+            "w": 479,
+            "h": 123.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 524,
+            "w": 549,
+            "h": 119.7
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00015,
+      "startTime": 5773.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 495.8,
+            "w": 549,
+            "h": 153.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 495.8,
+            "w": 609,
+            "h": 150.6
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00017,
+      "startTime": 5790.8,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4800,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 176.3,
+            "w": 463.6,
+            "h": 170
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 180.3,
+            "w": 425,
+            "h": 170
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00053,
+      "startTime": 5939.2,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5000,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 339.8,
+            "w": 831.9,
+            "h": 286.3
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 339.8,
+            "w": 763,
+            "h": 290.3
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 748.2,
+            "w": 199.6,
+            "h": 24.9
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 748.2,
+            "w": 260.8,
+            "h": 20.9
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00034,
+      "startTime": 5957.4,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5000,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 335.5,
+            "w": 748.5,
+            "h": 261.3
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 335.5,
+            "w": 686,
+            "h": 264.3
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 735.2,
+            "w": 260.8,
+            "h": 41.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 735.2,
+            "w": 333.8,
+            "h": 38.7
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00039,
+      "startTime": 5973.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5000,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 332.9,
+            "w": 663.3,
+            "h": 233
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 332.9,
+            "w": 607,
+            "h": 237
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 716.7,
+            "w": 333.8,
+            "h": 65
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 716.7,
+            "w": 411.1,
+            "h": 61
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00036,
+      "startTime": 5989.3,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5000,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 331.5,
+            "w": 581.4,
+            "h": 205.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 331.5,
+            "w": 532,
+            "h": 209.7
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 692.8,
+            "w": 411.1,
+            "h": 93.2
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 692.8,
+            "w": 488.4,
+            "h": 89.2
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00035,
+      "startTime": 6007.1,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5000,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 330.6,
+            "w": 511.4,
+            "h": 182.1
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 330.6,
+            "w": 469,
+            "h": 186.1
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 665.1,
+            "w": 488.4,
+            "h": 123.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 665.1,
+            "w": 558.1,
+            "h": 119.6
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00015,
+      "startTime": 6022.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5000,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 636.8,
+            "w": 558.1,
+            "h": 153.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 636.8,
+            "w": 616.6,
+            "h": 150.6
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00047,
+      "startTime": 6323.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 449.9,
+            "w": 878,
+            "h": 328.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 452.5,
+            "w": 808.3,
+            "h": 329
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00052,
+      "startTime": 6340.1,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 459.3,
+            "w": 806.8,
+            "h": 298
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 463.3,
+            "w": 733.5,
+            "h": 298
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00042,
+      "startTime": 6356.5,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 470.5,
+            "w": 719.2,
+            "h": 266
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 474.5,
+            "w": 653.8,
+            "h": 266
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00038,
+      "startTime": 6373.5,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 481.6,
+            "w": 633.5,
+            "h": 234
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 485.6,
+            "w": 575.9,
+            "h": 234
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 834.9,
+            "w": 412.1,
+            "h": 54.4
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 834.9,
+            "w": 480.9,
+            "h": 51.4
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00025,
+      "startTime": 6389.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 491.8,
+            "w": 558.4,
+            "h": 206
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 495.8,
+            "w": 508,
+            "h": 206
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00015,
+      "startTime": 6405.8,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 500.9,
+            "w": 498.1,
+            "h": 183
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 503.9,
+            "w": 452.8,
+            "h": 183
+          }
+        }
+      ]
+    }
+  ],
+  "totalAll": 0.01168,
+  "chromeSessionWindows": [
+    {
+      "start": 214.6,
+      "last": 214.6,
+      "value": 0.00448,
+      "count": 1,
+      "durationMs": 0
+    },
+    {
+      "start": 5688.3,
+      "last": 6405.8,
+      "value": 0.0072,
+      "count": 19,
+      "durationMs": 717.5
+    }
+  ],
+  "largestSessionWindow": 0.0072
+}
