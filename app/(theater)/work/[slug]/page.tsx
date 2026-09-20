@@ -165,6 +165,9 @@ export default async function TheaterCaseStudyPage({
         <div className="cs-band__grid" data-photo={cs.hero ? "true" : "false"}>
           <div className="cs-band__head">
             <p className="cs-band__context">{cs.client}</p>
+            {cs.clientNameProtected ? (
+              <span className="cs-glance__protected">Name protected</span>
+            ) : null}
             <TitleCard
               {...titleCardSchema.parse({
                 title: cs.title,
@@ -188,20 +191,6 @@ export default async function TheaterCaseStudyPage({
           <div className="cs-band__text">
             <p className="cs-band__dek">{cs.dek}</p>
             <dl className="cs-glance">
-              <div className="cs-glance__row">
-                <dt>Client</dt>
-                <dd>
-                  {cs.client}
-                  {cs.clientNameProtected ? (
-                    <>
-                      {" "}
-                      <span className="cs-glance__protected">
-                        Name protected
-                      </span>
-                    </>
-                  ) : null}
-                </dd>
-              </div>
               {cs.atAGlance.map((row) => (
                 <div className="cs-glance__row" key={row.label}>
                   <dt>{row.label}</dt>
