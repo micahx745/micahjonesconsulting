@@ -337,7 +337,8 @@ export function ExitScoreboard({
           // Target minus resting place (both in row coordinates).
           const v = stateVal[k]![i]!;
           const vb = base.val[i]!;
-          vals[i]!.style.translate = `${v.left - vb.left}px ${v.top - vb.top}px`;
+          vals[i]!.style.translate =
+            `${v.left - vb.left}px ${v.top - vb.top}px`;
           vals[i]!.style.scale = String(v.height / baseH.val[i]!);
           const c = stateCo[k]![i]!;
           const cb = base.co[i]!;
