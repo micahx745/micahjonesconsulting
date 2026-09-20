@@ -817,6 +817,18 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   ratios for the LIVE hexes: copper 3.93 on foyer paper (still FAILS AA for body text, the B1 rule stands),
   3.53 on bone, 4.22 on the theater band, 3.57 on espresso; copper-deep 6.62 on paper, 5.94 on bone (PASS).
   NEVER re-encode #C8542B or #8E3A1E in a check, a brief or a design note.
+- **PASS-123 SHIP APPROVED AND THE RFP RESULTS ROW SETTLED - operator 2026-09-20 (popup, after the
+  fresh before/final sheets `.planning/qa/pass-123/sheets/study-final-{390,1440}.png`, captured 11:01
+  against the post-fix build)**. PUSH: picked "Yes, push it (Recommended)" - `design/live-evolve` goes
+  to `main`, Vercel deploys on push, CARD 1 and both aliases follow. RFP RESULTS ROW: told that his
+  2026-09-19 "drop the repeat" ruling had been ledgered as done but never built, and that building it
+  leaves the RFP study as the only one of the five whose Results row has no display-size lead
+  (guardicore, content engine and ORDANI each keep one), he picked "Leave it quiet (Recommended)": the
+  row stays as the smaller "Close rate from one in eight to one in four inside six months. Responses
+  out per month: two or three, then eight to ten.", because the $3M already reads at poster size
+  directly above it. The offered alternative - promoting the close-rate sentence to display size - is
+  REJECTED and is not to be re-proposed without a new dated ruling. No copy was written or reworded by
+  either decision.
 - **PASS-123 JUDGE-GATE ANSWERS — operator 2026-09-19 (popup, after the Fable judge read of the built
   bands)**. RFP RESULTS ROW: picked "Drop the repeat, keep the rest (Recommended)": after the contract
   count was retired this morning, `results.lead` became "$3M in signed contracts.", word for word the

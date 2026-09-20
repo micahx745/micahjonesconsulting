@@ -29,11 +29,11 @@ identical-check failures. CLS 0.00000 all five, both widths. Crossfade
 AND up. Sheets: qa/pass-123/sheets/study-final-{390,1440}.png (pre-fix kept as
 study-final-prefix-*).
 
-## IN FLIGHT — with Micah
-His look at the fresh sheets, plus two questions: (1) push approval; (2) the
-RFP Results row now has NO display-size lead (guardicore/content-engine/ordani
-each keep one) — leave it quiet, or promote the first sentence of the rest.
-Then CARD 1 (both aliases).
+## PUSH APPROVED — operator 2026-09-20, popup, verbatim
+"Yes, push it (Recommended)" (push `design/live-evolve` to `main`; Vercel
+deploys on push) and "Leave it quiet (Recommended)" (the RFP Results row keeps
+only the smaller rest; promoting the close-rate sentence is REJECTED).
+Ledgered as LESSONS #3 "PASS-123 SHIP APPROVED...". Then CARD 1, both aliases.
 
 ## Queue after that
 1. Home hero shift 0.0045 of the 1440 CLS (h1.cw-h1 / p.cw-sub), pre-existing.

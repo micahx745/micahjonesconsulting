@@ -1,19 +1,19 @@
 {
-  "totalSamplesWithCopperVisible": 354,
+  "totalSamplesWithCopperVisible": 330,
   "stepsUnder3to1": 0,
   "minRatio": 3.5358621677095745,
   "minRatioDetail": {
-    "vp": "390x844",
+    "vp": "1440x900",
     "pass": "up",
-    "label": "up#32",
-    "scrollY": 6677,
+    "label": "up#34",
+    "scrollY": 6289,
     "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled",
     "text": "Undisclosed",
     "rect": {
-      "x": 20,
-      "y": 362.421875,
-      "width": 350.078125,
-      "height": 59.90625
+      "x": 40,
+      "y": 277.203125,
+      "width": 884.734375,
+      "height": 158.265625
     },
     "mode": "text",
     "sampleColor": "rgb(189, 90, 45)",
@@ -31,20 +31,20 @@
   },
   "worst5": [
     {
-      "vp": "390x844",
+      "vp": "1440x900",
       "pass": "up",
-      "label": "up#32",
-      "scrollY": 6677,
+      "label": "up#34",
+      "scrollY": 6289,
       "ratio": 3.5358621677095745,
       "text": "Undisclosed",
       "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled"
     },
     {
-      "vp": "1440x900",
+      "vp": "390x844",
       "pass": "up",
-      "label": "up#34",
-      "scrollY": 6289,
-      "ratio": 3.5446921956083988,
+      "label": "up#32",
+      "scrollY": 6677,
+      "ratio": 3.5358621677095745,
       "text": "Undisclosed",
       "cls": "cw-exits__val cw-exits__val--undisclosed is-assembled"
     },
