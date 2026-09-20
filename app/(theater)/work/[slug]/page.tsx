@@ -12,6 +12,7 @@ import { TitleCard } from "@/components/TitleCard";
 import { CaseStudyReadTracker } from "@/components/CaseStudyReadTracker";
 import { ViewTransitionLink } from "@/components/view-transition-link";
 import { titleCardSchema } from "@/lib/title-card-schema";
+import { findTitleFigure, splitLeadPhrase } from "@/lib/title-figure";
 import { SERVICE_LABELS } from "@/lib/case-study-schema";
 import {
   getAllCaseStudies,
@@ -19,6 +20,15 @@ import {
   getNextCaseStudy,
   isPublished,
 } from "@/lib/case-studies";
+
+// Studies whose Results lead carries the poster role when the title itself
+// has no figure (twin of the same-named constant in app/(foyer)/work/
+// page.tsx). ORDANI is excluded by the 2026-09-19 ruling: no figure, no
+// poster.
+const POSTER_PHRASE_SLUGS = new Set(["birth-worker"]);
+
+// The study whose band photo plays the Tel Aviv clip once (Stage 3).
+const BAND_CLIP_SLUG = "guardicore";
 
 export async function generateStaticParams() {
   const all = await getAllCaseStudies();
@@ -28,9 +38,7 @@ export async function generateStaticParams() {
   // with scripts off, and any crawler that does not run JS, got a blank page.
   // getCaseStudyBySlug already returns null for stubs, so listing them here
   // only ever produced that shell.
-  return all
-    .filter(isPublished)
-    .map((cs) => ({ slug: cs.slug }));
+  return all.filter(isPublished).map((cs) => ({ slug: cs.slug }));
 }
 
 // false, so an unknown slug (including a stub) serves the real static 404 at
@@ -105,6 +113,17 @@ export default async function TheaterCaseStudyPage({
   const cs = await getCaseStudyBySlug(slug);
   if (!cs) notFound();
 
+  // The band's poster when the title carries no figure of its own: the
+  // Results lead split around the entry's figurePhrase (lib/title-figure.ts).
+  // null on every titled study (TitleCard renders their poster) and on
+  // ORDANI (no figure at all).
+  const poster =
+    findTitleFigure(cs.titleLines) === -1 &&
+    POSTER_PHRASE_SLUGS.has(slug) &&
+    cs.entry.figurePhrase
+      ? splitLeadPhrase(cs.results.lead, cs.entry.figurePhrase)
+      : null;
+
   const mod = await import(`@/content/work/${slug}.mdx`);
   const MDXContent = mod.default;
 
@@ -146,8 +165,23 @@ export default async function TheaterCaseStudyPage({
           <div className="cs-band__head">
             <p className="cs-band__context">{cs.client}</p>
             <TitleCard
-              {...titleCardSchema.parse({ title: cs.title, lines: cs.titleLines })}
+              {...titleCardSchema.parse({
+                title: cs.title,
+                lines: cs.titleLines,
+              })}
             />
+            {poster ? (
+              <p className="cs-poster">
+                <span className="cs-poster__lead">{poster.lead}</span>{" "}
+                <span className="cs-num cs-num--words">{poster.poster}</span>
+                {poster.after ? (
+                  <>
+                    {" "}
+                    <span className="cs-poster__lead">{poster.after}</span>
+                  </>
+                ) : null}
+              </p>
+            ) : null}
           </div>
 
           <div className="cs-band__text">
@@ -160,7 +194,9 @@ export default async function TheaterCaseStudyPage({
                   {cs.clientNameProtected ? (
                     <>
                       {" "}
-                      <span className="cs-glance__protected">Name protected</span>
+                      <span className="cs-glance__protected">
+                        Name protected
+                      </span>
                     </>
                   ) : null}
                 </dd>
@@ -174,8 +210,16 @@ export default async function TheaterCaseStudyPage({
               <div className="cs-glance__row">
                 <dt>Results</dt>
                 <dd>
-                  <span className="cs-glance__result">{cs.results.lead}</span>{" "}
-                  <span className="cs-glance__result-rest">{cs.results.rest}</span>
+                  {poster ? null : (
+                    <>
+                      <span className="cs-glance__result">
+                        {cs.results.lead}
+                      </span>{" "}
+                    </>
+                  )}
+                  <span className="cs-glance__result-rest">
+                    {cs.results.rest}
+                  </span>
                 </dd>
               </div>
             </dl>

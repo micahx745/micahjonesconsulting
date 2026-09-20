@@ -400,14 +400,32 @@ for (const slug of SLUGS) {
               return { fontSize: round(parseFloat(cs.fontSize)), fontWeight: cs.fontWeight };
             })()
           : null;
-        return { numData, opacities, lineSizes, posterLead };
+        // The accent as the page itself computes it, so the check reads the
+        // design system instead of a hex from a doc (judge ruling 2026-09-19).
+        // --cs-accent is scoped to [data-mode="theater"] .cs, so a probe on
+        // document.body (an ancestor) inherits nothing and reads black. The
+        // probe has to live INSIDE the scope it is asking about. Caught by
+        // the Stage 2 leg, which proved it with both probes side by side.
+        const probe = document.createElement('span');
+        probe.style.color = 'var(--cs-accent)';
+        (document.querySelector('.cs-band__head') || document.querySelector('.cs') || document.body).appendChild(probe);
+        const tokenColor = getComputedStyle(probe).color;
+        probe.remove();
+        return { numData, opacities, lineSizes, posterLead, tokenColor };
       });
       if (POSTER_SLUGS.includes(slug)) {
         const wantFs = w === 390 ? (exp.words ? 77.8 : 99.4) : exp.words ? 188 : 240;
         const numOk =
           !!b4.numData &&
           Math.abs(b4.numData.fontSize - wantFs) <= (w === 390 ? 0.3 : 0.6) &&
-          b4.numData.color === "rgb(200, 84, 43)" &&
+          // JUDGE RULING (main session, 2026-09-19): assert the poster takes the
+          // site's OWN accent token, not a hex copied from the docs. The live
+          // token is --color-accent-copper #bd5a2d (rgb(189,90,45)); .claude/
+          // CLAUDE.md, brand.json and globals.css's own header comment still say
+          // #C8542B, drift that predates this pass (the repo wins). Comparing to
+          // the computed token catches a wrong colour without re-encoding a
+          // stale one.
+          b4.numData.color === b4.tokenColor &&
           /"wght"\s*800/.test(b4.numData.fvs || "") &&
           b4.numData.animsFinished;
         const lineOk = b4.lineSizes.every((l) => Math.abs(l.fontSize - (w === 390 ? 36 : 56)) <= 0.5 && l.fontWeight === "800");
@@ -518,7 +536,14 @@ for (const slug of SLUGS) {
           const last = withNum[withNum.length - 1];
           let nonDecreasing = true;
           for (let i = 1; i < withNum.length; i++) if (withNum[i].wght < withNum[i - 1].wght - 1) nonDecreasing = false;
-          const clipOk = last.clip === "inset(-25% -10% -25% -10%)";
+          // Chrome serialises inset(-25% -10% -25% -10%) as its 2-value
+          // shorthand inset(-25% -10%): same box, different string. Compare
+          // the four sides, not the text (judge ruling 2026-09-19).
+          const insets = String(last.clip || '').match(/-?[\d.]+%/g) || [];
+          const sides = insets.length === 2 ? [insets[0], insets[1], insets[0], insets[1]]
+            : insets.length === 4 ? insets : null;
+          const clipOk = !!sides && sides[0] === '-25%' && sides[1] === '-10%'
+            && sides[2] === '-25%' && sides[3] === '-10%';
           let opReachT = null;
           for (const s of samples) {
             if (s.opCount > 0 && s.minOp !== null && s.minOp >= 0.999) {

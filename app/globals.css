@@ -657,6 +657,51 @@ body {
 .cs-title__nb {
   white-space: nowrap;
 }
+/* PASS-123 (operator 2026-09-19, LESSONS #3 PASS-123 STUDY PAGES SCOPE; DESIGN_BAR R2 amended):
+ * the band's result figure at poster size. The head is the poster's size container. */
+.cs-band__head {
+  container-type: inline-size;
+}
+.cs-title__line--figure,
+.cs-title__kick,
+.cs-title__tail {
+  display: block;
+}
+.cs-num {
+  display: block;
+  font-family: var(--font-cw-display);
+  font-size: min(calc((100vw - 32px) / 3.6), 240px);
+  font-size: min(calc(100cqi / 3.6), 240px);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.035em;
+  font-variant-numeric: lining-nums proportional-nums;
+  white-space: nowrap;
+  color: var(--cs-accent);
+  margin: 0.04em 0 0.1em;
+}
+.cs-num--comma {
+  margin-bottom: 0.16em;
+}
+.cs-num--words {
+  font-size: min(calc((100vw - 32px) / 4.6), 188px);
+  font-size: min(calc(100cqi / 4.6), 188px);
+  margin: 0 0 0.04em;
+}
+.cs-poster {
+  margin: 28px 0 0;
+}
+.cs-poster__lead {
+  display: block;
+  max-width: 30ch;
+  margin: 0 0 0.3em;
+  font-family: var(--font-cw-display);
+  font-weight: 700;
+  font-size: var(--fs-h2);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--cs-ink);
+}
 .cs-band__dek {
   font-family: var(--font-cw-body);
   font-size: var(--fs-body);
@@ -728,11 +773,42 @@ body {
   .cs-title__line:nth-child(2):not(:last-child) {
     animation-delay: 100ms;
   }
+  .cs-title__line--figure {
+    animation: none;
+  }
+  .cs-title__line--figure .cs-title__kick,
+  .cs-title__line--figure .cs-title__tail {
+    animation: cs-settle 400ms cubic-bezier(0.16, 1, 0.3, 1) 200ms backwards; /* motion-ok: the Pass-120 settle, on the figure line's ink words (Pass-123) */
+  }
+  .cs-title__line--figure:first-child .cs-title__kick,
+  .cs-title__line--figure:first-child .cs-title__tail {
+    animation-delay: 0ms;
+  }
+  .cs-title__line--figure:nth-child(2):not(:last-child) .cs-title__kick,
+  .cs-title__line--figure:nth-child(2):not(:last-child) .cs-title__tail {
+    animation-delay: 100ms;
+  }
+  .cs-poster__lead {
+    animation: cs-settle 400ms cubic-bezier(0.16, 1, 0.3, 1) 300ms backwards; /* motion-ok: the Pass-120 settle, on the results-lead poster's words (Pass-123) */
+  }
+  .cs-num {
+    animation: cs-assemble 800ms cubic-bezier(0.2, 0.7, 0.1, 1) both; /* motion-ok: one-time hero-number assembly at first paint, the /work move (LESSONS #3 PASS-122 RULES ON TRIAL, PASS-123 STUDY PAGES SCOPE) */
+  }
 }
 @keyframes cs-settle {
   from {
     opacity: 0;
     transform: translateY(12px);
+  }
+}
+@keyframes cs-assemble {
+  from {
+    font-variation-settings: "wght" 200;
+    clip-path: inset(100% -10% -25% -10%);
+  }
+  to {
+    font-variation-settings: "wght" 800;
+    clip-path: inset(-25% -10% -25% -10%);
   }
 }
 .cs-page {
