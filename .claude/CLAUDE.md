@@ -164,6 +164,27 @@ independent juror at design and copy checkpoints only. **Sonnet** subagents take
 Opus (this session) rules, briefs, verifies and commits; Fable takes the taste gates. Every leg still names
 its model, and `get_usage` runs before every Claude fan-out.
 
+**Amended 2026-09-20: DeepSeek joins, pay-as-you-go.** Operator, verbatim: "i have signed up for
+deepseek and put $20 on it to use. I want to use it like the other AIs - grunt work, another top model
+to give quality feedback." Two slots, and only two:
+1. **The cross-review REST juror.** `scripts/cross-review/run_cross_review.py` now carries a fourth
+   independent lineage, `--legs deepseek`, on by default. This is the slot that most needed filling:
+   the GLM REST leg has been dead since 2026-09-18 (HTTP 429, "Insufficient balance" on the pay-go key)
+   and the z.ai Coding-Plan key cannot lawfully stand in for it, because docs.z.ai/devpack/usage-policy
+   forbids scripted access. DeepSeek is pay-as-you-go, so it is the compliant replacement. The leg picks
+   its model by asking the account (`GET /models`) and preferring `deepseek-reasoner`, then
+   `deepseek-chat`; `DEEPSEEK_MODEL` overrides. Proven offline against a stub server that speaks the
+   same dialect: `python scripts/cross-review/test/deepseek_leg_test.py`, 13 assertions, no key, no spend.
+2. **Grunt overflow** behind Sonnet and Sol, when both are busy and GLM is capped.
+It does NOT rule, and it does not replace Astra or Fable at a taste gate: a fourth opinion is worth
+having precisely because it is independent, and an independent opinion that gets to decide is just
+another ruler. Every finding it returns goes through the same disposition protocol as the other legs
+(premises verified against the live repo before it is adopted OR dismissed).
+SECRETS: the key is resolved from the `DEEPSEEK_API_KEY` user env var, else `.claude/.deepseek-key`
+(already gitignored by the `.claude/.*-key` rule). It is never printed, never committed, never passed
+on a command line. The operator pasted a key into chat on 2026-09-20; that key is in a session
+transcript on disk and must be treated as exposed and rotated. No key was written to this repo.
+
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
 no command could settle; the other 311 were execution. So a Fable segment ends by writing

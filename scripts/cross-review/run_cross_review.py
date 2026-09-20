@@ -193,30 +193,32 @@ def _glm_provider(key):
     return (GLM_ZAI_ENDPOINT, GLM_ZAI_MODEL, "GLM(REST zai %s)" % GLM_ZAI_MODEL)
 
 
-def _run_glm_rest(prompt_text, timeout):
-    """Call GLM-5.2 via an OpenAI-compatible endpoint using SSE STREAMING.
+def _sse_chat_completion(endpoint, key, model, system_text, user_text, timeout):
+    """One OpenAI-compatible chat-completion over SSE STREAMING. (status, body).
 
-    the old non-streaming call read the WHOLE response with one
+    Extracted 2026-09-20 from the GLM leg so the DeepSeek leg inherits the same
+    hardening instead of growing a second, softer copy. Both legs speak the same
+    dialect (POST /chat/completions, stream:true, "data:" frames), so the only
+    per-leg parts are the endpoint, the key, the model and the instruction.
+
+    Why streaming: the old non-streaming call read the WHOLE response with one
     urlopen(timeout=...) socket read, so on a >55KB input the server buffered the
     entire (slow) generation and the first recv() blew past the fixed 120s read
     timeout -- 10 of 11 GLM rounds died with "The read operation timed out".
-    Streaming (stream:true) converts that WALL-CLOCK read timeout into an
-    INACTIVITY one: urllib's socket timeout applies per-chunk read, the server
-    emits a delta every few hundred ms, so the timeout only fires on a genuine
-    stall, not on total generation length. Returns (status, body). Never raises.
+    Streaming converts that WALL-CLOCK read timeout into an INACTIVITY one: the
+    socket timeout applies per-chunk read, the server emits a delta every few
+    hundred ms, so the timeout only fires on a genuine stall, not on total
+    generation length.
+
+    No provider-specific extensions (no Z.ai "thinking", no DeepSeek-only
+    fields) -- the body stays portable so the same call works on either vendor.
+    Never raises.
     """
-    key = _glm_key()
-    if not key:
-        return ("NOT CONFIGURED", "")
-    endpoint, model, _label = _glm_provider(key)
-    # OpenAI chat-completions shape (works for both Z.ai-direct and OpenRouter).
-    # No provider-specific extensions (e.g. Z.ai's "thinking") -- keep the body
-    # portable so the same call works on either endpoint.
     body = json.dumps({
         "model": model,
         "messages": [
-            {"role": "system", "content": _instruction_for("glm")},
-            {"role": "user", "content": prompt_text},
+            {"role": "system", "content": system_text},
+            {"role": "user", "content": user_text},
         ],
         "temperature": 0.2,
         "stream": True,
@@ -262,6 +264,10 @@ def _run_glm_rest(prompt_text, timeout):
                 if fr:
                     finish_reason = fr
                 delta = choice0.get("delta") or {}
+                # DeepSeek's reasoning model streams its chain of thought in a
+                # separate "reasoning_content" field and the answer in "content".
+                # Only the answer is the review; the reasoning is discarded here
+                # on purpose -- a juror's verdict is what the round records.
                 piece = delta.get("content")
                 if piece:
                     chunks.append(piece)
@@ -291,6 +297,115 @@ def _run_glm_rest(prompt_text, timeout):
         return ("ERROR", "stream truncated: no [DONE]/finish_reason after %d chars; tail=%r"
                 % (len(text), text[-200:]))
     return ("OK", text)
+
+
+def _run_glm_rest(prompt_text, timeout):
+    """GLM via whichever OpenAI-compatible endpoint the key prefix selects."""
+    key = _glm_key()
+    if not key:
+        return ("NOT CONFIGURED", "")
+    endpoint, model, _label = _glm_provider(key)
+    return _sse_chat_completion(
+        endpoint, key, model, _instruction_for("glm"), prompt_text, timeout)
+
+
+# DeepSeek REST leg -- a FOURTH independent lineage (DeepSeek) alongside Gemini
+# (Google), Codex (OpenAI) and GLM (Zhipu). Added 2026-09-20, when the operator
+# funded a pay-as-you-go DeepSeek account to be used "like the other AIs - grunt
+# work, another top model to give quality feedback". It matters most here
+# because the GLM REST leg has been dead since 2026-09-18 (HTTP 429,
+# "Insufficient balance" on the pay-go key) and the Coding-Plan key cannot
+# lawfully take its place: docs.z.ai/devpack/usage-policy forbids scripted
+# access. DeepSeek is OpenAI-compatible, so it reuses _sse_chat_completion and
+# inherits the streaming fix rather than repeating the timeout bug.
+#
+# Key resolution mirrors the other legs: env DEEPSEEK_API_KEY, then
+# .claude/.deepseek-key (already gitignored by the ".claude/.*-key" rule). The
+# key is never printed, never committed, and never passed on a command line.
+DEEPSEEK_ENDPOINT = "https://api.deepseek.com/chat/completions"
+DEEPSEEK_MODELS_ENDPOINT = "https://api.deepseek.com/models"
+# Preference order for the juror role: the reasoning model first, the chat model
+# second. Deliberately NOT a hard pin -- _deepseek_model() asks the account
+# which models it actually exposes and takes the first of these that is present,
+# so a renamed or retired model degrades to a NAMED fallback instead of a 404
+# that reads like a dead leg. DEEPSEEK_MODEL overrides everything.
+DEEPSEEK_MODEL_PREFERENCE = ("deepseek-reasoner", "deepseek-chat")
+
+
+def _deepseek_key():
+    k = os.environ.get("DEEPSEEK_API_KEY", "").strip()
+    if k:
+        return k
+    for path in (
+        os.path.join(_repo_root(), ".claude", ".deepseek-key"),
+        os.path.join(os.path.expanduser("~"), ".claude", ".deepseek-key"),
+    ):
+        try:
+            with open(path, encoding="utf-8") as fh:
+                k = fh.read().strip()
+                if k:
+                    return k
+        except Exception:
+            continue
+    return ""
+
+
+def _deepseek_list_models(key, timeout=30):
+    """(ids, reason) -- the model ids this account can see, or [] with the why."""
+    req = urllib.request.Request(
+        DEEPSEEK_MODELS_ENDPOINT,
+        headers={"Authorization": "Bearer " + key, "Accept": "application/json"},
+        method="GET",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            obj = json.loads(resp.read().decode("utf-8", "replace"))
+    except urllib.error.HTTPError as e:
+        detail = ""
+        try:
+            detail = e.read().decode("utf-8", "replace")[:200]
+        except Exception:
+            pass
+        return ([], "HTTP %s: %s" % (e.code, detail or e.reason))
+    except Exception as e:
+        return ([], str(e))
+    ids = []
+    for row in (obj.get("data") or []):
+        rid = (row or {}).get("id")
+        if isinstance(rid, str) and rid:
+            ids.append(rid)
+    return (ids, "" if ids else "no model ids in response")
+
+
+def _deepseek_model(key):
+    """(model, how) -- the model to use, and one line saying how it was chosen."""
+    forced = os.environ.get("DEEPSEEK_MODEL", "").strip()
+    if forced:
+        return (forced, "DEEPSEEK_MODEL override")
+    ids, why = _deepseek_list_models(key)
+    if not ids:
+        # Could not ask. Take the first preference and SAY SO, rather than
+        # letting an uninformed guess read as a deliberate pin.
+        return (DEEPSEEK_MODEL_PREFERENCE[0],
+                "model list unavailable (%s); fell back to the first preference" % why)
+    for want in DEEPSEEK_MODEL_PREFERENCE:
+        if want in ids:
+            return (want, "chosen from the account's %d models" % len(ids))
+    return (ids[0], "none of %s offered; took the first of %s"
+            % (",".join(DEEPSEEK_MODEL_PREFERENCE), ",".join(ids[:5])))
+
+
+def _run_deepseek_rest(prompt_text, timeout):
+    """(status, body, label). The label names the model AND how it was picked,
+    so a round's artifact records which DeepSeek actually answered."""
+    key = _deepseek_key()
+    if not key:
+        return ("NOT CONFIGURED", "", "DeepSeek(REST)")
+    model, how = _deepseek_model(key)
+    status, body = _sse_chat_completion(
+        DEEPSEEK_ENDPOINT, key, model, _instruction_for("deepseek"),
+        prompt_text, timeout)
+    return (status, body, "DeepSeek(REST %s -- %s)" % (model, how))
 
 
 # Operator-tunable. Each entry: how to invoke the CLI headlessly. The combined
@@ -519,6 +634,10 @@ def main() -> int:
     # default is safe -- it only fires on a genuine stall. Gemini/Codex keep the
     # shared --timeout.
     ap.add_argument("--glm-timeout", type=int, default=DEFAULT_GLM_TIMEOUT)
+    ap.add_argument("--deepseek-timeout", type=int, default=DEFAULT_GLM_TIMEOUT,
+                    help="Per-chunk inactivity timeout for the DeepSeek SSE leg. "
+                         "The reasoning model thinks before its first content "
+                         "delta, so this is an inactivity budget, not a wall clock.")
     # Deep-leg budget (2026-07-23): Sol's DEPTH CONTRACT produces much longer
     # generations than the 120s shared default tolerates.
     # 1500s since 2026-09-04: astra at `ultra` walks a 95KB manuscript slower
@@ -531,8 +650,8 @@ def main() -> int:
     # runs nothing, never a silent zero-leg "pass". Omitting gemini prints an
     # explicit skip banner: the leg is MANDATED (2026-05-31) and a ledger must
     # never record a partial round as full silently.
-    ap.add_argument("--legs", default="gemini,codex,glm",
-                    help="comma-separated subset of: gemini,codex,glm")
+    ap.add_argument("--legs", default="gemini,codex,glm,deepseek",
+                    help="comma-separated subset of: gemini,codex,glm,deepseek")
     args = ap.parse_args()
 
     # MODE: manuscript retargets EVERY leg away from the Next.js instructions.
@@ -542,9 +661,10 @@ def main() -> int:
     if args.mode == "manuscript":
         MODE_INSTRUCTION_OVERRIDE["gemini"] = MANUSCRIPT_INSTRUCTION
         MODE_INSTRUCTION_OVERRIDE["glm"] = MANUSCRIPT_INSTRUCTION
+        MODE_INSTRUCTION_OVERRIDE["deepseek"] = MANUSCRIPT_INSTRUCTION
         MODE_INSTRUCTION_OVERRIDE["codex"] = MANUSCRIPT_DEEP_INSTRUCTION
 
-    KNOWN_LEGS = ("gemini", "codex", "glm")
+    KNOWN_LEGS = ("gemini", "codex", "glm", "deepseek")
     legs = [x.strip().lower() for x in args.legs.split(",") if x.strip()]
     unknown_legs = [x for x in legs if x not in KNOWN_LEGS]
     legs = [x for x in legs if x in KNOWN_LEGS]
@@ -654,10 +774,39 @@ def main() -> int:
             available += 1
         parts.append("\n----- %s [%s] -----\n%s" % (glm_label, glm_status, glm_body))
 
+    # DeepSeek: REST leg, a 4th independent lineage. Dormant until a key is
+    # present (DEEPSEEK_API_KEY or .claude/.deepseek-key) and, exactly like the
+    # GLM arm above, an absent key ANNOUNCES itself -- a leg that vanishes
+    # silently turns a three-leg round into a four-leg claim.
+    ds_key = _deepseek_key() if "deepseek" in legs else None
+    if "deepseek" not in legs:
+        parts.append("\n----- DEEPSEEK [SKIPPED] -----\nDEEPSEEK LEG SKIPPED BY FLAG (--legs=%s)." % args.legs)
+    elif not ds_key:
+        parts.append(
+            "\n----- DEEPSEEK [NOT CONFIGURED] -----\nNo DeepSeek key found "
+            "(DEEPSEEK_API_KEY, .claude/.deepseek-key, or ~/.claude/.deepseek-key). "
+            "This round ran WITHOUT the DeepSeek leg -- report it as partial."
+        )
+    else:
+        ds_status, ds_body, ds_label = _run_deepseek_rest(prompt_text, args.deepseek_timeout)
+        if ds_status == "ERROR":
+            # One retry, for a transient blip or a mid-stream reset only. The
+            # streaming call is already the fix for the chronic read-timeout
+            # (see _sse_chat_completion), so this is not a verbatim retry of a
+            # known-broken shape.
+            r_status, r_body, r_label = _run_deepseek_rest(prompt_text, args.deepseek_timeout)
+            if r_status == "OK":
+                ds_status, ds_body, ds_label = r_status, r_body, r_label
+            else:
+                ds_body = "%s\n[retry also failed] %s" % (ds_body, r_body)
+        if ds_status == "OK":
+            available += 1
+        parts.append("\n----- %s [%s] -----\n%s" % (ds_label, ds_status, ds_body))
+
     if available == 0 and legs:
         parts.append(
             "\n----- NO CROSS-MODEL OUTPUT -----\n"
-            "None of gemini, codex, or glm produced a review (not installed/keyed, "
+            "None of gemini, codex, glm or deepseek produced a review (not installed/keyed, "
             "or the invocation in CLI_INVOCATIONS needs correcting -- see "
             "docs/CROSS_MODEL_REVIEW.md). FALL BACK to a Claude-only review and "
             "tell the operator to install/verify the CLIs. Do NOT fabricate a "
