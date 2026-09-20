@@ -4284,8 +4284,8 @@ body {
   transform-origin: 0 0;
   transition:
     translate 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
-    scale 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
-    color 0.3s ease; /* motion-ok: the PRE-EXISTING Pass-122 scoreboard move (transform 0.6s, app/globals.css ~line 4071) re-expressed on translate/scale — not a new entrance */
+    font-size 0.6s cubic-bezier(0.2, 0.7, 0.1, 1),
+    color 0.3s ease; /* motion-ok: the PRE-EXISTING Pass-122 scoreboard move (transform 0.6s, app/globals.css ~line 4071) re-expressed on translate + the value size itself (fix round 2, operator "make it exact") — not a new entrance */
 }
 /* Outcome: on screen only for the current exit, at its measured
  * current-state position and width (the component sets them inline); the

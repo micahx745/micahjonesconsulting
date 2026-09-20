@@ -18,11 +18,14 @@
 // hid the move from the eye, not from the shift scorer. After the fonts are
 // ready, the flow layout of all four states is measured ONCE
 // (`measureStates()`), then the list switches to actor mode (`.is-actors`):
-// every moving piece is absolutely positioned at the list's origin at a FIXED
-// current-state font size, and a beat change is nothing but `translate` and
-// `scale` values (individual properties, never a layout shift) plus the
-// `--cw-line-y` of the hairlines. A layout that never changes cannot shift;
-// the approved look is preserved by measuring it, not by redrawing it.
+// every moving piece is absolutely positioned, and a beat change is nothing but
+// `translate` plus each state's own `font-size`, and the `--cw-line-y` of the
+// hairlines. Moving an actor cannot shift the page: its start point never moves
+// and nothing else reflows, so its size may change with it (fix round 2,
+// operator 2026-09-19 "Make it exact first" — scaling kept display letterforms
+// on the small values, which measured 6.99-17.54px narrow, because Bricolage
+// carries an opsz axis). The approved look is preserved by measuring it, not by
+// redrawing it.
 //
 // Reduced motion, no JS, an old browser, or a load already at or past the
 // ledger: the static ledger, nothing pins.
@@ -172,6 +175,7 @@ export function ExitScoreboard({
       type ActorBox = { left: number; top: number; height: number };
       const stateLine: number[][] = [];
       const stateVal: ActorBox[][] = [];
+      const stateFs = { val: [] as number[][], co: [] as number[][] };
       const stateCo: ActorBox[][] = [];
       const curPx = {
         val: [] as number[],
@@ -192,7 +196,6 @@ export function ExitScoreboard({
         out: [] as ActorBox[],
         line: [] as number[],
       };
-      const baseH = { val: [] as number[], co: [] as number[] };
       let measureLogged = false;
 
       const measureStates = () => {
@@ -223,6 +226,8 @@ export function ExitScoreboard({
           const rowR = row.getBoundingClientRect();
           stateLine[k] = [];
           stateVal[k] = [];
+          stateFs.val[k] = [];
+          stateFs.co[k] = [];
           stateCo[k] = [];
           for (let i = 0; i < count; i++) {
             stateLine[k]![i] = deals[i]!.getBoundingClientRect().top - rowR.top;
@@ -238,6 +243,19 @@ export function ExitScoreboard({
               top: cR.top - rowR.top,
               height: cR.height,
             };
+            // Pass-123c fix round 2 (operator 2026-09-19, "Make it exact
+            // first"): every state's own font size, so a value RENDERS at the
+            // size it has today instead of being scaled to it. Bricolage
+            // carries an opsz axis, so scaled-down display type keeps display
+            // letterforms and read 6.99-17.54px narrow; at its real size it is
+            // the same ink as the live page. Size is not a layout shift here:
+            // each actor is absolutely positioned at a fixed top/left, so its
+            // box grows from a start point that never moves and nothing else
+            // reflows.
+            stateFs.val[k]![i] = parseFloat(
+              getComputedStyle(vals[i]!).fontSize,
+            );
+            stateFs.co[k]![i] = parseFloat(getComputedStyle(cos[i]!).fontSize);
             if (i === k) {
               curPx.val[i] = parseFloat(getComputedStyle(vals[i]!).fontSize);
               curPx.co[i] = parseFloat(getComputedStyle(cos[i]!).fontSize);
@@ -307,8 +325,6 @@ export function ExitScoreboard({
           base.co[i] = rel(cos[i]!);
           base.out[i] = rel(outs[i]!);
           base.line[i] = deals[i]!.getBoundingClientRect().top - rowR.top;
-          baseH.val[i] = base.val[i]!.height;
-          baseH.co[i] = base.co[i]!.height;
           // The outcome only shows for its own current state, so its move is
           // fixed: its current-state target minus where it rests.
           outs[i]!.style.translate =
@@ -334,16 +350,20 @@ export function ExitScoreboard({
           void stage.offsetWidth;
         }
         for (let i = 0; i < count; i++) {
-          // Target minus resting place (both in row coordinates).
+          // Position: target minus resting place (both in row coordinates).
+          // Size: the state's own font size (fix round 2), so the ink is the
+          // same as the live page's at both sizes. An absolutely positioned
+          // actor grows from a start point that does not move and nothing
+          // else reflows, so a size change here is not a layout shift.
           const v = stateVal[k]![i]!;
           const vb = base.val[i]!;
           vals[i]!.style.translate =
             `${v.left - vb.left}px ${v.top - vb.top}px`;
-          vals[i]!.style.scale = String(v.height / baseH.val[i]!);
+          vals[i]!.style.fontSize = `${stateFs.val[k]![i]}px`;
           const c = stateCo[k]![i]!;
           const cb = base.co[i]!;
           cos[i]!.style.translate = `${c.left - cb.left}px ${c.top - cb.top}px`;
-          cos[i]!.style.scale = String(c.height / baseH.co[i]!);
+          cos[i]!.style.fontSize = `${stateFs.co[k]![i]}px`;
           deals[i]!.style.setProperty(
             "--cw-line-y",
             `${stateLine[k]![i]! - base.line[i]!}px`,
