@@ -2084,3 +2084,31 @@ into the band poster, exactly once, never both. Proven on the unfixed build: 4 P
 rfp-engine and quoting the repeat. `--self-test` plants the shipped defect, the fixed render, the poster
 branch and a differing lead, and exits 1 on any wrong answer. On recurrence: a ledger row claiming a
 render behaviour must name the gate that reads it back, or it is not written.
+
+## #45 — The session doc named a deploy the domains were not serving, and the ship check took its word (2026-09-20)
+
+**What happened.** Pass-123's CARD 1 script carried `OLD_DPL`, the deployment id the domains served
+before a push, so the `dpl id is new` check could prove the new deploy had taken. Setting it for this
+ship, the value was read out of `.claude/RESUME.md`, whose LIVE line said
+`3809f5e dpl_9fPDmK1W62BqCj9TriRSG6dJVkwp`. A curl of both domains a minute later returned
+`dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ` — commit `9813825`, a later push whose own commit message recorded
+the EARLIER id as live. The doc had been correct when written and wrong by the time it was read, and
+nothing in between re-read the wire.
+
+**Root cause.** The check was negative: "the served id is not the old one." A negative assertion
+inherits every error in its baseline, and it fails in the safe-looking direction. Had the new deploy
+errored, the domains would have kept serving `dpl_Go2xKXbY`, the comparison against the doc's
+`dpl_9fPDmK1W` would still have read "different", and CARD 1 would have certified a push that never
+landed. The deeper habit: a current-state document is a claim about the world, and a ship gate that
+sources its baseline from a document is verifying the document, not the deployment.
+
+**The rule.** A ship check asserts POSITIVELY: the thing serving is the thing we built, by id. Any
+"before" value a gate needs is read off the wire at the moment it is needed, never copied out of a
+doc — and when a doc and the wire disagree about what is live, the wire wins and the doc is corrected
+in the same breath.
+
+**The gate.** `.planning/exec/card1-123.sh` now takes `EXPECT_DPL`, the deployment id built from HEAD,
+and checks the served `data-dpl-id` EQUALS it on every domain. An unset `EXPECT_DPL` is a FAIL, not a
+skip, so the assertion cannot be silently dropped; the old "not OLD_DPL" check stays as a second,
+weaker signal. The corrected baseline in that file cites the curl that produced it, with its date. On
+recurrence: no ship gate may read a deployment id, alias target, or commit sha out of a markdown file.

@@ -11,29 +11,24 @@ pnpm.cmd; serve `node node_modules/next/dist/bin/next start -p 3236`; one
 .next at a time; NEVER elementHandle.screenshot(); `MSYS_NO_PATHCONV=1` for a
 leading-slash path arg from Git Bash.
 
-## LIVE: 3809f5e dpl_9fPDmK1W62BqCj9TriRSG6dJVkwp
-Pass-123a+b+c+d. Revert: promote dpl_HNtW9Ha (68a8dc3).
+## LIVE: bf88384 dpl_CQKi2ifKwDpnHfSSHhDjEAcCAouV (2026-09-20)
+Pass-123 study bands. Pushed on his popup approval, verbatim "Yes, push it
+(Recommended)" + "Leave it quiet (Recommended)" (LESSONS #3 "PASS-123 SHIP
+APPROVED"). CARD 1 on all three domains: 67 PASS, 0 FAIL, every domain on the
+same new dpl, including the new POSITIVE assertion that the served id is the
+one we built. Evidence .planning/exec/card1-123-prod-0920.txt.
+REVERT: promote dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ (9813825).
+NOTE: the old RESUME's LIVE line was WRONG — it said dpl_9fPDmK1W while both
+domains served dpl_Go2xKXbY. LESSONS #45; CARD 1 now takes EXPECT_DPL.
 
-## BRANCH, UNPUSHED: the study bands, through 3478302
-ceb1c09 judge fix round (poster no-break tail, "Name protected" spacing, comma
-ink gap 39-40 -> 30-31px @1440). be786f7 THE RFP REPEAT: the operator's
-2026-09-19 "drop the repeat" ruling was ledgered as done and never built —
-found by two audit legs off the prerendered HTML. Now built
-(`leadRepeatsTitleFigure`), held by `scripts/results-repeat-gate.mjs` in the
-build, LESSONS #44, ledger row corrected. 3478302 the DeepSeek leg.
-
-## EVIDENCE, re-read by this session
-Build green at be786f7; results-repeat-gate 5/5. Captures 11:01: 94 PNGs, 0
-identical-check failures. CLS 0.00000 all five, both widths. Crossfade
-(LESSONS #19): 0 steps under 3:1, 330 normal / 158 reduced, 390 AND 1440, down
-AND up. Sheets: qa/pass-123/sheets/study-final-{390,1440}.png (pre-fix kept as
-study-final-prefix-*).
-
-## PUSH APPROVED — operator 2026-09-20, popup, verbatim
-"Yes, push it (Recommended)" (push `design/live-evolve` to `main`; Vercel
-deploys on push) and "Leave it quiet (Recommended)" (the RFP Results row keeps
-only the smaller rest; promoting the close-rate sentence is REJECTED).
-Ledgered as LESSONS #3 "PASS-123 SHIP APPROVED...". Then CARD 1, both aliases.
+## What shipped
+The five study bands: title figure as a poster that assembles once, the birth
+worker's results lead promoted, the Guardicore band photo playing the clip
+once, his ticked cuts, the judge fix round, and the RFP Results row finally
+dropping the repeat (ledgered as done 09-19, never built; LESSONS #44, held by
+scripts/results-repeat-gate.mjs). Pre-push gates: build green, CLS 0.00000 all
+five both widths, crossfade contrast 0 steps under 3:1 both modes both widths
+down and up, 94 captures with 0 identical-check failures.
 
 ## Queue after that
 1. Home hero shift 0.0045 of the 1440 CLS (h1.cw-h1 / p.cw-sub), pre-existing.

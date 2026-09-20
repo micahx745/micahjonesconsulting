@@ -5,9 +5,24 @@
 # LESSONS #24), whitespace collapsed, fixed-string match, counted with grep -o | wc -l.
 # Absence counts run on the RAW body (RSC payload and JSON-LD included). No grep -i -F (#34).
 # Usage: bash .planning/exec/card1-123.sh [base]   (no argument: all three production domains)
-# The deploy that is live BEFORE this push (Pass-123a-d). "dpl id is new" proves the
-# new deploy actually took; leaving a stale value here makes that check pass vacuously.
-OLD_DPL="dpl_9fPDmK1W62BqCj9TriRSG6dJVkwp"
+# The deploy the DOMAINS WERE SERVING before this push, read off the wire at 2026-09-20
+# 11:2x with `curl -sL <domain>/ | grep data-dpl-id` -- NOT the id the RESUME called
+# "LIVE", which named dpl_9fPDmK1W (commit 3809f5e) while both domains were in fact on
+# dpl_Go2xKXbY (commit 9813825, a later push). "dpl id is new" proves the new deploy took;
+# a baseline taken from a doc instead of the wire makes that check pass vacuously.
+OLD_DPL="dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ"
+# The deployment this push is supposed to put live. Set it from the Vercel
+# deployment built from HEAD, or export EXPECT_DPL before running.
+#
+# Why a POSITIVE assertion and not just "differs from OLD_DPL" (2026-09-20):
+# "not the old one" passes vacuously whenever OLD_DPL is wrong, and it was --
+# .claude/RESUME.md called dpl_9fPDmK1W "LIVE" while both domains were in fact
+# serving dpl_Go2xKXbY, a later push. Had this run with the doc's value and the
+# new deploy failed, the domains would still have served Go2x, "not 9fPDm"
+# would have been TRUE, and a dead push would have certified itself. Checking
+# the served id EQUALS the id we built removes the whole class: it cannot pass
+# unless the intended deploy is the one answering.
+EXPECT_DPL="${EXPECT_DPL:-}"
 if [ -n "${1:-}" ]; then BASES=("${1%/}"); CHECK_DPL=0; else
   BASES=(https://www.micahjonesconsulting.com https://micahjonesconsulting.vercel.app); CHECK_DPL=1; fi
 # The apex is a 308 to www, path kept (checked below), so it always serves www's deploy.
@@ -23,6 +38,11 @@ for D in "${BASES[@]}"; do
   if [ "$CHECK_DPL" -eq 1 ]; then
     dpl=$(printf '%s' "$H" | grep -o 'data-dpl-id="[^"]*"' | head -1 | sed 's/.*="\(.*\)"/\1/'); DPL[$D]=$dpl
     chk "dpl id is new" "$dpl" '[ -n "$dpl" ] && [ "$dpl" != "$OLD_DPL" ]' "not $OLD_DPL"
+    if [ -n "$EXPECT_DPL" ]; then
+      chk "dpl id is the one we built" "$dpl" '[ "$dpl" = "$EXPECT_DPL" ]' "$EXPECT_DPL"
+    else
+      echo "  FAIL dpl id is the one we built: EXPECT_DPL is unset (want the deployment id built from HEAD)"; sf=$((sf+1))
+    fi
   fi
   for p in / /work /work/guardicore /work/rfp-engine /work/ordani /work/content-engine /work/birth-worker /about /services /contact /llms.txt /sitemap.xml; do
     c=$(curl -s -o /dev/null -w '%{http_code}' "$D$p"); chk "status $p" "$c" '[ "$c" = 200 ]' 200
@@ -31,7 +51,14 @@ for D in "${BASES[@]}"; do
   WV=$(vis "$D/work"); RV=$(vis "$D/work/rfp-engine")
   WR=$(raw "$D/work"); RR=$(raw "$D/work/rfp-engine"); LL=$(raw "$D/llms.txt")
   n=$(cnt "$WV" '$3M in signed contracts.'); chk "/work RFP entry" "$n" '[ "$n" -ge 1 ]' ">=1"
-  n=$(cnt "$RV" 'Results $3M in signed contracts.'); chk "study Results row" "$n" '[ "$n" -ge 1 ]' ">=1"
+  # 2026-09-20: this line used to assert 'Results $3M in signed contracts.' -- the repeat the
+  # operator ruled OUT on 2026-09-19 ("Drop the repeat, keep the rest", LESSONS #3 "PASS-123
+  # JUDGE-GATE ANSWERS"). The check was encoding retired copy, so it failed on the very deploy
+  # that finally obeyed the ruling. Changing a check to make it pass is normally the banned move
+  # (LESSONS #37); it is allowed here only because the check asserts copy a dated ruling removed,
+  # and it is replaced by BOTH halves of the new requirement, not deleted:
+  n=$(cnt "$RV" 'Results Close rate from one in eight to one in four inside six months.'); chk "study Results row keeps the rest" "$n" '[ "$n" -ge 1 ]' ">=1"
+  n=$(cnt "$RV" 'Results $3M in signed contracts.'); chk "study Results row drops the repeat" "$n" '[ "$n" -eq 0 ]' 0
   n=$(cnt "$RV" '$3M in signed contracts through the platform.'); chk "study What changed" "$n" '[ "$n" -ge 1 ]' ">=1"
   for page in WR RR LL; do n=$(printf '%s' "${!page}" | grep -o -i "eleven" | wc -l | tr -d ' '); chk "eleven absent ($page raw)" "$n" '[ "$n" -eq 0 ]' 0; done
   n=$(cnt "$HV" '$20M+'); chk "home \$20M+" "$n" '[ "$n" -ge 1 ]' ">=1"
