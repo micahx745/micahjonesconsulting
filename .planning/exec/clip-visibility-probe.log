@@ -1,0 +1,53 @@
+
+--- TEST A: refused while hidden -> retried -> plays once visible ---
+REPORT A1 real-background hidden window: visibilityState-at-load=hidden after 3s: ioLogCount=0 playLogLen=0 playedLength=0
+PASS A1 no play attempt while truly backgrounded: got playLogLen=0 playedLength=0
+PASS A1 plays once actually viewed after real backgrounding: got playedLength=1 everObservedIsPlaying=true
+REPORT A2 simulated-hidden arm window (~3s): visibilityState=hidden playLog=[{"t":1324.5,"visibility":"hidden","result":"rejected","simulated":true,"errName":"AbortError","errMsg":"The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/xX8pDD"}] playedLength=0
+PASS A2 play() actually attempted and refused while hidden: got playLog=[{"t":1324.5,"visibility":"hidden","result":"rejected","simulated":true,"errName":"AbortError","errMsg":"The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/xX8pDD"}]
+PASS A2 no premature play while refused: got playedLength=0
+REPORT A2 after visibility flip, up to 8s: playLog=[{"t":1324.5,"visibility":"hidden","result":"rejected","simulated":true,"errName":"AbortError","errMsg":"The play() request was interrupted because video-only background media was paused to save power. https://goo.gl/xX8pDD"},{"t":3110.0999999996275,"visibility":"visible","result":"resolved","simulated":false,"tSettled":3110.39999999851}] playedLength=1 everObservedIsPlaying=true
+PASS A2 clip plays after refusal once made visible (THE FIX): got playedLength=1 everObservedIsPlaying=true
+
+--- TEST B: control (no true control run — reasoning) ---
+no true control run: the old component isn't checked out into a second build.
+Reasoning, from the component's own doc comment describing the old behaviour
+("a refused play() is not retried"; playedThisLoad set synchronously before
+video.play() resolved): the old start() set the module-level flag the
+instant it CALLED play(), not the instant playback actually began, and did
+not branch on document.visibilityState in the .catch() at all.
+
+At A2's first checkpoint (arm window, page hidden): the old code would have
+called play() once (attempt made, same as the fix), gotten the same
+AbortError, and already set playedThisLoad = true BEFORE that rejection was
+even observed -- so this checkpoint would look identical to the fix's: 0
+played, 1 attempt logged. No difference yet; this is exactly why the
+original bug was invisible to a quick look.
+
+At A2's second checkpoint (visibility flip, wait up to 8s): this is where
+the two diverge. The fix's start() checks playedThisLoad and attempts
+before calling play() again, and playedThisLoad is still false (it only
+flips on the real 'playing' event) -- so it retries and the assertion
+"clip plays after refusal once made visible" passes. The old code's
+playedThisLoad was already true from the failed first attempt, and every
+path back into start() -- the observer callback, the effect's own entry
+guard (`if (!video || playedThisLoad) return`) -- returns immediately on
+that flag. video.play() is never called a second time, the 'playing'
+event never fires, and video.played.length stays 0 for the rest of the
+page's life. Assertion A2's final check
+("playedLength>=1 && everObservedIsPlaying") would read
+playedLength=0, everObservedIsPlaying=false -- a FAIL. That is the exact
+shape of the reported defect: opening the page in a background tab killed
+the clip for the whole load.
+
+--- TEST C: normal case, page visible throughout ---
+REPORT C first play cycle: playLog=[{"t":1322.699999999255,"visibility":"visible","result":"resolved","simulated":false,"tSettled":1332.5999999996275}] playedLength=1 everObservedIsPlaying=true
+PASS C plays exactly once, normal visible load: got playedLength=1 everObservedIsPlaying=true
+PASS C does not play twice after re-scrolling into view: got playedLength=1 playLogLen=1
+
+--- TEST D: prefers-reduced-motion: reduce, guard holds across a visibility flip ---
+REPORT D before visibility flip: playLogLen=0 playedLength=0 ioLogCount=1
+REPORT D after visibility flip: playLogLen=0 playedLength=0
+PASS D reduced-motion guard: video never plays: got playedLength=0 playLogLen=0
+
+clip-visibility-probe failures: 0

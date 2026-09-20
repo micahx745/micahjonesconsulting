@@ -510,7 +510,19 @@ for (const slug of SLUGS) {
           hasResultsDt: dtEls.length >= 1,
         };
       });
-      const wantResultCount = slug === "birth-worker" ? 0 : 1;
+      // birth-worker's lead is promoted into the band poster, so its Results row
+      // prints no lead. rfp-engine prints none either, since 2026-09-20: the
+      // operator ruled on 09-19 that a lead which merely repeats the title's
+      // figure line must be dropped ("Drop the repeat, keep the rest", LESSONS
+      // #3 "PASS-123 JUDGE-GATE ANSWERS"), and commit be786f7 built it. This
+      // check asserted the repeat and so failed on the first build that obeyed
+      // the ruling -- the same stale-check shape that LESSONS #45 caught in
+      // CARD 1 the same day. Corrected here rather than tolerated, because a
+      // check that cries wolf on approved copy gets ignored, and then it is
+      // not a check. scripts/results-repeat-gate.mjs is the build-time gate
+      // that holds the rule properly, off the rendered bytes.
+      const NO_RESULT_LEAD = ["birth-worker", "rfp-engine"];
+      const wantResultCount = NO_RESULT_LEAD.includes(slug) ? 0 : 1;
       let b7ok = b7.resultCount === wantResultCount && b7.hasResultsDt;
       if (slug === "birth-worker") b7ok = b7ok && b7.restText === RESULT_REST_BIRTHWORKER;
       chk(

@@ -41,27 +41,74 @@ export function StudyBandClip() {
       return;
 
     const mounted = performance.now();
+    const MAX_ATTEMPTS = 3;
     let cancelled = false;
     let observer: IntersectionObserver | null = null;
     let timer: ReturnType<typeof setTimeout> | null = null;
+    let intersecting = false;
+    let floorSpent = false;
+    let attempts = 0;
+    let onVisible: (() => void) | null = null;
+
+    const teardown = () => {
+      observer?.disconnect();
+      observer = null;
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      if (onVisible) {
+        document.removeEventListener("visibilitychange", onVisible);
+        onVisible = null;
+      }
+    };
+
+    // The class goes on when frames actually decode, and so does the flag: a
+    // resolved play() promise is not proof that playback began.
+    const onPlaying = () => {
+      playedThisLoad = true;
+      video.classList.add("is-playing");
+      teardown();
+    };
+    const onEnded = () => video.classList.remove("is-playing");
+    video.addEventListener("playing", onPlaying, { once: true });
+    video.addEventListener("ended", onEnded, { once: true });
+
+    const waitForVisible = () => {
+      if (onVisible) return;
+      onVisible = () => {
+        if (onVisible) {
+          document.removeEventListener("visibilitychange", onVisible);
+          onVisible = null;
+        }
+        if (cancelled || playedThisLoad) return;
+        if (document.visibilityState !== "visible") return;
+        // Only while the band is still on screen. Otherwise the observer stays
+        // armed and the clip arrives on the next real intersection.
+        if (intersecting) start();
+      };
+      document.addEventListener("visibilitychange", onVisible);
+    };
 
     const start = () => {
-      if (cancelled || playedThisLoad) return;
-      playedThisLoad = true;
+      if (cancelled || playedThisLoad || attempts >= MAX_ATTEMPTS) return;
+      attempts += 1;
       video.muted = true;
       video.preload = "auto";
-      video.addEventListener(
-        "playing",
-        () => video.classList.add("is-playing"),
-        { once: true },
-      );
-      video.addEventListener(
-        "ended",
-        () => video.classList.remove("is-playing"),
-        { once: true },
-      );
       video.play().catch(() => {
-        // Refused: the photo stays, and nothing retries.
+        if (cancelled || playedThisLoad) return;
+        // Refused while the reader is looking at the page: a fact about the
+        // device (Low Power Mode, a codec gap). The photo stays, nothing
+        // retries. Refused while hidden: a fact about one instant, so wait.
+        if (document.visibilityState === "visible") {
+          teardown();
+          return;
+        }
+        if (attempts >= MAX_ATTEMPTS) {
+          teardown();
+          return;
+        }
+        waitForVisible();
       });
     };
 
@@ -70,8 +117,17 @@ export function StudyBandClip() {
       observer = new IntersectionObserver(
         (entries) => {
           if (cancelled || playedThisLoad) return;
-          if (!entries.some((entry) => entry.isIntersecting)) return;
-          observer?.disconnect();
+          intersecting = entries.some((entry) => entry.isIntersecting);
+          if (!intersecting) return;
+          // The 1200ms floor is mount-relative and exists so the title's settle
+          // (600ms) and the poster's assembly (800ms) land first. It is spent
+          // once: any retry is already later in wall-clock time than the first
+          // attempt, so recomputing it would only ever yield 0.
+          if (floorSpent) {
+            start();
+            return;
+          }
+          floorSpent = true;
           const wait = Math.max(0, 1200 - (performance.now() - mounted));
           timer = setTimeout(start, wait);
         },
@@ -86,8 +142,12 @@ export function StudyBandClip() {
     return () => {
       cancelled = true;
       window.removeEventListener("load", arm);
-      observer?.disconnect();
-      if (timer) clearTimeout(timer);
+      video.removeEventListener("playing", onPlaying);
+      video.removeEventListener("ended", onEnded);
+      // A client navigation mid-play would otherwise leave a detached element
+      // still decoding.
+      if (!video.paused) video.pause();
+      teardown();
     };
   }, []);
 
