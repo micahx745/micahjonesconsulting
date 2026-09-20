@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { TitleCard } from "@/components/TitleCard";
+import { StudyBandClip } from "@/components/color-worlds/StudyBandClip";
 import { CaseStudyReadTracker } from "@/components/CaseStudyReadTracker";
 import { ViewTransitionLink } from "@/components/view-transition-link";
 import { titleCardSchema } from "@/lib/title-card-schema";
@@ -236,6 +237,7 @@ export default async function TheaterCaseStudyPage({
                 sizes="(min-width: 1024px) 405px, calc(100vw - 32px)"
                 className="cs-band__img"
               />
+              {slug === BAND_CLIP_SLUG ? <StudyBandClip /> : null}
             </div>
           ) : null}
         </div>

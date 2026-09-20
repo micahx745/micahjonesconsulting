@@ -1,0 +1,175 @@
+PASS B1 h1 text guardicore 390: got "Repositioning Guardicore: $14M, then Akamai"
+PASS B2 counts guardicore 390: got num=1 poster=0 figureLine=1 line=2
+PASS B3 strings guardicore 390: got num="$14M," kick=null tail="then Akamai" posterLead=null comma=true
+PASS B4 rest state guardicore 390: got num={"fontSize":99.4,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1,1] posterLead=null
+PASS B5 fit guardicore 390: got num right=374.0 head right=374.0
+REPORT B5 poster width guardicore 390: 358.0px
+PASS B6 overlap guardicore 390: got 0 rows with both copper and bone
+REPORT B6 ink gap guardicore 390: 17.0px (expect 6-18px; in range)
+PASS B7 results row guardicore 390: got resultCount=1 hasResultsDt=true
+PASS B8 assembly guardicore 390: got first wght=200.0@39.2ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 590.9ms
+REPORT B8 timing guardicore 390: first sample t=39.2ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 807.1ms (expect <= 900ms)
+PASS B10 contrast guardicore 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-title__tail=12.29(>=3) .cs-num=3.48(>=3) .cs-num (copper pixels)=3.48(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 guardicore 390: got 390 at every 422px step
+PASS B1 h1 text guardicore 1440: got "Repositioning Guardicore: $14M, then Akamai"
+PASS B2 counts guardicore 1440: got num=1 poster=0 figureLine=1 line=2
+PASS B3 strings guardicore 1440: got num="$14M," kick=null tail="then Akamai" posterLead=null comma=true
+PASS B4 rest state guardicore 1440: got num={"fontSize":240,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1,1] posterLead=null
+PASS B5 fit guardicore 1440: got num right=1312.0 head right=1312.0
+REPORT B5 poster width guardicore 1440: 1184.0px
+PASS B6 overlap guardicore 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap guardicore 1440: 39.0px (expect 12-32px; OUTSIDE range, judge rules)
+PASS B7 results row guardicore 1440: got resultCount=1 hasResultsDt=true
+PASS B8 assembly guardicore 1440: got first wght=200.0@41.3ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 577.0ms
+REPORT B8 timing guardicore 1440: first sample t=41.3ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 793.3ms (expect <= 900ms)
+PASS B10 contrast guardicore 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-title__tail=12.40(>=3) .cs-num=3.51(>=3) .cs-num (copper pixels)=3.51(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.78(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.78(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.40(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B1 h1 text rfp-engine 390: got "AI RFP software: $3M in signed contracts"
+PASS B2 counts rfp-engine 390: got num=1 poster=0 figureLine=1 line=2
+PASS B3 strings rfp-engine 390: got num="$3M" kick=null tail="in signed contracts" posterLead=null comma=false
+PASS B4 rest state rfp-engine 390: got num={"fontSize":99.4,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1,1] posterLead=null
+PASS B5 fit rfp-engine 390: got num right=374.0 head right=374.0
+REPORT B5 poster width rfp-engine 390: 358.0px
+PASS B6 overlap rfp-engine 390: got 0 rows with both copper and bone
+REPORT B6 ink gap rfp-engine 390: 13.5px (expect 6-18px; in range)
+PASS B7 results row rfp-engine 390: got resultCount=1 hasResultsDt=true
+PASS B8 assembly rfp-engine 390: got first wght=200.0@74.1ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 602.5ms
+REPORT B8 timing rfp-engine 390: first sample t=74.1ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 818.6ms (expect <= 900ms)
+PASS B10 contrast rfp-engine 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-title__tail=12.29(>=3) .cs-num=3.48(>=3) .cs-num (copper pixels)=3.48(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dt#4=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance dd#4=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 rfp-engine 390: got 390 at every 422px step
+PASS B1 h1 text rfp-engine 1440: got "AI RFP software: $3M in signed contracts"
+PASS B2 counts rfp-engine 1440: got num=1 poster=0 figureLine=1 line=2
+PASS B3 strings rfp-engine 1440: got num="$3M" kick=null tail="in signed contracts" posterLead=null comma=false
+PASS B4 rest state rfp-engine 1440: got num={"fontSize":240,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1,1] posterLead=null
+PASS B5 fit rfp-engine 1440: got num right=1312.0 head right=1312.0
+REPORT B5 poster width rfp-engine 1440: 1184.0px
+PASS B6 overlap rfp-engine 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap rfp-engine 1440: 31.0px (expect 12-32px; in range)
+PASS B7 results row rfp-engine 1440: got resultCount=1 hasResultsDt=true
+PASS B8 assembly rfp-engine 1440: got first wght=200.0@75.9ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 605.2ms
+REPORT B8 timing rfp-engine 1440: first sample t=75.9ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 822.5ms (expect <= 900ms)
+PASS B10 contrast rfp-engine 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.40(>=3) .cs-title__tail=12.29(>=3) .cs-num=3.51(>=3) .cs-num (copper pixels)=3.51(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.78(>=4.5) .cs-glance dt#1=5.78(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dt#4=5.78(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.40(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance dd#4=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.40(>=4.5)
+PASS B1 h1 text ordani 390: got "ORDANI: HIPAA-compliant CRM for birth workers"
+PASS B2 counts ordani 390: got num=0 poster=0 figureLine=0 line=2
+PASS B3 strings ordani 390: got num=null kick=null tail=null posterLead=null comma=false
+PASS B4 rest state ordani 390: got lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1]
+REPORT B5 fit ordani 390: no .cs-num element -- fit check NA
+PASS B6 overlap ordani 390: got 0 rows with both copper and bone
+REPORT B6 ink gap ordani 390: no copper pixels in the head rect -- NA
+PASS B7 results row ordani 390: got resultCount=1 hasResultsDt=true
+PASS B10 contrast ordani 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 ordani 390: got 390 at every 422px step
+PASS B1 h1 text ordani 1440: got "ORDANI: HIPAA-compliant CRM for birth workers"
+PASS B2 counts ordani 1440: got num=0 poster=0 figureLine=0 line=2
+PASS B3 strings ordani 1440: got num=null kick=null tail=null posterLead=null comma=false
+PASS B4 rest state ordani 1440: got lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1]
+REPORT B5 fit ordani 1440: no .cs-num element -- fit check NA
+PASS B6 overlap ordani 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap ordani 1440: no copper pixels in the head rect -- NA
+PASS B7 results row ordani 1440: got resultCount=1 hasResultsDt=true
+PASS B10 contrast ordani 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.78(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.40(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B1 h1 text content-engine 390: got "AI content engine: up to 800,000 impressions"
+PASS B2 counts content-engine 390: got num=1 poster=0 figureLine=1 line=2
+PASS B3 strings content-engine 390: got num="800,000" kick="up to" tail="impressions" posterLead=null comma=true
+PASS B4 rest state content-engine 390: got num={"fontSize":99.4,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1,1,1] posterLead=null
+PASS B5 fit content-engine 390: got num right=374.0 head right=374.0
+REPORT B5 poster width content-engine 390: 358.0px
+PASS B6 overlap content-engine 390: got 0 rows with both copper and bone
+REPORT B6 ink gap content-engine 390: 17.5px (expect 6-18px; in range)
+PASS B7 results row content-engine 390: got resultCount=1 hasResultsDt=true
+PASS B8 assembly content-engine 390: got first wght=200.0@74.8ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 602.8ms
+REPORT B8 timing content-engine 390: first sample t=74.8ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 819.2ms (expect <= 900ms)
+PASS B10 contrast content-engine 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-title__kick=12.29(>=3) .cs-title__tail=12.29(>=3) .cs-num=3.48(>=3) .cs-num (copper pixels)=3.48(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 content-engine 390: got 390 at every 422px step
+PASS B1 h1 text content-engine 1440: got "AI content engine: up to 800,000 impressions"
+PASS B2 counts content-engine 1440: got num=1 poster=0 figureLine=1 line=2
+PASS B3 strings content-engine 1440: got num="800,000" kick="up to" tail="impressions" posterLead=null comma=true
+PASS B4 rest state content-engine 1440: got num={"fontSize":240,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1,1,1] posterLead=null
+PASS B5 fit content-engine 1440: got num right=1312.0 head right=1312.0
+REPORT B5 poster width content-engine 1440: 1184.0px
+PASS B6 overlap content-engine 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap content-engine 1440: 40.0px (expect 12-32px; OUTSIDE range, judge rules)
+PASS B7 results row content-engine 1440: got resultCount=1 hasResultsDt=true
+PASS B8 assembly content-engine 1440: got first wght=200.0@84.4ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 619.5ms
+REPORT B8 timing content-engine 1440: first sample t=84.4ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 836.2ms (expect <= 900ms)
+PASS B10 contrast content-engine 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-title__kick=12.29(>=3) .cs-title__tail=12.29(>=3) .cs-num=3.48(>=3) .cs-num (copper pixels)=3.48(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B1 h1 text birth-worker 390: got "Growing a birth worker's practice"
+PASS B2 counts birth-worker 390: got num=1 poster=1 figureLine=0 line=2
+PASS B3 strings birth-worker 390: got num="five to ten." kick=null tail=null posterLead="Bookings from one to three a month to" comma=false
+PASS B4 rest state birth-worker 390: got num={"fontSize":77.8,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1,1] posterLead={"fontSize":26,"fontWeight":"700"}
+PASS B5 fit birth-worker 390: got num right=374.0 head right=374.0
+REPORT B5 poster width birth-worker 390: 358.0px
+PASS B6 overlap birth-worker 390: got 0 rows with both copper and bone
+REPORT B6 ink gap birth-worker 390: no copper pixels in the head rect -- NA
+PASS B7 results row birth-worker 390: got resultCount=0 hasResultsDt=true restText="Thousands of dollars kept that used to go to claims-processing fees. Requests across her whole range instead of one service."
+PASS B8 assembly birth-worker 390: got first wght=200.0@70.0ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 701.1ms
+REPORT B8 timing birth-worker 390: first sample t=70.0ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 817.3ms (expect <= 900ms)
+PASS B10 contrast birth-worker 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-num=3.48(>=3) .cs-num (copper pixels)=3.48(>=3) .cs-poster__lead=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 birth-worker 390: got 390 at every 422px step
+PASS B1 h1 text birth-worker 1440: got "Growing a birth worker's practice"
+PASS B2 counts birth-worker 1440: got num=1 poster=1 figureLine=0 line=2
+PASS B3 strings birth-worker 1440: got num="five to ten." kick=null tail=null posterLead="Bookings from one to three a month to" comma=false
+PASS B4 rest state birth-worker 1440: got num={"fontSize":188,"color":"rgb(189, 90, 45)","fvs":"\"wght\" 800","animsFinished":true,"animsCount":1} lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1,1] posterLead={"fontSize":36,"fontWeight":"700"}
+PASS B5 fit birth-worker 1440: got num right=1312.0 head right=1312.0
+REPORT B5 poster width birth-worker 1440: 1184.0px
+PASS B6 overlap birth-worker 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap birth-worker 1440: no copper pixels in the head rect -- NA
+PASS B7 results row birth-worker 1440: got resultCount=0 hasResultsDt=true restText="Thousands of dollars kept that used to go to claims-processing fees. Requests across her whole range instead of one service."
+PASS B8 assembly birth-worker 1440: got first wght=200.0@123.0ms, non-decreasing, last wght=800.0, last clip=inset(-25% -10%), opacity->1 at 757.7ms
+REPORT B8 timing birth-worker 1440: first sample t=123.0ms wght=200.0 clip-top-inset=100%; weight first reads 800 at 875.1ms (expect <= 900ms)
+PASS B10 contrast birth-worker 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-num=3.48(>=3) .cs-num (copper pixels)=3.48(>=3) .cs-poster__lead=12.40(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result-rest=12.40(>=4.5)
+PASS B9 reduced-motion guardicore 390: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (3 lines)
+PASS B9 no-JS guardicore 390: got max channel diff 0, luminance std 56.0 / 56.0
+PASS B9 reduced-motion guardicore 1440: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (3 lines)
+PASS B9 no-JS guardicore 1440: got max channel diff 2, luminance std 42.5 / 42.5
+PASS B9 reduced-motion rfp-engine 390: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (3 lines)
+PASS B9 no-JS rfp-engine 390: got max channel diff 0, luminance std 56.4 / 56.4
+PASS B9 reduced-motion rfp-engine 1440: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (3 lines)
+PASS B9 no-JS rfp-engine 1440: got max channel diff 1, luminance std 41.0 / 41.0
+PASS B9 reduced-motion ordani 390: got allOpacity1=true (2 lines, no .cs-num on ordani)
+PASS B9 no-JS ordani 390: got max channel diff 0, luminance std 66.9 / 66.9
+PASS B9 reduced-motion ordani 1440: got allOpacity1=true (2 lines, no .cs-num on ordani)
+PASS B9 no-JS ordani 1440: got max channel diff 0, luminance std 63.5 / 63.5
+PASS B9 reduced-motion content-engine 390: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (4 lines)
+PASS B9 no-JS content-engine 390: got max channel diff 0, luminance std 54.2 / 54.2
+PASS B9 reduced-motion content-engine 1440: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (4 lines)
+PASS B9 no-JS content-engine 1440: got max channel diff 1, luminance std 40.4 / 40.4
+PASS B9 reduced-motion birth-worker 390: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (3 lines)
+PASS B9 no-JS birth-worker 390: got max channel diff 0, luminance std 55.6 / 55.6
+PASS B9 reduced-motion birth-worker 1440: got num={"animsLength":0,"fvs":"normal","fontWeight":"800"} allOpacity1=true (3 lines)
+PASS B9 no-JS birth-worker 1440: got max channel diff 1, luminance std 44.5 / 44.5
+PASS K1 video count guardicore: got 1
+PASS K1 track count guardicore: got 0
+PASS K1 video attrs guardicore: got preload="none" aria-hidden="true" playsinline=true banned-present=none
+PASS K1 preload link guardicore: got 1 preload-image links, one names guardicore-band-960
+PASS K1 img-precedes-video guardicore: got img at 8155, video at 9507
+PASS K1 video count rfp-engine: got 0
+PASS K1 video count ordani: got 0
+PASS K1 video count content-engine: got 0
+PASS K1 video count birth-worker: got 0
+PASS K3 floor 1200ms guardicore 390: got 1321.9
+PASS K4 quiet at +100ms guardicore 390: got mean channel diff 6.7
+PASS K4 visible while playing guardicore 390: got opacity=1, mean channel diff from clip-pre 6.7
+PASS K3 ended within 8000ms guardicore 390: got 5487.0ms after load
+PASS K3 played once guardicore 390: got paused=true played.length=1 start=0 end=4.084 duration=4.084
+FAIL K5 rests on photo guardicore 390: got opacity=0 is-playing=false maxDiff-from-clip-pre=209 std=44.3/52.1 (want opacity 0, is-playing absent, maxDiff<=2 from clip-pre, std>10)
+PASS K8 no early fetch guardicore 390: got 0 of 1 work-hero-720 fetches before loadEventEnd
+PASS K8 fetch after playing guardicore 390: got 1 total work-hero-720 fetches
+PASS K7 no caption guardicore 390: got 0 inside [], 0 below []
+PASS K3 floor 1200ms guardicore 1440: got 1386.2
+PASS K4 quiet at +100ms guardicore 1440: got mean channel diff 5.6
+PASS K4 visible while playing guardicore 1440: got opacity=1, mean channel diff from clip-pre 11.1
+PASS K3 ended within 8000ms guardicore 1440: got 5331.9ms after load
+PASS K3 played once guardicore 1440: got paused=true played.length=1 start=0 end=4.084 duration=4.084
+PASS K5 rests on photo guardicore 1440: got opacity=0 is-playing=false maxDiff-from-clip-pre=1 std=40.7/40.7
+PASS K2 properties guardicore 1440: got {"muted":true,"playsInline":true,"loop":false,"controls":false,"duration":4.084,"currentSrc":"http://localhost:3236/media/work-hero-720.webm"}
+PASS K8 no early fetch guardicore 1440: got 0 of 1 work-hero-720 fetches before loadEventEnd
+PASS K8 fetch after playing guardicore 1440: got 1 total work-hero-720 fetches
+PASS K7 no caption guardicore 1440: got 0 inside [], 0 below []
+PASS K6 reduced-motion guardicore 390: got (video absent, measured .cs-band__media) max channel diff 0, std 38.2/38.2
+PASS K6 reduced-motion guardicore 1440: got max channel diff 0, std 40.7/40.7, played.length=0
+PASS K6 save-data guardicore 1440: got max channel diff 1, std 40.7/40.7, played.length=0
+PASS K6 no-JS guardicore 390: got (video absent, measured .cs-band__media) max channel diff 0, std 38.2/38.2
+PASS K6 no-JS guardicore 1440: got max channel diff 0, std 40.7/40.7, played.length=0
+PASS K9 bite (mirrored jpg vs itself): got 39.4
+PASS K9 frame0-is-photo: got 3.3
+band123 failures: 1

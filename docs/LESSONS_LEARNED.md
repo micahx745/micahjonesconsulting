@@ -1511,6 +1511,17 @@ executor stages nothing until its own commit step.
 refuses a bare `git commit` when `git diff --cached --name-only` lists a path the command
 did not name.
 
+### RECURRENCE (2026-09-19, Pass-123 Stage 3) — the main session committed a file a running leg was editing
+
+The main session committed `app/globals.css` by pathspec as part of an unrelated copper-documentation fix
+while a Stage 3 executor was midway through adding the clip's CSS to the same file. The commit swept the
+executor's in-progress hunk in under the wrong commit message; the executor noticed, verified its hunk
+byte-for-byte at HEAD (`git show 8118b09 -- app/globals.css`) and said so, which is the only reason the
+provenance was recoverable. Nothing was lost, but the commit message describes a change it did not make.
+RULE: while any executor leg is running, the main session commits only files OUTSIDE that leg's declared
+scope; a leg's scope is written in its dispatch, so there is no excuse for guessing. When a shared file
+must be committed anyway, the message names the other leg's hunk and why it rode along.
+
 ## #24 — An `expect 1` against served HTML counts the RSC payload too, so a correct page fails its own gate (2026-09-12)
 
 **What happened.** Pass-113's served block asserted `grep -c` equals 1 for the two new copy

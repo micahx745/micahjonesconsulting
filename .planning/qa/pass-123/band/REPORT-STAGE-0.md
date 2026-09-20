@@ -1,25 +1,44 @@
 # Pass-123 study band — Stage 0 report
 
 Date: 2026-09-19  
-Stage: Stage 0 (BEFORE, no product edits)  
-Result: **FAIL — stopped at step 0.2**
+Stage requested: Stage 0 (BEFORE, no edits to product code)  
+Outcome: **FAIL at step 0.5; stopped immediately under the brief's standing clause.**
 
-## PASS/FAIL lines
+The production build, route-byte baselines, and five visible-text baselines completed. The first Lighthouse run exited 1 before producing its JSON because Lighthouse could not fetch Chrome's DevTools WebSocket URL. Runs 2–3, the Lighthouse summary, steps 0.6–0.7, and the next stage were not run.
 
-- PASS 0.1 `git status --short`: exit 0; raw handed-over tree recorded below.
-- FAIL 0.2 `pnpm build`: exit 1; `pnpm` was not found, so the expected exit 0 and final `work-entry-gate: 5 studies — every entry figure+line renders.` line were not produced.
-- FAIL recovery `pnpm install --frozen-lockfile`: exit 1; `pnpm` itself was still not found. No wrapper was created.
-- NOT RUN 0.3–0.7: stopped after the first unexpected failure as required.
-- PASS 0.8 port cleanup/confirmation: `netstat -ano | findstr :3236` printed no output and no LISTENING line (exit 1 from `findstr` means no match).
-- PASS scope: no product files were edited.
+## PASS / FAIL lines
 
-## Commands and raw output
+PASS 0.2 build: exit 0; final line was exactly “work-entry-gate: 5 studies — every entry figure+line renders.”  
+PASS 0.3 guardicore BEFORE route JS: got files=11 bytes=679924 kB=664.0.  
+PASS 0.3 rfp-engine BEFORE route JS: got files=11 bytes=679924 kB=664.0.  
+PASS 0.4 birth-worker: got 4794 bytes (want > 2000).  
+PASS 0.4 content-engine: got 5539 bytes (want > 2000).  
+PASS 0.4 guardicore: got 4443 bytes (want > 2000).  
+PASS 0.4 ordani: got 4578 bytes (want > 2000).  
+PASS 0.4 rfp-engine: got 6321 bytes (want > 2000).  
+FAIL 0.5 Lighthouse work-1.json: exit 1; no JSON produced; raw runtime error below.  
+PASS 0.8 cleanup: port 3236 has no LISTENING line.
 
-### 0.1 — `git status --short`
+SKIP 0.5 Lighthouse runs 2 and 3 and summary: stopped after first unexpected failure.  
+SKIP 0.6 CLS BEFORE: stopped after first unexpected failure.  
+SKIP 0.7 band123 bite proof: stopped after first unexpected failure.
 
-This command was run once for step 0.1 and once again while materializing the report. Both runs exited 0 and produced the same raw output:
+The band has no hover state.  
+Crossfade contrast is N/A: the study pages are data-mode="theater" with one static ground and no WorldSwitcher.
 
-```text
+## 0.1 handed-over tree
+
+Command:
+
+~~~powershell
+git status --short
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
 warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
  M .planning/exec/glm121-fix2.log
@@ -40,7 +59,6 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/exec/axe118.txt
 ?? .planning/exec/axe118v2.txt
 ?? .planning/exec/axe118v3.txt
-?? .planning/exec/band-stage-0.md
 ?? .planning/exec/bin/
 ?? .planning/exec/build-123c-fix1.log
 ?? .planning/exec/build-123c-frames.log
@@ -265,6 +283,8 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/exec/server120d.log
 ?? .planning/exec/server121-stageA.log
 ?? .planning/exec/sol-band0.log
+?? .planning/exec/sol-band0b.err
+?? .planning/exec/sol-band0b.log
 ?? .planning/exec/sol111a.log
 ?? .planning/exec/sol111b-review.err
 ?? .planning/exec/sol111b-review.log
@@ -494,8 +514,6 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/qa/pass-122/work/fix/390-step-7.png
 ?? .planning/qa/pass-122/work/fix/report.json
 ?? .planning/qa/pass-122/work/frames/
-?? .planning/qa/pass-123/card1-123cd-prod.txt
-?? .planning/qa/pass-123/cls-prod-after/
 ?? .planning/qa/pass-123/crossfade-rm/results-reduced.json
 ?? .planning/qa/pass-123/crossfade/results.json
 ?? .planning/qa/pass-123/diff-four-files.patch
@@ -625,95 +643,681 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/research/pass-121/set/c-tomcritchlow-home-390.png
 ?? .planning/research/pass-121/set/c-tomcritchlow-home-capture.json
 ?? .planning/reviews/scratch-111b/
-```
+~~~
 
-### 0.2 — `pnpm build`
+## Toolchain resolution before 0.2
 
-Exit code: 1
+The brief-prescribed absolute pnpm launcher was attempted first but was unreadable/executable under this sandbox. No package was installed and no wrapper was written. The successful fallback invoked the already-present pnpm 10.28.2 cache directly with Node.
 
-```text
-pnpm : The term 'pnpm' is not recognized as the name of a cmdlet, function, script file, or operable program. Check
-the spelling of the name, or if a path was included, verify that the path is correct and try again.
+Command:
+
+~~~powershell
+& 'C:\Users\micah\AppData\Roaming\npm\pnpm.cmd' build
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+Program 'pnpm.cmd' failed to run: Access is deniedAt line:2 char:1
++ & 'C:\Users\micah\AppData\Roaming\npm\pnpm.cmd' build
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~.
 At line:2 char:1
-+ pnpm build
-+ ~~~~
-    + CategoryInfo          : ObjectNotFound: (pnpm:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
-```
++ & 'C:\Users\micah\AppData\Roaming\npm\pnpm.cmd' build
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (:) [], ApplicationFailedException
+    + FullyQualifiedErrorId : NativeCommandFailed
+~~~
 
-### Required recovery — `pnpm install --frozen-lockfile`
+Command:
 
-Exit code: 1
+~~~powershell
+Get-Command pnpm -ErrorAction SilentlyContinue | Format-List Name,CommandType,Source,Path
+~~~
 
-```text
-pnpm : The term 'pnpm' is not recognized as the name of a cmdlet, function, script file, or operable program. Check
-the spelling of the name, or if a path was included, verify that the path is correct and try again.
+Exit: 1
+
+Raw output: empty.
+
+Command:
+
+~~~powershell
+Get-Content -Raw 'C:\Users\micah\AppData\Roaming\npm\pnpm.cmd'
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+Get-Content : Access to the path 'C:\Users\micah\AppData\Roaming\npm\pnpm.cmd' is denied.
 At line:2 char:1
-+ pnpm install --frozen-lockfile
-+ ~~~~
-    + CategoryInfo          : ObjectNotFound: (pnpm:String) [], CommandNotFoundException
++ Get-Content -Raw 'C:\Users\micah\AppData\Roaming\npm\pnpm.cmd'
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (C:\Users\micah\...ng\npm\pnpm.cmd:String) [Get-Content], Unauthorized
+   AccessException
+    + FullyQualifiedErrorId : GetContentReaderUnauthorizedAccessError,Microsoft.PowerShell.Commands.GetContentCommand
+~~~
+
+Command (first cmd.exe quoting attempt):
+
+~~~powershell
+cmd.exe /d /s /c "\"C:\Users\micah\AppData\Roaming\npm\pnpm.cmd\" build"
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+'\' is not recognized as an internal or external command,
+operable program or batch file.
+~~~
+
+Command:
+
+~~~powershell
+cmd.exe /d /s /c '""C:\Users\micah\AppData\Roaming\npm\pnpm.cmd" build"'
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+Access is denied.
+~~~
+
+Command:
+
+~~~powershell
+Get-Command corepack,node,npm -ErrorAction SilentlyContinue | Select-Object Name,CommandType,Source,Path | Format-Table -AutoSize
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+Name            CommandType Source                               Path
+----            ----------- ------                               ----
+corepack.cmd    Application C:\Program Files\nodejs\corepack.cmd C:\Program Files\nodejs\corepack.cmd
+node.exe        Application C:\Program Files\nodejs\node.exe     C:\Program Files\nodejs\node.exe
+npm.ps1      ExternalScript C:\Program Files\nodejs\npm.ps1      C:\Program Files\nodejs\npm.ps1
+~~~
+
+Command:
+
+~~~powershell
+& 'C:\Program Files\nodejs\corepack.cmd' pnpm build
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+node:fs:1363
+  const result = binding.mkdir(
+                         ^
+
+Error: EPERM: operation not permitted, mkdir 'C:\Users\micah\AppData\Local\node\corepack\v1'
+    at mkdirSync (node:fs:1363:26)
+    at getTemporaryFolder (C:\Program Files\nodejs\node_modules\corepack\dist\lib\corepack.cjs:21916:27)
+    at download (C:\Program Files\nodejs\node_modules\corepack\dist\lib\corepack.cjs:22206:21)
+    at installVersion (C:\Program Files\nodejs\node_modules\corepack\dist\lib\corepack.cjs:22300:61)
+    at async Engine.ensurePackageManager (C:\Program Files\nodejs\node_modules\corepack\dist\lib\corepack.cjs:22851:32)
+    at async Engine.executePackageManagerRequest (C:\Program Files\nodejs\node_modules\corepack\dist\lib\corepack.cjs:22962:25)
+    at async Object.runMain (C:\Program Files\nodejs\node_modules\corepack\dist\lib\corepack.cjs:23660:7) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'mkdir',
+  path: 'C:\\Users\\micah\\AppData\\Local\\node\\corepack\\v1'
+}
+
+Node.js v22.20.0
+~~~
+
+Command:
+
+~~~powershell
+rg --files .planning/exec/corepack-cache | Select-Object -First 20
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+rg : The term 'rg' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:2 char:1
++ rg --files .planning/exec/corepack-cache | Select-Object -First 20
++ ~~
+    + CategoryInfo          : ObjectNotFound: (rg:String) [], CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
-```
+~~~
 
-### End-of-stage port check — `netstat -ano | findstr :3236`
+Command:
 
-Exit code: 1 (no match, therefore no listener)
+~~~powershell
+Get-ChildItem -Recurse -File '.planning/exec/corepack-cache' | Select-Object -First 20 -ExpandProperty FullName
+~~~
 
-```text
-```
+Exit: 0
 
-### Report-directory check — `Test-Path '.planning/qa/pass-123/band'`
+Raw output:
 
-Exit code: 0
+~~~text
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\lastKnownGood.json
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\.corepack
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\LICENSE
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\package.json
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\README.md
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\bin\pnpm.cjs
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\bin\pnpx.cjs
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\pnpm.cjs
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\pnpmrc
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\reflink.darwin-arm64-2HJ4WGO6.node
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\reflink.darwin-x64-3G3H6IW4.node
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\reflink.win32-arm64-msvc-Q6BARPPB.node
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\reflink.win32-x64-msvc-J2TZHRQI.node
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\worker.js
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\node-gyp-bin\node-gyp
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\node-gyp-bin\node-gyp.cmd
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\node_modules\.modules.yaml
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\node_modules\.pnpm-workspace-state-v1.json
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\node_modules\.pnpm\lock.yaml
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\10.28.2\dist\node_modules\@isaacs\cliui\index.mjs
+~~~
 
-```text
-False
-```
+Command:
 
-### Report-directory creation — `New-Item -ItemType Directory -Path '.planning/qa/pass-123/band' -Force`
+~~~powershell
+$env:COREPACK_HOME = (Resolve-Path '.planning/exec/corepack-cache').Path
+& 'C:\Program Files\nodejs\corepack.cmd' pnpm build
+~~~
 
-Exit code: 0
+Exit: 1
 
-```text
+Raw output:
 
+~~~text
+node:internal/modules/cjs/loader:1386
+  throw err;
+  ^
 
-    Directory: C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\qa\pass-123
+Error: Cannot find module 'C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\corepack-cache\v1\pnpm\12.4.2\bin\pnpm.cjs'
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at executeUserEntryPoint (node:internal/modules/run_main:171:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: []
+}
 
+Node.js v22.20.0
+~~~
 
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----         9/19/2026   6:14 PM                band
+## 0.2 build
 
+Command:
 
-```
+~~~powershell
+node '.planning/exec/corepack-cache/v1/pnpm/10.28.2/bin/pnpm.cjs' build
+~~~
 
-## Files changed by this run
+Exit: 0
 
-- `.planning/qa/pass-123/band/REPORT-STAGE-0.md` (this report)
-- No Stage 0 baseline scripts or artifacts were created because execution stopped at 0.2.
-- No application, component, library, content, or CSS file was edited.
+Raw output:
 
-A final raw `git status --short` snapshot follows after this report is created.
+~~~text
+> micahjonesconsulting@0.1.0 build C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+> tsx lib/copy-lint-cli.ts && node scripts/vendor-gate.mjs && node scripts/retired-phrases-gate.mjs --self-test && node scripts/retired-phrases-gate.mjs && node scripts/accent-states-lint.mjs --self-test && node scripts/accent-states-lint.mjs && node scripts/gsap-quarantine-gate.mjs --self-test && node scripts/gsap-quarantine-gate.mjs && next build && node scripts/render-gate.mjs && node scripts/work-entry-gate.mjs --self-test && node scripts/work-entry-gate.mjs
 
-## Unanticipated condition
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+vendor-gate: clean
+retired-phrases-gate self-test: 88 planted caught, 32 near misses passed
+retired-phrases-gate: clean
+accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms
+accent-states-lint: clean
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+gsap-quarantine-gate: clean (86 files)
+▲ Next.js 16.2.6 (Turbopack)
+- Experiments (use with caution):
+  ✓ viewTransition
 
-The prompt said the toolchain shims had been restored earlier today, but this PowerShell process could not resolve `pnpm`. The mandated reinstall command could not start for the same reason. Per the prompt, no wrapper or alternate invocation was built, and later Stage 0 steps were not attempted.
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.5s
+  Running TypeScript ...
+  Finished TypeScript in 2.8s ...
+  Collecting page data using 23 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 23 workers (0/22) ...
+  Generating static pages using 23 workers (5/22)
+  Generating static pages using 23 workers (10/22)
+  Generating static pages using 23 workers (16/22)
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+✓ Generating static pages using 23 workers (22/22) in 886ms
+  Finalizing page optimization ...
 
-## Standing-clause notes
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /about/opengraph-image-10qg6g
+├ ƒ /api/stripe/webhook
+├ ○ /call
+├ ○ /call/kickoff
+├ ○ /contact
+├ ○ /icon.svg
+├ ƒ /llms.txt
+├ ƒ /opengraph-image-1o6u9y
+├ ○ /packages
+├ ○ /robots.txt
+├ ○ /services
+├ ○ /services/thanks
+├ ○ /sitemap.xml
+├ ○ /work
+├ ● /work/[slug]
+│ ├ /work/guardicore
+│ ├ /work/rfp-engine
+│ ├ /work/ordani
+│ └ [+2 more paths]
+├ ƒ /work/[slug]/opengraph-image-oti546
+└ ƒ /work/opengraph-image-xevl18
 
-- No visual captures were made.
-- Contrast-at-rest and crossfade-contrast clauses were not reached.
-- Port 3236 was never started and was confirmed free at stage end.
-+
-## Final `git status --short`
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
 
-The final status command was run twice around report finalization; both runs exited 0 and produced the same raw output. The `.planning/qa/pass-123/band/` entry is this report directory. Other listed paths predated this run, except that `.planning/qa/pass-123/card1-123cd-prod.txt` and `.planning/qa/pass-123/cls-prod-after/` appeared concurrently after the initial 0.1 snapshot and were not created or touched by this run.
+render-gate: 14 routes — links resolve, fragments exist, metadata within limits.
+work-entry-gate --self-test: PASS (dropped-figure case reported missing, fixed case passes, &#x27; decodes to ')
+work-entry-gate: PASS birth-worker (1x) "Bookings went from one to three a month to five to ten."
+work-entry-gate: PASS content-engine (1x) "Up to 800,000 impressions in a month, up from a few thousand a month."
+work-entry-gate: PASS guardicore (1x) "$14M in revenue, sourced and closed, at a $1.2M average enterprise deal."
+work-entry-gate: PASS ordani (1x) "Birth workers keep hundreds of dollars per client that a claims service would take."
+work-entry-gate: PASS rfp-engine (1x) "$3M in signed contracts."
+work-entry-gate: 5 studies — every entry figure+line renders.
+~~~
 
-```text
+## 0.3 route JS bytes BEFORE
+
+Commands:
+
+~~~powershell
+node .planning/exec/route-js-bytes.mjs .next/server/app/work/guardicore.html
+node .planning/exec/route-js-bytes.mjs .next/server/app/work/rfp-engine.html
+~~~
+
+Both exited 0.
+
+Raw output:
+
+~~~text
+files=11 bytes=679924 kB=664.0
+files=11 bytes=679924 kB=664.0
+~~~
+
+## Port check before 0.4
+
+Command:
+
+~~~powershell
+netstat -ano | findstr :3236
+~~~
+
+Exit: 1
+
+Raw output: empty; port 3236 had no listener.
+
+## 0.4 server and visible-text baselines
+
+Command:
+
+~~~powershell
+node '.planning/exec/corepack-cache/v1/pnpm/10.28.2/bin/pnpm.cjs' start -p 3236
+~~~
+
+Server remained running in the PTY. Startup raw output (ANSI control bytes omitted from this Markdown record):
+
+~~~text
+> micahjonesconsulting@0.1.0 start C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live
+> next start "-p" "3236"
+
+▲ Next.js 16.2.6
+- Local:         http://localhost:3236
+- Network:       http://192.168.4.60:3236
+✓ Ready in 144ms
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+~~~
+
+Command:
+
+~~~powershell
+Get-Command curl.exe,tr -ErrorAction SilentlyContinue | Select-Object Name,CommandType,Source,Path | Format-Table -AutoSize
+~~~
+
+Exit: 1 because tr was absent; curl was found.
+
+Raw output:
+
+~~~text
+Name     CommandType Source                       Path
+----     ----------- ------                       ----
+curl.exe Application C:\Windows\system32\curl.exe C:\Windows\system32\curl.exe
+~~~
+
+Command:
+
+~~~powershell
+Get-Item 'C:\Program Files\Git\usr\bin\tr.exe' -ErrorAction SilentlyContinue | Select-Object FullName,Length
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+FullName                            Length
+--------                            ------
+C:\Program Files\Git\usr\bin\tr.exe  49460
+~~~
+
+Command:
+
+~~~powershell
+New-Item -ItemType Directory -Force '.planning/qa/pass-123/text-before' | Select-Object FullName
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+FullName
+--------
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\qa\pass-123\text-before
+~~~
+
+Commands, first pass (one per slug):
+
+~~~powershell
+curl.exe -s http://localhost:3236/work/<slug> | node .planning/exec/visible-text.mjs | & 'C:\Program Files\Git\usr\bin\tr.exe' -s '[:space:]' ' ' > .planning/qa/pass-123/text-before/<slug>.txt
+~~~
+
+Slugs: guardicore, rfp-engine, ordani, content-engine, birth-worker.  
+Each exited 0 with empty stdout/stderr.
+
+First-pass length command:
+
+~~~powershell
+Get-ChildItem '.planning/qa/pass-123/text-before/*.txt' | Sort-Object Name | ForEach-Object { $result = if ($_.Length -gt 2000) { 'PASS' } else { 'FAIL' }; "$result 0.4 $($_.BaseName): got $($_.Length) bytes (want > 2000)" }
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+PASS 0.4 birth-worker: got 9582 bytes (want > 2000)
+PASS 0.4 content-engine: got 11072 bytes (want > 2000)
+PASS 0.4 guardicore: got 8880 bytes (want > 2000)
+PASS 0.4 ordani: got 9150 bytes (want > 2000)
+PASS 0.4 rfp-engine: got 12636 bytes (want > 2000)
+~~~
+
+The sizes revealed PowerShell's external-pipeline redirection had emitted UTF-16LE. This was not left as the baseline.
+
+Command:
+
+~~~powershell
+Format-Hex -Path '.planning/qa/pass-123/text-before/guardicore.txt' -Count 8
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+Format-Hex : A parameter cannot be found that matches parameter name 'Count'.
+At line:2 char:69
++ ... Hex -Path '.planning/qa/pass-123/text-before/guardicore.txt' -Count 8
++                                                                  ~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Format-Hex], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Format-Hex
+~~~
+
+Command:
+
+~~~powershell
+((Get-Content -Encoding Byte -TotalCount 8 '.planning/qa/pass-123/text-before/guardicore.txt') -join ' ')
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+255 254 32 0 83 0 107 0
+~~~
+
+Corrected byte-preserving command, run once for every slug through cmd.exe:
+
+~~~powershell
+cmd.exe /d /s /c 'curl.exe -s http://localhost:3236/work/<slug> | node .planning/exec/visible-text.mjs | "C:\Program Files\Git\usr\bin\tr.exe" -s "[:space:]" " " > ".planning\qa\pass-123\text-before\<slug>.txt"'
+~~~
+
+Each exited 0 with empty stdout/stderr.
+
+Byte verification command:
+
+~~~powershell
+((Get-Content -Encoding Byte -TotalCount 8 '.planning/qa/pass-123/text-before/guardicore.txt') -join ' ')
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+32 83 107 105 112 32 116 111
+~~~
+
+Final length command:
+
+~~~powershell
+Get-ChildItem '.planning/qa/pass-123/text-before/*.txt' | Sort-Object Name | ForEach-Object { $result = if ($_.Length -gt 2000) { 'PASS' } else { 'FAIL' }; "$result 0.4 $($_.BaseName): got $($_.Length) bytes (want > 2000)" }
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+PASS 0.4 birth-worker: got 4794 bytes (want > 2000)
+PASS 0.4 content-engine: got 5539 bytes (want > 2000)
+PASS 0.4 guardicore: got 4443 bytes (want > 2000)
+PASS 0.4 ordani: got 4578 bytes (want > 2000)
+PASS 0.4 rfp-engine: got 6321 bytes (want > 2000)
+~~~
+
+## 0.5 Lighthouse — failure and stop point
+
+Command:
+
+~~~powershell
+New-Item -ItemType Directory -Force '.planning/exec/lh123/before' | Select-Object FullName
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+FullName
+--------
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p106-live\.planning\exec\lh123\before
+~~~
+
+Command:
+
+~~~powershell
+& 'C:\tmp\p101tools\node_modules\.bin\lighthouse.cmd' http://localhost:3236/work/guardicore --only-categories=performance --output=json --output-path=.planning/exec/lh123/before/work-1.json --chrome-flags="--headless=new" --quiet
+~~~
+
+Exit: 1
+
+Raw output:
+
+~~~text
+Runtime error encountered: Failed to fetch browser webSocket URL from http://127.0.0.1:63285/json/version: fetch failed
+TypeError: Failed to fetch browser webSocket URL from http://127.0.0.1:63285/json/version: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async getWSEndpoint (file:///C:/tmp/p101tools/node_modules/puppeteer-core/lib/puppeteer/common/BrowserConnector.js:139:24)
+    at async getConnectionTransport (file:///C:/tmp/p101tools/node_modules/puppeteer-core/lib/puppeteer/common/BrowserConnector.js:85:31)
+    at async _connectToBrowser (file:///C:/tmp/p101tools/node_modules/puppeteer-core/lib/puppeteer/common/BrowserConnector.js:48:50)
+    at async gatherFn (file:///C:/tmp/p101tools/node_modules/lighthouse/core/gather/navigation-runner.js:280:19)
+    at async Runner.gather (file:///C:/tmp/p101tools/node_modules/lighthouse/core/runner.js:211:25)
+    at async navigationGather (file:///C:/tmp/p101tools/node_modules/lighthouse/core/gather/navigation-runner.js:303:21)
+    at async navigation (file:///C:/tmp/p101tools/node_modules/lighthouse/core/index.js:58:24)
+    at async runLighthouse (file:///C:/tmp/p101tools/node_modules/lighthouse/cli/run.js:210:26)
+~~~
+
+This differed from the expected exit 0, so it is a FAIL. No retry was made and no later verification step was started.
+
+## Cleanup
+
+The first two Ctrl+C writes to the server PTY produced no output and did not terminate the listener.
+
+Command:
+
+~~~powershell
+netstat -ano | findstr :3236
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+  TCP    0.0.0.0:3236           0.0.0.0:0              LISTENING       42028
+  TCP    [::]:3236              [::]:0                 LISTENING       42028
+  TCP    [::1]:63246            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63247            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63248            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63249            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63250            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63271            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63276            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63277            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63278            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63279            [::1]:3236             TIME_WAIT       0
+~~~
+
+Command:
+
+~~~powershell
+Get-Process -Id 42028 | Select-Object Id,ProcessName,Path
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+   Id ProcessName Path
+   -- ----------- ----
+42028 node        C:\Program Files\nodejs\node.exe
+~~~
+
+Command:
+
+~~~powershell
+Stop-Process -Id 42028
+~~~
+
+Exit: 0
+
+Raw output: empty.
+
+Command:
+
+~~~powershell
+netstat -ano | findstr :3236
+~~~
+
+Exit: 0 because TIME_WAIT rows remained.
+
+Raw output:
+
+~~~text
+  TCP    [::1]:63246            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63247            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63248            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63249            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63250            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63271            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63276            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63277            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63278            [::1]:3236             TIME_WAIT       0
+  TCP    [::1]:63279            [::1]:3236             TIME_WAIT       0
+~~~
+
+Command:
+
+~~~powershell
+netstat -ano | findstr :3236 | findstr LISTENING
+~~~
+
+Exit: 1
+
+Raw output: empty; this confirms port 3236 is free of listeners.
+
+## Files changed and final status
+
+This stage created the five required BEFORE text files and updated this report. No product source file was edited. The Lighthouse output directory is empty because the failed run produced no JSON.
+
+Command:
+
+~~~powershell
+git status --short -- .planning/exec/lh123 .planning/qa/pass-123/text-before .planning/qa/pass-123/band
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+ M .planning/qa/pass-123/band/REPORT-STAGE-0.md
+?? .planning/qa/pass-123/text-before/
+~~~
+
+Command:
+
+~~~powershell
+git status --short
+~~~
+
+Exit: 0
+
+Raw output:
+
+~~~text
 warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
  M .planning/exec/glm121-fix2.log
  M .planning/qa/pass-112/server.log
+ M .planning/qa/pass-123/band/REPORT-STAGE-0.md
 ?? .planning/exec/after118.log
 ?? .planning/exec/astra111b.err
 ?? .planning/exec/astra111b.log
@@ -730,7 +1334,6 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/exec/axe118.txt
 ?? .planning/exec/axe118v2.txt
 ?? .planning/exec/axe118v3.txt
-?? .planning/exec/band-stage-0.md
 ?? .planning/exec/bin/
 ?? .planning/exec/build-123c-fix1.log
 ?? .planning/exec/build-123c-frames.log
@@ -955,6 +1558,8 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/exec/server120d.log
 ?? .planning/exec/server121-stageA.log
 ?? .planning/exec/sol-band0.log
+?? .planning/exec/sol-band0b.err
+?? .planning/exec/sol-band0b.log
 ?? .planning/exec/sol111a.log
 ?? .planning/exec/sol111b-review.err
 ?? .planning/exec/sol111b-review.log
@@ -1184,9 +1789,6 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/qa/pass-122/work/fix/390-step-7.png
 ?? .planning/qa/pass-122/work/fix/report.json
 ?? .planning/qa/pass-122/work/frames/
-?? .planning/qa/pass-123/band/
-?? .planning/qa/pass-123/card1-123cd-prod.txt
-?? .planning/qa/pass-123/cls-prod-after/
 ?? .planning/qa/pass-123/crossfade-rm/results-reduced.json
 ?? .planning/qa/pass-123/crossfade/results.json
 ?? .planning/qa/pass-123/diff-four-files.patch
@@ -1195,6 +1797,7 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/qa/pass-123/report-tables.md
 ?? .planning/qa/pass-123/text-123c-after-home.txt
 ?? .planning/qa/pass-123/text-123c-before-home.txt
+?? .planning/qa/pass-123/text-before/
 ?? .planning/qa/pass-123/v2-compare.txt
 ?? .planning/research/pass-121/_tooltest/
 ?? .planning/research/pass-121/audit-a/
@@ -1316,5 +1919,14 @@ warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
 ?? .planning/research/pass-121/set/c-tomcritchlow-home-390.png
 ?? .planning/research/pass-121/set/c-tomcritchlow-home-capture.json
 ?? .planning/reviews/scratch-111b/
-```
+~~~
 
+## Unanticipated items
+
+- The workspace arrived with the large pre-existing dirty set shown in 0.1; it was preserved.
+- Git printed two permission warnings for the user-level ignore file on every status command.
+- The specified absolute pnpm launcher was blocked by sandbox policy. The existing workspace cache contained pnpm 10.28.2, which was invoked directly with Node; no install or wrapper was used.
+- rg and tr were absent from PATH. Git's existing tr.exe was used by absolute path; Get-ChildItem was used only to inspect the already-present pnpm cache.
+- PowerShell redirection initially wrote UTF-16LE text. Those generated files were immediately replaced using cmd.exe redirection, and their leading bytes and final sizes were verified.
+- Ctrl+C did not stop the PTY server. The exact port-owning node PID was inspected and stopped, then the absence of a LISTENING row was verified.
+- Lighthouse could launch far enough to choose a debugging port but could not fetch Chrome's WebSocket endpoint. Per the brief, this was not retried or worked around.
