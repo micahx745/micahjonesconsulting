@@ -125,6 +125,16 @@ export default async function TheaterCaseStudyPage({
       ? splitLeadPhrase(cs.results.lead, cs.entry.figurePhrase)
       : null;
 
+  // Pass-123 fix round (judge, 2026-09-19, fix 4): the poster lead's last
+  // three words sit inside the title's own no-break span (.cs-title__nb,
+  // app/globals.css PASS-123 block) so 390 never breaks a line right after a
+  // bare "a" -- birth-worker's lead ends "...a month to" and was stranding
+  // "a" alone. Text content is unchanged: this only wraps a span around
+  // words already there, same rule lib/title-figure.ts's splits follow.
+  const posterLeadWords = poster ? poster.lead.split(" ") : [];
+  const posterLeadHead = posterLeadWords.slice(0, -3).join(" ");
+  const posterLeadNb = posterLeadWords.slice(-3).join(" ");
+
   const mod = await import(`@/content/work/${slug}.mdx`);
   const MDXContent = mod.default;
 
@@ -176,7 +186,11 @@ export default async function TheaterCaseStudyPage({
             />
             {poster ? (
               <p className="cs-poster">
-                <span className="cs-poster__lead">{poster.lead}</span>{" "}
+                <span className="cs-poster__lead">
+                  {posterLeadHead}
+                  {posterLeadHead ? " " : null}
+                  <span className="cs-title__nb">{posterLeadNb}</span>
+                </span>{" "}
                 <span className="cs-num cs-num--words">{poster.poster}</span>
                 {poster.after ? (
                   <>

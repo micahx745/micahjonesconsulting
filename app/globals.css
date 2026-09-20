@@ -662,6 +662,12 @@ body {
 .cs-band__head {
   container-type: inline-size;
 }
+.cs-band__context:has(+ .cs-glance__protected) {
+  margin-bottom: 4px;
+}
+.cs-band__head > .cs-glance__protected {
+  margin: 0 0 20px;
+}
 .cs-title__line--figure,
 .cs-title__kick,
 .cs-title__tail {
@@ -681,7 +687,7 @@ body {
   margin: 0.04em 0 0.1em;
 }
 .cs-num--comma {
-  margin-bottom: 0.16em;
+  margin-bottom: 0.12em;
 }
 .cs-num--words {
   font-size: min(calc((100vw - 32px) / 4.6), 188px);
