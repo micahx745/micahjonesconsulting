@@ -1,0 +1,278 @@
+{
+  "protected": {
+    "rfp-engine": {
+      "390": {
+        "protectedFound": true,
+        "contextFound": true,
+        "protectedRect": {
+          "top": 160,
+          "left": 16,
+          "right": 374,
+          "bottom": 178,
+          "width": 358,
+          "height": 18
+        },
+        "contextRect": {
+          "top": 104,
+          "left": 16,
+          "right": 374,
+          "bottom": 140,
+          "width": 358,
+          "height": 36
+        },
+        "protectedStyle": {
+          "fontSize": "12px",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Tuned Fallback\", \"JetBrains Mono\", ui-monospace, monospace",
+          "letterSpacing": "0.72px",
+          "textTransform": "none",
+          "color": "rgb(166, 155, 138)"
+        },
+        "protectedText": "Name protected",
+        "verticalGap": 20
+      },
+      "1440": {
+        "protectedFound": true,
+        "contextFound": true,
+        "protectedRect": {
+          "top": 167.5,
+          "left": 128,
+          "right": 1312,
+          "bottom": 187,
+          "width": 1184,
+          "height": 19.5
+        },
+        "contextRect": {
+          "top": 128,
+          "left": 128,
+          "right": 1312,
+          "bottom": 147.5,
+          "width": 1184,
+          "height": 19.5
+        },
+        "protectedStyle": {
+          "fontSize": "13px",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Tuned Fallback\", \"JetBrains Mono\", ui-monospace, monospace",
+          "letterSpacing": "0.78px",
+          "textTransform": "none",
+          "color": "rgb(166, 155, 138)"
+        },
+        "protectedText": "Name protected",
+        "verticalGap": 20
+      }
+    },
+    "content-engine": {
+      "390": {
+        "protectedFound": true,
+        "contextFound": true,
+        "protectedRect": {
+          "top": 142,
+          "left": 16,
+          "right": 374,
+          "bottom": 160,
+          "width": 358,
+          "height": 18
+        },
+        "contextRect": {
+          "top": 104,
+          "left": 16,
+          "right": 374,
+          "bottom": 122,
+          "width": 358,
+          "height": 18
+        },
+        "protectedStyle": {
+          "fontSize": "12px",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Tuned Fallback\", \"JetBrains Mono\", ui-monospace, monospace",
+          "letterSpacing": "0.72px",
+          "textTransform": "none",
+          "color": "rgb(166, 155, 138)"
+        },
+        "protectedText": "Name protected",
+        "verticalGap": 20
+      },
+      "1440": {
+        "protectedFound": true,
+        "contextFound": true,
+        "protectedRect": {
+          "top": 167.5,
+          "left": 128,
+          "right": 1312,
+          "bottom": 187,
+          "width": 1184,
+          "height": 19.5
+        },
+        "contextRect": {
+          "top": 128,
+          "left": 128,
+          "right": 1312,
+          "bottom": 147.5,
+          "width": 1184,
+          "height": 19.5
+        },
+        "protectedStyle": {
+          "fontSize": "13px",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Tuned Fallback\", \"JetBrains Mono\", ui-monospace, monospace",
+          "letterSpacing": "0.78px",
+          "textTransform": "none",
+          "color": "rgb(166, 155, 138)"
+        },
+        "protectedText": "Name protected",
+        "verticalGap": 20
+      }
+    },
+    "birth-worker": {
+      "390": {
+        "protectedFound": true,
+        "contextFound": true,
+        "protectedRect": {
+          "top": 142,
+          "left": 16,
+          "right": 374,
+          "bottom": 160,
+          "width": 358,
+          "height": 18
+        },
+        "contextRect": {
+          "top": 104,
+          "left": 16,
+          "right": 374,
+          "bottom": 122,
+          "width": 358,
+          "height": 18
+        },
+        "protectedStyle": {
+          "fontSize": "12px",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Tuned Fallback\", \"JetBrains Mono\", ui-monospace, monospace",
+          "letterSpacing": "0.72px",
+          "textTransform": "none",
+          "color": "rgb(166, 155, 138)"
+        },
+        "protectedText": "Name protected",
+        "verticalGap": 20
+      },
+      "1440": {
+        "protectedFound": true,
+        "contextFound": true,
+        "protectedRect": {
+          "top": 167.5,
+          "left": 128,
+          "right": 1312,
+          "bottom": 187,
+          "width": 1184,
+          "height": 19.5
+        },
+        "contextRect": {
+          "top": 128,
+          "left": 128,
+          "right": 1312,
+          "bottom": 147.5,
+          "width": 1184,
+          "height": 19.5
+        },
+        "protectedStyle": {
+          "fontSize": "13px",
+          "fontFamily": "\"JetBrains Mono\", \"JetBrains Mono Tuned Fallback\", \"JetBrains Mono\", ui-monospace, monospace",
+          "letterSpacing": "0.78px",
+          "textTransform": "none",
+          "color": "rgb(166, 155, 138)"
+        },
+        "protectedText": "Name protected",
+        "verticalGap": 20
+      }
+    }
+  },
+  "glanceRows": {
+    "guardicore": {
+      "390": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "The work",
+          "Results"
+        ]
+      },
+      "1440": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "The work",
+          "Results"
+        ]
+      }
+    },
+    "rfp-engine": {
+      "390": {
+        "count": 4,
+        "dts": [
+          "My role",
+          "First real RFPs delivered",
+          "What I built",
+          "Results"
+        ]
+      },
+      "1440": {
+        "count": 4,
+        "dts": [
+          "My role",
+          "First real RFPs delivered",
+          "What I built",
+          "Results"
+        ]
+      }
+    },
+    "ordani": {
+      "390": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "The work",
+          "Results"
+        ]
+      },
+      "1440": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "The work",
+          "Results"
+        ]
+      }
+    },
+    "content-engine": {
+      "390": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "What I built",
+          "Results"
+        ]
+      },
+      "1440": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "What I built",
+          "Results"
+        ]
+      }
+    },
+    "birth-worker": {
+      "390": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "The work",
+          "Results"
+        ]
+      },
+      "1440": {
+        "count": 3,
+        "dts": [
+          "My role",
+          "The work",
+          "Results"
+        ]
+      }
+    }
+  }
+}
