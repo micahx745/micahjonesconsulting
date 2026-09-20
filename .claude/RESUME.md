@@ -10,26 +10,27 @@ leg (`--legs deepseek`; DEEPSEEK_API_KEY or .claude/.deepseek-key, NOT SET yet
 dist/bin/next start -p 3236`; one .next at a time; NEVER
 elementHandle.screenshot(); `MSYS_NO_PATHCONV=1` for a leading-slash path arg.
 
-## LIVE: 28d9a11 dpl_27Zx5mo9dtKaLUHkNdY4LFEdK6GJ
-Read off the wire 2026-09-20 ~11:45, all three domains. CARD 1 re-run against
-it: 67 PASS, 0 FAIL (.planning/exec/card1-123-prod-0920-final.txt), including
-the new POSITIVE check that the served id is the one we built (EXPECT_DPL).
-Code is bf88384; 28d9a11 is the docs-only ship record on top, same render.
-REVERT: promote dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ (9813825).
-NEVER take a live dpl from a doc - read the wire (LESSONS #45).
+## LIVE: Pass-123, the commit at origin/main
+This file names the COMMIT, never the deploy id. Every docs-only push makes a
+new dpl, so a pinned id here is stale within minutes - which is exactly how
+the last one lied (LESSONS #45). Read it when you need it, then re-run CARD 1 against it:
+  curl -sL https://www.micahjonesconsulting.com/ | grep -o 'data-dpl-id="[^"]*"'
+  EXPECT_DPL=<that id> bash .planning/exec/card1-123.sh
+Code shipped at bf88384; 67 PASS / 0 FAIL on all three domains
+(.planning/exec/card1-123-prod-0920-final.txt). REVERT: promote
+dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ (9813825) - pinning a deploy id is right for
+a revert, because that one does not move.
 
 ## What shipped
-The five study bands (poster figure, birth worker's lead promoted, Guardicore
-clip, his ticked cuts, judge fix round) and the RFP Results row finally
-dropping the repeat - ledgered done 09-19, never built (LESSONS #44). Approval
-verbatim 09-20: "Yes, push it" + "Leave it quiet". Full record: commit 28d9a11.
+The five study bands, his ticked cuts, the judge fix round, and the RFP
+Results row finally dropping the repeat (#44). Detail: commit 28d9a11.
 
 ## Queue
 1. Home hero shift 0.0045 of the 1440 CLS (h1.cw-h1 / p.cw-sub), pre-existing.
 2. /work/guardicore mobile LCP ~3.4s, pre-existing; Speed Insights is judge.
 3. K5@390 harness race (task filed). 4. HandCircle.tsx delete: ask him.
-5. WorkHeroClip + StudyBandClip set `playedThisLoad` BEFORE play() resolves, so
-   a background-tab autoplay refusal kills the clip for that load, no retry;
+5. Both clip components set `playedThisLoad` BEFORE play() resolves, so a
+   background-tab autoplay refusal kills the clip for that load with no retry;
    no pause() on unmount. Pre-existing (Pass-120, live), own pass.
 6. DeepSeek: he sets the key, then smoke the leg on a real round.
 
@@ -37,6 +38,5 @@ verbatim 09-20: "Yes, push it" + "Leave it quiet". Full record: commit 28d9a11.
 #32 ledger first . #33 every spelling . #34 no grep -iF . #35 no parked copy .
 #36 marker leads . #37 no gaming a check . #38 field consumers . #39 scope
 first . #40 reveals never empty . #41 scroll CLS . #42 prove liveness . #43 a
-scripted edit proves what landed . #44 a ruling in the past tense reads as work
-done . #45 a ship gate asserts positively, off the wire . #19 accent while
-scrolling . pathspec commits.
+scripted edit proves what landed . #44 a past-tense ruling reads as work done .
+#45 assert positively, off the wire . #19 accent while scrolling . pathspec.
