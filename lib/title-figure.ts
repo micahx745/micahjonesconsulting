@@ -71,3 +71,43 @@ export function splitLeadPhrase(
   const after = tail ? "" : rest;
   return { lead, poster, after };
 }
+
+/** Two strings reduced to what a reader hears them as: runs of whitespace
+ * collapsed, trailing sentence punctuation dropped, case ignored. For comparing
+ * a rendered phrase against another one only -- never for rendering. */
+export function samePhrase(a: string, b: string): boolean {
+  const reduce = (s: string) =>
+    s
+      .trim()
+      .replace(/\s+/g, " ")
+      .replace(/[.,;:!?]+$/, "")
+      .toLowerCase();
+  return reduce(a) === reduce(b);
+}
+
+/** True when a study's Results lead is its title's figure line said over again,
+ * so the band would print the same sentence twice within one screen.
+ *
+ * Operator ruling 2026-09-19 (LESSONS #3, "PASS-123 JUDGE-GATE ANSWERS", RFP
+ * RESULTS ROW: "Drop the repeat, keep the rest"). After the contract count was
+ * retired that morning, rfp-engine's `results.lead` became "$3M in signed
+ * contracts." -- word for word the title line standing above it in the same
+ * band, at poster size. No string is edited to fix that: the template simply
+ * stops saying it a second time, the same silence birth worker's poster branch
+ * already produces.
+ *
+ * On the five published studies this fires on rfp-engine ALONE: guardicore's
+ * lead ("$14M in revenue, sourced and closed.") and content engine's ("A peak
+ * of 800,000 impressions in a month...") differ from their title lines, birth
+ * worker and ORDANI carry no title figure at all. scripts/results-repeat-gate.mjs
+ * reads the rule back off the built HTML so the page and this rule cannot drift. */
+export function leadRepeatsTitleFigure(
+  titleLines: string[],
+  lead: string,
+): boolean {
+  const at = findTitleFigure(titleLines);
+  if (at === -1) return false;
+  const line = titleLines[at];
+  if (line === undefined) return false;
+  return samePhrase(line, lead);
+}

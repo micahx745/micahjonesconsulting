@@ -13,7 +13,11 @@ import { StudyBandClip } from "@/components/color-worlds/StudyBandClip";
 import { CaseStudyReadTracker } from "@/components/CaseStudyReadTracker";
 import { ViewTransitionLink } from "@/components/view-transition-link";
 import { titleCardSchema } from "@/lib/title-card-schema";
-import { findTitleFigure, splitLeadPhrase } from "@/lib/title-figure";
+import {
+  findTitleFigure,
+  leadRepeatsTitleFigure,
+  splitLeadPhrase,
+} from "@/lib/title-figure";
 import { SERVICE_LABELS } from "@/lib/case-study-schema";
 import {
   getAllCaseStudies,
@@ -135,6 +139,14 @@ export default async function TheaterCaseStudyPage({
   const posterLeadHead = posterLeadWords.slice(0, -3).join(" ");
   const posterLeadNb = posterLeadWords.slice(-3).join(" ");
 
+  // The Results row keeps its rest and drops its lead when that lead is only
+  // the title's figure line said again (lib/title-figure.ts documents the
+  // ruling and why it fires on rfp-engine alone). Recorded as done in the
+  // ledger on 2026-09-19 and found unbuilt on 09-20 by two independent audit
+  // legs -- the row was written, the template never changed, and the page
+  // shipped the repeat the operator had asked dropped.
+  const leadRepeats = leadRepeatsTitleFigure(cs.titleLines, cs.results.lead);
+
   const mod = await import(`@/content/work/${slug}.mdx`);
   const MDXContent = mod.default;
 
@@ -214,7 +226,7 @@ export default async function TheaterCaseStudyPage({
               <div className="cs-glance__row">
                 <dt>Results</dt>
                 <dd>
-                  {poster ? null : (
+                  {poster || leadRepeats ? null : (
                     <>
                       <span className="cs-glance__result">
                         {cs.results.lead}

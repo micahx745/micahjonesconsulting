@@ -820,10 +820,16 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
 - **PASS-123 JUDGE-GATE ANSWERS — operator 2026-09-19 (popup, after the Fable judge read of the built
   bands)**. RFP RESULTS ROW: picked "Drop the repeat, keep the rest (Recommended)": after the contract
   count was retired this morning, `results.lead` became "$3M in signed contracts.", word for word the
-  title's figure line, sitting under the poster that says it. The TEMPLATE now renders `results.rest`
-  only when `results.lead` minus trailing punctuation equals the title's figure line - the same rule
-  birth worker already uses, no string edited, and it fires on rfp-engine alone (guardicore's and
-  content engine's leads differ from their titles). GUARDICORE DEK: picked "Keep it as you ruled": the
+  title's figure line, sitting under the poster that says it. REQUIREMENT (imperative, not a report -
+  see the correction below): the template MUST render `results.rest` alone, dropping the lead, whenever
+  `results.lead` minus trailing punctuation equals the title's figure line - the same silence birth
+  worker's poster already produces, no string edited, and it fires on rfp-engine alone (guardicore's and
+  content engine's leads differ from their titles). CORRECTION 2026-09-20: this row was first written in
+  the past tense ("the TEMPLATE now renders...") and the template was never changed - commit `0171769`
+  touched this file and nothing else, so the repeat shipped on the branch for a day while the ledger
+  said it was fixed. Two audit legs caught it off the prerendered HTML before it reached him.
+  Implemented for real by `leadRepeatsTitleFigure` in `lib/title-figure.ts` and held by
+  `scripts/results-repeat-gate.mjs` in `pnpm build` (LESSONS #44). GUARDICORE DEK: picked "Keep it as you ruled": the
   dek still opens "$14M in revenue, sourced and closed, at a $1.2M average enterprise deal, for a
   security company built in Tel Aviv..." under the $14M poster; both offered rewrites are REJECTED and
   are not to be re-proposed without a new dated ruling.
@@ -2029,3 +2035,40 @@ anchor is absent, over a `replace` in a shell one-liner.
 live 200 page with no `.cw-exits` (`/about`) exits 1 with the reason printed. On recurrence: every
 `node -e`/`sed` edit in a pass is followed by a grep of the new text in the same command, and any claim of
 a gate in a commit message or a lesson cites that grep.
+
+## #44 — A copy ruling was recorded as shipped in the ledger and never written into the template (2026-09-20)
+
+**What happened.** On 2026-09-19 the operator ruled by popup on the RFP study's Results row: "Drop the
+repeat, keep the rest". After the contract count was retired that morning, `results.lead` had become
+"$3M in signed contracts." — word for word the title line standing above it in the same dark band, at
+poster size. The ruling went into LESSONS #3 as the row "PASS-123 JUDGE-GATE ANSWERS", written in the
+past tense: *"The TEMPLATE now renders `results.rest` only when `results.lead` minus trailing punctuation
+equals the title's figure line ... and it fires on rfp-engine alone."* The template was never touched.
+Commit `0171769`, which carries that row, changed `docs/LESSONS_LEARNED.md` and nothing else — ten lines
+added, no code. `POSTER_PHRASE_SLUGS` still held `birth-worker` alone, so rfp-engine's lead rendered
+unconditionally, and the page shipped the repeat the operator had asked dropped. Every existing gate
+passed: the build was green, `work-entry-gate` confirmed the entry figure rendered, the fix round's 141
+checks passed, and the repeat was in none of their scopes. Caught on 09-20 by two independent audit legs
+reading the prerendered HTML, minutes before the sheets went to him.
+
+**Root cause.** A ruling written in the past tense reads as a record of work done. Nothing tied the prose
+to the artifact: the ledger row and the template had no shared check, so the row could describe a
+behaviour the build did not have and stay green indefinitely. The same commit habit that makes ledger rows
+cheap — ledger and code land separately, by design, so a leg can record a decision without touching
+files — is what let the pair drift. The verification that followed (a fix round of 141 checks) was
+thorough about everything it had been pointed at, and the ruling was not one of those things.
+
+**The rule.** A ledger row that describes RENDERED behaviour is written in the imperative, as a
+requirement ("the Results row MUST NOT repeat the title's figure line"), never in the past tense as a
+report. Past tense is reserved for rows that cite the commit that implemented them. And any ruling about
+what a page does or does not print ships with a check that reads it back off the built bytes, in the same
+pass — the row is not closed until that check exists and has been seen to fail on the unfixed page.
+
+**The gate.** `scripts/results-repeat-gate.mjs`, wired into `pnpm build` after `work-entry-gate`. For
+every published study it compares `results.lead` against the title's figure line (whitespace, trailing
+punctuation and case ignored) and checks the prerendered HTML both ways: a lead that repeats the title
+must not print in the Results row, and a lead that differs MUST print — in the Results row or promoted
+into the band poster, exactly once, never both. Proven on the unfixed build: 4 PASS, 1 FAIL naming
+rfp-engine and quoting the repeat. `--self-test` plants the shipped defect, the fixed render, the poster
+branch and a differing lead, and exits 1 on any wrong answer. On recurrence: a ledger row claiming a
+render behaviour must name the gate that reads it back, or it is not written.
