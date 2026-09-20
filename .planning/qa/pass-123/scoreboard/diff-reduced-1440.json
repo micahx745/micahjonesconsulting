@@ -1,0 +1,17 @@
+{
+  "a": ".planning/qa/pass-123/scoreboard/before-1440-reduced.png",
+  "b": ".planning/qa/pass-123/scoreboard/after-1440-reduced.png",
+  "width": 1360,
+  "height": 200,
+  "totalPixels": 272000,
+  "meanAbsDiffPerChannel": [
+    0,
+    0,
+    0
+  ],
+  "pixelsOver8": 0,
+  "pixelsOver8Pct": 0,
+  "anyDiffPixels": 0,
+  "anyDiffPixelsPct": 0,
+  "diffBoundingBox": null
+}

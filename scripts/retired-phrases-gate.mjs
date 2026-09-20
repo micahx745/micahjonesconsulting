@@ -253,6 +253,9 @@ const PHRASES = [
   "eleven of them",
   "11 awards",
   "11 contracts",
+  // Pass-123 (operator 2026-09-19, LESSONS #3 "RFP DAY-THREE FAQ CUT"): the RFP
+  // engine scored nothing by day three.
+  "scored for fit",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);

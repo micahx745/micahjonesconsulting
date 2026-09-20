@@ -1,0 +1,323 @@
+{
+  "base": "http://localhost:3251",
+  "tag": "after",
+  "when": "2026-09-20T00:36:02.854Z",
+  "widths": {
+    "390": {
+      "frames": [
+        {
+          "name": "b0",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-b0.png",
+          "box": {
+            "x": 20,
+            "y": 69,
+            "width": 350,
+            "height": 775
+          },
+          "md5": "7a34510543298eb3e28f7895de4c3810",
+          "Y0": 4654.61,
+          "innerHeight": 844,
+          "target": 4865.61,
+          "scrollY": 4866,
+          "current": 0,
+          "valueText": "$2.65B"
+        },
+        {
+          "name": "mid1",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-mid1.png",
+          "box": {
+            "x": 20,
+            "y": 69,
+            "width": 350,
+            "height": 775
+          },
+          "md5": "292a0699589059fcd926e56a712747a5",
+          "Y0": 4654.61,
+          "innerHeight": 844,
+          "target": 5287.61,
+          "scrollY": 5288,
+          "current": 1,
+          "valueText": "$2.33B"
+        },
+        {
+          "name": "b1",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-b1.png",
+          "box": {
+            "x": 20,
+            "y": 69,
+            "width": 350,
+            "height": 775
+          },
+          "md5": "e312a50eac1d1245542d9e7ce95b4e3a",
+          "Y0": 4654.61,
+          "innerHeight": 844,
+          "target": 5287.61,
+          "scrollY": 5288,
+          "current": 1,
+          "valueText": "$2.33B"
+        },
+        {
+          "name": "b2",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-b2.png",
+          "box": {
+            "x": 20,
+            "y": 69,
+            "width": 350,
+            "height": 775
+          },
+          "md5": "d3b524d871eef8100233d4392f79b752",
+          "Y0": 4654.61,
+          "innerHeight": 844,
+          "target": 5709.61,
+          "scrollY": 5710,
+          "current": 2,
+          "valueText": "$600M"
+        },
+        {
+          "name": "mid3",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-mid3.png",
+          "box": {
+            "x": 20,
+            "y": 69,
+            "width": 350,
+            "height": 775
+          },
+          "md5": "69e490818a55dbe1a8c937a9b9e338cf",
+          "Y0": 4654.61,
+          "innerHeight": 844,
+          "target": 6131.61,
+          "scrollY": 6132,
+          "current": 3,
+          "valueText": "Undisclosed"
+        },
+        {
+          "name": "b3",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-b3.png",
+          "box": {
+            "x": 20,
+            "y": 69,
+            "width": 350,
+            "height": 775
+          },
+          "md5": "961ccae0614a9dbfd12f2227914c4293",
+          "Y0": 4654.61,
+          "innerHeight": 844,
+          "target": 6131.61,
+          "scrollY": 6132,
+          "current": 3,
+          "valueText": "Undisclosed"
+        },
+        {
+          "name": "reduced",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-reduced.png",
+          "box": {
+            "x": 20,
+            "y": 214.609375,
+            "width": 350,
+            "height": 414.75
+          },
+          "md5": "2e8c1c3fc6c83af1da56fa5a098fb84d",
+          "scrollY": 4509,
+          "current": -1,
+          "valueText": null
+        },
+        {
+          "name": "nojs",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-390-nojs.png",
+          "box": {
+            "x": 20,
+            "y": 214.609375,
+            "width": 350,
+            "height": 414.75
+          },
+          "md5": "42235e0b27b4df8095427d45b28365b6",
+          "scrollY": 4509,
+          "current": -1,
+          "valueText": null
+        }
+      ],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "reduced: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "reduced: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "reduced: is-live wait timed out, proceeding anyway"
+      ],
+      "dupPairs": [],
+      "currentSeq": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "1440": {
+      "frames": [
+        {
+          "name": "b0",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-b0.png",
+          "box": {
+            "x": 40,
+            "y": 81,
+            "width": 1360,
+            "height": 819
+          },
+          "md5": "9f48cb822ebe07885f3d3eff5e038923",
+          "Y0": 4052.47,
+          "innerHeight": 900,
+          "target": 4277.469999999999,
+          "scrollY": 4277,
+          "current": 0,
+          "valueText": "$2.65B"
+        },
+        {
+          "name": "mid1",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-mid1.png",
+          "box": {
+            "x": 40,
+            "y": 81,
+            "width": 1360,
+            "height": 819
+          },
+          "md5": "64f3ca7925b21b44fff8709d5b659754",
+          "Y0": 4052.47,
+          "innerHeight": 900,
+          "target": 4727.469999999999,
+          "scrollY": 4727,
+          "current": 1,
+          "valueText": "$2.33B"
+        },
+        {
+          "name": "b1",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-b1.png",
+          "box": {
+            "x": 40,
+            "y": 81,
+            "width": 1360,
+            "height": 819
+          },
+          "md5": "eb2f2fb984d4065185c8bc4b5087d153",
+          "Y0": 4052.47,
+          "innerHeight": 900,
+          "target": 4727.469999999999,
+          "scrollY": 4727,
+          "current": 1,
+          "valueText": "$2.33B"
+        },
+        {
+          "name": "b2",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-b2.png",
+          "box": {
+            "x": 40,
+            "y": 81,
+            "width": 1360,
+            "height": 819
+          },
+          "md5": "fa3dc9a524f4aa3095287fedab48a17a",
+          "Y0": 4052.47,
+          "innerHeight": 900,
+          "target": 5177.469999999999,
+          "scrollY": 5177,
+          "current": 2,
+          "valueText": "$600M"
+        },
+        {
+          "name": "mid3",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-mid3.png",
+          "box": {
+            "x": 40,
+            "y": 81,
+            "width": 1360,
+            "height": 819
+          },
+          "md5": "fc9a1365adc3da994f50a48ea8a0cd33",
+          "Y0": 4052.47,
+          "innerHeight": 900,
+          "target": 5627.469999999999,
+          "scrollY": 5627,
+          "current": 3,
+          "valueText": "Undisclosed"
+        },
+        {
+          "name": "b3",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-b3.png",
+          "box": {
+            "x": 40,
+            "y": 81,
+            "width": 1360,
+            "height": 819
+          },
+          "md5": "a0188e0258eb331cf041abef91c57577",
+          "Y0": 4052.47,
+          "innerHeight": 900,
+          "target": 5627.469999999999,
+          "scrollY": 5627,
+          "current": 3,
+          "valueText": "Undisclosed"
+        },
+        {
+          "name": "reduced",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-reduced.png",
+          "box": {
+            "x": 40,
+            "y": 349.46875,
+            "width": 1360,
+            "height": 200.421875
+          },
+          "md5": "278b24890d9ccce096cc0160061b806c",
+          "scrollY": 3784,
+          "current": -1,
+          "valueText": null
+        },
+        {
+          "name": "nojs",
+          "path": ".planning\\qa\\pass-123\\scoreboard\\after-1440-nojs.png",
+          "box": {
+            "x": 40,
+            "y": 349.46875,
+            "width": 1360,
+            "height": 200.421875
+          },
+          "md5": "8d954b40d23a3e8812cd9fb2f2dd2919",
+          "scrollY": 3784,
+          "current": -1,
+          "valueText": null
+        }
+      ],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "reduced: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "reduced: Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "reduced: is-live wait timed out, proceeding anyway"
+      ],
+      "dupPairs": [],
+      "currentSeq": [
+        0,
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}
