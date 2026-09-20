@@ -817,6 +817,22 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   ratios for the LIVE hexes: copper 3.93 on foyer paper (still FAILS AA for body text, the B1 rule stands),
   3.53 on bone, 4.22 on the theater band, 3.57 on espresso; copper-deep 6.62 on paper, 5.94 on bone (PASS).
   NEVER re-encode #C8542B or #8E3A1E in a check, a brief or a design note.
+- **PASS-123 CUTS TICKED — operator 2026-09-19 (Pass-123, three popups, after the built before/after sheets
+  `.planning/qa/pass-123/sheets/study-before-after-{390,1440}.png`)**. Straight removals only, nothing
+  reworded, from `.planning/mocks/pass-123/CUTS-PROPOSED.md`. TICKED:
+  GUARDICORE G1 (dek sentence 3 "Akamai acquired the company in 2021.") and G2 (results.rest sentence 2
+  "Acquired by Akamai in 2021.", leaving "$1.2M average enterprise deal.").
+  RFP ENGINE R1 (dek sentence 3 "Their close rate went from one in eight to one in four.") and R2 (dek
+  sentence 1 "$3M in signed contracts, won through AI software I built for an award-winning author and
+  leadership consultant."; the dek then opens "It finds the RFPs worth answering...").
+  CONTENT ENGINE C2 (dek sentence 1 "Monthly impressions went from a few thousand to a peak of 800,000.")
+  and C1 (dek sentence 4 "One income stream became four.").
+  BIRTH WORKER B1 (dek sentence 1 "Bookings went from one to three a month to five to ten.").
+  TEMPLATE T1b: the at-a-glance Client row goes on every study; "Name protected" moves directly under the
+  context line above the title, same words and style, on the three anonymous studies.
+  NOT TICKED, so they stay: G3 (the dek's $14M sentence, so "built in Tel Aviv" and the "those buyers"
+  antecedent survive), G4, R3, R5, R6, C3, C4, C5, C6, B2, B3, B4, B5, B6, and ORDANI entirely (he picked
+  "None - leave ORDANI alone", including O6, the dek money line he asked to lead with on 2026-09-16).
 - **PASS-123 STUDY PAGES SCOPE — operator 2026-09-19 (Pass-123, popup, asked first per LESSONS #39)**. Question:
   the five study pages (one template), "Same rule as /work: your themes feed the existing page, nothing gets
   redesigned. Which parts take the themes?" He ticked three: **"Band number as a poster"** ("The top band's
