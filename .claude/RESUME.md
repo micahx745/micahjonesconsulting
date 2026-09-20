@@ -19,14 +19,10 @@ REVERT: promote dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ (9813825).
 NEVER take a live dpl from a doc - read the wire (LESSONS #45).
 
 ## What shipped
-The five study bands: title figure as a poster that assembles once, the birth
-worker's results lead promoted, the Guardicore photo playing the clip once,
-his ticked cuts, the judge fix round, and the RFP Results row finally dropping
-the repeat - ledgered done 09-19, never built, caught by two audit legs
-(LESSONS #44, held by scripts/results-repeat-gate.mjs). Approval verbatim,
-09-20 popup: "Yes, push it" + "Leave it quiet" (LESSONS #3 "PASS-123 SHIP
-APPROVED"). Pre-push: build green, CLS 0.00000 all five both widths, crossfade
-0 under 3:1 both modes both widths down AND up, 94 captures 0 failures.
+The five study bands (poster figure, birth worker's lead promoted, Guardicore
+clip, his ticked cuts, judge fix round) and the RFP Results row finally
+dropping the repeat - ledgered done 09-19, never built (LESSONS #44). Approval
+verbatim 09-20: "Yes, push it" + "Leave it quiet". Full record: commit 28d9a11.
 
 ## Queue
 1. Home hero shift 0.0045 of the 1440 CLS (h1.cw-h1 / p.cw-sub), pre-existing.
