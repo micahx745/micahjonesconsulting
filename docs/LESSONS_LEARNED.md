@@ -1945,7 +1945,38 @@ build's own exit code read before any probe runs), and every probe that can retu
 the target rendered: HTTP 200, at least one stylesheet, and the element the probe exists to watch, with a
 plausible size. A probe that cannot prove liveness reports UNVERIFIED, never 0.
 
-**The gate.** `.planning/exec/cls-attrib-123.mjs` now runs a LIVENESS check per viewport (status, `.cw-exits`
-present and over 100px tall, stylesheets present) and exits 1 with `LIVENESS FAIL` otherwise; proven against
-a dead port. On recurrence: the same three-line assertion is copied into every capture and measuring script
+**The gate.** `.planning/exec/cls-attrib-123.mjs` runs a LIVENESS check per viewport (status, `.cw-exits`
+present and over 100px tall, stylesheets present) and exits 1 with `LIVENESS FAIL` otherwise. CORRECTED
+2026-09-19 (see #43): the first version of this sentence was false. The edit that was supposed to add the
+check silently matched nothing, the script that made it printed success anyway, and the "proof" was a run
+against a dead port, which only showed that a browser cannot connect. The check now exists (verified by
+grep) and is proven by a run against a LIVE 200 page that has no `.cw-exits` (`/about`): `LIVENESS FAIL
+mobile: status=200 .cw-exits=false height=0 stylesheets=3`, exit 1. On recurrence: the same three-line assertion is copied into every capture and measuring script
 under `.planning/exec/`, and a run-start step asserts `node_modules/.bin` is non-empty.
+
+## #43 — A scripted edit printed success, changed nothing, and its own bite test agreed (2026-09-19)
+
+**What happened.** Pass-123c added a liveness assertion to `.planning/exec/cls-attrib-123.mjs` with a
+throwaway `node -e` script shaped `if (!s.includes("LIVENESS")) { s = s.replace(old, new);
+fs.writeFileSync(p, s); console.log("liveness added"); }`. The guard passed (the string was absent), the
+`replace` matched nothing (the anchor text differed by whitespace), the unchanged file was written, and the
+script printed `liveness added`. The "proof" was a run against a dead port, which errored — so it looked
+like the new check firing, when it was only puppeteer failing to connect. Commit `b596fb2` and LESSONS #42
+both then claimed a gate that did not exist. Caught two hours later by a Sonnet leg that was told to keep
+the assertion, grepped for it, found nothing, and said so instead of assuming it had misread.
+
+**Root cause.** `String.replace` returns the input unchanged when the pattern misses, so a write plus a
+`console.log` proves only that the script ran. The success message described the intent, not the result.
+And the bite test could not tell the new failure apart from a pre-existing one: a dead port fails with or
+without the check.
+
+**The rule.** A scripted edit asserts its own post-condition: re-read the file after writing and grep for
+the text that was supposed to land, and print THAT result (`present: 1`), never a hand-written "done". A
+bite test must fail for the reason under test and pass otherwise: point it at a target that is healthy in
+every way except the one the check exists to catch. Prefer the Edit tool, which fails loudly when its
+anchor is absent, over a `replace` in a shell one-liner.
+
+**The gate.** Verified this way for the liveness check: `grep -c 'LIVENESS FAIL'` = 1, then a run against a
+live 200 page with no `.cw-exits` (`/about`) exits 1 with the reason printed. On recurrence: every
+`node -e`/`sed` edit in a pass is followed by a grep of the new text in the same command, and any claim of
+a gate in a commit message or a lesson cites that grep.

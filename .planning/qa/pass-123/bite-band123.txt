@@ -1,0 +1,151 @@
+PASS B1 h1 text guardicore 390: got "Repositioning Guardicore: $14M, then Akamai"
+FAIL B2 counts guardicore 390: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=0 figureLine=1 line=2)
+FAIL B3 strings guardicore 390: got num=null kick=null tail=null posterLead=null comma=false (want num="$14M," kick=null tail="then Akamai" posterLead=null comma=true)
+FAIL B4 rest state guardicore 390: got num=null lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~99.4px color rgb(200,84,43) wght 800 finished; lines 36px/800; all opacity 1)
+REPORT B5 fit guardicore 390: no .cs-num element -- fit check NA
+PASS B6 overlap guardicore 390: got 0 rows with both copper and bone
+REPORT B6 ink gap guardicore 390: no copper pixels in the head rect -- NA
+PASS B7 results row guardicore 390: got resultCount=1 hasResultsDt=true
+FAIL B8 assembly guardicore 390: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast guardicore 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.40(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 guardicore 390: got 390 at every 422px step
+PASS B1 h1 text guardicore 1440: got "Repositioning Guardicore: $14M, then Akamai"
+FAIL B2 counts guardicore 1440: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=0 figureLine=1 line=2)
+FAIL B3 strings guardicore 1440: got num=null kick=null tail=null posterLead=null comma=false (want num="$14M," kick=null tail="then Akamai" posterLead=null comma=true)
+FAIL B4 rest state guardicore 1440: got num=null lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~240px color rgb(200,84,43) wght 800 finished; lines 56px/800; all opacity 1)
+REPORT B5 fit guardicore 1440: no .cs-num element -- fit check NA
+PASS B6 overlap guardicore 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap guardicore 1440: no copper pixels in the head rect -- NA
+PASS B7 results row guardicore 1440: got resultCount=1 hasResultsDt=true
+FAIL B8 assembly guardicore 1440: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast guardicore 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B1 h1 text rfp-engine 390: got "AI RFP software: $3M in signed contracts"
+FAIL B2 counts rfp-engine 390: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=0 figureLine=1 line=2)
+FAIL B3 strings rfp-engine 390: got num=null kick=null tail=null posterLead=null comma=false (want num="$3M" kick=null tail="in signed contracts" posterLead=null comma=false)
+FAIL B4 rest state rfp-engine 390: got num=null lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~99.4px color rgb(200,84,43) wght 800 finished; lines 36px/800; all opacity 1)
+REPORT B5 fit rfp-engine 390: no .cs-num element -- fit check NA
+PASS B6 overlap rfp-engine 390: got 0 rows with both copper and bone
+REPORT B6 ink gap rfp-engine 390: no copper pixels in the head rect -- NA
+PASS B7 results row rfp-engine 390: got resultCount=1 hasResultsDt=true
+FAIL B8 assembly rfp-engine 390: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast rfp-engine 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dt#4=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance dd#4=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 rfp-engine 390: got 390 at every 422px step
+PASS B1 h1 text rfp-engine 1440: got "AI RFP software: $3M in signed contracts"
+FAIL B2 counts rfp-engine 1440: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=0 figureLine=1 line=2)
+FAIL B3 strings rfp-engine 1440: got num=null kick=null tail=null posterLead=null comma=false (want num="$3M" kick=null tail="in signed contracts" posterLead=null comma=false)
+FAIL B4 rest state rfp-engine 1440: got num=null lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~240px color rgb(200,84,43) wght 800 finished; lines 56px/800; all opacity 1)
+REPORT B5 fit rfp-engine 1440: no .cs-num element -- fit check NA
+PASS B6 overlap rfp-engine 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap rfp-engine 1440: no copper pixels in the head rect -- NA
+PASS B7 results row rfp-engine 1440: got resultCount=1 hasResultsDt=true
+FAIL B8 assembly rfp-engine 1440: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast rfp-engine 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dt#4=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.40(>=4.5) .cs-glance dd#4=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B1 h1 text ordani 390: got "ORDANI: HIPAA-compliant CRM for birth workers"
+PASS B2 counts ordani 390: got num=0 poster=0 figureLine=0 line=2
+PASS B3 strings ordani 390: got num=null kick=null tail=null posterLead=null comma=false
+PASS B4 rest state ordani 390: got lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1]
+REPORT B5 fit ordani 390: no .cs-num element -- fit check NA
+PASS B6 overlap ordani 390: got 0 rows with both copper and bone
+REPORT B6 ink gap ordani 390: no copper pixels in the head rect -- NA
+PASS B7 results row ordani 390: got resultCount=1 hasResultsDt=true
+PASS B10 contrast ordani 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 ordani 390: got 390 at every 422px step
+PASS B1 h1 text ordani 1440: got "ORDANI: HIPAA-compliant CRM for birth workers"
+PASS B2 counts ordani 1440: got num=0 poster=0 figureLine=0 line=2
+PASS B3 strings ordani 1440: got num=null kick=null tail=null posterLead=null comma=false
+PASS B4 rest state ordani 1440: got lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1]
+REPORT B5 fit ordani 1440: no .cs-num element -- fit check NA
+PASS B6 overlap ordani 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap ordani 1440: no copper pixels in the head rect -- NA
+PASS B7 results row ordani 1440: got resultCount=1 hasResultsDt=true
+PASS B10 contrast ordani 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.78(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.40(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B1 h1 text content-engine 390: got "AI content engine: up to 800,000 impressions"
+FAIL B2 counts content-engine 390: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=0 figureLine=1 line=2)
+FAIL B3 strings content-engine 390: got num=null kick=null tail=null posterLead=null comma=false (want num="800,000" kick="up to" tail="impressions" posterLead=null comma=true)
+FAIL B4 rest state content-engine 390: got num=null lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~99.4px color rgb(200,84,43) wght 800 finished; lines 36px/800; all opacity 1)
+REPORT B5 fit content-engine 390: no .cs-num element -- fit check NA
+PASS B6 overlap content-engine 390: got 0 rows with both copper and bone
+REPORT B6 ink gap content-engine 390: no copper pixels in the head rect -- NA
+PASS B7 results row content-engine 390: got resultCount=1 hasResultsDt=true
+FAIL B8 assembly content-engine 390: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast content-engine 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 content-engine 390: got 390 at every 422px step
+PASS B1 h1 text content-engine 1440: got "AI content engine: up to 800,000 impressions"
+FAIL B2 counts content-engine 1440: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=0 figureLine=1 line=2)
+FAIL B3 strings content-engine 1440: got num=null kick=null tail=null posterLead=null comma=false (want num="800,000" kick="up to" tail="impressions" posterLead=null comma=true)
+FAIL B4 rest state content-engine 1440: got num=null lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~240px color rgb(200,84,43) wght 800 finished; lines 56px/800; all opacity 1)
+REPORT B5 fit content-engine 1440: no .cs-num element -- fit check NA
+PASS B6 overlap content-engine 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap content-engine 1440: no copper pixels in the head rect -- NA
+PASS B7 results row content-engine 1440: got resultCount=1 hasResultsDt=true
+FAIL B8 assembly content-engine 1440: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast content-engine 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.40(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B1 h1 text birth-worker 390: got "Growing a birth worker's practice"
+FAIL B2 counts birth-worker 390: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=1 figureLine=0 line=2)
+FAIL B3 strings birth-worker 390: got num=null kick=null tail=null posterLead=null comma=false (want num="five to ten." kick=null tail=null posterLead="Bookings from one to three a month to" comma=false)
+FAIL B4 rest state birth-worker 390: got num=null lineSizes=[{"fontSize":36,"fontWeight":"800"},{"fontSize":36,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~77.8px color rgb(200,84,43) wght 800 finished; lines 36px/800; all opacity 1; posterLead 26px/700)
+REPORT B5 fit birth-worker 390: no .cs-num element -- fit check NA
+PASS B6 overlap birth-worker 390: got 0 rows with both copper and bone
+REPORT B6 ink gap birth-worker 390: no copper pixels in the head rect -- NA
+FAIL B7 results row birth-worker 390: got resultCount=1 hasResultsDt=true restText="Thousands of dollars kept that used to go to claims-processing fees. Requests across her whole range instead of one service." (want resultCount=0, dt "Results" present, restText="Thousands of dollars kept that used to go to claims-processing fees. Requests across her whole range instead of one service.")
+FAIL B8 assembly birth-worker 390: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast birth-worker 390: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.40(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.78(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+PASS B5 scrollWidth-390 birth-worker 390: got 390 at every 422px step
+PASS B1 h1 text birth-worker 1440: got "Growing a birth worker's practice"
+FAIL B2 counts birth-worker 1440: got num=0 poster=0 figureLine=0 line=2 (want num=1 poster=1 figureLine=0 line=2)
+FAIL B3 strings birth-worker 1440: got num=null kick=null tail=null posterLead=null comma=false (want num="five to ten." kick=null tail=null posterLead="Bookings from one to three a month to" comma=false)
+FAIL B4 rest state birth-worker 1440: got num=null lineSizes=[{"fontSize":56,"fontWeight":"800"},{"fontSize":56,"fontWeight":"800"}] opacities=[1,1] posterLead=null (want num fontSize~188px color rgb(200,84,43) wght 800 finished; lines 56px/800; all opacity 1; posterLead 36px/700)
+REPORT B5 fit birth-worker 1440: no .cs-num element -- fit check NA
+PASS B6 overlap birth-worker 1440: got 0 rows with both copper and bone
+REPORT B6 ink gap birth-worker 1440: no copper pixels in the head rect -- NA
+FAIL B7 results row birth-worker 1440: got resultCount=1 hasResultsDt=true restText="Thousands of dollars kept that used to go to claims-processing fees. Requests across her whole range instead of one service." (want resultCount=0, dt "Results" present, restText="Thousands of dollars kept that used to go to claims-processing fees. Requests across her whole range instead of one service.")
+FAIL B8 assembly birth-worker 1440: got no .cs-num sampled in any of the 2000ms of frames (want wght<800 first, non-decreasing, last=800, clip-path final inset(-25% -10% -25% -10%), opacity 1 by 1000ms)
+PASS B10 contrast birth-worker 1440: got .cs-band__context=5.73(>=4.5) .cs-title__line#0=12.29(>=3) .cs-title__line#1=12.29(>=3) .cs-band__dek=12.29(>=4.5) .cs-glance dt#0=5.73(>=4.5) .cs-glance dt#1=5.73(>=4.5) .cs-glance dt#2=5.73(>=4.5) .cs-glance dt#3=5.73(>=4.5) .cs-glance dd#0=12.29(>=4.5) .cs-glance dd#1=12.29(>=4.5) .cs-glance dd#2=12.29(>=4.5) .cs-glance dd#3=12.29(>=4.5) .cs-glance__protected=5.73(>=4.5) .cs-glance__result=12.29(>=3) .cs-glance__result-rest=12.29(>=4.5)
+FAIL B9 reduced-motion guardicore 390: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS guardicore 390: got max channel diff 0, luminance std 71.4 / 71.4
+FAIL B9 reduced-motion guardicore 1440: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS guardicore 1440: got max channel diff 0, luminance std 61.9 / 61.9
+FAIL B9 reduced-motion rfp-engine 390: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS rfp-engine 390: got max channel diff 0, luminance std 65.7 / 65.7
+FAIL B9 reduced-motion rfp-engine 1440: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS rfp-engine 1440: got max channel diff 0, luminance std 58.9 / 58.9
+PASS B9 reduced-motion ordani 390: got allOpacity1=true (2 lines, no .cs-num on ordani)
+PASS B9 no-JS ordani 390: got max channel diff 0, luminance std 66.9 / 66.9
+PASS B9 reduced-motion ordani 1440: got allOpacity1=true (2 lines, no .cs-num on ordani)
+PASS B9 no-JS ordani 1440: got max channel diff 0, luminance std 63.5 / 63.5
+FAIL B9 reduced-motion content-engine 390: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS content-engine 390: got max channel diff 0, luminance std 70.5 / 70.5
+FAIL B9 reduced-motion content-engine 1440: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS content-engine 1440: got max channel diff 0, luminance std 61.1 / 61.1
+FAIL B9 reduced-motion birth-worker 390: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS birth-worker 390: got max channel diff 0, luminance std 61.8 / 61.8
+FAIL B9 reduced-motion birth-worker 1440: got num=null allOpacity1=true (2 lines) (want num animsLength 0, fvs normal, weight 800; every title line opacity 1)
+PASS B9 no-JS birth-worker 1440: got max channel diff 0, luminance std 53.1 / 53.1
+FAIL K1 video count guardicore: got 0 (want 1)
+PASS K1 track count guardicore: got 0
+FAIL K1 video attrs guardicore: got no <video tag on the page (want preload=none aria-hidden=true playsinline, no autoplay/loop/controls/poster)
+PASS K1 preload link guardicore: got 1 preload-image links, one names guardicore-band-960
+FAIL K1 img-precedes-video guardicore: got img.cs-band__img at 8054, video.cs-band__clip at -1 (want both present, img index < video index)
+PASS K1 video count rfp-engine: got 0
+PASS K1 video count ordani: got 0
+PASS K1 video count content-engine: got 0
+PASS K1 video count birth-worker: got 0
+FAIL K3 plays once guardicore 390: got no video.cs-band__clip in the viewport (want a main video in the viewport)
+FAIL K4 visible while playing guardicore 390: got no video.cs-band__clip (want opacity 1 while playing, pixels differ from clip-pre)
+FAIL K5 rests on photo guardicore 390: got no video.cs-band__clip (want opacity 0 after ended, pixels equal clip-pre)
+FAIL K8 no early fetch guardicore 390: got no video.cs-band__clip to evaluate (want 0 media fetches before load, >=1 after playing)
+PASS K7 no caption guardicore 390: got 0 inside [], 0 below []
+FAIL K3 plays once guardicore 1440: got no video.cs-band__clip in the viewport (want a main video in the viewport)
+FAIL K2 properties guardicore 1440: got no video.cs-band__clip (want a video element)
+FAIL K4 visible while playing guardicore 1440: got no video.cs-band__clip (want opacity 1 while playing, pixels differ from clip-pre)
+FAIL K5 rests on photo guardicore 1440: got no video.cs-band__clip (want opacity 0 after ended, pixels equal clip-pre)
+FAIL K8 no early fetch guardicore 1440: got no video.cs-band__clip to evaluate (want 0 media fetches before load, >=1 after playing)
+PASS K7 no caption guardicore 1440: got 0 inside [], 0 below []
+PASS K6 reduced-motion guardicore 390: got (video absent, measured .cs-band__media) max channel diff 0, std 38.2/38.2
+PASS K6 reduced-motion guardicore 1440: got (video absent, measured .cs-band__media) max channel diff 0, std 38.1/38.1
+PASS K6 save-data guardicore 1440: got (video absent, measured .cs-band__media) max channel diff 0, std 38.1/38.1
+PASS K6 no-JS guardicore 390: got (video absent, measured .cs-band__media) max channel diff 0, std 38.2/38.2
+PASS K6 no-JS guardicore 1440: got (video absent, measured .cs-band__media) max channel diff 0, std 38.1/38.1
+PASS K9 bite (mirrored jpg vs itself): got 39.4
+PASS K9 frame0-is-photo: got 3.3
+band123 failures: 54

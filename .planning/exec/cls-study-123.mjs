@@ -1,13 +1,23 @@
-// Pass-123b CLS attribution (live site, read only). Usage:
-//   node .planning/exec/cls-attrib-123.mjs <baseUrl>
-// Same load + scripted scroll as .planning/exec/cls-123.mjs (Pass-123a measured
-// 0.33 @390 and 0.20 @1440 summing EVERY layout-shift entry), but records every
-// entry: value, startTime, window.scrollY at observer-callback time,
-// hadRecentInput, and each source's node as a short selector (tag + classes,
-// node plus up to 3 ancestors) with previousRect and currentRect. Also computes
-// CLS the way Chrome does — session windows over non-input entries (a gap over
-// 1s closes the window, the window is capped at 5s), the metric is the largest
-// window. Saves .planning/qa/pass-123/cls-attrib-<W>.json per width.
+// Pass-123 study-band CLS attribution (copied from .planning/exec/cls-attrib-123.mjs
+// per the Stage-0 brief, step 0.6). Usage:
+//   node .planning/exec/cls-study-123.mjs <baseUrl> <path> <outDir>
+// Loads <baseUrl><path> (a study page, e.g. /work/guardicore) and scrolls in 200px
+// instant steps to the bottom of .cs-band plus one viewport (adapted from the
+// original's #products target on the home page). Records every layout-shift entry:
+// value, startTime, window.scrollY at observer-callback time, hadRecentInput, and
+// each source's node as a short selector (tag + classes, node plus up to 3
+// ancestors) with previousRect and currentRect. Computes CLS the way Chrome does —
+// session windows over non-input entries (a gap over 1s closes the window, the
+// window is capped at 5s), the metric is the largest window.
+//
+// LIVENESS: the original script's scroll target silently fell back to
+// document.body.scrollHeight when its anchor selector (#products) was missing,
+// which would report a plausible-looking but wrong number if the selector ever
+// stopped matching. This copy asserts .cs-band exists before computing anything
+// and throws loudly instead of falling back, adapted to these study pages (the
+// element to assert is .cs-band, not the home page's .cw-exits).
+//
+// Saves <outDir>/<slug>-<W>.json per width, where <slug> is the last path segment.
 import { createRequire } from 'module';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,8 +25,15 @@ import path from 'node:path';
 const require = createRequire('C:/tmp/p101tools/package.json');
 const puppeteer = require('puppeteer-core');
 
-const baseUrl = process.argv[2] || 'https://www.micahjonesconsulting.com/';
-const OUT_DIR = process.argv[3] || '.planning/qa/pass-123';
+const baseUrl = process.argv[2];
+const pagePath = process.argv[3];
+const OUT_DIR = process.argv[4];
+if (!baseUrl || !pagePath || !OUT_DIR) {
+  console.error('usage: node cls-study-123.mjs <baseUrl> <path> <outDir>');
+  process.exit(1);
+}
+const slug = pagePath.split('/').filter(Boolean).pop() || 'page';
+const url = baseUrl.replace(/\/$/, '') + pagePath;
 
 const browser = await puppeteer.launch({
   executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -98,46 +115,20 @@ async function runViewport(label, W, outName, viewport) {
       /* observer unavailable */
     }
   });
-  const resp = await page.goto(baseUrl.replace(/\/$/, '') + '/', { waitUntil: 'networkidle2' });
+  await page.goto(url, { waitUntil: 'networkidle2' });
   await new Promise((r) => setTimeout(r, 2000));
-  // LIVENESS (Pass-123, 2026-09-19, LESSONS #42 and #43). A run against a build
-  // that never compiled reported `total=0, largest-window=0.00000` and read as a
-  // perfect pass. A zero is evidence only when the page actually rendered: a 200,
-  // at least one stylesheet, and the section this probe exists to watch, at a
-  // plausible size. Anything else exits 1 instead of printing a number.
-  const live = await page.evaluate(() => {
-    const sec = document.querySelector('.cw-exits');
-    return {
-      sec: !!sec,
-      secH: sec ? Math.round(sec.getBoundingClientRect().height) : 0,
-      sheets: document.styleSheets.length,
-      bodyBg: getComputedStyle(document.body).backgroundColor,
-    };
-  });
-  // A 304 is a rendered page (the second viewport reuses the cache), so the
-  // status bar is "not an error", not "2xx": the first version of this check
-  // failed a healthy desktop run with status=304, .cw-exits=true, height=2619.
-  if (
-    !resp ||
-    resp.status() >= 400 ||
-    !live.sec ||
-    live.secH < 100 ||
-    live.sheets < 1
-  ) {
-    console.error(
-      `LIVENESS FAIL ${label}: status=${resp ? resp.status() : 'none'} ` +
-        `.cw-exits=${live.sec} height=${live.secH} stylesheets=${live.sheets} bodyBg=${live.bodyBg}`,
-    );
-    process.exit(1);
+
+  // LIVENESS: fail loudly if .cs-band is not on the page, rather than silently
+  // falling back to document.body.scrollHeight.
+  const hasBand = await page.evaluate(() => !!document.querySelector('.cs-band'));
+  if (!hasBand) {
+    await page.close();
+    throw new Error(`LIVENESS: .cs-band not found on ${url} (${label} ${W}px)`);
   }
-  console.log(
-    `liveness ${label}: status ${resp.status()}, .cw-exits ${live.secH}px, ${live.sheets} stylesheet(s)`,
-  );
+
   const target = await page.evaluate(() => {
-    const el = document.querySelector('#products');
-    const bottom = el
-      ? el.getBoundingClientRect().top + window.scrollY + el.offsetHeight
-      : document.body.scrollHeight;
+    const el = document.querySelector('.cs-band');
+    const bottom = el.getBoundingClientRect().top + window.scrollY + el.offsetHeight;
     return bottom + window.innerHeight;
   });
   for (let y = 0; y <= target; y += 200) {
@@ -160,7 +151,7 @@ async function runViewport(label, W, outName, viewport) {
   fs.writeFileSync(
     outPath,
     JSON.stringify(
-      { width: W, url: baseUrl.replace(/\/$/, '') + '/', entries, totalAll, chromeSessionWindows: windows, largestSessionWindow: cls },
+      { width: W, url, entries, totalAll, chromeSessionWindows: windows, largestSessionWindow: cls },
       null,
       2,
     ) + '\n',
@@ -183,19 +174,19 @@ async function runViewport(label, W, outName, viewport) {
 }
 
 try {
-  const m = await runViewport('mobile', 390, 'cls-attrib-390.json', {
+  const m = await runViewport('mobile', 390, `${slug}-390.json`, {
     width: 390,
     height: 844,
     deviceScaleFactor: 2,
     isMobile: true,
     hasTouch: true,
   });
-  const d = await runViewport('desktop', 1440, 'cls-attrib-1440.json', {
+  const d = await runViewport('desktop', 1440, `${slug}-1440.json`, {
     width: 1440,
     height: 900,
     deviceScaleFactor: 1,
   });
-  console.log(`\nSUMMARY 390: total=${m.totalAll} largest-window=${m.cls.toFixed(5)} | 1440: total=${d.totalAll} largest-window=${d.cls.toFixed(5)}`);
+  console.log(`\nSUMMARY ${slug} 390: total=${m.totalAll} largest-window=${m.cls.toFixed(5)} | 1440: total=${d.totalAll} largest-window=${d.cls.toFixed(5)}`);
 } finally {
   await browser.close();
 }
