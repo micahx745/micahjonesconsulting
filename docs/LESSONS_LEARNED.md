@@ -817,6 +817,16 @@ stages. The wrong versions keep trying to come back via stale docs and reviewer 
   ratios for the LIVE hexes: copper 3.93 on foyer paper (still FAILS AA for body text, the B1 rule stands),
   3.53 on bone, 4.22 on the theater band, 3.57 on espresso; copper-deep 6.62 on paper, 5.94 on bone (PASS).
   NEVER re-encode #C8542B or #8E3A1E in a check, a brief or a design note.
+- **PASS-123 JUDGE-GATE ANSWERS — operator 2026-09-19 (popup, after the Fable judge read of the built
+  bands)**. RFP RESULTS ROW: picked "Drop the repeat, keep the rest (Recommended)": after the contract
+  count was retired this morning, `results.lead` became "$3M in signed contracts.", word for word the
+  title's figure line, sitting under the poster that says it. The TEMPLATE now renders `results.rest`
+  only when `results.lead` minus trailing punctuation equals the title's figure line - the same rule
+  birth worker already uses, no string edited, and it fires on rfp-engine alone (guardicore's and
+  content engine's leads differ from their titles). GUARDICORE DEK: picked "Keep it as you ruled": the
+  dek still opens "$14M in revenue, sourced and closed, at a $1.2M average enterprise deal, for a
+  security company built in Tel Aviv..." under the $14M poster; both offered rewrites are REJECTED and
+  are not to be re-proposed without a new dated ruling.
 - **PASS-123 CUTS TICKED — operator 2026-09-19 (Pass-123, three popups, after the built before/after sheets
   `.planning/qa/pass-123/sheets/study-before-after-{390,1440}.png`)**. Straight removals only, nothing
   reworded, from `.planning/mocks/pass-123/CUTS-PROPOSED.md`. TICKED:
