@@ -35,6 +35,8 @@
 #   -PromptFile on deepseek-v4-pro  -> 308 chars, finish=stop, tokens_out=208
 #   UTF-8 round-trip: a right single quote, an em-dash and an e-acute all
 #   survive to disk intact, no BOM, no mojibake.
+#   Re-confirmed 2026-09-20 in the Pass-124 session, key read from
+#   ~/.claude/.deepseek-key: -Smoke -> reply=OK tokens_in=40 tokens_out=14.
 # Two bugs were found and fixed getting there; both are commented at the site
 # of the fix: ConvertTo-Json exploding a Get-Content string to 105 MB, and
 # Invoke-RestMethod decoding the reply as Latin-1.
@@ -199,8 +201,14 @@ if ($Out) {
   # UTF8Encoding($false) = no BOM. Set-Content -Encoding utf8 writes one in
   # PS 5.1, and a BOM riding into copy that gets pasted elsewhere is a bug
   # waiting to be blamed on something else.
+  # BUG FIXED 2026-09-20 (Pass-124). This was an unconditional
+  # `Join-Path (Get-Location).Path $Out`, which turns an ALREADY-ABSOLUTE -Out
+  # ("C:/tmp/out.md") into a cwd-prefixed nonsense path and dies with "The given
+  # path's format is not supported." Only a RELATIVE -Out needs the cwd.
+  $outPath = if ([System.IO.Path]::IsPathRooted($Out)) { $Out }
+             else { Join-Path (Get-Location).Path $Out }
   [System.IO.File]::WriteAllText(
-    (Join-Path (Get-Location).Path $Out), $text, (New-Object System.Text.UTF8Encoding($false)))
+    $outPath, $text, (New-Object System.Text.UTF8Encoding($false)))
   Write-Output "wrote $Out ($($text.Length) chars, model=$($resp.model), finish=$($choice.finish_reason), tokens_out=$($resp.usage.completion_tokens), cache_hit=$($resp.usage.prompt_cache_hit_tokens))"
 }
 Write-Output $text

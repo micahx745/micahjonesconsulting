@@ -1,43 +1,31 @@
-# RESUME - micahjonesconsulting (2026-09-20)
+# RESUME — micahjonesconsulting (2026-09-20, Pass-124 DIRECT)
 
 ## READ FIRST
-Opus 5 main. 11:00: 5h 6%, week 8%, Fable 6%; get_usage before any fan-out.
-GLM 94% = OUT. Grunt = Sonnet (Chrome) + Sol (`codex-exec.ps1 -Task`); gates =
-Opus/Fable/Astra. DeepSeek = 4th cross-review leg (`--legs deepseek`), key NOT
-set, his chat-pasted one must be rotated. pnpm ->
-C:/Users/micah/AppData/Roaming/npm/pnpm.cmd; serve `node
-node_modules/next/dist/bin/next start -p 3236`; one .next at a time; NEVER
-elementHandle.screenshot(); `MSYS_NO_PATHCONV=1` for a leading-slash path arg.
+Branch `design/live-evolve`, worktree `.claude/worktrees/p106-live`. Build: `npx next build
+--webpack`. PROD = `c7b7e32`, `dpl_8a3pxYPvFvDf4m1Cnu4RmWpJBjqX`, 3 domains (read off the
+wire; kickoff's `dpl_A6Pq` is stale, #45). Push to main deploys: NOT APPROVED.
+Routing: DeepSeek reads/drafts/sweeps (`scripts/deepseek-exec.ps1`, `-MaxTokens 32000+`);
+Sonnet for repo/browser; ledger checks + ship decisions stay in the main session.
 
-## LIVE: 31d44b9, dpl_A6PqFCsmCFCav2Cbj79eo781nv1e, CARD 1 67/0
-Names the COMMIT, never a deploy id - every docs push mints a new dpl and a
-pinned one is stale in minutes (LESSONS #45). Read it off the wire, then:
-  EXPECT_DPL=<id from curl> bash .planning/exec/card1-123.sh
-REVERT: promote dpl_Go2xKXbYYECL34ygnDtECsJRQzbQ (9813825) - that id is fixed.
+## Pass-124 state
+Copy research saved at `.planning/research/pass-124-copy-research-ANSWER.md`, verified vs
+LESSONS #3: 165 claims, 46 clean, 69 flags survived adversarial check. SEO sources HOLD
+(2 fixes); voice samples and corpus figures do NOT. Gate row + rulings row in LESSONS #3.
+Live site swept clean: zero NEVER-phrases on six pages.
+His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
+(shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## THE LIVE WORK: Pass-124, the voice (operator 2026-09-20)
-He read the site: wording is "very AI, wordy, and not enticing to want to do
-work with me." Two-stage prompt for a Fable research chat, committed at
-`.planning/research/pass-124-copy-voice-prompt.md`. Stage 1: research,
-diagnosis, the AUDIENCE RULING (delegated - "research and ultrathink on this
-one"), three voices as the same two passages, an SEO + blog plan. Stage 2
-writes the site after he picks. NEW: a THIRD reader, a full-time corporate
-role. Anti-patterns verbatim: humble-brag storytelling, jargon-dense insider.
-DO NOT touch home copy or the hero CLS until the voice lands - it churns.
-
-## AWAITING HIM
-1. Rotated DeepSeek key, then `deepseek-exec.ps1 -Smoke` and record the dated
-   line in the script's STATUS comment. It is UNSMOKED until then.
-2. The copy research answer from his Fable chat.
-DONE today on his rulings: HandCircle deleted (ce76eb7); clip fix pushed after
-he said "push everything", which supersedes the earlier hold.
-
-## Queue
-1. Home hero 0.0045 of the 1440 CLS - AFTER the voice pass.
-2. /work/guardicore mobile LCP ~3.4s; Speed Insights is the judge.
-3. K4 AND K5 at 390 are one harness scrollIntoView-vs-Lenis race, not the page
-   (K4 failed 09-19 at 13.9, passed the rerun at 4.7).
+## Waiting on him
+- **Ticks** on `.planning/mocks/pass-124/CUTS-PROPOSED.md` (A1-A11, B1-B7, C1-C3, D1-D3,
+  E1). Nothing applied. Straight removals only.
+- **Em-dash gate on .tsx NOT closed**: the flip fails 3 files, almost all title separators
+  (`"%s — Micah Jones"`). Fix the strings, or skip title/aria values in the scan: his call.
+- **/about:171 "End-to-end product builds."** near-misses a retired area name; the gate
+  misses the plural. Reword needs his word; gate widens with it.
+- Five fact questions (end of the Pass-124 gate row): Guardicore mechanism, ORDANI "one
+  engineer", "landing page" 27 vs 34, east-west swap, "it shipped, nobody came" for the blog.
+- Blog unbuilt (no route/type/index/RSS/sitemap); needs the answered-ratio cut first.
 
 ## Traps
-#32-#45 in docs/LESSONS_LEARNED.md, one line each. Biting most often here:
-#34, #37, #44, #45.
+another session committed here at 19:07 (9019186): commit by explicit pathspec only (#23) ·
+grep crashes on long one-line files and reads as zero (#34) · md never prettiered.
