@@ -4654,6 +4654,9 @@ body {
 }
 [data-mode="cw"] .cw-hiw--services .cw-hiw__step--build .cw-hiw__head {
   font-size: clamp(34px, 3.9vw, 56px);
+  /* From 1100px up, `pretty` left "prototype." alone on line two; balance breaks after "thing," as the home does.
+   * Build only: on every /services headline it broke Plan at its hyphen, "trade- / offs" (LESSONS #48). */
+  text-wrap: balance;
 }
 [data-mode="cw"] .cw-hiw--services .cw-hiw__step--plan,
 [data-mode="cw"] .cw-hiw--services .cw-hiw__step--build,
@@ -4685,6 +4688,11 @@ body {
 @media (max-width: 760px) {
   [data-mode="cw"] .cw-hiw--services {
     margin-top: 48px;
+  }
+  /* The home title is also a .cw-secttitle, whose 18px phone margin (later in this file) beat the 40px above and
+   * left the Scope rule reading as the heading's underline. Match /services (LESSONS #48). */
+  [data-mode="cw"] .cw-hiw--home .cw-hiw__title {
+    margin-bottom: 40px;
   }
 }
 
