@@ -6,7 +6,8 @@ Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`). Build: `np
 (tiers, ids, commands, rules; Ordani-style), printed into every session by the SessionStart hook
 `.claude/hooks/routing-reminder.py`. DeepSeek, Sol, Gemini (`scripts/gemini-exec.ps1`, 2.5-flash only
 today) do the legs; Fable + Astra + deepseek-v4-pro confirm quality. These files are on the branch,
-not yet on `main` (docs-only; they ride with the next approved push). Next chat: `.planning/handoff/
+pushed to `main` 2026-09-21, operator verbatim: "push the routing files to main too" (docs,
+scripts, harness only; no site file). Next chat: `.planning/handoff/
 NEXT-SESSION-KICKOFF.md` (full-time page first).
 
 ## LIVE 2026-09-21: main = 48818f1, dpl_6mBZ6hbC6TWc3r3g3Keku9zGSfs2, all three domains
