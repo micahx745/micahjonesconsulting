@@ -25,7 +25,6 @@ const OUT = "content/lastmod.json";
 const STATIC_ROUTES = {
   "/": "app/(foyer)/page.tsx",
   "/about": "app/(foyer)/about/page.tsx",
-  "/full-time": "app/(foyer)/full-time/page.tsx",
   "/work": "app/(foyer)/work/page.tsx",
   "/services": "app/(foyer)/services/page.tsx",
   "/packages": "app/(foyer)/packages/page.tsx",

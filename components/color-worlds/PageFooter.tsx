@@ -9,16 +9,7 @@
 // time-depth as specific numbers).
 //
 // Server component. No motion, no client JS.
-//
-// Pass-125 (operator 2026-09-20, LESSONS #3 "PASS-124 FIRST MOVE AND THE
-// AUDIENCE RULING"): the "Work with me full-time" page is linked from the
-// footers and once from /about, never the primary nav. /full-time itself
-// passes fullTimeLink={false} so its footer does not link to itself.
-import { FULL_TIME } from "@/content/full-time";
-
-export function PageFooter({
-  fullTimeLink = true,
-}: { fullTimeLink?: boolean } = {}) {
+export function PageFooter() {
   return (
     <footer className="cw-pagefoot" aria-label="Site footer">
       <p className="cw-pagefoot__promise">
@@ -42,13 +33,6 @@ export function PageFooter({
         <span aria-hidden>·</span>
         <span>© 2013–2026 Micah Jones</span>
       </p>
-      {/* Its own row: inside the row above it wrapped at 1440 and left a
-          separator dot hanging at the line end (Pass-125 capture). */}
-      {fullTimeLink ? (
-        <p className="cw-pagefoot__row" style={{ marginTop: "14px" }}>
-          <a href={FULL_TIME.path}>{FULL_TIME.linkLabel}</a>
-        </p>
-      ) : null}
     </footer>
   );
 }

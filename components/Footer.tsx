@@ -13,8 +13,6 @@
 // Source: blueprint §7 (Home footer wireframe), §8 (voice — first person,
 //         specific numbers, no banned words), §4b (--rule-foyer / --rule-theater
 //         color tokens), REQUIREMENTS.md FOYER-10.
-import { FULL_TIME } from "@/content/full-time";
-
 export function Footer() {
   return (
     <footer data-footer-root aria-label="Site footer">
@@ -28,11 +26,6 @@ export function Footer() {
           className="footer-email-link"
         >
           micah@micahjonesconsulting.com
-        </a>
-      </p>
-      <p className="footer-email">
-        <a href={FULL_TIME.path} className="footer-email-link">
-          {FULL_TIME.linkLabel}
         </a>
       </p>
     </footer>

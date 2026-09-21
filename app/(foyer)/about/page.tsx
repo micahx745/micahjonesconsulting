@@ -11,7 +11,6 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 import Image from "next/image";
 import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PortraitImage } from "@/components/PortraitImage";
-import { FULL_TIME } from "@/content/full-time";
 
 export const metadata: Metadata = {
   // Short title; root template appends " | Micah Jones" once.
@@ -198,18 +197,11 @@ export default function AboutPage() {
               whether he was available at all - it said "Building Ordani" and
               then described engagements in the abstract. No count: an invented
               number reads as a tactic, and a real one has to be maintained. */}
-          {/* Pass-125: the same 1.25em gap as the full-time line below it, so the three
-              "Currently" paragraphs share one rhythm (Fable re-read, round 4). */}
-          <p style={{ marginTop: "1.25em" }}>
+          <p>
             Alongside it: <a href="/services">engagements</a> with teams where
             the sales side and the product side have stopped talking to each
             other. I sit on both sides until they do. I am taking new
             engagements now.
-          </p>
-          <p style={{ margin: "1.25em 0" }}>
-            {FULL_TIME.about.before}
-            <a href={FULL_TIME.path}>{FULL_TIME.about.link}</a>
-            {FULL_TIME.about.after}
           </p>
           {/* Pass-112 (operator 2026-09-11): the book is off the site until
               it ships. The paragraph that was here linked /playbook. */}
