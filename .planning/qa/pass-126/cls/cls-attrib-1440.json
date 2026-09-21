@@ -1,0 +1,626 @@
+{
+  "width": 1440,
+  "url": "http://localhost:3126/",
+  "entries": [
+    {
+      "value": 0.00033,
+      "startTime": 191.7,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 0,
+      "sources": [
+        {
+          "node": "main > header.cw-hero > p.cw-sub",
+          "previousRect": {
+            "x": 40,
+            "y": 558.4,
+            "w": 620,
+            "h": 57.4
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 558.4,
+            "w": 620,
+            "h": 57.4
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00067,
+      "startTime": 5553.3,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4400,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 155.3,
+            "w": 904,
+            "h": 335
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 159.3,
+            "w": 833,
+            "h": 335
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 607.3,
+            "w": 193,
+            "h": 24.9
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 607.3,
+            "w": 253,
+            "h": 20.9
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00043,
+      "startTime": 5571.2,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4400,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 159.3,
+            "w": 825.9,
+            "h": 305
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 162.3,
+            "w": 757,
+            "h": 305
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 594.3,
+            "w": 253,
+            "h": 41.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 594.3,
+            "w": 324,
+            "h": 38.7
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00062,
+      "startTime": 5587.6,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4400,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 162.3,
+            "w": 738.5,
+            "h": 272
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 167.3,
+            "w": 677,
+            "h": 272
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 575.8,
+            "w": 324,
+            "h": 65.1
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 575.8,
+            "w": 402,
+            "h": 61.1
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00044,
+      "startTime": 5605.9,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4400,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 167.3,
+            "w": 652,
+            "h": 240
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 171.3,
+            "w": 597,
+            "h": 240
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 551.7,
+            "w": 402,
+            "h": 93.2
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 551.7,
+            "w": 479,
+            "h": 89.2
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00041,
+      "startTime": 5621,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4400,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 171.3,
+            "w": 575.7,
+            "h": 212
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 174.3,
+            "w": 528,
+            "h": 212
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 524.2,
+            "w": 479,
+            "h": 123.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 524.2,
+            "w": 549,
+            "h": 119.6
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00015,
+      "startTime": 5637.8,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4400,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 495.9,
+            "w": 549,
+            "h": 153.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 495.9,
+            "w": 609,
+            "h": 150.6
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00017,
+      "startTime": 5655.1,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4600,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 176.3,
+            "w": 463.6,
+            "h": 170
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 180.3,
+            "w": 425,
+            "h": 170
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00053,
+      "startTime": 5803.8,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4800,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 339.8,
+            "w": 831.9,
+            "h": 286.2
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 339.8,
+            "w": 763,
+            "h": 290.2
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 748.2,
+            "w": 199.6,
+            "h": 24.9
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 748.2,
+            "w": 260.8,
+            "h": 20.9
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00034,
+      "startTime": 5821.7,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4800,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 335.6,
+            "w": 749,
+            "h": 261.3
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 335.6,
+            "w": 686,
+            "h": 264.3
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 735.3,
+            "w": 260.8,
+            "h": 41.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 735.3,
+            "w": 333.3,
+            "h": 38.7
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00039,
+      "startTime": 5838.5,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4800,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 332.9,
+            "w": 663.3,
+            "h": 233
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 332.9,
+            "w": 607,
+            "h": 237
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 716.7,
+            "w": 333.3,
+            "h": 65
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 716.7,
+            "w": 411,
+            "h": 61
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00036,
+      "startTime": 5855.7,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4800,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 331.5,
+            "w": 581.4,
+            "h": 205.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 331.5,
+            "w": 532,
+            "h": 209.7
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 692.8,
+            "w": 411,
+            "h": 93.2
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 692.8,
+            "w": 488.4,
+            "h": 89.2
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00035,
+      "startTime": 5871.7,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4800,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 330.6,
+            "w": 511.4,
+            "h": 182.1
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 330.6,
+            "w": 469,
+            "h": 186.1
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 665.1,
+            "w": 488.4,
+            "h": 123.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 665.1,
+            "w": 558.1,
+            "h": 119.6
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00015,
+      "startTime": 5887.9,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 4800,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 636.8,
+            "w": 558.1,
+            "h": 153.6
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 636.8,
+            "w": 616.6,
+            "h": 150.6
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00052,
+      "startTime": 6055.3,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5200,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 488.3,
+            "w": 828.8,
+            "h": 286.3
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 488.3,
+            "w": 762,
+            "h": 290.3
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00032,
+      "startTime": 6072,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5200,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 491.6,
+            "w": 753.3,
+            "h": 261.3
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 491.6,
+            "w": 684.8,
+            "h": 264.3
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00034,
+      "startTime": 6089.1,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5200,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 496.6,
+            "w": 666.6,
+            "h": 233
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 496.6,
+            "w": 606,
+            "h": 237
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.00032,
+      "startTime": 6104.9,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5200,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 502.4,
+            "w": 583.5,
+            "h": 205.7
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 502.4,
+            "w": 530.4,
+            "h": 209.7
+          }
+        },
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 834.9,
+            "w": 412.2,
+            "h": 54.4
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 834.9,
+            "w": 481,
+            "h": 51.4
+          }
+        }
+      ]
+    },
+    {
+      "value": 0.0002,
+      "startTime": 6121,
+      "hadRecentInput": false,
+      "scrollYAtCallback": 5200,
+      "sources": [
+        {
+          "node": "li.cw-exits__deal > div.cw-exits__baseline > p.cw-exits__val",
+          "previousRect": {
+            "x": 40,
+            "y": 507.9,
+            "w": 513.6,
+            "h": 182.1
+          },
+          "currentRect": {
+            "x": 40,
+            "y": 507.9,
+            "w": 468,
+            "h": 186.1
+          }
+        }
+      ]
+    }
+  ],
+  "totalAll": 0.00704,
+  "chromeSessionWindows": [
+    {
+      "start": 191.7,
+      "last": 191.7,
+      "value": 0.00033,
+      "count": 1,
+      "durationMs": 0
+    },
+    {
+      "start": 5553.3,
+      "last": 6121,
+      "value": 0.00671,
+      "count": 18,
+      "durationMs": 567.7
+    }
+  ],
+  "largestSessionWindow": 0.00671
+}
