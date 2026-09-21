@@ -1077,6 +1077,24 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   PARKED, not ruled: /about names Ordani "HIPAA-compliant practice management for birth workers" while the study and
   /full-time say "a HIPAA-compliant CRM for birth workers" (Fable, twice). It is live /about copy, so it goes to the
   inner-pages pass.
+- **FULL-TIME PAGE HELD; HOW I WORK IS THE PRIORITY — operator 2026-09-21 (Pass-125, popups, at the push ask)**. Asked
+  to push /full-time, he answered (Other), verbatim: "Before pushing can you explain what exactly this is? im confused
+  because the ask was to redesign the how i work part (that sits on the home page and i htink other places) and now we
+  get a full time page?" RECORDED AS A PROCESS MISS by the main session: the kickoff's "Start with the full-time page" was
+  written by the Pass-124 session and pasted by him; nobody confirmed it was still his priority before a whole page
+  arc ran. Told so, he picked "Hold it, How I work first (Recommended)": the full-time page is NOT pushed; it came off
+  `design/live-evolve` by `git revert` (`95cb41b`) and lives whole on `preview/p125-full-time` (`708ac61`). TO SHIP IT
+  LATER: `git revert 95cb41b` on the branch (re-merging the preview branch will NOT bring it back), then the ship check.
+  HOW I WORK, he ticked "Same words, better design" ("Keep the four steps you locked this morning word for word.
+  Redesign how the section looks on the home (layout, type, motion).") and "Carry it to other pages" ("Put the same
+  four steps on /services, which today says the same commitments in different words, so the process reads the same
+  everywhere."). NOT ticked: "New words". So the locked Scope / Plan / Build / Stay copy (row "HOW I WORK: FOUR STEPS,
+  FINAL 1") is not reworded; the /services wording of the same commitments is replaced by the four steps.
+  HE ASKED, verbatim: "just to confirm the four steps were already written and checked by the top models?" ANSWERED from
+  the records: drafted by DeepSeek v4-pro and Sol, three finals by Fable, his pick Final 1, Fable's ship read SHIP;
+  Astra read only the earlier "story comes first" version (and flagged "Something named ships" as manufactured, as
+  Fable flagged it a risk); DeepSeek never reviewed the final. Under the 2026-09-21 routing (Fable, Astra and DeepSeek
+  each confirm) the four steps carry one of three confirmations; the redesign pass collects the other two.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
