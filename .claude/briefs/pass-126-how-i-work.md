@@ -4,6 +4,10 @@ Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124
 HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126-how-i-work.md` must equal `git rev-parse --short HEAD`.
 Written 2026-09-21 by the main session (Opus 5) from Fable's pick (`.planning/reviews/FABLE-126-HOWIWORK-PICK.md`).
 
+## ROUND 3 (read first)
+Round 2 stopped correctly at `lastmod --check` (/services dates drifted); the main session regenerated and committed
+`content/lastmod.json`. Everything else in ROUND 2 below still holds. Start again at section 5, step 1.
+
 ## ROUND 2 (read first)
 Round 1 implemented sections 1 to 4 and they are COMMITTED at HEAD (the main session reviewed the diff). Round 1 then
 stopped correctly: `bash` cannot start in your sandbox, so the gate script never ran, and `.next` still holds an older
