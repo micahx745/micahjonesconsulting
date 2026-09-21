@@ -1,8 +1,8 @@
 # RESUME — micahjonesconsulting (2026-09-21, Pass-125)
 
 ## READ FIRST
-Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`). Build: `npx next build --webpack`
-(`pnpm build` fails here). Push to main deploys. ROUTING: `.claude/AI_ROUTING.md` is the single source;
+Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`). Build: `bash .planning/exec/prepush-gates.sh`
+(every gate + `next build --webpack`; the bare command skips all gates, LESSONS #47). Push to main deploys. ROUTING: `.claude/AI_ROUTING.md` is the single source;
 the SessionStart hook prints it (it did NOT load in the 09-21 Pass-125 session, which opened at the main
 checkout; open the chat in the p106-live worktree). Preview builds go in `.claude/worktrees/p124-cuts`.
 

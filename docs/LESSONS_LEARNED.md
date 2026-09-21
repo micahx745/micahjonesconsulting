@@ -2249,3 +2249,20 @@ source: zero hits.
 leg, never by a Codex executor on Windows. A Codex brief that must touch copy says so and requires a
 rendered-text check (`document.body.innerText` against the gate's pattern) in its report.
 
+## #47 — The documented local build skipped every gate, and the first guard written against it could not bite (2026-09-21)
+
+**What happened:** RESUME and the kickoff both gave the local build as `npx next build --webpack` ("`pnpm build` fails
+here"). That calls Next directly, so none of the `package.json` "build" chain ran: copy-lint, vendor, retired phrases,
+mojibake, accent states, gsap quarantine, and after the build render, work-entry and results-repeat. Pass-124 and every
+preview round of Pass-125 were "built" that way; the gates only ever ran on Vercel, so a banned word would have
+surfaced as a failed deploy, not a local failure. Found at the Pass-125 pre-push check, when the build log carried no
+gate output. Running the chain by hand on `708ac61`: every gate clean. Two smaller catches the same hour: the
+sitemap dates in `content/lastmod.json` had drifted on seven routes (five from before Pass-125) because nothing ever
+ran `node scripts/lastmod.mjs --check`; and the drift guard written for the new script first used a substring match,
+so a copy with `node scripts/mojibake-gate.mjs` deleted still passed (the `--self-test` line contains it). The bite
+test caught that; a first bite run also "failed correctly" only because its file path did not exist (LESSONS #34 again).
+
+**Gate:** `.planning/exec/prepush-gates.sh` is the local build: the full chain with `npx next build --webpack` in the
+middle, plus `lastmod --check`, plus a whole-line guard that fails if `package.json` "build" names a step the script
+lacks (bite-tested both ways: one gate deleted exits 1 naming it; the real file exits 0). RESUME's build line names the
+script, not the bare command. Every future pre-push check runs it.
