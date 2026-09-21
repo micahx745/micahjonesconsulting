@@ -15,18 +15,21 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## In flight
-- **Cuts preview** (brief `.claude/briefs/pass-124-cuts-preview.md`, `93725fe`): a Sonnet leg
-  builds all 25 cuts on branch `pass-124/cuts-preview` in worktree `../p124-cuts` (never
-  merges), captures before/after at 390+1440 -> `.planning/qa/pass-124/sheets/`. Main session
-  opens every sheet, then he ticks by popup. Headings get the SR treatment, not deletion.
+## Sheets ready, ticks pending
+Preview `b10edba` (branch `pass-124/cuts-preview`, worktree `../p124-cuts`, never merges).
+10 sheets `.planning/qa/pass-124/sheets/cuts-*-{390,1440}.png`, reviewed by main session.
+24 of 25 applied; **B1 STOPPED** (required `cta` prop, no straight removal). All gates exit 0;
+axe serious+critical 0 before and after, all 20 scans. Review findings: A7+A8+A9 together
+leave the engagements door headless; C1+C2+C3 run /about together; /about sheet predates
+the "Product builds." fix (`99eb6b9`). Next: his ticks by popup, then apply ticked cuts
+on `design/live-evolve` only (A8 = delete the whole h2, never leave it empty).
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
 
 ## Waiting on him
-- **/about:171 "End-to-end product builds."** near-misses a retired area name; the gate
-  misses the plural. Reword needs his word; gate widens with it.
+- Guardicore: he heard the finding in the deals (ledgered); the live study credits research in
+  five places. Do they stand? Asked, unanswered.
 - Five fact questions (end of the Pass-124 gate row): Guardicore mechanism, ORDANI "one
   engineer", "landing page" 27 vs 34, east-west swap, "it shipped, nobody came" for the blog.
 - Blog unbuilt (no route/type/index/RSS/sitemap); needs the answered-ratio cut first.
