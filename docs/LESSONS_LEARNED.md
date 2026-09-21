@@ -1208,6 +1208,10 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   disclosed deal values total $5B+."** with links "What I do" (/services) and "See the work" (/work). Publishes only
   when the blog page is built after post 3. Gate before any publish: `node .planning/exec/blog-lint.mjs` 0 failures
   (the foot is outside the lint's advice rules by design: first person and figures are allowed there).
+- **POSTS 2 AND 3: DEEPSEEK DRAFTS, FABLE EDITS — operator 2026-09-21 (popup)**. Picked "Hybrid: DeepSeek drafts,
+  Fable edits (Recommended)": DeepSeek v4-pro drafts each post with the locked post 1 as the style model and the lint
+  as a gate; Fable does ONE edit pass per post to bring it to post 1's voice; Astra and DeepSeek check it against "does
+  this kill it". Topics: landing pages (post 2) and selling as a builder (post 3), the two Cut I intents with readers.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
