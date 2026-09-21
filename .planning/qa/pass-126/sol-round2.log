@@ -1,0 +1,807 @@
+﻿codex-exec: TASK .claude/briefs/pass-126-how-i-work.md on gpt-5.6-sol @ xhigh, workspace-write, in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+powershell : OpenAI Codex v0.153.4
+At line:1 char:385
++ ... \p124-cuts; powershell -NoProfile -ExecutionPolicy Bypass -File scrip ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (OpenAI Codex v0.153.4:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+--------
+workdir: C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+model: gpt-5.6-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a0c582-a40f-7ab1-9219-ffffa4253ad9
+--------
+user
+# Brief: Pass-126, How I work: same words, better design, on the home and /services (preview build)
+
+Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch 
+`preview/p126-how-i-work`.
+HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126-how-i-work.md` must equal `git rev-parse --short HEAD`.
+Written 2026-09-21 by the main session (Opus 5) from Fable's pick (`.planning/reviews/FABLE-126-HOWIWORK-PICK.md`).
+
+## ROUND 2 (read first)
+Round 1 implemented sections 1 to 4 and they are COMMITTED at HEAD (the main session reviewed the diff). Round 1 then
+stopped correctly: `bash` cannot start in your sandbox, so the gate script never ran, and `.next` still holds an older
+build. Do NOT edit sections 1 to 4 again unless a gate fails (then report and stop). Start at section 5, step 1, with 
+the
+Node gate script. Nothing measured in round 1 counts; regenerate every output.
+
+## 0. Rules
+- You WRITE files; you do not commit (LESSONS #18), push, deploy or edit `.claude/RESUME.md`.
+- The copy is LOCKED and lives in `content/how-i-work.ts` (main session wrote it, byte-exact, with two no-break
+  spaces). Import it; never retype, reword, re-punctuate or edit that file. Write NO non-ASCII character into any
+  file you touch (LESSONS #46).
+- No numerals in the section, no boxes/cards, no arrows between steps, no new colour tokens, no GSAP beyond the
+  existing `SplitReveal` component, no CSS `animation-timeline` (see section 4), no sticky/held elements.
+- Never reinterpret an expected value (LESSONS #25). A bracket that does not match is reported verbatim and you stop.
+- Pre-existing untracked folders `.planning/qa/pass-124/home-v2/` to `home-v6/` and `.planning/qa/pass-125/*.log` are 
+not
+  yours.
+
+## 1. The shared component: `components/color-worlds/HowIWork.tsx` (server component, no "use client")
+Props: `{ variant: "home" | "services" }`. Renders exactly:
+```
+<div className={`cw-hiw cw-hiw--${variant}`}>
+  {variant === "home"
+    ? <SplitReveal as="h2" id="cw-howiwork-title" className="cw-secttitle 
+cw-hiw__title">{HOW_I_WORK.heading}</SplitReveal>
+    : <h3 id="sv-hiw-title" className="cw-hiw__title">{HOW_I_WORK.heading}</h3>}
+  <ol className="cw-hiw__list" role="list">
+    {HOW_I_WORK.steps.map((s) => (
+      <li key={s.label} className={`cw-hiw__step cw-hiw__step--${s.label.toLowerCase()} cw-reveal`}>
+        <div>
+          <p className="cw-hiw__label">{s.label}</p>
+          <p className="cw-hiw__head">{s.headline}</p>
+          <p className="cw-hiw__body">{s.body}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  {variant === "services" ? <p className="cw-hiw__note">{HOW_I_WORK.servicesNote}</p> : null}
+  <p className="cw-hiw__more cw-reveal">
+    <a href={HOW_I_WORK.moreHref} className="cw-mlink">{HOW_I_WORK.moreLabel} <span aria-hidden>{"\u2192"}</span></a>
+  </p>
+</div>
+```
+(`{"\u2192"}` is the arrow written as an ASCII escape; the current markup renders the same character.) Import
+`SplitReveal` the way `app/(foyer)/page.tsx` does.
+
+## 2. The home: `app/(foyer)/page.tsx`
+Inside `<section ... id="products" ... data-world="espresso" aria-labelledby="cw-howiwork-title">`, replace everything
+from the `<SplitReveal as="h2" id="cw-howiwork-title"` element through the closing `</p>` of the
+`cw-principles__more` paragraph (the heading, the `<ol className="cw-principles cw-principles--steps">` and the "See 
+the
+work" paragraph) with `<HowIWork variant="home" />`. Keep the comments that sit between the kept parts; delete comments
+that only described the removed list. Everything after it (the receipts: the sr-only h3, `RevenueFigure`,
+`ExitRecord`) stays byte-identical. Section id, world and aria-labelledby unchanged.
+
+## 3. /services: `app/(foyer)/services/page.tsx`
+- Replace the whole `<div className="cw-pband__incl" aria-labelledby="sv-incl-title"> ... </div>` block with
+  `<HowIWork variant="services" />`, and delete the now-unused `INCLUSIONS` const. Change nothing else in the
+  shapes section.
+- In the "Why one person" paragraph delete exactly these two sentences and nothing else: "Week one is the scoping
+  session and the audit: the foundational work that decides what the engagement is actually for." and "Something named
+  ships in month one." The paragraph then reads: "An agency gives you a team and a relay race between them. A full-time
+  hire takes three months to find and another to ramp. I am a senior operator you can start this week, on a scope with
+  an end date. When the work is bigger than one person, I say so on the call." (Straight cuts; they repeat the steps.)
+
+## 4. CSS: `app/globals.css`
+Retire, by deleting: `[data-mode="cw"] .cw-principles--steps .cw-principle { ... }` and `[data-mode="cw"]
+.cw-principles__more { ... }` (around line 8247). Re-key `[data-mode="cw"] section:has(.cw-principles--steps)` to
+`[data-mode="cw"] #products` (same declarations). Leave every other `.cw-principle*` rule alone.
+Then add one block, commented "Pass-126 How I work (Fable pick: Sol's Marked-Up Proof on espresso)":
+
+Grid, at `min-width: 1100px`:
+```
+.cw-hiw { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:24px;
+  grid-template-areas: "t t t t t . s s s s s s" ". p p p p p p p . . . ." ". . . b b b b b b b b b" "y y y y y y y y 
+y m m m"; }
+.cw-hiw__list { display:contents; list-style:none; margin:0; padding:0; }
+.cw-hiw__title { grid-area:t; align-self:start; max-width:4.5em; }
+.cw-hiw__step--scope { grid-area:s; align-self:start; }
+.cw-hiw__step--plan { grid-area:p; margin-top:72px; }
+.cw-hiw__step--build { grid-area:b; margin-top:128px; }
+.cw-hiw__step--stay { grid-area:y; margin-top:88px; align-self:last baseline; }
+.cw-hiw__more { grid-area:m; margin:0; align-self:last baseline; }
+body measures: scope 440px, plan 460px, build 520px, stay 480px (max-width on .cw-hiw__body per step).
+```
+Below 1100px: `grid-template-columns:minmax(0,1fr)`, areas stacked "t" "s" "p" "b" "y" "m"; title `max-width:none;
+margin-bottom:40px`; inner `<div>` indents: plan 16px, build 32px, scope and stay 0; row offsets plan 56px, build
+80px, stay 64px; `.cw-hiw__more { margin-top:28px }`.
+Type (all `color: inherit`):
+- `.cw-hiw__title` (home): keeps `.cw-secttitle`; add `font-size: clamp(44px, 6.5vw, 92px)`.
+- `.cw-hiw__label`: JetBrains Mono (`var(--font-cw-mono)`), 12px, 400, uppercase, letter-spacing .14em, line-height 1,
+  opacity .9, margin 0 0 14px. Never copper.
+- `.cw-hiw__head`: Bricolage (`var(--font-cw-display)`), weight 500, sentence case (`text-transform:none`),
+  letter-spacing -.02em, line-height 1.02, margin 0 0 20px, `text-wrap: pretty`, size `clamp(34px, 4.2vw, 60px)`;
+  `.cw-hiw__step--build .cw-hiw__head` size `clamp(38px, 5.2vw, 74px)`.
+- `.cw-hiw__body`: Hanken (`var(--font-cw-body)`), 400, `clamp(17px, 1.3vw, 18px)`, line-height 1.5, margin 0.
+- Copper rule: `.cw-hiw__step > div::before { content:""; display:block; height:2px; width:88px; margin:0 0 16px;
+  background:var(--color-accent-copper); transform-origin:left center; }`, width 48px below 1100px. The only copper
+  in the steps (copper on espresso fails AA for small text, 3.57:1; a 2px rule is not text).
+- `.cw-hiw__note` (services only): Hanken 16px, line-height 1.5, `color: inherit`. At 1100+ `.cw-hiw--services` gets a
+  FIFTH template row `"n n n n n n n n n . . ."` after the Stay/link row, `grid-area:n` on the note, margin 40px 0 0.
+  Below 1100 it sits in the stack after Stay, before the link (areas "t" "s" "p" "b" "y" "n" "m"), margin 32px 0 0.
+/services variant `.cw-hiw--services`: title `font-family:var(--font-cw-display); font-weight:800; text-transform:
+uppercase; line-height:.92; letter-spacing:-.025em; font-size: clamp(38px, 4.6vw, 66px); max-width:4.5em` at 1100+;
+headlines `clamp(30px, 3.3vw, 48px)`, build `clamp(34px, 3.9vw, 56px)`; row offsets 56/96/64 at 1100+ and 44/60/48
+below; the link colour `var(--color-accent-copper-deep)` (the one copper TEXT, AA on bone). Ground: whatever world the
+shapes section already has (bone); add none.
+
+MOTION (main-session ruling, overriding Fable's `view()` timelines): use the site's ONE reveal system (the
+IntersectionObserver in `components/color-worlds/ScrollReveal.tsx`, `.cw-reveal` / `.is-in`). The native
+`animation-timeline: view()` path was deleted on 2026-08-30 because it never played for anyone (comment at the
+"Native scroll-driven reveal path DELETED" block), and the page root's `overflow-x: hidden` would freeze it on
+/services. So: each step `li` is `.cw-reveal` (it rises 40px and fades in, 0.55s, as today). Add, after the reveal
+rules:
+```
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) > div::before { transform: scaleX(0); }
+[data-mode="cw"] .cw-hiw__step > div::before { transition: transform .7s cubic-bezier(.16,1,.3,1) .15s; }
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) .cw-hiw__body { opacity: 0; transform: translateY(14px); }
+[data-mode="cw"] .cw-hiw__body { transition: opacity .55s cubic-bezier(.16,1,.3,1) .12s, transform .55s 
+cubic-bezier(.16,1,.3,1) .12s; }
+@media (prefers-reduced-motion: reduce) { [data-mode="cw"] .cw-hiw__step > div::before, [data-mode="cw"] .cw-hiw__body 
+{ transform:none !important; opacity:1 !important; } }
+```
+No JS: `.cw-js-reveals` is never added, so every step renders finished.
+
+## 5. Build and verify (run from the worktree root; brackets are the expected output)
+1. `node .planning/exec/prepush-gates.mjs` [last line `PREPUSH: all gates and the build passed`]. It runs every gate
+   and `next build --webpack`; do NOT run the bare build instead (LESSONS #47), and do not call bash (your sandbox
+   cannot launch it; that is why this is Node now). Run it once.
+2. `npx next start -p 3125` in the background.
+3. Write `.planning/qa/pass-126/measure.mjs` (puppeteer-core from `C:/tmp/p101tools`, Chrome, deviceScaleFactor 1) and
+   run it for 390x844 and 1440x900, reduced motion OFF, after scrolling the whole page in 0.75-viewport steps with
+   300ms pauses (so reveals fire). Print JSON to `.planning/qa/pass-126/measure.json`. On `/`:
+   - `h2#cw-howiwork-title` text [`How I work.`]; `.cw-hiw__step` count [4]; labels in order [Scope, Plan, Build, 
+Stay];
+   - each of the 4 headlines and 4 bodies appears verbatim in `document.body.innerText` after normalising U+00A0 to a
+     space [true x8] (read the expected strings from `content/how-i-work.ts` by importing its compiled values or by a
+     regex over the file; do not type them);
+   - inside `.cw-hiw`: count of digits 0-9 in innerText [0]; elements with computed `position: sticky` [0];
+   - reveal probe (the 2026-08-30 DEFECT gate): after the scroll, every `.cw-hiw__step` has class `is-in` [true x4] and
+     computed opacity of every `.cw-hiw__body` [1]; the `::before` of each step has computed transform
+     [`none` or `matrix(1, 0, 0, 1, 0, 0)`];
+   - axe-core serious+critical inside `#products` [0].
+   On `/services`: `#sv-hiw-title` text [`How I work.`]; `.cw-hiw__step` count [4]; the note text equals
+   `HOW_I_WORK.servicesNote` [true]; the string "Every engagement includes" in innerText [0]; the paragraph under
+   "Why one person" contains "Week one is the scoping session" [false] and "When the work is bigger than one person, I
+   say so on the call." [true]; axe serious+critical on the page [0]. Horizontal overflow on both pages [<= 0].
+4. CLS while scrolling (LESSONS #41): `node .planning/exec/cls-attrib-123.mjs http://localhost:3125/` and
+   `.../services` at 390 and 1440 (read that script's header for its arguments) [largest session window <= 0.05 each].
+5. Accent crossing (briefs README): `node .planning/exec/crossfade-contrast.mjs` against the local server per its
+   header, down and up, normal and reduced motion, 390 and 1440 [0 steps under the floor].
+6. Viewport scroll frames (NOT full-page shots; briefs README): copy `.planning/qa/pass-125/scroll-sheet.mjs` from the
+   `preview/p125-full-time` branch (`git show preview/p125-full-time:.planning/qa/pass-125/scroll-sheet.mjs`) into
+   `.planning/qa/pass-126/`, point it at `/` starting 100px above `#products` and ending when the `$20M+` figure's top
+   reaches the viewport middle, and at `/services` from 100px above `#sv-hiw-title` through the "Why one person"
+   paragraph. Frames every 0.8 viewport, 700ms settle. Sheets: `sheets/home-hiw-{390,1440}.png`,
+   `sheets/services-hiw-{390,1440}.png`. Take the same frames of PRODUCTION (`https://www.micahjonesconsulting.com`)
+   for the before: `sheets/home-hiw-{390,1440}-before.png`, `sheets/services-hiw-{390,1440}-before.png`.
+7. Stop the server. `git status --short` [the files named in sections 1 to 4 plus new files under
+   `.planning/qa/pass-126/`, plus the pre-existing untracked items named in section 0].
+
+## Report back (plain text)
+The prepush tail (10 lines), measure.json verbatim, the CLS and crossfade results, the sheet list with sizes,
+`git status --short`, and every bracket that did not match, quoted verbatim.
+
+
+codex
+I’m starting at section 5 exactly as requested and will leave sections 1–4 untouched unless a gate fails. I’m using 
+the execution-plan and verification skills to follow the prescribed order and report only freshly regenerated evidence.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 
+'C:\\Users\\micah\\.codex\\skills\\using-superpowers\\SKILL.md'; Get-Content -Raw 
+'C:\\Users\\micah\\.codex\\skills\\executing-plans\\SKILL.md'; Get-Content -Raw 
+'C:\\Users\\micah\\.codex\\skills\\verification-before-completion\\SKILL.md'" in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 102ms:
+---
+name: using-superpowers
+description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool 
+invocation before ANY response including clarifying questions
+---
+
+<EXTREMELY-IMPORTANT>
+If you think there is even a 1% chance a skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
+
+IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
+
+This is not negotiable. This is not optional. You cannot rationalize your way out of this.
+</EXTREMELY-IMPORTANT>
+
+## How to Access Skills
+
+**In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to youâ€”follow 
+it directly. Never use the Read tool on skill files.
+
+**In other environments:** Check your platform's documentation for how skills are loaded.
+
+# Using Skills
+
+## The Rule
+
+**Invoke relevant or requested skills BEFORE any response or action.** Even a 1% chance a skill might apply means that 
+you should invoke the skill to check. If an invoked skill turns out to be wrong for the situation, you don't need to 
+use it.
+
+```dot
+digraph skill_flow {
+    "User message received" [shape=doublecircle];
+    "Might any skill apply?" [shape=diamond];
+    "Invoke Skill tool" [shape=box];
+    "Announce: 'Using [skill] to [purpose]'" [shape=box];
+    "Has checklist?" [shape=diamond];
+    "Create TodoWrite todo per item" [shape=box];
+    "Follow skill exactly" [shape=box];
+    "Respond (including clarifications)" [shape=doublecircle];
+
+    "User message received" -> "Might any skill apply?";
+    "Might any skill apply?" -> "Invoke Skill tool" [label="yes, even 1%"];
+    "Might any skill apply?" -> "Respond (including clarifications)" [label="definitely not"];
+    "Invoke Skill tool" -> "Announce: 'Using [skill] to [purpose]'";
+    "Announce: 'Using [skill] to [purpose]'" -> "Has checklist?";
+    "Has checklist?" -> "Create TodoWrite todo per item" [label="yes"];
+    "Has checklist?" -> "Follow skill exactly" [label="no"];
+    "Create TodoWrite todo per item" -> "Follow skill exactly";
+}
+```
+
+## Red Flags
+
+These thoughts mean STOPâ€”you're rationalizing:
+
+| Thought | Reality |
+|---------|---------|
+| "This is just a simple question" | Questions are tasks. Check for skills. |
+| "I need more context first" | Skill check comes BEFORE clarifying questions. |
+| "Let me explore the codebase first" | Skills tell you HOW to explore. Check first. |
+| "I can check git/files quickly" | Files lack conversation context. Check for skills. |
+| "Let me gather information first" | Skills tell you HOW to gather information. |
+| "This doesn't need a formal skill" | If a skill exists, use it. |
+| "I remember this skill" | Skills evolve. Read current version. |
+| "This doesn't count as a task" | Action = task. Check for skills. |
+| "The skill is overkill" | Simple things become complex. Use it. |
+| "I'll just do this one thing first" | Check BEFORE doing anything. |
+| "This feels productive" | Undisciplined action wastes time. Skills prevent this. |
+| "I know what that means" | Knowing the concept â‰  using the skill. Invoke it. |
+
+## Skill Priority
+
+When multiple skills could apply, use this order:
+
+1. **Process skills first** (brainstorming, debugging) - these determine HOW to approach the task
+2. **Implementation skills second** (frontend-design, mcp-builder) - these guide execution
+
+"Let's build X" â†’ brainstorming first, then implementation skills.
+"Fix this bug" â†’ debugging first, then domain-specific skills.
+
+## Skill Types
+
+**Rigid** (TDD, debugging): Follow exactly. Don't adapt away discipline.
+
+**Flexible** (patterns): Adapt principles to context.
+
+The skill itself tells you which.
+
+## User Instructions
+
+Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
+
+---
+name: executing-plans
+description: Use when you have a written implementation plan to execute in a separate session with review checkpoints
+---
+
+# Executing Plans
+
+## Overview
+
+Load plan, review critically, execute tasks in batches, report for review between batches.
+
+**Core principle:** Batch execution with checkpoints for architect review.
+
+**Announce at start:** "I'm using the executing-plans skill to implement this plan."
+
+## The Process
+
+### Step 1: Load and Review Plan
+1. Read plan file
+2. Review critically - identify any questions or concerns about the plan
+3. If concerns: Raise them with your human partner before starting
+4. If no concerns: Create TodoWrite and proceed
+
+### Step 2: Execute Batch
+**Default: First 3 tasks**
+
+For each task:
+1. Mark as in_progress
+2. Follow each step exactly (plan has bite-sized steps)
+3. Run verifications as specified
+4. Mark as completed
+
+### Step 3: Report
+When batch complete:
+- Show what was implemented
+- Show verification output
+- Say: "Ready for feedback."
+
+### Step 4: Continue
+Based on feedback:
+- Apply changes if needed
+- Execute next batch
+- Repeat until complete
+
+### Step 5: Complete Development
+
+After all tasks complete and verified:
+- Announce: "I'm using the finishing-a-development-branch skill to complete this work."
+- **REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch
+- Follow that skill to verify tests, present options, execute choice
+
+## When to Stop and Ask for Help
+
+**STOP executing immediately when:**
+- Hit a blocker mid-batch (missing dependency, test fails, instruction unclear)
+- Plan has critical gaps preventing starting
+- You don't understand an instruction
+- Verification fails repeatedly
+
+**Ask for clarification rather than guessing.**
+
+## When to Revisit Earlier Steps
+
+**Return to Review (Step 1) when:**
+- Partner updates the plan based on your feedback
+- Fundamental approach needs rethinking
+
+**Don't force through blockers** - stop and ask.
+
+## Remember
+- Review plan critically first
+- Follow plan steps exactly
+- Don't skip verifications
+- Reference skills when plan says to
+- Between batches: just report and wait
+- Stop when blocked, don't guess
+
+---
+name: verification-before-completion
+description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires 
+running verification commands and confirming output before making any success claims; evidence before assertions always
+---
+
+# Verification Before Completion
+
+## Overview
+
+Claiming work is complete without verification is dishonesty, not efficiency.
+
+**Core principle:** Evidence before claims, always.
+
+**Violating the letter of this rule is violating the spirit of this rule.**
+
+## The Iron Law
+
+```
+NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
+```
+
+If you haven't run the verification command in this message, you cannot claim it passes.
+
+## The Gate Function
+
+```
+BEFORE claiming any status or expressing satisfaction:
+
+1. IDENTIFY: What command proves this claim?
+2. RUN: Execute the FULL command (fresh, complete)
+3. READ: Full output, check exit code, count failures
+4. VERIFY: Does output confirm the claim?
+   - If NO: State actual status with evidence
+   - If YES: State claim WITH evidence
+5. ONLY THEN: Make the claim
+
+Skip any step = lying, not verifying
+```
+
+## Common Failures
+
+| Claim | Requires | Not Sufficient |
+|-------|----------|----------------|
+| Tests pass | Test command output: 0 failures | Previous run, "should pass" |
+| Linter clean | Linter output: 0 errors | Partial check, extrapolation |
+| Build succeeds | Build command: exit 0 | Linter passing, logs look good |
+| Bug fixed | Test original symptom: passes | Code changed, assumed fixed |
+| Regression test works | Red-green cycle verified | Test passes once |
+| Agent completed | VCS diff shows changes | Agent reports "success" |
+| Requirements met | Line-by-line checklist | Tests passing |
+
+## Red Flags - STOP
+
+- Using "should", "probably", "seems to"
+- Expressing satisfaction before verification ("Great!", "Perfect!", "Done!", etc.)
+- About to commit/push/PR without verification
+- Trusting agent success reports
+- Relying on partial verification
+- Thinking "just this once"
+- Tired and wanting work over
+- **ANY wording implying success without having run verification**
+
+## Rationalization Prevention
+
+| Excuse | Reality |
+|--------|---------|
+| "Should work now" | RUN the verification |
+| "I'm confident" | Confidence â‰  evidence |
+| "Just this once" | No exceptions |
+| "Linter passed" | Linter â‰  compiler |
+| "Agent said success" | Verify independently |
+| "I'm tired" | Exhaustion â‰  excuse |
+| "Partial check is enough" | Partial proves nothing |
+| "Different words so rule doesn't apply" | Spirit over letter |
+
+## Key Patterns
+
+**Tests:**
+```
+âœ… [Run test command] [See: 34/34 pass] "All tests pass"
+âŒ "Should pass now" / "Looks correct"
+```
+
+**Regression tests (TDD Red-Green):**
+```
+âœ… Write â†’ Run (pass) â†’ Revert fix â†’ Run (MUST FAIL) â†’ Restore â†’ Run (pass)
+âŒ "I've written a regression test" (without red-green verification)
+```
+
+**Build:**
+```
+âœ… [Run build] [See: exit 0] "Build passes"
+âŒ "Linter passed" (linter doesn't check compilation)
+```
+
+**Requirements:**
+```
+âœ… Re-read plan â†’ Create checklist â†’ Verify each â†’ Report gaps or completion
+âŒ "Tests pass, phase complete"
+```
+
+**Agent delegation:**
+```
+âœ… Agent reports success â†’ Check VCS diff â†’ Verify changes â†’ Report actual state
+âŒ Trust agent report
+```
+
+## Why This Matters
+
+From 24 failure memories:
+- your human partner said "I don't believe you" - trust broken
+- Undefined functions shipped - would crash
+- Missing requirements shipped - incomplete features
+- Time wasted on false completion â†’ redirect â†’ rework
+- Violates: "Honesty is a core value. If you lie, you'll be replaced."
+
+## When To Apply
+
+**ALWAYS before:**
+- ANY variation of success/completion claims
+- ANY expression of satisfaction
+- ANY positive statement about work state
+- Committing, PR creation, task completion
+- Moving to next task
+- Delegating to agents
+
+**Rule applies to:**
+- Exact phrases
+- Paraphrases and synonyms
+- Implications of success
+- ANY communication suggesting completion/correctness
+
+## The Bottom Line
+
+**No shortcuts for verification.**
+
+Run the command. Read the output. THEN claim the result.
+
+This is non-negotiable.
+
+
+codex
+The execution-plan skill’s first check is to load the stored brief and confirm the workspace baseline. I’m doing that 
+read-only now, including the required HEAD equality, before invoking the gate exactly once.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$briefHead = git log -1 --format=%h -- 
+.claude/briefs/pass-126-how-i-work.md
+$currentHead = git rev-parse --short HEAD
+Write-Output "brief_head=$briefHead"
+Write-Output "current_head=$currentHead"
+Write-Output "head_match=$($briefHead -eq $currentHead)"
+Write-Output '"'---BRIEF---'
+Get-Content -Raw '.claude/briefs/pass-126-how-i-work.md'
+Write-Output '---STATUS---'
+git status --short" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 219ms:
+brief_head=92d76db
+current_head=92d76db
+head_match=True
+---BRIEF---
+# Brief: Pass-126, How I work: same words, better design, on the home and /services (preview build)
+
+Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch 
+`preview/p126-how-i-work`.
+HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126-how-i-work.md` must equal `git rev-parse --short HEAD`.
+Written 2026-09-21 by the main session (Opus 5) from Fable's pick (`.planning/reviews/FABLE-126-HOWIWORK-PICK.md`).
+
+## ROUND 2 (read first)
+Round 1 implemented sections 1 to 4 and they are COMMITTED at HEAD (the main session reviewed the diff). Round 1 then
+stopped correctly: `bash` cannot start in your sandbox, so the gate script never ran, and `.next` still holds an older
+build. Do NOT edit sections 1 to 4 again unless a gate fails (then report and stop). Start at section 5, step 1, with 
+the
+Node gate script. Nothing measured in round 1 counts; regenerate every output.
+
+## 0. Rules
+- You WRITE files; you do not commit (LESSONS #18), push, deploy or edit `.claude/RESUME.md`.
+- The copy is LOCKED and lives in `content/how-i-work.ts` (main session wrote it, byte-exact, with two no-break
+  spaces). Import it; never retype, reword, re-punctuate or edit that file. Write NO non-ASCII character into any
+  file you touch (LESSONS #46).
+- No numerals in the section, no boxes/cards, no arrows between steps, no new colour tokens, no GSAP beyond the
+  existing `SplitReveal` component, no CSS `animation-timeline` (see section 4), no sticky/held elements.
+- Never reinterpret an expected value (LESSONS #25). A bracket that does not match is reported verbatim and you stop.
+- Pre-existing untracked folders `.planning/qa/pass-124/home-v2/` to `home-v6/` and `.planning/qa/pass-125/*.log` are 
+not
+  yours.
+
+## 1. The shared component: `components/color-worlds/HowIWork.tsx` (server component, no "use client")
+Props: `{ variant: "home" | "services" }`. Renders exactly:
+```
+<div className={`cw-hiw cw-hiw--${variant}`}>
+  {variant === "home"
+    ? <SplitReveal as="h2" id="cw-howiwork-title" className="cw-secttitle 
+cw-hiw__title">{HOW_I_WORK.heading}</SplitReveal>
+    : <h3 id="sv-hiw-title" className="cw-hiw__title">{HOW_I_WORK.heading}</h3>}
+  <ol className="cw-hiw__list" role="list">
+    {HOW_I_WORK.steps.map((s) => (
+      <li key={s.label} className={`cw-hiw__step cw-hiw__step--${s.label.toLowerCase()} cw-reveal`}>
+        <div>
+          <p className="cw-hiw__label">{s.label}</p>
+          <p className="cw-hiw__head">{s.headline}</p>
+          <p className="cw-hiw__body">{s.body}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  {variant === "services" ? <p className="cw-hiw__note">{HOW_I_WORK.servicesNote}</p> : null}
+  <p className="cw-hiw__more cw-reveal">
+    <a href={HOW_I_WORK.moreHref} className="cw-mlink">{HOW_I_WORK.moreLabel} <span aria-hidden>{"\u2192"}</span></a>
+  </p>
+</div>
+```
+(`{"\u2192"}` is the arrow written as an ASCII escape; the current markup renders the same character.) Import
+`SplitReveal` the way `app/(foyer)/page.tsx` does.
+
+## 2. The home: `app/(foyer)/page.tsx`
+Inside `<section ... id="products" ... data-world="espresso" aria-labelledby="cw-howiwork-title">`, replace everything
+from the `<SplitReveal as="h2" id="cw-howiwork-title"` element through the closing `</p>` of the
+`cw-principles__more` paragraph (the heading, the `<ol className="cw-principles cw-principles--steps">` and the "See 
+the
+work" paragraph) with `<HowIWork variant="home" />`. Keep the comments that sit between the kept parts; delete comments
+that only described the removed list. Everything after it (the receipts: the sr-only h3, `RevenueFigure`,
+`ExitRecord`) stays byte-identical. Section id, world and aria-labelledby unchanged.
+
+## 3. /services: `app/(foyer)/services/page.tsx`
+- Replace the whole `<div className="cw-pband__incl" aria-labelledby="sv-incl-title"> ... </div>` block with
+  `<HowIWork variant="services" />`, and delete the now-unused `INCLUSIONS` const. Change nothing else in the
+  shapes section.
+- In the "Why one person" paragraph delete exactly these two sentences and nothing else: "Week one is the scoping
+  session and the audit: the foundational work that decides what the engagement is actually for." and "Something named
+  ships in month one." The paragraph then reads: "An agency gives you a team and a relay race between them. A full-time
+  hire takes three months to find and another to ramp. I am a senior operator you can start this week, on a scope with
+  an end date. When the work is bigger than one person, I say so on the call." (Straight cuts; they repeat the steps.)
+
+## 4. CSS: `app/globals.css`
+Retire, by deleting: `[data-mode="cw"] .cw-principles--steps .cw-principle { ... }` and `[data-mode="cw"]
+.cw-principles__more { ... }` (around line 8247). Re-key `[data-mode="cw"] section:has(.cw-principles--steps)` to
+`[data-mode="cw"] #products` (same declarations). Leave every other `.cw-principle*` rule alone.
+Then add one block, commented "Pass-126 How I work (Fable pick: Sol's Marked-Up Proof on espresso)":
+
+Grid, at `min-width: 1100px`:
+```
+.cw-hiw { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:24px;
+  grid-template-areas: "t t t t t . s s s s s s" ". p p p p p p p . . . ." ". . . b b b b b b b b b" "y y y y y y y y 
+y m m m"; }
+.cw-hiw__list { display:contents; list-style:none; margin:0; padding:0; }
+.cw-hiw__title { grid-area:t; align-self:start; max-width:4.5em; }
+.cw-hiw__step--scope { grid-area:s; align-self:start; }
+.cw-hiw__step--plan { grid-area:p; margin-top:72px; }
+.cw-hiw__step--build { grid-area:b; margin-top:128px; }
+.cw-hiw__step--stay { grid-area:y; margin-top:88px; align-self:last baseline; }
+.cw-hiw__more { grid-area:m; margin:0; align-self:last baseline; }
+body measures: scope 440px, plan 460px, build 520px, stay 480px (max-width on .cw-hiw__body per step).
+```
+Below 1100px: `grid-template-columns:minmax(0,1fr)`, areas stacked "t" "s" "p" "b" "y" "m"; title `max-width:none;
+margin-bottom:40px`; inner `<div>` indents: plan 16px, build 32px, scope and stay 0; row offsets plan 56px, build
+80px, stay 64px; `.cw-hiw__more { margin-top:28px }`.
+Type (all `color: inherit`):
+- `.cw-hiw__title` (home): keeps `.cw-secttitle`; add `font-size: clamp(44px, 6.5vw, 92px)`.
+- `.cw-hiw__label`: JetBrains Mono (`var(--font-cw-mono)`), 12px, 400, uppercase, letter-spacing .14em, line-height 1,
+  opacity .9, margin 0 0 14px. Never copper.
+- `.cw-hiw__head`: Bricolage (`var(--font-cw-display)`), weight 500, sentence case (`text-transform:none`),
+  letter-spacing -.02em, line-height 1.02, margin 0 0 20px, `text-wrap: pretty`, size `clamp(34px, 4.2vw, 60px)`;
+  `.cw-hiw__step--build .cw-hiw__head` size `clamp(38px, 5.2vw, 74px)`.
+- `.cw-hiw__body`: Hanken (`var(--font-cw-body)`), 400, `clamp(17px, 1.3vw, 18px)`, line-height 1.5, margin 0.
+- Copper rule: `.cw-hiw__step > div::before { content:""; display:block; height:2px; width:88px; margin:0 0 16px;
+  background:var(--color-accent-copper); transform-origin:left center; }`, width 48px below 1100px. The only copper
+  in the steps (copper on espresso fails AA for small text, 3.57:1; a 2px rule is not text).
+- `.cw-hiw__note` (services only): Hanken 16px, line-height 1.5, `color: inherit`. At 1100+ `.cw-hiw--services` gets a
+  FIFTH template row `"n n n n n n n n n . . ."` after the Stay/link row, `grid-area:n` on the note, margin 40px 0 0.
+  Below 1100 it sits in the stack after Stay, before the link (areas "t" "s" "p" "b" "y" "n" "m"), margin 32px 0 0.
+/services variant `.cw-hiw--services`: title `font-family:var(--font-cw-display); font-weight:800; text-transform:
+uppercase; line-height:.92; letter-spacing:-.025em; font-size: clamp(38px, 4.6vw, 66px); max-width:4.5em` at 1100+;
+headlines `clamp(30px, 3.3vw, 48px)`, build `clamp(34px, 3.9vw, 56px)`; row offsets 56/96/64 at 1100+ and 44/60/48
+below; the link colour `var(--color-accent-copper-deep)` (the one copper TEXT, AA on bone). Ground: whatever world the
+shapes section already has (bone); add none.
+
+MOTION (main-session ruling, overriding Fable's `view()` timelines): use the site's ONE reveal system (the
+IntersectionObserver in `components/color-worlds/ScrollReveal.tsx`, `.cw-reveal` / `.is-in`). The native
+`animation-timeline: view()` path was deleted on 2026-08-30 because it never played for anyone (comment at the
+"Native scroll-driven reveal path DELETED" block), and the page root's `overflow-x: hidden` would freeze it on
+/services. So: each step `li` is `.cw-reveal` (it rises 40px and fades in, 0.55s, as today). Add, after the reveal
+rules:
+```
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) > div::before { transform: scaleX(0); }
+[data-mode="cw"] .cw-hiw__step > div::before { transition: transform .7s cubic-bezier(.16,1,.3,1) .15s; }
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) .cw-hiw__body { opacity: 0; transform: translateY(14px); }
+[data-mode="cw"] .cw-hiw__body { transition: opacity .55s cubic-bezier(.16,1,.3,1) .12s, transform .55s 
+cubic-bezier(.16,1,.3,1) .12s; }
+@media (prefers-reduced-motion: reduce) { [data-mode="cw"] .cw-hiw__step > div::before, [data-mode="cw"] .cw-hiw__body 
+{ transform:none !important; opacity:1 !important; } }
+```
+No JS: `.cw-js-reveals` is never added, so every step renders finished.
+
+## 5. Build and verify (run from the worktree root; brackets are the expected output)
+1. `node .planning/exec/prepush-gates.mjs` [last line `PREPUSH: all gates and the build passed`]. It runs every gate
+   and `next build --webpack`; do NOT run the bare build instead (LESSONS #47), and do not call bash (your sandbox
+   cannot launch it; that is why this is Node now). Run it once.
+2. `npx next start -p 3125` in the background.
+3. Write `.planning/qa/pass-126/measure.mjs` (puppeteer-core from `C:/tmp/p101tools`, Chrome, deviceScaleFactor 1) and
+   run it for 390x844 and 1440x900, reduced motion OFF, after scrolling the whole page in 0.75-viewport steps with
+   300ms pauses (so reveals fire). Print JSON to `.planning/qa/pass-126/measure.json`. On `/`:
+   - `h2#cw-howiwork-title` text [`How I work.`]; `.cw-hiw__step` count [4]; labels in order [Scope, Plan, Build, 
+Stay];
+   - each of the 4 headlines and 4 bodies appears verbatim in `document.body.innerText` after normalising U+00A0 to a
+     space [true x8] (read the expected strings from `content/how-i-work.ts` by importing its compiled values or by a
+     regex over the file; do not type them);
+   - inside `.cw-hiw`: count of digits 0-9 in innerText [0]; elements with computed `position: sticky` [0];
+   - reveal probe (the 2026-08-30 DEFECT gate): after the scroll, every `.cw-hiw__step` has class `is-in` [true x4] and
+     computed opacity of every `.cw-hiw__body` [1]; the `::before` of each step has computed transform
+     [`none` or `matrix(1, 0, 0, 1, 0, 0)`];
+   - axe-core serious+critical inside `#products` [0].
+   On `/services`: `#sv-hiw-title` text [`How I work.`]; `.cw-hiw__step` count [4]; the note text equals
+   `HOW_I_WORK.servicesNote` [true]; the string "Every engagement includes" in innerText [0]; the paragraph under
+   "Why one person" contains "Week one is the scoping session" [false] and "When the work is bigger than one person, I
+   say so on the call." [true]; axe serious+critical on the page [0]. Horizontal overflow on both pages [<= 0].
+4. CLS while scrolling (LESSONS #41): `node .planning/exec/cls-attrib-123.mjs http://localhost:3125/` and
+   `.../services` at 390 and 1440 (read that script's header for its arguments) [largest session window <= 0.05 each].
+5. Accent crossing (briefs README): `node .planning/exec/crossfade-contrast.mjs` against the local server per its
+   header, down and up, normal and reduced motion, 390 and 1440 [0 steps under the floor].
+6. Viewport scroll frames (NOT full-page shots; briefs README): copy `.planning/qa/pass-125/scroll-sheet.mjs` from the
+   `preview/p125-full-time` branch (`git show preview/p125-full-time:.planning/qa/pass-125/scroll-sheet.mjs`) into
+   `.planning/qa/pass-126/`, point it at `/` starting 100px above `#products` and ending when the `$20M+` figure's top
+   reaches the viewport middle, and at `/services` from 100px above `#sv-hiw-title` through the "Why one person"
+   paragraph. Frames every 0.8 viewport, 700ms settle. Sheets: `sheets/home-hiw-{390,1440}.png`,
+   `sheets/services-hiw-{390,1440}.png`. Take the same frames of PRODUCTION (`https://www.micahjonesconsulting.com`)
+   for the before: `sheets/home-hiw-{390,1440}-before.png`, `sheets/services-hiw-{390,1440}-before.png`.
+7. Stop the server. `git status --short` [the files named in sections 1 to 4 plus new files under
+   `.planning/qa/pass-126/`, plus the pre-existing untracked items named in section 0].
+
+## Report back (plain text)
+The prepush tail (10 lines), measure.json verbatim, the CLS and crossfade results, the sheet list with sizes,
+`git status --short`, and every bracket that did not match, quoted verbatim.
+
+---STATUS---
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+?? .planning/qa/pass-124/home-v2/
+?? .planning/qa/pass-124/home-v3/
+?? .planning/qa/pass-124/home-v4/
+?? .planning/qa/pass-124/home-v5/
+?? .planning/qa/pass-124/home-v6/
+?? .planning/qa/pass-125/
+?? .planning/qa/pass-126/
+
+codex
+The stored brief matches the user-provided plan, and the required HEAD check is exact: `92d76db == 92d76db`. No plan 
+ambiguity blocks the run, so I’m launching the mandated Node pre-push gate once and will stop immediately if its 
+expected last line does not match.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'node .planning/exec/prepush-gates.mjs' in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ exited 1 in 2579ms:
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+npm notice
+npm notice New major version of npm available! 10.9.3 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+
+== node scripts/vendor-gate.mjs
+vendor-gate: clean
+
+== node scripts/retired-phrases-gate.mjs --self-test
+retired-phrases-gate self-test: 89 planted caught, 33 near misses passed
+
+== node scripts/retired-phrases-gate.mjs
+retired-phrases-gate: clean
+
+== node scripts/mojibake-gate.mjs --self-test
+mojibake-gate self-test: 5 planted caught, 5 near misses passed
+
+== node scripts/mojibake-gate.mjs
+mojibake-gate: clean
+
+== node scripts/accent-states-lint.mjs --self-test
+accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms
+
+== node scripts/accent-states-lint.mjs
+accent-states-lint: clean
+
+== node scripts/gsap-quarantine-gate.mjs --self-test
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+
+== node scripts/gsap-quarantine-gate.mjs
+gsap-quarantine-gate: clean (89 files)
+
+== node scripts/lastmod.mjs --check
+lastmod: /services: committed 2026-09-16 != live 2026-09-21
+lastmod: 1 route(s) drifted. Run: node scripts/lastmod.mjs, then commit content/lastmod.json.
+
+PREPUSH FAILED at: node scripts/lastmod.mjs --check (exit 1)
+
+codex
+Stopped at section 5, step 1 because the gate failed. No subsequent verification steps were run and no files were 
+edited.
+
+Prepush tail (10 lines):
+== node scripts/accent-states-lint.mjs
+accent-states-lint: clean
+== node scripts/gsap-quarantine-gate.mjs --self-test
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+== node scripts/gsap-quarantine-gate.mjs
+gsap-quarantine-gate: clean (89 files)
+== node scripts/lastmod.mjs --check
+lastmod: /services: committed 2026-09-16 != live 2026-09-21
+lastmod: 1 route(s) drifted. Run: node scripts/lastmod.mjs, then commit content/lastmod.json.
+PREPUSH FAILED at: node scripts/lastmod.mjs --check (exit 1)
+
+Bracket mismatch:
+Expected: "PREPUSH: all gates and the build passed"
+Actual: "PREPUSH FAILED at: node scripts/lastmod.mjs --check (exit 1)"
+
+measure.json, CLS, crossfade, and sheets were not regenerated because the brief requires stopping on a gate mismatch.
+tokens used
+16,175
+Stopped at section 5, step 1 because the gate failed. No subsequent verification steps were run and no files were edited.
+
+Prepush tail (10 lines):
+== node scripts/accent-states-lint.mjs
+accent-states-lint: clean
+== node scripts/gsap-quarantine-gate.mjs --self-test
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+== node scripts/gsap-quarantine-gate.mjs
+gsap-quarantine-gate: clean (89 files)
+== node scripts/lastmod.mjs --check
+lastmod: /services: committed 2026-09-16 != live 2026-09-21
+lastmod: 1 route(s) drifted. Run: node scripts/lastmod.mjs, then commit content/lastmod.json.
+PREPUSH FAILED at: node scripts/lastmod.mjs --check (exit 1)
+
+Bracket mismatch:
+Expected: "PREPUSH: all gates and the build passed"
+Actual: "PREPUSH FAILED at: node scripts/lastmod.mjs --check (exit 1)"
+
+measure.json, CLS, crossfade, and sheets were not regenerated because the brief requires stopping on a gate mismatch.

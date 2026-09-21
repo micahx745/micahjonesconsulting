@@ -1,0 +1,5689 @@
+{
+  "base": "http://localhost:3126",
+  "reducedMotion": true,
+  "when": "2026-09-21T19:55:05.563Z",
+  "viewports": [
+    {
+      "vp": "1440x900",
+      "geo": {
+        "productsTop": 2055.265625,
+        "productsBottom": 4508.953125,
+        "exitsTop": 4178.53125,
+        "exitsBottom": 4378.953125,
+        "recTop": 3620.328125,
+        "recBottom": 4122.53125,
+        "ordaniTitleTop": 4638.953125,
+        "maxScroll": 5061
+      },
+      "down": [
+        {
+          "label": "down#0",
+          "targetY": 2720,
+          "scrollY": 2720,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 857.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 857.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#1",
+          "targetY": 2780,
+          "scrollY": 2780,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 797.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 797.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#2",
+          "targetY": 2840,
+          "scrollY": 2840,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 737.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 737.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#3",
+          "targetY": 2900,
+          "scrollY": 2900,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 677.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 677.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#4",
+          "targetY": 2960,
+          "scrollY": 2960,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 617.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 617.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#5",
+          "targetY": 3020,
+          "scrollY": 3020,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 557.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 557.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#6",
+          "targetY": 3080,
+          "scrollY": 3080,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 497.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 497.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#7",
+          "targetY": 3140,
+          "scrollY": 3140,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 437.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 437.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#8",
+          "targetY": 3200,
+          "scrollY": 3200,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 377.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 377.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#9",
+          "targetY": 3260,
+          "scrollY": 3260,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 317.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 317.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#10",
+          "targetY": 3320,
+          "scrollY": 3320,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 257.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 257.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#11",
+          "targetY": 3380,
+          "scrollY": 3380,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 197.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 197.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#12",
+          "targetY": 3440,
+          "scrollY": 3440,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 137.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 137.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#13",
+          "targetY": 3500,
+          "scrollY": 3500,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 77.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 77.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#14",
+          "targetY": 3560,
+          "scrollY": 3560,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 17.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 17.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#15",
+          "targetY": 3620,
+          "scrollY": 3620,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -42.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -42.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#16",
+          "targetY": 3680,
+          "scrollY": 3680,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -102.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -102.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#17",
+          "targetY": 3740,
+          "scrollY": 3740,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -162.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -162.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#18",
+          "targetY": 3800,
+          "scrollY": 3800,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -222.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -222.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#19",
+          "targetY": 3860,
+          "scrollY": 3860,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -282.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -282.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#20",
+          "targetY": 3920,
+          "scrollY": 3920,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -342.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -342.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#21",
+          "targetY": 3980,
+          "scrollY": 3980,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -402.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -402.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#22",
+          "targetY": 4040,
+          "scrollY": 4040,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -462.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -462.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#23",
+          "targetY": 4100,
+          "scrollY": 4100,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(33, 52, 51)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#24",
+          "targetY": 4160,
+          "scrollY": 4160,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(28, 64, 65)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#25",
+          "targetY": 4220,
+          "scrollY": 4220,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(27, 68, 70)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#26",
+          "targetY": 4280,
+          "scrollY": 4280,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#27",
+          "targetY": 4340,
+          "scrollY": 4340,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#28",
+          "targetY": 4400,
+          "scrollY": 4400,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#29",
+          "targetY": 4460,
+          "scrollY": 4460,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#30",
+          "targetY": 4520,
+          "scrollY": 4520,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#31",
+          "targetY": 4580,
+          "scrollY": 4580,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#32",
+          "targetY": 4640,
+          "scrollY": 4640,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#33",
+          "targetY": 4700,
+          "scrollY": 4700,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#34",
+          "targetY": 4760,
+          "scrollY": 4760,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#35",
+          "targetY": 4820,
+          "scrollY": 4820,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#36",
+          "targetY": 4880,
+          "scrollY": 4880,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(100, 64, 52)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#37",
+          "targetY": 4940,
+          "scrollY": 4940,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(143, 61, 41)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#38",
+          "targetY": 5000,
+          "scrollY": 5000,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(154, 60, 38)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#39",
+          "targetY": 5060,
+          "scrollY": 5060,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(157, 60, 37)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        }
+      ],
+      "up": [
+        {
+          "label": "up#0",
+          "targetY": 5061,
+          "scrollY": 5061,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(158, 60, 37)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#1",
+          "targetY": 5001,
+          "scrollY": 5001,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(158, 60, 37)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#2",
+          "targetY": 4941,
+          "scrollY": 4941,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(158, 60, 37)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#3",
+          "targetY": 4881,
+          "scrollY": 4881,
+          "cwBgVar": "#9E3C25",
+          "bgColor": "rgb(158, 60, 37)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#4",
+          "targetY": 4821,
+          "scrollY": 4821,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(84, 65, 57)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#5",
+          "targetY": 4761,
+          "scrollY": 4761,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(41, 68, 68)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#6",
+          "targetY": 4701,
+          "scrollY": 4701,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(30, 69, 71)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#7",
+          "targetY": 4641,
+          "scrollY": 4641,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(27, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#8",
+          "targetY": 4581,
+          "scrollY": 4581,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#9",
+          "targetY": 4521,
+          "scrollY": 4521,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#10",
+          "targetY": 4461,
+          "scrollY": 4461,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#11",
+          "targetY": 4401,
+          "scrollY": 4401,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#12",
+          "targetY": 4341,
+          "scrollY": 4341,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#13",
+          "targetY": 4281,
+          "scrollY": 4281,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#14",
+          "targetY": 4221,
+          "scrollY": 4221,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#15",
+          "targetY": 4161,
+          "scrollY": 4161,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#16",
+          "targetY": 4101,
+          "scrollY": 4101,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#17",
+          "targetY": 4041,
+          "scrollY": 4041,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(36, 45, 42)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -463.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                36,
+                45,
+                42
+              ],
+              "ratio": 3.143359461921532
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -463.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                36,
+                45,
+                42
+              ],
+              "ratio": 3.143359461921532
+            }
+          ]
+        },
+        {
+          "label": "up#18",
+          "targetY": 3981,
+          "scrollY": 3981,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(40, 35, 30)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -403.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                40,
+                35,
+                30
+              ],
+              "ratio": 3.456483409147979
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -403.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                40,
+                35,
+                30
+              ],
+              "ratio": 3.456483409147979
+            }
+          ]
+        },
+        {
+          "label": "up#19",
+          "targetY": 3921,
+          "scrollY": 3921,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 32, 25)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -343.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                32,
+                25
+              ],
+              "ratio": 3.5358621677095745
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -343.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                32,
+                25
+              ],
+              "ratio": 3.5358621677095745
+            }
+          ]
+        },
+        {
+          "label": "up#20",
+          "targetY": 3861,
+          "scrollY": 3861,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -283.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -283.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#21",
+          "targetY": 3801,
+          "scrollY": 3801,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -223.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -223.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#22",
+          "targetY": 3741,
+          "scrollY": 3741,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -163.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -163.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#23",
+          "targetY": 3681,
+          "scrollY": 3681,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -103.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -103.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#24",
+          "targetY": 3621,
+          "scrollY": 3621,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": -43.765625,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": -43.765625,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#25",
+          "targetY": 3561,
+          "scrollY": 3561,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 16.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 16.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#26",
+          "targetY": 3501,
+          "scrollY": 3501,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 76.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 76.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#27",
+          "targetY": 3441,
+          "scrollY": 3441,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 136.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 136.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#28",
+          "targetY": 3381,
+          "scrollY": 3381,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 196.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 196.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#29",
+          "targetY": 3321,
+          "scrollY": 3321,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 256.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 256.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#30",
+          "targetY": 3261,
+          "scrollY": 3261,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 316.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 316.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#31",
+          "targetY": 3201,
+          "scrollY": 3201,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 376.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 376.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#32",
+          "targetY": 3141,
+          "scrollY": 3141,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 436.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 436.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#33",
+          "targetY": 3081,
+          "scrollY": 3081,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 496.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 496.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#34",
+          "targetY": 3021,
+          "scrollY": 3021,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 556.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 556.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#35",
+          "targetY": 2961,
+          "scrollY": 2961,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 616.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 616.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#36",
+          "targetY": 2901,
+          "scrollY": 2901,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 676.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 676.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#37",
+          "targetY": 2841,
+          "scrollY": 2841,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 736.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 736.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#38",
+          "targetY": 2781,
+          "scrollY": 2781,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 796.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 796.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#39",
+          "targetY": 2721,
+          "scrollY": 2721,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 40,
+                "y": 856.234375,
+                "width": 763.875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 803.875,
+                "y": 856.234375,
+                "width": 577.171875,
+                "height": 569
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        }
+      ],
+      "flip": {
+        "flipY": 4107,
+        "samples": [
+          {
+            "delayMs": 0,
+            "actualMs": 3,
+            "cwBgVar": "#1A4548",
+            "bgColor": "rgb(26, 69, 72)",
+            "copperCount": 0,
+            "samples": []
+          },
+          {
+            "delayMs": 350,
+            "actualMs": 360,
+            "cwBgVar": "#1A4548",
+            "bgColor": "rgb(26, 69, 72)",
+            "copperCount": 0,
+            "samples": []
+          },
+          {
+            "delayMs": 800,
+            "actualMs": 814,
+            "cwBgVar": "#1A4548",
+            "bgColor": "rgb(26, 69, 72)",
+            "copperCount": 0,
+            "samples": []
+          }
+        ]
+      }
+    },
+    {
+      "vp": "390x844",
+      "geo": {
+        "productsTop": 2706.8125,
+        "productsBottom": 5060.71875,
+        "exitsTop": 4573.96875,
+        "exitsBottom": 4988.71875,
+        "recTop": 4119.4375,
+        "recBottom": 4517.96875,
+        "ordaniTitleTop": 5132.71875,
+        "maxScroll": 5390
+      },
+      "down": [
+        {
+          "label": "down#0",
+          "targetY": 3275,
+          "scrollY": 3275,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#1",
+          "targetY": 3335,
+          "scrollY": 3335,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 801.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#2",
+          "targetY": 3395,
+          "scrollY": 3395,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 741.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#3",
+          "targetY": 3455,
+          "scrollY": 3455,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 681.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#4",
+          "targetY": 3515,
+          "scrollY": 3515,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 621.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 805.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#5",
+          "targetY": 3575,
+          "scrollY": 3575,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 561.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 745.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#6",
+          "targetY": 3635,
+          "scrollY": 3635,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 501.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 685.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#7",
+          "targetY": 3695,
+          "scrollY": 3695,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 441.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 625.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#8",
+          "targetY": 3755,
+          "scrollY": 3755,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 381.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 565.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#9",
+          "targetY": 3815,
+          "scrollY": 3815,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 321.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 505.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#10",
+          "targetY": 3875,
+          "scrollY": 3875,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 261.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 445.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#11",
+          "targetY": 3935,
+          "scrollY": 3935,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 201.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 385.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#12",
+          "targetY": 3995,
+          "scrollY": 3995,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 141.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 325.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#13",
+          "targetY": 4055,
+          "scrollY": 4055,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 81.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 265.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#14",
+          "targetY": 4115,
+          "scrollY": 4115,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 21.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 205.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#15",
+          "targetY": 4175,
+          "scrollY": 4175,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": -38.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 145.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#16",
+          "targetY": 4235,
+          "scrollY": 4235,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": -98.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 85.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#17",
+          "targetY": 4295,
+          "scrollY": 4295,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": -158.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 25.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#18",
+          "targetY": 4355,
+          "scrollY": 4355,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": -34.96875,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#19",
+          "targetY": 4415,
+          "scrollY": 4415,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": -94.96875,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#20",
+          "targetY": 4475,
+          "scrollY": 4475,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": -154.96875,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "down#21",
+          "targetY": 4535,
+          "scrollY": 4535,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#22",
+          "targetY": 4595,
+          "scrollY": 4595,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#23",
+          "targetY": 4655,
+          "scrollY": 4655,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(33, 52, 51)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#24",
+          "targetY": 4715,
+          "scrollY": 4715,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(28, 65, 66)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#25",
+          "targetY": 4775,
+          "scrollY": 4775,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(27, 68, 70)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#26",
+          "targetY": 4835,
+          "scrollY": 4835,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#27",
+          "targetY": 4895,
+          "scrollY": 4895,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#28",
+          "targetY": 4955,
+          "scrollY": 4955,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#29",
+          "targetY": 5015,
+          "scrollY": 5015,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#30",
+          "targetY": 5075,
+          "scrollY": 5075,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#31",
+          "targetY": 5135,
+          "scrollY": 5135,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#32",
+          "targetY": 5195,
+          "scrollY": 5195,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#33",
+          "targetY": 5255,
+          "scrollY": 5255,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#34",
+          "targetY": 5315,
+          "scrollY": 5315,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "down#35",
+          "targetY": 5375,
+          "scrollY": 5375,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        }
+      ],
+      "up": [
+        {
+          "label": "up#0",
+          "targetY": 5390,
+          "scrollY": 5390,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#1",
+          "targetY": 5330,
+          "scrollY": 5330,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#2",
+          "targetY": 5270,
+          "scrollY": 5270,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#3",
+          "targetY": 5210,
+          "scrollY": 5210,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#4",
+          "targetY": 5150,
+          "scrollY": 5150,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#5",
+          "targetY": 5090,
+          "scrollY": 5090,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#6",
+          "targetY": 5030,
+          "scrollY": 5030,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#7",
+          "targetY": 4970,
+          "scrollY": 4970,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#8",
+          "targetY": 4910,
+          "scrollY": 4910,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#9",
+          "targetY": 4850,
+          "scrollY": 4850,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#10",
+          "targetY": 4790,
+          "scrollY": 4790,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#11",
+          "targetY": 4730,
+          "scrollY": 4730,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#12",
+          "targetY": 4670,
+          "scrollY": 4670,
+          "cwBgVar": "#1A4548",
+          "bgColor": "rgb(26, 69, 72)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": true,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#13",
+          "targetY": 4610,
+          "scrollY": 4610,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(36, 45, 42)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#14",
+          "targetY": 4550,
+          "scrollY": 4550,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(40, 35, 30)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 0,
+          "samples": []
+        },
+        {
+          "label": "up#15",
+          "targetY": 4490,
+          "scrollY": 4490,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 32, 25)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": -169.96875,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                32,
+                25
+              ],
+              "ratio": 3.5358621677095745
+            }
+          ]
+        },
+        {
+          "label": "up#16",
+          "targetY": 4430,
+          "scrollY": 4430,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": -109.96875,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#17",
+          "targetY": 4370,
+          "scrollY": 4370,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": -49.96875,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#18",
+          "targetY": 4310,
+          "scrollY": 4310,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": -173.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 10.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#19",
+          "targetY": 4250,
+          "scrollY": 4250,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": -113.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 70.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#20",
+          "targetY": 4190,
+          "scrollY": 4190,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": -53.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 130.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#21",
+          "targetY": 4130,
+          "scrollY": 4130,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 6.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 190.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#22",
+          "targetY": 4070,
+          "scrollY": 4070,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 66.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 250.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#23",
+          "targetY": 4010,
+          "scrollY": 4010,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 126.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 310.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#24",
+          "targetY": 3950,
+          "scrollY": 3950,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 186.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 370.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#25",
+          "targetY": 3890,
+          "scrollY": 3890,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 246.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 430.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#26",
+          "targetY": 3830,
+          "scrollY": 3830,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 306.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 490.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#27",
+          "targetY": 3770,
+          "scrollY": 3770,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 366.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 550.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#28",
+          "targetY": 3710,
+          "scrollY": 3710,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 426.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 610.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#29",
+          "targetY": 3650,
+          "scrollY": 3650,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 486.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 670.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#30",
+          "targetY": 3590,
+          "scrollY": 3590,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 546.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 730.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#31",
+          "targetY": 3530,
+          "scrollY": 3530,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 2,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 606.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            },
+            {
+              "cls": "cw-rec__line",
+              "text": "M+",
+              "rect": {
+                "x": 20,
+                "y": 790.03125,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#32",
+          "targetY": 3470,
+          "scrollY": 3470,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 666.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#33",
+          "targetY": 3410,
+          "scrollY": 3410,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 726.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#34",
+          "targetY": 3350,
+          "scrollY": 3350,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 1,
+          "samples": [
+            {
+              "cls": "cw-rec__line",
+              "text": "$20",
+              "rect": {
+                "x": 20,
+                "y": 786.5,
+                "width": 350,
+                "height": 183.53125
+              },
+              "mode": "text",
+              "sampleColor": "rgb(189, 90, 45)",
+              "textRgb": [
+                189,
+                90,
+                45
+              ],
+              "groundRgb": [
+                42,
+                31,
+                24
+              ],
+              "ratio": 3.5668448138297686
+            }
+          ]
+        },
+        {
+          "label": "up#35",
+          "targetY": 3290,
+          "scrollY": 3290,
+          "cwBgVar": "#2A1F18",
+          "bgColor": "rgb(42, 31, 24)",
+          "exitsIsLive": false,
+          "exitsIsOffworld": false,
+          "recIsOffworld": false,
+          "copperCount": 0,
+          "samples": []
+        }
+      ],
+      "flip": {
+        "flipY": 4709,
+        "samples": [
+          {
+            "delayMs": 0,
+            "actualMs": 3,
+            "cwBgVar": "#1A4548",
+            "bgColor": "rgb(26, 69, 72)",
+            "copperCount": 0,
+            "samples": []
+          },
+          {
+            "delayMs": 350,
+            "actualMs": 363,
+            "cwBgVar": "#1A4548",
+            "bgColor": "rgb(26, 69, 72)",
+            "copperCount": 0,
+            "samples": []
+          },
+          {
+            "delayMs": 800,
+            "actualMs": 813,
+            "cwBgVar": "#1A4548",
+            "bgColor": "rgb(26, 69, 72)",
+            "copperCount": 0,
+            "samples": []
+          }
+        ]
+      }
+    }
+  ]
+}

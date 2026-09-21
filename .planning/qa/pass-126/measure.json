@@ -1,0 +1,123 @@
+{
+  "results": [
+    {
+      "viewport": "390x844",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1440x900",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    }
+  ],
+  "failures": []
+}
