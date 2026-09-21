@@ -15,9 +15,10 @@ worktree's launch.json serves it on 3126).
 - PUSH ASKED -> he picked "Fix Fable's two small ones first" (LESSONS #3 "FABLE'S TWO FIXES"). Pass-126d `90b3699`
   (on both branches): /services Build `text-wrap: balance`; home title 40px phone margin. Gate
   `.planning/qa/pass-126/hiw-wrap-gate.mjs` bit pre-fix (3 known FAILs), LESSONS #48.
-- NOW: Sol rebuilds 90b3699 in p124-cuts (`build-p126d.log`) -> serve 3126 -> hiw-wrap-gate 0 FAIL + card1-126 local
-  0 FAIL + sheets -> push popup AGAIN -> words verbatim in LESSONS #3 + here BEFORE the push -> deploy id off the wire
-  -> `EXPECT_DPL=<id> bash .planning/exec/card1-126.sh`. Revert = promote dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH.
+- 126d VERIFIED (`5bddbb3`, both branches): gated build pass; hiw-wrap-gate 0 FAIL; card1-126 local 74/0;
+  console only /_vercel 404s; r6 sheets. NEXT: push popup AGAIN -> words verbatim in LESSONS #3 + here BEFORE
+  `git push origin design/live-evolve:main` -> deploy id off the wire -> `EXPECT_DPL=<id> bash
+  .planning/exec/card1-126.sh` + hiw-wrap-gate on www. Revert = promote dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH.
 
 ## HELD: /full-time (approved in content). `preview/p125-full-time` (`708ac61`); ship = `git revert 95cb41b` + card1-125.
 
