@@ -3,7 +3,8 @@
 // Copy is LOCKED (operator 2026-09-21, LESSONS #3 "HOW I WORK: FOUR STEPS, FINAL 1" and "HOW I WORK LOCKED";
 // Pass-126 ruling "Same words, better design" + "Carry it to other pages"). Extracted byte for byte from the
 // Pass-124 home markup, including the two no-break spaces that keep "break." (Stay headline) and "one."
-// (Plan body) off a line of their own on a phone. Do not retype, reword or "fix" these strings.
+// (Plan body) off a line of their own on a phone. The Plan body was re-ruled on 2026-09-21 (Pass-126, LESSONS #3 "HOW
+// I WORK: THE PLAN LINE"); its no-break space now sits before "month." Do not retype, reword or "fix" these strings.
 export const HOW_I_WORK = {
   heading: "How I work.",
   steps: [
@@ -15,7 +16,7 @@ export const HOW_I_WORK = {
     {
       label: "Plan",
       headline: "I name the trade-offs before I build.",
-      body: "You get a roadmap, and you sign off on it before I build anything. Something named ships in month one.",
+      body: "I give you a roadmap, and you approve it before development begins. A defined piece of the work ships within the first month.",
     },
     {
       label: "Build",
