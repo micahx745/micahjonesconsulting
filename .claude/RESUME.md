@@ -15,14 +15,14 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## In flight: homepage proposal (his ruling: build what the research said)
-Tick list SUPERSEDED for home (process miss, ledgered). Copy fixed by one Fable ruling
-(`.planning/reviews/FABLE-124-HOME-COPY.md`, not approved): hero "It works. / It just does
-not sell.", doors moved under hero, How I work = 3 unequal paras + one work link, ORDANI
-images off, CTA "Make it sell". Sonnet builds brief `pass-124-home-proposal.md` in
-`../p124-cuts` branch `pass-124/home-proposal`: A = receipts locked, B = receipts in
-sentences; captures -> `.planning/qa/pass-124/home/`. Main session reviews, then he judges.
-Inner-page cuts (B-E) parked.
+## In flight: homepage proposal, layout fix round on Sol
+Round 1 (Sonnet, `5a9feaa` A / `1e794c2` B, `../p124-cuts`): gates 0, axe 0, but main-session
+review found How I work in a narrow column (grid built for the removed numeral), an empty
+ORDANI block (photo grid areas), B still showing the $20M+ poster. NOT shown to him.
+Fix: brief `pass-124-home-proposal-fix.md` on Sol (`codex-exec -Task`, gpt-5.6-sol), scoped
+preview-only CSS; captures -> `p124-cuts/.planning/qa/pass-124/home-v2/`. Sol cannot commit
+in a worktree: main session commits A v2 / B v2 and copies captures to p106-live. Then
+Astra -Review + deepseek-v4-pro second opinion, THEN him.
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
