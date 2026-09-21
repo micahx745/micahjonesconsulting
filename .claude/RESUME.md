@@ -11,11 +11,16 @@ the deploy on its own. card1-126 with EXPECT_DPL: 157/0 (`.planning/exec/card1-1
 `hiw-wrap-gate.mjs` on www: 0 failures; `--self-test` PASS (LESSONS #48 + amendment).
 Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH` (the Pass-124 home, e8b44e3).
 
-## NEXT: his to order (ask by popup before any page arc; LESSONS #3 "FULL-TIME PAGE HELD")
+## NOW: the blog arc (he picked "The blog" 09-21, popup)
+Source: Fable research chat 09-20, `.planning/research/pass-124-copy-research-ANSWER.md` Deliverable 5 (15 titles,
+all [CHECK CUT]; #1 #2 #10 #11 #14 carry ledger-barred facts). It never read /about (homepage only; he asked).
+Step 1: Cut I (Sol, `C:/Users/micah/Code/reddit-research/cuts/cut_i_blog_titles.py`): per-title answered vs
+unanswered + top-3 phrasings. Then fact-strike, then popups (which pieces, where, voice). No rates on any surface.
+
+## QUEUE: his to order (ask by popup before any page arc; LESSONS #3 "FULL-TIME PAGE HELD")
 - HELD /full-time (approved in content): `preview/p125-full-time` (`708ac61`); ship = `git revert 95cb41b` on the
   branch, then card1-125 rebased on card1-126 + its own push words.
 - Inner pages (/services, /about, /packages, /contact; /about "practice management" vs study "CRM" for Ordani).
-- The blog (answered-ratio cut from `C:/Users/micah/Code/reddit-research/` first; never the rates).
 - Open facts: ORDANI "one engineer", east-west plain swap, "it shipped, nobody came", landing page 27 vs 34.
 - Guardicore mobile LCP p75; K4/K5 harness race; dead CSS `cw-principle__artifact`, `cw-pband__incl` (no importer).
 - DeepSeek key rotation: he said 09-21 "Not yet, I'll do it".
