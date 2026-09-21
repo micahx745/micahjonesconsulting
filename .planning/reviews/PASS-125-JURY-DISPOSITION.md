@@ -45,3 +45,9 @@ launch Neuton.AI and worked on its North American positioning."
 - /about (all three): "I also want one full-time seat: ..." with space above and below it.
 Not adopted: "13" for "thirteen" (Fable 13; the ledger row and /about spell it); "one full-time role" lede rewrite (Astra 6;
 the lede keeps his own words); an early email link under the intro (Astra 11); shorter 390 headlines (DeepSeek 10).
+
+## Round-4 re-confirmation (2026-09-21)
+Astra SHOW HIM AS IS; DeepSeek v4-pro SHOW HIM AS IS (optional nit: "through customer interviews", not taken);
+Fable ONE MORE FIX (390 Code headline break; /about rhythm), both fixed in `e7eea36`. Both tie-breaks (Result
+headline, order) were upheld by all three. Round-1 Fable finding 9 (Ordani "practice management" on /about vs "CRM")
+was missed by this disposition; now PARKED to the inner-pages pass. Details: `FABLE-125-FULLTIME-RECONFIRM.md`.
