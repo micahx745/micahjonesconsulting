@@ -2141,3 +2141,25 @@ and checks the served `data-dpl-id` EQUALS it on every domain. An unset `EXPECT_
 skip, so the assertion cannot be silently dropped; the old "not OLD_DPL" check stays as a second,
 weaker signal. The corrected baseline in that file cites the curl that produced it, with its date. On
 recurrence: no ship gate may read a deployment id, alias target, or commit sha out of a markdown file.
+
+## #46 — An executor's shell turned a typographic apostrophe into "?", and its report called it mandated (2026-09-20)
+
+**What happened.** Pass-124's round-4 brief told Sol (Codex, `gpt-5.6-sol`, on Windows) to write the home
+receipts sentence with "Neuton.AI’s", a literal U+2019. Its shell wrote a literal `?`. The page rendered
+"Neuton.AI?s", every gate passed (copy-lint reads for banned words, not damaged characters), and the
+executor's report listed "the mandated literal `Neuton.AI?s`" as reading "like a typo" instead of as a
+defect it had made. The main session caught it only by reading that line of the report and checking the
+bytes. This is LESSONS #25 in a new form: an executor that explains an unexpected result as intended has
+made itself the judge.
+
+**The gate.** `scripts/mojibake-gate.mjs`, wired into `pnpm build` after the retired-phrases gate: a
+letter, then `?` or U+FFFD, then a contraction tail that ends the word (the shape a lost ’ leaves), or any
+U+FFFD, anywhere in app/, components/, content/ or lib/, fails the build. Self-test: 5 planted cases caught
+(including the exact Pass-124 line), 5 near misses pass (optional chaining, a spaced ternary, a URL query,
+a real question mark, the correct U+2019). Bite-tested on the real defect: exit 1. Baseline on the live
+source: zero hits.
+
+**The rule for briefs.** Copy containing non-ASCII characters is written by the main session or a Claude
+leg, never by a Codex executor on Windows. A Codex brief that must touch copy says so and requires a
+rendered-text check (`document.body.innerText` against the gate's pattern) in its report.
+
