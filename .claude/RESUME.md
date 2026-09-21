@@ -15,14 +15,14 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## Sheets ready, ticks pending
-Preview `b10edba` (branch `pass-124/cuts-preview`, worktree `../p124-cuts`, never merges).
-10 sheets `.planning/qa/pass-124/sheets/cuts-*-{390,1440}.png`, reviewed by main session.
-24 of 25 applied; **B1 STOPPED** (required `cta` prop, no straight removal). All gates exit 0;
-axe serious+critical 0 before and after, all 20 scans. Review findings: A7+A8+A9 together
-leave the engagements door headless; C1+C2+C3 run /about together; /about sheet predates
-the "Product builds." fix (`99eb6b9`). Next: his ticks by popup, then apply ticked cuts
-on `design/live-evolve` only (A8 = delete the whole h2, never leave it empty).
+## In flight: homepage proposal (his ruling: build what the research said)
+Tick list SUPERSEDED for home (process miss, ledgered). Copy fixed by one Fable ruling
+(`.planning/reviews/FABLE-124-HOME-COPY.md`, not approved): hero "It works. / It just does
+not sell.", doors moved under hero, How I work = 3 unequal paras + one work link, ORDANI
+images off, CTA "Make it sell". Sonnet builds brief `pass-124-home-proposal.md` in
+`../p124-cuts` branch `pass-124/home-proposal`: A = receipts locked, B = receipts in
+sentences; captures -> `.planning/qa/pass-124/home/`. Main session reviews, then he judges.
+Inner-page cuts (B-E) parked. Guardicore research-vs-deals question still open.
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
