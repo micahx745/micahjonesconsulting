@@ -3,7 +3,7 @@
 Preview `b9d4fe8` (p124-cuts, `preview/p126-how-i-work`). Prompt `.planning/prompts/PASS-126-HOWIWORK-CONFIRM.md`.
 Verdicts, independently: **Fable SHOW HIM AFTER FIXES · Astra SHOW HIM AFTER FIXES · DeepSeek v4-pro SHOW HIM AFTER FIXES.**
 All three: clearly better than the uppercase spec-sheet stack it replaces. Texts: `ASTRA-126-HOWIWORK-CONFIRM.md`,
-`DSPRO-126-HOWIWORK-CONFIRM.md` (this folder); Fable's verbatim at the end. LEGS: fable=1 astra=1 dspro=1.
+`DSPRO-126-HOWIWORK-CONFIRM.md` and `FABLE-126-HOWIWORK-CONFIRM.md` (this folder). LEGS: fable=1 astra=1 dspro=1.
 
 ## Copy (the owed confirmation of the four steps; the words are locked, so flagged lines go to the owner)
 - Scope, Stay: CONFIRMED by all three.
