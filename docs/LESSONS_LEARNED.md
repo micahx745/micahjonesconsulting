@@ -1015,6 +1015,13 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   me."
   SUPERSEDES the proposal's "The story comes first." paragraphs and its hidden heading. Still open: the receipts (A
   or B) and whether "operator" and the hero's turn to $20M+ get reworked (his answer ticked both rework and keep).
+- **HOW I WORK LOCKED; RECEIPTS STAY AS LOCKED — operator 2026-09-21 (Pass-124 DIRECT, popups, after the rendered
+  How I work at 1440 and 390, `.planning/qa/pass-124/home-v6/`)**. HOW I WORK: picked "Yes, lock it (Recommended)":
+  the four steps ship exactly as ledgered in "HOW I WORK: FOUR STEPS, FINAL 1", with one typographic change only: a
+  no-break space so "BREAK." (Stay headline) and "one." (Plan body) never sit alone on a phone line. RECEIPTS: picked
+  "A: as you locked it (Recommended)": the 09-18 PASS-122 RECEIPTS V2 design (the $20M+ with the Tel Aviv clip, the
+  four-exits row) STAYS on the home. The research's "fold the numbers into sentences" (variant B) is REJECTED and is
+  not to be re-proposed without a new dated ruling.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
