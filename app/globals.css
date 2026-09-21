@@ -2980,6 +2980,11 @@ body {
   [data-mode="cw"] .cw-ft-sect {
     margin-top: 48px;
   }
+  /* Fable re-read, round 4: balance stranded "SOFTWARE" on its own middle line at 390. On phones
+   * the headlines wrap greedily-with-lookahead instead; the no-break spaces still hold the last word. */
+  [data-mode="cw"] .cw-principles--ft .cw-principle__artifact {
+    text-wrap: pretty;
+  }
 }
 
 /* Pass-106: the proof line. A named deal already ledgered elsewhere

@@ -198,7 +198,9 @@ export default function AboutPage() {
               whether he was available at all - it said "Building Ordani" and
               then described engagements in the abstract. No count: an invented
               number reads as a tactic, and a real one has to be maintained. */}
-          <p>
+          {/* Pass-125: the same 1.25em gap as the full-time line below it, so the three
+              "Currently" paragraphs share one rhythm (Fable re-read, round 4). */}
+          <p style={{ marginTop: "1.25em" }}>
             Alongside it: <a href="/services">engagements</a> with teams where
             the sales side and the product side have stopped talking to each
             other. I sit on both sides until they do. I am taking new
