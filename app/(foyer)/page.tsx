@@ -72,16 +72,16 @@ import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
 
 export const metadata: Metadata = {
-  // Absolute title prevents the root template ("%s — Micah Jones") from
+  // Absolute title prevents the root template ("%s | Micah Jones") from
   // double-suffixing on the home page. Other routes still get the suffix.
   title: {
-    absolute: "Micah Jones — Strategy and software, shipped by one person",
+    absolute: "Micah Jones | Strategy and software, shipped by one person",
   },
   description:
     "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
-    title: "Micah Jones — Strategy and software, shipped by one person",
+    title: "Micah Jones | Strategy and software, shipped by one person",
     description:
       "Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work. Now building Ordani, in beta with paying users.",
     type: "website",
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Micah Jones — Strategy and software, shipped by one person",
+    title: "Micah Jones | Strategy and software, shipped by one person",
     description:
       "Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work. Now building Ordani.",
   },

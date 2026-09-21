@@ -68,12 +68,12 @@ function clampDescription(dek: string): string {
 }
 
 // Per-route metadata for /work/[slug]. The root layout's title template
-// ("%s — Micah Jones") supplies the brand suffix — we just pass the
+// ("%s | Micah Jones") supplies the brand suffix — we just pass the
 // case study title here. Description: see clampDescription above.
 //
-// Don't manually append " — Micah Jones" to the title; that's what the
+// Don't manually append " | Micah Jones" to the title; that's what the
 // template does. The previous version did both, producing the bug
-// "title — Micah Jones — Micah Jones" on every case study page.
+// "title | Micah Jones | Micah Jones" on every case study page.
 export async function generateMetadata({
   params,
 }: {
@@ -95,7 +95,7 @@ export async function generateMetadata({
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${cs.title} — Micah Jones`,
+      title: `${cs.title} | Micah Jones`,
       description,
       type: "article",
       url,
@@ -103,7 +103,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${cs.title} — Micah Jones`,
+      title: `${cs.title} | Micah Jones`,
       description,
     },
   };

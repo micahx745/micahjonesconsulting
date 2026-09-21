@@ -13,13 +13,13 @@ import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PortraitImage } from "@/components/PortraitImage";
 
 export const metadata: Metadata = {
-  // Short title; root template appends " — Micah Jones" once.
+  // Short title; root template appends " | Micah Jones" once.
   title: "Operator, not consultant",
   description:
     "Thirteen years inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined. Oakland, CA.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/about" },
   openGraph: {
-    title: "Operator, not consultant — Micah Jones",
+    title: "Operator, not consultant | Micah Jones",
     description:
       "Thirteen years inside B2B software: go-to-market in the morning, shipping product in the afternoon. Four exits behind my work, $5B+ combined.",
     type: "profile",

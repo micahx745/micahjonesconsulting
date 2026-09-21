@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     // Fallback title for any page that exports none. Was "Oakland operator",
     // a leftover of the strap removed 2026-09-02; the city still lives in the
     // JSON-LD addressLocality below, which is where a machine looks for it.
-    default: "Micah Jones — independent operator",
-    template: "%s — Micah Jones",
+    default: "Micah Jones | independent operator",
+    template: "%s | Micah Jones",
   },
   description:
     "Independent operator in Oakland. Four exits behind my work: Postmates, SurveyMonkey IPO, Guardicore, Neuton.AI. $5B+ combined. $20M+ in revenue behind my work. Now building Ordani, HIPAA-compliant practice management in beta with active paying users.",

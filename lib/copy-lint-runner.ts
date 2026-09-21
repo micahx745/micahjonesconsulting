@@ -119,12 +119,16 @@ const EM_DASH_CAP = 1;
 
 /**
  * Which extensions FAIL the build. MDX is long-form prose the reader consumes whole, and it is
- * where the drift was worst (5, 8 and 11 against a cap of 1). The .tsx pages carry their own
- * smaller debt (2-5 each, verified 2026-09-01); sweeping those touches copy the operator just
- * approved, so it is queued as its own unit rather than smuggled in behind a lint change.
- * Widening the gate later is this one line.
+ * where the drift was worst (5, 8 and 11 against a cap of 1).
+ *
+ * .tsx WIDENED 2026-09-20 (Pass-124, operator popup: "Change the separator"). Until then a .tsx
+ * page could carry two em-dashes past the build, which mattered once new copy started landing in
+ * .tsx. Flipping this line first failed three files, and the debt was almost entirely the page
+ * TITLE SEPARATOR ("%s — Micah Jones"), not prose. Offered skipping titles in the scan or
+ * changing the separator, he picked the separator: every title now uses " | ". The scan itself
+ * was NOT narrowed; it counts every em-dash outside comments, titles and aria-labels included.
  */
-const EM_DASH_BLOCKING_EXTS = [".mdx", ".md"];
+const EM_DASH_BLOCKING_EXTS = [".mdx", ".md", ".tsx"];
 
 interface EmDashFinding {
   filePath: string;

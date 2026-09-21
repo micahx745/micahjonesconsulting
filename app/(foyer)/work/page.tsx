@@ -56,7 +56,7 @@ const FEATURED_SLUG = "guardicore";
 const POSTER_PHRASE_SLUGS = new Set(["birth-worker"]);
 
 export const metadata: Metadata = {
-  // Short title; root template appends " — Micah Jones" once.
+  // Short title; root template appends " | Micah Jones" once.
   title: "Work: revenue, products, and exits",
   description:
     "Case studies with the receipts attached: $14M in security revenue, a HIPAA-compliant CRM I founded, a $3M RFP engine, and an AI content engine.",
