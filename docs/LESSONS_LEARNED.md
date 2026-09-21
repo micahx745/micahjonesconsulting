@@ -1108,6 +1108,15 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   NEVER on the How I work steps again: "Something named ships in month one."
   BUILD: picked "Keep my line (Recommended)": "That means sign-in, data, deployment, and where it stands on compliance,
   written down." stays word for word; Astra's objection is recorded and declined.
+- **HOW I WORK REDESIGN TO THE SHIP CHECK — operator 2026-09-21 (Pass-126, popup, after the before/after scroll sheets
+  at 1440 and 390 for the home and /services and the served preview)**. Picked "Yes, to the ship check (Recommended)",
+  whose description read "I merge it onto the working branch, run every build check plus the live-site check script,
+  then ask you for the push in your own words. Nothing goes live before that. The full-time page stays held." APPROVED
+  IN DESIGN: Sol's "The Marked-Up Proof" as built on `preview/p126-how-i-work` (`3d5bb88`): the four steps as one uneven
+  page on espresso (home) and bone (/services), sentence-case headlines, a copper rule per step as the only copper, no
+  hold; on /services the steps replace "Every engagement includes", the two lines the steps do not say ("No discovery
+  fee. Any one of the three areas below, two of them, or all three.") sit under "Three areas of work", and "Why one
+  person" loses its week-one and month-one sentences. NOT approved to ship until his separate push words.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
