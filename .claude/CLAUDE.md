@@ -172,8 +172,9 @@ to give quality feedback." Two slots, and only two:
    the GLM REST leg has been dead since 2026-09-18 (HTTP 429, "Insufficient balance" on the pay-go key)
    and the z.ai Coding-Plan key cannot lawfully stand in for it, because docs.z.ai/devpack/usage-policy
    forbids scripted access. DeepSeek is pay-as-you-go, so it is the compliant replacement. The leg picks
-   its model by asking the account (`GET /models`) and preferring `deepseek-reasoner`, then
-   `deepseek-chat`; `DEEPSEEK_MODEL` overrides. Proven offline against a stub server that speaks the
+   its model by asking the account (`GET /models`) and preferring `deepseek-v4-pro`, then
+   `deepseek-flash` (corrected 2026-09-20: this line first named two ids that do not exist on the
+   account; the code was fixed in `9019186`); `DEEPSEEK_MODEL` overrides. Proven offline against a stub server that speaks the
    same dialect: `python scripts/cross-review/test/deepseek_leg_test.py`, 13 assertions, no key, no spend.
 2. **A standing grunt tier, not overflow** (operator 2026-09-20, second message:
    *"alos make sure deep seek is included now for the new chat harness so we use it
@@ -200,10 +201,30 @@ It does NOT rule, and it does not replace Astra or Fable at a taste gate: a four
 having precisely because it is independent, and an independent opinion that gets to decide is just
 another ruler. Every finding it returns goes through the same disposition protocol as the other legs
 (premises verified against the live repo before it is adopted OR dismissed).
-SECRETS: the key is resolved from the `DEEPSEEK_API_KEY` user env var, else `.claude/.deepseek-key`
-(already gitignored by the `.claude/.*-key` rule). It is never printed, never committed, never passed
+SECRETS: the key is resolved from the `DEEPSEEK_API_KEY` user env var, else `~/.claude/.deepseek-key`
+(where it lives, operator 2026-09-20), else `.claude/.deepseek-key` (gitignored by the `.claude/.*-key` rule). It is never printed, never committed, never passed
 on a command line. The operator pasted a key into chat on 2026-09-20; that key is in a session
 transcript on disk and must be treated as exposed and rotated. No key was written to this repo.
+
+**Amended 2026-09-20, evening: every other model, every time; DeepSeek is a tier, not the driver.**
+Operator, verbatim except one word: "I dont want deepseek to have such a main driver role and i dont
+want you messing with global things. i just want your permanet repo version to include deepseek. We need
+to be always [using] all the other models to lower claude usage and to get the best answers and highest
+quality outputs." (The bracketed word is his; it is on the brand.json banned list, so the copy-lint hook
+would reject it here.) So: routing changes live in THIS file and this repo's scripts, never in
+`~/.claude`. DeepSeek keeps exactly the two slots above and never rules. The non-Claude models are the
+DEFAULT for every leg they can do, not the exception:
+- Reading, sweeps, summaries, drafting alternatives: DeepSeek (`deepseek-flash`; `deepseek-v4-pro` for
+  copy drafts). Pass `-MaxTokens 32000` or more: the 8000 default returned an empty answer on every page
+  sweep on 2026-09-20.
+- Builds, captures, measuring, fix rounds: Sol (`codex-exec.ps1 -Task`), or GLM when it is up; a Sonnet
+  subagent only when the leg needs Chrome or this session's context.
+- Every design or copy checkpoint, before it reaches him: Astra (`codex-exec.ps1 -Review`, images
+  attached) AND a `deepseek-v4-pro` second opinion. Two independent non-Claude reads, both reported.
+- Claude tiers only for what no other model can do here: the LESSONS #3 ledger check and every ship
+  decision (main session), the taste gate (Fable, one call), and legs that need repo tools in-session.
+WHY IT WAS WRITTEN: the Pass-124 session had DeepSeek in its kickoff routing table and routed nothing to
+it until the operator said so mid-session. A tier that is only on paper is not a tier in use.
 
 **Arc shape (MODEL_ROUTING §6).** A top tier's value is the ruling, not the loop that
 implements it. An audit of the 2026-09-01 Fable session found 9 of 320 turns were decisions
