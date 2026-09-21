@@ -23,3 +23,15 @@ All three: clearly better than the uppercase spec-sheet stack it replaces. Texts
 5. 390: indents dropped; one text edge (TIE: DeepSeek "stronger", Astra "common edge", Fable "commit or drop";
    tie-break drop, because Build's largest headline was squeezed to three lines and the stagger read as nesting).
 6. Home 390: the heading gets the step gap above it (Fable).
+
+## Round-4 re-confirmation (2026-09-21), preview f023759
+Astra SHOW HIM AS IS (new Plan body CONFIRMED); DeepSeek v4-pro SHOW HIM AS IS (CONFIRMED, no findings); Fable ONE MORE
+FIX (CONFIRMED the new Plan body; judged every first-read finding landed, incl. the /services link in the page's own ink
+style). Fable's three new findings, each MEASURED on the build by the main session before disposition:
+1. Home 1440, Plan and Build headlines on one baseline: gutter measured 30px (Fable estimated ~36). ADOPTED: Plan on
+   column 1 with a 48px inset at 1100+ (`214b2c4`), gutter checked >= 72 at 1440 and >= 56 at 1280.
+2. Home 390, "Scope's rule about 20px under the heading": measured 58px (home) and 80px (/services). DECLINED: the
+   estimate was wrong and 58px does not read as an underline.
+3. 390 step gaps uneven: measured home 56/80/64, /services 44/60/48 (the phone offsets were never evened). ADOPTED:
+   one value per page, home 64, /services 56 (`214b2c4`).
+Texts: `ASTRA-126-HOWIWORK-RECONFIRM.md`, `DSPRO-126-HOWIWORK-RECONFIRM.md`, `FABLE-126-HOWIWORK-RECONFIRM.md`.
