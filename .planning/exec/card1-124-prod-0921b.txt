@@ -1,0 +1,119 @@
+== https://www.micahjonesconsulting.com
+  PASS dpl id is new: got dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH
+  PASS dpl id is the one we built: got dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH
+  PASS status /: got 200
+  PASS status /work: got 200
+  PASS status /work/guardicore: got 200
+  PASS status /work/rfp-engine: got 200
+  PASS status /work/ordani: got 200
+  PASS status /work/content-engine: got 200
+  PASS status /work/birth-worker: got 200
+  PASS status /about: got 200
+  PASS status /services: got 200
+  PASS status /contact: got 200
+  PASS status /llms.txt: got 200
+  PASS status /sitemap.xml: got 200
+  PASS /work RFP entry: got 1
+  PASS study Results row keeps the rest: got 1
+  PASS study Results row drops the repeat: got 0
+  PASS study What changed: got 1
+  PASS eleven absent (WR raw): got 0
+  PASS eleven absent (RR raw): got 0
+  PASS eleven absent (LL raw): got 0
+  PASS home $20M+: got 2
+  PASS home caption: got 1
+  PASS home exits title: got 1
+  PASS home lead one: got 1
+  PASS home lead two: got 1
+  PASS home positioning: got 1
+  PASS home revenue sentence: got 1
+  PASS home engagement contrast: got 1
+  PASS home offer heading: got 1
+  PASS home process heading: got 1
+  PASS home scope step: got 1
+  PASS home decide step: got 1
+  PASS home build step: got 1
+  PASS home launch step: got 1
+  PASS home work link: got 2
+  PASS home revenue caption: got 2
+  PASS home exits title: got 1
+  PASS home close heading: got 1
+  PASS retired AI-built lead: got 0
+  PASS retired demo phrase: got 0
+  PASS retired duct tape heading: got 0
+  PASS retired principles heading: got 0
+  PASS retired story step: got 0
+  PASS retired operator phrase: got 0
+  PASS retired sell heading: got 0
+  PASS retired labor phrase: got 0
+  PASS retired bodywork phrase: got 0
+  PASS /work featured aria-label: got 1
+  PASS FAQ phrase gone: got 0
+  PASS FAQ question gone: got 0
+  PASS other FAQs kept: got 1
+  PASS F5 cqi rule served: got 1
+  PASS dead CSS gone: got 0
+  PASS scoreboard actor CSS served: got 10
+== https://micahjonesconsulting.vercel.app
+  PASS dpl id is new: got dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH
+  PASS dpl id is the one we built: got dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH
+  PASS status /: got 200
+  PASS status /work: got 200
+  PASS status /work/guardicore: got 200
+  PASS status /work/rfp-engine: got 200
+  PASS status /work/ordani: got 200
+  PASS status /work/content-engine: got 200
+  PASS status /work/birth-worker: got 200
+  PASS status /about: got 200
+  PASS status /services: got 200
+  PASS status /contact: got 200
+  PASS status /llms.txt: got 200
+  PASS status /sitemap.xml: got 200
+  PASS /work RFP entry: got 1
+  PASS study Results row keeps the rest: got 1
+  PASS study Results row drops the repeat: got 0
+  PASS study What changed: got 1
+  PASS eleven absent (WR raw): got 0
+  PASS eleven absent (RR raw): got 0
+  PASS eleven absent (LL raw): got 0
+  PASS home $20M+: got 2
+  PASS home caption: got 1
+  PASS home exits title: got 1
+  PASS home lead one: got 1
+  PASS home lead two: got 1
+  PASS home positioning: got 1
+  PASS home revenue sentence: got 1
+  PASS home engagement contrast: got 1
+  PASS home offer heading: got 1
+  PASS home process heading: got 1
+  PASS home scope step: got 1
+  PASS home decide step: got 1
+  PASS home build step: got 1
+  PASS home launch step: got 1
+  PASS home work link: got 2
+  PASS home revenue caption: got 2
+  PASS home exits title: got 1
+  PASS home close heading: got 1
+  PASS retired AI-built lead: got 0
+  PASS retired demo phrase: got 0
+  PASS retired duct tape heading: got 0
+  PASS retired principles heading: got 0
+  PASS retired story step: got 0
+  PASS retired operator phrase: got 0
+  PASS retired sell heading: got 0
+  PASS retired labor phrase: got 0
+  PASS retired bodywork phrase: got 0
+  PASS /work featured aria-label: got 1
+  PASS FAQ phrase gone: got 0
+  PASS FAQ question gone: got 0
+  PASS other FAQs kept: got 1
+  PASS F5 cqi rule served: got 1
+  PASS dead CSS gone: got 0
+  PASS scoreboard actor CSS served: got 10
+== https://micahjonesconsulting.com (apex)
+  PASS apex 308 /: got 308 https://www.micahjonesconsulting.com/
+  PASS apex 308 /work: got 308 https://www.micahjonesconsulting.com/work
+  PASS apex 308 /work/rfp-engine: got 308 https://www.micahjonesconsulting.com/work/rfp-engine
+  PASS apex 308 /llms.txt: got 308 https://www.micahjonesconsulting.com/llms.txt
+  PASS same dpl on all three: got dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH
+FAILURES: 0

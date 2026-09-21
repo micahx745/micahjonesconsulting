@@ -10,9 +10,9 @@ pushed to `main` 2026-09-21, operator verbatim: "push the routing files to main 
 scripts, harness only; no site file). Next chat: `.planning/handoff/
 NEXT-SESSION-KICKOFF.md` (full-time page first).
 
-## LIVE 2026-09-21: main = 48818f1, dpl_6mBZ6hbC6TWc3r3g3Keku9zGSfs2, all three domains
+## LIVE 2026-09-21: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains
 Approval verbatim (LESSONS #3, PASS-124 PUSH APPROVED): "Yes, push it (Recommended)". CARD 1
-115 PASS / 0 FAIL (`.planning/exec/card1-124-prod-0921.txt`, EXPECT_DPL). Revert: promote
+115/0 again after the routing push (`.planning/exec/card1-124-prod-0921b.txt`); site files unchanged since 48818f1. Revert: promote
 `dpl_9Q3JRk47vpd9b9xGnmkruoG5zkEM` (9019186).
 Shipped: the rebuilt home (hero "It works. / It just does not sell.", doors under the hero, How I
 work as four steps, ORDANI photos off; receipts and NAME THE PROBLEM unchanged), " | " title
