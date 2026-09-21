@@ -4577,13 +4577,14 @@ body {
 [data-mode="cw"] .cw-hiw__step--scope {
   grid-area: s;
 }
+/* One phone gap between steps (Fable re-read, round 4: 56/80/64 read uneven). */
 [data-mode="cw"] .cw-hiw__step--plan {
   grid-area: p;
-  margin-top: 56px;
+  margin-top: 64px;
 }
 [data-mode="cw"] .cw-hiw__step--build {
   grid-area: b;
-  margin-top: 80px;
+  margin-top: 64px;
 }
 [data-mode="cw"] .cw-hiw__step--stay {
   grid-area: y;
@@ -4654,14 +4655,10 @@ body {
 [data-mode="cw"] .cw-hiw--services .cw-hiw__step--build .cw-hiw__head {
   font-size: clamp(34px, 3.9vw, 56px);
 }
-[data-mode="cw"] .cw-hiw--services .cw-hiw__step--plan {
-  margin-top: 44px;
-}
-[data-mode="cw"] .cw-hiw--services .cw-hiw__step--build {
-  margin-top: 60px;
-}
+[data-mode="cw"] .cw-hiw--services .cw-hiw__step--plan,
+[data-mode="cw"] .cw-hiw--services .cw-hiw__step--build,
 [data-mode="cw"] .cw-hiw--services .cw-hiw__step--stay {
-  margin-top: 48px;
+  margin-top: 56px;
 }
 [data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) > div::before {
   transform: scaleX(0);
@@ -4697,7 +4694,7 @@ body {
     column-gap: 24px;
     grid-template-areas:
       "t t t t t . s s s s s s"
-      ". p p p p p b b b b b b"
+      "p p p p p p b b b b b b"
       "y y y y y y y y y . . ."
       "k k k k k k k k k . . .";
   }
@@ -4711,6 +4708,11 @@ body {
   }
   [data-mode="cw"] .cw-hiw__step--plan {
     margin-top: 72px;
+  }
+  /* Plan starts on column 1 with a 48px inset (was column 2): its headline ended 30px short of Build's on the same
+   * baseline and the two read as one line (Fable re-read, round 4). The gutter is now ~96px at 1440. */
+  [data-mode="cw"] .cw-hiw__step--plan > div {
+    padding-left: 48px;
   }
   [data-mode="cw"] .cw-hiw__step--build {
     margin-top: 72px;
