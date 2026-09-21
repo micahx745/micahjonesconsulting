@@ -1047,6 +1047,20 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   Vercel deploys on push. I point both domains at the new deploy and run the ship check against the live site. Undo
   is one step: promote today's deploy (dpl_9Q3J...) back." The approval covers exactly: the rebuilt home, the " | "
   title separator, /about "Product builds.", and the two build-time gates. Nothing else.
+- **PASS-125 FULL-TIME PAGE: THE SEAT AND ORDANI — operator 2026-09-21 (Pass-125 DIRECT, popups, before any draft)**.
+  SEAT: asked what seat the "Work with me full-time" page names, he picked "Early-stage build-and-sell hire" over the
+  main session's recommendation ("Head of GTM, product, or AI"). The option he picked read: "The first person at an
+  early company who both builds the product and sells it. Fits that you joined all four exits early. Narrows the page
+  to startups." So the page is written for a hiring manager at an EARLY-STAGE company, and the seat it names is the
+  first person who both builds the product and sells it. NEVER on this page: "head of" as the seat sought, a job title
+  or level he has held beyond the ledgered Postmates "product analyst", or any claim that he led a team or managed
+  people (the ledger carries none; Guardicore is "no team led"). "Early" for the four exits stays the flat public
+  rendering (2026-09-02).
+  ORDANI: asked what the page says about ORDANI's future if he takes a role, he picked "Nothing; I answer on the call
+  (Recommended)": ORDANI appears only as proof, a company he founded and built. NEVER on this page: a promise, plan or
+  hours commitment about ORDANI alongside or after a role.
+  LOCATION: not asked; the 2026-09-02 ruling stands (no city chip; "in many places that is irrelevant"). The page
+  states no location unless he rules otherwise.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
