@@ -15,14 +15,13 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## Homepage proposal v5: READY, with him
-Preview `pass-124/home-proposal` (`../p124-cuts`, never merges): A v5 `a160a3b` (receipts as
-locked), B v5 `38365cf` (receipts in short sentences, cap-table line cut). Captures
-`.planning/qa/pass-124/home-v5/`. Astra FIX FIRST items all fixed (rounds 4-5, Sol, measured).
-Gates 0, axe 0, rendered-text clean. Open for him: A or B (Astra B, DeepSeek A); rework
-"The story comes first" / "operator" / hero $20M+ pivot (both jurors flagged)? Then brief the
-real build on `design/live-evolve` (update CARD 1 home markers: example rows are gone).
-New gate: `scripts/mojibake-gate.mjs` (LESSONS #46, `3174aca`).
+## Homepage proposal: How I work redone, round 6 building
+He rejected the paragraph version of How I work ("replaced by something i dont understand"). His pick
+now, ledgered EXACT: four steps Scope / Plan / Build / Stay (Fable Final 1, drafted by DeepSeek + Sol,
+facts checked), heading visible, no numerals, no rows, one "See the work" link. Written into preview
+B v6 `0cf8596` by the main session (no executor writes copy, LESSONS #46). Sol round 6 builds A+B,
+captures -> `p124-cuts/.planning/qa/pass-124/home-v6/`. Still open for him: receipts A or B; rework
+"operator" / hero $20M+ turn (his answer ticked both rework and keep). Then brief the real build.
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
