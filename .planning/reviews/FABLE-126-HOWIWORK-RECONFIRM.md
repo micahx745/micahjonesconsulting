@@ -1,0 +1,11 @@
+# Fable re-read, How I work round 4 (preview f023759), 2026-09-21, verbatim
+
+VERDICT: ONE MORE FIX: home at 1440, the Plan and Build headlines tombstone (finding 1). Everything from the first read landed: the link sits under Stay's body on Stay's edge at both widths; the /services link in the page's own ink sentence-case style is the right call (one link vocabulary per page beats matching the home's mono caps); the note now sits where "below" points; the gap before "Three areas of work" is twice a step gap; the 390 stack has one edge and the heading has its air. The home at 1440 is a two-screen read (three complete steps with Stay's label at the foot, then Stay and the link over the arriving $20M+), the deliberate alternative I offered, and it holds. Astra's Build flag stays his ruling.
+
+COPY: the new Plan body CONFIRMED. The stutter ("before I build" twice) and the garden path ("named ships") are both gone; two 12-word sentences, one promise with a time on it; three clean lines at both widths, no orphan.
+
+1. Home, 1440. "I name the trade-offs" and "I build the real thing," sit on one baseline at one size with about 36px between the "s" and the "I": Plan's indent puts its headline at x=152 running to 695, and Build's column starts at 732. Two same-size headlines sharing a baseline with a gutter under 1em read as one line ("I name the trade-offs I build the real thing,"), the newspaper tombstone; the copper rules above do not stop the eye at that size. /services is safe, its smaller headline leaves about 140px. Fix: pull Plan's 1440 indent in (about 112px to 48px) so the gutter is at least the 72px row gap; keep the "trade-offs / before I build." break.
+
+2. Home, 390. Scope's copper rule sits about 20px under "HOW I WORK." (heading bottom 278, rule at 298); on /services the same gap is about 41px. At 20px the rule reads as the heading's underline rather than Scope's opener, and the two pages disagree on the one phone-only gap. Fix: match /services (40 to 48px) on the home, same round.
+
+3. 390, both pages, by my read of the sheets (+/-8px): the step gaps are not one value. Home 69/92/73 (Scope to Plan, Plan to Build, Build to Stay); /services 50/64/65. The 92 on the home is the one a reader feels. Fix: measure the phone gaps as 1440 was measured and set one value.

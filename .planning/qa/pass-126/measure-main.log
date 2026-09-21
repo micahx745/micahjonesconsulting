@@ -1,0 +1,204 @@
+{
+  "results": [
+    {
+      "viewport": "390x844",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 273.84375,
+        "planBuildGutter": -318.15625,
+        "stepGaps": [
+          64,
+          64,
+          64
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 96,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 257.6875,
+        "planBuildGutter": -282.296875,
+        "stepGaps": [
+          56,
+          56,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1440x900",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 103.390625,
+        "stepGaps": [
+          72,
+          -295.9375,
+          72
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 128,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 140.65625,
+        "stepGaps": [
+          56,
+          -259.21875,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1280x800",
+      "home": {
+        "planBuildGutter": 75.25
+      },
+      "services": {
+        "planBuildGutter": 119.28125
+      }
+    }
+  ],
+  "failures": []
+}

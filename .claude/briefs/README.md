@@ -108,6 +108,9 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
   mismatch, as it should. Pin with a check that survives the commit:
   `git log -1 --format=%h -- <this brief>` equals `git rev-parse --short HEAD`, and name the code commit
   separately. Also list any untracked files that pre-date the round in the expected `git status`.
+- **Never commit in a worktree while an executor is running in it** (Pass-126c, 2026-09-21). The main session
+  committed review files mid-run; HEAD moved off the brief's commit and Sol stopped at its HEAD check (correctly).
+  Commit only before launch or after the report; write records to the other worktree while a run is live.
 - **Full-page captures of a Color Worlds page lie about colour.** The WorldSwitcher recolours the page per
   section on scroll, so a full-page screenshot freezes every section in the first section's world (Pass-125
   round 1 showed an espresso section on bone). Any capture a juror or the operator judges for design is a

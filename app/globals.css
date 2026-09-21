@@ -4546,6 +4546,237 @@ body {
   transform: none;
 }
 
+/* Pass-126 How I work (Fable pick: Sol's Marked-Up Proof on espresso) */
+[data-mode="cw"] .cw-hiw {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "t"
+    "s"
+    "p"
+    "b"
+    "y"
+    "m";
+}
+[data-mode="cw"] .cw-hiw--services {
+  margin-top: 64px;
+}
+[data-mode="cw"] .cw-hiw__list {
+  display: contents;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+[data-mode="cw"] .cw-hiw__title {
+  grid-area: t;
+  max-width: none;
+  margin-bottom: 40px;
+  color: inherit;
+  font-size: clamp(44px, 6.5vw, 92px);
+}
+[data-mode="cw"] .cw-hiw__step--scope {
+  grid-area: s;
+}
+/* One phone gap between steps (Fable re-read, round 4: 56/80/64 read uneven). */
+[data-mode="cw"] .cw-hiw__step--plan {
+  grid-area: p;
+  margin-top: 64px;
+}
+[data-mode="cw"] .cw-hiw__step--build {
+  grid-area: b;
+  margin-top: 64px;
+}
+[data-mode="cw"] .cw-hiw__step--stay {
+  grid-area: y;
+  margin-top: 64px;
+}
+[data-mode="cw"] .cw-hiw__step--scope > div,
+[data-mode="cw"] .cw-hiw__step--stay > div {
+  margin-left: 0;
+}
+[data-mode="cw"] .cw-hiw__more {
+  grid-area: m;
+  margin: 28px 0 0;
+}
+[data-mode="cw"] .cw-hiw__label {
+  margin: 0 0 14px;
+  color: inherit;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+[data-mode="cw"] .cw-hiw__head {
+  margin: 0 0 20px;
+  color: inherit;
+  font-family: var(--font-cw-display);
+  font-size: clamp(34px, 4.2vw, 60px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  text-wrap: pretty;
+}
+[data-mode="cw"] .cw-hiw__step--build .cw-hiw__head {
+  font-size: clamp(38px, 5.2vw, 74px);
+}
+[data-mode="cw"] .cw-hiw__body {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-cw-body);
+  font-size: clamp(17px, 1.3vw, 18px);
+  font-weight: 400;
+  line-height: 1.5;
+}
+[data-mode="cw"] .cw-hiw__step > div::before {
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 0 0 16px;
+  background: var(--color-accent-copper);
+  transform-origin: left center;
+  content: "";
+}
+[data-mode="cw"] .cw-hiw--services .cw-hiw__title {
+  max-width: none;
+  font-family: var(--font-cw-display);
+  font-size: clamp(38px, 4.6vw, 66px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-hiw--services .cw-hiw__head {
+  font-size: clamp(30px, 3.3vw, 48px);
+}
+[data-mode="cw"] .cw-hiw--services .cw-hiw__step--build .cw-hiw__head {
+  font-size: clamp(34px, 3.9vw, 56px);
+}
+[data-mode="cw"] .cw-hiw--services .cw-hiw__step--plan,
+[data-mode="cw"] .cw-hiw--services .cw-hiw__step--build,
+[data-mode="cw"] .cw-hiw--services .cw-hiw__step--stay {
+  margin-top: 56px;
+}
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) > div::before {
+  transform: scaleX(0);
+}
+[data-mode="cw"] .cw-hiw__step > div::before {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) .cw-hiw__body {
+  opacity: 0;
+  transform: translateY(14px);
+}
+[data-mode="cw"] .cw-hiw__body {
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.12s,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
+}
+
+@media (max-width: 1099px) {
+  [data-mode="cw"] .cw-hiw--home {
+    padding-top: 48px;
+  }
+}
+
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-hiw--services {
+    margin-top: 48px;
+  }
+}
+
+@media (min-width: 1100px) {
+  [data-mode="cw"] .cw-hiw {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    grid-template-areas:
+      "t t t t t . s s s s s s"
+      "p p p p p p b b b b b b"
+      "y y y y y y y y y . . ."
+      "k k k k k k k k k . . .";
+  }
+  [data-mode="cw"] .cw-hiw__title {
+    align-self: start;
+    max-width: 4.5em;
+    margin-bottom: 0;
+  }
+  [data-mode="cw"] .cw-hiw__step--scope {
+    align-self: start;
+  }
+  [data-mode="cw"] .cw-hiw__step--plan {
+    margin-top: 72px;
+  }
+  /* Plan starts on column 1 with a 48px inset (was column 2): its headline ended 30px short of Build's on the same
+   * baseline and the two read as one line (Fable re-read, round 4). The gutter is now ~96px at 1440. */
+  [data-mode="cw"] .cw-hiw__step--plan > div {
+    padding-left: 48px;
+  }
+  /* /services keeps Plan on column 2 with no inset: its smaller headline then breaks "trade-offs / before I build."
+   * and the gutter stays wide; moving it to column 1 let "before" onto line one and cut the gutter to 60px (126c). */
+  [data-mode="cw"] .cw-hiw--services {
+    grid-template-areas:
+      "t t t t t . s s s s s s"
+      ". p p p p p b b b b b b"
+      "y y y y y y y y y . . ."
+      "k k k k k k k k k . . .";
+  }
+  [data-mode="cw"] .cw-hiw--services .cw-hiw__step--plan > div {
+    padding-left: 0;
+  }
+  [data-mode="cw"] .cw-hiw__step--build {
+    margin-top: 72px;
+  }
+  [data-mode="cw"] .cw-hiw__step--stay {
+    margin-top: 72px;
+  }
+  [data-mode="cw"] .cw-hiw__step > div {
+    margin-left: 0;
+  }
+  [data-mode="cw"] .cw-hiw__more {
+    grid-area: k;
+    align-self: start;
+    margin-top: 28px;
+  }
+  [data-mode="cw"] .cw-hiw__step--scope .cw-hiw__body {
+    max-width: 440px;
+  }
+  [data-mode="cw"] .cw-hiw__step--plan .cw-hiw__body {
+    max-width: 460px;
+  }
+  [data-mode="cw"] .cw-hiw__step--build .cw-hiw__body {
+    max-width: 520px;
+  }
+  [data-mode="cw"] .cw-hiw__step--stay .cw-hiw__body {
+    max-width: 480px;
+  }
+  [data-mode="cw"] .cw-hiw__step > div::before {
+    width: 88px;
+  }
+  [data-mode="cw"] .cw-hiw--services .cw-hiw__title {
+    max-width: 4.5em;
+  }
+  [data-mode="cw"] .cw-hiw--services .cw-hiw__step--plan {
+    margin-top: 56px;
+  }
+  [data-mode="cw"] .cw-hiw--services .cw-hiw__step--build {
+    margin-top: 56px;
+  }
+  [data-mode="cw"] .cw-hiw--services .cw-hiw__step--stay {
+    margin-top: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] .cw-hiw__step > div::before,
+  [data-mode="cw"] .cw-hiw__body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* Reduced motion — disable transforms/animations, keep content visible. */
 
 @media (prefers-reduced-motion: reduce) {
@@ -7891,6 +8122,9 @@ body {
   margin-top: 64px;
   max-width: none;
 }
+[data-mode="cw"] .cw-hiw--services + .cw-areas {
+  margin-top: 128px;
+}
 [data-mode="cw"] .cw-areas__h {
   font-family: var(--font-cw-display);
   font-weight: 800;
@@ -7898,10 +8132,22 @@ body {
   line-height: 1.1;
   margin: 0;
 }
+[data-mode="cw"] .cw-areas__note {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 12px 0 24px;
+  max-width: 640px;
+}
 [data-mode="cw"] .cw-areas__grid {
   margin-top: 32px;
   border-top: 1px solid currentColor;
   padding-top: 32px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-hiw--services + .cw-areas {
+    margin-top: 96px;
+  }
 }
 @media (min-width: 769px) {
   [data-mode="cw"] .cw-areas__grid {
@@ -8240,22 +8486,12 @@ body {
     U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
-/* Pass-124 (operator 2026-09-21, LESSONS #3): the home, rebuilt from the research.
- *
- * How I work: four steps, no stage numerals, so each step is one column (the auto track was
- * the numeral's), and the one link to the work page sits under the last step. */
-[data-mode="cw"] .cw-principles--steps .cw-principle {
-  grid-template-columns: 1fr;
-}
-[data-mode="cw"] .cw-principles__more {
-  margin: 28px 0 0;
-}
 /* The gap between the Audit card and How I work, halved (Astra, measured 281 -> 148px at 390,
  * 352 -> 184px at 1440): both sides of it, the Audit section's bottom and the next section's top. */
 [data-mode="cw"] #offer {
   padding-bottom: clamp(16px, 4.2vw, 60px);
 }
-[data-mode="cw"] section:has(.cw-principles--steps) {
+[data-mode="cw"] #products {
   padding-top: clamp(16px, 4.2vw, 60px);
 }
 /* ORDANI without its photos: the grid holds the copy only, held to the measure the 5fr column

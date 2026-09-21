@@ -64,6 +64,7 @@ import type { Metadata } from "next";
 import { BuyButton } from "@/components/BuyButton";
 import { Hero } from "@/components/color-worlds/Hero";
 import { ExitRecord } from "@/components/color-worlds/ExitRecord";
+import { HowIWork } from "@/components/color-worlds/HowIWork";
 import { OrdaniBetaForm } from "@/components/color-worlds/OrdaniBetaForm";
 import { PriceBox } from "@/components/color-worlds/PriceBox";
 import { RevenueFigure } from "@/components/color-worlds/RevenueFigure";
@@ -322,58 +323,7 @@ export default function ColorWorldsHome() {
         data-world="espresso"
         aria-labelledby="cw-howiwork-title"
       >
-        <SplitReveal as="h2" id="cw-howiwork-title" className="cw-secttitle">
-          How I work.
-        </SplitReveal>
-        {/* Pass-124 (operator 2026-09-21, "Final 1: Fable's pick"): four steps, no numerals, no
-            example rows, one link to the work page. Copy is ledger-exact; do not reword. */}
-        <ol className="cw-principles cw-principles--steps">
-          <li
-            className="cw-principle cw-reveal"
-            style={{ transitionDelay: "0ms" }}
-          >
-            <div>
-              <p className="cw-principle__name">Scope</p>
-              <p className="cw-principle__artifact">Week one is an audit and a scope.</p>
-              <p className="cw-principle__text">I look at where things stand: what works, what is broken, and what to fix first. The scope and the price go in writing before anything starts.</p>
-            </div>
-          </li>
-          <li
-            className="cw-principle cw-reveal"
-            style={{ transitionDelay: "80ms" }}
-          >
-            <div>
-              <p className="cw-principle__name">Plan</p>
-              <p className="cw-principle__artifact">I name the trade-offs before I build.</p>
-              <p className="cw-principle__text">You get a roadmap, and you sign off on it before I build anything. Something named ships in month one.</p>
-            </div>
-          </li>
-          <li
-            className="cw-principle cw-reveal"
-            style={{ transitionDelay: "160ms" }}
-          >
-            <div>
-              <p className="cw-principle__name">Build</p>
-              <p className="cw-principle__artifact">I build the real thing, not a prototype.</p>
-              <p className="cw-principle__text">That means sign-in, data, deployment, and where it stands on compliance, written down. You get me, directly, and a reply within one business day.</p>
-            </div>
-          </li>
-          <li
-            className="cw-principle cw-reveal"
-            style={{ transitionDelay: "240ms" }}
-          >
-            <div>
-              <p className="cw-principle__name">Stay</p>
-              <p className="cw-principle__artifact">I stay for launch and what customers break.</p>
-              <p className="cw-principle__text">I interview customers and listen to sales calls to find the question buyers are actually asking. Then I hand over documentation and a walkthrough so your team runs it without me.</p>
-            </div>
-          </li>
-        </ol>
-        <p className="cw-principles__more cw-reveal">
-          <a href="/work" className="cw-mlink">
-            See the work <span aria-hidden>→</span>
-          </a>
-        </p>
+        <HowIWork variant="home" />
 
         {/* Pass-2 (redesign D-R14 synthesis): the card grid becomes THE
             LEDGER — the direction the operator picked across four style
