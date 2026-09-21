@@ -1,32 +1,30 @@
-# RESUME — micahjonesconsulting (2026-09-21, Pass-125)
+# RESUME — micahjonesconsulting (2026-09-21, end of Pass-125/126 session)
 
 ## READ FIRST
-Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`). Build: `bash .planning/exec/prepush-gates.sh`
-(every gate + `next build --webpack`; the bare command skips all gates, LESSONS #47). Push to main deploys.
-ROUTING: `.claude/AI_ROUTING.md` (the hook did not load this session: open chats in the p106-live worktree).
-Preview builds: `.claude/worktrees/p124-cuts`; served preview = `prod-p124` in the MAIN checkout's launch.json
-(port 3126); stop it before any rebuild there (Windows file locks).
+Next chat: `.planning/handoff/NEXT-SESSION-KICKOFF.md`. Open it in the p106-live worktree (the routing hook did not
+load when the chat opened at the main checkout). Branch `design/live-evolve` (`.claude/worktrees/p106-live`).
+Build: `node .planning/exec/prepush-gates.mjs` (every gate + `next build --webpack`; LESSONS #47). Push to main
+deploys. Routing: `.claude/AI_ROUTING.md`. Preview builds: `.claude/worktrees/p124-cuts`.
 
-## LIVE: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains (read off the wire 09-21 12:05)
-Revert target: promote `dpl_9Q3JRk47vpd9b9xGnmkruoG5zkEM`. Branch vs main: sitemap dates only.
+## LIVE: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains (off the wire 09-21)
+Revert target stays `dpl_9Q3JRk47vpd9b9xGnmkruoG5zkEM` for the Pass-124 home; after a Pass-126 push the revert is
+promote `dpl_2mGq...`.
 
-## NOW: How I work (operator 2026-09-21, LESSONS #3 "FULL-TIME PAGE HELD; HOW I WORK IS THE PRIORITY")
-Same words (Scope/Plan/Build/Stay, locked 09-21), better design on the home, and the same four steps carried to
-/services (replacing its own wording of the commitments). Astra + dspro still owe a confirmation of the four steps.
-Pass-126 (preview `preview/p126-how-i-work` = `3d5bb88`, p124-cuts): Sol's "Marked-Up Proof" (Fable pick),
-jury fixes + Fable re-read fixes built, gated and measured (all brackets; CLS <=0.007; axe 0). Jury: Astra + dspro
-"as is", Fable's one more fix applied + measured. Plan body re-ruled (Sol's), Build kept. AWAITING: his look at
-the rendered section (sheets sent; served at localhost:3126 via `prod-p124`), then merge -> ship check -> his
-push words. Disposition: `.planning/reviews/PASS-126-JURY-DISPOSITION.md` on the preview branch.
+## NEXT: Pass-126 How I work ship check (approved in design, LESSONS #3 "HOW I WORK REDESIGN TO THE SHIP CHECK")
+`design/live-evolve` = `b257b66` (50 ahead of origin/main, not pushed): the redesign merged from
+`preview/p126-how-i-work` (`3d5bb88`); Plan body re-ruled (Sol's), Build kept. Steps: gated build -> write
+`card1-126.sh` (from card1-124 + How I work markers; NOT 125) + bite test -> his push words recorded verbatim
+BEFORE the push -> push -> deploy id off the wire -> card1-126 with EXPECT_DPL.
 
 ## HELD: /full-time (approved in content, not pushed)
-Whole on `preview/p125-full-time` (`708ac61`, incl. card1-125 + QA). To ship: `git revert 95cb41b`, then ship check.
+Whole on `preview/p125-full-time` (`708ac61`). To ship: `git revert 95cb41b`, then its own ship check (card1-125).
 
 ## Owed
-Inner pages (incl. /about "practice management" vs "CRM" for Ordani); the blog (answered-ratio cut first); open
-facts (ORDANI "one engineer", east-west plain swap, "it shipped, nobody came", landing page 27 vs 34); Guardicore
-mobile LCP p75; K4/K5 race; confirm the 09-20 DeepSeek key was rotated.
+Inner pages (incl. /about "practice management" vs study "CRM" for Ordani); the blog (answered-ratio cut first);
+open facts (ORDANI "one engineer", east-west plain swap, "it shipped, nobody came", landing page 27 vs 34);
+Guardicore mobile LCP p75; K4/K5 race; confirm the 09-20 DeepSeek key was rotated.
 
 ## Traps
-deploy id off the wire (#45) · explicit pathspecs (#23) · Codex writes '?' for non-ASCII (#46) · a brief never pins
-HEAD its own commit moves · "email me", "sales manager" gated site-wide.
+deploy id off the wire (#45) · explicit pathspecs (#23) · executors write no non-ASCII (#46) and cannot run bash ·
+never commit in a worktree while an executor runs · viewport scroll frames, not full-page shots · measures need a
+liveness gate · `MSYS_NO_PATHCONV=1` for `/` args · stop the preview server before a rebuild.
