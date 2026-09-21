@@ -1156,6 +1156,11 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   figures read as his exits, not random billions; (3) Neuton.AI's "Undisclosed": the jurors propose alternatives from
   the ledger, he rules; nothing changes on that row before his pick. RULE CARRIED INTO THE DOORS: any scroll-held moment
   must visibly advance on every phone swipe.
+- **LIVE HOME ON HIS PHONE: SCROLL NOT SMOOTH, COLOUR SWITCH GLITCHY, WORDS LOAD SLOW — operator 2026-09-21 (chat, a
+  bug report against the live Pass-126 deploy `dpl_Bk18zCfBqPb2DjTrkozL2dBs7git`)**. Verbatim: "also noticed the
+  scrolling animation isnt smooth on mobile. between the top and to the audit the background color switching doesnt
+  change smoothly, kind of gkitchy. Also the word loading slow". Treated as a defect: root cause measured before any
+  fix (systematic debugging), the fix ships only on his push words.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.

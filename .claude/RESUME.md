@@ -15,6 +15,9 @@ Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. Branch is ahead by docs only
 - BLOG piece 1: first users after launch, advice-led (his format words in LESSONS #3), NOT "it shipped, nobody
   came". DeepSeek + Sol draft titles/outline from live /work facts; I ledger-check; he picks. Evidence:
   `.planning/research/BLOG-TITLES-CHECK-2026-09-21.md` + `04-CUT-I`.
+- BUG (his phone, live): scroll not smooth, colour switch hero->Audit glitchy, words slow (LESSONS #3 "LIVE HOME ON HIS
+  PHONE"). Workflow wf_24b793b4-f2b (sonnet, evidence only): probe + 3 investigators + repro + sequential A/B, in
+  `.planning/qa/pass-128/`. No fix before root cause; fix ships on his push words.
 - NEXT after doors: exits scoreboard on phones (dead swipes), exits title presence, Neuton "Undisclosed" (jurors
   propose, he rules).
 
