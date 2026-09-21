@@ -15,13 +15,14 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## Homepage proposal: How I work redone, round 6 building
-He rejected the paragraph version of How I work ("replaced by something i dont understand"). His pick
-now, ledgered EXACT: four steps Scope / Plan / Build / Stay (Fable Final 1, drafted by DeepSeek + Sol,
-facts checked), heading visible, no numerals, no rows, one "See the work" link. Written into preview
-B v6 `0cf8596` by the main session (no executor writes copy, LESSONS #46). Sol round 6 builds A+B,
-captures -> `p124-cuts/.planning/qa/pass-124/home-v6/`. Still open for him: receipts A or B; rework
-"operator" / hero $20M+ turn (his answer ticked both rework and keep). Then brief the real build.
+## Homepage: approved, built on the branch, verifying (NOT DEPLOYED)
+All copy ruled and ledgered (LESSONS #3, 09-20/21): hero "It works. / It just does not sell." +
+"I shape the product...", doors under hero (sell door reworked), How I work four steps (Final 1),
+ORDANI photos off, receipts + NAME THE PROBLEM unchanged. On `design/live-evolve` at `61db1d7`,
+ported from preview `1c02863` by the main session. Sol verifying in `../p124-cuts` (detached at
+61db1d7): gates, before/after, rendered text, axe, CLS, LCP, card1-124 markers ->
+`p124-cuts/.planning/qa/pass-124/home-final/`. NEXT: copy captures + markers into p106-live;
+Fable buyer read at the ship gate; his push approval, verbatim, before any push.
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
