@@ -1095,6 +1095,19 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   Astra read only the earlier "story comes first" version (and flagged "Something named ships" as manufactured, as
   Fable flagged it a risk); DeepSeek never reviewed the final. Under the 2026-09-21 routing (Fable, Astra and DeepSeek
   each confirm) the four steps carry one of three confirmations; the redesign pass collects the other two.
+- **HOW I WORK: THE PLAN LINE, AND THE COPY CONFIRMED — operator 2026-09-21 (Pass-126, popup, after the three jurors'
+  reads of the redesign preview, `.planning/reviews/PASS-126-JURY-DISPOSITION.md` on `preview/p126-how-i-work`)**.
+  CONFIRMATION: Scope and Stay confirmed by Fable, Astra and DeepSeek v4-pro; Build confirmed by Fable and DeepSeek,
+  flagged by Astra; Plan flagged by all three ("Something named ships in month one." read as a placeholder; Fable also
+  heard "before I build" twice in a row). Rewrites drafted by Sol and DeepSeek v4-pro; DeepSeek's three Plan drafts were
+  struck by the main session (each put the roadmap before ANY work, but week one's audit is work).
+  PLAN: picked "Sol's: ...before development begins (Recommended)". EXACT approved Plan body, SUPERSEDING the one in
+  "HOW I WORK: FOUR STEPS, FINAL 1": **"I give you a roadmap, and you approve it before development begins. A defined
+  piece of the work ships within the first month."** (a no-break space before "month."). The Plan headline "I name the
+  trade-offs before I build." is unchanged. The month-one promise stays a defined piece, never the build or a launch.
+  NEVER on the How I work steps again: "Something named ships in month one."
+  BUILD: picked "Keep my line (Recommended)": "That means sign-in, data, deployment, and where it stands on compliance,
+  written down." stays word for word; Astra's objection is recorded and declined.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
