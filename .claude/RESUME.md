@@ -13,7 +13,8 @@ Revert target: promote `dpl_9Q3JRk47vpd9b9xGnmkruoG5zkEM`. Branch vs main: sitem
 ## NOW: How I work (operator 2026-09-21, LESSONS #3 "FULL-TIME PAGE HELD; HOW I WORK IS THE PRIORITY")
 Same words (Scope/Plan/Build/Stay, locked 09-21), better design on the home, and the same four steps carried to
 /services (replacing its own wording of the commitments). Astra + dspro still owe a confirmation of the four steps.
-Flow: design directions (non-Claude drafts, research = a SET of references) -> Fable pick -> Sol builds on a preview
+Pass-126 running: 3 drafters (dspro, Sol, Gemini) -> `.planning/drafts/pass-126/*-directions.md`
+(prompt `.planning/prompts/PASS-126-HOWIWORK-DIRECTIONS.md`). Flow: design directions (non-Claude drafts, research = a SET of references) -> Fable pick -> Sol builds on a preview
 branch in p124-cuts -> viewport scroll sheets (not full-page shots, briefs README) -> Fable+Astra+dspro -> his look.
 
 ## HELD: /full-time (approved in content, not pushed)
