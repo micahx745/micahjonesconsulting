@@ -1061,6 +1061,22 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   hours commitment about ORDANI alongside or after a role.
   LOCATION: not asked; the 2026-09-02 ruling stands (no city chip; "in many places that is irrelevant"). The page
   states no location unless he rules otherwise.
+- **PASS-125 FULL-TIME PAGE TO THE SHIP CHECK; NEUTON LINE KEPT — operator 2026-09-21 (Pass-125 DIRECT, popup, after the
+  round-5 scroll sheets at 390 and 1440, the /about capture and the served preview)**. PAGE: picked "Yes, to the ship
+  check (Recommended)", whose description read "I move the page, the three footer links and the /about line onto
+  design/live-evolve, run the full build and gates plus the live-site check script, then ask you for the push in your own
+  words. Nothing goes live before that." So `/full-time` as built on `preview/p125-full-time` (`e89202a`) is APPROVED IN
+  CONTENT; it is NOT approved to ship until a separate push approval. The EXACT approved copy is `content/full-time.ts`
+  at that commit (H1 "I build the product and sell it."; principles Code, Positioning, Result, Scope; Result headline "I
+  build software that helps close deals."; "The record." rows; "Write to me."; /about "I also want one full-time seat:
+  ..."). Drafted by DeepSeek v4-pro and Sol, picked by Fable, fixed and re-confirmed by Fable, Astra and DeepSeek
+  (`.planning/reviews/PASS-125-JURY-DISPOSITION.md`).
+  NEUTON: all three jurors flagged "years before anyone was queuing to buy AI"; he picked "Keep my line (Recommended)".
+  The approved /work record description stays word for word on /work and /full-time. The three rewrites (Fable's,
+  Astra's, DeepSeek's) are REJECTED and not to be re-proposed without a new dated ruling.
+  PARKED, not ruled: /about names Ordani "HIPAA-compliant practice management for birth workers" while the study and
+  /full-time say "a HIPAA-compliant CRM for birth workers" (Fable, twice). It is live /about copy, so it goes to the
+  inner-pages pass.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
