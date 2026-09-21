@@ -1132,6 +1132,30 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   the live site. Undo is one step: promote today's deploy (dpl_2mGq...) back." The approval covers exactly:
   `design/live-evolve` at `bd679db` to main (site diff vs `e8b44e3`: the How I work redesign, Pass-126d's two layout
   fixes, `content/lastmod.json`). Nothing else.
+- **THE DOORS: ANOTHER ROUND; THE BLOG STARTS WITH FIRST USERS, ADVICE-LED — operator 2026-09-21 (Pass-127, popup,
+  after the five door directions at 1440 and 390 and the blog title check `.planning/research/BLOG-TITLES-CHECK-2026-09-21.md`)**.
+  DOORS: shown A to E with the jury (Fable C, Astra C, DeepSeek B from code only), he picked "None yet: another round"
+  with no note. So none of the five ships as drafted; the jury record stays in `.planning/mocks/pass-127/doors/jury/`.
+  BLOG: picked "First users, new framing (Recommended)", whose description read "Lead with the evidenced topic, getting
+  first users after launch, in fresh words that don't bring back the book's 'it shipped, nobody came' positioning.
+  DeepSeek and Sol draft titles and a first outline; I check every fact against the ledger; you pick." So "it shipped,
+  nobody came" stays OFF the blog (the held book's title) until he rules otherwise. FORMAT, his words verbatim: "are the
+  blogs written mostly like giving advice (for example potential customer googles how to get customers for vibe coded
+  project and this pops up. it gives enough advice where they can go use a specific product, github repo, etc to use but
+  also makles them want to pay me to get more insight that would prove even more valuavle. Rather than sharing stories
+  like the work page does?" Answered yes: posts are advice-led (answer-first, the mechanism, real named tools and repos
+  that are checked as real and current before a post ships, one ledgered proof point, the paid help where the free
+  advice ends); /work keeps the stories.
+  DOORS ROUND TWO, asked what all five lacked (multi-select), he ticked "A real moment, like the $20M+ clip", "Bigger,
+  bolder scale" and "More like a top studio site" (NOT "Imagery or screen recordings"), and wrote (Other), verbatim: "Also
+  add as a thing to fix next : the mobile experience of the last thigns (the exits animations) is unpleasant because you
+  have to keep swiping down and nothing happens. Also The Exits I was apart of title part needs to be more seen, right
+  now it feels like we are just throwing random billions numbers out there. The undislosed for neuton AI feels weird too.
+  Maybe top tier models can figure out something else to put there (likeAI company sold)." QUEUED NEXT, after the doors:
+  (1) the exits scoreboard on a phone (dead swipes); (2) the "Four exits I worked inside" title needs presence so the
+  figures read as his exits, not random billions; (3) Neuton.AI's "Undisclosed": the jurors propose alternatives from
+  the ledger, he rules; nothing changes on that row before his pick. RULE CARRIED INTO THE DOORS: any scroll-held moment
+  must visibly advance on every phone swipe.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
