@@ -2284,3 +2284,12 @@ test caught that; a first bite run also "failed correctly" only because its file
 middle, plus `lastmod --check`, plus a whole-line guard that fails if `package.json` "build" names a step the script
 lacks (bite-tested both ways: one gate deleted exits 1 naming it; the real file exits 0). RESUME's build line names the
 script, not the bare command. Every future pre-push check runs it.
+
+**Amendment, same day (Pass-126 round 1): the gate was unrunnable by the executor it was written for.** Sol ran
+`bash .planning/exec/prepush-gates.sh` as briefed and got "Access is denied. Error code:
+Bash/Service/CreateInstance/E_ACCESSDENIED": the Codex sandbox on Windows cannot start bash at all. It stopped correctly,
+but `.next` was left holding the previous pass's build while a `measure.json` from some other server sat beside it; that
+file was discarded unread as evidence. FIX: the chain is `.planning/exec/prepush-gates.mjs` (Node, `spawnSync` per step,
+the same whole-step drift guard, and a `--self-test` that deletes one step and must catch it); the `.sh` is a one-line
+wrapper so every doc that names it stays true. Lands on the branch with the Pass-126 merge (`92d76db` on
+`preview/p126-how-i-work`). RULE: any gate an executor must run is written in Node, not bash.
