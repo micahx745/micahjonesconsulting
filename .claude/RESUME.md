@@ -5,11 +5,8 @@ Branch `design/live-evolve` (`.claude/worktrees/p106-live`). Build: `node .plann
 (LESSONS #47). Push to main deploys. Routing: `.claude/AI_ROUTING.md`. Preview builds: `.claude/worktrees/p124-cuts`
 (`preview-p124-cuts` in THIS worktree's launch.json serves it on 3126).
 
-## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (off the wire 09-21)
-Pass-126 How I work redesign + 126d fixes, pushed on his words (LESSONS #3 "PASS-126 PUSH APPROVED"). www followed
-the deploy on its own. card1-126 with EXPECT_DPL: 157/0 (`.planning/exec/card1-126-prod-0921.txt`).
-`hiw-wrap-gate.mjs` on www: 0 failures; `--self-test` PASS (LESSONS #48 + amendment).
-Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH` (the Pass-124 home, e8b44e3).
+## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126; card1-126 157/0)
+Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. Branch is ahead by docs only (unpushed; a push needs his words).
 
 ## NOW (09-21, LESSONS #3 "THE DOORS: ANOTHER ROUND; THE BLOG STARTS WITH FIRST USERS")
 - DOORS round 2 (Pass-127b): round 1 A-E in `p124-cuts/.planning/mocks/pass-127/doors/` (jury Fable C, Astra C,
