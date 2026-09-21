@@ -1,0 +1,235 @@
+{
+  "urls": {
+    "before": "https://www.micahjonesconsulting.com/",
+    "after": "http://localhost:3241/"
+  },
+  "reducedMotion": true,
+  "fullPageScreenshots": true,
+  "widths": {
+    "390": {
+      "axe": {
+        "serious": {
+          "violations": 0,
+          "nodes": 0,
+          "rules": []
+        },
+        "critical": {
+          "violations": 0,
+          "nodes": 0,
+          "rules": []
+        }
+      },
+      "layoutShift": {
+        "totalIncludingRecentInput": 0.0005199228869895537,
+        "entries": [
+          {
+            "value": 0.0001661679012345679,
+            "startTime": 165,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "selector": "p.cw-sub",
+                "previousRect": {
+                  "x": 20,
+                  "y": 406.609375,
+                  "width": 335,
+                  "height": 46.640625
+                },
+                "currentRect": {
+                  "x": 19,
+                  "y": 406.609375,
+                  "width": 336,
+                  "height": 46.640625
+                }
+              }
+            ]
+          },
+          {
+            "value": 0.0001734093067426401,
+            "startTime": 1742.5,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "selector": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 287.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 302.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                }
+              }
+            ]
+          },
+          {
+            "value": 0.00018034567901234567,
+            "startTime": 1908.7999999970198,
+            "hadRecentInput": true,
+            "sources": [
+              {
+                "selector": "button.cw-menubtn",
+                "previousRect": {
+                  "x": 302.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                },
+                "currentRect": {
+                  "x": 287.15625,
+                  "y": 12.5,
+                  "width": 67.84375,
+                  "height": 44
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "auditGap": {
+        "pixels": 99.75,
+        "auditBottom": 2697.4375,
+        "howIWorkTop": 2797.1875,
+        "auditSelector": "#home-audit",
+        "headingSelector": "#cw-howiwork-title"
+      }
+    },
+    "1440": {
+      "axe": {
+        "serious": {
+          "violations": 0,
+          "nodes": 0,
+          "rules": []
+        },
+        "critical": {
+          "violations": 0,
+          "nodes": 0,
+          "rules": []
+        }
+      },
+      "layoutShift": {
+        "totalIncludingRecentInput": 0.00034095653363428065,
+        "entries": [
+          {
+            "value": 0.00034095653363428065,
+            "startTime": 199.39999999850988,
+            "hadRecentInput": false,
+            "sources": [
+              {
+                "selector": "p.cw-sub",
+                "previousRect": {
+                  "x": 40,
+                  "y": 558.4375,
+                  "width": 620,
+                  "height": 57.4375
+                },
+                "currentRect": {
+                  "x": 40,
+                  "y": 558.4375,
+                  "width": 620,
+                  "height": 57.4375
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "auditGap": {
+        "pixels": 120,
+        "auditBottom": 1995.265625,
+        "howIWorkTop": 2115.265625,
+        "auditSelector": "#home-audit",
+        "headingSelector": "#cw-howiwork-title"
+      }
+    }
+  },
+  "text": {
+    "present": {
+      "It works.": 1,
+      "It just does not sell.": 1,
+      "I shape the product and build the message that sells it.": 1,
+      "I have $20M+ in revenue behind my work.": 1,
+      "An agency is too broad. A hire is too early.": 1,
+      "I build what your growing business needs next": 1,
+      "How I work.": 1,
+      "Week one is an audit and a scope.": 1,
+      "I name the trade-offs before I build.": 1,
+      "I build the real thing, not a prototype.": 1,
+      "I stay for launch and what customers": 1,
+      "See the work": 2,
+      "In revenue behind my work": 2,
+      "Four exits I worked inside": 1,
+      "Name the problem": 1
+    },
+    "absent": {
+      "I take AI-built": 0,
+      "demo to production": 0,
+      "Too big for duct tape": 0,
+      "Operating principles": 0,
+      "The story comes first": 0,
+      "I step in as the operator": 0,
+      "Make it sell": 0,
+      "Labor support": 0,
+      "Bodywork": 0
+    },
+    "mojibakePattern": "[A-Za-z][?\\uFFFD][a-z]",
+    "mojibakeCount": 0,
+    "mojibakeMatches": []
+  },
+  "markerBite": {
+    "after": {
+      "label": "after",
+      "exitCode": 0,
+      "passCount": 24,
+      "failCount": 0,
+      "output": "  PASS home lead one: got 1\n  PASS home lead two: got 1\n  PASS home positioning: got 1\n  PASS home revenue sentence: got 1\n  PASS home engagement contrast: got 1\n  PASS home offer heading: got 1\n  PASS home process heading: got 1\n  PASS home scope step: got 1\n  PASS home decide step: got 1\n  PASS home build step: got 1\n  PASS home launch step: got 1\n  PASS home work link: got 2\n  PASS home revenue caption: got 2\n  PASS home exits title: got 1\n  PASS home close heading: got 1\n  PASS retired AI-built lead: got 0\n  PASS retired demo phrase: got 0\n  PASS retired duct tape heading: got 0\n  PASS retired principles heading: got 0\n  PASS retired story step: got 0\n  PASS retired operator phrase: got 0\n  PASS retired sell heading: got 0\n  PASS retired labor phrase: got 0\n  PASS retired bodywork phrase: got 0\nFAILURES: 0"
+    },
+    "production": {
+      "label": "production",
+      "exitCode": 16,
+      "passCount": 8,
+      "failCount": 16,
+      "output": "  FAIL home lead one: got 0 (want >=1)\n  FAIL home lead two: got 0 (want >=1)\n  FAIL home positioning: got 0 (want >=1)\n  FAIL home revenue sentence: got 0 (want >=1)\n  FAIL home engagement contrast: got 0 (want >=1)\n  FAIL home offer heading: got 0 (want >=1)\n  PASS home process heading: got 1\n  FAIL home scope step: got 0 (want >=1)\n  FAIL home decide step: got 0 (want >=1)\n  FAIL home build step: got 0 (want >=1)\n  FAIL home launch step: got 0 (want >=1)\n  PASS home work link: got 1\n  PASS home revenue caption: got 1\n  PASS home exits title: got 1\n  PASS home close heading: got 1\n  FAIL retired AI-built lead: got 1 (want 0)\n  FAIL retired demo phrase: got 1 (want 0)\n  FAIL retired duct tape heading: got 1 (want 0)\n  FAIL retired principles heading: got 1 (want 0)\n  PASS retired story step: got 0\n  PASS retired operator phrase: got 0\n  PASS retired sell heading: got 0\n  FAIL retired labor phrase: got 1 (want 0)\n  FAIL retired bodywork phrase: got 1 (want 0)\nFAILURES: 16"
+    }
+  },
+  "lcp390Cpu4x": {
+    "throttleRate": 4,
+    "entryCount": 2,
+    "largest": {
+      "startTime": 936,
+      "renderTime": 936,
+      "loadTime": 0,
+      "size": 23714,
+      "selector": "p.cw-sub",
+      "tag": "p",
+      "text": "I shape the product and build the message that sells it. I have $20M+ in revenue behind my work.",
+      "url": null
+    },
+    "entries": [
+      {
+        "startTime": 584,
+        "renderTime": 584,
+        "loadTime": 0,
+        "size": 22365,
+        "selector": "p.cw-sub",
+        "tag": "p",
+        "text": "I shape the product and build the message that sells it. I have $20M+ in revenue behind my work.",
+        "url": null
+      },
+      {
+        "startTime": 936,
+        "renderTime": 936,
+        "loadTime": 0,
+        "size": 23714,
+        "selector": "p.cw-sub",
+        "tag": "p",
+        "text": "I shape the product and build the message that sells it. I have $20M+ in revenue behind my work.",
+        "url": null
+      }
+    ]
+  }
+}
