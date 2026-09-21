@@ -132,7 +132,10 @@ const PHRASES = [
   "start at $5K a month",
   "standing rate",
   "Frontier AI engineering",
-  "End-to-end product building",
+  // Widened 2026-09-20 (Pass-124): the plural "End-to-end product builds."
+  // shipped on /about past the exact-string match. Case-insensitive
+  // substring, so this stem catches building, builds and build.
+  "End-to-end product build",
   // Pass-113 (operator 2026-09-11, decision 5): the case studies are
   // neutralized. Not the bare word "foreign"; it has legitimate uses in
   // code.
@@ -354,6 +357,11 @@ function scanSource(raw, file) {
 // none. Any wrong answer prints the case and exits 1.
 function selfTest() {
   const planted = [
+    {
+      file: "app/selftest/page.tsx",
+      src: `              <strong>End-to-end product builds.</strong> Ordani,`,
+      why: 'the plural "End-to-end product builds." that shipped on /about (Pass-124)',
+    },
     ...PHRASES.map((p) => ({
       file: "app/selftest/page.tsx",
       src: `        "x ${p} x",`,
@@ -418,6 +426,11 @@ function selfTest() {
     },
   ];
   const nearMisses = [
+    {
+      file: "app/selftest/page.tsx",
+      src: `              <strong>Product builds.</strong> Ordani,`,
+      why: '"Product builds." alone (the Pass-124 fix, not the retired area name)',
+    },
     ...["80% Wall", "/playbook", "field manual", "the playbook"].flatMap(
       (p) => [
         {

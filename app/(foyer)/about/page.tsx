@@ -168,7 +168,7 @@ export default function AboutPage() {
               inside six months.
             </li>
             <li>
-              <strong>End-to-end product builds.</strong> Ordani,
+              <strong>Product builds.</strong> Ordani,
               HIPAA-compliant practice management for birth workers, with active
               paying users in beta. I founded it and I write the code. Public
               release coming.
