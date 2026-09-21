@@ -8,7 +8,7 @@ worktree's launch.json serves it on 3126).
 
 ## LIVE: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains (off the wire 09-21, this session)
 
-## NOW: Pass-126 How I work ship check DONE; awaiting his push words
+## NOW: Pass-126 How I work ship check, fix round (Pass-126d) before the push
 - Gated build (Sol, p124-cuts, 62d293a source = 3d5bb88 site): last line `PREPUSH: all gates and the build passed`
   (log `p124-cuts/.planning/exec/build-p126-shipcheck.log`, UTF-16; Sol's "exit 1" = PowerShell wrapping an npm
   notice on stderr, not a failure).
@@ -17,14 +17,17 @@ worktree's launch.json serves it on 3126).
 - Ledger check: how-i-work.ts byte-matches LESSONS #3 (FINAL 1 + THE PLAN LINE + services note).
 - Fable ship read: SHIP, no blockers (`.planning/reviews/FABLE-126-SHIP-READ.md`); 2 nice-to-haves: /services 1440
   Build headline orphan "prototype."; home 390 Scope rule 18px under heading vs 38px on /services.
-- NEXT: popup -> his words verbatim in LESSONS #3 + here BEFORE `git push origin design/live-evolve:main` ->
-  deploy id off the wire on both domains -> `EXPECT_DPL=<id> bash .planning/exec/card1-126.sh`.
-  Revert = promote dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH.
+- PUSH ASKED -> he picked "Fix Fable's two small ones first" (LESSONS #3 "FABLE'S TWO FIXES"). Pass-126d `90b3699`
+  (on both branches): /services Build `text-wrap: balance`; home title 40px phone margin. Gate
+  `.planning/qa/pass-126/hiw-wrap-gate.mjs` bit pre-fix (3 known FAILs), LESSONS #48.
+- NOW: Sol rebuilds 90b3699 in p124-cuts (`build-p126d.log`) -> serve 3126 -> hiw-wrap-gate 0 FAIL + card1-126 local
+  0 FAIL + sheets -> push popup AGAIN -> words verbatim in LESSONS #3 + here BEFORE the push -> deploy id off the wire
+  -> `EXPECT_DPL=<id> bash .planning/exec/card1-126.sh`. Revert = promote dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH.
 
 ## HELD: /full-time (approved in content). `preview/p125-full-time` (`708ac61`); ship = `git revert 95cb41b` + card1-125.
 
 ## Owed
-Fable's two nice-to-haves (if he wants them); inner pages (incl. /about "practice management" vs "CRM"); the blog
+Inner pages (incl. /about "practice management" vs "CRM"); the blog
 (answered-ratio cut first); open facts (ORDANI "one engineer", east-west swap, "it shipped, nobody came", landing
 page 27 vs 34); Guardicore mobile LCP p75; K4/K5 race; DeepSeek key rotation (he said 09-21: "Not yet, I'll do it").
 

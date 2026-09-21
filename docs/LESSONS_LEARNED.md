@@ -1117,6 +1117,13 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   hold; on /services the steps replace "Every engagement includes", the two lines the steps do not say ("No discovery
   fee. Any one of the three areas below, two of them, or all three.") sit under "Three areas of work", and "Why one
   person" loses its week-one and month-one sentences. NOT approved to ship until his separate push words.
+- **HOW I WORK: FABLE'S TWO FIXES BEFORE THE PUSH — operator 2026-09-21 (Pass-126 ship check, popup, after the gated
+  build, card1-126's bite test and Fable's ship read SHIP, `.planning/reviews/FABLE-126-SHIP-READ.md`)**. Asked "Push
+  it?", he picked "Fix Fable's two small ones first" over "Yes, push it (Recommended)", whose description read, verbatim:
+  "Both are layout only, no words change. On /services at desktop width, 'prototype.' sits alone on the Build
+  headline's second line. On the home at phone width, the Scope rule sits closer under 'HOW I WORK.' than it does on
+  /services. I fix both, rebuild, re-check, then ask again." So: NOT pushed. The fix is layout only; no string in
+  `content/how-i-work.ts` changes. The push needs his words again after the fix is rebuilt and re-checked.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
@@ -2315,3 +2322,28 @@ file was discarded unread as evidence. FIX: the chain is `.planning/exec/prepush
 the same whole-step drift guard, and a `--self-test` that deletes one step and must catch it); the `.sh` is a one-line
 wrapper so every doc that names it stays true. Lands on the branch with the Pass-126 merge (`92d76db` on
 `preview/p126-how-i-work`). RULE: any gate an executor must run is written in Node, not bash.
+
+## #48 — Two layout defects survived five measured rounds because no check read line breaks or matched a gap across pages (2026-09-21)
+
+**What happened:** Fable's ship read of Pass-126 How I work (`.planning/reviews/FABLE-126-SHIP-READ.md`, verdict SHIP)
+named two layout defects the operator then chose to fix before the push (LESSONS #3 "HOW I WORK: FABLE'S TWO FIXES
+BEFORE THE PUSH"). (1) On /services from 1100px up, the Build headline broke "I build the real thing, not a /
+prototype.", one word alone on line two; the home breaks after "thing,". `text-wrap: pretty` was already on the
+headline and did not catch it: Chrome only rewraps when the last line is very short. (2) On the home at 760px and
+below, the Scope rule sat 18px under "HOW I WORK." against 40px on /services: the home title also carries
+`.cw-secttitle`, whose `margin-bottom: 18px` in the `max-width: 760px` block sits later in `app/globals.css` than
+`.cw-hiw__title`'s 40px at the same specificity, so it won. Fable had flagged (2) in round 4; it stayed open because
+`measure.mjs` checked gutters and step gaps but never the title gap, and nothing checked where a headline breaks.
+Measured by the main session in the served pre-fix build: (1) at 1100 and 1440, not at 768 or 390; (2) 18 vs 40 at 390,
+40 vs 40 at 768. `balance` on every /services headline was tried and REJECTED: it broke Plan at its hyphen ("trade- /
+offs").
+
+**Fix:** `text-wrap: balance` on the /services Build headline only, and `margin-bottom: 40px` on the home title inside
+the existing `max-width: 760px` How I work block. No string in `content/how-i-work.ts` changed.
+
+**Gate:** `.planning/qa/pass-126/hiw-wrap-gate.mjs` (Node, puppeteer, liveness-gated like `measure.mjs`): at 390, 768,
+1100 and 1440 on `/` and `/services`, FAIL if any `.cw-hiw__head` renders 2+ lines whose last line is one word, and
+below 1100 FAIL if the home and /services title-to-Scope gaps differ by more than 4px. Written by Sol from the main
+session's spec. BITE on the served pre-fix build (`hiw-wrap-gate-prefix.txt`): exactly the three known failures, "FAIL
+title-gap 390x844: home 18px, services 40px" and "FAIL orphan /services 1100x900 build" and "... 1440x900 build" (both
+"...not a / prototype."); 768 passed at 40/40, every other headline passed.
