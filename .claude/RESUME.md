@@ -15,11 +15,16 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
+## In flight
+- **Cuts preview** (brief `.claude/briefs/pass-124-cuts-preview.md`, `93725fe`): a Sonnet leg
+  builds all 25 cuts on branch `pass-124/cuts-preview` in worktree `../p124-cuts` (never
+  merges), captures before/after at 390+1440 -> `.planning/qa/pass-124/sheets/`. Main session
+  opens every sheet, then he ticks by popup. Headings get the SR treatment, not deletion.
+
+## Done since
+- Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
+
 ## Waiting on him
-- **Ticks** on `.planning/mocks/pass-124/CUTS-PROPOSED.md` (A1-A11, B1-B7, C1-C3, D1-D3,
-  E1). Nothing applied. Straight removals only.
-- **Em-dash gate on .tsx NOT closed**: the flip fails 3 files, almost all title separators
-  (`"%s — Micah Jones"`). Fix the strings, or skip title/aria values in the scan: his call.
 - **/about:171 "End-to-end product builds."** near-misses a retired area name; the gate
   misses the plural. Reword needs his word; gate widens with it.
 - Five fact questions (end of the Pass-124 gate row): Guardicore mechanism, ORDANI "one
