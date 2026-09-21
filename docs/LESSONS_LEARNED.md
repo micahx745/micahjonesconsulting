@@ -1161,6 +1161,44 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   scrolling animation isnt smooth on mobile. between the top and to the audit the background color switching doesnt
   change smoothly, kind of gkitchy. Also the word loading slow". Treated as a defect: root cause measured before any
   fix (systematic debugging), the fix ships only on his push words.
+- **DOORS: BUILD 6 "THE COPY GETS EATEN"; BLOG 1: MERGE, TITLE, THE AUDIT — operator 2026-09-21 (Pass-127b, popups,
+  after the round-two GIFs and the jury `.planning/mocks/pass-127/doors-r2/jury/PASS-127B-JURY-DISPOSITION.md`)**.
+  DOORS: picked "Yes, build 6 (Recommended)", whose description read "Sol builds it into the real home on a preview
+  branch with the jurors' fixes: sharp type on iPhone, no layout shift, headings using the full phone width, both doors
+  readable on short phones, a finished still frame for reduced motion. You try it on your phone before anything goes
+  live." Unanimous jury (Fable, Astra, DeepSeek). The words stay exactly as live. NOT approved to ship.
+  BLOG: picked "Merge X+Y, that title, the Audit (Recommended)": X's diagnostic spine with Y's procedures, a worked
+  example, a copyable outreach message, when-to-stop thresholds, real tools and GitHub repos checked as live; title
+  **"How do I get first users for a vibe-coded product without an audience?"**; the handoff is The Audit ($2,500,
+  positioning and GTM). Claim cuts: no birth-worker or Guardicore result as proof for an app launch; nothing implying
+  ORDANI charged early; no homepage promise used as a result. He reads the full post before anything publishes.
+- **BLOG 1 REJECTED AS AI-SOUNDING; BLOG HOME WAITS FOR THREE POSTS — operator 2026-09-21 (popup, after reading the
+  full draft `.planning/drafts/blog-01/POST-blog-01.md`: Sol's draft, DeepSeek's fix round, all three jurors' base)**.
+  TEXT, verbatim (Other): "text reads very AI and confusing. The message is very important and probably gonna serve as a
+  huge driver to the site. This needs to kill it. Is this from the fable research? (its in my downloads, one of the
+  latest things i downlaoded)". Answered: no; the latest Fable research in Downloads is the 09-20 file already in the
+  repo as `pass-124-copy-research-ANSWER.md`; it set the topic, format and a voice rule ("patio11 plus Harry Dry") the
+  draft did not follow; the words were Sol's and DeepSeek's. Main-session diagnosis: framework nouns ("qualified
+  visit", "first useful result"), a fictional product the reader must learn first, command-plus-bullets rhythm, no
+  person, 2,000 words. So the draft is NOT approved; three jurors passing it is recorded as a miss (they judged it
+  against each other, not against "does this kill it"). HOME: picked "Wait until 3 posts exist": no /blog page until
+  three posts are approved.
+  REWRITE, asked how, he first asked (Other) verbatim: "what did the research recommend for blogs? and how it would be
+  weritten. that was fable so before i pick what was said there?" Shown the research's Deliverable 5 in plain terms, he
+  picked "Fable writes, you tick details (Recommended)": ONE Fable call writes post 1 to the research's rules (answer
+  first, question headings, patio11 plus Harry Dry, about 1,200 words, the reader's own app as the example); every
+  first-hand detail is a numbered tag he ticks or strikes, and only ticked tags stay. This bends the 2026-09-21 routing
+  rule "Claude never drafts copy" for THIS post only, by his ruling; posts 2 and 3 go back to the routing unless he
+  rules again. Then Astra and DeepSeek judge against "does this kill it" and the AI-tell lint gates it.
+- **THE BLOG IS GENERIC ADVICE FOR SEARCH, NOT A PITCH; FABLE'S VOICE KEPT — operator 2026-09-21 (popups on Fable's
+  draft `.planning/drafts/blog-01/fable-post.md`, six tags)**. Verbatim (Other on the tag question): "I really did not
+  want to blogs to be like the work things..... i wanted it to be generic but really good advice - this is purely SEO
+  not pitching to work with me. But maybe people would want to work with me from this." Ticked as did NOT happen:
+  TAG-1 and TAG-2; on tags 4-6 (Other): "look at past note". On the read: "Yes, this is the voice". So: EVERY tag is cut
+  (TAG-3 too: it is a work story), and so is every untagged reference to his work (Postmates, Ordani, Guardicore) and
+  the Audit pitch and the email line. Blog posts are first-person, generic, genuinely useful advice for search; no
+  client or company stories, no package pitch in the body. This SUPERSEDES the earlier "the handoff is The Audit" and
+  the research's "one concrete story per section" for the blog. Fable's voice on post 1 is APPROVED.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.

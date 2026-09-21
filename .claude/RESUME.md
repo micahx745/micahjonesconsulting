@@ -7,15 +7,14 @@ Routing: `.claude/AI_ROUTING.md`. Preview builds: `p124-cuts` (`preview-p124-cut
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126; card1-126 157/0)
 Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. Branch ahead by docs only (unpushed; a push needs his words).
 
-## NOW (09-21; rulings in LESSONS #3 "THE DOORS: ANOTHER ROUND..." and "LIVE HOME ON HIS PHONE")
-- DOORS round 2 (Pass-127b), `p124-cuts/.planning/mocks/pass-127/doors-r2/`: six mocks (Sol x3, DeepSeek x2, Gemini
-  2.5 Flash; its pro/3.x models 429/404/503). Bar: a real moment, poster scale, studio craft, no dead phone swipe.
-  Next: Sol capture + dead-swipe detector -> ONE combined jury (doors + blog outlines) per model -> his pick.
-- BLOG 1: first users after launch, advice-led, NOT "it shipped, nobody came". Outlines X (Sol) Y (DeepSeek) in
-  `.planning/drafts/blog-01/`, ledger-clean; handoff Audit $2,500 vs Unstick $500 is his call; tools to verify.
-- BUG (his phone): scroll jank, glitchy colour switch hero->Audit, slow words. Workflow wf_24b793b4-f2b (sonnet,
-  evidence only) -> `.planning/qa/pass-128/`. No fix before root cause.
-- NEXT after doors: exits on phones (dead swipes), exits title presence, Neuton "Undisclosed" (jurors propose).
+## NOW (09-21; rulings in LESSONS #3, newest last)
+- DOORS: he picked round-two 6 "The Copy Gets Eaten" (jury unanimous). Brief `.claude/briefs/pass-127c-doors-build.md`
+  (Sol, new branch `preview/p127-doors` in p124-cuts); section 4b PENDING the jank root cause; do not dispatch before.
+- BLOG 1: generic SEO advice, NOT his work, NO pitch (his ruling). Fable wrote it (voice approved); tags + work lines
+  cut; Astra+DeepSeek "almost" -> Fable revising. Gate: `node .planning/exec/blog-lint.mjs <post>` (0 failures).
+  No /blog page until 3 posts are approved. Posts 2-3 go back to the routing (DeepSeek/Sol) unless he rules.
+- BUG (his phone): workflow wf_24b793b4-f2b (evidence only) in `.planning/qa/pass-128/`; no fix before root cause.
+- NEXT after doors: exits on phones (dead swipes), exits title presence, Neuton "Undisclosed".
 
 ## QUEUE (his to order; popup before any page arc)
 HELD /full-time (`preview/p125-full-time` 708ac61; ship = `git revert 95cb41b` + card1-125 on card1-126) · inner
