@@ -1022,6 +1022,16 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   "A: as you locked it (Recommended)": the 09-18 PASS-122 RECEIPTS V2 design (the $20M+ with the Tel Aviv clip, the
   four-exits row) STAYS on the home. The research's "fold the numbers into sentences" (variant B) is REJECTED and is
   not to be re-proposed without a new dated ruling.
+- **PASS-124 HOMEPAGE, THE REST — operator 2026-09-21 (Pass-124 DIRECT, popups)**. Asked to approve the rest of the
+  proposal (multi-select), he ticked only "New headline": the H1 "It works." / "It just does not sell." is APPROVED.
+  Asked about the two lines both jurors flagged, he picked "Rework both": the paragraph under the headline and the
+  engagements door's "I step in as the operator." get new drafts he picks from; "$20M+ in revenue behind my work"
+  stays word for word. Asked about the three parts he left unticked: DOORS, answered (Other) verbatim "go with
+  proposal rec", i.e. the recommended "Move up, with a reworked line": both doors move directly under the hero, both
+  kickers go, the build door keeps its live copy, the engagements door keeps the headline "An agency is too broad. A
+  hire is too early." and takes a reworked body ending "You get me directly." ORDANI: ticked "Remove the ORDANI
+  photos": the four photos leave the home; the ORDANI text and waitlist stay exact. CLOSING LINE: "Use MAKE IT SELL"
+  was NOT ticked, so "NAME THE PROBLEM →" STAYS as live. Everything else on the home stays as live.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
