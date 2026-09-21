@@ -11,13 +11,16 @@ Site files unchanged since 48818f1. CARD 1 115/0. Revert: promote `dpl_9Q3JRk47v
 
 ## IN FLIGHT: Pass-125 "Work with me full-time" page (kickoff item 1)
 - Ruled 09-21 (LESSONS #3, `d2fa3a4`): seat = early-stage build-and-sell hire (his pick over "head of");
-  ORDANI proof only, nothing on its future; no location (09-02 ruling).
-- Drafting: prompt `.planning/prompts/PASS-125-FULLTIME-DRAFT.md`; DeepSeek v4-pro, Sol, Gemini 2.5-flash
-  write to `.planning/drafts/pass-125/{deepseek,sol,gemini}-fulltime.md`.
-- Next: main-session ledger check of every tagged sentence -> Fable pick (one call) -> brief -> Sol builds
-  on a preview branch in p124-cuts -> captures 390/1440 -> Fable + Astra + dspro confirm -> his look -> push.
-- Route `/full-time` (NOT `/hire-me`: that 308s to /services since Pass-57). Links: PageFooter + home
-  footrow + one /about line; sitemap. Not in primary nav.
+  ORDANI proof only; no location (09-02 ruling).
+- Drafts dspro/Sol/Gemini -> ledger check -> Fable pick (`.planning/reviews/FABLE-125-FULLTIME-PICK.md`,
+  blend on Sol A; 2 main-session edits recorded there) -> brief `.claude/briefs/pass-125-full-time.md` (`f665260`).
+- PREVIEW: worktree p124-cuts, branch `preview/p125-full-time` (`28d19f7` = content/full-time.ts + PageFooter
+  link, both main session). Sol building per the brief (log `.planning/qa/pass-125/sol-build.log` there);
+  Sol cannot commit (#18), main session commits. p124-cuts' 10 untracked Pass-124 files were byte-identical
+  to committed copies; parked in the session scratchpad.
+- Next: open every capture -> Fable + Astra + dspro confirm -> his look (390/1440 sheets + served preview)
+  -> apply to design/live-evolve -> his push approval verbatim.
+- Route `/full-time` (NOT `/hire-me`, which 308s to /services). Links: three footers + one /about line.
 
 ## Owed after this page
 Inner pages (/services, /about, /packages, /contact) diagnosis; the blog (answered-ratio cut first);
