@@ -4,6 +4,12 @@ Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124
 HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126-how-i-work.md` must equal `git rev-parse --short HEAD`.
 Written 2026-09-21 by the main session (Opus 5) from Fable's pick (`.planning/reviews/FABLE-126-HOWIWORK-PICK.md`).
 
+## ROUND 2 (read first)
+Round 1 implemented sections 1 to 4 and they are COMMITTED at HEAD (the main session reviewed the diff). Round 1 then
+stopped correctly: `bash` cannot start in your sandbox, so the gate script never ran, and `.next` still holds an older
+build. Do NOT edit sections 1 to 4 again unless a gate fails (then report and stop). Start at section 5, step 1, with the
+Node gate script. Nothing measured in round 1 counts; regenerate every output.
+
 ## 0. Rules
 - You WRITE files; you do not commit (LESSONS #18), push, deploy or edit `.claude/RESUME.md`.
 - The copy is LOCKED and lives in `content/how-i-work.ts` (main session wrote it, byte-exact, with two no-break
@@ -118,8 +124,9 @@ rules:
 No JS: `.cw-js-reveals` is never added, so every step renders finished.
 
 ## 5. Build and verify (run from the worktree root; brackets are the expected output)
-1. `bash .planning/exec/prepush-gates.sh` [last line `PREPUSH: all gates and the build passed`]. It runs every gate
-   and `next build --webpack`; do NOT run the bare build instead (LESSONS #47). Run it once.
+1. `node .planning/exec/prepush-gates.mjs` [last line `PREPUSH: all gates and the build passed`]. It runs every gate
+   and `next build --webpack`; do NOT run the bare build instead (LESSONS #47), and do not call bash (your sandbox
+   cannot launch it; that is why this is Node now). Run it once.
 2. `npx next start -p 3125` in the background.
 3. Write `.planning/qa/pass-126/measure.mjs` (puppeteer-core from `C:/tmp/p101tools`, Chrome, deviceScaleFactor 1) and
    run it for 390x844 and 1440x900, reduced motion OFF, after scrolling the whole page in 0.75-viewport steps with

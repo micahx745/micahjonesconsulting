@@ -25,6 +25,7 @@
 // Receipts use ledger phrasings only (docs/LESSONS_LEARNED.md #3).
 // Zero animation on this page beyond the site's palette shift.
 import type { Metadata } from "next";
+import { HowIWork } from "@/components/color-worlds/HowIWork";
 import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PackageBand } from "@/components/color-worlds/PackageBand";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
@@ -233,15 +234,6 @@ const EMBEDDED_LIST = [
   "Before I leave: help hiring the permanent head of the function, and a handover plan.",
 ];
 
-const INCLUSIONS = [
-  "Week one is a scoping session and an audit of where things stand, so the work starts on the right problem.",
-  "Something named ships in month one.",
-  "The scope and the price in writing before anything starts. No discovery fee.",
-  "You get me, directly, for the whole engagement.",
-  "A reply within one business day.",
-  "Any one of the three areas below, two of them, or all three.",
-];
-
 export default function ServicesPage() {
   return (
     <main className="cw-services cw-sv">
@@ -369,18 +361,7 @@ export default function ServicesPage() {
             />
           </div>
 
-          {/* The shared promises, stated once (CRITIQUE H1): one ruled
-              row, not a line repeated in four boxes. */}
-          <div className="cw-pband__incl" aria-labelledby="sv-incl-title">
-            <h3 id="sv-incl-title" className="cw-pband__incl-h">
-              Every engagement includes
-            </h3>
-            <ul className="cw-pband__incl-list cw-pbox__list">
-              {INCLUSIONS.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
+          <HowIWork variant="services" />
 
           {/* The three areas (decision 9's names), rendered from the
               SERVICES array: pain and outcomes verbatim, one receipt
@@ -454,10 +435,7 @@ export default function ServicesPage() {
             An agency gives you a team and a relay race between them. A
             full-time hire takes three months to find and another to ramp. I am
             a senior operator you can start this week, on a scope with an end
-            date. Week one is the scoping session and the audit: the
-            foundational work that decides what the engagement is actually for.
-            Something named ships in month one. When the work is bigger than one
-            person, I say so on the call.
+            date. When the work is bigger than one person, I say so on the call.
           </p>
         </section>
       </section>
