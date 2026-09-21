@@ -2,6 +2,7 @@
 
 Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch `preview/p126-how-i-work`.
 HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126c-fable-fixes.md` must equal `git rev-parse --short HEAD`.
+ROUND 2: round 1 stopped correctly at the HEAD check (the main session committed mid-run). Nothing else changed.
 Standing rules of `.claude/briefs/pass-126-how-i-work.md` section 0 bind. You change NO source file: build and measure.
 
 The main session edited `app/globals.css` in the last commit (measured defects from Fable's re-read, round 4):
