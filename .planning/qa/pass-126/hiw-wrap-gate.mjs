@@ -4,7 +4,20 @@ const require = createRequire("C:/tmp/p101tools/package.json");
 const puppeteerModule = require("puppeteer-core");
 const puppeteer = puppeteerModule.default ?? puppeteerModule;
 
-const baseUrl = (process.argv[2] || "http://localhost:3126").replace(/\/$/, "");
+// Usage: node hiw-wrap-gate.mjs [baseUrl] [--self-test]   (LESSONS #48)
+// FINISHED FRAME (amended 2026-09-21 after the first production run): every check measures with the .cw-reveal
+// entrance switched off. Before, the title gap included the Scope step's reveal transform (translateY 40px until it
+// scrolls in, with a transition that starts at hydration), so the same live page measured 40, 53 or 80px depending on
+// when the JS landed; production read "home 53px" while its settled layout was 40. Reduced motion gets this frame too.
+// --self-test injects the two pre-fix rules and passes only if exactly the three original defects are caught.
+const selfTest = process.argv.includes("--self-test");
+const baseUrl = (process.argv.slice(2).find((a) => !a.startsWith("--")) || "http://localhost:3126").replace(/\/$/, "");
+const FINISHED_FRAME = '[data-mode="cw"] .cw-reveal { transform: none !important; transition: none !important; }';
+const PRE_FIX =
+  '@media (max-width: 760px) { [data-mode="cw"] .cw-hiw--home .cw-hiw__title { margin-bottom: 18px !important; } }' +
+  ' [data-mode="cw"] .cw-hiw--services .cw-hiw__step--build .cw-hiw__head { text-wrap: pretty !important; }';
+const EXPECTED_BITE = ["title-gap 390x844", "orphan /services 1100x900 build", "orphan /services 1440x900 build"];
+const failedLabels = [];
 const viewports = [
   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
   { name: "768x1024", width: 768, height: 1024, deviceScaleFactor: 1 },
@@ -49,6 +62,9 @@ try {
         await page.close();
         break;
       }
+
+      await page.addStyleTag({ content: FINISHED_FRAME + (selfTest ? " " + PRE_FIX : "") });
+      await page.evaluate(() => document.body.getBoundingClientRect());
 
       const measurements = await page.evaluate((measureGap) => {
         const headlines = [...document.querySelectorAll(".cw-hiw__head")].map(
@@ -116,7 +132,10 @@ try {
       for (const headline of measurements.headlines) {
         const lastLine = headline.lines.at(-1) ?? "";
         const failed = headline.lines.length >= 2 && !/\s/.test(lastLine);
-        if (failed) failures += 1;
+        if (failed) {
+          failures += 1;
+          failedLabels.push(`orphan ${pathname} ${viewport.name} ${headline.step}`);
+        }
         process.stdout.write(
           `${failed ? "FAIL" : "PASS"} orphan ${pathname} ${viewport.name} ${headline.step}: ${headline.lines.join(" / ")}\n`,
         );
@@ -130,7 +149,10 @@ try {
 
     if (viewport.width < 1100) {
       const failed = Math.abs(titleGaps["/"] - titleGaps["/services"]) > 4;
-      if (failed) failures += 1;
+      if (failed) {
+        failures += 1;
+        failedLabels.push(`title-gap ${viewport.name}`);
+      }
       process.stdout.write(
         `${failed ? "FAIL" : "PASS"} title-gap ${viewport.name}: home ${titleGaps["/"]}px, services ${titleGaps["/services"]}px\n`,
       );
@@ -140,7 +162,14 @@ try {
   await browser.close();
 }
 
-if (process.exitCode !== 2) {
+if (process.exitCode !== 2 && selfTest) {
+  const same =
+    failedLabels.length === EXPECTED_BITE.length && EXPECTED_BITE.every((label) => failedLabels.includes(label));
+  process.stdout.write(
+    `HIW-WRAP-GATE --self-test: ${same ? "PASS" : "FAIL"} (pre-fix CSS injected; caught ${JSON.stringify(failedLabels)}, want ${JSON.stringify(EXPECTED_BITE)})\n`,
+  );
+  process.exitCode = same ? 0 : 1;
+} else if (process.exitCode !== 2) {
   process.stdout.write(`HIW-WRAP-GATE: ${failures} failures\n`);
   if (failures > 0) process.exitCode = 1;
 }

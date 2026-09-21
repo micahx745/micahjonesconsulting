@@ -2355,3 +2355,14 @@ below 1100 FAIL if the home and /services title-to-Scope gaps differ by more tha
 session's spec. BITE on the served pre-fix build (`hiw-wrap-gate-prefix.txt`): exactly the three known failures, "FAIL
 title-gap 390x844: home 18px, services 40px" and "FAIL orphan /services 1100x900 build" and "... 1440x900 build" (both
 "...not a / prototype."); 768 passed at 40/40, every other headline passed.
+
+**Amendment, same day (after the push): the gate itself raced.** The first run against production
+(`dpl_Bk18zCfBqPb2DjTrkozL2dBs7git`) failed "title-gap 390x844: home 53px, services 40px" while card1-126 passed
+157/0. Measured before any edit: the live title's computed `margin-bottom` was 40px, and a probe reading the Scope
+step at the gate's measuring moment found its `.cw-reveal` transform anywhere from 0 to 40px (gap 40, then 80 1.5s
+later; 53 = mid-slide): the entrance adds `translateY(40px)` with a transition when hydration sets `cw-js-reveals`, so
+the gap depended on when the JS landed. The site was right; the check measured an animation. FIX: the gate measures
+the FINISHED FRAME (`.cw-reveal` transform and transition off, as reduced motion renders) and gained `--self-test`,
+which injects the two pre-fix rules and passes only on exactly the three original defects. On production: two runs
+identical, 0 failures; self-test PASS with the original numbers (18px, "not a / prototype."). RULE: a geometry check
+on a page with entrance motion measures the finished frame, never whatever frame the load happens to be in.

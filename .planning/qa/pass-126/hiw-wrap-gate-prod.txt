@@ -1,0 +1,35 @@
+PASS orphan / 390x844 scope: Week one is an audit / and a scope.
+PASS orphan / 390x844 plan: I name the trade-offs / before I build.
+PASS orphan / 390x844 build: I build the real thing, / not a prototype.
+PASS orphan / 390x844 stay: I stay for launch and / what customers break.
+PASS orphan /services 390x844 scope: Week one is an audit and / a scope.
+PASS orphan /services 390x844 plan: I name the trade-offs / before I build.
+PASS orphan /services 390x844 build: I build the real thing, / not a prototype.
+PASS orphan /services 390x844 stay: I stay for launch and what / customers break.
+PASS title-gap 390x844: home 40px, services 40px
+PASS orphan / 768x1024 scope: Week one is an audit and a scope.
+PASS orphan / 768x1024 plan: I name the trade-offs before I build.
+PASS orphan / 768x1024 build: I build the real thing, not a prototype.
+PASS orphan / 768x1024 stay: I stay for launch and what customers break.
+PASS orphan /services 768x1024 scope: Week one is an audit and a scope.
+PASS orphan /services 768x1024 plan: I name the trade-offs before I build.
+PASS orphan /services 768x1024 build: I build the real thing, not a prototype.
+PASS orphan /services 768x1024 stay: I stay for launch and what customers break.
+PASS title-gap 768x1024: home 40px, services 40px
+PASS orphan / 1100x900 scope: Week one is an audit / and a scope.
+PASS orphan / 1100x900 plan: I name the trade-offs / before I build.
+PASS orphan / 1100x900 build: I build the real thing, / not a prototype.
+PASS orphan / 1100x900 stay: I stay for launch and what / customers break.
+PASS orphan /services 1100x900 scope: Week one is an audit and / a scope.
+PASS orphan /services 1100x900 plan: I name the trade-offs / before I build.
+PASS orphan /services 1100x900 build: I build the real thing, / not a prototype.
+PASS orphan /services 1100x900 stay: I stay for launch and what customers break.
+PASS orphan / 1440x900 scope: Week one is an audit and / a scope.
+PASS orphan / 1440x900 plan: I name the trade-offs / before I build.
+PASS orphan / 1440x900 build: I build the real thing, / not a prototype.
+PASS orphan / 1440x900 stay: I stay for launch and what / customers break.
+PASS orphan /services 1440x900 scope: Week one is an audit and / a scope.
+PASS orphan /services 1440x900 plan: I name the trade-offs / before I build.
+PASS orphan /services 1440x900 build: I build the real thing, / not a prototype.
+PASS orphan /services 1440x900 stay: I stay for launch and what customers break.
+HIW-WRAP-GATE: 0 failures
