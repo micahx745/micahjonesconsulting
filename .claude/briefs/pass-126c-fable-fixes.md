@@ -2,6 +2,9 @@
 
 Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch `preview/p126-how-i-work`.
 HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126c-fable-fixes.md` must equal `git rev-parse --short HEAD`.
+ROUND 3: round 2 passed the gates and every home bracket; /services Plan/Build gutter failed (60 at 1440, 41 at 1280). The main session
+scoped the Plan move to the home only (last commit). EXPECTED-VALUE CHANGE: /services 1440 paddings are back to [0,0,0,0]; home stays [0,48,0,0].
+Re-run everything from step 1.
 ROUND 2: round 1 stopped correctly at the HEAD check (the main session committed mid-run). Nothing else changed.
 Standing rules of `.claude/briefs/pass-126-how-i-work.md` section 0 bind. You change NO source file: build and measure.
 

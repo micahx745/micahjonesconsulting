@@ -4714,6 +4714,18 @@ body {
   [data-mode="cw"] .cw-hiw__step--plan > div {
     padding-left: 48px;
   }
+  /* /services keeps Plan on column 2 with no inset: its smaller headline then breaks "trade-offs / before I build."
+   * and the gutter stays wide; moving it to column 1 let "before" onto line one and cut the gutter to 60px (126c). */
+  [data-mode="cw"] .cw-hiw--services {
+    grid-template-areas:
+      "t t t t t . s s s s s s"
+      ". p p p p p b b b b b b"
+      "y y y y y y y y y . . ."
+      "k k k k k k k k k . . .";
+  }
+  [data-mode="cw"] .cw-hiw--services .cw-hiw__step--plan > div {
+    padding-left: 0;
+  }
   [data-mode="cw"] .cw-hiw__step--build {
     margin-top: 72px;
   }

@@ -38,6 +38,13 @@ if (expected.steps.length !== 4) {
 const viewports = [
   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
+  {
+    name: "1280x800",
+    width: 1280,
+    height: 800,
+    deviceScaleFactor: 1,
+    gutterOnly: true,
+  },
 ];
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -103,7 +110,11 @@ async function axeCount(page, selector) {
 async function openMeasuredPage(browser, viewport, pathname) {
   debug(`open start ${viewport.name} ${pathname}`);
   const page = await browser.newPage();
-  await page.setViewport(viewport);
+  await page.setViewport({
+    width: viewport.width,
+    height: viewport.height,
+    deviceScaleFactor: viewport.deviceScaleFactor,
+  });
   await page.emulateMediaFeatures([
     { name: "prefers-reduced-motion", value: "no-preference" },
   ]);
@@ -118,6 +129,25 @@ async function openMeasuredPage(browser, viewport, pathname) {
   return page;
 }
 
+async function measurePlanBuildGutter(page) {
+  return page.evaluate(() => {
+    const planHeadline = document.querySelector(
+      ".cw-hiw__step--plan .cw-hiw__head",
+    );
+    const buildHeadline = document.querySelector(
+      ".cw-hiw__step--build .cw-hiw__head",
+    );
+    if (!planHeadline || !buildHeadline) return null;
+    const range = document.createRange();
+    range.selectNodeContents(planHeadline);
+    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
+    if (!lineRights.length) return null;
+    return (
+      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
+    );
+  });
+}
+
 const browser = await puppeteer.launch({
   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
   headless: true,
@@ -129,6 +159,41 @@ const failures = [];
 
 try {
   for (const viewport of viewports) {
+    if (viewport.gutterOnly) {
+      const homePage = await openMeasuredPage(browser, viewport, "/");
+      const home = {
+        planBuildGutter: await measurePlanBuildGutter(homePage),
+      };
+      await homePage.close();
+
+      const servicesPage = await openMeasuredPage(
+        browser,
+        viewport,
+        "/services",
+      );
+      const services = {
+        planBuildGutter: await measurePlanBuildGutter(servicesPage),
+      };
+      await servicesPage.close();
+
+      results.push({ viewport: viewport.name, home, services });
+      const prefix = viewport.name;
+      const checks = [
+        [
+          home.planBuildGutter !== null && home.planBuildGutter >= 56,
+          `${prefix} home plan/build gutter`,
+        ],
+        [
+          services.planBuildGutter !== null && services.planBuildGutter >= 56,
+          `${prefix} services plan/build gutter`,
+        ],
+      ];
+      failures.push(
+        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
+      );
+      continue;
+    }
+
     const homePage = await openMeasuredPage(browser, viewport, "/");
     const home = await homePage.evaluate((locked) => {
       const normalize = (value) => value.replace(/\u00a0/g, " ");
@@ -138,6 +203,13 @@ try {
       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
       const plan = document.querySelector(".cw-hiw__step--plan");
       const build = document.querySelector(".cw-hiw__step--build");
+      const planHeadline = plan?.querySelector(".cw-hiw__head");
+      const buildHeadline = build?.querySelector(".cw-hiw__head");
+      const planRange = planHeadline ? document.createRange() : null;
+      planRange?.selectNodeContents(planHeadline);
+      const planLineRights = planRange
+        ? [...planRange.getClientRects()].map((rect) => rect.right)
+        : [];
       const stayBody = document.querySelector(
         ".cw-hiw__step--stay .cw-hiw__body",
       );
@@ -187,6 +259,16 @@ try {
                   build.getBoundingClientRect().top,
               )
             : null,
+        planBuildGutter:
+          buildHeadline && planLineRights.length
+            ? buildHeadline.getBoundingClientRect().left -
+              Math.max(...planLineRights)
+            : null,
+        stepGaps: steps.slice(1).map((step, index) => {
+          const previousRect = steps[index].getBoundingClientRect();
+          const currentRect = step.getBoundingClientRect();
+          return currentRect.top - previousRect.bottom;
+        }),
         stepInnerPaddingLefts: steps.map((step) =>
           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
         ),
@@ -222,6 +304,13 @@ try {
       const steps = [...document.querySelectorAll(".cw-hiw__step")];
       const plan = document.querySelector(".cw-hiw__step--plan");
       const build = document.querySelector(".cw-hiw__step--build");
+      const planHeadline = plan?.querySelector(".cw-hiw__head");
+      const buildHeadline = build?.querySelector(".cw-hiw__head");
+      const planRange = planHeadline ? document.createRange() : null;
+      planRange?.selectNodeContents(planHeadline);
+      const planLineRights = planRange
+        ? [...planRange.getClientRects()].map((rect) => rect.right)
+        : [];
       const stayBody = document.querySelector(
         ".cw-hiw__step--stay .cw-hiw__body",
       );
@@ -267,6 +356,16 @@ try {
                   build.getBoundingClientRect().top,
               )
             : null,
+        planBuildGutter:
+          buildHeadline && planLineRights.length
+            ? buildHeadline.getBoundingClientRect().left -
+              Math.max(...planLineRights)
+            : null,
+        stepGaps: steps.slice(1).map((step, index) => {
+          const previousRect = steps[index].getBoundingClientRect();
+          const currentRect = step.getBoundingClientRect();
+          return currentRect.top - previousRect.bottom;
+        }),
         stepInnerPaddingLefts: steps.map((step) =>
           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
         ),
@@ -340,10 +439,27 @@ try {
         `${prefix} home plan and build aligned`,
       ],
       [
+        viewport.width !== 1440 ||
+          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
+        `${prefix} home plan/build gutter`,
+      ],
+      [
         viewport.width !== 390 ||
           (home.stepInnerPaddingLefts.length === 4 &&
             home.stepInnerPaddingLefts.every((value) => value === "0px")),
         `${prefix} home step inner padding`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          JSON.stringify(home.stepInnerPaddingLefts) ===
+            JSON.stringify(["0px", "48px", "0px", "0px"]),
+        `${prefix} home step inner padding`,
+      ],
+      [
+        viewport.width !== 390 ||
+          (home.stepGaps.length === 3 &&
+            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
+        `${prefix} home step gaps`,
       ],
       [
         home.copperTextElementCount === 0,
@@ -378,10 +494,28 @@ try {
         `${prefix} services plan and build aligned`,
       ],
       [
+        viewport.width !== 1440 ||
+          (services.planBuildGutter !== null &&
+            services.planBuildGutter >= 72),
+        `${prefix} services plan/build gutter`,
+      ],
+      [
         viewport.width !== 390 ||
           (services.stepInnerPaddingLefts.length === 4 &&
             services.stepInnerPaddingLefts.every((value) => value === "0px")),
         `${prefix} services step inner padding`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          JSON.stringify(services.stepInnerPaddingLefts) ===
+            JSON.stringify(["0px", "48px", "0px", "0px"]),
+        `${prefix} services step inner padding`,
+      ],
+      [
+        viewport.width !== 390 ||
+          (services.stepGaps.length === 3 &&
+            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
+        `${prefix} services step gaps`,
       ],
       [
         services.copperTextElementCount === 0,

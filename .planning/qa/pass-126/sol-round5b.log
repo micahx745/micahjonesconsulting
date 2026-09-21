@@ -1,0 +1,4738 @@
+﻿codex-exec: TASK .claude/briefs/pass-126c-fable-fixes.md on gpt-5.6-sol @ xhigh, workspace-write, in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+powershell : OpenAI Codex v0.153.4
+At line:1 char:385
++ ... \p124-cuts; powershell -NoProfile -ExecutionPolicy Bypass -File scrip ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (OpenAI Codex v0.153.4:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+--------
+workdir: C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+model: gpt-5.6-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a0c5a7-1f7e-7613-9948-1fc168f0283d
+--------
+user
+# Brief: Pass-126c, gated build + measure after Fable's re-read fixes (preview branch, round 5)
+
+Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch 
+`preview/p126-how-i-work`.
+HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126c-fable-fixes.md` must equal `git rev-parse --short 
+HEAD`.
+ROUND 2: round 1 stopped correctly at the HEAD check (the main session committed mid-run). Nothing else changed.
+Standing rules of `.claude/briefs/pass-126-how-i-work.md` section 0 bind. You change NO source file: build and measure.
+
+The main session edited `app/globals.css` in the last commit (measured defects from Fable's re-read, round 4):
+(a) at min-width 1100 Plan's grid row starts at column 1 (`"p p p p p p b b b b b b"`) with `padding-left: 48px` on its
+inner div, because its headline ended 30px short of Build's on the same baseline; (b) one phone gap between steps:
+64px on the home, 56px on /services. EXPECTED-VALUE CHANGE (the main session's ruling, not yours to reinterpret): at
+1440 the step inner `padding-left` values are now [0px, 48px, 0px, 0px] (Scope, Plan, Build, Stay); at 390 still all 
+0px.
+
+1. `node .planning/exec/prepush-gates.mjs` [last line `PREPUSH: all gates and the build passed`]. Once. No bash.
+2. `npx next start -p 3125` in the background.
+3. Update `.planning/qa/pass-126/measure.mjs`: the 1440 padding expectation becomes [0,48,0,0]px as above; add, on `/` 
+and
+   `/services`: `planBuildGutter` = Build headline's left edge minus the right edge of the Plan headline's widest text
+   line (a Range over the headline text, max of its client rects' `right`) [>= 72 at 1440; also measure at 1280x800,
+   >= 56]; at 390 `stepGaps` = the three gaps between consecutive `.cw-hiw__step` boxes [home 64,64,64; /services
+   56,56,56; each within 1px]. Keep every other check and bracket. Add the 1280x800 viewport for the gutter check only.
+   Run; overwrite `measure.json`.
+4. Stop the server. `git status --short` [measure.mjs and measure.json modified; pre-existing untracked items].
+
+Report: prepush tail (10 lines), measure.json verbatim, git status, every bracket that did not match, quoted verbatim.
+
+
+codex
+I’m using the `using-superpowers` and `executing-plans` skills to follow the supplied runbook precisely, then 
+`verification-before-completion` for the final evidence. I’ll first validate HEAD and read the binding brief before 
+touching the QA measurement files.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 
+'C:\\Users\\micah\\.codex\\skills\\using-superpowers\\SKILL.md'; Get-Content -Raw 
+'C:\\Users\\micah\\.codex\\skills\\executing-plans\\SKILL.md'; Get-Content -Raw 
+'C:\\Users\\micah\\.codex\\skills\\verification-before-completion\\SKILL.md'" in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 98ms:
+---
+name: using-superpowers
+description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool 
+invocation before ANY response including clarifying questions
+---
+
+<EXTREMELY-IMPORTANT>
+If you think there is even a 1% chance a skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
+
+IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
+
+This is not negotiable. This is not optional. You cannot rationalize your way out of this.
+</EXTREMELY-IMPORTANT>
+
+## How to Access Skills
+
+**In Claude Code:** Use the `Skill` tool. When you invoke a skill, its content is loaded and presented to youâ€”follow 
+it directly. Never use the Read tool on skill files.
+
+**In other environments:** Check your platform's documentation for how skills are loaded.
+
+# Using Skills
+
+## The Rule
+
+**Invoke relevant or requested skills BEFORE any response or action.** Even a 1% chance a skill might apply means that 
+you should invoke the skill to check. If an invoked skill turns out to be wrong for the situation, you don't need to 
+use it.
+
+```dot
+digraph skill_flow {
+    "User message received" [shape=doublecircle];
+    "Might any skill apply?" [shape=diamond];
+    "Invoke Skill tool" [shape=box];
+    "Announce: 'Using [skill] to [purpose]'" [shape=box];
+    "Has checklist?" [shape=diamond];
+    "Create TodoWrite todo per item" [shape=box];
+    "Follow skill exactly" [shape=box];
+    "Respond (including clarifications)" [shape=doublecircle];
+
+    "User message received" -> "Might any skill apply?";
+    "Might any skill apply?" -> "Invoke Skill tool" [label="yes, even 1%"];
+    "Might any skill apply?" -> "Respond (including clarifications)" [label="definitely not"];
+    "Invoke Skill tool" -> "Announce: 'Using [skill] to [purpose]'";
+    "Announce: 'Using [skill] to [purpose]'" -> "Has checklist?";
+    "Has checklist?" -> "Create TodoWrite todo per item" [label="yes"];
+    "Has checklist?" -> "Follow skill exactly" [label="no"];
+    "Create TodoWrite todo per item" -> "Follow skill exactly";
+}
+```
+
+## Red Flags
+
+These thoughts mean STOPâ€”you're rationalizing:
+
+| Thought | Reality |
+|---------|---------|
+| "This is just a simple question" | Questions are tasks. Check for skills. |
+| "I need more context first" | Skill check comes BEFORE clarifying questions. |
+| "Let me explore the codebase first" | Skills tell you HOW to explore. Check first. |
+| "I can check git/files quickly" | Files lack conversation context. Check for skills. |
+| "Let me gather information first" | Skills tell you HOW to gather information. |
+| "This doesn't need a formal skill" | If a skill exists, use it. |
+| "I remember this skill" | Skills evolve. Read current version. |
+| "This doesn't count as a task" | Action = task. Check for skills. |
+| "The skill is overkill" | Simple things become complex. Use it. |
+| "I'll just do this one thing first" | Check BEFORE doing anything. |
+| "This feels productive" | Undisciplined action wastes time. Skills prevent this. |
+| "I know what that means" | Knowing the concept â‰  using the skill. Invoke it. |
+
+## Skill Priority
+
+When multiple skills could apply, use this order:
+
+1. **Process skills first** (brainstorming, debugging) - these determine HOW to approach the task
+2. **Implementation skills second** (frontend-design, mcp-builder) - these guide execution
+
+"Let's build X" â†’ brainstorming first, then implementation skills.
+"Fix this bug" â†’ debugging first, then domain-specific skills.
+
+## Skill Types
+
+**Rigid** (TDD, debugging): Follow exactly. Don't adapt away discipline.
+
+**Flexible** (patterns): Adapt principles to context.
+
+The skill itself tells you which.
+
+## User Instructions
+
+Instructions say WHAT, not HOW. "Add X" or "Fix Y" doesn't mean skip workflows.
+
+---
+name: executing-plans
+description: Use when you have a written implementation plan to execute in a separate session with review checkpoints
+---
+
+# Executing Plans
+
+## Overview
+
+Load plan, review critically, execute tasks in batches, report for review between batches.
+
+**Core principle:** Batch execution with checkpoints for architect review.
+
+**Announce at start:** "I'm using the executing-plans skill to implement this plan."
+
+## The Process
+
+### Step 1: Load and Review Plan
+1. Read plan file
+2. Review critically - identify any questions or concerns about the plan
+3. If concerns: Raise them with your human partner before starting
+4. If no concerns: Create TodoWrite and proceed
+
+### Step 2: Execute Batch
+**Default: First 3 tasks**
+
+For each task:
+1. Mark as in_progress
+2. Follow each step exactly (plan has bite-sized steps)
+3. Run verifications as specified
+4. Mark as completed
+
+### Step 3: Report
+When batch complete:
+- Show what was implemented
+- Show verification output
+- Say: "Ready for feedback."
+
+### Step 4: Continue
+Based on feedback:
+- Apply changes if needed
+- Execute next batch
+- Repeat until complete
+
+### Step 5: Complete Development
+
+After all tasks complete and verified:
+- Announce: "I'm using the finishing-a-development-branch skill to complete this work."
+- **REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch
+- Follow that skill to verify tests, present options, execute choice
+
+## When to Stop and Ask for Help
+
+**STOP executing immediately when:**
+- Hit a blocker mid-batch (missing dependency, test fails, instruction unclear)
+- Plan has critical gaps preventing starting
+- You don't understand an instruction
+- Verification fails repeatedly
+
+**Ask for clarification rather than guessing.**
+
+## When to Revisit Earlier Steps
+
+**Return to Review (Step 1) when:**
+- Partner updates the plan based on your feedback
+- Fundamental approach needs rethinking
+
+**Don't force through blockers** - stop and ask.
+
+## Remember
+- Review plan critically first
+- Follow plan steps exactly
+- Don't skip verifications
+- Reference skills when plan says to
+- Between batches: just report and wait
+- Stop when blocked, don't guess
+
+---
+name: verification-before-completion
+description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires 
+running verification commands and confirming output before making any success claims; evidence before assertions always
+---
+
+# Verification Before Completion
+
+## Overview
+
+Claiming work is complete without verification is dishonesty, not efficiency.
+
+**Core principle:** Evidence before claims, always.
+
+**Violating the letter of this rule is violating the spirit of this rule.**
+
+## The Iron Law
+
+```
+NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
+```
+
+If you haven't run the verification command in this message, you cannot claim it passes.
+
+## The Gate Function
+
+```
+BEFORE claiming any status or expressing satisfaction:
+
+1. IDENTIFY: What command proves this claim?
+2. RUN: Execute the FULL command (fresh, complete)
+3. READ: Full output, check exit code, count failures
+4. VERIFY: Does output confirm the claim?
+   - If NO: State actual status with evidence
+   - If YES: State claim WITH evidence
+5. ONLY THEN: Make the claim
+
+Skip any step = lying, not verifying
+```
+
+## Common Failures
+
+| Claim | Requires | Not Sufficient |
+|-------|----------|----------------|
+| Tests pass | Test command output: 0 failures | Previous run, "should pass" |
+| Linter clean | Linter output: 0 errors | Partial check, extrapolation |
+| Build succeeds | Build command: exit 0 | Linter passing, logs look good |
+| Bug fixed | Test original symptom: passes | Code changed, assumed fixed |
+| Regression test works | Red-green cycle verified | Test passes once |
+| Agent completed | VCS diff shows changes | Agent reports "success" |
+| Requirements met | Line-by-line checklist | Tests passing |
+
+## Red Flags - STOP
+
+- Using "should", "probably", "seems to"
+- Expressing satisfaction before verification ("Great!", "Perfect!", "Done!", etc.)
+- About to commit/push/PR without verification
+- Trusting agent success reports
+- Relying on partial verification
+- Thinking "just this once"
+- Tired and wanting work over
+- **ANY wording implying success without having run verification**
+
+## Rationalization Prevention
+
+| Excuse | Reality |
+|--------|---------|
+| "Should work now" | RUN the verification |
+| "I'm confident" | Confidence â‰  evidence |
+| "Just this once" | No exceptions |
+| "Linter passed" | Linter â‰  compiler |
+| "Agent said success" | Verify independently |
+| "I'm tired" | Exhaustion â‰  excuse |
+| "Partial check is enough" | Partial proves nothing |
+| "Different words so rule doesn't apply" | Spirit over letter |
+
+## Key Patterns
+
+**Tests:**
+```
+âœ… [Run test command] [See: 34/34 pass] "All tests pass"
+âŒ "Should pass now" / "Looks correct"
+```
+
+**Regression tests (TDD Red-Green):**
+```
+âœ… Write â†’ Run (pass) â†’ Revert fix â†’ Run (MUST FAIL) â†’ Restore â†’ Run (pass)
+âŒ "I've written a regression test" (without red-green verification)
+```
+
+**Build:**
+```
+âœ… [Run build] [See: exit 0] "Build passes"
+âŒ "Linter passed" (linter doesn't check compilation)
+```
+
+**Requirements:**
+```
+âœ… Re-read plan â†’ Create checklist â†’ Verify each â†’ Report gaps or completion
+âŒ "Tests pass, phase complete"
+```
+
+**Agent delegation:**
+```
+âœ… Agent reports success â†’ Check VCS diff â†’ Verify changes â†’ Report actual state
+âŒ Trust agent report
+```
+
+## Why This Matters
+
+From 24 failure memories:
+- your human partner said "I don't believe you" - trust broken
+- Undefined functions shipped - would crash
+- Missing requirements shipped - incomplete features
+- Time wasted on false completion â†’ redirect â†’ rework
+- Violates: "Honesty is a core value. If you lie, you'll be replaced."
+
+## When To Apply
+
+**ALWAYS before:**
+- ANY variation of success/completion claims
+- ANY expression of satisfaction
+- ANY positive statement about work state
+- Committing, PR creation, task completion
+- Moving to next task
+- Delegating to agents
+
+**Rule applies to:**
+- Exact phrases
+- Paraphrases and synonyms
+- Implications of success
+- ANY communication suggesting completion/correctness
+
+## The Bottom Line
+
+**No shortcuts for verification.**
+
+Run the command. Read the output. THEN claim the result.
+
+This is non-negotiable.
+
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$briefHead = git log -1 --format=%h -- 
+.claude/briefs/pass-126c-fable-fixes.md
+$currentHead = git rev-parse --short HEAD
+"briefHead=$briefHead"
+"currentHead=$currentHead"
+if ($briefHead -ne $currentHead) { exit 42 }' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 5ms:
+codex
+HEAD is correctly pinned: both commands returned `08cd02a`. I’m now loading the binding section 0, this round’s brief, 
+the existing measurement script, and the installed Next CLI guide before making the QA-only edit.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 
+'.claude/briefs/pass-126-how-i-work.md'
+Get-Content -Raw '.claude/briefs/pass-126c-fable-fixes.md'
+Get-Content -Raw '.planning/qa/pass-126/measure.mjs'
+"'$nextDocs = rg --files '"'node_modules/next/dist/docs' | rg 'cli[\\\\/].*next|next-cli|api-reference[\\\\/].*cli'
+"'$nextDocs
+if ($nextDocs) { Get-Content -Raw ($nextDocs | Select-Object -First 1) }' in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 860ms:
+# Brief: Pass-126, How I work: same words, better design, on the home and /services (preview build)
+
+Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch 
+`preview/p126-how-i-work`.
+HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126-how-i-work.md` must equal `git rev-parse --short HEAD`.
+Written 2026-09-21 by the main session (Opus 5) from Fable's pick (`.planning/reviews/FABLE-126-HOWIWORK-PICK.md`).
+
+## ROUND 3 (read first)
+Round 2 stopped correctly at `lastmod --check` (/services dates drifted); the main session regenerated and committed
+`content/lastmod.json`. Everything else in ROUND 2 below still holds. Start again at section 5, step 1.
+
+## ROUND 2 (read first)
+Round 1 implemented sections 1 to 4 and they are COMMITTED at HEAD (the main session reviewed the diff). Round 1 then
+stopped correctly: `bash` cannot start in your sandbox, so the gate script never ran, and `.next` still holds an older
+build. Do NOT edit sections 1 to 4 again unless a gate fails (then report and stop). Start at section 5, step 1, with 
+the
+Node gate script. Nothing measured in round 1 counts; regenerate every output.
+
+## 0. Rules
+- You WRITE files; you do not commit (LESSONS #18), push, deploy or edit `.claude/RESUME.md`.
+- The copy is LOCKED and lives in `content/how-i-work.ts` (main session wrote it, byte-exact, with two no-break
+  spaces). Import it; never retype, reword, re-punctuate or edit that file. Write NO non-ASCII character into any
+  file you touch (LESSONS #46).
+- No numerals in the section, no boxes/cards, no arrows between steps, no new colour tokens, no GSAP beyond the
+  existing `SplitReveal` component, no CSS `animation-timeline` (see section 4), no sticky/held elements.
+- Never reinterpret an expected value (LESSONS #25). A bracket that does not match is reported verbatim and you stop.
+- Pre-existing untracked folders `.planning/qa/pass-124/home-v2/` to `home-v6/` and `.planning/qa/pass-125/*.log` are 
+not
+  yours.
+
+## 1. The shared component: `components/color-worlds/HowIWork.tsx` (server component, no "use client")
+Props: `{ variant: "home" | "services" }`. Renders exactly:
+```
+<div className={`cw-hiw cw-hiw--${variant}`}>
+  {variant === "home"
+    ? <SplitReveal as="h2" id="cw-howiwork-title" className="cw-secttitle 
+cw-hiw__title">{HOW_I_WORK.heading}</SplitReveal>
+    : <h3 id="sv-hiw-title" className="cw-hiw__title">{HOW_I_WORK.heading}</h3>}
+  <ol className="cw-hiw__list" role="list">
+    {HOW_I_WORK.steps.map((s) => (
+      <li key={s.label} className={`cw-hiw__step cw-hiw__step--${s.label.toLowerCase()} cw-reveal`}>
+        <div>
+          <p className="cw-hiw__label">{s.label}</p>
+          <p className="cw-hiw__head">{s.headline}</p>
+          <p className="cw-hiw__body">{s.body}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+  {variant === "services" ? <p className="cw-hiw__note">{HOW_I_WORK.servicesNote}</p> : null}
+  <p className="cw-hiw__more cw-reveal">
+    <a href={HOW_I_WORK.moreHref} className="cw-mlink">{HOW_I_WORK.moreLabel} <span aria-hidden>{"\u2192"}</span></a>
+  </p>
+</div>
+```
+(`{"\u2192"}` is the arrow written as an ASCII escape; the current markup renders the same character.) Import
+`SplitReveal` the way `app/(foyer)/page.tsx` does.
+
+## 2. The home: `app/(foyer)/page.tsx`
+Inside `<section ... id="products" ... data-world="espresso" aria-labelledby="cw-howiwork-title">`, replace everything
+from the `<SplitReveal as="h2" id="cw-howiwork-title"` element through the closing `</p>` of the
+`cw-principles__more` paragraph (the heading, the `<ol className="cw-principles cw-principles--steps">` and the "See 
+the
+work" paragraph) with `<HowIWork variant="home" />`. Keep the comments that sit between the kept parts; delete comments
+that only described the removed list. Everything after it (the receipts: the sr-only h3, `RevenueFigure`,
+`ExitRecord`) stays byte-identical. Section id, world and aria-labelledby unchanged.
+
+## 3. /services: `app/(foyer)/services/page.tsx`
+- Replace the whole `<div className="cw-pband__incl" aria-labelledby="sv-incl-title"> ... </div>` block with
+  `<HowIWork variant="services" />`, and delete the now-unused `INCLUSIONS` const. Change nothing else in the
+  shapes section.
+- In the "Why one person" paragraph delete exactly these two sentences and nothing else: "Week one is the scoping
+  session and the audit: the foundational work that decides what the engagement is actually for." and "Something named
+  ships in month one." The paragraph then reads: "An agency gives you a team and a relay race between them. A full-time
+  hire takes three months to find and another to ramp. I am a senior operator you can start this week, on a scope with
+  an end date. When the work is bigger than one person, I say so on the call." (Straight cuts; they repeat the steps.)
+
+## 4. CSS: `app/globals.css`
+Retire, by deleting: `[data-mode="cw"] .cw-principles--steps .cw-principle { ... }` and `[data-mode="cw"]
+.cw-principles__more { ... }` (around line 8247). Re-key `[data-mode="cw"] section:has(.cw-principles--steps)` to
+`[data-mode="cw"] #products` (same declarations). Leave every other `.cw-principle*` rule alone.
+Then add one block, commented "Pass-126 How I work (Fable pick: Sol's Marked-Up Proof on espresso)":
+
+Grid, at `min-width: 1100px`:
+```
+.cw-hiw { display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:24px;
+  grid-template-areas: "t t t t t . s s s s s s" ". p p p p p p p . . . ." ". . . b b b b b b b b b" "y y y y y y y y 
+y m m m"; }
+.cw-hiw__list { display:contents; list-style:none; margin:0; padding:0; }
+.cw-hiw__title { grid-area:t; align-self:start; max-width:4.5em; }
+.cw-hiw__step--scope { grid-area:s; align-self:start; }
+.cw-hiw__step--plan { grid-area:p; margin-top:72px; }
+.cw-hiw__step--build { grid-area:b; margin-top:128px; }
+.cw-hiw__step--stay { grid-area:y; margin-top:88px; align-self:last baseline; }
+.cw-hiw__more { grid-area:m; margin:0; align-self:last baseline; }
+body measures: scope 440px, plan 460px, build 520px, stay 480px (max-width on .cw-hiw__body per step).
+```
+Below 1100px: `grid-template-columns:minmax(0,1fr)`, areas stacked "t" "s" "p" "b" "y" "m"; title `max-width:none;
+margin-bottom:40px`; inner `<div>` indents: plan 16px, build 32px, scope and stay 0; row offsets plan 56px, build
+80px, stay 64px; `.cw-hiw__more { margin-top:28px }`.
+Type (all `color: inherit`):
+- `.cw-hiw__title` (home): keeps `.cw-secttitle`; add `font-size: clamp(44px, 6.5vw, 92px)`.
+- `.cw-hiw__label`: JetBrains Mono (`var(--font-cw-mono)`), 12px, 400, uppercase, letter-spacing .14em, line-height 1,
+  opacity .9, margin 0 0 14px. Never copper.
+- `.cw-hiw__head`: Bricolage (`var(--font-cw-display)`), weight 500, sentence case (`text-transform:none`),
+  letter-spacing -.02em, line-height 1.02, margin 0 0 20px, `text-wrap: pretty`, size `clamp(34px, 4.2vw, 60px)`;
+  `.cw-hiw__step--build .cw-hiw__head` size `clamp(38px, 5.2vw, 74px)`.
+- `.cw-hiw__body`: Hanken (`var(--font-cw-body)`), 400, `clamp(17px, 1.3vw, 18px)`, line-height 1.5, margin 0.
+- Copper rule: `.cw-hiw__step > div::before { content:""; display:block; height:2px; width:88px; margin:0 0 16px;
+  background:var(--color-accent-copper); transform-origin:left center; }`, width 48px below 1100px. The only copper
+  in the steps (copper on espresso fails AA for small text, 3.57:1; a 2px rule is not text).
+- `.cw-hiw__note` (services only): Hanken 16px, line-height 1.5, `color: inherit`. At 1100+ `.cw-hiw--services` gets a
+  FIFTH template row `"n n n n n n n n n . . ."` after the Stay/link row, `grid-area:n` on the note, margin 40px 0 0.
+  Below 1100 it sits in the stack after Stay, before the link (areas "t" "s" "p" "b" "y" "n" "m"), margin 32px 0 0.
+/services variant `.cw-hiw--services`: title `font-family:var(--font-cw-display); font-weight:800; text-transform:
+uppercase; line-height:.92; letter-spacing:-.025em; font-size: clamp(38px, 4.6vw, 66px); max-width:4.5em` at 1100+;
+headlines `clamp(30px, 3.3vw, 48px)`, build `clamp(34px, 3.9vw, 56px)`; row offsets 56/96/64 at 1100+ and 44/60/48
+below; the link colour `var(--color-accent-copper-deep)` (the one copper TEXT, AA on bone). Ground: whatever world the
+shapes section already has (bone); add none.
+
+MOTION (main-session ruling, overriding Fable's `view()` timelines): use the site's ONE reveal system (the
+IntersectionObserver in `components/color-worlds/ScrollReveal.tsx`, `.cw-reveal` / `.is-in`). The native
+`animation-timeline: view()` path was deleted on 2026-08-30 because it never played for anyone (comment at the
+"Native scroll-driven reveal path DELETED" block), and the page root's `overflow-x: hidden` would freeze it on
+/services. So: each step `li` is `.cw-reveal` (it rises 40px and fades in, 0.55s, as today). Add, after the reveal
+rules:
+```
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) > div::before { transform: scaleX(0); }
+[data-mode="cw"] .cw-hiw__step > div::before { transition: transform .7s cubic-bezier(.16,1,.3,1) .15s; }
+[data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) .cw-hiw__body { opacity: 0; transform: translateY(14px); }
+[data-mode="cw"] .cw-hiw__body { transition: opacity .55s cubic-bezier(.16,1,.3,1) .12s, transform .55s 
+cubic-bezier(.16,1,.3,1) .12s; }
+@media (prefers-reduced-motion: reduce) { [data-mode="cw"] .cw-hiw__step > div::before, [data-mode="cw"] .cw-hiw__body 
+{ transform:none !important; opacity:1 !important; } }
+```
+No JS: `.cw-js-reveals` is never added, so every step renders finished.
+
+## 5. Build and verify (run from the worktree root; brackets are the expected output)
+1. `node .planning/exec/prepush-gates.mjs` [last line `PREPUSH: all gates and the build passed`]. It runs every gate
+   and `next build --webpack`; do NOT run the bare build instead (LESSONS #47), and do not call bash (your sandbox
+   cannot launch it; that is why this is Node now). Run it once.
+2. `npx next start -p 3125` in the background.
+3. Write `.planning/qa/pass-126/measure.mjs` (puppeteer-core from `C:/tmp/p101tools`, Chrome, deviceScaleFactor 1) and
+   run it for 390x844 and 1440x900, reduced motion OFF, after scrolling the whole page in 0.75-viewport steps with
+   300ms pauses (so reveals fire). Print JSON to `.planning/qa/pass-126/measure.json`. On `/`:
+   - `h2#cw-howiwork-title` text [`How I work.`]; `.cw-hiw__step` count [4]; labels in order [Scope, Plan, Build, 
+Stay];
+   - each of the 4 headlines and 4 bodies appears verbatim in `document.body.innerText` after normalising U+00A0 to a
+     space [true x8] (read the expected strings from `content/how-i-work.ts` by importing its compiled values or by a
+     regex over the file; do not type them);
+   - inside `.cw-hiw`: count of digits 0-9 in innerText [0]; elements with computed `position: sticky` [0];
+   - reveal probe (the 2026-08-30 DEFECT gate): after the scroll, every `.cw-hiw__step` has class `is-in` [true x4] and
+     computed opacity of every `.cw-hiw__body` [1]; the `::before` of each step has computed transform
+     [`none` or `matrix(1, 0, 0, 1, 0, 0)`];
+   - axe-core serious+critical inside `#products` [0].
+   On `/services`: `#sv-hiw-title` text [`How I work.`]; `.cw-hiw__step` count [4]; the note text equals
+   `HOW_I_WORK.servicesNote` [true]; the string "Every engagement includes" in innerText [0]; the paragraph under
+   "Why one person" contains "Week one is the scoping session" [false] and "When the work is bigger than one person, I
+   say so on the call." [true]; axe serious+critical on the page [0]. Horizontal overflow on both pages [<= 0].
+4. CLS while scrolling (LESSONS #41): `node .planning/exec/cls-attrib-123.mjs http://localhost:3125/` and
+   `.../services` at 390 and 1440 (read that script's header for its arguments) [largest session window <= 0.05 each].
+5. Accent crossing (briefs README): `node .planning/exec/crossfade-contrast.mjs` against the local server per its
+   header, down and up, normal and reduced motion, 390 and 1440 [0 steps under the floor].
+6. Viewport scroll frames (NOT full-page shots; briefs README): copy `.planning/qa/pass-125/scroll-sheet.mjs` from the
+   `preview/p125-full-time` branch (`git show preview/p125-full-time:.planning/qa/pass-125/scroll-sheet.mjs`) into
+   `.planning/qa/pass-126/`, point it at `/` starting 100px above `#products` and ending when the `$20M+` figure's top
+   reaches the viewport middle, and at `/services` from 100px above `#sv-hiw-title` through the "Why one person"
+   paragraph. Frames every 0.8 viewport, 700ms settle. Sheets: `sheets/home-hiw-{390,1440}.png`,
+   `sheets/services-hiw-{390,1440}.png`. Take the same frames of PRODUCTION (`https://www.micahjonesconsulting.com`)
+   for the before: `sheets/home-hiw-{390,1440}-before.png`, `sheets/services-hiw-{390,1440}-before.png`.
+7. Stop the server. `git status --short` [the files named in sections 1 to 4 plus new files under
+   `.planning/qa/pass-126/`, plus the pre-existing untracked items named in section 0].
+
+## Report back (plain text)
+The prepush tail (10 lines), measure.json verbatim, the CLS and crossfade results, the sheet list with sizes,
+`git status --short`, and every bracket that did not match, quoted verbatim.
+
+# Brief: Pass-126c, gated build + measure after Fable's re-read fixes (preview branch, round 5)
+
+Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch 
+`preview/p126-how-i-work`.
+HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-126c-fable-fixes.md` must equal `git rev-parse --short 
+HEAD`.
+ROUND 2: round 1 stopped correctly at the HEAD check (the main session committed mid-run). Nothing else changed.
+Standing rules of `.claude/briefs/pass-126-how-i-work.md` section 0 bind. You change NO source file: build and measure.
+
+The main session edited `app/globals.css` in the last commit (measured defects from Fable's re-read, round 4):
+(a) at min-width 1100 Plan's grid row starts at column 1 (`"p p p p p p b b b b b b"`) with `padding-left: 48px` on its
+inner div, because its headline ended 30px short of Build's on the same baseline; (b) one phone gap between steps:
+64px on the home, 56px on /services. EXPECTED-VALUE CHANGE (the main session's ruling, not yours to reinterpret): at
+1440 the step inner `padding-left` values are now [0px, 48px, 0px, 0px] (Scope, Plan, Build, Stay); at 390 still all 
+0px.
+
+1. `node .planning/exec/prepush-gates.mjs` [last line `PREPUSH: all gates and the build passed`]. Once. No bash.
+2. `npx next start -p 3125` in the background.
+3. Update `.planning/qa/pass-126/measure.mjs`: the 1440 padding expectation becomes [0,48,0,0]px as above; add, on `/` 
+and
+   `/services`: `planBuildGutter` = Build headline's left edge minus the right edge of the Plan headline's widest text
+   line (a Range over the headline text, max of its client rects' `right`) [>= 72 at 1440; also measure at 1280x800,
+   >= 56]; at 390 `stepGaps` = the three gaps between consecutive `.cw-hiw__step` boxes [home 64,64,64; /services
+   56,56,56; each within 1px]. Keep every other check and bracket. Add the 1280x800 viewport for the gutter check only.
+   Run; overwrite `measure.json`.
+4. Stop the server. `git status --short` [measure.mjs and measure.json modified; pre-existing untracked items].
+
+Report: prepush tail (10 lines), measure.json verbatim, git status, every bracket that did not match, quoted verbatim.
+
+import { createRequire } from "node:module";
+import fs from "node:fs";
+import path from "node:path";
+
+const require = createRequire("C:/tmp/p101tools/package.json");
+const puppeteerModule = require("puppeteer-core");
+const puppeteer = puppeteerModule.default ?? puppeteerModule;
+const axeSource = fs.readFileSync(
+  require.resolve("axe-core/axe.min.js"),
+  "utf8",
+);
+
+const baseUrl = (process.argv[2] || "http://localhost:3125").replace(/\/$/, "");
+const outPath = path.resolve(".planning/qa/pass-126/measure.json");
+const source = fs.readFileSync("content/how-i-work.ts", "utf8");
+
+const capture = (pattern, label) => {
+  const match = source.match(pattern);
+  if (!match)
+    throw new Error(`Could not read ${label} from content/how-i-work.ts`);
+  return match[1];
+};
+
+const expected = {
+  heading: capture(/heading:\s*"([^"]+)"/, "heading"),
+  steps: [
+    ...source.matchAll(
+      /\{\s*label:\s*"([^"]+)",\s*headline:\s*"([^"]+)",\s*body:\s*"([^"]+)",\s*\}/g,
+    ),
+  ].map(([, label, headline, body]) => ({ label, headline, body })),
+  servicesNote: capture(/servicesNote:\s*\r?\n\s*"([^"]+)"/, "services note"),
+};
+
+if (expected.steps.length !== 4) {
+  throw new Error(`Expected four locked steps, found ${expected.steps.length}`);
+}
+
+const viewports = [
+  { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+  { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
+];
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const debug = (message) => {
+  if (process.env.DEBUG_MEASURE) process.stderr.write(`${message}\n`);
+};
+
+async function scrollWholePage(page) {
+  let y = 0;
+  while (true) {
+    const dimensions = await page.evaluate(() => ({
+      height: window.innerHeight,
+      max:
+        Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight,
+        ) - window.innerHeight,
+    }));
+    if (y >= dimensions.max) {
+      await page.evaluate(
+        (target) => window.scrollTo(0, target),
+        dimensions.max,
+      );
+      await sleep(900);
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await sleep(1000);
+      return;
+    }
+    await page.evaluate((target) => window.scrollTo(0, target), y);
+    await sleep(300);
+    y += dimensions.height * 0.75;
+  }
+}
+
+async function axeCount(page, selector) {
+  debug(`axe start ${selector ?? "document"}`);
+  await page.addScriptTag({ content: axeSource });
+  const violations = await page.evaluate(async (contextSelector) => {
+    const context = contextSelector
+      ? document.querySelector(contextSelector)
+      : document;
+    if (!context) return null;
+    const results = await window.axe.run(context, {
+      resultTypes: ["violations"],
+    });
+    return results.violations
+      .filter((violation) => ["serious", "critical"].includes(violation.impact))
+      .map((violation) => ({
+        id: violation.id,
+        impact: violation.impact,
+        help: violation.help,
+        nodes: violation.nodes.map((node) => ({
+          target: node.target,
+          html: node.html,
+          failureSummary: node.failureSummary,
+        })),
+      }));
+  }, selector);
+  debug(`axe done ${selector ?? "document"}`);
+  return violations;
+}
+
+async function openMeasuredPage(browser, viewport, pathname) {
+  debug(`open start ${viewport.name} ${pathname}`);
+  const page = await browser.newPage();
+  await page.setViewport(viewport);
+  await page.emulateMediaFeatures([
+    { name: "prefers-reduced-motion", value: "no-preference" },
+  ]);
+  await page.goto(`${baseUrl}${pathname}`, {
+    waitUntil: "domcontentloaded",
+    timeout: 60000,
+  });
+  await sleep(1500);
+  debug(`scroll start ${viewport.name} ${pathname}`);
+  await scrollWholePage(page);
+  debug(`scroll done ${viewport.name} ${pathname}`);
+  return page;
+}
+
+const browser = await puppeteer.launch({
+  executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  headless: true,
+  args: ["--no-sandbox", "--disable-gpu"],
+});
+
+const results = [];
+const failures = [];
+
+try {
+  for (const viewport of viewports) {
+    const homePage = await openMeasuredPage(browser, viewport, "/");
+    const home = await homePage.evaluate((locked) => {
+      const normalize = (value) => value.replace(/\u00a0/g, " ");
+      const text = normalize(document.body.innerText);
+      const section = document.querySelector(".cw-hiw");
+      const steps = [...document.querySelectorAll(".cw-hiw__step")];
+      const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+      const plan = document.querySelector(".cw-hiw__step--plan");
+      const build = document.querySelector(".cw-hiw__step--build");
+      const stayBody = document.querySelector(
+        ".cw-hiw__step--stay .cw-hiw__body",
+      );
+      const more = document.querySelector(".cw-hiw__more");
+      const stayBodyRect = stayBody?.getBoundingClientRect();
+      const moreRect = more?.getBoundingClientRect();
+      const copperTextColors = ["rgb(189, 90, 45)", "rgb(138, 61, 36)"];
+      return {
+        heading:
+          document.querySelector("h2#cw-howiwork-title")?.textContent?.trim() ??
+          null,
+        stepCount: steps.length,
+        labels: [...document.querySelectorAll(".cw-hiw__label")].map(
+          (node) => node.textContent?.trim() ?? "",
+        ),
+        headlineMatches: locked.steps.map((step) =>
+          text.includes(normalize(step.headline)),
+        ),
+        bodyMatches: locked.steps.map((step) =>
+          text.includes(normalize(step.body)),
+        ),
+        digitCount: section
+          ? (section.innerText.match(/[0-9]/g) ?? []).length
+          : null,
+        stickyElementCount: section
+          ? [...section.querySelectorAll("*")].filter(
+              (node) => getComputedStyle(node).position === "sticky",
+            ).length
+          : null,
+        stepsIn: steps.map((step) => step.classList.contains("is-in")),
+        bodyOpacities: bodies.map((body) => getComputedStyle(body).opacity),
+        ruleTransforms: steps.map(
+          (step) =>
+            getComputedStyle(step.querySelector(":scope > div"), "::before")
+              .transform,
+        ),
+        moreBelowStayBody:
+          moreRect && stayBodyRect ? moreRect.top > stayBodyRect.bottom : false,
+        moreStayLeftDelta:
+          moreRect && stayBodyRect
+            ? Math.abs(moreRect.left - stayBodyRect.left)
+            : null,
+        planBuildTopDelta:
+          plan && build
+            ? Math.abs(
+                plan.getBoundingClientRect().top -
+                  build.getBoundingClientRect().top,
+              )
+            : null,
+        stepInnerPaddingLefts: steps.map((step) =>
+          getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+        ),
+        copperTextElementCount: section
+          ? [...section.querySelectorAll("*")].filter(
+              (node) =>
+                node.textContent?.trim() &&
+                copperTextColors.includes(getComputedStyle(node).color),
+            ).length
+          : null,
+        horizontalOverflow:
+          Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+          ) - document.documentElement.clientWidth,
+      };
+    }, expected);
+    home.axeViolations = await axeCount(homePage, "#products");
+    home.axeSeriousCritical = home.axeViolations?.length ?? null;
+    await homePage.close();
+
+    const servicesPage = await openMeasuredPage(browser, viewport, "/services");
+    const services = await servicesPage.evaluate((locked) => {
+      const normalize = (value) => value.replace(/\u00a0/g, " ");
+      const pageText = normalize(document.body.innerText);
+      const whyHeading = [...document.querySelectorAll("h2")].find(
+        (node) => node.textContent?.trim() === "Why one person",
+      );
+      const whyText = normalize(
+        whyHeading?.nextElementSibling?.textContent ?? "",
+      );
+      const section = document.querySelector(".cw-hiw");
+      const steps = [...document.querySelectorAll(".cw-hiw__step")];
+      const plan = document.querySelector(".cw-hiw__step--plan");
+      const build = document.querySelector(".cw-hiw__step--build");
+      const stayBody = document.querySelector(
+        ".cw-hiw__step--stay .cw-hiw__body",
+      );
+      const more = document.querySelector(".cw-hiw__more");
+      const areasTitle = document.querySelector("#sv-areas-title");
+      const areasNote = document.querySelector(".cw-areas__note");
+      const stayBodyRect = stayBody?.getBoundingClientRect();
+      const moreRect = more?.getBoundingClientRect();
+      const sectionRect = section?.getBoundingClientRect();
+      const areasTitleRect = areasTitle?.getBoundingClientRect();
+      const copperTextColors = ["rgb(189, 90, 45)", "rgb(138, 61, 36)"];
+      const areasNoteMatches =
+        normalize(areasNote?.textContent?.trim() ?? "") ===
+        normalize(locked.servicesNote);
+      return {
+        heading:
+          document.querySelector("#sv-hiw-title")?.textContent?.trim() ?? null,
+        stepCount: document.querySelectorAll(".cw-hiw__step").length,
+        noteMatches: areasNoteMatches,
+        hiwNoteCount: document.querySelectorAll(".cw-hiw__note").length,
+        areasNoteMatches,
+        areasNoteAfterTitle:
+          areasTitle && areasNote
+            ? Boolean(
+                areasTitle.compareDocumentPosition(areasNote) &
+                  Node.DOCUMENT_POSITION_FOLLOWING,
+              )
+            : false,
+        hiwToAreasTitleGap:
+          sectionRect && areasTitleRect
+            ? areasTitleRect.top - sectionRect.bottom
+            : null,
+        moreBelowStayBody:
+          moreRect && stayBodyRect ? moreRect.top > stayBodyRect.bottom : false,
+        moreStayLeftDelta:
+          moreRect && stayBodyRect
+            ? Math.abs(moreRect.left - stayBodyRect.left)
+            : null,
+        planBuildTopDelta:
+          plan && build
+            ? Math.abs(
+                plan.getBoundingClientRect().top -
+                  build.getBoundingClientRect().top,
+              )
+            : null,
+        stepInnerPaddingLefts: steps.map((step) =>
+          getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+        ),
+        copperTextElementCount: section
+          ? [...section.querySelectorAll("*")].filter(
+              (node) =>
+                node.textContent?.trim() &&
+                copperTextColors.includes(getComputedStyle(node).color),
+            ).length
+          : null,
+        everyEngagementIncludesCount: (
+          pageText.match(/Every engagement includes/g) ?? []
+        ).length,
+        whyContainsWeekOne: whyText.includes("Week one is the scoping session"),
+        whyContainsClosing: whyText.includes(
+          "When the work is bigger than one person, I say so on the call.",
+        ),
+        horizontalOverflow:
+          Math.max(
+            document.body.scrollWidth,
+            document.documentElement.scrollWidth,
+          ) - document.documentElement.clientWidth,
+      };
+    }, expected);
+    services.axeViolations = await axeCount(servicesPage, null);
+    services.axeSeriousCritical = services.axeViolations?.length ?? null;
+    await servicesPage.close();
+
+    const result = { viewport: viewport.name, home, services };
+    results.push(result);
+
+    const prefix = viewport.name;
+    const checks = [
+      [home.heading === expected.heading, `${prefix} home heading`],
+      [home.stepCount === 4, `${prefix} home step count`],
+      [
+        JSON.stringify(home.labels) ===
+          JSON.stringify(expected.steps.map((step) => step.label)),
+        `${prefix} home labels`,
+      ],
+      [home.headlineMatches.every(Boolean), `${prefix} home headlines`],
+      [home.bodyMatches.every(Boolean), `${prefix} home bodies`],
+      [home.digitCount === 0, `${prefix} home digit count`],
+      [home.stickyElementCount === 0, `${prefix} home sticky elements`],
+      [
+        home.stepsIn.length === 4 && home.stepsIn.every(Boolean),
+        `${prefix} home reveal classes`,
+      ],
+      [
+        home.bodyOpacities.length === 4 &&
+          home.bodyOpacities.every((value) => value === "1"),
+        `${prefix} home body opacity`,
+      ],
+      [
+        home.ruleTransforms.length === 4 &&
+          home.ruleTransforms.every((value) =>
+            ["none", "matrix(1, 0, 0, 1, 0, 0)"].includes(value),
+          ),
+        `${prefix} home rule transforms`,
+      ],
+      [home.axeSeriousCritical === 0, `${prefix} home axe`],
+      [home.horizontalOverflow <= 0, `${prefix} home horizontal overflow`],
+      [home.moreBelowStayBody, `${prefix} home more below stay body`],
+      [
+        home.moreStayLeftDelta !== null && home.moreStayLeftDelta <= 2,
+        `${prefix} home more aligned with stay body`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          (home.planBuildTopDelta !== null && home.planBuildTopDelta <= 2),
+        `${prefix} home plan and build aligned`,
+      ],
+      [
+        viewport.width !== 390 ||
+          (home.stepInnerPaddingLefts.length === 4 &&
+            home.stepInnerPaddingLefts.every((value) => value === "0px")),
+        `${prefix} home step inner padding`,
+      ],
+      [
+        home.copperTextElementCount === 0,
+        `${prefix} home copper text elements`,
+      ],
+      [services.heading === expected.heading, `${prefix} services heading`],
+      [services.stepCount === 4, `${prefix} services step count`],
+      [services.noteMatches, `${prefix} services note`],
+      [services.hiwNoteCount === 0, `${prefix} services hiw note count`],
+      [services.areasNoteMatches, `${prefix} services areas note text`],
+      [services.areasNoteAfterTitle, `${prefix} services areas note order`],
+      [
+        services.everyEngagementIncludesCount === 0,
+        `${prefix} services retired heading`,
+      ],
+      [!services.whyContainsWeekOne, `${prefix} services repeated sentence`],
+      [services.whyContainsClosing, `${prefix} services closing sentence`],
+      [services.axeSeriousCritical === 0, `${prefix} services axe`],
+      [
+        services.horizontalOverflow <= 0,
+        `${prefix} services horizontal overflow`,
+      ],
+      [services.moreBelowStayBody, `${prefix} services more below stay body`],
+      [
+        services.moreStayLeftDelta !== null && services.moreStayLeftDelta <= 2,
+        `${prefix} services more aligned with stay body`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          (services.planBuildTopDelta !== null &&
+            services.planBuildTopDelta <= 2),
+        `${prefix} services plan and build aligned`,
+      ],
+      [
+        viewport.width !== 390 ||
+          (services.stepInnerPaddingLefts.length === 4 &&
+            services.stepInnerPaddingLefts.every((value) => value === "0px")),
+        `${prefix} services step inner padding`,
+      ],
+      [
+        services.copperTextElementCount === 0,
+        `${prefix} services copper text elements`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          (services.hiwToAreasTitleGap !== null &&
+            services.hiwToAreasTitleGap >= 120),
+        `${prefix} services hiw to areas title gap`,
+      ],
+    ];
+    failures.push(
+      ...checks.filter(([passed]) => !passed).map(([, label]) => label),
+    );
+  }
+} finally {
+  await browser.close();
+}
+
+const report = { results, failures };
+const json = `${JSON.stringify(report, null, 2)}\n`;
+fs.writeFileSync(outPath, json, "utf8");
+process.stdout.write(json);
+
+if (failures.length) process.exitCode = 1;
+
+rg : The term 'rg' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:5 char:13
++ $nextDocs = rg --files 'node_modules/next/dist/docs' | rg 'cli[\\/].* ...
++             ~~
+    + CategoryInfo          : ObjectNotFound: (rg:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-ChildItem -Path 
+'node_modules/next/dist/docs' -Recurse -File | Where-Object { "'$_.FullName -match '"'cli' -and "'$_.Name -match 
+'"'next' } | Select-Object -ExpandProperty FullName" in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 185ms:
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts\node_modules\next\dist\docs\01-app\03-api-referenc
+e\06-cli\create-next-app.md
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts\node_modules\next\dist\docs\01-app\03-api-referenc
+e\06-cli\next.md
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts\node_modules\next\dist\docs\02-pages\04-api-refere
+nce\05-cli\create-next-app.md
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts\node_modules\next\dist\docs\02-pages\04-api-refere
+nce\05-cli\next.md
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 
+'node_modules/next/dist/docs/01-app/03-api-reference/06-cli/next.md'" in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 85ms:
+---
+title: next CLI
+description: Learn how to run and build your application with the Next.js CLI.
+---
+
+{/* The content of this doc is shared between the app and pages router. You can use the 
+`<PagesOnly>Content</PagesOnly>` component to add content that is specific to the Pages Router. Any shared content 
+should not be wrapped in a component. */}
+
+The Next.js CLI allows you to develop, build, start your application, and more.
+
+Basic usage:
+
+```bash package="pnpm"
+pnpm next [command] [options]
+```
+
+```bash package="npm"
+npx next [command] [options]
+```
+
+```bash package="yarn"
+yarn next [command] [options]
+```
+
+```bash package="bun"
+bunx next [command] [options]
+```
+
+> **Good to know**: With `npm run`, use `--` before CLI flags so npm forwards them to `next`. This is not required for 
+`pnpm`, `yarn`, or `bun`.
+
+## Reference
+
+The following options are available:
+
+| Options             | Description                        |
+| ------------------- | ---------------------------------- |
+| `-h` or `--help`    | Shows all available options        |
+| `-v` or `--version` | Outputs the Next.js version number |
+
+### Commands
+
+The following commands are available:
+
+| Command                                                      | Description                                           
+                                                        |
+| ------------------------------------------------------------ | 
+------------------------------------------------------------------------------------------------------------- |
+| [`dev`](#next-dev-options)                                   | Starts Next.js in development mode with Hot Module 
+Reloading, error reporting, and more.                      |
+| [`build`](#next-build-options)                               | Creates an optimized production build of your 
+application. Displaying information about each route.           |
+| [`start`](#next-start-options)                               | Starts Next.js in production mode. The application 
+should be compiled with `next build` first.                |
+| [`info`](#next-info-options)                                 | Prints relevant details about the current system 
+which can be used to report Next.js bugs.                    |
+| [`telemetry`](#next-telemetry-options)                       | Allows you to enable or disable Next.js' completely 
+anonymous telemetry collection.                           |
+| [`typegen`](#next-typegen-options)                           | Generates TypeScript definitions for routes, pages, 
+layouts, and route handlers without running a full build. |
+| [`upgrade`](#next-upgrade-options)                           | Upgrades your Next.js application to the latest 
+version.                                                      |
+| [`experimental-analyze`](#next-experimental-analyze-options) | Analyzes bundle output using Turbopack. Does not 
+produce build artifacts.                                     |
+
+> **Good to know**: Running `next` without a command is an alias for `next dev`.
+
+### `next dev` options
+
+`next dev` starts the application in development mode with Hot Module Reloading (HMR), error reporting, and more.
+
+> **Good to know**: Development builds output to `.next/dev` instead of `.next`. This allows you to run `next dev` and 
+`next build` concurrently without conflicts.
+
+The following options are available when running `next dev`:
+
+| Option                                   | Description                                                               
+                                                                           |
+| ---------------------------------------- | --------------------------------------------------------------------------
+-------------------------------------------------------------------------- |
+| `-h, --help`                             | Show all available options.                                               
+                                                                           |
+| `[directory]`                            | A directory in which to build the application. If not provided, current 
+directory is used.                                                           |
+| `--turbopack`                            | Force enable [Turbopack](/docs/app/api-reference/turbopack) (enabled by 
+default). Also available as `--turbo`.                                       |
+| `--webpack`                              | Use Webpack instead of the default 
+[Turbopack](/docs/app/api-reference/turbopack) bundler for development.                                           |
+| `-p` or `--port <port>`                  | Specify a port number on which to start the application. Default: 3000, 
+env: PORT                                                                    |
+| `-H`or `--hostname <hostname>`           | Specify a hostname on which to start the application. Useful for making 
+the application available for other devices on the network. Default: 0.0.0.0 |
+| `--experimental-https`                   | Starts the server with HTTPS and generates a self-signed certificate.     
+                                                                           |
+| `--experimental-https-key <path>`        | Path to a HTTPS key file.                                                 
+                                                                           |
+| `--experimental-https-cert <path>`       | Path to a HTTPS certificate file.                                         
+                                                                           |
+| `--experimental-https-ca <path>`         | Path to a HTTPS certificate authority file.                               
+                                                                           |
+| `--experimental-upload-trace <traceUrl>` | Reports a subset of the debugging trace to a remote HTTP URL.             
+                                                                           |
+| `--experimental-cpu-prof`                | Enables CPU profiling using V8's inspector. Profiles are saved to 
+`.next/cpu-profiles/` on exit.                                                     |
+
+### `next build` options
+
+`next build` creates an optimized production build of your application. The output displays information about each 
+route. For example:
+
+```bash filename="Terminal"
+Route (app)
+â”Œ â—‹ /_not-found
+â”” Æ’ /products/[id]
+
+â—‹  (Static)   prerendered as static content
+Æ’  (Dynamic)  server-rendered on demand
+```
+
+The following options are available for the `next build` command:
+
+| Option                             | Description                                                                     
+                                                                                                   |
+| ---------------------------------- | --------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------- |
+| `-h, --help`                       | Show all available options.                                                     
+                                                                                                   |
+| `[directory]`                      | A directory on which to build the application. If not provided, the current 
+directory will be used.                                                                                |
+| `--turbopack`                      | Force enable [Turbopack](/docs/app/api-reference/turbopack) (enabled by 
+default). Also available as `--turbo`.                                                                     |
+| `--webpack`                        | Build using Webpack.                                                            
+                                                                                                   |
+| `-d` or `--debug`                  | Enables a more verbose build output. With this flag enabled additional build 
+output like rewrites, redirects, and headers will be shown.                                           |
+|                                    |
+| `--profile`                        | Enables production [profiling for 
+React](https://react.dev/reference/react/Profiler).                                                                    
+                          |
+| `--no-lint`                        | Disables linting. _Note: linting will be removed from `next build` in Next 16. 
+If you're using Next 15.5+ with a linter other than `eslint`, linting during build will not occur._ |
+| `--no-mangling`                    | Disables [mangling](https://en.wikipedia.org/wiki/Name_mangling). This may 
+affect performance and should only be used for debugging purposes.                                      |
+| `--experimental-app-only`          | Builds only App Router routes.                                                  
+                                                                                                   |
+| `--experimental-build-mode [mode]` | Uses an experimental build mode. (choices: "compile", "generate", default: 
+"default")                                                                                              |
+| `--debug-prerender`                | Debug prerender errors in development.                                          
+                                                                                                   |
+| `--debug-build-paths=<patterns>`   | Build only specific routes for debugging.                                       
+                                                                                                   |
+| `--experimental-cpu-prof`          | Enables CPU profiling using V8's inspector. Profiles are saved to 
+`.next/cpu-profiles/` on exit.                                                                                   |
+
+### `next start` options
+
+`next start` starts the application in production mode. The application should be compiled with [`next 
+build`](#next-build-options) first.
+
+The following options are available for the `next start` command:
+
+| Option                                  | Description                                                                
+                                     |
+| --------------------------------------- | 
+--------------------------------------------------------------------------------------------------------------- |
+| `-h` or `--help`                        | Show all available options.                                                
+                                     |
+| `[directory]`                           | A directory on which to start the application. If no directory is 
+provided, the current directory will be used. |
+| `-p` or `--port <port>`                 | Specify a port number on which to start the application. (default: 3000, 
+env: PORT)                             |
+| `-H` or `--hostname <hostname>`         | Specify a hostname on which to start the application (default: 0.0.0.0).   
+                                     |
+| `--keepAliveTimeout <keepAliveTimeout>` | Specify the maximum amount of milliseconds to wait before closing the 
+inactive connections.                     |
+| `--experimental-cpu-prof`               | Enables CPU profiling using V8's inspector. Profiles are saved to 
+`.next/cpu-profiles/` on exit.                |
+
+### `next info` options
+
+`next info` prints relevant details about the current system which can be used to report Next.js bugs when opening a 
+[GitHub issue](https://github.com/vercel/next.js/issues). This information includes Operating System 
+platform/arch/version, Binaries (Node.js, npm, Yarn, pnpm), package versions (`next`, `react`, `react-dom`), and more.
+
+The output should look like this:
+
+```bash filename="Terminal"
+Operating System:
+  Platform: darwin
+  Arch: arm64
+  Version: Darwin Kernel Version 23.6.0
+  Available memory (MB): 65536
+  Available CPU cores: 10
+Binaries:
+  Node: 20.12.0
+  npm: 10.5.0
+  Yarn: 1.22.19
+  pnpm: 9.6.0
+Relevant Packages:
+  next: 15.0.0-canary.115 // Latest available version is detected (15.0.0-canary.115).
+  eslint-config-next: 14.2.5
+  react: 19.0.0-rc
+  react-dom: 19.0.0
+  typescript: 5.5.4
+Next.js Config:
+  output: N/A
+```
+
+The following options are available for the `next info` command:
+
+| Option           | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| `-h` or `--help` | Show all available options                     |
+| `--verbose`      | Collects additional information for debugging. |
+
+### `next telemetry` options
+
+Next.js collects **completely anonymous** telemetry data about general usage. Participation in this anonymous program 
+is optional, and you can opt-out if you prefer not to share information.
+
+The following options are available for the `next telemetry` command:
+
+| Option       | Description                             |
+| ------------ | --------------------------------------- |
+| `-h, --help` | Show all available options.             |
+| `--enable`   | Enables Next.js' telemetry collection.  |
+| `--disable`  | Disables Next.js' telemetry collection. |
+
+Learn more about [Telemetry](/telemetry).
+
+### `next typegen` options
+
+`next typegen` generates TypeScript definitions for your application's routes without performing a full build. This is 
+useful for IDE autocomplete and CI type-checking of route usage.
+
+Previously, route types were only generated during `next dev` or `next build`, which meant running `tsc --noEmit` 
+directly wouldn't validate your route types. Now you can generate types independently and validate them externally:
+
+```bash filename="Terminal"
+# Generate route types first, then validate with TypeScript
+next typegen && tsc --noEmit
+
+# Or in CI workflows for type checking without building
+next typegen && npm run type-check
+```
+
+The following options are available for the `next typegen` command:
+
+| Option        | Description                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------------- |
+| `-h, --help`  | Show all available options.                                                                  |
+| `[directory]` | A directory on which to generate types. If not provided, the current directory will be used. |
+
+Output files are written to `<distDir>/types` (typically: `.next/dev/types` in development or `.next/types` in 
+production):
+
+```bash filename="Terminal"
+next typegen
+# or for a specific app
+next typegen ./apps/web
+```
+
+Additionally, `next typegen` generates a `next-env.d.ts` file. We recommend adding `next-env.d.ts` to your 
+`.gitignore` file.
+
+The `next-env.d.ts` file is included into your `tsconfig.json` file, to make Next.js types available to your project.
+
+To ensure `next-env.d.ts` is present before type-checking run `next typegen`. The commands `next dev` and `next build` 
+also generate the `next-env.d.ts` file, but it is often undesirable to run these just to type-check, for example in 
+CI/CD environments.
+
+> **Good to know**: `next typegen` loads your Next.js config (`next.config.js`, `next.config.mjs`, or 
+`next.config.ts`) using the production build phase. Ensure any required environment variables and dependencies are 
+available so the config can load correctly.
+
+### `next upgrade` options
+
+`next upgrade` upgrades your Next.js application to the latest version.
+
+The following options are available for the `next upgrade` command:
+
+| Option                  | Description                                                                                
+                                                        |
+| ----------------------- | -------------------------------------------------------------------------------------------
+------------------------------------------------------- |
+| `-h, --help`            | Show all available options.                                                                
+                                                        |
+| `[directory]`           | A directory with the Next.js application to upgrade. If not provided, the current 
+directory will be used.                                          |
+| `--revision <revision>` | Specify a Next.js version or tag to upgrade to (e.g., `latest`, `canary`, `15.0.0`). 
+Defaults to the release channel you have currently installed. |
+| `--verbose`             | Show verbose output during the upgrade process.                                            
+                                                        |
+
+### `next experimental-analyze` options
+
+`next experimental-analyze` analyzes your application's bundle output using 
+[Turbopack](/docs/app/api-reference/turbopack). This command helps you understand the size and composition of your 
+bundles, including JavaScript, CSS, and other assets. This command doesn't produce an application build.
+
+```bash package="pnpm"
+pnpm next experimental-analyze
+```
+
+```bash package="npm"
+npx next experimental-analyze
+```
+
+```bash package="yarn"
+yarn next experimental-analyze
+```
+
+```bash package="bun"
+bunx next experimental-analyze
+```
+
+By default, the command starts a local server after analysis completes, allowing you to explore your bundle 
+composition in the browser. The analyzer lets you:
+
+- Filter bundles by route and switch between client and server views
+- View the full import chain showing why a module is included
+- Trace imports across server-to-client component boundaries and dynamic imports
+
+See [Package Bundling](/docs/app/guides/package-bundling#optimizing-large-bundles) for optimization strategies.
+
+To write the analysis output to disk without starting the server, use the `--output` flag. The output is written to 
+`.next/diagnostics/analyze` and contains static files that can be copied elsewhere or shared with others:
+
+```bash filename="Terminal"
+# Write output to .next/diagnostics/analyze
+npx next experimental-analyze --output
+
+# Copy the output for comparison with a future analysis
+cp -r .next/diagnostics/analyze ./analyze-before-refactor
+```
+
+The following options are available for the `next experimental-analyze` command:
+
+| Option          | Description                                                                                        
+                                           |
+| --------------- | ---------------------------------------------------------------------------------------------------
+------------------------------------------ |
+| `-h, --help`    | Show all available options.                                                                        
+                                           |
+| `[directory]`   | A directory on which to analyze the application. If not provided, the current directory will be 
+used.                                         |
+| `--no-mangling` | Disables [mangling](https://en.wikipedia.org/wiki/Name_mangling). This may affect performance and 
+should only be used for debugging purposes. |
+| `--profile`     | Enables production [profiling for React](https://react.dev/reference/react/Profiler). This may 
+affect performance.                            |
+| `-o, --output`  | Write analysis files to disk without starting the server. Output is written to 
+`.next/diagnostics/analyze`.                                   |
+| `--port <port>` | Specify a port number to serve the analyzer on. (default: 4000, env: PORT)                         
+                                           |
+
+## Examples
+
+### Debugging prerender errors
+
+If you encounter prerendering errors during `next build`, you can pass the `--debug-prerender` flag to get more 
+detailed output:
+
+```bash filename="Terminal"
+next build --debug-prerender
+```
+
+This enables several experimental options to make debugging easier:
+
+- Disables server code minification:
+  - `experimental.serverMinification = false`
+  - `experimental.turbopackMinify = false`
+- Generates source maps for server bundles:
+  - `experimental.serverSourceMaps = true`
+- Enables source map consumption in child processes used for prerendering:
+  - `enablePrerenderSourceMaps = true`
+- Continues building even after the first prerender error, so you can see all issues at once:
+  - `experimental.prerenderEarlyExit = false`
+
+This helps surface more readable stack traces and code frames in the build output.
+
+> **Warning**: `--debug-prerender` is for debugging in development only. Do not deploy builds generated with 
+`--debug-prerender` to production, as it may impact performance.
+
+### Building specific routes
+
+You can build only specific routes in the App and Pages Routers using the `--debug-build-paths` option. This is useful 
+for faster debugging when working with large applications. The `--debug-build-paths` option accepts comma-separated 
+file paths and supports glob patterns:
+
+```bash filename="Terminal"
+# Build a specific route
+next build --debug-build-paths="app/page.tsx"
+
+# Build more than one route
+next build --debug-build-paths="app/page.tsx,pages/index.tsx"
+
+# Use glob patterns
+next build --debug-build-paths="app/**/page.tsx"
+next build --debug-build-paths="pages/*.tsx"
+```
+
+### Changing the default port
+
+By default, Next.js uses `http://localhost:3000` during development and with `next start`. The default port can be 
+changed with the `-p` option, like so:
+
+```bash filename="Terminal"
+next dev -p 4000
+```
+
+Or using the `PORT` environment variable:
+
+```bash filename="Terminal"
+PORT=4000 next dev
+```
+
+> **Good to know**: `PORT` cannot be set in `.env` as booting up the HTTP server happens before any other code is 
+initialized.
+
+### Using HTTPS during development
+
+For certain use cases like webhooks or authentication, you can use 
+[HTTPS](https://developer.mozilla.org/en-US/docs/Glossary/HTTPS) to have a secure environment on `localhost`. Next.js 
+can generate a self-signed certificate with `next dev` using the `--experimental-https` flag:
+
+```bash filename="Terminal"
+next dev --experimental-https
+```
+
+With the generated certificate, the Next.js development server will exist at `https://localhost:3000`. The default 
+port `3000` is used unless a port is specified with `-p`, `--port`, or `PORT`.
+
+You can also provide a custom certificate and key with `--experimental-https-key` and `--experimental-https-cert`. 
+Optionally, you can provide a custom CA certificate with `--experimental-https-ca` as well.
+
+```bash filename="Terminal"
+next dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert 
+./certificates/localhost.pem
+```
+
+`next dev --experimental-https` is only intended for development and creates a locally trusted certificate with 
+[`mkcert`](https://github.com/FiloSottile/mkcert). In production, use properly issued certificates from trusted 
+authorities.
+
+### Configuring a timeout for downstream proxies
+
+When deploying Next.js behind a downstream proxy (e.g. a load-balancer like AWS ELB/ALB), it's important to configure 
+Next's underlying HTTP server with [keep-alive 
+timeouts](https://nodejs.org/api/http.html#http_server_keepalivetimeout) that are _larger_ than the downstream proxy's 
+timeouts. Otherwise, once a keep-alive timeout is reached for a given TCP connection, Node.js will immediately 
+terminate that connection without notifying the downstream proxy. This results in a proxy error whenever it attempts 
+to reuse a connection that Node.js has already terminated.
+
+To configure the timeout values for the production Next.js server, pass `--keepAliveTimeout` (in milliseconds) to 
+`next start`, like so:
+
+```bash filename="Terminal"
+next start --keepAliveTimeout 70000
+```
+
+### Passing Node.js arguments
+
+You can pass any [node arguments](https://nodejs.org/api/cli.html#cli_node_options_options) to `next` commands. For 
+example:
+
+```bash filename="Terminal"
+NODE_OPTIONS='--throw-deprecation' next
+NODE_OPTIONS='-r esm' next
+NODE_OPTIONS='--inspect' next
+```
+
+### CPU profiling
+
+You can capture CPU profiles to analyze performance bottlenecks in your Next.js application. The 
+`--experimental-cpu-prof` flag enables V8's built-in CPU profiler and saves profiles to `.next/cpu-profiles/` when the 
+process exits:
+
+```bash filename="Terminal"
+# Profile the build process
+next build --experimental-cpu-prof
+
+# Profile the dev server (profile saved on Ctrl+C or SIGTERM)
+next dev --experimental-cpu-prof
+
+# Profile the production server
+next start --experimental-cpu-prof
+```
+
+The generated `.cpuprofile` files can be opened in Chrome DevTools (Performance tab â†’ Load profile) or other 
+V8-compatible profiling tools.
+
+> **Good to know**: Profile files are named with a descriptive prefix and timestamp. The profiles generated depend on 
+the command:
+>
+> **`next dev`:**
+>
+> - `dev-main-*` - Parent process (dev server orchestration)
+> - `dev-server-*` - Child server process (request handling and rendering) - this is typically what you want to analyze
+>
+> **`next build` (Turbopack):**
+>
+> - `build-main-*` - Main build orchestration process
+> - `build-turbopack-*` - Turbopack compilation worker
+>
+> **`next build` (Webpack):**
+>
+> - `build-main-*` - Main build orchestration process
+> - `build-webpack-client-*` - Client bundle compilation worker
+> - `build-webpack-server-*` - Server bundle compilation worker
+> - `build-webpack-edge-server-*` - Edge runtime compilation worker
+>
+> **`next start`:**
+>
+> - `start-main-*` - Production server process
+
+| Version   | Changes                                                                         |
+| --------- | ------------------------------------------------------------------------------- |
+| `v16.1.0` | Add the `next upgrade` command                                                  |
+| `v16.1.0` | Add the `next experimental-analyze` command                                     |
+| `v16.0.0` | The JS bundle size metrics have been removed from `next build`                  |
+| `v15.5.0` | Add the `next typegen` command                                                  |
+| `v15.4.0` | Add `--debug-prerender` option for `next build` to help debug prerender errors. |
+
+
+codex
+The plan is internally consistent and requires no source edits. I’m starting the single allowed prepush run now; I’ll 
+preserve its final ten lines for the report and stop immediately if the required last line is absent.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'node .planning/exec/prepush-gates.mjs' in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 17965ms:
+[copy-lint] ✓ Scanned project. Zero banned-word findings, zero schema violations.
+npm notice
+npm notice New major version of npm available! 10.9.3 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+
+== node scripts/vendor-gate.mjs
+vendor-gate: clean
+
+== node scripts/retired-phrases-gate.mjs --self-test
+retired-phrases-gate self-test: 89 planted caught, 33 near misses passed
+
+== node scripts/retired-phrases-gate.mjs
+retired-phrases-gate: clean
+
+== node scripts/mojibake-gate.mjs --self-test
+mojibake-gate self-test: 5 planted caught, 5 near misses passed
+
+== node scripts/mojibake-gate.mjs
+mojibake-gate: clean
+
+== node scripts/accent-states-lint.mjs --self-test
+accent-states-lint self-test: 16/16 planted cases caught, 0 false alarms
+
+== node scripts/accent-states-lint.mjs
+accent-states-lint: clean
+
+== node scripts/gsap-quarantine-gate.mjs --self-test
+gsap-quarantine-gate self-test: 13 planted uses caught, 7 near misses clean
+
+== node scripts/gsap-quarantine-gate.mjs
+gsap-quarantine-gate: clean (89 files)
+
+== node scripts/lastmod.mjs --check
+lastmod: current
+
+== npx next build --webpack
+▲ Next.js 16.2.6 (webpack)
+- Experiments (use with caution):
+  ✓ viewTransition
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.1s
+  Running TypeScript ...
+  Finished TypeScript in 3.0s ...
+  Collecting page data using 23 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 23 workers (0/22) ...
+  Generating static pages using 23 workers (5/22) 
+  Generating static pages using 23 workers (10/22) 
+<claude-code-hint v="1" type="plugin" value="stripe@claude-plugins-official" />
+  Generating static pages using 23 workers (16/22) 
+✓ Generating static pages using 23 workers (22/22) in 931ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /about/opengraph-image-10qg6g
+├ ƒ /api/stripe/webhook
+├ ○ /call
+├ ○ /call/kickoff
+├ ○ /contact
+├ ○ /icon.svg
+├ ƒ /llms.txt
+├ ƒ /opengraph-image-1o6u9y
+├ ○ /packages
+├ ○ /robots.txt
+├ ○ /services
+├ ○ /services/thanks
+├ ○ /sitemap.xml
+├ ○ /work
+├ ● /work/[slug]
+│ ├ /work/guardicore
+│ ├ /work/rfp-engine
+│ ├ /work/ordani
+│ └ [+2 more paths]
+├ ƒ /work/[slug]/opengraph-image-oti546
+└ ƒ /work/opengraph-image-xevl18
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+npm notice
+npm notice New major version of npm available! 10.9.3 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+
+== node scripts/render-gate.mjs
+render-gate: 14 routes — links resolve, fragments exist, metadata within limits.
+
+== node scripts/work-entry-gate.mjs --self-test
+work-entry-gate --self-test: PASS (dropped-figure case reported missing, fixed case passes, &#x27; decodes to ')
+
+== node scripts/work-entry-gate.mjs
+work-entry-gate: PASS birth-worker (1x) "Bookings went from one to three a month to five to ten."
+work-entry-gate: PASS content-engine (1x) "Up to 800,000 impressions in a month, up from a few thousand a month."
+work-entry-gate: PASS guardicore (1x) "$14M in revenue, sourced and closed, at a $1.2M average enterprise deal."
+work-entry-gate: PASS ordani (1x) "Birth workers keep hundreds of dollars per client that a claims service would take."
+work-entry-gate: PASS rfp-engine (1x) "$3M in signed contracts."
+work-entry-gate: 5 studies — every entry figure+line renders.
+
+== node scripts/results-repeat-gate.mjs --self-test
+results-repeat-gate --self-test: PASS (the shipped defect is caught, the fixed render passes, a differing lead is kept)
+
+== node scripts/results-repeat-gate.mjs
+results-repeat-gate: PASS birth-worker — lead differs from the title and renders as the band poster
+results-repeat-gate: PASS content-engine — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS guardicore — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS ordani — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS rfp-engine — lead repeats "$3M in signed contracts", Results row drops it
+results-repeat-gate: 5 studies — 1 drop a repeated lead, 4 keep theirs.
+
+PREPUSH: all gates and the build passed
+
+codex
+The one prepush run completed with exit code 0 and the required final line. I’m starting the production server hidden 
+on port 3125, then I’ll make the narrowly scoped measurement-script update.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p126Out = Join-Path $env:TEMP 
+'"'p126-next-3125.out.log'
+"'$p126Err = Join-Path $env:TEMP '"'p126-next-3125.err.log'
+"'$p126Process = Start-Process -FilePath (Get-Command npx.cmd).Source -ArgumentList @('"'next','start','-p','3125') 
+-WorkingDirectory (Get-Location).Path -WindowStyle Hidden -PassThru -RedirectStandardOutput "'$p126Out 
+-RedirectStandardError $p126Err
+"pid=$($p126Process.Id)"
+"stdout=$p126Out"
+"stderr=$p126Err"' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p126Ready = $false
+for ($p126Attempt = 0; $p126Attempt -lt 20; $p126Attempt++) {
+  try {
+    $p126Response = Invoke-WebRequest -Uri '"'http://localhost:3125/' -UseBasicParsing -TimeoutSec 2
+    if ("'$p126Response.StatusCode -eq 200) { $p126Ready = $true; break }
+  } catch {}
+  Start-Sleep -Milliseconds 250
+}
+if (-not $p126Ready) {
+  Get-Content (Join-Path $env:TEMP '"'p126-next-3125.out.log') -ErrorAction SilentlyContinue
+  Get-Content (Join-Path "'$env:TEMP '"'p126-next-3125.err.log') -ErrorAction SilentlyContinue
+  exit 1
+}
+\"server_status="'$($p126Response.StatusCode)"' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 202ms:
+server_status=200
+
+apply patch
+patch: completed
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts\.planning\qa\pass-126\measure.mjs
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'git diff -- 
+.planning/qa/pass-126/measure.mjs
+node --check .planning/qa/pass-126/measure.mjs' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 15ms:
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+codex
+The QA script now records the required 1440 padding, 1440/1280 Plan-to-Build gutter, and 390 step-gap brackets; the 
+1280 pass performs only the gutter checks. Syntax validation passed, so I’m running the measurement once against the 
+production server and will treat any listed failure as a bracket mismatch.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'node .planning/qa/pass-126/measure.mjs' in 
+C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+ exited 1 in 42269ms:
+{
+  "results": [
+    {
+      "viewport": "390x844",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 273.84375,
+        "planBuildGutter": -318.15625,
+        "stepGaps": [
+          64,
+          64,
+          64
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 96,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 257.6875,
+        "planBuildGutter": -282.296875,
+        "stepGaps": [
+          56,
+          56,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1440x900",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 103.390625,
+        "stepGaps": [
+          72,
+          -295.9375,
+          72
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 128,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 60.421875,
+        "stepGaps": [
+          56,
+          -259.21875,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1280x800",
+      "home": {
+        "planBuildGutter": 75.25
+      },
+      "services": {
+        "planBuildGutter": 41.0625
+      }
+    }
+  ],
+  "failures": [
+    "1440x900 services plan/build gutter",
+    "1280x800 services plan/build gutter"
+  ]
+}
+
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+codex
+Measurement completed and found two required gutter bracket mismatches, both on `/services`; per the standing rule I’m 
+not adjusting or reinterpreting them. I’m stopping the server now, then I’ll capture the JSON and repository status 
+exactly for the handoff.
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p126Listeners = Get-NetTCPConnection 
+-LocalPort 3125 -State Listen -ErrorAction SilentlyContinue
+if ($p126Listeners) {
+  $p126OwnerIds = $p126Listeners | Select-Object -ExpandProperty OwningProcess -Unique
+  foreach ($p126OwnerId in $p126OwnerIds) {
+    $p126Command = (Get-CimInstance Win32_Process -Filter "ProcessId = $p126OwnerId").CommandLine
+    "stopping_pid=$p126OwnerId command=$p126Command"
+    Stop-Process -Id $p126OwnerId -Force
+  }
+}
+Start-Sleep -Milliseconds 500
+$p126Remaining = Get-NetTCPConnection -LocalPort 3125 -State Listen -ErrorAction SilentlyContinue
+if ($p126Remaining) { "server_stopped=false"; exit 1 }
+"server_stopped=true"' in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 1261ms:
+server_stopped=true
+
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+exec
+"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Raw 
+'.planning/qa/pass-126/measure.json'
+'---GIT_STATUS---'
+git status --short" in C:\Users\micah\Code\micahjonesconsulting\.claude\worktrees\p124-cuts
+ succeeded in 123ms:
+{
+  "results": [
+    {
+      "viewport": "390x844",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 273.84375,
+        "planBuildGutter": -318.15625,
+        "stepGaps": [
+          64,
+          64,
+          64
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 96,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 257.6875,
+        "planBuildGutter": -282.296875,
+        "stepGaps": [
+          56,
+          56,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1440x900",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 103.390625,
+        "stepGaps": [
+          72,
+          -295.9375,
+          72
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 128,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 60.421875,
+        "stepGaps": [
+          56,
+          -259.21875,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1280x800",
+      "home": {
+        "planBuildGutter": 75.25
+      },
+      "services": {
+        "planBuildGutter": 41.0625
+      }
+    }
+  ],
+  "failures": [
+    "1440x900 services plan/build gutter",
+    "1280x800 services plan/build gutter"
+  ]
+}
+
+---GIT_STATUS---
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+ M .planning/qa/pass-126/measure.json
+ M .planning/qa/pass-126/measure.mjs
+?? .planning/drafts/pass-126/dspro-two-lines.log
+?? .planning/drafts/pass-126/sol-two-lines.log
+?? .planning/qa/pass-124/home-v2/
+?? .planning/qa/pass-124/home-v3/
+?? .planning/qa/pass-124/home-v4/
+?? .planning/qa/pass-124/home-v5/
+?? .planning/qa/pass-124/home-v6/
+?? .planning/qa/pass-125/
+?? .planning/qa/pass-126/frames/
+?? .planning/qa/pass-126/sol-round5.log
+?? .planning/qa/pass-126/sol-round5b.log
+?? .planning/reviews/astra126.log
+?? .planning/reviews/astra126b.log
+?? .planning/reviews/dspro126.log
+?? .planning/reviews/dspro126b.log
+
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+codex
+Prepush passed. Measurement stopped with two `/services` gutter mismatches. Server is stopped.
+
+Prepush tail, 10 lines with blank lines preserved:
+
+```text
+
+== node scripts/results-repeat-gate.mjs
+results-repeat-gate: PASS birth-worker — lead differs from the title and renders as the band poster
+results-repeat-gate: PASS content-engine — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS guardicore — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS ordani — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS rfp-engine — lead repeats "$3M in signed contracts", Results row drops it
+results-repeat-gate: 5 studies — 1 drop a repeated lead, 4 keep theirs.
+
+PREPUSH: all gates and the build passed
+```
+
+`measure.json` verbatim:
+
+```json
+{
+  "results": [
+    {
+      "viewport": "390x844",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 273.84375,
+        "planBuildGutter": -318.15625,
+        "stepGaps": [
+          64,
+          64,
+          64
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 96,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 257.6875,
+        "planBuildGutter": -282.296875,
+        "stepGaps": [
+          56,
+          56,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1440x900",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 103.390625,
+        "stepGaps": [
+          72,
+          -295.9375,
+          72
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 128,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 60.421875,
+        "stepGaps": [
+          56,
+          -259.21875,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1280x800",
+      "home": {
+        "planBuildGutter": 75.25
+      },
+      "services": {
+        "planBuildGutter": 41.0625
+      }
+    }
+  ],
+  "failures": [
+    "1440x900 services plan/build gutter",
+    "1280x800 services plan/build gutter"
+  ]
+}
+```
+
+Git status:
+
+```text
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+ M .planning/qa/pass-126/measure.json
+ M .planning/qa/pass-126/measure.mjs
+?? .planning/drafts/pass-126/dspro-two-lines.log
+?? .planning/drafts/pass-126/sol-two-lines.log
+?? .planning/qa/pass-124/home-v2/
+?? .planning/qa/pass-124/home-v3/
+?? .planning/qa/pass-124/home-v4/
+?? .planning/qa/pass-124/home-v5/
+?? .planning/qa/pass-124/home-v6/
+?? .planning/qa/pass-125/
+?? .planning/qa/pass-126/frames/
+?? .planning/qa/pass-126/sol-round5.log
+?? .planning/qa/pass-126/sol-round5b.log
+?? .planning/reviews/astra126.log
+?? .planning/reviews/astra126b.log
+?? .planning/reviews/dspro126.log
+?? .planning/reviews/dspro126b.log
+```
+
+Bracket that did not match, quoted verbatim:
+
+> “[>= 72 at 1440; also measure at 1280x800, >= 56]”
+
+On `/services`, the measured values were `60.421875` at 1440 and `41.0625` at 1280. Failure labels verbatim:
+
+> “1440x900 services plan/build gutter”  
+> “1280x800 services plan/build gutter”
+diff --git a/.planning/qa/pass-126/measure.mjs b/.planning/qa/pass-126/measure.mjs
+index 0c93aad9493f7a402f5b7902bbc3742731498433..5a34c64f847efa4bef846356481cea5f69a2b747
+--- a/.planning/qa/pass-126/measure.mjs
++++ b/.planning/qa/pass-126/measure.mjs
+@@ -38,6 +38,13 @@
+ const viewports = [
+   { name: "390x844", width: 390, height: 844, deviceScaleFactor: 1 },
+   { name: "1440x900", width: 1440, height: 900, deviceScaleFactor: 1 },
++  {
++    name: "1280x800",
++    width: 1280,
++    height: 800,
++    deviceScaleFactor: 1,
++    gutterOnly: true,
++  },
+ ];
+ 
+ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+@@ -103,7 +110,11 @@
+ async function openMeasuredPage(browser, viewport, pathname) {
+   debug(`open start ${viewport.name} ${pathname}`);
+   const page = await browser.newPage();
+-  await page.setViewport(viewport);
++  await page.setViewport({
++    width: viewport.width,
++    height: viewport.height,
++    deviceScaleFactor: viewport.deviceScaleFactor,
++  });
+   await page.emulateMediaFeatures([
+     { name: "prefers-reduced-motion", value: "no-preference" },
+   ]);
+@@ -118,6 +129,25 @@
+   return page;
+ }
+ 
++async function measurePlanBuildGutter(page) {
++  return page.evaluate(() => {
++    const planHeadline = document.querySelector(
++      ".cw-hiw__step--plan .cw-hiw__head",
++    );
++    const buildHeadline = document.querySelector(
++      ".cw-hiw__step--build .cw-hiw__head",
++    );
++    if (!planHeadline || !buildHeadline) return null;
++    const range = document.createRange();
++    range.selectNodeContents(planHeadline);
++    const lineRights = [...range.getClientRects()].map((rect) => rect.right);
++    if (!lineRights.length) return null;
++    return (
++      buildHeadline.getBoundingClientRect().left - Math.max(...lineRights)
++    );
++  });
++}
++
+ const browser = await puppeteer.launch({
+   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
+   headless: true,
+@@ -129,6 +159,41 @@
+ 
+ try {
+   for (const viewport of viewports) {
++    if (viewport.gutterOnly) {
++      const homePage = await openMeasuredPage(browser, viewport, "/");
++      const home = {
++        planBuildGutter: await measurePlanBuildGutter(homePage),
++      };
++      await homePage.close();
++
++      const servicesPage = await openMeasuredPage(
++        browser,
++        viewport,
++        "/services",
++      );
++      const services = {
++        planBuildGutter: await measurePlanBuildGutter(servicesPage),
++      };
++      await servicesPage.close();
++
++      results.push({ viewport: viewport.name, home, services });
++      const prefix = viewport.name;
++      const checks = [
++        [
++          home.planBuildGutter !== null && home.planBuildGutter >= 56,
++          `${prefix} home plan/build gutter`,
++        ],
++        [
++          services.planBuildGutter !== null && services.planBuildGutter >= 56,
++          `${prefix} services plan/build gutter`,
++        ],
++      ];
++      failures.push(
++        ...checks.filter(([passed]) => !passed).map(([, label]) => label),
++      );
++      continue;
++    }
++
+     const homePage = await openMeasuredPage(browser, viewport, "/");
+     const home = await homePage.evaluate((locked) => {
+       const normalize = (value) => value.replace(/\u00a0/g, " ");
+@@ -138,6 +203,13 @@
+       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -187,6 +259,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -222,6 +304,13 @@
+       const steps = [...document.querySelectorAll(".cw-hiw__step")];
+       const plan = document.querySelector(".cw-hiw__step--plan");
+       const build = document.querySelector(".cw-hiw__step--build");
++      const planHeadline = plan?.querySelector(".cw-hiw__head");
++      const buildHeadline = build?.querySelector(".cw-hiw__head");
++      const planRange = planHeadline ? document.createRange() : null;
++      planRange?.selectNodeContents(planHeadline);
++      const planLineRights = planRange
++        ? [...planRange.getClientRects()].map((rect) => rect.right)
++        : [];
+       const stayBody = document.querySelector(
+         ".cw-hiw__step--stay .cw-hiw__body",
+       );
+@@ -267,6 +356,16 @@
+                   build.getBoundingClientRect().top,
+               )
+             : null,
++        planBuildGutter:
++          buildHeadline && planLineRights.length
++            ? buildHeadline.getBoundingClientRect().left -
++              Math.max(...planLineRights)
++            : null,
++        stepGaps: steps.slice(1).map((step, index) => {
++          const previousRect = steps[index].getBoundingClientRect();
++          const currentRect = step.getBoundingClientRect();
++          return currentRect.top - previousRect.bottom;
++        }),
+         stepInnerPaddingLefts: steps.map((step) =>
+           getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+         ),
+@@ -340,12 +439,29 @@
+         `${prefix} home plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (home.planBuildGutter !== null && home.planBuildGutter >= 72),
++        `${prefix} home plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (home.stepInnerPaddingLefts.length === 4 &&
+             home.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} home step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(home.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} home step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (home.stepGaps.length === 3 &&
++            home.stepGaps.every((value) => Math.abs(value - 64) <= 1)),
++        `${prefix} home step gaps`,
++      ],
++      [
+         home.copperTextElementCount === 0,
+         `${prefix} home copper text elements`,
+       ],
+@@ -378,12 +494,30 @@
+         `${prefix} services plan and build aligned`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          (services.planBuildGutter !== null &&
++            services.planBuildGutter >= 72),
++        `${prefix} services plan/build gutter`,
++      ],
++      [
+         viewport.width !== 390 ||
+           (services.stepInnerPaddingLefts.length === 4 &&
+             services.stepInnerPaddingLefts.every((value) => value === "0px")),
+         `${prefix} services step inner padding`,
+       ],
+       [
++        viewport.width !== 1440 ||
++          JSON.stringify(services.stepInnerPaddingLefts) ===
++            JSON.stringify(["0px", "48px", "0px", "0px"]),
++        `${prefix} services step inner padding`,
++      ],
++      [
++        viewport.width !== 390 ||
++          (services.stepGaps.length === 3 &&
++            services.stepGaps.every((value) => Math.abs(value - 56) <= 1)),
++        `${prefix} services step gaps`,
++      ],
++      [
+         services.copperTextElementCount === 0,
+         `${prefix} services copper text elements`,
+       ],
+
+2026-09-21T20:31:28.814545Z ERROR codex_core::session: failed to record rollout items: thread 
+01a0c5a7-1f7e-7613-9948-1fc168f0283d not found
+tokens used
+52,290
+Prepush passed. Measurement stopped with two `/services` gutter mismatches. Server is stopped.
+
+Prepush tail, 10 lines with blank lines preserved:
+
+```text
+
+== node scripts/results-repeat-gate.mjs
+results-repeat-gate: PASS birth-worker — lead differs from the title and renders as the band poster
+results-repeat-gate: PASS content-engine — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS guardicore — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS ordani — lead differs from the title and renders in the Results row
+results-repeat-gate: PASS rfp-engine — lead repeats "$3M in signed contracts", Results row drops it
+results-repeat-gate: 5 studies — 1 drop a repeated lead, 4 keep theirs.
+
+PREPUSH: all gates and the build passed
+```
+
+`measure.json` verbatim:
+
+```json
+{
+  "results": [
+    {
+      "viewport": "390x844",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 273.84375,
+        "planBuildGutter": -318.15625,
+        "stepGaps": [
+          64,
+          64,
+          64
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 96,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 257.6875,
+        "planBuildGutter": -282.296875,
+        "stepGaps": [
+          56,
+          56,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1440x900",
+      "home": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "labels": [
+          "Scope",
+          "Plan",
+          "Build",
+          "Stay"
+        ],
+        "headlineMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyMatches": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "digitCount": 0,
+        "stickyElementCount": 0,
+        "stepsIn": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "bodyOpacities": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "ruleTransforms": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 103.390625,
+        "stepGaps": [
+          72,
+          -295.9375,
+          72
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      },
+      "services": {
+        "heading": "How I work.",
+        "stepCount": 4,
+        "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 128,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "planBuildGutter": 60.421875,
+        "stepGaps": [
+          56,
+          -259.21875,
+          56
+        ],
+        "stepInnerPaddingLefts": [
+          "0px",
+          "48px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
+        "everyEngagementIncludesCount": 0,
+        "whyContainsWeekOne": false,
+        "whyContainsClosing": true,
+        "horizontalOverflow": 0,
+        "axeViolations": [],
+        "axeSeriousCritical": 0
+      }
+    },
+    {
+      "viewport": "1280x800",
+      "home": {
+        "planBuildGutter": 75.25
+      },
+      "services": {
+        "planBuildGutter": 41.0625
+      }
+    }
+  ],
+  "failures": [
+    "1440x900 services plan/build gutter",
+    "1280x800 services plan/build gutter"
+  ]
+}
+```
+
+Git status:
+
+```text
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+warning: unable to access 'C:\Users\micah/.config/git/ignore': Permission denied
+ M .planning/qa/pass-126/measure.json
+ M .planning/qa/pass-126/measure.mjs
+?? .planning/drafts/pass-126/dspro-two-lines.log
+?? .planning/drafts/pass-126/sol-two-lines.log
+?? .planning/qa/pass-124/home-v2/
+?? .planning/qa/pass-124/home-v3/
+?? .planning/qa/pass-124/home-v4/
+?? .planning/qa/pass-124/home-v5/
+?? .planning/qa/pass-124/home-v6/
+?? .planning/qa/pass-125/
+?? .planning/qa/pass-126/frames/
+?? .planning/qa/pass-126/sol-round5.log
+?? .planning/qa/pass-126/sol-round5b.log
+?? .planning/reviews/astra126.log
+?? .planning/reviews/astra126b.log
+?? .planning/reviews/dspro126.log
+?? .planning/reviews/dspro126b.log
+```
+
+Bracket that did not match, quoted verbatim:
+
+> “[>= 72 at 1440; also measure at 1280x800, >= 56]”
+
+On `/services`, the measured values were `60.421875` at 1440 and `41.0625` at 1280. Failure labels verbatim:
+
+> “1440x900 services plan/build gutter”  
+> “1280x800 services plan/build gutter”
