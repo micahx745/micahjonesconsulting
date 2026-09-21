@@ -21,6 +21,7 @@
         "/work/rfp-engine": 1
       },
       "recordRowCount": 4,
+      "contactHeadingGap": 48,
       "artifactLastWordAlone": [
         false,
         false,
@@ -78,6 +79,7 @@
         "/work/rfp-engine": 1
       },
       "recordRowCount": 4,
+      "contactHeadingGap": 64,
       "artifactLastWordAlone": [
         false,
         false,

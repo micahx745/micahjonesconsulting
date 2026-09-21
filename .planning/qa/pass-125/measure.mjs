@@ -96,6 +96,13 @@ try {
         "/work/guardicore",
         "/work/rfp-engine",
       ];
+      const contactHeading = document.querySelector("#cw-ft-contact-title");
+      const contactHeadingPrevious = contactHeading?.previousElementSibling;
+      const contactHeadingGap =
+        contactHeading && contactHeadingPrevious
+          ? contactHeading.getBoundingClientRect().top -
+            contactHeadingPrevious.getBoundingClientRect().bottom
+          : null;
       const artifactLastWordAlone = [
         ...document.querySelectorAll(".cw-principle__artifact"),
       ].map((artifact) => {
@@ -138,6 +145,7 @@ try {
           ]),
         ),
         recordRowCount: document.querySelectorAll(".cw-about__list li").length,
+        contactHeadingGap,
         artifactLastWordAlone,
         fullTimeLinkLabelCount: [...document.querySelectorAll("a")].filter(
           (link) => link.textContent?.trim() === linkLabel,
@@ -177,6 +185,15 @@ try {
       fullTime.recordRowCount,
       4,
     );
+    const minimumContactHeadingGap = width === 390 ? 44 : 60;
+    if (
+      typeof fullTime.contactHeadingGap !== "number" ||
+      fullTime.contactHeadingGap < minimumContactHeadingGap
+    ) {
+      failures.push(
+        `${width} /full-time contact heading gap: expected ${minimumContactHeadingGap} or more, got ${JSON.stringify(fullTime.contactHeadingGap)}`,
+      );
+    }
     expectEqual(
       `${width} /full-time artifact last word alone`,
       fullTime.artifactLastWordAlone,
