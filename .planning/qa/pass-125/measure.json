@@ -28,6 +28,12 @@
         false,
         false
       ],
+      "artifactSingleWordLine": [
+        false,
+        false,
+        false,
+        false
+      ],
       "fullTimeLinkLabelCount": 0,
       "emDashCount": 1,
       "horizontalOverflow": -15,
@@ -81,6 +87,12 @@
       "recordRowCount": 4,
       "contactHeadingGap": 64,
       "artifactLastWordAlone": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "artifactSingleWordLine": [
         false,
         false,
         false,

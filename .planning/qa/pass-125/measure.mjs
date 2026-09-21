@@ -125,6 +125,31 @@ try {
         if (previousTop === null || lastTop === null) return null;
         return Math.abs(lastTop - previousTop) > 0.5;
       });
+      const artifactSingleWordLine = [
+        ...document.querySelectorAll(".cw-principle__artifact"),
+      ].map((artifact) => {
+        const textNode = [...artifact.childNodes].find(
+          (node) => node.nodeType === Node.TEXT_NODE,
+        );
+        if (!textNode) return false;
+
+        const lineWordCounts = new Map();
+        for (const word of (textNode.textContent || "").matchAll(/\S+/g)) {
+          const range = document.createRange();
+          range.setStart(textNode, word.index);
+          range.setEnd(textNode, word.index + word[0].length);
+          const top = range.getClientRects()[0]?.top;
+          if (top === undefined) continue;
+
+          const lineTop =
+            [...lineWordCounts.keys()].find(
+              (candidate) => Math.abs(candidate - top) <= 0.5,
+            ) ?? top;
+          lineWordCounts.set(lineTop, (lineWordCounts.get(lineTop) || 0) + 1);
+        }
+
+        return [...lineWordCounts.values()].some((count) => count === 1);
+      });
 
       return {
         h1Count: h1s.length,
@@ -147,6 +172,7 @@ try {
         recordRowCount: document.querySelectorAll(".cw-about__list li").length,
         contactHeadingGap,
         artifactLastWordAlone,
+        artifactSingleWordLine,
         fullTimeLinkLabelCount: [...document.querySelectorAll("a")].filter(
           (link) => link.textContent?.trim() === linkLabel,
         ).length,
@@ -197,6 +223,11 @@ try {
     expectEqual(
       `${width} /full-time artifact last word alone`,
       fullTime.artifactLastWordAlone,
+      [false, false, false, false],
+    );
+    expectEqual(
+      `${width} /full-time artifact single-word line`,
+      fullTime.artifactSingleWordLine,
       [false, false, false, false],
     );
     expectEqual(
