@@ -1032,6 +1032,16 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   hire is too early." and takes a reworked body ending "You get me directly." ORDANI: ticked "Remove the ORDANI
   photos": the four photos leave the home; the ORDANI text and waitlist stay exact. CLOSING LINE: "Use MAKE IT SELL"
   was NOT ticked, so "NAME THE PROBLEM →" STAYS as live. Everything else on the home stays as live.
+- **THE TWO REWORKED LINES — operator 2026-09-21 (Pass-124 DIRECT, popups)**. Drafted by DeepSeek v4-pro and Sol;
+  judged independently by Fable and Astra, who split on both (`.planning/prompts/PASS-124-TWO-LINES-PICK.md`,
+  `.planning/reviews/ASTRA-124-TWO-LINES.md`); he asked for their picks by name, then picked Fable's on both.
+  EXACT approved copy. HERO PARAGRAPH, under "It works." / "It just does not sell.": **"I shape the product and build
+  the message that sells it. I have $20M+ in revenue behind my work."** (SUPERSEDES "I'm Micah Jones. There is $20M+
+  in revenue behind my work. I build what sells."; the $20M+ phrase is unchanged word for word.) ENGAGEMENTS DOOR,
+  under "An agency is too broad. A hire is too early.": **"I build what your growing business needs next, from the
+  product to the way you sell it. You get me directly."** (SUPERSEDES "I step in as the operator. You get me
+  directly."). Astra's alternatives, not picked: "I make your product easier to understand and buy." and "I improve
+  the product and build a clear way to sell it as your business grows."
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
