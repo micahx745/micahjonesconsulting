@@ -1199,6 +1199,15 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   the Audit pitch and the email line. Blog posts are first-person, generic, genuinely useful advice for search; no
   client or company stories, no package pitch in the body. This SUPERSEDES the earlier "the handoff is The Audit" and
   the research's "one concrete story per section" for the blog. Fable's voice on post 1 is APPROVED.
+- **BLOG POST 1 LOCKED, WITH AN ABOUT-ME FOOT — operator 2026-09-21 (popup, after the final text, both reviewers'
+  fixes applied by Fable)**. Verbatim: "lock it and maybe put a bottom about me (just saying the combined value of exits
+  ive helped with and the revenue i helped make my clients). with a small link to services pages and also the work
+  pages describing my work". EXACT approved text: `.planning/drafts/blog-01/POST-1-LOCKED.md` (title "How do I get
+  first users for a vibe-coded product without an audience?"); the foot, in live ledgered wording only: **"About me.
+  I'm Micah Jones. I have $20M+ in revenue behind my work. Four companies I worked inside reached an exit, and the
+  disclosed deal values total $5B+."** with links "What I do" (/services) and "See the work" (/work). Publishes only
+  when the blog page is built after post 3. Gate before any publish: `node .planning/exec/blog-lint.mjs` 0 failures
+  (the foot is outside the lint's advice rules by design: first person and figures are allowed there).
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
