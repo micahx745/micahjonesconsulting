@@ -14,12 +14,12 @@ Site files unchanged since 48818f1. CARD 1 115/0. Revert: promote `dpl_9Q3JRk47v
   ORDANI proof only; no location (09-02 ruling).
 - Drafts dspro/Sol/Gemini -> ledger check -> Fable pick (`.planning/reviews/FABLE-125-FULLTIME-PICK.md`,
   blend on Sol A; 2 main-session edits recorded there) -> brief `.claude/briefs/pass-125-full-time.md` (`f665260`).
-- PREVIEW: p124-cuts, branch `preview/p125-full-time`. Round 1-2b built by Sol (`98ead18`, QA `b57aae7`).
-  Jury (Fable, Astra, dspro): all "SHOW HIM AFTER FIXES"; disposition `.planning/reviews/PASS-125-JURY-DISPOSITION.md`.
-  Round 3 (jury fixes, `pass-125c` brief) running on Sol. Served preview: launch config `prod-p124` (main
-  checkout's launch.json, port 3126); stop it before any rebuild in p124-cuts (Windows file locks).
-- His calls pending: the Neuton.AI "queuing" line (his approved wording; 3 rewrites by name); Result headline
-  and principle order (tie-breaks applied, picks by name); the page on sight; then push approval.
+- PREVIEW: p124-cuts, branch `preview/p125-full-time`, round 4 = `dd774d6` (jury fixes + tie-breaks: Code-first
+  order, Astra's Result headline; all measure brackets met). Jury round 1 all "SHOW HIM AFTER FIXES"
+  (`.planning/reviews/PASS-125-JURY-DISPOSITION.md`); re-confirmation of round 4 running (Fable, Astra, dspro).
+  Served: `prod-p124` in the MAIN checkout's launch.json, port 3126; stop it before any p124-cuts rebuild.
+- His calls pending: the page on sight; Result headline + order (picks by name); the Neuton.AI "queuing" line
+  (his approved wording, 3 rewrites by name); then apply to design/live-evolve + push approval verbatim.
 - Route `/full-time` (NOT `/hire-me`, which 308s to /services). Links: three footers + one /about line.
 
 ## Owed after this page
