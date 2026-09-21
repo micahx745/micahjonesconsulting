@@ -14,12 +14,12 @@ Site files unchanged since 48818f1. CARD 1 115/0. Revert: promote `dpl_9Q3JRk47v
   ORDANI proof only; no location (09-02 ruling).
 - Drafts dspro/Sol/Gemini -> ledger check -> Fable pick (`.planning/reviews/FABLE-125-FULLTIME-PICK.md`,
   blend on Sol A; 2 main-session edits recorded there) -> brief `.claude/briefs/pass-125-full-time.md` (`f665260`).
-- PREVIEW: worktree p124-cuts, branch `preview/p125-full-time` (`28d19f7` = content/full-time.ts + PageFooter
-  link, both main session). Sol building per the brief (log `.planning/qa/pass-125/sol-build.log` there);
-  Sol cannot commit (#18), main session commits. p124-cuts' 10 untracked Pass-124 files were byte-identical
-  to committed copies; parked in the session scratchpad.
-- Next: open every capture -> Fable + Astra + dspro confirm -> his look (390/1440 sheets + served preview)
-  -> apply to design/live-evolve -> his push approval verbatim.
+- PREVIEW: p124-cuts, branch `preview/p125-full-time`. Round 1-2b built by Sol (`98ead18`, QA `b57aae7`).
+  Jury (Fable, Astra, dspro): all "SHOW HIM AFTER FIXES"; disposition `.planning/reviews/PASS-125-JURY-DISPOSITION.md`.
+  Round 3 (jury fixes, `pass-125c` brief) running on Sol. Served preview: launch config `prod-p124` (main
+  checkout's launch.json, port 3126); stop it before any rebuild in p124-cuts (Windows file locks).
+- His calls pending: the Neuton.AI "queuing" line (his approved wording; 3 rewrites by name); Result headline
+  and principle order (tie-breaks applied, picks by name); the page on sight; then push approval.
 - Route `/full-time` (NOT `/hire-me`, which 308s to /services). Links: three footers + one /about line.
 
 ## Owed after this page
