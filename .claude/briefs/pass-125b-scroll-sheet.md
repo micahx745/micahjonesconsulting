@@ -1,7 +1,8 @@
 # Brief: Pass-125b, rebuild + scroll sheets for the jurors (preview branch)
 
 Executor: Sol (`scripts/codex-exec.ps1 -Task`), worktree `.claude/worktrees/p124-cuts`, branch
-`preview/p125-full-time` at `98ead18`. Same standing rules as `.claude/briefs/pass-125-full-time.md` section 0: write
+`preview/p125-full-time`. HEAD check: `git log -1 --format=%h -- .claude/briefs/pass-125b-scroll-sheet.md` must equal
+`git rev-parse --short HEAD` (HEAD is the commit that last changed this brief; the site code is `98ead18`). Same standing rules as `.claude/briefs/pass-125-full-time.md` section 0: write
 no non-ASCII, do not commit, never reinterpret an expected value, report mismatches verbatim and stop.
 You change NO source file in this round. You only build, measure and capture.
 
@@ -30,7 +31,8 @@ separator dot hanging); that needs a fresh capture.
    `.planning/qa/pass-125/footer-about-1440-v2.png`, `footer-about-390-v2.png`; `/work` bottom at 1440x900 ->
    `footer-work-1440.png`. [The full-time link sits on its own line below the email / LinkedIn / copyright row, and
    no separator dot ends a line in the 1440 frames.]
-7. Stop the server. `git status --short` [only new files under `.planning/qa/pass-125/`].
+7. Stop the server. `git status --short` [only new files under `.planning/qa/pass-125/`, plus the untracked
+   `.planning/qa/pass-124/home-v2/` to `home-v6/` folders, which pre-date this round and are not yours].
 
 ## Report back (plain text)
 measure.json verbatim, the frame count per width, the sheet and capture file list with sizes, git status, and any
