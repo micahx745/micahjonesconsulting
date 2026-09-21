@@ -1,0 +1,16 @@
+{
+  "block": "14u.~01e7g0-p",
+  "wallMs": 3553,
+  "swipes": 1,
+  "matchCountAfterLoad": 1,
+  "matchCountTotal": 1,
+  "matchedUrls": [
+    "https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git"
+  ],
+  "consoleErrorCount": 0,
+  "consoleErrors": [],
+  "consoleMsgCount": 1,
+  "consoleMsgsSample": [
+    "error: Failed to load resource: net::ERR_FAILED"
+  ]
+}

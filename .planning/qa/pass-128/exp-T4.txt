@@ -1,0 +1,224 @@
+Pass-128, experiment T4 -- "page-wide style recalc on every WorldSwitcher write"
+EVIDENCE ONLY. Live site only: https://www.micahjonesconsulting.com/
+(deploy dpl_Bk18zCfBqPb2DjTrkozL2dBs7git). Nothing under app/, components/,
+lib/, content/, public/, or scripts/ was read or edited to run this
+experiment; only files inside .planning/qa/pass-128/ were created.
+Ran alone, sequentially (no other investigator process running at the same
+time), so these timings are clean of cross-process contention.
+
+CLAIM UNDER TEST (as given):
+  WorldSwitcher writes --cw-bg/--cw-fg/--cw-accent onto the single ancestor
+  div wrapping the entire page, and 40+ descendant selectors across
+  globals.css reference them, so every write forces a page-wide style
+  recalculation instead of a local one. One trace showed UpdateLayoutTree
+  as the single largest bucket (532.9ms), recurring every animation frame
+  (11-15ms each) for the whole scroll rather than as two isolated spikes
+  at the two actual world-switch moments. Letting the browser skip
+  layout/paint work for off-screen [data-world] sections should localize
+  that cost (symptom: scroll-not-smooth).
+
+METRIC (as given): UpdateLayoutTree total ms in a scripted top-to-Audit
+scroll trace (baseline 485-533ms across runs quoted by the task) AND its
+per-frame/temporal distribution: currently a near-constant 11-15ms cost
+recurring broadly across the scroll; with the fix it should drop in total
+AND concentrate almost entirely at the two frames where a real
+world-switch write occurs, rather than recurring broadly. This is a
+two-part, compound metric -- both parts are evaluated below. Instrument:
+scroll-probe.mjs's own --trace output (topTraceEventsByDuration, unmodified
+from T3's usage) for the total, plus analyze-trace.mjs (unmodified scratch
+tool already in this folder from the S1/T3 lineage) run against each of
+the 6 raw --trace JSON files for the 200ms-bucketed temporal distribution.
+Same gesture mechanism, cpu=4, no --net (this is the scroll-jank symptom,
+not words-slow, so the task's own flag rule does not add --net here).
+
+NEUTRALIZER (exp-T4.css, this folder, exactly as given in the task):
+  [data-mode="cw"] section[data-world] {
+    content-visibility: auto;
+    contain-intrinsic-size: 1200px;
+  }
+
+NEUTRALIZER VALIDITY CHECK (verify-T4-inject.mjs, exp-T4-verify-inject.txt):
+  Ran once WITHOUT and once WITH exp-T4.css against the live page. The
+  selector matches exactly 4 live section[data-world] elements (bone,
+  terracotta, espresso, petrol -- matches the task's stated home order).
+  Computed content-visibility flips from "visible" (default, no injected
+  CSS) to "auto" on all 4, and computed containIntrinsicSize flips from
+  "none" to "auto 1200px" on all 4, only when the CSS is injected. The
+  neutralizer is confirmed live and non-inert before trusting the A/B
+  numbers below.
+
+COMMANDS RUN:
+  node scroll-probe.mjs --cpu 4 --runs 3 --trace exp-T4-trace-baseline.json --out exp-T4-baseline.jsonl
+  node scroll-probe.mjs --cpu 4 --runs 3 --inject-css exp-T4.css --trace exp-T4-trace-variant.json --out exp-T4-variant.jsonl
+  node verify-T4-inject.mjs > exp-T4-verify-inject.txt
+  node verify-T4-inject.mjs --with-css >> exp-T4-verify-inject.txt
+  node analyze-trace.mjs exp-T4-trace-baseline.run{1,2,3}.json  (one per run, > exp-T4-bucket-baseline.run{N}.txt)
+  node analyze-trace.mjs exp-T4-trace-variant.run{1,2,3}.json   (one per run, > exp-T4-bucket-variant.run{N}.txt)
+
+=== BASELINE (no injected CSS), n=3, cpu=4 ===
+run | frames | p95ms | maxMs | >33ms | >50ms | worldSw | scrollMs | gest | UpdateLayoutTree | FunctionCall | EventDispatch | Paint
+  1 |  278   | 33.4  | 33.4  |  46   |   0   |    2    |  3891.2  |  1   |     470.79ms     |   377.18ms   |   320.13ms    | 315.80ms
+  2 |  314   | 33.4  | 66.6  |  44   |   1   |    2    |  4470.8  |  2   |     511.04ms     |   407.60ms   |   343.30ms    | 324.25ms
+  3 |  289   | 33.4  | 33.4  |  45   |   0   |    2    |  3993.8  |  1   |     552.10ms     |   425.68ms   |   361.35ms    | 347.10ms
+median: p95=33.4ms, >33ms=45 frames, >50ms=0, worldSwitches=2,
+  UpdateLayoutTree=511.04ms, FunctionCall=407.60ms, EventDispatch=343.30ms, Paint=324.25ms.
+worldBgValues identical on all 3 runs: ["#9E3C25","#ECE3D0","#9E3C25"].
+consoleErrors: [] on all 3 runs.
+Matches the task's own quoted baseline range closely (UpdateLayoutTree
+470.79-552.10ms here vs quoted 485-533ms; both bracket a similar center)
+and is in the same ballpark as T3's own fresh baseline in this folder
+(474.44-501.88ms) -- these are 3 further fresh runs, not a repeat of
+either prior log, and run to a visibly wider spread than either (see NOISE
+FLOOR below).
+Raw: exp-T4-baseline.jsonl, exp-T4-trace-baseline.run{1,2,3}.json (large
+CDP traces), exp-T4-bucket-baseline.run{1,2,3}.txt (bucketed digests).
+
+=== VARIANT (exp-T4.css injected), n=3, cpu=4 ===
+run | frames | p95ms  | maxMs | >33ms | >50ms | worldSw | scrollMs | gest | UpdateLayoutTree | FunctionCall | EventDispatch | Paint
+  1 |  276   | 33.40  | 66.6  |  42   |   2   |    2    |  3977.9  |  1   |     505.25ms     |   428.64ms   |   316.51ms    | 268.13ms
+  2 |  294   | 33.33  | 33.4  |  46   |   0   |    2    |  3912.5  |  1   |     437.53ms     |   390.48ms   |   292.33ms    | 271.42ms
+  3 |  275   | 33.40  | 66.7  |  43   |   2   |    2    |  3913.3  |  1   |     449.60ms     |   397.69ms   |   286.16ms    | 261.53ms
+median: p95=33.4ms, >33ms=43 frames, >50ms=2, worldSwitches=2,
+  UpdateLayoutTree=449.60ms, FunctionCall=397.69ms, EventDispatch=292.33ms, Paint=268.13ms.
+worldBgValues identical on all 3 runs, and identical to baseline's:
+["#9E3C25","#ECE3D0","#9E3C25"]. consoleErrors: [] on all 3 runs.
+The world-switch mechanism (IntersectionObserver-driven --cw-bg writes) is
+unaffected by content-visibility:auto on the section: same switch count,
+same colors, same order, on every run -- unlike T3's block neutralizer,
+this one does not break or alter the crossfade's own firing.
+Raw: exp-T4-variant.jsonl, exp-T4-trace-variant.run{1,2,3}.json,
+exp-T4-bucket-variant.run{1,2,3}.txt.
+
+=== TEMPORAL/PER-FRAME DISTRIBUTION (the claim's second, more specific half) ===
+analyze-trace.mjs buckets each trace into 200ms windows and sums
+UpdateLayoutTree (and neighbors) duration per window. Counting "elevated"
+windows (>=20ms of UpdateLayoutTree in that 200ms) as a proxy for "hot
+zones" the claim says should shrink from broad/recurring down to two
+isolated frames:
+  baseline elevated-bucket counts per run: 9, 9, 8 (run1, run2, run3)
+  variant  elevated-bucket counts per run: 8, 8, 9 (run1, run2, run3)
+Both conditions show the SAME shape in every single run: two clusters of
+4-5 elevated 200ms-buckets each (roughly 800-1000ms wide), separated by a
+near-zero gap, with near-zero UpdateLayoutTree at the very start and end
+of the captured window. Example (baseline run2, full bucket table, and
+variant run2, full bucket table -- both in exp-T4-bucket-*.run2.txt):
+  baseline run2 UpdateLayoutTree column (ms per 200ms window), in order:
+    (blank) 3.2 2.4 2.5 24.9 54.4 55.2 58.9 55.9 2.3 1.6 3.4 52.5 64.5 57.4
+    66.0 6.2 (blank...)
+  variant run2 UpdateLayoutTree column, in order:
+    0.2 3.3 2.6 1.8 13.4 37.9 35.2 44.5 43.9 5.0 2.1 4.2 53.5 58.5 69.2 53.0
+    7.7 1.6 (blank...)
+Two clusters, one gap, in both -- same position pattern, same approximate
+widths. The neutralizer did NOT collapse this into "almost entirely two
+isolated frames"; it reproduces baseline's own two-multi-hundred-ms-burst
+shape essentially unchanged.
+Largest single UpdateLayoutTree event per run (not a 200ms sum -- one
+event):
+  baseline: 13.92ms (run1), 27.70ms (run2), 15.15ms (run3)
+  variant:  28.57ms (run1), 13.99ms (run2), 21.69ms (run3)
+No consistent pattern -- variant run1's single largest event (28.57ms) is
+higher than every baseline run's largest event. This is noise, not a
+per-event improvement.
+Clarifying note on the claim text's own "532.9ms single largest bucket":
+that number matches the OVERALL per-run UpdateLayoutTree total (this
+folder's baseline range is 470.79-552.10ms, median 511.04ms, bracketing
+532.9 closely) -- it is not a 200ms analyze-trace.mjs bucket sum (the
+largest individual 200ms bucket total seen across all 6 runs here, either
+condition, is 83.4ms, variant run1). Flagging this so the two different
+senses of "bucket" in this report are not conflated with the task text's.
+
+=== NOISE FLOOR ===
+Task-given calibration (frame-timing metrics only): intervalMsP95 spread
+0.0ms; framesOver33ms spread 1 frame, at n=3. Confirmed in the same
+ballpark here: baseline p95 spread = 0.0ms (33.4/33.4/33.4); baseline
+framesOver33ms spread = 2 frames (44/45/46); variant p95 spread = 0.07ms
+(33.33/33.40/33.40); variant framesOver33ms spread = 4 frames (42/43/46).
+UpdateLayoutTree total ms has no task-given calibration; using the same
+method T1 used (the metric's own baseline spread, same page, same method,
+back-to-back), baseline UpdateLayoutTree spread = 552.10 - 470.79 =
+81.31ms at n=3 -- itself roughly 3x wider than T3's own baseline spread
+for the same metric (27ms) captured earlier in this same folder, so this
+metric is visibly noisier run-to-run than the task's quoted calibration
+metrics. Treat ~81ms as this metric's own noise floor at n=3.
+
+=== MOVEMENT vs NOISE FLOOR, PREDICTED DIRECTION ===
+Predicted: UpdateLayoutTree total drops AND concentrates into two isolated
+frames; framesOver33/50ms and p95 read smoother.
+Actual:
+  UpdateLayoutTree: median 511.04ms -> 449.60ms, a drop of 61.44ms
+    (~12%), same direction as predicted, but SMALLER than this metric's
+    own ~81ms baseline noise floor, and the two 3-run sets overlap (not a
+    clean separation): baseline range [470.79, 552.10] vs variant range
+    [437.53, 505.25] -- variant run1 (505.25) sits inside baseline's own
+    range, above baseline run1 (470.79). Cannot call this movement beyond
+    noise on all three runs.
+  UpdateLayoutTree temporal distribution: UNCHANGED. Same two-cluster,
+    ~800-1000ms-wide-burst shape, same elevated-bucket counts (8-9 both
+    conditions), in every one of the 6 runs. This is the specific,
+    falsifiable mechanism the claim proposed (recalc becomes scoped/local,
+    "concentrate almost entirely at the two frames") and it did not occur.
+  framesOver33ms: median 45 -> 43, a 2-frame drop, at/near the task's own
+    1-frame calibrated noise floor and smaller than either condition's own
+    within-condition spread here (2 and 4 frames respectively) -- not a
+    confident signal either way.
+  framesOver50ms: median 0 -> 2, moved in the WRONG direction. Baseline
+    max across 3 runs is 1; two of three variant runs (2, 2) sit strictly
+    above that. Small in absolute terms (2 frames out of ~280-300) but
+    consistent and in the opposite direction from "smoother."
+  p95/intervalMsMax: essentially flat (33.4ms both conditions); maxMs hit
+    66.6-66.7ms in 2 of 3 variant runs vs 1 of 3 baseline runs -- mildly
+    more frequent long frames under the neutralizer, not fewer.
+  World switches: 2 -> 2 on all 3 runs, identical color sequence in every
+    run of both conditions. Unlike T3's block neutralizer, this one does
+    not disturb the switch mechanism itself -- a genuine point in its
+    favor even though it does not fix the jank.
+  Secondary, non-primary metrics (disclosed, not part of the named claim):
+  Paint and EventDispatch BOTH show a full run-level separation in the
+  predicted direction -- baseline Paint [315.80, 324.25, 347.10] vs
+  variant Paint [261.53, 268.13, 271.42] (every variant run below every
+  baseline run); baseline EventDispatch [320.13, 343.30, 361.35] vs
+  variant EventDispatch [286.16, 292.33, 316.51] (every variant run below
+  every baseline run, 316.51 < 320.13). These are real, clean, disclosed
+  movements -- but they are not the metric the claim named
+  (UpdateLayoutTree), and do not by themselves establish the claim's
+  specific "page-wide recalc becomes scoped" mechanism, which the
+  distribution data above directly contradicts. FunctionCall shows no
+  consistent pattern (baseline [377.18, 407.60, 425.68] vs variant
+  [390.48, 397.69, 428.64] -- ranges overlap almost completely).
+
+VERDICT: not_causal.
+The claim is compound and specific: UpdateLayoutTree total should drop AND
+its per-frame distribution should concentrate from "recurring broadly"
+down to "almost entirely two isolated frames," because the fix scopes a
+currently page-wide recalc to the sections that changed. On the
+distribution half -- the half that most directly tests the proposed
+mechanism -- the evidence is clean, symmetric, and fully reproduced across
+all 6 runs: baseline and variant show the identical two-cluster,
+multi-hundred-ms-wide burst shape, with the same elevated-bucket counts
+(8-9 either condition) and no consistent per-event improvement (largest
+single-event durations do not separate between conditions). The
+neutralizer did not localize or narrow the recalc in the way the
+mechanism requires. On the total-ms half, the median did move 61ms in the
+predicted direction, but that movement is smaller than this metric's own
+~81ms baseline noise floor (computed the same way T1's noise floor was
+computed, since the task gave no explicit calibration for this metric),
+and the two 3-run sets overlap rather than cleanly separate. A secondary
+jank indicator (framesOver50ms) moved mildly in the WRONG direction
+(0->2 median, 2 of 3 variant runs above baseline's max), and the primary
+frame-smoothness metrics the operator actually feels (p95, framesOver33ms)
+are flat within noise. Per the task's own verdict rule ("causal only if
+the variant moves the metric beyond the noise floor in the predicted
+direction on all three runs"), this does not qualify: one half of the
+compound metric does not move at all, the other half's movement does not
+clear its own noise floor, and no frame-smoothness metric shows a clean
+beyond-noise improvement. This does not mean content-visibility:auto had
+zero effect on the page -- Paint and EventDispatch totals both showed
+full-separation drops -- but those are not the mechanism or the metric the
+claim staked itself on, and are disclosed here as a secondary finding for
+a possible future, more narrowly-framed experiment, not as grounds to
+upgrade this verdict. One reassuring, disclosed side-finding: the
+neutralizer did not break the world-switch mechanism itself (2 switches,
+identical colors, identical order, all 6 runs, zero console errors) --
+whatever is causing the reported scroll jank and "gkitchy" color
+transition, it is not something this specific neutralizer fixes, but it
+also is not something this specific neutralizer breaks further.

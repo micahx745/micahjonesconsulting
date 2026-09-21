@@ -1,69 +1,58 @@
-# Kickoff: micahjonesconsulting, Pass-126 ship check (How I work), then the queue
+# Kickoff: micahjonesconsulting, continuing after the 2026-09-21 Pass-126/127/128 session
 
-> **DONE 2026-09-21, read `.claude/RESUME.md` instead of sections 1 and 2.** The Pass-126 ship check ran, Fable's two
-> layout fixes landed (Pass-126d, LESSONS #48), and he approved the push: LIVE is `e091a16` on
-> `dpl_Bk18zCfBqPb2DjTrkozL2dBs7git`, card1-126 157/0. Section 0 (boot, the one confirming popup) and sections 3 to 5
-> still apply; section 3's queue now lives in RESUME's NEXT list.
-
-Written 2026-09-21 by the Opus 5 session that built Pass-125 (held) and Pass-126. `.claude/RESUME.md` is current
-state and outranks this file. Supersedes the Pass-125 kickoff (git history keeps it).
+Written 2026-09-21 by the Opus 5 session that shipped Pass-126, ran the doors rounds (Pass-127), the live-jank root
+cause (Pass-128) and the three blog posts. `.claude/RESUME.md` is current state and outranks this file. A SEPARATE chat
+owns the landing-page exemplar (`.planning/handoff/KICKOFF-LANDING-EXEMPLAR.md`); do not start that work here.
 
 ## 0. Before anything
-1. Open the chat in the `p106-live` worktree. The SessionStart routing hook did NOT load last session because the chat
-   opened at the main checkout. If no "AI ROUTING" block printed, say so.
-2. Read `.claude/AI_ROUTING.md` in full (tiers, ids, commands, rules). Boot probes in one line: `get_usage`,
-   `scripts/deepseek-exec.ps1 -Smoke`, `scripts/gemini-exec.ps1 -Smoke`.
-3. Confirm the plan with him BEFORE a page arc starts (LESSONS #3 "FULL-TIME PAGE HELD": last session ran a whole page
-   arc on a kickoff line that was no longer his priority). One popup: "next is the How I work ship check; right?"
+1. Open in the `p106-live` worktree (the routing hook prints an "AI ROUTING" block; if it does not, say so).
+2. Read `.claude/AI_ROUTING.md`. Boot probes in one line: `get_usage`, `scripts/deepseek-exec.ps1 -Smoke`,
+   `scripts/gemini-exec.ps1 -Smoke`. Say the numbers.
+3. One popup to confirm the order before any arc (LESSONS #3 "FULL-TIME PAGE HELD"): suggested order below.
 
 ## 1. Where things stand
-- LIVE: `main = e8b44e3`, `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH` on all three domains (read off the wire 2026-09-21).
-- `design/live-evolve` = `b257b66`, 50 commits ahead of `origin/main`, NOT pushed. Its only site change vs main is
-  Pass-126 (How I work redesign) plus regenerated sitemap dates. The full-time page is NOT on it (reverted, `95cb41b`).
-- Pass-126 How I work: APPROVED IN DESIGN for the ship check (LESSONS #3 "HOW I WORK REDESIGN TO THE SHIP CHECK").
-  Plan body re-ruled (Sol's line), Build kept. Built, gated and measured on `preview/p126-how-i-work` (`3d5bb88`,
-  merged). Jury: Astra and DeepSeek "show him as is"; Fable's last fix applied and measured. Records:
-  `.planning/reviews/PASS-126-*`, `FABLE-126-*`, `ASTRA-126-*`, `DSPRO-126-*`.
-- HELD: `/full-time` (approved in content 09-21, not pushed). Whole on `preview/p125-full-time` (`708ac61`, incl.
-  `card1-125.sh`). To ship later: `git revert 95cb41b` on the branch (re-merging will NOT restore it), then a ship check.
+- LIVE: `main = e091a16`, `dpl_Bk18zCfBqPb2DjTrkozL2dBs7git` on all three domains (card1-126 157/0 with EXPECT_DPL).
+  Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. `design/live-evolve` is ahead by docs and drafts only; any push
+  redeploys and needs his words.
+- Preview worktree `p124-cuts` (branch `preview/p126-how-i-work`) holds the Pass-127 mocks, juries and captures.
 
-## 2. The next job: the Pass-126 ship check, then his push words
-1. Build with every gate: `node .planning/exec/prepush-gates.mjs` (Node; the bash wrapper also works for you, but Sol's
-   sandbox cannot start bash). Build in `.claude/worktrees/p124-cuts` after fast-forwarding its branch to
-   `design/live-evolve`, or give it to Sol. Last line must be `PREPUSH: all gates and the build passed`.
-2. Write `.planning/exec/card1-126.sh` from `card1-124.sh` (NOT 125: the full-time page is held): OLD_DPL read off the
-   wire; add markers for the How I work copy (`content/how-i-work.ts`), incl. the new Plan body present and
-   "Something named ships" absent on `/`; on `/services` "How I work." present, "Every engagement includes" absent,
-   and the note "No discovery fee." present. Bite-test: 0 failures on a local `next start`, the new markers fail on
-   production. (The measure scripts: `.planning/qa/pass-126/measure.mjs`, `cls-page.mjs`, `region-sheet.mjs`.)
-3. Popup for the push; record his answer verbatim in LESSONS #3 AND RESUME BEFORE the push command.
-4. Push `design/live-evolve` to `main` (Vercel deploys on push); read the new deploy id off the wire on both domains;
-   `EXPECT_DPL=<id> bash .planning/exec/card1-126.sh`. Revert = promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`.
+## 2. Suggested order (his to confirm)
+0. **Owed gate, first (LESSONS #49):** the worktree write-guard hook (a Write landed in the main checkout; restored).
+   Repo-level `.claude/settings.json` + a hook script; bite-test both ways. Use the `update-config` skill.
+1. **The jank fix (Pass-128 fix).** Read `.planning/qa/pass-128/ROOT-CAUSE.md` first. "Words slow" is root-caused
+   (the letter-by-letter SplitReveal heading: 1.1 s to settle, causal A/B). "Scroll not smooth" is NOT: its leading
+   suspect (SplitReveal's per-character inline-style writes, `invalidation.txt`) failed its first A/B only because the
+   CSS neutralizer does not stop GSAP's writes; run THE RIGHT TEST in ROOT-CAUSE.md section 2 first (detach the
+   characters). The colour glitch is mechanism-observed (the doors band's "bone" world between two terracotta sections;
+   mid-screen switch lag; three entrances stacked at the Audit). Put ROOT-CAUSE.md's three operator questions to him by popup, then brief,
+   Sol builds on a preview, verify with `.planning/qa/pass-128/scroll-probe.mjs`, his push words.
+2. **The doors build (Pass-127c).** He picked round-two 6 "The Copy Gets Eaten" (jury unanimous). Brief:
+   `.claude/briefs/pass-127c-doors-build.md`; fill section 4b from the jank decisions (the band's world value), then
+   dispatch Sol on a new branch `preview/p127-doors` in `p124-cuts`. Fable judges once; he tries it on his phone.
+3. **Queued by him 09-21:** the exits scoreboard on phones ("you have to keep swiping down and nothing happens": measure
+   with the dead-swipe detector `.planning/mocks/pass-127/doors-r2/capture-127b.mjs` + `sheets-127b.py`, adapted to the
+   real page); the "Four exits I worked inside" title needs presence; Neuton's "Undisclosed" (jurors propose from the
+   ledger, he rules; nothing changes before his pick).
+4. **The blog:** all three posts LOCKED (`.planning/drafts/blog-0{1,2,3}/POST-*-LOCKED.md`); the blog page is built by
+   the exemplar chat, not here. Posts are generic SEO advice, no work stories, no pitch, the ledgered about-me foot.
+5. **Queue:** the held /full-time page, inner pages (/about never got the research voice; Ordani "practice management"
+   vs "CRM"), open facts, Guardicore LCP p75, K4/K5 race, dead CSS, DeepSeek key rotation ("Not yet, I'll do it").
 
-## 3. The queue after that (his to order)
-Inner pages (/services, /about, /packages, /contact; include Fable's catch: /about calls Ordani "practice management",
-the study and full-time page say "CRM"); the blog (answered-ratio cut from `C:/Users/micah/Code/reddit-research/` first;
-never the rates); open facts (ORDANI "one engineer", east-west plain swap, "it shipped, nobody came", landing page 27 vs
-34); /work/guardicore mobile LCP p75; the K4/K5 harness race; ask him to confirm the 09-20 DeepSeek key was rotated;
-the held full-time page when he wants it.
+## 3. Traps learned 2026-09-21 (all in LESSONS)
+- Headless Chrome 153: CDP `synthesizeScrollGesture` with touch is a no-op; the probes dispatch touch events by hand.
+- Measure the finished frame (#48): the first live wrap-gate run read a reveal mid-slide (53 px vs a settled 40).
+- A juror pass is relative unless told the bar: three jurors passed blog draft 1, which he called "very AI"; judge
+  against "does this kill it", and gate with `node .planning/exec/blog-lint.mjs`.
+- Gemini: 3.1-pro-preview 429 (quota), 2.5-pro 404, 3.5-flash 503 twice; 2.5-flash works. DeepSeek v4-pro needs
+  `-MaxTokens 96000` for long drafts (48000 ran out in reasoning).
+- PowerShell `*>` logs are UTF-16; brief Sol to use `cmd /c "... > log 2>&1"`. The secret-guard hook blocks literal
+  fake keys in commands: build test strings at runtime.
+- The dead-swipe detector exists and bites (self-test PASS); use it on any scroll-held moment.
 
-## 4. Traps learned 2026-09-21 (all recorded)
-- The bare `npx next build --webpack` skips every gate (LESSONS #47); the Codex sandbox cannot launch bash (so gates are
-  Node now).
-- Never commit in a worktree while an executor runs in it; a brief never pins a HEAD its own commit moves (briefs README).
-- Full-page screenshots of a Color Worlds page freeze every section in the first world: judge from viewport scroll
-  frames (`region-sheet.mjs`). Measures need a liveness gate: Sol's round measured an unstyled page and reported 14
-  false failures (`measure.mjs` now waits for styles and a grid, bite-tested).
-- Git Bash rewrites `/` and `branch:path` arguments into Windows paths: prefix `MSYS_NO_PATHCONV=1`.
-- Stop the preview server before any rebuild in p124-cuts (Windows file locks). `preview_start` reads the MAIN
-  checkout's `.claude/launch.json`; it has a local, uncommitted `prod-p124` entry (port 3126).
-- Copy the jurors flag goes to him at once with rewrites from DeepSeek and Sol, fact-checked first (DeepSeek's three Plan
-  drafts all failed: they put the roadmap before ANY work, but week one's audit is work).
-
-## 5. How to work with him (unchanged)
-Popups, two questions at a time, recommended first, read "Other" literally. Show the rendered page (viewport sheets at
-390 and 1440 plus the served preview). When models disagree, give each pick by name with the tie-break. LEGS stamp on
-every checkpoint and copy/design commit.
+## 4. How to work with him (unchanged)
+Popups, two questions at a time, recommended first, read "Other" literally. Show the rendered thing (sheets/GIFs at 390
+and 1440). When models split, give each pick by name with the tie-break. LEGS stamp on every checkpoint and copy/design
+commit. Non-Claude models take every leg they can (memory "every-other-model-by-default"; he asked mid-session 09-21).
 
 ## Micah: open the new chat
 In the Claude desktop app's Code tab, choose the `p106-live` worktree, pick **Opus 5**, and paste:

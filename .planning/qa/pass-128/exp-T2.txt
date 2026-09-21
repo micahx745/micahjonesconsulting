@@ -1,0 +1,204 @@
+Pass-128, experiment T2 -- "colour-switch-glitchy" (nav + inline-link/figure
+transition-duration mismatch, cancel-restart churn)
+EVIDENCE ONLY. Live site only: https://www.micahjonesconsulting.com/
+(deploy dpl_Bk18zCfBqPb2DjTrkozL2dBs7git). Nothing under app/, components/,
+lib/, content/, public/, or scripts/ was read or edited to run this
+experiment; only files inside .planning/qa/pass-128/ were created. Ran
+alone, sequentially (no other investigator process running at the same
+time), so these timings/counts are clean of cross-process contention.
+
+CLAIM UNDER TEST (as given):
+  The nav's .cw-nav.is-scrolled rule and four inline link/figure classes
+  (.cw-mlink, .cw-section-cta, .cw-offer__packages-link, .cw-exits__co,
+  .cw-exits__val) inherit --cw-fg/--cw-bg from the root's 0.7s
+  cubic-bezier(0.16,1,0.3,1) world-crossfade, but each declares its own
+  separate, shorter (or absent) transition on the same property. While the
+  root transition is in flight, the inherited value keeps changing every
+  frame, so each element's own transition is repeatedly cancelled and
+  restarted. One live instrument (transition-attrib.mjs, this folder, n=1)
+  measured 868 transition lifecycle events for 2 real colour writes (132
+  transitionrun / 126 transitioncancel on .cw-mlink alone across 4 DOM
+  instances). Predicted fix: syncing every descendant's transition
+  duration/curve to the root's exact 0.7s cubic-bezier(0.16,1,0.3,1) should
+  collapse the churn toward ~2 events (one clean run per real write, zero
+  cancels).
+
+METRIC: transitionrun + transitioncancel event count captured (document-level,
+capture:true, via transition-attrib.mjs's own listener code, unmodified) on
+the six listed selectors, during one scripted top-to-"The Audit" scroll pass,
+same gesture mechanism/viewport/cpu as the shared scroll-probe.mjs (manual
+touchStart/touchMove-steps/touchEnd per calibration.txt's disclosed
+deviation from the literal synthesizeScrollGesture spec, cpu=4, no --net
+throttle -- this is the colour-switch-glitchy symptom, not the words-slow
+one, so 4g was not added per the task's own flag rule).
+INSTRUMENT: exp-T2-probe.mjs, this folder -- transition-attrib.mjs (the
+root-cause instrument named in the task text; its single-run baseline
+already matches the task's own "868 events / 132+126 on .cw-mlink" numbers
+exactly, see transition-attrib.log) with two additions, mirroring exactly
+how exp-T1-probe.mjs extended word-timing-probe.mjs for T1: --runs N/--out
+PREFIX (loop N fresh-browser runs, save each to JSON) and --inject-css FILE
+(page.addStyleTag() at the same point exp-T1-probe.mjs and scroll-probe.mjs
+use: after load+liveness wait, before the scroll gesture begins). Gesture
+mechanism, event capture code, and target detection are byte-identical to
+transition-attrib.mjs, not reimplemented.
+Reported sub-metrics per run: listedRunPlusCancel (transitionrun +
+transitioncancel on the 6 listed selectors -- the task's stated metric),
+listedCancelOnly (transitioncancel only, the more direct "was this
+cancelled and restarted" signal), mlinkCancelOnly (transitioncancel on
+.cw-mlink alone, the task's own headline number), totalEvents (all 4 event
+types, all targets -- matches the "868" framing).
+
+NEUTRALIZER AS GIVEN (exp-T2.css, this folder, task's literal text):
+  :is([data-mode="cw"]) .cw-nav.is-scrolled, [data-mode="cw"] .cw-mlink,
+  [data-mode="cw"] .cw-section-cta, [data-mode="cw"] .cw-offer__packages-link,
+  [data-mode="cw"] .cw-exits__co, [data-mode="cw"] .cw-exits__val {
+    transition: background 0.7s cubic-bezier(0.16,1,0.3,1) !important,
+                color 0.7s cubic-bezier(0.16,1,0.3,1) !important;
+  }
+
+*** TEST ARTIFACT FOUND (mechanism-before-retry check, run before trusting
+the as-given result): ***
+This declaration is invalid CSS. A `transition` shorthand value list may
+carry exactly ONE trailing `!important` for the whole declaration; putting
+`!important` after EACH comma-separated item (as the task's literal text
+does) is not valid value grammar. Verified directly against the live page,
+not assumed:
+  - verify-inject.mjs: computed transitionDuration on .cw-mlink,
+    .cw-section-cta, .cw-nav(.is-scrolled), .cw-exits__co is IDENTICAL
+    before and after page.addStyleTag(exp-T2.css) in every case (e.g.
+    .cw-mlink stays "0.2s, 0.2s" / "color, border-color"; nav.is-scrolled
+    stays "0.25s, 0.25s" / "background, color" -- none show 0.7s).
+  - verify-inject2.mjs: the <style> tag DID land in the DOM (1 rule, full
+    text present, sheet.cssRules.length === 1, no console errors, no CSP
+    block) -- so the stylesheet itself loaded fine.
+  - verify-inject3.mjs: enumerating cssRules directly shows why --
+    rule.style.getPropertyValue("transition") is EMPTY on the injected rule
+    (rule.selectorText is intact, but the `transition` declaration itself
+    was dropped by the parser as invalid), while el.matches(the injected
+    selector) is true. The rule exists and matches the elements; its one
+    declaration just never parsed.
+Running exp-T2.css as literally given therefore tests nothing -- it is a
+no-op neutralizer, not a disproof of the claim. Per "mechanism before retry,
+never retry verbatim": a syntax-corrected version of the SAME selector list
+and SAME intent (one trailing !important covering both comma items) was
+written to exp-T2-fixed.css and independently verified to actually apply
+(verify-inject4.mjs: .cw-mlink, .cw-section-cta, .cw-nav.is-scrolled, and
+.cw-exits__co all show transitionProperty "background, color" / duration
+"0.7s, 0.7s" after injection -- the intended change is now live in the
+computed styles). Both the as-given and the syntax-corrected variant were
+run and are reported below, so the as-given (no-op) result is not the basis
+for the verdict on its own.
+
+COMMANDS RUN:
+  node exp-T2-probe.mjs --runs 3 --cpu 4 --out exp-T2-baseline
+  node exp-T2-probe.mjs --runs 3 --cpu 4 --inject-css exp-T2.css --out exp-T2-variant
+  node verify-inject.mjs / verify-inject2.mjs / verify-inject3.mjs   (diagnose the no-op)
+  node verify-inject4.mjs                                           (confirm the fix applies)
+  node exp-T2-probe.mjs --runs 3 --cpu 4 --inject-css exp-T2-fixed.css --out exp-T2-variant-fixed
+
+=== BASELINE (no injected CSS), n=3, cpu=4 ===
+run | totalEvents | listedRunPlusCancel | listedCancelOnly | mlinkCancelOnly | gestures | consoleErrors
+  1 |     917      |        479          |       210        |      168        |    2     |  []
+  2 |     885      |        479          |       210        |      168        |    2     |  []
+  3 |     855      |        479          |       210        |      168        |    1     |  []
+median listedRunPlusCancel = 479, listedCancelOnly = 210, mlinkCancelOnly = 168.
+Matches the task's own quoted baseline closely (868 total / 126 mlink-cancel
+for a single earlier run in transition-attrib.log; 855-917 total / 168
+mlink-cancel here across 3 fresh runs -- same order of magnitude, small
+variation explained by gesturesUsed varying 1-2 swipes to cover the same
+scroll distance run-to-run, which changes total EVENT count via
+transitionstart/transitionend pairs elsewhere on the page but leaves the
+LISTED-element run+cancel metric identical in every run: 479, 479, 479 --
+zero spread at n=3).
+Raw: exp-T2-baseline.run1.json, exp-T2-baseline.run2.json, exp-T2-baseline.run3.json
+
+=== VARIANT, AS GIVEN (exp-T2.css injected, confirmed no-op above), n=3, cpu=4 ===
+run | totalEvents | listedRunPlusCancel | listedCancelOnly | mlinkCancelOnly | gestures | consoleErrors
+  1 |     891      |        479          |       210        |      168        |    1     |  []
+  2 |     889      |        479          |       210        |      168        |    1     |  []
+  3 |     866      |        472          |       210        |      168        |    1     |  []
+median listedRunPlusCancel = 479 (unchanged from baseline), listedCancelOnly
+= 210 (unchanged, exact), mlinkCancelOnly = 168 (unchanged, exact).
+Movement vs baseline: 0 on 2/3 runs, -7 (1.5%) on run 3 -- within this
+metric's own 0-spread noise floor, i.e. no movement. Expected, given the
+neutralizer never changed a single computed style (see TEST ARTIFACT
+section) -- this result on its own is not evidence against the claim, only
+evidence the as-given CSS text is a no-op.
+Raw: exp-T2-variant.run1.json, exp-T2-variant.run2.json, exp-T2-variant.run3.json
+
+=== VARIANT, SYNTAX-CORRECTED (exp-T2-fixed.css injected, confirmed APPLIED
+by verify-inject4.mjs -- all 6 listed selectors measured 0.7s/0.7s
+background+color after injection), n=3, cpu=4 ===
+run | totalEvents | listedRunPlusCancel | listedCancelOnly | mlinkCancelOnly | gestures | consoleErrors
+  1 |     726      |        401          |       185        |      148        |    2     |  []
+  2 |     835      |        451          |       210        |      168        |    2     |  []
+  3 |     807      |        451          |       210        |      168        |    2     |  []
+median listedRunPlusCancel = 451, listedCancelOnly = 210, mlinkCancelOnly = 168.
+Raw: exp-T2-variant-fixed.run1.json, exp-T2-variant-fixed.run2.json, exp-T2-variant-fixed.run3.json
+
+=== NOISE FLOOR (this instrument/metric -- not the scroll-probe.mjs
+frame-timing one quoted in the task text, which is a different instrument
+measuring a different symptom's metric and does not transfer here) ===
+Computed from the 3 baseline runs' own spread (same page, same method,
+back-to-back, no other change): listedRunPlusCancel spread = 0 (479/479/479),
+listedCancelOnly spread = 0 (210/210/210), mlinkCancelOnly spread = 0
+(168/168/168). Treat 0 events as this metric's noise floor at n=3 for the
+listed-element sub-metrics (totalEvents, which counts every element on the
+page including ones the neutralizer never touches, has a wider spread of
+~62 events (855-917) and is reported for context only, not as the pass/fail
+metric).
+
+=== MOVEMENT vs NOISE FLOOR, PREDICTED DIRECTION AND MAGNITUDE ===
+Prediction (task text): "collapse toward ~2 events (one clean run per real
+write, zero cancels)" -- i.e. listedRunPlusCancel 479 -> ~2 (a ~99.6% drop),
+listedCancelOnly 210 -> ~0, mlinkCancelOnly 168 -> ~0.
+As-given variant: 479->479/479/472. Movement = 0, 0, 7. Not in the predicted
+direction beyond noise (and confirmed a no-op test, see above).
+Syntax-corrected variant (the fair test of the claim's actual mechanism):
+  listedRunPlusCancel: 479 -> 401, 451, 451 (movement of -78, -28, -28
+    events, i.e. an 5.8-16.3% reduction). Correct direction (down) on all 3
+    runs, and beyond the 0-event noise floor on all 3 runs -- but nowhere
+    close to the predicted ~99.6% collapse toward ~2.
+  listedCancelOnly: 210 -> 185, 210, 210 (movement of -25, 0, 0). Only 1 of
+    3 runs moved at all; 2 of 3 runs showed ZERO reduction in cancels
+    specifically, the metric the claim's own mechanism (cancel-restart
+    churn) most directly predicts should collapse.
+  mlinkCancelOnly (the claim's own headline number, "126 transitioncancel on
+    .cw-mlink alone"): 168 -> 148, 168, 168. Same pattern: 1 of 3 runs shows
+    a partial drop (-20, 11.9%), 2 of 3 runs show exactly zero movement.
+Even taking the single best run (run 1) at face value, 185 and 148
+remaining cancels are 92x and 74x the predicted "~0" -- this is not "close
+to the prediction within noise," it is a small, inconsistent partial effect
+against a claim that specifically predicted near-total elimination.
+
+VERDICT: not_causal.
+The neutralizer as literally given in the task text is invalid CSS and
+never applied to a single computed style on the live page (independently
+verified three ways: before/after computed-style diff, DOM/CSSOM inspection
+of the injected rule showing its `transition` declaration was dropped by
+the parser, and cross-check that the selector itself does match the target
+elements) -- so its own A/B result (0-1.5% movement, i.e. none beyond noise)
+cannot be read as either confirming or refuting the claim on its own.
+Substituting a syntax-corrected version of the identical selector list and
+identical intent -- independently confirmed to actually change the computed
+transition-duration/property on all six listed elements to 0.7s
+background+color, matching the root crossfade exactly as the claim
+prescribes -- produced only a small (0-16%), direction-consistent but
+magnitude-inconsistent effect (2 of 3 runs showed zero change in the
+cancel-specific sub-metrics that most directly test "cancel-restart churn"),
+far short of the claim's own predicted near-total collapse (toward ~2
+events / ~0 cancels) on any of the 3 runs. Per the task's own verdict rule
+("'not_causal' if it does not move [in the predicted direction beyond
+noise]"), the predicted collapse did not occur on any run, so the
+transition-duration-mismatch mechanism, taken alone, is not the primary
+driver of the measured transitionrun/transitioncancel churn. The small,
+inconsistent partial effect seen in the corrected variant suggests
+duration-matching is at most a minor contributing factor; the dominant
+cause of the ~200+ cancel events on .cw-mlink and the other listed elements
+remains unexplained by this claim and needs a separate root-cause pass (for
+example: how many times WorldSwitcher's IntersectionObserver callback
+actually re-writes --cw-fg/--cw-bg per scroll pass, and whether descendants
+each re-resolve `color: var(--cw-fg)` independently on every one of those
+writes regardless of their own transition's duration) -- out of scope for
+this evidence-only phase, which is limited to the one A/B experiment (T2) as
+specified.

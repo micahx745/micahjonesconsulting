@@ -1,0 +1,16 @@
+/* Pass-128, experiment T1. EVIDENCE ONLY -- not applied to the live site,
+   loaded only by exp-T1-probe.mjs via page.addStyleTag() inside a headless
+   Chrome instance driven by this script, and only against
+   https://www.micahjonesconsulting.com/. Neutralizes the GSAP SplitText
+   char-by-char cascade on the offer h2 (#cw-offer-title) by forcing every
+   already-split .cw-split__char span straight to its resting state, so it
+   reads instantly like its neighboring .cw-reveal headings, without
+   disabling GSAP/SplitText itself (they still run; only the visual result
+   of the stagger is neutralized). See word-loading-slow-findings.md Finding
+   W2 in this folder for the claim and baseline measurements this tests. */
+#cw-offer-title .cw-split__char {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}

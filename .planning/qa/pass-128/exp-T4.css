@@ -1,0 +1,15 @@
+/* Pass-128, experiment T4. EVIDENCE ONLY -- not applied to the live site,
+   loaded only by scroll-probe.mjs via page.addStyleTag() inside a headless
+   Chrome instance driven by this script, and only against
+   https://www.micahjonesconsulting.com/. Neutralizer under test: let the
+   browser skip layout/paint work for off-screen [data-world] sections
+   under [data-mode="cw"], on the theory that WorldSwitcher's --cw-bg/
+   --cw-fg/--cw-accent writes on the single page-wide wrapper are forcing a
+   page-wide style recalc (40+ globals.css selectors reference those
+   custom properties) instead of one scoped to the sections whose colors
+   actually changed. See the task's own claim text for T4 in this pass's
+   dispatch. */
+[data-mode="cw"] section[data-world] {
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px;
+}

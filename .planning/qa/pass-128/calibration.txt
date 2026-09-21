@@ -1,0 +1,44 @@
+=== CPU=4 (baseline), 3 runs ===
+Mon Sep 21 22:15:48 UTC 2026
+{"run":1,"cpu":4,"net":null,"url":"https://www.micahjonesconsulting.com/","target":"[data-scroll-probe-target=\"1\"]","frames":252,"intervalMsP50":16.7,"intervalMsP95":33.4,"intervalMsMax":33.5,"framesOver33ms":45,"framesOver50ms":0,"longtaskCount":0,"longtaskTotalMs":0,"worldSwitchCount":2,"worldBgValues":["#9E3C25","#ECE3D0","#9E3C25"],"scrollDurationMs":3950.3,"gestureCount":1,"noWrapper":false,"longtaskObserverError":null,"consoleErrors":[],"topTraceEventsByDuration":null}
+{"run":2,"cpu":4,"net":null,"url":"https://www.micahjonesconsulting.com/","target":"[data-scroll-probe-target=\"1\"]","frames":281,"intervalMsP50":16.7,"intervalMsP95":33.4,"intervalMsMax":50,"framesOver33ms":44,"framesOver50ms":0,"longtaskCount":0,"longtaskTotalMs":0,"worldSwitchCount":2,"worldBgValues":["#9E3C25","#ECE3D0","#9E3C25"],"scrollDurationMs":4440.2,"gestureCount":2,"noWrapper":false,"longtaskObserverError":null,"consoleErrors":[],"topTraceEventsByDuration":null}
+{"run":3,"cpu":4,"net":null,"url":"https://www.micahjonesconsulting.com/","target":"[data-scroll-probe-target=\"1\"]","frames":253,"intervalMsP50":16.7,"intervalMsP95":33.4,"intervalMsMax":33.4,"framesOver33ms":45,"framesOver50ms":0,"longtaskCount":0,"longtaskTotalMs":0,"worldSwitchCount":2,"worldBgValues":["#9E3C25","#ECE3D0","#9E3C25"],"scrollDurationMs":3943.1,"gestureCount":1,"noWrapper":false,"longtaskObserverError":null,"consoleErrors":[],"topTraceEventsByDuration":null}
+{"run":"median","runsCounted":3,"cpu":4,"net":null,"intervalMsP50Median":16.7,"intervalMsP95Median":33.4,"intervalMsMaxMedian":33.5,"framesOver33msMedian":45,"framesOver50msMedian":0,"longtaskCountMedian":0,"longtaskTotalMsMedian":0,"worldSwitchCountMedian":2,"scrollDurationMsMedian":3950.3,"intervalMsP95Spread":0,"framesOver33msSpread":1}
+
+=== CPU=1 (unthrottled comparison), 3 runs ===
+Mon Sep 21 22:16:17 UTC 2026
+{"run":1,"cpu":1,"net":null,"url":"https://www.micahjonesconsulting.com/","target":"[data-scroll-probe-target=\"1\"]","frames":309,"intervalMsP50":16.7,"intervalMsP95":16.8,"intervalMsMax":33.4,"framesOver33ms":2,"framesOver50ms":0,"longtaskCount":0,"longtaskTotalMs":0,"worldSwitchCount":2,"worldBgValues":["#9E3C25","#ECE3D0","#9E3C25"],"scrollDurationMs":4186.5,"gestureCount":2,"noWrapper":false,"longtaskObserverError":null,"consoleErrors":[],"topTraceEventsByDuration":null}
+{"run":2,"cpu":1,"net":null,"url":"https://www.micahjonesconsulting.com/","target":"[data-scroll-probe-target=\"1\"]","frames":279,"intervalMsP50":16.7,"intervalMsP95":16.8,"intervalMsMax":33.4,"framesOver33ms":2,"framesOver50ms":0,"longtaskCount":0,"longtaskTotalMs":0,"worldSwitchCount":2,"worldBgValues":["#9E3C25","#ECE3D0","#9E3C25"],"scrollDurationMs":3665,"gestureCount":1,"noWrapper":false,"longtaskObserverError":null,"consoleErrors":[],"topTraceEventsByDuration":null}
+{"run":3,"cpu":1,"net":null,"url":"https://www.micahjonesconsulting.com/","target":"[data-scroll-probe-target=\"1\"]","frames":309,"intervalMsP50":16.7,"intervalMsP95":16.8,"intervalMsMax":33.4,"framesOver33ms":3,"framesOver50ms":0,"longtaskCount":0,"longtaskTotalMs":0,"worldSwitchCount":2,"worldBgValues":["#9E3C25","#ECE3D0","#9E3C25"],"scrollDurationMs":4172.8,"gestureCount":2,"noWrapper":false,"longtaskObserverError":null,"consoleErrors":[],"topTraceEventsByDuration":null}
+{"run":"median","runsCounted":3,"cpu":1,"net":null,"intervalMsP50Median":16.7,"intervalMsP95Median":16.8,"intervalMsMaxMedian":33.4,"framesOver33msMedian":2,"framesOver50msMedian":0,"longtaskCountMedian":0,"longtaskTotalMsMedian":0,"worldSwitchCountMedian":2,"scrollDurationMsMedian":4172.8,"intervalMsP95Spread":0,"framesOver33msSpread":1}
+
+=== CALIBRATION SUMMARY (3 runs cpu=4, 3 runs cpu=1, same probe, same live URL) ===
+cpu=4 (baseline): intervalMsP95 = 33.4, 33.4, 33.4 (median 33.4, spread 0.0)
+cpu=4 (baseline): framesOver33ms = 45, 44, 45 (median 45, spread 1)
+cpu=1 (comparison): intervalMsP95 = 16.8, 16.8, 16.8 (median 16.8, spread 0.0)
+cpu=1 (comparison): framesOver33ms = 2, 2, 3 (median 2, spread 1)
+
+NOISE FLOOR (spread across the three cpu=4 runs): p95 spread = 0.0 ms; frames-over-33ms spread = 1 frame.
+THROTTLE CHECK: cpu=4 p95 (33.4ms median) > cpu=1 p95 (16.8ms median); cpu=4 frames-over-33ms
+(45 median) > cpu=1 frames-over-33ms (2 median), out of ~250-310 frames per run (n=3 runs each side).
+Throttle is applied and has real, repeatable effect -- PASS.
+
+DEVIATION FROM LITERAL SPEC (disclosed): CDP Input.synthesizeScrollGesture with
+gestureSourceType "touch" was tried first, exactly as specified (x=195, y=650, speed=1200,
+yDistance negative). Measured directly (see debug-gesture.mjs, run twice): it returns success
+but produces ZERO scroll (window.scrollY stayed at 0 across a -800px call, reproduced twice).
+The same call with gestureSourceType "mouse" DOES scroll (0 -> 264px). A manual
+Input.dispatchTouchEvent touchStart/touchMove-steps/touchEnd sequence at the same point also
+scrolls natively (0 -> 326px, 31 native "scroll" events fired; see debug-gesture2.mjs). The
+probe (scroll-probe.mjs) therefore drives scrolling with that manual touch-dispatch sequence,
+paced to the same nominal 1200px/s, instead of the literal synthesizeScrollGesture call. This
+is a lower-level, more literal touch gesture than the convenience wrapper that no-op'd, not a
+weaker substitute (it is not window.scrollTo). Browser: Chrome/153.0.8010.52 via puppeteer-core
+25.10.0, this specific headless launch (--no-sandbox --disable-gpu). Not verified on any other
+Chrome build; if a future run on a different Chrome version finds synthesizeScrollGesture
+working, that is new evidence and should be re-tested, not assumed.
+
+WHAT WAS NOT MEASURED: this calibration used --runs 3/3 with no --net throttle and no --trace.
+"The word loading slow" (LCP / font-swap timing) is a separate symptom this probe does not
+measure; it would need a separate instrument. All numbers above are n=3 per condition; do not
+read them as more than a first calibration pass.

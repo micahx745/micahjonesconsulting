@@ -1,0 +1,38 @@
+maxScroll target: 1362.359375
+total samples: 35
+samples where (195,650) hit a cw-mlink/cw-section-cta/packages-link ancestor: 0
+0 -> DIV.cw-hero__veil 
+40 -> DIV.cw-hero__veil 
+80 -> DIV.cw-hero__veil 
+120 -> DIV.cw-hero__veil 
+160 -> DIV.cw-hero__veil 
+200 -> SECTION.cw-doors-band 
+240 -> DIV.cw-door.cw-door--build.cw-reveal.is-in 
+280 -> H2.cw-door__title 
+320 -> H2.cw-door__title 
+360 -> DIV.cw-door.cw-door--build.cw-reveal.is-in 
+400 -> P.cw-door__body 
+440 -> A.cw-door__cta [link: A.cw-door__cta]
+480 -> DIV.cw-door.cw-door--build.cw-reveal.is-in 
+520 -> A.cw-door.cw-door--sell.cw-reveal [link: A.cw-door.cw-door--sell.cw-reveal]
+560 -> H2.cw-door__title [link: A.cw-door.cw-door--sell.cw-reveal]
+600 -> A.cw-door.cw-door--sell.cw-reveal [link: A.cw-door.cw-door--sell.cw-reveal]
+640 -> P.cw-door__body [link: A.cw-door.cw-door--sell.cw-reveal]
+680 -> A.cw-door.cw-door--sell.cw-reveal [link: A.cw-door.cw-door--sell.cw-reveal]
+720 -> SECTION.cw-block 
+760 -> SECTION.cw-block 
+800 -> DIV.cw-split__word 
+840 -> DIV.cw-split__word 
+880 -> H2.cw-secttitle 
+920 -> DIV.cw-offer__grid 
+960 -> DIV.cw-offer__grid 
+1000 -> DIV.cw-pbox__in 
+1040 -> H3.cw-pbox__name 
+1080 -> P.cw-pbox__price 
+1120 -> P.cw-pbox__price 
+1160 -> DIV.cw-pbox__in 
+1200 -> P.cw-pbox__fit 
+1240 -> P.cw-pbox__fit 
+1280 -> P.cw-pbox__area 
+1320 -> P.cw-pbox__area 
+1360 -> P.cw-pbox__area 

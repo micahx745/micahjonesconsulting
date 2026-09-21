@@ -1,0 +1,13 @@
+/* Pass-128 evidence-phase A/B probe CSS. NOT applied to the repo.
+   Hides the three full-viewport grain layers + the vignette pseudo-element
+   to test the S1 hypothesis (fixed, mix-blend-mode, 100vw/100vh layers
+   recomposited every scroll frame). */
+[data-mode="cw"] .cw-grain,
+[data-mode="cw"] .cw-grain__coarse,
+[data-mode="cw"] .cw-grain__fine,
+[data-mode="cw"] .cw-grain__halftone {
+  display: none !important;
+}
+[data-mode="cw"]::after {
+  display: none !important;
+}

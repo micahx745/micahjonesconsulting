@@ -1,0 +1,14 @@
+/* Pass-128, experiment T2. EVIDENCE ONLY -- not applied to the live site,
+   loaded only by exp-T2-probe.mjs via page.addStyleTag() inside a headless
+   Chrome instance driven by this script, and only against
+   https://www.micahjonesconsulting.com/. Exact selector/declaration text as
+   given in the task's Neutralizer(css) field -- not rewritten. Syncs the
+   nav .is-scrolled rule and four inline link/figure classes to the same
+   duration/curve as the pre-existing, untagged root world-crossfade
+   transition already live at app/globals.css ~line 1246
+   (background-color/color 0.7s cubic-bezier(0.16,1,0.3,1) on [data-mode="cw"]),
+   per app/globals.css line 3881's own precedent for this exact duration/curve
+   pair ("motion-ok: matches the PRE-EXISTING WorldSwitcher root crossfade").
+   Never loaded by the live site; injected only inside this test script's own
+   puppeteer page. */
+:is([data-mode="cw"]) .cw-nav.is-scrolled, [data-mode="cw"] .cw-mlink, [data-mode="cw"] .cw-section-cta, [data-mode="cw"] .cw-offer__packages-link, [data-mode="cw"] .cw-exits__co, [data-mode="cw"] .cw-exits__val { transition: background 0.7s cubic-bezier(0.16,1,0.3,1) !important, color 0.7s cubic-bezier(0.16,1,0.3,1) !important; } /* motion-ok: matches the PRE-EXISTING WorldSwitcher root crossfade (app/globals.css ~line 1246, 0.7s cubic-bezier(0.16,1,0.3,1)) -- same precedent as globals.css line 3881; test-only file, never shipped */

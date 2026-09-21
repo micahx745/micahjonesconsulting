@@ -1,0 +1,327 @@
+=== condition=baseline run=1 ===
+url=https://www.micahjonesconsulting.com/
+viewport=390x844 dpr=3 mobile=true touch=true
+cpuThrottle=4
+target=[data-scroll-probe-target="1"]
+gesture=manual-CDP-touch x=195 y=650 speed=1200px/s
+gestureCount=1
+scrollDurationMs=4050.6
+pointerEventsRuleInjected=false
+pointerEventsAtGesturePoint=auto
+traceEventCount=41198
+invalidationEventCounts={"ScheduleStyleRecalculation":152,"StyleInvalidatorInvalidationTracking":13,"StyleRecalcInvalidationTracking":2632}
+expandedInvalidationCount=2797
+UpdateLayoutTree count=152
+UpdateLayoutTree total ms=621.64
+Invalidation groups top 20:
+1. count=736 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:nS:1 | events=StyleRecalcInvalidationTracking
+2. count=712 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=StyleRecalcInvalidationTracking
+3. count=168 | reason=Animation | node=P class='cw-exits__co' | stack=(none) | events=StyleRecalcInvalidationTracking
+4. count=112 | reason=Animation | node=P class='cw-exits__co' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+5. count=106 | reason=Animation | node=P class='cw-exits__val' | stack=(none) | events=StyleRecalcInvalidationTracking
+6. count=105 | reason=Animation | node=A class='cw-mlink' | stack=(none) | events=StyleRecalcInvalidationTracking
+7. count=84 | reason=Animation | node=A class='cw-mlink' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+8. count=77 | reason=Animation | node=P class='cw-exits__val' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+9. count=64 | reason=(none) | node=(none) | stack=(none) | events=ScheduleStyleRecalculation
+10. count=52 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=ScheduleStyleRecalculation
+11. count=44 | reason=Animation | node=SPAN class='cw-rec__line' | stack=(none) | events=StyleRecalcInvalidationTracking
+12. count=42 | reason=Animation | node=P class='cw-exits__val cw-exits__val--undisclosed' | stack=(none) | events=StyleRecalcInvalidationTracking
+13. count=42 | reason=Animation | node=SPAN class='cw-rec__line' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+14. count=35 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=(none) | events=StyleRecalcInvalidationTracking
+15. count=35 | reason=Animation | node=A class='cw-section-cta' | stack=(none) | events=StyleRecalcInvalidationTracking
+16. count=28 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+17. count=28 | reason=Animation | node=A class='cw-section-cta' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+18. count=28 | reason=Animation | node=P class='cw-exits__val cw-exits__val--undisclosed' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+19. count=25 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=ScheduleStyleRecalculation
+20. count=24 | reason=Control | node=DIV | stack=(none) | events=StyleRecalcInvalidationTracking
+UpdateLayoutTree events over 5 ms:
+1. durationMs=15.776 | elementCount=197 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.573
+2. durationMs=13.323 | elementCount=146 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=9.019
+3. durationMs=12.89 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.413
+4. durationMs=14.865 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=1.235
+5. durationMs=13.867 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=17.627
+6. durationMs=12.474 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.378
+7. durationMs=14.474 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.872
+8. durationMs=13.453 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.582
+9. durationMs=14.683 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.875
+10. durationMs=13.156 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.607
+11. durationMs=15.218 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.883
+12. durationMs=12.075 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.399
+13. durationMs=13.057 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.504
+14. durationMs=11.508 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.403
+15. durationMs=12.783 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=24.131
+16. durationMs=13.074 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.421
+17. durationMs=13.314 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.871
+18. durationMs=11.078 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.21
+19. durationMs=12.317 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.516
+20. durationMs=12.224 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.391
+21. durationMs=12.699 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=22.762
+22. durationMs=14.924 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.635
+23. durationMs=11.704 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=35.356
+24. durationMs=10.87 | elementCount=226 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.208
+25. durationMs=11.362 | elementCount=175 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.195
+26. durationMs=12.325 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=28.057
+27. durationMs=11.466 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.188
+28. durationMs=12.679 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=18.02
+29. durationMs=11.888 | elementCount=182 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.198
+30. durationMs=13.096 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=15.519
+31. durationMs=12.659 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.22
+32. durationMs=12.958 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=17.713
+33. durationMs=11.928 | elementCount=175 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.213
+34. durationMs=14.115 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=17.464
+35. durationMs=12.704 | elementCount=169 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.193
+36. durationMs=12.869 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=18.257
+37. durationMs=11.815 | elementCount=162 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.199
+38. durationMs=12.945 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.568
+39. durationMs=12.703 | elementCount=157 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.189
+40. durationMs=12.237 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=19.42
+41. durationMs=11.459 | elementCount=151 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.033
+42. durationMs=11.255 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=22.314
+43. durationMs=11.481 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=1.018
+44. durationMs=12.089 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.485
+45. durationMs=7.424 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.64
+
+=== condition=baseline run=2 ===
+url=https://www.micahjonesconsulting.com/
+viewport=390x844 dpr=3 mobile=true touch=true
+cpuThrottle=4
+target=[data-scroll-probe-target="1"]
+gesture=manual-CDP-touch x=195 y=650 speed=1200px/s
+gestureCount=1
+scrollDurationMs=4060.4
+pointerEventsRuleInjected=false
+pointerEventsAtGesturePoint=auto
+traceEventCount=36756
+invalidationEventCounts={"ScheduleStyleRecalculation":134,"StyleInvalidatorInvalidationTracking":13,"StyleRecalcInvalidationTracking":2155}
+expandedInvalidationCount=2302
+UpdateLayoutTree count=134
+UpdateLayoutTree total ms=600.059
+Invalidation groups top 20:
+1. count=652 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:nS:1 | events=StyleRecalcInvalidationTracking
+2. count=636 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=StyleRecalcInvalidationTracking
+3. count=96 | reason=Animation | node=A class='cw-mlink' | stack=(none) | events=StyleRecalcInvalidationTracking
+4. count=75 | reason=Animation | node=A class='cw-mlink' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+5. count=72 | reason=Animation | node=P class='cw-exits__co' | stack=(none) | events=StyleRecalcInvalidationTracking
+6. count=68 | reason=Animation | node=P class='cw-exits__co' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+7. count=55 | reason=Animation | node=P class='cw-exits__val' | stack=(none) | events=StyleRecalcInvalidationTracking
+8. count=54 | reason=(none) | node=(none) | stack=(none) | events=ScheduleStyleRecalculation
+9. count=52 | reason=Animation | node=P class='cw-exits__val' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+10. count=46 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=ScheduleStyleRecalculation
+11. count=38 | reason=Animation | node=SPAN class='cw-rec__line' | stack=(none) | events=StyleRecalcInvalidationTracking
+12. count=36 | reason=Animation | node=SPAN class='cw-rec__line' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+13. count=32 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=(none) | events=StyleRecalcInvalidationTracking
+14. count=32 | reason=Animation | node=A class='cw-section-cta' | stack=(none) | events=StyleRecalcInvalidationTracking
+15. count=25 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+16. count=25 | reason=Animation | node=A class='cw-section-cta' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+17. count=24 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=ScheduleStyleRecalculation
+18. count=21 | reason=Control | node=DIV | stack=(none) | events=StyleRecalcInvalidationTracking
+19. count=19 | reason=Animation | node=DIV class='cw-js-reveals' | stack=(none) | events=StyleRecalcInvalidationTracking
+20. count=19 | reason=Animation | node=SPAN class='cw-exits__tick is-current' | stack=(none) | events=StyleRecalcInvalidationTracking
+UpdateLayoutTree events over 5 ms:
+1. durationMs=11.675 | elementCount=197 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.393
+2. durationMs=14.485 | elementCount=146 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=11.25
+3. durationMs=13.351 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.596
+4. durationMs=12.75 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=1.394
+5. durationMs=14.106 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.086
+6. durationMs=14.594 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.395
+7. durationMs=14.294 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=17.177
+8. durationMs=14.117 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.392
+9. durationMs=15.174 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.354
+10. durationMs=13.072 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.399
+11. durationMs=15.128 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=19.523
+12. durationMs=14.57 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.221
+13. durationMs=16.34 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=19.183
+14. durationMs=17.406 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.594
+15. durationMs=17.622 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=33.206
+16. durationMs=15.351 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.608
+17. durationMs=16.34 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=18.078
+18. durationMs=14.123 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.59
+19. durationMs=14.305 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.859
+20. durationMs=14.318 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.394
+21. durationMs=12.505 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.075
+22. durationMs=13.923 | elementCount=226 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.199
+23. durationMs=13.518 | elementCount=175 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.208
+24. durationMs=13.522 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.924
+25. durationMs=12.862 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.204
+26. durationMs=13.108 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=31.072
+27. durationMs=13.902 | elementCount=182 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.219
+28. durationMs=14.561 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=33.735
+29. durationMs=15.024 | elementCount=176 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.202
+30. durationMs=17.235 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=32.588
+31. durationMs=19.562 | elementCount=167 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.383
+32. durationMs=16.905 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=27.906
+33. durationMs=13.199 | elementCount=159 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.195
+34. durationMs=13.917 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=19.566
+35. durationMs=13.913 | elementCount=152 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.196
+36. durationMs=13.489 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=18.092
+37. durationMs=12.859 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.639
+38. durationMs=13.341 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.243
+39. durationMs=7.682 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.81
+
+=== condition=pointer-events-none run=1 ===
+url=https://www.micahjonesconsulting.com/
+viewport=390x844 dpr=3 mobile=true touch=true
+cpuThrottle=4
+target=[data-scroll-probe-target="1"]
+gesture=manual-CDP-touch x=195 y=650 speed=1200px/s
+gestureCount=1
+scrollDurationMs=3958.4
+pointerEventsRuleInjected=true
+pointerEventsAtGesturePoint=none
+traceEventCount=40857
+invalidationEventCounts={"ScheduleStyleRecalculation":150,"StyleInvalidatorInvalidationTracking":13,"StyleRecalcInvalidationTracking":2590}
+expandedInvalidationCount=2753
+UpdateLayoutTree count=150
+UpdateLayoutTree total ms=540.709
+Invalidation groups top 20:
+1. count=762 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:nS:1 | events=StyleRecalcInvalidationTracking
+2. count=736 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=StyleRecalcInvalidationTracking
+3. count=124 | reason=Animation | node=P class='cw-exits__co' | stack=(none) | events=StyleRecalcInvalidationTracking
+4. count=108 | reason=Animation | node=A class='cw-mlink' | stack=(none) | events=StyleRecalcInvalidationTracking
+5. count=100 | reason=Animation | node=P class='cw-exits__co' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+6. count=84 | reason=Animation | node=A class='cw-mlink' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+7. count=84 | reason=Animation | node=P class='cw-exits__val' | stack=(none) | events=StyleRecalcInvalidationTracking
+8. count=72 | reason=Animation | node=P class='cw-exits__val' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+9. count=62 | reason=(none) | node=(none) | stack=(none) | events=ScheduleStyleRecalculation
+10. count=52 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=ScheduleStyleRecalculation
+11. count=44 | reason=Animation | node=SPAN class='cw-rec__line' | stack=(none) | events=StyleRecalcInvalidationTracking
+12. count=44 | reason=Animation | node=SPAN class='cw-rec__line' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+13. count=36 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=(none) | events=StyleRecalcInvalidationTracking
+14. count=36 | reason=Animation | node=A class='cw-section-cta' | stack=(none) | events=StyleRecalcInvalidationTracking
+15. count=31 | reason=Animation | node=P class='cw-exits__val cw-exits__val--undisclosed' | stack=(none) | events=StyleRecalcInvalidationTracking
+16. count=28 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+17. count=28 | reason=Animation | node=A class='cw-section-cta' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+18. count=25 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=ScheduleStyleRecalculation
+19. count=25 | reason=Animation | node=P class='cw-exits__val cw-exits__val--undisclosed' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+20. count=24 | reason=Control | node=DIV | stack=(none) | events=StyleRecalcInvalidationTracking
+UpdateLayoutTree events over 5 ms:
+1. durationMs=11.281 | elementCount=197 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.38
+2. durationMs=10.681 | elementCount=146 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=11.509
+3. durationMs=12.315 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.574
+4. durationMs=10.076 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.975
+5. durationMs=11.061 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.092
+6. durationMs=10.074 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.224
+7. durationMs=11.485 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.491
+8. durationMs=10.439 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.382
+9. durationMs=12.708 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.789
+10. durationMs=10.04 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.212
+11. durationMs=10.88 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.416
+12. durationMs=10.472 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.387
+13. durationMs=10.636 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.484
+14. durationMs=10.513 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.37
+15. durationMs=11.629 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=22.654
+16. durationMs=10.687 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.394
+17. durationMs=11.407 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=22.121
+18. durationMs=11.292 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.389
+19. durationMs=11.301 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=22.841
+20. durationMs=11.081 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.224
+21. durationMs=10.939 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.275
+22. durationMs=10.256 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.379
+23. durationMs=8.884 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.852
+24. durationMs=10.689 | elementCount=226 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.026
+25. durationMs=9.34 | elementCount=175 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.198
+26. durationMs=11.518 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=30.796
+27. durationMs=10.058 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.033
+28. durationMs=11.507 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=19.665
+29. durationMs=10.261 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.032
+30. durationMs=10.878 | elementCount=146 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=16.229
+31. durationMs=11.18 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.181
+32. durationMs=11.632 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=17.846
+33. durationMs=10.464 | elementCount=176 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.031
+34. durationMs=11.095 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=18.954
+35. durationMs=11.127 | elementCount=171 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.188
+36. durationMs=11.471 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.083
+37. durationMs=10.48 | elementCount=165 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.185
+38. durationMs=11.053 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.327
+39. durationMs=11.904 | elementCount=160 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.03
+40. durationMs=10.902 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.903
+41. durationMs=11.798 | elementCount=154 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.027
+42. durationMs=11.052 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.652
+43. durationMs=11.058 | elementCount=149 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.218
+44. durationMs=11.664 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.548
+45. durationMs=10.278 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.604
+46. durationMs=7.529 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.666
+
+=== condition=pointer-events-none run=2 ===
+url=https://www.micahjonesconsulting.com/
+viewport=390x844 dpr=3 mobile=true touch=true
+cpuThrottle=4
+target=[data-scroll-probe-target="1"]
+gesture=manual-CDP-touch x=195 y=650 speed=1200px/s
+gestureCount=1
+scrollDurationMs=3915
+pointerEventsRuleInjected=true
+pointerEventsAtGesturePoint=none
+traceEventCount=40387
+invalidationEventCounts={"ScheduleStyleRecalculation":147,"StyleInvalidatorInvalidationTracking":13,"StyleRecalcInvalidationTracking":2562}
+expandedInvalidationCount=2722
+UpdateLayoutTree count=147
+UpdateLayoutTree total ms=548.08
+Invalidation groups top 20:
+1. count=753 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:nS:1 | events=StyleRecalcInvalidationTracking
+2. count=729 | reason=Inline CSS style declaration was mutated | node=DIV class='cw-split__char' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=StyleRecalcInvalidationTracking
+3. count=128 | reason=Animation | node=P class='cw-exits__co' | stack=(none) | events=StyleRecalcInvalidationTracking
+4. count=108 | reason=Animation | node=A class='cw-mlink' | stack=(none) | events=StyleRecalcInvalidationTracking
+5. count=96 | reason=Animation | node=P class='cw-exits__co' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+6. count=86 | reason=Animation | node=P class='cw-exits__val' | stack=(none) | events=StyleRecalcInvalidationTracking
+7. count=81 | reason=Animation | node=A class='cw-mlink' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+8. count=69 | reason=Animation | node=P class='cw-exits__val' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+9. count=60 | reason=(none) | node=(none) | stack=(none) | events=ScheduleStyleRecalculation
+10. count=51 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=ScheduleStyleRecalculation
+11. count=44 | reason=Animation | node=SPAN class='cw-rec__line' | stack=(none) | events=StyleRecalcInvalidationTracking
+12. count=42 | reason=Animation | node=SPAN class='cw-rec__line' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+13. count=36 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=(none) | events=StyleRecalcInvalidationTracking
+14. count=36 | reason=Animation | node=A class='cw-section-cta' | stack=(none) | events=StyleRecalcInvalidationTracking
+15. count=32 | reason=Animation | node=P class='cw-exits__val cw-exits__val--undisclosed' | stack=(none) | events=StyleRecalcInvalidationTracking
+16. count=27 | reason=Animation | node=A class='cw-mlink cw-offer__packages-link' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+17. count=27 | reason=Animation | node=A class='cw-section-cta' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+18. count=25 | reason=(none) | node=(none) | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:rt:1 | events=ScheduleStyleRecalculation
+19. count=24 | reason=Animation | node=P class='cw-exits__val cw-exits__val--undisclosed' | stack=https://www.micahjonesconsulting.com/_next/static/chunks/14u.~01e7g0-p.js?dpl=dpl_Bk18zCfBqPb2DjTrkozL2dBs7git:(anonymous):1 | events=StyleRecalcInvalidationTracking
+20. count=24 | reason=Control | node=DIV | stack=(none) | events=StyleRecalcInvalidationTracking
+UpdateLayoutTree events over 5 ms:
+1. durationMs=10.985 | elementCount=197 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.38
+2. durationMs=10.568 | elementCount=146 | nearestReason=Animation | nearestNode=A class='cw-door cw-door--sell cw-reveal is-in' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=11.837
+3. durationMs=10.457 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.39
+4. durationMs=10.05 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=1.207
+5. durationMs=10.493 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=24.039
+6. durationMs=11.667 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.228
+7. durationMs=12.54 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=24.062
+8. durationMs=10.245 | elementCount=151 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.227
+9. durationMs=11.068 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=24.223
+10. durationMs=9.867 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.219
+11. durationMs=10.86 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=24.26
+12. durationMs=10.509 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.207
+13. durationMs=11.865 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.709
+14. durationMs=12.899 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.206
+15. durationMs=11.578 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.031
+16. durationMs=11.62 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.23
+17. durationMs=12.589 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=21.061
+18. durationMs=10.564 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.381
+19. durationMs=11.885 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=22.464
+20. durationMs=10.498 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.379
+21. durationMs=12.197 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.435
+22. durationMs=11.464 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.832
+23. durationMs=9.271 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.477
+24. durationMs=12.088 | elementCount=226 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.027
+25. durationMs=9.699 | elementCount=175 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.191
+26. durationMs=11.257 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=29.963
+27. durationMs=10.692 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.182
+28. durationMs=11.096 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=19.274
+29. durationMs=10.432 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.023
+30. durationMs=11.128 | elementCount=146 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=18.328
+31. durationMs=11.628 | elementCount=180 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.033
+32. durationMs=12.474 | elementCount=151 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=18.768
+33. durationMs=11.507 | elementCount=176 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.192
+34. durationMs=11.908 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=17.655
+35. durationMs=11.841 | elementCount=171 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.039
+36. durationMs=13.295 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=19.901
+37. durationMs=11.48 | elementCount=165 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.188
+38. durationMs=12.683 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.454
+39. durationMs=11.93 | elementCount=158 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.189
+40. durationMs=12.502 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.489
+41. durationMs=10.686 | elementCount=153 | nearestReason=Inline CSS style declaration was mutated | nearestNode=DIV class='cw-split__char' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.182
+42. durationMs=11.51 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=20.516
+43. durationMs=11.31 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=0.58
+44. durationMs=11.148 | elementCount=148 | nearestReason=Control | nearestNode=DIV | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=23.305
+45. durationMs=7.282 | elementCount=148 | nearestReason=Animation | nearestNode=A class='cw-section-cta' | nearestEvent=StyleRecalcInvalidationTracking | deltaMs=1.196
+

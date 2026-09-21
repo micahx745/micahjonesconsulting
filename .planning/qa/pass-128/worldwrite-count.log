@@ -1,0 +1,12 @@
+gestures: 1
+raw style-attribute mutation records on [data-mode=cw]: 6
+distinct --cw-bg values seen in those records: 2
+first 30 style writes (t ms, bg):
+  929 #ECE3D0
+  929 #ECE3D0
+  929 #ECE3D0
+  2397 #9E3C25
+  2397 #9E3C25
+  2397 #9E3C25
+window.innerHeight change samples (mobile URL-bar collapse signal): 0
+IntersectionObserver instances created & their callback firing counts:

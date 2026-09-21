@@ -1,0 +1,229 @@
+Pass-128, experiment T3 -- "GSAP/ScrollTrigger chunk blocking" (scroll-not-smooth / colour-switch-glitchy)
+EVIDENCE ONLY. Live site only: https://www.micahjonesconsulting.com/
+(deploy dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, re-confirmed live at experiment
+start, see NEUTRALIZER RE-CONFIRMATION below). Nothing under app/,
+components/, lib/, content/, public/, or scripts/ was read or edited to run
+this experiment; only files inside .planning/qa/pass-128/ were created. Ran
+alone, sequentially (no other investigator process running at the same
+time), so these timings are clean of cross-process contention.
+
+CLAIM UNDER TEST (as given):
+  The GSAP+ScrollTrigger chunk (14u.~01e7g0-p.js, ~122KB decoded, backs only
+  SplitReveal.tsx) loads unconditionally on the home route and is the
+  single largest attributed main-thread cost during the top-to-Audit
+  scroll. Blocking it removes that script cost from the scroll entirely,
+  removes SplitReveal's concurrent char-animation from the Audit section
+  during its own crossfade (candidate contributor to "glitchy" there), and
+  should also fix T1's words-slow symptom as a side effect. PREDICTED
+  METRIC MOVEMENT: UpdateLayoutTree / FunctionCall / EventDispatch totals
+  and % frames >33ms should all DROP with GSAP blocked (baseline given:
+  UpdateLayoutTree 485-533ms, FunctionCall 372-402ms, EventDispatch
+  315-359ms, ~17% frames >33ms, p95 interval 33.4ms at cpu=4).
+
+NEUTRALIZER RE-CONFIRMATION (required before running, per task -- chunk
+names are content-hashed per deploy):
+  - Fetched https://www.micahjonesconsulting.com/ fresh: still serves
+    dpl_Bk18zCfBqPb2DjTrkozL2dBs7git (same deploy the substring was minted
+    against; live-index.html, this folder).
+  - Re-fetched the chunk fresh (not reusing the earlier investigator's
+    cached copy): live-chunk-14u.js, 122,034 bytes -- byte-identical to the
+    cached chunks/2_14u.~01e7g0-p.js from the earlier chunk-map pass.
+  - grep -i "gsap" -> 1 match, grep "ScrollTrigger" -> 1 match, plus
+    gsapAllow/gsapVersions symbol names. Confirmed against the LIVE bytes,
+    not assumed. Substring "14u.~01e7g0-p" is valid for this experiment.
+
+INSTRUMENT: the shared, unmodified scroll-probe.mjs (--block flag, already
+built-in) for the primary metric, its --trace output for the
+UpdateLayoutTree/FunctionCall/EventDispatch totals. Two new scratch
+diagnostics written for this experiment only (same pattern as the existing
+debug-gesture*.mjs): exp-T3-screencast.mjs (screencast-scroll.mjs + --block
++ --out-dir, for the visual colour-switch cross-check) and
+exp-T3-block-request-count.mjs (counts actual network requests matching
+--block, to test whether a "runaway loop" finding below is a request-retry
+storm or JS-only). exp-T3-contact-sheet.py is build-contact-sheets.py
+parameterized to take a frames dir + prefix instead of a fixed "frames" dir.
+
+COMMANDS RUN:
+  node scroll-probe.mjs --cpu 4 --runs 3 --trace exp-T3-trace-baseline.json --out exp-T3-baseline.jsonl
+  node scroll-probe.mjs --cpu 4 --runs 3 --block "14u.~01e7g0-p" --trace exp-T3-trace-variant.json --out exp-T3-variant.jsonl
+  node exp-T3-block-request-count.mjs "14u.~01e7g0-p" > exp-T3-request-count.log
+  node exp-T3-screencast.mjs --cpu 4 --out-dir frames-t3-baseline
+  node exp-T3-screencast.mjs --cpu 4 --block "14u.~01e7g0-p" --out-dir frames-t3-variant
+  python exp-T3-contact-sheet.py frames-t3-baseline exp-T3-baseline
+  python exp-T3-contact-sheet.py frames-t3-variant exp-T3-variant
+
+=== BASELINE (no block), n=3, cpu=4 ===
+run | frames | p95ms | maxMs | >33ms | >50ms | worldSwitches | scrollMs | gestures | UpdateLayoutTree | FunctionCall | EventDispatch
+  1 |   280  | 33.4  | 33.4  |  45   |   0   |      2        |  3933.6  |    1     |     501.88ms     |   397.42ms   |   337.99ms
+  2 |   309  | 33.4  | 33.4  |  46   |   0   |      2        |  4464.4  |    2     |     474.44ms     |   385.13ms   |   319.55ms
+  3 |   281  | 33.4  | 33.5  |  46   |   0   |      2        |  3963.8  |    1     |     483.68ms     |   385.48ms   |   328.61ms
+median: p95=33.4ms, >33ms=46 frames (~15.9% of ~290), >50ms=0, worldSwitches=2,
+  UpdateLayoutTree=483.68ms, FunctionCall=385.48ms, EventDispatch=328.61ms.
+consoleErrors: [] on all 3 runs. Matches the task's own quoted baseline
+range closely (UpdateLayoutTree 474-502ms vs quoted 485-533ms; FunctionCall
+385-397ms vs quoted 372-402ms; EventDispatch 320-338ms vs quoted 315-359ms
+-- these are fresh runs, not a repeat of the same trace).
+Raw: exp-T3-trace-baseline.run{1,2,3}.json (large CDP traces),
+exp-T3-baseline.jsonl (per-run + median summary).
+
+=== VARIANT (--block "14u.~01e7g0-p"), n=3, cpu=4 ===
+run | frames | p95ms | maxMs | >33ms | >50ms | worldSwitches | scrollMs | gestures | UpdateLayoutTree | FunctionCall | EventDispatch
+  1 |   398  | 100   | 100.1 |  71   |  70   |      0        |  8913.5  |    2     |       0.00ms     |  8262.04ms   |    19.30ms
+  2 |   399  | 100   | 100.1 |  72   |  71   |      0        |  8918.2  |    2     |       0.00ms     |  8289.41ms   |    16.94ms
+  3 |   413  | 100   | 100.1 |  70   |  70   |      0        |  8912.9  |    2     |       0.00ms     |  8280.63ms   |    18.19ms
+median: p95=100ms, >33ms=71 frames (~17.6% of ~403), >50ms=70,
+  worldSwitches=0, UpdateLayoutTree=0.00ms, FunctionCall=8280.63ms,
+  EventDispatch=18.19ms. consoleErrors: [] on all 3 runs (the failed chunk
+  request produces a console-level "Failed to load resource: net::ERR_FAILED"
+  message, not an uncaught page error -- confirmed via
+  exp-T3-block-request-count.mjs, which listens to both).
+Raw: exp-T3-trace-variant.run{1,2,3}.json (44-54MB each -- FunctionCall
+event count alone is 115,417 in run1), exp-T3-variant.jsonl.
+
+=== WHAT'S ACTUALLY HAPPENING (mechanism, disclosed) ===
+Decomposed exp-T3-trace-variant.run1.json's FunctionCall events by
+functionName+url+line: 58,042 calls (7,835.8ms of the run's 8,262.04ms
+FunctionCall total) are one minified function ("O") in a DIFFERENT chunk --
+0xxxi2p_-v-e~.js (227,315 bytes, the largest chunk on the page). This is
+NOT the blocked chunk and was flagged in the earlier S1 lens as "no string
+match found for any named suspect component" -- an unattributed chunk. All
+3 variant runs show the same function, same chunk, same order-of-magnitude
+call count and duration (58,042/8262ms run1; comparable in run2/run3 by the
+matching FunctionCall totals), i.e. this is a stable, reproducible failure
+mode of blocking 14u.~01e7g0-p, not a one-off fluke.
+exp-T3-block-request-count.mjs confirms the blocked chunk is requested
+exactly ONCE per page load (matchCountTotal: 1) and aborts with
+net::ERR_FAILED -- there is no network-level retry storm. The 58,042-call
+loop is JS-side: something in the unrelated 227KB chunk spins tightly,
+apparently reacting to the missing gsap/ScrollTrigger module (a poll/retry
+loop waiting on a global or a ref that never initializes because the
+blocked chunk's module evaluation never completes), rather than a request
+being re-issued. Root-causing exactly which line in that chunk is doing
+this is out of scope for this A/B pass (evidence only; would need reading
+app/components source, which this phase forbids).
+Separately, UpdateLayoutTree and Paint are literally 0 events (0.00ms) in
+all 3 variant traces -- the page never re-lays-out or repaints anything for
+the ~8.9s of the scroll window once the loop starts. This matches the
+screencast: frameCount for the variant screencast run is 84 painted frames
+over 9,156ms of wall time, versus 177 painted frames over 3,953ms for the
+baseline screencast run -- roughly half the painted frames spread over
+more than double the time. The page visually freezes while the CPU spins.
+
+=== VISUAL CROSS-CHECK (colour switch), one baseline + one variant capture ===
+Baseline (frames-t3-baseline/, exp-T3-baseline-switch-2.png, the bone(cream,
+#ECE3D0)->terracotta(#9E3C25) switch entering "The Audit"): the sheet shows
+a genuine multi-frame CSS crossfade -- the tile background visibly blends
+from cream to rust over roughly 15-20 consecutive frames (~2711-2977ms),
+overlapping directly with the "TWO WEEKS TO KNOW WHAT TO FIX FIRST"
+SplitReveal char-cascade still completing mid-crossfade (partial text
+"TWO WEEKS TO KNOW WHAT TO Fi..." visible at 2888-2943ms while the
+background is still mid-blend) -- visually corroborating the claim's
+"concurrent char-animation during its own crossfade" mechanism as a
+plausible contributor to a glitchy read there.
+Variant (frames-t3-variant/, exp-T3-variant-scroll-all.png): worldSwitches
+recorded = 0 (the [data-mode="cw"] wrapper's --cw-bg inline custom property
+never changes, per the MutationObserver instrument), yet the SCREENSHOTS
+themselves show a hard, un-blended cut between a dark teal section and the
+rust "Audit" section -- no visible crossfade at all, consistent with
+WorldSwitcher's own crossfade-writing JS not running (it is a different,
+small chunk, 14-gvgs7j.1p9.js, not the blocked one, but apparently
+starved of main-thread time by the 8+ second loop, or itself dependent on
+something the blocked chunk's failure disrupts) while each section's own
+static/base background colour still renders immediately, hard-cut, from
+CSS alone. This is a harder cut than baseline's blended crossfade, not a
+smoother one. The "TWO WEEKS TO..." heading and "THE AUDIT $2,500" content
+DO eventually render at full opacity in this condition (by ~5388-5738ms in
+the sampled frames) -- ruling out "the offer heading becomes permanently
+invisible" as a side effect, but not supporting "smoother" either.
+Raw: frames-t3-baseline/, frames-t3-variant/ (manifest.json,
+world-switches.json, heading-reveals.json, run-summary.json, PNG frames
+each), exp-T3-baseline-switch-1.png, exp-T3-baseline-switch-2.png,
+exp-T3-baseline-scroll-all.png, exp-T3-variant-scroll-all.png (no
+exp-T3-variant-switch-*.png -- zero switch events to render, itself a
+finding, logged by exp-T3-contact-sheet.py).
+
+=== NOISE FLOOR ===
+Using this experiment's own instrument (scroll-probe.mjs, --trace, cpu=4,
+same as the task's quoted calibration): intervalMsP95 spread across the 3
+baseline runs = 0.0ms (33.4/33.4/33.4, matching the task's stated
+calibration exactly); framesOver33ms spread = 1 frame (45/46/46);
+framesOver50ms spread = 0 (0/0/0 -- baseline NEVER produces a frame over
+50ms across any of the pass-128 calibration or baseline runs seen so far).
+UpdateLayoutTree/FunctionCall/EventDispatch totals were not part of the
+task's quoted noise-floor calibration, but the 3 baseline runs here bound
+them similarly tightly: UpdateLayoutTree 474.44-501.88ms (27ms spread),
+FunctionCall 385.13-397.42ms (12ms spread), EventDispatch 319.55-337.99ms
+(18ms spread).
+
+=== MOVEMENT vs NOISE FLOOR, PREDICTED DIRECTION ===
+Predicted: all three trace totals and the >33ms frame share DROP; p95
+interval stays low; colour switch reads smoother; offer-h2 time-to-visible
+collapses (T1 cross-confirmation).
+Actual, all 3 runs, same direction each time (fully reproducible, not
+noise):
+  UpdateLayoutTree: 483.68ms median -> 0.00ms median. Moved DOWN, but this
+    is not "GSAP's layout cost removed" -- it is "nothing lays out or
+    paints at all because the main thread is pinned by an unrelated loop,"
+    which is a worse outcome, not a better one, and is not what the claim's
+    own reasoning predicted (it predicted GSAP's specific layout-tree cost
+    would disappear while normal scroll-driven layout continued).
+  FunctionCall: 385.48ms median -> 8280.63ms median. Moved UP by ~21.5x,
+    the opposite of predicted, on all 3 runs individually (8262/8289/8281
+    all far above all 3 baseline values 385-397, no overlap whatsoever).
+  EventDispatch: 328.61ms median -> 18.19ms median. Moved down, but for the
+    same reason as UpdateLayoutTree (the main thread has no time left to
+    dispatch/process events, not because GSAP's own event-handling cost
+    was cleanly removed) -- consistent with the loop starving everything
+    else, not a clean improvement.
+  Frames >33ms: 46/290 (~15.9%) median -> 71/403 (~17.6%) median. Modest
+    increase, wrong direction, though small relative to the other metrics.
+  Frames >50ms: 0 median -> 70 median. 0 in every single baseline run ever
+    captured in this pass (calibration + T1 + T2 + this baseline) vs ~70 in
+    every single variant run -- an unambiguous, maximal-contrast movement
+    in the WRONG direction, far beyond any noise floor (the noise floor for
+    this metric, from every other measurement in this folder, is exactly
+    0).
+  World switches: 2 -> 0 on all 3 runs. The colour-switch mechanism does
+    not merely "read smoother" under the block -- it stops firing
+    altogether (per the JS instrument) while the screenshots show a harder,
+    un-blended cut than baseline.
+  Scroll wall time: ~3950-4460ms -> ~8910-8920ms, roughly doubled, and
+    gestureCount stabilizes at 2 on all 3 variant runs (vs 1-2 in
+    baseline) -- consistent with CDP command round-trips themselves being
+    delayed by the pinned main thread.
+
+VERDICT: not_causal.
+The claim predicted that blocking the GSAP/ScrollTrigger chunk would
+reduce main-thread cost during the scroll (UpdateLayoutTree, FunctionCall,
+EventDispatch all down; frames >33ms down) and produce a smoother colour
+switch. On all 3 runs, with the neutralizer re-confirmed valid against the
+live deploy immediately before running, the metric did not move in the
+predicted direction -- it moved sharply in the opposite direction on the
+single largest and most decisive sub-metric (FunctionCall: ~21.5x UP, not
+down; frames >50ms: 0 -> ~70, the starkest possible contrast given 0 is the
+value every other measurement in this folder has ever produced for that
+metric) and the colour-switch mechanism did not become smoother -- it
+stopped firing as a JS-driven crossfade entirely, replaced by a harder,
+un-blended cut in the screenshots. Per the task's own verdict rule
+("'not_causal' if it does not move [in the predicted direction beyond
+noise]"), this is a clean not_causal call: the metric moved, dramatically,
+but away from the prediction, not toward it, consistently on all 3 runs.
+This does not, by itself, refute the separate, already-established premise
+that GSAP+ScrollTrigger consumes real main-thread time during normal
+(unblocked) operation -- S1's read-only trace attribution and T1's own
+CSS-only neutralizer (which left GSAP mounted and running, and cleanly
+showed a ~30x improvement in the offer-heading metric with zero side
+effects) already support that narrower premise on their own evidence. What
+this experiment shows is that BLOCKING THE CHUNK OVER THE NETWORK -- the
+specific neutralizer this claim proposed, and by extension "just strip
+GSAP out" as a naive fix -- is not a clean way to test or realize that
+premise on this live deploy: some other, unattributed chunk
+(0xxxi2p_-v-e~.js) depends on the blocked chunk in a way that produces a
+58,000-call retry/poll loop consuming 7.8+ of the scroll window's 8.9
+seconds, freezes layout/paint entirely for that window, and disables the
+world-switch crossfade rather than smoothing it. Any future fix aimed at
+GSAP's scroll cost should follow T1's pattern (neutralize the visible
+effect while leaving the module mounted, or make the removal conditional
+in the actual source so the dependency in 0xxxi2p_-v-e~.js is resolved
+correctly) rather than a network-level block -- but changing source is out
+of scope for this evidence-only phase.

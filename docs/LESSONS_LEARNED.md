@@ -1212,6 +1212,21 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   Fable edits (Recommended)": DeepSeek v4-pro drafts each post with the locked post 1 as the style model and the lint
   as a gate; Fable does ONE edit pass per post to bring it to post 1's voice; Astra and DeepSeek check it against "does
   this kill it". Topics: landing pages (post 2) and selling as a builder (post 3), the two Cut I intents with readers.
+- **POSTS 2 AND 3 LOCKED; THE LANDING-PAGE POST BECOMES AN EXEMPLAR PAGE, REUSABLE FOR ORDANI, IN A NEW CHAT —
+  operator 2026-09-21 (popups, after the v3 texts: DeepSeek drafts, two Fable edit passes, Astra and DeepSeek fixes)**.
+  POST 2 (`.planning/drafts/blog-02/POST-2-LOCKED.md`, "Why isn't my landing page converting?"), verbatim: "LOCK IT. one
+  thing tho - I want this page to look amazing. I want to spawn a new chat that starts with tons of research using
+  deepseek (claude and chatgpt give it a gameplan on where to research and what to look for). I want this page to serve
+  as the foundation for the Ordani page - be able to plug in specifics of ordani. so basically have this blogs materiall
+  be amazing but also the actual page be an exmaple of an awe inspiring amazing landing page that i can reuse for ordani
+  afterwards. This new chat will need to use deepseek ALOT and use fable and astra and chatgpt and other models for
+  quality and other things. Maybe readjust the harness to add website skills, hooks and plugins great for building a
+  great site. This will be another chat tho. For the mjconsult chat we need to transfer to another chat as well as
+  context is high". POST 3 (`.planning/drafts/blog-03/POST-3-LOCKED.md`, "How do I sell my app when I am a builder, not a
+  salesperson?"): "Lock it (Recommended)". So all three posts are LOCKED; the post-2 page is the exemplar landing page
+  (built as a reusable system with slots for Ordani's specifics), researched and built in its own chat
+  (`.planning/handoff/KICKOFF-LANDING-EXEMPLAR.md`); harness additions are proposed there by popup, repo-level only
+  (the 2026-09-20 ruling: never ~/.claude). This mjconsult chat hands off (`.planning/handoff/NEXT-SESSION-KICKOFF.md`).
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
@@ -2446,3 +2461,17 @@ the FINISHED FRAME (`.cw-reveal` transform and transition off, as reduced motion
 which injects the two pre-fix rules and passes only on exactly the three original defects. On production: two runs
 identical, 0 failures; self-test PASS with the original numbers (18px, "not a / prototype."). RULE: a geometry check
 on a page with entrance motion measures the finished frame, never whatever frame the load happens to be in.
+
+## #49 — A handoff write landed in the MAIN checkout, not the worktree (2026-09-21)
+
+**What happened:** Writing the end-of-session RESUME, the main session typed the absolute path of the main checkout
+(`C:/Users/micah/Code/micahjonesconsulting/.claude/RESUME.md`) instead of the worktree's
+(`.../.claude/worktrees/p106-live/.claude/RESUME.md`). The Write tool accepted it and replaced a tracked file on `main`
+with the word "placeholder". Caught on the next step by `git status` in the main checkout; restored with
+`git checkout -- .claude/RESUME.md` to its last commit (79534b8, 2026-09-12). That checkout's other two edits
+(`.claude/launch.json`, `next-env.d.ts`) predate this session and were left alone. Nothing else was touched.
+
+**Gate (owed, first item for the next chat, same day):** a repo-level PreToolUse hook on Write/Edit that refuses any
+path under the main checkout's root that is not under `.claude/worktrees/` when the session's cwd is a worktree, with a
+message naming the worktree path. Bite-test it: the exact write above must be refused; a write inside the worktree must
+pass. Until it exists: every absolute path in a Write/Edit is copied from `pwd` output, never typed.

@@ -1,0 +1,8 @@
+# Raw Chrome traces and screencast frames: hundreds of MB, reproducible with the probes here. Summaries are committed.
+*.run[0-9].json
+*-trace*.json
+trace*.json
+confirm-*.json
+word-timing-raw*.json
+frames*/
+chunks/

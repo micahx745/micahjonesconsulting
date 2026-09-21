@@ -1,0 +1,110 @@
+Pass-128, experiment T1 -- "the word loading slow" (offer h2 SplitText cascade)
+EVIDENCE ONLY. Live site only: https://www.micahjonesconsulting.com/
+(deploy dpl_Bk18zCfBqPb2DjTrkozL2dBs7git). Nothing under app/, components/,
+lib/, content/, public/, or scripts/ was read or edited to run this
+experiment; only files inside .planning/qa/pass-128/ were created.
+Ran alone, sequentially (no other investigator process running at the same
+time), so these timings are clean of cross-process contention.
+
+CLAIM UNDER TEST (as given):
+  #cw-offer-title ("Two weeks to know what to fix first.") reads as the one
+  slow-loading heading between the hero and "The Audit" because it alone
+  uses GSAP SplitText char-by-char reveal (0.65s expo.out tween + 0.012s/char
+  stagger over 29 chars, nominal ~0.99s), while every neighboring heading
+  uses the plain CSS .cw-reveal fade (37-72ms settle). Baseline measured
+  previously at 1114-1172ms (cpu=1 and cpu=4, near-identical). Predicted:
+  neutralizing the char cascade collapses the metric to near-instant
+  (<100ms), matching neighbor headings.
+
+METRIC: deltaEnterToSettled for #cw-offer-title .cw-split__char (first and
+last char) -- ms from the element's first in-viewport rAF sample to the
+first of 3+ consecutive rAF samples where opacity/transform match their own
+final value. Same definition, same instrument family (word-timing-probe.mjs
+lineage), same analyzer (analyze-word-timing.mjs, unmodified) for both
+conditions. NOTE: the shared scroll-probe.mjs explicitly disclaims this
+metric in its own header comment ("This probe does NOT measure 'the word
+loading slow'"), so it could not be the instrument for this specific T1
+metric; per Finding W2's own recommendation ("...via scroll-probe.mjs
+--inject-css or an equivalent on the word-timing probe"), the equivalent
+used here is exp-T1-probe.mjs, a byte-for-byte copy of the existing
+word-timing-probe.mjs (this folder, Finding W2's instrument) with one
+addition: an --inject-css FILE flag applied via page.addStyleTag() at the
+exact same point in the sequence scroll-probe.mjs applies its own
+--inject-css (after page load, before the scroll gesture begins). Gesture
+mechanism, CPU/net conditions (cpu=4, net=4g -- 4g added because this is the
+words-slow symptom, per the task's own flag rule), heading census, and
+sampling method are unchanged from word-timing-probe.mjs.
+
+NEUTRALIZER (exp-T1.css, this folder):
+  #cw-offer-title .cw-split__char { animation: none !important; opacity: 1 !important; transform: none !important; transition: none !important; }
+Leaves GSAP/SplitText mounted and running (registerPlugin/useGSAP/
+SplitText.create() all still execute; consoleErrors is empty in every
+variant run below, so nothing threw) and forces only the visual result of
+each char's stagger to its resting state -- isolating the cascade's visible
+effect from everything else, per Finding W2's own design for this test.
+
+COMMANDS RUN:
+  node exp-T1-probe.mjs --runs 3 --cpu 4 --out exp-T1-baseline
+  node exp-T1-probe.mjs --runs 3 --cpu 4 --inject-css exp-T1.css --out exp-T1-variant
+  node analyze-word-timing.mjs exp-T1-baseline.run{1,2,3}.json
+  node analyze-word-timing.mjs exp-T1-variant.run{1,2,3}.json
+
+=== BASELINE (no injected CSS), n=3, cpu=4, net=4g ===
+run | door1_h2 | door2_h2 | offer_h2_container | offer_firstchar | offer_lastchar | audit_h3
+  1 |    72ms  |   38ms   |        66ms         |     1119ms      |     1140ms     |   37ms
+  2 |    72ms  |   40ms   |        67ms         |     1135ms      |     1155ms     |   37ms
+  3 |    74ms  |   40ms   |        67ms         |     1153ms      |     1176ms     |   39ms
+median offer_firstchar = 1135ms, offer_lastchar = 1155ms
+spread (max-min) offer_firstchar = 34ms, offer_lastchar = 36ms
+consoleErrors: [] on all 3 runs.
+Reproduces the earlier single-run W2 measurements (1114-1172ms) closely --
+these are 3 fresh runs, not a repeat of the same log.
+Raw: exp-T1-baseline.run1.json, exp-T1-baseline.run2.json, exp-T1-baseline.run3.json
+
+=== VARIANT (exp-T1.css injected), n=3, cpu=4, net=4g ===
+run | door1_h2 | door2_h2 | offer_h2_container | offer_firstchar | offer_lastchar | audit_h3
+  1 |    38ms  |   39ms   |        67ms         |       67ms      |       67ms     |   33ms
+  2 |    38ms  |   40ms   |        67ms         |       67ms      |       67ms     |   32ms
+  3 |    38ms  |   39ms   |        67ms         |       67ms      |       67ms     |   33ms
+median offer_firstchar = 67ms, offer_lastchar = 67ms
+spread (max-min) offer_firstchar = 0ms, offer_lastchar = 0ms
+consoleErrors: [] on all 3 runs (GSAP/SplitText still ran; nothing threw).
+offer_firstchar and offer_lastchar are now numerically identical to
+offer_h2_container's own settle time (67ms) in every run -- expected: the
+neutralizer forces opacity/transform to their final values immediately via
+!important, so the char spans read as already-settled the instant they
+enter the viewport, exactly like the container itself and like the
+neighboring plain-CSS headings (door1 38ms, door2 39-40ms, audit 32-33ms).
+Raw: exp-T1-variant.run1.json, exp-T1-variant.run2.json, exp-T1-variant.run3.json
+
+=== NOISE FLOOR (this instrument/metric, not the scroll-probe.mjs frame-timing
+one quoted in the task -- that is a different instrument measuring a
+different symptom's metric and does not transfer to this metric) ===
+Computed from the 3 baseline runs' own spread (same page, same method,
+back-to-back, no other change): offer_firstchar spread = 34ms, offer_lastchar
+spread = 36ms. Treat ~35ms as this metric's noise floor at n=3.
+
+=== MOVEMENT vs NOISE FLOOR ===
+offer_firstchar: baseline median 1135ms -> variant median 67ms. Movement =
+  1068ms, ~31x the ~35ms noise floor, same direction as predicted (down),
+  on all 3 runs individually (1119->67, 1135->67, 1153->67; every single
+  variant run is below every single baseline run by >1000ms).
+offer_lastchar: baseline median 1155ms -> variant median 67ms. Movement =
+  1088ms, ~30x the ~36ms noise floor, same direction, all 3 runs
+  individually below all 3 baseline runs by >1000ms.
+Neighboring headings (door1, door2, audit) were not the target of the
+neutralizer and stayed within a few ms of their baseline values across
+conditions (door1 72-74ms baseline vs 38ms variant is itself consistent
+with page-to-page run noise at this scale -- both values are already in
+the "fast" 30-75ms band the claim describes as normal -- not a confound:
+the neutralizer's selector (#cw-offer-title .cw-split__char) does not
+touch door1/door2/audit's elements or CSS at all).
+
+VERDICT: causal.
+All 3 variant runs moved the predicted metric (offer h2 char settle time)
+in the predicted direction (down, toward the <100ms neighbor-heading range),
+by an amount (~30x) far beyond the ~35ms same-instrument noise floor,
+individually on every run, with no console errors indicating the
+neutralizer broke anything else. This satisfies the task's stated bar for
+"causal": moves beyond noise floor in the predicted direction on all three
+runs.

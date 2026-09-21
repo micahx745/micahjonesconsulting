@@ -1,0 +1,44 @@
+window_ms_start | UpdateLayoutTree | Paint | Layerize | PrePaint | Layout | CompositeLayers | ScrollLayer | FunctionCall | EventDispatch | HitTest
+70176800			0.2	0.2				5.3	5.3	1.2
+70177000	2.6	1.2	1.6	2.1	0.6		0.7	7.6	3.9	1.2
+70177200	2.1	0.4	1.4	1.1			0.4	5.6	5.3	1.8
+70177400	2.4			1.9			0.3	5.0	4.5	2.0
+70177600	2.6	0.9	1.6	2.1	0.4		0.4	5.6	5.7	1.2
+70177800	68.8	33.4	6.0	4.5	1.6		0.2	43.3	33.3	1.2
+70178000	53.1	35.3	8.1	3.5	1.4		0.2	32.9	34.7	0.2
+70178200	53.1	37.1	6.6	3.9	1.6		0.4	32.7	33.7	0.5
+70178400	48.6	34.7	6.8	4.4	1.5		0.2	35.9	38.1	1.0
+70178600	6.9	10.0	3.1	1.5			0.4	6.4	5.2	0.4
+70178800	1.2	1.8	2.7	1.6			0.4	7.1	4.3	0.6
+70179000	3.1		9.1	2.5			0.1	8.7	1.8	0.2
+70179200	28.5	14.7	8.5	3.1	0.6		0.4	28.4	13.4	0.4
+70179400	57.3	39.0	6.6	5.1	1.4		0.1	37.8	35.8	0.6
+70179600	55.7	38.9	7.0	4.6	1.6		0.1	36.8	35.0	0.5
+70179800	61.8	37.9	7.0	5.0	1.5		0.5	37.9	38.1	0.4
+70180000	21.9	23.6	4.5	2.5	1.4		0.2	13.7	14.0	0.4
+70180200	1.3	3.6	0.6	0.8			0.6	5.6	3.8	1.3
+70180400			0.2	0.9			0.4	5.0	3.4	1.2
+70180600			0.0	0.8			0.3	3.8	3.0	
+70180800				0.5				1.9		
+70181000				0.1				2.3		
+70181200			0.0	0.0				2.0		
+70181400				0.5				1.1		0.6
+70181600			0.0	0.3				1.5		
+70181800								0.4		
+
+Top individual events:
+UpdateLayoutTree	start=70177950ms	dur=13.92ms
+UpdateLayoutTree	start=70177850ms	dur=11.31ms
+UpdateLayoutTree	start=70177985ms	dur=11.3ms
+UpdateLayoutTree	start=70179833ms	dur=11.09ms
+UpdateLayoutTree	start=70177814ms	dur=10.88ms
+UpdateLayoutTree	start=70177883ms	dur=10.86ms
+UpdateLayoutTree	start=70179433ms	dur=10.53ms
+UpdateLayoutTree	start=70179800ms	dur=10.49ms
+UpdateLayoutTree	start=70179766ms	dur=10.29ms
+UpdateLayoutTree	start=70178483ms	dur=10.25ms
+UpdateLayoutTree	start=70179900ms	dur=10.24ms
+UpdateLayoutTree	start=70177917ms	dur=10.09ms
+UpdateLayoutTree	start=70179867ms	dur=10.02ms
+UpdateLayoutTree	start=70178449ms	dur=9.96ms
+UpdateLayoutTree	start=70179934ms	dur=9.89ms

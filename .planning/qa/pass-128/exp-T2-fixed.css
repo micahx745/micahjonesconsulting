@@ -1,0 +1,16 @@
+/* Pass-128, experiment T2, SUPPLEMENTARY check only (see exp-T2.txt "TEST
+   ARTIFACT FOUND" section). EVIDENCE ONLY -- not applied to the live site,
+   loaded only by exp-T2-probe.mjs via page.addStyleTag() inside a headless
+   Chrome instance, only against https://www.micahjonesconsulting.com/.
+   This is exp-T2.css's same selector list and same intent (sync these
+   descendants' transition to the root crossfade's exact 0.7s
+   cubic-bezier(0.16,1,0.3,1)) with ONE syntax fix: a CSS shorthand
+   declaration may carry exactly one trailing !important, not one per
+   comma-separated value -- the task's literal Neutralizer(css) text put
+   !important after EACH of the two comma items, which is invalid CSS value
+   grammar; verify-inject3.mjs confirmed the browser silently drops that
+   whole declaration (rule.style.getPropertyValue("transition") === "" in
+   the live DOM after injection). This file moves !important to the end
+   once, applying to the whole multi-value list, which is the standard valid
+   form of the same rule. */
+:is([data-mode="cw"]) .cw-nav.is-scrolled, [data-mode="cw"] .cw-mlink, [data-mode="cw"] .cw-section-cta, [data-mode="cw"] .cw-offer__packages-link, [data-mode="cw"] .cw-exits__co, [data-mode="cw"] .cw-exits__val { transition: background 0.7s cubic-bezier(0.16,1,0.3,1), color 0.7s cubic-bezier(0.16,1,0.3,1) !important; } /* motion-ok: matches the PRE-EXISTING WorldSwitcher root crossfade (app/globals.css ~line 1246, 0.7s cubic-bezier(0.16,1,0.3,1)) -- same precedent as globals.css line 3881; test-only file, never shipped */

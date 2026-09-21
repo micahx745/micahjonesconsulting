@@ -1,0 +1,47 @@
+TOTAL EVENTS: 868
+gestures used: 1
+--- top (type | target | property) counts ---
+132 transitionrun | a.cw-mlink | color
+132 transitionstart | a.cw-mlink | color
+126 transitioncancel | a.cw-mlink | color
+44 transitionrun | a.cw-mlink.cw-offer__packages-link | color
+44 transitionstart | a.cw-mlink.cw-offer__packages-link | color
+44 transitionrun | a.cw-section-cta | color
+44 transitionstart | a.cw-section-cta | color
+42 transitioncancel | a.cw-mlink.cw-offer__packages-link | color
+42 transitioncancel | a.cw-section-cta | color
+24 transitionstart | p.cw-exits__co | color
+24 transitionend | p.cw-exits__co | color
+20 transitionrun | p.cw-exits__co | color
+15 transitionstart | p.cw-exits__val | color
+15 transitionend | p.cw-exits__val | color
+12 transitionrun | p.cw-exits__val | color
+6 transitionstart | span.cw-rec__line | color
+6 transitionstart | p.cw-exits__val.cw-exits__val--undisclosed | color
+6 transitionend | p.cw-exits__val.cw-exits__val--undisclosed | color
+6 transitionend | span.cw-rec__line | color
+6 transitionend | a.cw-mlink | color
+5 transitionrun | p.cw-exits__val.cw-exits__val--undisclosed | color
+4 transitionstart | nav.cw-nav.is-scrolled | background-color
+4 transitionend | nav.cw-nav.is-scrolled | background-color
+4 transitionrun | span.cw-rec__line | color
+3 transitionrun | nav.cw-nav.is-scrolled | background-color
+3 transitionstart | span.cw-exits__tick.is-current | background-color
+3 transitionstart | div.cw-js-reveals | color
+3 transitionstart | div.cw-js-reveals | background-color
+3 transitionstart | nav.cw-nav.is-scrolled | color
+3 transitionend | nav.cw-nav.is-scrolled | color
+3 transitionend | div.cw-js-reveals | background-color
+3 transitionend | div.cw-js-reveals | color
+3 transitionend | span.cw-exits__tick.is-current | background-color
+2 transitionrun | span.cw-exits__tick.is-current | background-color
+2 transitionrun | div.cw-js-reveals | color
+2 transitionrun | div.cw-js-reveals | background-color
+2 transitionrun | nav.cw-nav.is-scrolled | color
+2 transitionend | a.cw-mlink.cw-offer__packages-link | color
+2 transitionend | a.cw-section-cta | color
+2 transitionstart | div.cw-offer__box.cw-reveal.is-in | opacity
+--- transitioncancel by (target | property) ---
+126 a.cw-mlink | color
+42 a.cw-mlink.cw-offer__packages-link | color
+42 a.cw-section-cta | color

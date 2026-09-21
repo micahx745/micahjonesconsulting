@@ -1,0 +1,64 @@
+WITHOUT exp-T4.css (baseline default):
+{
+  "matchCount": 4,
+  "dataWorlds": [
+    "bone",
+    "terracotta",
+    "espresso",
+    "petrol"
+  ],
+  "samples": [
+    {
+      "world": "bone",
+      "contentVisibility": "visible",
+      "containIntrinsicSize": "none"
+    },
+    {
+      "world": "terracotta",
+      "contentVisibility": "visible",
+      "containIntrinsicSize": "none"
+    },
+    {
+      "world": "espresso",
+      "contentVisibility": "visible",
+      "containIntrinsicSize": "none"
+    },
+    {
+      "world": "petrol",
+      "contentVisibility": "visible",
+      "containIntrinsicSize": "none"
+    }
+  ]
+}
+WITH exp-T4.css:
+{
+  "matchCount": 4,
+  "dataWorlds": [
+    "bone",
+    "terracotta",
+    "espresso",
+    "petrol"
+  ],
+  "samples": [
+    {
+      "world": "bone",
+      "contentVisibility": "auto",
+      "containIntrinsicSize": "auto 1200px"
+    },
+    {
+      "world": "terracotta",
+      "contentVisibility": "auto",
+      "containIntrinsicSize": "auto 1200px"
+    },
+    {
+      "world": "espresso",
+      "contentVisibility": "auto",
+      "containIntrinsicSize": "auto 1200px"
+    },
+    {
+      "world": "petrol",
+      "contentVisibility": "auto",
+      "containIntrinsicSize": "auto 1200px"
+    }
+  ]
+}
