@@ -18,6 +18,20 @@
         "3100"
       ],
       "port": 3100
+    },
+    {
+      "name": "preview-p124-cuts",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "-C",
+        "C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p124-cuts",
+        "exec",
+        "next",
+        "start",
+        "-p",
+        "3126"
+      ],
+      "port": 3126
     }
   ]
 }

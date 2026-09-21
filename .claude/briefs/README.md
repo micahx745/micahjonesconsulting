@@ -103,6 +103,17 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
   Pass = the largest session window at or under 0.05 (the Definition of done). Pass-122's scoreboard shipped
   0.33 on a phone because every check it had was taken at rest or at load.
 
+- **A brief never pins HEAD to a hash its own commit will move** (Pass-125b, 2026-09-21). The first 125b
+  brief said "branch at `98ead18`"; committing the brief made HEAD `cbde884`, and Sol stopped on the
+  mismatch, as it should. Pin with a check that survives the commit:
+  `git log -1 --format=%h -- <this brief>` equals `git rev-parse --short HEAD`, and name the code commit
+  separately. Also list any untracked files that pre-date the round in the expected `git status`.
+- **Full-page captures of a Color Worlds page lie about colour.** The WorldSwitcher recolours the page per
+  section on scroll, so a full-page screenshot freezes every section in the first section's world (Pass-125
+  round 1 showed an espresso section on bone). Any capture a juror or the operator judges for design is a
+  set of VIEWPORT frames taken while scrolling (model: `.planning/qa/pass-125/scroll-sheet.mjs` in the
+  Pass-125 preview branch), not a full-page shot.
+
 ## Budget this enforces
 
 ≤15 top-tier tool calls per arc: DIRECT ≤10, each JUDGE return ≤5. Read-only shell is free
