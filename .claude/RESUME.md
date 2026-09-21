@@ -13,12 +13,11 @@ Revert target: promote `dpl_9Q3JRk47vpd9b9xGnmkruoG5zkEM`. Branch vs main: sitem
 ## NOW: How I work (operator 2026-09-21, LESSONS #3 "FULL-TIME PAGE HELD; HOW I WORK IS THE PRIORITY")
 Same words (Scope/Plan/Build/Stay, locked 09-21), better design on the home, and the same four steps carried to
 /services (replacing its own wording of the commitments). Astra + dspro still owe a confirmation of the four steps.
-Pass-126 (preview `preview/p126-how-i-work`, p124-cuts): Fable picked Sol's "Marked-Up Proof" on espresso;
-built + gated (prepush-gates.mjs); jury (Fable, Astra, dspro) all "after fixes", disposition in
-`.planning/reviews/PASS-126-JURY-DISPOSITION.md` there. He re-ruled the Plan body (Sol's, LESSONS #3 "HOW I WORK:
-THE PLAN LINE"), kept Build. Sol running brief 126b (design fixes); then main session runs CLS
-(`scratchpad cls-page.mjs` / `.planning/exec/cls-attrib-123.mjs`), crossfade, `region-sheet.mjs` captures ->
-his look at the rendered page -> ship check -> his push words.
+Pass-126 (preview `preview/p126-how-i-work` = `3d5bb88`, p124-cuts): Sol's "Marked-Up Proof" (Fable pick),
+jury fixes + Fable re-read fixes built, gated and measured (all brackets; CLS <=0.007; axe 0). Jury: Astra + dspro
+"as is", Fable's one more fix applied + measured. Plan body re-ruled (Sol's), Build kept. AWAITING: his look at
+the rendered section (sheets sent; served at localhost:3126 via `prod-p124`), then merge -> ship check -> his
+push words. Disposition: `.planning/reviews/PASS-126-JURY-DISPOSITION.md` on the preview branch.
 
 ## HELD: /full-time (approved in content, not pushed)
 Whole on `preview/p125-full-time` (`708ac61`, incl. card1-125 + QA). To ship: `git revert 95cb41b`, then ship check.
