@@ -1124,6 +1124,14 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   headline's second line. On the home at phone width, the Scope rule sits closer under 'HOW I WORK.' than it does on
   /services. I fix both, rebuild, re-check, then ask again." So: NOT pushed. The fix is layout only; no string in
   `content/how-i-work.ts` changes. The push needs his words again after the fix is rebuilt and re-checked.
+- **PASS-126 PUSH APPROVED — operator 2026-09-21 (popup, after the r6 sheets of both fixes, the rebuilt gated build,
+  hiw-wrap-gate 0 failures and card1-126 74/0 on the local served build of `90b3699`)**. Asked "Push How I work now?",
+  he picked "Yes, push it (Recommended)", whose description read, verbatim: "I move the branch to main and Vercel
+  deploys on push. Live changes: How I work on the home and /services (with the two fixes), plus sitemap dates.
+  Nothing else, and the full-time page stays held. I point both domains at the new deploy and run the check against
+  the live site. Undo is one step: promote today's deploy (dpl_2mGq...) back." The approval covers exactly:
+  `design/live-evolve` at `bd679db` to main (site diff vs `e8b44e3`: the How I work redesign, Pass-126d's two layout
+  fixes, `content/lastmod.json`). Nothing else.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.

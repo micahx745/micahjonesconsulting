@@ -16,8 +16,8 @@ worktree's launch.json serves it on 3126).
   (on both branches): /services Build `text-wrap: balance`; home title 40px phone margin. Gate
   `.planning/qa/pass-126/hiw-wrap-gate.mjs` bit pre-fix (3 known FAILs), LESSONS #48.
 - 126d VERIFIED (`5bddbb3`, both branches): gated build pass; hiw-wrap-gate 0 FAIL; card1-126 local 74/0;
-  console only /_vercel 404s; r6 sheets. NEXT: push popup AGAIN -> words verbatim in LESSONS #3 + here BEFORE
-  `git push origin design/live-evolve:main` -> deploy id off the wire -> `EXPECT_DPL=<id> bash
+  console only /_vercel 404s; r6 sheets. PUSH APPROVED 2026-09-21, he picked verbatim "Yes, push it (Recommended)" (LESSONS #3
+  "PASS-126 PUSH APPROVED"). NOW: `git push origin design/live-evolve:main` -> deploy id off the wire -> `EXPECT_DPL=<id> bash
   .planning/exec/card1-126.sh` + hiw-wrap-gate on www. Revert = promote dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH.
 
 ## HELD: /full-time (approved in content). `preview/p125-full-time` (`708ac61`); ship = `git revert 95cb41b` + card1-125.
