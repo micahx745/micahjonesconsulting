@@ -1,12 +1,13 @@
 # RESUME — micahjonesconsulting (2026-09-21, Pass-124)
 
 ## READ FIRST
-Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`) is level with `origin/main`.
-Build: `npx next build --webpack` (`pnpm build` fails on this machine). Push to main deploys.
-Routing (repo `.claude/CLAUDE.md`, 2026-09-20 evening): non-Claude models by default. DeepSeek reads,
-sweeps, drafts (`deepseek-exec.ps1`, `-MaxTokens 32000+`); Sol builds and captures
-(`codex-exec.ps1 -Task`, cannot commit in a worktree, writes NO non-ASCII copy: LESSONS #46); Astra
-plus deepseek-v4-pro at every checkpoint; Fable one call per taste gate. Ledger and ship calls stay here.
+Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`). Build: `npx next build --webpack`
+(`pnpm build` fails here). Push to main deploys. ROUTING: `.claude/AI_ROUTING.md` is the single source
+(tiers, ids, commands, rules; Ordani-style), printed into every session by the SessionStart hook
+`.claude/hooks/routing-reminder.py`. DeepSeek, Sol, Gemini (`scripts/gemini-exec.ps1`, 2.5-flash only
+today) do the legs; Fable + Astra + deepseek-v4-pro confirm quality. These files are on the branch,
+not yet on `main` (docs-only; they ride with the next approved push). Next chat: `.planning/handoff/
+NEXT-SESSION-KICKOFF.md` (full-time page first).
 
 ## LIVE 2026-09-21: main = 48818f1, dpl_6mBZ6hbC6TWc3r3g3Keku9zGSfs2, all three domains
 Approval verbatim (LESSONS #3, PASS-124 PUSH APPROVED): "Yes, push it (Recommended)". CARD 1
