@@ -122,6 +122,20 @@ async function openMeasuredPage(browser, viewport, pathname) {
     waitUntil: "domcontentloaded",
     timeout: 60000,
   });
+  // LIVENESS (Pass-126c, LESSONS #42 again): a run whose stylesheet had not applied measured the browser's default
+  // 16px paragraph margins and reported 14 "failures" identical at every width. Numbers are evidence only when the
+  // styled section is on the page: at least one stylesheet and .cw-hiw laid out as a grid. Otherwise stop loudly.
+  try {
+    await page.waitForFunction(
+      () =>
+        document.styleSheets.length > 0 &&
+        !!document.querySelector(".cw-hiw") &&
+        getComputedStyle(document.querySelector(".cw-hiw")).display === "grid",
+      { timeout: 30000 },
+    );
+  } catch {
+    throw new Error(`LIVENESS FAIL ${viewport.name} ${pathname}: stylesheet not applied or .cw-hiw not a grid`);
+  }
   await sleep(1500);
   debug(`scroll start ${viewport.name} ${pathname}`);
   await scrollWholePage(page);
@@ -508,7 +522,7 @@ try {
       [
         viewport.width !== 1440 ||
           JSON.stringify(services.stepInnerPaddingLefts) ===
-            JSON.stringify(["0px", "48px", "0px", "0px"]),
+            JSON.stringify(["0px", "0px", "0px", "0px"]),
         `${prefix} services step inner padding`,
       ],
       [

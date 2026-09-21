@@ -1,0 +1,79 @@
+{
+  "totalSamplesWithCopperVisible": 160,
+  "stepsUnder3to1": 0,
+  "minRatio": 3.143359461921532,
+  "minRatioDetail": {
+    "vp": "1440x900",
+    "pass": "up",
+    "label": "up#17",
+    "scrollY": 3713,
+    "cls": "cw-rec__line",
+    "text": "$20",
+    "rect": {
+      "x": 40,
+      "y": -464.140625,
+      "width": 763.875,
+      "height": 569
+    },
+    "mode": "text",
+    "sampleColor": "rgb(189, 90, 45)",
+    "textRgb": [
+      189,
+      90,
+      45
+    ],
+    "groundRgb": [
+      36,
+      45,
+      42
+    ],
+    "ratio": 3.143359461921532
+  },
+  "worst5": [
+    {
+      "vp": "1440x900",
+      "pass": "up",
+      "label": "up#17",
+      "scrollY": 3713,
+      "ratio": 3.143359461921532,
+      "text": "$20",
+      "cls": "cw-rec__line"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "up",
+      "label": "up#17",
+      "scrollY": 3713,
+      "ratio": 3.143359461921532,
+      "text": "M+",
+      "cls": "cw-rec__line"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "up",
+      "label": "up#18",
+      "scrollY": 3653,
+      "ratio": 3.456483409147979,
+      "text": "$20",
+      "cls": "cw-rec__line"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "up",
+      "label": "up#18",
+      "scrollY": 3653,
+      "ratio": 3.456483409147979,
+      "text": "M+",
+      "cls": "cw-rec__line"
+    },
+    {
+      "vp": "1440x900",
+      "pass": "up",
+      "label": "up#19",
+      "scrollY": 3593,
+      "ratio": 3.5358621677095745,
+      "text": "$20",
+      "cls": "cw-rec__line"
+    }
+  ]
+}
