@@ -9,7 +9,16 @@
 // time-depth as specific numbers).
 //
 // Server component. No motion, no client JS.
-export function PageFooter() {
+//
+// Pass-125 (operator 2026-09-20, LESSONS #3 "PASS-124 FIRST MOVE AND THE
+// AUDIENCE RULING"): the "Work with me full-time" page is linked from the
+// footers and once from /about, never the primary nav. /full-time itself
+// passes fullTimeLink={false} so its footer does not link to itself.
+import { FULL_TIME } from "@/content/full-time";
+
+export function PageFooter({
+  fullTimeLink = true,
+}: { fullTimeLink?: boolean } = {}) {
   return (
     <footer className="cw-pagefoot" aria-label="Site footer">
       <p className="cw-pagefoot__promise">
@@ -27,6 +36,12 @@ export function PageFooter() {
         >
           LinkedIn
         </a>
+        {fullTimeLink ? (
+          <>
+            <span aria-hidden>·</span>
+            <a href={FULL_TIME.path}>{FULL_TIME.linkLabel}</a>
+          </>
+        ) : null}
         {/* Pass-84, operator 2026-09-02: "Oakland, CA ... in many places that
             is irrelevant". The city chip came off; the copyright line below
             keeps his name because that is a legal notice, not decoration. */}
