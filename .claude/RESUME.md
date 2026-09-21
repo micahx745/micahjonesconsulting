@@ -15,12 +15,11 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## Homepage: SHIP-READY on the branch, awaiting his push approval (NOT DEPLOYED)
-`61db1d7` verified by Sol: gates 0, axe 0, rendered text exact, CLS 0.0003 @1440, LCP 936ms @390x4.
-Fable ship read: SHIP (`.planning/reviews/FABLE-124-SHIP.md`). Ship check `card1-124.sh` (+markers,
-bite-tested 24/0 vs 8/16). Push ships: home rebuild, " | " title separator, /about "Product builds.",
-two build gates. Prod now `dpl_9Q3J...` (other session pushed 9019186). Quote his approval verbatim
-here before any push; then runbook: main, deploy, both aliases, EXPECT_DPL card1-124.
+## Homepage: PUSH APPROVED 2026-09-21, deploying
+Operator, 2026-09-21, popup, verbatim pick: "Yes, push it (Recommended)", on the question "Push the new
+homepage live? This ships the rebuilt homepage, the \" | \" title separator on every page, /about's
+\"Product builds.\", and two build-time checks." Covers exactly that. `61db1d7`+docs -> main, deploy,
+both aliases, `EXPECT_DPL=<new id> bash .planning/exec/card1-124.sh`. Revert: promote `dpl_9Q3J...`.
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).

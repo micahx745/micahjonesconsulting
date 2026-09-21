@@ -1042,6 +1042,11 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   product to the way you sell it. You get me directly."** (SUPERSEDES "I step in as the operator. You get me
   directly."). Astra's alternatives, not picked: "I make your product easier to understand and buy." and "I improve
   the product and build a clear way to sell it as your business grows."
+- **PASS-124 PUSH APPROVED — operator 2026-09-21 (popup, after the final before/after sheets and the Fable ship
+  read, verdict SHIP)**. Picked "Yes, push it (Recommended)", whose description read "I move the branch to main, and
+  Vercel deploys on push. I point both domains at the new deploy and run the ship check against the live site. Undo
+  is one step: promote today's deploy (dpl_9Q3J...) back." The approval covers exactly: the rebuilt home, the " | "
+  title separator, /about "Product builds.", and the two build-time gates. Nothing else.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
