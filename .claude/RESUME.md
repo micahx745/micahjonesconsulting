@@ -15,14 +15,14 @@ Live site swept clean: zero NEVER-phrases on six pages.
 His rulings 2026-09-20: (1) first move = cut list; (2) adopt the research's audience ruling
 (shared-problem hero, hiring page off the footer), minus its ORDANI-as-client miscount.
 
-## Homepage proposal v3: built, reviewing before he sees it
-Preview branch `pass-124/home-proposal` in `../p124-cuts` (never merges): A v3 `30c88d7`
-(receipts as locked), B v3 `807893d` (receipts in sentences). Layout fixes by Sol, committed
-here. Gates 0, axe 0 both. Captures `.planning/qa/pass-124/home-v3/` (sheets + clean).
-DeepSeek v4-pro 2nd opinion: prefers A; flags "The story comes first" triad rhythm, "operator",
-cap-table line; wants the hero line reordered (NO: his 09-15 exact pick). Astra -Review
-running -> `.planning/reviews/ASTRA-124-HOME.md`. Known: hero "I" widow at 1440, ORDANI
-narrow column + empty right at 1440, $20M+ wraps "$20/M+" at 390 ON LIVE TOO (pre-existing).
+## Homepage proposal v5: READY, with him
+Preview `pass-124/home-proposal` (`../p124-cuts`, never merges): A v5 `a160a3b` (receipts as
+locked), B v5 `38365cf` (receipts in short sentences, cap-table line cut). Captures
+`.planning/qa/pass-124/home-v5/`. Astra FIX FIRST items all fixed (rounds 4-5, Sol, measured).
+Gates 0, axe 0, rendered-text clean. Open for him: A or B (Astra B, DeepSeek A); rework
+"The story comes first" / "operator" / hero $20M+ pivot (both jurors flagged)? Then brief the
+real build on `design/live-evolve` (update CARD 1 home markers: example rows are gone).
+New gate: `scripts/mojibake-gate.mjs` (LESSONS #46, `3174aca`).
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
