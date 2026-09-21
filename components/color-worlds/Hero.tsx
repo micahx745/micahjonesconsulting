@@ -163,46 +163,27 @@ export function Hero() {
         <div className="cw-hero__veil" />
       </div>
 
-      {/* Pass-109: two semantic lines, the second in the italic register the
-          rolling word used to carry. Each may wrap on a narrow screen;
-          "AI-built" is held together so the hyphen never ends a line. The h1's
-          text is one clean sentence for crawlers and screen readers alike ("I
-          take AI-built products from demo to production."), so the cw-sr-only
-          continuation went with the roll. Pass-68's trailing-space rule still
-          applies: the two block lines run together as text. */}
+      {/* Pass-124 (operator 2026-09-21, LESSONS #3 PASS-124 HOMEPAGE, THE REST): the
+          headline names the reader's situation, not the service. Two semantic
+          lines, the second in the italic turn register. Pass-68's trailing-space
+          rule still applies: the two block lines run together as text for
+          crawlers and screen readers ("It works. It just does not sell."). */}
       <h1 className="cw-h1 cw-shift" ref={h1Ref}>
         <span className="cw-line">
-          <span ref={captureLine}>
-            I take <span className="cw-nowrap">AI-built</span> products{" "}
-          </span>
+          <span ref={captureLine}>It works.{" "}</span>
         </span>
         <span className="cw-line cw-line--turn">
-          <span ref={captureLine}>from demo to production.</span>
+          <span ref={captureLine}>It just does not sell.</span>
         </span>
       </h1>
 
-      {/* Pass-109: the SUBHEAD carries the positioning claim, explicitly. The
-          operator's constraint on approving the new H1: the exit record
-          (Guardicore, SurveyMonkey, Postmates, Neuton.AI) is positioning and
-          go-to-market work, not demo-to-production work, so without this line
-          the receipts below would stop corroborating the claim above them. Its
-          first sentence keeps the old headline's own words ("I build the
-          go-to-market") and names PRODUCTS, not "them". The first draft said
-          "Then I position them", which bound the claim to the H1's "AI-built
-          products", and three of the four exits (Guardicore, SurveyMonkey,
-          Postmates) are not AI products (Pass-109 review, copy lens). Its
-          second is the operator-locked
-          positioning line (Wave 1, D-R13), kept verbatim, now after the claim
-          instead of alone. The Pass-106 buyer line is gone: it said the buyer's
-          product "demos well and stalls before production", which the H1 now
-          says outright, and a third block of prose under the headline was part
-          of what read as overwhelming. */}
+      {/* Pass-124 (operator 2026-09-21, LESSONS #3 THE TWO REWORKED LINES): the
+          subhead answers the headline in one breath, then gives one proof.
+          Picked from DeepSeek and Sol drafts on Fable's call; the $20M+ phrase
+          is the 2026-09-15 wording, word for word. Do not reword. */}
       <p className="cw-sub" ref={subRef}>
-        <em>
-          I also position products and build the{" "}
-          <span className="cw-nowrap">go-to-market</span> that sells them.
-        </em>{" "}
-        Strategy and software, shipped by the same pair of hands.
+        I shape the product and build the message that sells it.{" "}
+        I have $20M+ in revenue behind my work.
       </p>
 
       {/* Pass-30 (Cowork review): the $149 playbook is OFF the enterprise

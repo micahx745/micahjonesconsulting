@@ -8239,3 +8239,56 @@ body {
     U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF,
     U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
+
+/* Pass-124 (operator 2026-09-21, LESSONS #3): the home, rebuilt from the research.
+ *
+ * How I work: four steps, no stage numerals, so each step is one column (the auto track was
+ * the numeral's), and the one link to the work page sits under the last step. */
+[data-mode="cw"] .cw-principles--steps .cw-principle {
+  grid-template-columns: 1fr;
+}
+[data-mode="cw"] .cw-principles__more {
+  margin: 28px 0 0;
+}
+/* The gap between the Audit card and How I work, halved (Astra, measured 281 -> 148px at 390,
+ * 352 -> 184px at 1440): both sides of it, the Audit section's bottom and the next section's top. */
+[data-mode="cw"] #offer {
+  padding-bottom: clamp(16px, 4.2vw, 60px);
+}
+[data-mode="cw"] section:has(.cw-principles--steps) {
+  padding-top: clamp(16px, 4.2vw, 60px);
+}
+/* ORDANI without its photos: the grid holds the copy only, held to the measure the 5fr column
+ * gave it at 1440 so its lines stay readable and its link stays beside the text. */
+[data-mode="cw"] .cw-ord-grid--copy-only {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas: "copy";
+}
+@media (min-width: 1100px) {
+  [data-mode="cw"] .cw-ord-grid--copy-only {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "copy";
+  }
+}
+[data-mode="cw"] .cw-ord-grid--copy-only .cw-ord-copy {
+  max-width: 560px;
+}
+/* The two doors on a phone, now directly under the hero: each panel sized to its copy, its link
+ * 20px under the last paragraph instead of at the bottom of an empty panel (Astra, measured). */
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-door {
+    min-height: 0;
+  }
+  [data-mode="cw"] .cw-door__cta,
+  [data-mode="cw"] .cw-door__ctas {
+    margin-top: 6px;
+  }
+  [data-mode="cw"] .cw-door__cta {
+    padding-top: 0;
+  }
+  [data-mode="cw"] .cw-door__ctas .cw-door__cta {
+    margin-top: 0;
+  }
+}

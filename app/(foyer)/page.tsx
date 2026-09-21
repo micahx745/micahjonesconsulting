@@ -61,7 +61,6 @@
 // intentionally absent. "Don't frame Ordani as a side project" — it's
 // presented as a live product with beta signup.
 import type { Metadata } from "next";
-import Image from "next/image";
 import { BuyButton } from "@/components/BuyButton";
 import { Hero } from "@/components/color-worlds/Hero";
 import { ExitRecord } from "@/components/color-worlds/ExitRecord";
@@ -114,6 +113,60 @@ export default function ColorWorldsHome() {
     <>
       {/* HERO — terracotta */}
       <Hero />
+
+      {/* THE TWO DOORS. Pass-5 (operator: "something to preach to the vibe
+          coders and something to preach to small businesses"): two doorways,
+          one per reader, each in its own register. Pass-6: not cards but two
+          full-bleed colour panels, petrol for the build side, terracotta for
+          the sell side; the section keeps data-world="bone" and the panels
+          paint themselves. Pass-124 (operator 2026-09-21, "go with proposal
+          rec"): moved up to sit directly under the hero as the "you are
+          probably here" paths, both kickers cut, and the sell door's copy
+          rewritten (LESSONS #3, THE TWO REWORKED LINES). */}
+      <section
+        className="cw-doors-band"
+        id="doors"
+        data-section
+        data-world="bone"
+        aria-label="Which door fits"
+      >
+        {/* Review #10 (2026-09-02): this door sent the one reader a $500
+            session fits to a $149 book, and /packages had zero links from the
+            home page. The door holds two destinations now, so it is a <div>
+            with the links in its foot (the Pass-76b pattern on /services; a
+            link inside a link is invalid HTML). The body also drops "gap",
+            which appeared five times on the page. */}
+        <div className="cw-door cw-door--build cw-reveal">
+          <h2 className="cw-door__title">
+            The demo took a weekend. The last 20% is eating your month.
+          </h2>
+          <p className="cw-door__body">
+            That last 20% is my daily work. Want me on your build? Three fixed
+            prices start at $500.
+          </p>
+          <div className="cw-door__ctas">
+            <a href="/packages" className="cw-door__cta">
+              See the three packages <span aria-hidden>→</span>
+            </a>
+          </div>
+        </div>
+        <a
+          href="/services"
+          className="cw-door cw-door--sell cw-reveal"
+          style={{ transitionDelay: "100ms" }}
+        >
+          <h2 className="cw-door__title">
+            An agency is too broad. A hire is too early.
+          </h2>
+          <p className="cw-door__body">
+            I build what your growing business needs next, from the product to
+            the way you sell it. You get me directly.
+          </p>
+          <span className="cw-door__cta">
+            See the engagements <span aria-hidden>→</span>
+          </span>
+        </a>
+      </section>
 
       {/* Pass-68: the scrolling ✦ marquee is gone. A ticker of buzzword
           fragments is one of the two most recognisable AI-built-site tells,
@@ -269,230 +322,58 @@ export default function ColorWorldsHome() {
         data-world="espresso"
         aria-labelledby="cw-howiwork-title"
       >
-        <p className="cw-kicker cw-reveal">Operating principles</p>
         <SplitReveal as="h2" id="cw-howiwork-title" className="cw-secttitle">
           How I work.
         </SplitReveal>
-        {/* Pass-27 (operator cowork review): four principles → three named
-            operating loop stages (Diagnose / Build / Position). Each
-            principle gets a stage name (.cw-principle__name) and a
-            deliverable line (.cw-principle__artifact) in addition to
-            the existing .cw-principle__text. The 1fr text column in the
-            .cw-principle grid stacks its children naturally — the grid
-            rule (auto 1fr) is unchanged; it now stacks a fourth child,
-            the attached ledger group, when a stage carries one.
-
-            AMENDED Pass-106 (buyer research, CHAT-105-RESEARCH.md): a
-            verb read as a task, not a sale. Inverted the hierarchy so
-            .cw-principle__name is now the small stage label and
-            .cw-principle__artifact is now the dominant headline, the
-            deliverable's own name. .cw-principle__proof names the deal
-            behind each step.
-
-            AMENDED [fuse pass]: the proof line used to be "a pointer to
-            [a receipt] that already exists" elsewhere on the page (its
-            own prior comment, app/globals.css). It now sits directly
-            above the receipt it points to. */}
-        <ol className="cw-principles">
+        {/* Pass-124 (operator 2026-09-21, "Final 1: Fable's pick"): four steps, no numerals, no
+            example rows, one link to the work page. Copy is ledger-exact; do not reword. */}
+        <ol className="cw-principles cw-principles--steps">
           <li
             className="cw-principle cw-reveal"
             style={{ transitionDelay: "0ms" }}
           >
-            <p className="cw-principle__num">01</p>
             <div>
-              <p className="cw-principle__name">Diagnose</p>
-              <p className="cw-principle__artifact">
-                Audit memo + fix sequence.
-              </p>
-              <p className="cw-principle__text">
-                I read the build top to bottom and write down what works, what
-                is broken, and what to fix first. Positioning too, when that is
-                the gap.
-              </p>
-              <p className="cw-principle__proof">
-                <strong>Guardicore</strong>: message/buyer mismatch found ·{" "}
-                <strong>$14M in revenue</strong>
-              </p>
-              {/* THE LEDGER. Was one contiguous list under "The receipts.";
-                  the fuse pass splits it across the three stages below plus
-                  the closing record, so this note — Trace rule (LESSONS
-                  #2) checked: $14M in guardicore.mdx, 800,000 impressions in
-                  content-engine.mdx, doubled in rfp-engine.mdx, the
-                  paying-users claim in ordani.mdx — now sits at the first
-                  row a reader reaches rather than above the old single
-                  block. The SurveyMonkey row still has no case-study page,
-                  so it still carries no link; per the W2 operator lock the
-                  home surface still says "SurveyMonkey Enterprise", never
-                  TechValidate. Rows keep .cw-reveal + stagger throughout. */}
-              <div className="cw-ledger cw-reveal" role="list">
-                <a
-                  href="/work/guardicore"
-                  className="cw-lrow cw-lrow--link cw-reveal"
-                  role="listitem"
-                  style={{ transitionDelay: "0ms" }}
-                >
-                  <span className="cw-lrow__co">
-                    Guardicore
-                    <span className="cw-lrow__tag">
-                      Revenue and positioning
-                    </span>
-                  </span>
-                  <span
-                    className="cw-lrow__out"
-                    aria-label="14 million dollars in revenue, acquired by Akamai"
-                  >
-                    <strong>$14M in revenue</strong> ·{" "}
-                    <strong>acquired by Akamai</strong>
-                  </span>
-                  <span className="cw-lrow__go" aria-hidden>
-                    →
-                  </span>
-                </a>
-              </div>
+              <p className="cw-principle__name">Scope</p>
+              <p className="cw-principle__artifact">Week one is an audit and a scope.</p>
+              <p className="cw-principle__text">I look at where things stand: what works, what is broken, and what to fix first. The scope and the price go in writing before anything starts.</p>
             </div>
           </li>
           <li
             className="cw-principle cw-reveal"
             style={{ transitionDelay: "80ms" }}
           >
-            <p className="cw-principle__num">02</p>
             <div>
-              <p className="cw-principle__name">Build</p>
-              <p className="cw-principle__artifact">
-                Shipped artifact, month one.
-              </p>
-              <p className="cw-principle__text">
-                Every engagement ships a named artifact in month one. No decks.
-                No discovery debt.
-              </p>
-              <p className="cw-principle__proof">
-                <strong>Ordani</strong>: HIPAA-compliant · active paying users,
-                in beta
-              </p>
-              <div className="cw-ledger cw-reveal" role="list">
-                <a
-                  href="/work/ordani"
-                  className="cw-lrow cw-lrow--link cw-reveal"
-                  role="listitem"
-                  style={{ transitionDelay: "0ms" }}
-                >
-                  <span className="cw-lrow__co">
-                    Ordani
-                    <span className="cw-lrow__tag">Founder, sole engineer</span>
-                  </span>
-                  <span className="cw-lrow__out">
-                    <strong>Active paying users</strong> · none lost to a
-                    competitor
-                  </span>
-                  <span className="cw-lrow__go" aria-hidden>
-                    →
-                  </span>
-                </a>
-                <a
-                  href="/work/content-engine"
-                  className="cw-lrow cw-lrow--link cw-reveal"
-                  role="listitem"
-                  style={{ transitionDelay: "60ms" }}
-                >
-                  <span className="cw-lrow__co">
-                    Social activist
-                    <span className="cw-lrow__tag">Content engine</span>
-                  </span>
-                  <span className="cw-lrow__out">
-                    <strong>Up to 800,000 impressions</strong> in a month
-                  </span>
-                  <span className="cw-lrow__go" aria-hidden>
-                    →
-                  </span>
-                </a>
-                <a
-                  href="/work/rfp-engine"
-                  className="cw-lrow cw-lrow--link cw-reveal"
-                  role="listitem"
-                  style={{ transitionDelay: "120ms" }}
-                >
-                  <span className="cw-lrow__co">
-                    Author and leadership consultant
-                    <span className="cw-lrow__tag">RFP engine</span>
-                  </span>
-                  <span className="cw-lrow__out">
-                    <strong>$3M in signed contracts</strong> · close rate
-                    doubled
-                  </span>
-                  <span className="cw-lrow__go" aria-hidden>
-                    →
-                  </span>
-                </a>
-              </div>
+              <p className="cw-principle__name">Plan</p>
+              <p className="cw-principle__artifact">I name the trade-offs before I build.</p>
+              <p className="cw-principle__text">You get a roadmap, and you sign off on it before I build anything. Something named ships in month one.</p>
             </div>
           </li>
           <li
             className="cw-principle cw-reveal"
             style={{ transitionDelay: "160ms" }}
           >
-            <p className="cw-principle__num">03</p>
             <div>
-              <p className="cw-principle__name">Position</p>
-              <p className="cw-principle__artifact">
-                The story the market repeats.
-              </p>
-              <p className="cw-principle__text">
-                I stay until the narrative sells without me. That takes longer
-                than a launch week.
-              </p>
-              <p className="cw-principle__proof">
-                <strong>Guardicore</strong>: repositioning carried through ·{" "}
-                <strong>Akamai acquisition</strong>, 2021
-              </p>
-              <div className="cw-ledger cw-reveal" role="list">
-                <div
-                  className="cw-lrow cw-reveal"
-                  role="listitem"
-                  style={{ transitionDelay: "0ms" }}
-                >
-                  <span className="cw-lrow__co">
-                    SurveyMonkey Enterprise
-                    <span className="cw-lrow__tag">Enterprise sales</span>
-                  </span>
-                  <span className="cw-lrow__out">
-                    <strong>$1M+</strong> toward the 2018 IPO · cap-table
-                    position held through the Nasdaq listing
-                  </span>
-                </div>
-                <div
-                  className="cw-lrow cw-reveal"
-                  role="listitem"
-                  style={{ transitionDelay: "60ms" }}
-                >
-                  <span className="cw-lrow__co">
-                    Postmates
-                    <span className="cw-lrow__tag">Product analyst</span>
-                  </span>
-                  <span className="cw-lrow__out">
-                    Market and fraud analysis in the wide-open era ·{" "}
-                    <strong>acquired by Uber, $2.65B, 2020</strong>
-                  </span>
-                </div>
-                <div
-                  className="cw-lrow cw-reveal"
-                  role="listitem"
-                  style={{ transitionDelay: "120ms" }}
-                >
-                  <span className="cw-lrow__co">
-                    Neuton.AI
-                    <span className="cw-lrow__tag">
-                      Helped launch · exit 2025
-                    </span>
-                  </span>
-                  <span className="cw-lrow__out">
-                    Technology <strong>acquired by Nordic Semiconductor</strong>{" "}
-                    · not a cap-table position
-                  </span>
-                </div>
-              </div>
+              <p className="cw-principle__name">Build</p>
+              <p className="cw-principle__artifact">I build the real thing, not a prototype.</p>
+              <p className="cw-principle__text">That means sign-in, data, deployment, and where it stands on compliance, written down. You get me, directly, and a reply within one business day.</p>
+            </div>
+          </li>
+          <li
+            className="cw-principle cw-reveal"
+            style={{ transitionDelay: "240ms" }}
+          >
+            <div>
+              <p className="cw-principle__name">Stay</p>
+              <p className="cw-principle__artifact">I stay for launch and what customers break.</p>
+              <p className="cw-principle__text">I interview customers and listen to sales calls to find the question buyers are actually asking. Then I hand over documentation and a walkthrough so your team runs it without me.</p>
             </div>
           </li>
         </ol>
+        <p className="cw-principles__more cw-reveal">
+          <a href="/work" className="cw-mlink">
+            See the work <span aria-hidden>→</span>
+          </a>
+        </p>
 
         {/* Pass-2 (redesign D-R14 synthesis): the card grid becomes THE
             LEDGER — the direction the operator picked across four style
@@ -579,21 +460,7 @@ export default function ColorWorldsHome() {
           Built for the people who show up for mothers.
         </p>
 
-        <div className="cw-ord-grid">
-          <figure className="cw-ord-lead cw-reveal">
-            <Image
-              src="/ordani-intake.jpg"
-              alt="A doula sits with a pregnant client on a couch, writing on a notepad as they talk."
-              width={1600}
-              height={1068}
-              sizes="(min-width: 1100px) 760px, 100vw"
-            />
-            <figcaption>
-              The intake, on paper <span aria-hidden>·</span> what Ordani
-              replaces
-            </figcaption>
-          </figure>
-
+        <div className="cw-ord-grid cw-ord-grid--copy-only">
           <div className="cw-ord-copy">
             {/* Pass-82, operator ruling 2026-09-02: "soften it to what's
                 defensible". Two claims came out. Pass-121 (2026-09-17): the
@@ -642,44 +509,6 @@ export default function ColorWorldsHome() {
               <OrdaniBetaForm />
             </div>
           </div>
-
-          <div className="cw-ord-strip cw-reveal">
-            <figure>
-              <Image
-                src="/ordani-work.jpg"
-                alt="A doula supports a laboring client in a close embrace, a woven rebozo draped over the shoulder between them."
-                width={900}
-                height={698}
-                sizes="(min-width: 1100px) 240px, (min-width: 768px) 33vw, 100vw"
-              />
-              <figcaption>
-                Labor support <span aria-hidden>·</span> the work the software
-                protects
-              </figcaption>
-            </figure>
-            <figure>
-              <Image
-                src="/ordani-hands.jpg"
-                alt="Two hands working along a client's lower leg on a draped table."
-                width={1100}
-                height={733}
-                sizes="(min-width: 1100px) 240px, (min-width: 768px) 33vw, 100vw"
-              />
-              <figcaption>
-                Bodywork <span aria-hidden>·</span> between appointments
-              </figcaption>
-            </figure>
-            <figure>
-              <Image
-                src="/ordani-newborn.jpg"
-                alt="A parent holds a newborn in a nursery chair."
-                width={1100}
-                height={734}
-                sizes="(min-width: 1100px) 240px, (min-width: 768px) 33vw, 100vw"
-              />
-              <figcaption>The reason the record has to be right</figcaption>
-            </figure>
-          </div>
         </div>
       </section>
 
@@ -690,66 +519,7 @@ export default function ColorWorldsHome() {
           text, moved verbatim including every href, aria-label and
           transitionDelay, except one internal comment that named a row
           in the section this move sits above of, corrected in place
-          because that section no longer exists. Two doors, immediately
-          below, is unchanged and now follows Ordani directly. */}
-
-      {/* THE TWO DOORS (Pass-5, operator ask: "something to preach to the
-          vibe coders and something to preach to small businesses"). Two
-          register-matched doorways at the bottom of the page — audience B
-          got the whole page above; A and C each get one door in their own
-          voice. */}
-      {/* Pass-6 (operator: "the cards look weak"): doors are no longer
-          cards. They are the SEAM — two full-bleed color panels, edge to
-          edge, no borders. Builders get the petrol (build-side) panel,
-          growing businesses get terracotta (sell-side). The section
-          keeps data-world="bone" for the page-palette rhythm; the panels
-          paint themselves. */}
-      <section
-        className="cw-doors-band"
-        id="doors"
-        data-section
-        data-world="bone"
-        aria-label="Which door fits"
-      >
-        {/* Review #10 (2026-09-02): this door sent the one reader a $500
-            session fits to a $149 book, and /packages had zero links from the
-            home page. The door holds two destinations now, so it is a <div>
-            with the links in its foot (the Pass-76b pattern on /services; a
-            link inside a link is invalid HTML). The body also drops "gap",
-            which appeared five times on the page. */}
-        <div className="cw-door cw-door--build cw-reveal">
-          <p className="cw-door__kicker">Building solo, with AI</p>
-          <h2 className="cw-door__title">
-            The demo took a weekend. The last 20% is eating your month.
-          </h2>
-          <p className="cw-door__body">
-            That last 20% is my daily work. Want me on your build? Three fixed
-            prices start at $500.
-          </p>
-          <div className="cw-door__ctas">
-            <a href="/packages" className="cw-door__cta">
-              See the three packages <span aria-hidden>→</span>
-            </a>
-          </div>
-        </div>
-        <a
-          href="/services"
-          className="cw-door cw-door--sell cw-reveal"
-          style={{ transitionDelay: "100ms" }}
-        >
-          <p className="cw-door__kicker">Running a growing business</p>
-          <h2 className="cw-door__title">
-            Too big for duct tape. Not ready for an agency retainer.
-          </h2>
-          <p className="cw-door__body">
-            You get me directly. Diagnosis, a shipped artifact in month one, and
-            a system your team runs without me.
-          </p>
-          <span className="cw-door__cta">
-            See the engagements <span aria-hidden>→</span>
-          </span>
-        </a>
-      </section>
+          because that section no longer exists. */}
 
       {/* FOOTER — terracotta */}
       <footer
