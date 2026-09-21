@@ -204,7 +204,7 @@ export default function AboutPage() {
             other. I sit on both sides until they do. I am taking new
             engagements now.
           </p>
-          <p>
+          <p style={{ margin: "1.25em 0" }}>
             {FULL_TIME.about.before}
             <a href={FULL_TIME.path}>{FULL_TIME.about.link}</a>
             {FULL_TIME.about.after}

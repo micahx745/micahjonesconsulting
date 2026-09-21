@@ -2964,6 +2964,24 @@ body {
   font-weight: 600;
 }
 
+/* Pass-125: /full-time's principle headlines run longer than the home's four steps, so on that page they
+ * balance and stop at a measure (the jurors found "SOLD." and "HANDS." alone on a line and headlines running
+ * the full width over a narrow body). Scoped to .cw-principles--ft; the home's How I work is unchanged. */
+[data-mode="cw"] .cw-principles--ft .cw-principle__artifact {
+  text-wrap: balance;
+  max-width: 30ch;
+}
+/* Pass-125 round 3 capture: .cw-secttitle carries no margin, so "Write to me." sat flush under the
+ * record's last line. Same rhythm as the gap .cw-principles opens under "How I think." (64px, 48px). */
+[data-mode="cw"] .cw-ft-sect {
+  margin-top: 64px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-ft-sect {
+    margin-top: 48px;
+  }
+}
+
 /* Pass-106: the proof line. A named deal already ledgered elsewhere
  * on this page (the receipts section below carries the same
  * Guardicore/Akamai figures) — not a new claim, a pointer to one

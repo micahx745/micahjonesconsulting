@@ -5,10 +5,28 @@
       "h1Text": "I build the product and sell it.",
       "h2Texts": [
         "How I think.",
-        "The record",
-        "Write to me"
+        "The record.",
+        "Write to me."
       ],
       "principleCount": 4,
+      "principleNames": [
+        "Code",
+        "Positioning",
+        "Result",
+        "Scope"
+      ],
+      "studyLinks": {
+        "/work/ordani": 1,
+        "/work/guardicore": 1,
+        "/work/rfp-engine": 1
+      },
+      "recordRowCount": 4,
+      "artifactLastWordAlone": [
+        false,
+        false,
+        false,
+        false
+      ],
       "fullTimeLinkLabelCount": 0,
       "emDashCount": 1,
       "horizontalOverflow": -15,
@@ -44,10 +62,28 @@
       "h1Text": "I build the product and sell it.",
       "h2Texts": [
         "How I think.",
-        "The record",
-        "Write to me"
+        "The record.",
+        "Write to me."
       ],
       "principleCount": 4,
+      "principleNames": [
+        "Code",
+        "Positioning",
+        "Result",
+        "Scope"
+      ],
+      "studyLinks": {
+        "/work/ordani": 1,
+        "/work/guardicore": 1,
+        "/work/rfp-engine": 1
+      },
+      "recordRowCount": 4,
+      "artifactLastWordAlone": [
+        false,
+        false,
+        false,
+        false
+      ],
       "fullTimeLinkLabelCount": 0,
       "emDashCount": 0,
       "horizontalOverflow": -15,

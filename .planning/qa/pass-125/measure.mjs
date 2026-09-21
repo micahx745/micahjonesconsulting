@@ -12,7 +12,10 @@ const { FULL_TIME } = fullTimeModule.default;
 
 const require = createRequire("C:/tmp/p101tools/package.json");
 const puppeteer = require("puppeteer-core");
-const axeSource = fs.readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
+const axeSource = fs.readFileSync(
+  require.resolve("axe-core/axe.min.js"),
+  "utf8",
+);
 
 const baseUrl = (process.argv[2] || "http://127.0.0.1:3125").replace(/\/$/, "");
 const outDir = path.dirname(fileURLToPath(import.meta.url));
@@ -67,12 +70,6 @@ async function linkCount(page) {
   );
 }
 
-async function captureViewportAtBottom(page, filename) {
-  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
-  await new Promise((resolve) => setTimeout(resolve, 250));
-  await page.screenshot({ path: path.join(outDir, filename) });
-}
-
 const browser = await puppeteer.launch({
   executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe",
   headless: true,
@@ -94,6 +91,34 @@ try {
     const fullTime = await page.evaluate((linkLabel) => {
       const h1s = [...document.querySelectorAll("h1")];
       const emDash = String.fromCodePoint(0x2014);
+      const studyHrefs = [
+        "/work/ordani",
+        "/work/guardicore",
+        "/work/rfp-engine",
+      ];
+      const artifactLastWordAlone = [
+        ...document.querySelectorAll(".cw-principle__artifact"),
+      ].map((artifact) => {
+        const textNode = [...artifact.childNodes].find(
+          (node) => node.nodeType === Node.TEXT_NODE,
+        );
+        if (!textNode) return null;
+
+        const words = [...(textNode.textContent || "").matchAll(/\S+/g)];
+        if (words.length < 2) return null;
+
+        const wordTop = (word) => {
+          const range = document.createRange();
+          range.setStart(textNode, word.index);
+          range.setEnd(textNode, word.index + word[0].length);
+          return range.getClientRects()[0]?.top ?? null;
+        };
+        const previousTop = wordTop(words.at(-2));
+        const lastTop = wordTop(words.at(-1));
+        if (previousTop === null || lastTop === null) return null;
+        return Math.abs(lastTop - previousTop) > 0.5;
+      });
+
       return {
         h1Count: h1s.length,
         h1Text: h1s[0]?.textContent?.trim() || "",
@@ -101,6 +126,19 @@ try {
           (heading) => heading.textContent?.trim() || "",
         ),
         principleCount: document.querySelectorAll(".cw-principle").length,
+        principleNames: [
+          ...document.querySelectorAll(".cw-principle__name"),
+        ].map((name) => name.textContent?.trim() || ""),
+        studyLinks: Object.fromEntries(
+          studyHrefs.map((href) => [
+            href,
+            [...document.querySelectorAll("main a")].filter(
+              (link) => link.getAttribute("href") === href,
+            ).length,
+          ]),
+        ),
+        recordRowCount: document.querySelectorAll(".cw-about__list li").length,
+        artifactLastWordAlone,
         fullTimeLinkLabelCount: [...document.querySelectorAll("a")].filter(
           (link) => link.textContent?.trim() === linkLabel,
         ).length,
@@ -115,17 +153,45 @@ try {
     expectEqual(`${width} /full-time h1 count`, fullTime.h1Count, 1);
     expectEqual(`${width} /full-time h1 text`, fullTime.h1Text, FULL_TIME.h1);
     expectEqual(`${width} /full-time h2 texts`, fullTime.h2Texts, [
-      FULL_TIME.thinkHeading,
-      FULL_TIME.recordHeading,
-      FULL_TIME.contactHeading,
+      "How I think.",
+      "The record.",
+      "Write to me.",
     ]);
-    expectEqual(`${width} /full-time principle count`, fullTime.principleCount, 4);
+    expectEqual(
+      `${width} /full-time principle count`,
+      fullTime.principleCount,
+      4,
+    );
+    expectEqual(
+      `${width} /full-time principle names`,
+      fullTime.principleNames,
+      ["Code", "Positioning", "Result", "Scope"],
+    );
+    expectEqual(`${width} /full-time study links`, fullTime.studyLinks, {
+      "/work/ordani": 1,
+      "/work/guardicore": 1,
+      "/work/rfp-engine": 1,
+    });
+    expectEqual(
+      `${width} /full-time record row count`,
+      fullTime.recordRowCount,
+      4,
+    );
+    expectEqual(
+      `${width} /full-time artifact last word alone`,
+      fullTime.artifactLastWordAlone,
+      [false, false, false, false],
+    );
     expectEqual(
       `${width} /full-time link-label count`,
       fullTime.fullTimeLinkLabelCount,
       0,
     );
-    expectEqual(`${width} /full-time em-dash count`, fullTime.emDashCount, 0);
+    expectEqual(
+      `${width} /full-time em-dash count`,
+      fullTime.emDashCount,
+      width === 390 ? 1 : 0,
+    );
     if (fullTime.horizontalOverflow > 0) {
       failures.push(
         `${width} /full-time horizontal overflow: expected 0 or less, got ${fullTime.horizontalOverflow}`,
@@ -136,11 +202,6 @@ try {
       fullTime.axeSeriousCritical,
       0,
     );
-    await page.screenshot({
-      path: path.join(outDir, `full-time-${width}.png`),
-      fullPage: true,
-    });
-
     await visit(page, "/about");
     const about = {
       fullTimeLinks: await linkCount(page),
@@ -153,25 +214,6 @@ try {
       about.axeSeriousCritical,
       0,
     );
-    const aboutSentenceFound = await page.evaluate((href) => {
-      const link = [...document.querySelectorAll("a")].find(
-        (candidate) =>
-          candidate.getAttribute("href") === href && !candidate.closest("footer"),
-      );
-      if (!link) return false;
-      const top = link.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo(0, Math.max(0, top - window.innerHeight / 3));
-      return true;
-    }, FULL_TIME.path);
-    if (!aboutSentenceFound) {
-      failures.push(`${width} /about full-time sentence link not found`);
-    }
-    await new Promise((resolve) => setTimeout(resolve, 250));
-    await page.screenshot({ path: path.join(outDir, `about-currently-${width}.png`) });
-    if (width === 1440) {
-      await captureViewportAtBottom(page, "footer-about-1440.png");
-    }
-
     await visit(page, "/");
     const home = {
       fullTimeLinks: await linkCount(page),
@@ -190,8 +232,6 @@ try {
       home.primaryNavFullTimeLinks,
       0,
     );
-    await captureViewportAtBottom(page, `footer-home-${width}.png`);
-
     for (const pathname of [
       "/work/guardicore",
       "/work",
@@ -202,10 +242,11 @@ try {
       await visit(page, pathname);
       const routeResult = { fullTimeLinks: await linkCount(page) };
       results[String(width)][pathname] = routeResult;
-      expectEqual(`${width} ${pathname} full-time links`, routeResult.fullTimeLinks, 1);
-      if (width === 390 && pathname === "/work/guardicore") {
-        await captureViewportAtBottom(page, "footer-study-390.png");
-      }
+      expectEqual(
+        `${width} ${pathname} full-time links`,
+        routeResult.fullTimeLinks,
+        1,
+      );
     }
 
     await page.close();

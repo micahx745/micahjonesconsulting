@@ -12,6 +12,8 @@ const ROOT = fileURLToPath(new URL("../../../", import.meta.url));
 const OUT_DIR = path.join(ROOT, ".planning/qa/pass-125");
 const SCROLL_DIR = path.join(OUT_DIR, "scroll");
 const SHEETS_DIR = path.join(OUT_DIR, "sheets");
+const suffixArg = process.argv[2] || "";
+const OUTPUT_SUFFIX = suffixArg ? `-${suffixArg.replace(/^-+/, "")}` : "";
 const VIEWPORTS = [
   { width: 390, height: 844, columns: 4, scale: 1 },
   { width: 1440, height: 900, columns: 2, scale: 0.5 },
@@ -54,7 +56,10 @@ async function captureScrollFrames(browser, viewport) {
   try {
     const scroll = await page.evaluate(() => ({
       height: document.documentElement.scrollHeight,
-      max: Math.max(0, document.documentElement.scrollHeight - window.innerHeight),
+      max: Math.max(
+        0,
+        document.documentElement.scrollHeight - window.innerHeight,
+      ),
     }));
     const step = viewport.height * 0.8;
     const targets = [];
@@ -71,7 +76,7 @@ async function captureScrollFrames(browser, viewport) {
       await wait(700);
       const scrollY = await page.evaluate(() => Math.round(window.scrollY));
       const number = String(index + 1).padStart(2, "0");
-      const filename = `ft-${viewport.width}-${number}.png`;
+      const filename = `ft-${viewport.width}${OUTPUT_SUFFIX}-${number}.png`;
       const outputPath = path.join(SCROLL_DIR, filename);
       await page.screenshot({ path: outputPath, captureBeyondViewport: false });
       frames.push({ filename, outputPath, scrollY });
@@ -152,18 +157,24 @@ async function composeSheet(browser, viewport, frames) {
 </html>`;
   const tempPath = path.join(
     SHEETS_DIR,
-    `_tmp-full-time-scroll-${viewport.width}.html`,
+    `_tmp-full-time-scroll-${viewport.width}${OUTPUT_SUFFIX}.html`,
   );
   const outputPath = path.join(
     SHEETS_DIR,
-    `full-time-scroll-${viewport.width}.png`,
+    `full-time-scroll-${viewport.width}${OUTPUT_SUFFIX}.png`,
   );
   fs.writeFileSync(tempPath, html);
 
   const page = await browser.newPage();
   try {
-    await page.setViewport({ width: sheetWidth, height: 900, deviceScaleFactor: 1 });
-    await page.goto(pathToFileURL(tempPath).href, { waitUntil: "networkidle0" });
+    await page.setViewport({
+      width: sheetWidth,
+      height: 900,
+      deviceScaleFactor: 1,
+    });
+    await page.goto(pathToFileURL(tempPath).href, {
+      waitUntil: "networkidle0",
+    });
     await page.evaluate(async () => {
       await Promise.all(
         [...document.images].map((image) => image.decode().catch(() => {})),
@@ -181,23 +192,53 @@ async function composeSheet(browser, viewport, frames) {
   return outputPath;
 }
 
-async function captureFooter(browser, pathname, viewport, filename) {
-  const page = await preparePage(browser, viewport, pathname);
+async function captureAboutCurrently(browser, viewport) {
+  const page = await preparePage(browser, viewport, "/about");
   try {
     const position = await page.evaluate(() => {
-      const max = Math.max(
+      const link = [...document.querySelectorAll("a")].find(
+        (candidate) =>
+          candidate.getAttribute("href") === "/full-time" &&
+          !candidate.closest("footer"),
+      );
+      if (!link) return { found: false };
+
+      const top = link.getBoundingClientRect().top + window.scrollY;
+      const targetTop = window.innerHeight / 4;
+      const targetScroll = Math.max(0, top - targetTop);
+      const maxScroll = Math.max(
         0,
         document.documentElement.scrollHeight - window.innerHeight,
       );
-      window.scrollTo(0, max);
-      return { max };
+      if (targetScroll > maxScroll) {
+        const spacer = document.createElement("div");
+        spacer.style.height = `${Math.ceil(targetScroll - maxScroll + 32)}px`;
+        spacer.setAttribute("aria-hidden", "true");
+        (link.closest('[data-world="espresso"]') || document.body).append(
+          spacer,
+        );
+      }
+      window.scrollTo(0, targetScroll);
+      return { found: true };
     });
+    if (!position.found) {
+      throw new Error("About full-time sentence link not found");
+    }
     await wait(700);
     const scrollY = await page.evaluate(() => Math.round(window.scrollY));
+    const linkTop = await page.evaluate(() => {
+      const link = [...document.querySelectorAll("a")].find(
+        (candidate) =>
+          candidate.getAttribute("href") === "/full-time" &&
+          !candidate.closest("footer"),
+      );
+      return link ? Math.round(link.getBoundingClientRect().top) : null;
+    });
+    const filename = `about-currently-${viewport.width}${OUTPUT_SUFFIX}.png`;
     const outputPath = path.join(OUT_DIR, filename);
     await page.screenshot({ path: outputPath, captureBeyondViewport: false });
     console.log(
-      `footer ${pathname} ${viewport.width}x${viewport.height}: scrollY=${scrollY} maxScroll=${position.max} path=${outputPath}`,
+      `about currently ${viewport.width}x${viewport.height}: scrollY=${scrollY} linkTop=${linkTop} path=${outputPath}`,
     );
     return outputPath;
   } finally {
@@ -216,26 +257,8 @@ try {
   for (const viewport of VIEWPORTS) {
     const frames = await captureScrollFrames(browser, viewport);
     await composeSheet(browser, viewport, frames);
+    await captureAboutCurrently(browser, viewport);
   }
-
-  await captureFooter(
-    browser,
-    "/about",
-    { width: 1440, height: 900 },
-    "footer-about-1440-v2.png",
-  );
-  await captureFooter(
-    browser,
-    "/about",
-    { width: 390, height: 844 },
-    "footer-about-390-v2.png",
-  );
-  await captureFooter(
-    browser,
-    "/work",
-    { width: 1440, height: 900 },
-    "footer-work-1440.png",
-  );
 } finally {
   await browser.close();
 }
