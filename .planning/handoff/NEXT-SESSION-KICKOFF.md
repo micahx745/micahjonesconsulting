@@ -1,5 +1,10 @@
 # Kickoff: micahjonesconsulting, Pass-126 ship check (How I work), then the queue
 
+> **DONE 2026-09-21, read `.claude/RESUME.md` instead of sections 1 and 2.** The Pass-126 ship check ran, Fable's two
+> layout fixes landed (Pass-126d, LESSONS #48), and he approved the push: LIVE is `e091a16` on
+> `dpl_Bk18zCfBqPb2DjTrkozL2dBs7git`, card1-126 157/0. Section 0 (boot, the one confirming popup) and sections 3 to 5
+> still apply; section 3's queue now lives in RESUME's NEXT list.
+
 Written 2026-09-21 by the Opus 5 session that built Pass-125 (held) and Pass-126. `.claude/RESUME.md` is current
 state and outranks this file. Supersedes the Pass-125 kickoff (git history keeps it).
 

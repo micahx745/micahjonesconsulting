@@ -1,32 +1,26 @@
-# RESUME — micahjonesconsulting (2026-09-21, Pass-126 ship check session)
+# RESUME — micahjonesconsulting (2026-09-21, after the Pass-126 push)
 
 ## READ FIRST
-Kickoff: `.planning/handoff/NEXT-SESSION-KICKOFF.md`. Branch `design/live-evolve` (`.claude/worktrees/p106-live`).
-Build: `node .planning/exec/prepush-gates.mjs` (LESSONS #47). Push to main deploys. Routing: `.claude/AI_ROUTING.md`.
-Preview builds: `.claude/worktrees/p124-cuts` (now ff'd to design/live-evolve; `preview-p124-cuts` in this
-worktree's launch.json serves it on 3126).
+Branch `design/live-evolve` (`.claude/worktrees/p106-live`). Build: `node .planning/exec/prepush-gates.mjs`
+(LESSONS #47). Push to main deploys. Routing: `.claude/AI_ROUTING.md`. Preview builds: `.claude/worktrees/p124-cuts`
+(`preview-p124-cuts` in THIS worktree's launch.json serves it on 3126).
 
-## LIVE: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains (off the wire 09-21, this session)
+## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (off the wire 09-21)
+Pass-126 How I work redesign + 126d fixes, pushed on his words (LESSONS #3 "PASS-126 PUSH APPROVED"). www followed
+the deploy on its own. card1-126 with EXPECT_DPL: 157/0 (`.planning/exec/card1-126-prod-0921.txt`).
+`hiw-wrap-gate.mjs` on www: 0 failures; `--self-test` PASS (LESSONS #48 + amendment).
+Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH` (the Pass-124 home, e8b44e3).
 
-## NOW: Pass-126 How I work ship check, fix round (Pass-126d) before the push
-- Ship check on 62d293a: gated build PREPUSH pass (Sol); `card1-126.sh` (card1-124 + 22 How I work markers,
-  OLD_DPL dpl_2mGq) bit: local 74/0, prod 20 FAIL = the new markers; ledger byte-match; Fable ship read SHIP
-  (`FABLE-126-SHIP-READ.md`) with 2 layout nice-to-haves.
-- PUSH ASKED -> he picked "Fix Fable's two small ones first" (LESSONS #3 "FABLE'S TWO FIXES"). Pass-126d `90b3699`
-  (on both branches): /services Build `text-wrap: balance`; home title 40px phone margin. Gate
-  `.planning/qa/pass-126/hiw-wrap-gate.mjs` bit pre-fix (3 known FAILs), LESSONS #48.
-- 126d VERIFIED (`5bddbb3`, both branches): gated build pass; hiw-wrap-gate 0 FAIL; card1-126 local 74/0;
-  console only /_vercel 404s; r6 sheets. PUSH APPROVED 2026-09-21, he picked verbatim "Yes, push it (Recommended)" (LESSONS #3
-  "PASS-126 PUSH APPROVED"). NOW: `git push origin design/live-evolve:main` -> deploy id off the wire -> `EXPECT_DPL=<id> bash
-  .planning/exec/card1-126.sh` + hiw-wrap-gate on www. Revert = promote dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH.
-
-## HELD: /full-time (approved in content). `preview/p125-full-time` (`708ac61`); ship = `git revert 95cb41b` + card1-125.
-
-## Owed
-Inner pages (incl. /about "practice management" vs "CRM"); the blog
-(answered-ratio cut first); open facts (ORDANI "one engineer", east-west swap, "it shipped, nobody came", landing
-page 27 vs 34); Guardicore mobile LCP p75; K4/K5 race; DeepSeek key rotation (he said 09-21: "Not yet, I'll do it").
+## NEXT: his to order (ask by popup before any page arc; LESSONS #3 "FULL-TIME PAGE HELD")
+- HELD /full-time (approved in content): `preview/p125-full-time` (`708ac61`); ship = `git revert 95cb41b` on the
+  branch, then card1-125 rebased on card1-126 + its own push words.
+- Inner pages (/services, /about, /packages, /contact; /about "practice management" vs study "CRM" for Ordani).
+- The blog (answered-ratio cut from `C:/Users/micah/Code/reddit-research/` first; never the rates).
+- Open facts: ORDANI "one engineer", east-west plain swap, "it shipped, nobody came", landing page 27 vs 34.
+- Guardicore mobile LCP p75; K4/K5 harness race; dead CSS `cw-principle__artifact`, `cw-pband__incl` (no importer).
+- DeepSeek key rotation: he said 09-21 "Not yet, I'll do it".
 
 ## Traps
 deploy id off the wire (#45) · explicit pathspecs (#23) · executors write no non-ASCII (#46), cannot run bash ·
-PowerShell `*>` logs are UTF-16 · never commit in a worktree while an executor runs · `MSYS_NO_PATHCONV=1`.
+PowerShell `*>` logs are UTF-16 (brief Sol to use `cmd /c "... > log 2>&1"`) · geometry checks measure the
+finished frame (#48) · never commit in a worktree while an executor runs · `MSYS_NO_PATHCONV=1` for `/` args.
