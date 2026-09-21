@@ -991,6 +991,30 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   BUILD: picked "Build it, new lines marked (Recommended)": the homepage the research described, rendered as one proposal he judges on sight at 390 and 1440. The research's cuts and his note are applied, the ORDANI image stack comes off the home, and every NEW sentence (hero, How I work, the engagements door, the closing CTA) is drafted in the research's Voice B with the ledger fixes and marked as new. Nothing ships without his push approval.
   RECEIPTS: asked whether the 09-18 locked receipts design or the research's "fold the numbers into sentences" wins, he picked "Show me both": the proposal is rendered both ways. The 09-18 lock stands until he picks.
 - **GUARDICORE: RESEARCH AND THE DEALS, BOTH — operator 2026-09-20 (Pass-124 DIRECT, popup)**. Asked whether the live study's five research credits still stand beside his answer that he heard the visibility finding in the deals, he picked "Both happened": he did the customer interviews and data analysis the study describes AND heard it in the deals. CLOSES the OPEN item in the "/ABOUT \"PRODUCT BUILDS.\" AND THE GUARDICORE FINDING" row. The live study is unchanged and correct; new copy may credit either the research or the deals, or both. The Pass-123 lock on the Guardicore dek stands. Still out: "the real fear" and any dramatised account of what buyers said.
+- **HOW I WORK: FOUR STEPS, FINAL 1 — operator 2026-09-21 (Pass-124 DIRECT, popups)**. Shown the proposal's How I
+  work (no heading, "The story comes first." and two short paragraphs), he answered (Other), verbatim: "i hate that
+  the how i work part is gone - replaced by something i dont understand. did fable research say to use that?" Told
+  plainly that the research asked for the numbered grid to become unequal paragraphs and called the heading a
+  template heading, but did NOT write "The story comes first." (a DeepSeek draft Fable picked) and did not hide the
+  heading (the main session's call), he picked "Bring it back, simpler (Recommended)", then wrote (Other), verbatim:
+  "i want the how i work with steps but i want the steps to sound like 'Wow this guy sounds like a true product
+  manager/builder who can help me with my solo build/biz, or even enterprise company' the current how i work sounds
+  very AI". Drafted by DeepSeek v4-pro and Sol from his approved /services and /packages commitments only; the main
+  session struck every draft that merged "Something named ships in month one" with the production build (an
+  inflation, most drafts did it); Fable returned three finals (`.planning/reviews/FABLE-124-HOW-I-WORK.md`). He picked
+  "Final 1: Fable's pick" over the main session's recommendation (Final 2, which kept selling as its own step).
+  EXACT approved copy, heading "How I work." visible, no numerals, no example rows, then one link "See the work":
+  SCOPE / "Week one is an audit and a scope." / "I look at where things stand: what works, what is broken, and what
+  to fix first. The scope and the price go in writing before anything starts."
+  PLAN / "I name the trade-offs before I build." / "You get a roadmap, and you sign off on it before I build
+  anything. Something named ships in month one."
+  BUILD / "I build the real thing, not a prototype." / "That means sign-in, data, deployment, and where it stands on
+  compliance, written down. You get me, directly, and a reply within one business day."
+  STAY / "I stay for launch and what customers break." / "I interview customers and listen to sales calls to find the
+  question buyers are actually asking. Then I hand over documentation and a walkthrough so your team runs it without
+  me."
+  SUPERSEDES the proposal's "The story comes first." paragraphs and its hidden heading. Still open: the receipts (A
+  or B) and whether "operator" and the hero's turn to $20M+ get reworked (his answer ticked both rework and keep).
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
