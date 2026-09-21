@@ -22,14 +22,12 @@ not sell.", doors moved under hero, How I work = 3 unequal paras + one work link
 images off, CTA "Make it sell". Sonnet builds brief `pass-124-home-proposal.md` in
 `../p124-cuts` branch `pass-124/home-proposal`: A = receipts locked, B = receipts in
 sentences; captures -> `.planning/qa/pass-124/home/`. Main session reviews, then he judges.
-Inner-page cuts (B-E) parked. Guardicore research-vs-deals question still open.
+Inner-page cuts (B-E) parked.
 
 ## Done since
 - Title separator is now " | " site-wide; em-dash gate blocks .tsx, bite-tested (`9d2a277`).
 
 ## Waiting on him
-- Guardicore: he heard the finding in the deals (ledgered); the live study credits research in
-  five places. Do they stand? Asked, unanswered.
 - Five fact questions (end of the Pass-124 gate row): Guardicore mechanism, ORDANI "one
   engineer", "landing page" 27 vs 34, east-west swap, "it shipped, nobody came" for the blog.
 - Blog unbuilt (no route/type/index/RSS/sitemap); needs the answered-ratio cut first.
