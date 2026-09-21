@@ -4559,14 +4559,7 @@ body {
     "m";
 }
 [data-mode="cw"] .cw-hiw--services {
-  grid-template-areas:
-    "t"
-    "s"
-    "p"
-    "b"
-    "y"
-    "n"
-    "m";
+  margin-top: 64px;
 }
 [data-mode="cw"] .cw-hiw__list {
   display: contents;
@@ -4599,12 +4592,6 @@ body {
 [data-mode="cw"] .cw-hiw__step--scope > div,
 [data-mode="cw"] .cw-hiw__step--stay > div {
   margin-left: 0;
-}
-[data-mode="cw"] .cw-hiw__step--plan > div {
-  margin-left: 16px;
-}
-[data-mode="cw"] .cw-hiw__step--build > div {
-  margin-left: 32px;
 }
 [data-mode="cw"] .cw-hiw__more {
   grid-area: m;
@@ -4652,14 +4639,6 @@ body {
   transform-origin: left center;
   content: "";
 }
-[data-mode="cw"] .cw-hiw__note {
-  grid-area: n;
-  margin: 32px 0 0;
-  color: inherit;
-  font-family: var(--font-cw-body);
-  font-size: 16px;
-  line-height: 1.5;
-}
 [data-mode="cw"] .cw-hiw--services .cw-hiw__title {
   max-width: none;
   font-family: var(--font-cw-display);
@@ -4684,9 +4663,6 @@ body {
 [data-mode="cw"] .cw-hiw--services .cw-hiw__step--stay {
   margin-top: 48px;
 }
-[data-mode="cw"] .cw-hiw--services .cw-hiw__more .cw-mlink {
-  color: var(--color-accent-copper-deep);
-}
 [data-mode="cw"].cw-js-reveals .cw-hiw__step:not(.is-in) > div::before {
   transform: scaleX(0);
 }
@@ -4703,23 +4679,27 @@ body {
     transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.12s;
 }
 
+@media (max-width: 1099px) {
+  [data-mode="cw"] .cw-hiw--home {
+    padding-top: 48px;
+  }
+}
+
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-hiw--services {
+    margin-top: 48px;
+  }
+}
+
 @media (min-width: 1100px) {
   [data-mode="cw"] .cw-hiw {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 24px;
     grid-template-areas:
       "t t t t t . s s s s s s"
-      ". p p p p p p p . . . ."
-      ". . . b b b b b b b b b"
-      "y y y y y y y y y m m m";
-  }
-  [data-mode="cw"] .cw-hiw--services {
-    grid-template-areas:
-      "t t t t t . s s s s s s"
-      ". p p p p p p p . . . ."
-      ". . . b b b b b b b b b"
-      "y y y y y y y y y m m m"
-      "n n n n n n n n n . . .";
+      ". p p p p p b b b b b b"
+      "y y y y y y y y y . . ."
+      "k k k k k k k k k . . .";
   }
   [data-mode="cw"] .cw-hiw__title {
     align-self: start;
@@ -4733,18 +4713,18 @@ body {
     margin-top: 72px;
   }
   [data-mode="cw"] .cw-hiw__step--build {
-    margin-top: 128px;
+    margin-top: 72px;
   }
   [data-mode="cw"] .cw-hiw__step--stay {
-    align-self: last baseline;
-    margin-top: 88px;
+    margin-top: 72px;
   }
   [data-mode="cw"] .cw-hiw__step > div {
     margin-left: 0;
   }
   [data-mode="cw"] .cw-hiw__more {
-    align-self: last baseline;
-    margin: 0;
+    grid-area: k;
+    align-self: start;
+    margin-top: 28px;
   }
   [data-mode="cw"] .cw-hiw__step--scope .cw-hiw__body {
     max-width: 440px;
@@ -4761,9 +4741,6 @@ body {
   [data-mode="cw"] .cw-hiw__step > div::before {
     width: 88px;
   }
-  [data-mode="cw"] .cw-hiw__note {
-    margin: 40px 0 0;
-  }
   [data-mode="cw"] .cw-hiw--services .cw-hiw__title {
     max-width: 4.5em;
   }
@@ -4771,10 +4748,10 @@ body {
     margin-top: 56px;
   }
   [data-mode="cw"] .cw-hiw--services .cw-hiw__step--build {
-    margin-top: 96px;
+    margin-top: 56px;
   }
   [data-mode="cw"] .cw-hiw--services .cw-hiw__step--stay {
-    margin-top: 64px;
+    margin-top: 56px;
   }
 }
 
@@ -8131,6 +8108,9 @@ body {
   margin-top: 64px;
   max-width: none;
 }
+[data-mode="cw"] .cw-hiw--services + .cw-areas {
+  margin-top: 128px;
+}
 [data-mode="cw"] .cw-areas__h {
   font-family: var(--font-cw-display);
   font-weight: 800;
@@ -8138,10 +8118,22 @@ body {
   line-height: 1.1;
   margin: 0;
 }
+[data-mode="cw"] .cw-areas__note {
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 12px 0 24px;
+  max-width: 640px;
+}
 [data-mode="cw"] .cw-areas__grid {
   margin-top: 32px;
   border-top: 1px solid currentColor;
   padding-top: 32px;
+}
+@media (max-width: 760px) {
+  [data-mode="cw"] .cw-hiw--services + .cw-areas {
+    margin-top: 96px;
+  }
 }
 @media (min-width: 769px) {
   [data-mode="cw"] .cw-areas__grid {

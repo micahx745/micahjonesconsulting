@@ -43,6 +43,16 @@
           "none",
           "none"
         ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 289.84375,
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
         "horizontalOverflow": 0,
         "axeViolations": [],
         "axeSeriousCritical": 0
@@ -51,6 +61,20 @@
         "heading": "How I work.",
         "stepCount": 4,
         "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 96,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 261.6875,
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
         "everyEngagementIncludesCount": 0,
         "whyContainsWeekOne": false,
         "whyContainsClosing": true,
@@ -102,6 +126,16 @@
           "none",
           "none"
         ],
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
         "horizontalOverflow": 0,
         "axeViolations": [],
         "axeSeriousCritical": 0
@@ -110,6 +144,20 @@
         "heading": "How I work.",
         "stepCount": 4,
         "noteMatches": true,
+        "hiwNoteCount": 0,
+        "areasNoteMatches": true,
+        "areasNoteAfterTitle": true,
+        "hiwToAreasTitleGap": 128,
+        "moreBelowStayBody": true,
+        "moreStayLeftDelta": 0,
+        "planBuildTopDelta": 0,
+        "stepInnerPaddingLefts": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "copperTextElementCount": 0,
         "everyEngagementIncludesCount": 0,
         "whyContainsWeekOne": false,
         "whyContainsClosing": true,

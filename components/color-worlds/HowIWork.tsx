@@ -35,9 +35,6 @@ export function HowIWork({ variant }: HowIWorkProps) {
           </li>
         ))}
       </ol>
-      {variant === "services" ? (
-        <p className="cw-hiw__note">{HOW_I_WORK.servicesNote}</p>
-      ) : null}
       <p className="cw-hiw__more cw-reveal">
         <a href={HOW_I_WORK.moreHref} className="cw-mlink">
           {HOW_I_WORK.moreLabel} <span aria-hidden>{"\u2192"}</span>

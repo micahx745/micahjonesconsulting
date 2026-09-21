@@ -30,6 +30,7 @@ import { OpeningWorld } from "@/components/color-worlds/OpeningWorld";
 import { PackageBand } from "@/components/color-worlds/PackageBand";
 import { PageFooter } from "@/components/color-worlds/PageFooter";
 import { PriceBox } from "@/components/color-worlds/PriceBox";
+import { HOW_I_WORK } from "@/content/how-i-work";
 
 export const metadata: Metadata = {
   title: "Services: what I do, and how to hire me",
@@ -370,6 +371,7 @@ export default function ServicesPage() {
             <h3 id="sv-areas-title" className="cw-areas__h">
               Three areas of work
             </h3>
+            <p className="cw-areas__note">{HOW_I_WORK.servicesNote}</p>
             <div className="cw-areas__grid">
               {SERVICES.map((service) => {
                 const r = service.receipts[service.proof];

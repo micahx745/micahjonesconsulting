@@ -136,6 +136,15 @@ try {
       const section = document.querySelector(".cw-hiw");
       const steps = [...document.querySelectorAll(".cw-hiw__step")];
       const bodies = [...document.querySelectorAll(".cw-hiw__body")];
+      const plan = document.querySelector(".cw-hiw__step--plan");
+      const build = document.querySelector(".cw-hiw__step--build");
+      const stayBody = document.querySelector(
+        ".cw-hiw__step--stay .cw-hiw__body",
+      );
+      const more = document.querySelector(".cw-hiw__more");
+      const stayBodyRect = stayBody?.getBoundingClientRect();
+      const moreRect = more?.getBoundingClientRect();
+      const copperTextColors = ["rgb(189, 90, 45)", "rgb(138, 61, 36)"];
       return {
         heading:
           document.querySelector("h2#cw-howiwork-title")?.textContent?.trim() ??
@@ -165,6 +174,29 @@ try {
             getComputedStyle(step.querySelector(":scope > div"), "::before")
               .transform,
         ),
+        moreBelowStayBody:
+          moreRect && stayBodyRect ? moreRect.top > stayBodyRect.bottom : false,
+        moreStayLeftDelta:
+          moreRect && stayBodyRect
+            ? Math.abs(moreRect.left - stayBodyRect.left)
+            : null,
+        planBuildTopDelta:
+          plan && build
+            ? Math.abs(
+                plan.getBoundingClientRect().top -
+                  build.getBoundingClientRect().top,
+              )
+            : null,
+        stepInnerPaddingLefts: steps.map((step) =>
+          getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+        ),
+        copperTextElementCount: section
+          ? [...section.querySelectorAll("*")].filter(
+              (node) =>
+                node.textContent?.trim() &&
+                copperTextColors.includes(getComputedStyle(node).color),
+            ).length
+          : null,
         horizontalOverflow:
           Math.max(
             document.body.scrollWidth,
@@ -186,14 +218,65 @@ try {
       const whyText = normalize(
         whyHeading?.nextElementSibling?.textContent ?? "",
       );
+      const section = document.querySelector(".cw-hiw");
+      const steps = [...document.querySelectorAll(".cw-hiw__step")];
+      const plan = document.querySelector(".cw-hiw__step--plan");
+      const build = document.querySelector(".cw-hiw__step--build");
+      const stayBody = document.querySelector(
+        ".cw-hiw__step--stay .cw-hiw__body",
+      );
+      const more = document.querySelector(".cw-hiw__more");
+      const areasTitle = document.querySelector("#sv-areas-title");
+      const areasNote = document.querySelector(".cw-areas__note");
+      const stayBodyRect = stayBody?.getBoundingClientRect();
+      const moreRect = more?.getBoundingClientRect();
+      const sectionRect = section?.getBoundingClientRect();
+      const areasTitleRect = areasTitle?.getBoundingClientRect();
+      const copperTextColors = ["rgb(189, 90, 45)", "rgb(138, 61, 36)"];
+      const areasNoteMatches =
+        normalize(areasNote?.textContent?.trim() ?? "") ===
+        normalize(locked.servicesNote);
       return {
         heading:
           document.querySelector("#sv-hiw-title")?.textContent?.trim() ?? null,
         stepCount: document.querySelectorAll(".cw-hiw__step").length,
-        noteMatches:
-          normalize(
-            document.querySelector(".cw-hiw__note")?.textContent?.trim() ?? "",
-          ) === normalize(locked.servicesNote),
+        noteMatches: areasNoteMatches,
+        hiwNoteCount: document.querySelectorAll(".cw-hiw__note").length,
+        areasNoteMatches,
+        areasNoteAfterTitle:
+          areasTitle && areasNote
+            ? Boolean(
+                areasTitle.compareDocumentPosition(areasNote) &
+                  Node.DOCUMENT_POSITION_FOLLOWING,
+              )
+            : false,
+        hiwToAreasTitleGap:
+          sectionRect && areasTitleRect
+            ? areasTitleRect.top - sectionRect.bottom
+            : null,
+        moreBelowStayBody:
+          moreRect && stayBodyRect ? moreRect.top > stayBodyRect.bottom : false,
+        moreStayLeftDelta:
+          moreRect && stayBodyRect
+            ? Math.abs(moreRect.left - stayBodyRect.left)
+            : null,
+        planBuildTopDelta:
+          plan && build
+            ? Math.abs(
+                plan.getBoundingClientRect().top -
+                  build.getBoundingClientRect().top,
+              )
+            : null,
+        stepInnerPaddingLefts: steps.map((step) =>
+          getComputedStyle(step.querySelector(":scope > div")).paddingLeft,
+        ),
+        copperTextElementCount: section
+          ? [...section.querySelectorAll("*")].filter(
+              (node) =>
+                node.textContent?.trim() &&
+                copperTextColors.includes(getComputedStyle(node).color),
+            ).length
+          : null,
         everyEngagementIncludesCount: (
           pageText.match(/Every engagement includes/g) ?? []
         ).length,
@@ -246,9 +329,32 @@ try {
       ],
       [home.axeSeriousCritical === 0, `${prefix} home axe`],
       [home.horizontalOverflow <= 0, `${prefix} home horizontal overflow`],
+      [home.moreBelowStayBody, `${prefix} home more below stay body`],
+      [
+        home.moreStayLeftDelta !== null && home.moreStayLeftDelta <= 2,
+        `${prefix} home more aligned with stay body`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          (home.planBuildTopDelta !== null && home.planBuildTopDelta <= 2),
+        `${prefix} home plan and build aligned`,
+      ],
+      [
+        viewport.width !== 390 ||
+          (home.stepInnerPaddingLefts.length === 4 &&
+            home.stepInnerPaddingLefts.every((value) => value === "0px")),
+        `${prefix} home step inner padding`,
+      ],
+      [
+        home.copperTextElementCount === 0,
+        `${prefix} home copper text elements`,
+      ],
       [services.heading === expected.heading, `${prefix} services heading`],
       [services.stepCount === 4, `${prefix} services step count`],
       [services.noteMatches, `${prefix} services note`],
+      [services.hiwNoteCount === 0, `${prefix} services hiw note count`],
+      [services.areasNoteMatches, `${prefix} services areas note text`],
+      [services.areasNoteAfterTitle, `${prefix} services areas note order`],
       [
         services.everyEngagementIncludesCount === 0,
         `${prefix} services retired heading`,
@@ -259,6 +365,33 @@ try {
       [
         services.horizontalOverflow <= 0,
         `${prefix} services horizontal overflow`,
+      ],
+      [services.moreBelowStayBody, `${prefix} services more below stay body`],
+      [
+        services.moreStayLeftDelta !== null && services.moreStayLeftDelta <= 2,
+        `${prefix} services more aligned with stay body`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          (services.planBuildTopDelta !== null &&
+            services.planBuildTopDelta <= 2),
+        `${prefix} services plan and build aligned`,
+      ],
+      [
+        viewport.width !== 390 ||
+          (services.stepInnerPaddingLefts.length === 4 &&
+            services.stepInnerPaddingLefts.every((value) => value === "0px")),
+        `${prefix} services step inner padding`,
+      ],
+      [
+        services.copperTextElementCount === 0,
+        `${prefix} services copper text elements`,
+      ],
+      [
+        viewport.width !== 1440 ||
+          (services.hiwToAreasTitleGap !== null &&
+            services.hiwToAreasTitleGap >= 120),
+        `${prefix} services hiw to areas title gap`,
       ],
     ];
     failures.push(
