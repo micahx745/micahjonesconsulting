@@ -69,6 +69,7 @@ import { PriceBox } from "@/components/color-worlds/PriceBox";
 import { RevenueFigure } from "@/components/color-worlds/RevenueFigure";
 import { SplitReveal } from "@/components/color-worlds/SplitReveal";
 import { MagneticArea } from "@/components/motion/MagneticArea";
+import { FULL_TIME } from "@/content/full-time";
 
 export const metadata: Metadata = {
   // Absolute title prevents the root template ("%s | Micah Jones") from
@@ -576,6 +577,7 @@ export default function ColorWorldsHome() {
           >
             LinkedIn ↗
           </a>
+          <a href={FULL_TIME.path}>{FULL_TIME.linkLabel}</a>
           {/* W4: date-range © per the bar (§3.6). a11y: opacity 0.5
               measured 2.48:1 on terracotta; 0.9 holds ≥4.5:1. */}
           <span style={{ opacity: 0.9, border: "none" }}>

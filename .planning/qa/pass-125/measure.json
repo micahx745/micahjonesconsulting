@@ -1,0 +1,80 @@
+{
+  "390": {
+    "/full-time": {
+      "h1Count": 1,
+      "h1Text": "I build the product and sell it.",
+      "h2Texts": [
+        "How I think.",
+        "The record",
+        "Write to me"
+      ],
+      "principleCount": 4,
+      "fullTimeLinkLabelCount": 0,
+      "emDashCount": 1,
+      "horizontalOverflow": -15,
+      "axeSeriousCritical": 0
+    },
+    "/about": {
+      "fullTimeLinks": 2,
+      "axeSeriousCritical": 0
+    },
+    "/": {
+      "fullTimeLinks": 1,
+      "primaryNavFullTimeLinks": 0
+    },
+    "/work/guardicore": {
+      "fullTimeLinks": 1
+    },
+    "/work": {
+      "fullTimeLinks": 1
+    },
+    "/services": {
+      "fullTimeLinks": 1
+    },
+    "/packages": {
+      "fullTimeLinks": 1
+    },
+    "/contact": {
+      "fullTimeLinks": 1
+    }
+  },
+  "1440": {
+    "/full-time": {
+      "h1Count": 1,
+      "h1Text": "I build the product and sell it.",
+      "h2Texts": [
+        "How I think.",
+        "The record",
+        "Write to me"
+      ],
+      "principleCount": 4,
+      "fullTimeLinkLabelCount": 0,
+      "emDashCount": 0,
+      "horizontalOverflow": -15,
+      "axeSeriousCritical": 0
+    },
+    "/about": {
+      "fullTimeLinks": 2,
+      "axeSeriousCritical": 0
+    },
+    "/": {
+      "fullTimeLinks": 1,
+      "primaryNavFullTimeLinks": 0
+    },
+    "/work/guardicore": {
+      "fullTimeLinks": 1
+    },
+    "/work": {
+      "fullTimeLinks": 1
+    },
+    "/services": {
+      "fullTimeLinks": 1
+    },
+    "/packages": {
+      "fullTimeLinks": 1
+    },
+    "/contact": {
+      "fullTimeLinks": 1
+    }
+  }
+}

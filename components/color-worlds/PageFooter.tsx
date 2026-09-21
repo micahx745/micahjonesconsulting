@@ -36,18 +36,19 @@ export function PageFooter({
         >
           LinkedIn
         </a>
-        {fullTimeLink ? (
-          <>
-            <span aria-hidden>·</span>
-            <a href={FULL_TIME.path}>{FULL_TIME.linkLabel}</a>
-          </>
-        ) : null}
         {/* Pass-84, operator 2026-09-02: "Oakland, CA ... in many places that
             is irrelevant". The city chip came off; the copyright line below
             keeps his name because that is a legal notice, not decoration. */}
         <span aria-hidden>·</span>
         <span>© 2013–2026 Micah Jones</span>
       </p>
+      {/* Its own row: inside the row above it wrapped at 1440 and left a
+          separator dot hanging at the line end (Pass-125 capture). */}
+      {fullTimeLink ? (
+        <p className="cw-pagefoot__row" style={{ marginTop: "14px" }}>
+          <a href={FULL_TIME.path}>{FULL_TIME.linkLabel}</a>
+        </p>
+      ) : null}
     </footer>
   );
 }
