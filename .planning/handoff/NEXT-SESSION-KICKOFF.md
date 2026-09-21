@@ -39,19 +39,43 @@ copy carried numbers that were wrong. Before a single file changes:
 | A 4th independent lineage in cross-review | DeepSeek | `run_cross_review.py --legs deepseek` (on by default) |
 | Overflow only | GLM 5.3 | `scripts/claude-glm.ps1`; was 94% for the week on 09-20, resets ~09-22 |
 
-**DeepSeek is UNSMOKED.** No key was set when it was written. Its first use in your session is:
+**DeepSeek is VERIFIED and ready — use it heavily.** Smoked end to end on 2026-09-20, both
+tiers, with a clean UTF-8 round-trip. The key now lives at `~/.claude/.deepseek-key`, so every
+repo on this machine finds it. Two model names, confirmed off the account with `-Models`:
 
-```bash
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deepseek-exec.ps1 -Smoke
-```
+- **`deepseek-flash`** (the default) — cheap. Sweeps, catalogue walks, premise checks, volume
+  reads, first drafts, summarising a long research answer, classifying a list.
+- **`deepseek-v4-pro`** — top tier. A second independent opinion on a plan, a diff or a verdict.
 
-Record the dated result in the STATUS comment at the top of that script, the way `claude-glm.ps1`
-carries its own verification line. Until that line exists its output is not evidence. **The key he
-pasted into a chat on 2026-09-20 is in a transcript on disk and must be rotated** — he sets
-`DEEPSEEK_API_KEY` himself, in his own shell; it never appears in a chat, a command line or a file.
+`deepseek-chat` and `deepseek-reasoner` DO NOT EXIST here. Both were written from memory into
+the first draft of this harness and the API silently aliased one of them, which is exactly how
+a wrong model id survives unnoticed. Confirm with `-Models`, never from memory.
 
-DeepSeek has no tools, no filesystem, no repo access — that decides what to send it. Anything that
-must edit a file or run a command goes to Sonnet or Sol.
+Three things that will bite you, all measured on 09-20 and all handled in the script — but
+worth knowing if you call the API any other way:
+
+1. **Both tiers are reasoning models.** Reasoning tokens are charged against
+   `completion_tokens`, and too small a `-MaxTokens` returns an EMPTY answer with
+   `finish_reason: "length"` that looks identical to a failed call. Budget for reasoning plus
+   answer. Read `choices[0].message.content` specifically — the message also carries
+   `reasoning_content`, which is not the answer.
+2. **Never build the request body from `Get-Content`.** Its output string carries provider
+   NoteProperties and `ConvertTo-Json` walks them: a 101-character prompt serialised to a
+   105 MB body and the API answered 413. Use `[System.IO.File]::ReadAllText`.
+3. **Never use `Invoke-RestMethod` for the reply.** PS 5.1 decodes a charset-less response as
+   Latin-1, so a right single quote came back as `a-euro-trademark` and was written to disk as
+   valid UTF-8 mojibake. On a copy harness with a one-em-dash-per-page rule that is not
+   cosmetic. Use `Invoke-WebRequest -UseBasicParsing` and decode the raw bytes as UTF-8.
+
+**PRIVACY.** Third-party provider outside the US. Send code, diffs, plans and public copy only.
+Never real client rows, personal data, auth tokens, or anything belonging to a real account.
+This repo's case studies anonymise clients on purpose; keep it that way in anything sent there.
+
+**What to send it, and what not to.** It has no tools, no filesystem, no repo access — that is
+the routing rule. Reading, drafting, summarising, classifying, one-shot rewrites, second
+opinions on a written artifact: yes, heavily, it is cheap and it is not your Claude budget.
+Anything that must edit a file, run a command or check a claim against the repo: no — that goes
+to a Sonnet subagent or Sol, and the fact-verification against the ledger stays with you.
 
 Call `mcp__ccd_session_mgmt__get_usage` at boot and before every Claude fan-out, and say the numbers
 to him in one line. On 2026-09-20 ~13:00 the 5-hour window was ~25%, the week ~12%, Fable ~10%,

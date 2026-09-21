@@ -21,7 +21,7 @@ class Stub(http.server.BaseHTTPRequestHandler):
         SEEN["path"].append(self.path)
         SEEN["auth"] = self.headers.get("Authorization")
         body = json.dumps(
-            {"object": "list", "data": [{"id": "deepseek-chat"}, {"id": "deepseek-reasoner"}]}
+            {"object": "list", "data": [{"id": "deepseek-flash"}, {"id": "deepseek-v4-pro"}]}
         ).encode()
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
@@ -88,17 +88,17 @@ st, body, label = rc._run_deepseek_rest("review this", 20)
 check("keyed call -> OK", st == "OK", "status=%s body=%r" % (st, body))
 check("answer text only", body == "BLOCK: the leg works.", "body=%r" % body)
 check("reasoning_content discarded", "thinking out loud" not in body)
-check("model chosen by preference", SEEN["model"] == "deepseek-reasoner", "model=%s" % SEEN["model"])
-check("label names model and how", "deepseek-reasoner" in label and "2 models" in label, "label=%s" % label)
+check("model chosen by preference (frontier, not the cheap one)", SEEN["model"] == "deepseek-v4-pro", "model=%s" % SEEN["model"])
+check("label names model and how", "deepseek-v4-pro" in label and "2 models" in label, "label=%s" % label)
 check("key sent as bearer", SEEN["auth"] == "Bearer stub-key-not-real")
 check("models endpoint consulted", any(p.endswith("/models") for p in SEEN["path"]), str(SEEN["path"]))
 check("instruction passed through", len(SEEN["system"] or "") > 10, "system=%r" % SEEN["system"])
 
 # 3. DEEPSEEK_MODEL overrides without asking the account.
 SEEN["path"] = []
-os.environ["DEEPSEEK_MODEL"] = "deepseek-chat"
+os.environ["DEEPSEEK_MODEL"] = "deepseek-flash"
 st, body, label = rc._run_deepseek_rest("review this", 20)
-check("override wins", SEEN["model"] == "deepseek-chat" and "override" in label, "model=%s label=%s" % (SEEN["model"], label))
+check("override wins", SEEN["model"] == "deepseek-flash" and "override" in label, "model=%s label=%s" % (SEEN["model"], label))
 check("override skips /models", not any(p.endswith("/models") for p in SEEN["path"]), str(SEEN["path"]))
 del os.environ["DEEPSEEK_MODEL"]
 

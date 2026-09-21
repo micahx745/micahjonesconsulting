@@ -183,12 +183,19 @@ to give quality feedback." Two slots, and only two:
    honest fit and every run costs one visible request. It has no tools, no filesystem and no
    repo access, which decides what to send it: **reading, drafting, summarising, classifying,
    one-shot rewrites, and a second opinion on a written artifact.** Anything that must edit a
-   file or run a command goes to a Sonnet subagent or Sol instead. `-Model deepseek-reasoner`
-   for the thinking model; `-Smoke` and `-Models` prove the account before you trust a run.
-   **UNSMOKED as of 2026-09-20** — no key was set when it was written, so the first session
-   with a key runs `-Smoke` and records the dated result in the script's STATUS comment,
-   exactly as `claude-glm.ps1` carries its own verification line. Until that line exists it is
-   untested code and its output is not evidence.
+   file or run a command goes to a Sonnet subagent or Sol instead. **VERIFIED 2026-09-20**,
+   both tiers, end to end, with a clean UTF-8 round-trip; the evidence lines are in the
+   script's STATUS comment. THE MODEL NAMES ARE `deepseek-flash` (cheap: sweeps, premise
+   checks, volume reads, drafting — the default) and `deepseek-v4-pro` (top tier: a second
+   independent opinion on a plan, a diff or a verdict). `deepseek-chat` and
+   `deepseek-reasoner` DO NOT EXIST on this account; both were written from memory into the
+   first draft, and the API silently aliased one of them, which is how a wrong id survives.
+   Confirm with `-Models`, never from memory. BOTH tiers are reasoning models: reasoning
+   tokens are charged against completion_tokens, and too small a `-MaxTokens` returns an
+   EMPTY answer with finish_reason "length" that looks exactly like a failed call — the
+   script reports that as a budget problem, not a failure. PRIVACY: a third-party provider
+   outside the US. Send code, diffs, plans and public copy only — never real client rows,
+   personal data or tokens.
 It does NOT rule, and it does not replace Astra or Fable at a taste gate: a fourth opinion is worth
 having precisely because it is independent, and an independent opinion that gets to decide is just
 another ruler. Every finding it returns goes through the same disposition protocol as the other legs

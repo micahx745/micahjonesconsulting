@@ -27,21 +27,55 @@
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deepseek-exec.ps1 -Smoke
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deepseek-exec.ps1 -Models
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deepseek-exec.ps1 -PromptFile .planning/exec/prompt.md -Out .planning/exec/out.md
-#   ... -PromptFile x.md -Model deepseek-reasoner     # the thinking model
+#   ... -PromptFile x.md -Model deepseek-v4-pro        # the frontier model
 #
-# STATUS: UNSMOKED as of 2026-09-20 — no key was set when this was written, so
-# not one line below has been run against the real API. Run -Smoke first and
-# record the result here, the way claude-glm.ps1 carries its own dated
-# verification line. Until that line exists, treat this script as untested code
-# and do not report its output as evidence for anything.
+# STATUS: VERIFIED 2026-09-20 against the live account, both tiers, end to end.
+#   -Smoke:  model=deepseek-flash reply=OK tokens_in=14 tokens_out=1
+#   -PromptFile on deepseek-flash   -> 388 chars, finish=stop, tokens_out=333
+#   -PromptFile on deepseek-v4-pro  -> 308 chars, finish=stop, tokens_out=208
+#   UTF-8 round-trip: a right single quote, an em-dash and an e-acute all
+#   survive to disk intact, no BOM, no mojibake.
+# Two bugs were found and fixed getting there; both are commented at the site
+# of the fix: ConvertTo-Json exploding a Get-Content string to 105 MB, and
+# Invoke-RestMethod decoding the reply as Latin-1.
+#
+# MODEL NAMES, read off the account with -Models the same day. Do not guess
+# these from memory:
+#   deepseek-flash   cheap tier. The default here. Sweeps, catalogue walks,
+#                    premise checks, volume reads, drafting.
+#   deepseek-v4-pro  top tier. Pass -Model deepseek-v4-pro when the job is a
+#                    second independent opinion on a plan, a diff or a verdict.
+# "deepseek-chat" and "deepseek-reasoner" DO NOT EXIST on this account. Both
+# were written into the first draft of this harness from memory, and the API
+# quietly aliased "deepseek-chat" to deepseek-flash on the smoke call -- which
+# is exactly how a wrong model id survives unnoticed. Confirm with -Models.
+#
+# BOTH TIERS ARE REASONING MODELS (measured, 2026-09-20). The reply carries
+# `content` AND `reasoning_content`, and reasoning tokens are charged against
+# completion_tokens. Two consequences this script handles:
+#   - Read choices[0].message.content SPECIFICALLY, never the first field.
+#   - Too small a max_tokens returns content as an EMPTY STRING with
+#     finish_reason "length" -- indistinguishable from a failed call unless you
+#     look. At max_tokens=10 both tiers returned empty; 400 was fine for a short
+#     answer. So -MaxTokens budgets reasoning + answer, not just the answer, and
+#     an empty reply with finish=length is reported as a BUDGET problem, not a
+#     failure. Default here is deliberately generous.
+# usage.prompt_cache_hit_tokens is reported, so re-sending the same brief is
+# cheaper -- worth knowing when iterating on one long input.
+#
+# PRIVACY. DeepSeek is a third-party provider outside the US. Send code, diffs,
+# plans and public copy only. NEVER real client rows, personal data, auth
+# tokens, or anything belonging to a real account. This repo's case studies name
+# anonymised clients on purpose; keep it that way in anything sent here.
 
 param(
   [switch]$Smoke,                      # one tiny call to prove the account answers
   [switch]$Models,                     # list the models this account exposes
   [string]$PromptFile = "",            # the prompt to run, read from a file (never inline)
   [string]$Out = "",                   # write the reply here as well as to stdout
-  [string]$Model = "",                 # default: deepseek-chat, or DEEPSEEK_MODEL
+  [string]$Model = "",                 # default deepseek-flash, or DEEPSEEK_MODEL
   [string]$System = "",                # optional system instruction
+  [int]$MaxTokens = 8000,              # budgets REASONING + answer (see STATUS)
   [int]$TimeoutSec = 600
 )
 
@@ -53,7 +87,9 @@ function Get-DeepSeekKey {
   if ($env:DEEPSEEK_API_KEY) { return $env:DEEPSEEK_API_KEY.Trim() }
   foreach ($f in @("$HOME/.claude/.deepseek-key", (Join-Path (Get-Location).Path ".claude/.deepseek-key"))) {
     if (Test-Path $f) {
-      $k = (Get-Content -Raw $f).Trim()
+      # .NET read, same reason as the prompt file below: no provider
+      # NoteProperties riding along on the string.
+      $k = [System.IO.File]::ReadAllText((Resolve-Path $f).Path).Trim()
       if ($k) { return $k }
     }
   }
@@ -87,7 +123,7 @@ if ($Models) {
 }
 
 if (-not $Model) {
-  if ($env:DEEPSEEK_MODEL) { $Model = $env:DEEPSEEK_MODEL } else { $Model = "deepseek-chat" }
+  if ($env:DEEPSEEK_MODEL) { $Model = $env:DEEPSEEK_MODEL } else { $Model = "deepseek-flash" }
 }
 
 # --- the prompt ---------------------------------------------------------------
@@ -95,7 +131,12 @@ if ($Smoke) {
   $userText = "Reply with the single word OK and nothing else."
 } elseif ($PromptFile) {
   if (-not (Test-Path $PromptFile)) { Write-Error "No such prompt file: $PromptFile"; exit 1 }
-  $userText = Get-Content -Raw $PromptFile
+  # .NET, NOT Get-Content -Raw. Get-Content decorates its output string with
+  # provider NoteProperties (PSPath, PSProvider, ...), and ConvertTo-Json walks
+  # those recursively: a 101-character prompt serialised to a 105 MB body and
+  # the API answered 413 Request Entity Too Large. Measured 2026-09-20. The
+  # smoke call never hit it because its prompt is a literal.
+  $userText = [System.IO.File]::ReadAllText((Resolve-Path $PromptFile).Path)
   if (-not $userText.Trim()) { Write-Error "Prompt file is empty: $PromptFile"; exit 1 }
 } else {
   Write-Error "Give me something to do: -Smoke, -Models, or -PromptFile <path>."
@@ -106,11 +147,25 @@ $messages = @()
 if ($System) { $messages += @{ role = "system"; content = $System } }
 $messages += @{ role = "user"; content = $userText }
 
-$body = @{ model = $Model; messages = $messages; stream = $false } | ConvertTo-Json -Depth 8
+$body = @{ model = $Model; messages = $messages; stream = $false; max_tokens = $MaxTokens } | ConvertTo-Json -Depth 8
 
+$bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($body)
+if ($bodyBytes.Length -gt 2000000) {
+  Write-Error "Refusing to send a $($bodyBytes.Length)-byte body from a $($userText.Length)-character prompt. Something decorated the string (see the Get-Content note above) or the prompt really is enormous. Not sending."
+  exit 1
+}
+
+# Invoke-WebRequest + an EXPLICIT UTF-8 decode, not Invoke-RestMethod.
+# Measured 2026-09-20: PowerShell 5.1's Invoke-RestMethod decodes a response
+# body as ISO-8859-1 when the Content-Type carries no charset, which DeepSeek's
+# does not. A reply containing a right single quote came back as the three
+# characters "a-euro-trademark" and was then written to disk as valid UTF-8
+# mojibake -- silently corrupting every smart quote, accent and em-dash. On a
+# copywriting harness with a one-em-dash-per-page rule, that is not cosmetic.
 try {
-  $resp = Invoke-RestMethod -Uri "$Base/chat/completions" -Headers $headers -Method POST `
-    -Body ([System.Text.Encoding]::UTF8.GetBytes($body)) -TimeoutSec $TimeoutSec
+  $raw = Invoke-WebRequest -Uri "$Base/chat/completions" -Headers $headers -Method POST `
+    -Body $bodyBytes -TimeoutSec $TimeoutSec -UseBasicParsing
+  $resp = [System.Text.Encoding]::UTF8.GetString($raw.RawContentStream.ToArray()) | ConvertFrom-Json
 } catch {
   # A 402 here means the account is out of credit -- the same wall the GLM
   # pay-as-you-go key hit on 2026-09-18. Say so plainly rather than retrying.
@@ -119,9 +174,15 @@ try {
 }
 
 $choice = $resp.choices[0]
+# choices[0].message.content SPECIFICALLY -- these are reasoning models and the
+# message also carries reasoning_content, which is not the answer.
 $text = $choice.message.content
 if (-not $text) {
-  Write-Error "DeepSeek returned no content (finish_reason=$($choice.finish_reason))."
+  if ($choice.finish_reason -eq "length") {
+    Write-Error "DeepSeek spent the whole budget on reasoning and returned an EMPTY answer (finish_reason=length, max_tokens=$MaxTokens, completion_tokens=$($resp.usage.completion_tokens)). This is a budget problem, not a failed call -- re-run with a larger -MaxTokens."
+  } else {
+    Write-Error "DeepSeek returned no content (finish_reason=$($choice.finish_reason))."
+  }
   exit 1
 }
 
@@ -135,7 +196,11 @@ if ($Smoke) {
 if ($Out) {
   $dir = Split-Path -Parent $Out
   if ($dir -and -not (Test-Path $dir)) { New-Item -ItemType Directory -Force $dir | Out-Null }
-  Set-Content -Path $Out -Value $text -Encoding utf8
-  Write-Output "wrote $Out ($($text.Length) chars, model=$($resp.model), finish=$($choice.finish_reason), tokens_out=$($resp.usage.completion_tokens))"
+  # UTF8Encoding($false) = no BOM. Set-Content -Encoding utf8 writes one in
+  # PS 5.1, and a BOM riding into copy that gets pasted elsewhere is a bug
+  # waiting to be blamed on something else.
+  [System.IO.File]::WriteAllText(
+    (Join-Path (Get-Location).Path $Out), $text, (New-Object System.Text.UTF8Encoding($false)))
+  Write-Output "wrote $Out ($($text.Length) chars, model=$($resp.model), finish=$($choice.finish_reason), tokens_out=$($resp.usage.completion_tokens), cache_hit=$($resp.usage.prompt_cache_hit_tokens))"
 }
 Write-Output $text

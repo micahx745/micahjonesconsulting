@@ -324,12 +324,24 @@ def _run_glm_rest(prompt_text, timeout):
 # key is never printed, never committed, and never passed on a command line.
 DEEPSEEK_ENDPOINT = "https://api.deepseek.com/chat/completions"
 DEEPSEEK_MODELS_ENDPOINT = "https://api.deepseek.com/models"
-# Preference order for the juror role: the reasoning model first, the chat model
-# second. Deliberately NOT a hard pin -- _deepseek_model() asks the account
-# which models it actually exposes and takes the first of these that is present,
-# so a renamed or retired model degrades to a NAMED fallback instead of a 404
-# that reads like a dead leg. DEEPSEEK_MODEL overrides everything.
-DEEPSEEK_MODEL_PREFERENCE = ("deepseek-reasoner", "deepseek-chat")
+# Preference order for the JUROR role: the frontier model first, the cheap one
+# only as a fallback. Deliberately NOT a hard pin -- _deepseek_model() asks the
+# account which models it actually exposes and takes the first of these that is
+# present, so a renamed or retired model degrades to a NAMED fallback instead of
+# a 404 that reads like a dead leg. DEEPSEEK_MODEL overrides everything.
+#
+# CORRECTED 2026-09-20 against the live account. This list first read
+# ("deepseek-reasoner", "deepseek-chat") -- names written from memory, and
+# NEITHER EXISTS on the operator's account, which exposes exactly
+# deepseek-flash and deepseek-v4-pro. The discovery call is what turned that
+# into a survivable miss: without it the leg would have 404'd and read as dead.
+# With it, but with the wrong list, it would have fallen through to "took the
+# first of" and quietly run the juror on deepseek-flash -- the cheap model --
+# while the operator had asked for "another top model to give quality
+# feedback". A silent downgrade is worse than a dead leg, because a dead leg
+# announces itself. Verify this list against `deepseek-exec.ps1 -Models`
+# whenever a round looks thin.
+DEEPSEEK_MODEL_PREFERENCE = ("deepseek-v4-pro", "deepseek-flash")
 
 
 def _deepseek_key():
