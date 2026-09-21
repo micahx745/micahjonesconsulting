@@ -9,14 +9,9 @@ worktree's launch.json serves it on 3126).
 ## LIVE: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains (off the wire 09-21, this session)
 
 ## NOW: Pass-126 How I work ship check, fix round (Pass-126d) before the push
-- Gated build (Sol, p124-cuts, 62d293a source = 3d5bb88 site): last line `PREPUSH: all gates and the build passed`
-  (log `p124-cuts/.planning/exec/build-p126-shipcheck.log`, UTF-16; Sol's "exit 1" = PowerShell wrapping an npm
-  notice on stderr, not a failure).
-- `.planning/exec/card1-126.sh` (card1-124 + 22 How I work markers, OLD_DPL = dpl_2mGq). Bite: local served build
-  74 PASS / 0 FAIL; production 54 PASS / 20 FAIL = exactly the new markers.
-- Ledger check: how-i-work.ts byte-matches LESSONS #3 (FINAL 1 + THE PLAN LINE + services note).
-- Fable ship read: SHIP, no blockers (`.planning/reviews/FABLE-126-SHIP-READ.md`); 2 nice-to-haves: /services 1440
-  Build headline orphan "prototype."; home 390 Scope rule 18px under heading vs 38px on /services.
+- Ship check on 62d293a: gated build PREPUSH pass (Sol); `card1-126.sh` (card1-124 + 22 How I work markers,
+  OLD_DPL dpl_2mGq) bit: local 74/0, prod 20 FAIL = the new markers; ledger byte-match; Fable ship read SHIP
+  (`FABLE-126-SHIP-READ.md`) with 2 layout nice-to-haves.
 - PUSH ASKED -> he picked "Fix Fable's two small ones first" (LESSONS #3 "FABLE'S TWO FIXES"). Pass-126d `90b3699`
   (on both branches): /services Build `text-wrap: balance`; home title 40px phone margin. Gate
   `.planning/qa/pass-126/hiw-wrap-gate.mjs` bit pre-fix (3 known FAILs), LESSONS #48.
