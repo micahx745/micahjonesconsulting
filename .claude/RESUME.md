@@ -1,33 +1,29 @@
-# RESUME — micahjonesconsulting (2026-09-21, Pass-124)
+# RESUME — micahjonesconsulting (2026-09-21, Pass-125)
 
 ## READ FIRST
 Branch `design/live-evolve` (worktree `.claude/worktrees/p106-live`). Build: `npx next build --webpack`
-(`pnpm build` fails here). Push to main deploys. ROUTING: `.claude/AI_ROUTING.md` is the single source
-(tiers, ids, commands, rules; Ordani-style), printed into every session by the SessionStart hook
-`.claude/hooks/routing-reminder.py`. DeepSeek, Sol, Gemini (`scripts/gemini-exec.ps1`, 2.5-flash only
-today) do the legs; Fable + Astra + deepseek-v4-pro confirm quality. These files are on the branch,
-pushed to `main` 2026-09-21, operator verbatim: "push the routing files to main too" (docs,
-scripts, harness only; no site file). Next chat: `.planning/handoff/
-NEXT-SESSION-KICKOFF.md` (full-time page first).
+(`pnpm build` fails here). Push to main deploys. ROUTING: `.claude/AI_ROUTING.md` is the single source;
+the SessionStart hook prints it (it did NOT load in the 09-21 Pass-125 session, which opened at the main
+checkout; open the chat in the p106-live worktree). Preview builds go in `.claude/worktrees/p124-cuts`.
 
-## LIVE 2026-09-21: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains
-Approval verbatim (LESSONS #3, PASS-124 PUSH APPROVED): "Yes, push it (Recommended)". CARD 1
-115/0 again after the routing push (`.planning/exec/card1-124-prod-0921b.txt`); site files unchanged since 48818f1. Revert: promote
-`dpl_9Q3JRk47vpd9b9xGnmkruoG5zkEM` (9019186).
-Shipped: the rebuilt home (hero "It works. / It just does not sell.", doors under the hero, How I
-work as four steps, ORDANI photos off; receipts and NAME THE PROBLEM unchanged), " | " title
-separator, /about "Product builds.", mojibake gate, em-dash gate on .tsx. Hero CLS 0.0003 (was 0.0045).
+## LIVE: main = e8b44e3, dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH, all three domains
+Site files unchanged since 48818f1. CARD 1 115/0. Revert: promote `dpl_9Q3JRk47vpd9b9xGnmkruoG5zkEM`.
 
-## Owed, none blocking
-- "Work with me full-time" page for the hiring manager (the adopted audience ruling). Not started.
-- The blog: route, content type, index, RSS, sitemap. Not started; needs the answered-ratio cut first.
-- Inner-page cuts (/services, /about, /packages, /contact): parked; the research never read them.
-- Open fact questions: ORDANI "one engineer", plain-language east-west swap, "it shipped, nobody
-  came" for the blog, "landing page" 27 vs 34 (a data question, main session settles it).
-- /work/guardicore mobile LCP: read Speed Insights field p75. K4/K5 harness race fix.
-- He should confirm the DeepSeek key he pasted into chat on 09-20 was rotated.
+## IN FLIGHT: Pass-125 "Work with me full-time" page (kickoff item 1)
+- Ruled 09-21 (LESSONS #3, `d2fa3a4`): seat = early-stage build-and-sell hire (his pick over "head of");
+  ORDANI proof only, nothing on its future; no location (09-02 ruling).
+- Drafting: prompt `.planning/prompts/PASS-125-FULLTIME-DRAFT.md`; DeepSeek v4-pro, Sol, Gemini 2.5-flash
+  write to `.planning/drafts/pass-125/{deepseek,sol,gemini}-fulltime.md`.
+- Next: main-session ledger check of every tagged sentence -> Fable pick (one call) -> brief -> Sol builds
+  on a preview branch in p124-cuts -> captures 390/1440 -> Fable + Astra + dspro confirm -> his look -> push.
+- Route `/full-time` (NOT `/hire-me`: that 308s to /services since Pass-57). Links: PageFooter + home
+  footrow + one /about line; sitemap. Not in primary nav.
+
+## Owed after this page
+Inner pages (/services, /about, /packages, /contact) diagnosis; the blog (answered-ratio cut first);
+open fact questions (ORDANI "one engineer", east-west plain swap, "it shipped, nobody came", landing page
+27 vs 34); Guardicore mobile LCP p75; K4/K5 race; confirm the 09-20 DeepSeek key was rotated.
 
 ## Traps
-another session pushed 9019186 to main on 09-20: read the deploy id off the wire, never a doc (#45) ·
-commit by explicit pathspec (#23) · grep crashes on long one-line files and reads as zero (#34) ·
-Codex writes '?' for non-ASCII (#46).
+read the deploy id off the wire (#45) · commit by explicit pathspec (#23) · grep crashes on long lines
+(#34) · Codex writes '?' for non-ASCII (#46) · "email me" and "sales manager" are gated site-wide.
