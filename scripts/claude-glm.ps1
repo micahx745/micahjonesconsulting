@@ -13,6 +13,8 @@
 # Usage (this machine has Windows PowerShell 5.1, not pwsh):
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Smoke
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Dir .claude/worktrees/p101-integrate -Brief .claude/briefs/pass-102-wording-round.md
+#   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Batch -PromptFile <pointer.md> -Dir <worktree> [-Scope default|harness|readonly]
+#   Every -Smoke/-Batch run appends to <state>\dispatch.jsonl and writes <state>\receipts\<run_id>.json (Harness v2 E2).
 # Verified 2026-09-07: -Smoke answered "OK" on glm-5.3 through api.z.ai with the account's
 # existing key. One-time: run `claude` interactively once in the repo AND in each worktree
 # and accept the trust dialog, or non-interactive runs ignore .claude/settings.json's
@@ -28,8 +30,24 @@ param(
   [string]$Model = "glm-5.3",       # the plan's main model per docs.z.ai/devpack/tool/claude
   [switch]$Smoke,                    # one tiny call to prove the plan answers, then exit
   [switch]$Batch,                    # unattended: claude -p with permissions skipped (hooks still run)
-  [string]$PromptFile = ""           # with -Batch: the prompt to run, read from a file
+  [string]$PromptFile = "",          # with -Batch: the prompt to run, read from a file
+  [ValidateSet('default','harness','readonly')]
+  [string]$Scope = 'default',        # Harness v2 E1: what the executor guard lets this run touch
+  [int]$MaxTurns = 400,              # Harness v2 E2: --max-turns for a -Batch run
+  [int]$TimeoutMin = 120             # Harness v2 E2: wall-clock cap on the child, in minutes
 )
+
+# Harness v2 E2.2: refuse a long prompt before anything else (LESSONS #36). Nothing is
+# dispatched, no process starts and no state is written on this path.
+if ($Batch) {
+  if ($PromptFile -eq "" -or -not (Test-Path $PromptFile)) { Write-Error "-Batch needs -PromptFile <file>."; exit 1 }
+  $text = Get-Content -Raw -Encoding UTF8 $PromptFile
+  if ($null -eq $text) { $text = "" }
+  if ($text.Length -gt 30000) {
+    Write-Output ("claude-glm: prompt is {0} characters (limit 30000). Put the material in a file and point the executor at it (LESSONS #36)." -f $text.Length)
+    exit 2
+  }
+}
 
 # Key resolution: the user env var, else the gitignored key file the cross-review harness
 # already reads (z.ai binds the Coding Plan to the account's existing API key, so no new
@@ -68,29 +86,139 @@ $env:API_TIMEOUT_MS                = "3000000"
 $env:CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "1"
 Remove-Item Env:ANTHROPIC_API_KEY -ErrorAction SilentlyContinue
 
+# Harness v2 E2.3: mark this child as an executor for the PreToolUse guard (E1), and lay
+# down the state directory tree. Runtime state (prompts, receipts, the guard log) never
+# lands inside the repo.
+$env:HARNESS_ROLE = 'executor'
+$env:HARNESS_WORKTREE = (Resolve-Path $Dir).Path
+$env:HARNESS_EXECUTOR_SCOPE = $Scope
+if (-not $env:HARNESS_STATE_DIR) {
+  $env:HARNESS_STATE_DIR = Join-Path $env:LOCALAPPDATA 'harness\micahjonesconsulting'
+}
+$state = $env:HARNESS_STATE_DIR
+New-Item -ItemType Directory -Force -Path (Join-Path $state 'runs'), (Join-Path $state 'receipts') | Out-Null
+
+# Harness v2 E2.4: every -Smoke/-Batch run goes through Invoke-Recorded. It archives the
+# prompt, appends a dispatch line, runs the child with stdin redirected from the prompt
+# copy, parses the JSON stdout, and writes a receipt. The result and RECEIPT lines go out
+# through [Console]::Out.WriteLine rather than Write-Output: the call sites are
+# `exit (Invoke-Recorded ...)`, and in PS 5.1 pipeline output inside that expression is
+# swallowed and the exit code collapses to 0 (probed 2026-09-22, run A).
+function Invoke-Recorded([string]$PromptText, [string]$Mode, [string]$PromptLabel) {
+  $runId = 'glm-' + [DateTime]::UtcNow.ToString('yyyyMMdd-HHmmss') + '-' + ('{0:x4}' -f (Get-Random -Maximum 65536))
+  $runsDir = Join-Path $state 'runs'
+  $promptCopy = Join-Path $runsDir ($runId + '.prompt.md')
+  $jsonFile = Join-Path $runsDir ($runId + '.json')
+  $errFile = Join-Path $runsDir ($runId + '.err')
+  $outFile = Join-Path $runsDir ($runId + '.out.md')
+  $utf8 = New-Object System.Text.UTF8Encoding $false
+  [IO.File]::WriteAllText($promptCopy, $PromptText, $utf8)
+  $startedUtc = [DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')
+  $entry = [ordered]@{
+    run_id = $runId
+    started_utc = $startedUtc
+    dir = $Dir
+    prompt_file = $PromptLabel
+    scope = $Scope
+    model = $Model
+    mode = $Mode
+    launcher_pid = $PID
+  }
+  [IO.File]::AppendAllText((Join-Path $state 'dispatch.jsonl'), ($entry | ConvertTo-Json -Compress) + "`n", $utf8)
+  $claudeArgs = @('-p')
+  if ($Mode -eq 'smoke') {
+    $claudeArgs += @('--output-format', 'json', '--max-turns', '1')
+  } elseif ($Scope -eq 'readonly') {
+    $claudeArgs += @('--allowedTools', 'Read,Grep,Glob', '--output-format', 'json', '--max-turns', [string]$MaxTurns)
+  } else {
+    $claudeArgs += @('--dangerously-skip-permissions', '--output-format', 'json', '--max-turns', [string]$MaxTurns)
+  }
+  $exe = (Get-Command claude -CommandType Application | Select-Object -First 1).Source
+  $p = Start-Process -FilePath $exe -ArgumentList $claudeArgs -WorkingDirectory $Dir -RedirectStandardInput $promptCopy -RedirectStandardOutput $jsonFile -RedirectStandardError $errFile -NoNewWindow -PassThru
+  $null = $p.Handle
+  $timedOut = $false
+  if (-not $p.WaitForExit($TimeoutMin * 60000)) {
+    taskkill /T /F /PID $p.Id | Out-Null
+    $timedOut = $true
+    $exitCode = 124
+  } else {
+    $p.WaitForExit()
+    $exitCode = $p.ExitCode
+  }
+  $stdoutText = ''
+  if (Test-Path $jsonFile) { $stdoutText = [IO.File]::ReadAllText($jsonFile) }
+  $stderrText = ''
+  if (Test-Path $errFile) { $stderrText = [IO.File]::ReadAllText($errFile) }
+  $parsed = $null
+  try { $parsed = $stdoutText | ConvertFrom-Json } catch { $parsed = $null }
+  $resultText = $stdoutText
+  if ($parsed -and $null -ne $parsed.result) { $resultText = [string]$parsed.result }
+  [IO.File]::WriteAllText($outFile, $resultText, $utf8)
+  $glm429 = $false
+  if (($stderrText + "`n" + $resultText) -match 'rate_limit_error|\[1308\]|\[1310\]') { $glm429 = $true }
+  if ($glm429) {
+    $statusPy = Join-Path $PSScriptRoot 'harness\status.py'
+    if (Test-Path $statusPy) {
+      & python $statusPy glm-429 --file $jsonFile
+      if ($LASTEXITCODE -eq 3) { & python $statusPy glm-429 --file $errFile }
+    }
+  }
+  $guardDenies = 0
+  $guardLog = Join-Path $state 'guard.log'
+  if ((Test-Path $guardLog) -and $parsed -and $parsed.session_id) {
+    $sid = [string]$parsed.session_id
+    $guardDenies = @((Get-Content $guardLog) | Where-Object { $_.Contains($sid) }).Count
+  }
+  $receipt = [ordered]@{
+    run_id = $runId
+    started_utc = $startedUtc
+    ended_utc = [DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')
+    exit_code = $exitCode
+    timed_out = $timedOut
+    is_error = ($null -eq $parsed)
+    subtype = $null
+    num_turns = $null
+    duration_ms = $null
+    session_id = $null
+    usage = $null
+    total_cost_usd = $null
+    glm_429 = $glm429
+    guard_denies = $guardDenies
+    prompt_copy = $promptCopy
+    out_file = $outFile
+    err_file = $errFile
+  }
+  if ($parsed) {
+    $receipt.subtype = $parsed.subtype
+    $receipt.num_turns = $parsed.num_turns
+    $receipt.duration_ms = $parsed.duration_ms
+    $receipt.session_id = $parsed.session_id
+    $receipt.usage = $parsed.usage
+    $receipt.total_cost_usd = $parsed.total_cost_usd
+  }
+  $receiptPath = Join-Path (Join-Path $state 'receipts') ($runId + '.json')
+  [IO.File]::WriteAllText($receiptPath, ($receipt | ConvertTo-Json -Depth 6) + "`n", $utf8)
+  [Console]::Out.WriteLine($resultText)
+  [Console]::Out.WriteLine('RECEIPT: ' + $receiptPath)
+  return $exitCode
+}
+
 Set-Location $Dir
+# Harness v2 E2.5: the recorded modes. $text was read and length-checked at the top of
+# the script (E2.2), before key resolution; the prompt reaches the child on stdin, UTF-8,
+# redirected from the archived prompt copy (LESSONS #36: an argument cuts at the first
+# embedded double quote).
 if ($Smoke) {
-  Write-Host "claude-glm: smoke test on $Model via z.ai" -ForegroundColor DarkYellow
-  & claude -p "Reply with the single word OK."
-  exit $LASTEXITCODE
+  exit (Invoke-Recorded 'Reply with the single word OK.' 'smoke' 'smoke')
 }
 if ($Batch) {
-  if ($PromptFile -eq "" -or -not (Test-Path $PromptFile)) { Write-Error "-Batch needs -PromptFile <file>."; exit 1 }
-  $text = Get-Content -Raw -Encoding UTF8 $PromptFile
-  Write-Host "claude-glm: BATCH on $Model via z.ai, in $Dir (permissions skipped; hooks and gates still run)" -ForegroundColor DarkYellow
-  # LESSONS #36: passing $text as an argument cut the prompt at its first embedded double quote
-  # (Windows PowerShell 5.1 does not escape quotes for native commands), so the executor ran a
-  # truncated brief. The prompt goes in on stdin, UTF-8, so quotes and non-ASCII survive whole.
-  $OutputEncoding = New-Object System.Text.UTF8Encoding $false
-  [Console]::InputEncoding = $OutputEncoding
-  $text | & claude -p --dangerously-skip-permissions --output-format text
-  exit $LASTEXITCODE
+  exit (Invoke-Recorded $text 'batch' $PromptFile)
 }
 Write-Host "claude-glm: executor session on $Model via z.ai, in $Dir" -ForegroundColor DarkYellow
 Write-Host "  Fable writes the brief and judges; this session executes it verbatim. No push, no deploy." -ForegroundColor DarkGray
 
 if ($Brief -ne "") {
-  $prompt = "You are the EXECUTOR. Read `.claude/RESUME.md`, then execute `$Brief` verbatim: every step, every verification command with its expected output, commit as each unit lands with the brief's commit subjects and the trailer 'Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>'. Never push, never deploy, never bypass a hook, never change a price, fact, link or live string. Stop and report on any return condition in the brief. Rewrite `.claude/RESUME.md` (≤2.5KB) before you stop."
+  $prompt = "You are the EXECUTOR. Read $Brief and execute it verbatim: every step, every verification command with its expected output. Do not commit, push, stash or change branches, and do not write .claude/RESUME.md, MEMORY.md, docs/LESSONS_LEARNED.md, CLAUDE.md or AGENTS.md: the main session commits and keeps the books. Never deploy, never bypass a hook, never change a price, fact, link or live string. Stop and report on any return condition in the brief, and end with the digest the brief names."
   & claude $prompt
 } else {
   & claude
