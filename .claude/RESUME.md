@@ -1,8 +1,8 @@
 # RESUME — micahjonesconsulting (2026-09-22 11:05: harness research CLOSED; Pass-128c at the popup)
 
 ## READ FIRST
-Harness v2 belongs to the "LANDING PAGE 2" chat (branch harness/v2, worktree .claude/worktrees/harness-v2). Until it
-merges, do not edit AI_ROUTING, .claude/hooks/*, settings.json, scripts/claude-glm.ps1, scripts/*-exec.ps1 or
+Harness v2: branch harness/v2 (worktree .claude/worktrees/harness-v2), continued from its
+`.planning/handoff/KICKOFF-HARNESS-V2-CONTINUE.md` (runs the harness map on GLM after 14:45). Until it merges, don't edit AI_ROUTING, .claude/hooks/*, settings.json, scripts/claude-glm.ps1, scripts/*-exec.ps1 or
 scripts/cross-review/* here. Pass-128c continues from `.planning/handoff/NEXT-SESSION-KICKOFF.md`.
 Branch `design/live-evolve` (p106-live). Build: `node .planning/exec/prepush-gates.mjs` (#47). Push to main deploys.
 
