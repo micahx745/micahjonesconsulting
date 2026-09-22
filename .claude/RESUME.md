@@ -1,7 +1,9 @@
 # RESUME — micahjonesconsulting (2026-09-22 15:25 PDT: Harness v2 installed on harness/v2; his calls pending)
 
 ## READ FIRST
-Next chat: `.planning/handoff/KICKOFF-AFTER-HARNESS-V2.md`, opened inside its worktree (rule 9).
+His call (09-22): new chats, harness on. SITE chat opens in `p106-live`: `.planning/handoff/NEXT-SESSION-KICKOFF.md`
+(Pass-128c at the popup). LANDING chat opens in `landing-exemplar`: its RESUME. Harness follow-ups and his pending
+decisions: `.planning/handoff/KICKOFF-AFTER-HARNESS-V2.md`.
 SECURITY (LESSONS #65, `8a4f3b2`): a `claude -p` child launched from the desktop app sent his host Claude OAuth
 tokens (about 20, short-lived) to api.deepseek.com (401). HIS ACTION: sign out of the desktop app and claude.ai, then
 back in. Both third-party launchers now scrub; `test_h_host_auth.py` gates it.

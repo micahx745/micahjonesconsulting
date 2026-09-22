@@ -4,6 +4,21 @@ Written by the Opus 5 session that built and verified Pass-128c. `.claude/RESUME
 file. Two other chats exist: the landing exemplar (`.planning/handoff/KICKOFF-LANDING-EXEMPLAR.md`) and the harness
 research (`.planning/handoff/KICKOFF-HARNESS-RESEARCH.md`). Do not do their work here.
 
+## Harness v2 is live here (added 2026-09-22 by the Harness v2 chat; it outranks section 0's budget text)
+- Routing: `.claude/AI_ROUTING.md` (its Harness v2 top section is the amendment section 0.2 asks about). Budget: run
+  `get_usage`, record it with `python scripts/harness/status.py claude --five-hour N --weekly N --fable N --resets
+  <ISO> --five-hour-resets <ISO> --window-start 2026-09-22T17:13:00Z` (that start holds this week only), then read
+  `python scripts/harness/status.py tier`. At 22:21 UTC: 5-hour 5%, weekly 13%, Fable 3%, DeepSeek $7.78 (volume
+  held under $5). Section 0.2's 70% and 73% predate his one-time reset.
+- Hooks act on this chat: 40 execution calls without his message are denied (delegate, or ask him); an 8th raw image
+  asks; past 200K context a warning comes once per 50K; Claude subagents are denied at 75% weekly; a dispatch whose
+  brief fails `brief_lint.py` is denied; a RESUME over 2,500 bytes is blocked. Check: `python
+  scripts/harness/tests/run_all.py` ends `ALL PASS (17 files)`.
+- Executors: GLM through `scripts/claude-glm.ps1 -Batch` (pointer brief, receipt, digest). When GLM is capped, do not
+  wait: a Sonnet subagent for repo work, DeepSeek for text-only legs (his words, 2026-09-22). A Claude Code child aimed
+  at a third party runs only through a launcher with the LESSONS #65 scrub.
+- SECURITY (#65): ask him whether he signed out of the desktop app and claude.ai and back in; record his answer.
+
 ## 0. Before anything
 1. Open in the `p106-live` worktree; the AI ROUTING block should print (LESSONS #50). If it does not, say so.
 2. BUDGET FIRST. Operator 2026-09-22, verbatim: "Claude usage is at 70% for the week and fable is at 73. chatgpt has
