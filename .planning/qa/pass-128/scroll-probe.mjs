@@ -15,7 +15,9 @@
 // Usage:
 //   node scroll-probe.mjs [--url URL] [--to CSS_SELECTOR] [--cpu N]
 //     [--net 4g] [--runs N] [--inject-css FILE] [--block SUBSTRING]...
-//     [--detach-split] [--gpu] [--trace OUT.json] [--out OUT.jsonl]
+//     [--detach-split] [--world-doors NAME] [--pin-exits-rect]
+//     [--passive-touch] [--log-transitions] [--gpu]
+//     [--trace OUT.json] [--out OUT.jsonl]
 //
 // Notes on scope:
 //   - This probe does NOT measure "the word loading slow" (LCP / font-swap
@@ -83,7 +85,9 @@ function usage() {
   console.error(
     "Usage: node scroll-probe.mjs [--url URL] [--to SELECTOR] [--cpu N]\n" +
       "  [--net 4g] [--runs N] [--inject-css FILE] [--block SUBSTRING]...\n" +
-      "  [--detach-split] [--gpu] [--trace OUT.json] [--out OUT.jsonl]",
+      "  [--detach-split] [--world-doors NAME] [--pin-exits-rect]\n" +
+      "  [--passive-touch] [--log-transitions] [--gpu]\n" +
+      "  [--trace OUT.json] [--out OUT.jsonl]",
   );
 }
 
@@ -97,6 +101,10 @@ function parseArgs(argv) {
     injectCss: null,
     block: [],
     detachSplit: false,
+    worldDoors: null,
+    pinExitsRect: false,
+    passiveTouch: false,
+    logTransitions: false,
     gpu: false,
     trace: null,
     out: null,
@@ -112,6 +120,10 @@ function parseArgs(argv) {
     else if (a === "--inject-css") options.injectCss = argv[++i];
     else if (a === "--block") options.block.push(argv[++i]);
     else if (a === "--detach-split") options.detachSplit = true;
+    else if (a === "--world-doors") options.worldDoors = argv[++i];
+    else if (a === "--pin-exits-rect") options.pinExitsRect = true;
+    else if (a === "--passive-touch") options.passiveTouch = true;
+    else if (a === "--log-transitions") options.logTransitions = true;
     else if (a === "--gpu") options.gpu = true;
     else if (a === "--trace") options.trace = argv[++i];
     else if (a === "--out") options.out = argv[++i];
@@ -185,8 +197,8 @@ async function resolveTargetSelector(page, overrideSelector) {
   return '[data-scroll-probe-target="1"]';
 }
 
-async function installRecorders(page) {
-  await page.evaluate(() => {
+async function installRecorders(page, logTransitions) {
+  await page.evaluate((shouldLogTransitions) => {
     const state = {
       recording: true,
       frameTimes: [],
@@ -194,6 +206,9 @@ async function installRecorders(page) {
       worldSwitches: [],
       noWrapper: false,
       longtaskError: null,
+      transitionLog: shouldLogTransitions
+        ? { starts: 0, cancels: 0, targets: {}, properties: {} }
+        : null,
     };
     window.__scrollProbe = state;
 
@@ -232,7 +247,25 @@ async function installRecorders(page) {
       });
       state.mutationObserver.observe(wrapper, { attributes: true, attributeFilter: ["style"] });
     }
-  });
+
+    if (state.transitionLog) {
+      state.transitionListener = (event) => {
+        if (event.type === "transitionstart") state.transitionLog.starts += 1;
+        else if (event.type === "transitioncancel") state.transitionLog.cancels += 1;
+
+        const target = event.target;
+        const tagName = target && target.tagName ? target.tagName : "UNKNOWN";
+        const firstClass = target && target.classList ? target.classList.item(0) : null;
+        const targetKey = `${tagName}.${firstClass || "-"}`;
+        const propertyKey = event.propertyName || "";
+        state.transitionLog.targets[targetKey] = (state.transitionLog.targets[targetKey] || 0) + 1;
+        state.transitionLog.properties[propertyKey] =
+          (state.transitionLog.properties[propertyKey] || 0) + 1;
+      };
+      document.addEventListener("transitionstart", state.transitionListener, true);
+      document.addEventListener("transitioncancel", state.transitionListener, true);
+    }
+  }, logTransitions);
 }
 
 async function stopRecorders(page) {
@@ -250,12 +283,29 @@ async function stopRecorders(page) {
         state.mutationObserver.disconnect();
       } catch {}
     }
+    if (state.transitionListener) {
+      document.removeEventListener("transitionstart", state.transitionListener, true);
+      document.removeEventListener("transitioncancel", state.transitionListener, true);
+    }
+    const rankedEntries = (counts, limit) =>
+      Object.entries(counts)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .slice(0, limit);
+    const transitionLog = state.transitionLog
+      ? {
+          starts: state.transitionLog.starts,
+          cancels: state.transitionLog.cancels,
+          topTargets: rankedEntries(state.transitionLog.targets, 10),
+          topProperties: rankedEntries(state.transitionLog.properties, 6),
+        }
+      : null;
     return {
       frameTimes: state.frameTimes,
       longtasks: state.longtasks,
       worldSwitches: state.worldSwitches,
       noWrapper: state.noWrapper,
       longtaskError: state.longtaskError,
+      transitionLog,
     };
   });
 }
@@ -330,17 +380,39 @@ function summarizeTrace(tracePath) {
     const parsed = JSON.parse(raw);
     const events = Array.isArray(parsed) ? parsed : parsed.traceEvents || [];
     const totals = new Map();
+    let droppedFrames = 0;
+    let drawFrames = 0;
+    let transitionEvents = 0;
     for (const event of events) {
+      if (event.name === "DroppedFrame") droppedFrames += 1;
+      if (event.name === "DrawFrame") drawFrames += 1;
+      if (
+        event.name === "EventDispatch" &&
+        typeof event.args?.data?.type === "string" &&
+        event.args.data.type.startsWith("transition")
+      ) {
+        transitionEvents += 1;
+      }
       if (event.ph !== "X" || typeof event.dur !== "number") continue;
       const key = event.name || "(unnamed)";
       totals.set(key, (totals.get(key) || 0) + event.dur);
     }
-    return [...totals.entries()]
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 15)
-      .map(([name, durUs]) => ({ name, totalMs: round(durUs / 1000) }));
+    return {
+      topTraceEventsByDuration: [...totals.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 15)
+        .map(([name, durUs]) => ({ name, totalMs: round(durUs / 1000) })),
+      droppedFrames,
+      drawFrames,
+      transitionEvents,
+    };
   } catch (err) {
-    return { error: String(err) };
+    return {
+      topTraceEventsByDuration: { error: String(err) },
+      droppedFrames: null,
+      drawFrames: null,
+      transitionEvents: null,
+    };
   }
 }
 
@@ -377,6 +449,27 @@ async function runOnce(options, runIndex) {
     const page = await browser.newPage();
     page.on("pageerror", (err) => consoleErrors.push(String(err)));
 
+    if (options.passiveTouch) {
+      await page.evaluateOnNewDocument(() => {
+        window.__passiveForced = 0;
+        const originalAddEventListener = EventTarget.prototype.addEventListener;
+        const forcedTypes = new Set(["touchstart", "touchmove", "touchend", "wheel"]);
+        EventTarget.prototype.addEventListener = function (type, listener, listenerOptions) {
+          let nextOptions = listenerOptions;
+          if (
+            forcedTypes.has(type) &&
+            listenerOptions &&
+            typeof listenerOptions === "object" &&
+            listenerOptions.passive === false
+          ) {
+            nextOptions = { ...listenerOptions, passive: true };
+            window.__passiveForced += 1;
+          }
+          return Reflect.apply(originalAddEventListener, this, [type, listener, nextOptions]);
+        };
+      });
+    }
+
     await page.setViewport({
       width: 390,
       height: 844,
@@ -410,6 +503,10 @@ async function runOnce(options, runIndex) {
     await page.evaluate(() => document.fonts.ready);
     await sleep(POST_LOAD_MS);
 
+    const passiveForced = options.passiveTouch
+      ? await page.evaluate(() => window.__passiveForced || 0)
+      : null;
+
     const liveness = await page.evaluate(() => {
       const wrapper = document.querySelector('[data-mode="cw"]');
       if (!wrapper) return { ok: false, reason: 'no [data-mode="cw"] element' };
@@ -425,6 +522,28 @@ async function runOnce(options, runIndex) {
 
     if (options.injectCss) {
       await page.addStyleTag({ path: options.injectCss });
+    }
+
+    let worldDoors = null;
+    if (options.worldDoors !== null) {
+      worldDoors = await page.evaluate((worldName) => {
+        const el = document.querySelector("section.cw-doors-band");
+        if (!el) return { found: false, before: null, after: null };
+        const before = el.getAttribute("data-world");
+        el.setAttribute("data-world", worldName);
+        return { found: true, before, after: el.getAttribute("data-world") };
+      }, options.worldDoors);
+    }
+
+    let pinExits = null;
+    if (options.pinExitsRect) {
+      pinExits = await page.evaluate(() => {
+        const el = document.querySelector("section.cw-exits");
+        if (!el) return { found: false, top: null };
+        const r = el.getBoundingClientRect();
+        el.getBoundingClientRect = () => r;
+        return { found: true, top: r.top };
+      });
     }
 
     const targetSelector = await resolveTargetSelector(page, options.to);
@@ -459,7 +578,7 @@ async function runOnce(options, runIndex) {
       });
     }
 
-    await installRecorders(page);
+    await installRecorders(page, options.logTransitions);
 
     let tracePath = null;
     if (options.trace) {
@@ -503,6 +622,7 @@ async function runOnce(options, runIndex) {
     // worldBgValues includes the starting value as element 0; a "switch" is
     // any subsequent change, so switch count = list length - 1 (floor 0).
     const worldSwitchCount = Math.max(0, worldBgValues.length - 1);
+    const traceSummary = tracePath ? summarizeTrace(tracePath) : null;
 
     return {
       run: runIndex,
@@ -512,6 +632,9 @@ async function runOnce(options, runIndex) {
       target: targetSelector,
       webglRenderer,
       detach,
+      worldDoors,
+      pinExits,
+      passiveForced,
       frames: intervals.length,
       intervalMsP50: round(percentile(intervals, 50)),
       intervalMsP95: round(percentile(intervals, 95)),
@@ -527,7 +650,11 @@ async function runOnce(options, runIndex) {
       noWrapper: recorded.noWrapper,
       longtaskObserverError: recorded.longtaskError,
       consoleErrors,
-      topTraceEventsByDuration: tracePath ? summarizeTrace(tracePath) : null,
+      droppedFrames: traceSummary ? traceSummary.droppedFrames : null,
+      drawFrames: traceSummary ? traceSummary.drawFrames : null,
+      transitionEvents: traceSummary ? traceSummary.transitionEvents : null,
+      transitionLog: recorded.transitionLog,
+      topTraceEventsByDuration: traceSummary ? traceSummary.topTraceEventsByDuration : null,
     };
   } finally {
     await browser.close().catch(() => {});
