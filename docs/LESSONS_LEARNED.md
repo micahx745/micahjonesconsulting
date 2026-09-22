@@ -2475,3 +2475,38 @@ with the word "placeholder". Caught on the next step by `git status` in the main
 path under the main checkout's root that is not under `.claude/worktrees/` when the session's cwd is a worktree, with a
 message naming the worktree path. Bite-test it: the exact write above must be refused; a write inside the worktree must
 pass. Until it exists: every absolute path in a Write/Edit is copied from `pwd` output, never typed.
+
+**Gate landed, same day (the next chat).** `.claude/hooks/worktree-write-guard.py` is a PreToolUse hook on Write, Edit,
+MultiEdit and NotebookEdit. When the payload's `cwd` or `CLAUDE_PROJECT_DIR` sits under `<root>/.claude/worktrees/<name>`,
+a target under `<root>` but outside `.claude/worktrees/` is denied (JSON `permissionDecision: "deny"`). The message names
+the worktree and the same file inside it. It fails open: bad input passes, a crash is non-blocking, and a missing script
+is skipped. It is wired twice: this branch's `.claude/settings.json` (`--source branch`) and the main checkout's untracked
+`.claude/settings.local.json` (`--source main-local`; operator popup 2026-09-21, "Main local settings too
+(Recommended)"), because this chat started in the main checkout (#50). Bite-tested live, in bypass-permissions mode.
+The Write tool's attempt at the exact write above (`C:/Users/micah/Code/micahjonesconsulting/.claude/RESUME.md`,
+"placeholder") was refused `[main-local]`, and so were two new files beside it. The main checkout's `git status` was
+unchanged afterwards. An Edit inside the worktree passed with the guard live. `--self-test` runs 17 decisions (the
+incident, Git Bash `/c/` paths, backslashes and case, `..` out of the worktree, another worktree, outside the repo, a
+prefix-sharing sibling, a main-checkout session, both cross-over cases, NotebookEdit, a Read) and a wiring check. It
+exits 1 on a settings copy with the hook deleted. A trap met while testing: the shell collapsed `\\` in a hand-typed
+payload to `\`, the JSON was invalid, and the guard (fail-open by design) printed nothing. That was a broken probe
+passing silently (#43 again). Raw payloads are now built with `json.dumps`. Not covered: shell redirects into the
+main checkout. A deliberate main write goes through a shell command, with his words in RESUME.
+
+## #50 — The routing reminder was wired where this chat never read it (2026-09-21)
+
+**What happened:** The kickoff said the routing hook prints an "AI ROUTING" block at session start. In the next chat
+it printed nothing. That chat started in the main checkout (branch `main`, files from 09-12 at `79534b8`) and was moved
+into `p106-live` afterwards. It loaded the main checkout's settings, which predate the reminder; the reminder exists
+only on `design/live-evolve`. Run by hand in the worktree, the hook printed the table and exited 0. The script worked,
+but it had never been seen firing at a real session start. And it would have missed even if wired: it read
+`AI_ROUTING.md` from `CLAUDE_PROJECT_DIR`, and the main checkout has no such file yet. Later in the same chat, a new
+PreToolUse hook added to the worktree's settings did not fire either: only the main-local copy's tag appeared.
+
+**Gate:** the main checkout's untracked `.claude/settings.local.json` now runs the worktree's `routing-reminder.py` at
+SessionStart and the write guard at PreToolUse. It uses absolute paths and skips missing scripts. The reminder falls back
+to its own tree when the project dir has no `AI_ROUTING.md`, and printed the full table with the project dir set to the
+main checkout. `worktree-write-guard.py --self-test` checks the wiring of both settings files, and it bit on a settings
+copy with the guard removed. RULE: a hook counts as wired only after it has fired in the kind of session that needs it.
+A hand run proves the script, not the wiring. When `design/live-evolve` reaches the main checkout, both files will run
+both hooks and the block will print twice; drop the local copy then.

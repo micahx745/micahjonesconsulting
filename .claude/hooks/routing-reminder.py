@@ -32,10 +32,13 @@ def main():
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     except Exception:
         pass
-    root = os.environ.get("CLAUDE_PROJECT_DIR") or os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    )
-    path = os.path.join(root, ".claude", "AI_ROUTING.md")
+    # The project dir first, then this script's own tree. A desktop chat can start in the main checkout,
+    # whose files lag this branch and may have no AI_ROUTING.md; the main checkout's untracked
+    # settings.local.json runs this script from the worktree for exactly that case (LESSONS #49).
+    here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    roots = [os.environ.get("CLAUDE_PROJECT_DIR") or "", here]
+    path = next((os.path.join(r, ".claude", "AI_ROUTING.md") for r in roots
+                 if r and os.path.isfile(os.path.join(r, ".claude", "AI_ROUTING.md"))), "")
     try:
         text = open(path, encoding="utf-8").read()
     except Exception:

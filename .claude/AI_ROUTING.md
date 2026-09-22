@@ -2,7 +2,9 @@
 
 This file is the ONE place the model tiers, the model ids and the routing rules live (idea from Ordani's
 `MODEL_TIERING.md`, 2026-09-21). `.claude/CLAUDE.md` carries a compact copy that loads every session; a
-SessionStart hook (`.claude/hooks/routing-reminder.py`) prints the table into every session. Change routing
+SessionStart hook (`.claude/hooks/routing-reminder.py`) prints the table into every session. It is wired in this
+branch's settings and, for chats that start in the main checkout, in that checkout's untracked
+`.claude/settings.local.json` (LESSONS #50). Change routing
 HERE and in that compact copy, never in `~/.claude` (operator 2026-09-20: "i dont want you messing with global
 things").
 
