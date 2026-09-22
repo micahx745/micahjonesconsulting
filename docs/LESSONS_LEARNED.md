@@ -2771,3 +2771,25 @@ worktree, the trap RESUME itself lists; it went straight back and wrote nothing 
 
 **Gate:** brief G adds a PostToolUse hook that blocks with the byte count when a write leaves `.claude/RESUME.md` over
 2,500 bytes. RULE: a probe that needs another directory runs in a subshell, `( cd X && ... )`, or with absolute paths.
+
+## #65 — A Claude Code child sent the operator's Claude sign-in tokens to DeepSeek (2026-09-22)
+
+**What happened:** GLM was capped, and the operator said "use deepseek ... instead of waiting on glm". The main session
+wrote `scripts/harness/measure-prefix.ps1` to run one `claude -p` turn on DeepSeek's Anthropic endpoint, setting
+`ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` as the morning's smoke had. Two runs (21:32 to 21:38 UTC) failed with
+DeepSeek's 401 "Your api key: ****fwAA is invalid", and the DeepSeek key does not end `fwAA`. A local probe (a
+127.0.0.1 server that records only the last 4 characters of an auth header) showed why: started from inside the
+Claude desktop app, whose shell carries `CLAUDE_CODE_SDK_HAS_HOST_AUTH_REFRESH` and a host messaging socket, the child
+fetched a fresh 115-character bearer from the host for every request and ignored `ANTHROPIC_AUTH_TOKEN` (7 requests,
+7 different tokens); with those variables removed it sent the token it was given. About 20 short-lived Claude OAuth
+tokens reached `api.deepseek.com`, which rejected them. The operator was told at once; rotation (sign out and back in)
+is his. `claude-glm.ps1` had the same gap in this session (earlier GLM runs came from a session without those
+variables and reached z.ai with the right key). `claude-alt.ps1` shares the mechanism (a host identity would replace
+the second account's; same vendor, no exposure): queued.
+
+**Gate:** both third-party launchers remove every `CLAUDE_CODE_*` variable, `CLAUDECODE` and `USE_*_OAUTH` before the
+child starts. `scripts/harness/tests/test_h_host_auth.py` (in `run_all`) fails any `scripts/**/*.ps1` that points
+`ANTHROPIC_BASE_URL` at a non-Anthropic host without that scrub, and runs both launchers against a fake `claude` that
+records only variable names (on `HEAD`'s launcher it caught all 7 names leaking). After the fix one real DeepSeek call
+succeeded (`PREFIX=44040`). RULE: before a Claude Code child talks to a third party, prove on 127.0.0.1 which
+credential it sends; never assume `ANTHROPIC_AUTH_TOKEN` wins.

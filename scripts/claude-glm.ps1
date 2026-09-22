@@ -64,6 +64,13 @@ if (-not $key) {
 }
 $env:ZAI_CODING_KEY = $key
 
+# Host-auth scrub (LESSONS #65): started from inside the Claude desktop app, a claude child fetches the
+# operator's Claude OAuth token from the host (CLAUDE_CODE_SDK_HAS_HOST_AUTH_REFRESH and the messaging
+# socket) and sends it to ANTHROPIC_BASE_URL instead of ANTHROPIC_AUTH_TOKEN. Remove every host session
+# variable before the child starts; the launcher sets its own CLAUDE_CODE_* values below.
+Get-ChildItem Env: | Where-Object { $_.Name -like 'CLAUDE_CODE_*' -or $_.Name -in @('CLAUDECODE', 'USE_LOCAL_OAUTH', 'USE_STAGING_OAUTH') } |
+  ForEach-Object { Remove-Item -LiteralPath ('Env:' + $_.Name) -ErrorAction SilentlyContinue }
+
 # Child-process env only. Nothing here persists.
 $env:ANTHROPIC_AUTH_TOKEN          = $env:ZAI_CODING_KEY
 $env:ANTHROPIC_BASE_URL            = "https://api.z.ai/api/anthropic"
