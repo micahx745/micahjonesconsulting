@@ -38,6 +38,17 @@
             "statusMessage": "executor guard (Harness v2 E1)"
           }
         ]
+      },
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/budget-gate.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
+            "timeout": 10,
+            "statusMessage": "budget gate (Harness v2 B2)"
+          }
+        ]
       }
     ],
     "SessionStart": [
@@ -48,6 +59,16 @@
             "command": "python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/routing-reminder.py\"",
             "timeout": 15,
             "statusMessage": "AI routing reminder"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/budget-gate.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
+            "timeout": 10,
+            "statusMessage": "budget line (Harness v2 B2)"
           }
         ]
       }
