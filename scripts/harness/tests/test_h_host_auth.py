@@ -25,7 +25,9 @@ import tempfile
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 HOST_AUTH = ("CLAUDE_CODE_SDK_HAS_HOST_AUTH_REFRESH", "CLAUDE_CODE_MESSAGING_SOCKET",
              "CLAUDE_CODE_MESSAGING_TOKEN", "CLAUDE_CODE_OAUTH_TOKEN", "CLAUDE_CODE_CHILD_SESSION",
-             "USE_LOCAL_OAUTH", "CLAUDECODE")
+             "USE_LOCAL_OAUTH", "CLAUDECODE",
+             # An inherited API key would reach the third party as x-api-key (cross-review, DeepSeek).
+             "ANTHROPIC_API_KEY")
 BASE_URL_RE = re.compile(r'ANTHROPIC_BASE_URL\s*=\s*"(https?://[^"/]+)')
 FAKE_CMD = ('@echo off\r\n'
             'for /f "delims==" %%a in (\'set\') do @echo %%a>> "%~dp0names.txt"\r\n'
