@@ -2,6 +2,9 @@
   "env": {
     "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
   },
+  "enabledPlugins": {
+    "voltagent-meta@voltagent-subagents": false
+  },
   "hooks": {
     "PostToolUse": [
       {
@@ -154,6 +157,18 @@
       "Bash(wc:*)",
       "Bash(ls:*)",
       "Bash(python:*)"
+    ],
+    "deny": [
+      "mcp__github",
+      "mcp__claude-context",
+      "mcp__context7",
+      "mcp__sequential-thinking",
+      "mcp__supabase",
+      "mcp__mcp-registry",
+      "mcp__scheduled-tasks",
+      "mcp__1a59c906-04da-521d-bda7-7f71b9f9e01c",
+      "mcp__d225a347-61d5-43c3-8c0a-876319bd80ca",
+      "mcp__6f616b42-0ed8-571e-823f-ee4aca6b7ce9"
     ]
   }
 }
