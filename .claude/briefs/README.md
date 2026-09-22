@@ -137,3 +137,20 @@ the moment visible. The full policy is `~/.claude/MODEL_ROUTING.md` §6.
 They are not roadmaps, not status, not a second RESUME. `.claude/RESUME.md` remains the only
 current-state source. A brief is written once, executed, appended to at checkpoints, and
 then it is history like any other doc.
+
+## Brief-Format: v2 (Harness v2, operator popups 2026-09-22)
+
+A brief an executor runs carries the line `Brief-Format: v2` in its first 15 lines and these `##` sections:
+`Ruling`, `Files`, `Pre-flight`, `Steps`, `Verification`, `Rejected`, `Digest`, `Return conditions`. Site briefs
+keep the eight required contents above as well; final copy, layout, motion and parked decisions get their own
+sections.
+- **Files** lists every path the run may create or modify. After the run,
+  `python scripts/harness/diff_scope.py <brief>` fails on any changed path outside the list.
+- **Pre-flight** records the actual value of every expected value the main session could run before dispatch, as
+  `command -> actual` (LESSONS #52). The executor prints them again first and stops on any difference.
+- **Verification** holds commands in fenced blocks, each followed by an `Expected` line.
+- **Digest**: the run ends by writing one JSON digest of at most 8 KB whose items each carry a claim, evidence
+  (`path:line`, or `$ command -> first line of output`) and a confidence;
+  `python scripts/harness/digest_check.py <digest>` passes or fails it. The main session reads the digest and the
+  diff, not the executor's transcript.
+- `python scripts/harness/brief_lint.py <brief>...` passes or fails a v2 brief and skips older ones.
