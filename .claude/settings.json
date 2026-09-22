@@ -27,6 +27,17 @@
             "statusMessage": "worktree write guard (LESSONS #49)"
           }
         ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] || exit 0; python \"${CLAUDE_PROJECT_DIR}/.claude/hooks/executor-guard.py\"",
+            "timeout": 10,
+            "statusMessage": "executor guard (Harness v2 E1)"
+          }
+        ]
       }
     ],
     "SessionStart": [
