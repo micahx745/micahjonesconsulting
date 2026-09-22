@@ -5,6 +5,10 @@ runs the Harness v2 executor guard, which denies reads outside the worktree, the
 denies WebFetch. So every source outside this repo is read from a staged copy under
 `C:/Users/micah/AppData/Local/harness/micahjonesconsulting/map-inputs/` (`MANIFEST.tsv` there maps each copy to its
 original path; cite the ORIGINAL path in every file:line), and `01-premise-checks.md` is not yours to write.
+Later the same day GLM's slot went to a Sonnet subagent (the operator: "use deepseek or another AI like claude sonnet
+... instead of waiting on glm"), which runs beside another executor in this worktree. So write your two files under
+`C:/Users/micah/AppData/Local/harness/micahjonesconsulting/map-out/` (`01-harness-map.md`, `01-harness-map.rows.tmp`),
+never inside the repo; the main session copies the map in. The privacy rule below still binds you.
 
 You are an executor. Write only the outputs named below. Do not commit, push, or edit any other file. Work in the
 directory you were launched in (`claude-glm.ps1 -Dir`); every repo path below is relative to it, and "this repo" means
@@ -15,7 +19,7 @@ the hooks, from a script that prints allow-listed fields only).
 ## Context budget (your window is 200K)
 Many sources are large. For any file over 20 KB, grep its headings first (`^#`) and read only the sections that state
 rules. `docs/LESSONS_LEARNED.md` is very large: never read it whole. Grep its entry headings for #1-#52, and read the full
-text of #18, #25, #36, #37 and #45-#52 only. Append rows to `.planning/research/harness-2026-09-22/01-harness-map.rows.tmp`
+text of #18, #25, #36, #37 and #45-#52 only. Append rows to `map-out/01-harness-map.rows.tmp`
 as you go, so a compaction loses nothing, and assemble the final file at the end.
 
 ## `01-harness-map.md` (at most 15 KB)
@@ -52,5 +56,5 @@ P3 needs WebFetch, which the executor guard denies: the main session does it. P6
 or write this file.
 
 ## Finish
-Delete `01-harness-map.rows.tmp`. Print at most 25 lines: the count of rows, of PROSE ONLY rules, and of
+Delete `map-out/01-harness-map.rows.tmp`. Print at most 25 lines: the count of rows, of PROSE ONLY rules, and of
 contradictions. Do not paste file contents into your reply.

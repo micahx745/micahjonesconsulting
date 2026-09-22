@@ -7,8 +7,10 @@ Amended 2026-09-22 by the main session (kickoff amendments 3 and 4): a Sonnet su
 executor guard does not cover an in-session subagent, so the common brief's hard rules bind as instructions. This
 run goes in TWO dispatches. Part 1 (while GLM is capped): B1.1, B1.2 and C1.1, then stop, and write the digest with
 the C1 measurements and tests recorded as `not run: part 2`. Part 2 (after the GLM reset, 2026-09-22 21:44:53 UTC):
-C1.2 to C1.5 and the whole Verification list, rewriting the digest. The measurements go through the GLM launcher,
-because a Sonnet subagent's own `claude -p` runs on the operator's Claude login, which has expired.
+C1.2 to C1.5 and the whole Verification list, rewriting the digest. The measurements run on DeepSeek's Anthropic
+endpoint through `scripts/harness/measure-prefix.ps1` (the operator, 2026-09-22: "use deepseek ... instead of waiting
+on glm"); the helper removes the desktop host's auth variables first (LESSONS #65). Run it only as written, and never
+set an `ANTHROPIC_*` variable yourself.
 
 ## Ruling
 B1 has two halves. The token half is MJCONSULT 13's `usage_audit.py` (commit `95de6f4`, operator ruling "This chat
@@ -95,11 +97,11 @@ Run `python scripts/harness/tool_use_counts.py --days 30` and save its output as
 
 ### C1.2 Measure the prefix BEFORE any settings change
 In the worktree root, run twice and keep the second:
-`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Smoke -Dir C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/harness-v2`
-(`claude -p "Reply with the single word OK." --output-format json --max-turns 1` on GLM, through the launcher). It
-prints `RECEIPT: <path>`; that receipt must show `exit_code` 0 and `is_error` false (a `glm_429` true is a return
-condition). The prefix is the receipt's `usage.input_tokens + usage.cache_creation_input_tokens +
-usage.cache_read_input_tokens`. Keep the number for C1.4.
+`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/harness/measure-prefix.ps1 -Dir C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/harness-v2 -Label c1-before`
+(one `claude -p "Reply with the single word OK." --output-format json --max-turns 1` turn on deepseek-flash). It
+prints one line starting `PREFIX=<n>` that must also show `is_error=False exit=0`; any other output is a return
+condition. The prefix is n (input + cache_creation + cache_read). Keep the number for C1.4. Label the three
+measurements `c1-before`, `c1-after-deny` and `c1-after`.
 
 ### C1.3 Apply the diet to `.claude/settings.json`
 - `enabledPlugins`: add the key; set `false` for `superpowers@superpowers-marketplace` when the counts show zero
@@ -120,15 +122,15 @@ usage.cache_read_input_tokens`. Keep the number for C1.4.
 
 ### C1.4 Measure AFTER, and record
 Run the C1.2 command twice again and keep the second. Write `.planning/harness/c1-measure.json`:
-`{"measured_on": "glm-5.3 via z.ai (claude.ai connectors do not load on this login, so their share is not in these numbers)", "measured_via": "scripts/claude-glm.ps1 -Smoke receipts", "before_prefix": N, "after_deny_prefix": D, "after_prefix": M, "delta": N-M, "disabled_plugins": [...], "denied_servers": [...]}`.
+`{"measured_on": "deepseek-flash via DeepSeek's Anthropic endpoint (claude.ai connectors do not load there, so their share is not in these numbers)", "measured_via": "scripts/harness/measure-prefix.ps1", "before_prefix": N, "after_deny_prefix": D, "after_prefix": M, "delta": N-M, "disabled_plugins": [...], "denied_servers": [...]}`.
 
 ### C1.5 Tests
 `scripts/harness/tests/test_c1_settings.py` (offline), four checks: settings.json parses and still has 22
 `permissions.allow` entries and its hook entries; no `@premium-web` plugin is false; every `mcp__X` deny entry's
 server X is on the C1.3 candidate list and shows 0 in `c1-counts.tsv` (a server absent from the file counts as 0);
 no deny entry names a keep-list server. Last line `PASS C1 4/4`.
-`scripts/harness/tests/live_c1_measure.py`: runs the C1.2 command once more (with a fresh temp
-`HARNESS_STATE_DIR`, reading the prefix from that run's receipt) and passes when its prefix is below
+`scripts/harness/tests/live_c1_measure.py`: runs the C1.2 command once more (label `c1-live`, with a fresh temp
+`HARNESS_STATE_DIR`, reading the prefix from its `PREFIX=` line) and passes when its prefix is below
 `before_prefix` in `c1-measure.json`. Last line `PASS C1-live prefix <before> -> <now>`.
 
 ## Verification
@@ -147,7 +149,8 @@ python -c "import json;m=json.load(open('.planning/harness/c1-measure.json'));pr
 Expected: `True` followed by a positive number. If the prefix did not shrink, stop and report the two numbers: the
 main session rules on whether deny rules take tools out of the context in this build. Scale (P2, `f8538ce`): three
 zero-call plugins switched off cut a GLM CLI prefix from 40,224 to 39,517 tokens (707, 1.76%); expect a delta of that
-order, not the 70K the Ruling's prefix figure might suggest.
+order, not the 70K the Ruling's prefix figure might suggest. This run measures on deepseek-flash, whose prefix read
+44,040 tokens before the diet (main session, 21:45 UTC); P2's numbers are GLM's, so compare deltas, not totals.
 ```
 python scripts/harness/tests/test_c1_settings.py
 ```
