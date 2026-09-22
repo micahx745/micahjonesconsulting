@@ -1,0 +1,1552 @@
+{
+ "stage": 3,
+ "assumptions": "eq weights are API list-price ratios (in x1, cw5m x1.25, cw1h x2, out x5, cr x R with R=0.025 fable / 0.05 opus-5-5 / 0.1 other) \u2014 an assumption about plan-limit weighting, not an invoice",
+ "selection": {
+  "files_scanned": 79,
+  "excluded_recent": 4,
+  "min_msgs": 50,
+  "n_chosen": 7
+ },
+ "T1_sessions": [
+  {
+   "id8": "874fc801",
+   "dir": "-main",
+   "first": "2026-09-22T03:15",
+   "last": "2026-09-22T16:38",
+   "model": "claude-opus-5",
+   "msgs": 129,
+   "peak_ctx": 515575,
+   "compactions": 0,
+   "tin": 266,
+   "cw": 873631,
+   "cr": 40555356,
+   "out": 254788,
+   "eq_main": 7077004,
+   "eq_sub": 235093,
+   "eq_total": 7312096,
+   "assistant_lines": 346,
+   "lines_with_usage": 346,
+   "json_errors": 0,
+   "subagent_msgs": 3
+  },
+  {
+   "id8": "f9e4092b",
+   "dir": "-main",
+   "first": "2026-09-22T01:27",
+   "last": "2026-09-22T02:36",
+   "model": "claude-opus-5",
+   "msgs": 112,
+   "peak_ctx": 540238,
+   "compactions": 0,
+   "tin": 224,
+   "cw": 499420,
+   "cr": 42825306,
+   "out": 218648,
+   "eq_main": 6374835,
+   "eq_sub": 0,
+   "eq_total": 6374835,
+   "assistant_lines": 335,
+   "lines_with_usage": 335,
+   "json_errors": 0,
+   "subagent_msgs": 0
+  },
+  {
+   "id8": "7c9c4bb5",
+   "dir": "--claude-worktrees-p106-live",
+   "first": "2026-09-21T20:48",
+   "last": "2026-09-21T23:45",
+   "model": "claude-opus-5",
+   "msgs": 380,
+   "peak_ctx": 789896,
+   "compactions": 0,
+   "tin": 842,
+   "cw": 1382917,
+   "cr": 168371528,
+   "out": 363641,
+   "eq_main": 21422034,
+   "eq_sub": 1432316,
+   "eq_total": 22854350,
+   "assistant_lines": 948,
+   "lines_with_usage": 948,
+   "json_errors": 0,
+   "subagent_msgs": 43
+  },
+  {
+   "id8": "88c6ab1b",
+   "dir": "-main",
+   "first": "2026-09-21T17:20",
+   "last": "2026-09-21T20:48",
+   "model": "claude-opus-5",
+   "msgs": 345,
+   "peak_ctx": 810365,
+   "compactions": 0,
+   "tin": 754,
+   "cw": 757871,
+   "cr": 176278319,
+   "out": 336732,
+   "eq_main": 20827988,
+   "eq_sub": 990126,
+   "eq_total": 21818114,
+   "assistant_lines": 814,
+   "lines_with_usage": 814,
+   "json_errors": 0,
+   "subagent_msgs": 27
+  },
+  {
+   "id8": "6eb42c8d",
+   "dir": "-main",
+   "first": "2026-09-21T00:59",
+   "last": "2026-09-21T17:20",
+   "model": "claude-opus-5",
+   "msgs": 303,
+   "peak_ctx": 889043,
+   "compactions": 0,
+   "tin": 622,
+   "cw": 1865674,
+   "cr": 149199642,
+   "out": 400305,
+   "eq_main": 20653459,
+   "eq_sub": 6963802,
+   "eq_total": 27617261,
+   "assistant_lines": 745,
+   "lines_with_usage": 745,
+   "json_errors": 0,
+   "subagent_msgs": 272
+  },
+  {
+   "id8": "d906ccd7",
+   "dir": "-main",
+   "first": "2026-09-20T17:27",
+   "last": "2026-09-21T02:08",
+   "model": "claude-opus-5",
+   "msgs": 247,
+   "peak_ctx": 538751,
+   "compactions": 0,
+   "tin": 494,
+   "cw": 1249333,
+   "cr": 80933398,
+   "out": 241074,
+   "eq_main": 11797870,
+   "eq_sub": 1806518,
+   "eq_total": 13604388,
+   "assistant_lines": 477,
+   "lines_with_usage": 477,
+   "json_errors": 0,
+   "subagent_msgs": 97
+  },
+  {
+   "id8": "56c58c6d",
+   "dir": "-main",
+   "first": "2026-09-19T15:20",
+   "last": "2026-09-20T04:31",
+   "model": "claude-opus-5",
+   "msgs": 376,
+   "peak_ctx": 871284,
+   "compactions": 0,
+   "tin": 754,
+   "cw": 1276865,
+   "cr": 203930403,
+   "out": 415990,
+   "eq_main": 25027474,
+   "eq_sub": 13298220,
+   "eq_total": 38325694,
+   "assistant_lines": 840,
+   "lines_with_usage": 840,
+   "json_errors": 0,
+   "subagent_msgs": 438
+  }
+ ],
+ "T2_by_model": [
+  {
+   "model": "claude-opus-5",
+   "msgs": 1892,
+   "tin": 3956,
+   "cw": 7905711,
+   "cr": 862093952,
+   "out": 2231178,
+   "eq": 113180663,
+   "share": 82.1
+  },
+  {
+   "model": "claude-sonnet-5",
+   "msgs": 774,
+   "tin": 1548,
+   "cw": 3624874,
+   "cr": 151351400,
+   "out": 36969,
+   "eq": 19852625,
+   "share": 14.4
+  },
+  {
+   "model": "claude-fable-5-1",
+   "msgs": 106,
+   "tin": 2614,
+   "cw": 3524282,
+   "cr": 10940504,
+   "out": 38394,
+   "eq": 4873449,
+   "share": 3.5
+  }
+ ],
+ "T3_by_tool_class": [
+  {
+   "class_name": "bash",
+   "calls": 1257.8,
+   "direct_eq": 71725573,
+   "carry": 18347115,
+   "share_direct": 52.0,
+   "share_with_carry": 65.3
+  },
+  {
+   "class_name": "text_read",
+   "calls": 65.7,
+   "direct_eq": 3484671,
+   "carry": 8806398,
+   "share_direct": 2.5,
+   "share_with_carry": 8.9
+  },
+  {
+   "class_name": "reply",
+   "calls": 136.0,
+   "direct_eq": 8285041,
+   "carry": 1708459,
+   "share_direct": 6.0,
+   "share_with_carry": 7.2
+  },
+  {
+   "class_name": "image_read",
+   "calls": 50.0,
+   "direct_eq": 2909099,
+   "carry": 2837111,
+   "share_direct": 2.1,
+   "share_with_carry": 4.2
+  },
+  {
+   "class_name": "write_edit:planning",
+   "calls": 58.0,
+   "direct_eq": 5227678,
+   "carry": 231298,
+   "share_direct": 3.8,
+   "share_with_carry": 4.0
+  },
+  {
+   "class_name": "popup",
+   "calls": 54.5,
+   "direct_eq": 4526237,
+   "carry": 190529,
+   "share_direct": 3.3,
+   "share_with_carry": 3.4
+  },
+  {
+   "class_name": "write_edit:handoff",
+   "calls": 61.5,
+   "direct_eq": 4098085,
+   "carry": 102856,
+   "share_direct": 3.0,
+   "share_with_carry": 3.0
+  },
+  {
+   "class_name": "browser_other",
+   "calls": 43.3,
+   "direct_eq": 2502325,
+   "carry": 449981,
+   "share_direct": 1.8,
+   "share_with_carry": 2.1
+  },
+  {
+   "class_name": "agent",
+   "calls": 30.5,
+   "direct_eq": 2119700,
+   "carry": 245578,
+   "share_direct": 1.5,
+   "share_with_carry": 1.7
+  },
+  {
+   "class_name": "usage",
+   "calls": 17.3,
+   "direct_eq": 1916299,
+   "carry": 324162,
+   "share_direct": 1.4,
+   "share_with_carry": 1.6
+  },
+  {
+   "class_name": "write_edit:site",
+   "calls": 26.8,
+   "direct_eq": 1525166,
+   "carry": 211355,
+   "share_direct": 1.1,
+   "share_with_carry": 1.3
+  },
+  {
+   "class_name": "other_tool",
+   "calls": 24.5,
+   "direct_eq": 1583808,
+   "carry": 39472,
+   "share_direct": 1.1,
+   "share_with_carry": 1.2
+  },
+  {
+   "class_name": "search",
+   "calls": 12.5,
+   "direct_eq": 573660,
+   "carry": 662652,
+   "share_direct": 0.4,
+   "share_with_carry": 0.9
+  },
+  {
+   "class_name": "skill",
+   "calls": 2.5,
+   "direct_eq": 138329,
+   "carry": 950827,
+   "share_direct": 0.1,
+   "share_with_carry": 0.8
+  },
+  {
+   "class_name": "write_edit:harness",
+   "calls": 17.5,
+   "direct_eq": 914939,
+   "carry": 47849,
+   "share_direct": 0.7,
+   "share_with_carry": 0.7
+  },
+  {
+   "class_name": "write_edit:lessons",
+   "calls": 13.5,
+   "direct_eq": 749566,
+   "carry": 137363,
+   "share_direct": 0.5,
+   "share_with_carry": 0.6
+  },
+  {
+   "class_name": "other_mcp",
+   "calls": 13.0,
+   "direct_eq": 437957,
+   "carry": 374586,
+   "share_direct": 0.3,
+   "share_with_carry": 0.6
+  },
+  {
+   "class_name": "workflow",
+   "calls": 4.0,
+   "direct_eq": 264675,
+   "carry": 53420,
+   "share_direct": 0.2,
+   "share_with_carry": 0.2
+  },
+  {
+   "class_name": "write_edit:other",
+   "calls": 3.0,
+   "direct_eq": 197854,
+   "carry": 12233,
+   "share_direct": 0.1,
+   "share_with_carry": 0.2
+  }
+ ],
+ "T4_images": [
+  {
+   "id8": "874fc801",
+   "images": 29,
+   "est_tokens": 35588,
+   "carry": 151423
+  },
+  {
+   "id8": "f9e4092b",
+   "images": 2,
+   "est_tokens": 7190,
+   "carry": 41877
+  },
+  {
+   "id8": "7c9c4bb5",
+   "images": 36,
+   "est_tokens": 85402,
+   "carry": 474028
+  },
+  {
+   "id8": "88c6ab1b",
+   "images": 49,
+   "est_tokens": 92358,
+   "carry": 977663
+  },
+  {
+   "id8": "6eb42c8d",
+   "images": 38,
+   "est_tokens": 83688,
+   "carry": 1024879
+  },
+  {
+   "id8": "d906ccd7",
+   "images": 4,
+   "est_tokens": 3263,
+   "carry": 50515
+  },
+  {
+   "id8": "56c58c6d",
+   "images": 43,
+   "est_tokens": 84263,
+   "carry": 253490
+  }
+ ],
+ "T5_subagents": [
+  {
+   "parent": "6eb42c8d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 126,
+   "tool_calls": 151,
+   "images": 4,
+   "sum_ctx": 30215982,
+   "last_ctx": 324558,
+   "eq": 3439974,
+   "mismatch": false
+  },
+  {
+   "parent": "6eb42c8d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 118,
+   "tool_calls": 117,
+   "images": 3,
+   "sum_ctx": 22495201,
+   "last_ctx": 266897,
+   "eq": 2596337,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 62,
+   "tool_calls": 80,
+   "images": 0,
+   "sum_ctx": 16154807,
+   "last_ctx": 351875,
+   "eq": 1986258,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 62,
+   "tool_calls": 77,
+   "images": 0,
+   "sum_ctx": 14817225,
+   "last_ctx": 293753,
+   "eq": 1786449,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 52,
+   "tool_calls": 60,
+   "images": 0,
+   "sum_ctx": 12860300,
+   "last_ctx": 333639,
+   "eq": 1673226,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 48,
+   "tool_calls": 54,
+   "images": 0,
+   "sum_ctx": 10214975,
+   "last_ctx": 295509,
+   "eq": 1371697,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 11,
+   "tool_calls": 79,
+   "images": 18,
+   "sum_ctx": 3014901,
+   "last_ctx": 406440,
+   "eq": 1269088,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 50,
+   "tool_calls": 50,
+   "images": 0,
+   "sum_ctx": 8803782,
+   "last_ctx": 246614,
+   "eq": 1170307,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 36,
+   "tool_calls": 47,
+   "images": 0,
+   "sum_ctx": 7973828,
+   "last_ctx": 293114,
+   "eq": 1091288,
+   "mismatch": false
+  },
+  {
+   "parent": "d906ccd7",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 53,
+   "tool_calls": 50,
+   "images": 0,
+   "sum_ctx": 5614171,
+   "last_ctx": 119798,
+   "eq": 872278,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 35,
+   "tool_calls": 42,
+   "images": 0,
+   "sum_ctx": 6292999,
+   "last_ctx": 229751,
+   "eq": 852381,
+   "mismatch": false
+  },
+  {
+   "parent": "d906ccd7",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 36,
+   "tool_calls": 37,
+   "images": 0,
+   "sum_ctx": 5587914,
+   "last_ctx": 200139,
+   "eq": 800623,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 28,
+   "tool_calls": 41,
+   "images": 0,
+   "sum_ctx": 5134440,
+   "last_ctx": 212915,
+   "eq": 760004,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 29,
+   "tool_calls": 40,
+   "images": 0,
+   "sum_ctx": 4401498,
+   "last_ctx": 199241,
+   "eq": 641458,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 20,
+   "tool_calls": 24,
+   "images": 0,
+   "sum_ctx": 2730200,
+   "last_ctx": 156366,
+   "eq": 409871,
+   "mismatch": false
+  },
+  {
+   "parent": "7c9c4bb5",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 17,
+   "tool_calls": 18,
+   "images": 0,
+   "sum_ctx": 2672752,
+   "last_ctx": 246717,
+   "eq": 403790,
+   "mismatch": false
+  },
+  {
+   "parent": "7c9c4bb5",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 11,
+   "tool_calls": 9,
+   "images": 0,
+   "sum_ctx": 1376467,
+   "last_ctx": 155846,
+   "eq": 399902,
+   "mismatch": false
+  },
+  {
+   "parent": "56c58c6d",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 5,
+   "tool_calls": 26,
+   "images": 15,
+   "sum_ctx": 761812,
+   "last_ctx": 217926,
+   "eq": 286192,
+   "mismatch": false
+  },
+  {
+   "parent": "6eb42c8d",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 11,
+   "tool_calls": 32,
+   "images": 0,
+   "sum_ctx": 1208866,
+   "last_ctx": 126689,
+   "eq": 266856,
+   "mismatch": false
+  },
+  {
+   "parent": "874fc801",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 3,
+   "tool_calls": 7,
+   "images": 6,
+   "sum_ctx": 292315,
+   "last_ctx": 118257,
+   "eq": 235093,
+   "mismatch": false
+  },
+  {
+   "parent": "88c6ab1b",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 7,
+   "tool_calls": 15,
+   "images": 3,
+   "sum_ctx": 894893,
+   "last_ctx": 161561,
+   "eq": 207420,
+   "mismatch": false
+  },
+  {
+   "parent": "6eb42c8d",
+   "requested": "fable",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 10,
+   "tool_calls": 14,
+   "images": 7,
+   "sum_ctx": 1228421,
+   "last_ctx": 135370,
+   "eq": 204408,
+   "mismatch": false
+  },
+  {
+   "parent": "7c9c4bb5",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 5,
+   "tool_calls": 15,
+   "images": 13,
+   "sum_ctx": 567673,
+   "last_ctx": 144616,
+   "eq": 191565,
+   "mismatch": false
+  },
+  {
+   "parent": "6eb42c8d",
+   "requested": "fable",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 2,
+   "tool_calls": 1,
+   "images": 0,
+   "sum_ctx": 180804,
+   "last_ctx": 105934,
+   "eq": 179178,
+   "mismatch": false
+  },
+  {
+   "parent": "88c6ab1b",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 7,
+   "tool_calls": 15,
+   "images": 0,
+   "sum_ctx": 776615,
+   "last_ctx": 124473,
+   "eq": 172170,
+   "mismatch": false
+  },
+  {
+   "parent": "88c6ab1b",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 4,
+   "tool_calls": 8,
+   "images": 4,
+   "sum_ctx": 422950,
+   "last_ctx": 130131,
+   "eq": 170121,
+   "mismatch": false
+  },
+  {
+   "parent": "7c9c4bb5",
+   "requested": "fable",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 4,
+   "tool_calls": 11,
+   "images": 8,
+   "sum_ctx": 378686,
+   "last_ctx": 113233,
+   "eq": 168399,
+   "mismatch": false
+  },
+  {
+   "parent": "88c6ab1b",
+   "requested": "fable",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 3,
+   "tool_calls": 5,
+   "images": 0,
+   "sum_ctx": 296520,
+   "last_ctx": 115880,
+   "eq": 149471,
+   "mismatch": false
+  },
+  {
+   "parent": "7c9c4bb5",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 4,
+   "tool_calls": 10,
+   "images": 8,
+   "sum_ctx": 383437,
+   "last_ctx": 113075,
+   "eq": 148229,
+   "mismatch": false
+  },
+  {
+   "parent": "88c6ab1b",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 3,
+   "tool_calls": 6,
+   "images": 5,
+   "sum_ctx": 289305,
+   "last_ctx": 114228,
+   "eq": 147250,
+   "mismatch": false
+  },
+  {
+   "parent": "88c6ab1b",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 3,
+   "tool_calls": 7,
+   "images": 4,
+   "sum_ctx": 285085,
+   "last_ctx": 111353,
+   "eq": 143695,
+   "mismatch": false
+  },
+  {
+   "parent": "6eb42c8d",
+   "requested": "fable",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 3,
+   "tool_calls": 2,
+   "images": 0,
+   "sum_ctx": 291623,
+   "last_ctx": 108497,
+   "eq": 140310,
+   "mismatch": false
+  },
+  {
+   "parent": "6eb42c8d",
+   "requested": "fable",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 2,
+   "tool_calls": 2,
+   "images": 0,
+   "sum_ctx": 183540,
+   "last_ctx": 107846,
+   "eq": 136739,
+   "mismatch": false
+  },
+  {
+   "parent": "d906ccd7",
+   "requested": "unset",
+   "actual": [
+    "claude-sonnet-5"
+   ],
+   "subagent_type": "motion-engineer:motion-engineer",
+   "messages": 8,
+   "tool_calls": 9,
+   "images": 0,
+   "sum_ctx": 471634,
+   "last_ctx": 74041,
+   "eq": 133618,
+   "mismatch": false
+  },
+  {
+   "parent": "7c9c4bb5",
+   "requested": "unset",
+   "actual": [
+    "claude-fable-5-1"
+   ],
+   "subagent_type": "general-purpose",
+   "messages": 2,
+   "tool_calls": 1,
+   "images": 0,
+   "sum_ctx": 169601,
+   "last_ctx": 94826,
+   "eq": 120431,
+   "mismatch": false
+  }
+ ],
+ "T6_fixed_prefix": [
+  {
+   "id8": "874fc801",
+   "first_ctx": 93930,
+   "median_first3": 117256
+  },
+  {
+   "id8": "f9e4092b",
+   "first_ctx": 92984,
+   "median_first3": 116326
+  },
+  {
+   "id8": "7c9c4bb5",
+   "first_ctx": 95596,
+   "median_first3": 110070
+  },
+  {
+   "id8": "88c6ab1b",
+   "first_ctx": 99258,
+   "median_first3": 123226
+  },
+  {
+   "id8": "6eb42c8d",
+   "first_ctx": 100041,
+   "median_first3": 109429
+  },
+  {
+   "id8": "d906ccd7",
+   "first_ctx": 100113,
+   "median_first3": 108735
+  },
+  {
+   "id8": "56c58c6d",
+   "first_ctx": 93155,
+   "median_first3": 121820
+  }
+ ],
+ "T7_long_context": {
+  "gt200k": {
+   "calls": 2098,
+   "eq": 119284679,
+   "share": 86.5
+  },
+  "gt400k": {
+   "calls": 1089,
+   "eq": 80393104,
+   "share": 58.3
+  }
+ },
+ "T8_instruction_files": {
+  "bytes": {
+   "global_": 7911,
+   "worktree": 19481,
+   "main_checkout": 19423,
+   "memory": 1885
+  },
+  "calibration": "app Memory-files reading 9,660 tokens = global + worktree stack + MEMORY.md",
+  "tokens_per_byte": 0.329952,
+  "main_checkout_est_tokens": 6409,
+  "double_load": [
+   {
+    "id8": "874fc801",
+    "moved_at": "2026-09-22T03:16",
+    "calls_after": 126,
+    "R": 0.1,
+    "extra_cache_read_eq": 80753
+   },
+   {
+    "id8": "f9e4092b",
+    "moved_at": "2026-09-22T01:28",
+    "calls_after": 110,
+    "R": 0.1,
+    "extra_cache_read_eq": 70499
+   },
+   {
+    "id8": "88c6ab1b",
+    "moved_at": "2026-09-21T17:20",
+    "calls_after": 344,
+    "R": 0.1,
+    "extra_cache_read_eq": 220470
+   },
+   {
+    "id8": "6eb42c8d",
+    "moved_at": "2026-09-21T00:59",
+    "calls_after": 301,
+    "R": 0.1,
+    "extra_cache_read_eq": 192911
+   },
+   {
+    "id8": "d906ccd7",
+    "moved_at": "2026-09-20T17:27",
+    "calls_after": 245,
+    "R": 0.1,
+    "extra_cache_read_eq": 157020
+   },
+   {
+    "id8": "56c58c6d",
+    "moved_at": "2026-09-19T15:20",
+    "calls_after": 375,
+    "R": 0.1,
+    "extra_cache_read_eq": 240338
+   }
+  ]
+ },
+ "top_burn": [
+  {
+   "id8": "56c58c6d",
+   "class_name": "bash",
+   "direct_eq": 24687912,
+   "carry": 6710979,
+   "total": 31398891,
+   "share": 22.8
+  },
+  {
+   "id8": "6eb42c8d",
+   "class_name": "bash",
+   "direct_eq": 18375054,
+   "carry": 3476691,
+   "total": 21851745,
+   "share": 15.8
+  },
+  {
+   "id8": "88c6ab1b",
+   "class_name": "bash",
+   "direct_eq": 12227932,
+   "carry": 4172732,
+   "total": 16400664,
+   "share": 11.9
+  },
+  {
+   "id8": "7c9c4bb5",
+   "class_name": "bash",
+   "direct_eq": 12612057,
+   "carry": 3200746,
+   "total": 15812803,
+   "share": 11.5
+  },
+  {
+   "id8": "d906ccd7",
+   "class_name": "bash",
+   "direct_eq": 10210408,
+   "carry": 2771195,
+   "total": 12981603,
+   "share": 9.4
+  },
+  {
+   "id8": "56c58c6d",
+   "class_name": "text_read",
+   "direct_eq": 2986427,
+   "carry": 5197089,
+   "total": 8183516,
+   "share": 5.9
+  },
+  {
+   "id8": "6eb42c8d",
+   "class_name": "text_read",
+   "direct_eq": 1465827,
+   "carry": 3548492,
+   "total": 5014319,
+   "share": 3.6
+  },
+  {
+   "id8": "f9e4092b",
+   "class_name": "bash",
+   "direct_eq": 4153559,
+   "carry": 529587,
+   "total": 4683145,
+   "share": 3.4
+  },
+  {
+   "id8": "874fc801",
+   "class_name": "bash",
+   "direct_eq": 3558972,
+   "carry": 615854,
+   "total": 4174825,
+   "share": 3.0
+  },
+  {
+   "id8": "88c6ab1b",
+   "class_name": "text_read",
+   "direct_eq": 1373910,
+   "carry": 2253487,
+   "total": 3627397,
+   "share": 2.6
+  }
+ ],
+ "loops": {
+  "count": 138,
+  "lengths": [
+   41,
+   38,
+   34,
+   32,
+   29,
+   28,
+   24,
+   22,
+   22,
+   20,
+   20,
+   19,
+   18,
+   18,
+   18,
+   17,
+   17,
+   16,
+   16,
+   16,
+   15,
+   15,
+   14,
+   14,
+   14,
+   13,
+   13,
+   13,
+   13,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   11,
+   11,
+   11,
+   11,
+   11,
+   11,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   9,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   7,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5,
+   5
+  ],
+  "eq": 59315944,
+  "share": 43.0
+ },
+ "T10_checks": {
+  "session_vs_model_reconciles": true,
+  "grand": {
+   "tin": 8118,
+   "cw": 15054867,
+   "cr": 1024385856,
+   "out": 2306541,
+   "eq": 137906738
+  },
+  "cw_split_absent": 0,
+  "carry_negatives_clamped": 1,
+  "subagents_total": 35,
+  "subagents_unmatched_to_agent_call": 29,
+  "anchors": {
+   "fable_jurors": [
+    {
+     "parent": "56c58c6d",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 11,
+     "tool_calls": 79,
+     "images": 18,
+     "sum_ctx": 3014901,
+     "last_ctx": 406440,
+     "eq": 1269088,
+     "mismatch": false
+    },
+    {
+     "parent": "7c9c4bb5",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 17,
+     "tool_calls": 18,
+     "images": 0,
+     "sum_ctx": 2672752,
+     "last_ctx": 246717,
+     "eq": 403790,
+     "mismatch": false
+    },
+    {
+     "parent": "7c9c4bb5",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 11,
+     "tool_calls": 9,
+     "images": 0,
+     "sum_ctx": 1376467,
+     "last_ctx": 155846,
+     "eq": 399902,
+     "mismatch": false
+    },
+    {
+     "parent": "56c58c6d",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 5,
+     "tool_calls": 26,
+     "images": 15,
+     "sum_ctx": 761812,
+     "last_ctx": 217926,
+     "eq": 286192,
+     "mismatch": false
+    },
+    {
+     "parent": "874fc801",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 3,
+     "tool_calls": 7,
+     "images": 6,
+     "sum_ctx": 292315,
+     "last_ctx": 118257,
+     "eq": 235093,
+     "mismatch": false
+    },
+    {
+     "parent": "88c6ab1b",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 7,
+     "tool_calls": 15,
+     "images": 3,
+     "sum_ctx": 894893,
+     "last_ctx": 161561,
+     "eq": 207420,
+     "mismatch": false
+    },
+    {
+     "parent": "6eb42c8d",
+     "requested": "fable",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 10,
+     "tool_calls": 14,
+     "images": 7,
+     "sum_ctx": 1228421,
+     "last_ctx": 135370,
+     "eq": 204408,
+     "mismatch": false
+    },
+    {
+     "parent": "7c9c4bb5",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 5,
+     "tool_calls": 15,
+     "images": 13,
+     "sum_ctx": 567673,
+     "last_ctx": 144616,
+     "eq": 191565,
+     "mismatch": false
+    },
+    {
+     "parent": "6eb42c8d",
+     "requested": "fable",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 2,
+     "tool_calls": 1,
+     "images": 0,
+     "sum_ctx": 180804,
+     "last_ctx": 105934,
+     "eq": 179178,
+     "mismatch": false
+    },
+    {
+     "parent": "88c6ab1b",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 7,
+     "tool_calls": 15,
+     "images": 0,
+     "sum_ctx": 776615,
+     "last_ctx": 124473,
+     "eq": 172170,
+     "mismatch": false
+    },
+    {
+     "parent": "88c6ab1b",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 4,
+     "tool_calls": 8,
+     "images": 4,
+     "sum_ctx": 422950,
+     "last_ctx": 130131,
+     "eq": 170121,
+     "mismatch": false
+    },
+    {
+     "parent": "7c9c4bb5",
+     "requested": "fable",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 4,
+     "tool_calls": 11,
+     "images": 8,
+     "sum_ctx": 378686,
+     "last_ctx": 113233,
+     "eq": 168399,
+     "mismatch": false
+    },
+    {
+     "parent": "88c6ab1b",
+     "requested": "fable",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 3,
+     "tool_calls": 5,
+     "images": 0,
+     "sum_ctx": 296520,
+     "last_ctx": 115880,
+     "eq": 149471,
+     "mismatch": false
+    },
+    {
+     "parent": "7c9c4bb5",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 4,
+     "tool_calls": 10,
+     "images": 8,
+     "sum_ctx": 383437,
+     "last_ctx": 113075,
+     "eq": 148229,
+     "mismatch": false
+    },
+    {
+     "parent": "88c6ab1b",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 3,
+     "tool_calls": 6,
+     "images": 5,
+     "sum_ctx": 289305,
+     "last_ctx": 114228,
+     "eq": 147250,
+     "mismatch": false
+    },
+    {
+     "parent": "88c6ab1b",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 3,
+     "tool_calls": 7,
+     "images": 4,
+     "sum_ctx": 285085,
+     "last_ctx": 111353,
+     "eq": 143695,
+     "mismatch": false
+    },
+    {
+     "parent": "6eb42c8d",
+     "requested": "fable",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 3,
+     "tool_calls": 2,
+     "images": 0,
+     "sum_ctx": 291623,
+     "last_ctx": 108497,
+     "eq": 140310,
+     "mismatch": false
+    },
+    {
+     "parent": "6eb42c8d",
+     "requested": "fable",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 2,
+     "tool_calls": 2,
+     "images": 0,
+     "sum_ctx": 183540,
+     "last_ctx": 107846,
+     "eq": 136739,
+     "mismatch": false
+    },
+    {
+     "parent": "7c9c4bb5",
+     "requested": "unset",
+     "actual": [
+      "claude-fable-5-1"
+     ],
+     "subagent_type": "general-purpose",
+     "messages": 2,
+     "tool_calls": 1,
+     "images": 0,
+     "sum_ctx": 169601,
+     "last_ctx": 94826,
+     "eq": 120431,
+     "mismatch": false
+    }
+   ]
+  },
+  "json_errors_total": 0,
+  "stage": 3
+ }
+}
