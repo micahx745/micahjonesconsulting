@@ -5,6 +5,11 @@ a prompt for fable research to go deep into our harness and see any improvements
 advantanage of the other models and maintain claude useage until saturday . I want top frontier model quality tho when
 it comes to the planning, orchestration, and output."
 
+INPUT FIRST (operator 2026-09-22: "i need the research prompt here it wont read a repo or my pc - its chat"): the web
+research runs in a Fable chat with `.planning/handoff/FABLE-RESEARCH-PROMPT-HARNESS.md`, which cannot read the repo.
+Its report is this chat's first input: verify each of its claims against the repo before adopting or dismissing it
+(LESSONS #1), then run the measurement and proposals below, using the report's estimates as hypotheses to confirm.
+
 This chat is RESEARCH and PROPOSALS about the operating harness. It changes no site code, pushes nothing, deploys
 nothing. The Pass-128c work (`NEXT-SESSION-KICKOFF.md`) and the landing exemplar (`KICKOFF-LANDING-EXEMPLAR.md`) are
 other chats; do not do their work here.
