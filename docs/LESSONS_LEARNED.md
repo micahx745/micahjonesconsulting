@@ -1227,6 +1227,14 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   (built as a reusable system with slots for Ordani's specifics), researched and built in its own chat
   (`.planning/handoff/KICKOFF-LANDING-EXEMPLAR.md`); harness additions are proposed there by popup, repo-level only
   (the 2026-09-20 ruling: never ~/.claude). This mjconsult chat hands off (`.planning/handoff/NEXT-SESSION-KICKOFF.md`).
+- **THE ORDER; THE GUARD'S SCOPE; THE DOORS WORLD IS TERRACOTTA — operator 2026-09-21 night (popups, the next chat)**.
+  ORDER: picked "Kickoff order (Recommended)": the #49 gate, then the jank fix, then the doors build, then the exits
+  items. GUARD: picked "Main local settings too (Recommended)" (#49, #50). DOORS WORLD, after the contact sheet
+  `.planning/qa/pass-128/scroll-all.png` (the nav goes bone from frame #60; the Audit arrives on bone, #104-#116; the
+  washed crossfade, #120): picked "Terracotta (Recommended)", whose description read "The ground stays terracotta from
+  the hero through the Audit: no colour switch in that stretch at all. The nav stays terracotta over both doors, and the
+  Audit arrives already on its colour." So the doors band's `data-world` is `terracotta`, in the jank fix and in the
+  doors build (brief pass-127c, section 4b). NOT approved to ship: each goes live only on his push words.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
