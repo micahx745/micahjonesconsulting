@@ -159,8 +159,10 @@ function Invoke-Recorded([string]$PromptText, [string]$Mode, [string]$PromptLabe
   if ($glm429) {
     $statusPy = Join-Path $PSScriptRoot 'harness\status.py'
     if (Test-Path $statusPy) {
-      & python $statusPy glm-429 --file $jsonFile
-      if ($LASTEXITCODE -eq 3) { & python $statusPy glm-429 --file $errFile }
+      # Captured: this function's value is the process exit code (`exit (Invoke-Recorded ...)`),
+      # and an uncaptured native call's stdout becomes part of it (LESSONS #55).
+      $null = & python $statusPy glm-429 --file $jsonFile
+      if ($LASTEXITCODE -eq 3) { $null = & python $statusPy glm-429 --file $errFile }
     }
   }
   $guardDenies = 0
@@ -175,7 +177,7 @@ function Invoke-Recorded([string]$PromptText, [string]$Mode, [string]$PromptLabe
     ended_utc = [DateTime]::UtcNow.ToString('yyyy-MM-ddTHH:mm:ssZ')
     exit_code = $exitCode
     timed_out = $timedOut
-    is_error = ($null -eq $parsed)
+    is_error = (($null -eq $parsed) -or ($exitCode -ne 0) -or $glm429 -or ($null -ne $parsed -and $parsed.is_error -eq $true))
     subtype = $null
     num_turns = $null
     duration_ms = $null
