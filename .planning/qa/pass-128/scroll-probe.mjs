@@ -15,7 +15,7 @@
 // Usage:
 //   node scroll-probe.mjs [--url URL] [--to CSS_SELECTOR] [--cpu N]
 //     [--net 4g] [--runs N] [--inject-css FILE] [--block SUBSTRING]...
-//     [--trace OUT.json] [--out OUT.jsonl]
+//     [--detach-split] [--gpu] [--trace OUT.json] [--out OUT.jsonl]
 //
 // Notes on scope:
 //   - This probe does NOT measure "the word loading slow" (LCP / font-swap
@@ -83,7 +83,7 @@ function usage() {
   console.error(
     "Usage: node scroll-probe.mjs [--url URL] [--to SELECTOR] [--cpu N]\n" +
       "  [--net 4g] [--runs N] [--inject-css FILE] [--block SUBSTRING]...\n" +
-      "  [--trace OUT.json] [--out OUT.jsonl]",
+      "  [--detach-split] [--gpu] [--trace OUT.json] [--out OUT.jsonl]",
   );
 }
 
@@ -96,6 +96,8 @@ function parseArgs(argv) {
     runs: 1,
     injectCss: null,
     block: [],
+    detachSplit: false,
+    gpu: false,
     trace: null,
     out: null,
     valid: true,
@@ -109,6 +111,8 @@ function parseArgs(argv) {
     else if (a === "--runs") options.runs = Number(argv[++i]);
     else if (a === "--inject-css") options.injectCss = argv[++i];
     else if (a === "--block") options.block.push(argv[++i]);
+    else if (a === "--detach-split") options.detachSplit = true;
+    else if (a === "--gpu") options.gpu = true;
     else if (a === "--trace") options.trace = argv[++i];
     else if (a === "--out") options.out = argv[++i];
     else if (a === "--help") {
@@ -344,10 +348,32 @@ async function runOnce(options, runIndex) {
   const browser = await puppeteer.launch({
     executablePath: CHROME,
     headless: true,
-    args: ["--no-sandbox", "--disable-gpu"],
+    args: options.gpu ? ["--no-sandbox"] : ["--no-sandbox", "--disable-gpu"],
   });
   const consoleErrors = [];
   try {
+    const rendererPage = await browser.newPage();
+    let webglRenderer = "no-webgl";
+    try {
+      await rendererPage.goto("about:blank");
+      webglRenderer = await rendererPage.evaluate(() => {
+        try {
+          const canvas = document.createElement("canvas");
+          const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+          if (!gl) return "no-webgl";
+          const debugInfo = gl.getExtension("WEBGL_debug_renderer_info");
+          if (debugInfo) {
+            return gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL) || "no-webgl";
+          }
+          return gl.getParameter(gl.RENDERER) || "no-webgl";
+        } catch {
+          return "no-webgl";
+        }
+      });
+    } finally {
+      await rendererPage.close().catch(() => {});
+    }
+
     const page = await browser.newPage();
     page.on("pageerror", (err) => consoleErrors.push(String(err)));
 
@@ -403,6 +429,36 @@ async function runOnce(options, runIndex) {
 
     const targetSelector = await resolveTargetSelector(page, options.to);
 
+    let detach = null;
+    if (options.detachSplit) {
+      detach = await page.evaluate(() => {
+        const chars = Array.from(document.querySelectorAll(".cw-split__char"));
+        const rootNodes = [];
+        const seenRoots = new Set();
+        const samples = [];
+        for (const char of chars) {
+          const root = (char.closest(".cw-split__word") || char).parentElement;
+          if (!root || seenRoots.has(root)) continue;
+          seenRoots.add(root);
+          rootNodes.push(root);
+          samples.push({
+            rootId: root.id,
+            char,
+            opacityBefore: char.style.opacity,
+          });
+        }
+        window.__detachedSamples = samples;
+        for (const root of rootNodes) {
+          root.textContent = root.textContent;
+        }
+        return {
+          charsBefore: chars.length,
+          roots: rootNodes.map((root) => root.id),
+          charsAfter: document.querySelectorAll(".cw-split__char").length,
+        };
+      });
+    }
+
     await installRecorders(page);
 
     let tracePath = null;
@@ -417,6 +473,18 @@ async function runOnce(options, runIndex) {
 
     const { gestureCount, scrollDurationMs } = await scrollToTarget(page, session, targetSelector);
     await sleep(SETTLE_MS);
+
+    if (detach) {
+      const detachAfter = await page.evaluate(() => ({
+        charsAfterGesture: document.querySelectorAll(".cw-split__char").length,
+        samples: (window.__detachedSamples || []).map((sample) => ({
+          rootId: sample.rootId,
+          opacityBefore: sample.opacityBefore,
+          opacityAfter: sample.char.style.opacity,
+        })),
+      }));
+      Object.assign(detach, detachAfter);
+    }
 
     if (tracePath) {
       await page.tracing.stop();
@@ -442,6 +510,8 @@ async function runOnce(options, runIndex) {
       net: options.net,
       url: options.url,
       target: targetSelector,
+      webglRenderer,
+      detach,
       frames: intervals.length,
       intervalMsP50: round(percentile(intervals, 50)),
       intervalMsP95: round(percentile(intervals, 95)),
