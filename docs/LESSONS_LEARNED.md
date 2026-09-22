@@ -2722,8 +2722,10 @@ or the pre-dispatch re-run caught each one.
 **Gate:** the main session re-ran every pre-flight line before each dispatch of runs C to F and wrote run_all's
 expectation as a rule, not a list. Recurrence graduates the gate: brief G (`.claude/briefs/harness-v2-g-gates.md`)
 gives `brief_lint.py` a count check (a test's stated number of checks, its numbered list and its `PASS X N/N` line
-must agree) and a PreToolUse hook that lints the brief a dispatch names and denies on FAIL. RULE: a count, an order or
-a quoted output in a brief comes from a command the main session ran, never from memory.
+must agree) and a PreToolUse hook that lints the brief a dispatch names and denies on FAIL. Brief G then tripped its
+own gate on its first run: it described the backtick strip in prose, the executor read "span" as `[^`]+`, and a
+doubled backtick exposed a quoted count; the brief now gives the exact Python (`c1d9440`). RULE: a count, an order, a
+quoted output or a parsing rule in a brief comes from a command or code the main session ran, never from memory.
 
 ## #61 — A launcher lost its exit code to a helper's stdout, latent until the helper existed (2026-09-22)
 
