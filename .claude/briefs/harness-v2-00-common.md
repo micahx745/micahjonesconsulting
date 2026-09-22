@@ -15,7 +15,8 @@ B1-B4 "go your recs"; wrappers W1-W4 "your recs"; context and visual QA C1-C4 "y
 installs (Recommended)"; GLM concurrency "Two at once, back off (Recommended)".
 
 ## Files
-Each run's brief lists the only files that run may create or modify. This file is read-only for every run.
+- `.claude/briefs/harness-v2-00-common.md` (this file) is read-only for every run. Each run's own brief lists the
+  only files that run may create or modify.
 
 ## Pre-flight
 Main session, 2026-09-22 10:35 PDT, in the worktree (actual values):
@@ -37,7 +38,11 @@ Every run prints these actual values first, before any edit, and stops if one di
    environment variable that holds a key or token.
 4. Create or modify only the files your brief's `## Files` section lists. Anything else: stop and report.
 5. ASCII only in every file you write: code, comments, docs, JSON. No curly quotes, no em or en dashes, no arrows,
-   no single-character >= or <= signs, no ellipsis character (LESSONS #46).
+   no single-character >= or <= signs, no ellipsis character (LESSONS #46). The premium-web copy-lint hook rejects
+   `.md`, `.ts`, `.tsx`, `.html`, `.css`, `.astro` and `.jsx` writes that contain a banned word as a whole word
+   (the plugin's list plus `.claude/brand.json` `voice.banned`, mostly marketing verbs and adjectives; the verb
+   for switching a feature back on was caught on 2026-09-22). If a write is rejected, reword the prose (for
+   example "switch on") and report it as a deviation; never edit the hook or the list.
 6. Create files with the Write tool; change them with the Edit tool. No heredocs, no Set-Content or Out-File, no
    echo-redirection for file content: they mangle backslashes and add byte-order marks. JSON files are UTF-8
    without a BOM.
