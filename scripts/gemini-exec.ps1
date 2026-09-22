@@ -51,7 +51,9 @@ param(
   [string]$System = "",                # optional system instruction
   [int]$MaxTokens = 8000,              # budgets thinking + answer
   [int]$TimeoutSec = 600,
-  [string]$Image = ""                  # comma-separated jpg, jpeg, png or webp paths
+  [string]$Image = "",                 # comma-separated jpg, jpeg, png or webp paths
+  [string]$Chain = "gemini-3-flash-preview,gemini-3.1-flash-lite,gemini-2.5-flash-lite",  # Harness v2 W2
+  [switch]$NoFallback                  # Harness v2 W2: -Model only, no chain walk
 )
 
 $ErrorActionPreference = "Stop"
@@ -129,10 +131,6 @@ if ($Models) {
   exit 0
 }
 
-$modelPath = $Model.Trim()
-if ($modelPath.StartsWith("models/")) { $modelPath = $modelPath.Substring(7) }
-if (-not $modelPath) { Write-Error "Model cannot be empty."; exit 1 }
-
 # --- the prompt -------------------------------------------------------------
 if ($Smoke) {
   $userText = "Reply with the single word OK and nothing else."
@@ -183,24 +181,145 @@ if (-not $Image -and $bodyBytes.Length -gt 2000000) {
 # PowerShell 5.1 can decode a response as Latin-1 when Content-Type has no
 # charset, silently corrupting smart punctuation and accents. The script itself
 # stays ASCII, but model output must make the UTF-8 round trip intact.
-$endpoint = "$Base/models/$($modelPath):generateContent"
-try {
-  $raw = Invoke-WebRequest -Uri $endpoint -Headers $headers -Method POST `
-    -Body $bodyBytes -TimeoutSec $TimeoutSec -UseBasicParsing
-  $resp = [System.Text.Encoding]::UTF8.GetString($raw.RawContentStream.ToArray()) | ConvertFrom-Json
-} catch {
-  Write-Error "Gemini call failed: $($_.Exception.Message)"
-  exit 1
+if ($Smoke) {
+  # Harness v2 W2: -Smoke keeps its pre-W2 behaviour exactly -- one model, no
+  # fallback chain, so it stays a precise probe of the -Model it was given.
+  $modelPath = $Model.Trim()
+  if ($modelPath.StartsWith("models/")) { $modelPath = $modelPath.Substring(7) }
+  if (-not $modelPath) { Write-Error "Model cannot be empty."; exit 1 }
+  $endpoint = "$Base/models/$($modelPath):generateContent"
+  try {
+    $raw = Invoke-WebRequest -Uri $endpoint -Headers $headers -Method POST `
+      -Body $bodyBytes -TimeoutSec $TimeoutSec -UseBasicParsing
+    $resp = [System.Text.Encoding]::UTF8.GetString($raw.RawContentStream.ToArray()) | ConvertFrom-Json
+  } catch {
+    Write-Error "Gemini call failed: $($_.Exception.Message)"
+    exit 1
+  }
+
+  $candidate = @($resp.candidates)[0]
+  $finishReason = $candidate.finishReason
+  $textPieces = @(
+    foreach ($part in @($candidate.content.parts)) {
+      if ($null -ne $part.text) { [string]$part.text }
+    }
+  )
+  $text = $textPieces -join ""
+
+  $u = $resp.usageMetadata
+  $tokensIn = if ($null -ne $u.promptTokenCount) { $u.promptTokenCount } else { "n/a" }
+  $tokensOut = if ($null -ne $u.candidatesTokenCount) { $u.candidatesTokenCount } else { "n/a" }
+  $thoughtTokens = if ($null -ne $u.thoughtsTokenCount) { $u.thoughtsTokenCount } else { "n/a" }
+  $tokensTotal = if ($null -ne $u.totalTokenCount) { $u.totalTokenCount } else { "n/a" }
+  $cacheHit = if ($null -ne $u.cachedContentTokenCount) { $u.cachedContentTokenCount } else { "n/a" }
+
+  if (-not $text) {
+    if ($finishReason -eq "MAX_TOKENS") {
+      Write-Error "Gemini spent the whole budget on thinking and returned an EMPTY answer (finishReason=MAX_TOKENS, maxOutputTokens=$MaxTokens, candidatesTokenCount=$tokensOut, thoughtsTokenCount=$thoughtTokens, totalTokenCount=$tokensTotal). This is a budget problem, not a failed call -- re-run with a larger -MaxTokens."
+    } else {
+      Write-Error "Gemini returned no content (finishReason=$finishReason)."
+    }
+    exit 1
+  }
+
+  $reportedModel = if ($resp.modelVersion) { $resp.modelVersion } else { $modelPath }
+  Write-Output "gemini-exec -Smoke: model=$reportedModel reply=$($text.Trim()) finish=$finishReason tokens_in=$tokensIn tokens_out=$tokensOut thoughts=$thoughtTokens total=$tokensTotal cache_hit=$cacheHit"
+  Write-Output "Record this line and its date in the STATUS comment at the top of this file."
+  exit 0
 }
 
-$candidate = @($resp.candidates)[0]
-$finishReason = $candidate.finishReason
-$textPieces = @(
-  foreach ($part in @($candidate.content.parts)) {
-    if ($null -ne $part.text) { [string]$part.text }
+# --- Harness v2 W2: fallback chain for -PromptFile calls ---------------------
+# Gemini quotas are per model and several ids return 429 or 404 on any given
+# day, so an ordinary call walks a chain instead of failing on the first model.
+$modelsToTry = New-Object System.Collections.Generic.List[string]
+function Add-ModelCandidate([string]$rawId) {
+  $mm = $rawId.Trim()
+  if ($mm.StartsWith("models/")) { $mm = $mm.Substring(7) }
+  if ($mm -and -not $modelsToTry.Contains($mm)) { $modelsToTry.Add($mm) }
+}
+Add-ModelCandidate $Model
+if (-not $NoFallback) {
+  foreach ($chainId in $Chain.Split(",")) { Add-ModelCandidate $chainId }
+}
+if ($modelsToTry.Count -eq 0) { Write-Error "Model cannot be empty."; exit 1 }
+
+$attemptFailures = @()
+$text = ""
+$finishReason = $null
+$resp = $null
+$reportedModel = $null
+
+foreach ($tryModel in $modelsToTry) {
+  $endpoint = "$Base/models/$($tryModel):generateContent"
+  $httpStatus = $null
+  $errBody = ""
+  $callFailed = $false
+  $callErrMessage = ""
+  try {
+    $raw = Invoke-WebRequest -Uri $endpoint -Headers $headers -Method POST `
+      -Body $bodyBytes -TimeoutSec $TimeoutSec -UseBasicParsing
+    $resp = [System.Text.Encoding]::UTF8.GetString($raw.RawContentStream.ToArray()) | ConvertFrom-Json
+    $httpStatus = [int]$raw.StatusCode
+  } catch {
+    $callFailed = $true
+    $callErrMessage = $_.Exception.Message
+    $ex = $_.Exception
+    if ($ex.Response) {
+      try { $httpStatus = [int]$ex.Response.StatusCode } catch { $httpStatus = $null }
+      try {
+        $errStream = $ex.Response.GetResponseStream()
+        $errReader = New-Object IO.StreamReader($errStream, [System.Text.Encoding]::UTF8)
+        $errBody = $errReader.ReadToEnd()
+        $errReader.Close()
+      } catch { $errBody = "" }
+    }
   }
-)
-$text = $textPieces -join ""
+
+  if ($callFailed) {
+    $retryable = $false
+    if ($httpStatus -in @(404, 429, 500, 503)) { $retryable = $true }
+    elseif ($httpStatus -eq 400 -and $errBody -and $errBody.ToLowerInvariant().Contains("not found")) { $retryable = $true }
+    if ($retryable) {
+      $why = if ($httpStatus) { [string]$httpStatus } else { $callErrMessage }
+      [Console]::Error.WriteLine("gemini-exec: $tryModel -> $why, trying the next model")
+      $attemptFailures += "${tryModel}: $why"
+      continue
+    } else {
+      Write-Error "Gemini call failed: $callErrMessage"
+      exit 1
+    }
+  }
+
+  $candidate = @($resp.candidates)[0]
+  $finishReason = $candidate.finishReason
+  $textPieces = @(
+    foreach ($part in @($candidate.content.parts)) {
+      if ($null -ne $part.text) { [string]$part.text }
+    }
+  )
+  $text = $textPieces -join ""
+
+  if ($text) {
+    $reportedModel = if ($resp.modelVersion) { $resp.modelVersion } else { $tryModel }
+    [Console]::Error.WriteLine("MODEL-USED: $reportedModel")
+    break
+  }
+
+  if ($finishReason -eq "MAX_TOKENS") {
+    Write-Output "gemini-exec: $tryModel spent the budget on thinking (MAX_TOKENS): raise -MaxTokens; no fallback."
+    exit 5
+  }
+
+  $whyEmpty = "empty ($finishReason)"
+  [Console]::Error.WriteLine("gemini-exec: $tryModel -> $whyEmpty, trying the next model")
+  $attemptFailures += "${tryModel}: $whyEmpty"
+}
+
+if (-not $text) {
+  $joined = ($attemptFailures -join "; ")
+  Write-Output "gemini-exec: every model in the chain failed ($joined). Route this leg to Fable or skip it."
+  exit 4
+}
 
 $u = $resp.usageMetadata
 $tokensIn = if ($null -ne $u.promptTokenCount) { $u.promptTokenCount } else { "n/a" }
@@ -208,22 +327,6 @@ $tokensOut = if ($null -ne $u.candidatesTokenCount) { $u.candidatesTokenCount } 
 $thoughtTokens = if ($null -ne $u.thoughtsTokenCount) { $u.thoughtsTokenCount } else { "n/a" }
 $tokensTotal = if ($null -ne $u.totalTokenCount) { $u.totalTokenCount } else { "n/a" }
 $cacheHit = if ($null -ne $u.cachedContentTokenCount) { $u.cachedContentTokenCount } else { "n/a" }
-
-if (-not $text) {
-  if ($finishReason -eq "MAX_TOKENS") {
-    Write-Error "Gemini spent the whole budget on thinking and returned an EMPTY answer (finishReason=MAX_TOKENS, maxOutputTokens=$MaxTokens, candidatesTokenCount=$tokensOut, thoughtsTokenCount=$thoughtTokens, totalTokenCount=$tokensTotal). This is a budget problem, not a failed call -- re-run with a larger -MaxTokens."
-  } else {
-    Write-Error "Gemini returned no content (finishReason=$finishReason)."
-  }
-  exit 1
-}
-
-$reportedModel = if ($resp.modelVersion) { $resp.modelVersion } else { $modelPath }
-if ($Smoke) {
-  Write-Output "gemini-exec -Smoke: model=$reportedModel reply=$($text.Trim()) finish=$finishReason tokens_in=$tokensIn tokens_out=$tokensOut thoughts=$thoughtTokens total=$tokensTotal cache_hit=$cacheHit"
-  Write-Output "Record this line and its date in the STATUS comment at the top of this file."
-  exit 0
-}
 
 if ($Out) {
   $dir = Split-Path -Parent $Out
