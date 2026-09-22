@@ -1,0 +1,50 @@
+{"run": "e",
+ "items": [
+  {"claim": "Pre-flight matched the brief's recorded values (common list, the 3 run-E git/file checks, the PIL size read of after-1440-band01.png = (1440,900) RGB); the one open check (which claude --help flags exist) found --max-turns absent from this claude.exe (2.1.266), unlike --model/--input-format/--output-format/--strict-mcp-config/--setting-sources, all present.",
+   "evidence": "$ claude --help 2>&1 | grep -E -- max-turns -> (no match, exit 1)",
+   "confidence": "high"},
+  {"claim": "visual_qa.py implements blank-frame (grayscale numpy std < 2.0), baseline drift (largest per-channel diff > 16, ratio > 0.5% -> CHANGED not FAIL), axe/lighthouse/overflow FAIL checks, a <=4-column contact sheet iteratively downscaled to <=2576px long edge and <=4784 visual tokens, and an E3-schema digest.json; --selftest exercises all of it on synthetic fixtures plus the real pass-106 capture.",
+   "evidence": "$ python scripts/harness/visual_qa.py --selftest -> SELFTEST PASS (6 checks)",
+   "confidence": "high"},
+  {"claim": "The axe/lighthouse/overflow paths (not exercised by the required C3/C4 tests) were hand-verified: a nested 'impact: serious' node is found and a 'moderate' one is not; a 0.82 score under 0.95 FAILs; an overflow entry matching a capture's stem by name flips that image from PASS to FAIL in place (single merged result, not duplicated), a non-matching failing entry appends its own line, and a non-failing entry is silently dropped.",
+   "evidence": "$ python -c \"import visual_qa as vq; ...\" -> home-390-0.png | FAIL | horizontal overflow (scrollWidth 500 > clientWidth 390)",
+   "confidence": "med"},
+  {"claim": "visual-qa.mjs plans viewport-only scroll-frame captures (never full-page, per the Color Worlds recolour-on-scroll note in the brief) named <slug>-<width>-<i>.png, resolves Playwright from PLAYWRIGHT_PATH or else a bare import, and exits 2 with a runnable visual_qa.py fallback command when neither resolves; --selftest needs no browser or network.",
+   "evidence": "$ node scripts/harness/visual-qa.mjs --selftest -> playwright: missing (plus 8 frame: lines, exit 0)",
+   "confidence": "high"},
+  {"claim": "fable-gate.ps1 gates on digest_check.py (exit 7), image count/format/size (exit 8, at most 4, PNG/JPEG, long edge <=2576px), and a 3-per-arc counter unless -OperatorOk (exit 6, the same check under -DryRun too); a passing dry run writes the real request.jsonl plus a byte-count-redacted <Out>.request-preview.json and never calls claude.",
+   "evidence": "$ python scripts/harness/tests/test_c4_fable_gate.py -> PASS C4 5/5",
+   "confidence": "high"},
+  {"claim": "Beyond the 5 required C4 cases, hand-tested 5 images (count>4) and one nonexistent image path: both -> exit 8, same message, clean stderr.",
+   "evidence": "scripts/fable-gate.ps1:79",
+   "confidence": "high"},
+  {"claim": "The combined offline suite (11 files from runs A-D plus this run's test_c3_visual_qa.py and test_c4_fable_gate.py) passes as one 13-file run.",
+   "evidence": "$ python scripts/harness/tests/run_all.py -> ALL PASS (13 files)",
+   "confidence": "high"},
+  {"claim": "Every changed path in the working tree at verification time was on this brief's own Files list (this digest is the 6th and last entry, written after verification ran).",
+   "evidence": "$ python scripts/harness/diff_scope.py .claude/briefs/harness-v2-e-visualqa-fablegate.md -> PASS diff scope: 5 changed paths, all listed",
+   "confidence": "high"}
+ ],
+ "tests": [
+  {"code": "C3-selftest", "command": "python scripts/harness/visual_qa.py --selftest", "result": "PASS", "last_line": "SELFTEST PASS (6 checks)"},
+  {"code": "C3", "command": "python scripts/harness/tests/test_c3_visual_qa.py", "result": "PASS", "last_line": "PASS C3 3/3"},
+  {"code": "C4", "command": "python scripts/harness/tests/test_c4_fable_gate.py", "result": "PASS", "last_line": "PASS C4 5/5"},
+  {"code": "run_all", "command": "python scripts/harness/tests/run_all.py", "result": "PASS", "last_line": "ALL PASS (13 files)"},
+  {"code": "diff_scope", "command": "python scripts/harness/diff_scope.py .claude/briefs/harness-v2-e-visualqa-fablegate.md", "result": "PASS", "last_line": "PASS diff scope: 5 changed paths, all listed"}
+ ],
+ "deviations": [
+  "--max-turns does not exist on this claude.exe (Claude Code 2.1.266) though section C4's literal example command includes it; the brief's own pre-flight instruction says 'C4 passes only flags that exist', so fable-gate.ps1 checks `claude --help` once at runtime (Get-ClaudeHelpText/Build-ClaudeArgs) and includes only the flags actually found there. On this machine that means --model/--input-format/--output-format/--strict-mcp-config/--setting-sources are passed and --max-turns is not, in both the dry-run 'would run:' message and the live invocation. Only the untested live path and the printed dry-run text are affected; every -DryRun exit code and message the tests check is unchanged.",
+  "Manual testing before the formal test file existed caught a real bug: the base64-encoding python -c snippet used double-quoted Python literals ('rb', 'ascii' with double quotes); PowerShell 5.1 silently mangled the embedded double quotes when passing that multi-line string to python.exe as a native-process argument, so python raised NameError on stderr and the image data silently became an empty string (the dry-run preview would have shown '<base64, 0 bytes>'). Fixed by rewriting the snippet with single-quoted Python literals only (no embedded double quotes); reverified the preview now shows real sizes, e.g. '<base64, 248 bytes>' for a 64x64 fixture PNG.",
+  "While finding that bug, briefly created scripts/harness/tests/_manual_fg_check.py inside the repo (outside the Files list) for ad hoc smoke-testing. Caught immediately and deleted before any verification command ran or any commit; confirmed via `git status --porcelain` at verification time that only the 5 Files-list paths were untracked. All later ad hoc testing used the session scratchpad, outside the repo.",
+  "fable-gate.ps1's live branch (step 6) is written to spec but never executed: no live Fable calls in this arc (operator ruling) and the claude CLI login was expired per the brief. Verified only by (a) the 5 required -DryRun cases plus 2 extra ones (5 images, a missing image path, both -> exit 8) and (b) a PowerShell AST parse of the whole file confirming zero syntax errors, which covers the live branch too since PowerShell parses a script fully before running any of it.",
+  "digest.json's axe-json/lighthouse-json/overflow-json handling is not exercised by any required C3/C4 test (neither test_c3_visual_qa.py's three checks nor visual-qa.mjs's real-capture path, which needs a browser this worktree does not have, ever pass --axe-json/--lighthouse-json). Hand-verified separately per the items list above; medium rather than high confidence since it never ran through the brief's own named checks."
+ ],
+ "files_changed": [
+  "scripts/harness/visual_qa.py",
+  "scripts/harness/visual-qa.mjs",
+  "scripts/fable-gate.ps1",
+  "scripts/harness/tests/test_c3_visual_qa.py",
+  "scripts/harness/tests/test_c4_fable_gate.py",
+  ".planning/harness/digests/run-e.json"
+ ]
+}
