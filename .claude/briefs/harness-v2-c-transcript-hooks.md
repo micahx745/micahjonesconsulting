@@ -3,7 +3,9 @@
 Brief-Format: v2
 Executor: GLM 5.3 through `scripts/claude-glm.ps1 -Batch -Scope harness` (run after run B: it reuses
 `.claude/hooks/_transcript.py` and `scripts/harness/tests/_fixtures.py`). Read
-`.claude/briefs/harness-v2-00-common.md` first.
+`.claude/briefs/harness-v2-00-common.md` first. Amended 2026-09-22 by the main session (kickoff): a Sonnet
+subagent stands in for GLM while GLM is capped; the executor guard does not cover an in-session subagent, so the
+common brief's hard rules bind as instructions.
 
 ## Ruling
 Three hooks read the session transcript and hold the three habits that burned the most Claude last week. B3: a
@@ -25,7 +27,8 @@ This run may create or modify only these:
 - `.planning/harness/digests/run-c.json` (new)
 
 ## Pre-flight
-Main session, before dispatch (actual values):
+Main session, 2026-09-22 19:21 UTC, after runs B and D were committed (`c7ea502`); every line below held (actual
+values), and `ls scripts/harness/tests/test_*.py | wc -l` -> `8`:
 - `python -c "import sys;sys.path.insert(0,'.claude/hooks');import _transcript as t;print(sorted(n for n in dir(t) if not n.startswith('_')))"` -> must list at least `human_text, image_count, is_human, last_usage, latest_human_text, load_tail, session_model, tool_uses`
 - `python -c "import sys;sys.path.insert(0,'scripts/harness/tests');import _fixtures as f;print(sorted(n for n in dir(f) if not n.startswith('_')))"` -> must list at least `assistant_text, assistant_tool, human, run_hook, tool_result, usage, write_transcript`
 - `python -c "import json;d=json.load(open('.claude/settings.json',encoding='utf-8'));print([h.get('matcher','') for h in d['hooks']['PreToolUse']], 'UserPromptSubmit' in d['hooks'])"` -> `['Write|Edit|MultiEdit|NotebookEdit', '*', 'Agent|Task'] False`
@@ -85,7 +88,7 @@ Add a new key `hooks.UserPromptSubmit` holding:
 Change nothing else.
 
 ### C.5 Tests (fixtures from `_fixtures.py`; every hook call gets a fresh temp `HARNESS_STATE_DIR`)
-`scripts/harness/tests/test_b3_tier_burn.py`, fourteen checks. "k prior" means a transcript of one human message
+`scripts/harness/tests/test_b3_tier_burn.py`, fifteen checks. "k prior" means a transcript of one human message
 `go` followed by k assistant tool calls of the kind named (each followed by its tool_result); the current call is
 not in the transcript and has a new `tool_use_id`.
 1. Opus, 38 prior `Bash` (`ls`), current `Bash` -> allow (total 39).
@@ -150,7 +153,7 @@ Expected: `5 1 2`
 python scripts/harness/tests/run_all.py
 ```
 Expected: every line `PASS`, then `ALL PASS (<n> files)` where n is the number of
-`scripts/harness/tests/test_*.py` files present: 8 without run D's three test files, 11 with them.
+`scripts/harness/tests/test_*.py` files present: 11 (8 before this run, counted at pre-flight, plus this run's 3).
 ```
 python scripts/harness/diff_scope.py .claude/briefs/harness-v2-c-transcript-hooks.md
 ```
