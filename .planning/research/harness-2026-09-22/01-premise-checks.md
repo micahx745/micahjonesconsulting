@@ -20,8 +20,14 @@ the 429 body reset time was 2026-09-23 05:44:53 Shanghai = 2026-09-22 14:44:53 P
 - **P3 Double-load: 00b's "~9.6K" is WRONG; measured 6,409 tokens/turn, 0.7% of cost.** 9,660 tokens is this chat's
   whole Memory-files category (global + worktree stack + MEMORY.md). The main-checkout stack is 19,423 bytes, about
   6,409 tokens at the calibrated 0.33 tokens/byte (00-usage-audit.md T8). 6 of 7 sessions moved main -> worktree
-  within a minute of starting, and paid 962K weighted tokens extra in total, 0.7% of the sample. The docs sentence on
-  nested-worktree loading was not fetched (GLM capped); the verdict does not depend on it.
+  within a minute of starting, and paid 962K weighted tokens extra in total, 0.7% of the sample. The docs (fetched
+  2026-09-22 by harness/v2's main session; https://code.claude.com/docs/en/memory, "How CLAUDE.md files load") say
+  CLAUDE.md files load "from your current working directory and every directory above it", with no worktree
+  exception. Read literally, a session started in `<main>/.claude/worktrees/<name>` would also load the main
+  checkout's `CLAUDE.md` and `.claude/CLAUDE.md`. Observed: that session, started in `.claude/worktrees/harness-v2`,
+  listed only the global file, the worktree's `CLAUDE.md`, `AGENTS.md`, `.claude/CLAUDE.md` and MEMORY.md, so the
+  walk stopped at the worktree. The double load comes from starting in the main checkout (AI_ROUTING rule 9 already
+  says to open chats inside the worktree), not from the nesting; the verdict stands.
 - **P4 Subagent model override: FALSE as both reports state it.** With `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` set at the
   user AND the worktree level (01a Step 1), an Agent call with `model: "fable"` was answered by claude-fable-5-1
   (`smoke/subagent-probe.txt`). History agrees: 0 requested/actual mismatches over 35 subagent runs, every Fable juror
