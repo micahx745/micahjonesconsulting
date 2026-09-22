@@ -1,0 +1,97 @@
+{
+ "run": "g",
+ "items": [
+  {
+   "claim": "Pre-flight matched the brief's recorded values exactly: common list (python 3.14.0, node v22.20.0, claude.exe, powershell 5.1.22621.6133, LOCALAPPDATA, node_modules absent) and this brief's own (brief_lint all-PASS on 8 briefs pre-G1, settings.json hooks counts/matcher, 14 test files, run_all ALL PASS 14 files). One shell-quoting fix needed: Git Bash expanded $PSVersionTable to empty inside double quotes; single-quoting it gave the correct value.",
+   "evidence": "$ powershell -NoProfile -Command '$PSVersionTable.PSVersion.ToString()' -> 5.1.22621.6133",
+   "confidence": "high"
+  },
+  {
+   "claim": "G1: count_mismatches() added to brief_lint.py, wired into check_file(). Matches all four of the brief's own fixture cases exactly: consistent 15/15/15-15 counted brief passes; 14-stated vs 15-listed vs 15/15 fails 'says 14, lists 15, expects 15/15'; 15/15-vs-14/14 fails containing 'count mismatch'; a backtick-quoted stated count triggers nothing and passes.",
+   "evidence": "scripts/harness/brief_lint.py:110",
+   "confidence": "high"
+  },
+  {
+   "claim": "G2 dispatch-lint.py (PreToolUse) and G3 resume-size.py (PostToolUse) implemented per spec. G4 wired both into .claude/settings.json (PreToolUse matcher Agent|Task|Bash|PowerShell for G2, PostToolUse matcher Write|Edit|MultiEdit for G3), changing nothing else in the file.",
+   "evidence": ".claude/hooks/dispatch-lint.py:1",
+   "confidence": "high"
+  },
+  {
+   "claim": "test_g_gates.py's all 10 specified checks pass: brief_lint's new rule (1-4); dispatch-lint's pointer-chasing deny/allow incl. the executor bypass and 'lint ok' override (5-9); resume-size's 3-way byte-cap check via a plain subprocess with JSON-parsed stdout, since _fixtures.run_hook does not recognize a PostToolUse hook's flat decision/reason shape (10).",
+   "evidence": "$ python scripts/harness/tests/test_g_gates.py -> PASS G 10/10",
+   "confidence": "high"
+  },
+  {
+   "claim": "RETURN CONDITION FIRED: brief_lint.py over the real briefs now reports 7 PASS, 1 FAIL -- harness-v2-g-gates.md itself (line 92): 'says 14, lists 6, expects 10/10'. Root cause: line 92 is the Tests section's own item 4, whose prose nests double backticks to quote a backtick-quoted example. BACKTICK_RE (single-pair) strips only the outer pair, leaving 'fourteen checks' exposed as literal text, which independently matches STATED_COUNT_RE. That spurious second stated line finds the next list start at item 5 and counts items 5-10 (6, not the section's true 10) against the real 'PASS G 10/10' Last line. Reproducible, hand-derived before touching brief_lint.py; the same code matches all four of the brief's own specified fixtures exactly (item 2). Not edited: the brief is the main session's.",
+   "evidence": "$ python scripts/harness/brief_lint.py .claude/briefs/harness-v2-*.md -> FAIL .claude/briefs/harness-v2-g-gates.md: count mismatch (line 92): says 14, lists 6, expects 10/10",
+   "confidence": "high"
+  },
+  {
+   "claim": "Same root cause independently breaks an existing, out-of-scope regression test: test_e3_lint.py case 5 (every real harness-v2-*.md brief passes brief_lint.py, exit 0) now fails, identical line-92 mismatch. Not edited: not on this run's Files list, and the common brief forbids editing a test to make a check pass.",
+   "evidence": "$ python scripts/harness/tests/test_e3_lint.py -> FAIL E3 1 of 9 failed",
+   "confidence": "high"
+  },
+  {
+   "claim": "Stopped the Verification sequence at command 2 per this run's Return conditions and run-g.md's 'if a return condition fires, stop there'. Commands 3 (test_e3_lint.py) and 4 (settings.json shape) were already run during implementation as regression/validation and are reported with real results in this digest; commands 5 (run_all.py) and 6 (diff_scope.py) were not run.",
+   "evidence": "$ python -c \"import json;d=json.load(open('.claude/settings.json',encoding='utf-8'));print({k:len(v) for k,v in d['hooks'].items()})\" -> {'PostToolUse': 2, 'PreToolUse': 6, 'SessionStart': 2, 'UserPromptSubmit': 1}",
+   "confidence": "high"
+  },
+  {
+   "claim": "Scope check: git status shows exactly five touched paths, all on this run's Files list: .claude/settings.json and scripts/harness/brief_lint.py modified; dispatch-lint.py, resume-size.py and test_g_gates.py new. No other path touched.",
+   "evidence": "$ git status --porcelain=v1 -> M .claude/settings.json",
+   "confidence": "high"
+  }
+ ],
+ "tests": [
+  {
+   "code": "G",
+   "command": "python scripts/harness/tests/test_g_gates.py",
+   "result": "PASS",
+   "last_line": "PASS G 10/10"
+  },
+  {
+   "code": "brief_lint",
+   "command": "python scripts/harness/brief_lint.py .claude/briefs/harness-v2-*.md",
+   "result": "FAIL",
+   "last_line": "FAIL .claude/briefs/harness-v2-g-gates.md: count mismatch (line 92): says 14, lists 6, expects 10/10"
+  },
+  {
+   "code": "E3",
+   "command": "python scripts/harness/tests/test_e3_lint.py",
+   "result": "FAIL",
+   "last_line": "FAIL E3 1 of 9 failed"
+  },
+  {
+   "code": "settings",
+   "command": "python -c \"import json;d=json.load(open('.claude/settings.json',encoding='utf-8'));print({k:len(v) for k,v in d['hooks'].items()})\"",
+   "result": "PASS",
+   "last_line": "{'PostToolUse': 2, 'PreToolUse': 6, 'SessionStart': 2, 'UserPromptSubmit': 1}"
+  },
+  {
+   "code": "run_all",
+   "command": "python scripts/harness/tests/run_all.py",
+   "result": "not run: return condition at brief_lint",
+   "last_line": "not run: return condition at brief_lint"
+  },
+  {
+   "code": "diff_scope",
+   "command": "python scripts/harness/diff_scope.py .claude/briefs/harness-v2-g-gates.md",
+   "result": "not run: return condition at brief_lint",
+   "last_line": "not run: return condition at brief_lint"
+  }
+ ],
+ "deviations": [
+  "RETURN CONDITION: harness-v2-g-gates.md fails its own new G1 rule (line 92, a nested-backtick escape in the Tests section's own item 4 prose defeats single-backtick stripping) -- reported, not edited, per this run's Return conditions and the common brief's rule against editing a test, fixture or brief to dodge a failing check.",
+  "Stopped the Verification sequence at command 2 (brief_lint over real briefs). Commands 3-4 already run and reported with real results; 5-6 not run.",
+  "Interpreted three ambiguous points in G1, each verified against the brief's own four worked examples before finalizing: (a) rule 3 (stated line itself has 'Last line') fires only as a fallback after rule 2's lookahead finds nothing, since rule 2 is listed first and 'no numbers taken yet' implies a prior attempt; (b) 'up to 3 lines from there' (after a list ends) starts AT the list-ending line itself, not after -- needed for the counted-brief fixture's Last-line marker, which sits right after the final item, to ever be found; (c) the count check scans every line independently for a stated-count trigger, no cross-line 'already consumed' skipping -- the literal reading of rule 1, consistent with every other brief_lint.py rule accumulating one reason per independent finding, and exactly what surfaces the g-gates.md self-reference.",
+  "resume-size.py (G3, PostToolUse) intentionally NOT run via _fixtures.run_hook in the test: that helper only recognizes the hookSpecificOutput wrapper PreToolUse/SessionStart/UserPromptSubmit hooks use, and would silently misreport resume-size.py's flat decision/reason shape as 'allow'. Used a plain subprocess with stdout parsed as JSON directly instead, per the brief's own Tests preamble."
+ ],
+ "files_changed": [
+  "scripts/harness/brief_lint.py",
+  ".claude/hooks/dispatch-lint.py",
+  ".claude/hooks/resume-size.py",
+  ".claude/settings.json",
+  "scripts/harness/tests/test_g_gates.py",
+  ".planning/harness/digests/run-g.json"
+ ]
+}
