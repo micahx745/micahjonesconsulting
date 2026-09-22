@@ -1,7 +1,8 @@
 # GLM leg 2b: the harness map (harness research 2026-09-22)
 
-You are an executor. Write only the outputs named below. Do not commit, push, or edit any other file. Work in
-`C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live`. Privacy: never open a `.jsonl` transcript, a
+You are an executor. Write only the outputs named below. Do not commit, push, or edit any other file. Work in the
+directory you were launched in (`claude-glm.ps1 -Dir`); every repo path below is relative to it, and "this repo" means
+that tree. It must contain the research inputs from `design/live-evolve` at `f8538ce` or later. Privacy: never open a `.jsonl` transcript, a
 key or credentials file, `C:/Users/micah/.claude.json`, or any `settings*.json` (`01a-hooks-diet-boot.md` already holds
 the hooks, from a script that prints allow-listed fields only).
 

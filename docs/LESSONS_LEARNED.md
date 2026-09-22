@@ -1291,6 +1291,13 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   are superseded for Claude only: his words name no change to ChatGPT (8%) or DeepSeek ($11.94), so both stand as
   recorded until he says otherwise. His second research report, pasted into the chat, is
   `.planning/research/harness-2026-09-22/00b-fable-report-post-reset.md`.
+- **THE HARNESS RESEARCH STOPS; HARNESS V2 BELONGS TO THE OTHER CHAT — operator 2026-09-22 11:02 PDT (popup, the
+  harness-research chat)**. The session "LANDING PAGE 2" relayed his ruling from that chat: it installs Harness v2 (16
+  repo-level items, branch `harness/v2`), and this chat stops after GLM legs 1 and 2. Asked here to confirm, his picks,
+  verbatim: "Yes, stop and hand off (Recommended)". For the unbuilt harness map (GLM capped until 14:44:53 PDT): "Hand
+  it to LANDING PAGE 2 for after 2:45 (Recommended)". So this chat ran no candidates, no Fable gate B, no proposal
+  popup and no implement brief. Its outputs (the usage audit, premise checks P1-P8, the probes) are committed on
+  `design/live-evolve` (`4dddde3`, `b2bfbf9`, `95de6f4`, `f8538ce`) and handed to that chat.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.

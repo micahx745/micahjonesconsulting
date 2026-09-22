@@ -1,26 +1,25 @@
-# RESUME — micahjonesconsulting (2026-09-22 10:25: harness research running; Pass-128c at the popup)
+# RESUME — micahjonesconsulting (2026-09-22 11:05: harness research CLOSED; Pass-128c at the popup)
 
 ## READ FIRST
-This chat: harness research, state in `.planning/research/harness-2026-09-22/plan.md` (kickoff
-`.planning/handoff/KICKOFF-HARNESS-RESEARCH.md`). Pass-128c continues from `.planning/handoff/NEXT-SESSION-KICKOFF.md`.
-Landing exemplar = its own chat. Branch `design/live-evolve` (p106-live). Build: `node .planning/exec/prepush-gates.mjs`
-(#47). Push to main deploys. Routing: `.claude/AI_ROUTING.md`. Write guard live (#49, #50).
+Harness v2 belongs to the "LANDING PAGE 2" chat (branch harness/v2, worktree .claude/worktrees/harness-v2). Until it
+merges, do not edit AI_ROUTING, .claude/hooks/*, settings.json, scripts/claude-glm.ps1, scripts/*-exec.ps1 or
+scripts/cross-review/* here. Pass-128c continues from `.planning/handoff/NEXT-SESSION-KICKOFF.md`.
+Branch `design/live-evolve` (p106-live). Build: `node .planning/exec/prepush-gates.mjs` (#47). Push to main deploys.
 
-## BUDGET (LESSONS #3 "THE BUDGET RESET; OPUS 5.5"; get_usage 09-22 10:13 PDT)
-Weekly 1%, Fable 1%, 5-hour 5%; weekly bars still reset Sat 09-26 01:00 PDT (a 3.6-day window). Main: Opus 5.5.
-ChatGPT 8%: ship gates only. GLM: executor. DeepSeek $11.94 (research cap $3). Gemini: reader, visuals.
+## BUDGET (get_usage 09-22 11:03 PDT, after his one-time reset; LESSONS #3)
+Weekly 3%, Fable 3%, 5-hour 14%; weekly bars reset Sat 09-26 01:00 PDT. Main: Opus 5.5 (`opus` = claude-opus-5-5).
+GLM 5-hour cap until 14:44:53 PDT. ChatGPT 8%: ship gates only. DeepSeek $11.94. HIS: re-login the CLI (expired).
 
-## HARNESS RESEARCH (in progress; no site code, no push)
-SCOPE CUT (plan.md): chat "LANDING PAGE 2" installs Harness v2 (branch harness/v2). Here: GLM legs 1, 2a, 2b ->
-commit -> send it the hash + paths -> STOP (confirm with him). Don't edit AI_ROUTING/hooks/settings/scripts.
-P4/P5/P7 settled (b2bfbf9). Leg 1 audit done (95de6f4): ctx>200K = 86.5% of cost, images 4.2%.
-Running: leg 2a (hooks/diet/boot); then 2b (map, P3, P6). GLM thinks can take 9 min: not a hang (#53).
+## HARNESS RESEARCH: CLOSED (his popup 11:02); `.planning/research/harness-2026-09-22/plan.md`
+Audit (95de6f4): ctx>200K = 86.5% of weighted cost, exec loops 43%, images 4.2%. Premise checks (f8538ce): an
+explicit model:"fable" is NOT overridden; `fable` resolves; subagent boot 78K. Map (leg 2b) -> LANDING PAGE 2.
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
 Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. A push needs his words.
 
 ## PASS-128c: BUILT AND VERIFIED, NOT SHIPPED (`preview/p128-jank` at `ece8ab4`, p124-cuts)
-Frames >33 ms 45 -> 2, p95 33.4 -> 16.8 ms, drops 74 -> 49. Item 5 FAIL (49 > 45) = the Audit fade he ruled for. Reads: Astra SHOW HIM AS IS; dspro NOT YET; Fable ONE MORE FIX (terracotta door edge).
+Frames >33 ms 45 -> 2, p95 33.4 -> 16.8 ms, drops 74 -> 49. Item 5 FAIL (49 > 45) = the Audit fade he ruled for.
+Reads: Astra SHOW HIM AS IS; dspro NOT YET; Fable ONE MORE FIX (terracotta door edge).
 He saw the doors shots and both sheets. PENDING popup: door edge (rec: solve in 127c) + phone preview.
 
 ## NEXT (after 128c)
@@ -31,6 +30,6 @@ niniaazzopardi flow (exemplar builds, site reuses). HELD /full-time · /about vo
 "CRM" · open facts · Guardicore LCP p75 · K4/K5 race · dead CSS · DeepSeek key rotation ("Not yet, I'll do it").
 
 ## Traps
-explicit pathspecs (#23) · executors: no non-ASCII (#46), no bash; Sol has no rg/pnpm · pre-flight brief values in
-the executor's shell (#52) · a `cd` moves the session's primary dir: use `git -C` · preview_start reads MAIN's
-launch.json (`prod-p124`).
+explicit pathspecs (#23) · executors: no non-ASCII (#46) · pre-flight brief values in the executor's shell (#52) ·
+a GLM think can run 9 min silently (#53) · a `cd` moves the session's primary dir: use `git -C` · preview_start reads
+MAIN's launch.json (`prod-p124`).

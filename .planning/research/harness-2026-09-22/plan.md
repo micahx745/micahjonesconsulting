@@ -71,7 +71,7 @@ under one cent. Adopting DeepSeek as a worker is his decision: both reports reje
    touch this repo. His words go into LESSONS #3.
 9. The brief for GLM: `.claude/briefs/harness-2026-09-22-implement.md`, pre-flighted in GLM's shell (LESSONS #52).
 
-## Scope change, 2026-09-22 ~10:35 PDT (pending his confirmation in this chat)
+## Scope change, 2026-09-22 ~10:35 PDT (CONFIRMED by him in this chat at 11:02 PDT, LESSONS #3)
 The session "LANDING PAGE 2" relayed his popup ruling from that chat: it installs Harness v2 (16 repo-level items he
 approved there, branch `harness/v2`, worktree `.claude/worktrees/harness-v2`, branched from `4dddde3`). It asked this
 chat to finish GLM legs 1 and 2, commit them, send it the hash and paths, and STOP before step 5 (no candidates, no
@@ -91,3 +91,13 @@ reply came in 5 s (it read the brief).
 As the kickoff says, except that the gate-B Fable call is now affordable. ChatGPT stays unused: kickoff §0, and 00b's
 "Codex reset" is unverified. DeepSeek is capped at $3. Privacy: no transcript text leaves this machine. GLM, DeepSeek
 and Gemini see script output and digests only.
+
+## Closed 2026-09-22 11:02 PDT (his popup: "Yes, stop and hand off (Recommended)")
+Done: boot and smokes; the headline test (`4dddde3`); premise probes P4, P5 and P7 (`b2bfbf9`); GLM leg 1, the usage
+audit (`95de6f4`); GLM leg 2a steps 1-4 and `01-premise-checks.md`, P1-P8 (`f8538ce`); LESSONS #53 (`1f2ade9`).
+Handed to LANDING PAGE 2 (Harness v2, branch `harness/v2`): all of the above, plus leg 2b, the harness map, to run
+after GLM resets at 14:44:53 PDT (his pick: "Hand it to LANDING PAGE 2 for after 2:45 (Recommended)"). Prompts:
+`legs/glm-leg2b-harness-map.md` and `legs/glm-leg2b-pointer.md`; its tree needs these inputs at `f8538ce` or later.
+Not done, by his ruling: steps 5-9 (candidates, gate B, reads, the proposal popup, the implement brief).
+What the audit changed: both reports ranked images first. Measured, images are 4.2% of weighted cost. Calls above
+200K of context are 86.5%, and exec loops on the main session are 43%.
