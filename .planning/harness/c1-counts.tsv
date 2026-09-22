@@ -1,0 +1,65 @@
+# MCP SERVERS (calls, 30d, project=micahjonesconsulting)
+server	calls
+Claude_Browser	414
+chrome-devtools	346
+ccd_session_mgmt	45
+326cc715-78b6-42f0-9663-b41db75ef882	43
+plugin_premium-web_playwright	30
+ccd_session	23
+ccd_directory	3
+desktop-commander	1
+plugin_premium-web_sequential-thinking	1
+terminal	1
+# SKILLS (calls)
+skill	calls
+superpowers:executing-plans	5
+page-cro	3
+update-config	3
+artifact-capabilities	2
+artifact-design	2
+frontend-design	2
+marketing-psychology	2
+premium-web:copy-lint-rules	2
+.claude/worktrees/p106-live:cross-review	1
+beautiful-prose	1
+design	1
+impeccable-typeset	1
+pricing-strategy	1
+security-review	1
+superpowers:brainstorming	1
+superpowers:receiving-code-review	1
+superpowers:systematic-debugging	1
+# SUBAGENT TYPES (calls)
+subagent_type	calls
+general-purpose	67
+unset	20
+claude-code-guide	5
+motion-engineer:motion-engineer	4
+design-director:design-director	2
+Explore	1
+perf-auditor:perf-auditor	1
+superpowers:code-reviewer	1
+# LONGEST EXEC RUNS (top 10 sessions on opus or fable)
+session	model	longest_run
+c76c7a2a	claude-opus-5	153
+9033e21b	claude-opus-5	124
+f6a6c5de	claude-opus-5	95
+a38464ef	claude-opus-5	93
+ee43e9d5	claude-opus-5	73
+f040b666	claude-opus-5	71
+d906ccd7	claude-opus-5	68
+f9e4092b	claude-opus-5	60
+5e1d622c	claude-opus-5	52
+874fc801	claude-opus-5	50
+# IMAGES (top 10 sessions)
+session	image_blocks
+ee43e9d5	334
+c76c7a2a	314
+00b74d66	129
+5e1d622c	95
+a38464ef	95
+9033e21b	64
+88c6ab1b	49
+2c790031	44
+56c58c6d	43
+6eb42c8d	38
