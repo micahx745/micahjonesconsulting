@@ -37,7 +37,12 @@ Add this rule for every Brief-Format v2 brief (a SKIP brief is not checked). Eac
 `count mismatch (line <n>): says <s>, lists <k>, expects <a>/<b>`, leaving out the parts that were not found:
 1. Number words are `zero` to `twenty`; digits count too. A stated count is a match of
    `(?i)\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|\d+) checks\b`
-   on a line after every backtick span on it has been replaced by a space (a count inside backticks is quoted output).
+   on a line after its backtick spans are replaced by a space (a count inside backticks is quoted output). The strip
+   is exactly this Python (an empty pair is a span too; run G's first pass used `+` and a doubled backtick exposed a
+   quoted count):
+   ```
+   stripped = re.sub(r"`[^`]*`", " ", line)
+   ```
 2. From the stated line, look at up to the next 4 lines, stopping at a blank line or a line starting `#`. A line
    containing `Last line`: take the numbers of `PASS \S+ (\d+)/(\d+)` on it, and stop. A line matching `^\d+\.\s`
    (a numbered item at column 0): the list starts there; stop.
@@ -89,7 +94,7 @@ Ten checks:
 1. `brief_lint.py` on a counted brief -> `PASS`.
 2. The same with `fourteen` in place of `fifteen` -> `FAIL`, reason contains `says 14, lists 15, expects 15/15`.
 3. A counted brief whose last line is ``Last line `PASS T 14/14`.`` -> `FAIL`, reason contains `count mismatch`.
-4. A counted brief whose stated line quotes the count in backticks (``A test, `fourteen checks`:``) -> `PASS`.
+4. A counted brief whose stated line reads A test, `fourteen checks`: (the count inside one backtick pair) -> `PASS`.
 5. dispatch-lint: a temp base dir holding `.planning/harness/prompts/run-t.md` (text: `Read .claude/briefs/t.md.`)
    and `.claude/briefs/t.md` (the brief of check 2); an `Agent` payload with `cwd` = that dir, prompt
    `Read .planning/harness/prompts/run-t.md and do exactly what it says.`, and a transcript whose human text is
