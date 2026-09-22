@@ -41,6 +41,20 @@ under one cent. Adopting DeepSeek as a worker is his decision: both reports reje
 - P6 Visual QA off Claude against LESSONS #36/#37: the 2026-09-19 routing says the main session opens every capture
   itself. The proposal must keep that rule's intent, or he must change it.
 - P7 Model ids: 00b says the `opus` alias now resolves to `claude-opus-5-5`; AI_ROUTING pins `opus` to `claude-opus-5`.
+- P8 (new, from the probes) Subagent boot size: can a tools-restricted agent boot smaller than 78K?
+
+### Settled 2026-09-22 10:23 PDT (`smoke/subagent-probe.txt`; two Agent probes from this session)
+- P4 FALSE as the reports state it: with `CLAUDE_CODE_SUBAGENT_MODEL=sonnet` in the session env, an Agent call with
+  `model: "fable"` was answered by claude-fable-5-1. The explicit model wins.
+- P5 FALSE for this app: the shorthand `fable` resolves to claude-fable-5-1.
+- P7 TRUE: `opus` resolves to claude-opus-5-5. AI_ROUTING's pin is stale (a fact fix, bundled with his routing ruling).
+- New measurements: a do-nothing subagent boots at 78,250 tokens, all cache-write with a 5-minute TTL. Continued 45 s
+  later, it read 36,669 from cache and re-wrote 41,642, so about 47% was reused. `subagent_tokens` in an Agent result is
+  the final context size, not the sum of calls. So 00b's warm "persistent Fable gate session" saves at most about half,
+  and only within 5 minutes. The boot size is the bigger lever (P8, leg 2a).
+- The standalone CLI's Claude login has expired ("OAuth session expired and could not be refreshed",
+  `smoke/subagent-model-smoke.txt`). He must re-login for any `claude -p` on his Claude account. The desktop session and
+  the GLM/DeepSeek workers are unaffected.
 
 ## Method (kickoff §4, updated)
 1. Boot: done. get_usage above; smoke tests OK for GLM (glm-5.3), DeepSeek (deepseek-flash) and Gemini (gemini-2.5-flash);
@@ -56,6 +70,22 @@ under one cent. Adopting DeepSeek as a worker is his decision: both reports reje
 8. Popup: which proposals to build now; the routing for the rest of this 3.6-day window; the reports' decisions that
    touch this repo. His words go into LESSONS #3.
 9. The brief for GLM: `.claude/briefs/harness-2026-09-22-implement.md`, pre-flighted in GLM's shell (LESSONS #52).
+
+## Scope change, 2026-09-22 ~10:35 PDT (pending his confirmation in this chat)
+The session "LANDING PAGE 2" relayed his popup ruling from that chat: it installs Harness v2 (16 repo-level items he
+approved there, branch `harness/v2`, worktree `.claude/worktrees/harness-v2`, branched from `4dddde3`). It asked this
+chat to finish GLM legs 1 and 2, commit them, send it the hash and paths, and STOP before step 5 (no candidates, no
+gate B, no popup, no implement brief). It also asked this chat not to edit `.claude/AI_ROUTING.md`, `.claude/hooks/*`,
+`.claude/settings.json`, `scripts/claude-glm.ps1`, `scripts/*-exec.ps1` or `scripts/cross-review/*` until
+`harness/v2` merges. At most two GLM runs at once: one from each chat. That narrows this chat's scope and changes no
+decision here, so this chat follows it and asks him to confirm at the stop point.
+Leg 1, attempt 1 was NOT hung (corrected 10:32; an earlier line here said it stalled for 11 minutes). The prompt was
+received at 10:19:53 PDT, and the first reply landed at 10:28:13, 8 min 20 s later, with 31,065 output tokens (one
+long think, then a Bash call). During the think, the transcript got no entries and the process CPU stayed flat, while
+a GLM smoke answered in 9 s. The main session read those signs as a hang and stopped the run about 5 s after it began
+working. Lesson: on GLM-5.3, idle CPU plus an empty transcript does not mean a hang; a dense brief can take a
+9-minute first think. Attempt 2 is a pointer prompt (`legs/glm-leg1-pointer.md`) that works in three stages. Its first
+reply came in 5 s (it read the brief).
 
 ## Routing inside this chat
 As the kickoff says, except that the gate-B Fable call is now affordable. ChatGPT stays unused: kickoff §0, and 00b's

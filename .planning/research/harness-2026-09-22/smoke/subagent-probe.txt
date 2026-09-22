@@ -1,0 +1,21 @@
+subagent probes 2026-09-22 10:23-10:24 PDT, from the desktop session (Claude Code 2.1.266, Opus 5.5 main). The repo's
+settings env CLAUDE_CODE_SUBAGENT_MODEL=sonnet is present in the session's shells (subagent-model-smoke.txt line 1).
+Method: two Agent calls, subagent_type general-purpose, prompt "Reply with the single word OK and nothing else. Do not
+use any tools." The answering model and per-call usage were read from the subagent transcripts by a script that prints
+only model ids and numbers.
+
+P4/P5  requested model "fable" -> answered by claude-fable-5-1 (1 call). The env var did NOT override the explicit model;
+       the shorthand "fable" resolves (00 and 00b both call the variable a hard override; 00b says there is no "fable"
+       shorthand. Both claims are false for the Agent tool in this app).
+P7     requested model "opus"  -> answered by claude-opus-5-5 (1 call). AI_ROUTING still pins opus = claude-opus-5.
+BOOT   each probe's only call: ctx 78,252 = input 2 + cache_read 0 + cache_write 78,250, all ephemeral_5m (5-minute TTL).
+       The Agent results reported subagent_tokens 78,256 (fable) and 78,383 (opus).
+RESUME SendMessage to the fable probe 45 s later (call 2): input 4 + cache_read 36,669 + cache_write 41,642 (5m) + out 3.
+       About 47% of the boot was reused. The completion notice reported subagent_tokens 78,499.
+READING "subagent_tokens" tracks the agent's LAST context size (+ output), not the sum of its calls. So the Pass-128c
+       "Fable juror 134,828 tokens" is its final context: about 78K of boot plus about 57K of task (six images, seven
+       tool uses). On Fable, cache reads are cheap (0.025x per 00b) and the 5-minute writes cost 1.25x, so that final
+       context size is a fair proxy for the juror's weighted cost.
+CLI    `claude -p` on the operator's Claude login (subagent-model-smoke.txt): "Failed to authenticate: OAuth session
+       expired and could not be refreshed". The standalone CLI login needs his re-login; this desktop session and the
+       GLM/DeepSeek workers (own keys) are unaffected.
