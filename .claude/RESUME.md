@@ -13,9 +13,10 @@ $11.29. ChatGPT 8%: ship gates only. His CLI login expired. This week, `status.p
 
 ## HARNESS V2 (his popups 09-22: all 16 approved; "Fresh chat now, Sonnet executes")
 DONE: E1, E2, briefs, merge `9cc32cc`, fold `6e96bea` `bba678d` `96c1c36`, run B `e8f6865`..`6bafa41` (1 review
-fix), run D `34032de`..`c7ea502` (E2.7 widened at review: lines 162-163 leaked into the exit code). NOW: run C
-(Sonnet; brief C "fifteen" fix). AFTER 21:44 UTC: I run live_w4_xreview.py (also tests a -p Read outside -Dir).
-NEXT: E (DryRun-only tests, P8), F (GLM-smoke measures, P2 expectations); the map on GLM; cross-review.
+fix), run D `34032de`..`c7ea502` (E2.7 widened at review: lines 162-163 leaked into the exit code), run C
+`899185b`..`545a28f` (its hooks are live in this session). NOW: run E (DryRun-only, no raw images, P8 parked).
+AFTER 21:44 UTC: I run live_w4_xreview.py (also tests a -p Read outside -Dir). NEXT: F (GLM-smoke measures, P2
+expectations); the map on GLM; cross-review.
 Context: his popup "K1 Continue here (Recommended)". Not pushed, not merged. LESSONS next free: #60.
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
