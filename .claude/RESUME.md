@@ -11,9 +11,9 @@ Weekly 1%, Fable 1%, 5-hour 5%; weekly bars still reset Sat 09-26 01:00 PDT (a 3
 ChatGPT 8%: ship gates only. GLM: executor. DeepSeek $11.94 (research cap $3). Gemini: reader, visuals.
 
 ## HARNESS RESEARCH (in progress; no site code, no push)
-Inputs 00 + 00b (his post-reset report). Smoke PASS: GLM and DeepSeek both run as tool-using Claude Code workers.
-Running: GLM leg 1 usage audit (`legs/glm-leg1.log`). Next: leg 2 map + premise checks P1-P7 -> candidates -> Fable
-gate B -> dspro + Gemini reads -> popup -> GLM brief.
+SCOPE CUT (plan.md): chat "LANDING PAGE 2" installs Harness v2 (branch harness/v2). Here: GLM legs 1, 2a, 2b ->
+commit -> send it the hash + paths -> STOP (confirm with him). Don't edit AI_ROUTING/hooks/settings/scripts.
+P4/P5/P7 settled (b2bfbf9). Running: leg 1 attempt 2 (GLM first thinks can take 9 min: not a hang).
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
 Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. A push needs his words.

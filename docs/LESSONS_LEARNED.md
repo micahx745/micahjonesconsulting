@@ -2613,3 +2613,23 @@ reports `revealMs`, from the last opacity rise to settled, for keys that animate
 brief step 5). (2) `.claude/briefs/README.md` gains a standing clause: before dispatch, the main session runs every
 verification command it can on the current tree, in the executor's shell, and records what it printed beside the item.
 RULE: name the element that moves before timing it; a figure at the sampler's floor is an artifact until shown otherwise.
+
+## #53 — A GLM batch was stopped as "hung" while it was thinking, 5 seconds after its first action (2026-09-22)
+
+**What happened:** The harness-research chat launched GLM leg 1 (`scripts/claude-glm.ps1 -Batch`) with a 9 KB brief as
+the whole prompt at 10:19:53 PDT. About six minutes later, the transcript still had no reply, the `claude.exe` process
+CPU was flat (1.70 to 1.72 s over 10 s), and a separate GLM smoke answered in 9 s. The main session called the run hung
+and stopped the process tree at about 10:28. The transcript later showed the first reply at 10:28:13 PDT, 8 min 20 s
+after the prompt: one thinking block of 31,065 output tokens, then a Bash call. The kill came about 5 s after the run
+began working. A GLM-5.3 think writes nothing to the transcript and uses no local CPU until it ends, so every outside
+sign of a long think is also a sign of a hang. The wrong diagnosis reached `plan.md` and the LANDING PAGE 2 chat; both
+were corrected within the hour. The relaunch used a pointer prompt that names the brief file and stages the work
+(`.planning/research/harness-2026-09-22/legs/glm-leg1-pointer.md`). Its first action came 5 s after the prompt.
+
+**Gate:** (1) `.planning/research/harness-2026-09-22/scripts/glm_watchdog.py` watches a GLM batch's transcript, prints
+counts and tool names only, and reports SILENT, never "hung", after 900 s without a new GLM message (15 minutes, above
+the measured 8 min 20 s). (2) GLM briefs go out as pointer prompts whose first action is a fast pre-flight step, so a
+silent first 15 minutes means something. LANDING PAGE 2 adopted the same pattern for Harness v2 (E2), with a wall-clock
+timeout (default 120 min) as the backstop.
+RULE: flat CPU and an empty transcript are what a GLM think looks like. Do not stop a GLM batch for less than 15
+minutes of silence.

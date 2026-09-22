@@ -79,9 +79,13 @@ gate B, no popup, no implement brief). It also asked this chat not to edit `.cla
 `.claude/settings.json`, `scripts/claude-glm.ps1`, `scripts/*-exec.ps1` or `scripts/cross-review/*` until
 `harness/v2` merges. At most two GLM runs at once: one from each chat. That narrows this chat's scope and changes no
 decision here, so this chat follows it and asks him to confirm at the stop point.
-Leg 1, attempt 1 stalled: the prompt was received at 10:19:53 and the process sat idle for 11 minutes without a
-single reply, while a GLM smoke answered in 9 s. It was stopped. Attempt 2 is a pointer prompt
-(`legs/glm-leg1-pointer.md`) that works in three stages.
+Leg 1, attempt 1 was NOT hung (corrected 10:32; an earlier line here said it stalled for 11 minutes). The prompt was
+received at 10:19:53 PDT, and the first reply landed at 10:28:13, 8 min 20 s later, with 31,065 output tokens (one
+long think, then a Bash call). During the think, the transcript got no entries and the process CPU stayed flat, while
+a GLM smoke answered in 9 s. The main session read those signs as a hang and stopped the run about 5 s after it began
+working. Lesson: on GLM-5.3, idle CPU plus an empty transcript does not mean a hang; a dense brief can take a
+9-minute first think. Attempt 2 is a pointer prompt (`legs/glm-leg1-pointer.md`) that works in three stages. Its first
+reply came in 5 s (it read the brief).
 
 ## Routing inside this chat
 As the kickoff says, except that the gate-B Fable call is now affordable. ChatGPT stays unused: kickoff §0, and 00b's
