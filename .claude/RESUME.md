@@ -21,6 +21,10 @@ SplitReveal "under 0.1 s" was wrong (true 0.55 s, #52); he re-confirmed "Retire 
 2. Doors build (127c) after 128c merges; 4b filled.
 3. Exits dead swipes on phones, exits title presence, Neuton "Undisclosed" (jurors propose, he rules).
 
+## PARKED BY HIM (09-21 night, LESSONS #3 "THE NINIAAZZOPARDI FLOW")
+He loves niniaazzopardi.com: "lets have the other repo build its example and we just re use it" (no home redesign
+here); brand row "do this later when the example siteis built". Note for that chat: `.planning/handoff/NOTE-TO-LANDING-EXEMPLAR.md`.
+
 ## QUEUE
 HELD /full-time (708ac61) · /about voice; Ordani "practice management" vs "CRM" · open facts · Guardicore LCP p75 ·
 K4/K5 race · dead CSS · DeepSeek key rotation ("Not yet, I'll do it").

@@ -1260,6 +1260,19 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   read "The four headings fade in like every other heading, in 0.55 s instead of the 1.1 s letter cascade. GSAP leaves
   the site, and the letter spans stop adding to the dropped frames. Sol is building this version now." The ruling
   stands on the corrected number. NOT approved to ship.
+- **THE NINIAAZZOPARDI FLOW: THE EXEMPLAR BUILDS IT, THIS SITE REUSES IT; THE BRAND ROW WAITS — operator 2026-09-21
+  night (popup, the Pass-128c chat)**. He wrote, verbatim: "I REALLY LOVE this website niniaazzopardi.com: the flow, the
+  amount of wording and the animation - remember the video of me pointing. its not too in your face. the flow of brands
+  i can say i worked with is alot (many labels from guardicore i can include there)", with the four-direction list
+  from the landing-exemplar chat's quality reads (Poster / Kinetic Editorial; The Reminder, up close; The Teardown /
+  Open Spread; Swipe-as-proof deck). SCOPE: asked where the flow goes first, he answered (Other), verbatim: "lets have
+  the other repo build its example and we just re use it". So there is no home redesign in this chat: the
+  landing-exemplar chat builds its page, and this site reuses that build later. BRANDS: asked how to build the brand
+  row, he answered (Other), verbatim: "do this later when the example siteis built". So the brand row waits, and the
+  never-name rule for Guardicore's customers (this entry's "Customers" row) stands until he rules on each name. The
+  pointing video is read by the main session as the Tel Aviv clip (source photo `public/guardicore-telaviv-session.jpg`,
+  him mid-point at the table); not yet confirmed by him. Notes for the exemplar chat:
+  `.planning/handoff/NOTE-TO-LANDING-EXEMPLAR.md`.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
