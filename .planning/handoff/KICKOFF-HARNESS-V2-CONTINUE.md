@@ -26,6 +26,31 @@ Written 2026-09-22 11:15 PDT by the chat "LANDING PAGE 2" (Opus 5.5). It install
    are merged by hand, never overwritten).
 3. `python scripts/harness/tests/run_all.py` -> expect `PASS E1 37/37`, `PASS E2-offline 3/3`, `ALL PASS (2 files)`.
 
+## Before run B: fold the landing branch's harness changes in (his yes, 2026-09-22: "yes add it to the kickoff")
+`design/landing-exemplar` changed 7 harness files since it split from this branch. Three collide with runs still to
+come: `.claude/AI_ROUTING.md` (E4 rewrites it), `scripts/codex-exec.ps1` (W1) and `scripts/gemini-exec.ps1` (W2).
+Folding them in now makes the later landing merge routine. The main session does steps 1-3 and commits each.
+1. Wrappers. `git log --oneline $(git merge-base harness/v2 design/landing-exemplar)..harness/v2 -- scripts/codex-exec.ps1 scripts/gemini-exec.ps1`
+   -> expect no output (this branch has not touched them). Then
+   `git checkout design/landing-exemplar -- scripts/codex-exec.ps1 scripts/gemini-exec.ps1` and commit: the landing
+   versions add `-Search` (Codex live web search) and `-Image` (Gemini screenshots). If the log is not empty, merge
+   those two files by hand instead.
+2. Routing traps. Fold commit `544e9bb`'s eight lines into `.planning/harness/e4/ai-routing-top.md`, section
+   `## Per-model traps`. The main session writes them, ASCII only, with no banned words. Codex bullet: the 1909
+   lockout detail (this machine locks the sandbox account for 10 minutes after 10 failed logons; `-Review` without
+   commands still answers; the fix is to wait 10 minutes, or he unticks "Account is locked out" in lusrmgr.msc; never
+   change the policy); `-Search` passes Codex's live web search; a `-Dir` outside a git repo is refused. Gemini
+   bullet: quotas are per model (2.5-flash returned 429 after about 15 image calls at concurrency 6 on 2026-09-21
+   while 3-flash-preview and 3.1-flash-lite still answered); `-Image a,b` attaches screenshots. E4's text already
+   has the one-Codex-run-at-a-time rule. Commit before launching run B.
+3. Brief D, before run D: update its pre-flight `wc -l` values for the two wrappers. W2 reads the landing
+   `gemini-exec.ps1` first; if that version already walks models, W2 keeps only what is missing (`MODEL-USED`, the
+   MAX_TOKENS rule, exit 4). W1's lock covers every mode, `-Search` included.
+4. Leave these on the landing branch: `.claude/hooks/blog-lint-hook.py` and its `settings.json` entry,
+   `.claude/design-banned-defaults.json` and `.claude/skills/premium-design-loop/SKILL.md`. At the landing merge,
+   `settings.json` keeps both sets of hook entries, and `AI_ROUTING.md` takes this branch's side (it will carry
+   `544e9bb`'s traps).
+
 ## Running each brief (the executor is a Sonnet subagent: his choice)
 - Order: B, D, C, E, F. One at a time in this worktree: parallel runs break each other's `diff_scope` and `run_all`
   counts.

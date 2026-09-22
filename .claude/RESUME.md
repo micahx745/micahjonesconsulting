@@ -12,7 +12,7 @@ ChatGPT 8%: ship gates only. DeepSeek about $11.9. His CLI login expired (claude
 
 ## HARNESS V2 (his popups 09-22: all 16 approved; "Fresh chat now, Sonnet executes")
 DONE: E1 guard `8339676` (37/37; live probe `bd736be`), E2 receipts `1005427`, briefs B-F `5bff7b8`.
-NEXT: runs B, D, C, E, F by Sonnet subagents, one at a time; review, re-run tests, commit per item; then
+NEXT: fold landing's 3 colliding harness files (kickoff); runs B, D, C, E, F by Sonnet; commit per item; then
 DeepSeek + Gemini on the combined diff. Not pushed, not merged: his call. LESSONS #54-#59 written.
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
