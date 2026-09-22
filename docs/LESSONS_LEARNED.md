@@ -2633,3 +2633,72 @@ silent first 15 minutes means something. LANDING PAGE 2 adopted the same pattern
 timeout (default 120 min) as the backstop.
 RULE: flat CPU and an empty transcript are what a GLM think looks like. Do not stop a GLM batch for less than 15
 minutes of silence.
+
+## #54 — A brief carried a count the main session typed instead of computing (2026-09-22)
+
+**What happened:** Harness v2 brief A ended its E1 test table with "equals the number of deny cases above (21)". The
+table holds 25 deny cases. GLM (run A) followed the rule text, computed 25 from the table, and flagged the gloss in its
+digest instead of editing either. A recurrence of #52: an expected value in a brief that the main session never ran.
+
+**Gate:** the test derives the count from its own case table (`scripts/harness/tests/test_e1_executor_guard.py`), and
+the Brief-Format v2 section of `.claude/briefs/README.md` (run B) requires `command -> actual` pre-flight lines.
+RULE: a count an executor must match is computed by the test from its fixtures. A brief never types a derived number.
+
+## #55 — PowerShell 5.1 swallowed a function's output inside `exit (...)` (2026-09-22)
+
+**What happened:** brief A had the GLM launcher's `Invoke-Recorded` print with `Write-Output`, and the modes call
+`exit (Invoke-Recorded ...)`. In Windows PowerShell 5.1 a function's pipeline output IS its return value, so the
+printed lines became part of what `exit` received: the output vanished and the exit code collapsed to 0. GLM proved it
+with two throwaway scripts and printed through `[Console]::Out.WriteLine` instead.
+
+**Gate:** `scripts/harness/tests/live_e2_smoke.py` asserts the `RECEIPT:` line reaches stdout with exit 0, and
+`test_e2_launcher.py` asserts exit 2 on a refused prompt. RULE: a PowerShell function whose return value is used
+prints through `[Console]::Out`, never `Write-Output`.
+
+## #56 — The post-reset research report carried three premises the live tools contradicted (2026-09-22)
+
+**What happened:** report 00b (pasted about 10:10 PDT) was written as if it were Saturday after the weekly reset. It
+paced 14% a day over 7 days, set thresholds on an "Opus weekly bar", and assumed Codex had reset. `date` said Tuesday
+2026-09-22. `get_usage` showed three bars (5-hour, weekly all-models, weekly Fable) and no Opus bar; the drop to 1% was
+Opus 5.5's one-time reset, and the weekly reset was still Sat 09-26 01:00 PDT. A threshold on a bar that does not exist
+never fires, and a 7-day pace would have left half of the 3.6-day window unused.
+
+**Gate:** B2's `scripts/harness/status.py` (run B) stores only the bars `get_usage` returns and paces from the recorded
+window start and reset (its test 13). LESSONS #1 covers research reports too: premises are checked against live tools
+before a number becomes a threshold. RULE: a report's calendar, bar names and reset claims are re-read from `date` and
+`get_usage` before any gate uses them.
+
+## #57 — Two chats ran the same harness job from the same kickoff (2026-09-22)
+
+**What happened:** the operator pasted the post-reset report into two chats. MJCONSULT 13 was running
+`KICKOFF-HARNESS-RESEARCH.md` (research, a Fable gate, a popup, a GLM brief); LANDING PAGE 2 had been told to install
+the same changes. LANDING PAGE 2 noticed when `design/live-evolve` moved from `3259701` to `4dddde3` between its check
+and its `git worktree add`, and read the other chat's RESUME ("This chat: harness research"). A popup settled it ("This
+chat installs (Recommended)"). The research chat stopped after its audit and premise checks and fed them in
+(`95de6f4`, `b2bfbf9`, `f8538ce`). Two installers would have edited the same files on two branches and paid Claude
+twice.
+
+**Gate:** prose only today: the RESUME's READ FIRST names which chat owns which job, and a chat that starts from a
+kickoff first runs `ListAgents` and reads the base branch's RESUME. When another live chat owns the job, the operator
+decides by popup. The global concurrent-session hook already warns at start; a mechanical owner check is a proposal.
+RULE: one job, one chat, and the RESUME says which.
+
+## #58 — The copy-lint hook bans more words than brand.json lists (2026-09-22)
+
+**What happened:** a Harness v2 brief write was rejected for the hyphenated verb that means switching a feature back
+on. The premium-web plugin's copy-lint checks its own list plus `.claude/brand.json` `voice.banned`, as whole words, on
+`.md .mdx .ts .tsx .html .css .astro .jsx` writes. A note warning executors about the list was rejected twice more
+because it quoted the words, and this entry's first draft was rejected for the same reason.
+
+**Gate:** the hook itself, plus rule 5 of `.claude/briefs/harness-v2-00-common.md` (reword and report). RULE: prose in
+briefs, docs and copy avoids the plugin's list as well as brand.json's. To warn about a banned word, describe it.
+
+## #59 — A capped GLM run's receipt said is_error false (2026-09-22)
+
+**What happened:** Harness v2 run B hit z.ai's 5-hour cap (code 1308) 85 seconds in and wrote nothing. The E2 receipt
+caught the cap (`glm_429: true`, exit code 1) but recorded `is_error: false`, because it copied the flag from Claude
+Code's own JSON, which reported `subtype: success` around the API error text.
+
+**Gate:** in the next chat's run D (kickoff item 2): `is_error` is true whenever the exit code is not 0 or `glm_429` is
+true, with a 4th offline check in `test_e2_launcher.py`. RULE: a receipt judges failure from the exit code and the 429
+flag, not only from the child's own report.
