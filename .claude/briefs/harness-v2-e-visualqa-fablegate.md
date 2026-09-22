@@ -2,7 +2,11 @@
 
 Brief-Format: v2
 Executor: GLM 5.3 through `scripts/claude-glm.ps1 -Batch` (default scope). Run after run B (C4 calls
-`scripts/harness/digest_check.py`). Read `.claude/briefs/harness-v2-00-common.md` first.
+`scripts/harness/digest_check.py`). Read `.claude/briefs/harness-v2-00-common.md` first. Amended 2026-09-22 by the
+main session (kickoff): a Sonnet subagent stands in for GLM while GLM is capped; the executor guard does not cover
+an in-session subagent, so the common brief's hard rules bind as instructions. Two more rules bind this run: never
+run `scripts/fable-gate.ps1` without `-DryRun` (the operator said no Fable calls in this arc), and never open an
+image with the Read tool: measure images with PIL (LESSONS #36; the image hook denies the 8th raw image).
 
 ## Ruling
 C3 takes the mechanical half of visual QA off every model: blank frames, pixel drift against a baseline,
@@ -23,7 +27,8 @@ This run may create or modify only these:
 - `.planning/harness/digests/run-e.json` (new)
 
 ## Pre-flight
-Main session, before dispatch (actual values):
+Main session, 2026-09-22 19:36 UTC, after runs B, D and C were committed (`545a28f`); all three held (actual
+values), and `ls scripts/harness/tests/test_*.py | wc -l` -> `11`:
 - `git ls-files ".planning/qa/*.png" ".planning/qa/**/*.png" | wc -l` -> `522`
 - `git ls-files .planning/qa/pass-106/after-1440-band01.png` -> `.planning/qa/pass-106/after-1440-band01.png`
 - `test -e scripts/harness/digest_check.py; echo $?` -> `0` (after run B)
@@ -139,8 +144,10 @@ made with PIL; a digest that passes digest_check; a two-line question file):
 2. A counter file holding count 3 for arc `test-arc`, then `-DryRun -Arc test-arc` -> exit 6; output contains
    `3 of 3`.
 3. As 2 with `-OperatorOk "test ok"` -> exit 0; output contains `operator OK noted`.
-4. A digest padded past 9000 bytes -> exit 7.
-5. An image 3000x100 -> exit 8; output contains `downscale first`.
+4. A digest padded past 9000 bytes, with `-DryRun` -> exit 7.
+5. An image 3000x100, with `-DryRun` -> exit 8; output contains `downscale first`.
+Every check passes `-DryRun`: the digest and image checks run before the dry-run branch, so the exits are the same,
+and a gate that wrongly fell through could never reach the live Fable call.
 Last line `PASS C4 5/5`.
 
 ## Verification
@@ -184,5 +191,7 @@ The common list, plus: stop if the real capture in the pre-flight is missing, bl
 long edge.
 
 ## Parked operator decisions
-- The first live Fable gate needs him to run `claude` once and log in.
+- The first live Fable gate needs him to run `claude` once and log in. That gate is also premise check P8's
+  measurement (never taken, GLM capped, `f8538ce`): its receipt's `usage` (input + cache_creation + cache_read)
+  is the lean boot, compared with the 78,250-token subagent boot (the subagent probe, `b2bfbf9`).
 - Installing Lighthouse locally (a download): his call; until then the chain records it as skipped.
