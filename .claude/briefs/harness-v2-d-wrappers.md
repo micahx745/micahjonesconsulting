@@ -1,8 +1,10 @@
-# Harness v2, run D: W1 Codex lockfile + W2 Gemini fallback + W3 DeepSeek cost ledger + W4 cross-review GLM leg
+# Harness v2, run D: W1 Codex lockfile + W2 Gemini fallback + W3 DeepSeek cost ledger + W4 cross-review GLM leg + E2.7 receipt is_error
 
 Brief-Format: v2
 Executor: GLM 5.3 through `scripts/claude-glm.ps1 -Batch` (default scope: nothing under `.claude/` changes).
-Read `.claude/briefs/harness-v2-00-common.md` first.
+Read `.claude/briefs/harness-v2-00-common.md` first. Amended 2026-09-22 by the main session (kickoff): a Sonnet
+subagent stands in for GLM while GLM is capped; the executor guard does not cover an in-session subagent, so the
+common brief's hard rules bind as instructions.
 
 ## Ruling
 Four wrapper fixes, each for a failure that happened this month. W1: two parallel Codex runs locked the Windows
@@ -10,8 +12,10 @@ sandbox account (error 1909), so a lockfile refuses the second. W2: Gemini quota
 return 429 or 404, so the wrapper walks a fallback chain and says which model answered. W3: the DeepSeek credit was
 guessed, not tracked, so every call is priced into a ledger and volume stops under $5. W4: the GLM REST leg of the
 cross-review has been dead since 2026-09-18 and the Coding Plan forbids scripted REST, so a new `glmcc` leg runs the
-review through the Claude Code executor (a coding tool, which the plan allows) in readonly scope. Reason: each is a
-repeat failure with a known mechanical fix.
+review through the Claude Code executor (a coding tool, which the plan allows) in readonly scope. E2.7 (LESSONS
+#59): a capped GLM run's receipt said `is_error: false` (exit code 1, `glm_429` true), because the receipt judged
+failure only by whether the child's JSON parsed; a receipt judges failure from the exit code and the 429 flag as
+well as the child's own report. Reason: each is a repeat failure with a known mechanical fix.
 
 ## Files
 This run may create or modify only these:
@@ -20,6 +24,8 @@ This run may create or modify only these:
 - `scripts/deepseek-exec.ps1` (Edit only)
 - `scripts/harness/deepseek-rates.json` (new, W3.1)
 - `scripts/cross-review/run_cross_review.py` (Edit only)
+- `scripts/claude-glm.ps1` (Edit only: the one `is_error` line, E2.7)
+- `scripts/harness/tests/test_e2_launcher.py` (Edit only: case 4 and the count, E2.7)
 - `scripts/harness/tests/test_w1_codex_lock.py` (new)
 - `scripts/harness/tests/test_w3_ledger.py` (new)
 - `scripts/harness/tests/test_w4_static.py` (new)
@@ -38,6 +44,10 @@ values):
 - `ls scripts/cross-review/test/` -> `deepseek_leg_test.py`
 - `wc -l scripts/codex-exec.ps1 scripts/gemini-exec.ps1 scripts/deepseek-exec.ps1` -> `64`, `241`, `214` lines
   (fold 1 gave codex-exec `-Search` and gemini-exec `-Image`)
+- Main session, 2026-09-22 18:52 UTC, after run B was committed (`6bafa41`):
+  `grep -n "is_error = " scripts/claude-glm.ps1` -> `178:    is_error = ($null -eq $parsed)`;
+  `python scripts/harness/tests/test_e2_launcher.py` -> `PASS E2-offline 3/3`;
+  `python -c "import shutil;print(shutil.which('claude'))"` -> `C:\users\micah\.local\bin\claude.EXE`
 Executor pre-flight, printed before any edit:
 - `python scripts/cross-review/test/deepseek_leg_test.py` -> record its last line (it must be the same after W4).
 - `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/gemini-exec.ps1 -Models` -> record which of
@@ -127,6 +137,30 @@ the same body, `-Image` parts included, and the rule that skips the 2 MB body gu
    UTF-8 bytes with `\n[truncated at 8 KB]` appended when cut. A non-zero exit is a failed leg, reported like the
    other legs' failures.
 
+### E2.7 `scripts/claude-glm.ps1`: is_error from the exit code and the 429 flag (LESSONS #59)
+1. Replace line 178 with exactly:
+   `    is_error = (($null -eq $parsed) -or ($exitCode -ne 0) -or $glm429 -or ($null -ne $parsed -and $parsed.is_error -eq $true))`
+   Change nothing else in the file.
+2. `scripts/harness/tests/test_e2_launcher.py`: add case 4 and change the count from 3 to 4 in the PASS and FAIL
+   lines. `run_launcher` gains an optional `env_extra` dict, merged into the child env after the `HARNESS_` strip.
+   Case 4 has two halves and counts as one check. Each half makes a fresh temp dir `fake` holding `reply.json` and
+   `claude.cmd`, whose text is exactly these three lines (with the half's exit code):
+   ```
+   @echo off
+   type "%~dp0reply.json"
+   exit /b <code>
+   ```
+   `env_extra`: `PATH` = `fake` + `os.pathsep` + the current PATH, and `ZAI_CODING_KEY` = `offline-test-dummy` (the
+   launcher then reads no key file, and the fake calls nothing). Precondition, asserted before the launcher runs:
+   `shutil.which("claude", path=<that PATH>)` resolves to a file inside `fake`; if it does not, the check fails
+   without running the launcher. Each half runs `-Batch -PromptFile <a short prompt file> -Dir <repo>` with a fresh
+   temp `HARNESS_STATE_DIR`; the receipt is the file named on the stdout line that starts `RECEIPT: `.
+   a. `reply.json` = `{"type": "result", "subtype": "success", "is_error": false, "result": "API Error: 429 [1308][Usage limit reached for 5 hour. Your limit will reset at 2026-09-22 14:44:53]", "session_id": "e2-offline-4a"}`,
+      code 1 -> launcher exit 1; receipt `exit_code` 1, `glm_429` true, `is_error` true.
+   b. `reply.json` = `{"type": "result", "subtype": "success", "is_error": false, "result": "OK", "session_id": "e2-offline-4b"}`,
+      code 0 -> launcher exit 0; receipt `exit_code` 0, `glm_429` false, `is_error` false.
+   Last line `PASS E2-offline 4/4`, else `FAIL E2-offline <k> of 4 failed`.
+
 ### Tests
 Each wrapper call gets a fresh temp `HARNESS_STATE_DIR`.
 `scripts/harness/tests/test_w1_codex_lock.py` (offline), three checks, all with `-Review -Prompt <temp .md> -Out <temp .md> -DryRun`:
@@ -168,6 +202,10 @@ lines (a toy plan to add a `--version` flag to a script) and
 `python scripts/cross-review/run_cross_review.py --mode plan --input <plan> --legs deepseek,glmcc --out <temp out>`
 -> exit 0; the leg table shows both `DEEPSEEK` and `GLM(CC)` legs as OK; each leg's review is at most 8192 bytes.
 Last line `PASS W4-live 2 legs OK`.
+While GLM is capped (before 2026-09-22 21:44:53 UTC, 14:44:53 PDT; check with
+`python -c "import datetime;print(datetime.datetime.now(datetime.timezone.utc).isoformat())"`), write this test but
+do not run it, and record in the digest's tests `{"code": "W4-live", "command": "python scripts/harness/tests/live_w4_xreview.py", "result": "DEAD", "last_line": "not run: GLM capped until 21:44 UTC"}`.
+The main session runs it after the reset.
 
 ## Verification
 Run in order; copy each actual last line into the digest.
@@ -198,7 +236,11 @@ Expected last line: `PASS W3-live ledger ` followed by a number under 0.01.
 ```
 python scripts/harness/tests/live_w4_xreview.py
 ```
-Expected last line: `PASS W4-live 2 legs OK`
+Expected last line: `PASS W4-live 2 legs OK` (before 21:44:53 UTC: not run, recorded DEAD as above).
+```
+python scripts/harness/tests/test_e2_launcher.py
+```
+Expected last line: `PASS E2-offline 4/4`
 ```
 python scripts/harness/tests/run_all.py
 ```
@@ -221,7 +263,7 @@ Expected: a line starting `PASS diff scope:`. (If run B has not landed, `diff_sc
 
 ## Digest
 `.planning/harness/digests/run-d.json`; run `"d"`; tests `W1`, `W3`, `W4`, `xr-test`, `W2-live`, `W3-live`,
-`W4-live`, `run_all`, `diff_scope`.
+`W4-live` (DEAD while GLM is capped), `E2-offline`, `run_all`, `diff_scope`.
 
 ## Return conditions
 The common list, plus: stop if `deepseek_leg_test.py` changes its last line after W4, or if the pre-flight shows
