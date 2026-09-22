@@ -2526,3 +2526,20 @@ main checkout. `worktree-write-guard.py --self-test` checks the wiring of both s
 copy with the guard removed. RULE: a hook counts as wired only after it has fired in the kind of session that needs it.
 A hand run proves the script, not the wiring. When `design/live-evolve` reaches the main checkout, both files will run
 both hooks and the block will print twice; drop the local copy then.
+
+## #51 — The jank's leading suspect was wrong, and the metric could not see the fix that worked (2026-09-21)
+
+**What happened:** Pass-128's root cause named SplitReveal's per-character style writes as the leading suspect for
+"scroll isn't smooth", because they were the most frequent invalidation in Chrome's trace. The detach A/B (128a) left
+the probe's number, frames over 33 ms on the main thread, flat (45 vs 46). But the compositor's own `DroppedFrame`
+count, already in the traces, showed a real cut with zero overlap (77/77/73 to 65/62/61). The actual driver was the
+world switch. Forcing the doors band to terracotta (128b) took frames over 33 ms from 45/40/44 to 2/2/2 and style
+recalc from ~500 to ~40 ms. A diagnostic listener found 336 colour-transition events on `a.cw-mlink` and 84 on
+`a.cw-section-cta` per swipe, most of them off-screen. ExitScoreboard's per-frame rect read and Lenis's non-passive
+touch listeners, both plausible from reading the code, measured nothing. Two suspects from code reading and one from
+the trace's top line: none of them was the cost.
+
+**Gate:** `scroll-probe.mjs` now reports `droppedFrames`, `drawFrames` and `transitionEvents` on every run, and
+`--log-transitions` names the transitioning elements. Every scroll A/B reports the compositor count beside the
+main-thread one (briefs 128b, 128c). RULE: the most frequent invalidation is not the cost. First test the arm that
+removes a whole mechanism (here, the switch), then tune a component.

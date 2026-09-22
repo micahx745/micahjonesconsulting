@@ -1,8 +1,8 @@
 # Pass-127c: build the home doors band as direction 6, "The Copy Gets Eaten"
 
 Executor: Sol (`codex-exec.ps1 -Task`) in `.claude/worktrees/p124-cuts` on a NEW branch `preview/p127-doors` cut from
-`design/live-evolve`. Written by the main session (Opus) 2026-09-21. DO NOT DISPATCH until section 4b is filled from the
-pass-128 root cause (the live-jank workflow): the band sits exactly where the operator reported the glitch.
+`design/live-evolve`. Written by the main session (Opus) 2026-09-21. DO NOT DISPATCH until Pass-128c (the jank fix) is
+merged into `design/live-evolve`: section 4b (filled 2026-09-21) builds on it, and the band sits where he saw the glitch.
 
 ## 1. The ruling
 Operator 2026-09-21 (LESSONS #3 "DOORS: BUILD 6"): "Yes, build 6 (Recommended)". Unanimous jury (Fable, Astra, DeepSeek
@@ -53,10 +53,17 @@ Jury must-fixes that are MOTION (all required):
   100svh at >= 761px (band height 200svh). Every half-screen swipe inside it must visibly change (dead-swipe gate, 5).
 - M4 The band's full height is in the server HTML (the band's height is CSS, not measured by JS), so CLS stays <= 0.05.
 
-## 4b. World and scroll performance: PENDING (filled from `.planning/qa/pass-128/` before dispatch)
-Open question the root cause decides: the band carries `data-world="bone"` but paints petrol/terracotta itself, between
-two terracotta sections; whether its world value, the world-ground transition, or anything else in the hero-to-Audit
-stretch changes in this pass is ruled here, with the pass-128 evidence, before Sol starts.
+## 4b. World and scroll performance (filled 2026-09-21 from `.planning/qa/pass-128/`)
+- WORLD: `data-world="terracotta"` (operator 2026-09-21, LESSONS #3 "THE DOORS WORLD IS TERRACOTTA"). Pass-128c already
+  sets it on the live band; the rebuilt band keeps it. The hero-to-Audit stretch has NO world switch; do not add one.
+- WHY: each world switch started ~450 colour transitions page-wide (336 on `a.cw-mlink`); forcing terracotta took
+  frames over 33 ms at 4x CPU from 45 to 2 (LESSONS #51). The band must not add colour transitions of its own.
+- BUILD ON Pass-128c: cut `preview/p127-doors` from `design/live-evolve` only after Pass-128c is merged there, and
+  restore the Pass-127 mocks this brief cites (commits `f8a8589`, `3b13ef2`, on `preview/p126-how-i-work` only):
+  `git checkout preview/p126-how-i-work -- .planning/mocks/pass-127` then commit them on the new branch.
+- GATE for step 5.9: `scroll-probe.mjs --cpu 4 --runs 1`, three runs interleaved against the Pass-128c build: median
+  `framesOver33ms` <= 5, median `droppedFrames` within +8 of Pass-128c's PREVIEW median, median `transitionEvents`
+  within +20 of it, `worldSwitchCount` 0 on every run.
 
 ## 5. Verification (commands with expected output; a `got` that differs from `want` is a failure, never reinterpreted)
 Run in `p124-cuts` after the build, server on 3126 (`preview-p124-cuts`):
