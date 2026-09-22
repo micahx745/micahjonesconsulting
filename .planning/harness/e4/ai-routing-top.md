@@ -114,10 +114,16 @@ below it is unchanged.
   Two GLM runs at once is the ceiling he approved on 2026-09-22; on the first 429, back off to one and record the
   reset (`status.py glm-429`; the stamp in the error is Shanghai time).
 - Sol and Astra (Codex): cannot commit inside a git worktree (LESSONS #18) and write only inside `-Dir`. The Windows
-  shell mangles non-ASCII. One Codex run at a time: parallel runs locked the Windows sandbox account (error 1909).
+  shell mangles non-ASCII. One Codex run at a time: parallel runs locked the Windows sandbox account (error 1909,
+  `CreateProcessWithLogonW failed`, 2026-09-21). This machine locks that account for 10 minutes after 10 failed
+  logons; `-Review` without commands still answers while it is locked. The fix is to wait 10 minutes, or the
+  operator unticks "Account is locked out" in lusrmgr.msc; never change the policy. `-Search` passes Codex's live
+  web search (its top-level `--search`). A `-Dir` outside a git repo is refused ("Not inside a trusted directory").
   Astra is rationed to quality gates.
 - Gemini: 2.5 models can spend the output budget on thinking; an empty answer with MAX_TOKENS is a budget problem,
   and the wrapper does not fall back on it. Free-tier prompts may be used for training: public material only.
+  Quotas are per model: gemini-2.5-flash returned HTTP 429 after about 15 image calls at concurrency 6 (2026-09-21)
+  while gemini-3-flash-preview and gemini-3.1-flash-lite still answered. `-Image a,b` attaches screenshots.
 - Fable: `claude -p` on his Claude account needs a live CLI login (it had expired on 2026-09-22). A subagent boots at
   about 78K tokens, all cache-write with a 5-minute TTL (MJCONSULT 13, 2026-09-22), so batch several judgments into
   one gate rather than counting on a warm session.
