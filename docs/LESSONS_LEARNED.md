@@ -1273,6 +1273,17 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   pointing video is read by the main session as the Tel Aviv clip (source photo `public/guardicore-telaviv-session.jpg`,
   him mid-point at the table); not yet confirmed by him. Notes for the exemplar chat:
   `.planning/handoff/NOTE-TO-LANDING-EXEMPLAR.md`.
+- **THE WEEK'S BUDGET; MOVE TO A NEW CHAT; THE HARNESS RESEARCH — operator 2026-09-22 (the Pass-128c chat, after the
+  three reads)**. Verbatim: "WE need to move to a new chat. Claude usage is at 70% for the week and fable is at 73.
+  chatgpt has only 8% left for 4 days and 7 hours. GLM is completely reset, deepsek has 11.94$ left in credits from the
+  20$ i had added and we spent around 12 mil tokens within this project and two other projects. Without claude reset on
+  Saturday at 1am - we have to tread lightly." And: "I need you to give me a prompt for fable research to go deep into
+  our harness and see any improvements we can make so really take advantanage of the other models and maintain claude
+  useage until saturday . I want top frontier model quality tho when it comes to the planning, orchestration, and
+  output." (get_usage minutes later: weekly all-models 71%, Fable 73%, reset 2026-09-26 01:00 PDT.) So the Pass-128c
+  chat hands off: the research runs from `.planning/handoff/KICKOFF-HARNESS-RESEARCH.md` (Opus 5 orchestrates, Fable
+  in two calls, GLM reads and executes, DeepSeek capped at $3, Gemini the second reader, ChatGPT unused), and the
+  Pass-128c popup (the door edge, the phone preview), not yet asked, carries to `.planning/handoff/NEXT-SESSION-KICKOFF.md`.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
