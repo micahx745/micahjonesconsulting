@@ -108,6 +108,11 @@ A brief missing (2) or (6) is a note, not a brief, and the handoff will lose the
   mismatch, as it should. Pin with a check that survives the commit:
   `git log -1 --format=%h -- <this brief>` equals `git rev-parse --short HEAD`, and name the code commit
   separately. Also list any untracked files that pre-date the round in the expected `git status`.
+- **Pre-flight every expected value before dispatch** (LESSONS #52, 2026-09-21). The main session runs each
+  verification command it can on the current tree, in the executor's shell, and notes what it printed beside the item.
+  Sol runs Windows PowerShell: no `rg` on its PATH (use `git grep`), and `curl` is Invoke-WebRequest (use `curl.exe`).
+  A timing threshold names the element that actually moves; a number at the sampler's floor is an artifact. Briefs
+  128a, 128b and 128c each carried expected values that failed on their own terms.
 - **Never commit in a worktree while an executor is running in it** (Pass-126c, 2026-09-21). The main session
   committed review files mid-run; HEAD moved off the brief's commit and Sol stopped at its HEAD check (correctly).
   Commit only before launch or after the report; write records to the other worktree while a run is live.

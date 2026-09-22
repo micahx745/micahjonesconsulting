@@ -1243,6 +1243,20 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   So `<SplitReveal>` leaves the Audit title, "How I work.", the ORDANI title and the closing heading, which take the
   site's standard heading reveal, and the Pass-111a GSAP exception ends. AUDIT STAGGER: picked "Leave it as is
   (Recommended)": the price box keeps its short fade; he judges it on the preview on his phone. NOT approved to ship.
+- **PASS-128C NOW, WITH 128D MEASURED IN THE SAME RUN — operator 2026-09-21 night (one popup, the Pass-128c chat)**.
+  NEXT STEP: picked "Pass-128c now (Recommended)", whose description read "I rebase preview/p128-jank onto
+  design/live-evolve and fix the two brief values. Sol then builds and measures on a local production server. After
+  that I look at the sheets, run card1, and Astra judges. I ask you before any Vercel preview for your phone." 128D:
+  picked "Yes, same run (Recommended)", whose description read "Sol adds a full-page A/B, live vs the fixed build, down
+  to the closing section. It's evidence only, with no source change, and it spends Sol's quota, not Claude's. You get
+  the 128d options by popup, starting from the fixed build." The probe's target is `#ordani`, the lowest section whose
+  top can reach the viewport top on a phone; there the closing section is entering the screen, and on a phone the page
+  never switches to its world. NOT approved to ship.
+- **CORRECTION to "SPLITREVEAL RETIRED" — main session, 2026-09-21 night (pre-flight of brief 128c, LESSONS #52)**. The
+  popup's "settled in under 0.1 s" was a measuring error: the probe read the door headings' own style, which never
+  moves (their panel animates). The site's standard heading reveal takes 0.55 s (`.cw-reveal`), starting when 18% of
+  the heading is on screen. The true comparison was about 1.1 s for the letter cascade against 0.55 s. Put to the
+  operator by popup the same night; his answer: pending.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
@@ -2543,3 +2557,25 @@ the trace's top line: none of them was the cost.
 `--log-transitions` names the transitioning elements. Every scroll A/B reports the compositor count beside the
 main-thread one (briefs 128b, 128c). RULE: the most frequent invalidation is not the cost. First test the arm that
 removes a whole mechanism (here, the switch), then tune a component.
+
+## #52 — A timing probe read elements that never move, and its floor reached a popup as "under 0.1 s" (2026-09-21)
+
+**What happened:** Pass-128's word-timing probe timed each heading from its OWN computed opacity and transform. The door
+h2s and "The Audit" h3 measured 38-72 ms from entering the screen to settled, and the SplitReveal popup told the
+operator the standard reveal "settled in under 0.1 s" against 1.1 s for the letter cascade. None of those elements
+animates itself: the reveal runs on their parents (`.cw-door.cw-reveal`, `app/(foyer)/page.tsx:144` and `:160`;
+`.cw-offer__box.cw-reveal`). Their own style never changes, so the analyzer's three-consecutive-samples rule returned
+its floor, two rAF intervals. The findings file itself said the CSS reveal takes up to 0.65 s. The real figure is the
+0.55 s `.cw-reveal` transition (`app/globals.css:4518`), which starts once 18% of the element is on screen
+(`components/color-worlds/ScrollReveal.tsx:30`). The operator ruled on the wrong number; the correction went to him by
+popup the same night (LESSONS #3). Brief 128c then carried the floor as an expected value (`#cw-offer-title` under
+100 ms) and would have failed on its own number. The main session's pre-flight caught it before dispatch, with three
+more traps in the same brief: a grep that could never come back empty (a missing `hooks` folder, and the build script
+naming `gsap-quarantine-gate.mjs`), `rg` absent from PowerShell's PATH, and `curl` meaning Invoke-WebRequest in Windows
+PowerShell. It is the third brief in a row (128a, 128b, 128c) whose expected values were wrong before any work ran.
+
+**Gate:** (1) `analyze-word-timing.mjs` marks a key `static: true` when its own opacity and transform never change, and
+reports `revealMs`, from the last opacity rise to settled, for keys that animate themselves (lands with Pass-128c,
+brief step 5). (2) `.claude/briefs/README.md` gains a standing clause: before dispatch, the main session runs every
+verification command it can on the current tree, in the executor's shell, and records what it printed beside the item.
+RULE: name the element that moves before timing it; a figure at the sampler's floor is an artifact until shown otherwise.
