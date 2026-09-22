@@ -37,6 +37,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
 import shutil
 import subprocess
@@ -420,6 +421,93 @@ def _run_deepseek_rest(prompt_text, timeout):
     return (status, body, "DeepSeek(REST %s -- %s)" % (model, how))
 
 
+# GLM(CC) leg -- Harness v2 W4. The GLM REST leg above has been dead since
+# 2026-09-18 (HTTP 429, insufficient balance on the pay-go key), and the cheap
+# Coding Plan key cannot lawfully replace it there: docs.z.ai/devpack/
+# usage-policy forbids "SDK-based access or other third-party integrations",
+# which a scripted REST call is. A CODING TOOL is allowed, so this leg runs
+# GLM through the same claude-glm.ps1 launcher the executor uses, in readonly
+# scope (-Scope readonly: Read,Grep,Glob only -- a reviewer reads, never
+# edits) so it cannot touch the tree it is reviewing. Not a default leg: it
+# changes every existing caller's run time and spend, so it only runs when
+# --legs names it.
+def _state_dir():
+    d = os.environ.get("HARNESS_STATE_DIR", "").strip()
+    if d:
+        return d
+    return os.path.join(os.environ.get("LOCALAPPDATA", ""), "harness", "micahjonesconsulting")
+
+
+def _run_glmcc_leg(prompt_text, timeout):
+    """(status, body). Writes the leg's material + a pointer prompt under the
+    state dir, runs claude-glm.ps1 -Batch -Scope readonly against the pointer,
+    and returns stdout with its trailing 'RECEIPT: ' line stripped, cut to
+    8192 UTF-8 bytes. Never raises."""
+    repo = _repo_root()
+    glm_script = os.path.join(repo, "scripts", "claude-glm.ps1")
+    if not os.path.isfile(glm_script):
+        return ("NOT INSTALLED", "")
+    state = _state_dir()
+    runs_dir = os.path.join(state, "runs")
+    try:
+        os.makedirs(runs_dir, exist_ok=True)
+    except Exception as e:
+        return ("ERROR", "cannot create state runs dir: %s" % e)
+
+    run_id = "xr-glmcc-" + time.strftime("%Y%m%d-%H%M%S", time.gmtime())
+    material_path = os.path.join(runs_dir, run_id + ".material.md")
+    prompt_path = os.path.join(runs_dir, run_id + ".prompt.md")
+    material_text = _instruction_for("glmcc") + "\n\n" + prompt_text
+    pointer_text = (
+        "You are a reviewer. Read the file %s in full and follow the "
+        "instructions at its top. Reply with the review only, at most 8 KB."
+        % material_path
+    )
+    try:
+        with open(material_path, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(material_text)
+        with open(prompt_path, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(pointer_text)
+    except Exception as e:
+        return ("ERROR", "cannot write leg material: %s" % e)
+
+    timeout_min = int(math.ceil(timeout / 60.0))
+    argv = [
+        "powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", glm_script,
+        "-Batch", "-Scope", "readonly", "-PromptFile", prompt_path, "-Dir", repo,
+        "-MaxTurns", "30", "-TimeoutMin", str(timeout_min),
+    ]
+    try:
+        r = subprocess.run(
+            argv, capture_output=True, timeout=timeout + 60,
+            encoding="utf-8", errors="replace",
+        )
+    except subprocess.TimeoutExpired:
+        return ("ERROR", "timed out after %ds" % (timeout + 60))
+    except Exception as e:
+        return ("ERROR", "invocation failed: %s" % e)
+
+    out = (r.stdout or "").strip("\n")
+    err = (r.stderr or "").strip()
+    if r.returncode != 0:
+        # LAST 800 chars, same reasoning as _run_one: a usage-limit message
+        # lands at the end, not the start.
+        detail = (err or out)
+        return ("ERROR", "exit %d: %s" % (r.returncode, detail[-800:] or "(no output)"))
+
+    lines = out.splitlines()
+    if lines and lines[-1].startswith("RECEIPT: "):
+        lines = lines[:-1]
+    review = "\n".join(lines).strip()
+    review_bytes = review.encode("utf-8", "replace")
+    if len(review_bytes) > 8192:
+        suffix = "\n[truncated at 8 KB]"
+        suffix_bytes = suffix.encode("utf-8")
+        keep = max(0, 8192 - len(suffix_bytes))
+        review = review_bytes[:keep].decode("utf-8", "ignore") + suffix
+    return ("OK", review if review else "(empty output)")
+
+
 # Operator-tunable. Each entry: how to invoke the CLI headlessly. The combined
 # prompt is piped on stdin. {short} is a one-line instruction passed as an arg
 # where supported. VERIFY these against the installed CLIs and edit if needed.
@@ -655,6 +743,10 @@ def main() -> int:
     # 1500s since 2026-09-04: astra at `ultra` walks a 95KB manuscript slower
     # than 5.4 did, and a timeout renders as a dead leg, not a slow one.
     ap.add_argument("--codex-timeout", type=int, default=1500)
+    # Harness v2 W4: GLM(CC) runs through the Claude Code executor rather than a
+    # REST call, and GLM-5.3 can think silently for 8+ minutes before its first
+    # action, so this leg gets its own generous default.
+    ap.add_argument("--glmcc-timeout", type=int, default=1200)
     ap.add_argument("--max-bytes", type=int, default=DEFAULT_MAX_BYTES)
     # mid-arc solo re-run of one leg (e.g. after a Gemini 503)
     # previously required importing the module by hand. Comma-separated; the
@@ -676,7 +768,7 @@ def main() -> int:
         MODE_INSTRUCTION_OVERRIDE["deepseek"] = MANUSCRIPT_INSTRUCTION
         MODE_INSTRUCTION_OVERRIDE["codex"] = MANUSCRIPT_DEEP_INSTRUCTION
 
-    KNOWN_LEGS = ("gemini", "codex", "glm", "deepseek")
+    KNOWN_LEGS = ("gemini", "codex", "glm", "deepseek", "glmcc")
     legs = [x.strip().lower() for x in args.legs.split(",") if x.strip()]
     unknown_legs = [x for x in legs if x not in KNOWN_LEGS]
     legs = [x for x in legs if x in KNOWN_LEGS]
@@ -814,6 +906,15 @@ def main() -> int:
         if ds_status == "OK":
             available += 1
         parts.append("\n----- %s [%s] -----\n%s" % (ds_label, ds_status, ds_body))
+
+    # GLM(CC): GLM via the Claude Code executor pointed at z.ai (Harness v2 W4),
+    # not a default leg -- it only appears in the report when --legs names it,
+    # so an existing caller's output is unchanged.
+    if "glmcc" in legs:
+        cc_status, cc_body = _run_glmcc_leg(prompt_text, args.glmcc_timeout)
+        if cc_status == "OK":
+            available += 1
+        parts.append("\n----- GLM(CC) [%s] -----\n%s" % (cc_status, cc_body))
 
     if available == 0 and legs:
         parts.append(
