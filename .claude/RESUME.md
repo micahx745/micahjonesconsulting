@@ -15,8 +15,8 @@ $11.29. ChatGPT 8%: ship gates only. His CLI login expired. This week, `status.p
 DONE: E1, E2, briefs, merge `9cc32cc`, fold `6e96bea` `bba678d` `96c1c36`, run B `e8f6865`..`6bafa41` (1 review
 fix), run D `34032de`..`c7ea502` (E2.7 widened at review: lines 162-163 leaked into the exit code), run C
 `899185b`..`545a28f` (hooks live), E `6dd2446`..`ebcdddf`, F part 1 `ff989b9`..`ce902e9`. LESSONS #60-64.
-G `c1d9440`..`88ade19` (dispatch-lint + resume-size hooks live). NOW: DeepSeek + Gemini cross-review. AFTER 21:44
-UTC (timer set): F part 2 + W4-live, then the map on GLM, then close.
+G `c1d9440`..`88ade19` (hooks live). Cross-review `b1ab650` (3 fixed, 4 queued). AFTER
+21:44 UTC (timer set): F part 2 + W4-live, mini xreview of F2, the map on GLM, then close.
 Context: his popup "K1 Continue here (Recommended)". Not pushed, not merged. LESSONS next free: #60.
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
