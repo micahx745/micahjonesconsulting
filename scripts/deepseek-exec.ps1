@@ -78,11 +78,20 @@ param(
   [string]$Model = "",                 # default deepseek-flash, or DEEPSEEK_MODEL
   [string]$System = "",                # optional system instruction
   [int]$MaxTokens = 8000,              # budgets REASONING + answer (see STATUS)
-  [int]$TimeoutSec = 600
+  [int]$TimeoutSec = 600,
+  [switch]$Force,                      # Harness v2 W3: bypass the $5 balance hold
+  [string]$LedgerFixture = ""          # test-only: a saved API response to use instead of the call
 )
 
 $ErrorActionPreference = "Stop"
 $Base = "https://api.deepseek.com"
+
+# Harness v2 W3: runtime state (status.json, the cost ledger) lives outside the repo.
+if (-not $env:HARNESS_STATE_DIR) {
+  $env:HARNESS_STATE_DIR = Join-Path $env:LOCALAPPDATA 'harness\micahjonesconsulting'
+}
+$state = $env:HARNESS_STATE_DIR
+if (-not (Test-Path $state)) { New-Item -ItemType Directory -Force -Path $state | Out-Null }
 
 # --- key resolution, never printed ------------------------------------------
 function Get-DeepSeekKey {
@@ -128,6 +137,34 @@ if (-not $Model) {
   if ($env:DEEPSEEK_MODEL) { $Model = $env:DEEPSEEK_MODEL } else { $Model = "deepseek-flash" }
 }
 
+# Harness v2 W3: the $5 hold. -Smoke and -Models (already returned above) are exempt;
+# -Force bypasses it for a critical leg.
+if (-not $Smoke -and -not $Force) {
+  $dsStatusPath = Join-Path $state 'status.json'
+  if (Test-Path $dsStatusPath) {
+    $dsStatusObj = $null
+    try { $dsStatusObj = ([IO.File]::ReadAllText((Resolve-Path $dsStatusPath).Path)) | ConvertFrom-Json } catch { $dsStatusObj = $null }
+    if ($dsStatusObj -and $dsStatusObj.deepseek) {
+      $dsBlock = $dsStatusObj.deepseek
+      $dsBalance = $null
+      try { $dsBalance = [double]$dsBlock.total_balance } catch { $dsBalance = $null }
+      $dsUpdatedDt = $null
+      try {
+        $dsUpdatedDt = [DateTime]::Parse([string]$dsBlock.updated_utc, [System.Globalization.CultureInfo]::InvariantCulture,
+          [System.Globalization.DateTimeStyles]::AdjustToUniversal -bor [System.Globalization.DateTimeStyles]::AssumeUniversal)
+      } catch { $dsUpdatedDt = $null }
+      if ($null -ne $dsBalance -and $null -ne $dsUpdatedDt) {
+        $dsAgeHours = ([DateTime]::UtcNow - $dsUpdatedDt).TotalHours
+        if ($dsAgeHours -lt 24 -and $dsBalance -lt 5) {
+          $dsHoldMsg = "deepseek-exec: balance `$" + $dsBalance.ToString("0.00") + " is under `$5: volume is held (AI_ROUTING). Pass -Force for a critical leg."
+          Write-Output $dsHoldMsg
+          exit 6
+        }
+      }
+    }
+  }
+}
+
 # --- the prompt ---------------------------------------------------------------
 if ($Smoke) {
   $userText = "Reply with the single word OK and nothing else."
@@ -164,15 +201,26 @@ if ($bodyBytes.Length -gt 2000000) {
 # characters "a-euro-trademark" and was then written to disk as valid UTF-8
 # mojibake -- silently corrupting every smart quote, accent and em-dash. On a
 # copywriting harness with a one-em-dash-per-page rule, that is not cosmetic.
-try {
-  $raw = Invoke-WebRequest -Uri "$Base/chat/completions" -Headers $headers -Method POST `
-    -Body $bodyBytes -TimeoutSec $TimeoutSec -UseBasicParsing
-  $resp = [System.Text.Encoding]::UTF8.GetString($raw.RawContentStream.ToArray()) | ConvertFrom-Json
-} catch {
-  # A 402 here means the account is out of credit -- the same wall the GLM
-  # pay-as-you-go key hit on 2026-09-18. Say so plainly rather than retrying.
-  Write-Error "DeepSeek call failed: $($_.Exception.Message)"
-  exit 1
+if ($LedgerFixture -ne "") {
+  # Harness v2 W3: test-only. Read a saved API response instead of calling out.
+  if (-not (Test-Path $LedgerFixture)) { Write-Error "No such ledger fixture: $LedgerFixture"; exit 1 }
+  try {
+    $resp = ([IO.File]::ReadAllText((Resolve-Path $LedgerFixture).Path)) | ConvertFrom-Json
+  } catch {
+    Write-Error "Cannot parse -LedgerFixture $($LedgerFixture): $($_.Exception.Message)"
+    exit 1
+  }
+} else {
+  try {
+    $raw = Invoke-WebRequest -Uri "$Base/chat/completions" -Headers $headers -Method POST `
+      -Body $bodyBytes -TimeoutSec $TimeoutSec -UseBasicParsing
+    $resp = [System.Text.Encoding]::UTF8.GetString($raw.RawContentStream.ToArray()) | ConvertFrom-Json
+  } catch {
+    # A 402 here means the account is out of credit -- the same wall the GLM
+    # pay-as-you-go key hit on 2026-09-18. Say so plainly rather than retrying.
+    Write-Error "DeepSeek call failed: $($_.Exception.Message)"
+    exit 1
+  }
 }
 
 $choice = $resp.choices[0]
@@ -187,6 +235,66 @@ if (-not $text) {
   }
   exit 1
 }
+
+# Harness v2 W3: a cost ledger line for every successful response (-Smoke included).
+$dsNowUtc = [DateTime]::UtcNow
+$dsIsWeekday = ($dsNowUtc.DayOfWeek -ne [DayOfWeek]::Saturday) -and ($dsNowUtc.DayOfWeek -ne [DayOfWeek]::Sunday)
+$dsHour = $dsNowUtc.Hour
+$dsInPeakHours = (($dsHour -ge 1 -and $dsHour -lt 4) -or ($dsHour -ge 6 -and $dsHour -lt 10))
+$dsIsPeak = [bool]($dsIsWeekday -and $dsInPeakHours)
+
+$dsUsage = $resp.usage
+$dsPromptTokens = if ($dsUsage -and $null -ne $dsUsage.prompt_tokens) { [int]$dsUsage.prompt_tokens } else { 0 }
+$dsCacheHit = if ($dsUsage -and $null -ne $dsUsage.prompt_cache_hit_tokens) { [int]$dsUsage.prompt_cache_hit_tokens } else { 0 }
+$dsCacheMiss = if ($dsUsage -and $null -ne $dsUsage.prompt_cache_miss_tokens) { [int]$dsUsage.prompt_cache_miss_tokens } else { $dsPromptTokens - $dsCacheHit }
+$dsCompletionTokens = if ($dsUsage -and $null -ne $dsUsage.completion_tokens) { [int]$dsUsage.completion_tokens } else { 0 }
+$dsReasoningTokens = 0
+if ($dsUsage -and $dsUsage.completion_tokens_details -and $null -ne $dsUsage.completion_tokens_details.reasoning_tokens) {
+  $dsReasoningTokens = [int]$dsUsage.completion_tokens_details.reasoning_tokens
+}
+
+$dsRatesPath = Join-Path $PSScriptRoot 'harness/deepseek-rates.json'
+$dsRates = $null
+if (Test-Path $dsRatesPath) {
+  try { $dsRates = ([IO.File]::ReadAllText((Resolve-Path $dsRatesPath).Path)) | ConvertFrom-Json } catch { $dsRates = $null }
+}
+$dsRateEntry = $null
+if ($dsRates -and $dsRates.per_million) {
+  $dsProp = $dsRates.per_million.PSObject.Properties[[string]$resp.model]
+  if ($dsProp) {
+    $dsRateEntry = $dsProp.Value
+  } else {
+    $dsFallback = $dsRates.per_million.PSObject.Properties['deepseek-v4-pro']
+    if ($dsFallback) { $dsRateEntry = $dsFallback.Value }
+  }
+}
+$dsEstUsd = $null
+if ($dsRateEntry) {
+  $dsTierKey = if ($dsIsPeak) { "peak" } else { "offpeak" }
+  $dsTierProp = $dsRateEntry.PSObject.Properties[$dsTierKey]
+  if ($dsTierProp) {
+    $dsTier = $dsTierProp.Value
+    $dsRaw = ($dsCacheHit * $dsTier.cache_hit + $dsCacheMiss * $dsTier.input + $dsCompletionTokens * $dsTier.output) / 1000000.0
+    $dsEstUsd = [Math]::Round($dsRaw, 6)
+  }
+}
+$dsLabel = if ($Smoke) { "smoke" } else { Split-Path -Leaf $PromptFile }
+$dsEntry = [ordered]@{
+  utc = $dsNowUtc.ToString('yyyy-MM-ddTHH:mm:ssZ')
+  model = $resp.model
+  peak = $dsIsPeak
+  prompt_tokens = $dsPromptTokens
+  cache_hit = $dsCacheHit
+  cache_miss = $dsCacheMiss
+  completion_tokens = $dsCompletionTokens
+  reasoning_tokens = $dsReasoningTokens
+  est_usd = $dsEstUsd
+  label = $dsLabel
+}
+$dsLedgerJson = $dsEntry | ConvertTo-Json -Compress
+$dsLedgerPath = Join-Path $state 'deepseek-ledger.jsonl'
+$dsUtf8NoBom = New-Object System.Text.UTF8Encoding $false
+[IO.File]::AppendAllText($dsLedgerPath, $dsLedgerJson + "`n", $dsUtf8NoBom)
 
 if ($Smoke) {
   $u = $resp.usage

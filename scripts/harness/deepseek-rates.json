@@ -1,0 +1,10 @@
+{
+  "checked": "2026-09-22, research report 00b section 1 (deepseek-flash serves V4.1-Flash)",
+  "currency": "USD",
+  "per_million": {
+    "deepseek-flash": {"offpeak": {"input": 0.15, "cache_hit": 0.003, "output": 0.60}, "peak": {"input": 0.30, "cache_hit": 0.006, "output": 1.20}},
+    "deepseek-v4-pro": {"offpeak": {"input": 0.66, "cache_hit": 0.66, "output": 1.98}, "peak": {"input": 1.32, "cache_hit": 1.32, "output": 3.96}}
+  },
+  "peak_utc": {"days": "Mon-Fri", "hours": [[1, 4], [6, 10]]},
+  "note": "The v4-pro cache-hit price is not in the report: it is priced as input, an upper bound. Peak is 2x off-peak per the report."
+}
