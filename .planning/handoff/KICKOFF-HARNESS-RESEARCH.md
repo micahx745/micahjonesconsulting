@@ -9,6 +9,14 @@ INPUT FIRST (operator 2026-09-22: "i need the research prompt here it wont read 
 research runs in a Fable chat with `.planning/handoff/FABLE-RESEARCH-PROMPT-HARNESS.md`, which cannot read the repo.
 Its report is this chat's first input: verify each of its claims against the repo before adopting or dismissing it
 (LESSONS #1), then run the measurement and proposals below, using the report's estimates as hypotheses to confirm.
+THE REPORT ARRIVED 2026-09-22: `.planning/research/harness-2026-09-22/00-fable-report.md` (53 KB, byte-identical to
+the Downloads file `compass_artifact_wf-94ae6027-...`). It covers three projects: section 1 Ordani (birthflowV2, its
+own repo and chat), section 3 the landing page (the landing-exemplar chat), section 4 this site. This chat implements
+section 4 and the repo-level items of sections 5-7 that touch this repo; it hands sections 1 and 3 to their chats by
+path, and section 2 (the global layer) goes to him as decisions only. Verify its headline first, by a smoke call, not
+by reading: GLM and DeepSeek both expose Anthropic-compatible, tool-using endpoints (if true, DeepSeek can run as a
+Claude Code worker, not only a text REST call). Fable budget: the report replaces gate A; make the gate B call only if
+the measured audit contradicts the report's ranking (one Fable call at most in this chat).
 
 This chat is RESEARCH and PROPOSALS about the operating harness. It changes no site code, pushes nothing, deploys
 nothing. The Pass-128c work (`NEXT-SESSION-KICKOFF.md`) and the landing exemplar (`KICKOFF-LANDING-EXEMPLAR.md`) are
