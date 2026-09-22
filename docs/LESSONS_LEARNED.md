@@ -1235,6 +1235,14 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   the hero through the Audit: no colour switch in that stretch at all. The nav stays terracotta over both doors, and the
   Audit arrives already on its colour." So the doors band's `data-world` is `terracotta`, in the jank fix and in the
   doors build (brief pass-127c, section 4b). NOT approved to ship: each goes live only on his push words.
+- **SPLITREVEAL RETIRED; THE AUDIT'S PRICE BOX STAYS AS IS — operator 2026-09-21 night (one popup, after the Pass-128a
+  A/B `.planning/qa/pass-128/detach-ab/`)**. SPLITREVEAL: picked "Retire it (Recommended)", whose description read "The
+  four headings enter like every other heading on the site, settled in under 0.1 s. It is the site's only GSAP code, so
+  GSAP leaves the page's scripts too." The question told him the evidence: 1.1 s to settle against under 0.1 s for
+  every other heading (the "word loading slow"), and about 17% fewer dropped frames with its letter animation removed.
+  So `<SplitReveal>` leaves the Audit title, "How I work.", the ORDANI title and the closing heading, which take the
+  site's standard heading reveal, and the Pass-111a GSAP exception ends. AUDIT STAGGER: picked "Leave it as is
+  (Recommended)": the price box keeps its short fade; he judges it on the preview on his phone. NOT approved to ship.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.
