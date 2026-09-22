@@ -1,0 +1,47 @@
+{"run": "f",
+ "items": [
+  {"claim": "tool_use_counts.py implements all five B1.1 sections (MCP SERVERS, SKILLS, SUBAGENT TYPES, LONGEST EXEC RUNS, IMAGES) over <root>/<dir>/*.jsonl and <root>/<dir>/*/subagents/*.jsonl for dirs whose name contains --project; tool uses are de-duplicated by id across the whole run; the EXEC/delegation/human-message classification is a self-contained duplicate of tier-burn-deny.py's logic (run C), not an import, per the stdlib-only note.",
+   "evidence": "scripts/harness/tool_use_counts.py:1",
+   "confidence": "high"},
+  {"claim": "test_b1_counts.py builds the exact fixture the brief specifies (3 github + 1 supabase + 2 Skill + 1 Agent + a 5-Bash Opus run + a human message + 3 Edit calls carrying 2 image blocks, a subagent file with 1 context7 call, and a decoy project dir that must not count) and gets exactly the five values named: github 3, supabase 1, context7 1, superpowers:brainstorming 2, general-purpose 1, longest run 5, images 2.",
+   "evidence": "$ python scripts/harness/tests/test_b1_counts.py -> PASS B1 5/5",
+   "confidence": "high"},
+  {"claim": "live_b1_counts.py against the real ~/.claude/projects tree (--days 7, about 144MB across the matching project dirs in that window) runs in about 2 seconds because of a whole-file mtime pre-filter (a file's own last-write time bounds every timestamp it can hold under Claude Code's append-only JSONL, so a file untouched since before the cutoff is skipped unopened); verified this drops old data correctly and never drops recent data, with a synthetic file pair (one kept file with one old and one recent line, one whole file backdated past cutoff): only the recent line counted either way.",
+   "evidence": "$ python scripts/harness/tests/live_b1_counts.py -> PASS B1-live 5 sections",
+   "confidence": "high"},
+  {"claim": "C1.1's real --days 30 run (about 687MB across 5 matching project dirs) finished in 2.4s and wrote 65 lines to .planning/harness/c1-counts.tsv via the Write tool. A raw byte cmp against a shell-redirected capture of the same command showed every line different only because Windows python.exe's stdout gets CRLF-translated when piped through Git Bash; a Python text-mode read of both files (how any real consumer, including C1.3, will read this file) confirms they are character-for-character identical, 1472 chars each, and the saved file uses this repo's plain-LF convention (matches _fixtures.py's explicit newline='\\n').",
+   "evidence": "$ python (text-mode read of both files) -> equal as text: True, len 1472 == 1472",
+   "confidence": "high"},
+  {"claim": "Not executed (part 2), but spot-checked c1-counts.tsv is fit for C1.3's own rule: 3 of its 13 deny-candidate servers show nonzero 30d calls (chrome-devtools 346, the Vercel connector 43, desktop-commander 1) and would stay allowed; the other 10 candidates are absent from the file (counts as 0 per C1.5) and would be denied. superpowers: skills and subagent types are both nonzero (stays enabled); no voltagent-meta: subagent type appears (would be disabled).",
+   "evidence": ".planning/harness/c1-counts.tsv:3-11",
+   "confidence": "med"},
+  {"claim": "Pre-flight matched the brief's recorded values: common list (python/node/claude/powershell/LOCALAPPDATA/node_modules) and this brief's own (usage_audit.py present, settings.json permissions.allow=22 with no deny key and no enabledPlugins key yet, 13 existing test_*.py files).",
+   "evidence": "$ python (json.load of .claude/settings.json) -> 22 False False",
+   "confidence": "high"},
+  {"claim": "Only the four Files-list paths for this part changed; .claude/settings.json is untouched (git status and diff_scope both confirm); the combined offline suite is 14 files now (the 13 from runs A-E plus test_b1_counts.py) and passes as one run. Both the file count and the changed-path count will move again once part 2 adds test_c1_settings.py, settings.json and the c1-measure files.",
+   "evidence": "$ python scripts/harness/tests/run_all.py -> ALL PASS (14 files)",
+   "confidence": "high"}
+ ],
+ "tests": [
+  {"code": "B1", "command": "python scripts/harness/tests/test_b1_counts.py", "result": "PASS", "last_line": "PASS B1 5/5"},
+  {"code": "B1-live", "command": "python scripts/harness/tests/live_b1_counts.py", "result": "PASS", "last_line": "PASS B1-live 5 sections"},
+  {"code": "C1-measure", "command": "python -c \"import json;m=json.load(open('.planning/harness/c1-measure.json'));print(m['before_prefix']>m['after_prefix'], m['delta'])\"", "result": "not run: part 2", "last_line": "not run: part 2"},
+  {"code": "C1", "command": "python scripts/harness/tests/test_c1_settings.py", "result": "not run: part 2", "last_line": "not run: part 2"},
+  {"code": "C1-live", "command": "python scripts/harness/tests/live_c1_measure.py", "result": "not run: part 2", "last_line": "not run: part 2"},
+  {"code": "run_all", "command": "python scripts/harness/tests/run_all.py", "result": "PASS", "last_line": "ALL PASS (14 files)"},
+  {"code": "diff_scope", "command": "python scripts/harness/diff_scope.py .claude/briefs/harness-v2-f-counts-diet.md", "result": "PASS", "last_line": "PASS diff scope: 4 changed paths, all listed"}
+ ],
+ "deviations": [
+  "Two implementation choices the brief left open, both resolved to match tier-burn-deny.py's own semantics and the two 'top 10 sessions' headers: (a) LONGEST EXEC RUNS is computed per main session file alone, never merged with its subagents' lines, since the hook itself only ever sees one transcript_path at a time; (b) IMAGES is aggregated per top-level session (main file plus its subagents' image blocks combined, like usage_audit.py's T4), since a main-file-only count would undercount a session's real image use. Both sections drop zero-count rows before the top-10 cut (a Counter never holds one by construction; the images counter is explicitly zero-filtered).",
+  "Added a whole-file mtime pre-filter not spelled out in the brief, purely for runtime: skip a file entirely when its own last-write time predates the --days cutoff. Verified correct (not just fast) with a synthetic test: see the B1-live item above.",
+  "Ran scripts/harness/tests/run_all.py and scripts/harness/diff_scope.py at the end of this part even though the dispatch named only test_b1_counts.py and live_b1_counts.py as this part's verification commands, because the common brief says every run ends with run_all.py, and diff_scope's own job (every changed path is on this brief's Files list) is meaningful for a partial run too. Both are a part-1 snapshot; part 2 reruns and overwrites this digest per the brief's own instruction.",
+  "Manually verified (not part of any required test) that the mtime pre-filter cannot under-count: a synthetic file with one old-timestamped and one recent-timestamped line, mtime left current, correctly kept only the recent one; a synthetic file backdated to look like an old, fully-written session was skipped whole and contributed nothing, the same result a full unfiltered scan would give it."
+ ],
+ "files_changed": [
+  "scripts/harness/tool_use_counts.py",
+  "scripts/harness/tests/test_b1_counts.py",
+  "scripts/harness/tests/live_b1_counts.py",
+  ".planning/harness/c1-counts.tsv",
+  ".planning/harness/digests/run-f.json"
+ ]
+}
