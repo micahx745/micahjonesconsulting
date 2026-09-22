@@ -1,0 +1,47 @@
+{"run": "c",
+ "items": [
+  {"claim": "Every pre-flight value (the common list and this run's own three checks plus the 8-file count) matched the brief exactly before any edit.",
+   "evidence": "$ python -c \"import json;d=json.load(open('.claude/settings.json',encoding='utf-8'));print([h.get('matcher','') for h in d['hooks']['PreToolUse']], 'UserPromptSubmit' in d['hooks'])\" -> ['Write|Edit|MultiEdit|NotebookEdit', '*', 'Agent|Task'] False",
+   "confidence": "high"},
+  {"claim": "tier-burn-deny.py denies at N consecutive execution calls since the operator's last message (default 40 Opus / 12 Fable, env-overridable), stopping the count at the first human message or the first delegation call, and separately denies a 4th Fable call in one arc unless the human text says 'fable ok'; Grep/Glob and pure delegation calls are never counted as execution.",
+   "evidence": "$ python scripts/harness/tests/test_b3_tier_burn.py -> PASS B3 15/15",
+   "confidence": "high"},
+  {"claim": "image-open-ask.py asks before the 8th raw image in a chat (denies instead under permission_mode bypassPermissions), covers Read of an image file, any mcp__ tool whose name contains 'screenshot', and mcp__*__computer with action screenshot/zoom, and stays silent on 'images ok' or an executor session.",
+   "evidence": "$ python scripts/harness/tests/test_b4_image_ask.py -> PASS B4 8/8",
+   "confidence": "high"},
+  {"claim": "context-size-warn.py prints CONTEXT <n>K once per 50K band once a chat's last recorded usage is at or over 200K tokens, tracked per session_id in <HARNESS_STATE_DIR>/context-warn.json, and stays silent under 200K, on a repeat in the same band, with no usage recorded, or for an executor session.",
+   "evidence": "$ python scripts/harness/tests/test_c2_context_warn.py -> PASS C2 6/6",
+   "confidence": "high"},
+  {"claim": "All three hooks are wired into .claude/settings.json in the exact order and shape C.4 specifies (two new PreToolUse entries appended after the existing three, one new UserPromptSubmit key), and the file still parses as JSON.",
+   "evidence": "$ python -c \"import json;d=json.load(open('.claude/settings.json',encoding='utf-8'));print(len(d['hooks']['PreToolUse']), len(d['hooks']['UserPromptSubmit']), len(d['hooks']['SessionStart']))\" -> 5 1 2",
+   "confidence": "high"},
+  {"claim": "Every changed path in the working tree at verification time was on this brief's own Files list (the 3 new hooks, the 3 new tests and settings.json; this digest is the Files list's 8th and last entry, written after verification ran).",
+   "evidence": "$ python scripts/harness/diff_scope.py .claude/briefs/harness-v2-c-transcript-hooks.md -> PASS diff scope: 7 changed paths, all listed",
+   "confidence": "high"},
+  {"claim": "The combined offline suite (the 8 files already present from runs A, B and D, plus this run's B3/B4/C2) passes as one 11-file run.",
+   "evidence": "$ python scripts/harness/tests/run_all.py -> ALL PASS (11 files)",
+   "confidence": "high"}
+ ],
+ "tests": [
+  {"code": "B3", "command": "python scripts/harness/tests/test_b3_tier_burn.py", "result": "PASS", "last_line": "PASS B3 15/15"},
+  {"code": "B4", "command": "python scripts/harness/tests/test_b4_image_ask.py", "result": "PASS", "last_line": "PASS B4 8/8"},
+  {"code": "C2", "command": "python scripts/harness/tests/test_c2_context_warn.py", "result": "PASS", "last_line": "PASS C2 6/6"},
+  {"code": "run_all", "command": "python scripts/harness/tests/run_all.py", "result": "PASS", "last_line": "ALL PASS (11 files)"},
+  {"code": "diff_scope", "command": "python scripts/harness/diff_scope.py .claude/briefs/harness-v2-c-transcript-hooks.md", "result": "PASS", "last_line": "PASS diff scope: 7 changed paths, all listed"}
+ ],
+ "deviations": [
+  "The brief's C.5 header says every hook call in this run gets a fresh temp HARNESS_STATE_DIR, but C2 cases 1, 2 and 4 all name session s1 and case 2 is explicitly 'again' at a higher token count expecting 'nothing', which only tests anything if the persisted band survives between calls. test_c2_context_warn.py shares one HARNESS_STATE_DIR across cases 1, 2 and 4 (each still gets its own fresh transcript file); cases 3, 5 and 6 each get an independent fresh state dir. Same reading test_b2_governor.py's own docstring gave the identical tension in run B.",
+  "Definitions implemented exactly as written are not exercised by the given 15-case B3 table: the mcp__ EXEC substrings (claude_browser, chrome, playwright, computer-use), the Skill and AskUserQuestion delegation names, and the HARNESS_TIER_BURN_FABLE env override (only HARNESS_TIER_BURN_OPUS is exercised, case 15) never fire, since all 15 cases use only Bash, Edit, Grep and Agent. Self-certified pending confirmation against a real transcript.",
+  "Neither brief names the literal JSON key a live PreToolUse payload uses for the current call's own id. tier-burn-deny.py reads payload.get('tool_use_id') and the test fixtures set that same key to a value that never collides with the transcript ('current0001'), so the id-skip branch in both the Fable-count and the consecutive-execution walk is a defensive no-op in every case by construction (the current call is never already in its own transcript tail). If the real payload carries a different key, or none, behavior is unchanged."
+ ],
+ "files_changed": [
+  ".claude/hooks/tier-burn-deny.py",
+  ".claude/hooks/image-open-ask.py",
+  ".claude/hooks/context-size-warn.py",
+  ".claude/settings.json",
+  "scripts/harness/tests/test_b3_tier_burn.py",
+  "scripts/harness/tests/test_b4_image_ask.py",
+  "scripts/harness/tests/test_c2_context_warn.py",
+  ".planning/harness/digests/run-c.json"
+ ]
+}
