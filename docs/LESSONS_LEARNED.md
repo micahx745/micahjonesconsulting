@@ -1284,6 +1284,13 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   chat hands off: the research runs from `.planning/handoff/KICKOFF-HARNESS-RESEARCH.md` (Opus 5 orchestrates, Fable
   in two calls, GLM reads and executes, DeepSeek capped at $3, Gemini the second reader, ChatGPT unused), and the
   Pass-128c popup (the door edge, the phone preview), not yet asked, carries to `.planning/handoff/NEXT-SESSION-KICKOFF.md`.
+- **THE BUDGET RESET; OPUS 5.5 — operator 2026-09-22 ~10:10 PDT (the harness-research chat)**. Verbatim: "Ok I switched
+  models (since its a new model and we just reset usage) i have feedback more from research". get_usage at 10:13 PDT:
+  weekly all-models 1%, Fable 1%, 5-hour 5%; both weekly bars STILL reset 2026-09-26 01:00 PDT (3d 14h), so this window
+  is 3.6 days, not 7. The chat now runs on Opus 5.5 (`claude-opus-5-5`). The "tread lightly" limits in the entry above
+  are superseded for Claude only: his words name no change to ChatGPT (8%) or DeepSeek ($11.94), so both stand as
+  recorded until he says otherwise. His second research report, pasted into the chat, is
+  `.planning/research/harness-2026-09-22/00b-fable-report-post-reset.md`.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.

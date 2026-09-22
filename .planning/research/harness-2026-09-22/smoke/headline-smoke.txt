@@ -1,0 +1,9 @@
+headline-smoke 2026-09-22 09:48:15 -07:00 | claude 2.1.266 (Claude Code)
+deepseek balance BEFORE: is_available=True currency=USD total=11.94 granted=0.00 topped_up=11.94
+glm: PASS (Read + Bash both ran) | subtype=success turns=3 is_error=False secs=17
+glm: usage in=71868 cache_read=26176 cache_write=0 out=187 | modelUsage keys=glm-5.3
+glm: reply = FILE-887ddf1841 ENV-d5d3ce5386
+deepseek: PASS (Read + Bash both ran) | subtype=success turns=3 is_error=False secs=8
+deepseek: usage in=92831 cache_read=8064 cache_write=0 out=238 | modelUsage keys=deepseek-flash
+deepseek: reply = FILE-b44e1a537a ENV-80814dde29
+deepseek balance AFTER: is_available=True currency=USD total=11.94 granted=0.00 topped_up=11.94
