@@ -12,10 +12,10 @@ $11.29. ChatGPT 8%: ship gates only. His CLI login expired. This week, `status.p
 `--window-start 2026-09-22T17:13:00Z` (the one-time reset); the default assumes 7 days.
 
 ## HARNESS V2 (his popups 09-22: all 16 approved; "Fresh chat now, Sonnet executes")
-DONE: E1, E2, briefs, merge `9cc32cc`, fold `6e96bea` `bba678d` `96c1c36`, run B: E3 `e8f6865`, E4 `567e719`,
-B2 `08df317` (1 review fix: 5h reset text), digest `6bafa41`. NOW: run D (Sonnet; brief D amended: E2.7
-is_error #59, W4-live DEAD until 21:44 UTC, I run it after). NEXT: C (fix "fourteen"), E (DryRun-only tests, P8),
-F (GLM-smoke measures after 14:44, P2 expectations); the map on GLM; DeepSeek + Gemini on the combined diff.
+DONE: E1, E2, briefs, merge `9cc32cc`, fold `6e96bea` `bba678d` `96c1c36`, run B `e8f6865`..`6bafa41` (1 review
+fix), run D `34032de`..`c7ea502` (E2.7 widened at review: lines 162-163 leaked into the exit code). NOW: run C
+(Sonnet; brief C "fifteen" fix). AFTER 21:44 UTC: I run live_w4_xreview.py (also tests a -p Read outside -Dir).
+NEXT: E (DryRun-only tests, P8), F (GLM-smoke measures, P2 expectations); the map on GLM; cross-review.
 Context: his popup "K1 Continue here (Recommended)". Not pushed, not merged. LESSONS next free: #60.
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
