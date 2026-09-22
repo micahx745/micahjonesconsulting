@@ -3,6 +3,12 @@
 Brief-Format: v2
 Executor: GLM 5.3 through `scripts/claude-glm.ps1 -Batch -Scope harness` (C1 edits `.claude/settings.json`).
 Run last: after runs B and C have wired their hooks. Read `.claude/briefs/harness-v2-00-common.md` first.
+Amended 2026-09-22 by the main session (kickoff amendments 3 and 4): a Sonnet subagent stands in for GLM; the
+executor guard does not cover an in-session subagent, so the common brief's hard rules bind as instructions. This
+run goes in TWO dispatches. Part 1 (while GLM is capped): B1.1, B1.2 and C1.1, then stop, and write the digest with
+the C1 measurements and tests recorded as `not run: part 2`. Part 2 (after the GLM reset, 2026-09-22 21:44:53 UTC):
+C1.2 to C1.5 and the whole Verification list, rewriting the digest. The measurements go through the GLM launcher,
+because a Sonnet subagent's own `claude -p` runs on the operator's Claude login, which has expired.
 
 ## Ruling
 B1 has two halves. The token half is MJCONSULT 13's `usage_audit.py` (commit `95de6f4`, operator ruling "This chat
@@ -26,7 +32,8 @@ This run may create or modify only these:
 - `.planning/harness/digests/run-f.json` (new)
 
 ## Pre-flight
-Main session, before dispatch (actual values):
+Main session, 2026-09-22 20:05 UTC, after runs B, D, C and E were committed (`ebcdddf`); the first two lines held
+(actual values), and `ls scripts/harness/tests/test_*.py | wc -l` -> `13`:
 - `test -e .planning/research/harness-2026-09-22/scripts/usage_audit.py; echo $?` -> `0` (merged from
   `design/live-evolve`)
 - `python -c "import json;d=json.load(open('.claude/settings.json',encoding='utf-8'));print(len(d['permissions']['allow']), 'deny' in d['permissions'], 'enabledPlugins' in d)"` -> `22 False False`
@@ -88,9 +95,11 @@ Run `python scripts/harness/tool_use_counts.py --days 30` and save its output as
 
 ### C1.2 Measure the prefix BEFORE any settings change
 In the worktree root, run twice and keep the second:
-`claude -p "Reply with the single word OK." --output-format json --max-turns 1`
-(this runs on GLM, because your session's environment points Claude Code at z.ai). The prefix is
-`usage.input_tokens + usage.cache_creation_input_tokens + usage.cache_read_input_tokens`. Keep the number for C1.4.
+`powershell -NoProfile -ExecutionPolicy Bypass -File scripts/claude-glm.ps1 -Smoke -Dir C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/harness-v2`
+(`claude -p "Reply with the single word OK." --output-format json --max-turns 1` on GLM, through the launcher). It
+prints `RECEIPT: <path>`; that receipt must show `exit_code` 0 and `is_error` false (a `glm_429` true is a return
+condition). The prefix is the receipt's `usage.input_tokens + usage.cache_creation_input_tokens +
+usage.cache_read_input_tokens`. Keep the number for C1.4.
 
 ### C1.3 Apply the diet to `.claude/settings.json`
 - `enabledPlugins`: add the key; set `false` for `superpowers@superpowers-marketplace` when the counts show zero
@@ -104,17 +113,22 @@ In the worktree root, run twice and keep the second:
   `6f616b42-0ed8-571e-823f-ee4aca6b7ce9`. Never deny `ccd_*`, `Claude_Browser`, `visualize`, `terminal`,
   `claude-in-chrome`, `computer-use`, or any `plugin_premium-web_*` server, whatever the counts say.
 - Change nothing else: `env`, `hooks` and the 22 `permissions.allow` entries stay as they are.
+- Order, so the two levers are measured apart: write the `permissions.deny` entries first, run the C1.2 measurement
+  again (twice, keep the second) and keep it as `after_deny_prefix`, then write `enabledPlugins`. (Premise check P2,
+  `f8538ce`, measured only the plugin lever; whether a deny rule takes a server's tools out of the prompt in this
+  build is the open question.)
 
 ### C1.4 Measure AFTER, and record
 Run the C1.2 command twice again and keep the second. Write `.planning/harness/c1-measure.json`:
-`{"measured_on": "glm-5.3 via z.ai (claude.ai connectors do not load on this login, so their share is not in these numbers)", "before_prefix": N, "after_prefix": M, "delta": N-M, "disabled_plugins": [...], "denied_servers": [...]}`.
+`{"measured_on": "glm-5.3 via z.ai (claude.ai connectors do not load on this login, so their share is not in these numbers)", "measured_via": "scripts/claude-glm.ps1 -Smoke receipts", "before_prefix": N, "after_deny_prefix": D, "after_prefix": M, "delta": N-M, "disabled_plugins": [...], "denied_servers": [...]}`.
 
 ### C1.5 Tests
 `scripts/harness/tests/test_c1_settings.py` (offline), four checks: settings.json parses and still has 22
 `permissions.allow` entries and its hook entries; no `@premium-web` plugin is false; every `mcp__X` deny entry's
 server X is on the C1.3 candidate list and shows 0 in `c1-counts.tsv` (a server absent from the file counts as 0);
 no deny entry names a keep-list server. Last line `PASS C1 4/4`.
-`scripts/harness/tests/live_c1_measure.py`: runs the C1.2 command once more and passes when its prefix is below
+`scripts/harness/tests/live_c1_measure.py`: runs the C1.2 command once more (with a fresh temp
+`HARNESS_STATE_DIR`, reading the prefix from that run's receipt) and passes when its prefix is below
 `before_prefix` in `c1-measure.json`. Last line `PASS C1-live prefix <before> -> <now>`.
 
 ## Verification
@@ -131,7 +145,9 @@ Expected last line: `PASS B1-live 5 sections`
 python -c "import json;m=json.load(open('.planning/harness/c1-measure.json'));print(m['before_prefix']>m['after_prefix'], m['delta'])"
 ```
 Expected: `True` followed by a positive number. If the prefix did not shrink, stop and report the two numbers: the
-main session rules on whether deny rules take tools out of the context in this build.
+main session rules on whether deny rules take tools out of the context in this build. Scale (P2, `f8538ce`): three
+zero-call plugins switched off cut a GLM CLI prefix from 40,224 to 39,517 tokens (707, 1.76%); expect a delta of that
+order, not the 70K the Ruling's prefix figure might suggest.
 ```
 python scripts/harness/tests/test_c1_settings.py
 ```
@@ -167,6 +183,8 @@ The common list, plus: stop if the prefix did not shrink (see Verification), or 
 (`python .claude/hooks/routing-reminder.py` must still print the routing).
 
 ## Parked operator decisions
-- Pruning `~/.claude/skills` (global): a proposal.
+- Pruning `~/.claude/skills` (global, 720 personal skills): a proposal.
+- `disabledMcpServers` for the user-level servers with zero calls in this repo (claude-context, github, supabase,
+  sequential-thinking per P2): it lives in `~/.claude.json`, his file, so it is a proposal.
 - The connector share of the diet is measured in his next Claude session (`get_usage`, the "MCP tools" category,
   16,390 tokens before).
