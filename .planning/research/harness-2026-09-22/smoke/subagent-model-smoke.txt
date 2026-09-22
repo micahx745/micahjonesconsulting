@@ -1,0 +1,10 @@
+subagent-model-smoke 2026-09-22 10:22:28 -07:00 | claude 2.1.266 (Claude Code) | CLAUDE_CODE_SUBAGENT_MODEL in this shell: 'sonnet'
+A worktree (repo settings load): --model sonnet | subtype=success turns=1 secs=5
+A worktree (repo settings load): modelUsage 
+A worktree (repo settings load): reply = Failed to authenticate: OAuth session expired and could not be refreshed
+B control (empty dir, var removed): --model sonnet | subtype=success turns=1 secs=4
+B control (empty dir, var removed): modelUsage 
+B control (empty dir, var removed): reply = Failed to authenticate: OAuth session expired and could not be refreshed
+C opus alias (empty dir): --model opus | subtype=success turns=1 secs=4
+C opus alias (empty dir): modelUsage 
+C opus alias (empty dir): reply = Failed to authenticate: OAuth session expired and could not be refreshed
