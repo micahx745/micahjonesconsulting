@@ -1,4 +1,4 @@
-# RESUME — micahjonesconsulting (2026-09-22 11:25 PDT: Harness v2 boot + fold done; run B next)
+# RESUME — micahjonesconsulting (2026-09-22 11:55 PDT: Harness v2 run B in; run D out to Sonnet)
 
 ## READ FIRST
 Harness v2 = branch `harness/v2`, worktree `.claude/worktrees/harness-v2`. Runs from
@@ -6,32 +6,29 @@ Harness v2 = branch `harness/v2`, worktree `.claude/worktrees/harness-v2`. Runs 
 `design/live-evolve` holds off AI_ROUTING, hooks, settings.json and the exec wrappers until harness/v2 merges.
 Pass-128c: `.planning/handoff/NEXT-SESSION-KICKOFF.md`. Build: `node .planning/exec/prepush-gates.mjs` (#47).
 
-## BUDGET (get_usage 09-22 11:22 PDT)
-5-hour 21%, weekly 5%, Fable 3%; weekly resets Sat 09-26 01:00 PDT. GLM capped (z.ai 1308) until 14:44:53 PDT.
-ChatGPT 8%: ship gates only. DeepSeek about $11.9. His CLI login expired (claude -p on his account fails).
+## BUDGET: `python scripts/harness/status.py tier` (recorded 11:51 PDT)
+5-hour 27%, weekly 7% on-pace, Fable 3%; weekly resets Sat 09-26 01:00 PDT. GLM 429 until 14:44 PDT. DeepSeek
+$11.29. ChatGPT 8%: ship gates only. His CLI login expired. This week, `status.py claude` needs
+`--window-start 2026-09-22T17:13:00Z` (the one-time reset); the default assumes 7 days.
 
 ## HARNESS V2 (his popups 09-22: all 16 approved; "Fresh chat now, Sonnet executes")
-DONE: E1 `8339676`, E2 `1005427`, briefs `5bff7b8`, live-evolve merge `9cc32cc`, fold 1-3 `6e96bea` `bba678d`
-`96c1c36` (boot tests ALL PASS; B pre-flight re-run 11:22: equal). NEXT: run B (Sonnet);
-amend D (glmcc dead before 21:44 UTC; E2 is_error fix #59); D, C, E, F; the map on GLM after 14:44; DeepSeek +
-Gemini on the combined diff. Not pushed, not merged: his call. LESSONS next free: #60.
-PENDING popup: go past 200K here, or hand off (rule 9; 204K = boot 104K + fold).
+DONE: E1, E2, briefs, merge `9cc32cc`, fold `6e96bea` `bba678d` `96c1c36`, run B: E3 `e8f6865`, E4 `567e719`,
+B2 `08df317` (1 review fix: 5h reset text), digest `6bafa41`. NOW: run D (Sonnet; brief D amended: E2.7
+is_error #59, W4-live DEAD until 21:44 UTC, I run it after). NEXT: C (fix "fourteen"), E (DryRun-only tests, P8),
+F (GLM-smoke measures after 14:44, P2 expectations); the map on GLM; DeepSeek + Gemini on the combined diff.
+Context: his popup "K1 Continue here (Recommended)". Not pushed, not merged. LESSONS next free: #60.
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
 Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. A push needs his words.
 
-## PASS-128c: BUILT, NOT SHIPPED (`preview/p128-jank` `ece8ab4`, p124-cuts)
-Frames >33 ms 45 -> 2, p95 33.4 -> 16.8 ms; CLS 0.019/0.007. Item 5 FAIL (49 > 45) = the fade he ruled for.
-Astra SHOW AS IS; dspro NOT YET; Fable ONE MORE FIX (door edge). PENDING popup: door edge (rec: 127c) + phone.
+## PASS-128c: BUILT, NOT SHIPPED (`preview/p128-jank` `ece8ab4`)
+Frames >33 ms 45 -> 2; Item 5 FAIL (49 > 45) = the fade he ruled for. Astra SHOW; dspro NOT YET; Fable ONE MORE
+FIX (door edge). PENDING popup: door edge (rec: 127c) + phone preview.
 
-## NEXT (after 128c)
-128d options · 127c doors build · exits items incl. NEUTON.AI row at 390.
-
-## PARKED BY HIM / QUEUE
-niniaazzopardi flow · HELD /full-time · /about voice · Ordani "practice management" vs "CRM" · open facts ·
-Guardicore LCP p75 · K4/K5 race · dead CSS · DeepSeek key rotation ("Not yet") · Harness v2 global proposals.
+## QUEUE
+128d options · 127c doors · exits incl. NEUTON.AI at 390 · niniaazzopardi flow · HELD /full-time · /about voice ·
+Ordani wording · open facts · Guardicore LCP p75 · K4/K5 race · dead CSS · DeepSeek key rotation · global proposals.
 
 ## Traps
-explicit pathspecs (#23) · no non-ASCII from executors (#46) · pre-flight brief values (#52) · a GLM think runs
-9 min silently (#53) · a `cd` moves the primary dir: use `git -C` · heredocs mangle backslashes: Write tool ·
-copy-lint bans more than brand.json (#58) · preview_start reads MAIN's launch.json.
+explicit pathspecs (#23) · no non-ASCII from executors (#46) · pre-flight brief values (#52, #54) · GLM thinks 9 min
+silently (#53) · use `git -C` · Write tool, not heredocs · copy-lint bans more than brand.json (#58).
