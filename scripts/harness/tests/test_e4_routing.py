@@ -27,6 +27,20 @@ ARC_SHAPE_MARK = b"**Arc shape (MODEL_ROUTING"
 BEFORE_HASH = "811dd038fcedb17dd3871f834674be1e5fc5975413c0640e66d8c3e055d30a3d"
 AFTER_HASH = "0a8477bf9a61558782477e64c030fc47fcb31d19dbee71e605e1b44ab31b2303"
 
+SPLICE_COMMIT = "567e719"  # Harness v2 E4: the commit that spliced AI_ROUTING.md and CLAUDE.md
+
+
+def _have_commit():
+    r = subprocess.run(["git", "cat-file", "-e", SPLICE_COMMIT + "^{commit}"], cwd=REPO,
+                       capture_output=True)
+    return r.returncode == 0
+
+
+def _show(path):
+    """The bytes of path as committed at SPLICE_COMMIT (a raw blob: no line-ending conversion)."""
+    return subprocess.run(["git", "show", SPLICE_COMMIT + ":" + path], cwd=REPO,
+                          capture_output=True).stdout
+
 
 def main():
     failures = 0
@@ -51,34 +65,43 @@ def main():
         failures += 1
         print("FAIL E4 case 2: has_new_id={0} has_old_id={1}".format(has_new_id, has_old_id))
 
+    # Cases 3 and 4 verify the splice as committed at SPLICE_COMMIT, not the working files:
+    # the flanks they hash are meant to be edited after the splice (a new ruling in History,
+    # any CLAUDE.md change), and pinning the live files would fail run_all at the first such
+    # edit (2026-09-22 cross-review, DeepSeek finding B2-3). A history without the commit
+    # (a squash merge) prints a NOTE; the splice was verified when it landed.
+    if not _have_commit():
+        print("NOTE E4 cases 3-4: splice commit {0} is not in this history; they were verified "
+              "when it landed".format(SPLICE_COMMIT))
+        ai_routing_bytes = None
+    else:
+        ai_routing_bytes = _show(".claude/AI_ROUTING.md")
+
     # 3: the History section onward is untouched, and the file ends with the entry file's bytes.
-    with open(AI_ROUTING, "rb") as f:
-        ai_routing_bytes = f.read()
-    i = ai_routing_bytes.find(HISTORY_MARK)
-    segment = ai_routing_bytes[i:i + HISTORY_LEN] if i >= 0 else b""
-    seg_hash = hashlib.sha256(segment).hexdigest()
-    with open(os.path.join(REPO, ".planning", "harness", "e4", "ai-routing-entry.md"), "rb") as f:
-        entry_bytes = f.read()
-    ends_with_entry = ai_routing_bytes.endswith(entry_bytes)
-    if i < 0 or seg_hash != HISTORY_HASH or not ends_with_entry:
-        failures += 1
-        print("FAIL E4 case 3: found={0} hash={1} ends_with_entry={2}".format(
-            i >= 0, seg_hash, ends_with_entry))
+    if ai_routing_bytes is not None:
+        i = ai_routing_bytes.find(HISTORY_MARK)
+        segment = ai_routing_bytes[i:i + HISTORY_LEN] if i >= 0 else b""
+        seg_hash = hashlib.sha256(segment).hexdigest()
+        entry_bytes = _show(".planning/harness/e4/ai-routing-entry.md")
+        ends_with_entry = ai_routing_bytes.endswith(entry_bytes)
+        if i < 0 or seg_hash != HISTORY_HASH or not ends_with_entry:
+            failures += 1
+            print("FAIL E4 case 3: found={0} hash={1} ends_with_entry={2}".format(
+                i >= 0, seg_hash, ends_with_entry))
 
     # 4: CLAUDE.md's untouched flanks match, and the middle equals the replacement file.
-    with open(CLAUDE_MD, "rb") as f:
-        claude_bytes = f.read()
-    s = claude_bytes.find(MODEL_ROUTING_MARK)
-    e = claude_bytes.find(ARC_SHAPE_MARK)
-    before_hash = hashlib.sha256(claude_bytes[:s]).hexdigest() if s >= 0 else ""
-    after_hash = hashlib.sha256(claude_bytes[e:]).hexdigest() if e >= 0 else ""
-    with open(os.path.join(REPO, ".planning", "harness", "e4", "claude-md-routing.md"), "rb") as f:
-        replacement_bytes = f.read()
-    middle_ok = (s >= 0 and e >= 0 and claude_bytes[s:e] == replacement_bytes)
-    if before_hash != BEFORE_HASH or after_hash != AFTER_HASH or not middle_ok:
-        failures += 1
-        print("FAIL E4 case 4: before_hash={0} after_hash={1} middle_ok={2}".format(
-            before_hash, after_hash, middle_ok))
+    if ai_routing_bytes is not None:
+        claude_bytes = _show(".claude/CLAUDE.md")
+        s = claude_bytes.find(MODEL_ROUTING_MARK)
+        e = claude_bytes.find(ARC_SHAPE_MARK)
+        before_hash = hashlib.sha256(claude_bytes[:s]).hexdigest() if s >= 0 else ""
+        after_hash = hashlib.sha256(claude_bytes[e:]).hexdigest() if e >= 0 else ""
+        replacement_bytes = _show(".planning/harness/e4/claude-md-routing.md")
+        middle_ok = (s >= 0 and e >= 0 and claude_bytes[s:e] == replacement_bytes)
+        if before_hash != BEFORE_HASH or after_hash != AFTER_HASH or not middle_ok:
+            failures += 1
+            print("FAIL E4 case 4: before_hash={0} after_hash={1} middle_ok={2}".format(
+                before_hash, after_hash, middle_ok))
 
     # 5: the routing pointer file exists and names the single source.
     pointer_ok = False

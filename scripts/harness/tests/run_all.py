@@ -23,13 +23,15 @@ def main():
     failed = 0
     for path in files:
         rel = os.path.relpath(path, REPO).replace(os.sep, "/")
+        # A live file may wait on GLM (live_w4_xreview allows its child 1800 s).
+        limit = 2000 if os.path.basename(path).startswith("live_") else 600
         try:
             r = subprocess.run([sys.executable, path], cwd=REPO, env=env,
                                capture_output=True, text=True, encoding="utf-8",
-                               errors="replace", timeout=600)
+                               errors="replace", timeout=limit)
         except subprocess.TimeoutExpired:
             failed += 1
-            print("FAIL {0}: timeout after 600 s".format(rel))
+            print("FAIL {0}: timeout after {1} s".format(rel, limit))
             continue
         lines = [ln for ln in (r.stdout or "").splitlines() if ln.strip()]
         line = lines[-1] if lines else "<no output>"

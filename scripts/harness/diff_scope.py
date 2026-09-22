@@ -60,6 +60,12 @@ def changed_paths(base):
                            text=True, encoding="utf-8", errors="replace")
     others = subprocess.run(["git", "ls-files", "--others", "--exclude-standard"],
                              capture_output=True, text=True, encoding="utf-8", errors="replace")
+    # Fail closed: a git error (a bad --base, not a repo) printed "PASS ... 0 changed paths"
+    # before the 2026-09-22 cross-review (DeepSeek, finding B1-4).
+    for name, r in (("git diff --name-only " + base, diff), ("git ls-files --others", others)):
+        if r.returncode != 0:
+            raise RuntimeError("{0} failed (exit {1}): {2}".format(
+                name, r.returncode, (r.stderr or "").strip()[:200]))
     lines = (diff.stdout or "").splitlines() + (others.stdout or "").splitlines()
     paths = set()
     for ln in lines:
@@ -81,8 +87,12 @@ def main():
         return 1
     brief_path = argv[0]
 
-    entries = allowed_entries(brief_path)
-    changed = changed_paths(base)
+    try:
+        entries = allowed_entries(brief_path)
+        changed = changed_paths(base)
+    except (OSError, RuntimeError) as e:
+        print("FAIL diff scope: {0}".format(e))
+        return 1
     outside = [p for p in changed if not any(matches(p, e) for e in entries)]
 
     if outside:
