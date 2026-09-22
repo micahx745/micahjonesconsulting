@@ -29,11 +29,15 @@ This run may create or modify only these:
 - `.planning/harness/digests/run-d.json` (new)
 
 ## Pre-flight
-Main session, before dispatch (actual values):
+Main session, 2026-09-22 11:20 PDT, after fold 1 (`6e96bea`) brought in the landing branch's two wrappers (actual
+values):
 - `python scripts/cross-review/run_cross_review.py --help` -> lists `--mode {plan,diff,manuscript}`, `--input`,
-  `--out`, `--legs` (default `gemini,codex,glm,deepseek`), `--glm-timeout`, `--deepseek-timeout`, `--codex-timeout`
+  `--out`, `--glm-timeout`, `--deepseek-timeout`, `--codex-timeout`, and `--legs LEGS` described as
+  `comma-separated subset of: gemini,codex,glm,deepseek` (the help prints no default; the default is
+  `scripts/cross-review/run_cross_review.py:665`, `default="gemini,codex,glm,deepseek"`)
 - `ls scripts/cross-review/test/` -> `deepseek_leg_test.py`
-- `wc -l scripts/codex-exec.ps1 scripts/gemini-exec.ps1 scripts/deepseek-exec.ps1` -> `62`, `200`, `214` lines
+- `wc -l scripts/codex-exec.ps1 scripts/gemini-exec.ps1 scripts/deepseek-exec.ps1` -> `64`, `241`, `214` lines
+  (fold 1 gave codex-exec `-Search` and gemini-exec `-Image`)
 Executor pre-flight, printed before any edit:
 - `python scripts/cross-review/test/deepseek_leg_test.py` -> record its last line (it must be the same after W4).
 - `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/gemini-exec.ps1 -Models` -> record which of
@@ -48,7 +52,8 @@ State dir in every wrapper: `$env:HARNESS_STATE_DIR`, else `Join-Path $env:LOCAL
 
 ### W1 `scripts/codex-exec.ps1`: one Codex run at a time
 1. Add `[switch]$DryRun`.
-2. Before any Codex invocation, in every mode (`-Brief`, `-Task`, `-Review`), after the existing argument checks,
+2. Before any Codex invocation, in every mode (`-Brief`, `-Task`, `-Review`), `-Search` runs included (fold 1's
+   `-Search` is a switch on `-Review` and `-Task`, not a mode of its own), after the existing argument checks,
    acquire `<state>\codex.lock`: create it with `[IO.File]::Open(<path>, 'CreateNew', 'Write', 'None')` and write
    `{"pid": <PID>, "started_utc": "...", "mode": "...", "dir": "..."}` (UTF-8 without BOM).
 3. If it already exists: read it. When `Get-Process -Id <pid> -ErrorAction SilentlyContinue` finds the process,
@@ -60,6 +65,11 @@ State dir in every wrapper: `$env:HARNESS_STATE_DIR`, else `Join-Path $env:LOCAL
    Codex is never started.
 
 ### W2 `scripts/gemini-exec.ps1`: fallback chain
+Read the current file first: fold 1 (`6e96bea`) replaced it with the landing branch's version, which adds `-Image`.
+The main session read that version on 2026-09-22: it sends one `Invoke-WebRequest` to one model (lines 186-194) and
+walks no chain, so W2 is built in full. If the file you read does walk models, keep its walk, add only what is
+missing (`MODEL-USED`, the MAX_TOKENS rule, exit 4) and record that in `deviations`. Every model in the chain gets
+the same body, `-Image` parts included, and the rule that skips the 2 MB body guard when `-Image` is given stays.
 1. Add `[string]$Chain = "gemini-3-flash-preview,gemini-3.1-flash-lite,gemini-2.5-flash-lite"` and
    `[switch]$NoFallback`. Drop from the default `$Chain` any id the pre-flight `-Models` listing did not show, and
    say so in the digest's `deviations`.
