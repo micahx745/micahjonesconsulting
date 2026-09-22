@@ -1256,7 +1256,10 @@ emergent-language.json` (4,464 posts), not `reference/`, which was regenerated o
   popup's "settled in under 0.1 s" was a measuring error: the probe read the door headings' own style, which never
   moves (their panel animates). The site's standard heading reveal takes 0.55 s (`.cw-reveal`), starting when 18% of
   the heading is on screen. The true comparison was about 1.1 s for the letter cascade against 0.55 s. Put to the
-  operator by popup the same night; his answer: pending.
+  operator by popup the same night with that comparison: picked "Retire it stands (Recommended)", whose description
+  read "The four headings fade in like every other heading, in 0.55 s instead of the 1.1 s letter cascade. GSAP leaves
+  the site, and the letter spans stop adding to the dropped frames. Sol is building this version now." The ruling
+  stands on the corrected number. NOT approved to ship.
 
 **Gate:** Grep the WHOLE TREE for the NEVER-phrases before every commit touching copy —
 not just the diff.

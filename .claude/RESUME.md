@@ -14,7 +14,7 @@ Brief amended before dispatch (#52: items 2 and 6 failed on their own values; no
 p124-cuts rebased onto design/live-evolve; Sol runs `.claude/briefs/pass-128c-jank-build-verify.md` (-Dir p124-cuts),
 log `.planning/exec/sol-128c.log` (p106-live). NO commit in p124-cuts while Sol runs. Then brief section 7 (eyes,
 card1-126, Astra), ASK before a Vercel preview, ship only on his push words.
-OPEN with him: the SplitReveal popup said "under 0.1 s"; the true figure is 0.55 s (#52). Re-confirm pending.
+SplitReveal "under 0.1 s" was wrong (true 0.55 s, #52); he re-confirmed "Retire it stands (Recommended)".
 
 ## NEXT
 1. 128d options by popup from `pass-128/page-ab/` (full page to #ordani; 2 switches left below the Audit).
