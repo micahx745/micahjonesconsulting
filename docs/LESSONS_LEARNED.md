@@ -2709,3 +2709,63 @@ Code's own JSON, which reported `subtype: success` around the API error text.
 **Gate:** in the next chat's run D (kickoff item 2): `is_error` is true whenever the exit code is not 0 or `glm_429` is
 true, with a 4th offline check in `test_e2_launcher.py`. RULE: a receipt judges failure from the exit code and the 429
 flag, not only from the child's own report.
+
+## #60 — Three briefs carried values the main session typed instead of running (2026-09-22)
+
+**What happened:** a recurrence of #52 and #54, three times in one arc, all in briefs the previous chat wrote. Brief B
+listed `run_all`'s expected lines in an order that contradicted its own "in file-name order" (`test_b2` sorts first;
+the executor followed the rule). Brief C said "fourteen checks" over a 15-item list ending `PASS B3 15/15` (the main
+session caught it re-running the pre-flight before dispatch, `128f063`). Brief D said `--help` lists the `--legs`
+default; the help prints none (the default is in the code, `run_cross_review.py:665`). No run went wrong: an executor
+or the pre-dispatch re-run caught each one.
+
+**Gate:** the main session re-ran every pre-flight line before each dispatch of runs C to F and wrote run_all's
+expectation as a rule, not a list. Recurrence graduates the gate: brief G (`.claude/briefs/harness-v2-g-gates.md`)
+gives `brief_lint.py` a count check (a test's stated number of checks, its numbered list and its `PASS X N/N` line
+must agree) and a PreToolUse hook that lints the brief a dispatch names and denies on FAIL. RULE: a count, an order or
+a quoted output in a brief comes from a command the main session ran, never from memory.
+
+## #61 — A launcher lost its exit code to a helper's stdout, latent until the helper existed (2026-09-22)
+
+**What happened:** once run B added `scripts/harness/status.py`, the GLM launcher's 429 branch began calling it, and
+the two uncaptured `& python status.py glm-429` lines leaked stdout into `Invoke-Recorded`'s value. The call site is
+`exit (Invoke-Recorded ...)`, so a capped GLM run exited 0 beside a correct receipt: #55's trap through a native call.
+The W4 glmcc cross-review leg reads a non-zero exit as a failed leg, so a capped GLM reviewer would have counted as
+OK. Run D's new offline check (a fake `claude.cmd` first on PATH, dummy key) caught it; the executor stopped at its
+one-line scope, and the main session fixed lines 162-163 with `$null = & ...` (`28259fa`).
+
+**Gate:** `test_e2_launcher.py` case 4a (fake exit 1 with `[1308]` -> launcher exit 1, receipt `is_error` true) runs
+in `run_all`. RULE: in a PowerShell function whose value is an exit code, capture every native call
+(`$null = & ...`), and test the launcher's exit code, not only its receipt.
+
+## #62 — A dry-run test plan had two checks that could reach a live Fable call (2026-09-22)
+
+**What happened:** brief E's C4 tests passed `-DryRun` in checks 1 to 3 but not in checks 4 and 5 (a bad digest, an
+oversized image). A correct gate exits on those before its live branch; a gate that wrongly fell through would have
+made a real Fable call, which the operator had ruled out for the arc, and his CLI login can be refreshed at any time.
+The main session amended the brief before dispatch (`553e315`).
+
+**Gate:** brief E binds every check to `-DryRun` and forbids a live gate run by the executor; `fable-gate.ps1`'s
+header says the same. RULE: a test of a wrapper that can spend a gated or paid model passes the dry-run flag on every
+call, including the calls expected to fail early.
+
+## #63 — A flag missing from `claude --help` still existed (2026-09-22)
+
+**What happened:** run E built `fable-gate.ps1` to pass only the flags `claude --help` lists (the brief's words), and
+dropped `--max-turns 1`: Claude Code 2.1.266 accepts it but does not list it, and the GLM launcher had passed it all
+along. Without it a Fable gate could run several turns. `claude --bogus --version` prints the version, so a
+`--version` probe proves nothing; the probe that settled it pointed the API at a closed port: `claude -p
+--definitely-not-a-flag 1 "x"` fails with `error: unknown option`, `claude -p --max-turns 1 "x"` does not. Fixed at
+review (`494cf5e`).
+
+**Gate:** the gate always passes `--max-turns 1`, and its dry run prints the whole command. RULE: test a CLI flag by
+parse, never by `--help`: `ANTHROPIC_BASE_URL=http://127.0.0.1:9 ANTHROPIC_API_KEY=dummy claude -p <flag> "x"`.
+
+## #64 — Two main-session slips: a 2,528-byte RESUME and a `cd` out of the worktree (2026-09-22)
+
+**What happened:** the main session committed `.claude/RESUME.md` at 2,528 bytes (`9f91d7a`, cap 2,500; trimmed in
+`19d7ffe`). Later a probe ran `cd "$TEMP"` in a Bash call, which moved the session's primary directory out of the
+worktree, the trap RESUME itself lists; it went straight back and wrote nothing outside.
+
+**Gate:** brief G adds a PostToolUse hook that blocks with the byte count when a write leaves `.claude/RESUME.md` over
+2,500 bytes. RULE: a probe that needs another directory runs in a subshell, `( cd X && ... )`, or with absolute paths.
