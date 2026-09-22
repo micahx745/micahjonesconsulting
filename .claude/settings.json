@@ -14,6 +14,17 @@
             "statusMessage": "check.py gate on playbook chapter"
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/resume-size.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
+            "timeout": 10,
+            "statusMessage": "RESUME size (Harness v2 G3)"
+          }
+        ]
       }
     ],
     "PreToolUse": [
@@ -69,6 +80,17 @@
             "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/image-open-ask.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
             "timeout": 10,
             "statusMessage": "image-open ask (Harness v2 B4)"
+          }
+        ]
+      },
+      {
+        "matcher": "Agent|Task|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/dispatch-lint.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
+            "timeout": 30,
+            "statusMessage": "dispatch lint (Harness v2 G2)"
           }
         ]
       }
