@@ -1,0 +1,11 @@
+VERDICT: NOT YET (item 5 still hard-fails: PREVIEW median droppedFrames 49 against the brief’s <=45; the Audit-fade explanation is plausible but does not produce a passing item 5 run).
+
+1. Item 5 remains the blocker. The only JSONL item 5 evidence is executor PREVIEW rounds 51/49/49, median 49. Later trace/attribution numbers are consistent with failure: fixed-build trace 51, P arm 50/49/50. The colour-switch part is strongly supported: PREVIEW worldSwitchCount 0, worldBgValues ["#9E3C25"], framesOver33ms median 2 vs LIVE 45, transition events 37 vs 868. So the colour-switch long-frame/stutter component is gone, but “scroll stutter is gone” is not supported by the gate.
+
+2. The Audit-fade diagnosis is plausible but not release-validating. The A/B P 50/49/50 vs N 36/36/37 and the old no-entrance source arm at 35 support that the heading entrance materially affects drops. But this is a local injected-CSS diagnostic, not a full item 5 n=3 PREVIEW run of the actual ruled build. It would be falsified if a proper fade-disabled arm under item 5 conditions still lands near 49/50, or if the effect disappears when the time buckets/window are matched.
+
+3. The comparison is not clean enough to accept the diagnosis yet. The per-500ms “source of <=45” arm lists five buckets totaling 35, while the fixed build lists six buckets totaling 51; those totals are not directly comparable. Also the “Audit heading” is wired to #cw-offer-title, while word timing calls that element offer_h2_container and records audit_h3 as static true. If the real suspect is the audit h3, the A/B may have disabled the wrong heading.
+
+4. Item 9 is acceptable as a product disposition. The original failure was Chrome launch timing out inside the restricted executor, not a measured CLS failure. Run outside the sandbox, the exact command returned 390 largestWindow 0.0193 and 1440 0.00665, both <=0.05; the earlier sandbox-compatible run agrees.
+
+5. No other stop. Post-removal GSAP greps, rebuild/prepush/quarantine, served HTML/copy/split-char checks, wrap/card checks, and the 128d full-page diagnostics support the change.
