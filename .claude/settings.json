@@ -49,6 +49,28 @@
             "statusMessage": "budget gate (Harness v2 B2)"
           }
         ]
+      },
+      {
+        "matcher": "Bash|PowerShell|Edit|Write|MultiEdit|NotebookEdit|Read|Agent|Task|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/tier-burn-deny.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
+            "timeout": 10,
+            "statusMessage": "tier-burn deny (Harness v2 B3)"
+          }
+        ]
+      },
+      {
+        "matcher": "Read|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/image-open-ask.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
+            "timeout": 10,
+            "statusMessage": "image-open ask (Harness v2 B4)"
+          }
+        ]
       }
     ],
     "SessionStart": [
@@ -69,6 +91,18 @@
             "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/budget-gate.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
             "timeout": 10,
             "statusMessage": "budget line (Harness v2 B2)"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ \"$HARNESS_ROLE\" = \"executor\" ] && exit 0; f=\"${CLAUDE_PROJECT_DIR}/.claude/hooks/context-size-warn.py\"; [ -f \"$f\" ] || exit 0; python \"$f\"",
+            "timeout": 10,
+            "statusMessage": "context size (Harness v2 C2)"
           }
         ]
       }
