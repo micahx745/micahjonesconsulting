@@ -16,6 +16,7 @@
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/gemini-exec.ps1 -Smoke
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/gemini-exec.ps1 -Models
 #   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/gemini-exec.ps1 -PromptFile .planning/exec/prompt.md -Out .planning/exec/out.md
+#   ... -PromptFile x.md -Image screenshot.jpg,detail.png
 #   ... -PromptFile x.md -Model gemini-2.5-flash
 #
 # STATUS: VERIFIED 2026-09-21 by the main session (Pass-124 wrap), key from ~/.claude/.gemini-key.
@@ -49,11 +50,38 @@ param(
   [string]$Model = "gemini-2.5-flash", # confirm the default with -Models
   [string]$System = "",                # optional system instruction
   [int]$MaxTokens = 8000,              # budgets thinking + answer
-  [int]$TimeoutSec = 600
+  [int]$TimeoutSec = 600,
+  [string]$Image = ""                  # comma-separated jpg, jpeg, png or webp paths
 )
 
 $ErrorActionPreference = "Stop"
 $Base = "https://generativelanguage.googleapis.com/v1beta"
+
+$imageParts = @()
+if ($Image) {
+  foreach ($imagePathValue in $Image.Split(',')) {
+    $imagePath = $imagePathValue.Trim()
+    if (-not $imagePath -or -not (Test-Path -LiteralPath $imagePath -PathType Leaf)) {
+      Write-Error "No such image file: $imagePath"
+      exit 1
+    }
+
+    $extension = [System.IO.Path]::GetExtension($imagePath).ToLowerInvariant()
+    $mimeType = switch ($extension) {
+      ".jpg"  { "image/jpeg" }
+      ".jpeg" { "image/jpeg" }
+      ".png"  { "image/png" }
+      ".webp" { "image/webp" }
+      default {
+        Write-Error "Unsupported image type '$extension': $imagePath (use jpg, jpeg, png or webp)."
+        exit 1
+      }
+    }
+    $resolvedImagePath = (Resolve-Path -LiteralPath $imagePath).Path
+    $imageData = [System.Convert]::ToBase64String([System.IO.File]::ReadAllBytes($resolvedImagePath))
+    $imageParts += @{ inline_data = @{ mime_type = $mimeType; data = $imageData } }
+  }
+}
 
 # --- key resolution, never printed ------------------------------------------
 function Get-GeminiKey {
@@ -121,11 +149,22 @@ if ($Smoke) {
   exit 1
 }
 
-$bodyObject = @{
-  contents = @(
-    @{ role = "user"; parts = @( @{ text = $userText } ) }
-  )
-  generationConfig = @{ maxOutputTokens = $MaxTokens }
+if ($Image) {
+  $parts = @( @{ text = $userText } )
+  $parts += $imageParts
+  $bodyObject = @{
+    contents = @(
+      @{ role = "user"; parts = $parts }
+    )
+    generationConfig = @{ maxOutputTokens = $MaxTokens }
+  }
+} else {
+  $bodyObject = @{
+    contents = @(
+      @{ role = "user"; parts = @( @{ text = $userText } ) }
+    )
+    generationConfig = @{ maxOutputTokens = $MaxTokens }
+  }
 }
 if ($System) {
   $bodyObject["systemInstruction"] = @{ parts = @( @{ text = $System } ) }
@@ -133,7 +172,9 @@ if ($System) {
 $body = $bodyObject | ConvertTo-Json -Depth 8
 
 $bodyBytes = [System.Text.Encoding]::UTF8.GetBytes($body)
-if ($bodyBytes.Length -gt 2000000) {
+# Inline image data can legitimately take the request beyond the prompt-only
+# safety ceiling. The .NET prompt read above still prevents decorated strings.
+if (-not $Image -and $bodyBytes.Length -gt 2000000) {
   Write-Error "Refusing to send a $($bodyBytes.Length)-byte body from a $($userText.Length)-character prompt. Something decorated the string (see the Get-Content note above) or the prompt really is enormous. Not sending."
   exit 1
 }

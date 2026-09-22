@@ -30,7 +30,8 @@ param(
   [string]$Image = "",
   [string]$Dir = (Get-Location).Path,
   [string]$Effort = "",
-  [string]$Model = "gpt-6-astra"   # gpt-5.6-sol for drafting and research legs (MODEL_ROUTING §9c)
+  [string]$Model = "gpt-6-astra",  # gpt-5.6-sol for drafting and research legs (MODEL_ROUTING §9c)
+  [switch]$Search                  # live web search (codex's top-level --search; landing exemplar, 2026-09-21)
 )
 
 if (-not $Review -and $Brief -eq "" -and $Task -eq "") { Write-Error "Give -Brief <path> or -Task <path> to execute, or -Review -Prompt <path>."; exit 1 }
@@ -38,12 +39,13 @@ if ($Effort -eq "") { $Effort = if ($Review) { "ultra" } else { "xhigh" } }
 
 $imgArgs = @()
 if ($Image -ne "") { foreach ($i in $Image.Split(",")) { $imgArgs += @("-i", $i.Trim()) } }
+$searchArgs = @(); if ($Search) { $searchArgs = @("--search") }
 
 if ($Review) {
   if ($Prompt -eq "") { Write-Error "-Review needs -Prompt <file>."; exit 1 }
   $outArgs = @(); if ($Out -ne "") { $outArgs = @("-o", $Out) }
-  Write-Host "codex-exec: REVIEW on $Model @ $Effort, read-only, in $Dir" -ForegroundColor DarkYellow
-  Get-Content -Raw $Prompt | & codex exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox read-only -C $Dir @imgArgs @outArgs -
+  Write-Host "codex-exec: REVIEW on $Model @ $Effort, read-only, search=$Search, in $Dir" -ForegroundColor DarkYellow
+  Get-Content -Raw -Encoding UTF8 $Prompt | & codex @searchArgs exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox read-only -C $Dir @imgArgs @outArgs -
   exit $LASTEXITCODE
 }
 
@@ -52,7 +54,7 @@ if ($Task -ne "") {
   # Pass-123: the prompt file is the whole instruction. No commit wrapper (a worktree's git dir sits
   # outside the sandbox, LESSONS #18) and no RESUME rewrite (the main session owns that file).
   Write-Host "codex-exec: TASK $Task on $Model @ $Effort, workspace-write, in $Dir" -ForegroundColor DarkYellow
-  Get-Content -Raw -Encoding UTF8 $Task | & codex exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox workspace-write -C $Dir -
+  Get-Content -Raw -Encoding UTF8 $Task | & codex @searchArgs exec -m $Model -c "model_reasoning_effort=$Effort" --sandbox workspace-write -C $Dir -
   exit $LASTEXITCODE
 }
 
