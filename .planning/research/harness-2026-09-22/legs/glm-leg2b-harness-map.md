@@ -1,5 +1,11 @@
 # GLM leg 2b: the harness map (harness research 2026-09-22)
 
+Amended 2026-09-22 by the main session of `harness/v2` (LANDING PAGE 2's successor), before the run: this worktree
+runs the Harness v2 executor guard, which denies reads outside the worktree, the state dir and the temp dir, and
+denies WebFetch. So every source outside this repo is read from a staged copy under
+`C:/Users/micah/AppData/Local/harness/micahjonesconsulting/map-inputs/` (`MANIFEST.tsv` there maps each copy to its
+original path; cite the ORIGINAL path in every file:line), and `01-premise-checks.md` is not yours to write.
+
 You are an executor. Write only the outputs named below. Do not commit, push, or edit any other file. Work in the
 directory you were launched in (`claude-glm.ps1 -Dir`); every repo path below is relative to it, and "this repo" means
 that tree. It must contain the research inputs from `design/live-evolve` at `f8538ce` or later. Privacy: never open a `.jsonl` transcript, a
@@ -18,9 +24,11 @@ One table row per rule, hook, script or routing clause in:
   `.claude/briefs/README.md`, `.claude/STANDING_TECHNIQUES.md`, `docs/LESSONS_LEARNED.md` (the entries above),
   `docs/DESIGN_BAR.md` (rules R1-R15, one row each), `scripts/codex-exec.ps1`, `scripts/deepseek-exec.ps1`,
   `scripts/gemini-exec.ps1`, `scripts/claude-glm.ps1`, `scripts/cross-review/`, `.planning/exec/prepush-gates.mjs`;
-- the premium-web plugin, `C:/Users/micah/Code/premium-web-harness` (hooks and agents), READ-ONLY;
+- the premium-web plugin, `C:/Users/micah/Code/premium-web-harness` (hooks and agents), READ-ONLY: the copies under
+  `map-inputs/premium-web/`;
 - the global layer, READ-ONLY: `C:/Users/micah/.claude/CLAUDE.md`, `C:/Users/micah/.claude/MODEL_ROUTING.md`,
-  `C:/Users/micah/.claude/ULTRACODE_OPERATING_PATTERNS.md`, `C:/Users/micah/.claude/playbooks/*.md`.
+  `C:/Users/micah/.claude/ULTRACODE_OPERATING_PATTERNS.md`, `C:/Users/micah/.claude/playbooks/*.md`: the copies under
+  `map-inputs/global/`.
 Columns: id · file:line · the rule in 15 words or fewer · loaded every turn? (bytes, and tokens = bytes x the
 tokens-per-byte in `00-usage-audit.json` if it has one, else bytes / 3.6) · enforced by (a hook or gate, file:line) or
 PROSE ONLY · duplicates or contradicts (ids).
@@ -34,17 +42,15 @@ After the table:
 - (c) What the landing-exemplar worktree (`C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/landing-exemplar/`,
   READ-ONLY; its chat is live: its AI_ROUTING traps, the DeepSeek map-reduce synthesis chain, the quote and citation
   gates, the GLM digest builder) and Ordani (`C:/Users/micah/birthflowV2/birthflowV2/.claude/MODEL_TIERING.md`,
-  READ-ONLY) do better than this repo. Each item needs a file:line, and whether this repo could reuse it as is.
+  READ-ONLY) do better than this repo. Each item needs a file:line, and whether this repo could reuse it as is. Read
+  the landing and Ordani sources from `map-inputs/landing/` and `map-inputs/ordani/` (the landing copies are the
+  branch `design/landing-exemplar` as committed).
+- This repo now carries Harness v2 (runs A to G on branch `harness/v2`): map its hooks and scripts as they stand.
 
-## `01-premise-checks.md` (at most 6 KB)
-- P3: WebFetch https://code.claude.com/docs/en/memory and quote, with the URL, the sentence that says which CLAUDE.md
-  files load for a session whose cwd is a worktree nested inside the main checkout (`<main>/.claude/worktrees/<name>`).
-  Note that this chat started in the worktree, and its context listed only the global file, the worktree's CLAUDE.md,
-  AGENTS.md and `.claude/CLAUDE.md`, and MEMORY.md. If the page will not load, say so; do not guess.
-- P6: quote LESSONS #36 and #37 with file:line. Then one paragraph: the rule they set about who opens captures, why,
-  and what any "visual QA off Claude" proposal must keep.
-Each item: a verdict line, then the evidence as file:line or a command with its first output line.
+## `01-premise-checks.md`: not in this run
+P3 needs WebFetch, which the executor guard denies: the main session does it. P6 is settled (`f8538ce`). Do not open
+or write this file.
 
 ## Finish
 Delete `01-harness-map.rows.tmp`. Print at most 25 lines: the count of rows, of PROSE ONLY rules, and of
-contradictions, plus the P3 and P6 verdicts. Do not paste file contents into your reply.
+contradictions. Do not paste file contents into your reply.
