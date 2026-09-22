@@ -12,10 +12,10 @@ ChatGPT 8%: ship gates only. DeepSeek about $11.9. His CLI login expired (claude
 
 ## HARNESS V2 (his popups 09-22: all 16 approved; "Fresh chat now, Sonnet executes")
 DONE: E1 `8339676`, E2 `1005427`, briefs `5bff7b8`, live-evolve merge `9cc32cc`, fold 1-3 `6e96bea` `bba678d`
-`96c1c36` (boot run_all ALL PASS 2 files; brief B pre-flight re-run 11:22, all equal). NEXT: run B (Sonnet);
+`96c1c36` (boot tests ALL PASS; B pre-flight re-run 11:22: equal). NEXT: run B (Sonnet);
 amend D (glmcc dead before 21:44 UTC; E2 is_error fix #59); D, C, E, F; the map on GLM after 14:44; DeepSeek +
 Gemini on the combined diff. Not pushed, not merged: his call. LESSONS next free: #60.
-PENDING popup: continue past 200K here, or hand off (rule 9; chat at 204K after boot 104K + fold).
+PENDING popup: go past 200K here, or hand off (rule 9; 204K = boot 104K + fold).
 
 ## LIVE: main = e091a16, dpl_Bk18zCfBqPb2DjTrkozL2dBs7git, all three domains (Pass-126)
 Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. A push needs his words.
