@@ -1393,6 +1393,12 @@ They are now written so the banned string does not appear verbatim.
   word: G3's derived prices "$2,000 after the Unstick Session" and "$5,000 after the Audit". The tab's strings are the
   mock brief's G2 strings with the W2 fine print, ledger-checked by the main session the same day (each value restates
   AU1 or the live terms). NOT approved to ship: the build brief, the checkpoint reads and his push words come first.
+- **PASS-129a SHIPS WITH THE SNIPPET FIX - operator 2026-09-23 (one popup, after the copy checkpoint split: Fable
+  SHIP, Astra HOLD on the /packages meta description)**. Picked "P1 Fix, then push (Recommended)", whose description
+  read "The snippet's last sentence becomes "Each fee credits toward your next package." (151 characters, fits a
+  search result). Your sale-notification email gets the same correction. Then a build, the push, and both domains
+  checked live." So the /packages meta description ends "Each fee credits toward your next package." PUSH APPROVED
+  for Pass-129a by that pick (LESSONS #66 records the miss).
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 
@@ -2864,3 +2870,17 @@ child starts. `scripts/harness/tests/test_h_host_auth.py` (in `run_all`) fails a
 records only variable names (on `HEAD`'s launcher it caught all 7 names leaking). After the fix one real DeepSeek call
 succeeded (`PREFIX=44040`). RULE: before a Claude Code child talks to a third party, prove on 127.0.0.1 which
 credential it sends; never assume `ANTHROPIC_AUTH_TOKEN` wins.
+
+## #66 — A fact change was grepped by one phrasing and missed a paraphrase (2026-09-23)
+
+**What happened:** his W2 fact (a package fee credits toward the next package with no time limit; the 60 days limit
+only the engagement credit) went into Pass-129a as a comma fix on one sentence, "credits toward the next package or an
+engagement started within 60 days" (home, /packages, the kickoff email). The brief's pre-flight greps searched that
+phrasing only. The /packages meta description said the same wrong thing in other words ("Fees credit toward what you
+book next within 60 days"), and so did the owner's sale note ("credit-bridge expiry is purchase date + 60 days").
+Fable passed all eight items (its grep also used "credits toward"); Astra flagged the snippet, and the premise held.
+**Root cause:** a fact was searched as a string, not as a fact.
+**Gate:** `scripts/retired-phrases-gate.mjs` retires the three wrong forms ("next package or an engagement started",
+"book next within 60 days", "credit-bridge expiry"), proved to bite on the two live lines before the fix (2
+findings, then 0). Checklist for any fact change: grep the fact's nouns and numbers ("60 days", "credit") across
+app, components, content, lib and docs, and read every hit, not just the phrasing the ruling quoted.

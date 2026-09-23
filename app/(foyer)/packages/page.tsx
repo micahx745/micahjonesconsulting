@@ -28,7 +28,7 @@ import { PageFooter } from "@/components/color-worlds/PageFooter";
 export const metadata: Metadata = {
   title: "Packages: fixed prices, start this week",
   description:
-    "Three fixed-price packages for solo builders and small teams: $500, $2,500 and $7,500. No call required. Fees credit toward what you book next within 60 days.",
+    "Three fixed-price packages for solo builders and small teams: $500, $2,500 and $7,500. No call required. Each fee credits toward your next package.",
   alternates: { canonical: "https://www.micahjonesconsulting.com/packages" },
   openGraph: {
     title: "Packages: fixed prices, start this week",

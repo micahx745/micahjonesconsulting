@@ -92,7 +92,8 @@ export async function deliverPackageKickoff(
       "",
       "Kickoff email sent (intake + /call/kickoff link).",
       "Runbook: docs/PACKAGES-RUNBOOK.md — log the buyer, watch for the",
-      "intake reply, credit-bridge expiry is purchase date + 60 days.",
+      "intake reply. Credit: the next package any time; an engagement",
+      "only if it starts within 60 days of purchase.",
     ],
     `package-sale-note-${sessionId}`,
   );

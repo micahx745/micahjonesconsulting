@@ -37,8 +37,9 @@ verified). When a package email lands at micah@:
 
 ## Credit-bridge bookkeeping
 
-One line in the ledger per purchase: date, package, amount, credit
-expiry (+60 days). When they upgrade, apply as a discount on the next
+One line in the ledger per purchase: date, package, amount, and the
+engagement-credit expiry (+60 days; the credit toward the next package
+never expires, operator 2026-09-23, LESSONS #3 W2). When they upgrade, apply as a discount on the next
 invoice/checkout and mark consumed. Credits never stack past the
 largest single prior fee.
 

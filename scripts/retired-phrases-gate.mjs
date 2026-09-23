@@ -259,6 +259,12 @@ const PHRASES = [
   // Pass-123 (operator 2026-09-19, LESSONS #3 "RFP DAY-THREE FAQ CUT"): the RFP
   // engine scored nothing by day three.
   "scored for fit",
+  // Pass-129a (operator 2026-09-23, LESSONS #3 "THE LINES SHIP FIRST; THE 60 DAYS LIMIT
+  // ONLY THE ENGAGEMENT CREDIT", W2): a package fee credits toward the next package
+  // with no time limit; 60 days limit only the engagement credit. LESSONS #66.
+  "next package or an engagement started",
+  "book next within 60 days",
+  "credit-bridge expiry",
 ];
 
 // Money path for past $99 buyers (Stripe SKU + delivery/refund email);
