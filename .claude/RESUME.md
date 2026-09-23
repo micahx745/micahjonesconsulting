@@ -1,23 +1,26 @@
-# RESUME — micahjonesconsulting (2026-09-23 08:15 PDT: site-review rulings in; line-5 popup pending)
+# RESUME — micahjonesconsulting (2026-09-23 ~09:30 PDT: Pass-129 mocks building)
 
 ## READ FIRST
-Next SITE chat (p106-live): `.planning/handoff/NEXT-SESSION-KICKOFF.md`. LANDING chat: `landing-exemplar` RESUME.
-Harness follow-ups: `.planning/handoff/KICKOFF-AFTER-HARNESS-V2.md`. Harness v2 = `harness/v2` (74f197b), not pushed.
+This SITE chat (p106-live) runs the home purchase-links design arc: `.planning/handoff/KICKOFF-HOME-PURCHASE-GAMIFY.md`.
+LANDING chat: `landing-exemplar` RESUME. Harness: `.planning/handoff/KICKOFF-AFTER-HARNESS-V2.md` (harness/v2 74f197b).
 SECURITY (#65): asked 09-22 whether he signed out of the desktop app and claude.ai and back in: PENDING.
 
-## BUDGET (15:12Z 09-23): 5-hour 1%, weekly 24%, Fable 4%. GLM ok. DeepSeek $-0.01: HELD (top-up his call).
+## BUDGET (16:10Z 09-23): 5-hour 2%, weekly 24%, Fable 4%. GLM ok. DeepSeek $-0.01: DEAD (top-up his call).
 
 ## LIVE: main = e091a16 (Pass-126). Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. A push needs his words.
 
-## SITE REVIEW (`.planning/research/opus55-review-2026-09/`: REPORT, BREAKDOWN, TOOL-NAMES-CUT)
-Ruled 09-22 night (LESSONS #3): H1 kept; Lenis kept; contrast left; Packages into the nav; book not yet; hero photo
-is his. Tools named: Lovable, Claude Code, Replit. Lines 1A, 2A, 4A new, 3A kept ("THE FIVE LINES"). Line 5 grew
-into a DESIGN arc (09-23, his words in LESSONS #3): gamify the home purchase links, cut the 139-word Audit block.
-Kickoff: `.planning/handoff/KICKOFF-HOME-PURCHASE-GAMIFY.md` (fresh chat). Copy drafts: Opus 5.5, never Gemini.
+## PASS-129 (home purchase links, gamified; Audit block cut)
+Diagnosis verified on live www: #offer 152 words (box 139); 8 purchase paths; the two "packages" links go to /packages
+and /services#packages. RULED (main session): both go to /packages (the nav item's page). AU1 (09-11) includes a
+30-day follow-up call; home omits it, nothing false. Terms read two ways: home "...next package or an engagement
+started within 60 days" vs PackageBand's comma (60 days = engagement only). Asked him (popup).
+Scope: the #offer section only; the doors belong to Pass-127c (queued behind 128c).
+Mocks: `.planning/mocks/pass-129/MOCK-BRIEF.md`, G1 picker / G2 tab / G3 ladder, one Opus 5.5 subagent (background).
+Next: pre-screen SHEET.png, give him paths, popup for the pick; then the copy + build brief (fresh chat if >300K).
+Open popup: lines 1A/2A/4A + nav, ship first or with this arc.
 
 ## PASS-128c (`preview/p128-jank` `ece8ab4`, p124-cuts)
-Wi-Fi preview http://192.168.4.60:3126. Four reads in (`OPUS55-128C-READ.md`). Open: full/partial drop split, a
-GPU-on A/B, the 127c edge must-fix. Nav contrast CLOSED by his "leave it". Then his phone verdict, the edge question.
+Wi-Fi preview http://192.168.4.60:3126. Open: full/partial drop split, a GPU-on A/B, the 127c edge must-fix.
 
 ## QUEUE
 128d · 127c doors (+ edge) · exits NEUTON.AI 390 · /about voice · Ordani wording · open facts · Guardicore LCP ·
