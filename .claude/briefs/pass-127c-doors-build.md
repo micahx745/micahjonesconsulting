@@ -12,7 +12,8 @@ zero dead phone swipes. Reference mock (visual spec, not code to paste):
 `.planning/mocks/pass-127/doors-r2/mocks/6.html`; its GIFs `shots/6-390.gif`, `shots/6-1440.gif`.
 
 ## 2. Copy: EXACT strings, unchanged from live (no new words anywhere, no kickers, no labels)
-- Build door h2: `The demo took a weekend. The last 20% is eating your month.`
+- Build door h2: `The demo took a weekend in Lovable or Replit. The last 20% is eating your month.` (line 1A, LESSONS #3
+  "THE FIVE LINES, ROUND 1"; ships first in Pass-129a, 2026-09-23. The mock's shorter line is superseded.)
 - Build door body: `That last 20% is my daily work. Want me on your build? Three fixed prices start at $500.`
 - Build door link (to `/packages`): `See the three packages` + `<span aria-hidden>→</span>` (keep the live JSX arrow as is)
 - Sell door h2: `An agency is too broad. A hire is too early.`

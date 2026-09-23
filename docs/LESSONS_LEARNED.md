@@ -1371,6 +1371,19 @@ They are now written so the banned string does not appear verbatim.
   2026-09-23) gets cut down and stays enticing, and the home page's purchase links become interactive, inside the
   existing theme and its motion rules. Kickoff: `.planning/handoff/KICKOFF-HOME-PURCHASE-GAMIFY.md`. NOT approved to
   ship.
+- **THE LINES SHIP FIRST; THE 60 DAYS LIMIT ONLY THE ENGAGEMENT CREDIT - operator 2026-09-23 (one popup, the Pass-129
+  chat)**. SHIP ORDER: picked "S1 First, on their own (Recommended)", whose description read "A small copy pass ships
+  the three lines, the nav item and the packages-link fix now, ahead of the design. You still get a push popup before
+  anything goes live. The design arc builds on top of it later." TERMS (a fact, asked with no recommendation): picked
+  "W2 Engagement only", whose description read "A fee always credits toward the next package, with no time limit. The
+  60 days only limit the credit toward an engagement. /services reads this way today, because of its comma." FACT,
+  ledgered: a package fee credits toward the next package with no time limit; toward an engagement only if it starts
+  within 60 days. The home and /packages sentence ("credits toward the next package or an engagement started within
+  60 days") reads as a limit on both, so it takes the /services form, which is live and approved: "credits toward the
+  next package, or toward an engagement started within 60 days". NEVER: a 60-day limit on the package credit. The
+  packages-link fix (main session's ruling, same chat): both home "packages" links go to /packages, the page the new
+  nav item opens; /services#packages keeps its picker for readers already on /services. NOT approved to ship: the
+  pass goes to him by push popup.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 
