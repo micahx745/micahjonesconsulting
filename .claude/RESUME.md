@@ -11,9 +11,9 @@ SECURITY (#65): asked 09-22 whether he signed out of the desktop app and claude.
 
 ## SITE REVIEW (`.planning/research/opus55-review-2026-09/`: REPORT, BREAKDOWN, TOOL-NAMES-CUT)
 Ruled 09-22 night (LESSONS #3): H1 kept; Lenis kept; contrast left; Packages into the nav; book not yet; hero photo
-is his. Tools named: Lovable, Claude Code, Replit. Lines 1A, 2A, 4A new, 3A kept ("THE FIVE LINES"). Line 5, the
-home fine print: Opus redraft, popup PENDING. Then ONE build brief (nav + lines 1, 2, 4, 5), build, the three
-checkpoint reads, his push words. Copy drafts: Opus 5.5, never Gemini (his 09-22 rule).
+is his. Tools named: Lovable, Claude Code, Replit. Lines 1A, 2A, 4A new, 3A kept ("THE FIVE LINES"). Line 5 grew
+into a DESIGN arc (09-23, his words in LESSONS #3): gamify the home purchase links, cut the 139-word Audit block.
+Kickoff: `.planning/handoff/KICKOFF-HOME-PURCHASE-GAMIFY.md` (fresh chat). Copy drafts: Opus 5.5, never Gemini.
 
 ## PASS-128c (`preview/p128-jank` `ece8ab4`, p124-cuts)
 Wi-Fi preview http://192.168.4.60:3126. Four reads in (`OPUS55-128C-READ.md`). Open: full/partial drop split, a

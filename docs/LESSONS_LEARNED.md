@@ -1363,6 +1363,14 @@ They are now written so the banned string does not appear verbatim.
   the latest best chatgpt or opus 5.5 (prferred)". Opus 5.5 redrafts it; the AI_ROUTING drafting row changed the same
   night (memory `copy-drafts-opus-not-gemini`). NOT approved to ship: one build brief after line 5, then the
   checkpoint reads.
+- **THE HOME PURCHASE LINKS, GAMIFIED; THE AUDIT BLOCK CUT DOWN - operator 2026-09-23 (the line-5 fine-print
+  popup)**. Offered Opus 5.5's drafts 5A, 5B and 5C; he typed, verbatim: "I want you to really gamify the purchasable
+  links on the home page. ITs a good point for this fine print but in reality the audit package on the homepage
+  already had too many words - needs to be shaved down a bit but still be enticing for a person to want to purchase
+  and/orinvestigate more on our services". So line 5 folds into a design arc: the home Audit block (139 words live on
+  2026-09-23) gets cut down and stays enticing, and the home page's purchase links become interactive, inside the
+  existing theme and its motion rules. Kickoff: `.planning/handoff/KICKOFF-HOME-PURCHASE-GAMIFY.md`. NOT approved to
+  ship.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 
