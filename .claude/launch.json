@@ -32,6 +32,18 @@
         "3126"
       ],
       "port": 3126
+    },
+    {
+      "name": "mocks-129",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8129",
+        "--directory",
+        "C:/Users/micah/Code/micahjonesconsulting/.claude/worktrees/p106-live/.planning/mocks/pass-129"
+      ],
+      "port": 8129
     }
   ]
 }

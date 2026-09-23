@@ -1,0 +1,99 @@
+/* Pass-129 mocks: what the three #offer directions share.
+ *
+ * Colour: only the active world's pair (--cw-fg / --cw-bg, written by the
+ * WorldSwitcher port) and, for G2's slip, the live bone/espresso tokens. No hex
+ * literal, no gradient, no shadow, no opacity on resting text.
+ * Motion: user-triggered swaps are CSS, 200ms or less, transform / opacity /
+ * clip-path only; the one assembling number per section reuses the live
+ * keyframes (cw-wx-assemble). Reduced motion: the catch-all at the foot of this
+ * file gives the finished frame.
+ */
+
+/* The ring: a native radio restyled with appearance: none, so it draws in the
+ * world's text colour. It is still the real control (form, keyboard, AT). */
+[data-mode="cw"] .cw-o-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  display: grid;
+  place-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+[data-mode="cw"] .cw-o-radio::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: scale(0);
+  transition: transform 160ms cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+[data-mode="cw"] .cw-o-radio:checked::before {
+  transform: scale(1);
+}
+/* The live focus rule sets border-radius: 2px on every focused input; keep
+ * the ring round. */
+[data-mode="cw"] .cw-o-radio:focus-visible {
+  border-radius: 50%;
+}
+
+/* A clipped native radio (the live .cw-pick__opt input pattern): focusable,
+ * never display: none. */
+[data-mode="cw"] .cw-o-clip {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+[data-mode="cw"] .cw-o-pklink {
+  width: max-content;
+}
+
+/* A user-triggered swap: the new text settles in, opacity only, 160ms. */
+@keyframes cw-o-swap {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+[data-mode="cw"] .cw-o-swap {
+  animation: cw-o-swap 160ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+/* A written value: a left-to-right wipe, the pen crossing the line, 180ms. */
+@keyframes cw-o-write {
+  from {
+    clip-path: inset(-25% 100% -25% 0);
+  }
+  to {
+    clip-path: inset(-25% 0 -25% 0);
+  }
+}
+[data-mode="cw"] .cw-o-write {
+  animation: cw-o-write 180ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mode="cw"] #offer *,
+  [data-mode="cw"] #offer *::before,
+  [data-mode="cw"] #offer *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1384,6 +1384,15 @@ They are now written so the banned string does not appear verbatim.
   packages-link fix (main session's ruling, same chat): both home "packages" links go to /packages, the page the new
   nav item opens; /services#packages keeps its picker for readers already on /services. NOT approved to ship: the
   pass goes to him by push popup.
+- **THE HOME AUDIT BECOMES THE TAB (G2) - operator 2026-09-23 (one popup, the Pass-129 chat, after the clickable mocks
+  `.planning/mocks/pass-129/` and `shots/SHEET.png`; his eyes first, no jury yet)**. Picked "G2 The tab (Recommended)",
+  whose description read "The Audit becomes an itemized order on a paper slip. The rows print as you scroll, $2,500
+  lands as the total, and the buy button is the tear-off stub. The area picker is built in. 101 words, and on a phone
+  the first screen shows the total and the button." Passed on: "G1 Where is it stuck?" (a tap-to-answer question; read
+  like a form), "G3 The ladder" (all three prices as a scoreboard), "G2 + G1's question" (not built). NEVER, without his
+  word: G3's derived prices "$2,000 after the Unstick Session" and "$5,000 after the Audit". The tab's strings are the
+  mock brief's G2 strings with the W2 fine print, ledger-checked by the main session the same day (each value restates
+  AU1 or the live terms). NOT approved to ship: the build brief, the checkpoint reads and his push words come first.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 

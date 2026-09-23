@@ -1,0 +1,374 @@
+/* Pass-129 G2 "The tab": the Audit as an itemized bone slip on the terracotta
+ * ground. The slip scopes its own world (--cw-fg espresso, --cw-bg bone: the
+ * live bone pair), so the site's .cw-buy prints as the bone world's pill.
+ * The scroll prints the rows: JS writes each row's progress to --p (0..1)
+ * from its position against a line at 92% of the viewport; nothing runs on
+ * a timer except the total's one assembly (the live cw-wx-assemble). */
+
+[data-mode="cw"] .cw-g2__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "title" "tab" "link";
+  row-gap: 32px;
+}
+[data-mode="cw"] .cw-g2__title {
+  grid-area: title;
+}
+[data-mode="cw"] .cw-g2__grid > .cw-o-pklink {
+  grid-area: link;
+}
+
+/* ---- The slip ---- */
+[data-mode="cw"] .cw-g2__tab {
+  --pad-x: clamp(20px, 2.6vw, 40px);
+  --cw-fg: var(--color-cw-espresso);
+  --cw-bg: var(--color-cw-bone);
+  grid-area: tab;
+  justify-self: start;
+  width: 100%;
+  max-width: 600px;
+  min-width: 0;
+  padding: clamp(22px, 2.4vw, 34px) var(--pad-x) clamp(22px, 2.2vw, 30px);
+  background: var(--color-cw-bone);
+  color: var(--color-cw-espresso);
+  border: 1px solid color-mix(in srgb, var(--color-cw-espresso) 18%, transparent);
+  border-radius: 6px;
+}
+
+/* Header: the name, and the two Mono lines. */
+[data-mode="cw"] .cw-g2__head {
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid currentColor;
+}
+[data-mode="cw"] .cw-g2__head > * {
+  margin: 0;
+}
+[data-mode="cw"] .cw-g2__tag,
+[data-mode="cw"] .cw-g2__term {
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-g2__tag {
+  letter-spacing: 0.16em;
+}
+[data-mode="cw"] .cw-g2__tag span {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+[data-mode="cw"] .cw-g2__tag span::before {
+  content: "";
+  width: 38px;
+  height: 1.5px;
+  background: currentColor;
+}
+[data-mode="cw"] .cw-g2__name {
+  margin-top: 14px !important;
+  font-family: var(--font-cw-display);
+  font-size: clamp(32px, 3vw, 44px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-g2__term {
+  margin-top: 12px !important;
+  letter-spacing: 0.12em;
+}
+
+/* Rows: item in Hanken, a dotted leader, the value in Mono. */
+[data-mode="cw"] .cw-g2__rows {
+  margin: 0;
+  padding: 10px 0 14px;
+}
+[data-mode="cw"] .cw-g2__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  padding: 8px 0;
+}
+[data-mode="cw"] .cw-g2__item {
+  flex: none;
+  max-width: 72%;
+  margin: 0;
+  font-family: var(--font-cw-body);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+[data-mode="cw"] .cw-g2__val-wrap {
+  flex: 1 1 0;
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  margin: 0;
+}
+[data-mode="cw"] .cw-g2__lead {
+  position: relative;
+  top: -0.32em;
+  flex: 1 1 auto;
+  min-width: 14px;
+  height: 0;
+  margin: 0 10px;
+  border-bottom: 2px dotted color-mix(in srgb, currentColor 55%, transparent);
+  transform-origin: left center;
+}
+[data-mode="cw"] .cw-g2__val {
+  flex: none;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: right;
+}
+[data-mode="cw"] .cw-g2__val [data-area-val] {
+  display: inline-block;
+}
+
+/* The area row: its value, then three radio chips under it. */
+[data-mode="cw"] .cw-g2__chips-wrap {
+  flex: 1 0 100%;
+  margin: 12px 0 2px;
+}
+[data-mode="cw"] .cw-g2__chips {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+[data-mode="cw"] .cw-g2__chips-in {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+[data-mode="cw"] .cw-g2__chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 6px;
+  font-family: var(--font-cw-body);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+}
+[data-mode="cw"] .cw-g2__chip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-g2__chip:has(input:checked) {
+  background: var(--cw-fg);
+  color: var(--cw-bg);
+}
+[data-mode="cw"] .cw-g2__chip:hover:not(:has(input:checked)) {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+[data-mode="cw"] .cw-g2__chip:has(input:focus-visible) {
+  outline: 2px solid var(--cw-fg);
+  outline-offset: 3px;
+}
+
+/* The sum: a rule, Total and the figure, then the one reassurance line. */
+[data-mode="cw"] .cw-g2__sum {
+  padding-top: 14px;
+  border-top: 2px solid currentColor;
+}
+[data-mode="cw"] .cw-g2__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+[data-mode="cw"] .cw-g2__total > p {
+  margin: 0;
+}
+[data-mode="cw"] .cw-g2__total-item {
+  font-family: var(--font-cw-display);
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-g2__total-fig {
+  line-height: 1;
+}
+[data-mode="cw"] .cw-g2__fig {
+  display: inline-block;
+  font-family: var(--font-cw-display);
+  font-size: clamp(56px, 5.4vw, 80px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-g2__keep {
+  margin: 8px 0 0;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+/* The perforation, then the stub: the buy button and the fine print. */
+[data-mode="cw"] .cw-g2__stub {
+  margin: 22px calc(-1 * var(--pad-x)) 0;
+  padding: 22px var(--pad-x) 0;
+  border-top: 2px dashed color-mix(in srgb, currentColor 50%, transparent);
+}
+[data-mode="cw"] .cw-g2__stub .cw-buy {
+  width: 100%;
+  justify-content: center;
+}
+[data-mode="cw"] .cw-g2__fine {
+  margin: 14px 0 0;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---- THE MOMENT: the scroll prints the rows. The print line is the print
+ * head: a row's ink shows only above it, so each row prints top to bottom
+ * exactly as it passes (JS: --p = share of the row above the line, and it
+ * never goes back). Armed only by JS, only when the tab is still below the
+ * line at load, never under reduced motion; without it every row is
+ * printed. The header and the stub are pre-printed: the name and the buy
+ * button never wait. ---- */
+[data-mode="cw"] .cw-g2__tab.is-armed .cw-g2__row,
+[data-mode="cw"] .cw-g2__tab.is-armed .cw-g2__keep,
+[data-mode="cw"] .cw-g2__tab.is-armed .cw-g2__total-item {
+  clip-path: inset(-6px -14px calc((1 - var(--p, 1)) * 100%) -14px);
+}
+/* The total waits unprinted, then assembles once its row is through the
+ * head: weight 200 to 800 behind a clip rising off the baseline (the /work
+ * figures' keyframes). */
+[data-mode="cw"] .cw-g2__tab.is-armed .cw-g2__fig:not(.is-assembling):not(.is-assembled) {
+  clip-path: inset(100% -10% -25% -10%);
+}
+[data-mode="cw"] .cw-g2__fig.is-assembling {
+  animation: cw-wx-assemble 0.8s cubic-bezier(0.2, 0.7, 0.1, 1) both; /* motion-ok: the section's one number assembly, the live /work figure keyframes (LESSONS #3 PASS-122 RULES ON TRIAL) */
+}
+
+@media (max-width: 759px) {
+  /* Receipt-dense on a phone, so the stub's button makes the first screen. */
+  [data-mode="cw"] .cw-g2__grid {
+    row-gap: 24px;
+  }
+  [data-mode="cw"] .cw-g2__name {
+    margin-top: 12px !important;
+    font-size: 30px;
+  }
+  [data-mode="cw"] .cw-g2__term {
+    margin-top: 10px !important;
+  }
+  [data-mode="cw"] .cw-g2__rows {
+    padding: 6px 0 10px;
+  }
+  [data-mode="cw"] .cw-g2__row {
+    padding: 4px 0;
+  }
+  [data-mode="cw"] .cw-g2__fig {
+    font-size: 50px;
+  }
+  [data-mode="cw"] .cw-g2__keep {
+    margin-top: 4px;
+  }
+  [data-mode="cw"] .cw-g2__stub {
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+  [data-mode="cw"] .cw-g2__chips-wrap {
+    margin: 10px 0 2px;
+  }
+  [data-mode="cw"] .cw-g2__item {
+    font-size: 15px;
+  }
+  [data-mode="cw"] .cw-g2__val {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+  [data-mode="cw"] .cw-g2__lead {
+    margin: 0 8px;
+  }
+  [data-mode="cw"] .cw-g2__chip {
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1100px) {
+  [data-mode="cw"] .cw-g2__grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "title tab"
+      "link tab";
+    column-gap: clamp(56px, 6vw, 120px);
+    row-gap: 32px;
+  }
+  /* The live offer grid's grammar: the title and its link centred on the
+   * box; the slip keeps a receipt's width and meets the right margin. */
+  [data-mode="cw"] .cw-g2__grid {
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-areas:
+      ". tab"
+      "title tab"
+      "link tab"
+      ". tab";
+    row-gap: 0;
+  }
+  [data-mode="cw"] .cw-g2__grid > .cw-o-pklink {
+    margin-top: 40px;
+  }
+  /* Sized so the whole slip sits inside a 1440x900 first screen. */
+  [data-mode="cw"] .cw-g2__tab {
+    justify-self: end;
+    max-width: 620px;
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+  [data-mode="cw"] .cw-g2__name {
+    font-size: 40px;
+  }
+  [data-mode="cw"] .cw-g2__head {
+    padding-bottom: 14px;
+  }
+  [data-mode="cw"] .cw-g2__rows {
+    padding: 8px 0 12px;
+  }
+  [data-mode="cw"] .cw-g2__row {
+    padding: 5px 0;
+  }
+  [data-mode="cw"] .cw-g2__chips-wrap {
+    margin-top: 10px;
+  }
+  [data-mode="cw"] .cw-g2__sum {
+    padding-top: 12px;
+  }
+  [data-mode="cw"] .cw-g2__fig {
+    font-size: 72px;
+  }
+  [data-mode="cw"] .cw-g2__stub {
+    margin-top: 18px;
+    padding-top: 18px;
+  }
+  [data-mode="cw"] .cw-g2__fine {
+    margin-top: 12px;
+  }
+}

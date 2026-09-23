@@ -1,0 +1,343 @@
+/* Pass-129 G3 "The ladder": the three packages as a scoreboard, the live
+ * four-exits idiom (a Mono kicker over a bone rule, columns split by
+ * hairlines, no cards). Picking a rung thickens its top rule (the site's
+ * hover grammar: the rule thickens) and prints the fee's credit under the
+ * NEXT rung. The Audit's figure is the section's one assembling number.
+ *
+ * Structure: three layers share the board's grid through subgrid (rungs =
+ * the radio group, buys, credits), so the DOM and tab order stay group, then
+ * buttons, then text, while the eye reads columns (1100+) or rows (below). */
+
+[data-mode="cw"] .cw-g3__title {
+  max-width: 21ch;
+}
+[data-mode="cw"] .cw-g3__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 24px;
+  margin-top: clamp(32px, 3vw, 44px);
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid currentColor;
+}
+[data-mode="cw"] .cw-g3__head > p {
+  margin: 0;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ---- Board: rows below 1100px ---- */
+[data-mode="cw"] .cw-g3__board {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: repeat(9, auto);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+}
+[data-mode="cw"] .cw-g3__rungs,
+[data-mode="cw"] .cw-g3__buys,
+[data-mode="cw"] .cw-g3__credits {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+/* The later layers cover the whole board: only their own controls take
+ * the pointer. */
+[data-mode="cw"] .cw-g3__buys,
+[data-mode="cw"] .cw-g3__credits {
+  pointer-events: none;
+}
+[data-mode="cw"] .cw-g3__buys .cw-buy {
+  pointer-events: auto;
+}
+[data-mode="cw"] .cw-g3 [data-col] {
+  grid-column: 1;
+  min-width: 0;
+}
+[data-mode="cw"] .cw-g3__rung[data-col="1"] { grid-row: 1; }
+[data-mode="cw"] .cw-g3__buy[data-col="1"] { grid-row: 2; }
+[data-mode="cw"] .cw-g3__credit[data-col="1"] { grid-row: 3; }
+[data-mode="cw"] .cw-g3__rung[data-col="2"] { grid-row: 4; }
+[data-mode="cw"] .cw-g3__buy[data-col="2"] { grid-row: 5; }
+[data-mode="cw"] .cw-g3__credit[data-col="2"] { grid-row: 6; }
+[data-mode="cw"] .cw-g3__rung[data-col="3"] { grid-row: 7; }
+[data-mode="cw"] .cw-g3__buy[data-col="3"] { grid-row: 8; }
+[data-mode="cw"] .cw-g3__credit[data-col="3"] { grid-row: 9; }
+
+/* A rung: ring, figure, name (right, the exits' company slot), term. */
+[data-mode="cw"] .cw-g3__rung {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px auto minmax(0, 1fr);
+  grid-template-areas:
+    "ring fig name"
+    ". term term";
+  column-gap: 14px;
+  align-items: end;
+  padding: 22px 0 12px;
+  cursor: pointer;
+}
+[data-mode="cw"] .cw-g3__rung[data-col="2"],
+[data-mode="cw"] .cw-g3__rung[data-col="3"] {
+  border-top: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+}
+[data-mode="cw"] .cw-g3__rung .cw-o-radio {
+  grid-area: ring;
+  align-self: center;
+}
+[data-mode="cw"] .cw-g3__fig {
+  grid-area: fig;
+  font-family: var(--font-cw-display);
+  font-size: clamp(44px, 12.4vw, 60px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+[data-mode="cw"] .cw-g3__name {
+  grid-area: name;
+  justify-self: end;
+  padding-bottom: 4px;
+  font-family: var(--font-cw-display);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  text-align: right;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-g3__term {
+  grid-area: term;
+  margin-top: 12px;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+/* The rung you are on: its top rule thickens, drawn across in 200ms. */
+[data-mode="cw"] .cw-g3__rung::before {
+  content: "";
+  position: absolute;
+  top: -2.5px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 200ms cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+[data-mode="cw"] .cw-g3__rung:has(input:checked)::before {
+  transform: scaleX(1);
+}
+[data-mode="cw"] .cw-g3__rung:hover .cw-o-radio {
+  border-width: 3px;
+}
+[data-mode="cw"] .cw-g3__rung .cw-o-radio:focus-visible {
+  outline: none;
+}
+[data-mode="cw"] .cw-g3__rung:has(.cw-o-radio:focus-visible) {
+  outline: 2px solid var(--cw-fg);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+[data-mode="cw"] .cw-g3__buy {
+  padding: 4px 0 18px;
+}
+[data-mode="cw"] .cw-g3__buy .cw-buy {
+  max-width: 100%;
+  padding: 14px 22px;
+  font-size: 16px;
+}
+
+/* The credit: printed under the next rung. */
+[data-mode="cw"] .cw-g3__credit {
+  --cw-print-from: translateY(-10px);
+}
+[data-mode="cw"] .cw-g3__credit:not(:empty) {
+  padding: 0 0 20px;
+}
+[data-mode="cw"] .cw-g3__ck {
+  margin: 0;
+  font-family: var(--font-cw-mono);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+[data-mode="cw"] .cw-g3__net {
+  margin: 8px 0 0;
+  font-family: var(--font-cw-body);
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+[data-mode="cw"] .cw-g3__net-fig {
+  font-family: var(--font-cw-display);
+  font-size: clamp(30px, 2.8vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+[data-mode="cw"] .cw-g3__net--line {
+  max-width: 26ch;
+  margin: 0;
+  line-height: 1.4;
+}
+@keyframes cw-g3-print {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: var(--cw-print-from);
+  }
+  to {
+    clip-path: inset(-20% -10% -20% -10%);
+    transform: none;
+  }
+}
+[data-mode="cw"] .cw-g3__credit.is-printing > * {
+  animation: cw-g3-print 200ms cubic-bezier(0.2, 0.7, 0.1, 1) both;
+}
+
+/* The Audit's figure: armed at weight 200 when it is below the fold at load,
+ * then assembles once (the live /work keyframes). */
+[data-mode="cw"] .cw-g3__fig.is-armed {
+  font-variation-settings: "wght" 200;
+}
+[data-mode="cw"] .cw-g3__fig.is-assembling {
+  animation: cw-wx-assemble 0.8s cubic-bezier(0.2, 0.7, 0.1, 1) both; /* motion-ok: the section's one number assembly, the live /work figure keyframes (LESSONS #3 PASS-122 RULES ON TRIAL) */
+}
+
+/* Under the board: the picked package's fit, the rules, the link. */
+[data-mode="cw"] .cw-g3__foot {
+  margin-top: 26px;
+}
+[data-mode="cw"] .cw-g3__fit {
+  max-width: 46ch;
+  margin: 0;
+  font-family: var(--font-cw-body);
+  font-size: clamp(19px, 1.5vw, 22px);
+  line-height: 1.45;
+}
+[data-mode="cw"] .cw-g3__small {
+  margin-top: 12px;
+}
+[data-mode="cw"] .cw-g3__fine {
+  max-width: 64ch;
+  margin: 0;
+  font-family: var(--font-cw-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+[data-mode="cw"] .cw-g3__small > .cw-o-pklink {
+  margin-top: 18px;
+}
+
+/* ---- Board: three columns from 1100px ---- */
+@media (min-width: 1100px) {
+  [data-mode="cw"] .cw-g3__board {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+  }
+  [data-mode="cw"] .cw-g3__rungs,
+  [data-mode="cw"] .cw-g3__buys,
+  [data-mode="cw"] .cw-g3__credits {
+    grid-template-rows: none;
+  }
+  [data-mode="cw"] .cw-g3__rungs {
+    grid-row: 1;
+  }
+  [data-mode="cw"] .cw-g3__buys {
+    grid-row: 2;
+  }
+  [data-mode="cw"] .cw-g3__credits {
+    grid-row: 3;
+  }
+  [data-mode="cw"] .cw-g3 [data-col] {
+    grid-row: auto;
+    padding-left: clamp(20px, 2.4vw, 40px);
+    padding-right: clamp(20px, 2.4vw, 40px);
+  }
+  [data-mode="cw"] .cw-g3 [data-col="1"] {
+    grid-column: 1;
+    padding-left: 0;
+  }
+  [data-mode="cw"] .cw-g3 [data-col="2"] {
+    grid-column: 2;
+  }
+  [data-mode="cw"] .cw-g3 [data-col="3"] {
+    grid-column: 3;
+  }
+  [data-mode="cw"] .cw-g3 [data-col="2"],
+  [data-mode="cw"] .cw-g3 [data-col="3"] {
+    border-left: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  }
+  [data-mode="cw"] .cw-g3__rung[data-col="2"],
+  [data-mode="cw"] .cw-g3__rung[data-col="3"] {
+    border-top: 0;
+  }
+  [data-mode="cw"] .cw-g3__rung {
+    grid-template-columns: 24px minmax(0, 1fr);
+    grid-template-areas:
+      "ring name"
+      "fig fig"
+      "term term";
+    align-items: center;
+    padding-top: 24px;
+    padding-bottom: 14px;
+  }
+  [data-mode="cw"] .cw-g3__name {
+    justify-self: start;
+    padding: 0;
+    font-size: clamp(18px, 1.6vw, 24px);
+    text-align: left;
+  }
+  [data-mode="cw"] .cw-g3__fig {
+    margin-top: 14px;
+    font-size: clamp(64px, 6.6vw, 104px);
+  }
+  [data-mode="cw"] .cw-g3__term {
+    margin-top: 14px;
+  }
+  [data-mode="cw"] .cw-g3__buy {
+    padding-top: 8px;
+    padding-bottom: 22px;
+  }
+  [data-mode="cw"] .cw-g3__credit {
+    --cw-print-from: translateX(-14px);
+    min-height: 94px;
+    padding-top: 2px;
+    padding-bottom: 20px;
+  }
+  /* The foot keeps the board's columns: the fit under the first two, the
+   * rules and the link under the third. */
+  [data-mode="cw"] .cw-g3__foot {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 24px;
+  }
+  [data-mode="cw"] .cw-g3__fit {
+    grid-column: 1 / 3;
+    padding-right: clamp(20px, 2.4vw, 40px);
+  }
+  [data-mode="cw"] .cw-g3__small {
+    grid-column: 3;
+    margin-top: 0;
+    padding-left: clamp(20px, 2.4vw, 40px);
+  }
+}
