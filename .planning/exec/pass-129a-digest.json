@@ -1,0 +1,26 @@
+{
+  "pass": "129a",
+  "brief": ".claude/briefs/pass-129a-ruled-lines.md",
+  "verdict": "PASS with one environment FAIL: diff_scope (see item V13)",
+  "items": [
+    { "claim": "E1 build-door h2 now reads 'The demo took a weekend in Lovable or Replit. The last 20% is eating your month.'", "evidence": "app/(foyer)/page.tsx:142", "confidence": "high" },
+    { "claim": "E2 metadata.description is the ruled 4A string; openGraph and twitter descriptions unchanged", "evidence": "app/(foyer)/page.tsx:81", "confidence": "high" },
+    { "claim": "E3 home fine= prop carries the comma form 'credits toward the next package, or toward an engagement started within 60 days.'", "evidence": "app/(foyer)/page.tsx:247", "confidence": "high" },
+    { "claim": "E4 the offer link href is /packages, label unchanged", "evidence": "app/(foyer)/page.tsx:251", "confidence": "high" },
+    { "claim": "E5 /packages intro names Lovable, Claude Code, or Replit; following sentences unchanged", "evidence": "app/(foyer)/packages/page.tsx:119", "confidence": "high" },
+    { "claim": "E6 /packages rules fine print carries the same comma form as E3", "evidence": "app/(foyer)/packages/page.tsx:213", "confidence": "high" },
+    { "claim": "E7 kickoff email lines 61-62 are the two ruled strings; no other line touched, non-ASCII byte-identical", "evidence": "lib/package-delivery.ts:61", "confidence": "high" },
+    { "claim": "E8 Packages nav item inserted directly after Services; order Services, Packages, Work, About, Contact", "evidence": "components/color-worlds/Nav.tsx:44", "confidence": "high" },
+    { "claim": "V1 pnpm build exit 0; copy-lint, render-gate, work-entry-gate, results-repeat-gate all pass", "evidence": "$ pnpm build -> EXIT=0", "confidence": "high" },
+    { "claim": "V2 grep block: 'in Lovable or Replit. The last 20%'=1, 'services#packages'=0, 'package or an engagement started'=0 in all three files", "evidence": "$ grep -c ... -> 1; 0; app/(foyer)/page.tsx:0, app/(foyer)/packages/page.tsx:0, lib/package-delivery.ts:0", "confidence": "high" },
+    { "claim": "V3 '/' visible text contains 'The demo took a weekend in Lovable or Replit.' (count 1)", "evidence": "$ python .planning/qa/pass-129a/checks.py -> PASS | 1 / visible ... got: 1", "confidence": "high" },
+    { "claim": "V4 '/' raw head has the ruled meta description prefix (count 1)", "evidence": "$ python .planning/qa/pass-129a/checks.py -> PASS | 2 / raw meta description prefix -> got: 1", "confidence": "high" },
+    { "claim": "V5 '/' stripped HTML: href=/services#packages = 0, href=/packages = 4 (nav, menu, door, offer)", "evidence": "$ python .planning/qa/pass-129a/checks.py -> PASS | 3a got: 0; 3b got: 4", "confidence": "high" },
+    { "claim": "V6 '/' and /packages visible text both contain the comma-form credit line (1 each)", "evidence": "$ python .planning/qa/pass-129a/checks.py -> PASS | 4a got: 1; 4b got: 1", "confidence": "high" },
+    { "claim": "V7 /packages visible text contains 'out of Lovable, Claude Code, or Replit and stalled' (1)", "evidence": "$ python .planning/qa/pass-129a/checks.py -> PASS | 5 /packages intro tools -> got: 1", "confidence": "high" },
+    { "claim": "V8 first nav labels in order: Services, Packages, Work, About, Contact", "evidence": "$ python .planning/qa/pass-129a/checks.py -> PASS | 6 / nav labels -> got: 'Services, Packages, Work, About, Contact'", "confidence": "high" },
+    { "claim": "V9 no horizontal overflow at 390 on / or /packages (scrollWidth 390 <= innerWidth 390, both true)", "evidence": "$ node .planning/qa/pass-129a/capture.mjs -> overflow / @390: ... -> true; overflow /packages @390: ... -> true", "confidence": "high" },
+    { "claim": "V10 captures written: home-door-390/1440, home-nav-1440, home-menu-390, packages-intro-390, plus labelled SHEET.png 1440x1328 (<=2000 wide)", "evidence": ".planning/qa/pass-129a/SHEET.png:1", "confidence": "high" },
+    { "claim": "V13 diff_scope FAILS: 2143 outside paths are pre-existing/concurrent untracked files, none from this run. ~2123 predate the session (prior-pass debris under .planning/exec, .planning/drafts, .planning/qa/pass-12x, .planning/research); 20 under .planning/mocks/pass-129/ were written 08:39-08:40 by the concurrent Pass-129 design-arc session. This run's footprint is only the 4 Files-listed sources + .planning/qa/pass-129a/ + this digest (git diff --name-only HEAD: exactly the 4 sources). Raw first line: 'FAIL diff scope: outside the Files list: .planning/drafts/blog-01/dspro.log, ...'", "evidence": "$ python scripts/harness/diff_scope.py .claude/briefs/pass-129a-ruled-lines.md -> FAIL diff scope: outside the Files list: .planning/drafts/blog-01/dspro.log, ... (2143 paths)", "confidence": "high" }
+  ]
+}

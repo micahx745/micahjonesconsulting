@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     absolute: "Micah Jones | Strategy and software, shipped by one person",
   },
   description:
-    "Strategy and software from one operator in Oakland. Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work.",
+    "AI product stalled on sign-in, deploys, or sales? I get it launched. Four exits behind my work, $5B+ combined. $20M+ in revenue behind my work.",
   alternates: { canonical: "https://www.micahjonesconsulting.com" },
   openGraph: {
     title: "Micah Jones | Strategy and software, shipped by one person",
@@ -139,7 +139,8 @@ export default function ColorWorldsHome() {
             which appeared five times on the page. */}
         <div className="cw-door cw-door--build cw-reveal">
           <h2 className="cw-door__title">
-            The demo took a weekend. The last 20% is eating your month.
+            The demo took a weekend in Lovable or Replit. The last 20% is eating
+            your month.
           </h2>
           <p className="cw-door__body">
             That last 20% is my daily work. Want me on your build? Three fixed
@@ -243,14 +244,11 @@ export default function ColorWorldsHome() {
                   className="cw-buy"
                 />
               }
-              fine="The rules, in plain terms: every package fee credits toward the next package or an engagement started within 60 days. Full refund any time before kickoff. None after, because by then the work has started."
+              fine="The rules, in plain terms: every package fee credits toward the next package, or toward an engagement started within 60 days. Full refund any time before kickoff. None after, because by then the work has started."
               as="h3"
             />
           </div>
-          <a
-            href="/services#packages"
-            className="cw-mlink cw-offer__packages-link"
-          >
+          <a href="/packages" className="cw-mlink cw-offer__packages-link">
             See all three packages <span aria-hidden>→</span>
           </a>
         </div>

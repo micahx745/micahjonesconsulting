@@ -115,10 +115,10 @@ export default function PackagesPage() {
           Three fixed prices. Start this week.
         </h1>
         <p className="cw-services__intro">
-          For solo builders and small teams who got most of a product out of AI
-          tools and stalled on the last stretch. Pick one, buy it, and the work
-          starts within the week. No scoping call, no proposal, no quote to wait
-          for.
+          For solo builders and small teams who got most of a product out of
+          Lovable, Claude Code, or Replit and stalled on the last stretch. Pick
+          one, buy it, and the work starts within the week. No scoping call, no
+          proposal, no quote to wait for.
         </p>
 
         {/* Pass-106 (audit section): the Audit stands alone now, above
@@ -210,8 +210,8 @@ export default function PackagesPage() {
 
           <p className="cw-pkgs__fine">
             The rules, in plain terms: every package fee credits toward the next
-            package or an engagement started within 60 days. Full refund any
-            time before kickoff. None after, because by then the work has
+            package, or toward an engagement started within 60 days. Full refund
+            any time before kickoff. None after, because by then the work has
             started.
           </p>
         </section>

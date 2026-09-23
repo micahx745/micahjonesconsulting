@@ -41,6 +41,7 @@ import { useEffect, useRef, useState } from "react";
 // Pass-112 (operator 2026-09-11): the book is off the site until it ships.
 const NAV_LINKS = [
   { href: "/services", label: "Services" },
+  { href: "/packages", label: "Packages" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
