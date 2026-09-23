@@ -2,7 +2,9 @@
 
 Fresh chat in `p106-live` (Opus 5.5). Boot per `.claude/RESUME.md`; `get_usage` first. The previous chat passed 250K.
 
-## 1. Land Pass-129a first (GLM ran it in this worktree; the diff may still be uncommitted)
+## 1. Pass-129a: COMMITTED `8bac6a0` in the previous chat (reviewed, build 0). Check RESUME for whether it was
+pushed; if not, finish its push per the RESUME line. GLM is capped (his words 09-23): reroute mechanical legs to Sol
+or a Sonnet subagent. The steps below are kept as the record of what was checked.
 Brief `.claude/briefs/pass-129a-ruled-lines.md` (lines 1A/2A/4A, Packages 2nd in the nav, both home packages links to
 /packages, the W2 terms comma on home, /packages and the kickoff email in `lib/package-delivery.ts`).
 - Read the digest `.planning/exec/pass-129a-digest.json` (`python scripts/harness/digest_check.py` on it), then
