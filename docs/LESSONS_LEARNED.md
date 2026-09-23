@@ -1349,6 +1349,20 @@ They are now written so the banned string does not appear verbatim.
   65, Lovable 63, Replit 15; his reason is Replit's angry customers, not the count. The lines naming them (the home
   second beat, the /packages intro, the /services line, the meta description) go to him by popup before any build.
   NOT approved to ship.
+- **THE FIVE LINES, ROUND 1 - operator 2026-09-22 night (two popups; drafts: the review's lines with his three tool
+  names, and Gemini's `.planning/drafts/opus55-lines/gemini.md`; DeepSeek dead, balance $-0.01)**. LINE 1 (home, the
+  heading under the hero): picked "1A Lovable or Replit (Recommended)": "The demo took a weekend in Lovable or Replit.
+  The last 20% is eating your month." LINE 2 (/packages intro, first sentence): picked "2A All three names
+  (Recommended)": "For solo builders and small teams who got most of a product out of Lovable, Claude Code, or Replit
+  and stalled on the last stretch." LINE 3 (/services AI-engineering card): picked "3A Keep as is (Recommended)":
+  "Your AI works in the notebook. Production is a different stack. I run that stack." stays, as does the RFP-engine
+  study's line. LINE 4 (home meta description): picked "4A Problem first (Recommended)": "AI product stalled on
+  sign-in, deploys, or sales? I get it launched. Four exits behind my work, $5B+ combined. $20M+ in revenue behind my
+  work." (143 characters; Gemini's draft with "behind my work" put back by the main session's ledger check, because
+  "4 exits" read as his own exits). LINE 5 (home fine print): he typed, verbatim: "stop using gemeini for drafts. use
+  the latest best chatgpt or opus 5.5 (prferred)". Opus 5.5 redrafts it; the AI_ROUTING drafting row changed the same
+  night (memory `copy-drafts-opus-not-gemini`). NOT approved to ship: one build brief after line 5, then the
+  checkpoint reads.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 

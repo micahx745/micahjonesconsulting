@@ -29,7 +29,7 @@ below it is unchanged.
 |---|---|---|---|
 | Rulings, briefs, diff review, the LESSONS #3 ledger check, ship decisions, commits, the books | the main session: Opus 5.5 | Fable, for a phase-changing ruling only | any non-Claude model; any executor |
 | Reading, summarising, sweeps, classifying, premise checks | DeepSeek: `deepseek-flash` for volume, `deepseek-v4-pro` for anything judged | Gemini; GLM when the read needs the repo | a Claude subagent |
-| Drafting copy alternatives | TWO families in parallel: `deepseek-v4-pro` and Sol (Gemini as a third when useful) | | Claude drafting |
+| Drafting copy alternatives | Opus 5.5, preferred (the main session or an Opus subagent); the latest, best ChatGPT model as the alternative. Operator 2026-09-22, verbatim: "stop using gemeini for drafts. use the latest best chatgpt or opus 5.5 (prferred)" | | Gemini |
 | Mechanical execution: builds, captures, measuring, fix rounds, gate runs | GLM 5.3 in a worktree (`claude-glm.ps1 -Batch`, pointer brief, executor guard, receipt, digest); Opus 5.5 reviews the diff | Sol (`codex-exec.ps1 -Task`) when GLM is capped; a Sonnet subagent only when the leg needs Chrome or this session's context | Opus or Fable running the loop |
 | Judgment-bearing execution: interaction or motion logic, anything a brief cannot spell out | an Opus 5.5 subagent (`model: "opus"`) working in the worktree | | GLM, DeepSeek, Gemini |
 | Writing copy with non-ASCII characters into source | the main session | | any executor (LESSONS #46) |
