@@ -10,7 +10,7 @@ claude or chatgpt"): mechanical legs go to Sol (`codex-exec.ps1 -Task`) or a Son
 
 ## LIVE: main = e091a16 (Pass-126). Revert: promote `dpl_2mGqgwPQ1BwZCHpoi4wek2dupiwH`. A push needs his words.
 
-## PASS-129a COMMITTED `8bac6a0` + snippet fix; PUSH APPROVED 2026-09-23, his popup pick verbatim: "P1 Fix, then push (Recommended)"
+## PASS-129a COMMITTED `8bac6a0` + snippet fix; PUSH APPROVED 2026-09-23, his popup pick "P1 Fix, then push (Recommended)" and his typed words 2026-09-23: "approve push"
 Lines 1A/2A/4A, Packages 2nd in the nav, both home packages links to /packages, the W2 terms comma (home, /packages,
 kickoff email). Diff E1-E8 exact; build 0; rendered checks pass. Copy checkpoint running: Fable (Agent) + Astra
 (`.planning/reviews/pass-129a-astra.md`); DeepSeek dead. Next: his push popup; CARD 1 (push, newest prod deploy,
