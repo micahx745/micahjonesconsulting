@@ -41,7 +41,12 @@ numbers, record with `status.py claude ... --window-start 2026-09-22T17:13:00Z`,
   against the queue in `BREAKDOWN.md` there (premises checked; four findings dropped as false). He has the two lists
   in chat. Round 1 ruled 09-22 night (LESSONS #3 "THE OPUS 5.5 SITE REVIEW, ROUND 1"): H1 kept; tool names picked
   by a corpus cut (TODO: count tool names in `C:/Users/micah/Code/reddit-research/`, then each rewrite by popup);
-  Lenis kept; contrast left as is, which also CLOSES item 2.1(c), the 128c nav-contrast check.
+  Lenis kept; contrast left as is, which also CLOSES item 2.1(c), the 128c nav-contrast check. Round 2 (LESSONS #3
+  "ROUND 2"): Packages into the nav, second item; the book not yet; the home Audit fine print shortened, exact
+  wording to him by popup first; the hero photo is his own (a ledgered fact). STILL TO ASK once the corpus cut lands:
+  the /services "notebook" line and the home meta description (both carry the tool names); named clients [C5] is
+  his to raise. BUILD after the wording popups: one brief for the nav item, the fine print and the tool-name lines;
+  a copy-and-design checkpoint (Fable, Astra, deepseek-v4-pro) before any push.
 - Asked, unanswered: the LESSONS #65 sign-out.
 
 ## 4. Traps

@@ -1333,6 +1333,15 @@ They are now written so the banned string does not appear verbatim.
   the review's copper claim compared two background colours, and that Opus 5.5 read the nav at about 4.1:1 on
   terracotta from screenshots, not yet measured.) This also closes the Pass-128c nav-contrast check. NOT approved to
   ship anything.
+- **THE OPUS 5.5 SITE REVIEW, ROUND 2 - operator 2026-09-22 night (the second popup of four)**. NAV: picked "N0 Add
+  Packages (Recommended)", whose description read "A fifth nav item, second in line. On phones it sits inside MENU,
+  so nothing gets crowded." (Order: Services, Packages, Work, About, Contact.) BOOK: picked "B0 Not yet
+  (Recommended)", whose description read "Your 09-11 ruling stands, and the book stays off the site." FINE PRINT:
+  picked "F0 Shorten it on home (Recommended)", whose description read "Same terms, fewer words, and a link to the
+  full text. The exact wording comes back to you by popup." (/packages keeps the full text.) HERO PHOTO: picked "P0
+  It's my own photo", whose description read "It's a real photo of me. The finding closes." FACT, ledgered:
+  `/hero-context.jpg` on the home page is the operator's own photo (operator 2026-09-22). NOT approved to ship: the
+  fine-print wording and the tool-name lines go to him by popup before any build.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 

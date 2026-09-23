@@ -5,6 +5,7 @@ Next SITE chat (p106-live): `.planning/handoff/NEXT-SESSION-KICKOFF.md`. LANDING
 Harness follow-ups: `.planning/handoff/KICKOFF-AFTER-HARNESS-V2.md`. Harness v2 = `harness/v2` (74f197b), not pushed.
 REVIEW BACK (09-22 20:39): `.planning/research/opus55-review-2026-09/` REPORT + BREAKDOWN (premises checked:
 4 false). Round 1 ruled (LESSONS #3): H1 kept; tool names by corpus cut (TODO); Lenis kept; contrast left.
+Round 2: Packages into the nav; book not yet; home fine print shortened (wording by popup); hero photo is his.
 SECURITY (#65): asked 09-22 18:05 PDT if he signed out of the desktop app and claude.ai and back in: PENDING.
 
 ## BUDGET (01:09Z 09-23): 5-hour 12%, weekly 15% on-pace, Fable 3%. GLM ok. DeepSeek $7.78.
