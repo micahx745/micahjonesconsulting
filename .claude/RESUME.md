@@ -3,7 +3,8 @@
 ## READ FIRST
 Next SITE chat (p106-live): `.planning/handoff/NEXT-SESSION-KICKOFF.md`. LANDING chat: `landing-exemplar` RESUME.
 Harness follow-ups: `.planning/handoff/KICKOFF-AFTER-HARNESS-V2.md`. Harness v2 = `harness/v2` (74f197b), not pushed.
-REVIEW: his site-wide wording + design review runs in the claude.ai web chat (prompt given in chat 09-22).
+REVIEW BACK (09-22 20:39): `.planning/research/opus55-review-2026-09/` REPORT + BREAKDOWN (premises checked:
+4 false; his calls listed). Next: his picks by popup, in a fresh chat.
 SECURITY (#65): asked 09-22 18:05 PDT if he signed out of the desktop app and claude.ai and back in: PENDING.
 
 ## BUDGET (01:09Z 09-23): 5-hour 12%, weekly 15% on-pace, Fable 3%. GLM ok. DeepSeek $7.78.
