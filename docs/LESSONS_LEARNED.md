@@ -1322,6 +1322,17 @@ Also applies to COMMENTS, not just rendered copy. Four banned strings were sitti
 code comments as historical narration; they render nowhere, but they are exactly the
 vector this lesson exists to stop — stale prose is how a corrected claim comes back.
 They are now written so the banned string does not appear verbatim.
+- **THE OPUS 5.5 SITE REVIEW, ROUND 1 - operator 2026-09-22 night (one popup of four, after the claude.ai review came
+  back; `.planning/research/opus55-review-2026-09/` REPORT + BREAKDOWN)**. H1: picked "H0 Keep the H1 (Recommended)",
+  whose description read "Keep 'It works. It just does not sell.' Our buyer posts back it about 9 to 1. The review's
+  sources were articles about shipping to production, not posts by buyers. The build stall stays as the second
+  beat." TOOL NAMES: picked "T0 Corpus picks them (Recommended)", whose description read "I count which tools your
+  buyers name most in the 5,456 posts. You then get two or three names and each rewritten line to approve by
+  popup." LENIS: picked "L2 Keep Lenis", whose description read "It stays as ruled. We set aside the review's
+  reading of the rule." CONTRAST: picked "C2 Leave it", whose description read "No change." (The question told him
+  the review's copper claim compared two background colours, and that Opus 5.5 read the nav at about 4.1:1 on
+  terracotta from screenshots, not yet measured.) This also closes the Pass-128c nav-contrast check. NOT approved to
+  ship anything.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 

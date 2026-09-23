@@ -39,8 +39,9 @@ numbers, record with `status.py claude ... --window-start 2026-09-22T17:13:00Z`,
   `C:/Users/micah/Downloads/opus55-site-review/`. The frame-number box covers the wordmark's "M": a reader must be told.
 - His site-wide review CAME BACK (09-22 20:39): `.planning/research/opus55-review-2026-09/REPORT.md`, broken down
   against the queue in `BREAKDOWN.md` there (premises checked; four findings dropped as false). He has the two lists
-  in chat. Next: his picks by popup (the HIS CALL items first), then briefs. The H1 finding conflicts with the Reddit
-  corpus: show him both sources by name.
+  in chat. Round 1 ruled 09-22 night (LESSONS #3 "THE OPUS 5.5 SITE REVIEW, ROUND 1"): H1 kept; tool names picked
+  by a corpus cut (TODO: count tool names in `C:/Users/micah/Code/reddit-research/`, then each rewrite by popup);
+  Lenis kept; contrast left as is, which also CLOSES item 2.1(c), the 128c nav-contrast check.
 - Asked, unanswered: the LESSONS #65 sign-out.
 
 ## 4. Traps
