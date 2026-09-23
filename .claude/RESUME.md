@@ -4,7 +4,8 @@
 Next SITE chat (p106-live): `.planning/handoff/NEXT-SESSION-KICKOFF.md`. LANDING chat: `landing-exemplar` RESUME.
 Harness follow-ups: `.planning/handoff/KICKOFF-AFTER-HARNESS-V2.md`. Harness v2 = `harness/v2` (74f197b), not pushed.
 REVIEW BACK (09-22 20:39): `.planning/research/opus55-review-2026-09/` REPORT + BREAKDOWN (premises checked:
-4 false). Round 1 ruled (LESSONS #3): H1 kept; tool names by corpus cut (TODO); Lenis kept; contrast left.
+4 false). Round 1 ruled (LESSONS #3): H1 kept; Lenis kept; contrast left. Tool names (cut done): Lovable,
+Claude Code, Replit (his: not Cursor). NEXT: dspro + Sol draft the 4 lines + fine print, popup to him.
 Round 2: Packages into the nav; book not yet; home fine print shortened (wording by popup); hero photo is his.
 SECURITY (#65): asked 09-22 18:05 PDT if he signed out of the desktop app and claude.ai and back in: PENDING.
 

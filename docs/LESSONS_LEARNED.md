@@ -1342,6 +1342,13 @@ They are now written so the banned string does not appear verbatim.
   It's my own photo", whose description read "It's a real photo of me. The finding closes." FACT, ledgered:
   `/hero-context.jpg` on the home page is the operator's own photo (operator 2026-09-22). NOT approved to ship: the
   fine-print wording and the tool-name lines go to him by popup before any build.
+- **THE TOOL NAMES: LOVABLE, CLAUDE CODE, REPLIT - operator 2026-09-22 night (one popup, after the corpus cut
+  `.planning/research/opus55-review-2026-09/TOOL-NAMES-CUT.md`)**. The recommended option was "N3 Cursor, Lovable,
+  Claude Code". He typed, verbatim: "i want to replace cursor with replit they have alot of angry customers". So the
+  site names Lovable, Claude Code and Replit, and not Cursor. In the cut's 6,408 founder posts: Cursor 82, Claude Code
+  65, Lovable 63, Replit 15; his reason is Replit's angry customers, not the count. The lines naming them (the home
+  second beat, the /packages intro, the /services line, the meta description) go to him by popup before any build.
+  NOT approved to ship.
 
 ## #4 — The financial-data prospect rule (2026-06-18)
 

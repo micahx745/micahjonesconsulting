@@ -45,7 +45,12 @@ numbers, record with `status.py claude ... --window-start 2026-09-22T17:13:00Z`,
   "ROUND 2"): Packages into the nav, second item; the book not yet; the home Audit fine print shortened, exact
   wording to him by popup first; the hero photo is his own (a ledgered fact). STILL TO ASK once the corpus cut lands:
   the /services "notebook" line and the home meta description (both carry the tool names); named clients [C5] is
-  his to raise. BUILD after the wording popups: one brief for the nav item, the fine print and the tool-name lines;
+  his to raise. TOOL NAMES DONE (LESSONS #3 "THE TOOL NAMES"): the cut (`TOOL-NAMES-CUT.md`, founder subs, 6,408
+  posts) put Cursor 82, Claude Code 65, Lovable 63; he chose Lovable, Claude Code and REPLIT ("they have alot of
+  angry customers"). NEXT: pull the Replit posts' complaint wording from the corpus; deepseek-v4-pro and Sol draft
+  the home second beat, the /packages intro, the /services line, the meta description and the short home fine print
+  (exact current strings from source; the ledger's NEVER lines; the banned list); popup per line, two at a time.
+  BUILD after the wording popups: one brief for the nav item, the fine print and the tool-name lines;
   a copy-and-design checkpoint (Fable, Astra, deepseek-v4-pro) before any push.
 - Asked, unanswered: the LESSONS #65 sign-out.
 
